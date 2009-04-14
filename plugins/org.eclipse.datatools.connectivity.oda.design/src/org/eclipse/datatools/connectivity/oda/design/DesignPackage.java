@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.8 2009/03/03 07:42:08 lchan Exp $
+ * $Id: DesignPackage.java,v 1.9 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -192,13 +192,13 @@ public interface DesignPackage extends EPackage
     int ATOMIC_EXPRESSION_CONTEXT = 1;
 
     /**
-     * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+     * The feature id for the '<em><b>Optional</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL = 0;
+    int ATOMIC_EXPRESSION_CONTEXT__OPTIONAL = 0;
 
     /**
      * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -2217,13 +2217,22 @@ public interface DesignPackage extends EPackage
     int SORT_KEY__SORT_DIRECTION = 2;
 
     /**
+     * The feature id for the '<em><b>Optional</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY__OPTIONAL = 3;
+
+    /**
      * The number of structural features of the '<em>Sort Key</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SORT_KEY_FEATURE_COUNT = 3;
+    int SORT_KEY_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl <em>Sort Specification</em>}' class.
@@ -2606,15 +2615,15 @@ public interface DesignPackage extends EPackage
     EClass getAtomicExpressionContext();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional <em>Optional</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Is Optional</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional()
+     * @return the meta object for the attribute '<em>Optional</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional()
      * @see #getAtomicExpressionContext()
      * @generated
      */
-    EAttribute getAtomicExpressionContext_IsOptional();
+    EAttribute getAtomicExpressionContext_Optional();
 
     /**
      * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}'.
@@ -4473,6 +4482,17 @@ public interface DesignPackage extends EPackage
     EAttribute getSortKey_SortDirection();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Optional</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional()
+     * @see #getSortKey()
+     * @generated
+     */
+    EAttribute getSortKey_Optional();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.SortSpecification <em>Sort Specification</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4888,13 +4908,13 @@ public interface DesignPackage extends EPackage
                 .getAtomicExpressionContext();
 
         /**
-         * The meta object literal for the '<em><b>Is Optional</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL = eINSTANCE
-                .getAtomicExpressionContext_IsOptional();
+        EAttribute ATOMIC_EXPRESSION_CONTEXT__OPTIONAL = eINSTANCE
+                .getAtomicExpressionContext_Optional();
 
         /**
          * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
@@ -6495,6 +6515,14 @@ public interface DesignPackage extends EPackage
          */
         EAttribute SORT_KEY__SORT_DIRECTION = eINSTANCE
                 .getSortKey_SortDirection();
+
+        /**
+         * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SORT_KEY__OPTIONAL = eINSTANCE.getSortKey_Optional();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl <em>Sort Specification</em>}' class.

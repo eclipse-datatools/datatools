@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributesImpl.java,v 1.4 2007/04/11 02:59:52 lchan Exp $
+ * $Id: InputElementAttributesImpl.java,v 1.5 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -338,14 +338,11 @@ public class InputElementAttributesImpl extends EObjectImpl implements
     public StaticValues getDefaultValues()
     {
         // the collection of default values if exists, overrides the deprecated defaultScalarValue value;
-        // if no collection exists, returns the value in deprecated scalar value variable 
-        // in a temporary collection;
-        // a temporary collection is used since a getter should not change the instance data
+        // if no collection exists, migrates the value in deprecated scalar value variable 
+        // into a new collection
         if( getDefaultValuesGen() == null && getDefaultScalarValueGen() != null )
         {
-            StaticValues tempValuesList = DesignFactory.eINSTANCE.createStaticValues();
-            tempValuesList.add( getDefaultScalarValueGen() );
-            return tempValuesList;
+            return migrateDefaultScalarValue();
         }
 
         return getDefaultValuesGen();
@@ -441,20 +438,26 @@ public class InputElementAttributesImpl extends EObjectImpl implements
         StaticValues defaultValues = getDefaultValuesGen();
         if( defaultValues == null )
         {
-            defaultValues = DesignFactory.eINSTANCE.createStaticValues();
-            setDefaultValuesGen( defaultValues );
-
-            // migrate existing default value, if any, to the new collection
-            if( getDefaultScalarValueGen() != null )
-            {
-                defaultValues.add( getDefaultScalarValueGen() );
-                setDefaultScalarValueGen( null );
-            }
+            defaultValues = migrateDefaultScalarValue();
         }
 
         defaultValues.add( aValue );
     }
 
+    private StaticValues migrateDefaultScalarValue()
+    {
+        StaticValues defaultValues = DesignFactory.eINSTANCE.createStaticValues();
+        setDefaultValuesGen( defaultValues );
+
+        // migrate existing default value, if any, to the new collection
+        if( getDefaultScalarValueGen() != null )
+        {
+            defaultValues.add( getDefaultScalarValueGen() );
+            setDefaultScalarValueGen( null );
+        }
+        return defaultValues;
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

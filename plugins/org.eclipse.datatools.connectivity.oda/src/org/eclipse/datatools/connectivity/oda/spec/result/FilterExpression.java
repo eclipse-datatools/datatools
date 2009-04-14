@@ -15,7 +15,6 @@
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 
@@ -24,8 +23,8 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
  * </p>
  * The abstract base class for all ODA filter expressions.
  * <p>
- * An expression may be validated by an {@link ITester} implemented by an extension of
- * the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
+ * An expression may be validated by an {@link org.eclipse.datatools.connectivity.oda.spec.IValidator} implemented 
+ * by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
  * </p>
  * @since 3.2 (DTP 1.7)
  */

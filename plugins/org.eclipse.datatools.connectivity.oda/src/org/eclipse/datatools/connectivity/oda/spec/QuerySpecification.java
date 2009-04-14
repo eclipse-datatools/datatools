@@ -14,20 +14,19 @@
 
 package org.eclipse.datatools.connectivity.oda.spec;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
  * Specification of the query characteristics to apply when preparing and executing 
- * a query text of an {@link IQuery}.
+ * a query text in an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
  * <br>It takes effect only if assigned prior to an IQuery prepares a query text.
- * If any part of the specification is not supported by a driver, its implementation 
- * should throw an OdaException at {@link IQuery#prepare(String)}.
+ * If any part of the specification is not supported by a driver, an IQuery implementation 
+ * should throw an OdaException at 
+ * {@link org.eclipse.datatools.connectivity.oda.IQuery#prepare(String)}.
  * @since 3.2 (DTP 1.7)
  */
 public class QuerySpecification
@@ -37,8 +36,15 @@ public class QuerySpecification
     private Map<ParameterIdentifier,Object> m_parameterValues;
     
     /**
+     * Internal constructor.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createQuerySpecification()} 
+     * to create an instance.
+     */
+    public QuerySpecification() {}
+    
+    /**
      * Specifies the characteristics of all the result set(s) to be retrieved by
-     * the associated {@link IQuery}.
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
      * @param resultSpec    specification of a query's result set(s)
      */
     public void setResultSetSpecification( ResultSetSpecification resultSpec )
@@ -47,7 +53,7 @@ public class QuerySpecification
     }
     
     /**
-     * Gets the current result set specification of an {@link IQuery}.
+     * Gets the current result set specification of an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
      * @return  the current {@link ResultSetSpecification}, or null if not specified
      */
     public ResultSetSpecification getResultSetSpecification()
@@ -56,11 +62,11 @@ public class QuerySpecification
     }
 
     /**
-     * Specifies the value(s) of a data set query property.  
-     * <br>A property may have multiple values kept in a {@link Collection}.
+     * Specifies the value(s) of a data set query property, overriding existing values if any.  
+     * <br>A property may have multiple values kept in a {@link java.util.Collection}.
      * The property value specified here may be the same as the value set separately
-     * by {@link IQuery#setProperty(String, String)}, which is set after 
-     * a query is prepared.  
+     * by {@link org.eclipse.datatools.connectivity.oda.IQuery#setProperty(String, String)},
+     * which is set after a query is prepared.  
      * <br>A property value may be null, whose handling is specific to individual 
      * driver implementation.
      * An ODA consumer does not necessarily distinguish whether a property value
@@ -70,18 +76,15 @@ public class QuerySpecification
      */
     public void setProperty( String propertyName, Object value )
     {
-        if( m_propertyMap == null )
-            m_propertyMap = new HashMap<String,Object>(5);
-
-        m_propertyMap.put( propertyName, value );
+        getProperties().put( propertyName, value );
     }
     
     /**
      * Gets the value(s) of a data set query property.  
-     * <br>A property may have multiple values kept in a {@link Collection}.
+     * <br>A property may have multiple values kept in a {@link java.util.Collection}.
      * The property value specified here may be the same as the value set separately
-     * by {@link IQuery#setProperty(String, String)}, which is set after 
-     * a query is prepared.  
+     * by {@link org.eclipse.datatools.connectivity.oda.IQuery#setProperty(String, String)}, 
+     * which is set after a query is prepared.  
      * <br>Its handling is optional and specific to individual driver implementation
      * on whether to apply this property value(s) when preparing a query.
      * <br>If a property name is not recognized by the driver,
@@ -103,10 +106,10 @@ public class QuerySpecification
     /**
      * Specifies the values of all data set query properties, with each property name 
      * as the key to its corresponding value(s).
-     * <br>A property may have multiple values kept in a {@link Collection}.
+     * <br>A property may have multiple values kept in a {@link java.util.Collection}.
      * The property values specified here may be the same as those set separately
-     * by {@link IQuery#setProperty(String, String)}, which are set after 
-     * a query is prepared.  
+     * by {@link org.eclipse.datatools.connectivity.oda.IQuery#setProperty(String, String)}, 
+     * which are set after a query is prepared.  
      * <br>A property value may be null, whose handling is specific to individual 
      * driver implementation.
      * An ODA consumer does not necessarily distinguish whether a property value
@@ -121,10 +124,10 @@ public class QuerySpecification
     /**
      * Gets the values of all data set query properties, with each property name 
      * as the key to its corresponding value(s).
-     * <br>A property may have multiple values kept in a {@link Collection}.
+     * <br>A property may have multiple values kept in a {@link java.util.Collection}.
      * The property values specified here may be the same as those set separately
-     * by {@link IQuery#setProperty(String, String)}, which are set after 
-     * a query is prepared.  
+     * by {@link org.eclipse.datatools.connectivity.oda.IQuery#setProperty(String, String)}, 
+     * which are set after a query is prepared.  
      * <br>Its handling is optional and specific to individual driver implementation
      * on whether to apply these property values when preparing a query.
      * <br>If a property name is not recognized by the driver,
@@ -134,17 +137,19 @@ public class QuerySpecification
      * An ODA consumer does not necessarily distinguish whether a property value
      * is not set or explicitly set to null.  
      * @return  a {@link Map} of all currently specified data set query properties 
-     *          with each property name as the key to its corresponding value(s), 
-     *          or null if none
+     *          with each property name as the key to its corresponding value(s); 
+     *          may be empty if no property value is specified
      */
     public Map<String,Object> getProperties()
     {
+        if( m_propertyMap == null )
+            m_propertyMap = new HashMap<String,Object>(5);
         return m_propertyMap;
     }
 
     /**
      * Specifies the input value(s) of a data set query parameter, identified by its native name.  
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter value specified here may be the same as the value set separately
      * by a query's set by data type method, which is set after a query is prepared.
      * <br>A value in primitive data type is specified in its corresponding object type.
@@ -161,7 +166,7 @@ public class QuerySpecification
 
     /**
      * Specifies the input value(s) of a data set query parameter, identified by its id.  
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter value specified here may be the same as the value set separately
      * by a query's set by data type method, which is set after a query is prepared.
      * <br>A value in primitive data type is specified in its corresponding object type.
@@ -186,15 +191,12 @@ public class QuerySpecification
      */
     public void setParameterValue( ParameterIdentifier paramIdentifier, Object value )
     {
-        if( m_parameterValues == null )
-            m_parameterValues = new HashMap<ParameterIdentifier,Object>(5);
-
-        m_parameterValues.put( paramIdentifier, value );
+        getParameterValues().put( paramIdentifier, value );
     }
     
     /**
      * Gets the input value(s) of a data set query parameter, identified by its native name.  
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter value specified here may be the same as the value set separately
      * by a query's set by data type method, which is set after a query is prepared.
      * <br>Its handling is optional and specific to individual driver implementation
@@ -213,7 +215,7 @@ public class QuerySpecification
     
     /**
      * Gets the input value(s) of a data set query parameter, identified by its native name.  
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter value specified here may be the same as the value set separately
      * by a query's set by data type method, which is set after a query is prepared.
      * <br>Its handling is optional and specific to individual driver implementation
@@ -246,9 +248,10 @@ public class QuerySpecification
     }
     
     /**
-     * Specifies the values of all input parameters of the associated {@link IQuery}, with  
+     * Specifies the values of all input parameters of the associated 
+     * {@link org.eclipse.datatools.connectivity.oda.IQuery}, with  
      * each parameter identified by name or id as the key to its corresponding input value(s).
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter values specified here may be the same as those set separately
      * by a query's set by data type methods, which are set after a query is prepared.
      * <br>A value in primitive data type is specified in its corresponding object type.
@@ -263,9 +266,10 @@ public class QuerySpecification
     }
     
     /**
-     * Gets the values of all input parameters of the associated {@link IQuery}, with  
+     * Gets the values of all input parameters of the associated 
+     * {@link org.eclipse.datatools.connectivity.oda.IQuery}, with  
      * each parameter identified by name or id as the key to its corresponding input value(s).
-     * <br>A parameter may have multiple input values kept in a {@link Collection}.
+     * <br>A parameter may have multiple input values kept in a {@link java.util.Collection}.
      * The parameter values specified here may be the same as those set separately
      * by a query's set by data type methods, which are set after a query is prepared.
      * <br>Its handling is optional and specific to individual driver implementation
@@ -275,10 +279,13 @@ public class QuerySpecification
      * driver implementation.
      * @return  a {@link Map} of all currently specified data set query parameters 
      *          with each {@link ParameterIdentifier} as the key 
-     *          to its corresponding input value(s)
+     *          to its corresponding input value(s);
+     *          may be empty if no parameter value is specified
      */
     public Map<ParameterIdentifier,Object> getParameterValues()
     {
+        if( m_parameterValues == null )
+            m_parameterValues = new HashMap<ParameterIdentifier,Object>(5);
         return m_parameterValues;
     }
     

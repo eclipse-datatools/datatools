@@ -22,10 +22,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IContributor;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.AndExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.NotExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.OrExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory;
 
 /**
  * Represents the contributor defining its scope and capabilities, as specifed in an extension of the
@@ -37,16 +38,20 @@ public class ExtensionContributor implements IContributor
     public static final String ELEMENT_NAME = "contributor"; //$NON-NLS-1$
     public static final String SUB_ELEMENT_FILTER_EXPRESSION_TYPE = "supportedOdaFilterExpression"; //$NON-NLS-1$
     public static final String ATTR_ODA_FILTER_EXPR_NAME = "name"; //$NON-NLS-1$
-    public static final String ATTR_TESTER_CLASS = "testerClass"; //$NON-NLS-1$
+    public static final String ATTR_VALIDATOR_CLASS = "validatorClass"; //$NON-NLS-1$
+    public static final String ATTR_SPEC_FACTORY_CLASS = "specificationFactoryClass"; //$NON-NLS-1$
+    public static final String ATTR_ROW_ORDERING_SUPPORT = "supportsRowOrdering"; //$NON-NLS-1$
     
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
     
     private IConfigurationElement m_contributorElement;
     private List<SupportedDataSetType> m_dataSetTypes;
     private List<String> m_supportedOdaExprNames;
-    private ITester m_filterTester;
+    private IValidator m_filterValidator;
+    private QuerySpecificationFactory m_specFactory;
+    private boolean m_supportsRowOrdering;
     
-    ExtensionContributor( IConfigurationElement contributorElement ) throws OdaException
+    public ExtensionContributor( IConfigurationElement contributorElement ) throws OdaException
     {
         init( contributorElement );
     }
@@ -64,7 +69,13 @@ public class ExtensionContributor implements IContributor
         // process supportedOdaExpression child elements
         m_supportedOdaExprNames = processSupportedOdaExpressions( m_contributorElement );
         
-        // processing of optional tester attribute is deferred till it is needed
+        // supportsRowOrdering attribute
+        m_supportsRowOrdering = false;  // default value
+        String attrValue = contributorElement.getAttribute( ATTR_ROW_ORDERING_SUPPORT );
+        if( attrValue != null )
+            m_supportsRowOrdering = Boolean.parseBoolean( attrValue );
+
+        // processing of optional validator and specificationFactory attributes are deferred till it is needed
     }
 
     /**
@@ -192,31 +203,41 @@ public class ExtensionContributor implements IContributor
             return EMPTY_STRING_ARRAY;
         return m_supportedOdaExprNames.toArray( new String[ m_supportedOdaExprNames.size() ] ); 
     }
+
+    /**
+     * Indicates whether this contributor supports dynamic row ordering of its result sets 
+     * for all its supported data set types.
+     * @return  true if dynamic row ordering is supported; false otherwise
+     */
+    public boolean supportsDynamicRowOrdering()
+    {
+        return m_supportsRowOrdering;
+    }
     
     /**
-     * Gets the {@link ITester} instance of this contributor.
-     * @return  tester instance;
+     * Gets the {@link IValidator} instance of this contributor.
+     * @return  validator instance;
      *          or null if none is specified in the dynamicResultSet extension 
-     * @throws  OdaException if exception occurs in instantiating the tester class
+     * @throws  OdaException if exception occurs in instantiating the validator class
      */
-    public ITester getTester() throws OdaException
+    public IValidator getValidator() throws OdaException
     {
-        if( m_filterTester == null )
+        if( m_filterValidator == null )
         {
-            String testerClassName = m_contributorElement.getAttribute( ATTR_TESTER_CLASS );
-            if( testerClassName == null || testerClassName.length() == 0 ) // no tester class specified
+            String validatorClassName = m_contributorElement.getAttribute( ATTR_VALIDATOR_CLASS );
+            if( validatorClassName == null || validatorClassName.length() == 0 ) // no validator class specified
                 return null;
             
-            // create tester instance based on extension provider's testerClass name
+            // create validator instance based on extension provider's validatorClass name
             try
             {
-                Object testerClass = m_contributorElement.createExecutableExtension( ATTR_TESTER_CLASS );
-                if( testerClass instanceof ITester )
-                    m_filterTester = (ITester) testerClass;
+                Object validatorClass = m_contributorElement.createExecutableExtension( ATTR_VALIDATOR_CLASS );
+                if( validatorClass instanceof IValidator )
+                    m_filterValidator = (IValidator) validatorClass;
                 else
                     throw new OdaException( 
-                            Messages.bind( "Invalid tester class ({0}) defined; it must implement the {1} interface.",
-                                    testerClassName, ITester.class.getName() ));
+                            Messages.bind( "Invalid validator class ({0}) defined; it must implement the {1} interface.",
+                                    validatorClassName, IValidator.class.getName() ));
             }
             catch( CoreException ex )
             {
@@ -224,7 +245,39 @@ public class ExtensionContributor implements IContributor
             }
         }
         
-        return m_filterTester;
+        return m_filterValidator;
     }
 
+    /**
+     * 
+     * @return
+     * @throws OdaException
+     */
+    public QuerySpecificationFactory getSpecificationFactory() throws OdaException
+    {
+        if( m_specFactory == null )
+        {
+            String factoryClassName = m_contributorElement.getAttribute( ATTR_SPEC_FACTORY_CLASS );
+            if( factoryClassName == null || factoryClassName.length() == 0 ) // no factory class specified
+                return null;
+            
+            // create factory instance based on extension provider's factoryClassName
+            try
+            {
+                Object factoryClass = m_contributorElement.createExecutableExtension( ATTR_SPEC_FACTORY_CLASS );
+                if( factoryClass instanceof QuerySpecificationFactory )
+                    m_specFactory = (QuerySpecificationFactory) factoryClass;
+                else
+                    throw new OdaException( 
+                            Messages.bind( "Invalid specification factory class ({0}) defined; it must use or extend from {1}.",
+                                    factoryClassName, QuerySpecificationFactory.class.getName() ));
+            }
+            catch( CoreException ex )
+            {
+                throw new OdaException( ex );
+            }
+        }
+        
+        return m_specFactory;
+    }
 }

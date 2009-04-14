@@ -22,9 +22,9 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
- * Specification of one or more sort keys of a query result set.
- * <br>Its application would impact the ordering of data retrieved in a result set,
- * in addition to any specification expressed in a query text.
+ * Specification of one or more dynamic sort keys of a query result set.
+ * <br>Its application would impact the ordering of data rows retrieved in a result set,
+ * in addition to any required sort specification expressed in a query text.
  * This may be extended to define additional ways of expressing a sort mode or key.
  * @since 3.2 (DTP 1.7)
  */
@@ -40,11 +40,27 @@ public class SortSpecification
 	 */
 	public static final int sortDesc = 1;
 	
+	private static final int SORT_MODE_UNDEFINED = -1;
+	
 	private int m_sortMode;
 	private List<SortKey> m_sortKeys;
 	
 	/**
-	 * Constructor with the defined <code>sortMode</code>.
+	 * Internal constructor with no pre-defined restriction on its sort mode.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createSortSpecification()} 
+     * to create an instance.
+	 */
+	public SortSpecification()
+	{
+	    this( SORT_MODE_UNDEFINED );
+	}
+	
+	/**
+	 * Internal constructor with the defined <code>sortMode</code>.
+     * By specifiying a sort mode, a sort key that gets added to this specification
+     * will be validated to match the sort mode.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createSortSpecification(int)} 
+     * to create an instance.
 	 * @param sortMode	the sort mode of this <code>SortSpecification</code>; one of 
 	 * 					<code>IDataSetMetaData.sortModeNone</code>, 
 	 * 					<code>IDataSetMetaData.sortModeSingleOrder</code>,
@@ -58,7 +74,8 @@ public class SortSpecification
 		if( sortMode != IDataSetMetaData.sortModeNone &&
 			sortMode != IDataSetMetaData.sortModeSingleOrder &&
 			sortMode != IDataSetMetaData.sortModeColumnOrder &&
-			sortMode != IDataSetMetaData.sortModeSingleColumn )
+			sortMode != IDataSetMetaData.sortModeSingleColumn &&
+			sortMode != SORT_MODE_UNDEFINED )
 			throw new IllegalArgumentException( 
 					Messages.bind( Messages.sortSpec_INVALID_SORT_MODE_SPECIFIED,
 									new Integer( sortMode ) ));
@@ -75,34 +92,33 @@ public class SortSpecification
 	 * ordering.  Validation is done against this <code>SortSpecification</code>'s sortMode; 
 	 * i.e. the method throws an exception when adding a sort key that does not
 	 * conform to the sortMode of this <code>SortSpecification</code>.
-	 * @param columnName	name of the result set column to apply dynamic sorting
+	 * @param column	identifier of the result set column to apply dynamic sorting
 	 * 						on.  The specified column should be one of the columns
 	 * 						retrieved in a result set.
 	 * @param sortDirection		value that represents the sorting direction; one of 
 	 * 						<code>sortAsc</code>, <code>sortDesc</code>.
-	 * @throws NullPointerException	if <code>columnName</code> is null.
-	 * @throws IllegalArgumentException if <code>columnName</code> is empty; or if 
+	 * @throws NullPointerException	if <code>column</code> is null.
+	 * @throws IllegalArgumentException if <code>column</code> is invalid; or if 
 	 * 									<code>sortOrder</code> is not <code>sortAsc</code> 
 	 * 									or <code>sortDesc</code>.
 	 * @throws IllegalStateException	if the sortMode of this <code>SortSpecification</code> 
-	 * 									is <code>IDataSetMetaData.sortModeNone</code>; 
-	 * 									or if the sortMode of this <code>SortSpecification</code> 
-	 * 									is <code>IDataSetMetaData.sortModeSingleColumn</code>, 
-	 * 									and a sort key is already associated; or if the
-	 * 									sortMode of this <code>SortSpecification</code> is 
+	 * 									is <code>IDataSetMetaData.sortModeNone</code>, 
+	 * 									or <code>IDataSetMetaData.sortModeSingleColumn</code>, 
+	 * 									and a sort key is already associated; 
+	 * 									or if the sortMode is 
 	 * 									<code>IDataSetMetaData.sortModeSingleOrder</code> 
 	 * 									and the sort direction does not match existing directions.
 	 */
-	public void addSortKey( String columnName, int sortDirection )
+	public void addSortKey( ColumnIdentifier column, int sortDirection )
 	{
-		if( columnName == null )
+		if( column == null )
 			throw new NullPointerException( 
 					Messages.sortSpec_NULL_COLUMN_NAME_SPECIFIED );
 		
-		if( columnName.length() == 0 )
+		if( ! column.isValid() )
 			throw new IllegalArgumentException( 
 					Messages.bind( Messages.sortSpec_INVALID_COLUMN_NAME_SPECIFIED,
-									columnName ) );
+									column ) );
 		
 		if( sortDirection != sortAsc && sortDirection != sortDesc )
 			throw new IllegalArgumentException( 
@@ -128,7 +144,7 @@ public class SortSpecification
 					Messages.sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE );
 		}
 		
-		SortKey sortKey = new SortKey( columnName, sortDirection );
+		SortKey sortKey = new SortKey( column, sortDirection );
 		m_sortKeys.add( sortKey );
 	}
 	
@@ -142,7 +158,26 @@ public class SortSpecification
 	 */
 	public int getSortMode()
 	{
-		return m_sortMode;
+	    if( m_sortMode != SORT_MODE_UNDEFINED )
+	        return m_sortMode;
+
+        // if sortMode is undefined, derive the mode based on existing sort keys
+        int numSortKeys = getSortKeyCount();
+        if( numSortKeys == 0 )
+            return IDataSetMetaData.sortModeNone;
+        if( numSortKeys == 1 )
+            return IDataSetMetaData. sortModeSingleColumn;
+        
+        // check if multiple sort keys have different sort direction
+        int firstKeySortDirection = getSortDirection( 1 );
+        for( int i=2; i <= numSortKeys; i++ )
+        {
+            if( firstKeySortDirection != getSortDirection(i) )
+                return IDataSetMetaData.sortModeColumnOrder;
+        }
+        
+        // all sort keys have the same sort direction
+        return IDataSetMetaData.sortModeSingleOrder;
 	}
 	
 	/**
@@ -162,71 +197,71 @@ public class SortSpecification
 	}
 	
 	/**
-	 * Returns the result set column name of the sort key at the <code>index</code> 
-	 * position.
-	 * @param index		index of the sort key (1-based).
-	 * @return			the name of the result set column for the specified sort key.
-	 * @throws 			IndexOutOfBoundsException if <code>index</code> is out of range 
-	 * 					(index < 1 || index > getSortKeyCount()).
+	 * Returns the result set column identifier of the sort key 
+     * at the specified position.
+	 * @param pos       position of the sort key (1-based).
+     * @return          the name of the result set column for the specified sort key.
+     * @throws          IndexOutOfBoundsException if <code>pos</code> is out of range 
+     *                  (pos < 1 || pos > getSortKeyCount()).
 	 */
-	public String getSortColumn( int index )
+	public ColumnIdentifier getSortColumn( int pos )
 	{
-		validateIndex( index );
-	
-		// need to map from 1-based to 0-based collection index.
-		SortKey sortKey = (SortKey) m_sortKeys.get( index - 1 );
-		return sortKey.getColumnName();
+        validatePosition( pos );
+        
+        // need to map from 1-based to 0-based collection index.
+        ColumnIdentifier column = ((SortKey) m_sortKeys.get( pos - 1 )).getColumn();
+        return ( column != null && column.isValid() ) ? column : null;
 	}
 	
 	/**
-	 * Returns the sort direction of the sort key at the <code>index</code> position.
-	 * @param index		index of the sort key (1-based).
+	 * Returns the sort direction of the sort key at the specified position.
+	 * @param pos		position of the sort key (1-based).
 	 * @return			the sort direction for the specified sort key.
-	 * @throws 			IndexOutOfBoundsException if <code>index</code> is out of range 
-	 * 					(index < 1 || index > getSortKeyCount()).
+	 * @throws 			IndexOutOfBoundsException if <code>pos</code> is out of range 
+	 * 					(pos < 1 || pos > getSortKeyCount()).
 	 */
-	public int getSortDirection( int index )
+	public int getSortDirection( int pos )
 	{
-		validateIndex( index );
+		validatePosition( pos );
 	
 		// need to map from 1-based to 0-based collection index.
-		SortKey sortKey = (SortKey) m_sortKeys.get( index - 1 );
+		SortKey sortKey = (SortKey) m_sortKeys.get( pos - 1 );
 		return sortKey.getSortDirection();
 	}
 	
-	protected void validateIndex( int index )
+	protected void validatePosition( int pos )
 	{
 		int count = getSortKeyCountImpl();
-		if( index < 1 || index > count )
+		if( pos < 1 || pos > count )
 			throw new IndexOutOfBoundsException( 
                     Messages.bind( Messages.sortSpec_INDEX_OUT_OF_BOUND,
-                            new Integer( index ), new Integer( count ) ));
+                            new Integer( pos ), new Integer( count ) ));
 	}
 	
 	/**
-	 * Returns an array of all column names for the sort key of a 
+	 * Returns an array of all column identifiers for the sort keys of a 
 	 * <code>sortModeSingleOrder</code> <code>SortSpecification</code> object.
-	 * @return	an array of all column names for the sort keys of a 
+	 * @return	an array of all column identifiers for the sort keys of a 
 	 * 			<code>sortModeSingleOrder</code> <code>SortSpecification</code> 
 	 * 			object; an empty array if no sort keys are associated 
 	 * 			with this <code>SortSpecification</code>.
 	 * @throws IllegalStateException	if this <code>SortSpecification</code>'s sort 
 	 * 									mode is not <code>sortModeSingleOrder</code>.
 	 */
-	public String[] getSortColumns()
+	public ColumnIdentifier[] getSortColumns()
 	{
-		if( m_sortMode != IDataSetMetaData.sortModeSingleOrder )
+		if( getSortMode() != IDataSetMetaData.sortModeSingleOrder )
 			throw new IllegalStateException( 
 					Messages.sortSpec_ONLY_IN_SINGLE_ORDER_MODE );
 		
 		int size = getSortKeyCountImpl();
-		String[] sortColumns = new String[ size ];
+		ColumnIdentifier[] sortColumns = new ColumnIdentifier[ size ];
 		
 		for( int i = 0; i < size; i++ )
 		{
 			SortKey sortKey = (SortKey) m_sortKeys.get( i );
-			String columnName = sortKey.getColumnName();
-			sortColumns[i] = columnName;
+			ColumnIdentifier column = sortKey.getColumn();
+			sortColumns[i] = column;
 		}
 
 		return sortColumns;
@@ -243,7 +278,7 @@ public class SortSpecification
 	 */
 	public int getSortDirection()
 	{
-		if( m_sortMode != IDataSetMetaData.sortModeSingleOrder )
+		if( getSortMode() != IDataSetMetaData.sortModeSingleOrder )
 			throw new IllegalStateException( 
 					Messages.sortSpec_ONLY_IN_SINGLE_ORDER_MODE );
 		
@@ -266,7 +301,7 @@ public class SortSpecification
 	public String toString()
 	{
 		// override default toString() for convenient debugging and logging
-		return "Sort Mode: " + getSortModeLiteral( m_sortMode ) +  //$NON-NLS-1$
+		return "Sort Mode: " + getSortModeLiteral( getSortMode() ) +  //$NON-NLS-1$
 			   ", Sort Keys: " + m_sortKeys; //$NON-NLS-1$
 	}
 	
@@ -308,33 +343,49 @@ public class SortSpecification
 			case IDataSetMetaData.sortModeSingleColumn:
 				return "sortModeSingleColumn"; //$NON-NLS-1$
 			
+			case SORT_MODE_UNDEFINED:
+			    return "sortModeUndefined"; //$NON-NLS-1$
 			default:
 				// constructor checks ensure correct values
 				return ""; //$NON-NLS-1$
 		}
 	}
-	
+
 	/*
 	 * A simple private helper class that stores the state of 
 	 * each sort key.
 	 */
 	private static final class SortKey
 	{
-		private String m_columnName;
+		private ColumnIdentifier m_column;
 		private int m_sortDirection;
 		
 		// the arguments are to be validated by SortSpecification class
-		private SortKey( String columnName, int sortDirection )
+		private SortKey( ColumnIdentifier column, int sortDirection )
 		{
-			m_columnName = columnName;
+			m_column = column;
 			m_sortDirection = sortDirection;
+		}
+		
+		private ColumnIdentifier getColumn()
+		{
+		    return m_column;
+		}
+		
+/*		private int getColumnNumber()
+		{
+            if( m_column == null || m_column.getNumber() == null )
+                return 0;
+            return m_column.getNumber().intValue();
 		}
 		
 		private String getColumnName()
 		{
-			return m_columnName;
+		    if( m_column == null )
+		        return null;
+			return m_column.getValueExpression();
 		}
-		
+*/		
 		private int getSortDirection()
 		{
 			return m_sortDirection;
@@ -342,7 +393,7 @@ public class SortSpecification
 		
 		public String toString()
 		{
-			return "{" + m_columnName + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+			return "{" + m_column + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
 				   getSortDirectionLiteral( m_sortDirection ) + "}"; //$NON-NLS-1$
 		}
 	}

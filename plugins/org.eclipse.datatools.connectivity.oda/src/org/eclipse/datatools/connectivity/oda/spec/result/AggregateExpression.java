@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 /**
@@ -28,8 +27,8 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
  * </p>
  * The abstract base class for all ODA aggregate expressions.
  * <p>
- * An expression may be validated by an {@link ITester} implemented by 
- * an ODA dynamicResultSet extension.
+ * An expression may be validated by an {@link org.eclipse.datatools.connectivity.oda.spec.IValidator} implemented
+ * by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
  * </p>
  * @since 3.2 (DTP 1.7)
  */
@@ -127,7 +126,8 @@ public abstract class AggregateExpression
     }
 
     /**
-     * Indicates whether this aggregate should ignore duplicate input values.
+     * Indicates whether this aggregate should ignore duplicate input values 
+     * of its input source variable(s).
      * @return  true to ignore; false otherwise
      */
     public boolean ignoresDuplicateValues()
@@ -136,7 +136,8 @@ public abstract class AggregateExpression
     }
 
     /**
-     * Specifies whether this aggregate to ignore duplicate input values.
+     * Specifies whether this aggregate to ignore duplicate values 
+     * of its input source variable(s).
      * @param ignoresDups true to ignore; false otherwise
      */
     public void setIgnoreDuplicateValues( boolean ignoresDups )
@@ -145,7 +146,8 @@ public abstract class AggregateExpression
     }
 
     /**
-     * Indicates whether this aggregate should ignore duplicate null values.
+     * Indicates whether this aggregate should ignore duplicate null values 
+     * of its input source variable(s).
      * @return  true to ignore; false otherwise
      */
     public boolean ignoresNullValues()
@@ -154,7 +156,8 @@ public abstract class AggregateExpression
     }
 
     /**
-     * Specifies whether this aggregate should ignore duplicate null values.
+     * Specifies whether this aggregate should ignore duplicate null values 
+     * of its input source variable(s).
      * @param ignoresNull true to ignore; false otherwise
      */
     public void setIgnoreNullValues( boolean ignoresNull )

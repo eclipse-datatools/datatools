@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinitionImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
+ * $Id: ParameterDefinitionImpl.java,v 1.4 2007/09/07 04:52:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFields;
 import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
+import org.eclipse.datatools.connectivity.oda.design.StaticValues;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -185,12 +186,11 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
     {
         if( !isInput() || !isScalar() )
             return null;
-        if( getInputAttributes() == null
-                || getInputAttributes().getElementAttributes() == null )
+        if( getDefaultValueCount() == 0 )
             return null;
 
-        return getInputAttributes().getElementAttributes()
-                .getDefaultScalarValue();
+        Object firstValue = getDefaultValues().getValues().get(0);
+        return ( firstValue != null ) ? firstValue.toString() : null;
     }
 
     /* (non-Javadoc)
@@ -205,7 +205,47 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
         InputElementAttributes inputAttributes = getEditableInputElementAttributes();
         assert( inputAttributes != null );
 
+        // use deprecated method that takes care of migrating value to a collection
         inputAttributes.setDefaultScalarValue( value );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#getDefaultValues()
+     * @generated NOT
+     */
+    public StaticValues getDefaultValues()
+    {
+        if( !isInput() )
+            return null;
+        if( getInputAttributes() == null
+                || getInputAttributes().getElementAttributes() == null )
+            return null;
+
+        return getInputAttributes().getElementAttributes().getDefaultValues();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#getDefaultValueCount()
+     * @generated NOT
+     */
+    public int getDefaultValueCount()
+    {
+        StaticValues defaultValues = getDefaultValues();
+        return ( defaultValues == null ) ? 0 : defaultValues.count();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#addDefaultValue(java.lang.Object)
+     * @generated NOT
+     */
+    public void addDefaultValue( Object aValue )
+    {
+        if( !isInput() )
+            return; // ignore specified value
+
+        InputElementAttributes inputAttributes = getEditableInputElementAttributes();
+
+        inputAttributes.addDefaultValue( aValue );
     }
 
     /* (non-Javadoc)

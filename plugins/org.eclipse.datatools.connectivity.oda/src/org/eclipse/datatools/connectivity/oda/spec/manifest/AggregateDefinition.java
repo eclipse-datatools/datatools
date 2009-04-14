@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 
 /**
@@ -244,13 +244,13 @@ public class AggregateDefinition
     }
     
     /**
-     * Gets the concrete class that implements the {@link ITester} to validate this expression. 
-     * @return  an instance of the contributor's tester, or null if none is specified
-     * @throws  OdaException if exception occurs in instantiating its defined tester class
+     * Gets the concrete class that implements the {@link IValidator} to validate this expression. 
+     * @return  an instance of the contributor's validator, or null if none is specified
+     * @throws  OdaException if exception occurs in instantiating its defined validator class
      */
-    public ITester getTester() throws OdaException
+    public IValidator getValidator() throws OdaException
     {
-        return m_contributorInfo.getTester();
+        return m_contributorInfo.getValidator();
     }
     
     /**

@@ -18,7 +18,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
@@ -27,7 +26,8 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpressio
 
 /**
  * <strong>EXPERIMENTAL</strong>.
- * Factory of expression instances for use in a {@link QuerySpecification}.
+ * Factory of expression instances for use in a 
+ * {@link org.eclipse.datatools.connectivity.oda.spec.QuerySpecification}.
  * <br>Provides convenient methods to create expression instances.
  */
 public class ExpressionFactory
@@ -83,7 +83,8 @@ public class ExpressionFactory
     /**
      * Creates a custom aggregate expression instance of the specified aggregate expression 
      * contributed by the specified dynamicResultSet extension. 
-     * The custom aggregate expression may be applied in an ODA {@link ResultProjection} specification.
+     * The custom aggregate expression may be applied in an ODA 
+     * {@link org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection} specification.
      * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
      * @param exprId    id of a custom filter expression 
      * @return  an instance of CustomAggregate or its subclass contributed by 
@@ -100,7 +101,8 @@ public class ExpressionFactory
     /**
      * Creates a custom aggregate expression instance, with the given expression variable, 
      * of the specified aggregate expression contributed by the specified dynamicResultSet extension. 
-     * The custom aggregate expression may be applied in an ODA {@link ResultProjection} specification.
+     * The custom aggregate expression may be applied in an ODA 
+     * {@link org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection} specification.
      * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
      * @param exprId    id of a custom filter expression 
      * @param variable  the input source variable to set on the created instance; may be null

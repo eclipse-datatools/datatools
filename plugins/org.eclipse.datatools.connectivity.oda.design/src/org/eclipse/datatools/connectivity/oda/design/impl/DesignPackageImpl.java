@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.12 2009/03/05 20:14:39 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.13 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -740,7 +740,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getAtomicExpressionContext_IsOptional()
+    public EAttribute getAtomicExpressionContext_Optional()
     {
         return (EAttribute) atomicExpressionContextEClass
                 .getEStructuralFeatures().get( 0 );
@@ -2591,6 +2591,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getSortKey_Optional()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 3 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSortSpecification()
     {
         return sortSpecificationEClass;
@@ -2967,7 +2977,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
 
         atomicExpressionContextEClass = createEClass( ATOMIC_EXPRESSION_CONTEXT );
         createEAttribute( atomicExpressionContextEClass,
-                ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL );
+                ATOMIC_EXPRESSION_CONTEXT__OPTIONAL );
         createEReference( atomicExpressionContextEClass,
                 ATOMIC_EXPRESSION_CONTEXT__VARIABLE );
         createEReference( atomicExpressionContextEClass,
@@ -3283,6 +3293,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_NAME );
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_POSITION );
         createEAttribute( sortKeyEClass, SORT_KEY__SORT_DIRECTION );
+        createEAttribute( sortKeyEClass, SORT_KEY__OPTIONAL );
 
         sortSpecificationEClass = createEClass( SORT_SPECIFICATION );
         createEReference( sortSpecificationEClass,
@@ -3389,9 +3400,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 AtomicExpressionContext.class,
                 "AtomicExpressionContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute(
-                getAtomicExpressionContext_IsOptional(),
+                getAtomicExpressionContext_Optional(),
                 theXMLTypePackage.getBoolean(),
-                "isOptional", "false", 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "optional", "false", 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getAtomicExpressionContext_Variable(),
                 this.getExpressionVariable(),
@@ -4194,6 +4205,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getSortKey_SortDirection(),
                 this.getSortDirectionType(),
                 "sortDirection", "Ascending", 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(
+                getSortKey_Optional(),
+                theXMLTypePackage.getBoolean(),
+                "optional", "false", 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 sortSpecificationEClass,
@@ -4414,10 +4429,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "name", "AtomicExpressionContext", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( getAtomicExpressionContext_IsOptional(), source,
+        addAnnotation( getAtomicExpressionContext_Optional(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "isOptional", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "optional", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( getAtomicExpressionContext_Variable(), source,
@@ -5383,6 +5398,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getSortKey_SortDirection(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "sortDirection", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_Optional(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "optional", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( sortSpecificationEClass, source, new String[]

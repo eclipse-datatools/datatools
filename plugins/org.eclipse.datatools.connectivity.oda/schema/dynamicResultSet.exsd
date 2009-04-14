@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.datatools.connectivity.oda" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dynamicResultSet" name="ODA Dynamic Result Set"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [Experimental API] This extension point is for declaring support of dynamic operations on a result set of an ODA data set extension.
       </documentation>
@@ -12,9 +12,9 @@
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -41,9 +41,9 @@
                <documentation>
                   
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute translatable="true"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -60,14 +60,31 @@
             <element ref="supportedDataSetType" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="supportedOdaFilterExpression" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
-         <attribute name="testerClass" type="string">
+         <attribute name="validatorClass" type="string">
             <annotation>
                <documentation>
-                  The fully qualified name of a Java concrete class that implements the tester to validate all its contributed expressions. The class must be public and implement the &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.ITester&lt;/i&gt; interface with a public 0-argument constructor.
+                  The fully qualified name of a Java concrete class that implements the runtime validator to validate all its contributed expressions and any dynamic result set specification that may be set by an ODA consumer application. The class must be public and implement the &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.IValidator&lt;/i&gt; interface with a public 0-argument constructor.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.oda.spec.ITester"/>
-               </appinfo>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.oda.spec.IValidator"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="specificationFactoryClass" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java concrete factory class that creates extended specification classes for use in an ODA extension&apos;s dynamic query specification. The class must be public and extends the &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory&lt;/i&gt; base class with a public 0-argument constructor.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="supportsRowOrdering" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether this extension contributes dynamic row ordering of its result sets for all its supported data set types.  The default value is false.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
@@ -76,7 +93,7 @@
    <element name="filterExpressionTypes">
       <annotation>
          <documentation>
-            A grouping of one or more filterType elements, defining the types of filter expression contributed by this extension.
+            A grouping of one or more filterType elements, defining the types of filter expression contributed by this extension for all its supported data set types.
          </documentation>
       </annotation>
       <complexType>
@@ -108,9 +125,9 @@
                <documentation>
                   A translateable name that will be used to refer to this particular expression type in dialogs presented to the user. Default to the expression id if no name is specified.  The name should be unique within the extension.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute translatable="true"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="description" type="string">
@@ -126,9 +143,9 @@
                   The fully qualified name of a concrete implementation class of this custom filter expression. 
 &lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression:"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="minArguments" type="string" use="default" value="1">
@@ -165,7 +182,7 @@
    <element name="aggregateExpressionTypes">
       <annotation>
          <documentation>
-            A grouping of one or more aggregateType elements, defining the types of aggregate expression contributed by this extension.
+            A grouping of one or more aggregateType elements, defining the types of aggregate expression contributed by this extension for all its supported data set types.
          </documentation>
       </annotation>
       <complexType>
@@ -212,9 +229,9 @@
                   The fully qualified name of a concrete implementation class of this custom aggregate type 
 &lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate:"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="minInputVariables" type="string" use="default" value="1">
@@ -375,7 +392,7 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    <element name="supportedOdaFilterExpression">
       <annotation>
          <documentation>
-            The type of ODA filter expression supported by the extension.  It must be one of the concrete filter expressions defined by the ODA filter framework.
+            The type of ODA filter expression supported by the extension for all its supported data set types.  It must be one of the concrete filter expressions defined by the ODA filter framework.
          </documentation>
       </annotation>
       <complexType>
@@ -400,9 +417,9 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    </element>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="since"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          3.2.0 (DTP 1.7)
       </documentation>
@@ -410,18 +427,18 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
 
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="apiinfo"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec* packages.
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="implementation"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          A sample implementation of this extension point can be found in the
 &lt;i&gt;org.eclipse.datatools.connectivity.oda.consumer.testdriver&lt;/i&gt; project 
@@ -430,9 +447,9 @@ in DTP CVS under the org.eclipse.datatools.connectivity/tests/ folder.
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Copyright (c) 2009 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html

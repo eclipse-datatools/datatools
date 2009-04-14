@@ -57,7 +57,9 @@
            id="dynamicResultSetExtension"
            point="org.eclipse.datatools.connectivity.oda.dynamicResultSet">
         <contributor
-              testerClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.ExpressionTester">
+              specificationFactoryClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MySpecFactory"
+              supportsRowOrdering="true"
+              validatorClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.ExpressionTester">
          <supportedDataSetType
                odaDataSetId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"
                odaDataSourceId="org.eclipse.datatools.connectivity.oda.consumer.testdriver">

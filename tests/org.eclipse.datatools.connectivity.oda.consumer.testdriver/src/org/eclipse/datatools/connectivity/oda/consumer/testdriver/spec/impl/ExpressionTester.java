@@ -14,27 +14,29 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl;
 
-import java.util.List;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
- *  Sample custom tester of extension-defined filter expressions.
+ *  Sample custom validator of extension-defined filter expressions.
  */
 @SuppressWarnings("restriction")
-public class ExpressionTester implements ITester, IExecutableExtension
+public class ExpressionTester implements IValidator, IExecutableExtension
 {
-    private List<SupportedDataSetType> m_dataSetTypes;
+    private ExtensionContributor m_contributor;
 
     public ExpressionTester()
     {}
@@ -45,10 +47,9 @@ public class ExpressionTester implements ITester, IExecutableExtension
     public void setInitializationData( IConfigurationElement contributorElement,
             String propertyName, Object data ) throws CoreException
     {
-        // get the data set types specified in the contributor of this tester
         try
         {
-            m_dataSetTypes = ExtensionContributor.processDataSetTypeElements( contributorElement );
+            m_contributor = new ExtensionContributor( contributorElement );
         }
         catch( OdaException ex )
         {
@@ -57,7 +58,7 @@ public class ExpressionTester implements ITester, IExecutableExtension
     }
     
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.filter.ITester#validate(org.eclipse.datatools.connectivity.oda.filter.FilterExpression, org.eclipse.datatools.connectivity.oda.filter.ValidationContext)
+     * @see org.eclipse.datatools.connectivity.oda.filter.IValidator#validate(org.eclipse.datatools.connectivity.oda.filter.FilterExpression, org.eclipse.datatools.connectivity.oda.filter.ValidationContext)
      */
     public void validate( FilterExpression expr, ValidationContext context )
             throws OdaException
@@ -69,15 +70,16 @@ public class ExpressionTester implements ITester, IExecutableExtension
         
         CustomExpression customExpr = (CustomExpression) expr;
         
-        // validate if the data set types specified by the contributor of this tester matches 
+        // validate if the data set types specified by the contributor of this validator matches 
         // the type declared as supported in the custom expression definition
-        if( m_dataSetTypes != null )
+        SupportedDataSetType[] dataSetTypes = m_contributor.getSupportedDataSetTypes();
+        if( dataSetTypes.length > 0 )
         {
             boolean supportsExprDataSetType = false;
-            for( int i=0; i < m_dataSetTypes.size(); i++ )
+            for( int i=0; i < dataSetTypes.length; i++ )
             {
-                SupportedDataSetType testerDataSetType = m_dataSetTypes.get( i );
-                if( customExpr.supportsDataSetType( testerDataSetType ))
+                SupportedDataSetType validatorDataSetType = dataSetTypes[i];
+                if( customExpr.supportsDataSetType( validatorDataSetType ))
                 {
                     supportsExprDataSetType = true;
                     break;
@@ -95,13 +97,43 @@ public class ExpressionTester implements ITester, IExecutableExtension
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.filter.ITester#validate(org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression, org.eclipse.datatools.connectivity.oda.filter.ValidationContext)
+     * @see org.eclipse.datatools.connectivity.oda.filter.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression, org.eclipse.datatools.connectivity.oda.filter.ValidationContext)
      */
     public void validate( AggregateExpression expr, ValidationContext context )
             throws OdaException
     {
         // TODO Auto-generated method stub
         
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validate( QuerySpecification querySpec, ValidationContext context )
+            throws OdaException
+    {
+        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( m_contributor.getDeclaringExtensionId() );
+        SortSpecification sortSpec = specHelper.getSortSpecification( querySpec );
+        if( sortSpec != null )
+        {
+            for( int i=1; i <= sortSpec.getSortKeyCount(); i++ )
+            {
+                ColumnIdentifier column = sortSpec.getSortColumn( i );
+                
+                // test driver expects sort column identifier are defined as querySpec property names
+                String columnName = column.isIdentifiedByNumber() ? column.getNumber().toString() : column.getValueExpression();
+                if( ! querySpec.getProperties().containsKey( columnName ) )
+                    throw new OdaException( "Unexpected sort column: " + column ); //$NON-NLS-1$
+            }
+        }
+        
+        if( context != null )
+        {
+            String propValue = (String) context.getData( ValidationContext.DATA_PROPERTY_QUERY_TEXT );
+            String expectedPropValue = (String) querySpec.getProperties().get( ValidationContext.DATA_PROPERTY_QUERY_TEXT );
+            if(  propValue != expectedPropValue )
+                throw new OdaException( "Unexpected query text: " + propValue ); //$NON-NLS-1$
+        }
     }
 
 }

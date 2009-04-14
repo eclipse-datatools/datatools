@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: CustomFilterExpressionImpl.java,v 1.1 2009/03/03 07:42:07 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -390,7 +390,7 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
      */
     public boolean isOptional()
     {
-        return getContext().isIsOptional();
+        return getContext().isOptional();
     }
 
     /* (non-Javadoc)
@@ -399,7 +399,7 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
      */
     public void setIsOptional( boolean isOptional )
     {
-        getContext().setIsOptional( isOptional );
+        getContext().setOptional( isOptional );
     }
 
     /* (non-Javadoc)

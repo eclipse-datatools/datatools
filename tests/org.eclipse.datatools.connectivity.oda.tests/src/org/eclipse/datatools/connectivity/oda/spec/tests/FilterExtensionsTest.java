@@ -19,7 +19,7 @@ import java.sql.Types;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
@@ -40,8 +40,8 @@ import junit.framework.TestCase;
 public class FilterExtensionsTest extends TestCase
 {
     private static final String TEST_EXTENSION_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dynamicResultSetExtension"; //$NON-NLS-1$
-    private static final String DBPROFILE_DATA_SOURCE_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver"; //$NON-NLS-1$
-    private static final String DBPROFILE_DATA_SET_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"; //$NON-NLS-1$
+    private static final String TARGET_DATA_SOURCE_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver"; //$NON-NLS-1$
+    private static final String TARGET_DATA_SET_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"; //$NON-NLS-1$
 
     private static final String EQUAL_EXPR_ID = "0"; //$NON-NLS-1$
     private static final String BETWEEN_EXPR_ID = "1001"; //$NON-NLS-1$
@@ -52,7 +52,7 @@ public class FilterExtensionsTest extends TestCase
     public void testContributorManifest() throws Exception
     {
         ExtensionContributor[] contributors =
-            ResultExtensionExplorer.getInstance().getContributorsOfDataSet( DBPROFILE_DATA_SOURCE_ID, DBPROFILE_DATA_SET_ID  );
+            ResultExtensionExplorer.getInstance().getContributorsOfDataSet( TARGET_DATA_SOURCE_ID, TARGET_DATA_SET_ID  );
         assertTrue( contributors.length > 0 );
 
         ExtensionContributor contributor = contributors[0];
@@ -69,13 +69,13 @@ public class FilterExtensionsTest extends TestCase
         assertTrue( contributor.supportsOdaFilterExpression( OrExpression.getName() ));
         assertTrue( contributor.supportsOdaFilterExpression( NotExpression.getName() ));
         
-        assertTrue( contributor.supportsDataSetType( DBPROFILE_DATA_SOURCE_ID, DBPROFILE_DATA_SET_ID ));
+        assertTrue( contributor.supportsDataSetType( TARGET_DATA_SOURCE_ID, TARGET_DATA_SET_ID ));
     }
     
     public void testGetExpressionDefinition() throws Exception
     {
         ExtensionContributor[] contributors =
-            ResultExtensionExplorer.getInstance().getContributorsOfDataSet( DBPROFILE_DATA_SOURCE_ID, DBPROFILE_DATA_SET_ID  );
+            ResultExtensionExplorer.getInstance().getContributorsOfDataSet( TARGET_DATA_SOURCE_ID, TARGET_DATA_SET_ID  );
         assertTrue( contributors.length > 0 );
         ExtensionContributor contributor = contributors[0];
 
@@ -83,7 +83,7 @@ public class FilterExtensionsTest extends TestCase
             ResultExtensionExplorer.getInstance().getContributedFilterDefinition( contributor, EQUAL_EXPR_ID );
         assertEquals( EQUAL_EXPR_ID, equalDefn.getId() );
         assertEquals( contributor, equalDefn.getContributor() );
-        assertTrue( equalDefn.getTester() instanceof ITester );
+        assertTrue( equalDefn.getValidator() instanceof IValidator );
 
         FilterExpressionDefinition betweenDefn =
             ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( contributor.getDeclaringExtensionId(), BETWEEN_EXPR_ID );

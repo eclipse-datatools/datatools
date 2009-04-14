@@ -17,14 +17,13 @@ package org.eclipse.datatools.connectivity.oda.spec;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.datatools.connectivity.oda.IAdvancedQuery;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
  * Extended specification of the query characteristics to apply when preparing and executing 
- * a query text of an {@link IAdvancedQuery}.
+ * a query text of an {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
  * It takes effect only if assigned prior to an IAdvancedQuery prepares a query text
  * at {@link IQuery#prepare(String)}.
  * @since 3.2 (DTP 1.7)
@@ -35,8 +34,15 @@ public class AdvancedQuerySpecification extends QuerySpecification
     private Map<Integer,ResultSetSpecification> m_seqResultSpecs;
     
     /**
+     * Internal constructor.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createAdvancedQuerySpecification()} 
+     * to create an instance.
+     */
+    public AdvancedQuerySpecification() {}
+    
+    /**
      * Specifies the characteristics of the named result set to be retrieved by
-     * the associated {@link IAdvancedQuery}.
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
      * <br>This overrides the default specification set by the base class method
      * {@link QuerySpecification#setResultSetSpecification(ResultSetSpecification)}.
      * @param resultSetName     the name of a result set
@@ -49,7 +55,7 @@ public class AdvancedQuerySpecification extends QuerySpecification
     
     /**
      * Gets the specification of the named result set to be retrieved by
-     * the associated {@link IAdvancedQuery}.
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
      * @param resultSetName the name of a result set
      * @return  the {@link ResultSetSpecification} of the specified result set,
      *      or null if not specified
@@ -61,7 +67,7 @@ public class AdvancedQuerySpecification extends QuerySpecification
  
     /**
      * Specifies the characteristics of the specified result set to be retrieved by
-     * the associated {@link IAdvancedQuery}.
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
      * <br>This overrides the default specification set by the base class method
      * {@link QuerySpecification#setResultSetSpecification(ResultSetSpecification)}.
      * @param resultSetNum     a 1-based index number that indicates the sequence of a result set 
@@ -75,7 +81,7 @@ public class AdvancedQuerySpecification extends QuerySpecification
     
     /**
      * Gets the specification of the specified result set to be retrieved by
-     * the associated {@link IAdvancedQuery}.
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
      * @param resultSetNum     a 1-based index number that indicates the sequence of a result set 
      *                         among a sequential set of multiple result sets
      * @return  the {@link ResultSetSpecification} of the specified result set,

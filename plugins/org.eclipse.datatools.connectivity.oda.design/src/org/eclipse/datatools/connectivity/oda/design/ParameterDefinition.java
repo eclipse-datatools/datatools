@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.5 2007/04/11 02:59:53 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.6 2007/09/07 04:52:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -77,7 +77,7 @@ public interface ParameterDefinition extends EObject
     boolean isScalar();
 
     /**
-     * A convenience method to return this parameter's default input value.
+     * A convenience method to return this parameter's default input value in String.
      * @return the value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute;
      *         returns null if this is not a scalar input parameter.
      * @see #setDefaultScalarValue(String)
@@ -88,7 +88,7 @@ public interface ParameterDefinition extends EObject
     String getDefaultScalarValue();
 
     /**
-     * A convenience method to set this parameter's default input value.
+     * A convenience method to set this parameter's default input value in String.
      * The specified value is applied only if this is defined as
      * a scalar input parameter.
      * @param value the new value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute.
@@ -99,6 +99,32 @@ public interface ParameterDefinition extends EObject
      */
     void setDefaultScalarValue( String value );
 
+    /**
+     * A convenience method to return this parameter's collection of default input values.
+     * @return  the collection of default values; may be null or empty
+     * @since 3.2 (DTP 1.7)
+     * @generated NOT
+     */
+    StaticValues getDefaultValues();
+
+    /**
+     * A convenience method to get the number of default values specified for this parameter.
+     * @return  number of default values
+     * @since 3.2 (DTP 1.7)
+     * @generated NOT
+     */
+    int getDefaultValueCount();
+    
+    /**
+     * A convenience method to append a default value to this parameter's default value collection.
+     * It is the responsibility of the caller to ensure compatible type of value object
+     * is added to the collection.
+     * @param aValue    the default value to add; may be null
+     * @since 3.2 (DTP 1.7)
+     * @generated NOT
+     */
+    void addDefaultValue( Object aValue );
+    
     /**
      * Returns the value of the '<em><b>In Out Mode</b></em>' attribute.
      * The default value is <code>"In"</code>.

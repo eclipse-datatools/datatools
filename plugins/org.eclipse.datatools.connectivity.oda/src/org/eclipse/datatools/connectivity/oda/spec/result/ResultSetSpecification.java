@@ -14,14 +14,11 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
-import org.eclipse.datatools.connectivity.oda.IQuery;
-import org.eclipse.datatools.connectivity.oda.IResultSet;
-import org.eclipse.datatools.connectivity.oda.SortSpec;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
- * Specification of the characteristics of an {@link IResultSet} to be retrieved
- * by the associated {@link IQuery}.
+ * Specification of the characteristics of an {@link org.eclipse.datatools.connectivity.oda.IResultSet} 
+ * to be retrieved by the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
  * <br>Its application would impact the shape of data retrieved in a result set,
  * in addition to any specification expressed in a query text.
  * @since 3.2 (DTP 1.7)
@@ -31,6 +28,13 @@ public class ResultSetSpecification
     private FilterExpression m_filterSpec;
     private ResultProjection m_projectionSpec;
     private SortSpecification m_sortSpec;
+    
+    /**
+     * Internal constructor.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createResultSetSpecification()} 
+     * to create an instance.
+     */
+    public ResultSetSpecification() {}
     
     /**
      * Specifies the filtering characteristics of a query result set.
@@ -77,7 +81,9 @@ public class ResultSetSpecification
      * that are acceptable to its data provider, based on its level 
      * of dynamic sorting support. 
      * <p>
-     * This will replace {@link IQuery#setSortSpec(SortSpec)} when it becomes API.
+     * This will replace 
+     * {@link org.eclipse.datatools.connectivity.oda.IQuery#setSortSpec(org.eclipse.datatools.connectivity.oda.SortSpec)} 
+     * when it becomes API.
      * @param sortBy    a {@link SortSpecification}
      */
     public void setSortSpecification( SortSpecification sortSpec )
@@ -88,7 +94,8 @@ public class ResultSetSpecification
     /**
      * Gets the current sorting specification of a query result set.
      * <p>
-     * This will replace {@link IQuery#getSortSpec()} when it becomes API.
+     * This will replace {@link org.eclipse.datatools.connectivity.oda.IQuery#getSortSpec()} 
+     * when it becomes API.
      * @return  the current {@link SortSpecification},
      *          or null if not explicitly specified
      */

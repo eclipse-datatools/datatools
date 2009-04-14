@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
@@ -42,7 +42,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     private String m_id;
     private String m_extensionId;
     private Map<String,Object> m_customData;
-    private AggregateDefinition m_definition;  // expects 1-n-only-1 associated FilterExpressionDefinition
+    private AggregateDefinition m_definition;  // expects 1-n-only-1 associated AggregateDefinition
 
     /*
      * Constructor for internal use only.
@@ -66,6 +66,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     
     /*
      * Constructor for internal use only by org.eclipse.core.runtime.IExecutableExtension#setInitializationData.
+     * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
     public CustomAggregate()
     {
@@ -99,7 +100,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     }
     
     /**
-     * Gets the unique id of the filterExpressions extension that declares this custom expression type.
+     * Gets the unique id of the dynamicResultSet extension that declares this custom expression type.
      * @return unique id of declaring extension
      */
     public String getDeclaringExtensionId()
@@ -185,7 +186,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     /**
      * Gets the definition of this expression's capabilities and metadata, as registered by the provider 
      * in its extension of the <i>org.eclipse.datatools.connectivity.oda.dynamicResultSet</i> extension point.
-     * @return  definition of this custom filter expression
+     * @return  definition of this custom aggregate expression
      */
     public AggregateDefinition getDefinition()
     {
@@ -264,26 +265,30 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
         // validates the capabilities
         if( ignoresDuplicateValues() && ! defn.canIgnoreDuplicateValues() )
             throw new OdaException( 
-                    Messages.bind( "The custom aggregate ({0}) cannot ignore duplicate values.", getQualifiedId() ));
-        
-        // up to custom tester class to resolve a variable's data type and validate
+                    Messages.bind( "The custom aggregate type ({0}) cannot ignore duplicate values.", getQualifiedId() ));
+ 
+        if( ignoresNullValues() && ! defn.canIgnoreNullValues() )
+            throw new OdaException( 
+                    Messages.bind( "The custom aggregate type ({0}) cannot ignore null values.", getQualifiedId() ));
+
+        // up to custom validator class to resolve a variable's data type and validate
         // against one of the expression's restricted data types
-        ITester customTester = getTester( context );
-        if( customTester != null )
-            customTester.validate( this, context );
+        IValidator customValidator = getValidator( context );
+        if( customValidator != null )
+            customValidator.validate( this, context );
     }
     
-    protected ITester getTester( ValidationContext context )
+    protected IValidator getValidator( ValidationContext context )
     {
-        // try use the tester in the context, if available
-        if( context != null && context.getTester() != null )
-            return context.getTester();
+        // try use the validator in the context, if available
+        if( context != null && context.getValidator() != null )
+            return context.getValidator();
 
-        // use tester in the definition, if specified
+        // use validator in the definition, if specified
         try
         {
             if( getDefinition() != null )
-                return getDefinition().getTester();
+                return getDefinition().getValidator();
         }
         catch( OdaException ex )
         {

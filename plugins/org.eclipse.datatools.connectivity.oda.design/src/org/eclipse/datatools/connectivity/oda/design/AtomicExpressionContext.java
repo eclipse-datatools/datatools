@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AtomicExpressionContext.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
+ * $Id: AtomicExpressionContext.java,v 1.2 2009/03/03 07:42:08 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getArguments <em>Arguments</em>}</li>
  * </ul>
@@ -53,58 +53,58 @@ public interface AtomicExpressionContext extends EObject
     String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * Returns the value of the '<em><b>Is Optional</b></em>' attribute.
+     * Returns the value of the '<em><b>Optional</b></em>' attribute.
      * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
      * Indicates whether this atomic expression can be excluded at runtime.
      * <!-- end-model-doc -->
-     * @return the value of the '<em>Is Optional</em>' attribute.
-     * @see #isSetIsOptional()
-     * @see #unsetIsOptional()
-     * @see #setIsOptional(boolean)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAtomicExpressionContext_IsOptional()
+     * @return the value of the '<em>Optional</em>' attribute.
+     * @see #isSetOptional()
+     * @see #unsetOptional()
+     * @see #setOptional(boolean)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAtomicExpressionContext_Optional()
      * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
-     *        extendedMetaData="kind='element' name='isOptional' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='optional' namespace='##targetNamespace'"
      * @generated
      */
-    boolean isIsOptional();
+    boolean isOptional();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional <em>Optional</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Optional</em>' attribute.
-     * @see #isSetIsOptional()
-     * @see #unsetIsOptional()
-     * @see #isIsOptional()
+     * @param value the new value of the '<em>Optional</em>' attribute.
+     * @see #isSetOptional()
+     * @see #unsetOptional()
+     * @see #isOptional()
      * @generated
      */
-    void setIsOptional( boolean value );
+    void setOptional( boolean value );
 
     /**
-     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute.
+     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional <em>Optional</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isSetIsOptional()
-     * @see #isIsOptional()
-     * @see #setIsOptional(boolean)
+     * @see #isSetOptional()
+     * @see #isOptional()
+     * @see #setOptional(boolean)
      * @generated
      */
-    void unsetIsOptional();
+    void unsetOptional();
 
     /**
-     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute is set.
+     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isOptional <em>Optional</em>}' attribute is set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Is Optional</em>' attribute is set.
-     * @see #unsetIsOptional()
-     * @see #isIsOptional()
-     * @see #setIsOptional(boolean)
+     * @return whether the value of the '<em>Optional</em>' attribute is set.
+     * @see #unsetOptional()
+     * @see #isOptional()
+     * @see #setOptional(boolean)
      * @generated
      */
-    boolean isSetIsOptional();
+    boolean isSetOptional();
 
     /**
      * Returns the value of the '<em><b>Variable</b></em>' containment reference.

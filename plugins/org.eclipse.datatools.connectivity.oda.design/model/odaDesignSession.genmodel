@@ -95,7 +95,7 @@
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//TextWrapTypeObject"/>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//AndExpression"/>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/isOptional"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/optional"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/arguments"/>
     </genClasses>
@@ -315,6 +315,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnPosition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/sortDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/optional"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//SortSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//SortSpecification/sortKeys"/>

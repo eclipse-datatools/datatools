@@ -268,14 +268,25 @@ public class DesignUtilLoadSaveTest extends TestCase
             ParameterDefinition newParamDefn = (ParameterDefinition) EcoreUtil.copy( iter.next() );
             InputElementAttributes inputElementAttrs = newParamDefn.getInputAttributes().getElementAttributes();
             
+            String existingDefaultValue = newParamDefn.getDefaultScalarValue();
+            assertEquals( existingDefaultValue, inputElementAttrs.getDefaultScalarValue() );
             
-            String existingDefaultValue = inputElementAttrs.getDefaultScalarValue();
+            assertEquals( 1, newParamDefn.getDefaultValueCount() );
             assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
             
-            String newDefaultValue = "new default value";
-            inputElementAttrs.addDefaultValue( newDefaultValue );
-            assertEquals( 2, inputElementAttrs.getDefaultValueCount() );
+            // test default value accessors in ParameterDefinition
+            String newDefaultValue = "new default value 2";
+            newParamDefn.addDefaultValue( newDefaultValue );
+            assertEquals( 2, newParamDefn.getDefaultValueCount() );
+            assertEquals( newDefaultValue, newParamDefn.getDefaultValues().getValues().get( 2-1 ));
             
+            // test default value accessors in InputElementAttributes
+            newDefaultValue = "new default value 3";
+            inputElementAttrs.addDefaultValue( newDefaultValue );
+            assertEquals( 3, inputElementAttrs.getDefaultValueCount() );
+            assertEquals( newDefaultValue, inputElementAttrs.getDefaultValues().getValues().get( 3-1 ));
+            
+            // test backward compatibility of deprecated method, which reset and overrides all exisitng values
             inputElementAttrs.setDefaultScalarValue( newDefaultValue );
             assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
             assertEquals( newDefaultValue, inputElementAttrs.getDefaultValues().getValues().get( 0 ));

@@ -57,9 +57,10 @@ public class NotExpression extends FilterExpression
      */
     public void validate( ValidationContext context ) throws OdaException
     {
-        if( context != null && context.getTester() != null )
-            context.getTester().validate( this, context );
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
 
+        // validate the child expression
         if( m_expression == null )
             throw new OdaException( Messages.bind( "Missing negating expression in NotExpression: ({0}).", this ));
 

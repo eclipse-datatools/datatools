@@ -15,12 +15,14 @@
 package org.eclipse.datatools.connectivity.oda.spec.util;
 
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
+import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
  * </p>
- * An utility to migrate a pre-3.2 {@link SortSpec} instance to and from
+ * An utility to convert a pre-3.2 {@link SortSpec} instance to and from
  * a {@link SortSpecification} instance.
  * @since 3.2 (DTP 1.7)
  */
@@ -37,10 +39,13 @@ public class SortSpecMigrator
         if( oldSortSpec == null )
             return null;
         
-        SortSpecification resultSortSpec = new SortSpecification( oldSortSpec.getSortMode() );
+        SortSpecification resultSortSpec = 
+            new QuerySpecificationHelper().createSortSpecification( oldSortSpec.getSortMode() );
         for( int i=1; i <= oldSortSpec.getSortKeyCount(); i++ )
         {
-            resultSortSpec.addSortKey( oldSortSpec.getSortColumn( i ), oldSortSpec.getSortOrder( i ) );
+            resultSortSpec.addSortKey( 
+                    new ColumnIdentifier( oldSortSpec.getSortColumn( i )), 
+                    oldSortSpec.getSortOrder( i ) );
         }
         return resultSortSpec;
     }
@@ -48,18 +53,21 @@ public class SortSpecMigrator
     /**
      * Converts the specified {@link SortSpecification} instance used in a QuerySpecification
      * to a pre-3.2 {@link SortSpec} instance.
-     * @param rowSortSpec    a {@link SortSpecification} instance to convert from
+     * @param resultSortSpec    a {@link SortSpecification} instance to convert from
      * @return  a new pre-3.2 {@link SortSpec} instance
      */
-    public static SortSpec convertSortSpecification( SortSpecification rowSortSpec )
+    public static SortSpec convertSortSpecification( SortSpecification resultSortSpec )
     {
-        if( rowSortSpec == null )
+        if( resultSortSpec == null )
             return null;
         
-        SortSpec oldSortSpec = new SortSpec( rowSortSpec.getSortMode() );
-        for( int i=1; i <= rowSortSpec.getSortKeyCount(); i++ )
+        SortSpec oldSortSpec = new SortSpec( resultSortSpec.getSortMode() );
+        for( int i=1; i <= resultSortSpec.getSortKeyCount(); i++ )
         {
-            oldSortSpec.addSortKey( rowSortSpec.getSortColumn( i ), rowSortSpec.getSortDirection( i ) );
+            ColumnIdentifier sortColumn = resultSortSpec.getSortColumn( i );
+            if( sortColumn == null )
+                throw new IllegalArgumentException( Messages.bind( "Invalid argument: {0}.", resultSortSpec ));
+            oldSortSpec.addSortKey( sortColumn.getValueExpression(), resultSortSpec.getSortDirection( i ) );
         }
         return oldSortSpec;
     }

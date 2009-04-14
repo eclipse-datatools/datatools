@@ -26,7 +26,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.ITester;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
@@ -67,6 +67,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     
     /*
      * Constructor for internal use only by org.eclipse.core.runtime.IExecutableExtension#setInitializationData.
+     * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
     public CustomExpression()
     {
@@ -236,28 +237,28 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
             int maxArgs = defn.getMaxArguments().intValue();
             if( numArgs > maxArgs )
                 throw new OdaException( 
-                    Messages.bind( "The custom expression ({0}) has {1} arguments, but allows a maximum of {2} arguments.", 
+                    Messages.bind( "The custom filter expression ({0}) has {1} arguments, but allows a maximum of {2} arguments.", 
                                 new Object[]{ getQualifiedId(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ));
         }
         
-        // up to custom tester class to resolve a variable's data type and validate
+        // up to custom validator class to resolve a variable's data type and validate
         // against one of the expression's restricted data types
-        ITester customTester = getTester( context );
-        if( customTester != null )
-            customTester.validate( this, context );
+        IValidator customValidator = getValidator( context );
+        if( customValidator != null )
+            customValidator.validate( this, context );
     }
     
-    protected ITester getTester( ValidationContext context )
+    protected IValidator getValidator( ValidationContext context )
     {
-        // try use the tester in the context, if available
-        if( context != null && context.getTester() != null )
-            return context.getTester();
+        // try use the validator in the context, if available
+        if( context != null && context.getValidator() != null )
+            return context.getValidator();
 
-        // use tester in the definition, if specified
+        // use validator in the definition, if specified
         try
         {
             if( getDefinition() != null )
-                return getDefinition().getTester();
+                return getDefinition().getValidator();
         }
         catch( OdaException ex )
         {

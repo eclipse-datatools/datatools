@@ -82,8 +82,8 @@ public abstract class CompositeExpression extends FilterExpression
     @Override
     public void validate( ValidationContext context ) throws OdaException
     {      
-        if( context != null && context.getTester() != null )
-            context.getTester().validate( this, context );
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
         
         // validate each of its children, if exists
         if( m_expressions == null )

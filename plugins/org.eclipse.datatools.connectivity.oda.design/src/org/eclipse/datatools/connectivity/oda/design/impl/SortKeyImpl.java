@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: SortKeyImpl.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getSortDirection <em>Sort Direction</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#isOptional <em>Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,6 +136,35 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
     protected boolean m_sortDirectionESet;
 
     /**
+     * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isOptional()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean OPTIONAL_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isOptional()
+     * @generated
+     * @ordered
+     */
+    protected boolean m_optional = OPTIONAL_EDEFAULT;
+
+    /**
+     * This is true if the Optional attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean m_optionalESet;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -187,10 +217,10 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
     public void setColumnName( String newColumnName )
     {
         if( newColumnName == null )
-            newColumnName = EMPTY_STR;  // cannot be null per design definition
+            newColumnName = EMPTY_STR; // cannot be null per design definition
         setColumnNameGen( newColumnName );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -233,7 +263,7 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         if( getColumnName() == null ) // not yet set
             setColumnName( EMPTY_STR );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -321,6 +351,60 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isOptional()
+    {
+        return m_optional;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOptional( boolean newOptional )
+    {
+        boolean oldOptional = m_optional;
+        m_optional = newOptional;
+        boolean oldOptionalESet = m_optionalESet;
+        m_optionalESet = true;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.SORT_KEY__OPTIONAL, oldOptional, m_optional,
+                    !oldOptionalESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetOptional()
+    {
+        boolean oldOptional = m_optional;
+        boolean oldOptionalESet = m_optionalESet;
+        m_optional = OPTIONAL_EDEFAULT;
+        m_optionalESet = false;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.SORT_KEY__OPTIONAL, oldOptional,
+                    OPTIONAL_EDEFAULT, oldOptionalESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetOptional()
+    {
+        return m_optionalESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
@@ -332,6 +416,8 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return new Integer( getColumnPosition() );
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             return getSortDirection();
+        case DesignPackage.SORT_KEY__OPTIONAL:
+            return isOptional() ? Boolean.TRUE : Boolean.FALSE;
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -354,6 +440,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return;
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             setSortDirection( (SortDirectionType) newValue );
+            return;
+        case DesignPackage.SORT_KEY__OPTIONAL:
+            setOptional( ((Boolean) newValue).booleanValue() );
             return;
         }
         super.eSet( featureID, newValue );
@@ -378,6 +467,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             unsetSortDirection();
             return;
+        case DesignPackage.SORT_KEY__OPTIONAL:
+            unsetOptional();
+            return;
         }
         super.eUnset( featureID );
     }
@@ -399,6 +491,8 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return isSetColumnPosition();
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             return isSetSortDirection();
+        case DesignPackage.SORT_KEY__OPTIONAL:
+            return isSetOptional();
         }
         return super.eIsSet( featureID );
     }
@@ -425,6 +519,11 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         result.append( ", sortDirection: " ); //$NON-NLS-1$
         if( m_sortDirectionESet )
             result.append( m_sortDirection );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", optional: " ); //$NON-NLS-1$
+        if( m_optionalESet )
+            result.append( m_optional );
         else
             result.append( "<unset>" ); //$NON-NLS-1$
         result.append( ')' );

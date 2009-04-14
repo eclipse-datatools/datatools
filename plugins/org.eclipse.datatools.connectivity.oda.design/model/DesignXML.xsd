@@ -154,7 +154,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute default="false" name="isOptional" type="xsd:string">
+    <xsd:attribute default="false" name="optional" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>Indicates whether this atomic expression can be excluded at runtime.</xsd:documentation>
       </xsd:annotation>
@@ -1144,6 +1144,11 @@ Applying the criteria may impact the data retrieved in a result set, in addition
     <xsd:attribute default="Ascending" name="sortDirection" type="design:SortDirectionType">
       <xsd:annotation>
         <xsd:documentation>The sort direction of this result set column.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="false" name="optional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether this sort key can be excluded at runtime.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>

@@ -14,83 +14,91 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.eclipse.datatools.connectivity.oda.IQuery;
-import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
- * Specification for the projection of an {@link IResultSet} to be retrieved
- * by an associated {@link IQuery}.
+ * Specification for the projection of an {@link org.eclipse.datatools.connectivity.oda.IResultSet} 
+ * to be retrieved by an associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
  * @since 3.2 (DTP 1.7)
  */
 public class ResultProjection
 {
-    private Map<Integer,AggregateExpression> m_aggregateSpecByColumnPos;
+    private Map<ColumnIdentifier,AggregateExpression> m_aggregateSpecByColumn;
+    private Map<ColumnIdentifier,ExpressionVariable> m_addedColumns;
+    private List<ColumnIdentifier> m_hiddenColumns;
+    private static final int MAP_INITIAL_CAPACITY = 5;
     
     /**
-     * Specifies the aggregate expression on the specified result set column.
-     * @param resultColumnNum   the projected column number (1-based) in the result set
+     * Internal constructor.
+     * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createResultProjection()} 
+     * to create an instance.
+     */
+    public ResultProjection() {}
+    
+    /**
+     * Specifies an aggregate expression whose output value is projected on the 
+     * specified result set column identifier.
+     * The aggregation is applied on the values of its input source variable(s) 
+     * across a set of data records.
+     * Each set is grouped by the unique values of all the other result set column(s) 
+     * that do not have an aggregate expression projected.
+     * <br>A projected tabular result set returns one row for each group. 
+     * @param resultColumn   the projected column identifier in the result set
      * @param aggregate an {@link AggregateExpression} whose output value is projected on the 
      *                  specified result set column
      * @throws OdaException
      */
-    public void setProjection( int resultColumnNum, AggregateExpression aggregate ) throws OdaException
+    public void setProjection( ColumnIdentifier resultColumn, AggregateExpression aggregate ) throws OdaException
     {
-        if( resultColumnNum < 1 )
+        if( resultColumn == null )
             throw new OdaException( new IllegalArgumentException() );
-        getAggregateColumns().put( Integer.valueOf( resultColumnNum ), aggregate );
+        getAggregatedColumns().put( resultColumn, aggregate );
     }
     
     /**
      * Gets the aggregate expression on the specified result set column.
      * @param resultColumnNum  the projected column number (1-based) in the result set
      * @return  an {@link AggregateExpression} whose output value is projected on the 
-     *                  specified result set column
+     *                  specified result set column, or null if none is specified
+     * @see #setProjection(ColumnIdentifier, AggregateExpression)
      */
-    public AggregateExpression getAggregateProjection( int resultColumnNum )
+    public AggregateExpression getAggregateProjection( ColumnIdentifier resultColumn )
     {
-        return getAggregateColumns().get( Integer.valueOf( resultColumnNum ) );
+        return getAggregatedColumns().get( resultColumn );
     }
     
     /**
-     * Returns a map of projected column numbers with corresponding aggregate expression.
-     * @return  the projected column aggregate map; the map may be empty if no aggregate is specified
+     * Returns a map of projected columns, each with corresponding aggregate expression.
+     * @return  the map of projected column aggregation;
+     *          may be empty if no column aggregate is specified
+     * @see #setProjection(ColumnIdentifier, AggregateExpression)
+     * @see #addResultColumn(AggregateExpression)
      */
-    public Map<Integer,AggregateExpression> getAggregateColumns()
+    public Map<ColumnIdentifier,AggregateExpression> getAggregatedColumns()
     {
-        if( m_aggregateSpecByColumnPos == null )
-        {
-            m_aggregateSpecByColumnPos = new HashMap<Integer,AggregateExpression>(5);
-        }
-        return m_aggregateSpecByColumnPos;
+        if( m_aggregateSpecByColumn == null )
+            m_aggregateSpecByColumn = new HashMap<ColumnIdentifier,AggregateExpression>(MAP_INITIAL_CAPACITY);
+
+        return m_aggregateSpecByColumn;
     }
     
-    /**
-     * Hides the specified result column in the query result.
-     * @param resultColumnNum
-     * @throws OdaException
-     */
-    public void hideResultColumn( int resultColumnNum ) throws OdaException
-    {
-        // TODO
-        throw new OdaException( new UnsupportedOperationException());
-    }
-        
     /**
      * Appends a new result column to the query result set.  
      * The appended result column can be referenced in the result set by the specified variable's alias.
-     * @param columnExprVariable  a variable that resolves to the column expression of the new column
+     * @param columnExprVariable  a variable that resolves to the value of the new column
      * @throws OdaException
      */
     public void addResultColumn( ExpressionVariable columnExprVariable ) throws OdaException
     {
-        // TODO
-        throw new OdaException( new UnsupportedOperationException());
+        getAddedResultColumns().put( new ColumnIdentifier( columnExprVariable.getAlias() ), 
+                                    columnExprVariable );
     }
     
     /**
@@ -99,11 +107,73 @@ public class ResultProjection
      * @param aggregate an {@link AggregateExpression} whose output value is projected on the 
      *                  new result set column
      * @throws OdaException
+     * @see #setProjection(ColumnIdentifier, AggregateExpression)
      */
     public void addResultColumn( AggregateExpression aggregate ) throws OdaException
     {
-        // TODO
-        throw new OdaException( new UnsupportedOperationException());
+        // add a new column with the aggregate's first input source variable, if available
+        ColumnIdentifier newColumn = new ColumnIdentifier( aggregate.getAlias() );
+        ExpressionVariable columnExprVariable = aggregate.getVariables().isEmpty() ? 
+                                                null : aggregate.getVariables().get( 0 );
+        getAddedResultColumns().put( newColumn, columnExprVariable );
+        
+        // project the aggregate expression onto the new column
+        setProjection( newColumn, aggregate );
+    }
+    
+    /**
+     * Returns a map of result columns that are to be dynamically added to the query result set.
+     * Each result column in the map is associated with an input variable 
+     * that resolves to the column value.
+     * @return  the map of projected new result columns; 
+     *          may be empty if no column is to be dynamically added
+     * @see #addResultColumn(ExpressionVariable)
+     * @see #addResultColumn(AggregateExpression)
+     */
+    public Map<ColumnIdentifier,ExpressionVariable> getAddedResultColumns()
+    {
+        if( m_addedColumns == null )
+            m_addedColumns = new HashMap<ColumnIdentifier, ExpressionVariable>(MAP_INITIAL_CAPACITY);
+        
+        return m_addedColumns;
+    }
+    
+    /**
+     * Hides the specified result column in the query result.
+     * Any associated aggregate projection is also removed.
+     * @param resultColumn
+     * @throws OdaException
+     */
+    public void hideResultColumn( ColumnIdentifier resultColumn ) throws OdaException
+    {
+        // remove aggregate projection, if any, on the hidden column
+        getAggregatedColumns().remove( resultColumn );
+        
+        // if specified column is a dynamically added column
+        if( getAddedResultColumns().containsKey( resultColumn ) )
+        {
+            // simply remove it from added column collection
+            getAddedResultColumns().remove( resultColumn );
+        }
+        else    // add to dynamically hidden column collection, if not already exists
+        {
+            if( ! getHiddenResultColumns().contains( resultColumn ) )
+                getHiddenResultColumns().add( resultColumn );
+        }
+    }
+
+    /**
+     * Returns a list of result columns that are to be dynamically hidden from the query result set.
+     * @return  the map of projected hidden result columns; 
+     *          may be empty if no column is to be dynamically hidden
+     * @see #hideResultColumn(ColumnIdentifier)
+     */
+    public List<ColumnIdentifier> getHiddenResultColumns()
+    {
+        if( m_hiddenColumns == null )
+            m_hiddenColumns = new ArrayList<ColumnIdentifier>(MAP_INITIAL_CAPACITY);
+        
+        return m_hiddenColumns;
     }
     
 }

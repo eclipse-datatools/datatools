@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: SortKey.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getSortDirection <em>Sort Direction</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}</li>
  * </ul>
  * </p>
  *
@@ -187,5 +188,59 @@ public interface SortKey extends EObject
      * @generated
      */
     boolean isSetSortDirection();
+
+    /**
+     * Returns the value of the '<em><b>Optional</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Indicates whether this sort key can be excluded at runtime.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Optional</em>' attribute.
+     * @see #isSetOptional()
+     * @see #unsetOptional()
+     * @see #setOptional(boolean)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortKey_Optional()
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='optional' namespace='##targetNamespace'"
+     * @generated
+     */
+    boolean isOptional();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Optional</em>' attribute.
+     * @see #isSetOptional()
+     * @see #unsetOptional()
+     * @see #isOptional()
+     * @generated
+     */
+    void setOptional( boolean value );
+
+    /**
+     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetOptional()
+     * @see #isOptional()
+     * @see #setOptional(boolean)
+     * @generated
+     */
+    void unsetOptional();
+
+    /**
+     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Optional</em>' attribute is set.
+     * @see #unsetOptional()
+     * @see #isOptional()
+     * @see #setOptional(boolean)
+     * @generated
+     */
+    boolean isSetOptional();
 
 } // SortKey

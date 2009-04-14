@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AtomicExpressionContextImpl.java,v 1.1 2009/01/30 00:23:56 lchan Exp $
+ * $Id: AtomicExpressionContextImpl.java,v 1.2 2009/03/03 07:42:07 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl#isIsOptional <em>Is Optional</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
@@ -59,33 +59,33 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
     public static final String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * The default value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
+     * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIsOptional()
+     * @see #isOptional()
      * @generated
      * @ordered
      */
-    protected static final boolean IS_OPTIONAL_EDEFAULT = false;
+    protected static final boolean OPTIONAL_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isIsOptional() <em>Is Optional</em>}' attribute.
+     * The cached value of the '{@link #isOptional() <em>Optional</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIsOptional()
+     * @see #isOptional()
      * @generated
      * @ordered
      */
-    protected boolean m_isOptional = IS_OPTIONAL_EDEFAULT;
+    protected boolean m_optional = OPTIONAL_EDEFAULT;
 
     /**
-     * This is true if the Is Optional attribute has been set.
+     * This is true if the Optional attribute has been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    protected boolean m_isOptionalESet;
+    protected boolean m_optionalESet;
 
     /**
      * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -133,9 +133,9 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isIsOptional()
+    public boolean isOptional()
     {
-        return m_isOptional;
+        return m_optional;
     }
 
     /**
@@ -143,16 +143,16 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setIsOptional( boolean newIsOptional )
+    public void setOptional( boolean newOptional )
     {
-        boolean oldIsOptional = m_isOptional;
-        m_isOptional = newIsOptional;
-        boolean oldIsOptionalESet = m_isOptionalESet;
-        m_isOptionalESet = true;
+        boolean oldOptional = m_optional;
+        m_optional = newOptional;
+        boolean oldOptionalESet = m_optionalESet;
+        m_optionalESet = true;
         if( eNotificationRequired() )
             eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL,
-                    oldIsOptional, m_isOptional, !oldIsOptionalESet ) );
+                    DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL,
+                    oldOptional, m_optional, !oldOptionalESet ) );
     }
 
     /**
@@ -160,16 +160,16 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void unsetIsOptional()
+    public void unsetOptional()
     {
-        boolean oldIsOptional = m_isOptional;
-        boolean oldIsOptionalESet = m_isOptionalESet;
-        m_isOptional = IS_OPTIONAL_EDEFAULT;
-        m_isOptionalESet = false;
+        boolean oldOptional = m_optional;
+        boolean oldOptionalESet = m_optionalESet;
+        m_optional = OPTIONAL_EDEFAULT;
+        m_optionalESet = false;
         if( eNotificationRequired() )
             eNotify( new ENotificationImpl( this, Notification.UNSET,
-                    DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL,
-                    oldIsOptional, IS_OPTIONAL_EDEFAULT, oldIsOptionalESet ) );
+                    DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL,
+                    oldOptional, OPTIONAL_EDEFAULT, oldOptionalESet ) );
     }
 
     /**
@@ -177,9 +177,9 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isSetIsOptional()
+    public boolean isSetOptional()
     {
-        return m_isOptionalESet;
+        return m_optionalESet;
     }
 
     /**
@@ -347,8 +347,8 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL:
-            return isIsOptional() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL:
+            return isOptional() ? Boolean.TRUE : Boolean.FALSE;
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__VARIABLE:
             return getVariable();
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS:
@@ -367,8 +367,8 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL:
-            setIsOptional( ((Boolean) newValue).booleanValue() );
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL:
+            setOptional( ((Boolean) newValue).booleanValue() );
             return;
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__VARIABLE:
             setVariable( (ExpressionVariable) newValue );
@@ -390,8 +390,8 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL:
-            unsetIsOptional();
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL:
+            unsetOptional();
             return;
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__VARIABLE:
             setVariable( (ExpressionVariable) null );
@@ -413,8 +413,8 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL:
-            return isSetIsOptional();
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__OPTIONAL:
+            return isSetOptional();
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__VARIABLE:
             return m_variable != null;
         case DesignPackage.ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS:
@@ -435,9 +435,9 @@ public class AtomicExpressionContextImpl extends EObjectImpl implements
             return super.toString();
 
         StringBuffer result = new StringBuffer( super.toString() );
-        result.append( " (isOptional: " ); //$NON-NLS-1$
-        if( m_isOptionalESet )
-            result.append( m_isOptional );
+        result.append( " (optional: " ); //$NON-NLS-1$
+        if( m_optionalESet )
+            result.append( m_optional );
         else
             result.append( "<unset>" ); //$NON-NLS-1$
         result.append( ')' );

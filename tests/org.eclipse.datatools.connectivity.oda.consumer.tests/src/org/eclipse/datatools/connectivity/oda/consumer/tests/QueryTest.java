@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,10 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestData;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
+@SuppressWarnings("restriction")
 public class QueryTest extends ConnectionTest
 {
 	private IQuery m_query;
@@ -270,9 +273,9 @@ public class QueryTest extends ConnectionTest
         assertTrue( hasException );
 	}
 
-    public void testQuerySpec() throws Exception
+    public void testPreparedQueryText() throws Exception
     {
-        QuerySpecification querySpec = new QuerySpecification();
+        QuerySpecification querySpec = new QuerySpecificationHelper( (QuerySpecificationFactory)null ).createQuerySpecification();
         m_query.setSpecification( querySpec );
         m_query.prepare( "Simple Query" );
         
