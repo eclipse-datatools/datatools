@@ -735,10 +735,7 @@ public class WSConsole
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			wsQueryText += template[i];
-			if ( WSUtil.isNull( parameters[i].getDefaultValue( ) ) )
-				wsQueryText += buildParameter( parameters[i].getName( ) );
-			else
-				wsQueryText += parameters[i].getDefaultValue( );
+			wsQueryText += buildParameter( parameters[i].getName( ) );
 		}
 		wsQueryText += template[template.length - 1];
 		
