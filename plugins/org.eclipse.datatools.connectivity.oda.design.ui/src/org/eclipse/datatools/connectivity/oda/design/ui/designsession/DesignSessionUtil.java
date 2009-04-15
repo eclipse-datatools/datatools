@@ -44,8 +44,10 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Desi
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.profile.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  *  An utility class to help an ODA host designer or
@@ -339,6 +341,32 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         return profile;
     }
 
+    /**
+     * Creates an ODA connection profile instance from the specified data source design.
+     * @param dataSourceDesign  a data source design
+     * @return  a new instance of {@link IConnectionProfile} that persists in the DTP profile cache
+     * @throws OdaException
+     */
+    public static IConnectionProfile createProfile( DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        if( dataSourceDesign == null )
+            return null;
+        
+        if( dataSourceDesign.hasLinkToProfile() )
+        {
+            // remove the link from a copy of the design
+            dataSourceDesign = (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
+            dataSourceDesign.setLinkedProfileName( null );
+            dataSourceDesign.setLinkedProfileStoreFile( null );
+        }
+
+        return OdaProfileFactory.createProfile( dataSourceDesign.getName(), 
+                dataSourceDesign.getDisplayName(), 
+                dataSourceDesign.getOdaExtensionDataSourceId(), 
+                getEffectiveDataSourceProperties( dataSourceDesign ) );
+    }
+    
     /*
      * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignSessionUtilBase#getEffectiveDataSourceProperties( org.eclipse.datatools.connectivity.oda.design.Properties )
      */
