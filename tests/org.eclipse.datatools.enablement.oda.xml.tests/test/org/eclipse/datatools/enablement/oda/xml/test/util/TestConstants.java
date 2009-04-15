@@ -128,6 +128,8 @@ public class TestConstants
 	public static final String SAX_PARSER_TEST26_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test26.txt";
 	public static final String SAX_PARSER_TEST27_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test27.txt";
 	public static final String SAX_PARSER_TEST27_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test27.txt";
+	public static final String SAX_PARSER_TEST28_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test28.txt";
+	public static final String SAX_PARSER_TEST28_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test28.txt";
 	public static final String SAX_PARSER_TEST_PARAM_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.testParam.txt";
 	public static final String SAX_PARSER_TEST_PARAM_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.testParam.txt";
 	

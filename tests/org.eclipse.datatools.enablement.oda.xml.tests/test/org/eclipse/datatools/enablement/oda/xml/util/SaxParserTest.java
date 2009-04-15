@@ -63,7 +63,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}"
 			+ "#-# anyAndRecursive#:#[//test]#:#{test_name;STRING;test_name},{area_name;STRING;../../../../area_name}"
 			+ "#-# parameter#:#[//{?entry?}]#:#{b-bar1;String;/field[@{?b?}='bar1']},{b-bar2;String;/field[@{?b?}='{?bar2?}']},{b-bar9;String;/field[@b='bar9']},{a-foo;String;/field[@a='foo']}"
-			+ "#-# doubleslash#:#[//block//]#:#{id;STRING;@id}"
+			+ "#-# doubleslash1#:#[//block//]#:#{id;STRING;@id}"
+			+ "#-# doubleslash2#:#[/Top/Tree/blocks/block/parameters/parameter]#:#{id;STRING;//@id}"
 			/*this line should be the last because name space information is saved with the last table mapping currently  */
 			+ "#-# nameSpace#:#[/feed/entry/g:id]#:#{title;STRING;../title},{g:price;STRING;../g:price},{g:id;STRING;}#:#<\"openSearch\",\"http:%%a9.com%-%spec%opensearchrss%1.0%\";\"g\",\"http:%%base.google.com%ns%1.0\";\"batch\",\"http:%%schemas.google.com%gdata%batch\";\"gm\",\"http:%%base.google.com%ns-metadata%1.0\";\"\",\"http:%%www.w3.org%2005%Atom\";\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">";
 	
@@ -1285,7 +1286,7 @@ public class SaxParserTest extends BaseTest
 		conn.open( p );
 		rs = new ResultSet( conn,
 				mt,
-				"doubleslash" ,
+				"doubleslash1" ,
 				0);
 
 		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
@@ -1305,6 +1306,47 @@ public class SaxParserTest extends BaseTest
 		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST27_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST27_GOLDEN_XML ) ) );
+	}
+	
+	public void test28( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST28_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		mt = new MappedTables( testString );
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.DOUBLE_SLASH_XML );
+		conn.open( p );
+		rs = new ResultSet( conn,
+				mt,
+				"doubleslash2" ,
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+		rs.close( );
+		conn.close( );
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST28_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST28_GOLDEN_XML ) ) );
 	}
 	
 	

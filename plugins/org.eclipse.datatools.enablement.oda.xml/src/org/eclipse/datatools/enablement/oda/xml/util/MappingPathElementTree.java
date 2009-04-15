@@ -154,14 +154,17 @@ public class MappingPathElementTree
 		IXMLPathNode[] absolutePath = path.getPath( );
 		
 		Set result = new HashSet( );
-		Iterator children = root.getMatchedChildren( absolutePath[0] ).iterator( );
-		while ( children.hasNext( ) )
+		Iterator downables = root.getMatchedDownables( absolutePath[0] ).iterator( );
+		while ( downables.hasNext( ) )
 		{
-			TreeNode child = (TreeNode) children.next( );
-			result.addAll( getPossibleEndNodes( absolutePath, 0, child ) );
+			TreeNode downable = (TreeNode) downables.next( );
+			result.addAll( getPossibleEndNodes( absolutePath, 0, downable ) );
 		}
 		return result;
 	}
+	
+
+	
 
 
 	/**
@@ -169,20 +172,20 @@ public class MappingPathElementTree
 	 * @param absolutePath: a sequence of xml path nodes encountered during xml file parsing
 	 *        fromIndex: the index of beginning path element 
 	 *        fromNode:  the beginning node 
-	 * @return all the destination nodes which is corresponding with <code>absolutePath</code>
+	 * @return all the destination nodes which is corresponding with <code>relativePath</code>
 	 */
-	private Set getPossibleEndNodes( IXMLPathNode[] absolutePath, int fromIndex, TreeNode fromNode )
+	private Set getPossibleEndNodes( IXMLPathNode[] relativePath, int fromIndex, TreeNode fromNode )
 	{
-		assert absolutePath != null && fromIndex > -1 && fromNode != null;
-		if ( fromIndex >= absolutePath.length)
+		assert relativePath != null && fromIndex > -1 && fromNode != null;
+		if ( fromIndex >= relativePath.length)
 		{
 			return Collections.EMPTY_SET;
 		}
 
-		if ( fromNode.matches( absolutePath[fromIndex] ) )
+		if ( fromNode.matches( relativePath[fromIndex] ) )
 		{
 			//reaches the last path element
-			if ( fromIndex == absolutePath.length - 1 )
+			if ( fromIndex == relativePath.length - 1 )
 			{
 				Set result = new HashSet( );
 				result.add( fromNode );
@@ -190,8 +193,8 @@ public class MappingPathElementTree
 				if ( fromNode instanceof AnyNumberElementPlaceholderNode )
 				{
 					// AnyElementPlaceholderNode may represent nothing
-					Set children = fromNode.getMatchedChildren( absolutePath[fromIndex] );
-					result.addAll( children );
+					Set downables = fromNode.getMatchedDownables( relativePath[fromIndex] );
+					result.addAll( downables );
 				}
 
 				TreeNode node = fromNode.getAnyNumberElementChild( );
@@ -210,21 +213,21 @@ public class MappingPathElementTree
 					Set result = new HashSet( );
 
 					// fromNode may represent 0 or 1, 2, .... (absolutePath.length - fromIndex - 1) elements
-					for ( int i = 0; i <= absolutePath.length - fromIndex - 1; i++ )
+					for ( int i = 0; i <= relativePath.length - fromIndex - 1; i++ )
 					{
-						IXMLPathNode firstElement = absolutePath[fromIndex + i];
-						Set children = fromNode.getMatchedChildren( firstElement );
-						Iterator itr = children.iterator( );
+						IXMLPathNode firstElement = relativePath[fromIndex + i];
+						Set downables = fromNode.getMatchedDownables( firstElement );
+						Iterator itr = downables.iterator( );
 						while (itr.hasNext( ))
 						{
-							TreeNode child = (TreeNode) itr.next( );
-							result.addAll( getPossibleEndNodes( absolutePath, fromIndex + i,
-									child ) );
+							TreeNode downable = (TreeNode) itr.next( );
+							result.addAll( getPossibleEndNodes( relativePath, fromIndex + i,
+									downable ) );
 						}
 					}
 
 					// fromNode represents absolutePath.length - fromIndex elements
-					if ( fromNode.matches( absolutePath[absolutePath.length - 1] ) )
+					if ( fromNode.matches( relativePath[relativePath.length - 1] ) )
 					{
 						result.add( fromNode );
 					}
@@ -240,13 +243,13 @@ public class MappingPathElementTree
 				{
 					// begin to compare next level
 					Set result = new HashSet( );
-					Set children = fromNode.getMatchedChildren( absolutePath[fromIndex + 1] );
-					Iterator itr = children.iterator( );
+					Set downables = fromNode.getMatchedDownables( relativePath[fromIndex + 1] );
+					Iterator itr = downables.iterator( );
 					while ( itr.hasNext( ) )
 					{
-						TreeNode child = (TreeNode) itr.next( );
-						result.addAll( getPossibleEndNodes( absolutePath, fromIndex + 1,
-								child ) );
+						TreeNode downable = (TreeNode) itr.next( );
+						result.addAll( getPossibleEndNodes( relativePath, fromIndex + 1,
+								downable ) );
 					}
 					return result;
 				}
@@ -331,11 +334,11 @@ public class MappingPathElementTree
 		}
 		else
 		{
-			Iterator children = lastTreeNodeForTablePath.getMatchedChildren( columnPath[rowPath.length] ).iterator( );
-			while ( children.hasNext( ) )
+			Iterator downables = lastTreeNodeForTablePath.getMatchedDownables( columnPath[rowPath.length] ).iterator( );
+			while ( downables.hasNext( ) )
 			{
-				TreeNode child = (TreeNode) children.next( );
-				columnEndNodes.addAll( getPossibleEndNodes( columnPath, rowPath.length, child ) );
+				TreeNode downable = (TreeNode) downables.next( );
+				columnEndNodes.addAll( getPossibleEndNodes( columnPath, rowPath.length, downable ) );
 			}
 		}
 		return getAllColumnIndexes(columnEndNodes);
@@ -684,9 +687,9 @@ abstract class TreeNode
 	
 	/**
 	 * @param xn: one of xml nodes encountered during xml file parsing
-	 * @return all the children which matches <code>xn</code>
+	 * @return all the nodes that are down from this node and matche <code>xn</code>
 	 */
-	protected Set getMatchedChildren(IXMLPathNode xn)
+	protected Set getMatchedDownables(IXMLPathNode xn)
 	{
 		return Collections.EMPTY_SET;
 	}
@@ -795,31 +798,36 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 	}
 
 	/**
-	 * @param xpn: one of nodes encountered  during xml file parsing
-	 * @return all the children which matches pathElement
+	 * @param xn: one of xml nodes encountered during xml file parsing
+	 * @return all the nodes that are down from this node and matche <code>xn</code>
 	 */
-	public Set getMatchedChildren( IXMLPathNode xpn )
+	public Set getMatchedDownables( IXMLPathNode xpn )
 	{
 		assert xpn != null;
 		Set result = new HashSet();
-		if (anyNumberElementChild != null && anyNumberElementChild.matches( xpn ))
+		if ( xpn instanceof XMLAttr ) //an attribute
 		{
-			result.add( anyNumberElementChild );
-		}
-		if (oneElementChild != null && oneElementChild.matches( xpn ))
-		{
-			result.add( oneElementChild );
-		}
-		if ( xpn instanceof XMLAttr )
-		{
+			if (anyNumberElementChild != null )
+			{
+				result.addAll( anyNumberElementChild.getMatchedDownables( xpn ));
+			}
 			TreeNode node = (TreeNode)attrChildren.get( xpn.getName( ) );
 			if (node != null)
 			{
 				result.add( node );
 			}
 		}
-		else
-		{
+		else // an element
+		{  
+			if (anyNumberElementChild != null )
+			{
+				result.add( anyNumberElementChild );
+				result.addAll( anyNumberElementChild.getMatchedDownables( xpn ) );
+			}
+			if (oneElementChild != null )
+			{
+				result.add( oneElementChild );
+			}
 			Set elementNodes = (Set)elementChildren.get( xpn.getName( ) );
 			if (elementNodes != null)
 			{
