@@ -13,7 +13,6 @@ providerName=Eclipse.org
 databaseDefinitionExtensionPointName=데이터베이스 정의
 logicalContainmentExtensionPointName=논리적 제약
 DataModelElementFactoryExtensionPointName=데이터 모델 요소 팩토리
-DatabaseReverseEngineeringExtensionPointName=데이터베이스 리버스 엔지니어링
 DDLReverseEngineeringExtensionPointName=DDL 리버스 엔지니어링
 ForwardEngineeringExtensionPointName=포워드 엔지니어링
 CatalogExtensionPointName=데이터베이스 카탈로그

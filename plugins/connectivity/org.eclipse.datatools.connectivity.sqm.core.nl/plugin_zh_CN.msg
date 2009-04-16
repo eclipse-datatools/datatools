@@ -13,7 +13,6 @@ providerName=Eclipse.org
 databaseDefinitionExtensionPointName=数据库定义
 logicalContainmentExtensionPointName=逻辑包含关系
 DataModelElementFactoryExtensionPointName=数据模型元素工厂
-DatabaseReverseEngineeringExtensionPointName=数据库反向工程
 DDLReverseEngineeringExtensionPointName=DDL 反向工程
 ForwardEngineeringExtensionPointName=正向工程
 CatalogExtensionPointName=数据库目录

@@ -13,7 +13,6 @@ providerName=Eclipse.org
 databaseDefinitionExtensionPointName=Définition de base de données
 logicalContainmentExtensionPointName=Confinement logique
 DataModelElementFactoryExtensionPointName=Génération d'éléments du modèle de données
-DatabaseReverseEngineeringExtensionPointName=Ingénierie inverse de base de données
 DDLReverseEngineeringExtensionPointName=Ingénierie inverse DDL
 ForwardEngineeringExtensionPointName=Ingénierie directe
 CatalogExtensionPointName=Catalogue de base de données
