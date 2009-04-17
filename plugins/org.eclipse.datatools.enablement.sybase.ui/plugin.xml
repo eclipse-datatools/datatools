@@ -188,7 +188,7 @@
           adaptable="false"
           class="org.eclipse.datatools.enablement.sybase.ui.SystemTableDecorationService"
           id="org.eclipse.datatools.enablement.sybase.systemtabledecorator"
-          label="org.eclipse.datatools.enablement.sybase.decorator.systemtable"
+          label="%decorator.label"
           lightweight="true"
           location="TOP_LEFT"
           objectClass="org.eclipse.datatools.enablement.sybase.ui.SystemTableDecorationService"

@@ -205,7 +205,7 @@
           adaptable="false"
           class="org.eclipse.datatools.enablement.asa.internal.ui.decorator.ProxyTableDecorationService"
           id="org.eclipse.datatools.enablement.sybase.asa.proxytabledecorator"
-          label="org.eclipse.datatools.enablement.sybase.asa.proxytabledecorator"
+          label="%decorator.label"
           lightweight="true"
           location="TOP_LEFT"
           objectClass="org.eclipse.datatools.enablement.asa.internal.ui.decorator.ProxyTableDecorationService"
