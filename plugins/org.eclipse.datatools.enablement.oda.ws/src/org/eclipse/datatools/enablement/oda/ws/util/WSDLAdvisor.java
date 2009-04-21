@@ -458,21 +458,23 @@ public class WSDLAdvisor
 		if ( types != null && types.getExtensibilityElements( ) != null )
 		{
 			List extElements = types.getExtensibilityElements( );
-
+			List<Element> elementList = new ArrayList<Element>( );
 			for ( int i = 0; i < extElements.size( ); i++ )
 			{
 				if ( extElements.get( i ) instanceof SchemaImpl )
 				{
-					Element element = ( (SchemaImpl) extElements.get( i ) ).getElement( );
-					String[] parentNode = {
-						EMPTY_STRING
-					};
-					WSNonLeafNode node = generateNode( localPart, element, parentNode, null );
-					if ( node.getNodeList( ).size( ) == 0 )
-						continue;
-					return node;
+					elementList.add( ( (SchemaImpl) extElements.get( i ) ).getElement( ) );
 				}
 			}
+			String[] parentNode = {
+				EMPTY_STRING
+			};
+			WSNonLeafNode node = generateNode( localPart,
+					elementList.toArray( new Element[0] ),
+					parentNode,
+					null );
+			if ( node.getNodeList( ).size( ) >= 0 )
+				return node;
 		}
 		WSNonLeafNode newNode = new WSNonLeafNode( );
 		newNode.setName( localPart );
@@ -500,7 +502,7 @@ public class WSDLAdvisor
 	 */
 
 	private WSNonLeafNode handleAnonymousComplexNode( Node node,
-			Element element, String[] parentNode,
+			Element[] element, String[] parentNode,
 			String[] anonymousComplexParentNode )
 	{
 		WSNonLeafNode newNode = new WSNonLeafNode( );
@@ -570,9 +572,9 @@ public class WSDLAdvisor
 		return newNode;
 	}
 
-	private boolean isComplexType( Node node, Element element )
+	private boolean isComplexType( Node node, Element[] element )
 	{
-		NodeList nodes = element.getChildNodes( );
+		NodeList nodes = getChildNodes( element );
 		for ( int i = 0; i < nodes.getLength( ); i++ )
 		{
 			Node XMLNode = nodes.item( i );
@@ -737,7 +739,12 @@ public class WSDLAdvisor
 
 	}
 
-	public WSNonLeafNode generateNode( String nodeName, Element element,
+	private NodeList getChildNodes( Element[] element )
+	{
+		return new MultipleNodeList( element );
+	}
+	
+	public WSNonLeafNode generateNode( String nodeName, Element[] element,
 			String[] parentNode, String complexTypeName )
 	{
 		String localPart;
@@ -763,7 +770,7 @@ public class WSDLAdvisor
 		}
 
 		String[] subNodeParents = generateSubNodeParents( localPart, parentNode );
-		NodeList nodes = element.getChildNodes( );
+		NodeList nodes = getChildNodes( element );
 		Node XMLNode = findElementNodeByName( nodes, localPart );
 		if ( XMLNode != null )
 		{
@@ -811,7 +818,7 @@ public class WSDLAdvisor
 		return null;
 	}
 
-	private void genetateLowerLeverList( Element element, List lowerLeverList,
+	private void genetateLowerLeverList( Element[] element, List lowerLeverList,
 			String[] subNodeParents, Node middleNode,
 			String[] anonymousComplexParentNode )
 	{
@@ -857,7 +864,7 @@ public class WSDLAdvisor
 		return getParamTypeLocalPart( node.getNodeName( ) ).equals( CHOICE );
 	}
 
-	private void handleNodes( Element element, List lowerLeverList,
+	private void handleNodes( Element[] element, List lowerLeverList,
 			String[] subNodeParents, String[] anonymousComplexParentNode,
 			Node sub )
 	{
@@ -940,7 +947,7 @@ public class WSDLAdvisor
 	}
 
 	private void addComplexType( List lowerLeverList, NamedNodeMap nodeMap,
-			Element element, String[] parentNode )
+			Element[] element, String[] parentNode )
 	{
 		String nodeName = getParamTypeLocalPart( nodeMap.getNamedItem( NAME )
 				.getNodeValue( ) );
@@ -954,11 +961,11 @@ public class WSDLAdvisor
 				complexTyneName ) );
 	}
 
-	private void addRef( List lowerLeverList, Node node, Element element,
+	private void addRef( List lowerLeverList, Node node, Element[] element,
 			String[] parentNode )
 	{
 		// judge whether is a simple-type kind ref 
-		NodeList nodes = element.getChildNodes( );
+		NodeList nodes = getChildNodes( element );
 		for ( int i = 0; i < nodes.getLength( ); i++ )
 		{
 			Node XMLNode = nodes.item( i );
@@ -1791,4 +1798,43 @@ public class WSDLAdvisor
 		primitiveDataTypeList.add( "time" ); //$NON-NLS-1$
 	}
 
+}
+
+
+class MultipleNodeList implements NodeList
+{
+	private NodeList[] nodeLists;
+	MultipleNodeList( Element[] elements )
+	{
+		nodeLists = new NodeList[elements.length];
+		for ( int i = 0; i < elements.length; i++ )
+		{
+			nodeLists[i] = elements[i].getChildNodes( );
+		}
+	}
+	
+	public int getLength( )
+	{
+		int length = 0;
+		for ( int i = 0; i < nodeLists.length; i++ )
+		{
+			length += nodeLists[i].getLength( );
+		}
+		return length;
+	}
+
+	public Node item( int index )
+	{
+		if( index < 0 || index >= getLength( ) )
+			return null;
+		for ( int i = 0; i < nodeLists.length; i++ )
+		{
+			if( index < nodeLists[i].getLength( ) )
+			{
+				return nodeLists[i].item( index );
+			}
+			index -= nodeLists[i].getLength( );
+		}
+		return null;
+	}
 }
