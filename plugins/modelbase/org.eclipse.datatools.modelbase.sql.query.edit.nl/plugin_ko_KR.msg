@@ -11,7 +11,7 @@
 
 
 # ====================================================================
-# $Id: plugin.properties,v 1.3 2008/06/06 19:28:55 ledunnel Exp $
+# $Id: plugin_ko_KR.msg,v 1.2 2009/03/09 17:43:16 ydoshiro Exp $
 # @generated NOT
 # ===================================================================
 
@@ -223,7 +223,7 @@ _UI_QueryCombined_combinedOperator_feature = Combined Operator
 _UI_PredicateIsNull_notNull_feature = Not Null
 _UI_TableJoined_type = Table Joined
 _UI_QueryNested_type = Query Nested
-_UI_Unknown_datatype= Value
+_UI_Unknown_datatype= °ª
 
 _UI_OrderBySpecification_OrderingSpecOption_feature = Ordering Spec Option
 _UI_OrderBySpecification_NullOrderingOption_feature = Null Ordering Option

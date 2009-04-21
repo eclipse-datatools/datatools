@@ -13,7 +13,7 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.7 2007/05/31 00:29:18 dpchou Exp $
+# $Id: plugin_ko_KR.msg,v 1.1 2008/06/27 21:25:34 ydoshiro Exp $
 #/
 
 # ====================================================================
@@ -410,7 +410,7 @@ _UI_ActionTimeType_INSTEADOF_literal = INSTEADOF
 _UI_ActionGranularityType_STATEMENT_literal = STATEMENT
 _UI_ActionGranularityType_ROW_literal = ROW
 _UI_CreateChild_text3 = {1}
-_UI_Unknown_datatype= Value
+_UI_Unknown_datatype= 값
 
 _UI_Event_type = 이벤트
 _UI_Database_events_feature = 이벤트
