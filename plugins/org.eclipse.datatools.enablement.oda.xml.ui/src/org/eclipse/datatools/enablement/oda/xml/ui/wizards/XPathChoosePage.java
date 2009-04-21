@@ -274,7 +274,7 @@ public class XPathChoosePage extends DataSetWizardPage
 
 			public void modifyText( ModifyEvent e )
 			{
-				rootPath = xmlPathText.getText( );
+				rootPath = xmlPathText.getText( ).trim( );
 				setPageStatus( );
 			}
 		} );
