@@ -14,8 +14,6 @@ package org.eclipse.datatools.sqltools.sql.parser.ast;
 
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.ui.IEditorInput;
 
 /**
  * All AST nodes must implement this interface. It provides basic machinery for
@@ -97,15 +95,6 @@ public interface Node {
 	public int getGreatestEndOffset(IDocument document);
 
 	/**
-	 * Associate this Node with the IEditorInput
-	 * 
-	 * @param input
-	 */
-	public void setEditorInput(IEditorInput input);
-
-	public IEditorInput getEditorInput();
-
-	/**
 	 * Associate this Node with the IDocument
 	 * 
 	 * @param input
@@ -113,15 +102,6 @@ public interface Node {
 	public void setDocument(IDocument document);
 
 	public IDocument getDocument();
-
-	/**
-	 * Associate this Node with the IAnnotationModel
-	 * 
-	 * @param input
-	 */
-	public void setAnnotationModel(IAnnotationModel model);
-
-	public IAnnotationModel getAnnotationModel();
 
 	/**
 	 * Before you call this method, make sure setDocument has been called.

@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.ConnectEvent;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -56,7 +57,6 @@ import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.util.Assert;
 
 /**
  * This class provides default implementations for <code>IControlConnection</code>

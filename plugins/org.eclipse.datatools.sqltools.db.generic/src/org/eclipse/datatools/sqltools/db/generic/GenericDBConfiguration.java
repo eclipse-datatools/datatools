@@ -13,9 +13,7 @@ package org.eclipse.datatools.sqltools.db.generic;
 
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
-import org.eclipse.datatools.sqltools.db.generic.service.GenericActionService;
 import org.eclipse.datatools.sqltools.db.generic.service.GenericSQLService;
 
 /**
@@ -37,14 +35,6 @@ public class GenericDBConfiguration extends SQLDevToolsConfiguration {
 	public SQLService getSQLService() {
 		return new GenericSQLService();
 	}
-    
-    /**
-     * Returns the Action service
-     * 
-     */
-    public ActionService getActionService() {
-        return new GenericActionService();
-    }
     
 	/**
 	 * Always returns true since this configuration class can be used

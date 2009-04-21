@@ -39,7 +39,7 @@ import org.eclipse.datatools.sqltools.internal.tabledataeditor.TableDataEditorPl
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.util.ResourceLoader;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
-import org.eclipse.datatools.sqltools.result.ResultsViewUIAccessor;
+import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIAccessor;
 
 /**
  * @author joan

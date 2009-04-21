@@ -19,9 +19,9 @@ import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SetConnectionInfoAction;
@@ -291,11 +291,11 @@ public class SQLScrapbookEditor extends SQLEditor {
     public void refreshMatcher()
     {
         // When the connection profile is changed, the corresponding matcher will be set.
-        SQLDevToolsConfiguration sqlDevToolsConfig = SQLToolsFacade.getConfiguration(getDBType(),
+        SQLDevToolsUIConfiguration sqlDevToolsConfig = SQLToolsUIFacade.getConfiguration(getDBType(),
                 getDatabaseIdentifier());
 
         // It needs support by sql editor service of each specific database.
-        ICharacterPairMatcher matcher = sqlDevToolsConfig.getSQLEditorService().getSQLPairMatcher();
+        ICharacterPairMatcher matcher = sqlDevToolsConfig.getSQLEditorUIService().getSQLPairMatcher();
         
         // If it's not supported, use default generic sql matcher.
         if(matcher == null)

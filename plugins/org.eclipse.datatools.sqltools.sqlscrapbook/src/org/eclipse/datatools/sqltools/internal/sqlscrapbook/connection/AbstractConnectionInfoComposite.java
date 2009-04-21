@@ -20,10 +20,11 @@ import java.util.TreeSet;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.wizard.IWizard;
@@ -576,7 +577,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
      */
     public void handleEvent(Event event) {
         if (event.widget == getCreateButton()) {
-            SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByVendorIdentifier(_dbVendorId);
+            SQLDevToolsUIConfiguration f = SQLToolsUIFacade.getConfigurationByVendorIdentifier(_dbVendorId);
             if (f == null)
             {
                 return;

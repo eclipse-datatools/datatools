@@ -26,6 +26,7 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
+import org.eclipse.datatools.sqltools.editor.core.result.ResultSupportRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
@@ -200,7 +201,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     if (i > 0)
                     {
                         //BZ 172630 only init once
-                        ((ResultSupportRunnable)_currentJob)._needsInitConnection = false;
+                        ((ResultSupportRunnable)_currentJob).setNeedsInitConnection(false);
                     }
 					ResultSupportRunnable resultSupportRunnable = ((ResultSupportRunnable)_currentJob);
                     resultSupportRunnable.setParentOperCommand(parentCommand);

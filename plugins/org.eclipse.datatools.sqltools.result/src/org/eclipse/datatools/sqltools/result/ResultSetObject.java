@@ -26,10 +26,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.internal.utils.SQLUtil;
-import org.eclipse.jface.util.Assert;
 
 /**
  * A standard implementation of <code>IResultSetObject</code> with cache mechanism. The consumer can use constructor

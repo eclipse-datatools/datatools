@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.sqltools.core.profile;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.jface.util.ListenerList;
 
 /**
  * This class is to manage all profile listeners in SQL Dev Tools. Since Connectivity layer defined <code>IProfileListener</code>,

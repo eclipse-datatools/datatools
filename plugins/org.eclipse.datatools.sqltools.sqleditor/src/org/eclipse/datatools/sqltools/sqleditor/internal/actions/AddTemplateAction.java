@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 import org.eclipse.datatools.help.HelpUtil;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.services.SQLService;
+import org.eclipse.datatools.sqltools.core.services.SQLUIService;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -67,8 +67,8 @@ public class AddTemplateAction extends TextEditorAction implements IPageUpdate
         Template template = new Template();
         template.setPattern(_sqlEditor.getSelectedText());
         
-        SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByVendorIdentifier(_sqlEditor.getConnectionInfo().getDatabaseVendorDefinitionId());
-		SQLService sqlService = config.getSQLService();
+        SQLDevToolsUIConfiguration config = SQLToolsUIFacade.getConfigurationByVendorIdentifier(_sqlEditor.getConnectionInfo().getDatabaseVendorDefinitionId());
+		SQLUIService sqlService = config.getSQLUIService();
         template.setContextTypeId(sqlService.getSQLContextType().getSQLContextId());
 
         Dialog dialog = new EditTemplateDialog(null, template, false, true,

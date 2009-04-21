@@ -17,13 +17,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.ResultSetObject;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
-import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
@@ -74,13 +73,17 @@ public class ResultInstance implements IResultInstance
         _ddate = new Date();
         _date = ResultsConstants.FORMATTER.format(_ddate);
         _execFrequency = 1;
-        _subResults = new ArrayList(5);
+        _subResults = new Vector(5);
     }
     
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler, IResultInstance parentResult)
     {
         this(resultmanager, command, terminateHandler);
         _parentResult = parentResult;
+        if(parentResult != null)
+        {
+        	parentResult.getSubResults().add(this);
+        }
     }
 
     public void morePlainMessage(String msg)
@@ -115,12 +118,7 @@ public class ResultInstance implements IResultInstance
         IResultSetObject r = null;
         try
         {
-            // settings in preference page
-            int maxRowCount = ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
-                    PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT);
-            int maxDisplayRowCount = ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
-                    PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT);
-            r = new ResultSetObject(resultset, maxRowCount, maxDisplayRowCount);
+        	r = ResultInstanceFactory.INSTANCE.createResultSetObject(resultset);
         }
         catch (SQLException e)
         {
@@ -307,12 +305,7 @@ public class ResultInstance implements IResultInstance
 
     public void createSubResult(OperationCommand cmd, Runnable terminateHandler)
     {
-        IResultInstance instance = new ResultInstance(_resultManager, cmd, terminateHandler, this);
-        synchronized (_subResults)
-        {
-            _subResults.add(instance);
-        }
-        _resultManager.newSubResultCreated(cmd, instance);
+        ResultInstanceFactory.INSTANCE.createNewInstance(cmd, terminateHandler, this);
     }
 
     public List getSubResults()
@@ -369,12 +362,12 @@ public class ResultInstance implements IResultInstance
         stream.defaultReadObject();
         if (_subResults == null) 
         {
-			_subResults = new ArrayList(5);
+			_subResults = new Vector(5);
 		}
         
         if(_resultList == null)
         {
-        	_resultList = new ArrayList(5);
+        	_resultList = new Vector(5);
         }
     }
 

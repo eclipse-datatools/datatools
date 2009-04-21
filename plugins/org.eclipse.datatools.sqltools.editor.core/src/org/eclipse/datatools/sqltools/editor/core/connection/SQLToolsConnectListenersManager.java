@@ -6,8 +6,8 @@
 package org.eclipse.datatools.sqltools.editor.core.connection;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.ConnectEvent;
-import org.eclipse.jface.util.ListenerList;
 
 /**
  * This class is to manage all connect event listeners in SQL Dev Tools. 

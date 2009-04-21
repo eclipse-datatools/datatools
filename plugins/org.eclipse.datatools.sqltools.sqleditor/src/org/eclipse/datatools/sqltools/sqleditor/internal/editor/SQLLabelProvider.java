@@ -17,7 +17,9 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeployable;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParamDefList;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
+import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
+import org.eclipse.datatools.sqltools.sql.ui.SQLImageService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -35,14 +37,9 @@ class SQLLabelProvider extends LabelProvider
             return null;
         }
 
-        if (element instanceof IASTSQLStatement)
+        if (element instanceof IASTSQLStatement || element instanceof IASTDeployable)
         {
-            return ((IASTSQLStatement) element).getImage();
-        }
-
-        if (element instanceof IASTDeployable)
-        {
-            return ((IASTDeployable) element).getImage();
+            return SQLImageService.INSTANCE.getNodeImage((Node)element);
         }
 
         if (element instanceof IASTSQLParam)

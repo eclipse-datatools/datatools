@@ -15,11 +15,8 @@ package org.eclipse.datatools.sqltools.db.derby.parser;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.ui.IEditorInput;
 
 public class ASTStart extends SimpleNode implements IASTStart {
-
-	private IEditorInput _input;
 
 	private IDocument _document;
 
@@ -36,24 +33,6 @@ public class ASTStart extends SimpleNode implements IASTStart {
 	/** Accept the visitor. * */
 	public Object jjtAccept(DerbySQLParserVisitor visitor, Object data) {
 		return visitor.visit(this, data);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#setEditorInput(org.eclipse.ui.IEditorInput)
-	 */
-	public void doSetEditorInput(IEditorInput input) {
-		_input = input;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#getEditorInput()
-	 */
-	public IEditorInput doGetEditorInput() {
-		return _input;
 	}
 
 	/*

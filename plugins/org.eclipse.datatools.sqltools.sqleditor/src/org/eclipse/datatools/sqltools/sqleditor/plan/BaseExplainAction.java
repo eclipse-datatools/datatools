@@ -15,14 +15,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.plan.IPlanOption;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.action.Action;
-import org.eclipse.swt.custom.BusyIndicator;
 
 /**
  * The action class to explain the SQL statement or routine object.
@@ -69,7 +67,7 @@ public abstract class BaseExplainAction extends Action
             return;
         }
         IPlanOption option = null;
-        IPlanService planService = SQLToolsFacade.getPlanService(databaseIdentifier);
+        IPlanService planService = SQLToolsUIFacade.getPlanService(databaseIdentifier);
         if (planService != null)
         {
             option = planService.getPlanOption();
@@ -110,7 +108,7 @@ public abstract class BaseExplainAction extends Action
         {
             return false;
         }
-        IPlanService planService = SQLToolsFacade.getPlanService(databaseIdentifier);
+        IPlanService planService = SQLToolsUIFacade.getPlanService(databaseIdentifier);
         if (planService != null && planService.getPlanOption() != null)
         {
             return true;

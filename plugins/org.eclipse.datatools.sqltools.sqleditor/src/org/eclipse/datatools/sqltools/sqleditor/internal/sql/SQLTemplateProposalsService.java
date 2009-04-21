@@ -13,12 +13,12 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
 import java.util.ArrayList;
 
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContext;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
 import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
@@ -64,11 +64,11 @@ public class SQLTemplateProposalsService {
 		IDocument document = editor.getSV().getDocument();
 
 		TemplateContextType contextType;
-		SQLDevToolsConfiguration config = SQLToolsFacade
+		SQLDevToolsUIConfiguration config = SQLToolsUIFacade
 				.getConfigurationByVendorIdentifier(editor.getConnectionInfo()
 						.getDatabaseVendorDefinitionId());
 		if (config != null) {
-			contextType = config.getSQLService().getSQLContextType();
+			contextType = config.getSQLUIService().getSQLContextType();
 		} else {
 			contextType = SQLEditorPlugin.getDefault()
 					.getTemplateContextTypeRegistry().getContextType(

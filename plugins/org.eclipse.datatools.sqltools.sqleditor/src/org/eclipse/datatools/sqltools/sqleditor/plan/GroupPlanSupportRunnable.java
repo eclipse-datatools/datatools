@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.plan.EPVFacade;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
@@ -170,7 +171,7 @@ public class GroupPlanSupportRunnable extends PlanSupportRunnable
                 continue;
             }
 
-            IPlanService planService = SQLToolsFacade.getPlanService(databaseIdentifier);
+            IPlanService planService = SQLToolsUIFacade.getPlanService(databaseIdentifier);
             if (planService != null)
             {
                 planRunnable = planService.createPlanSupportRunnable(request, _profileName, _dbName);

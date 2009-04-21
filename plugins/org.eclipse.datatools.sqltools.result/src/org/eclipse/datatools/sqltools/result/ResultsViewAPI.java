@@ -19,15 +19,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
+import org.eclipse.datatools.sqltools.result.internal.model.ResultInstanceFactory;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 
 /**
  * The core API of SQL Results View.
@@ -112,7 +107,6 @@ public class ResultsViewAPI
 {
     private static ResultsViewAPI _instance;
     private static ILogger        _log      = ResultsViewPlugin.getLogger(null);
-    private boolean               _checkSRV = true;
     
     /**
      * Returns the instance of <code>ResultsViewAPI</code>
@@ -127,13 +121,21 @@ public class ResultsViewAPI
         }
         return _instance;
     }
-    private IWorkbenchPage        _activePage;
 
-    private IResultManager        _manager = ResultsViewPlugin.getResultManager();
+    private IResultManager        _manager = ResultsViewPlugin.getDefault().getResultManager();
 
     private ResultsViewAPI()
     {
 
+    }
+    
+    /**
+     * 
+     * @return singleton instance of IResultManager 
+     */
+    public IResultManager getResultManager()
+    {
+    	return _manager;
     }
 
     /**
@@ -262,11 +264,6 @@ public class ResultsViewAPI
      */
     public boolean appendPlainMessage(OperationCommand cmd, String message)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-        
         if (cmd == null || message == null)
         {
             return false;
@@ -296,11 +293,6 @@ public class ResultsViewAPI
      */
     public boolean appendResultSet(OperationCommand cmd, IResultSetObject rs)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || rs == null)
         {
             return false;
@@ -338,11 +330,6 @@ public class ResultsViewAPI
      */
     public boolean appendResultSet(OperationCommand cmd, ResultSet rs)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || rs == null)
         {
             return false;
@@ -381,11 +368,6 @@ public class ResultsViewAPI
      */
     public boolean appendStatusMessage(OperationCommand cmd, String message)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || message == null)
         {
             return false;
@@ -408,11 +390,6 @@ public class ResultsViewAPI
      */
     public boolean appendUpdateCountMessage(OperationCommand cmd, int count)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || count < 0)
         {
             return false;
@@ -442,10 +419,6 @@ public class ResultsViewAPI
      */
     public boolean appendXMLResultSet(OperationCommand cmd, String xmlString)
     {
-        if (!checkView())
-        {
-            return false;
-        }
         if (cmd == null || xmlString == null)
         {
             return false;
@@ -487,120 +460,27 @@ public class ResultsViewAPI
             return false;
         }
     }
-
-    /**
-     * Checks if the SQL Results View is active, if not, create it and bring it to the top.
-     * 
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean checkView()
-    {
-        if ( !_checkSRV )
-        {
-            return true;
-        }
-        // get the active window
-        IWorkbenchWindow activeWindow = ResultsViewPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
-
-        // if can not find the active window, select one from the workbench windows list
-        if (activeWindow == null)
-        {
-            IWorkbenchWindow[] windows = ResultsViewPlugin.getDefault().getWorkbench().getWorkbenchWindows();
-            for (int i = 0; i < windows.length; i++)
-            {
-                activeWindow = windows[0];
-                if (activeWindow != null)
-                {
-                    break;
-                }
-            }
-            if (activeWindow == null)
-            {
-                return false;
-            }
-        }
-
-        // get the active page in this window
-        _activePage = activeWindow.getActivePage();
-
-        // if can not find the active page, select one from page list
-        if (_activePage == null)
-        {
-            IWorkbenchPage[] pages = activeWindow.getPages();
-            for (int i = 0; i < pages.length; i++)
-            {
-                _activePage = pages[0];
-                if (_activePage != null)
-                {
-                    break;
-                }
-            }
-            if (_activePage == null)
-            {
-                return false;
-            }
-        }
-
-        activeWindow.getShell().getDisplay().asyncExec(new Runnable()
-        {
-            public void run()
-            {
-                try
-                {
-                    IViewPart view = _activePage.findView(ResultsConstants.SQL_RESULTS_VIEW_ID);
-                    if(_activePage.isPartVisible(view))
-                    {
-                    	return;
-                    }
-                    _activePage.showView(ResultsConstants.SQL_RESULTS_VIEW_ID, null, IWorkbenchPage.VIEW_VISIBLE);
-                }
-                catch (PartInitException ex)
-                {
-                    _log.error("ResultsViewAPI_checkview_error", ex); //$NON-NLS-1$
-                }
-            }
-        });
-        return true;
-    }
-
+    
     /**
      * Creates a new result instance given the <code>OperationCommand</code> instance
      * 
      * @param cmd the operation request, can not be null
-     * @param terminateHandler handler used to teminate this item, can be null
+     * @param terminateHandler handler used to terminate this item, can be null
      * @return <code>true</code> if the creation succeeds; <code>false</code> otherwise
      */
     public boolean createNewInstance(OperationCommand cmd, Runnable terminateHandler)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        // check if the OperationCommand instance is valid
-        if (cmd == null)
-        {
-            return false;
-        }
-        else
-        {
-            if (cmd.getDisplayString() == null)
-            {
-                return false;
-            }
-        }
-
-        //this instance may exist
-        IResultInstance instance = _manager.getInstance(cmd);
-        if (instance != null)
-        {
-            return false;
-        }
-
-        instance = _manager.createNewResultInstance(cmd, terminateHandler);
-        return instance == null ? false : true;
+    	IResultInstance instance = ResultInstanceFactory.INSTANCE.createNewInstance(cmd, terminateHandler);
+    	if(instance == null)
+    	{
+    		return false;
+    	}
+    	else
+    	{
+    		return true;
+    	}
     }
-    
+
     /**
      * Return the IResultInstance object correlative with the OperationCommand object.
      * @param cmd the operation request, can not be null
@@ -622,11 +502,6 @@ public class ResultsViewAPI
      */
     public boolean showParameters(OperationCommand cmd, List params)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || params == null)
         {
             return false;
@@ -656,10 +531,6 @@ public class ResultsViewAPI
      */
     public boolean updateStatus(OperationCommand cmd, int status)
     {
-        if (!checkView())
-        {
-            return false;
-        }
         synchronized (cmd)
         {
             if (cmd == null || status < OperationCommand.STATUS_STARTED
@@ -702,11 +573,6 @@ public class ResultsViewAPI
      */
     public boolean createSubInstance(OperationCommand parentCmd, OperationCommand cmd, Runnable terminateHandler)
     {
-        if (!checkView())
-        {
-            return false;
-        }
-
         if (cmd == null || parentCmd == null)
         {
             return false;
@@ -767,28 +633,20 @@ public class ResultsViewAPI
     }
     
     /**
-     * Gets the max row preference
-     * @return the maximum row count from the Results View preferences
+     * Gets the default value of max row 
+     * @return the maximum row count 
      */
     public int getMaxRowPreference()
     {
-    	return ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
-                PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT);        
+    	return ResultInstanceFactory.INSTANCE.getMaxRowCount();
     }
     
     /**
-     * Gets the maximum rows displayed preference
-     * @return the maximum number of rows being displayed from the Results
-     * View preferences
+     * Gets the default value of maximum rows displayed
+     * @return the maximum number of rows being displayed 
      */
     public int getMaxRowDisplayPreference()
     {
-    	return ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
-                PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT);
-    }
-
-    public void setCheckSRV(boolean checksrv)
-    {
-        _checkSRV = checksrv;
+    	return ResultInstanceFactory.INSTANCE.getMaxDisplayRowCount();
     }
 }

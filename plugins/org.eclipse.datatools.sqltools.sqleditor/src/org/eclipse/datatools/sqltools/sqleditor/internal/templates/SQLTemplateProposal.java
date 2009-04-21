@@ -9,10 +9,10 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.templates;
 
 import java.util.HashMap;
 
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
 import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLCompletionProposal;
@@ -219,7 +219,7 @@ public class SQLTemplateProposal implements ICompletionProposal, ICompletionProp
 
                 hashMap.put(KEY_SQLEDITOR, _editor);
 
-                SQLDevToolsConfiguration configuration = SQLToolsFacade.getConfigurationByProfileName(_editor
+                SQLDevToolsUIConfiguration configuration = SQLToolsUIFacade.getConfigurationByProfileName(_editor
                         .getDatabaseIdentifier().getProfileName());
                 SQLTemplate template = configuration.getTemplateService().getIntelligenceTemplate(
                         ((SQLTemplate) _template).getId(), hashMap, _editor.getDatabaseIdentifier());

@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.IReExecutionRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 
 /**
  * Utility class to read the extensions
@@ -37,7 +38,7 @@ public class ReExecutionRegistryReader
     public static IReExecutionRunnable readProperReExecutionHandler(OperationCommand cmd)
     {
         IExtensionRegistry registry = Platform.getExtensionRegistry();
-        IExtensionPoint point = registry.getExtensionPoint(ResultsConstants.PLUGIN_ID, ResultsConstants.RE_EXECUTION_POINT_ID);
+        IExtensionPoint point = registry.getExtensionPoint(ResultsViewPlugin.getPluginId(), ResultsConstants.RE_EXECUTION_POINT_ID);
         if(point == null)
         {
             // Should not happen

@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 
 /**
  * SQL related utilities

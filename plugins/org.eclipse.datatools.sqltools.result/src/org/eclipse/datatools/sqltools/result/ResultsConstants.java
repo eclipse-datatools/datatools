@@ -18,11 +18,11 @@ import com.ibm.icu.text.SimpleDateFormat;
  * 
  * @author Dafan Yang
  */
-public interface ResultsConstants
+public class ResultsConstants
 {
-    public static final String PLUGIN_ID              = "org.eclipse.datatools.sqltools.result";
+    private static final String PLUGIN_ID              = ResultsViewPlugin.getPluginId();
     public static final String SQL_RESULTS_VIEW_ID    = "org.eclipse.datatools.sqltools.result.resultView";
-    public static final String PLUGIN_RESOURCE_BUNDLE = PLUGIN_ID + ".internal.PluginResources";
+//    public static final String PLUGIN_RESOURCE_BUNDLE = PLUGIN_ID + ".PluginResources";
 
     // the formater to format the data time (using current default pattern)
     public static DateFormat   FORMATTER              = new SimpleDateFormat();
@@ -34,4 +34,10 @@ public interface ResultsConstants
     public static final String EXTENSION_POINT_DATABASE_ID   = "database_id";
     public static final String EXTENSION_POINT_CONSUMER_NAME = "consumer_name";
     public static final String EXTENSION_POINT_CLASS_NAME    = "class";
+    
+    // preference key
+    public static final String SQL_RESULTS_VIEW_MAX_ROW_COUNT          = ResultsConstants.PLUGIN_ID
+                                                                               + ".preferences.maxrowcount";
+    public static final String SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT  = ResultsConstants.PLUGIN_ID
+                                                                               + ".preferences..maxdisplayrowcount";
 }

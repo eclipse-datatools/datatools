@@ -15,12 +15,10 @@ package org.eclipse.datatools.sqltools.db.derby.parser;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
 import org.eclipse.datatools.sqltools.sql.parser.util.ASTSQLStatementUtil;
-import org.eclipse.swt.graphics.Image;
 
 public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, DerbySQLParserConstants {
 
@@ -117,10 +115,6 @@ public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, Der
 	public String toString() {
 		return ASTSQLStatementUtil.toString(getType(), this,
 				getObjectIdentifiers());
-	}
-
-	public Image getImage() {
-		return ASTSQLStatementUtil.getImage(getType());
 	}
 
 	/*

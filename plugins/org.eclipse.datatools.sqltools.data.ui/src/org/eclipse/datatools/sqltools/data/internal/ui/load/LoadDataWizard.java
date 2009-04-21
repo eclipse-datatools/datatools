@@ -24,20 +24,17 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
-import org.eclipse.datatools.sqltools.data.internal.core.load.LoadData;
-import org.eclipse.datatools.sqltools.data.internal.ui.OutputItemAdapter;
-import org.eclipse.datatools.sqltools.data.internal.ui.load.Messages;
-import org.eclipse.datatools.sqltools.data.internal.ui.load.IExternalLoad;
-import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
-import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
-//import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
+import org.eclipse.datatools.sqltools.data.internal.core.load.LoadData;
+import org.eclipse.datatools.sqltools.data.internal.ui.OutputItemAdapter;
+import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.jface.wizard.Wizard;
 
 

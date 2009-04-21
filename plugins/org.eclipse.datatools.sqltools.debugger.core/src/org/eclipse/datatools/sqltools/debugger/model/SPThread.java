@@ -23,7 +23,6 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
-import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
@@ -353,7 +352,6 @@ public abstract class SPThread extends SPDebugElement implements IThread,
 	protected void terminated() {
 		_terminated = true;
 		this.getSPDebugTarget().terminated();
-		ResultsViewAPI.getInstance().checkView();
 	}
 
 	/*

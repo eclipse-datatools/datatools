@@ -15,11 +15,8 @@ package org.eclipse.datatools.sqltools.db.generic.parser;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.ui.IEditorInput;
 
 public class ASTStart extends SimpleNode implements IASTStart {
-
-	private IEditorInput _input;
 
 	private IDocument _document;
 
@@ -41,24 +38,6 @@ public class ASTStart extends SimpleNode implements IASTStart {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#setEditorInput(org.eclipse.ui.IEditorInput)
-	 */
-	public void doSetEditorInput(IEditorInput input) {
-		_input = input;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#getEditorInput()
-	 */
-	public IEditorInput doGetEditorInput() {
-		return _input;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTStart#doSetDocument(org.eclipse.jface.text.IDocument)
 	 */
 	public void doSetDocument(IDocument document) {
@@ -72,24 +51,6 @@ public class ASTStart extends SimpleNode implements IASTStart {
 	 */
 	public IDocument doGetDocument() {
 		return _document;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTStart#doSetAnnotationModel(org.eclipse.jface.text.source.IAnnotationModel)
-	 */
-	public void doSetAnnotationModel(IAnnotationModel model) {
-		_model = model;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTStart#doGetAnnotationModel()
-	 */
-	public IAnnotationModel doGetAnnotationModel() {
-		return _model;
 	}
 
 }

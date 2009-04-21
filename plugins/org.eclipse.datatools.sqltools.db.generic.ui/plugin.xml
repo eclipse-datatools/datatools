@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.sqltools.editor.core.ui.dbUIConfigurations">
+      <dbUIConfiguration
+            configurationClass="org.eclipse.datatools.sqltools.db.generic.ui.GenericDBUIConfiguation"
+            default="false"
+            description="%generic.db.desc"
+            product="%generic.db"
+            version="1.x">
+      </dbUIConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.sqltools.sql.ui.sqlNodesImage">
+      <nodeImage
+            imageHandler="org.eclipse.datatools.sqltools.db.generic.ui.GenericASTSQLStatementImageHandler"
+            nodeClazzName="org.eclipse.datatools.sqltools.db.generic.parser.ASTSQLStatement">
+      </nodeImage>
+   </extension>
+
+</plugin>

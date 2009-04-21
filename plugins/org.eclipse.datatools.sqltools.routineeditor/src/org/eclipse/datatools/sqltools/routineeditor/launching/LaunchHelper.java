@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.routineeditor.launching;
 
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,16 +23,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
+import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
+import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
+import org.eclipse.datatools.sqltools.core.dbitem.ISPUDF;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
-import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchUI;
+import org.eclipse.datatools.sqltools.routineeditor.parameter.ParameterInOutWrapper;
 import org.eclipse.datatools.sqltools.routineeditor.util.RoutineUtil;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -163,7 +168,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
             ArrayList values = new ArrayList();
             try
             {
-                ParameterDescriptor[] pds =  LaunchUI.getParameterDescriptors(proc);
+                ParameterDescriptor[] pds =  LaunchHelper.getParameterDescriptors(proc);
                 for (int i = 0; i < pds.length; i++)
                 {
                     ParameterDescriptor descriptor = pds[i];
@@ -331,7 +336,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructSPUDFDirectInvocationString(proc, readParameterList(configuration),LaunchUI.getParameterDescriptors(proc), quoted_id);   
+                return RoutineUtil.constructSPUDFDirectInvocationString(proc, readParameterList(configuration),LaunchHelper.getParameterDescriptors(proc), quoted_id);   
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
             case ProcIdentifier.TYPE_TRIGGER:
@@ -359,7 +364,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructCallableSPUDFString(proc, readParameterList(configuration), LaunchUI
+                return RoutineUtil.constructCallableSPUDFString(proc, readParameterList(configuration), LaunchHelper
                     .getAllParameterDescriptors(proc), quoted_id);
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
@@ -389,7 +394,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructCallableSPUDFDisplayString(proc, readParameterList(configuration), LaunchUI
+                return RoutineUtil.constructCallableSPUDFDisplayString(proc, readParameterList(configuration), LaunchHelper
                     .getAllParameterDescriptors(proc), quoted_id);
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
@@ -481,6 +486,177 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
             RoutineEditorActivator.getDefault().log(ex);
         }
 
+    }
+    
+    /**
+     * 
+     * @param profilefile
+     * @param type
+     * @param runstring
+     * @return @throws NoSuchProfileException
+     * @throws SQLException
+     */
+    public static ParameterInOutWrapper[] getAllParameterWrappers(ProcIdentifier proc) throws SQLException,
+        NoSuchProfileException
+    {
+        IControlConnection con = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(
+            proc.getDatabaseIdentifier());
+        IDBItem item = con.getDBItem(proc);
+
+        if (item instanceof ISPUDF)
+        {
+            ParameterDescriptor[] descs = ((ISPUDF) item).getParameterDescriptor();
+            // filter out those RETURN and RESULT parameter
+            ParameterInOutWrapper[] _pw = new ParameterInOutWrapper[descs.length];
+            int j = 0;
+            int k = 0;
+            for (int i = 0; i < descs.length; i++)
+            {
+                int paramType = descs[i].getParmType();
+                if (paramType == DatabaseMetaData.procedureColumnOut
+                || paramType == DatabaseMetaData.procedureColumnUnknown)
+                {
+                    _pw[descs.length - 1 - k] = new ParameterInOutWrapper(descs[i]);
+                    k++;
+                }
+                else
+                {
+                    _pw[j] = new ParameterInOutWrapper(descs[i]);
+                    j++;
+                }
+            }
+//            ParameterInOutWrapper[] _pw = new ParameterInOutWrapper[descs.length];
+//            int j = 0;
+//            int k = 0;
+//            for (int i = 0; i < descs.length; i++)
+//            {
+//                int paramType = descs[i].getParmType();
+//                //TODO MO
+//                //                if (paramType == DatabaseMetaData.procedureColumnOut
+//                //|| paramType == DatabaseMetaData.procedureColumnUnknown)
+//                
+//                if (paramType == ParameterMode.OUT)
+//                {
+//                    _pw[descs.length - 1 - k] = new ParameterInOutWrapper(descs[i]);
+//                    k++;
+//                }
+//                else
+//                {
+//                    _pw[j] = new ParameterInOutWrapper(descs[i]);
+//                    j++;
+//                }
+//            }
+            return _pw;
+        }
+        else
+        {
+            return new ParameterInOutWrapper[0];
+        }
+    }
+
+    /**
+     * 
+     * @param profilefile
+     * @param type
+     * @param runstring
+     * @return @throws NoSuchProfileException
+     * @throws SQLException
+     */
+    public static ParameterInOutWrapper[] getAllParameterWrappersByOrder(ProcIdentifier proc) throws SQLException,
+        NoSuchProfileException
+    {
+        IControlConnection con = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(
+            proc.getDatabaseIdentifier());
+        IDBItem item = con.getDBItem(proc);
+
+        if (item instanceof ISPUDF)
+        {
+            ParameterDescriptor[] descs = ((ISPUDF) item).getParameterDescriptor();
+            // filter out those RETURN and RESULT parameter
+
+            ParameterInOutWrapper[] _pw = new ParameterInOutWrapper[descs.length];
+            for (int i = 0; i < descs.length; i++)
+            {
+                int paramType = descs[i].getParmType();
+                _pw[i] = new ParameterInOutWrapper(descs[i]);
+            }
+            return _pw;
+        }
+        else
+        {
+            return new ParameterInOutWrapper[0];
+        }
+    }
+
+    /**
+     * 
+     * @param profilefile
+     * @param type
+     * @param runstring
+     * @return @throws NoSuchProfileException
+     * @throws SQLException
+     */
+    public static ParameterDescriptor[] getAllParameterDescriptors(ProcIdentifier proc) throws SQLException,
+        NoSuchProfileException
+    {
+        IControlConnection con = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(
+            proc.getDatabaseIdentifier());
+        IDBItem item = con.getDBItem(proc);
+
+        if (item instanceof ISPUDF)
+        {
+            ParameterDescriptor[] descs = ((ISPUDF) item).getParameterDescriptor();
+            // filter out those RETURN and RESULT parameter
+
+            return descs;
+        }
+        else
+        {
+            return new ParameterDescriptor[0];
+        }
+    }
+
+    /**
+     * 
+     * @param profilefile
+     * @param type
+     * @param runstring
+     * @return @throws NoSuchProfileException
+     * @throws SQLException
+     */
+    public static ParameterDescriptor[] getParameterDescriptors(ProcIdentifier proc) throws SQLException,
+        NoSuchProfileException
+    {
+        IControlConnection con = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(
+            proc.getDatabaseIdentifier());
+        IDBItem item = con.getDBItem(proc);
+
+        if (item instanceof ISPUDF)
+        {
+            ParameterDescriptor[] descs = ((ISPUDF) item).getParameterDescriptor();
+            // filter out those RETURN and RESULT parameter
+            List l = new ArrayList(descs.length);
+            for (int i = 0; i < descs.length; i++)
+            {
+            	//TODO MO
+//                if (descs[i].getParmType() == ParameterMode.OUT)
+                if (descs[i].getParmType() == DatabaseMetaData.procedureColumnReturn
+                        || descs[i].getParmType() == DatabaseMetaData.procedureColumnOut
+                        || descs[i].getParmType() == DatabaseMetaData.procedureColumnResult
+                            || descs[i].getParmType() == DatabaseMetaData.procedureColumnUnknown)
+                {
+                    continue;
+                }else{
+                	l.add(descs[i]);
+                }
+            }
+            return (ParameterDescriptor[]) l.toArray(new ParameterDescriptor[l.size()]);
+
+        }
+        else
+        {
+            return new ParameterDescriptor[0];
+        }
     }
  
 }

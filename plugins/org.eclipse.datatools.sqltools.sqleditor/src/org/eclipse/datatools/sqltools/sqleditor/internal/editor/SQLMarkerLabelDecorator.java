@@ -153,8 +153,7 @@ public class SQLMarkerLabelDecorator implements ILabelDecorator, ILightweightLab
         ;
         try
         {
-            IEditorInput editorInput = node.getEditorInput();
-            IAnnotationModel model = _editor.getDocumentProvider().getAnnotationModel(editorInput);
+            IAnnotationModel model = _editor.getDocumentProvider().getAnnotationModel(_editor.getEditorInput());
             IDocument document = node.getDocument();
 
             if (model != null)

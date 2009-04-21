@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
@@ -260,6 +261,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		 * Add the results view
 		 */
 		_resultsViewControl = new ResultsViewControl();
+		ResultsViewPlugin.getDefault().getResultManager().addResultManagerListener(_resultsViewControl);
 		/*
 		 * Tell the results view to use preferences
 		 */
@@ -276,8 +278,6 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		
 		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
 
-		ResultsViewAPI.getInstance().setCheckSRV(false);
-		
 		// set focus on the editor tab
         _tabFolder.setSelection(tabEditor);
 		return topComposite;
@@ -396,9 +396,9 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
-		ResultsViewAPI.getInstance().setCheckSRV(true);
 
 		_sqlBuilder.removeExecuteSQLListener(this);
+		ResultsViewPlugin.getDefault().getResultManager().removeResultManagerListener(_resultsViewControl);
 		_resultsViewControl.dispose();
 		return super.close();
 	}

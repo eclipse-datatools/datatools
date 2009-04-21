@@ -6,7 +6,7 @@ import org.eclipse.datatools.sqltools.result.internal.index.ResultHistoryLuceneI
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class AllAvailableCasesForResultsView
+public class AllAvailableCasesForResultsView extends TestSuite
 {
 
     public static Test suite()

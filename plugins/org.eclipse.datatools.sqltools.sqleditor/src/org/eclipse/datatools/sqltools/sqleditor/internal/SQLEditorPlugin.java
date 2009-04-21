@@ -20,11 +20,11 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileListenersManager;
 import org.eclipse.datatools.sqltools.editor.core.connection.SQLToolsConnectListenersManager;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.internal.profile.SQLEditorProfileListener;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
@@ -237,11 +237,11 @@ public class SQLEditorPlugin extends AbstractUIPlugin{
             // create an configure the contexts available in the template editor
             _registry = new ContributionContextTypeRegistry();
             _registry.addContextType(GenericSQLContextType.SQL_CONTEXT_TYPE);
-            Collection c = SQLToolsFacade.getConfigurations();
+            Collection c = SQLToolsUIFacade.getConfigurations();
             Collection ctxTypes = new ArrayList();
             for (Iterator iter = c.iterator(); iter.hasNext();) {
-				SQLDevToolsConfiguration config = (SQLDevToolsConfiguration) iter.next();
-				ctxTypes.add(config.getSQLService().getSQLContextType());
+				SQLDevToolsUIConfiguration config = (SQLDevToolsUIConfiguration) iter.next();
+				ctxTypes.add(config.getSQLUIService().getSQLContextType());
 			}
 
             for (Iterator i = ctxTypes.iterator(); i.hasNext();)

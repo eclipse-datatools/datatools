@@ -21,6 +21,7 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
+import org.eclipse.datatools.sqltools.editor.core.result.ResultSupportRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.debug.core.ILaunchConfiguration;

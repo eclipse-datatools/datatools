@@ -25,7 +25,7 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
-import org.eclipse.datatools.sqltools.routineeditor.RoutineAnnotationModel;
+import org.eclipse.datatools.sqltools.routineeditor.util.RoutineEditorConstants;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IBreakpointManager;
@@ -171,7 +171,7 @@ public class SPDebugModelUtil
             if (SPLineBreakpoint.MARKER_TYPE.equals(type))
             {
                 // good, this is a SPbreakpoint marker, next check proc
-                String str = marker.getAttribute(RoutineAnnotationModel.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
+                String str = marker.getAttribute(RoutineEditorConstants.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
                 try
                 {
                     ProcIdentifier id = ProcIdentifierImpl.decode(str);
@@ -206,7 +206,7 @@ public class SPDebugModelUtil
         if (SPLineBreakpoint.MARKER_TYPE.equals(type))
         {
             // good, this is a SPbreakpoint marker, next check proc
-            String str = markerDelta.getAttribute(RoutineAnnotationModel.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
+            String str = markerDelta.getAttribute(RoutineEditorConstants.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
             try
             {
                 ProcIdentifier id = ProcIdentifierImpl.decode(str);

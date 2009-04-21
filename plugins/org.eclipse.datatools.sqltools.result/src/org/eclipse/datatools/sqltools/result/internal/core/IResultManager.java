@@ -47,16 +47,6 @@ public interface IResultManager extends Serializable
     public void removeResultInstances(IResultInstance[] instances);
 
     /**
-     * Creates a new result instance that support external client to terminate.
-     * 
-     * @param operation the <code>OperationCommand</code> instance
-     * @param terminateHandler when external client try to terminate the instance, this runnable's run method will be
-     *            called.
-     * @return the newly-created result instance
-     */
-    public IResultInstance createNewResultInstance(OperationCommand operation, Runnable terminateHandler);
-
-    /**
      * Adds listener
      * 
      * @param listener the listener
@@ -83,6 +73,13 @@ public interface IResultManager extends Serializable
      */
     public IResultInstance getInstance(OperationCommand cmd);
 
+    /**
+     * Notifies all the listeners of this result instance added event
+     * 
+     * @param instance the result instance
+     */
+    public void fireAdded(IResultInstance instance);
+    
     /**
      * Notifies all the listeners of this append event
      * 
@@ -114,10 +111,4 @@ public interface IResultManager extends Serializable
      */
     public void fireParametersShow(IResultInstance instance, List params);
 
-    /**
-     * A new sub-result has been added
-     * @param operation the operation request instance
-     * @param instance the sub-result instance
-     */
-    public void newSubResultCreated(OperationCommand operation, IResultInstance instance);
 }

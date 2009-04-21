@@ -12,8 +12,6 @@
 package org.eclipse.datatools.sqltools.sql.parser.ast;
 
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.ui.IEditorInput;
 
 /**
  * Represents the root node of the parsing result. Contains
@@ -24,17 +22,6 @@ import org.eclipse.ui.IEditorInput;
  */
 public interface IASTStart extends Node
 {
-
-    /**
-     * IASTStart will always be supposed to be the root node of a parsing result, and only here
-     * the input information is really stored. Calling child nodes' setEditorInput or getEditorInput
-     * will eventually goes to doSetEditorInput and doGetEditorInput.
-     * @param input
-     */
-    public void doSetEditorInput(IEditorInput input);
-
-    public IEditorInput doGetEditorInput();
-
     /**
      * IASTStart will always be supposed to be the root node of a parsing result, and only here
      * the document information is really stored. Calling child nodes' setDocument or getDocument
@@ -47,15 +34,4 @@ public interface IASTStart extends Node
      * @return
      */
     public IDocument doGetDocument();
-
-    /**
-     * @param model
-     */
-    public void doSetAnnotationModel(IAnnotationModel model);
-
-    /**
-     * @return
-     */
-    public IAnnotationModel doGetAnnotationModel();
-
 }

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.routineeditor.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.routineeditor.ui" id="documentprovider" name="SQL Editor Document Provider"/>
+      </appinfo>
+      <documentation>
+         This extension point allows a document provider to be contributed for SQL Routine editor. Extensions register a &lt;code&gt;org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider&lt;/code&gt; class which will provide additional functions beyond the original document provider. Note: this extension point is intended to be used by DTP SQL debugger only for now.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+         <documentation>
+            This extension point should be used by debugger only.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="provider"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="provider">
+      <complexType>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  optional id
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the Java class implementing  org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.7.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;&lt;pre&gt;
+&lt;extension
+          point=&quot;org.eclipse.datatools.sqltools.routineeditor.ui.documentprovider&quot;&gt;
+       &lt;provider class=&quot;org.eclipse.datatools.sqltools.debugger.editorextension.SQLDebuggerDocumentProvider&quot;/&gt;
+    &lt;/extension&gt;
+    &lt;/pre&gt;&lt;/p&gt;
+SQLDebuggerDocumentProvider will be used by SQLEditorDocumentProvider to manage breakpoint positions.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         The class attribute must be a fully qualified name of the Java class implementing  org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider.
+public interface IRoutineEditorDocumentProvider extends IDocumentProvider, IDocumentProviderExtension2, IDocumentProviderExtension3 
+{
+    /**
+     * Refreshs the routine object from database.
+     * @param element the routine object
+     * @param controlCon control connection that&apos;s used by the routine editor
+     * @param proc the routine identifier
+     */
+    public void refreshFromDatabase(Object element, IControlConnection controlCon, ProcIdentifier proc) throws CoreException, SQLException;
+}
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2005 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

@@ -19,7 +19,6 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
 import org.eclipse.datatools.sqltools.sql.parser.util.ASTSQLStatementUtil;
-import org.eclipse.swt.graphics.Image;
 
 public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, GenericSQLParserConstants {
 
@@ -116,10 +115,6 @@ public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, Gen
 	public String toString() {
 		return ASTSQLStatementUtil.toString(getType(), this,
 				getObjectIdentifiers());
-	}
-
-	public Image getImage() {
-		return ASTSQLStatementUtil.getImage(getType());
 	}
 
 	/*

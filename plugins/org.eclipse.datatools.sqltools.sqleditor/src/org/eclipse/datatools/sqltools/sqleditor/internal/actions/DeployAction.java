@@ -26,7 +26,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.PlatformUI;
@@ -80,7 +79,6 @@ public class DeployAction extends SelectionDispatchAction
             return;
         }
         IASTDeployable node = (IASTDeployable) selection.getFirstElement();
-        IEditorInput input = node.getEditorInput();
         SQLEditor editor = (SQLEditor) getSite().getPage().getActiveEditor();
         if (editor.getSQLType() != SQLParserConstants.TYPE_SQL_ROOT)
         {

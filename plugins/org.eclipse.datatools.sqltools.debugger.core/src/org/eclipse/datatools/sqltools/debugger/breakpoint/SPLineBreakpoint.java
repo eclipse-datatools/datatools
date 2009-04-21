@@ -27,8 +27,7 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerMessages;
 import org.eclipse.datatools.sqltools.debugger.model.SPDebugModelUtil;
-import org.eclipse.datatools.sqltools.routineeditor.RoutineAnnotationModel;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.routineeditor.util.RoutineEditorConstants;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.LineBreakpoint;
@@ -81,7 +80,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
                 attributes.put(IMarker.CHAR_START, new Integer(-1));
                 attributes.put(IMarker.CHAR_END, new Integer(-1));
 
-                attributes.put(RoutineAnnotationModel.ATTR_PROCIDENTIFIER, procId.encode());
+                attributes.put(RoutineEditorConstants.ATTR_PROCIDENTIFIER, procId.encode());
 
                 // set attributes
                 ensureMarker().setAttributes(attributes);
@@ -147,7 +146,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
     public ProcIdentifier getProcIdentifier() throws CoreException
     {
         IMarker m = this.getMarker();
-        String name = (String) m.getAttribute(RoutineAnnotationModel.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
+        String name = (String) m.getAttribute(RoutineEditorConstants.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
         if (name == null || name.length() == 0) 
         {
             throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.SPLineBreakpoint_invalidProcIdentifier, null));  
@@ -167,7 +166,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
     public String getEncodedProcIdentifier() throws CoreException
     {
     	IMarker m = this.getMarker();
-    	String name = (String) m.getAttribute(RoutineAnnotationModel.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
+    	String name = (String) m.getAttribute(RoutineEditorConstants.ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
     	if (name == null || name.length() == 0) 
     	{
     		throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.SPLineBreakpoint_invalidProcIdentifier, null));  
@@ -179,8 +178,8 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
     public void setProcId(String encodedProc) throws CoreException
     {
         Map attris = this.ensureMarker().getAttributes();
-        attris.remove(RoutineAnnotationModel.ATTR_PROCIDENTIFIER);
-        attris.put(RoutineAnnotationModel.ATTR_PROCIDENTIFIER,encodedProc);
+        attris.remove(RoutineEditorConstants.ATTR_PROCIDENTIFIER);
+        attris.put(RoutineEditorConstants.ATTR_PROCIDENTIFIER,encodedProc);
         this.ensureMarker().setAttributes(attris);
     }
 }

@@ -17,9 +17,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -69,7 +70,7 @@ public class DMLDialogSelectionSQLAction extends Action  implements ISelectionCh
 
     public void run()
     {
-    	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfigurationByProfileName(_sqlEditor.getConnectionInfo().getConnectionProfileName());
+    	SQLDevToolsUIConfiguration conf = SQLToolsUIFacade.getConfigurationByProfileName(_sqlEditor.getConnectionInfo().getConnectionProfileName());
     	UIComponentService componentService = conf.getUIComponentService();
 		if (componentService.supportsDMLDialog())
     	{

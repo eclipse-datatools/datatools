@@ -12,8 +12,8 @@ package org.eclipse.datatools.sqltools.result;
 
 import java.io.Serializable;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
-import org.eclipse.jface.util.Assert;
 
 /**
  * The <code>Parameter</code> represents an in/out parameter for routine objects.
@@ -22,7 +22,7 @@ import org.eclipse.jface.util.Assert;
  * which is used to display in/out parameters of rountine objects, the item in the <code>params</code> should be
  * instance of <code>Parameter</code>.
  * 
- * @see org.eclipse.datatools.sqltools.result.ResultsViewAPI
+ * @see org.eclipse.datatools.sqltools.result.ui.ResultsViewAPI
  * @author Dafan Yang
  */
 public class Parameter implements Serializable

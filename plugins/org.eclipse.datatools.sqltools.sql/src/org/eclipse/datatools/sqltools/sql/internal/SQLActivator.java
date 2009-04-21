@@ -12,15 +12,14 @@
 package org.eclipse.datatools.sqltools.sql.internal;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class SQLActivator extends AbstractUIPlugin {
+public class SQLActivator extends Plugin {
 
 	private static final int INTERNAL_ERROR = 0;
     public static final String PLUGIN_ID = "org.eclipse.datatools.sqltools.sql";
@@ -54,17 +53,6 @@ public class SQLActivator extends AbstractUIPlugin {
 	 */
 	public static SQLActivator getDefault() {
 		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.sql", path);
 	}
     
     /**

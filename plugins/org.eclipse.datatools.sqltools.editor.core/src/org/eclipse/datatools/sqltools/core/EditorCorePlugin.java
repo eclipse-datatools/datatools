@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.core;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
@@ -24,8 +25,6 @@ import org.eclipse.datatools.sqltools.internal.core.IConfigurationRegistryListen
 import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 
@@ -34,7 +33,7 @@ import org.osgi.framework.BundleContext;
  * 
  * @author Hui Cao
  */
-public class EditorCorePlugin extends AbstractUIPlugin {
+public class EditorCorePlugin extends Plugin {
 
 	private static final int INTERNAL_ERROR = 0;
 	public static final String PLUGIN_ID = "org.eclipse.datatools.sqltools.editor.core";
@@ -93,17 +92,6 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.editor.core", path);
-	}
-	
     public static synchronized IControlConnectionManager getControlConnectionManager()
     {
         if (getDefault()._controlConnectionManager == null)

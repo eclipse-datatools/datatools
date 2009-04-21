@@ -29,15 +29,14 @@ import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
+import org.eclipse.datatools.sqltools.editor.core.result.ResultSupportRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.Parameter;
 import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
 import org.eclipse.datatools.sqltools.routineeditor.internal.result.Messages;
 import org.eclipse.datatools.sqltools.routineeditor.launching.LaunchHelper;
 import org.eclipse.datatools.sqltools.routineeditor.parameter.ParameterInOutWrapper;
-import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchUI;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
-import org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 /**
@@ -346,7 +345,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
                 if (proc != null)
                 {
                     _procName = proc.getProcName();
-                    _pws = LaunchUI.getAllParameterWrappersByOrder(proc);
+                    _pws = LaunchHelper.getAllParameterWrappersByOrder(proc);
                     setInParameter(cstmt, _pws);
                     registerOutParameter(cstmt, _pws);
 
@@ -387,6 +386,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         	getStatementOutParam(_stmt, _pws);
         	synchronized (getOperationCommand())
         	{
+        		
                 resultsViewAPI.appendStatusMessage(getOperationCommand(), getReturnStatusString());
         		resultsViewAPI.showParameters(getOperationCommand(), convert(_pws));
         	}

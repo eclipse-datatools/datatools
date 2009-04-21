@@ -1,0 +1,29 @@
+/*******************************************************************************
+ * Copyright (c) 2004, 2008 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.datatools.sqltools.db.derby.ui;
+
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.datatools.sqltools.db.derby.parser.ASTSQLStatement;
+import org.eclipse.datatools.sqltools.sql.ui.INodesImageHandler;
+import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
+import org.eclipse.datatools.sqltools.sql.ui.ASTSQLStatementUIUtil;
+import org.eclipse.swt.graphics.Image;
+
+public class DerbyASTSQLStatementImageHandler implements INodesImageHandler {
+
+	public Image getImage(Node node) {
+		Assert.isTrue(node instanceof ASTSQLStatement);
+		return ASTSQLStatementUIUtil.getImage(((ASTSQLStatement)node).getType());
+	}
+
+}

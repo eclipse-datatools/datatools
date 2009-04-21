@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 
@@ -30,7 +30,7 @@ public class ResultHistoryLuceneIndexTest extends TestCase
         
         // initiate a new index
         _historyIndex = new ResultHistoryLuceneIndex();
-        _resultManager = ResultsViewPlugin.getResultManager();
+        _resultManager = ResultsViewAPI.getInstance().getResultManager();
         _resultsViewAPI = ResultsViewAPI.getInstance();
     }
 

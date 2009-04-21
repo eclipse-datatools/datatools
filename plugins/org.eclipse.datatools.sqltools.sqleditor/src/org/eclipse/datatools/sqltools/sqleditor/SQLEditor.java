@@ -29,8 +29,11 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
+import org.eclipse.datatools.sqltools.core.services.SQLEditorUIService;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
+import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.plan.IPlanOption;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
@@ -625,9 +628,9 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
         fireConnectionProfileAttached();
 
         // Set corresponding token matcher, according to database type.
-        SQLDevToolsConfiguration sqlDevToolsConfig = SQLToolsFacade.getConfiguration(getDBType(),
+        SQLDevToolsUIConfiguration sqlDevToolsConfig = SQLToolsUIFacade.getConfiguration(getDBType(),
                 getDatabaseIdentifier());
-        _pairMatcher = sqlDevToolsConfig.getSQLEditorService().getSQLPairMatcher();
+        _pairMatcher = sqlDevToolsConfig.getSQLEditorUIService().getSQLPairMatcher();
 
         // If the specific database token matcher is not supported, set default generic sql matcher.
         if (_pairMatcher == null)
@@ -1131,10 +1134,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
         menu.add(new Separator());
 
         // 2006-7-20
-        SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByVendorIdentifier(getConnectionInfo()
+        SQLDevToolsUIConfiguration config = SQLToolsUIFacade.getConfigurationByVendorIdentifier(getConnectionInfo()
                 .getDatabaseVendorDefinitionId());
         ActionService actionService = config.getActionService();
-        SQLEditorService editorService = config.getSQLEditorService();
+        SQLEditorUIService editorService = config.getSQLEditorUIService();
         // Execute SQL
         if (actionService.supportsAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
         {

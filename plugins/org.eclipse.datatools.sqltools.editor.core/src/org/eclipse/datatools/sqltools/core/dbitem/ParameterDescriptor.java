@@ -12,7 +12,6 @@ package org.eclipse.datatools.sqltools.core.dbitem;
 import java.sql.DatabaseMetaData;
 import java.sql.Types;
 
-import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.result.Parameter;
 
@@ -23,6 +22,7 @@ import org.eclipse.datatools.sqltools.result.Parameter;
  */
 public class ParameterDescriptor
 {
+	
     String             _name;
     String             _typeName;
     String             _comment;
@@ -158,22 +158,22 @@ public class ParameterDescriptor
     {
         // TODO MO
         // return ParameterMode.get(_parmType).toString();
-        switch (_parmType)
-        {
-            case DatabaseMetaData.procedureColumnIn:
-                return Parameter.INPUT;
-            case DatabaseMetaData.procedureColumnInOut:
-                return Parameter.IN_OUT;
-            case DatabaseMetaData.procedureColumnOut:
-                return Parameter.OUTPUT;
-            case DatabaseMetaData.procedureColumnResult:
-                return Parameter.RESULT;
-            case DatabaseMetaData.procedureColumnReturn:
-                return Parameter.RETURN;
-            case DatabaseMetaData.procedureColumnUnknown:
-            default:
-                return Parameter.UNKNOWN;
-        }
+    	 switch (_parmType)
+         {
+             case DatabaseMetaData.procedureColumnIn:
+                 return Parameter.INPUT;
+             case DatabaseMetaData.procedureColumnInOut:
+                 return Parameter.IN_OUT;
+             case DatabaseMetaData.procedureColumnOut:
+                 return Parameter.OUTPUT;
+             case DatabaseMetaData.procedureColumnResult:
+                 return Parameter.RESULT;
+             case DatabaseMetaData.procedureColumnReturn:
+                 return Parameter.RETURN;
+             case DatabaseMetaData.procedureColumnUnknown:
+             default:
+                 return Parameter.UNKNOWN;
+         }
     }
 
     /**

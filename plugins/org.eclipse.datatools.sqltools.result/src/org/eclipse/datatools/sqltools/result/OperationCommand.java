@@ -12,9 +12,7 @@ package org.eclipse.datatools.sqltools.result;
 
 import java.io.Serializable;
 
-import org.eclipse.datatools.sqltools.result.internal.utils.Images;
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * The <code>OperationCommand</code> is used to uniquely identify an execution result in SQL Results View, it is the
@@ -24,7 +22,7 @@ import org.eclipse.swt.graphics.Image;
  * <code>ResultsViewAPI</code> to append message or result set, or set parameters to SQL Results View. When using the
  * <code>ResultsViewAPI</code> to append result item to SQL Results View, this instance should always be given.
  * 
- * @see org.eclipse.datatools.sqltools.result.ResultsViewAPI
+ * @see org.eclipse.datatools.sqltools.result.ui.ResultsViewAPI
  * @author Dafan Yang
  */
 public class OperationCommand implements Serializable
@@ -193,35 +191,6 @@ public class OperationCommand implements Serializable
                 return Messages.OperationCommand_action_browse; 
             default:
                 return Messages.OperationCommand_unknown_action; 
-        }
-    }
-    
-    /**
-     * Returns the image of given status
-     * 
-     * @param statusId the status id
-     * @return the image of this status
-     */
-    public static Image getStatusImage(int statusId)
-    {
-        switch (statusId)
-        {
-            case STATUS_STARTED:
-                return Images.get(Images.IMG_STARTED);
-            case STATUS_RUNNING:
-                return Images.get(Images.IMG_RUNNING);
-            case STATUS_SUCCEEDED:
-                return Images.get(Images.IMG_SUCCESS);
-            case STATUS_FAILED:
-                return Images.get(Images.IMG_FAIL);
-            case STATUS_TERMINATED:
-                return Images.get(Images.IMG_TERMINATE);
-            case STATUS_WARNING:
-                return Images.get(Images.IMG_WARNING);
-            case STATUS_CRITICAL_ERROR:
-                return Images.get(Images.IMG_CRITICAL);
-            default:
-                return Images.get(Images.IMG_FAIL);
         }
     }
     

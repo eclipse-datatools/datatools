@@ -13,17 +13,12 @@
 package org.eclipse.datatools.sqltools.core;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.core.services.SQLDataService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
-import org.eclipse.datatools.sqltools.core.services.UIComponentService;
-import org.eclipse.datatools.sqltools.editor.template.ITemplateService;
 import org.eclipse.datatools.sqltools.internal.core.Messages;
-import org.eclipse.datatools.sqltools.plan.IPlanService;
-import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 
 /**
  * This class bundles the configuration space for a particular database. Instances of
@@ -99,23 +94,6 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	}
 
 	/**
-	 * Returns the query execution plan service associated with this database
-	 * definition
-	 * 
-	 */
-	public IPlanService getPlanService() {
-		return PlanServiceRegistry.getInstance().getPlanService(this.getDatabaseVendorDefinitionId().toString());
-	}
-
-	/**
-	 * Returns the SQL Editor service associated with this database definition
-	 * 
-	 */
-	public SQLEditorService getSQLEditorService() {
-		return new SQLEditorService();
-	}
-
-	/**
 	 * Returns the SQL data service associated with this database definition
 	 * 
 	 */
@@ -129,14 +107,6 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	 */
 	public ExecutionService getExecutionService() {
 		return new ExecutionService();
-	}
-	
-	/**
-	 * Returns the SQL execution service associated with this database definition
-	 * 
-	 */
-	public UIComponentService getUIComponentService() {
-		return new UIComponentService();
 	}
 	
 	/**
@@ -158,14 +128,6 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	public DBHelper getDBHelper() {
 		return new DBHelper();
 	}
-    
-    /**
-     * Returns the Action service
-     * 
-     */
-    public ActionService getActionService() {
-        return new ActionService();
-    }
 
 	/**
 	 * Returns an object which is an instance of the given class
@@ -207,9 +169,14 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	{
 		return null;
 	}
-    
-    public ITemplateService getTemplateService()
-    {
-        return null;
-    }
+	
+
+	/**
+	 * Returns the SQL Editor service associated with this database definition
+	 * 
+	 */
+	public SQLEditorService getSQLEditorService() {
+		return new SQLEditorService();
+	}
+
 }

@@ -16,10 +16,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.datatools.sqltools.sql.DefaultSQLSyntax;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
@@ -32,7 +29,6 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLDelimiter;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatementElement;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
-import org.eclipse.datatools.sqltools.sql.updater.ProceduralObjectSourceUpdater;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -54,18 +50,6 @@ public class SQLService
     public ISQLSyntax getSQLSyntax()
     {
         return new DefaultSQLSyntax();
-    }
-
-    /**
-     * Returns a specific <code>GenericSQLContextType</code> object which identifies the context type of templates
-     * used in SQL editor.
-     * 
-     * @return a <code>GenericSQLContextType</code> object
-     */
-    public GenericSQLContextType getSQLContextType()
-    {
-        // TODO Auto-generated method stub
-        return new GenericSQLContextType();
     }
 
     /**
@@ -269,14 +253,5 @@ public class SQLService
     public IIdentifierValidator getIdentifierValidator()
     {
     	return null;
-    }
-    
-    /**
-     * Returns the ProceduralObjectSourceUpdater object used to update the source of the given sql object 
-     * @return
-     */
-    public ProceduralObjectSourceUpdater getProceduralObjectSourceUpdater(SQLObject object, DatabaseDefinition dbDefinition)
-    {
-        return null;
     }
 }

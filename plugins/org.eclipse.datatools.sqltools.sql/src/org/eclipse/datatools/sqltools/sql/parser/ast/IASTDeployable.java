@@ -12,7 +12,6 @@
 package org.eclipse.datatools.sqltools.sql.parser.ast;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.swt.graphics.Image;
 
 
 /**
@@ -22,11 +21,6 @@ import org.eclipse.swt.graphics.Image;
  */
 public interface IASTDeployable extends Node
 {
-    /**
-     * 
-     * @return image representing this node
-     */
-    public Image getImage();
 
     /**
      * 

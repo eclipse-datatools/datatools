@@ -204,10 +204,8 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         ParserParameters parserParameters = new ParserParameters(useDelimiter, _editor.getSQLType());
         _result = p.parse(content, parserParameters);
 
-		_result.getRootNode().setEditorInput(_input);
         IDocument document = _editor.getDocumentProvider().getDocument(_input);
         _result.getRootNode().setDocument(document);
-        _result.getRootNode().setAnnotationModel(_annotationModel);
         _editor.setParsingResult(_result);
 
         removeMarkers(false);

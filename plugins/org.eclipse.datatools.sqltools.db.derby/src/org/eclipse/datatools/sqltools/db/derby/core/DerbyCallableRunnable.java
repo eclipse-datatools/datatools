@@ -25,7 +25,6 @@ import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.routineeditor.launching.LaunchHelper;
 import org.eclipse.datatools.sqltools.routineeditor.result.CallableSQLResultRunnable;
-import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchUI;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
 /**
@@ -65,7 +64,7 @@ public class DerbyCallableRunnable extends CallableSQLResultRunnable {
 		case ProcIdentifier.TYPE_SP:
 		case ProcIdentifier.TYPE_UDF:
 			return constructCALLSPString(proc, LaunchHelper
-					.readParameterList(configuration), LaunchUI
+					.readParameterList(configuration), LaunchHelper
 					.getAllParameterDescriptors(proc), quoted_id);
 		case ProcIdentifier.TYPE_EVENT:
 		// not supported

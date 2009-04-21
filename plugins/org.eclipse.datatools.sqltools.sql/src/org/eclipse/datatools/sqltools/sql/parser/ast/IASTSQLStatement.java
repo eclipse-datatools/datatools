@@ -13,8 +13,6 @@ package org.eclipse.datatools.sqltools.sql.parser.ast;
 
 import java.util.Collection;
 
-import org.eclipse.swt.graphics.Image;
-
 /**
  * The common interface for all SQL statements.
  * 
@@ -28,8 +26,6 @@ public interface IASTSQLStatement extends Node
      * @return 
      */
     public int getType();
-
-    public Image getImage();
 
     /**
      * What database objects does this statement operate on. 

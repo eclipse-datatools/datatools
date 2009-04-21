@@ -19,10 +19,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
-import org.eclipse.datatools.sqltools.core.services.ConnectionService;
-import org.eclipse.datatools.sqltools.editor.contentassist.ContentAssistQueryRequest;
-import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
-import org.eclipse.datatools.sqltools.sql.reference.DBObject;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 
 /**
@@ -39,8 +35,8 @@ import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
  * <p>
  * As you can see, all the above mentioned functions can be accomplished by using SQL Model, Database Model and the API
  * from Connectivity layer. This is because SQL Dev Tools evolves at the same time with DTP Model Base project and
- * Connectivity project, so you can view this interface as the ¡°adapter¡± between SQL Dev Tools and the other 2 projects
- * of DTP. In fact, we¡¯ll provide a default implementation of this interface which uses SQL Model, Database Model and
+ * Connectivity project, so you can view this interface as the ï¿½ï¿½adapterï¿½ï¿½ between SQL Dev Tools and the other 2 projects
+ * of DTP. In fact, weï¿½ï¿½ll provide a default implementation of this interface which uses SQL Model, Database Model and
  * the API from Connectivity layer.
  * </p>
  * 

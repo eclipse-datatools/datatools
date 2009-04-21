@@ -11,10 +11,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.sql.internal.SQLActivator;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.util.Assert;
 
 
 /**

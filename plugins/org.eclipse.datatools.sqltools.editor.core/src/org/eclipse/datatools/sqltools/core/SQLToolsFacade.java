@@ -21,13 +21,10 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseD
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.SQLDataService;
-import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
-import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
-import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 
@@ -578,6 +575,29 @@ public class SQLToolsFacade
         return null;
     }
 
+    public static int[] getDBTypes()
+    {
+        Collection c = getRegistry().getConfigurations();
+        int size = c.size();
+        String[] types = (String[]) c.toArray(new String[size]);
+        int[] ts = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            ts[i] = Integer.parseInt(types[i]);
+        }
+        return ts;
+    }
+
+    public static SQLDevToolsConfiguration getConfiguration(String dbType, DatabaseIdentifier databaseIdentifier)
+    {
+        if (dbType == null)
+        {
+            return getConfiguration(databaseIdentifier, null);
+        }
+        return getConfiguration(databaseIdentifier, new DatabaseVendorDefinitionId(dbType));
+    }
+    
+
     /**
      * Return a SQLParser which is used to parse database dialect
      * 
@@ -593,110 +613,5 @@ public class SQLToolsFacade
             return s.getSQLParser();
         }
         return null;
-    }
-
-    /**
-     * Return a specific GenericSQLContextType object which identifies the context type of templates used in SQL editor.
-     * 
-     * @param dbType
-     * @return
-     */
-    public static GenericSQLContextType getSQLContextType(String dbType)
-    {
-        SQLService service = getSQLService(null, dbType);
-        if (service != null)
-        {
-            return service.getSQLContextType();
-        }
-        return null;
-    }
-
-    /**
-     * Returns a database-specific SQL statement service class.
-     * 
-     */
-    public static SQLEditorService getSQLEditorService(DatabaseIdentifier databaseIdentifier, String dbType)
-    {
-        SQLDevToolsConfiguration f = getConfiguration(dbType, databaseIdentifier);
-        return f.getSQLEditorService();
-    }
-
-    /**
-     * Returns a database-specific query plan service class.
-     * 
-     */
-    public static IPlanService getPlanService(DatabaseIdentifier databaseIdentifier)
-    {
-        SQLDevToolsConfiguration f = getConfiguration(null, databaseIdentifier);
-        return f.getPlanService();
-    }
-
-    public static int[] getDBTypes()
-    {
-        Collection c = getRegistry().getConfigurations();
-        int size = c.size();
-        String[] types = (String[]) c.toArray(new String[size]);
-        int[] ts = new int[size];
-        for (int i = 0; i < size; i++)
-        {
-            ts[i] = Integer.parseInt(types[i]);
-        }
-        return ts;
-    }
-
-    /**
-     * Return all the GenericSQLContextType objects which identify the context type of templates used in SQL editor.
-     * 
-     * @return
-     */
-    public static Collection getSQLContextTypes()
-    {
-        Collection c = getRegistry().getConfigurations();
-        int size = c.size();
-        SQLDevToolsConfiguration[] fs = (SQLDevToolsConfiguration[]) c.toArray(new SQLDevToolsConfiguration[size]);
-        Collection ctxTypes = new ArrayList();
-        for (int i = 0; i < size; i++)
-        {
-            ctxTypes.add(fs[i].getSQLService().getSQLContextType());
-        }
-        return ctxTypes;
-    }
-
-    /**
-     * Return all the available plan options
-     * 
-     * @return
-     */
-    public static Collection getPlanOptions()
-    {
-        Collection c = getRegistry().getConfigurations();
-        int size = c.size();
-        SQLDevToolsConfiguration[] fs = (SQLDevToolsConfiguration[]) c.toArray(new SQLDevToolsConfiguration[size]);
-        Collection planOps = new ArrayList();
-        for (int i = 0; i < size; i++)
-        {
-            planOps.add(fs[i].getPlanService().getPlanOption());
-        }
-        return planOps;
-    }
-
-    public static boolean showAction(String dbType, String actionId)
-    {
-        SQLDevToolsConfiguration f = null;
-        f = getConfigurationByDBDefName(dbType);
-        if (f != null)
-        {
-            return f.getActionService().supportsAction(actionId);
-        }
-        return false;
-    }
-
-    public static SQLDevToolsConfiguration getConfiguration(String dbType, DatabaseIdentifier databaseIdentifier)
-    {
-        if (dbType == null)
-        {
-            return getConfiguration(databaseIdentifier, null);
-        }
-        return getConfiguration(databaseIdentifier, new DatabaseVendorDefinitionId(dbType));
     }
 }

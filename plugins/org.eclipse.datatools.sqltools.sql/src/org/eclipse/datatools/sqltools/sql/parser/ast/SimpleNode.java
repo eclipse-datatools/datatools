@@ -12,6 +12,7 @@
 
 package org.eclipse.datatools.sqltools.sql.parser.ast;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.sql.internal.SQLActivator;
 import org.eclipse.datatools.sqltools.sql.parser.Messages;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
@@ -19,9 +20,6 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.source.IAnnotationModel;
-import org.eclipse.jface.util.Assert;
-import org.eclipse.ui.IEditorInput;
 
 /**
  * Base implementation of <code>Node</code>.
@@ -229,50 +227,6 @@ public class SimpleNode implements Node
         }
     }
 
-    /* (non-Javadoc)
-
-
-     * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#setEditorInput(org.eclipse.ui.IEditorInput)
-     */
-    public void setEditorInput(IEditorInput input)
-    {
-        if (this instanceof IASTStart)
-        {
-            ((IASTStart)this).doSetEditorInput(input);
-            return;
-        }
-        Node parent = this;
-        while (parent.jjtGetParent() != null)
-        {
-            parent = parent.jjtGetParent();
-        }
-        if (parent == this)
-        {
-            parent.setEditorInput(input);
-        }
-    }
-
-    /* (non-Javadoc)
-     * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#getEditorInput()
-     */
-    public IEditorInput getEditorInput()
-    {
-        if (this instanceof IASTStart)
-        {
-            return ((IASTStart)this).doGetEditorInput();
-        }
-        Node parent = this;
-        while (parent.jjtGetParent() != null)
-        {
-            parent = parent.jjtGetParent();
-        }
-        if (parent == this)
-        {
-            return null;
-        }
-        return parent.getEditorInput();
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -317,52 +271,6 @@ public class SimpleNode implements Node
             return null;
         }
         return parent.getDocument();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#setAnnotationModel(org.eclipse.jface.text.source.IAnnotationModel)
-     */
-    public void setAnnotationModel(IAnnotationModel model)
-    {
-        if (this instanceof IASTStart)
-        {
-            ((IASTStart) this).doSetAnnotationModel(model);
-            return;
-        }
-        Node parent = this;
-        while (parent.jjtGetParent() != null)
-        {
-            parent = parent.jjtGetParent();
-        }
-        if (parent != this)
-        {
-            parent.setAnnotationModel(model);
-        }
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.Node#getAnnotationModel()
-     */
-    public IAnnotationModel getAnnotationModel()
-    {
-        if (this instanceof IASTStart)
-        {
-            return ((IASTStart) this).doGetAnnotationModel();
-        }
-        Node parent = this;
-        while (parent.jjtGetParent() != null)
-        {
-            parent = parent.jjtGetParent();
-        }
-        if (parent == this)
-        {
-            return null;
-        }
-        return parent.getAnnotationModel();
     }
 
     /*

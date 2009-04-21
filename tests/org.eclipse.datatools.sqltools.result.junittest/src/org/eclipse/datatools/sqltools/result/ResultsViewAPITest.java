@@ -22,8 +22,6 @@ import java.util.List;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
-
 /**
  * Test cases for <code>ResultsViewAPI</code>, this class tries to print out all the useful information to the
  * console for the tester, if the tester also need to view the results in real SQL Results View, do the following steps:
@@ -418,9 +416,9 @@ public class ResultsViewAPITest extends TestCase
      */
     public void testCreateNewInstance()
     {
-        System.out.println(ResultsViewPlugin.getResultManager().getAllResults().length
+        System.out.println(ResultsViewAPI.getInstance().getResultManager().getAllResults().length
                 + " result(s) found in results manager before the test case is running");
-        int numBefore = ResultsViewPlugin.getResultManager().getAllResults().length;
+        int numBefore = ResultsViewAPI.getInstance().getResultManager().getAllResults().length;
         
         OperationCommand cmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
                 "ase", "master");
@@ -443,9 +441,9 @@ public class ResultsViewAPITest extends TestCase
         System.out.println("Update status (expect:true):" + succeeded);
         Assert.assertEquals(true, succeeded);
         
-        System.out.println(ResultsViewPlugin.getResultManager().getAllResults().length
+        System.out.println(ResultsViewAPI.getInstance().getResultManager().getAllResults().length
                 + " result(s) found in results manager after the running the test case");
-        Assert.assertEquals(numBefore + 2, ResultsViewPlugin.getResultManager().getAllResults().length);
+        Assert.assertEquals(numBefore + 2, ResultsViewAPI.getInstance().getResultManager().getAllResults().length);
     }
 
     /**

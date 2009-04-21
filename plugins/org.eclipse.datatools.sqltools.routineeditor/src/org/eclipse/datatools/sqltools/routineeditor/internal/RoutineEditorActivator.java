@@ -12,20 +12,18 @@
 package org.eclipse.datatools.sqltools.routineeditor.internal;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileListenersManager;
 import org.eclipse.datatools.sqltools.routineeditor.launching.SQLToolsLaunchProfileListener;
-import org.eclipse.datatools.sqltools.routineeditor.parameter.internal.LaunchConfigurationParamsHistoryListener;
+import org.eclipse.datatools.sqltools.routineeditor.parameter.LaunchConfigurationParamsHistoryListener;
 import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class RoutineEditorActivator extends AbstractUIPlugin {
+public class RoutineEditorActivator extends Plugin {
 
 	private static final int INTERNAL_ERROR = 0;
 	public static String PLUGIN_ID = "org.eclipse.datatools.sqltools.routineeditor";
@@ -40,19 +38,6 @@ public class RoutineEditorActivator extends AbstractUIPlugin {
 		plugin = this;
 	}
 
-    /**
-     * Returns the standard display to be used. The method first checks, if the thread calling this method has an
-     * associated dispaly. If so, this display is returned. Otherwise the method returns the default display.
-     */
-    public static Display getStandardDisplay()
-    {
-        Display display;
-        display = Display.getCurrent();
-        if (display == null)
-        display = Display.getDefault();
-        return display;
-    }
-    
 	/**
 	 * This method is called upon plug-in activation
 	 */
@@ -81,17 +66,6 @@ public class RoutineEditorActivator extends AbstractUIPlugin {
 	 */
 	public static RoutineEditorActivator getDefault() {
 		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.routineeditor", path);
 	}
 	
  	/**

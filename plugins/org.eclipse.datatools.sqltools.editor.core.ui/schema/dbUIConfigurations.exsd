@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.editor.ui.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.editor.ui.core" id="dbUIConfigurations" name="Database Contributions to SQL Development UI Tools"/>
+      </appinfo>
+      <documentation>
+         This extension point provides support for SQL development UI. Extensions register a dbUIConfiguration of the type &lt;code&gt;org.eclipse.datatools.sqltools.ui.core.ISQLDevToolsUIConfiguration&lt;/code&gt; which will be responsible for creating vendor-specific configuration that will be used to customize the default behavior of the SQL Dev Tools UI framework.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="dbUIConfiguration" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dbUIConfiguration">
+      <complexType>
+         <attribute name="configurationClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the Java class of the type &lt;code&gt;org.eclipse.datatools.sqltools.ui.core.SQLDevToolsUIConfiguration&lt;/code&gt; which will be responsible for providing database specific classes.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.ui.core.SQLDevToolsUIConfiguration:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="product" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the DBMS name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="version" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the DBMS version
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  optional description
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="default" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Whether the configuration is the default one when no other configurations are registered against a database vendor id.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;&lt;pre&gt;
+&lt;extension
+         point=&quot;org.eclipse.datatools.sqltools.editor.ui.core.dbUIConfigurations&quot;&gt;
+      &lt;dbConfiguration
+            product=&quot;Sybase Adaptive Server Enterprise&quot;
+            version=&quot;12.5.x&quot;
+            configurationClass=&quot;com.sybase.stf.dmp.ase.ASEUIConfiguration&quot;
+            &gt;
+      &lt;/dbConfiguration&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;&lt;/p&gt;
+   Contributes an ASE extenstion to the UI Configuration.
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2008 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>
