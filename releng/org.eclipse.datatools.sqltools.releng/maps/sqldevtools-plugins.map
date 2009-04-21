@@ -1,5 +1,5 @@
 plugin@org.eclipse.datatools.sqltools.common.ui=v200904071510,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.common.ui
-plugin@org.eclipse.datatools.sqltools.data.core=v200904071758,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.core
+plugin@org.eclipse.datatools.sqltools.data.core=v200904220630,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.core
 plugin@org.eclipse.datatools.sqltools.data.ui=v200904211440,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.ui
 plugin@org.eclipse.datatools.sqltools.ddlgen.ui=v200904071758,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.ddlgen.ui
 plugin@org.eclipse.datatools.sqltools.debugger.core=v200904211440,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.debugger.core
