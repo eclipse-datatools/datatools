@@ -40,14 +40,11 @@ import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.TextProcessor;
@@ -1075,7 +1072,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			removeSingleColumnItem( 0 );
 		}
 		String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
-				EMPTY_STRING,
+				saveQueryString( ),
 				XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 		XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
 				str );
@@ -1254,34 +1251,30 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private String saveQueryString( )
 	{
-		if ( !this.columnMappingList.isEmpty( ) )
+		String tablePath = LEFT_SQUARE_BRACKET
+				+ selectedTreeItemText + RIGHT_SQUARE_BRACKET;
+		String queryString = tableName
+				+ Constants.CONST_TABLE_COLUMN_DELIMITER + tablePath
+				+ Constants.CONST_TABLE_COLUMN_DELIMITER;
+		String rowStr = EMPTY_STRING;
+		Iterator rowObj = this.columnMappingList.iterator( );
+		while ( rowObj.hasNext( ) )
 		{
-			String tablePath = LEFT_SQUARE_BRACKET + selectedTreeItemText + RIGHT_SQUARE_BRACKET;  
-			String queryString = tableName +
-					Constants.CONST_TABLE_COLUMN_DELIMITER +
-					tablePath +
-					Constants.CONST_TABLE_COLUMN_DELIMITER;
-			String rowStr = EMPTY_STRING;
-			Iterator rowObj = this.columnMappingList.iterator( );
-			while ( rowObj.hasNext( ) )
-			{
-				ColumnMappingElement element = (ColumnMappingElement) rowObj.next( );
-				rowStr = LEFT_CURLY_BRACKET +                                            
-						element.getColumnName( ) + SEMICOLON +
-						element.getTypeStandardString( ) + SEMICOLON +
-						element.getXPath( ) + RIGHT_CURLY_BRACKET;                       
-				if ( rowObj.hasNext( ) )
-					rowStr = rowStr + COMMA;                               
-				queryString = queryString + rowStr;
-			}
-			if ( getNamespace( ).length( ) == 0 )
-				return queryString;
-			else
-				return queryString
-						+ Constants.CONST_TABLE_COLUMN_DELIMITER
-						+ this.nameSpace;
+			ColumnMappingElement element = (ColumnMappingElement) rowObj.next( );
+			rowStr = LEFT_CURLY_BRACKET
+					+ element.getColumnName( ) + SEMICOLON
+					+ element.getTypeStandardString( ) + SEMICOLON
+					+ element.getXPath( ) + RIGHT_CURLY_BRACKET;
+			if ( rowObj.hasNext( ) )
+				rowStr = rowStr + COMMA;
+			queryString = queryString + rowStr;
 		}
-		return null;
+		if ( getNamespace( ).length( ) == 0 )
+			return queryString;
+		else
+			return queryString
+					+ Constants.CONST_TABLE_COLUMN_DELIMITER + this.nameSpace;
+
 	}
 
 	/**

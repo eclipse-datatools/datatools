@@ -186,7 +186,7 @@ public class MappedTables
 		{
 			List cs = new ArrayList( ); //List<Column>
 			String[] temp = mappingText.trim( ).split( Constants.CONST_TABLE_COLUMN_DELIMITER );
-			if ( temp.length < 3 )
+			if ( temp.length < 2 )
 			{
 				throw new org.eclipse.datatools.connectivity.oda.OdaException( Messages.getString("Query.InvalidQueryText") ); //$NON-NLS-1$
 			}
@@ -198,7 +198,12 @@ public class MappedTables
 				throw new org.eclipse.datatools.connectivity.oda.OdaException( Messages.getString("Query.InvalidQueryText") ); //$NON-NLS-1$
 			}
 			rowPath = rowPath.substring( 1, rowPath.length( )-1 );
-			String[] columnMappings = temp[2].trim( ).split( Constants.CONST_COLUMN_DELIMITER );
+			
+			String[] columnMappings = new String[0];
+			if ( temp.length >= 3 && temp[2].trim( ).length( ) > 0 )
+			{
+				columnMappings = temp[2].trim( ).split( Constants.CONST_COLUMN_DELIMITER );
+			}
 			for ( int i=0; i<columnMappings.length; i++)
 			{
 				String trimedColumn = columnMappings[i].trim( );

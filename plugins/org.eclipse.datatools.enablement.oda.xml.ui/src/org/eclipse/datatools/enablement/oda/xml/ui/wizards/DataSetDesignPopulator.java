@@ -114,12 +114,19 @@ public class DataSetDesignPopulator
 	{
 		ResultSetColumns columns = DesignSessionUtil.toResultSetColumnsDesign( md );
 
-		ResultSetDefinition resultSetDefn = DesignFactory.eINSTANCE.createResultSetDefinition( );
-		resultSetDefn.setResultSetColumns( columns );
+		if ( columns != null )
+		{
+			ResultSetDefinition resultSetDefn = DesignFactory.eINSTANCE.createResultSetDefinition( );
+			resultSetDefn.setResultSetColumns( columns );
 
-		// no exception; go ahead and assign to specified dataSetDesign
-		dataSetDesign.setPrimaryResultSet( resultSetDefn );
-		dataSetDesign.getResultSets( ).setDerivedMetaData( true );
+			// no exception; go ahead and assign to specified dataSetDesign
+			dataSetDesign.setPrimaryResultSet( resultSetDefn );
+			dataSetDesign.getResultSets( ).setDerivedMetaData( true );
+		}
+		else
+		{
+			dataSetDesign.setResultSets( null );
+		}
 	}
 	
 	/**
