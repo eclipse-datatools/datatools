@@ -12,11 +12,14 @@
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.util.UtilConstants;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -85,14 +88,17 @@ final class TreePopulationUtil
 						.getValue( )
 						.toString( ) );
 
-				String populateString = XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( xPathExpression ),
-						generateXpathFromATreeNode( aTreeNode ) );
-				if ( TreePopulationUtil.EMPTY_STRING.equals( populateString ) )
+				if ( doesMatchXPath( getRootPathWithOutFilter( xPathExpression ),
+						generateXpathFromATreeNode( aTreeNode ) ) )
 				{
 					FontData fontData = new FontData( TreePopulationUtil.EMPTY_STRING,
 							8,
 							SWT.BOLD );
 					treeItem.setFont( new Font( null, fontData ) );
+					( (TreeNodeData) treeItem.getData( ) ).setXPathStatus( true );
+
+					treeItem.setBackground( getBackGroundColor( ) );
+					treeItem.setForeground( getForeGroundColor( ) );
 				}
 			}
 			if ( treeNode.getTreeNode( ).getChildren( ).length > 0 )
@@ -140,8 +146,78 @@ final class TreePopulationUtil
 		}
 		return columnPath;
 	}
-	
-}	
+
+	static boolean doesMatchXPath( String rootPath, String columnPath )
+	{
+		if ( rootPath.startsWith( UtilConstants.XPATH_DOUBLE_SLASH ) )
+		{
+			if ( doesMatchXPathAtAnyLocation( rootPath, columnPath ) )
+				return true;
+			return false;
+		}
+
+		String populateString = XPathPopulationUtil.populateColumnPath( rootPath,
+				columnPath );
+		return ( populateString != null && populateString.equals( EMPTY_STRING ) );
+	}
+
+	/**
+	 * When the xpath expression stars with "//", then multiple nodes might match the xpath.
+	 * 
+	 * @param rootPath
+	 * @param columnPath
+	 * @return
+	 */
+	static boolean doesMatchXPathAtAnyLocation( String rootPath,
+			String columnPath )
+	{
+			String path = rootPath.substring( 2 );
+			String rootPathSplits[] = path.split( UtilConstants.XPATH_SLASH );
+			String columnPathSplits[] = columnPath.split( UtilConstants.XPATH_SLASH );
+
+			int rootPathSplitCount = rootPathSplits.length;
+			if ( rootPathSplitCount == 1
+					&& EMPTY_STRING.equals( rootPathSplits[0] ) )
+				return true;
+
+			int columnPathSplitCount = columnPathSplits.length;
+
+			if ( columnPathSplitCount < rootPathSplitCount )
+				return false;
+
+			for ( int i = 1; i <= rootPathSplits.length; i++ )
+			{
+				if ( !rootPathSplits[rootPathSplitCount - i].equals( columnPathSplits[columnPathSplitCount
+						- i] ) )
+					return false;
+
+			}
+
+			return true;
+	}
+
+	/**
+	 * The background color for the highlighted nodes
+	 * 
+	 * @return
+	 */
+	static Color getBackGroundColor( )
+	{
+		return Display.getDefault( )
+				.getSystemColor( SWT.COLOR_WIDGET_DARK_SHADOW );
+	}
+
+	/**
+	 * The foreground color for the highlighted nodes
+	 * 
+	 * @return
+	 */
+	static Color getForeGroundColor( )
+	{
+		return Display.getDefault( ).getSystemColor( SWT.COLOR_WHITE );
+	}
+
+}
 
 class TreeNodeData
 {

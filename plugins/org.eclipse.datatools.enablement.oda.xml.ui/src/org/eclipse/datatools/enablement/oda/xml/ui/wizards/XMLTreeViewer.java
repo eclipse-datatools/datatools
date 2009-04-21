@@ -14,9 +14,10 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.FillLayout;
@@ -41,6 +42,10 @@ class XMLTreeViewer
 	private Button btnMultiAdd;
 	private TreeViewer treeViewer;
 	private Composite btnComposite;
+	
+	private String xPathExpression = "";
+	private boolean includeAttr;
+	
 
 	
 	XMLTreeViewer( Composite parent, boolean supportMultiSelection )
@@ -94,34 +99,32 @@ class XMLTreeViewer
 			btnMultiAdd.setVisible( false );
 		}
 		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) ); //$NON-NLS-1$
-	}
-
-	void populateTree( ATreeNode treeNode, String xPathExpression, boolean includeAttr, boolean needExpand ) throws OdaException
-	{
-		final String xPathExpr = xPathExpression;
-		final boolean includeAttribute = includeAttr;
-
+		
 		treeViewer.getTree( ).addListener( SWT.Expand, new Listener( ) {
 
 			public void handleEvent( Event event )
 			{
 				TreeItem currentItem = (TreeItem) event.item;
 
-				if ( ( (TreeNodeData) currentItem.getData( ) ).hasBeenExpandedOnce( ) )
+				TreeNodeData treeNodeData = (TreeNodeData) currentItem.getData( );
+				if ( treeNodeData.hasBeenExpandedOnce( ) )
+				{
 					return;
+				}
 
-				( (TreeNodeData) currentItem.getData( ) ).setHasBeenExpandedOnce( );
+				treeNodeData.setHasBeenExpandedOnce( );
 				currentItem.removeAll( );
 				try
 				{
-					if ( ( ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( ) ).getChildren( ) != null
-							&& ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-									.getChildren( ).length > 0 )
+					Object[] children = treeNodeData.getTreeNode( )
+							.getChildren( );
+					if ( children != null && children.length > 0 )
+					{
 						TreePopulationUtil.populateTreeItems( currentItem,
-								( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-										.getChildren( ),
-										xPathExpr,
-								includeAttribute );
+								treeNodeData.getTreeNode( ).getChildren( ),
+								xPathExpression,
+								includeAttr );
+					}
 				}
 				catch ( OdaException e )
 				{
@@ -134,6 +137,33 @@ class XMLTreeViewer
 			}
 		} );
 		
+		treeViewer.getTree( ).addDisposeListener( new DisposeListener( ){
+			
+			public void widgetDisposed( DisposeEvent e )
+			{
+				TreeItem[] items = treeViewer.getTree( ).getItems( );
+				for ( int i = 0; i < items.length; i++ )
+				{
+					if ( ( (TreeNodeData) items[i].getData( ) ).getXPathStatus( ) )
+					{
+						if ( items[i].getFont( ) != null )
+							items[i].getFont( ).dispose( );
+						if ( items[i].getBackground( ) != null )
+							items[i].getBackground( ).dispose( );
+					}
+				}
+			}
+
+			});
+
+	}
+
+	void populateTree( ATreeNode treeNode, String xPathExpression,
+			boolean includeAttribute, boolean needExpand ) throws OdaException
+	{
+		this.xPathExpression = xPathExpression;
+		this.includeAttr = includeAttribute;
+
 		Object[] childs = treeNode.getChildren( );
 		if ( needExpand )
 		{
@@ -146,8 +176,8 @@ class XMLTreeViewer
 		{
 			TreePopulationUtil.populateTreeItems( treeViewer.getTree( ),
 					childs,
-					xPathExpr,
-					includeAttribute );
+					xPathExpression,
+					includeAttr );
 		}
 	}
 	
@@ -261,24 +291,29 @@ class XMLTreeViewer
 				}
 			}
 			ATreeNode aTreeNode = ( (TreeNodeData) treeItems[i].getData( ) ).getTreeNode( );
-			String populateString = XPathPopulationUtil.populateColumnPath( TreePopulationUtil.getRootPathWithOutFilter( xPathExpression ),
-					TreePopulationUtil.generateXpathFromATreeNode( aTreeNode ) );
-			if ( populateString != null )
+			String rootPath = TreePopulationUtil.getRootPathWithOutFilter( xPathExpression );
+			String columnPath = TreePopulationUtil.generateXpathFromATreeNode( aTreeNode );
+			if ( TreePopulationUtil.doesMatchXPath( rootPath, columnPath ) )
 			{
-				if ( populateString.equals( TreePopulationUtil.EMPTY_STRING ) )
-				{
-					FontData fontData = new FontData( TreePopulationUtil.EMPTY_STRING, 8, SWT.BOLD );
-					treeItems[i].setFont( new Font( null, fontData ) );
+				FontData fontData = new FontData( TreePopulationUtil.EMPTY_STRING,
+						8,
+						SWT.BOLD );
+				treeItems[i].setFont( new Font( null, fontData ) );
 
+				treeItems[i].setBackground( TreePopulationUtil.getBackGroundColor( ) );
+				treeItems[i].setForeground( TreePopulationUtil.getForeGroundColor( ) );
+				
+				if ( treeViewer.getTree( ).getSelection( ).length == 0 )
+				{
 					treeViewer.getTree( ).setSelection( new TreeItem[]{
 						treeItems[i]
 					} );
-					treeViewer.getTree( ).setFocus( );
-					treeViewer.getTree( ).setSelection( treeItems[i] );
-					children[i].setXPathStatus( true );
-					findXPathNode = true;
 				}
-//				setExpanded( treeItems[i] );
+				
+				treeViewer.getTree( ).setFocus( );
+				children[i].setXPathStatus( true );
+				findXPathNode = true;
+
 			}
 		}
 		
