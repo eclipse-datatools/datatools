@@ -9,7 +9,7 @@ feature@org.eclipse.datatools.connectivity.oda.designer.feature=v200904011704,:p
 feature@org.eclipse.datatools.connectivity.oda.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.connectivity.oda.feature
 
 !**************** ENABLEMENT FEATURES *******************
-feature@org.eclipse.datatools.enablement.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.feature
+feature@org.eclipse.datatools.enablement.feature=v200904221108,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.feature
 feature@org.eclipse.datatools.enablement.apache.derby.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.apache.derby.feature
 feature@org.eclipse.datatools.enablement.hsqldb.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.hsqldb.feature
 feature@org.eclipse.datatools.enablement.ibm.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.ibm.feature
@@ -29,7 +29,7 @@ feature@org.eclipse.datatools.enablement.oda.ecore.feature=v200904011704,:pserve
 feature@org.eclipse.datatools.enablement.oda.ecore.sdk.feature=v200901211542,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.oda.ecore.sdk.feature
 
 !**************** SQLDEVTOOLS FEATURES ****************
-feature@org.eclipse.datatools.sqldevtools.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.feature
+feature@org.eclipse.datatools.sqldevtools.feature=v200904221108,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.feature
 feature@org.eclipse.datatools.sqldevtools.data.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.data.feature
 feature@org.eclipse.datatools.sqldevtools.ddl.feature=v200904011704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddl.feature
 feature@org.eclipse.datatools.sqldevtools.ddlgen.feature=v200904071548,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddlgen.feature
