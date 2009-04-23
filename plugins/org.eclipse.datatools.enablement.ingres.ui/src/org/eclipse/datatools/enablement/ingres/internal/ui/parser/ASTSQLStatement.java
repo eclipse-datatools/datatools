@@ -115,10 +115,6 @@ public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, Ing
 				getObjectIdentifiers());
 	}
 
-	public Image getImage() {
-		return ASTSQLStatementUtil.getImage(getType());
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 

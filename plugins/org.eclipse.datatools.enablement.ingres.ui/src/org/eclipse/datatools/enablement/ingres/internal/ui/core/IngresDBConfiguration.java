@@ -30,21 +30,6 @@ public class IngresDBConfiguration extends SQLDevToolsConfiguration {
 	private static final String[] PRODUCTS = { "Ingres", "II" };
 	
 	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration#getSQLEditorService()
-	 */
-	public SQLEditorService getSQLEditorService() {
-		return new SQLEditorService() {
-			public HashMap getAdditionalActions() {
-				// XXX Add an Ingres specific extension to the editors context menu
-				// (until QEP generation is enabled by default)
-				HashMap additions = super.getAdditionalActions();
-				additions.put("", new IngresExplainSQLActionDelegate());
-				return additions;
-			}
-		};
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration#getConnectionService()
 	 */
 	public ConnectionService getConnectionService() {

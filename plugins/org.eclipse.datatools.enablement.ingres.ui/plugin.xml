@@ -152,5 +152,21 @@
             serviceClass="org.eclipse.datatools.enablement.ingres.internal.ui.plan.IngresPlanService">
       </planService>
    </extension>
+   <extension
+         point="org.eclipse.datatools.sqltools.editor.core.ui.dbUIConfigurations">
+      <dbUIConfiguration
+            configurationClass="org.eclipse.datatools.enablement.ingres.internal.ui.core.IngresDBUIConfiguration"
+            default="false"
+            product="Ingres"
+            version="2006">
+      </dbUIConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.sqltools.sql.ui.sqlNodesImage">
+      <nodeImage
+            imageHandler="org.eclipse.datatools.enablement.ingres.internal.ui.parser.IngresASTSQLStatementImageHandler"
+            nodeClazzName="org.eclipse.datatools.enablement.ingres.internal.ui.parser.ASTSQLStatement">
+      </nodeImage>
+   </extension>
 
 </plugin>

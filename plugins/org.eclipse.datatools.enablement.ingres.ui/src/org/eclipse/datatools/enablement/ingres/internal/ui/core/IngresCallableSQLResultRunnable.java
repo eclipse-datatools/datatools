@@ -54,7 +54,7 @@ public class IngresCallableSQLResultRunnable extends CallableSQLResultRunnable {
 				proc = LaunchHelper.readProcIdentifier(_configuration);
 				if (proc != null) {
 					_procName = proc.getProcName();
-					_pws = LaunchUI.getAllParameterWrappersByOrder(proc);
+					_pws = LaunchHelper.getAllParameterWrappersByOrder(proc);
 
 					// The call
 					// _sql =
