@@ -22,20 +22,21 @@ feature@org.eclipse.datatools.enablement.oda.feature=v200904240430,:pserver:anon
 feature@org.eclipse.datatools.enablement.oracle.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.oracle.feature
 feature@org.eclipse.datatools.enablement.postgresql.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.postgresql.feature
 feature@org.eclipse.datatools.enablement.sap.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.sap.feature
-feature@org.eclipse.datatools.enablement.sybase.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.sybase.feature
+feature@org.eclipse.datatools.enablement.sybase.feature=v200904241719,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.sybase.feature
 feature@org.eclipse.datatools.enablement.ingres.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.ingres.feature
 feature@org.eclipse.datatools.enablement.sqlite.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.sqlite.feature
 feature@org.eclipse.datatools.enablement.oda.ecore.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.oda.ecore.feature
 feature@org.eclipse.datatools.enablement.oda.ecore.sdk.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.oda.ecore.sdk.feature
 
 !**************** SQLDEVTOOLS FEATURES ****************
-feature@org.eclipse.datatools.sqldevtools.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.feature
+feature@org.eclipse.datatools.sqldevtools.feature=v200904241719,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.feature
 feature@org.eclipse.datatools.sqldevtools.data.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.data.feature
 feature@org.eclipse.datatools.sqldevtools.ddl.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddl.feature
 feature@org.eclipse.datatools.sqldevtools.ddlgen.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddlgen.feature
 feature@org.eclipse.datatools.sqldevtools.parsers.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.parsers.feature
 feature@org.eclipse.datatools.sqldevtools.results.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.results.feature
 feature@org.eclipse.datatools.sqldevtools.sqlbuilder.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.sqlbuilder.feature
+feature@org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature=v200904241719,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature
 
 !**************** MODELBASE FEATURES ******************
 feature@org.eclipse.datatools.modelbase.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.modelbase.feature
