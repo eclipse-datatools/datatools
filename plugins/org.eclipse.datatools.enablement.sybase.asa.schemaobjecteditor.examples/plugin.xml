@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+    
+
+
+
+    
+       
+   <!-- For constraint creation wizard -->
+   <extension
+         id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.dbConfiguration"
+         name="ASA Support"
+         point="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
+      <dbConfiguration
+            configurationClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ASAConfig"
+            supportsDebugging="false"
+            product="Sybase_ASA"
+            version="9.x"/>
+      <dbConfiguration
+            configurationClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ASAConfig"
+            supportsDebugging="false"
+            product="Sybase_ASA"
+            version="10.x"/>
+    </extension>
+   <extension
+         point="org.eclipse.datatools.sqltools.editor.core.ui.dbUIConfigurations">
+      <dbUIConfiguration
+            configurationClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ASAUIConfig"
+            default="false"
+            product="Sybase_ASA"
+            version="9.x">
+      </dbUIConfiguration>
+      <dbUIConfiguration
+            configurationClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ASAUIConfig"
+            default="false"
+            product="Sybase_ASA"
+            version="10.x">
+      </dbUIConfiguration>
+   </extension>
+   
+   <extension
+         id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedure_introPage"
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.introductionPage">
+      <introPage
+            ContextHelpId="asa_procedure_editor_intro_page"
+            Name="%Introduction">
+         <introElement
+         	   id="description"	
+               heading="%sp.editor.heading"
+               text="%sp.editor.desc"/>
+         <introElement id="start"/>
+         <introElement id="help"/>
+      </introPage>
+   </extension>
+       
+   <extension
+         id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditorintroPage"
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.introductionPage">
+      <introPage
+            ContextHelpId="asa_table_editor_intro_page"
+            Name="%Introduction">
+         <introElement
+               heading="%table.editor.heading"
+               id="description"
+               text="%table.editor.desc"/>
+         <introElement
+               id="start"/>
+         <introElement
+               id="help"
+               />
+      </introPage>
+   </extension>
+   
+   
+   
+   <extension
+         id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.trigger_introPage"
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.introductionPage">
+      <introPage
+            ContextHelpId="asa_trigger_editor_intro_page"
+            Name="%Introduction">
+         <introElement
+         	   id="description"	
+               heading="%trigger.editor.heading"
+               text="%trigger.editor.desc"/>
+         <introElement id="start"/>
+         <introElement id="help"/>
+      </introPage>
+   </extension>
+   <extension
+         id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.uddIntroductionPage"
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.introductionPage">
+      <introPage
+            ContextHelpId="asa_udd_editor_intro_page"
+            Name="%Introduction">
+         <introElement
+               heading="%udd.editor.heading"
+               id="description"
+               text="%udd.editor.desc">
+         </introElement>
+         <introElement
+               hyperlinkaction="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor.action.SetGeneralPageAction"
+               id="start">
+         </introElement>
+         <introElement
+               id="help">
+         </introElement>
+      </introPage>
+   </extension>
+
+
+   
+   <!-- For constraint creation wizard -->
+   
+   	<!-- ASA UDD Editor -->
+       
+   <extension
+         id="asaschemaobjecteditor"
+         name="ASA Schema Object Editor"
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.schemaObjectEditor">
+      <SchemaObjectEditor
+            ContributorClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.ProceduralObjectEditorActionContributor"
+            EditorId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor"
+            EditorName="Procedure Editor"
+            Handler="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.ASAProceduralObjectEditorHandler"
+            Icon="icons/stored_procedure.gif"
+            ObjectTypeId="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure"
+            ObjectTypeName="stored procedure"
+            VendorName="Sybase_ASA"
+            Version="9.x">
+         <ReferencedPage 
+         	PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"
+         	PageExtensionId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedure_introPage"/>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.general.ASAProcedureGeneralPage"
+               ContextHelpId="asa_procedure_editor_general_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.GeneralPage"
+               PageName="%General.page.name"
+               Required="true"
+               VisibleByDefault="true"/>
+	     <EditorPage
+            Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.source.ASASourcePage"
+            ContextHelpId="asa_routine_editor_source_page"
+            PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.SourcePage"
+            PageName="%Source.page.name"
+            Required="true"
+            VisibleByDefault="true">
+    	 </EditorPage>
+    	 <!-- Since rename function may focus the General page, so require it to be "required" -->
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.privilege.ASARoutinePrivilegePage"
+               ContextHelpId="asa_routine_editor_privilege_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.PermissionsPage"
+               PageName="%Permissions.page.name"
+               Required="true"
+               VisibleByDefault="true"/>
+         <ReferencedPage PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"/>
+         <DefaultPagesOrder>
+            <OrderItem
+                  OrderNum="10"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"/>
+            <OrderItem
+                  OrderNum="20"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.GeneralPage"/>
+            <OrderItem
+                  OrderNum="30"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.SourcePage"/>
+            <OrderItem
+                  OrderNum="50"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.procedureeditor.PermissionsPage"/>
+            <OrderItem
+                  OrderNum="60"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"/>
+         </DefaultPagesOrder>
+      </SchemaObjectEditor>
+      
+      
+      <SchemaObjectEditor
+            ContributorClass="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.ProceduralObjectEditorActionContributor"
+            EditorId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.triggereditor"
+            EditorName="Trigger Editor"
+            Handler="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.ASAProceduralObjectEditorHandler"
+            Icon="icons/trigger.gif"
+            ObjectTypeId="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTrigger"
+            ObjectTypeName="trigger"
+            VendorName="Sybase_ASA"
+            Version="9.x">
+         <ReferencedPage 
+         	PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"
+         	PageExtensionId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.trigger_introPage"/>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.general.ASATriggerGeneralPage"
+               ContextHelpId="asa_trigger_editor_general_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.triggereditor.GeneralPage"
+               PageName="%General.page.name"
+               Required="true"
+               VisibleByDefault="true"/>
+	     <EditorPage
+            Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.source.ASASourcePage"
+            ContextHelpId="asa_routine_editor_source_page"
+            PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.triggereditor.SourcePage"
+            PageName="%Source.page.name"
+            Required="true"
+            VisibleByDefault="true">
+    	 </EditorPage>
+    	 <!-- Since rename function may focus the General page, so require it to be "required" -->
+         <ReferencedPage PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"/>
+         <DefaultPagesOrder>
+            <OrderItem
+                  OrderNum="10"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"/>
+            <OrderItem
+                  OrderNum="20"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.triggereditor.GeneralPage"/>
+            <OrderItem
+                  OrderNum="30"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.triggereditor.SourcePage"/>
+            <OrderItem
+                  OrderNum="50"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"/>
+         </DefaultPagesOrder>
+      </SchemaObjectEditor>
+      <SchemaObjectEditor
+            EditorId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor"
+            EditorName="Table Editor"
+            Handler="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.ASATableSchemaEditorHandler"
+            Icon="icons/table.gif"
+            MustBeFirstWhenShown="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"
+            MustBeLastWhenShown="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"
+            ObjectTypeId="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASATableImpl"
+            ObjectTypeName="table"
+            VendorName="Sybase_ASA"
+            Version="9.x"
+            VisibilityConfigurable="true">
+         <ReferencedPage
+               PageExtensionId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditorintroPage"
+               PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page">
+         </ReferencedPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.columns.ASAColumnsEditorPage"
+               ContextHelpId="asa_table_editor_columns_page"
+               ObjectClassType="org.eclipse.datatools.modelbase.sql.tables.Column"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.ColumnsPage"
+               PageName="%Columns.page.name"
+               Required="true"
+               VisibleByDefault="true">
+         </EditorPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.constraints.ASAConstraintsEditorPage"
+               ContextHelpId="asa_table_editor_constraints_page"
+               ObjectClassType="org.eclipse.datatools.modelbase.sql.constraints.Constraint"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.ConstraintsPage"
+               PageName="%Constraints.page.name"
+               Required="false"
+               VisibleByDefault="true">
+         </EditorPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.indexes.ASAIndexesEditorPage"
+               ContextHelpId="asa_table_editor_indexes_page"
+               ObjectClassType="org.eclipse.datatools.modelbase.sql.constraints.Index"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.Indexespage"
+               PageName="%Indexes.page.name"
+               Required="false"
+               VisibleByDefault="true">
+         </EditorPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.triggers.ASATriggersEditorPage"
+               ContextHelpId="asa_table_editor_triggers_page"
+               ObjectClassType="org.eclipse.datatools.modelbase.sql.tables.Trigger"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.TriggersPage"
+               PageName="%Triggers.page.name"
+               Required="false"
+               VisibleByDefault="true">
+         </EditorPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.privileges.ASAPrivilegesEditorPage"
+               ContextHelpId="asa_table_editor_privileges_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.PermissionsPage"
+               PageName="%Permissions.page.name"
+               Required="false"
+               VisibleByDefault="true">
+         </EditorPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.pages.storage.ASAStorageEditorPage"
+               ContextHelpId="asa_table_editor_storage_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.StoragePage"
+               PageName="%Storage.page.name"
+               Required="false"
+               VisibleByDefault="true">
+         </EditorPage>
+         <ReferencedPage
+               PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl">
+         </ReferencedPage>
+         <DefaultPagesOrder>
+            <OrderItem
+                  OrderNum="1"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="3"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.ColumnsPage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="5"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.ConstraintsPage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="7"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.Indexespage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="9"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.TriggersPage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="11"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.PermissionsPage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="13"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.StoragePage">
+            </OrderItem>
+         </DefaultPagesOrder>
+      </SchemaObjectEditor>
+      <SchemaObjectEditor
+            EditorId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor"
+            EditorName="User Defined Type Editor"
+            Handler="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.DefaultSchemaObjectEditorHandler"
+            Icon="icons/userdefined_datatype.gif"
+            ObjectTypeId="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"
+            ObjectTypeName="user defined type"
+            VendorName="Sybase_ASA"
+            Version="9.x">
+         <ReferencedPage
+               PageExtensionId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.uddIntroductionPage"
+               PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page">
+         </ReferencedPage>
+         <EditorPage
+               Class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor.pages.general.ASAUserDefinedTypeGeneralPage"
+               ContextHelpId="asa_udd_editor_general_page"
+               PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor.GeneralPage"
+               PageName="%General.page.name"
+               Required="true"
+               VisibleByDefault="true">
+         </EditorPage>
+         <ReferencedPage
+               PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl">
+         </ReferencedPage>
+         <DefaultPagesOrder>
+            <OrderItem
+                  OrderNum="1"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="2"
+                  PageId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor.GeneralPage">
+            </OrderItem>
+            <OrderItem
+                  OrderNum="3"
+                  PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl">
+            </OrderItem>
+         </DefaultPagesOrder>
+      </SchemaObjectEditor>
+
+   </extension>
+    <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaedtor.10x"
+            name="ASA 9.x table schema editor">
+      </category>
+      <command
+            categoryId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaedtor.10x"
+            id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.cutcolumn"
+            name="Cut">
+      </command>
+      <command
+            categoryId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaedtor.10x"
+            id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.copycolumn"
+            name="Copy">
+      </command>
+            <command
+            categoryId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaedtor.10x"
+            id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.pastecolumn"
+            name="Paste">
+      </command>
+   </extension>
+    <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.cutcolumn"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+X">
+      </key>
+            <key
+            commandId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.copycolumn"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+C">
+      </key>
+            <key
+            commandId="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableschemaeditor.pastecolumn"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M3+V">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            description="Schema Object Editor"
+            id="org.eclipse.datatools.sqltools.schemaobjecteditor.schemaediting"
+            name="Schema Object Editor"
+            parentId="org.eclipse.ui.contexts.window"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+	  
+       
+       <!-- UDD Editor Action Provider -->
+       <actionProvider
+             class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.udteditor.action.ASAUserDefinedTypeDoubleClickActionProvider"
+             id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ui.actions.ASAUserDefinedTypeDoubleClickActionProvider">
+          <enablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"/>
+             </or>
+          </enablement>
+       </actionProvider>
+       <actionProvider
+            class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.tableeditor.action.ASATableEditorActionProvider"
+            id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.editors.tableeditor.actionprovider">
+         <enablement>
+            <or> 
+               <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl.SybaseASATableImpl"/>
+            </or>
+         </enablement>
+   	   </actionProvider> 
+   	   <actionProvider
+             class="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.action.DoubleClickActionProviderExt"
+             id="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ui.actions.DoubleClickActionProviderExt"
+             overrides="org.eclipse.datatools.sqltools.routineeditor.ui.actions.DoubleClickActionProvider">
+          <enablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseProcedureImpl"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTriggerImpl"/>
+             </or>
+          </enablement>
+       </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+			<actionExtension
+                  pattern="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.editors.tableeditor.actionprovider">
+            </actionExtension>
+   <actionExtension
+         pattern="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ui.actions.ASAUserDefinedTypeDoubleClickActionProvider">
+   </actionExtension>
+   <actionExtension
+         pattern="org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ui.actions.DoubleClickActionProviderExt">
+   </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+</plugin>
