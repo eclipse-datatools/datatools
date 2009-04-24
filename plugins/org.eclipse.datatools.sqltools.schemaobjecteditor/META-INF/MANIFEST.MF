@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Schemaobjecteditor Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.schemaobjecteditor
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.schemaobjecteditor.SOEPlugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.ecore.change;bundle-version="[2.2.0,3.0.0)",
