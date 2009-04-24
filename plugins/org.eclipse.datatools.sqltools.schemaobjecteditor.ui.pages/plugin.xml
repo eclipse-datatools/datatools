@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="introductionPage" name="Introduction Page" schema="schema/introductionPage.exsd"/>
+   <extension
+         point="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.schemaObjectEditor">
+      <EditorPage
+            Class="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.intropage.IntroductionPage"
+            PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.introduction.page"
+            PageName="%Introduction_page_name"
+            Required="false"
+            VisibleByDefault="true"/>
+      <EditorPage
+            Class="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.ddl.DDLPage"
+            PageId="org.eclipse.datatools.sqltools.schemaobjecteditor.pages.ddl"
+            PageName="%DDL_page_name"
+            Required="false"
+            VisibleByDefault="true"/>
+   </extension>
+
+</plugin>

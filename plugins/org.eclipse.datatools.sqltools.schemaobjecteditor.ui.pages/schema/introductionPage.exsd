@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.schemaobjecteditor" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.schemaobjecteditor" id="introductionPage" name="Introduction Page"/>
+      </appinfo>
+      <documentation>
+         The introduction is the first page of all schema object editor.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="introPage"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="introPage">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="name"/>
+         </appinfo>
+         <documentation>
+            An introduction page is always put as the first page of one schema object editor to give the user a simple introduction of the editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="introElement"/>
+         </sequence>
+         <attribute name="Name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of this page
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ContextHelpId" type="string">
+            <annotation>
+               <documentation>
+                  Description of the page
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="introElement">
+      <annotation>
+         <documentation>
+            An introduction page is consists of multiple introduction pages. Each introduction element occupies one row in the introduction page.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon should be 72x72 and will appear to the left of the headers, hyperlinks and text
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="heading" type="string">
+            <annotation>
+               <documentation>
+                  Heading of the element
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="text" type="string">
+            <annotation>
+               <documentation>
+                  The text to describe the element.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="hyperlink" type="string">
+            <annotation>
+               <documentation>
+                  A hyperlinke associated with the element. The hyperlink would normally execute the hyperlinkaction action.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="hyperlinkaction" type="string">
+            <annotation>
+               <documentation>
+                  The action will be executed when the hyperlink is selected
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.intropage.IntroHyperAction:org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages.intropage.IIntroHyperAction"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+
+
+
+
+</schema>
