@@ -24,7 +24,7 @@ cvs tag v$datetimestamp R1.6_Feature_Projects
 cd $WORKING_FOLDER
 cvs checkout org.eclipse.datatools.releng
 cd org.eclipse.datatools.releng/maps
-sed s/=.*,/=v$datetimestamp,/ dtp-features.map > dtp-features.map.new 
+sed s/=.*,:/=v$datetimestamp,:/ dtp-features.map > dtp-features.map.new 
 mv dtp-features.map.new dtp-features.map
 
 #Submit the change for dtp map files
