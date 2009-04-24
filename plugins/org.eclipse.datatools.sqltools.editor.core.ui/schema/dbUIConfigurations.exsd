@@ -52,7 +52,7 @@
                   a fully qualified name of the Java class of the type &lt;code&gt;org.eclipse.datatools.sqltools.ui.core.SQLDevToolsUIConfiguration&lt;/code&gt; which will be responsible for providing database specific classes.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.ui.core.SQLDevToolsUIConfiguration:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration:"/>
                </appinfo>
             </annotation>
          </attribute>

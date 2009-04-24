@@ -25,3 +25,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.datatools.sqltools.debugger.actions,
  org.eclipse.datatools.sqltools.debugger.editorext
 Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin

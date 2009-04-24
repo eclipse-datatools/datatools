@@ -11,7 +11,9 @@ package org.eclipse.datatools.sqltools.common.ui.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.common.ui.sqlstatementarea.SharedTextColors;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.text.source.ISharedTextColors;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -28,6 +30,7 @@ public class Activator extends AbstractUIPlugin
     private static final int   INTERNAL_ERROR = 0;
     // The shared instance.
     private static Activator   plugin;
+    private SharedTextColors    _sharedColors = null;
 
     /**
      * The constructor.
@@ -50,6 +53,11 @@ public class Activator extends AbstractUIPlugin
      */
     public void stop(BundleContext context) throws Exception
     {
+    	if(_sharedColors !=null)
+        {
+            _sharedColors.dispose();
+            _sharedColors = null;
+        }
         plugin = null;
         super.stop(context);
     }
@@ -131,5 +139,21 @@ public class Activator extends AbstractUIPlugin
     public static Display getDisplay()
     {
     	return PlatformUI.getWorkbench().getDisplay();
+    }
+    
+    /**
+     * Gets the instance of <code>SharedTextColors</code>. 
+     * User is recommended to get <code>Color</code> from <code>SharedTextColors</code>. 
+     * The <code>Color</code> object from <code>SharedTextColors</code> is under control of
+     * this plugin and user does not need to dispose the <code>Color</code> explicitly.
+     * @return
+     */
+    public ISharedTextColors getSharedTextColors()
+    {
+        if(_sharedColors ==null)
+        {
+            _sharedColors = new SharedTextColors();
+        }
+        return _sharedColors;
     }
 }

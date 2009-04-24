@@ -43,6 +43,7 @@ public class Images
     }
     // ------------------------------------------------------------------------------------------
     private static final String         T_OTHER              = "other";
+    private static final String         PATH                 = "";    
 
     public static final String          IMG_OTHER_CHECKED    = NAME_PREFIX + "checked.gif";
     public static final String          IMG_OTHER_UNCHECKED  = NAME_PREFIX + "unchecked.gif";
@@ -52,6 +53,15 @@ public class Images
     public static final ImageDescriptor DESC_OTHER_UNCHECKED = createManaged(T_OTHER, IMG_OTHER_UNCHECKED);
     public static final ImageDescriptor DESC_SAVEAS          = createManaged(T_OTHER, IMG_SAVEAS);
 
+    public static final String          IMG_CHECKED        = NAME_PREFIX + "checked.gif";       //$NON-NLS-1$
+    public static final String          IMG_UNCHECKED      = NAME_PREFIX + "unchecked.gif";     //$NON-NLS-1$
+    public static final String          IMG_CHECKED_READONLY   = NAME_PREFIX + "checked_readonly.gif";  //$NON-NLS-1$
+    public static final String          IMG_UNCHECKED_READONLY = NAME_PREFIX + "unchecked_readonly.gif"; //$NON-NLS-1$
+
+    public static final ImageDescriptor DESC_CHECKED       = createManaged(PATH, IMG_CHECKED);
+    public static final ImageDescriptor DESC_UNCHECKED     = createManaged(PATH, IMG_UNCHECKED);
+    public static final ImageDescriptor DESC_CHECKED_READONLY   = createManaged(PATH, IMG_CHECKED_READONLY);
+    public static final ImageDescriptor DESC_UNCHECKED_READONLY = createManaged(PATH, IMG_UNCHECKED_READONLY);
     /**
      * Returns the image managed under the given key in this registry.
      * 
@@ -107,8 +117,18 @@ public class Images
     {
         if (_baseURL == null)
             throw new MalformedURLException();
-        StringBuffer buffer = new StringBuffer(prefix);
-        buffer.append('/');
+        
+        StringBuffer buffer;
+        
+        if("".equals(prefix) || prefix == null)
+        {
+        	buffer = new StringBuffer();
+        }
+        else
+        {
+        	buffer = new StringBuffer(prefix);
+            buffer.append('/');
+        }
         buffer.append(name);
         return new URL(_baseURL, buffer.toString());
     }

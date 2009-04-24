@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.sqltools.data.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.datatools.sqltools.result" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.sqltools.data.core" id="tableEditorResultFilter" name="External Filter for Table Editor"/>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.result" id="externalResultSetViewer" name="External Viewer for ResultSets"/>
       </appInfo>
       <documentation>
-         This extension point allows users to set a filter for the columns and/or the where clause to use when the table editor cells are constructed.  Generally, all columns of all rows are displayed in the table editor.  This extension point allows users to restrict the columns/rows to be edited.
+         Enables extensions to add alternate viewer for the result sets
       </documentation>
    </annotation>
 
@@ -17,9 +17,6 @@
          </appInfo>
       </annotation>
       <complexType>
-         <sequence>
-            <element ref="editorFilter"/>
-         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -47,29 +44,37 @@
       </complexType>
    </element>
 
-   <element name="editorFilter">
-      <annotation>
-         <documentation>
-            Element specifies an external filter is to be used to filter the results sets used by the table editor
-         </documentation>
-      </annotation>
+   <element name="externalViewer">
       <complexType>
          <attribute name="vendor" type="string">
             <annotation>
                <documentation>
-                  Vendor: String as returned by org.eclipse.datatools.modelbase.sql.schema.Database.getVendor().
-Ommit to match all vendors.
+                  Database vendor name
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  Class name: Fully qualified name of the Class that is to be used to filter the results used by the table editor. The class must implement the org.eclipse.datatools.sqltools.data.internal.ui.editor.ITableEditorResultFilter interface.  If the method isUseExternalFilterDialog() returns false then the external filter will not be used, instead the default results will be used by the editor.  If isUseExternalFilterDialog() returns true then the external filter will be used.  This mechanism is used so that a preference can be used to determine by default whether or not to use external filter.
+                  Extension must extend this class and override configureTableViewer().
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.sqltools.data.internal.core.editor.ITableEditorResultFilter"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.result.ui.ExternalResultSetViewerProvider:"/>
                </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="default_viewer_name" type="string" use="default" value="Default Result Set Viewer">
+            <annotation>
+               <documentation>
+                  The name of the result set viewer to be used by the SQL Results Viewer if more than one exists.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the viewer.  This string will appear in the result set viewer preference page.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
@@ -95,7 +100,7 @@ Ommit to match all vendors.
 
    <annotation>
       <appInfo>
-         <meta.section type="apiinfo"/>
+         <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
          [Enter API information here.]

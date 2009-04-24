@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.sqltools.core.modelvalidity.SQLModelValidatorRegistry;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileProxyListener;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
@@ -41,6 +42,7 @@ public class EditorCorePlugin extends Plugin {
 	private static EditorCorePlugin plugin;
 	private IControlConnectionManager       _controlConnectionManager;
 	boolean _registered = false;
+	private SQLModelValidatorRegistry _registry;
 
 	/**
 	 * The constructor.
@@ -59,6 +61,8 @@ public class EditorCorePlugin extends Plugin {
 				register();
 			}
         });
+		
+		_registry = new SQLModelValidatorRegistry();
 	}
 
 	private synchronized void register() {
@@ -165,4 +169,8 @@ public class EditorCorePlugin extends Plugin {
     	getDatabaseFactoryRegistry().addConfigurationRegistryListener(listener);
     }
 
+    public SQLModelValidatorRegistry getSQLModelValidatorRegistry()
+    {
+        return _registry;
+    }
 }

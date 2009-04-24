@@ -5,7 +5,7 @@
    	<extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerPreferenceInitializer">
+            class="org.eclipse.datatools.sqltools.debugger.core.ui.DebuggerPreferenceInitializer">
       </initializer>
     </extension>
 

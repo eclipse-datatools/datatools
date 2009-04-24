@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.datatools.sqltools.routineeditor" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.datatools.sqltools.routineeditor" id="launchConfigurationTypes" name="Routine Launch Configuration Types"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          This extension point provides a configurable mechanism for launching SQL procedural objects in modes other than &apos;Run&apos;.
 Each launch configuration type has a name, one or more modes (run mode is already handled), and specifies a delegate
@@ -14,9 +14,9 @@ responsible for the implementation of launching an application.
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -48,9 +48,9 @@ responsible for the implementation of launching an application.
 
    <element name="launchConfigurationType">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element labelAttribute="name"/>
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -68,9 +68,9 @@ responsible for the implementation of launching an application.
                   specifies the fully qualified name of the Java class that implements &lt;samp&gt;ILaunchConfigurationDelegate&lt;/samp&gt;.
 Launch configuration instances of this type will delegate to instances of this class to perform launching.
                </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn="com.sybase.stf.dmp.editor.model.ILaunchConfigurationDelegate"/>
-               </appinfo>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.debug.core.model.ILaunchConfigurationDelegate"/>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="modes" type="string" use="required">
@@ -91,9 +91,9 @@ Launch configuration instances of this type will delegate to instances of this c
    </element>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          The following is an example of a launch configuration type extension point:
 
@@ -115,9 +115,9 @@ In the example above, the specified type of launch configuration supports debug 
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="apiInfo"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Value of the attribute &lt;b&gt;delegate&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface &lt;b&gt;org.eclipse.debug.core.model.ILaunchConfigurationDelegate&lt;/b&gt;.
       </documentation>
@@ -126,9 +126,9 @@ In the example above, the specified type of launch configuration supports debug 
 
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Copyright (c) 2005 Sybase, Inc.
  All rights reserved. This program and the accompanying materials

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.sqltools.common.ui">
+<schema targetNamespace="org.eclipse.datatools.sqltools.common.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
          <meta.schema plugin="org.eclipse.datatools.sqltools.common.ui" id="preferenceSections" name="DTP Preference Sections"/>
@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="section" minOccurs="1" maxOccurs="unbounded"/>
@@ -57,7 +62,7 @@
                   A fully qualified class implementing org.eclipse.datatools.sqltools.common.ui.preferences.IDataServerPreferenceSection.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.common.ui.preferences.IDataServerPreferenceSection"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.sqltools.common.ui.preferences.IDataServerPreferenceSection"/>
                </appInfo>
             </annotation>
          </attribute>

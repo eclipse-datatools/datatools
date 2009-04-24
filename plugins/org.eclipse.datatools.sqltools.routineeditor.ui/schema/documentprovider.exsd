@@ -62,7 +62,7 @@
                   a fully qualified name of the Java class implementing  org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.routineeditor.IRoutineEditorDocumentProvider"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.sqltools.routineeditor.ui.IRoutineEditorDocumentProvider"/>
                </appinfo>
             </annotation>
          </attribute>

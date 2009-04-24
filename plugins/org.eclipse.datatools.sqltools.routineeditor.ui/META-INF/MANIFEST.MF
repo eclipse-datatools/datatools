@@ -27,3 +27,4 @@ Export-Package: org.eclipse.datatools.sqltools.routineeditor.plan,
  org.eclipse.datatools.sqltools.routineeditor.ui.actions,
  org.eclipse.datatools.sqltools.routineeditor.ui.launching;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic"
 Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin

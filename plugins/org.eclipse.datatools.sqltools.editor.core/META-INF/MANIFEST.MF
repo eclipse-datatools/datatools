@@ -23,6 +23,7 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.core.dbitem,
  org.eclipse.datatools.sqltools.core.internal.dbitem,
+ org.eclipse.datatools.sqltools.core.modelvalidity,
  org.eclipse.datatools.sqltools.core.profile,
  org.eclipse.datatools.sqltools.core.services,
  org.eclipse.datatools.sqltools.editor.contentassist,
