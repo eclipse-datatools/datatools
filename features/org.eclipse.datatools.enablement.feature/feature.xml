@@ -89,12 +89,16 @@
          id="org.eclipse.datatools.enablement.ingres.feature"
          version="0.0.0"
          optional="true"/>
-   
+
    <includes
          id="org.eclipse.datatools.enablement.sqlite.feature"
          version="0.0.0"
          optional="true"/>
-         
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature"
+         version="0.0.0"/>
+
    <requires>
       <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
@@ -113,11 +117,12 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.db.generic.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
 </feature>
