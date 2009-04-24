@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseColumnImpl.java,v 1.12 2007/07/16 08:01:51 linsong Exp $
+ * $Id: SybaseASABaseColumnImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -46,177 +46,176 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABaseColumn 
 {
     /**
-     * The cached value of the '{@link #getColumnConstraint() <em>Column Constraint</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getColumnConstraint() <em>Column Constraint</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getColumnConstraint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getColumnConstraint()
+	 * @generated
+	 * @ordered
+	 */
 	protected EList columnConstraint;
 
     /**
-     * The default value of the '{@link #getTypeOfDefault() <em>Type Of Default</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTypeOfDefault() <em>Type Of Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeOfDefault()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeOfDefault()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final TypeOfDefault TYPE_OF_DEFAULT_EDEFAULT = TypeOfDefault.NO_DEFAULT_LITERAL;
 
     /**
-     * The cached value of the '{@link #getTypeOfDefault() <em>Type Of Default</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTypeOfDefault() <em>Type Of Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTypeOfDefault()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTypeOfDefault()
+	 * @generated
+	 * @ordered
+	 */
 	protected TypeOfDefault typeOfDefault = TYPE_OF_DEFAULT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isUnique()
-     * @generated
-     * @ordered
-     */
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean UNIQUE_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isUnique()
-     * @generated
-     * @ordered
-     */
+	 * @see #isUnique()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean unique = UNIQUE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isIsComputedColumn() <em>Is Computed Column</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isIsComputedColumn() <em>Is Computed Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIsComputedColumn()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIsComputedColumn()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean IS_COMPUTED_COLUMN_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isIsComputedColumn() <em>Is Computed Column</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isIsComputedColumn() <em>Is Computed Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isIsComputedColumn()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIsComputedColumn()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean isComputedColumn = IS_COMPUTED_COLUMN_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASABaseColumnImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_COLUMN;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_COLUMN;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public EList getColumnConstraint()
     {
-        if (columnConstraint == null)
-        {
-            columnConstraint = new EObjectWithInverseResolvingEList(SybaseASABaseColumnCheckConstraint.class, this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN);
-        }
-        return columnConstraint;
-    }
+		if (columnConstraint == null) {
+			columnConstraint = new EObjectWithInverseResolvingEList(SybaseASABaseColumnCheckConstraint.class, this, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN);
+		}
+		return columnConstraint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TypeOfDefault getTypeOfDefault()
     {
-        return typeOfDefault;
-    }
+		return typeOfDefault;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTypeOfDefault(TypeOfDefault newTypeOfDefault)
     {
-        TypeOfDefault oldTypeOfDefault = typeOfDefault;
-        typeOfDefault = newTypeOfDefault == null ? TYPE_OF_DEFAULT_EDEFAULT : newTypeOfDefault;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT, oldTypeOfDefault, typeOfDefault));
-    }
+		TypeOfDefault oldTypeOfDefault = typeOfDefault;
+		typeOfDefault = newTypeOfDefault == null ? TYPE_OF_DEFAULT_EDEFAULT : newTypeOfDefault;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT, oldTypeOfDefault, typeOfDefault));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean isUnique()
     {
-        return unique;
-    }
+		return unique;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setUnique(boolean newUnique)
     {
-        boolean oldUnique = unique;
-        unique = newUnique;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE, oldUnique, unique));
-    }
+		boolean oldUnique = unique;
+		unique = newUnique;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE, oldUnique, unique));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean isIsComputedColumn()
     {
-        return isComputedColumn;
-    }
+		return isComputedColumn;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setIsComputedColumn(boolean newIsComputedColumn)
     {
-        boolean oldIsComputedColumn = isComputedColumn;
-        isComputedColumn = newIsComputedColumn;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN, oldIsComputedColumn, isComputedColumn));
-    }
+		boolean oldIsComputedColumn = isComputedColumn;
+		isComputedColumn = newIsComputedColumn;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN, oldIsComputedColumn, isComputedColumn));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -237,146 +236,140 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
 	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                return ((InternalEList)getColumnConstraint()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				return ((InternalEList)getColumnConstraint()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                return ((InternalEList)getColumnConstraint()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				return ((InternalEList)getColumnConstraint()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                return getColumnConstraint();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
-                return getTypeOfDefault();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
-                return isUnique() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
-                return isIsComputedColumn() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				return getColumnConstraint();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
+				return getTypeOfDefault();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
+				return isUnique() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
+				return isIsComputedColumn() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                getColumnConstraint().clear();
-                getColumnConstraint().addAll((Collection)newValue);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
-                setTypeOfDefault((TypeOfDefault)newValue);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
-                setUnique(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
-                setIsComputedColumn(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				getColumnConstraint().clear();
+				getColumnConstraint().addAll((Collection)newValue);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
+				setTypeOfDefault((TypeOfDefault)newValue);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
+				setUnique(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
+				setIsComputedColumn(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                getColumnConstraint().clear();
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
-                setTypeOfDefault(TYPE_OF_DEFAULT_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
-                setUnique(UNIQUE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
-                setIsComputedColumn(IS_COMPUTED_COLUMN_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				getColumnConstraint().clear();
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
+				setTypeOfDefault(TYPE_OF_DEFAULT_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
+				setUnique(UNIQUE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
+				setIsComputedColumn(IS_COMPUTED_COLUMN_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
-                return columnConstraint != null && !columnConstraint.isEmpty();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
-                return typeOfDefault != TYPE_OF_DEFAULT_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
-                return unique != UNIQUE_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
-                return isComputedColumn != IS_COMPUTED_COLUMN_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__COLUMN_CONSTRAINT:
+				return columnConstraint != null && !columnConstraint.isEmpty();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__TYPE_OF_DEFAULT:
+				return typeOfDefault != TYPE_OF_DEFAULT_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__UNIQUE:
+				return unique != UNIQUE_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN__IS_COMPUTED_COLUMN:
+				return isComputedColumn != IS_COMPUTED_COLUMN_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String toString()
     {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (typeOfDefault: ");
-        result.append(typeOfDefault);
-        result.append(", unique: ");
-        result.append(unique);
-        result.append(", isComputedColumn: ");
-        result.append(isComputedColumn);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (typeOfDefault: ");
+		result.append(typeOfDefault);
+		result.append(", unique: ");
+		result.append(unique);
+		result.append(", isComputedColumn: ");
+		result.append(isComputedColumn);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASABaseColumnImpl

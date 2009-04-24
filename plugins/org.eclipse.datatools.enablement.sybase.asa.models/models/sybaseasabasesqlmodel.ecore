@@ -6,7 +6,7 @@
     nsPrefix="SybaseASABaseModel">
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseEvent" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Event">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventType" eType="#//EventType"
-        defaultValueLiteral=""/>
+        />
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventCreator" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Schema"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//EventLocationType"/>
@@ -84,7 +84,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABasePredefinedDataType" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/PredefinedDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/SQLDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
-        eType="#//SybaseASABaseDatabase" defaultValueLiteral="" eOpposite="#//SybaseASABaseDatabase/dataTypes"/>
+        eType="#//SybaseASABaseDatabase" eOpposite="#//SybaseASABaseDatabase/dataTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseTable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/PersistentTable ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbSpace" lowerBound="1"
@@ -98,7 +98,7 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnConstraint" upperBound="-1"
-        eType="#//SybaseASABaseColumnCheckConstraint" defaultValueLiteral="" eOpposite="#//SybaseASABaseColumnCheckConstraint/column"/>
+        eType="#//SybaseASABaseColumnCheckConstraint" eOpposite="#//SybaseASABaseColumnCheckConstraint/column"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeOfDefault" eType="#//TypeOfDefault"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComputedColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -124,7 +124,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseDBSpace" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
-        eType="#//SybaseASABaseDatabase" defaultValueLiteral="" eOpposite="#//SybaseASABaseDatabase/dbSpaces"/>
+        eType="#//SybaseASABaseDatabase" eOpposite="#//SybaseASABaseDatabase/dbSpaces"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseViewTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseViewTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="withCheckOption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -177,7 +177,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sybaseASABaseActionTime"
         eType="#//SybaseASABaseActionTime"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remoteName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
+        />
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateColumnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="exclusive with other trigger event types. If set to true, triggerColumn cannot be empty"/>
@@ -212,7 +212,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseProxyTable" eSuperTypes="#//SybaseASABaseTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remoteObjectLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
+        />
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="existing" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
@@ -225,7 +225,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseColumnCheckConstraint"
       eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/CheckConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
-        eType="#//SybaseASABaseColumn" defaultValueLiteral="" eOpposite="#//SybaseASABaseColumn/columnConstraint"/>
+        eType="#//SybaseASABaseColumn" eOpposite="#//SybaseASABaseColumn/columnConstraint"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EventLocationType">
     <eLiterals name="ALL"/>
@@ -250,7 +250,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalUnit" eType="#//IntervalUnitType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalMount" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//SybaseASABaseEvent"
-        defaultValueLiteral="" eOpposite="#//SybaseASABaseEvent/schedules"/>
+        eOpposite="#//SybaseASABaseEvent/schedules"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="IntervalUnitType">
     <eLiterals name="HOURS"/>
@@ -320,6 +320,6 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//SybaseASABaseEvent"
-        defaultValueLiteral="" eOpposite="#//SybaseASABaseEvent/conditionDetails"/>
+        eOpposite="#//SybaseASABaseEvent/conditionDetails"/>
   </eClassifiers>
 </ecore:EPackage>

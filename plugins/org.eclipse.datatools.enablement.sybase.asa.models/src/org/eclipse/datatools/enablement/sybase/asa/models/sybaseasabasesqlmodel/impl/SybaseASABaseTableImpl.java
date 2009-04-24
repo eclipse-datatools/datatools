@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTableImpl.java,v 1.11 2007/09/06 01:45:22 linsong Exp $
+ * $Id: SybaseASABaseTableImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -55,77 +55,75 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
     final public static List       PB_SYS_TABLE_LIST = Arrays.asList(PB_SYS_TABLES);
     
     /**
-     * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
-     * @see #getDbSpace()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDbSpace()
+	 * @generated
+	 * @ordered
+	 */
 	protected SybaseASABaseDBSpace dbSpace;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASABaseTableImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TABLE;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TABLE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SybaseASABaseDBSpace getDbSpace()
     {
-        if (dbSpace != null && dbSpace.eIsProxy())
-        {
-            InternalEObject oldDbSpace = (InternalEObject)dbSpace;
-            dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
-            if (dbSpace != oldDbSpace)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
-            }
-        }
-        return dbSpace;
-    }
+		if (dbSpace != null && dbSpace.eIsProxy()) {
+			InternalEObject oldDbSpace = (InternalEObject)dbSpace;
+			dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
+			if (dbSpace != oldDbSpace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+			}
+		}
+		return dbSpace;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SybaseASABaseDBSpace basicGetDbSpace()
     {
-        return dbSpace;
-    }
+		return dbSpace;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setDbSpace(SybaseASABaseDBSpace newDbSpace)
     {
-        SybaseASABaseDBSpace oldDbSpace = dbSpace;
-        dbSpace = newDbSpace;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
-    }
+		SybaseASABaseDBSpace oldDbSpace = dbSpace;
+		dbSpace = newDbSpace;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,66 +154,62 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-                if (resolve) return getDbSpace();
-                return basicGetDbSpace();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+				if (resolve) return getDbSpace();
+				return basicGetDbSpace();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-                setDbSpace((SybaseASABaseDBSpace)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+				setDbSpace((SybaseASABaseDBSpace)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-                setDbSpace((SybaseASABaseDBSpace)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+				setDbSpace((SybaseASABaseDBSpace)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-                return dbSpace != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+				return dbSpace != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SybaseASABaseTableImpl
