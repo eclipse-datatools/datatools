@@ -63,7 +63,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         String[] statements = processChangeMap(changeMap, monitor);
         this.changeDescription = null;
         this.redoChanges = null;
-        this.modifyRecords = null;
+        this.modifyRecords = new HashMap();
         this.options = null;
         return statements;
     }
@@ -78,7 +78,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         SybaseDdlScript script = processChangeMapReturnScript(changeMap, monitor);
         this.changeDescription = null;
         this.redoChanges = null;
-        this.modifyRecords = null;
+        this.modifyRecords = new HashMap();
         this.options = null;
         return script;
     }

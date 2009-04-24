@@ -26,8 +26,8 @@
             package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
             provider="org.eclipse.datatools.enablement.sybase.containment.AuthorizationIdContainmentProvider"/>
       <containment
-            class="Privilege"
-            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="SybasePrivilege"
+            package="http:///org/eclipse/datatools/enablement/sybase/sybasesqlmodel.ecore"
             provider="org.eclipse.datatools.enablement.sybase.containment.PrivilegeContainmentProvider"/>
    </extension>
       
