@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaComplexDataType.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: OdaComplexDataType.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,34 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * ODA complex data types.
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOdaComplexDataType()
- * @model
+ * @model extendedMetaData="name='OdaComplexDataType'"
  * @generated
  */
-public final class OdaComplexDataType extends AbstractEnumerator
-{
+public enum OdaComplexDataType implements Enumerator {
+    /**
+     * The '<em><b>Structure</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #STRUCTURE
+     * @generated
+     * @ordered
+     */
+    STRUCTURE_LITERAL(0, "Structure", "Structure"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Table</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #TABLE
+     * @generated
+     * @ordered
+     */
+    TABLE_LITERAL(1, "Table", "Table"); //$NON-NLS-1$ //$NON-NLS-2$
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Structure</b></em>' literal value.
@@ -65,28 +82,6 @@ public final class OdaComplexDataType extends AbstractEnumerator
     public static final int TABLE = 1;
 
     /**
-     * The '<em><b>Structure</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #STRUCTURE
-     * @generated
-     * @ordered
-     */
-    public static final OdaComplexDataType STRUCTURE_LITERAL = new OdaComplexDataType(
-            STRUCTURE, "Structure", "Structure" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Table</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #TABLE
-     * @generated
-     * @ordered
-     */
-    public static final OdaComplexDataType TABLE_LITERAL = new OdaComplexDataType(
-            TABLE, "Table", "Table" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
      * An array of all the '<em><b>Oda Complex Data Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -101,8 +96,8 @@ public final class OdaComplexDataType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList( Arrays
-            .asList( VALUES_ARRAY ) );
+    public static final List<OdaComplexDataType> VALUES = Collections
+            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
 
     /**
      * Returns the '<em><b>Oda Complex Data Type</b></em>' literal with the specified literal value.
@@ -161,6 +156,27 @@ public final class OdaComplexDataType extends AbstractEnumerator
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final int value;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String name;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String literal;
+
+    /**
      * Only this class can construct instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -168,7 +184,50 @@ public final class OdaComplexDataType extends AbstractEnumerator
      */
     private OdaComplexDataType( int value, String name, String literal )
     {
-        super( value, name, literal );
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
     }
 
-} //OdaComplexDataType
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getValue()
+    {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLiteral()
+    {
+        return literal;
+    }
+
+    /**
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString()
+    {
+        return literal;
+    }
+}

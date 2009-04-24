@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetsImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
+ * $Id: ResultSetsImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -51,7 +51,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getResultSetDefinitions() <em>Result Set Definitions</em>}' containment reference list.
@@ -61,7 +61,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * @generated
      * @ordered
      */
-    protected EList m_resultSetDefinitions = null;
+    protected EList<ResultSetDefinition> m_resultSetDefinitions;
 
     /**
      * The default value of the '{@link #isDerivedMetaData() <em>Derived Meta Data</em>}' attribute.
@@ -90,7 +90,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * @generated
      * @ordered
      */
-    protected boolean m_derivedMetaDataESet = false;
+    protected boolean m_derivedMetaDataESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -107,6 +107,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.RESULT_SETS;
@@ -122,10 +123,10 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
                 || resultSetName.length() == 0 )
             return null;
 
-        EList defns = getResultSetDefinitions();
+        EList<ResultSetDefinition> defns = getResultSetDefinitions();
         for( int i = 0; i < defns.size(); i++)
         {
-            ResultSetDefinition defn = (ResultSetDefinition) defns.get( i );
+            ResultSetDefinition defn = defns.get( i );
             if( resultSetName.equals( defn.getName() ) )
                 return defn;
         }
@@ -161,11 +162,11 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getResultSetDefinitions()
+    public EList<ResultSetDefinition> getResultSetDefinitions()
     {
         if( m_resultSetDefinitions == null )
         {
-            m_resultSetDefinitions = new EObjectContainmentEList(
+            m_resultSetDefinitions = new EObjectContainmentEList<ResultSetDefinition>(
                     ResultSetDefinition.class, this,
                     DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS );
         }
@@ -233,13 +234,14 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-            return ((InternalEList) getResultSetDefinitions()).basicRemove(
+            return ((InternalEList<?>) getResultSetDefinitions()).basicRemove(
                     otherEnd, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
@@ -250,6 +252,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -267,13 +270,16 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
             getResultSetDefinitions().clear();
-            getResultSetDefinitions().addAll( (Collection) newValue );
+            getResultSetDefinitions().addAll(
+                    (Collection<? extends ResultSetDefinition>) newValue );
             return;
         case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
             setDerivedMetaData( ((Boolean) newValue).booleanValue() );
@@ -287,6 +293,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -306,6 +313,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -324,6 +332,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

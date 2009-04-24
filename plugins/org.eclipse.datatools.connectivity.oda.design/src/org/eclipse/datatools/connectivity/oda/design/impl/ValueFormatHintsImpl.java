@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ValueFormatHintsImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
+ * $Id: ValueFormatHintsImpl.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -50,7 +50,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplaySize() <em>Display Size</em>}' attribute.
@@ -79,7 +79,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_displaySizeESet = false;
+    protected boolean m_displaySizeESet;
 
     /**
      * The default value of the '{@link #getDisplayFormat() <em>Display Format</em>}' attribute.
@@ -128,7 +128,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_textFormatTypeESet = false;
+    protected boolean m_textFormatTypeESet;
 
     /**
      * The default value of the '{@link #getHorizontalAlignment() <em>Horizontal Alignment</em>}' attribute.
@@ -157,7 +157,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_horizontalAlignmentESet = false;
+    protected boolean m_horizontalAlignmentESet;
 
     /**
      * The default value of the '{@link #getTextWrapType() <em>Text Wrap Type</em>}' attribute.
@@ -186,7 +186,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_textWrapTypeESet = false;
+    protected boolean m_textWrapTypeESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -203,6 +203,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.VALUE_FORMAT_HINTS;
@@ -462,6 +463,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -485,6 +487,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -513,6 +516,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -541,6 +545,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -565,6 +570,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

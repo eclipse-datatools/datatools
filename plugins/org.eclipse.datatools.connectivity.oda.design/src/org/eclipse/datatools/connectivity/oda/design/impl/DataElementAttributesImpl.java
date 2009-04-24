@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.8 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.9 2007/05/09 10:15:19 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -55,7 +55,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * @generated NOT
@@ -109,7 +109,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_positionESet = false;
+    protected boolean m_positionESet;
 
     /**
      * The default value of the '{@link #getNativeDataTypeCode() <em>Native Data Type Code</em>}' attribute.
@@ -138,7 +138,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_nativeDataTypeCodeESet = false;
+    protected boolean m_nativeDataTypeCodeESet;
 
     /**
      * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -167,7 +167,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_precisionESet = false;
+    protected boolean m_precisionESet;
 
     /**
      * The default value of the '{@link #getScale() <em>Scale</em>}' attribute.
@@ -196,7 +196,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_scaleESet = false;
+    protected boolean m_scaleESet;
 
     /**
      * The default value of the '{@link #getNullability() <em>Nullability</em>}' attribute.
@@ -225,7 +225,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_nullabilityESet = false;
+    protected boolean m_nullabilityESet;
 
     /**
      * The cached value of the '{@link #getUiHints() <em>Ui Hints</em>}' containment reference.
@@ -235,7 +235,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DataElementUIHints m_uiHints = null;
+    protected DataElementUIHints m_uiHints;
 
     /**
      * <!-- begin-user-doc -->
@@ -252,6 +252,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.DATA_ELEMENT_ATTRIBUTES;
@@ -367,7 +368,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         return m_name;
     }
-    
+
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setName(java.lang.String)
@@ -376,10 +377,10 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     public void setName( String newName )
     {
         if( newName == null )
-            newName = EMPTY_STR;  // cannot be null per design definition
+            newName = EMPTY_STR; // cannot be null per design definition
         setNameGen( newName );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -761,6 +762,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -777,6 +779,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -804,6 +807,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -838,6 +842,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -872,6 +877,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -900,6 +906,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ScalarValueChoicesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: ScalarValueChoicesImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -49,7 +49,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getScalarValues() <em>Scalar Values</em>}' containment reference list.
@@ -59,7 +59,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected EList m_scalarValues = null;
+    protected EList<ScalarValueDefinition> m_scalarValues;
 
     /**
      * <!-- begin-user-doc -->
@@ -76,6 +76,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.SCALAR_VALUE_CHOICES;
@@ -86,11 +87,11 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getScalarValues()
+    public EList<ScalarValueDefinition> getScalarValues()
     {
         if( m_scalarValues == null )
         {
-            m_scalarValues = new EObjectContainmentEList(
+            m_scalarValues = new EObjectContainmentEList<ScalarValueDefinition>(
                     ScalarValueDefinition.class, this,
                     DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES );
         }
@@ -102,14 +103,15 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
-            return ((InternalEList) getScalarValues()).basicRemove( otherEnd,
-                    msgs );
+            return ((InternalEList<?>) getScalarValues()).basicRemove(
+                    otherEnd, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -119,6 +121,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -134,13 +137,16 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.SCALAR_VALUE_CHOICES__SCALAR_VALUES:
             getScalarValues().clear();
-            getScalarValues().addAll( (Collection) newValue );
+            getScalarValues().addAll(
+                    (Collection<? extends ScalarValueDefinition>) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -151,6 +157,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -167,6 +174,7 @@ public class ScalarValueChoicesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

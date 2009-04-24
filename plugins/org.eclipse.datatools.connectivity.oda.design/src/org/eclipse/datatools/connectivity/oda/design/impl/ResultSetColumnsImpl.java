@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetColumnsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: ResultSetColumnsImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -49,7 +49,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getResultColumnDefinitions() <em>Result Column Definitions</em>}' containment reference list.
@@ -59,7 +59,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected EList m_resultColumnDefinitions = null;
+    protected EList<ColumnDefinition> m_resultColumnDefinitions;
 
     /**
      * <!-- begin-user-doc -->
@@ -76,6 +76,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.RESULT_SET_COLUMNS;
@@ -86,11 +87,11 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getResultColumnDefinitions()
+    public EList<ColumnDefinition> getResultColumnDefinitions()
     {
         if( m_resultColumnDefinitions == null )
         {
-            m_resultColumnDefinitions = new EObjectContainmentEList(
+            m_resultColumnDefinitions = new EObjectContainmentEList<ColumnDefinition>(
                     ColumnDefinition.class, this,
                     DesignPackage.RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS );
         }
@@ -102,14 +103,15 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS:
-            return ((InternalEList) getResultColumnDefinitions()).basicRemove(
-                    otherEnd, msgs );
+            return ((InternalEList<?>) getResultColumnDefinitions())
+                    .basicRemove( otherEnd, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -119,6 +121,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -134,13 +137,16 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS:
             getResultColumnDefinitions().clear();
-            getResultColumnDefinitions().addAll( (Collection) newValue );
+            getResultColumnDefinitions().addAll(
+                    (Collection<? extends ColumnDefinition>) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -151,6 +157,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -167,6 +174,7 @@ public class ResultSetColumnsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequestImpl.java,v 1.4 2006/03/09 08:50:09 lchan Exp $
+ * $Id: DesignSessionRequestImpl.java,v 1.5 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -56,7 +56,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getDataAccessDesign() <em>Data Access Design</em>}' containment reference.
@@ -66,7 +66,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DataAccessDesign m_dataAccessDesign = null;
+    protected DataAccessDesign m_dataAccessDesign;
 
     /**
      * The default value of the '{@link #isEditable() <em>Editable</em>}' attribute.
@@ -95,7 +95,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_editableESet = false;
+    protected boolean m_editableESet;
 
     /**
      * The cached value of the '{@link #getSessionLocale() <em>Session Locale</em>}' containment reference.
@@ -105,7 +105,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected Locale m_sessionLocale = null;
+    protected Locale m_sessionLocale;
 
     /**
      * The cached value of the '{@link #getDesignerState() <em>Designer State</em>}' containment reference.
@@ -115,7 +115,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DesignerState m_designerState = null;
+    protected DesignerState m_designerState;
 
     /**
      * <!-- begin-user-doc -->
@@ -132,6 +132,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.DESIGN_SESSION_REQUEST;
@@ -470,6 +471,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -490,6 +492,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -511,6 +514,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -536,6 +540,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -561,6 +566,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -582,6 +588,7 @@ public class DesignSessionRequestImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

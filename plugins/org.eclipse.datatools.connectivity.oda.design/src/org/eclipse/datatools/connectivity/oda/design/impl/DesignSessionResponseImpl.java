@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionResponseImpl.java,v 1.3 2006/02/28 21:02:29 lchan Exp $
+ * $Id: DesignSessionResponseImpl.java,v 1.4 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -53,7 +53,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getSessionStatus() <em>Session Status</em>}' attribute.
@@ -82,7 +82,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_sessionStatusESet = false;
+    protected boolean m_sessionStatusESet;
 
     /**
      * The cached value of the '{@link #getDataAccessDesign() <em>Data Access Design</em>}' containment reference.
@@ -92,7 +92,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DataAccessDesign m_dataAccessDesign = null;
+    protected DataAccessDesign m_dataAccessDesign;
 
     /**
      * The cached value of the '{@link #getDesignerState() <em>Designer State</em>}' containment reference.
@@ -102,7 +102,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DesignerState m_designerState = null;
+    protected DesignerState m_designerState;
 
     /**
      * <!-- begin-user-doc -->
@@ -119,6 +119,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.DESIGN_SESSION_RESPONSE;
@@ -358,6 +359,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -376,6 +378,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -395,6 +398,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -417,6 +421,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -439,6 +444,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -458,6 +464,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterFieldsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: ParameterFieldsImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -48,7 +48,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getFieldCollection() <em>Field Collection</em>}' containment reference list.
@@ -58,7 +58,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * @generated
      * @ordered
      */
-    protected EList m_fieldCollection = null;
+    protected EList<ParameterFieldDefinition> m_fieldCollection;
 
     /**
      * <!-- begin-user-doc -->
@@ -75,6 +75,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.PARAMETER_FIELDS;
@@ -85,11 +86,11 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getFieldCollection()
+    public EList<ParameterFieldDefinition> getFieldCollection()
     {
         if( m_fieldCollection == null )
         {
-            m_fieldCollection = new EObjectContainmentEList(
+            m_fieldCollection = new EObjectContainmentEList<ParameterFieldDefinition>(
                     ParameterFieldDefinition.class, this,
                     DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION );
         }
@@ -101,13 +102,14 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-            return ((InternalEList) getFieldCollection()).basicRemove(
+            return ((InternalEList<?>) getFieldCollection()).basicRemove(
                     otherEnd, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
@@ -118,6 +120,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -133,13 +136,16 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
             getFieldCollection().clear();
-            getFieldCollection().addAll( (Collection) newValue );
+            getFieldCollection().addAll(
+                    (Collection<? extends ParameterFieldDefinition>) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -150,6 +156,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -166,6 +173,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

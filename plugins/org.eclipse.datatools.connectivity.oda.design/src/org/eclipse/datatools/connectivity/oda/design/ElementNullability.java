@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ElementNullability.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: ElementNullability.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,43 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * Indicates whether a data element's value can be null.
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getElementNullability()
- * @model
+ * @model extendedMetaData="name='ElementNullability'"
  * @generated
  */
-public final class ElementNullability extends AbstractEnumerator
-{
+public enum ElementNullability implements Enumerator {
+    /**
+     * The '<em><b>Unknown</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #UNKNOWN
+     * @generated
+     * @ordered
+     */
+    UNKNOWN_LITERAL(0, "Unknown", "Unknown"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Nullable</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #NULLABLE
+     * @generated
+     * @ordered
+     */
+    NULLABLE_LITERAL(1, "Nullable", "Nullable"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Not Nullable</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #NOT_NULLABLE
+     * @generated
+     * @ordered
+     */
+    NOT_NULLABLE_LITERAL(2, "NotNullable", "NotNullable"); //$NON-NLS-1$ //$NON-NLS-2$
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Unknown</b></em>' literal value.
@@ -76,39 +102,6 @@ public final class ElementNullability extends AbstractEnumerator
     public static final int NOT_NULLABLE = 2;
 
     /**
-     * The '<em><b>Unknown</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #UNKNOWN
-     * @generated
-     * @ordered
-     */
-    public static final ElementNullability UNKNOWN_LITERAL = new ElementNullability(
-            UNKNOWN, "Unknown", "Unknown" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Nullable</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NULLABLE
-     * @generated
-     * @ordered
-     */
-    public static final ElementNullability NULLABLE_LITERAL = new ElementNullability(
-            NULLABLE, "Nullable", "Nullable" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Not Nullable</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #NOT_NULLABLE
-     * @generated
-     * @ordered
-     */
-    public static final ElementNullability NOT_NULLABLE_LITERAL = new ElementNullability(
-            NOT_NULLABLE, "NotNullable", "NotNullable" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
      * An array of all the '<em><b>Element Nullability</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -123,8 +116,8 @@ public final class ElementNullability extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList( Arrays
-            .asList( VALUES_ARRAY ) );
+    public static final List<ElementNullability> VALUES = Collections
+            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
 
     /**
      * Returns the '<em><b>Element Nullability</b></em>' literal with the specified literal value.
@@ -185,6 +178,27 @@ public final class ElementNullability extends AbstractEnumerator
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final int value;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String name;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String literal;
+
+    /**
      * Only this class can construct instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -192,7 +206,50 @@ public final class ElementNullability extends AbstractEnumerator
      */
     private ElementNullability( int value, String name, String literal )
     {
-        super( value, name, literal );
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
     }
 
-} //ElementNullability
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getValue()
+    {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLiteral()
+    {
+        return literal;
+    }
+
+    /**
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString()
+    {
+        return literal;
+    }
+}

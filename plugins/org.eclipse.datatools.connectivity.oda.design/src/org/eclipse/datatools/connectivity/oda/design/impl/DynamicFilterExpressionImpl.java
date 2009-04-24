@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DynamicFilterExpressionImpl.java,v 1.1 2009/03/03 07:42:07 lchan Exp $
+ * $Id: DynamicFilterExpressionImpl.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -55,7 +55,6 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("hiding")
     public static final String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**

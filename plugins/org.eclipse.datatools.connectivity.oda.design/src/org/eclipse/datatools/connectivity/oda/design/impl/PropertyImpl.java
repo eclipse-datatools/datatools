@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertyImpl.java,v 1.4 2006/11/09 00:50:26 lchan Exp $
+ * $Id: PropertyImpl.java,v 1.5 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -48,7 +48,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getNameValue() <em>Name Value</em>}' containment reference.
@@ -58,7 +58,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * @generated
      * @ordered
      */
-    protected NameValuePair m_nameValue = null;
+    protected NameValuePair m_nameValue;
 
     /**
      * The cached value of the '{@link #getDesignAttributes() <em>Design Attributes</em>}' containment reference.
@@ -68,7 +68,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * @generated
      * @ordered
      */
-    protected PropertyAttributes m_designAttributes = null;
+    protected PropertyAttributes m_designAttributes;
 
     /**
      * <!-- begin-user-doc -->
@@ -85,6 +85,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.PROPERTY;
@@ -257,6 +258,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -275,6 +277,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -292,6 +295,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -311,6 +315,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -330,6 +335,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

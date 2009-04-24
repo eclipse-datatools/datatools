@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetParametersImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DataSetParametersImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -52,7 +52,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getParameterDefinitions() <em>Parameter Definitions</em>}' containment reference list.
@@ -62,7 +62,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected EList m_parameterDefinitions = null;
+    protected EList<ParameterDefinition> m_parameterDefinitions;
 
     /**
      * The default value of the '{@link #isDerivedMetaData() <em>Derived Meta Data</em>}' attribute.
@@ -91,7 +91,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_derivedMetaDataESet = false;
+    protected boolean m_derivedMetaDataESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -108,6 +108,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.DATA_SET_PARAMETERS;
@@ -118,11 +119,11 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getParameterDefinitions()
+    public EList<ParameterDefinition> getParameterDefinitions()
     {
         if( m_parameterDefinitions == null )
         {
-            m_parameterDefinitions = new EObjectContainmentEList(
+            m_parameterDefinitions = new EObjectContainmentEList<ParameterDefinition>(
                     ParameterDefinition.class, this,
                     DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS );
         }
@@ -190,13 +191,14 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-            return ((InternalEList) getParameterDefinitions()).basicRemove(
+            return ((InternalEList<?>) getParameterDefinitions()).basicRemove(
                     otherEnd, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
@@ -207,6 +209,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -224,13 +227,16 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
             getParameterDefinitions().clear();
-            getParameterDefinitions().addAll( (Collection) newValue );
+            getParameterDefinitions().addAll(
+                    (Collection<? extends ParameterDefinition>) newValue );
             return;
         case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
             setDerivedMetaData( ((Boolean) newValue).booleanValue() );
@@ -244,6 +250,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -263,6 +270,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -281,6 +289,7 @@ public class DataSetParametersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

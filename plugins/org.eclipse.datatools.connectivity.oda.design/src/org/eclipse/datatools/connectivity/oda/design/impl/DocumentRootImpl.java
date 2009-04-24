@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DocumentRootImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DocumentRootImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -54,7 +54,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
@@ -64,7 +64,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * @generated
      * @ordered
      */
-    protected FeatureMap m_mixed = null;
+    protected FeatureMap m_mixed;
 
     /**
      * The cached value of the '{@link #getXMLNSPrefixMap() <em>XMLNS Prefix Map</em>}' map.
@@ -74,7 +74,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * @generated
      * @ordered
      */
-    protected EMap m_xMLNSPrefixMap = null;
+    protected EMap<String, String> m_xMLNSPrefixMap;
 
     /**
      * The cached value of the '{@link #getXSISchemaLocation() <em>XSI Schema Location</em>}' map.
@@ -84,7 +84,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * @generated
      * @ordered
      */
-    protected EMap m_xSISchemaLocation = null;
+    protected EMap<String, String> m_xSISchemaLocation;
 
     /**
      * <!-- begin-user-doc -->
@@ -101,6 +101,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.DOCUMENT_ROOT;
@@ -126,11 +127,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public EMap getXMLNSPrefixMap()
+    public EMap<String, String> getXMLNSPrefixMap()
     {
         if( m_xMLNSPrefixMap == null )
         {
-            m_xMLNSPrefixMap = new EcoreEMap(
+            m_xMLNSPrefixMap = new EcoreEMap<String, String>(
                     EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
                     EStringToStringMapEntryImpl.class, this,
                     DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP );
@@ -143,11 +144,11 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public EMap getXSISchemaLocation()
+    public EMap<String, String> getXSISchemaLocation()
     {
         if( m_xSISchemaLocation == null )
         {
-            m_xSISchemaLocation = new EcoreEMap(
+            m_xSISchemaLocation = new EcoreEMap<String, String>(
                     EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
                     EStringToStringMapEntryImpl.class, this,
                     DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION );
@@ -196,18 +197,19 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.DOCUMENT_ROOT__MIXED:
-            return ((InternalEList) getMixed()).basicRemove( otherEnd, msgs );
+            return ((InternalEList<?>) getMixed()).basicRemove( otherEnd, msgs );
         case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-            return ((InternalEList) getXMLNSPrefixMap()).basicRemove( otherEnd,
-                    msgs );
+            return ((InternalEList<?>) getXMLNSPrefixMap()).basicRemove(
+                    otherEnd, msgs );
         case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-            return ((InternalEList) getXSISchemaLocation()).basicRemove(
+            return ((InternalEList<?>) getXSISchemaLocation()).basicRemove(
                     otherEnd, msgs );
         case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
             return basicSetOdaDesignSession( null, msgs );
@@ -220,6 +222,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -249,6 +252,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -275,6 +279,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -300,6 +305,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -322,6 +328,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

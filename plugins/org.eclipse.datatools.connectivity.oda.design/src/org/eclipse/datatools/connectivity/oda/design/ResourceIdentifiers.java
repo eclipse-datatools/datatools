@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResourceIdentifiers.java,v 1.1 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -20,7 +20,6 @@ import java.net.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <b>Experimental</b>
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Resource Identifiers</b></em>'.
  * <!-- end-user-doc -->
@@ -40,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResourceIdentifiers()
  * @model extendedMetaData="name='ResourceIdentifiers' kind='elementOnly'"
  * @generated
- * @since DTP 1.6.1
+ * @since DTP 1.7
  */
 public interface ResourceIdentifiers extends EObject
 {
@@ -49,7 +48,7 @@ public interface ResourceIdentifiers extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2008 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2008, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Appl Resource Base URI String</b></em>' attribute in URI form.
@@ -58,7 +57,7 @@ public interface ResourceIdentifiers extends EObject
      * @generated NOT
      */
     URI getApplResourceBaseURI();
-    
+
     /**
      * Sets the value of the '<em><b>Appl Resource Base URI String</b></em>' attribute in URI form.
      * @param baseURI the base URI of general purpose resources of an ODA consumer application
@@ -78,7 +77,7 @@ public interface ResourceIdentifiers extends EObject
      * @see #getApplResourceBaseURI()
      * @see #setApplResourceBaseURIString(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResourceIdentifiers_ApplResourceBaseURIString()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='applResourceBaseURIString' namespace='##targetNamespace'"
      * @generated
      */
@@ -102,7 +101,7 @@ public interface ResourceIdentifiers extends EObject
      * @generated NOT
      */
     URI getDesignResourceBaseURI();
-    
+
     /**
      * Sets the value of the '<em><b>Design Resource Base URI String</b></em>' attribute in URI form.
      * @param baseURI the base URI of design resources of an ODA consumer application
@@ -122,7 +121,7 @@ public interface ResourceIdentifiers extends EObject
      * @see #getDesignResourceBaseURI()
      * @see #setDesignResourceBaseURIString(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResourceIdentifiers_DesignResourceBaseURIString()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='designResourceBaseURIString' namespace='##targetNamespace'"
      * @generated
      */

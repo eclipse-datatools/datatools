@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: HorizontalAlignment.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: HorizontalAlignment.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,52 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * Horizontal display alignment of the data value.
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getHorizontalAlignment()
- * @model
+ * @model extendedMetaData="name='HorizontalAlignment'"
  * @generated
  */
-public final class HorizontalAlignment extends AbstractEnumerator
-{
+public enum HorizontalAlignment implements Enumerator {
+    /**
+     * The '<em><b>Automatic</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #AUTOMATIC
+     * @generated
+     * @ordered
+     */
+    AUTOMATIC_LITERAL(0, "Automatic", "Automatic"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Left</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #LEFT
+     * @generated
+     * @ordered
+     */
+    LEFT_LITERAL(1, "Left", "Left"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Center</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #CENTER
+     * @generated
+     * @ordered
+     */
+    CENTER_LITERAL(2, "Center", "Center"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Right</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #RIGHT
+     * @generated
+     * @ordered
+     */
+    RIGHT_LITERAL(3, "Right", "Right"); //$NON-NLS-1$ //$NON-NLS-2$
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Automatic</b></em>' literal value.
@@ -87,50 +122,6 @@ public final class HorizontalAlignment extends AbstractEnumerator
     public static final int RIGHT = 3;
 
     /**
-     * The '<em><b>Automatic</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #AUTOMATIC
-     * @generated
-     * @ordered
-     */
-    public static final HorizontalAlignment AUTOMATIC_LITERAL = new HorizontalAlignment(
-            AUTOMATIC, "Automatic", "Automatic" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Left</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #LEFT
-     * @generated
-     * @ordered
-     */
-    public static final HorizontalAlignment LEFT_LITERAL = new HorizontalAlignment(
-            LEFT, "Left", "Left" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Center</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CENTER
-     * @generated
-     * @ordered
-     */
-    public static final HorizontalAlignment CENTER_LITERAL = new HorizontalAlignment(
-            CENTER, "Center", "Center" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Right</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RIGHT
-     * @generated
-     * @ordered
-     */
-    public static final HorizontalAlignment RIGHT_LITERAL = new HorizontalAlignment(
-            RIGHT, "Right", "Right" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
      * An array of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -145,8 +136,8 @@ public final class HorizontalAlignment extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList( Arrays
-            .asList( VALUES_ARRAY ) );
+    public static final List<HorizontalAlignment> VALUES = Collections
+            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
 
     /**
      * Returns the '<em><b>Horizontal Alignment</b></em>' literal with the specified literal value.
@@ -209,6 +200,27 @@ public final class HorizontalAlignment extends AbstractEnumerator
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final int value;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String name;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String literal;
+
+    /**
      * Only this class can construct instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -216,7 +228,50 @@ public final class HorizontalAlignment extends AbstractEnumerator
      */
     private HorizontalAlignment( int value, String name, String literal )
     {
-        super( value, name, literal );
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
     }
 
-} //HorizontalAlignment
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getValue()
+    {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLiteral()
+    {
+        return literal;
+    }
+
+    /**
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString()
+    {
+        return literal;
+    }
+}

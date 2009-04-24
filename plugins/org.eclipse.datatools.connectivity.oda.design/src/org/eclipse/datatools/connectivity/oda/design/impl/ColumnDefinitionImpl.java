@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ColumnDefinitionImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: ColumnDefinitionImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -50,7 +50,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
@@ -60,7 +60,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DataElementAttributes m_attributes = null;
+    protected DataElementAttributes m_attributes;
 
     /**
      * The cached value of the '{@link #getUsageHints() <em>Usage Hints</em>}' containment reference.
@@ -70,7 +70,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected OutputElementAttributes m_usageHints = null;
+    protected OutputElementAttributes m_usageHints;
 
     /**
      * The cached value of the '{@link #getMultiDimensionAttributes() <em>Multi Dimension Attributes</em>}' containment reference.
@@ -80,7 +80,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected AxisAttributes m_multiDimensionAttributes = null;
+    protected AxisAttributes m_multiDimensionAttributes;
 
     /**
      * <!-- begin-user-doc -->
@@ -97,6 +97,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.COLUMN_DEFINITION;
@@ -308,6 +309,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -328,6 +330,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -347,6 +350,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -369,6 +373,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -391,6 +396,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

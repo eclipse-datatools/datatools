@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.6 2007/09/07 04:52:38 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.7 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Top-level parameter definition.  Parameter could be scalar or complex type.
+ * Top-level parameter definition; may be input and/or output mode.  Parameter may be of scalar or complex type.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -47,7 +47,7 @@ public interface ParameterDefinition extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Indicates whether this parameter is defined to take input value.
@@ -114,7 +114,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     int getDefaultValueCount();
-    
+
     /**
      * A convenience method to append a default value to this parameter's default value collection.
      * It is the responsibility of the caller to ensure compatible type of value object
@@ -124,7 +124,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     void addDefaultValue( Object aValue );
-    
+
     /**
      * Returns the value of the '<em><b>In Out Mode</b></em>' attribute.
      * The default value is <code>"In"</code>.
@@ -137,7 +137,7 @@ public interface ParameterDefinition extends EObject
      * @see #unsetInOutMode()
      * @see #setInOutMode(ParameterMode)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_InOutMode()
-     * @model default="In" unique="false" unsettable="true" required="true"
+     * @model default="In" unsettable="true"
      *        extendedMetaData="kind='element' name='inOutMode' namespace='##targetNamespace'"
      * @generated
      */

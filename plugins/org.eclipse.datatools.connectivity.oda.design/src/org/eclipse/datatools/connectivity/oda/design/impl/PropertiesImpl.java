@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertiesImpl.java,v 1.5 2006/05/23 02:04:33 lchan Exp $
+ * $Id: PropertiesImpl.java,v 1.6 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -50,7 +50,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -60,7 +60,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * @generated
      * @ordered
      */
-    protected EList m_properties = null;
+    protected EList<Property> m_properties;
 
     /**
      * <!-- begin-user-doc -->
@@ -77,6 +77,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.PROPERTIES;
@@ -91,10 +92,10 @@ public class PropertiesImpl extends EObjectImpl implements Properties
         if( isEmpty() )
             return null;
 
-        Iterator iter = getProperties().iterator();
+        Iterator<Property> iter = getProperties().iterator();
         while( iter.hasNext() )
         {
-            Property prop = (Property) iter.next();
+            Property prop = iter.next();
             if( propName.equalsIgnoreCase( prop.getName() ) )
                 return prop; // matching property name
         }
@@ -158,12 +159,12 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getProperties()
+    public EList<Property> getProperties()
     {
         if( m_properties == null )
         {
-            m_properties = new EObjectContainmentEList( Property.class, this,
-                    DesignPackage.PROPERTIES__PROPERTIES );
+            m_properties = new EObjectContainmentEList<Property>(
+                    Property.class, this, DesignPackage.PROPERTIES__PROPERTIES );
         }
         return m_properties;
     }
@@ -173,13 +174,14 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
-            return ((InternalEList) getProperties()).basicRemove( otherEnd,
+            return ((InternalEList<?>) getProperties()).basicRemove( otherEnd,
                     msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
@@ -190,6 +192,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -205,13 +208,15 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
             getProperties().clear();
-            getProperties().addAll( (Collection) newValue );
+            getProperties().addAll( (Collection<? extends Property>) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -222,6 +227,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -238,6 +244,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

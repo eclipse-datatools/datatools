@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.8 2007/04/11 09:18:37 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -53,7 +53,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getRequest() <em>Request</em>}' containment reference.
@@ -63,7 +63,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DesignSessionRequest m_request = null;
+    protected DesignSessionRequest m_request;
 
     /**
      * The cached value of the '{@link #getResponse() <em>Response</em>}' containment reference.
@@ -73,7 +73,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DesignSessionResponse m_response = null;
+    protected DesignSessionResponse m_response;
 
     /**
      * <!-- begin-user-doc -->
@@ -90,6 +90,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.ODA_DESIGN_SESSION;
@@ -107,7 +108,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
 
         setRequest( newRequest );
     }
-    
+
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewRequest(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
@@ -116,7 +117,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
     public void setNewRequest( DataSetDesign dataSetDesign )
     {
         DesignSessionRequest newRequest = DesignFactory.eINSTANCE
-                                            .createDesignSessionRequest();
+                .createDesignSessionRequest();
         newRequest.setNewDataAccessDesign( dataSetDesign );
 
         setRequest( newRequest );
@@ -356,6 +357,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -374,6 +376,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -391,6 +394,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -410,6 +414,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -429,6 +434,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

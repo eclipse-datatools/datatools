@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AxisAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: AxisAttributesImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -44,7 +44,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getAxisType() <em>Axis Type</em>}' attribute.
@@ -73,7 +73,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * @generated
      * @ordered
      */
-    protected boolean m_axisTypeESet = false;
+    protected boolean m_axisTypeESet;
 
     /**
      * The default value of the '{@link #isOnColumnLayout() <em>On Column Layout</em>}' attribute.
@@ -102,7 +102,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * @generated
      * @ordered
      */
-    protected boolean m_onColumnLayoutESet = false;
+    protected boolean m_onColumnLayoutESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -119,6 +119,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.AXIS_ATTRIBUTES;
@@ -238,6 +239,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -255,6 +257,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -274,6 +277,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -293,6 +297,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -310,6 +315,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

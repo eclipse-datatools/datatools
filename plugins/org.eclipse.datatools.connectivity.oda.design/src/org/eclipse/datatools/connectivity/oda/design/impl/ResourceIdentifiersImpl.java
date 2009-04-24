@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResourceIdentifiersImpl.java,v 1.1 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * </p>
  *
  * @generated
- * @since DTP 1.6.1
+ * @since DTP 1.7
  */
 public class ResourceIdentifiersImpl extends EObjectImpl implements
         ResourceIdentifiers
@@ -51,7 +51,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2008 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2008, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getApplResourceBaseURIString() <em>Appl Resource Base URI String</em>}' attribute.
@@ -108,6 +108,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.RESOURCE_IDENTIFIERS;
@@ -128,8 +129,8 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      */
     public void setApplResourceBaseURI( URI baseURI )
     {
-        String baseURIString = ( baseURI != null ) ? baseURI.toString() : null;
-        setApplResourceBaseURIString( baseURIString );        
+        String baseURIString = (baseURI != null) ? baseURI.toString() : null;
+        setApplResourceBaseURIString( baseURIString );
     }
 
     /**
@@ -175,7 +176,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      */
     public void setDesignResourceBaseURI( URI baseURI )
     {
-        String baseURIString = ( baseURI != null ) ? baseURI.toString() : null;
+        String baseURIString = (baseURI != null) ? baseURI.toString() : null;
         setDesignResourceBaseURIString( baseURIString );
     }
 
@@ -213,6 +214,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -230,6 +232,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -249,6 +252,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -268,6 +272,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -289,6 +294,7 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )
@@ -322,5 +328,5 @@ public class ResourceIdentifiersImpl extends EObjectImpl implements
 
         return null;
     }
-    
+
 } //ResourceIdentifiersImpl

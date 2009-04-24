@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputParameterAttributesImpl.java,v 1.2 2006/02/12 06:45:56 lchan Exp $
+ * $Id: InputParameterAttributesImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -49,7 +49,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getElementAttributes() <em>Element Attributes</em>}' containment reference.
@@ -59,7 +59,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected InputElementAttributes m_elementAttributes = null;
+    protected InputElementAttributes m_elementAttributes;
 
     /**
      * The cached value of the '{@link #getUiHints() <em>Ui Hints</em>}' containment reference.
@@ -69,7 +69,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected InputParameterUIHints m_uiHints = null;
+    protected InputParameterUIHints m_uiHints;
 
     /**
      * <!-- begin-user-doc -->
@@ -86,6 +86,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.INPUT_PARAMETER_ATTRIBUTES;
@@ -254,6 +255,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -272,6 +274,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -289,6 +292,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -308,6 +312,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -327,6 +332,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )

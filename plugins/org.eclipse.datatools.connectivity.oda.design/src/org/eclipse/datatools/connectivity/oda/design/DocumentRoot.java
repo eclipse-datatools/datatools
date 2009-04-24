@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DocumentRoot.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DocumentRoot.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -46,7 +46,7 @@ public interface DocumentRoot extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Mixed</b></em>' attribute list.
@@ -69,11 +69,11 @@ public interface DocumentRoot extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>XMLNS Prefix Map</em>' map.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_XMLNSPrefixMap()
-     * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry" keyType="java.lang.String" valueType="java.lang.String" transient="true"
+     * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" transient="true"
      *        extendedMetaData="kind='attribute' name='xmlns:prefix'"
      * @generated
      */
-    EMap getXMLNSPrefixMap();
+    EMap<String, String> getXMLNSPrefixMap();
 
     /**
      * Returns the value of the '<em><b>XSI Schema Location</b></em>' map.
@@ -83,11 +83,11 @@ public interface DocumentRoot extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>XSI Schema Location</em>' map.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_XSISchemaLocation()
-     * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry" keyType="java.lang.String" valueType="java.lang.String" transient="true"
+     * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>" transient="true"
      *        extendedMetaData="kind='attribute' name='xsi:schemaLocation'"
      * @generated
      */
-    EMap getXSISchemaLocation();
+    EMap<String, String> getXSISchemaLocation();
 
     /**
      * Returns the value of the '<em><b>Oda Design Session</b></em>' containment reference.

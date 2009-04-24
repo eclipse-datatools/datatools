@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OutputElementAttributesImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
+ * $Id: OutputElementAttributesImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -49,7 +49,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -79,7 +79,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected ValueFormatHints m_formattingHints = null;
+    protected ValueFormatHints m_formattingHints;
 
     /**
      * The default value of the '{@link #getHelpText() <em>Help Text</em>}' attribute.
@@ -116,6 +116,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.OUTPUT_ELEMENT_ATTRIBUTES;
@@ -257,6 +258,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -273,6 +275,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -292,6 +295,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -314,6 +318,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -336,6 +341,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -357,6 +363,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertyAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: PropertyAttributesImpl.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -48,7 +48,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -78,7 +78,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected InputElementAttributes m_elementAttributes = null;
+    protected InputElementAttributes m_elementAttributes;
 
     /**
      * The default value of the '{@link #isDerivedMetaData() <em>Derived Meta Data</em>}' attribute.
@@ -107,7 +107,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_derivedMetaDataESet = false;
+    protected boolean m_derivedMetaDataESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -124,6 +124,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.PROPERTY_ATTRIBUTES;
@@ -284,6 +285,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -300,6 +302,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -319,6 +322,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -341,6 +345,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -363,6 +368,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -383,6 +389,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

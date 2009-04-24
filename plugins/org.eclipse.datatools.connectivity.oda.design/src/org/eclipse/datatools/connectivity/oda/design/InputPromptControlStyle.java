@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputPromptControlStyle.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: InputPromptControlStyle.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.AbstractEnumerator;
+import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,17 +30,62 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * The style of UI control for prompting user to input a value.
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputPromptControlStyle()
- * @model
+ * @model extendedMetaData="name='InputPromptControlStyle'"
  * @generated
  */
-public final class InputPromptControlStyle extends AbstractEnumerator
-{
+public enum InputPromptControlStyle implements Enumerator {
+    /**
+     * The '<em><b>Text Field</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #TEXT_FIELD
+     * @generated
+     * @ordered
+     */
+    TEXT_FIELD_LITERAL(0, "TextField", "TextField"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Selectable List</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #SELECTABLE_LIST
+     * @generated
+     * @ordered
+     */
+    SELECTABLE_LIST_LITERAL(1, "SelectableList", "SelectableList"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Selectable List With Text Field</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #SELECTABLE_LIST_WITH_TEXT_FIELD
+     * @generated
+     * @ordered
+     */
+    SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL(2, "SelectableListWithTextField", //$NON-NLS-1$
+            "SelectableListWithTextField"), //$NON-NLS-1$
+    /**
+     * The '<em><b>Check Box</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #CHECK_BOX
+     * @generated
+     * @ordered
+     */
+    CHECK_BOX_LITERAL(3, "CheckBox", "CheckBox"), //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * The '<em><b>Radio Button</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #RADIO_BUTTON
+     * @generated
+     * @ordered
+     */
+    RADIO_BUTTON_LITERAL(4, "RadioButton", "RadioButton"); //$NON-NLS-1$ //$NON-NLS-2$
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Text Field</b></em>' literal value.
@@ -98,62 +143,6 @@ public final class InputPromptControlStyle extends AbstractEnumerator
     public static final int RADIO_BUTTON = 4;
 
     /**
-     * The '<em><b>Text Field</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #TEXT_FIELD
-     * @generated
-     * @ordered
-     */
-    public static final InputPromptControlStyle TEXT_FIELD_LITERAL = new InputPromptControlStyle(
-            TEXT_FIELD, "TextField", "TextField" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Selectable List</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST
-     * @generated
-     * @ordered
-     */
-    public static final InputPromptControlStyle SELECTABLE_LIST_LITERAL = new InputPromptControlStyle(
-            SELECTABLE_LIST, "SelectableList", "SelectableList" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Selectable List With Text Field</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #SELECTABLE_LIST_WITH_TEXT_FIELD
-     * @generated
-     * @ordered
-     */
-    public static final InputPromptControlStyle SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL = new InputPromptControlStyle(
-            SELECTABLE_LIST_WITH_TEXT_FIELD,
-            "SelectableListWithTextField", "SelectableListWithTextField" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Check Box</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #CHECK_BOX
-     * @generated
-     * @ordered
-     */
-    public static final InputPromptControlStyle CHECK_BOX_LITERAL = new InputPromptControlStyle(
-            CHECK_BOX, "CheckBox", "CheckBox" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
-     * The '<em><b>Radio Button</b></em>' literal object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #RADIO_BUTTON
-     * @generated
-     * @ordered
-     */
-    public static final InputPromptControlStyle RADIO_BUTTON_LITERAL = new InputPromptControlStyle(
-            RADIO_BUTTON, "RadioButton", "RadioButton" ); //$NON-NLS-1$ //$NON-NLS-2$
-
-    /**
      * An array of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -170,8 +159,8 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList( Arrays
-            .asList( VALUES_ARRAY ) );
+    public static final List<InputPromptControlStyle> VALUES = Collections
+            .unmodifiableList( Arrays.asList( VALUES_ARRAY ) );
 
     /**
      * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified literal value.
@@ -236,6 +225,27 @@ public final class InputPromptControlStyle extends AbstractEnumerator
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final int value;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String name;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private final String literal;
+
+    /**
      * Only this class can construct instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -243,7 +253,50 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      */
     private InputPromptControlStyle( int value, String name, String literal )
     {
-        super( value, name, literal );
+        this.value = value;
+        this.name = name;
+        this.literal = literal;
     }
 
-} //InputPromptControlStyle
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public int getValue()
+    {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLiteral()
+    {
+        return literal;
+    }
+
+    /**
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString()
+    {
+        return literal;
+    }
+}

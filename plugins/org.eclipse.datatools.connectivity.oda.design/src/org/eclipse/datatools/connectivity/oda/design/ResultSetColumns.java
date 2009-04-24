@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetColumns.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: ResultSetColumns.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -45,7 +45,7 @@ public interface ResultSetColumns extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Result Column Definitions</b></em>' containment reference list.
@@ -54,10 +54,10 @@ public interface ResultSetColumns extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>Result Column Definitions</em>' containment reference list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResultSetColumns_ResultColumnDefinitions()
-     * @model type="org.eclipse.datatools.connectivity.oda.design.ColumnDefinition" containment="true" required="true"
+     * @model containment="true" required="true"
      *        extendedMetaData="kind='element' name='resultColumnDefinitions' namespace='##targetNamespace'"
      * @generated
      */
-    EList getResultColumnDefinitions();
+    EList<ColumnDefinition> getResultColumnDefinitions();
 
 } // ResultSetColumns

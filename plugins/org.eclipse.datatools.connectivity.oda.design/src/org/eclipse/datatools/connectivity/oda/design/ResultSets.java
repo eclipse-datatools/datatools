@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSets.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
+ * $Id: ResultSets.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -46,7 +46,7 @@ public interface ResultSets extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Finds and returns a named result set definition that
@@ -89,11 +89,11 @@ public interface ResultSets extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>Result Set Definitions</em>' containment reference list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResultSets_ResultSetDefinitions()
-     * @model type="org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition" containment="true" required="true"
+     * @model containment="true" required="true"
      *        extendedMetaData="kind='element' name='resultSetDefinitions' namespace='##targetNamespace'"
      * @generated
      */
-    EList getResultSetDefinitions();
+    EList<ResultSetDefinition> getResultSetDefinitions();
 
     /**
      * Returns the value of the '<em><b>Derived Meta Data</b></em>' attribute.
@@ -108,7 +108,7 @@ public interface ResultSets extends EObject
      * @see #unsetDerivedMetaData()
      * @see #setDerivedMetaData(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResultSets_DerivedMetaData()
-     * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='attribute' name='derivedMetaData'"
      * @generated
      */

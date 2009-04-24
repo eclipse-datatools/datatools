@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinitionImpl.java,v 1.4 2007/09/07 04:52:38 lchan Exp $
+ * $Id: ParameterDefinitionImpl.java,v 1.5 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -57,7 +57,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getInOutMode() <em>In Out Mode</em>}' attribute.
@@ -86,7 +86,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_inOutModeESet = false;
+    protected boolean m_inOutModeESet;
 
     /**
      * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
@@ -96,7 +96,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DataElementAttributes m_attributes = null;
+    protected DataElementAttributes m_attributes;
 
     /**
      * The cached value of the '{@link #getInputAttributes() <em>Input Attributes</em>}' containment reference.
@@ -106,7 +106,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected InputParameterAttributes m_inputAttributes = null;
+    protected InputParameterAttributes m_inputAttributes;
 
     /**
      * The cached value of the '{@link #getOutputUsageHints() <em>Output Usage Hints</em>}' containment reference.
@@ -116,7 +116,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected OutputElementAttributes m_outputUsageHints = null;
+    protected OutputElementAttributes m_outputUsageHints;
 
     /**
      * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference.
@@ -126,7 +126,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected ParameterFields m_fields = null;
+    protected ParameterFields m_fields;
 
     /**
      * <!-- begin-user-doc -->
@@ -143,6 +143,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.PARAMETER_DEFINITION;
@@ -189,8 +190,8 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
         if( getDefaultValueCount() == 0 )
             return null;
 
-        Object firstValue = getDefaultValues().getValues().get(0);
-        return ( firstValue != null ) ? firstValue.toString() : null;
+        Object firstValue = getDefaultValues().getValues().get( 0 );
+        return (firstValue != null) ? firstValue.toString() : null;
     }
 
     /* (non-Javadoc)
@@ -203,7 +204,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
             return; // ignore specified value
 
         InputElementAttributes inputAttributes = getEditableInputElementAttributes();
-        assert( inputAttributes != null );
+        assert (inputAttributes != null);
 
         // use deprecated method that takes care of migrating value to a collection
         inputAttributes.setDefaultScalarValue( value );
@@ -231,7 +232,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
     public int getDefaultValueCount()
     {
         StaticValues defaultValues = getDefaultValues();
-        return ( defaultValues == null ) ? 0 : defaultValues.count();
+        return (defaultValues == null) ? 0 : defaultValues.count();
     }
 
     /* (non-Javadoc)
@@ -601,6 +602,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -623,6 +625,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
@@ -646,6 +649,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
@@ -674,6 +678,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
@@ -702,6 +707,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -725,6 +731,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )
