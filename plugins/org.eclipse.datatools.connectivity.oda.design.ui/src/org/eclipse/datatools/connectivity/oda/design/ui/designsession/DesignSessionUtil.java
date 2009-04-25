@@ -44,7 +44,7 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Desi
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
-import org.eclipse.datatools.connectivity.oda.profile.OdaProfileFactory;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -355,7 +355,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         
         if( dataSourceDesign.hasLinkToProfile() )
         {
-            // remove the link from a copy of the design
+            // clear the linked profile properties from the design used in export
             dataSourceDesign = (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
             dataSourceDesign.setLinkedProfileName( null );
             dataSourceDesign.setLinkedProfileStoreFile( null );

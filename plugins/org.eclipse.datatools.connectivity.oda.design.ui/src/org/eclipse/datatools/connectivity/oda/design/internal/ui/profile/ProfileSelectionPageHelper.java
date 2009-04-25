@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,6 @@ import java.util.TreeSet;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.ICategory;
-import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
@@ -33,7 +32,6 @@ import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer.Filter;
-import org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -375,33 +373,6 @@ class ProfileSelectionPageHelper
                     ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
                     if( dlg != null && dlg.getFile() != null )
                         setConnProfilePathControlText( dlg.getFile().getPath(), false );                            
-                }
-            }
-            
-            final class CreateProfileStoreAction extends ExportProfileViewAction
-            {
-                private ProfileStoreCreationDialog m_dialog;
-                
-                CreateProfileStoreAction( Shell dialogShell )
-                {
-                    super();
-                    init( dialogShell );
-                }
-
-                /* (non-Javadoc)
-                 * @see org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction#createExportProfilesDialog(org.eclipse.swt.widgets.Shell)
-                 * @override base method
-                 */
-                protected ExportProfilesDialog createExportProfilesDialog( Shell parentShell )
-                {
-                    m_dialog = new ProfileStoreCreationDialog( parentShell );
-                    m_dialog.setBlockOnOpen( true );
-                    return m_dialog;
-                }
-                
-                ProfileStoreCreationDialog getProfileStoreCreationDialog()
-                {
-                    return m_dialog;
                 }
             }
         } );

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,17 +27,22 @@ import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.CreateProfileStoreAction;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionWizard;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionWizardPage;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileStoreCreationDialog;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyPage;
 
 /**
@@ -205,31 +210,37 @@ public class DataSourceDesignSessionBase
         }
     }
 
-    protected void initEditDesign( DesignSessionRequest request,
-                                    DataSourceEditorPage editorPage )
-        throws OdaException
+    protected void initEditDesign( DesignSessionRequest request )
     {
         m_inCreateMode = false;
-        if( editorPage == null )
-            editorPage = getExtendedEditorPage();
         
         // create a top-level OdaDesignSession with given request
         OdaDesignSession odaSession = 
             DesignFactory.eINSTANCE.createOdaDesignSession();
         odaSession.setRequest( request );
+
+        m_designSession = odaSession;   // hold on till finish editing               
+    }
+    
+    protected void initEditDesign( DesignSessionRequest request,
+                                    DataSourceEditorPage editorPage )
+        throws OdaException
+    {
+        // initialize design session
+        initEditDesign( request );
         
         // Update the editor page's property values with those found
         // in the given request's data source design; 
         // also includes any additional state specified in
         // the design session request
-        editorPage.initEditSession( odaSession );
+        if( editorPage == null )
+            editorPage = getExtendedEditorPage();
+        editorPage.initEditSession( m_designSession );
 
         if( m_editorPage != editorPage )
         {
             m_editorPage = editorPage;
         }
-
-        m_designSession = odaSession;   // hold on till finish editing       
         
         // initialize profile selection editor page, just in case it gets used;
         // getter expects m_designSession is already initialized
@@ -701,7 +712,70 @@ public class DataSourceDesignSessionBase
         
         return newDataSourceDesign;
     }
-    
+ 
+    /**
+     * Converts the data source design, in the specified DesignSessionRequest,
+     * to export its connection properties to a new connection profile instance, and links to it.
+     * @param request   a design session request, must contain
+     *                  a valid data source design to convert from
+     * @param promptCreateProfileStore  indicates whether to prompt users to
+     *                  create a separate connection profile store
+     * @param parentShell   the parent shell for the UI dialog to create profile store;
+     *                  must not be null if promptCreateProfileStore is true
+     * @return  the completed design session containing a
+     *          session response with the converted data source design
+     * @throws OdaException if the conversion task failed
+     */
+    protected OdaDesignSession convertDesignToProfile( 
+            DesignSessionRequest request, boolean promptCreateProfileStore, Shell parentShell )
+        throws OdaException
+    {
+        // first initialize design session
+        initEditDesign( request );
+        
+        // get a copy of the request data source design to convert
+        DataSourceDesign editDataSourceDesign =
+            DesignerUtil.getAdaptableDataSourceDesign( m_designSession ).getDataSourceDesign();
+        
+        // create a new connection profile in default profile store file 
+        // with the design's connection properties
+        IConnectionProfile exportedProfile = 
+            DesignSessionUtil.createProfile( editDataSourceDesign );
+ 
+        // if the prompt indicator is set with a parent shell, open create profile store dialog 
+        File linkedProfileStoreFile = null;
+        if( promptCreateProfileStore && parentShell != null )
+        {
+            CreateProfileStoreAction createAction = new CreateProfileStoreAction( parentShell );
+            
+            // pre-select the exported profile to be included in the new profile store
+            IConnectionProfile profileElement = ( exportedProfile instanceof OdaConnectionProfile ) ?
+                    ((OdaConnectionProfile)exportedProfile).getWrappedProfile() : exportedProfile;
+            createAction.setPreSelectedProfile( profileElement );
+            
+            createAction.run();
+            if( createAction.isCompleted() )
+            {
+                // copy the newly created profile store file path
+                ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
+                if( dlg != null )
+                    linkedProfileStoreFile = dlg.getFile();                            
+            }
+        }
+
+        // if no user-defined profile store path, use the default profile store file 
+        if( linkedProfileStoreFile == null )
+        {
+            linkedProfileStoreFile = OdaProfileFactory.defaultProfileStoreFile();
+        }
+
+        // link the exported profile in data source design
+        editDataSourceDesign.setLinkedProfileName( exportedProfile.getName() );
+        editDataSourceDesign.setLinkedProfileStoreFile( linkedProfileStoreFile );
+
+        return setDesignSessionResponse( m_designSession, editDataSourceDesign, null );        
+    }
+
     /**
      * Creates a completed design session containing the
      * specified new data source design within the session response.

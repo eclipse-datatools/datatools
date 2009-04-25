@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
@@ -29,6 +28,7 @@ import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.oda.profile.provider.ProfilePropertyProviderImpl;
 
 /**
@@ -132,9 +132,7 @@ public class OdaProfileExplorer
             synchronized( this )
             {
                 if( m_defaultProfileStoreFile == null )
-                    m_defaultProfileStoreFile = 
-                        ConnectionProfileMgmt.getStorageLocation().append( 
-                            ConnectionProfileMgmt.FILENAME ).toFile();
+                    m_defaultProfileStoreFile = OdaProfileFactory.defaultProfileStoreFile();
             }
         }
         return m_defaultProfileStoreFile;
@@ -340,20 +338,21 @@ public class OdaProfileExplorer
      * This has the side effect in which the added profile instance shows up 
      * in DSE automatically.
      */
+/*    
     private void addToProfileManagerCache( IConnectionProfile profile )
         throws OdaException
     {
         try
         {
             ProfileManager.getInstance().addProfile( profile, 
-                                true /*replaceExisting*/ );
+                                true );
         }
         catch( ConnectionProfileException ex )
         {
             throw new OdaException( ex );
         }        
     }
-    
+*/    
     /**
      * Returns the profile properties with values collected
      * in a connection profile instance.

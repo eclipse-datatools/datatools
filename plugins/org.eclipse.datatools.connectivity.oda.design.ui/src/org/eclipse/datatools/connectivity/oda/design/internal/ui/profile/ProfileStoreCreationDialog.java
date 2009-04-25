@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.filter.NewProfileAction;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -36,6 +37,9 @@ import org.eclipse.swt.widgets.Text;
 
 public class ProfileStoreCreationDialog extends ExportProfilesDialog
 {
+    private CheckboxTableViewer m_profilesViewer;
+    private IConnectionProfile m_preSelectProfile;
+    
 	public ProfileStoreCreationDialog( Shell parentShell )
 	{
 		super( parentShell );
@@ -69,7 +73,8 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 			group.setText( Messages.profileStoreCreationDialog_grouptext ); 
 
 			// profiles selection viewer
-			final CheckboxTableViewer profilesViewer = setupCheckboxTableViewer( group );
+			m_profilesViewer = setupCheckboxTableViewer( group );
+			setCheckedProfile();  // pre-select profile, if specified
 			
             // SelectAll button
 			{				
@@ -110,7 +115,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 						// Create a new connection profile
 						NewProfileAction newProfileAction = new NewProfileAction( getShell() );
 						newProfileAction.run();
-						profilesViewer.refresh();						
+						m_profilesViewer.refresh();						
 					}
 		        } );      
 			}			
@@ -153,6 +158,27 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 	    
         setupHelp( getShell() );
 		return container;
+	}
+	
+	/**
+	 * Specifies the connection profile element to pre-select in the dialog
+     * to get included in the new profile store by default.
+     * This method can be called before the dialog area is created.
+	 * @param profile  the profile element to pre-select in the dialog's profiles viewer; 
+	 *                 may be null to unset before the dialog area is created
+	 */
+	public void setPreSelectedProfile( IConnectionProfile profile )
+	{
+	    // hold on to profile to pre-select when the dialog area is created
+	    m_preSelectProfile = profile;
+	}
+	
+	private void setCheckedProfile()
+	{
+	    if( m_profilesViewer == null || m_preSelectProfile == null )
+	        return;
+	    
+	    m_profilesViewer.setChecked( m_preSelectProfile, true );
 	}
 	
 }

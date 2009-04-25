@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.io.File;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase;
@@ -25,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PropertyPage;
 
 /**
@@ -222,6 +224,46 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
                                 profileRef, null );
 
         return newSession.finishNewDesignFromProfile( newDataSourceName, profileRef );
+    }
+    
+    /**
+     * Converts the data source design, in the specified DesignSessionRequest,
+     * to export its connection properties to a new connection profile instance, and links to it.
+     * <br>The exported connection profile would persist in the default profile storage used
+     * by the DTP Data Source Explorer.
+     * In addition, caller may optionally trigger prompting users whether
+     * to copy the exported profile to a separate connection profile store file.
+     * @param request   a design session request, must contain
+     *                  a valid data source design to convert from
+     * @param promptCreateProfileStore  indicates whether to prompt users to
+     *                  create a separate connection profile store
+     * @param parentShell   the parent shell for the UI dialog to create profile store;
+     *                  must not be null if promptCreateProfileStore is true
+     * @return  the completed design session containing a
+     *          session response with the converted data source design
+     * @throws OdaException if the conversion task failed; 
+     *          if the data source design in the specified request is already linked to 
+     *          a connection profile, the cause of thrown exception is an IllegalArgumentException 
+     */
+    public static OdaDesignSession convertDesignToLinkedProfile( 
+            DesignSessionRequest request, boolean promptCreateProfileStore, Shell parentShell )
+        throws OdaException
+    {
+        // validate the specified request
+        String odaDataSourceId = DesignSessionUtil.validateRequestSession( request );
+
+        DataSourceDesign dataSourceDesign = request.getDataSourceDesign();
+        if( dataSourceDesign.hasLinkToProfile() )
+        {
+            OdaException ex = new OdaException( Messages.bind( Messages.designSession_alreadyHasLinkedProfile,
+                                        dataSourceDesign.getName() ));
+            ex.initCause( new IllegalArgumentException() );
+            throw ex;
+        }
+               
+        // proceed with instantiating a design session to handle the conversion
+        DataSourceDesignSession newSession = new DataSourceDesignSession( odaDataSourceId );
+        return newSession.convertDesignToProfile( request, promptCreateProfileStore, parentShell );
     }
     
     /** Not allowed to instantiate the class directly;
