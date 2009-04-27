@@ -1,3 +1,5 @@
+#
+#************************************************************************
 # Copyright (c) 2006, 2009 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
@@ -21,6 +23,7 @@ wizard_dataSource_defaultTitle=새 데이터 소스
 wizard_missingDataSourceId=연결 프로파일 속성에서 ODA 데이터 소스 ID가 누락되었습니다.
 wizard_invalidManifest=oda.design.ui.dataSource 확장의 플러그인 Manifest 컨텐츠가 올바르지 않습니다.
 page_defaultDataSourceTitle=사용자 정의 데이터 소스 특성
+designSession_alreadyHasLinkedProfile=The data source ({0}) has already externalized its properties in a connection profile.  It cannot be re-exported.
 designSession_flushFailed=현재 데이터 집합 디자인 세션을 플러시할 수 없습니다.
 designSession_invalidArgument=디자인 세션 메소드에 올바르지 않은 인수가 지정되었습니다.
 designSession_invalidEditApiCall=잘못된 디자인 세션 API에는 디자인 편집이 필요합니다.

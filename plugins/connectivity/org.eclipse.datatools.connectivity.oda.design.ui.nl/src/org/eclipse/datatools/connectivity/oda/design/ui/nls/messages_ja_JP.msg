@@ -1,3 +1,5 @@
+#
+#************************************************************************
 # Copyright (c) 2006, 2009 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
@@ -21,6 +23,7 @@ wizard_dataSource_defaultTitle=新規データ・ソース
 wizard_missingDataSourceId=接続プロファイル属性の ODA データ・ソース ID がありません。
 wizard_invalidManifest=oda.design.ui.dataSource 拡張の無効なプラグイン・マニフェスト・コンテンツ。
 page_defaultDataSourceTitle=カスタム・データ・ソース・プロパティー
+designSession_alreadyHasLinkedProfile=The data source ({0}) has already externalized its properties in a connection profile.  It cannot be re-exported.
 designSession_flushFailed=現在のデータセットのデザインセッションをフラッシュできません。
 designSession_invalidArgument=デザイン・セッション・メソッドで無効な引数が指定されました。
 designSession_invalidEditApiCall=デザインを編集するデザインセッションの API 呼び出しが無効です。

@@ -1,3 +1,5 @@
+#
+#************************************************************************
 # Copyright (c) 2006, 2009 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
@@ -21,6 +23,7 @@ wizard_dataSource_defaultTitle=Nouvelle source de données
 wizard_missingDataSourceId=ID de source de données ODA manquante dans l'attribut Profil de connexion.
 wizard_invalidManifest=Contenu du manifeste de plug-in incorrect dans l'extension oda.design.ui.dataSource.
 page_defaultDataSourceTitle=Propriétés de la source de données personnalisée
+designSession_alreadyHasLinkedProfile=The data source ({0}) has already externalized its properties in a connection profile.  It cannot be re-exported.
 designSession_flushFailed=Impossible de vider la session de conception de la requête du jeu de données actuelles
 designSession_invalidArgument=Argument incorrect spécifié dans la méthode de la session de conception.
 designSession_invalidEditApiCall=Appel API de session de conception non valide pour la modification du modèle.
