@@ -96,7 +96,7 @@ CPVersionPropertyPage.button.updateVersion=연결하고 버전 정보 업데이트
 CPVersionPropertyPage.label.versionUnavailable=이 프로파일에 버전 정보를 사용할 수 없습니다.
 CPVersionPropertyPage.label.techVersions=이 서버에 사용할 수 있는 기술은 다음과 같습니다.
 ConnectionProfileSummaryPage.button.testConnection=연결 테스트(&T)
-CommonLabelProviderBase.label.version=v.
+CommonLabelProviderBase.label.version={0} ({1} v. {2}) 
 CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=작업 영역 리포지토리(로컬)
 

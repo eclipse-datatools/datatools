@@ -96,7 +96,7 @@ CPVersionPropertyPage.button.updateVersion=接続してバージョン情報を更新
 CPVersionPropertyPage.label.versionUnavailable=このプロファイルのバージョン情報が使用できません。
 CPVersionPropertyPage.label.techVersions=このサーバーでは以下のテクノロジーが使用可能です\:
 ConnectionProfileSummaryPage.button.testConnection=接続のテスト(&T)
-CommonLabelProviderBase.label.version=v.
+CommonLabelProviderBase.label.version={0} ({1} v. {2}) 
 CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=ワークスペースリポジトリ (ローカル)
 

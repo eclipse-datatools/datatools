@@ -96,7 +96,7 @@ CPVersionPropertyPage.button.updateVersion=Versionshinweise verbinden und aktual
 CPVersionPropertyPage.label.versionUnavailable=Die Versionsinformationen sind für dieses Profil nicht verfügbar.
 CPVersionPropertyPage.label.techVersions=Folgende Technologien sind auf diesem Server verfügbar\:
 ConnectionProfileSummaryPage.button.testConnection=Verbindung &testen
-CommonLabelProviderBase.label.version=v.
+CommonLabelProviderBase.label.version={0} ({1} v. {2}) 
 CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=Arbeitsplatz-Repository (lokal)
 
