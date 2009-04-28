@@ -3,4 +3,4 @@ plugin@org.eclipse.datatools.modelbase.sql.edit=v200902180845,:pserver:anonymous
 plugin@org.eclipse.datatools.modelbase.sql.query.edit=v200903030815,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query.edit
 plugin@org.eclipse.datatools.modelbase.sql.query=v200902180845,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query
 plugin@org.eclipse.datatools.modelbase.sql.xml.query=v200902180845,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.xml.query
-plugin@org.eclipse.datatools.modelbase.sql=v200904280150,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql
+plugin@org.eclipse.datatools.modelbase.sql=v200904281302,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql
