@@ -1,12 +1,9 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
+ * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Sybase, Inc. - initial API and implementation
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui;
 
@@ -24,14 +21,14 @@ public class PreferenceConstants
     public static final String PAGE_RESULT                             = "org.eclipse.datatools.sqltools.result.displayOption";
     public static final String PAGE_EXPORT                             = "org.eclipse.datatools.sqltools.result.exportFormat";
     public static final String PAGE_HISTORY                            = "org.eclipse.datatools.sqltools.result.resultHistory";
-    public static final String PAGE_RESULTSETVIEWER					   = "org.eclipse.datatools.sqltools.result.resultSetViewerPreference";
-    
+    public static final String PAGE_RESULTSETVIEWER                    = "org.eclipse.datatools.sqltools.result.resultSetViewerPreference";
+
     /* SQL Results View display options */
     public static final String SQL_RESULTS_VIEW_MAX_ROW_COUNT          = ResultsConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT;
     public static final String SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT  = ResultsConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT;
-    
-    public static final String PREFERENCE_PREFIX					   = ResultsViewPlugin.getPluginId();
-    
+
+    public static final String PREFERENCE_PREFIX                       = ResultsViewPlugin.getPluginId();
+
     // 1: single window 2: multi-windows
     public static final String SQL_RESULTS_VIEW_DISPLAY_WINDOW         = PREFERENCE_PREFIX
                                                                                + ".preferences.display.displaywindow";
@@ -54,7 +51,7 @@ public class PreferenceConstants
                                                                                + ".preferences.display.tablesnumber.limitation";
     public static final String VERTICAL_LAYOUT_RESULTS_VIEW            = PREFERENCE_PREFIX
                                                                                + ".preferences.results.vertical";
-    
+
     /* Export format options */
     public static final String EXPORT_FORMAT_ADD_XML_HEADER            = PREFERENCE_PREFIX
                                                                                + ".preferences.exportformat.addxmlheader";
@@ -98,8 +95,8 @@ public class PreferenceConstants
                                                                                + ".ResultsFilterDialog.profileFilter.change";
     public static final String PROFILE_FILTERS_FILTERED_PROFILES       = PREFERENCE_PREFIX
                                                                                + ".ResultsFilterDialog.filtered.profiles";
-    
-    /* Result history display options */ 
+
+    /* Result history display options */
     public static final String RESULT_HISTORY_STATUS_COLUMN            = PREFERENCE_PREFIX
                                                                                + ".preferences.resulthistory.status";
     public static final String RESULT_HISTORY_OPER_COLUMN              = PREFERENCE_PREFIX
@@ -116,9 +113,11 @@ public class PreferenceConstants
                                                                                + ".preferences.resulthistory.profile";
     public static final String RESULT_HISTORY_SAVE_HISTORY             = PREFERENCE_PREFIX
                                                                                + ".preferences.resulthistory.autosave";
-    
+    public static final String RESULT_HISTORY_CLEAN_HISTORY            = PREFERENCE_PREFIX
+                                                                               + ".preferences.resulthistory.autoclean";
+
     /* Result Set viewer options */
-    public static final String RESULT_SET_VIEWER_VIEWERNAME 		   = PREFERENCE_PREFIX
-    																		   + ".preferences.resultsetviewer.viewername";
+    public static final String RESULT_SET_VIEWER_VIEWERNAME            = PREFERENCE_PREFIX
+                                                                               + ".preferences.resultsetviewer.viewername";
 
 }

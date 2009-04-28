@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
@@ -178,18 +177,55 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
                 }
                 return Status.CANCEL_STATUS;
             }
-            boolean success = handleSuccess(moreResult);
+            
+            // Create two threads, one is for monitoring whether user cancel execution, the other is to execute handleSuccess() method. 
+            MonitorRunnable monitorRunnable = new MonitorRunnable();
+            HandleSuccessJob hsJob = new HandleSuccessJob(moreResult, monitorRunnable);
+            
+            Thread monitorThread = new Thread(monitorRunnable);
+            hsJob.schedule();
+            monitorThread.start();
+
+            // Suspend current thread before the method handleSuccess is completed and the monitor thread terminates the execution or ends normally.
+            try
+            {
+                hsJob.join();
+                monitorThread.join();
+            }
+            catch (InterruptedException e)
+            {
+                EditorCorePlugin.getDefault().log(e);
+            }
+            
+            if(monitorRunnable._returnStatus != null)
+            {
+                return monitorRunnable._returnStatus;
+            }
+            
+            boolean success  = hsJob._moreResult;
+            
+            //Update status in main thread to avoid deadlock.
             if (success)
             {
+                synchronized (getOperationCommand())
+                {
+                    resultsViewAPI.updateStatus(getOperationCommand(), OperationCommand.STATUS_SUCCEEDED);
+                }
                 monitor.worked(TASK_ITERATE);
             }
             else
             {
+                synchronized (getOperationCommand())
+                {
+                    resultsViewAPI.updateStatus(getOperationCommand(), OperationCommand.STATUS_FAILED);
+                }
                 return Status.CANCEL_STATUS;
             }
         }
         finally
         {
+            //save the results and parameters.
+            resultsViewAPI.saveDetailResults(_operationCommand);
             handleEnd(connection, _stmt);
             monitor.done();
         }
@@ -197,6 +233,75 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
         return Status.OK_STATUS;
     }
 
+    
+    /**
+     * The class is a thread for monitoring whether the HandleSuccessRunnable is 
+     * canceled by user via GUI. If it's canceled via ProgressMonitor, the thread 
+     * would terminate the execution and return cancel status.
+     *  
+     * @author juewu
+     */
+    private class MonitorRunnable implements Runnable
+    {
+        // Flag expresses whether this thread should be end.
+        volatile boolean _end = true;
+        IStatus _returnStatus = null;
+        
+        public void run()
+        {
+            if(_monitor == null)
+            {
+                return;
+            }
+            
+            while(_end){
+                if (_monitor.isCanceled() || (_parentMonitor != null && _parentMonitor.isCanceled()))
+                {   
+                    getTerminateHandler().run();
+                    _returnStatus = Status.CANCEL_STATUS;
+                    return;
+                }
+                try
+                {
+                    Thread.sleep(1000);
+                }
+                catch (InterruptedException e)
+                {
+                    EditorCorePlugin.getDefault().log(e);
+                }
+            }
+        }
+    }
+    
+    /**
+     * The class is for execute method <code>protected boolean handleSuccess(boolean moreResult)</code>
+     * in a job. So, user could terminate this job execution when it was stepping.
+     * 
+     * @author juewu
+     */
+    private class HandleSuccessJob extends Job
+    {
+        boolean _moreResult;
+        MonitorRunnable _monitorThread;
+        
+        HandleSuccessJob(boolean moreResult, MonitorRunnable monitorThread)
+        {
+            super(Messages.ResultSupportRunnable_handseccess_name);
+            _moreResult = moreResult;
+            _monitorThread = monitorThread;
+        }
+        
+        protected IStatus run(IProgressMonitor monitor)
+        {
+            monitor.beginTask(Messages.ResultSupportRunnable_handseccess_task, TASK_TOTAL);
+            monitor.worked(TASK_STATEMENT);
+            _moreResult = handleSuccess(_moreResult);
+            monitor.worked(TASK_RUN + TASK_ITERATE);
+            _monitorThread._end = false;
+            return Status.OK_STATUS;
+        }
+    }
+    
     protected void initConnection(Connection connection)
     {
         //obtain the killer before execution to ensure we can get the connection id
@@ -458,6 +563,10 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
                     }
                     if (updateCount >= 0 || rs != null)
                     {
+                        /* 
+                         * Notes: the code of the following line would step thread when the result set is too large.
+                         * This maybe has relations with the implementation of database driver.
+                         */ 
                         moreResult = cstmt.getMoreResults();
                         rs = null;
                         continue;

@@ -19,5 +19,5 @@ public class SQLFilePreferenceConstants {
 
 	//whether to show error dialog when failed to connect
 	public static final String FAIL_TO_CONNECT_DATABASE                = "sqlfile.fail.to.connect.database";
-
+	public static final String DEFAULT_OPEN							   = SqlscrapbookPlugin.PLUGIN_ID + "preference.defaultopen";
 }

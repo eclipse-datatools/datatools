@@ -354,6 +354,7 @@ public class QueryOutputHelper
                 }
                 finally
                 {
+                    ResultsViewAPI.getInstance().saveDetailResults(getOutputItem());
                     if (stmt != null)
                         stmt.close();
                 }

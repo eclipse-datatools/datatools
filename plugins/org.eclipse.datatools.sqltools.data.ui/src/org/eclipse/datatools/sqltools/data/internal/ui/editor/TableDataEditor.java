@@ -174,6 +174,9 @@ public class TableDataEditor extends EditorPart
     		displayException(Messages.getString("TableDataEditor.ErrorWhileSaving"), ex); //$NON-NLS-1$
     		monitor.setCanceled(true);
     	}
+    	finally {
+            ResultsViewAPI.getInstance().saveDetailResults(item);
+        }
     }
     
     protected OperationCommand initDbOutputItem()

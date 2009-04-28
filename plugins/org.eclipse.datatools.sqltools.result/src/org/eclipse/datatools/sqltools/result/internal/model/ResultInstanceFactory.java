@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.ResultConfiguration;
 import org.eclipse.datatools.sqltools.result.ResultSetObject;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
@@ -25,28 +26,6 @@ public class ResultInstanceFactory
 {
 	public static ResultInstanceFactory INSTANCE = new ResultInstanceFactory();
 	
-	private int maxRowCount = Integer.MAX_VALUE;
-	
-	private int maxDisplayRowCount = Integer.MAX_VALUE;
-	
-	public void setMaxRowCount(int maxRowCount) {
-		this.maxRowCount = maxRowCount;
-	}
-	
-	public int getMaxRowCount()
-	{
-		return this.maxRowCount;
-	}
-
-	public void setMaxDisplayRowCount(int maxDisplayRowCount) {
-		this.maxDisplayRowCount = maxDisplayRowCount;
-	}
-	
-	public int getMaxDisplayRowCount()
-	{
-		return this.maxDisplayRowCount;
-	}
-
 	private ResultInstanceFactory(){};
 	
     /**
@@ -97,9 +76,9 @@ public class ResultInstanceFactory
      */
     public IResultSetObject createResultSetObject(ResultSet resultset) throws SQLException
     {
-        IResultSetObject r = new ResultSetObject(resultset, maxRowCount, maxDisplayRowCount);
+        IResultSetObject r = new ResultSetObject(resultset, ResultConfiguration.getInstance().getMaxRowCount(), 
+                ResultConfiguration.getInstance().getMaxDisplayRowCount());
         return r;
     }
-
   
 }

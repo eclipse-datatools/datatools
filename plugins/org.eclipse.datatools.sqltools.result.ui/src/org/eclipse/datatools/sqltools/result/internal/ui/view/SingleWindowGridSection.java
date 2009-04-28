@@ -1,12 +1,9 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
+ * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Sybase, Inc. - initial API and implementation
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui.view;
 
@@ -59,21 +56,20 @@ public class SingleWindowGridSection extends SingleWindowModeSection
     private Text              _preText;
     private ResultItem        _preItem;
     private Table             _paramTable;
-    
+
     /**
      * The number of tables in single window mode is limited to prevent from crashing
      */
     private int               _tableNums;
     private int               _currentTableNum;
     private boolean           _endWarnTextCreated = false;
-    
+
     public SingleWindowGridSection(Composite composite, ResultsViewControl resultsViewControl)
     {
         super(composite, resultsViewControl);
         _parent = composite;
         IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
-        _tableNums = PreferenceUtil.getInt(store,
-                PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION,
+        _tableNums = PreferenceUtil.getInt(store, PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION,
                 resultsViewControl.getUsePreferences());
         _currentTableNum = 0;
     }
@@ -83,8 +79,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
         super(composite, instance, resultsViewControl);
         _parent = composite;
         IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
-        _tableNums = PreferenceUtil.getInt(store, 
-                PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION,
+        _tableNums = PreferenceUtil.getInt(store, PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION,
                 resultsViewControl.getUsePreferences());
         _currentTableNum = 0;
     }
@@ -92,7 +87,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
     public void createInitialControl(Composite composite)
     {
         super.createInitialControl(composite);
-        //create a scrolled composite in _composite
+        // create a scrolled composite in _composite
         _scrolledComp = new ScrolledComposite(_composite, SWT.V_SCROLL | SWT.H_SCROLL);
         _scrolledComp.setLayout(new FillLayout());
         _scrolledComp.setExpandHorizontal(true);
@@ -103,7 +98,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
 
         _comp = new Composite(_scrolledComp, SWT.NONE);
 
-        //set the content for this scrolled composite
+        // set the content for this scrolled composite
         _scrolledComp.setContent(_comp);
 
         GridLayout layout = new GridLayout();
@@ -135,18 +130,18 @@ public class SingleWindowGridSection extends SingleWindowModeSection
             return;
         }
         _displayedItems.add(item);
-        
+
         _messageCache.add(item);
-        
+
         super.onNewItemAppended(item, index);
     }
 
     private void createWidgetForItem(Composite composite, ResultItem item)
     {
-    	IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
-    	if(_currentTableNum >= _tableNums)
+        IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
+        if (_currentTableNum >= _tableNums)
         {
-            if(!_endWarnTextCreated)
+            if (!_endWarnTextCreated)
             {
                 _endWarnTextCreated = true;
                 Text warnText = new Text(composite, SWT.READ_ONLY | SWT.MULTI | SWT.WRAP);
@@ -156,12 +151,12 @@ public class SingleWindowGridSection extends SingleWindowModeSection
             }
             return;
         }
-        
+
         /**
          * try to display the continous messages in the same text widget
          */
         if (_preItem != null && _preItem.getResultType() != ResultItem.RESULT_SET
-        && item.getResultType() != ResultItem.RESULT_SET)
+                && item.getResultType() != ResultItem.RESULT_SET)
         {
             if (_preText != null)
             {
@@ -186,7 +181,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
             case ResultItem.STATUS_TEXT:
                 Text messageText = new Text(composite, SWT.MULTI);
 
-                //save the previous text widget
+                // save the previous text widget
                 _preText = messageText;
                 GridData gd = new GridData(GridData.FILL_HORIZONTAL);
                 messageText.setLayoutData(gd);
@@ -198,7 +193,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
                 {
                     Text updateCountText = new Text(composite, SWT.MULTI);
 
-                    //save the previous text widget
+                    // save the previous text widget
                     _preText = updateCountText;
                     gd = new GridData(GridData.FILL_HORIZONTAL);
                     updateCountText.setLayoutData(gd);
@@ -214,28 +209,27 @@ public class SingleWindowGridSection extends SingleWindowModeSection
                 {
                     _isResultHid = true;
                 }
-                //treat result set object and xml result
-                if(result instanceof XMLResultSetObject)
+                // treat result set object and xml result
+                if (result instanceof XMLResultSetObject)
                 {
                     createTextforResultSet(composite, result);
                 }
-                if(result instanceof ResultSetObject)
+                if (result instanceof ResultSetObject)
                 {
-                	// Check for external viewer extensions
-                	String viewerName = 
-                		store.getString(PreferenceConstants.RESULT_SET_VIEWER_VIEWERNAME);
-                	if (ResultSetViewerPreferencePage.DEFAULT_VIEWER.equalsIgnoreCase(viewerName))
-                	{
-                		createTableViewerForResultSet(composite, result);
-                	}
-                	else
-                	{
-                		createExternalTableViewerForResultSet(composite, result, viewerName);
-                	}               	              	
+                    // Check for external viewer extensions
+                    String viewerName = store.getString(PreferenceConstants.RESULT_SET_VIEWER_VIEWERNAME);
+                    if (ResultSetViewerPreferencePage.DEFAULT_VIEWER.equalsIgnoreCase(viewerName))
+                    {
+                        createTableViewerForResultSet(composite, result);
+                    }
+                    else
+                    {
+                        createExternalTableViewerForResultSet(composite, result, viewerName);
+                    }
                 }
                 else
                 {
-                    // to be extended                	
+                    // to be extended
                 }
                 break;
             default:
@@ -257,41 +251,40 @@ public class SingleWindowGridSection extends SingleWindowModeSection
     private void createTableViewerForResultSet(Composite composite, IResultSetObject result)
     {
         ResultSetViewer viewer = new ResultSetViewer(composite, SWT.FULL_SELECTION | SWT.MULTI, _resultInstance,
-            result, _displayRowNumber, _resultsViewControl);
+                result, _displayRowNumber, _resultsViewControl);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         int height = viewer.getTable().getHeaderHeight();
         int itemHeight = viewer.getTable().getItemHeight();
-        int itemCount = viewer.getTable().getItemCount() == 1?2:viewer.getTable().getItemCount();
+        int itemCount = viewer.getTable().getItemCount() == 1 ? 2 : viewer.getTable().getItemCount();
         height += (itemCount - 1) * itemHeight;
 
         gd.heightHint = height;
         viewer.getTable().setLayoutData(gd);
-    }    
-    
+    }
+
     /**
      * Creates the external viewer to display the result set object
+     * 
      * @param composite the parent composite
      * @param result the result set object
      * @param viewerName the external viewer name
      */
-    private void createExternalTableViewerForResultSet(Composite composite,
-    		IResultSetObject result, String viewerName)
+    private void createExternalTableViewerForResultSet(Composite composite, IResultSetObject result, String viewerName)
     {
-    	ResultSetViewerRegistryReader reader = ResultSetViewerRegistryReader.getInstance();
-    	ExternalResultSetViewerProvider provider = 
-    		reader.getResultSetViewerExecutable(viewerName);    	
-    	provider.configureViewer(composite, _resultInstance, result, _displayRowNumber, _resultsViewControl);
-    	
-    	GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-    	int height = provider.getViewer().getTable().getHeaderHeight();
+        ResultSetViewerRegistryReader reader = ResultSetViewerRegistryReader.getInstance();
+        ExternalResultSetViewerProvider provider = reader.getResultSetViewerExecutable(viewerName);
+        provider.configureViewer(composite, _resultInstance, result, _displayRowNumber, _resultsViewControl);
+
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        int height = provider.getViewer().getTable().getHeaderHeight();
         int itemHeight = provider.getViewer().getTable().getItemHeight();
-        int itemCount = provider.getViewer().getTable().getItemCount() == 
-        		1?2:provider.getViewer().getTable().getItemCount();
+        int itemCount = provider.getViewer().getTable().getItemCount() == 1 ? 2 : provider.getViewer().getTable()
+                .getItemCount();
         height += (itemCount - 1) * itemHeight;
 
         gd.heightHint = height;
-        provider.getViewer().getTable().setLayoutData(gd);    	
-    	
+        provider.getViewer().getTable().setLayoutData(gd);
+
     }
 
     /**
@@ -316,26 +309,26 @@ public class SingleWindowGridSection extends SingleWindowModeSection
             }
         }
         String s = buf.toString();
-        txt.setText(s);       
+        txt.setText(s);
 
-        //Register context menu for save or export result set
-        MenuManager mgr = new MenuManager();  
-        MenuManager saveMgr = new MenuManager(Messages.Save_name); 
+        // Register context menu for save or export result set
+        MenuManager mgr = new MenuManager();
+        MenuManager saveMgr = new MenuManager(Messages.Save_name);
         saveMgr.add(new SaveResultSetAction(txt.getShell(), result));
         saveMgr.add(new SaveAllResultSetsAction(txt.getShell(), _resultInstance));
-        
-        MenuManager exportMgr = new MenuManager(Messages.Export_name); 
+
+        MenuManager exportMgr = new MenuManager(Messages.Export_name);
         exportMgr.add(new ExportResultSetAction(txt.getShell(), result));
         exportMgr.add(new ExportAllResultSetsAction(txt.getShell(), _resultInstance));
-        
-        MenuManager printMgr = new MenuManager(Messages.Print_name); 
+
+        MenuManager printMgr = new MenuManager(Messages.Print_name);
         printMgr.add(new PrintResultSetAction(result, _parent));
         printMgr.add(new PrintResultSetAction(_resultInstance, _parent));
-        
+
         mgr.add(saveMgr);
         mgr.add(exportMgr);
         mgr.add(printMgr);
-        
+
         Menu menu = mgr.createContextMenu(txt);
         txt.setMenu(menu);
     }
@@ -344,28 +337,28 @@ public class SingleWindowGridSection extends SingleWindowModeSection
     {
         super.onInstanceFinished();
         // always display the parameters at the end
-        
-        if(_resultInstance.getParameters() == null)
+
+        if (_resultInstance.getParameters() == null)
         {
             return;
         }
-//      Don't show parameter in single window mode [2007-1-4]
-//        Text inout = new Text(_comp, SWT.MULTI | SWT.READ_ONLY);
-//        inout.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-//        inout.setText(Messages.SingleWindowGridSection_inout_params); 
-//        List params = getValidParamList(_resultInstance.getParameters());
-//        createTableForParameters(_comp);
-//        Iterator iter = params.iterator();
-//        while(iter.hasNext())
-//        {
-//            Parameter param = (Parameter)iter.next();
-//            TableItem item = new TableItem(_paramTable, SWT.NONE);
-//            item.setText(ColumnAlignedResultItem.PARAM_NAME, param.getParamName());
-//            item.setText(ColumnAlignedResultItem.PARAM_TYPE, param.getParamType());
-//            item.setText(ColumnAlignedResultItem.PARAM_DATA_TYPE, param.getParamDataType());
-//            item.setText(ColumnAlignedResultItem.PARAM_VALUE, param.getParamValue());
-//            item.setText(ColumnAlignedResultItem.PARAM_VALUE_OUT, param.getParamOutValue());
-//        }
+        // Don't show parameter in single window mode [2007-1-4]
+        // Text inout = new Text(_comp, SWT.MULTI | SWT.READ_ONLY);
+        // inout.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        // inout.setText(Messages.SingleWindowGridSection_inout_params);
+        // List params = getValidParamList(_resultInstance.getParameters());
+        // createTableForParameters(_comp);
+        // Iterator iter = params.iterator();
+        // while(iter.hasNext())
+        // {
+        // Parameter param = (Parameter)iter.next();
+        // TableItem item = new TableItem(_paramTable, SWT.NONE);
+        // item.setText(ColumnAlignedResultItem.PARAM_NAME, param.getParamName());
+        // item.setText(ColumnAlignedResultItem.PARAM_TYPE, param.getParamType());
+        // item.setText(ColumnAlignedResultItem.PARAM_DATA_TYPE, param.getParamDataType());
+        // item.setText(ColumnAlignedResultItem.PARAM_VALUE, param.getParamValue());
+        // item.setText(ColumnAlignedResultItem.PARAM_VALUE_OUT, param.getParamOutValue());
+        // }
         _comp.layout(true);
         _scrolledComp.setMinSize(_comp.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
@@ -380,19 +373,19 @@ public class SingleWindowGridSection extends SingleWindowModeSection
         _paramTable.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         TableColumn nameColumn = new TableColumn(_paramTable, SWT.NONE);
-        nameColumn.setText(Messages.MultipleTabsGridSection_parameter_name); 
+        nameColumn.setText(Messages.MultipleTabsGridSection_parameter_name);
 
         TableColumn typeColumn = new TableColumn(_paramTable, SWT.NONE);
-        typeColumn.setText(Messages.MultipleTabsGridSection_parameter_type); 
+        typeColumn.setText(Messages.MultipleTabsGridSection_parameter_type);
 
         TableColumn dataTypeColumn = new TableColumn(_paramTable, SWT.NONE);
-        dataTypeColumn.setText(Messages.MultipleTabsGridSection_parameter_datatype); 
+        dataTypeColumn.setText(Messages.MultipleTabsGridSection_parameter_datatype);
 
         TableColumn valueColumn = new TableColumn(_paramTable, SWT.NONE);
-        valueColumn.setText(Messages.MultipleTabsGridSection_value); 
+        valueColumn.setText(Messages.MultipleTabsGridSection_value);
 
         TableColumn outValueColumn = new TableColumn(_paramTable, SWT.NONE);
-        outValueColumn.setText(Messages.MultipleTabsGridSection_value_out); 
+        outValueColumn.setText(Messages.MultipleTabsGridSection_value_out);
 
         int defaultWidth = 0;
 
@@ -415,7 +408,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
         }
         _paramTable.pack();
     }
-    
+
     public void onInstanceReseted()
     {
         Control[] controls = _comp.getChildren();
@@ -425,20 +418,20 @@ public class SingleWindowGridSection extends SingleWindowModeSection
         }
     }
 
-	protected void outputToViewer(List outputList) 
-	{
-		ResultItem preItem = null;
-		List mergedList = getMergedOutputList(outputList);
-		for (Iterator iterator = mergedList.iterator(); iterator.hasNext();) 
-		{
-			ResultItem item = (ResultItem) iterator.next();
-			createWidgetForItem(_comp, item);
-		}
-		
-        if(!_endWarnTextCreated)
+    protected void outputToViewer(List outputList)
+    {
+        ResultItem preItem = null;
+        List mergedList = getMergedOutputList(outputList);
+        for (Iterator iterator = mergedList.iterator(); iterator.hasNext();)
+        {
+            ResultItem item = (ResultItem) iterator.next();
+            createWidgetForItem(_comp, item);
+        }
+
+        if (!_endWarnTextCreated)
         {
             _comp.layout(true);
             _scrolledComp.setMinSize(_comp.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         }
-	}
+    }
 }

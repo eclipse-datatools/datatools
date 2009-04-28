@@ -74,6 +74,7 @@
             <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
             <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
             <viewShortcut id="org.eclipse.ui.views.ContentOutline" />
+            <viewShortcut id="org.eclipse.ui.views.BookmarkView" />
                         
             <!-- Add Perspective shortcuts !-->
             <perspectiveShortcut id="ConfigPerspective" />
@@ -96,6 +97,16 @@
                 moveable="true"
                 relationship="stack"
                 relative="org.eclipse.datatools.sqltools.result.resultView"
+                showTitle="true"
+                standalone="false"
+                visible="true">
+          </view>
+          <view
+                closeable="true"
+                id="org.eclipse.ui.views.BookmarkView"
+                moveable="true"
+                relationship="stack"
+                relative="org.eclipse.datatools.sqltools.plan.planView"
                 showTitle="true"
                 standalone="false"
                 visible="true">

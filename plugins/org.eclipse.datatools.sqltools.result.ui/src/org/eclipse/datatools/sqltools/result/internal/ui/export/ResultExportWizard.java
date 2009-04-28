@@ -37,6 +37,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * The wizard to export result set(s) into an external file
@@ -163,7 +164,10 @@ public class ResultExportWizard extends Wizard implements IContextProvider
                         }
                         catch (final Exception e)
                         {
-                            getContainer().getShell().getDisplay().syncExec(new Runnable()
+                            Display display = getContainer() != null ? getContainer().getShell().getDisplay() :
+                                ResultsViewUIPlugin.getDefault().getWorkbench().getDisplay();
+                            
+                            display.syncExec(new Runnable()
                             {
                                 public void run()
                                 {
@@ -192,7 +196,10 @@ public class ResultExportWizard extends Wizard implements IContextProvider
                         }
                         catch (final Exception e)
                         {
-                            getContainer().getShell().getDisplay().syncExec(new Runnable()
+                            Display display = getContainer() != null ? getContainer().getShell().getDisplay() :
+                                ResultsViewUIPlugin.getDefault().getWorkbench().getDisplay();
+                            
+                            display.syncExec(new Runnable()
                             {
                                 public void run()
                                 {

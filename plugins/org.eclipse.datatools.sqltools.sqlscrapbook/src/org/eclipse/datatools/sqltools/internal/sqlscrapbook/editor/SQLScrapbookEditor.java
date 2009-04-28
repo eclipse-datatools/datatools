@@ -146,6 +146,7 @@ public class SQLScrapbookEditor extends SQLEditor {
 	
 	protected void initializeEditor() {
 		super.initializeEditor();
+		setRulerContextMenuId("#SQLScrapbookEditorRulerContext");
         setDocumentProvider(SqlscrapbookPlugin.getDefault().getSQLEditorDocumentProvider());
 	}
 

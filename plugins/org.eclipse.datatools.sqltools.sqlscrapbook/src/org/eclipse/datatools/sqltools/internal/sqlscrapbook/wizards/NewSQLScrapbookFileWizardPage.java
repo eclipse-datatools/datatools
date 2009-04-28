@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.resource.WizardNewFileCreationPage;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFilePreferenceConstants;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoGroup;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
@@ -77,11 +78,14 @@ public class NewSQLScrapbookFileWizardPage extends WizardNewFileCreationPage {
 			
 			try {
 				_group.finish();
-			    SQLScrapbookEditorInput editorInput = new SQLScrapbookEditorInput(file, _group.getConnectionInfo());
-			    
-                SqlscrapbookPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(editorInput,
-                SQLScrapbookEditor.EDITOR_ID);				
 				
+				if(SqlscrapbookPlugin.getDefault().getPreferenceStore().getBoolean(SQLFilePreferenceConstants.DEFAULT_OPEN))
+				{
+					SQLScrapbookEditorInput editorInput = new SQLScrapbookEditorInput(file, _group.getConnectionInfo());
+				    
+	                SqlscrapbookPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(editorInput,
+	                SQLScrapbookEditor.EDITOR_ID);	
+				}
 				return true;
 			} catch (PartInitException e) {
 				ExceptionHandler.handle(e, shell, SqlscrapbookPlugin.getResourceString("NewSQLScrapbookFileWizardPage.open_error.message"),  e.getMessage()); //$NON-NLS-1$

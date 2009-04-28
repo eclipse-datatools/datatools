@@ -94,6 +94,10 @@
             name="%datatools.preferences.sqlfile.name"
             id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.sqlfile"/>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFilePreferenceInitializer"/>
+   </extension>
    
    <extension
          point="org.eclipse.ui.commands">
@@ -216,7 +220,17 @@
                 tooltip="%open_sql_scrapbook_tooltip">
           </action>
        </objectContribution>
+       <viewerContribution
+            targetID="#SQLScrapbookEditorRulerContext"
+            id="org.eclipse.datatools.sqltools.sqleditor.ruler.context.actions">
+         <action
+               label="%AddBookmark.label"
+               helpContextId="org.eclipse.ui.bookmark_action_context"
+               class="org.eclipse.ui.texteditor.BookmarkRulerAction"
+               tooltip="%AddBookmark.tooltip"
+               menubarPath="additions"
+               id="org.eclipse.ui.texteditor.BookmarkRulerAction">
+         </action>
+      </viewerContribution>
     </extension> 
-    
-   
 </plugin>

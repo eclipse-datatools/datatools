@@ -25,6 +25,7 @@ import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
+import org.eclipse.datatools.sqltools.result.internal.utils.SerializationHelper;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
@@ -45,12 +46,12 @@ public class ResultInstance implements IResultInstance
     /* the manager */
     private IResultManager     _resultManager;
     /* the result item list */
-    private List               _resultList;
+    private transient volatile List               _results;
     /* initial status is STATUS_STARTED */
     private int                _status          = OperationCommand.STATUS_STARTED;
     /* handler to terminate this instance */
     transient private Runnable _terminateHandler;
-    private List               _parameters;
+    private transient volatile List               _parameters;
     private String             _date;
     private Date               _ddate;
 
@@ -64,16 +65,19 @@ public class ResultInstance implements IResultInstance
     // This flag is used to indicate that this ResultInstance object may have sub results.
     private boolean            _mayHaveSubResults = false;
     
+    private String             _fileName;
+    
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
         this._resultManager = resultmanager;
         this._operationCommand = command;
-        _resultList = new ArrayList(5);
         this._terminateHandler = terminateHandler;
         _ddate = new Date();
         _date = ResultsConstants.FORMATTER.format(_ddate);
         _execFrequency = 1;
         _subResults = new Vector(5);
+        
+        _fileName = String.valueOf(_ddate.getTime()) + hashCode();
     }
     
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler, IResultInstance parentResult)
@@ -134,10 +138,11 @@ public class ResultInstance implements IResultInstance
 
     public void moreResultItem(ResultItem item)
     {
-        _resultList.add(item);
+        checkList();
+        _results.add(item);
         if (_resultManager != null)
         {
-            _resultManager.fireAppended(this, item, _resultList.size() - 1);
+            _resultManager.fireAppended(this, item, _results.size() - 1);
         }
     }
 
@@ -159,12 +164,14 @@ public class ResultInstance implements IResultInstance
 
     public ResultItem getItem(int index)
     {
-        return (ResultItem) _resultList.get(index);
+        checkList();
+        return (ResultItem) _results.get(index);
     }
 
     public int getItemCount()
     {
-        return _resultList.size();
+        checkList();
+        return _results.size();
     }
 
     public void terminate()
@@ -202,7 +209,8 @@ public class ResultInstance implements IResultInstance
     
     public void dispose()
     {
-        for (int i = 0; i < _resultList.size(); i++)
+        checkList();
+        for (int i = 0; i < _results.size(); i++)
         {
             ResultItem ri = getItem(i);
             if (ri != null)
@@ -237,7 +245,7 @@ public class ResultInstance implements IResultInstance
 
     public void resetInstance()
     {
-        _resultList = new ArrayList(5);
+        _results = null;
         _parameters = null;
         _status = OperationCommand.STATUS_STARTED;
         if (_resultManager != null)
@@ -253,6 +261,7 @@ public class ResultInstance implements IResultInstance
 
     public void showParameters(List params)
     {
+        checkList();
         _parameters = params;
         if (_resultManager != null)
         {
@@ -267,6 +276,7 @@ public class ResultInstance implements IResultInstance
 
     public List getParameters()
     {
+        checkList();
         return _parameters;
     }
 
@@ -360,15 +370,6 @@ public class ResultInstance implements IResultInstance
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException
     {
         stream.defaultReadObject();
-        if (_subResults == null) 
-        {
-			_subResults = new Vector(5);
-		}
-        
-        if(_resultList == null)
-        {
-        	_resultList = new Vector(5);
-        }
     }
 
     public boolean isMayHaveSubResults()
@@ -379,5 +380,56 @@ public class ResultInstance implements IResultInstance
     public void setMayHaveSubResults(boolean mayHaveSubResults)
     {
         _mayHaveSubResults = mayHaveSubResults;
+    }
+    
+    /**
+     * check whether the list is null, if so, load the result list and parameter list from file.
+     */
+    private void checkList()
+    {
+        if(_results == null || _parameters == null)
+        {
+            Object[] objs = SerializationHelper.LoadObjects(_fileName);
+            
+            if(objs != null && objs.length == 2 && objs[0] instanceof List && objs[1] instanceof List)
+            {
+                _parameters = (List)objs[0];
+                _results = (List)objs[1];
+            }
+        }
+        else
+        {
+            return;
+        }
+        
+        if(_results == null)
+        {
+            _results = new ArrayList(5);
+        }
+        
+        if(_parameters == null)
+        {
+            _parameters = new ArrayList(5);
+        }
+    }
+    
+    public String getFileName() {
+        return _fileName;
+    }
+
+    public List getResults()
+    {
+        checkList();
+        return _results;
+    }
+    
+    /**
+     * When the detail information of this result instance is not needed,
+     * this method should be invoked to wait for reclaiming the detail information.
+     */
+    public void reclaimedTransientThings()
+    {
+        _results = null;
+        _parameters = null;
     }
 }

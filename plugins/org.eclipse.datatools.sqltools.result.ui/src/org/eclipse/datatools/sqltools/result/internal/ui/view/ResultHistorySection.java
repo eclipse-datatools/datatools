@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.ReExecutionRegistryReader;
 import org.eclipse.datatools.sqltools.result.internal.index.IResultHistoryIndex;
+import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.actions.ReExecuteAction;
@@ -420,6 +421,8 @@ public class ResultHistorySection
                 {
                     return;
                 }
+                final IResultInstance lastResultInstance = _resultsViewControl.getCurrentInstance();
+                
                 _resultsViewControl.setCurrentInstance((IResultInstance) obj);
                 BusyIndicator.showWhile(_detailParent.getDisplay(), new Runnable()
                 {
@@ -443,6 +446,12 @@ public class ResultHistorySection
                                 // must call layout method on _resultArea to force it layout
                                 _detailParent.layout(true);
                                 _resultsViewControl.getResultSection().showDetail((IResultInstance) obj);
+                                
+                                // set the result and parameter list of the last display to be null for reclaiming them, when selection is changed.
+                                if(lastResultInstance instanceof ResultInstance)
+                                {
+                                    ((ResultInstance) lastResultInstance).reclaimedTransientThings();
+                                }
                             }
                         });
                     }

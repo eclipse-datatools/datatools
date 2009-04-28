@@ -73,6 +73,7 @@ public class ResultsViewPreferenceInitializer extends AbstractPreferenceInitiali
         store.setDefault(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, true);
         
         store.setDefault(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY, true);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY, false);
         
         // Results filters        
         store.setDefault(PreferenceConstants.PROFILE_FILTERS_STATUS_SUCCESS, true);

@@ -20,6 +20,7 @@ public final class PreferenceMessages extends NLS
     public static String SQLFilePage_description;
     public static String SQLFilePage_default_connection;
     public static String SQLFilePage_override_profile;
+    public static String SQLFilePage_default_open;
     
     static 
     {

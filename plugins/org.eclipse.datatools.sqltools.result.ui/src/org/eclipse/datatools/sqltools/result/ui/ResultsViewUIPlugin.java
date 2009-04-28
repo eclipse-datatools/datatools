@@ -13,21 +13,23 @@ package org.eclipse.datatools.sqltools.result.ui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.datatools.sqltools.result.ClassVersionIncompatibleException;
+import org.eclipse.datatools.sqltools.result.ResultConfiguration;
 import org.eclipse.datatools.sqltools.result.ResultManager;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
-import org.eclipse.datatools.sqltools.result.internal.index.HistoryIndexListener;
-import org.eclipse.datatools.sqltools.result.internal.index.IResultHistoryIndex;
-import org.eclipse.datatools.sqltools.result.internal.index.ResultHistoryLuceneIndex;
-import org.eclipse.datatools.sqltools.result.internal.model.ResultInstanceFactory;
+import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsView;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -55,9 +57,7 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 	private ResourceBundle _bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private Color _disabledBakColor;
-
-	private static final String RESULTS_FILE_NAME = "results";
-
+	
 	// The shared instance
 	private static ResultsViewUIPlugin plugin;
 
@@ -78,32 +78,6 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		
-		ResultManager resultManager = (ResultManager)ResultsViewPlugin.getDefault().getResultManager();
-		if (getPreferenceStore().getBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY))
-        {
-            // De-serialize the result history
-            String resultsStr = getDefault().getStateLocation().append(RESULTS_FILE_NAME).toOSString();
-            File resultsFile = new File(resultsStr);
-            if (resultsFile.exists() && resultsFile.isFile())
-            {
-                try
-                {
-                    FileInputStream fis = new FileInputStream(resultsFile);
-                    ObjectInputStream ois = new ObjectInputStream(fis);
-                    Object obj = ois.readObject();
-                    if (obj instanceof IResultManager)
-                    {
-                        resultManager.initializeContent((IResultManager)obj);
-                    }
-                }
-                catch (Exception e)
-                {
-                    ILogger log = new StatusLogger(getDefault().getLog(), getPluginId(), _bundle);
-                    log.error("ResultsViewPlugin_load_history_error", e);
-                }
-            }
-        }
-
         getPreferenceStore().addPropertyChangeListener(
         		new IPropertyChangeListener()
         		{
@@ -113,12 +87,20 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 						Object newValue = event.getNewValue();
 						if(name.equals(ResultsConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT))
 						{
-							ResultInstanceFactory.INSTANCE.setMaxRowCount(((Integer)newValue).intValue());
+						    ResultConfiguration.getInstance().setMaxRowCount(((Integer)newValue).intValue());
 						}
 						if(name.equals(ResultsConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT))
 						{
-							ResultInstanceFactory.INSTANCE.setMaxDisplayRowCount(((Integer)newValue).intValue());
+						    ResultConfiguration.getInstance().setMaxDisplayRowCount(((Integer)newValue).intValue());
 						}
+						if(name.equals(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY))
+						{
+						    ResultConfiguration.getInstance().setAutoSave(((Boolean)newValue).booleanValue());
+						}
+						if(name.equals(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY))
+                        {
+						    ResultConfiguration.getInstance().setAutoClean(((Boolean)newValue).booleanValue());
+                        }
 					}
         			
         		});
@@ -133,34 +115,6 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 	 * )
 	 */
 	public void stop(BundleContext context) throws Exception {
-		ResultManager resultManager = (ResultManager)ResultsViewPlugin.getDefault().getResultManager();
-		if (getPreferenceStore().getBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY))
-        {
-            // Serialize the result history
-            if (resultManager != null)
-            {
-                String resultsStr = getDefault().getStateLocation().append(RESULTS_FILE_NAME).toOSString();
-                try
-                {
-                    File resultsFile = new File(resultsStr);
-                    if (resultsFile.exists())
-                    {
-                        resultsFile.delete();
-                    }
-                    resultsFile.createNewFile();
-
-                    FileOutputStream fos = new FileOutputStream(resultsFile);
-                    ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    oos.writeObject(resultManager);
-                }
-                catch (Exception e)
-                {
-                    ILogger log = new StatusLogger(getDefault().getLog(), PLUGIN_ID, _bundle);
-                    log.error("ResultsViewPlugin_persist_history_error", e);
-                }
-            }
-        }
-        
         if(_disabledBakColor != null)
         {
             _disabledBakColor.dispose();

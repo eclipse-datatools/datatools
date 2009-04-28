@@ -11,6 +11,7 @@
 package org.eclipse.datatools.sqltools.result;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.Vector;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.sqltools.result.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
+import org.eclipse.datatools.sqltools.result.internal.utils.SerializationHelper;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
@@ -35,6 +37,9 @@ public class ResultManager implements IResultManager
      */
     private static final long      serialVersionUID = -344302636933874156L;
     transient private ListenerList _listeners       = new ListenerList();
+    
+    private static transient String _ClassVersionID = SerializationHelper.getResultManagerVersion();
+    
     /**
      * The map between operation request and result instance. All results include sub-results are maintained in this map
      */
@@ -174,6 +179,19 @@ public class ResultManager implements IResultManager
         synchronized (_results)
         {
             removed = _results.remove(instance);
+            if(instance.getSubResults().size() > 0)
+            {
+                for(Iterator iter = instance.getSubResults().iterator(); iter.hasNext();)
+                {
+                    Object subri = iter.next();
+                    
+                    if(subri instanceof IResultInstance)
+                    {
+                        _operationInstanceMap.remove(((IResultInstance)subri).getOperationCommand());
+                        ((IResultInstance)subri).dispose();
+                    }
+                }
+            }
             _operationInstanceMap.remove(instance.getOperationCommand());
             instance.dispose();
         }
@@ -195,8 +213,21 @@ public class ResultManager implements IResultManager
                     if(instances[i] != null)
                     {
                         boolean succeeded = _results.remove(instances[i]);
-                        instances[i].dispose();
+                        if(instances[i].getSubResults().size() > 0)
+                        {
+                            for(Iterator iter = instances[i].getSubResults().iterator(); iter.hasNext();)
+                            {
+                                Object subri  = iter.next();
+                                
+                                if(subri instanceof IResultInstance)
+                                {
+                                    _operationInstanceMap.remove(((IResultInstance)subri).getOperationCommand());
+                                    ((IResultInstance)subri).dispose();
+                                }
+                            }
+                        }
                         _operationInstanceMap.remove(instances[i].getOperationCommand());
+                        instances[i].dispose();
                         if(succeeded && !removed)
                         {
                             removed = true;
@@ -218,8 +249,23 @@ public class ResultManager implements IResultManager
     
     private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException
     {
+        Object obj = stream.readObject();
+        if(!(obj instanceof String) || !((String)obj).startsWith(SerializationHelper.RESULT_FLAG))
+        {
+            throw new ClassVersionIncompatibleException("Invalid result file format.");
+        }
+        else if(!SerializationHelper.resultManagerVersionCompatible(obj.toString()))
+        {
+            throw new ClassVersionIncompatibleException(obj.toString(), SerializationHelper.getResultManagerVersion());
+        }
         stream.defaultReadObject();
         _listeners = new ListenerList();
+    }
+    
+    private void writeObject(ObjectOutputStream oos) throws IOException, ClassNotFoundException
+    {
+        oos.writeObject(_ClassVersionID);
+        oos.defaultWriteObject();
     }
     
     public void initializeContent(IResultManager manager) 

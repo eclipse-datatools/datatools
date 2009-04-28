@@ -291,8 +291,8 @@ public final class Messages extends NLS {
 	public static String StatusLogger_no_bundle_1;
 	public static String StatusLogger_possible_args_1;
 	public static String ResultHistorySection_query_expression_tooltip;
-	public static String ResultsViewPlugin_load_history_error;
-	public static String ResultsViewPlugin_persist_history_error;
+//	public static String ResultsViewPlugin_load_history_error;
+//	public static String ResultsViewPlugin_persist_history_error;
 	public static String SingleWindowTextSection_inout_params;
 	public static String SingleWindowGridSection_inout_params;
 	public static String ResultExportWizard_export_error;
@@ -302,6 +302,8 @@ public final class Messages extends NLS {
 	public static String ResultSetViewerPage_select_viewer;
 	public static String ResultSetViewerPage_viewer_tooltip;
 	public static String ResultSetViewerPage_defaultViewer;
+	public static String ResultHistoryPage_auto_clean;
+	public static String ResultHistoryPage_tooltip_auto_clean;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -20,8 +20,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
+import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultInstanceFactory;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
+import org.eclipse.datatools.sqltools.result.internal.utils.SerializationHelper;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 
 /**
@@ -638,7 +640,7 @@ public class ResultsViewAPI
      */
     public int getMaxRowPreference()
     {
-    	return ResultInstanceFactory.INSTANCE.getMaxRowCount();
+    	return ResultConfiguration.getInstance().getMaxRowCount();
     }
     
     /**
@@ -647,6 +649,46 @@ public class ResultsViewAPI
      */
     public int getMaxRowDisplayPreference()
     {
-    	return ResultInstanceFactory.INSTANCE.getMaxDisplayRowCount();
+    	return ResultConfiguration.getInstance().getMaxDisplayRowCount();
+    }
+    
+
+    /**
+     * Serialize a result instance according to a specific OperationCommand
+     * @author juewu
+     * @param operationCommand  a specific OperationCommand
+     */
+    public void saveDetailResults(OperationCommand operationCommand) {
+        if(!ResultConfiguration.getInstance().isAutoSave())
+        {
+            return;
+        }
+        
+        IResultInstance ri = ResultsViewPlugin.getDefault().getResultManager().getInstance(operationCommand);
+
+        if (ri instanceof ResultInstance) {
+
+            Object[] objs = { ri.getParameters(), ((ResultInstance) ri).getResults() };
+
+            SerializationHelper.SaveObjects(objs, ((ResultInstance) ri).getFileName());
+        }
+    }
+    
+    /**
+     * Serialize a result instance and its sub-result instances, if there are, according to a specific OperationCommand.
+     * @author juewu
+     * @param operationCommand  a specific OperationCommand
+     */
+    public void saveParentDetailResults(OperationCommand operationCommand) {
+        if(!ResultConfiguration.getInstance().isAutoSave())
+        {
+            return;
+        }
+        
+        IResultInstance ri = ResultsViewPlugin.getDefault().getResultManager().getInstance(operationCommand);
+        
+        if(ri != null && ri.getSubResults() != null && ri.getSubResults().size() > 0) {
+            saveDetailResults(operationCommand);
+        }
     }
 }

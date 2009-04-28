@@ -39,5 +39,5 @@ public class ResultsConstants
     public static final String SQL_RESULTS_VIEW_MAX_ROW_COUNT          = ResultsConstants.PLUGIN_ID
                                                                                + ".preferences.maxrowcount";
     public static final String SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT  = ResultsConstants.PLUGIN_ID
-                                                                               + ".preferences..maxdisplayrowcount";
+                                                                               + ".preferences.maxdisplayrowcount";
 }

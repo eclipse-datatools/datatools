@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences;
 
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFilePreferenceConstants;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.AbstractConnectionInfoComposite;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite2;
@@ -25,9 +26,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
@@ -43,6 +46,7 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
 
     private AbstractConnectionInfoComposite connBar;
     private Button _checkboxOverride = null;
+    private Button _checkboxDefaultOpen = null;
     
     protected Control createContents(Composite parent)
     {
@@ -62,6 +66,10 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         _checkboxOverride.setText(PreferenceMessages.SQLFilePage_override_profile); //$NON-NLS-1$
         _checkboxOverride.addListener(SWT.Selection, this);
         
+        _checkboxDefaultOpen = new Button(composite, SWT.CHECK);
+        _checkboxDefaultOpen.setText(PreferenceMessages.SQLFilePage_default_open);
+        _checkboxDefaultOpen.addListener(SWT.Selection, this);
+        
         init();
         
         return composite;
@@ -78,6 +86,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         connBar.init(connInfo.getDatabaseVendorDefinitionId().toString(), connInfo.getConnectionProfileName(), connInfo.getDatabaseName());
         
         _checkboxOverride.setSelection(_store.getBoolean(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO));
+        
+        _checkboxDefaultOpen.setSelection(_store.getBoolean(SQLFilePreferenceConstants.DEFAULT_OPEN));
     }
 
     public void handleEvent(Event event)
@@ -108,6 +118,7 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
     {
         _store.setValue(PreferenceConstants.SQLEDITOR_CONNECTION_INFO, connBar.getConnectionInfo().encode());
         _store.setValue(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO, _checkboxOverride.getSelection());
+        _store.setValue(SQLFilePreferenceConstants.DEFAULT_OPEN, _checkboxDefaultOpen.getSelection());
         return super.performOk();
     }
 
@@ -118,8 +129,6 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
      */
     protected void performDefaults()
     {
-        super.performDefaults();
-        
         String dftConn = _store.getDefaultString(PreferenceConstants.SQLEDITOR_CONNECTION_INFO);
         ISQLEditorConnectionInfo connInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
         if (dftConn != null && !dftConn.equals(""))
@@ -129,6 +138,10 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         connBar.init(connInfo.getDatabaseVendorDefinitionId().toString(), connInfo.getConnectionProfileName(), connInfo.getDatabaseName());
         
         _checkboxOverride.setSelection(_store.getDefaultBoolean(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO));
+        
+        _checkboxDefaultOpen.setSelection(_store.getDefaultBoolean(SQLFilePreferenceConstants.DEFAULT_OPEN));
+        
+        super.performDefaults();
     }
 
 }

@@ -48,6 +48,7 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
     private Button    _profileColumn;
     private Composite _otherComp;
     private Button    _autoSaveHistory;
+    private Button    _autoCleanHistory;
     
     private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(ResultsViewUIPlugin.getDefault().getBundle().getSymbolicName());
     
@@ -160,6 +161,10 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         _autoSaveHistory = new Button(_otherComp, SWT.CHECK);
         _autoSaveHistory.setText(Messages.ResultHistoryPage_auto_persist); 
         _autoSaveHistory.setToolTipText(Messages.ResultHistoryPage_tooltip_auto_persist); 
+
+        _autoCleanHistory = new Button(_otherComp, SWT.CHECK);
+        _autoCleanHistory.setText(Messages.ResultHistoryPage_auto_clean);
+        _autoCleanHistory.setToolTipText(Messages.ResultHistoryPage_tooltip_auto_clean);
         
         initializeValues();
         return comp;
@@ -181,6 +186,7 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         _consumerColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN));
         _profileColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN));
         _autoSaveHistory.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY));
+        _autoCleanHistory.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY));
     }
     
     protected void performDefaults()
@@ -194,6 +200,7 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         _consumerColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN));
         _profileColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN));
         _autoSaveHistory.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY));
+        _autoCleanHistory.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY));
         
         super.performDefaults();
     }
@@ -209,6 +216,7 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         store.setValue(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, _consumerColumn.getSelection());
         store.setValue(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, _profileColumn.getSelection());
         store.setValue(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY, _autoSaveHistory.getSelection());
+        store.setValue(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY, _autoCleanHistory.getSelection());
         
         return super.performOk();
     } 
