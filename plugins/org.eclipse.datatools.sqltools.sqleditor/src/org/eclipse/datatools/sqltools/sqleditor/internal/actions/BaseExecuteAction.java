@@ -15,10 +15,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
-import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
-import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.result.GroupSQLResultRunnable;
@@ -63,7 +60,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             }
 
             //don't pass in connection, let GroupSQLResultRunnable create and close the connection
-            _job = new GroupSQLResultRunnable(null, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations(), Messages.BaseExecuteAction_group_exec_title, "SQL Editor");
+            _job = new GroupSQLResultRunnable(getExecutionConnection(), groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations(), Messages.BaseExecuteAction_group_exec_title, "SQL Editor");
             _job.setName(Messages.BaseExecuteAction_job_title);
             _job.setUser(true);
             //don't call job.join() to prevent blocking eclipse
@@ -86,6 +83,16 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
         }
     }
 
+    /**
+     * Get the connection which is used to execute job.
+     * 
+     * @return A connection for job execution. <p>Return <code>null</code> if want job to initialize connection by itself.
+     */
+    protected Connection getExecutionConnection()
+    {
+        return null;
+    }
+    
     /**
 	 * Whether we should pop up a dialog to prompt user for variable values.
 	 * Default is false.

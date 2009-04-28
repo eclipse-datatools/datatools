@@ -57,7 +57,7 @@ public class OpenScrapbookAction extends Action implements IHandler,
 		SQLEditorStorageEditorInput editorStorageEditorInput = new SQLEditorStorageEditorInput(
 				"", scrap);
 		
-		editorStorageEditorInput.setConnectionInfo(editorConnectionInfo);
+		editorStorageEditorInput.setConnectionInfo(SQLFileUtil.getConnectionInfo4Scrapbook(editorConnectionInfo));
 
 		// the name will show as the title of the editor
 		IEditorReference[] editors = window.getActivePage()

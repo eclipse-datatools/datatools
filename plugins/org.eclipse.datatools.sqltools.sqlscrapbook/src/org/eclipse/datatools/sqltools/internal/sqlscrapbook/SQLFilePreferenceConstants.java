@@ -20,4 +20,6 @@ public class SQLFilePreferenceConstants {
 	//whether to show error dialog when failed to connect
 	public static final String FAIL_TO_CONNECT_DATABASE                = "sqlfile.fail.to.connect.database";
 	public static final String DEFAULT_OPEN							   = SqlscrapbookPlugin.PLUGIN_ID + "preference.defaultopen";
+	//select commit mode, automatic or manual
+    public static final String CONNECTION_COMMIT_MODE                  = SqlscrapbookPlugin.PLUGIN_ID + "preference.commitmode";
 }

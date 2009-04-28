@@ -25,6 +25,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
 import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.ScrapbookEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.wizard.IWizard;
@@ -334,7 +335,7 @@ public class ConnectionInfoComposite extends AbstractConnectionInfoComposite imp
     {
 
         readControlValues();
-        _connInfo = new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName);
+        _connInfo = new ScrapbookEditorConnectionInfo(new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName));
     }
 
     /**

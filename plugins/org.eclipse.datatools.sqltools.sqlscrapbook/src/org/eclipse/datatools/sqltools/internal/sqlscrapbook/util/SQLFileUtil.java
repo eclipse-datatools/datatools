@@ -21,7 +21,9 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFilePreferenceConstants;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.ScrapbookEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
@@ -50,6 +52,20 @@ public class SQLFileUtil {
 		return connectionInfo;
 	}
 
+	   /**
+     * Adapt other kind ConnectionInfo to ScrapbookEditorConnectionInfo.
+     * 
+     * @param connInfo An instance of ISQLEditorConnectionInfo
+     * @return An ISQLEditorConnectionInfo which is an instance of ScrapbookEditorConnectionInfo.
+     */
+    public static ISQLEditorConnectionInfo getConnectionInfo4Scrapbook(ISQLEditorConnectionInfo connInfo)
+    {
+        ScrapbookEditorConnectionInfo scrapbookConnInfo = new ScrapbookEditorConnectionInfo(connInfo);
+        scrapbookConnInfo.setAutoCommit(SqlscrapbookPlugin.getDefault().getPreferenceStore().getInt(SQLFilePreferenceConstants.CONNECTION_COMMIT_MODE) == 0);
+        return scrapbookConnInfo;
+    }
+
+	
 	public static String getEncodedConnectionInfo(IFile file) {
 		String encodedConnection = null;
 		if (file != null) {

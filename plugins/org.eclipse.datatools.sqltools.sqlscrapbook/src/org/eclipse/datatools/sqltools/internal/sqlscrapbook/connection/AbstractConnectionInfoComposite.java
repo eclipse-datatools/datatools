@@ -76,6 +76,10 @@ public abstract class AbstractConnectionInfoComposite extends Composite
      * Style constant indicates a lable and a group which contains all the other controls is desired
      */
     public static final int STYLE_LAZY_INIT = 1<<7; 
+    /**
+     * Style constant indicates connection commit mode label should be shown in Connection Status
+     */
+    public static final int STYLE_SHOW_COMMIT_MODE = 1<<8;
     
     protected static final DatabaseVendorDefinitionId DATABASE_VENDOR_DEFINITION_ID = SQLToolsFacade
                                                                                                 .getNonSpecificDatabaseVendorDefinitionId();

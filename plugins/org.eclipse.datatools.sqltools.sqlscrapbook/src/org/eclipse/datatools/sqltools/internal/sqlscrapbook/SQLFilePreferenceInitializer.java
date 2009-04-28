@@ -30,6 +30,8 @@ public class SQLFilePreferenceInitializer extends AbstractPreferenceInitializer 
 		store.setDefault(SQLFilePreferenceConstants.FAIL_TO_CONNECT_DATABASE,
 				true);
 		store.setDefault(SQLFilePreferenceConstants.DEFAULT_OPEN, true);
+	      
+        store.setDefault(SQLFilePreferenceConstants.CONNECTION_COMMIT_MODE, 0);
 	}
 
 }

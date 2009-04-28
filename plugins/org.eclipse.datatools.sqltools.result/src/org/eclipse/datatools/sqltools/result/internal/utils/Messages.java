@@ -302,7 +302,8 @@ public final class Messages extends NLS {
 //	public static String ResultSetViewerPage_select_viewer;
 //	public static String ResultSetViewerPage_viewer_tooltip;
 //	public static String ResultSetViewerPage_defaultViewer;
-
+    public static String ResultSection_Status_ElapsedTime;
+    
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}

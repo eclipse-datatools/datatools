@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -80,6 +81,8 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
 	protected int _actionType = -1;
 	protected String _consumerName = null;
 	protected boolean _needsInitConnection = true;
+	private long _startTime = new Date().getTime(), _endTime = _startTime;
+	
     /*
 	 * (non-Javadoc)
 	 * 
@@ -224,6 +227,7 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
         }
         finally
         {
+            resultsViewAPI.saveElapseTime(_operationCommand, _endTime - _startTime);
             //save the results and parameters.
             resultsViewAPI.saveDetailResults(_operationCommand);
             handleEnd(connection, _stmt);
@@ -304,6 +308,19 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
     
     protected void initConnection(Connection connection)
     {
+        // If the commit mode is manual, the connection initialization is not needed.
+        try
+        {
+            if(!connection.getAutoCommit())
+            {
+                return;
+            }
+        }
+        catch (SQLException e)
+        {
+            EditorCorePlugin.getDefault().log(e);
+        }
+        
         //obtain the killer before execution to ensure we can get the connection id
         _connKiller = SQLToolsFacade.getConfiguration(null, _databaseIdentifier).getConnectionService().getConnectionKiller(_databaseIdentifier, connection);
 
@@ -398,7 +415,9 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
 
         try
         {
+            _startTime = new Date().getTime();
             loopThroughResults(_stmt, moreResult);
+            _endTime = new Date().getTime();
         	synchronized (getOperationCommand()) {
         		resultsViewAPI.updateStatus(getOperationCommand(), OperationCommand.STATUS_SUCCEEDED);
         	}
@@ -428,7 +447,9 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
         }
         try
         {
+            _startTime = new Date().getTime();
             loopThroughResults(_stmt, _stmt.getMoreResults());
+            _endTime = new Date().getTime();
         }
         catch (SQLException ex)
         {

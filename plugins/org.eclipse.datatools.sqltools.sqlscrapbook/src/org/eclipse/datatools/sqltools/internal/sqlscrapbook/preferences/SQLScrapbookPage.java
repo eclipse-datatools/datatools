@@ -47,6 +47,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
     private AbstractConnectionInfoComposite connBar;
     private Button _checkboxOverride = null;
     private Button _checkboxDefaultOpen = null;
+    private Combo  _comboCommitMode = null; 
+    private Label  _lableCommitMode = null;
     
     protected Control createContents(Composite parent)
     {
@@ -70,6 +72,16 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         _checkboxDefaultOpen.setText(PreferenceMessages.SQLFilePage_default_open);
         _checkboxDefaultOpen.addListener(SWT.Selection, this);
         
+        Composite modeComposite = new Composite(composite, SWT.NONE);
+        modeComposite.setLayout(new GridLayout(2, true));
+        _lableCommitMode = new Label(modeComposite, SWT.NONE);
+        _lableCommitMode.setText(PreferenceMessages.SQLFilePage_commit_mode);
+        
+        _comboCommitMode = new Combo(modeComposite, SWT.NONE | SWT.READ_ONLY);
+        _comboCommitMode.addListener(SWT.Selection, this);
+        _comboCommitMode.add(PreferenceMessages.SQLFilePage_commit_auto);
+        _comboCommitMode.add(PreferenceMessages.SQLFilePage_commit_manual);
+        
         init();
         
         return composite;
@@ -88,6 +100,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         _checkboxOverride.setSelection(_store.getBoolean(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO));
         
         _checkboxDefaultOpen.setSelection(_store.getBoolean(SQLFilePreferenceConstants.DEFAULT_OPEN));
+        
+        _comboCommitMode.select(_store.getInt(SQLFilePreferenceConstants.CONNECTION_COMMIT_MODE));
     }
 
     public void handleEvent(Event event)
@@ -119,6 +133,7 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         _store.setValue(PreferenceConstants.SQLEDITOR_CONNECTION_INFO, connBar.getConnectionInfo().encode());
         _store.setValue(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO, _checkboxOverride.getSelection());
         _store.setValue(SQLFilePreferenceConstants.DEFAULT_OPEN, _checkboxDefaultOpen.getSelection());
+        _store.setValue(SQLFilePreferenceConstants.CONNECTION_COMMIT_MODE, _comboCommitMode.indexOf(_comboCommitMode.getText()));
         return super.performOk();
     }
 
@@ -129,6 +144,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
      */
     protected void performDefaults()
     {
+        super.performDefaults();
+        
         String dftConn = _store.getDefaultString(PreferenceConstants.SQLEDITOR_CONNECTION_INFO);
         ISQLEditorConnectionInfo connInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
         if (dftConn != null && !dftConn.equals(""))
@@ -141,7 +158,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
         
         _checkboxDefaultOpen.setSelection(_store.getDefaultBoolean(SQLFilePreferenceConstants.DEFAULT_OPEN));
         
-        super.performDefaults();
+        int dftMode = _store.getDefaultInt(SQLFilePreferenceConstants.CONNECTION_COMMIT_MODE);
+        _comboCommitMode.select(dftMode);
     }
 
 }

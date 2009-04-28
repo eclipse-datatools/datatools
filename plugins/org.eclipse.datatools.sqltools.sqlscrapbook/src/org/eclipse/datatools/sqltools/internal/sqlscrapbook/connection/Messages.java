@@ -40,6 +40,8 @@ public final class Messages extends NLS {
 	public static String ConnectionInfoGroup_type;
 	public static String ConnectionInfoGroup_status_connected;
 	public static String ConnectionInfoGroup_status_disconnected;
+    public static String ConnectionInfoGroup_status_autocommit;
+    public static String ConnectionInfoGroup_status_manualcommit;
 	public static String ConnectionInfoGroup_database_name;
 	public static String SelectProfileDialog_override_profile;
 	public static String FilesConnectionInfoDialog_column_name;

@@ -65,7 +65,7 @@ public class SQLScrapbookEditorInputFactory extends SQLEditorInputFactory implem
                     // ISQLEditorConnectionInfo into the editor input object.
                     ISQLEditorConnectionInfo connInfo = null;
                     String connInfoCode = memento.getString(KEY_CONN_INFO_CODE);
-                    if (connInfoCode != null) {
+                    if (connInfoCode != null && sqlFileInput.getConnectionInfo() == null) {
                         connInfo = SQLEditorConnectionInfo.decode(connInfoCode);
                         sqlFileInput.setConnectionInfo( connInfo );
                     }

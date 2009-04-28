@@ -12,6 +12,8 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor;
 
 import java.lang.reflect.Method;
 import java.net.URI;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.filesystem.EFS;
@@ -19,14 +21,23 @@ import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
+import org.eclipse.datatools.sqltools.core.services.ConnectionService;
+import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.editor.ui.core.SQLDevToolsUIConfiguration;
 import org.eclipse.datatools.sqltools.editor.ui.core.SQLToolsUIFacade;
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.ScrapbookExecuteSQLAction;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.ScrapbookExecuteSelectionSQLAction;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SetConnectionInfoAction;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.AbstractConnectionInfoComposite;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite2;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
@@ -48,6 +59,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
@@ -59,6 +71,11 @@ public class SQLScrapbookEditor extends SQLEditor {
 
 	public static final String EDITOR_ID = EditorConstants.SQLFILE_EDITOR_ID;
 	
+	private Connection _connection = null;
+	private ConnectionService _conService = null;
+	private DatabaseIdentifier _databaseIdentifier = null;
+	private int _connid;
+	    
     public class ToolbarSourceViewer extends AdaptedSourceViewer implements Listener
     {
         private AbstractConnectionInfoComposite connBar;
@@ -89,7 +106,7 @@ public class SQLScrapbookEditor extends SQLEditor {
             //since SQL Editor is always left to right, we need to tell the composite explicitly about the orientation
             //don't call SQLScrapbookEditor.this.getConnectionInfo() because of NPE
             connBar = new ConnectionInfoComposite2(fDefaultComposite, Window.getDefaultOrientation(), this, 
-            		null, null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
+                    null, null, AbstractConnectionInfoComposite.STYLE_SHOW_COMMIT_MODE | AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
                     | AbstractConnectionInfoComposite.STYLE_SHOW_STATUS | AbstractConnectionInfoComposite.STYLE_SINGLE_GROUP | AbstractConnectionInfoComposite.STYLE_LAZY_INIT);
             connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
             ((GridLayout)connBar.getLayout()).marginWidth = 12;
@@ -120,6 +137,15 @@ public class SQLScrapbookEditor extends SQLEditor {
                     connBar.init();
                     initialized = true;
                 }
+                
+                //refresh commit mode info in ConnectionInfoComposite according commit mode info from editor input.
+                if(connBar.getConnectionInfo() instanceof ScrapbookEditorConnectionInfo 
+                        && getConnectionInfo() instanceof ScrapbookEditorConnectionInfo)
+                {
+                    ((ScrapbookEditorConnectionInfo) connBar.getConnectionInfo()).setAutoCommit(
+                            ((ScrapbookEditorConnectionInfo) getConnectionInfo()).isAuto());
+                }
+                
                 connBar.refreshConnectionStatus();
             }
         }
@@ -200,6 +226,17 @@ public class SQLScrapbookEditor extends SQLEditor {
 						"SetConnectionInfo.", this);
 		setAction( ISQLEditorActionConstants.ATTACHE_PROFILE_ACTION_ID, _setConnectionInfoAction ); //$NON-NLS-1$
 
+	    // Replace the execute selected/all SQL actions with scrapbook own corresponding actions.
+        IActionBars bars = ((IEditorSite) getSite()).getActionBars();
+        
+        setAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, new ScrapbookExecuteSelectionSQLAction(this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, true);
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID,
+                getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
+        
+        setAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, new ScrapbookExecuteSQLAction(this));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID,
+                getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
 	}
 
 	protected void fillContextMenu(IMenuManager menu) {
@@ -219,23 +256,37 @@ public class SQLScrapbookEditor extends SQLEditor {
         getSite().getShell().getDisplay().asyncExec(new Runnable(){
             public void run()
             {
-                ((ToolbarSourceViewer) getSV()).connBar.init(
+                AbstractConnectionInfoComposite connBar = ((ToolbarSourceViewer) getSV()).connBar;
+                
+                connBar.init(
                         getConnectionInfo().getDatabaseVendorDefinitionId().toString(), getConnectionInfo()
                         .getConnectionProfileName(), getConnectionInfo().getDatabaseName());
+                
+                // Set the commit-mode info when scrapbook doSave as another one.
+                if(connBar.getConnectionInfo() instanceof ScrapbookEditorConnectionInfo 
+                        && getConnectionInfo() instanceof ScrapbookEditorConnectionInfo)
+                {
+                    ((ScrapbookEditorConnectionInfo) connBar.getConnectionInfo()).setAutoCommit(
+                            ((ScrapbookEditorConnectionInfo) getConnectionInfo()).isAuto());
+                }
+                
+                connBar.refreshConnectionStatus();
             }
         });
 	}	
 
 	protected void doSetConnectionInfo(ISQLEditorConnectionInfo connInfo) {
         ISQLEditorConnectionInfo preConnInfo = getConnectionInfo();
-        if (connInfo.encode().equals(preConnInfo.encode()))
+
+        ISQLEditorConnectionInfo scrapbookConnInfo = connInfo instanceof ScrapbookEditorConnectionInfo ? connInfo : SQLFileUtil.getConnectionInfo4Scrapbook(connInfo);
+        if (scrapbookConnInfo.encode().equals(preConnInfo.encode()))
         {
-            super.setConnectionInfo(connInfo);
+            super.setConnectionInfo(scrapbookConnInfo);
         }
         else
         {
             String content = getSV().getDocument().get();
-            super.setConnectionInfo(connInfo);
+            super.setConnectionInfo(scrapbookConnInfo);
             getSV().getDocument().set(content);
         }
 	    
@@ -251,6 +302,8 @@ public class SQLScrapbookEditor extends SQLEditor {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
+		// Release the connection
+        releaseConnection();
 	}	
 	
     public void doSave(IProgressMonitor monitor)
@@ -305,5 +358,104 @@ public class SQLScrapbookEditor extends SQLEditor {
         }
         
         SQLScrapbookEditor.this.setPairMatcher(matcher);
+    }
+    
+    /**
+     * Get the connection which this SQLScrapbookEditor is holding.
+     * 
+     * @return <li>A connection which auto-commit is false, when commit-mode is manual.
+     *      <p><li><code>null</code>, when commit-mode is automatic.
+     */
+    public Connection getConnection()
+    {
+        ISQLEditorConnectionInfo connInfo = getConnectionInfo();
+        
+        if(connInfo instanceof ScrapbookEditorConnectionInfo)
+        {
+            if(((ScrapbookEditorConnectionInfo) connInfo).isAuto())
+            {
+                return null;
+            }
+        }
+        
+        try
+        {
+            if(_connection == null || _connection.isClosed())
+            {
+                fetchConnection();
+            }
+        }
+        catch (SQLException e)
+        {
+            SqlscrapbookPlugin.log(e);
+        }
+        return _connection;
+    }
+    
+    /**
+     * Get a available connection from connection pool and set its auto-commit to be false
+     * to support operation of manual commit mode.
+     */
+    private void fetchConnection()
+    {
+        try
+        {
+            String profileName = getConnectionInfo().getConnectionProfileName();
+            String dbName = getConnectionInfo().getDatabaseName();
+            _databaseIdentifier = new DatabaseIdentifier(profileName, dbName);
+            
+            SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByProfileName(_databaseIdentifier.getProfileName());
+            _conService = f.getConnectionService();
+            
+            _connection = _conService.createConnection(_databaseIdentifier, true);
+            _connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
+            
+            IConnectionInitializer init = SQLToolsFacade.getConfiguration(null, _databaseIdentifier).getConnectionService().getConnectionInitializer();
+            if (init != null)
+            {
+                //if the configuration is null, will use the default options to initialize
+                init.init(_databaseIdentifier, _connection);
+            }
+            
+            if(_connection != null && !_connection.isClosed())
+            {
+                _connection.setAutoCommit(false);
+            }
+        }
+        catch (SQLException e)
+        {
+            SqlscrapbookPlugin.log(e);
+        }
+        catch (NoSuchProfileException e)
+        {
+            SqlscrapbookPlugin.log(e);
+        }
+    }
+    
+    /**
+     * Set the auto-commit to be true and release the connection back to connection pool.
+     */
+    private void releaseConnection()
+    {
+        if(_connection == null)
+        {
+            return;
+        }
+        
+        try
+        {
+            if(_conService != null)
+            {
+                if(!_connection.isClosed())
+                {
+                    _connection.setAutoCommit(true);
+                }
+                _conService.closeConnection(_connection, _connid, _databaseIdentifier);
+            }
+        }
+        catch (SQLException e)
+        {
+            SqlscrapbookPlugin.log(e);
+        }
     }
 }

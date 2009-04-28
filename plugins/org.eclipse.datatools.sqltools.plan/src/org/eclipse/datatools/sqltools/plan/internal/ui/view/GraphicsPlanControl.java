@@ -15,6 +15,7 @@ import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTError;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.ViewForm;
@@ -87,7 +88,15 @@ public class GraphicsPlanControl extends Composite
      */
     private void createDetailForm(ViewForm detailForm)
     {
-        _browser = new Browser(detailForm, SWT.NONE);
+    	try
+    	{
+    		_browser = new Browser(detailForm, SWT.NONE);
+    	}
+    	catch (SWTError e)
+    	{
+    		PlanViewPlugin.getLogger(null).error(e.getMessage(), e);
+    		return;
+    	}
         _browser.setLayoutData(new GridData(GridData.FILL_BOTH));
 
         _browser.setText("");

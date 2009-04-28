@@ -47,7 +47,7 @@ public class SQLScrapbookEditorInput extends SQLEditorFileEditorInput implements
         super(file);
 			
 		ISQLEditorConnectionInfo connectionInfo = SQLFileUtil.getConnectionInfo(file);
-		setConnectionInfo(connectionInfo);
+		setConnectionInfo(SQLFileUtil.getConnectionInfo4Scrapbook(connectionInfo));
 		
     }
 

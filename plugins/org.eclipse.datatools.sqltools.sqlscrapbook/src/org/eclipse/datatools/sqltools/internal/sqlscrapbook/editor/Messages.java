@@ -32,6 +32,9 @@ public final class Messages extends NLS {
 	
 	public static String SQLEditor_profile_disconnected;
     public static String SQLEditor_profile_information;
+    public static String SQLScrapbookEditor_status_commit_mode;
+    public static String SQLScrapbookEditor_status_commit_mode_auto;
+    public static String SQLScrapbookEditor_status_commit_mode_manual;
 
 	private Messages() {
 		// Do not instantiate

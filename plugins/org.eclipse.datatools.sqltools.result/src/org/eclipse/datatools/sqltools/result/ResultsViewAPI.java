@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.result;
 
 import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultInstanceFactory;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
+import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 import org.eclipse.datatools.sqltools.result.internal.utils.SerializationHelper;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 
@@ -691,4 +693,59 @@ public class ResultsViewAPI
             saveDetailResults(operationCommand);
         }
     }
+    
+    
+    public void saveElapseTime(OperationCommand operationCommand, long elapsedTime)
+    {
+        IResultInstance ri = ResultsViewPlugin.getDefault().getResultManager().getInstance(operationCommand);
+
+        if(ri instanceof ResultInstance)
+        {
+            if(!ri.isParentResult() || ri.getSubResults().size() == 0)
+            {
+                ((ResultInstance) ri).setElapsedTime(elapsedTime);
+            }
+            
+            this.appendStatusMessage(operationCommand, countTime(elapsedTime));
+        }
+    }
+    
+    public void saveParentElapseTime(OperationCommand operationCommand)
+    {
+        IResultInstance ri = ResultsViewPlugin.getDefault().getResultManager().getInstance(operationCommand);
+
+        if(!ri.isParentResult() || ri.getSubResults().size() == 0)
+        {
+            return;
+        }
+            
+        if(ri instanceof ResultInstance)
+        {
+            long totalTime = 0;
+            
+            for(Iterator iter = ri.getSubResults().iterator(); iter.hasNext();)
+            {
+                Object obj = iter.next();
+                
+               if(obj instanceof ResultInstance)
+                {
+                    totalTime += ((ResultInstance) obj).getElapsedTime();
+                }
+            }
+            
+            ((ResultInstance) ri).setElapsedTime(totalTime);
+            
+            this.appendStatusMessage(operationCommand, countTime(totalTime));
+        }
+    }
+   
+    private String countTime(long elapsedTime)
+    {
+        long hr, min, sec, ms;
+        ms = elapsedTime % 1000;
+        sec = (elapsedTime/1000) % 60;
+        min = (elapsedTime/60000) % 60;
+        hr = (elapsedTime/3600000) % 60;
+        return new MessageFormat(System.getProperty("line.separator") + System.getProperty("line.separator") + Messages.ResultSection_Status_ElapsedTime).format(new Object[]{Long.valueOf(hr), Long.valueOf(min), Long.valueOf(sec), Long.valueOf(ms)});
+    }   
 }

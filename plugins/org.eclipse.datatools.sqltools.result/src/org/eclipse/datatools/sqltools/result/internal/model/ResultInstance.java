@@ -67,6 +67,8 @@ public class ResultInstance implements IResultInstance
     
     private String             _fileName;
     
+    private long               _elapsedTime;
+    
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
         this._resultManager = resultmanager;
@@ -417,6 +419,16 @@ public class ResultInstance implements IResultInstance
         return _fileName;
     }
 
+    public long getElapsedTime()
+    {
+        return _elapsedTime;
+    }
+
+    public void setElapsedTime(long time)
+    {
+        _elapsedTime = time;
+    }     
+    
     public List getResults()
     {
         checkList();

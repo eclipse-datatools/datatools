@@ -289,6 +289,8 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         }
         finally
         {
+            // save elapse time
+            resultsViewAPI.saveParentElapseTime(_operationCommand);
             // save the results and parameters.
             resultsViewAPI.saveParentDetailResults(_operationCommand);
             monitor.done();

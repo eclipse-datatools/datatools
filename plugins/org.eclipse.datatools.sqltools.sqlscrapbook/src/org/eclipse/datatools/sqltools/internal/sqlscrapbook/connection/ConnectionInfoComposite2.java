@@ -14,6 +14,8 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 import java.util.Collection;
 
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.ScrapbookEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -104,6 +106,20 @@ Listener {
         return this;
     }
     
+    protected void updateFields()
+    {
+        readControlValues();
+        boolean isAuto = true;
+        if(_connInfo instanceof ScrapbookEditorConnectionInfo)
+        {
+            isAuto = ((ScrapbookEditorConnectionInfo) _connInfo).isAuto();
+        }
+        
+        ScrapbookEditorConnectionInfo seConnInfo = new ScrapbookEditorConnectionInfo(new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName));
+        seConnInfo.setAutoCommit(isAuto);
+        _connInfo = seConnInfo;
+    }
+    
     private void createGroupContents(Group group)
     {
         GridData gridData = new GridData(SWT.FILL, GridData.VERTICAL_ALIGN_BEGINNING, true, false);
@@ -155,6 +171,7 @@ Listener {
             _labelStatus.setText(getStatus());
             gridData4.grabExcessHorizontalSpace = true;
             gridData4.horizontalAlignment = org.eclipse.swt.layout.GridData.BEGINNING;
+            gridData4.widthHint = 200;
             _labelStatus.setLayoutData(gridData4);
             
         }
@@ -254,16 +271,34 @@ Listener {
         }
     }
 
+    protected void setConnectionInfo(String dbVendorName, String initialProfName, String initialDBName)
+    {
+        super.setConnectionInfo(dbVendorName, initialProfName, initialDBName);
+        
+        ScrapbookEditorConnectionInfo seConnInfo = new ScrapbookEditorConnectionInfo(_connInfo);
+        
+        _connInfo = seConnInfo;
+    }
+    
     private String getStatus()
     {
+        StringBuffer sb = new StringBuffer();
+        
         if (_connInfo!= null && _connInfo.isConnected())
         {
-            return Messages.ConnectionInfoGroup_status_connected;
+            sb.append(Messages.ConnectionInfoGroup_status_connected);
         }
         else
         {
-            return Messages.ConnectionInfoGroup_status_disconnected;
+            sb.append(Messages.ConnectionInfoGroup_status_disconnected);
         }
+        
+        if ((_style & STYLE_SHOW_COMMIT_MODE) > 0 && _connInfo instanceof ScrapbookEditorConnectionInfo)
+        {
+            sb.append(", " + (((ScrapbookEditorConnectionInfo) _connInfo).isAuto() ? Messages.ConnectionInfoGroup_status_autocommit : Messages.ConnectionInfoGroup_status_manualcommit));
+        }
+        
+        return sb.toString();
     }
     
     public void refreshConnectionStatus()
