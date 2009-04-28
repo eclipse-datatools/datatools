@@ -35,6 +35,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -64,6 +66,24 @@ public class SingleWindowGridSection extends SingleWindowModeSection
     private int               _currentTableNum;
     private boolean           _endWarnTextCreated = false;
 
+    private MouseListener _mListener = new MouseListener(){
+
+        public void mouseDoubleClick(MouseEvent e)
+        {
+        }
+
+        public void mouseDown(MouseEvent e)
+        {
+            if(_scrolledComp != null)
+                _scrolledComp.forceFocus();
+        }
+
+        public void mouseUp(MouseEvent e)
+        {
+        }
+
+    };
+    
     public SingleWindowGridSection(Composite composite, ResultsViewControl resultsViewControl)
     {
         super(composite, resultsViewControl);
@@ -89,6 +109,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
         super.createInitialControl(composite);
         // create a scrolled composite in _composite
         _scrolledComp = new ScrolledComposite(_composite, SWT.V_SCROLL | SWT.H_SCROLL);
+        _scrolledComp.getVerticalBar().setIncrement(17);
         _scrolledComp.setLayout(new FillLayout());
         _scrolledComp.setExpandHorizontal(true);
         _scrolledComp.setExpandVertical(true);
@@ -187,6 +208,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
                 messageText.setLayoutData(gd);
                 messageText.setText((String) item.getResultObject());
                 messageText.setEditable(false);
+                messageText.addMouseListener(_mListener);
                 break;
             case ResultItem.UPDATE_COUNT:
                 if (_showRowCountMsg)
@@ -200,6 +222,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
                     updateCountText.setText(StatusTextProvider.getUpdateCountText(((Integer) item.getResultObject())
                             .intValue()));
                     updateCountText.setEditable(false);
+                    updateCountText.addMouseListener(_mListener);
                 }
                 break;
             case ResultItem.RESULT_SET:
@@ -260,6 +283,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
 
         gd.heightHint = height;
         viewer.getTable().setLayoutData(gd);
+        viewer.getTable().addMouseListener(_mListener);
     }
 
     /**
@@ -284,7 +308,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
 
         gd.heightHint = height;
         provider.getViewer().getTable().setLayoutData(gd);
-
+        provider.getViewer().getTable().addMouseListener(_mListener);
     }
 
     /**
@@ -331,6 +355,7 @@ public class SingleWindowGridSection extends SingleWindowModeSection
 
         Menu menu = mgr.createContextMenu(txt);
         txt.setMenu(menu);
+        txt.addMouseListener(_mListener);
     }
 
     public void onInstanceFinished()
