@@ -41,4 +41,16 @@ IResultConstants_html_name =Web ページ (*.html,*,htm)
 IResultConstants_xml_name =XML ファイル (*.xml)
 IResultConstants_all_name =すべてのファイル (*.*)
 
+##########################################################
+#  ResultsViewPlugin Error Message
+##########################################################
+ResultsViewPlugin_class_incompatible_error=Old results have been saved to \"backup\" folder
+ResultsViewPlugin_load_history_error=Error occurs when loading result history
+ResultsViewPlugin_persist_history_error=Error occurs when persisting result history
 ResultsViewPlugin_load_listener_error=SQL 結果リスナの読み込み中にエラーが発生しました。
+File_copy_error=Error occurs when copy files
+
+SerializationHelper_serialization_error=Error occurs when serializing result file
+SerializationHelper_deserialization_error=Error occurs when deserializing result file
+
+ResultSection_Status_ElapsedTime=Elapsed Time:  {0} hr, {1} min, {2} sec, {3} ms.
