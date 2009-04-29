@@ -454,6 +454,65 @@ public class ModelUtil {
         return tableObject;
     }
     
+    public static Table findTableInAllSchemas(DatabaseIdentifier dbid, String dbname, String tableName, boolean caseSensitive, boolean refresh)
+    {
+        Database db = ProfileUtil.getDatabase(dbid);
+        Table tableObject = null;
+        if (db != null)
+        {
+            EList schemas = db.getSchemas();
+            if (schemas == null || schemas.size() == 0)
+            {
+                EList catalogs = db.getCatalogs();
+                if (catalogs != null)
+                {
+                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
+                    {
+                        Catalog catalog = (Catalog) iter.next();
+                        if (equals(catalog.getName(), dbname, caseSensitive))
+                        {
+                            schemas = (EList) catalog.getSchemas();
+                            break;
+                        }
+                    }
+                }
+            }
+            for (Iterator i = schemas.iterator(); i.hasNext();)
+            {
+                if (tableName == null || tableName.equals(""))
+                {
+                    break;
+                }
+                Schema schema = (Schema) i.next();
+                if (schema.getName() != null)
+                {
+                    if (refresh)
+                    {
+                        if (schema instanceof ICatalogObject2)
+                        {
+                            String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(
+                                    SQLSchemaPackage.SCHEMA__TABLES));
+                            ((ICatalogObject2) schema).refresh(context);
+                        }
+                        else
+                        {
+                            ((ICatalogObject) schema).refresh();
+                        }
+                    }
+                    for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
+                    {
+                        Table table = (Table) iter.next();
+                        if (equals(table.getName(), tableName, caseSensitive))
+                        {
+                            tableObject = table;
+                            return tableObject;
+                        }
+                    }
+                }
+            }
+        }
+        return tableObject;
+    }
     
     private static Table findTableFromSchema(EList schemas, String schemaName, String tableName, boolean caseSensitive, boolean refresh)
     { 

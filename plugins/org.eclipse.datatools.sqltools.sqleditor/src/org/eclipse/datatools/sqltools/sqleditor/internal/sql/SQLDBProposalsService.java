@@ -356,8 +356,16 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
                             {
                                 DatabaseIdentifier databaseIdentifier = new DatabaseIdentifier(fConnInfo
                                         .getConnectionProfileName(), fConnInfo.getDatabaseName());
-                                Table table = ModelUtil.findTableObject(databaseIdentifier, database.getName(),
-                                        ctxSchema.getName(), ref.getName());
+                                // find table with default schema in current catalog
+                                Table table = ModelUtil.findTableObject(databaseIdentifier,
+                                        fConnInfo.getDatabaseName(), ctxSchema.getName(), ref.getName(), false, true,
+                                        false);
+                                if (table == null)
+                                {
+                                    // without table owner, find table in all schemas
+                                    table = ModelUtil.findTableInAllSchemas(databaseIdentifier, fConnInfo
+                                            .getDatabaseName(), ref.getName(), true, false);
+                                }
                                 if (table != null)
                                 {
                                     loadColumns(table, false, ref.getAliasName());
