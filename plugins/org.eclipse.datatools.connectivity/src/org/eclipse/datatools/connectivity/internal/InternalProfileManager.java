@@ -470,50 +470,66 @@ public class InternalProfileManager {
 	public IConnectionProfile createTransientProfile(String name, String description,
 			String providerID, Properties baseProperties) throws ConnectionProfileException {
 		String transientName = name;
+		ConnectionProfile profile = null;
 		if (transientName == null) {
 			transientName = "Transient." + providerID; //$NON-NLS-1$
 		}
-		transientName = findUniqueTransientProfileName(transientName, providerID);
-		ConnectionProfile profile = new ConnectionProfile(transientName, description,
-				providerID, "", false, UUID.createUUID() //$NON-NLS-1$
-						.toString());
-		baseProperties.setProperty(IConnectionProfile.TRANSIENT_PROPERTY_ID, ""); //$NON-NLS-1$
-		profile.setBaseProperties(baseProperties);
-		profile.setCreated();
+
 		if (mTransientProfiles == null) {
-			synchronized (this) {
-				if (mTransientProfiles == null) {
-					mTransientProfiles = Collections.synchronizedList( new ArrayList() );
-				}
-			}
+            synchronized (this) {
+                if (mTransientProfiles == null) {
+                    mTransientProfiles = Collections.synchronizedList( new ArrayList() );
+                }
+            }
+        }
+
+		synchronized (mTransientProfiles) {
+			transientName = findUniqueTransientProfileName(transientName);
+			profile = new ConnectionProfile(transientName, description,
+					providerID, "", false, UUID.createUUID() //$NON-NLS-1$
+							.toString());
+			baseProperties.setProperty(IConnectionProfile.TRANSIENT_PROPERTY_ID, ""); //$NON-NLS-1$
+			profile.setBaseProperties(baseProperties);
+			profile.setCreated();
+			mTransientProfiles.add(profile);
 		}
-		mTransientProfiles.add(profile);
 		return profile;
 	}
 	
-	/**
-	 * Private method to avoid name collisions
+	/*
+	 * Private method to avoid name collisions for transient profiles
 	 * @param name
-	 * @param providerID
 	 * @return
 	 */
-	private String findUniqueTransientProfileName(String name, String providerID) {
-		if (mTransientProfiles != null) {
-			synchronized(mTransientProfiles) {
-				Iterator iter = mTransientProfiles.iterator();
-				int count = 0;
-				while (iter.hasNext()) {
-					IConnectionProfile profile = (IConnectionProfile) iter.next();
-					if (profile.getProviderId().equalsIgnoreCase(providerID)) {
-						count++;
-					}
-				}
-				return name + count;
+	private String findUniqueTransientProfileName(String name) {
+		if (mTransientProfiles != null && !mTransientProfiles.isEmpty()) {
+			int count = 0;
+			boolean flag = (getTransientProfileByName(name) != null);
+			while (flag) {
+				count++;
+				flag = (getTransientProfileByName(name + count) != null);
 			}
+			return (count == 0) ? name : name + count;
 		}
 		return name;
 	}
 
+	/*
+	 * Get a transient connection profile instance by name
+	 * @param name
+	 * @return
+	 */
+	private IConnectionProfile getTransientProfileByName(String name) {
+		IConnectionProfile[] cps = (IConnectionProfile[]) mTransientProfiles.toArray(new IConnectionProfile[mTransientProfiles.size()]);
+		IConnectionProfile cp = null;
+		for (int i = 0; i < cps.length; i++) {
+			if (cps[i].getName().equals(name)) {
+				cp = cps[i];
+				break;
+			}
+		}
+		return cp;
+	}
 	/**
 	 * Create connection profile
 	 * 
