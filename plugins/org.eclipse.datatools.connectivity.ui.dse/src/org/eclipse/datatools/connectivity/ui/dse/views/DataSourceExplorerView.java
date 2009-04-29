@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2008 Sybase, Inc.
+ * Copyright (c) 2006-2009 Sybase, Inc.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    rcernich - initial API and implementation
  *    brianf - updates to set state of ShowCategory handler
+ *    brianf - fixes for BZ 272274
  *******************************************************************************/ 
 package org.eclipse.datatools.connectivity.ui.dse.views;
 
@@ -39,10 +40,15 @@ public class DataSourceExplorerView extends CommonNavigator
 		super();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.ui.navigator.CommonNavigator#getInitialInput()
+	/**
+	 * Override this to provide a different input object to the DSE,
+	 * This used to override the getInitialInput() from the CommonNavigator
+	 * but the signature changed for 3.5 and we ran into some weird 
+	 * JDK 1.4/1.5 incompatibilities with the changes. 
+	 * See BZ 272274 for more details.
+	 * @return IAdaptable
 	 */
-	protected IAdaptable getInitialInput() {
+	protected IAdaptable getDSEInitialInput() {
 		return ProfileManager.getInstance();
 	}
 
@@ -73,6 +79,15 @@ public class DataSourceExplorerView extends CommonNavigator
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(getCommonViewer().getTree(), IHelpContextsConnectivityUIDSE.CONTEXT_ID_CONNECTIVITY_DSE_VIEW);
+		
+		// added for BZ 272274, BTF
+		try {
+			getCommonViewer().getControl().setRedraw(false);
+			getCommonViewer().setInput(getDSEInitialInput()); 
+		} finally { 
+			getCommonViewer().getControl().setRedraw(true);
+		}	
+		
 		createHandlers();
 	}
 	
