@@ -612,6 +612,8 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
     private ICharacterPairMatcher              _pairMatcher                      = null;
     /** Matching token painter. */
     private MatchingPairPainter                _painter                          = null;
+    /** Tracking the cursor position */
+    private int                                _previousCursorLine               = -1;
 
     /**
      * Constructs an instance of this class. This is the default constructor.
@@ -1014,6 +1016,9 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
      */
     public void doSetInput(IEditorInput input) throws CoreException
     {
+    	//bz246180 :Lost line focus after saving
+        saveCursorPosition();
+        
         if (_fSQLUpdater != null)
         {
             _fSQLUpdater.removeMarkers();
@@ -1074,7 +1079,73 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
          * Show the connection status in the status area at the bottom of the workbench window.
          */
         refreshConnectionStatus();
+        
+        //bz246180 :Lost line focus after saving
+        tryKeepCursor();
+    }
+    
+    /**
+     * Save cursor line info.
+     * BZ246180 :SOE:Lost line focus after saving
+     * 
+     * @author sul
+     */
+    private void saveCursorPosition()
+    {
+        Point preOffset = null;
+        _previousCursorLine = -1;
+        if (getSourceViewer() != null)
+        {
+            IDocument doc = getSourceViewer().getDocument();
+            try 
+            {
+                preOffset = getSourceViewer().getSelectedRange();
+                _previousCursorLine = doc.getLineOfOffset(preOffset.x);
+            } 
+            catch(BadLocationException bad)
+            {
+                preOffset = null;
+                _previousCursorLine = -1;
+            }
+        }
+    }
 
+    /**
+     * Try to restore the cursor to end of the preCursonLine.
+     * BZ246180 :SOE:Lost line focus after saving
+     * 
+     * @author sul
+     */
+    private void tryKeepCursor()
+    {
+        if (_previousCursorLine >= 0)
+        {
+            ISourceViewer viewer = getSourceViewer();
+            IDocument newDoc = viewer.getDocument();
+
+            try
+            {
+                int newTotalLine = newDoc.getLineOfOffset(newDoc.getLength() - 1);
+
+                if(_previousCursorLine >= newTotalLine)
+                {
+                    //locate cursor to the end of document
+                    viewer.setRangeIndication(newDoc.getLength(), 0, true);
+                }
+                else
+                {
+                    //just locate cursor to the end of preCursorLine.
+                    IRegion newLine = newDoc.getLineInformation(_previousCursorLine);
+                    viewer.setRangeIndication(newLine.getOffset() + newLine.getLength(), 0, true);
+                }
+            }
+            catch (BadLocationException bad)
+            {
+                //if exception is thrown out, set the cursor to the start
+                viewer.setRangeIndication(0, 0, true);
+            }
+            
+        }
     }
 
     /**
