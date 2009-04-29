@@ -300,13 +300,7 @@ public class ResultsViewControl  implements IPropertyChangeListener, IProfileLis
 	        /**
 	         * Re-display the result history according to the columns setting 
 	         */
-	        if (event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN)
-	                || event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN))
+	        if (event.getProperty().equals(PreferenceConstants.RESULT_HISTORY_ALL_COLUMNS))
 	        {
 	            _resultHistory.reDisplayResults();
 	        }

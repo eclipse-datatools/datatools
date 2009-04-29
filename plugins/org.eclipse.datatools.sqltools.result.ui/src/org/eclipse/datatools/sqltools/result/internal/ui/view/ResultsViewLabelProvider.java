@@ -37,7 +37,7 @@ public class ResultsViewLabelProvider implements ITableLabelProvider
 
     public Image getColumnImage(Object element, int columnIndex)
     {
-        if (columnIndex == 0)
+        if (columnIndex == ResultHistoryHelper.STATUS_INDEX)
         {
             IResultInstance instance = (IResultInstance) element;
             int status = instance.getStatus();
@@ -90,8 +90,9 @@ public class ResultsViewLabelProvider implements ITableLabelProvider
     {
         if (element instanceof IResultInstance)
         {
+            int columnDisplayIndex = ResultHistoryHelper.getConfigurableColumnIndex(columnIndex, _resultsViewControl.getUsePreferences());
             IResultInstance instance = (IResultInstance) element;
-            switch (columnIndex)
+            switch (columnDisplayIndex)
             {
                 case ResultHistoryHelper.STATUS_INDEX:
                     int status = instance.getStatus();

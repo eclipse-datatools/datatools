@@ -97,6 +97,9 @@ public class PreferenceConstants
                                                                                + ".ResultsFilterDialog.filtered.profiles";
 
     /* Result history display options */
+    public static final String RESULT_HISTORY_ALL_COLUMNS              = PREFERENCE_PREFIX
+                                                                               + ".preferences.resulthistory.allcolumns";
+
     public static final String RESULT_HISTORY_STATUS_COLUMN            = PREFERENCE_PREFIX
                                                                                + ".preferences.resulthistory.status";
     public static final String RESULT_HISTORY_OPER_COLUMN              = PREFERENCE_PREFIX

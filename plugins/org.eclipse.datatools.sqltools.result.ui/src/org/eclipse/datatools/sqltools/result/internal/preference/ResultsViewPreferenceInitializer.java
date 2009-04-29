@@ -64,13 +64,15 @@ public class ResultsViewPreferenceInitializer extends AbstractPreferenceInitiali
         store.setDefault(PreferenceConstants.EXPORT_FORMAT_OTHER_ENCODEING_SELECTION, -1);
         
         // Set default values of result history options page
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN, true);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN, true);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN, false);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN, true);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN, false);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, false);
-        store.setDefault(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, true);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_ALL_COLUMNS, false);
+        
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN, 0);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN, 1);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN, -1);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN, 2);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN, -1);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, -1);
+        store.setDefault(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, 3);
         
         store.setDefault(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY, true);
         store.setDefault(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY, false);

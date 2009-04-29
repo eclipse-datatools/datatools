@@ -10,6 +10,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui.view;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.utils.PreferenceUtil;
@@ -33,37 +37,88 @@ public class ResultHistoryHelper
     public static final int CONSUMER_INDEX = 5;
     public static final int PROFILE_INDEX  = 6;
     
+    public static final Map COLUMN_PREFERENCE_INDEX_MAP = new HashMap();
+    public static final Map COLUMN_PREFERENCE_ORDER_MAP = new HashMap();
+    public static final Map COLUMN_NAME_PREFERENCE_MAP = new HashMap();
+    
+    public static String[] COLUMN_PREFERENCE = {
+        PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_OPER_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_DATE_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN,
+        PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN
+    };
+    
+    public static String[] COLUMN_NAME = {
+        Messages.ResultHistorySection_status,
+        Messages.ResultHistorySection_operation,
+        Messages.ResultHistorySection_frequency,
+        Messages.ResultHistorySection_date,
+        Messages.ResultHistorySection_action_type,
+        Messages.ResultHistorySection_consumer_name,
+        Messages.ResultHistorySection_connection_profile
+    };
+    
+    static
+    {
+        for(int i = 0; i < COLUMN_PREFERENCE.length; i++)
+        {
+            COLUMN_PREFERENCE_INDEX_MAP.put(COLUMN_PREFERENCE[i], new Integer(i));
+        }
+        
+        for(int i = 0; i < COLUMN_NAME.length; i++)
+        {
+            COLUMN_NAME_PREFERENCE_MAP.put(COLUMN_NAME[i], COLUMN_PREFERENCE[i]);
+        }
+    }
+    
+    public static void refreshOrderFromPreference(boolean usePreference)
+    {
+        COLUMN_PREFERENCE_ORDER_MAP.clear();
+        IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
+        
+        for(int i = 0; i < COLUMN_PREFERENCE.length; i++)
+        {
+            int order = PreferenceUtil.getInt(store, COLUMN_PREFERENCE[i], usePreference);
+            
+            COLUMN_PREFERENCE_ORDER_MAP.put(COLUMN_PREFERENCE[i], new Integer(order));
+        }
+    }
+    
+    
     /**
      * Returns the configurable column index at the given display index
-     * @param index the display index
+     * @param order the display index
      * @param usePreference whether to use the preference or the default for the preference
      * @return the configurable column index (There are 7 colums altogether)
      */
-    public static int getConfigurableColumnIndex(int index, boolean usePreference)
+    public static int getConfigurableColumnIndex(int order, boolean usePreference)
     {
-        IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
-        Boolean[] isDisplayed = new Boolean[7];
-        
-        isDisplayed[STATUS_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN, usePreference));
-        isDisplayed[OPER_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_OPER_COLUMN, usePreference));
-        isDisplayed[FREQ_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN, usePreference));
-        isDisplayed[DATE_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_DATE_COLUMN, usePreference));
-        isDisplayed[ACTION_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN, usePreference));
-        isDisplayed[CONSUMER_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, usePreference));
-        isDisplayed[PROFILE_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, usePreference));
-        
-        int count = 0;
-        for (int i = 0; i < COLUMN_NUMBER; i++)
+        if(order < 0 || order > 6)
         {
-            if(isDisplayed[i].booleanValue())
-            {   
-                if(count == index)
-                {
-                    return i;
-                }
-                count ++;
+            return -1;
+        }
+        
+        refreshOrderFromPreference(usePreference);
+        String preferenceString = null;
+        
+        for(Iterator iter = COLUMN_PREFERENCE_ORDER_MAP.keySet().iterator(); iter.hasNext();)
+        {
+            Object obj = iter.next();
+            if(((Integer)COLUMN_PREFERENCE_ORDER_MAP.get(obj)).intValue() == order)
+            {
+                preferenceString = (String)obj;
+                break;
             }
         }
+        
+        if(preferenceString != null)
+        {
+            return ((Integer)COLUMN_PREFERENCE_INDEX_MAP.get(preferenceString)).intValue();
+        }
+        
         return -1;
     }
     
@@ -75,38 +130,16 @@ public class ResultHistoryHelper
      */
     public static int getConfigurableColumnIndex(String columnName)
     {
-        if (columnName.equals(Messages.ResultHistorySection_status))
+        refreshOrderFromPreference(true);
+        
+        Object obj = COLUMN_NAME_PREFERENCE_MAP.get(columnName);
+        
+        if(obj != null && COLUMN_PREFERENCE_ORDER_MAP.get(obj) != null)
         {
-            return 0;
+            return ((Integer)COLUMN_PREFERENCE_ORDER_MAP.get(obj)).intValue();
         }
-        else if (columnName.equals(Messages.ResultHistorySection_operation))
-        {
-            return 1;
-        }
-        else if (columnName.equals(Messages.ResultHistorySection_frequency))
-        {
-            return 2;
-        }
-        else if (columnName.equals(Messages.ResultHistorySection_date))
-        {
-            return 3;
-        }
-        else if (columnName.equals(Messages.ResultHistorySection_action_type))
-        {
-            return 4;
-        }
-        else if (columnName.equals(Messages.ResultHistorySection_consumer_name))
-        {
-            return 5;
-        }
-        else if (columnName.equals(Messages.ResultHistorySection_connection_profile))
-        {
-            return 6;
-        }
-        else
-        {
-            return -1;
-        }
+        
+        return -1;
     }
     
     /**
@@ -116,25 +149,19 @@ public class ResultHistoryHelper
      */
     public static int getColumnNumber(boolean usePreference)
     {
-        IPreferenceStore store = ResultsViewUIPlugin.getDefault().getPreferenceStore();
-        Boolean[] isDisplayed = new Boolean[COLUMN_NUMBER];
-        
-        isDisplayed[STATUS_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN, usePreference));
-        isDisplayed[OPER_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_OPER_COLUMN, usePreference));
-        isDisplayed[FREQ_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN, usePreference));
-        isDisplayed[DATE_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_DATE_COLUMN, usePreference));
-        isDisplayed[ACTION_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN, usePreference));
-        isDisplayed[CONSUMER_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, usePreference));
-        isDisplayed[PROFILE_INDEX] = new Boolean(PreferenceUtil.getBoolean(store, PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, usePreference));
+        refreshOrderFromPreference(usePreference);
         
         int count = 0;
-        for (int i = 0; i < COLUMN_NUMBER; i++)
+        
+        for(Iterator iter = COLUMN_PREFERENCE_ORDER_MAP.keySet().iterator(); iter.hasNext();)
         {
-            if(isDisplayed[i].booleanValue())
-            {   
-                count ++;
+            Object preference = iter.next();
+            if(((Integer) COLUMN_PREFERENCE_ORDER_MAP.get(preference)).intValue() >= 0)
+            {
+                count++;
             }
         }
+        
         return count;
     }
 }

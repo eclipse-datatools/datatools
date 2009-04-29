@@ -10,24 +10,32 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.preference;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.datatools.sqltools.result.internal.ui.AbstractShiftedListSection;
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
+import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultHistoryHelper;
 import org.eclipse.datatools.sqltools.result.ui.IHelpConstants;
 import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIPlugin;
 import org.eclipse.help.IContext;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -38,19 +46,72 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class ResultHistoryPage extends PreferencePage implements IWorkbenchPreferencePage
 {
-    private Group     _columnsGroup;
-    private Button    _statusColumn;
-    private Button    _operColumn;
-    private Button    _freqColumn;
-    private Button    _dateColumn;
-    private Button    _actionColumn;
-    private Button    _consumerColumn;
-    private Button    _profileColumn;
+    private String[] _initVisibleColumns, _initInvisibleColumns;
+    private AbstractShiftedListSection _shiftedListSection;
+    
     private Composite _otherComp;
     private Button    _autoSaveHistory;
     private Button    _autoCleanHistory;
     
     private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(ResultsViewUIPlugin.getDefault().getBundle().getSymbolicName());
+    
+    class ColumnsDisplaySection extends AbstractShiftedListSection
+    {
+        public ColumnsDisplaySection(String sectionTitle, String leftTitle, String rightTitle)
+        {
+            super(sectionTitle, leftTitle, rightTitle);
+        }
+        
+        PaintListener paintListener = new PaintListener()
+        {
+            public void paintControl(PaintEvent e)
+            {
+                if (_leftList.getItems().length < 1)
+                {
+                    setErrorMessage(Messages.ResultHistoryPage_no_column_selected);
+                    setValid(false);
+                    updateApplyButton();
+                }
+                else
+                {
+                    setErrorMessage(null);
+                    setValid(true);
+                    updateApplyButton();
+                }                     
+            }
+            
+        };
+        
+        public Control createContents(Composite parent)
+        {
+            Control control = super.createContents(parent);
+            _leftList.addPaintListener(paintListener);
+            setInput(_initVisibleColumns, _initInvisibleColumns, true);
+            return control;
+        }
+        
+        Map getCloumnsDisplayInfo()
+        {
+            Map result = new HashMap();
+            String name = "";
+            
+            String[] items = _leftList.getItems();
+            for(int i = 0; i < items.length; i++)
+            {
+                name = items[i];
+                result.put(name, _leftList.getData(name));
+            }
+            
+            items = _rightList.getItems();
+            for(int i = 0; i < items.length; i++)
+            {
+                name = items[i];
+                result.put(name, _rightList.getData(name));
+            }
+            
+            return result;
+        }
+    }
     
     public IContext getContext(Object target)
     {
@@ -67,36 +128,6 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         return contextProviderDelegate.getSearchExpression(target);
     }
     
-    private SelectionListener _selectionListener = new SelectionListener()
-    {
-        public void widgetDefaultSelected(SelectionEvent e)
-        {
-        }
-
-        public void widgetSelected(SelectionEvent e)
-        {
-            if (!_statusColumn.getSelection()
-                && !_operColumn.getSelection()
-                && !_freqColumn.getSelection()
-                && !_dateColumn.getSelection()
-                && !_actionColumn.getSelection()
-                && !_consumerColumn.getSelection()
-                && !_profileColumn.getSelection())
-            {
-                setErrorMessage(Messages.ResultHistoryPage_no_column_selected);
-                setValid(false);
-                updateApplyButton();
-            }
-            else
-            {
-                setErrorMessage(null);
-                setValid(true);
-                updateApplyButton();
-            }
-        }
-        
-    };
-    
     protected Control createContents(Composite parent)
     {
         getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
@@ -109,45 +140,11 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
         layout.marginWidth = 0;
         comp.setLayout(layout);
         
-        _columnsGroup = new Group(comp, SWT.NONE);
-        _columnsGroup.setText(Messages.ResultHistoryPage_columns_group_name); 
-        _columnsGroup.setLayout(new GridLayout());
-        _columnsGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        
-        _statusColumn = new Button(_columnsGroup, SWT.CHECK);
-        _statusColumn.setText(Messages.ResultHistoryPage_status); 
-        _statusColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_status); 
-        _statusColumn.addSelectionListener(_selectionListener);
-        
-        _operColumn = new Button(_columnsGroup, SWT.CHECK);
-        _operColumn.setText(Messages.ResultHistoryPage_operation); 
-        _operColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_operation); 
-        _operColumn.addSelectionListener(_selectionListener);
-        
-        _freqColumn = new Button(_columnsGroup, SWT.CHECK);
-        _freqColumn.setText(Messages.ResultHistoryPage_frequency); 
-        _freqColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_frequency); 
-        _freqColumn.addSelectionListener(_selectionListener);
-        
-        _dateColumn = new Button(_columnsGroup, SWT.CHECK);
-        _dateColumn.setText(Messages.ResultHistoryPage_date); 
-        _dateColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_date); 
-        _dateColumn.addSelectionListener(_selectionListener);
-        
-        _actionColumn = new Button(_columnsGroup, SWT.CHECK);
-        _actionColumn.setText(Messages.ResultHistoryPage_action_type); 
-        _actionColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_actiontype); 
-        _actionColumn.addSelectionListener(_selectionListener);
-        
-        _consumerColumn = new Button(_columnsGroup, SWT.CHECK);
-        _consumerColumn.setText(Messages.ResultHistoryPage_consumer_name); 
-        _consumerColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_consume); 
-        _consumerColumn.addSelectionListener(_selectionListener);
-        
-        _profileColumn = new Button(_columnsGroup, SWT.CHECK);
-        _profileColumn.setText(Messages.ResultHistoryPage_connection_profile); 
-        _profileColumn.setToolTipText(Messages.ResultHistoryPage_tooltip_profile); 
-        _profileColumn.addSelectionListener(_selectionListener);
+        initShiftedListValues(true);
+        _shiftedListSection = new ColumnsDisplaySection(Messages.ResultHistoryPage_columns_group_name, 
+                Messages.ResultHistoryPage_columns_selectedlist_name,
+                Messages.ResultHistoryPage_columns_availablelist_name);
+        _shiftedListSection.createContents(comp);
         
         _otherComp = new Composite(comp, SWT.NONE);
         layout = new GridLayout();
@@ -178,27 +175,53 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
     private void initializeValues()
     {
         IPreferenceStore store = getPreferenceStore();
-        _statusColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN));
-        _operColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN));
-        _freqColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN));
-        _dateColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN));
-        _actionColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN));
-        _consumerColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN));
-        _profileColumn.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN));
+        
         _autoSaveHistory.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY));
         _autoCleanHistory.setSelection(store.getBoolean(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY));
+    }
+
+    private void initShiftedListValues(boolean usePreference)
+    {
+        ResultHistoryHelper.refreshOrderFromPreference(usePreference);
+        
+        int len = ResultHistoryHelper.getColumnNumber(usePreference);
+        _initVisibleColumns = new String[len];
+        _initInvisibleColumns = new String[ResultHistoryHelper.COLUMN_NAME.length - len];
+        
+        for(Iterator iter = ResultHistoryHelper.COLUMN_PREFERENCE_ORDER_MAP.keySet().iterator(); iter.hasNext(); )
+        {
+            Object prefName = iter.next();
+            int index = ((Integer)ResultHistoryHelper.COLUMN_PREFERENCE_ORDER_MAP.get(prefName)).intValue();
+            
+            if(index < 0)
+            {
+                continue;
+            }
+            
+            for(Iterator iter1 = ResultHistoryHelper.COLUMN_NAME_PREFERENCE_MAP.keySet().iterator(); iter1.hasNext();)
+            {
+                Object columnName = iter1.next();
+                
+                if(ResultHistoryHelper.COLUMN_NAME_PREFERENCE_MAP.get(columnName).equals(prefName))
+                {
+                    _initVisibleColumns[index] = (String)columnName;
+                }
+            }
+        }
+        
+        List visibleList = Arrays.asList(_initVisibleColumns);
+        List invisibleList = new ArrayList(Arrays.asList(ResultHistoryHelper.COLUMN_NAME));
+        
+        invisibleList.removeAll(visibleList);
+        invisibleList.toArray(_initInvisibleColumns);
     }
     
     protected void performDefaults()
     {
+        initShiftedListValues(false);
+        _shiftedListSection.setInput(_initVisibleColumns, _initInvisibleColumns, true);
+        
         IPreferenceStore store = getPreferenceStore();
-        _statusColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN));
-        _operColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN));
-        _freqColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN));
-        _dateColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN));
-        _actionColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN));
-        _consumerColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN));
-        _profileColumn.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN));
         _autoSaveHistory.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY));
         _autoCleanHistory.setSelection(store.getDefaultBoolean(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY));
         
@@ -208,13 +231,19 @@ public class ResultHistoryPage extends PreferencePage implements IWorkbenchPrefe
     public boolean performOk()
     {
         IPreferenceStore store = getPreferenceStore();
-        store.setValue(PreferenceConstants.RESULT_HISTORY_STATUS_COLUMN, _statusColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_OPER_COLUMN, _operColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_FREQ_COLUMN, _freqColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_DATE_COLUMN, _dateColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_ACTION_COLUMN, _actionColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_CONSUMER_COLUMN, _consumerColumn.getSelection());
-        store.setValue(PreferenceConstants.RESULT_HISTORY_PROFILE_COLUMN, _profileColumn.getSelection());
+        
+        Map columnNameOrderMap = ((ColumnsDisplaySection)_shiftedListSection).getCloumnsDisplayInfo();
+        
+        for(Iterator iter = columnNameOrderMap.keySet().iterator(); iter.hasNext();)
+        {
+            Object columnName = iter.next();
+            Object preference = ResultHistoryHelper.COLUMN_NAME_PREFERENCE_MAP.get(columnName);
+            Object order = columnNameOrderMap.get(columnName);
+            
+            store.setValue((String)preference, ((Integer)order).intValue());
+        }
+        
+        store.setValue(PreferenceConstants.RESULT_HISTORY_ALL_COLUMNS, !store.getBoolean(PreferenceConstants.RESULT_HISTORY_ALL_COLUMNS));
         store.setValue(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY, _autoSaveHistory.getSelection());
         store.setValue(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY, _autoCleanHistory.getSelection());
         

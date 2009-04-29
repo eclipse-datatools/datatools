@@ -304,6 +304,9 @@ public final class Messages extends NLS {
 	public static String ResultSetViewerPage_defaultViewer;
 	public static String ResultHistoryPage_auto_clean;
 	public static String ResultHistoryPage_tooltip_auto_clean;
+    public static String ResultHistoryPage_columns_selectedlist_name;
+    public static String ResultHistoryPage_columns_availablelist_name;
+    public static String find_replace_action_label;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

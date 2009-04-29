@@ -143,6 +143,13 @@ public abstract class AbstractConnectionInfoComposite extends Composite
 
     protected void initDBNames()
     {
+        String profileName = getProfileNamesControl().getText();
+        if(profileName != null && profileName.length() > 0 && getProfileTypeControl().getText() != null)
+        {
+            initProfileNames(getProfileTypeControl().getText(), null);
+            getProfileNamesControl().setText(profileName);
+        }
+        
         getDbNamesControl().removeAll();
         if (_profileName != null)
         {
