@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2008 Sybase, Inc.
+ * Copyright (c) 2005, 2009 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: shongxum - initial API and implementation
  *  Actuate Corporation - refactored to improve extensibility
+ *  brianf - fixing bug 273663
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -301,7 +302,12 @@ public class CPWizardSelectionPage
 				tableViewer.setLabelProvider(new TableLabelProvider());
 				tableViewer.setContentProvider(new TableContentProvider());
 				final Table table = tableViewer.getTable();
-				table.setLayoutData(new GridData(GridData.FILL_BOTH));
+				
+				// for bug 273663, limiting height of table to avoid huge dialog
+				GridData gdTable = new GridData(GridData.FILL_BOTH);
+				gdTable.heightHint = 240;
+				table.setLayoutData(gdTable);
+				
 				TableLayout tl = new TableLayout();
 				{
 					tl.addColumnData(new ColumnWeightData(100));
