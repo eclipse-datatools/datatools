@@ -57,6 +57,8 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.internal.editors.text.EditorsPlugin;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * This class defines the editor add-ons; content assist, content formatter,
@@ -376,4 +378,10 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         return presenter;
     }
     
+	public int getTabWidth(ISourceViewer sourceViewer) {
+		IPreferenceStore fPreferenceStore = EditorsPlugin.getDefault().getPreferenceStore();
+		if (fPreferenceStore == null)
+			return super.getTabWidth(sourceViewer);
+		return fPreferenceStore.getInt(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH);
+	}
 } // end class
