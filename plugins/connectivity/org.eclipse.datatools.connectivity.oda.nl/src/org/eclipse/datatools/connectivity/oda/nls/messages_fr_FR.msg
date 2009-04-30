@@ -34,6 +34,7 @@ manifest_NO_LOG_FILENAME_PREFIX_DEFINED=Le fichier plugin.xml du pilote ODA ne c
 sortSpec_INVALID_SORT_MODE_SPECIFIED=Mode de tri spécifié incorrect \: {0}.
 sortSpec_NULL_COLUMN_NAME_SPECIFIED=Nom de colonne null spécifié.
 sortSpec_INVALID_COLUMN_NAME_SPECIFIED=Nom de colonne spécifié incorrect \: {0}.
+sortSpec_INVALID_NULL_ORDERING=Invalid null ordering value: {0}.
 sortSpec_INVALID_SORT_ORDER_SPECIFIED=Ordre de tri spécifié incorrect \: {0}.
 sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=Cette spécification de tri avec sortModeNone n'autorise aucune clé de tri dynamique.
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=Une colonne de tri existe déjà.  Le mode sortModeSingleColumn autorise au maximum une colonne de tri dynamique.
