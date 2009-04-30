@@ -47,7 +47,6 @@ public class Messages extends NLS
 	public static String manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2;
 	public static String manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE;
 	public static String manifest_INVALID_LOG_LEVEL_VALUE;
-
     public static String manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST;
 	public static String manifest_NO_LOG_FILENAME_PREFIX_DEFINED;
 
@@ -59,6 +58,7 @@ public class Messages extends NLS
 	public static String sortSpec_INVALID_SORT_MODE_SPECIFIED;
 	public static String sortSpec_NULL_COLUMN_NAME_SPECIFIED;
 	public static String sortSpec_INVALID_COLUMN_NAME_SPECIFIED;
+    public static String sortSpec_INVALID_NULL_ORDERING;
 	public static String sortSpec_INVALID_SORT_ORDER_SPECIFIED;
 	public static String sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE;
 	public static String sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE;

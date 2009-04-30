@@ -124,6 +124,11 @@ public class ExpressionTester implements IValidator, IExecutableExtension
                 String columnName = column.isIdentifiedByNumber() ? column.getNumber().toString() : column.getValueExpression();
                 if( ! querySpec.getProperties().containsKey( columnName ) )
                     throw new OdaException( "Unexpected sort column: " + column ); //$NON-NLS-1$
+                
+                // validate that no null ordering is specified
+                int nullOrdering = sortSpec.getNullOrdering( i );
+                if( nullOrdering != SortSpecification.NULL_ORDERING_NONE )
+                    throw new OdaException( "Cannot support null ordering: " + nullOrdering ); //$NON-NLS-1$
             }
         }
         

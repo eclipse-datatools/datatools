@@ -126,11 +126,13 @@ public class QuerySpecTest extends TestCase
         ExtensionContributor contributor =
             ResultExtensionExplorer.getInstance().getExtensionContributor( TEST_EXTENSION_ID );
         assertTrue( contributor.supportsDynamicRowOrdering() );
+        assertFalse( contributor.supportsNullValueOrdering() );
         
         QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
         SortSpecification sortSpec = specHelper.createSortSpecification();
-        sortSpec.addSortKey( new ColumnIdentifier("Column1"), SortSpecification.sortDesc );
-        sortSpec.addSortKey( new ColumnIdentifier(2), SortSpecification.sortAsc );
+        sortSpec.addSortKey( new ColumnIdentifier("Column1"), SortSpecification.ORDERING_DESC );
+        sortSpec.addSortKey( new ColumnIdentifier(2), SortSpecification.ORDERING_ASC, 
+                SortSpecification.NULL_ORDERING_NONE );
         
         ValidationContext context = new ValidationContext( contributor );
         context.setData( ValidationContext.DATA_PROPERTY_QUERY_TEXT, "test query text" );
@@ -138,8 +140,8 @@ public class QuerySpecTest extends TestCase
         QuerySpecification querySpec = specHelper.createQuerySpecification( sortSpec );
 
         // setup test property values used by test driver to validate sort keys
-        querySpec.setProperty( "Column1", Integer.valueOf( SortSpecification.sortDesc ) );
-        querySpec.setProperty( "2", Integer.valueOf( SortSpecification.sortAsc ) );
+        querySpec.setProperty( "Column1", Integer.valueOf( SortSpecification.ORDERING_DESC ) );
+        querySpec.setProperty( "2", Integer.valueOf( SortSpecification.ORDERING_ASC ) );
         querySpec.setProperty( ValidationContext.DATA_PROPERTY_QUERY_TEXT, "test query text" );
         
         IValidator validator = context.getValidator();
@@ -174,15 +176,15 @@ public class QuerySpecTest extends TestCase
         assertEquals( IDataSetMetaData.sortModeNone, sortSpec.getSortMode() );
         
         // single sort key
-        sortSpec.addSortKey( new ColumnIdentifier( "A" ), SortSpecification.sortAsc ); //$NON-NLS-1$
+        sortSpec.addSortKey( new ColumnIdentifier( "A" ), SortSpecification.ORDERING_ASC ); //$NON-NLS-1$
         assertEquals( IDataSetMetaData.sortModeSingleColumn, sortSpec.getSortMode() );
         
         // multiple sort keys with same sort direction
-        sortSpec.addSortKey( new ColumnIdentifier( "B" ), SortSpecification.sortAsc ); //$NON-NLS-1$
+        sortSpec.addSortKey( new ColumnIdentifier( "B" ), SortSpecification.ORDERING_ASC ); //$NON-NLS-1$
         assertEquals( IDataSetMetaData.sortModeSingleOrder, sortSpec.getSortMode() );
         
         // additional sort key with different sort direction
-        sortSpec.addSortKey( new ColumnIdentifier( "C" ), SortSpecification.sortDesc ); //$NON-NLS-1$
+        sortSpec.addSortKey( new ColumnIdentifier( "C" ), SortSpecification.ORDERING_DESC ); //$NON-NLS-1$
         assertEquals( IDataSetMetaData.sortModeColumnOrder, sortSpec.getSortMode() );
     }
 

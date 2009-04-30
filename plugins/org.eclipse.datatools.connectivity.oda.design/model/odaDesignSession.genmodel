@@ -9,7 +9,7 @@
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
     generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="true" codeFormatting="true"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0">
-  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession31.xsd</foreignModel>
+  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession32.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//AxisType">
@@ -39,6 +39,11 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyle/SelectableListWithTextField"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyle/CheckBox"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyle/RadioButton"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//NullOrderingType">
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//NullOrderingType/Unknown"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//NullOrderingType/NullsFirst"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//NullOrderingType/NullsLast"/>
     </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaComplexDataType">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaComplexDataType/Structure"/>
@@ -86,6 +91,7 @@
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignmentObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyleObject"/>
+    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//NullOrderingTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaComplexDataTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterModeObject"/>
@@ -315,6 +321,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnPosition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/sortDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/nullValueOrdering"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/optional"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//SortSpecification">

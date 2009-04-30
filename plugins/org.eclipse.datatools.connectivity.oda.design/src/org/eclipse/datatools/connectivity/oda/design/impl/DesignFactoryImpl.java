@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.11 2009/03/03 07:42:07 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.12 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -213,6 +213,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
             return createInputPromptControlStyleFromString( eDataType,
                     initialValue );
+        case DesignPackage.NULL_ORDERING_TYPE:
+            return createNullOrderingTypeFromString( eDataType, initialValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE:
             return createOdaComplexDataTypeFromString( eDataType, initialValue );
         case DesignPackage.ODA_SCALAR_DATA_TYPE:
@@ -240,6 +242,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
                     initialValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
             return createInputPromptControlStyleObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.NULL_ORDERING_TYPE_OBJECT:
+            return createNullOrderingTypeObjectFromString( eDataType,
                     initialValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
             return createOdaComplexDataTypeObjectFromString( eDataType,
@@ -287,6 +292,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
             return convertInputPromptControlStyleToString( eDataType,
                     instanceValue );
+        case DesignPackage.NULL_ORDERING_TYPE:
+            return convertNullOrderingTypeToString( eDataType, instanceValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE:
             return convertOdaComplexDataTypeToString( eDataType, instanceValue );
         case DesignPackage.ODA_SCALAR_DATA_TYPE:
@@ -314,6 +321,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
                     instanceValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
             return convertInputPromptControlStyleObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.NULL_ORDERING_TYPE_OBJECT:
+            return convertNullOrderingTypeObjectToString( eDataType,
                     instanceValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
             return convertOdaComplexDataTypeObjectToString( eDataType,
@@ -1037,6 +1047,32 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public NullOrderingType createNullOrderingTypeFromString(
+            EDataType eDataType, String initialValue )
+    {
+        NullOrderingType result = NullOrderingType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertNullOrderingTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public OdaComplexDataType createOdaComplexDataTypeFromString(
             EDataType eDataType, String initialValue )
     {
@@ -1333,6 +1369,30 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         return convertInputPromptControlStyleToString(
                 DesignPackage.Literals.INPUT_PROMPT_CONTROL_STYLE,
                 instanceValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NullOrderingType createNullOrderingTypeObjectFromString(
+            EDataType eDataType, String initialValue )
+    {
+        return createNullOrderingTypeFromString(
+                DesignPackage.Literals.NULL_ORDERING_TYPE, initialValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertNullOrderingTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return convertNullOrderingTypeToString(
+                DesignPackage.Literals.NULL_ORDERING_TYPE, instanceValue );
     }
 
     /**

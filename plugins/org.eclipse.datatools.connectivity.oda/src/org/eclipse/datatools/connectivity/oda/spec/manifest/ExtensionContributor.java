@@ -40,7 +40,8 @@ public class ExtensionContributor implements IContributor
     public static final String ATTR_ODA_FILTER_EXPR_NAME = "name"; //$NON-NLS-1$
     public static final String ATTR_VALIDATOR_CLASS = "validatorClass"; //$NON-NLS-1$
     public static final String ATTR_SPEC_FACTORY_CLASS = "specificationFactoryClass"; //$NON-NLS-1$
-    public static final String ATTR_ROW_ORDERING_SUPPORT = "supportsRowOrdering"; //$NON-NLS-1$
+    public static final String SUB_ELEMENT_ROW_ORDERING_SUPPORT = "supportsRowOrdering"; //$NON-NLS-1$
+    public static final String ATTR_NULL_ORDERING_SUPPORT = "nullValueOrdering"; //$NON-NLS-1$
     
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
     
@@ -50,6 +51,7 @@ public class ExtensionContributor implements IContributor
     private IValidator m_filterValidator;
     private QuerySpecificationFactory m_specFactory;
     private boolean m_supportsRowOrdering;
+    private boolean m_supportsNullOrdering;
     
     public ExtensionContributor( IConfigurationElement contributorElement ) throws OdaException
     {
@@ -69,11 +71,17 @@ public class ExtensionContributor implements IContributor
         // process supportedOdaExpression child elements
         m_supportedOdaExprNames = processSupportedOdaExpressions( m_contributorElement );
         
-        // supportsRowOrdering attribute
+        // supportsRowOrdering child element
         m_supportsRowOrdering = false;  // default value
-        String attrValue = contributorElement.getAttribute( ATTR_ROW_ORDERING_SUPPORT );
-        if( attrValue != null )
-            m_supportsRowOrdering = Boolean.parseBoolean( attrValue );
+        m_supportsNullOrdering = false;
+        IConfigurationElement[] rowOrderingElements = contributorElement.getChildren( SUB_ELEMENT_ROW_ORDERING_SUPPORT );
+        if( rowOrderingElements.length > 0 )
+        {
+            m_supportsRowOrdering = true;
+            String attrValue = rowOrderingElements[0].getAttribute( ATTR_NULL_ORDERING_SUPPORT );
+            if( attrValue != null )
+                m_supportsNullOrdering = Boolean.parseBoolean( attrValue );
+        }
 
         // processing of optional validator and specificationFactory attributes are deferred till it is needed
     }
@@ -212,6 +220,16 @@ public class ExtensionContributor implements IContributor
     public boolean supportsDynamicRowOrdering()
     {
         return m_supportsRowOrdering;
+    }
+    
+    /**
+     * Indicates whether this contributor's support of dynamic row ordering includes
+     * control over the ordering of null vs. non-null values in the row order.
+     * @return  true if dynamic null value ordering is supported; false otherwise
+     */
+    public boolean supportsNullValueOrdering()
+    {
+        return supportsDynamicRowOrdering() && m_supportsNullOrdering;
     }
     
     /**

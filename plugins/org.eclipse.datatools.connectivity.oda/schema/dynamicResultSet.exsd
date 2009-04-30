@@ -59,6 +59,7 @@
          <sequence>
             <element ref="supportedDataSetType" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="supportedOdaFilterExpression" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="supportsRowOrdering" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="validatorClass" type="string">
             <annotation>
@@ -78,13 +79,6 @@
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory:"/>
                </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="supportsRowOrdering" type="boolean" use="default" value="false">
-            <annotation>
-               <documentation>
-                  Indicates whether this extension contributes dynamic row ordering of its result sets for all its supported data set types.  The default value is false.
-               </documentation>
             </annotation>
          </attribute>
       </complexType>
@@ -412,6 +406,23 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
                   </enumeration>
                </restriction>
             </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="supportsRowOrdering">
+      <annotation>
+         <documentation>
+            Indicates this extension contributes dynamic row ordering of its result sets for all its supported data set types.  Absence of this element indicates no support.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="nullValueOrdering" type="boolean">
+            <annotation>
+               <documentation>
+                  Indicates whether this row ordering support can also handle ordering of null vs. non-null values in the row order. The default value is false for no control over null value ordering.
+               </documentation>
+            </annotation>
          </attribute>
       </complexType>
    </element>

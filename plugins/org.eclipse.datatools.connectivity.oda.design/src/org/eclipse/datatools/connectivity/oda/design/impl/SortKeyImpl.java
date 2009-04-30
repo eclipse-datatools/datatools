@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id: SortKeyImpl.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
+ * $Id: SortKeyImpl.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.NullOrderingType;
 import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
 import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.emf.common.notify.Notification;
@@ -36,6 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getSortDirection <em>Sort Direction</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getNullValueOrdering <em>Null Value Ordering</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#isOptional <em>Optional</em>}</li>
  * </ul>
  * </p>
@@ -134,6 +136,35 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * @ordered
      */
     protected boolean m_sortDirectionESet;
+
+    /**
+     * The default value of the '{@link #getNullValueOrdering() <em>Null Value Ordering</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNullValueOrdering()
+     * @generated
+     * @ordered
+     */
+    protected static final NullOrderingType NULL_VALUE_ORDERING_EDEFAULT = NullOrderingType.UNKNOWN;
+
+    /**
+     * The cached value of the '{@link #getNullValueOrdering() <em>Null Value Ordering</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getNullValueOrdering()
+     * @generated
+     * @ordered
+     */
+    protected NullOrderingType m_nullValueOrdering = NULL_VALUE_ORDERING_EDEFAULT;
+
+    /**
+     * This is true if the Null Value Ordering attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean m_nullValueOrderingESet;
 
     /**
      * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
@@ -351,6 +382,63 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * <!-- end-user-doc -->
      * @generated
      */
+    public NullOrderingType getNullValueOrdering()
+    {
+        return m_nullValueOrdering;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNullValueOrdering( NullOrderingType newNullValueOrdering )
+    {
+        NullOrderingType oldNullValueOrdering = m_nullValueOrdering;
+        m_nullValueOrdering = newNullValueOrdering == null ? NULL_VALUE_ORDERING_EDEFAULT
+                : newNullValueOrdering;
+        boolean oldNullValueOrderingESet = m_nullValueOrderingESet;
+        m_nullValueOrderingESet = true;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.SORT_KEY__NULL_VALUE_ORDERING,
+                    oldNullValueOrdering, m_nullValueOrdering,
+                    !oldNullValueOrderingESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void unsetNullValueOrdering()
+    {
+        NullOrderingType oldNullValueOrdering = m_nullValueOrdering;
+        boolean oldNullValueOrderingESet = m_nullValueOrderingESet;
+        m_nullValueOrdering = NULL_VALUE_ORDERING_EDEFAULT;
+        m_nullValueOrderingESet = false;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.SORT_KEY__NULL_VALUE_ORDERING,
+                    oldNullValueOrdering, NULL_VALUE_ORDERING_EDEFAULT,
+                    oldNullValueOrderingESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isSetNullValueOrdering()
+    {
+        return m_nullValueOrderingESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public boolean isOptional()
     {
         return m_optional;
@@ -416,6 +504,8 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return new Integer( getColumnPosition() );
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             return getSortDirection();
+        case DesignPackage.SORT_KEY__NULL_VALUE_ORDERING:
+            return getNullValueOrdering();
         case DesignPackage.SORT_KEY__OPTIONAL:
             return isOptional() ? Boolean.TRUE : Boolean.FALSE;
         }
@@ -440,6 +530,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return;
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             setSortDirection( (SortDirectionType) newValue );
+            return;
+        case DesignPackage.SORT_KEY__NULL_VALUE_ORDERING:
+            setNullValueOrdering( (NullOrderingType) newValue );
             return;
         case DesignPackage.SORT_KEY__OPTIONAL:
             setOptional( ((Boolean) newValue).booleanValue() );
@@ -467,6 +560,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             unsetSortDirection();
             return;
+        case DesignPackage.SORT_KEY__NULL_VALUE_ORDERING:
+            unsetNullValueOrdering();
+            return;
         case DesignPackage.SORT_KEY__OPTIONAL:
             unsetOptional();
             return;
@@ -491,6 +587,8 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
             return isSetColumnPosition();
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             return isSetSortDirection();
+        case DesignPackage.SORT_KEY__NULL_VALUE_ORDERING:
+            return isSetNullValueOrdering();
         case DesignPackage.SORT_KEY__OPTIONAL:
             return isSetOptional();
         }
@@ -519,6 +617,11 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         result.append( ", sortDirection: " ); //$NON-NLS-1$
         if( m_sortDirectionESet )
             result.append( m_sortDirection );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", nullValueOrdering: " ); //$NON-NLS-1$
+        if( m_nullValueOrderingESet )
+            result.append( m_nullValueOrdering );
         else
             result.append( "<unset>" ); //$NON-NLS-1$
         result.append( ", optional: " ); //$NON-NLS-1$

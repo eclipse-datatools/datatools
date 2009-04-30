@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.9 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DesignPackage.java,v 1.10 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -2217,13 +2217,22 @@ public interface DesignPackage extends EPackage
     int SORT_KEY__SORT_DIRECTION = 2;
 
     /**
+     * The feature id for the '<em><b>Null Value Ordering</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY__NULL_VALUE_ORDERING = 3;
+
+    /**
      * The feature id for the '<em><b>Optional</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SORT_KEY__OPTIONAL = 3;
+    int SORT_KEY__OPTIONAL = 4;
 
     /**
      * The number of structural features of the '<em>Sort Key</em>' class.
@@ -2232,7 +2241,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int SORT_KEY_FEATURE_COUNT = 4;
+    int SORT_KEY_FEATURE_COUNT = 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl <em>Sort Specification</em>}' class.
@@ -2405,6 +2414,16 @@ public interface DesignPackage extends EPackage
     int INPUT_PROMPT_CONTROL_STYLE = 56;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.NullOrderingType <em>Null Ordering Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNullOrderingType()
+     * @generated
+     */
+    int NULL_ORDERING_TYPE = 57;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2412,7 +2431,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE = 57;
+    int ODA_COMPLEX_DATA_TYPE = 58;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
@@ -2422,7 +2441,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE = 58;
+    int ODA_SCALAR_DATA_TYPE = 59;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
@@ -2432,7 +2451,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
      * @generated
      */
-    int PARAMETER_MODE = 59;
+    int PARAMETER_MODE = 60;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
@@ -2442,7 +2461,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
      * @generated
      */
-    int SESSION_STATUS = 60;
+    int SESSION_STATUS = 61;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SortDirectionType <em>Sort Direction Type</em>}' enum.
@@ -2452,7 +2471,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionType()
      * @generated
      */
-    int SORT_DIRECTION_TYPE = 61;
+    int SORT_DIRECTION_TYPE = 62;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
@@ -2462,7 +2481,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
      * @generated
      */
-    int TEXT_FORMAT_TYPE = 62;
+    int TEXT_FORMAT_TYPE = 63;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
@@ -2472,7 +2491,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
      * @generated
      */
-    int TEXT_WRAP_TYPE = 63;
+    int TEXT_WRAP_TYPE = 64;
 
     /**
      * The meta object id for the '<em>Axis Type Object</em>' data type.
@@ -2482,7 +2501,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
-    int AXIS_TYPE_OBJECT = 64;
+    int AXIS_TYPE_OBJECT = 65;
 
     /**
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
@@ -2492,7 +2511,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
-    int ELEMENT_NULLABILITY_OBJECT = 65;
+    int ELEMENT_NULLABILITY_OBJECT = 66;
 
     /**
      * The meta object id for the '<em>Expression Variable Type Object</em>' data type.
@@ -2502,7 +2521,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableTypeObject()
      * @generated
      */
-    int EXPRESSION_VARIABLE_TYPE_OBJECT = 66;
+    int EXPRESSION_VARIABLE_TYPE_OBJECT = 67;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
@@ -2512,7 +2531,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT_OBJECT = 67;
+    int HORIZONTAL_ALIGNMENT_OBJECT = 68;
 
     /**
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
@@ -2522,7 +2541,17 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 68;
+    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 69;
+
+    /**
+     * The meta object id for the '<em>Null Ordering Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNullOrderingTypeObject()
+     * @generated
+     */
+    int NULL_ORDERING_TYPE_OBJECT = 70;
 
     /**
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
@@ -2532,7 +2561,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE_OBJECT = 69;
+    int ODA_COMPLEX_DATA_TYPE_OBJECT = 71;
 
     /**
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
@@ -2542,7 +2571,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE_OBJECT = 70;
+    int ODA_SCALAR_DATA_TYPE_OBJECT = 72;
 
     /**
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
@@ -2552,7 +2581,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
-    int PARAMETER_MODE_OBJECT = 71;
+    int PARAMETER_MODE_OBJECT = 73;
 
     /**
      * The meta object id for the '<em>Session Status Object</em>' data type.
@@ -2562,7 +2591,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
-    int SESSION_STATUS_OBJECT = 72;
+    int SESSION_STATUS_OBJECT = 74;
 
     /**
      * The meta object id for the '<em>Sort Direction Type Object</em>' data type.
@@ -2572,7 +2601,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionTypeObject()
      * @generated
      */
-    int SORT_DIRECTION_TYPE_OBJECT = 73;
+    int SORT_DIRECTION_TYPE_OBJECT = 75;
 
     /**
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
@@ -2582,7 +2611,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
-    int TEXT_FORMAT_TYPE_OBJECT = 74;
+    int TEXT_FORMAT_TYPE_OBJECT = 76;
 
     /**
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
@@ -2592,7 +2621,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
-    int TEXT_WRAP_TYPE_OBJECT = 75;
+    int TEXT_WRAP_TYPE_OBJECT = 77;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AndExpression <em>And Expression</em>}'.
@@ -4482,6 +4511,17 @@ public interface DesignPackage extends EPackage
     EAttribute getSortKey_SortDirection();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering <em>Null Value Ordering</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Null Value Ordering</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering()
+     * @see #getSortKey()
+     * @generated
+     */
+    EAttribute getSortKey_NullValueOrdering();
+
+    /**
      * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4650,6 +4690,16 @@ public interface DesignPackage extends EPackage
     EEnum getInputPromptControlStyle();
 
     /**
+     * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.NullOrderingType <em>Null Ordering Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Null Ordering Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @generated
+     */
+    EEnum getNullOrderingType();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4778,6 +4828,18 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EDataType getInputPromptControlStyleObject();
+
+    /**
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.NullOrderingType <em>Null Ordering Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Null Ordering Type Object</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.NullOrderingType"
+     *        extendedMetaData="name='NullOrderingType:Object' baseType='NullOrderingType'"
+     * @generated
+     */
+    EDataType getNullOrderingTypeObject();
 
     /**
      * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type Object</em>}'.
@@ -6517,6 +6579,15 @@ public interface DesignPackage extends EPackage
                 .getSortKey_SortDirection();
 
         /**
+         * The meta object literal for the '<em><b>Null Value Ordering</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SORT_KEY__NULL_VALUE_ORDERING = eINSTANCE
+                .getSortKey_NullValueOrdering();
+
+        /**
          * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -6668,6 +6739,16 @@ public interface DesignPackage extends EPackage
                 .getInputPromptControlStyle();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.NullOrderingType <em>Null Ordering Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNullOrderingType()
+         * @generated
+         */
+        EEnum NULL_ORDERING_TYPE = eINSTANCE.getNullOrderingType();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -6790,6 +6871,17 @@ public interface DesignPackage extends EPackage
          */
         EDataType INPUT_PROMPT_CONTROL_STYLE_OBJECT = eINSTANCE
                 .getInputPromptControlStyleObject();
+
+        /**
+         * The meta object literal for the '<em>Null Ordering Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNullOrderingTypeObject()
+         * @generated
+         */
+        EDataType NULL_ORDERING_TYPE_OBJECT = eINSTANCE
+                .getNullOrderingTypeObject();
 
         /**
          * The meta object literal for the '<em>Oda Complex Data Type Object</em>' data type.

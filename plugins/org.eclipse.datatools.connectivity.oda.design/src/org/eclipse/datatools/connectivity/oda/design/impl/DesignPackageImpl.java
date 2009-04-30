@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.13 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.14 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -54,6 +54,7 @@ import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
 import org.eclipse.datatools.connectivity.oda.design.NotExpression;
+import org.eclipse.datatools.connectivity.oda.design.NullOrderingType;
 import org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
@@ -509,6 +510,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EEnum nullOrderingTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum odaComplexDataTypeEEnum = null;
 
     /**
@@ -587,6 +595,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EDataType inputPromptControlStyleObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType nullOrderingTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -2591,9 +2606,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_Optional()
+    public EAttribute getSortKey_NullValueOrdering()
     {
         return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 3 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSortKey_Optional()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 4 );
     }
 
     /**
@@ -2757,6 +2782,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getNullOrderingType()
+    {
+        return nullOrderingTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getOdaComplexDataType()
     {
         return odaComplexDataTypeEEnum;
@@ -2870,6 +2905,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EDataType getInputPromptControlStyleObject()
     {
         return inputPromptControlStyleObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getNullOrderingTypeObject()
+    {
+        return nullOrderingTypeObjectEDataType;
     }
 
     /**
@@ -3293,6 +3338,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_NAME );
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_POSITION );
         createEAttribute( sortKeyEClass, SORT_KEY__SORT_DIRECTION );
+        createEAttribute( sortKeyEClass, SORT_KEY__NULL_VALUE_ORDERING );
         createEAttribute( sortKeyEClass, SORT_KEY__OPTIONAL );
 
         sortSpecificationEClass = createEClass( SORT_SPECIFICATION );
@@ -3320,6 +3366,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         expressionVariableTypeEEnum = createEEnum( EXPRESSION_VARIABLE_TYPE );
         horizontalAlignmentEEnum = createEEnum( HORIZONTAL_ALIGNMENT );
         inputPromptControlStyleEEnum = createEEnum( INPUT_PROMPT_CONTROL_STYLE );
+        nullOrderingTypeEEnum = createEEnum( NULL_ORDERING_TYPE );
         odaComplexDataTypeEEnum = createEEnum( ODA_COMPLEX_DATA_TYPE );
         odaScalarDataTypeEEnum = createEEnum( ODA_SCALAR_DATA_TYPE );
         parameterModeEEnum = createEEnum( PARAMETER_MODE );
@@ -3334,6 +3381,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         expressionVariableTypeObjectEDataType = createEDataType( EXPRESSION_VARIABLE_TYPE_OBJECT );
         horizontalAlignmentObjectEDataType = createEDataType( HORIZONTAL_ALIGNMENT_OBJECT );
         inputPromptControlStyleObjectEDataType = createEDataType( INPUT_PROMPT_CONTROL_STYLE_OBJECT );
+        nullOrderingTypeObjectEDataType = createEDataType( NULL_ORDERING_TYPE_OBJECT );
         odaComplexDataTypeObjectEDataType = createEDataType( ODA_COMPLEX_DATA_TYPE_OBJECT );
         odaScalarDataTypeObjectEDataType = createEDataType( ODA_SCALAR_DATA_TYPE_OBJECT );
         parameterModeObjectEDataType = createEDataType( PARAMETER_MODE_OBJECT );
@@ -4206,6 +4254,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getSortDirectionType(),
                 "sortDirection", "Ascending", 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
+                getSortKey_NullValueOrdering(),
+                this.getNullOrderingType(),
+                "nullValueOrdering", null, 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
                 getSortKey_Optional(),
                 theXMLTypePackage.getBoolean(),
                 "optional", "false", 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -4302,6 +4354,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addEEnumLiteral( inputPromptControlStyleEEnum,
                 InputPromptControlStyle.RADIO_BUTTON_LITERAL );
 
+        initEEnum( nullOrderingTypeEEnum, NullOrderingType.class,
+                "NullOrderingType" ); //$NON-NLS-1$
+        addEEnumLiteral( nullOrderingTypeEEnum, NullOrderingType.UNKNOWN );
+        addEEnumLiteral( nullOrderingTypeEEnum, NullOrderingType.NULLS_FIRST );
+        addEEnumLiteral( nullOrderingTypeEEnum, NullOrderingType.NULLS_LAST );
+
         initEEnum( odaComplexDataTypeEEnum, OdaComplexDataType.class,
                 "OdaComplexDataType" ); //$NON-NLS-1$
         addEEnumLiteral( odaComplexDataTypeEEnum,
@@ -4375,6 +4433,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 inputPromptControlStyleObjectEDataType,
                 InputPromptControlStyle.class,
                 "InputPromptControlStyleObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEDataType(
+                nullOrderingTypeObjectEDataType,
+                NullOrderingType.class,
+                "NullOrderingTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 odaComplexDataTypeObjectEDataType,
                 OdaComplexDataType.class,
@@ -5098,6 +5160,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "negatingExpression", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( nullOrderingTypeEEnum, source, new String[]
+        { "name", "NullOrderingType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( nullOrderingTypeObjectEDataType, source, new String[]
+        { "name", "NullOrderingType:Object", //$NON-NLS-1$ //$NON-NLS-2$
+                "baseType", "NullOrderingType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( odaComplexDataTypeEEnum, source, new String[]
         { "name", "OdaComplexDataType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -5398,6 +5467,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getSortKey_SortDirection(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "sortDirection", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_NullValueOrdering(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "nullValueOrdering", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( getSortKey_Optional(), source, new String[]

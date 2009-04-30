@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: SortKey.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
+ * $Id: SortKey.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getSortDirection <em>Sort Direction</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering <em>Null Value Ordering</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#isOptional <em>Optional</em>}</li>
  * </ul>
  * </p>
@@ -190,12 +191,68 @@ public interface SortKey extends EObject
     boolean isSetSortDirection();
 
     /**
+     * Returns the value of the '<em><b>Null Value Ordering</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.datatools.connectivity.oda.design.NullOrderingType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The ordering of null vs. non-null values in the sort order.  Default value is "Unknown", i.e. not specified.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Null Value Ordering</em>' attribute.
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @see #isSetNullValueOrdering()
+     * @see #unsetNullValueOrdering()
+     * @see #setNullValueOrdering(NullOrderingType)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortKey_NullValueOrdering()
+     * @model unsettable="true"
+     *        extendedMetaData="kind='element' name='nullValueOrdering' namespace='##targetNamespace'"
+     * @generated
+     */
+    NullOrderingType getNullValueOrdering();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering <em>Null Value Ordering</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Null Value Ordering</em>' attribute.
+     * @see org.eclipse.datatools.connectivity.oda.design.NullOrderingType
+     * @see #isSetNullValueOrdering()
+     * @see #unsetNullValueOrdering()
+     * @see #getNullValueOrdering()
+     * @generated
+     */
+    void setNullValueOrdering( NullOrderingType value );
+
+    /**
+     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering <em>Null Value Ordering</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetNullValueOrdering()
+     * @see #getNullValueOrdering()
+     * @see #setNullValueOrdering(NullOrderingType)
+     * @generated
+     */
+    void unsetNullValueOrdering();
+
+    /**
+     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getNullValueOrdering <em>Null Value Ordering</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Null Value Ordering</em>' attribute is set.
+     * @see #unsetNullValueOrdering()
+     * @see #getNullValueOrdering()
+     * @see #setNullValueOrdering(NullOrderingType)
+     * @generated
+     */
+    boolean isSetNullValueOrdering();
+
+    /**
      * Returns the value of the '<em><b>Optional</b></em>' attribute.
      * The default value is <code>"false"</code>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Indicates whether this sort key can be excluded at runtime.
+     * Indicates whether this sort key can be excluded at runtime.  Default value is false.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Optional</em>' attribute.
      * @see #isSetOptional()
