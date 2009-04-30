@@ -40,6 +40,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	private boolean 			m_isExecuted;
 	private String 				m_dataSetType;
 	private Object 				m_appContext;
+    private String              m_preparedText;
     
 	private static final String MSG_ARG_SEPARATOR = ", "; //$NON-NLS-1$
 	private static final String MSG_LINE_SEPARATOR = " )\t"; //$NON-NLS-1$
@@ -106,6 +107,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		
 		// reset the statement states
 		m_isPreparedSuccessfully = false;
+	    m_preparedText = null;
 		resetExecuteStates();
 	}
 
@@ -225,6 +227,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 			throw newOdaException( Messages.helper_maxConcurrentStatementsReached );
 		
 		getQuery().prepare( queryText );
+        m_preparedText = queryText;
 	}
 
 	public void setProperty( String propertyName, String propertyValue )
@@ -1538,11 +1541,11 @@ public class OdaQuery extends OdaDriverObject implements IQuery
             String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
             log( context, msg );
             
-            return null;    // none is available
+            return m_preparedText;    // returns the one passed to #prepare
         }
         catch( UnsupportedOperationException uoException )
         {
-            return null;    // none is available
+            return m_preparedText;    // returns the one passed to #prepare
         }
         catch( RuntimeException rtException )
         {
