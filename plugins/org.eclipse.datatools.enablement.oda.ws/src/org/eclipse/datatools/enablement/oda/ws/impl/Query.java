@@ -443,7 +443,7 @@ public class Query implements IQuery
     public String getEffectiveQueryText()
     {
         // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /* (non-Javadoc)
