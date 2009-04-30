@@ -23,6 +23,7 @@ import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
+import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIPlugin;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
@@ -261,6 +262,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		 * Add the results view
 		 */
 		_resultsViewControl = new ResultsViewControl();
+		ResultsViewPlugin.getDefault().getResultManager().removeResultManagerListener(new ResultsViewUIPlugin.ResultViewControlListener());
 		ResultsViewPlugin.getDefault().getResultManager().addResultManagerListener(_resultsViewControl);
 		/*
 		 * Tell the results view to use preferences
@@ -400,6 +402,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		_sqlBuilder.removeExecuteSQLListener(this);
 		ResultsViewPlugin.getDefault().getResultManager().removeResultManagerListener(_resultsViewControl);
 		_resultsViewControl.dispose();
+		ResultsViewPlugin.getDefault().getResultManager().addResultManagerListener(new ResultsViewUIPlugin.ResultViewControlListener());
 		return super.close();
 	}
 

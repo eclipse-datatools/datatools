@@ -188,7 +188,7 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 	 * @author linsong
 	 *
 	 */
-	public static class ResultViewConstrolListener implements IResultManagerListener
+	public static class ResultViewControlListener implements IResultManagerListener
 	{
 
 		public void allResultInstancesRemoved() {
@@ -230,5 +230,9 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 			return resultsView.getResultsViewControl();
 		}
 		
+		public boolean equals(Object obj) 
+		{
+			return true;
+		}
 	}
 }
