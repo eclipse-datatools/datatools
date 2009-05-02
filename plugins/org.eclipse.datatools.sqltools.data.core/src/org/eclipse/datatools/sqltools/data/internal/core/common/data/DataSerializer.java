@@ -65,7 +65,7 @@ public class DataSerializer {
             if (val instanceof BigDecimal)
             	return BigDecimalFormat.getInstance().format((BigDecimal)val);
             else 
-            	return intf.format(val);
+            	return val.toString();
         else if (type==Types.BIT)
             return val.toString();
         else if (type==Types.CHAR)
