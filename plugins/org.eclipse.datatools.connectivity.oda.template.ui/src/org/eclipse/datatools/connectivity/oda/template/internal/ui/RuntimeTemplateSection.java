@@ -161,10 +161,8 @@ class RuntimeTemplateSection extends OdaTemplateSection
      */
     public IPluginReference[] getDependencies( String schemaVersion )
     {
-        Version version307 = new Version( 3, 0, 7 );
         Version version320 = new Version( 3, 2, 0 );
         Version version400 = new Version( 4, 0, 0 );
-        VersionRange compatible307 = new VersionRange( version307, true, version400, false );       
         VersionRange compatible320 = new VersionRange( version320, true, version400, false );       
         
         return new IPluginReference[] 
@@ -176,7 +174,7 @@ class RuntimeTemplateSection extends OdaTemplateSection
                         compatible320.toString() ),
                       new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.profile",  //$NON-NLS-1$
-                        compatible307.toString() )
+                        compatible320.toString() )
                     };
     }
 

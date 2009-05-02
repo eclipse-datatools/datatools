@@ -215,7 +215,7 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         VersionRange compatible320 = new VersionRange( version320, true, version400, false );       
 
         return new IPluginReference[] 
-                    { 
+                    { // adopts similar plugin sequence as PDE UI base template wizard
                       new PluginReference(
                         "org.eclipse.ui", null, 0 ), //$NON-NLS-1$
                       new PluginReference( 
