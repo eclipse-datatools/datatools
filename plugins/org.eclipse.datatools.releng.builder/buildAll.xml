@@ -131,7 +131,11 @@
 			4. Keep the signed, packed zip under ${buildDirectory}/, name as dtp-all-signed.zip
 		-->
 
-	
+        <zip destfile="${tmpsite}/dtp-p2repo.zip">
+           <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
+           <fileset dir="${tmpsite}/eclipse" includes="plugins/**"/>
+        </zip>
+		
         <antcall target="signDTPJars"/>
 
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
@@ -140,9 +144,6 @@
 			<fileset dir="${tmpsite}/eclipse" includes="*.html" />
 		</copy>
 
-		<!--
-		<antcall target="p2.test"/>
-		-->
 	</target>
 
 	<target name="p2.test">
@@ -172,6 +173,14 @@
 		</antcall>
 
 		<unzip src="${tmpsite}/dtp-all-signed.zip" dest="${tmpsite}/eclipse"/>
+		
+        <zip destfile="${tmpsite}/dtp-all-unsign.zip">
+           <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
+           <fileset dir="${tmpsite}/eclipse" includes="plugins/**"/>
+           <fileset dir="${eclipse.build.configs}/../../extras" includes="pack.properties"/>
+        </zip>
+		
+		<copy file="${tmpsite}/dtp-all-unsign.zip" tofile="${tmpsite}/dtp-p2repo.zip" overwrite="true"/>
 		
 	</target>
 	
@@ -349,6 +358,7 @@
 
     <target name="GenerateUpdateSite">
         <property file="${buildDirectory}/finalFeaturesVersions.properties"/>
+    	<property name="tmpsite" value="${buildDirectory}/tmpsite" />
         <mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
         <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite/eclipse"/>
         
@@ -359,10 +369,15 @@
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
         <!-- push update site to output directory -->
+    	<!--
         <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" 
         	dest="${postingDirectory}/${buildId}/UpdateSite"/>
         <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" 
         	dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
+      	-->
+        <unzip src="${tmpsite}/dtp-p2repo.zip" 
+        	dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
+    	
         <copy todir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
         	<fileset dir="${eclipse.build.configs}/../../extras">
         		<include name="pack.properties"/>
