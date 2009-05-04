@@ -137,7 +137,7 @@
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
 
 		<copy todir="${tmpsite}/new/eclipse">
-			<fileset dir="${tmpsite}/eclipse" includes="*.html,readme/**" />
+			<fileset dir="${tmpsite}/eclipse" includes="*.html" />
 		</copy>
 
 		<!--
@@ -272,7 +272,6 @@
 				<exclude name="org.eclipse.datatools.enablement.oda.ecore*/**"/>
 			</zipfileset>
 			<zipfileset dir="${buildDirectory}/tmpsite/new/eclipse" prefix="eclipse">
-				<include name="readme/**"/>
 				<include name="*.html"/>
 			</zipfileset>
 		</zip>

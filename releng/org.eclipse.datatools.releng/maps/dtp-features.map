@@ -1,5 +1,5 @@
 !**************** SDK FEATURES **************************
-feature@org.eclipse.datatools.sdk-all.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sdk-all.feature
+feature@org.eclipse.datatools.sdk-all.feature=v200905041555,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sdk-all.feature
 feature@org.eclipse.datatools.enablement.sdk.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.enablement.sdk.feature
 feature@org.eclipse.datatools.sdk.feature=v200904240430,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sdk.feature
 
