@@ -141,6 +141,14 @@
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
             name="%DatabaseManagement.command.execute.select"
             id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"/>
+	  <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.as.one.statement"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteAsOneStatementAction"/>
+	  <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.current"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteCurrentAction"/>
       <command
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
             name="%DatabaseManagement.command.dmldialog.select"

@@ -232,7 +232,14 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 		
 		public boolean equals(Object obj) 
 		{
-			return true;
+			if(obj instanceof ResultViewControlListener)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 	}
 }
