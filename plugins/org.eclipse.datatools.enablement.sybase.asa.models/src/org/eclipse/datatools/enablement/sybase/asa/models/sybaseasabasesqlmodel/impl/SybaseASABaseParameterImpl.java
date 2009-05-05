@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseParameterImpl.java,v 1.9 2007/07/16 08:01:52 linsong Exp $
+ * $Id: SybaseASABaseParameterImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -39,150 +39,150 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseASABaseParameter 
 {
     /**
-     * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNullable()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean NULLABLE_EDEFAULT = true;
 
     /**
-     * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isNullable()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean nullable = NULLABLE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDefaultValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String DEFAULT_VALUE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDefaultValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDefaultValue()
+	 * @generated
+	 * @ordered
+	 */
     protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getJDBCParameterType() <em>JDBC Parameter Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getJDBCParameterType() <em>JDBC Parameter Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getJDBCParameterType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getJDBCParameterType()
+	 * @generated
+	 * @ordered
+	 */
     protected static final JDBCParameterType JDBC_PARAMETER_TYPE_EDEFAULT = JDBCParameterType.UNKNOWN_LITERAL;
 
     /**
-     * The cached value of the '{@link #getJDBCParameterType() <em>JDBC Parameter Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getJDBCParameterType() <em>JDBC Parameter Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getJDBCParameterType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getJDBCParameterType()
+	 * @generated
+	 * @ordered
+	 */
     protected JDBCParameterType jdbcParameterType = JDBC_PARAMETER_TYPE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getParmType() <em>Parm Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getParmType() <em>Parm Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getParmType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParmType()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final ParameterType PARM_TYPE_EDEFAULT = ParameterType.VARIABLE_LITERAL;
 
     /**
-     * The cached value of the '{@link #getParmType() <em>Parm Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParmType() <em>Parm Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getParmType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParmType()
+	 * @generated
+	 * @ordered
+	 */
 	protected ParameterType parmType = PARM_TYPE_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASABaseParameterImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PARAMETER;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PARAMETER;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean isNullable()
     {
-        return nullable;
-    }
+		return nullable;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setNullable(boolean newNullable)
     {
-        boolean oldNullable = nullable;
-        nullable = newNullable;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE, oldNullable, nullable));
-    }
+		boolean oldNullable = nullable;
+		nullable = newNullable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE, oldNullable, nullable));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getDefaultValue()
     {
-        return defaultValue;
-    }
+		return defaultValue;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setDefaultValue(String newDefaultValue)
     {
-        String oldDefaultValue = defaultValue;
-        defaultValue = newDefaultValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE, oldDefaultValue, defaultValue));
-    }
+		String oldDefaultValue = defaultValue;
+		defaultValue = newDefaultValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE, oldDefaultValue, defaultValue));
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -220,194 +220,186 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setJDBCParameterType(JDBCParameterType newJDBCParameterType)
     {
-        JDBCParameterType oldJDBCParameterType = jdbcParameterType;
-        jdbcParameterType = newJDBCParameterType == null ? JDBC_PARAMETER_TYPE_EDEFAULT : newJDBCParameterType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE, oldJDBCParameterType, jdbcParameterType));
-    }
+		JDBCParameterType oldJDBCParameterType = jdbcParameterType;
+		jdbcParameterType = newJDBCParameterType == null ? JDBC_PARAMETER_TYPE_EDEFAULT : newJDBCParameterType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE, oldJDBCParameterType, jdbcParameterType));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ParameterType getParmType()
     {
-        return parmType;
-    }
+		return parmType;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParmType(ParameterType newParmType)
     {
-        ParameterType oldParmType = parmType;
-        parmType = newParmType == null ? PARM_TYPE_EDEFAULT : newParmType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE, oldParmType, parmType));
-    }
+		ParameterType oldParmType = parmType;
+		parmType = newParmType == null ? PARM_TYPE_EDEFAULT : newParmType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE, oldParmType, parmType));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
-                return isNullable() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
-                return getDefaultValue();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
-                return getJDBCParameterType();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
-                return getParmType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
+				return isNullable() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
+				return getDefaultValue();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
+				return getJDBCParameterType();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
+				return getParmType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
-                setNullable(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
-                setDefaultValue((String)newValue);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
-                setJDBCParameterType((JDBCParameterType)newValue);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
-                setParmType((ParameterType)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
+				setNullable(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
+				setDefaultValue((String)newValue);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
+				setJDBCParameterType((JDBCParameterType)newValue);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
+				setParmType((ParameterType)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
-                setNullable(NULLABLE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
-                setDefaultValue(DEFAULT_VALUE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
-                setJDBCParameterType(JDBC_PARAMETER_TYPE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
-                setParmType(PARM_TYPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
+				setNullable(NULLABLE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
+				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
+				setJDBCParameterType(JDBC_PARAMETER_TYPE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
+				setParmType(PARM_TYPE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
-                return nullable != NULLABLE_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
-                return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
-                return jdbcParameterType != JDBC_PARAMETER_TYPE_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
-                return parmType != PARM_TYPE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE:
+				return nullable != NULLABLE_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE:
+				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE:
+				return jdbcParameterType != JDBC_PARAMETER_TYPE_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__PARM_TYPE:
+				return parmType != PARM_TYPE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
     {
-        if (baseClass == SybaseParameter.class)
-        {
-            switch (derivedFeatureID)
-            {
-                case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE: return SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE;
-                case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE: return SybasesqlmodelPackage.SYBASE_PARAMETER__DEFAULT_VALUE;
-                case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE: return SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == SybaseParameter.class) {
+			switch (derivedFeatureID) {
+				case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE: return SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE;
+				case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE: return SybasesqlmodelPackage.SYBASE_PARAMETER__DEFAULT_VALUE;
+				case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE: return SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
     {
-        if (baseClass == SybaseParameter.class)
-        {
-            switch (baseFeatureID)
-            {
-                case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE;
-                case SybasesqlmodelPackage.SYBASE_PARAMETER__DEFAULT_VALUE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE;
-                case SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == SybaseParameter.class) {
+			switch (baseFeatureID) {
+				case SybasesqlmodelPackage.SYBASE_PARAMETER__NULLABLE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__NULLABLE;
+				case SybasesqlmodelPackage.SYBASE_PARAMETER__DEFAULT_VALUE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__DEFAULT_VALUE;
+				case SybasesqlmodelPackage.SYBASE_PARAMETER__JDBC_PARAMETER_TYPE: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PARAMETER__JDBC_PARAMETER_TYPE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String toString()
     {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nullable: ");
-        result.append(nullable);
-        result.append(", defaultValue: ");
-        result.append(defaultValue);
-        result.append(", JDBCParameterType: ");
-        result.append(jdbcParameterType);
-        result.append(", parmType: ");
-        result.append(parmType);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (nullable: ");
+		result.append(nullable);
+		result.append(", defaultValue: ");
+		result.append(defaultValue);
+		result.append(", JDBCParameterType: ");
+		result.append(jdbcParameterType);
+		result.append(", parmType: ");
+		result.append(parmType);
+		result.append(')');
+		return result.toString();
+	}
 
 	public Object getAdapter(Class adapterClass) {
 		Object adapter = Platform.getAdapterManager().getAdapter(this, adapterClass);

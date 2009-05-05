@@ -1,7 +1,7 @@
 /**
  * <copyright> </copyright>
  * 
- * $Id: SybaseASABaseSchemaImpl.java,v 1.10 2007/08/24 08:24:47 linsong Exp $
+ * $Id: SybaseASABaseSchemaImpl.java,v 1.3 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -31,22 +31,22 @@ import org.eclipse.emf.ecore.EClass;
 public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABaseSchema
 {
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected SybaseASABaseSchemaImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_SCHEMA;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_SCHEMA;
+	}
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasabasesqlmodelPackageImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
+ * $Id: SybaseasabasesqlmodelPackageImpl.java,v 1.5 2009/04/24 07:03:20 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -410,16 +410,11 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		// Initialize simple dependencies
 		SybasesqlmodelPackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		SybaseasabasesqlmodelPackageImpl theSybaseasabasesqlmodelPackage_1 = (SybaseasabasesqlmodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SybaseasabasesqlmodelPackage.eNS_URI) instanceof SybaseasabasesqlmodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SybaseasabasesqlmodelPackage.eNS_URI) : SybaseasabasesqlmodelPackage.eINSTANCE);
-
 		// Create package meta-data objects
 		theSybaseasabasesqlmodelPackage.createPackageContents();
-		theSybaseasabasesqlmodelPackage_1.createPackageContents();
 
 		// Initialize created meta-data
 		theSybaseasabasesqlmodelPackage.initializePackageContents();
-		theSybaseasabasesqlmodelPackage_1.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theSybaseasabasesqlmodelPackage.freeze();
@@ -1778,7 +1773,6 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SybaseasabasesqlmodelPackage theSybaseasabasesqlmodelPackage_1 = (SybaseasabasesqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasabasesqlmodelPackage.eNS_URI);
 		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
@@ -1788,9 +1782,6 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
 		SQLStatementsPackage theSQLStatementsPackage = (SQLStatementsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
 		SQLRoutinesPackage theSQLRoutinesPackage = (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
 		SQLAccessControlPackage theSQLAccessControlPackage = (SQLAccessControlPackage)EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
-
-		// Add subpackages
-		getESubpackages().add(theSybaseasabasesqlmodelPackage_1);
 
 		// Add supertypes to classes
 		sybaseASABaseEventEClass.getESuperTypes().add(theSQLSchemaPackage.getEvent());

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTempTableImpl.java,v 1.13 2007/09/06 01:45:22 linsong Exp $
+ * $Id: SybaseASABaseTempTableImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -40,67 +40,67 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements SybaseASABaseTempTable 
 {
     /**
-     * The default value of the '{@link #getTransactionOption() <em>Transaction Option</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getTransactionOption() <em>Transaction Option</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTransactionOption()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTransactionOption()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final TransactionOption TRANSACTION_OPTION_EDEFAULT = TransactionOption.DELETE_LITERAL;
 
     /**
-     * The cached value of the '{@link #getTransactionOption() <em>Transaction Option</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTransactionOption() <em>Transaction Option</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTransactionOption()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTransactionOption()
+	 * @generated
+	 * @ordered
+	 */
 	protected TransactionOption transactionOption = TRANSACTION_OPTION_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASABaseTempTableImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TEMP_TABLE;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TEMP_TABLE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TransactionOption getTransactionOption()
     {
-        return transactionOption;
-    }
+		return transactionOption;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTransactionOption(TransactionOption newTransactionOption)
     {
-        TransactionOption oldTransactionOption = transactionOption;
-        transactionOption = newTransactionOption == null ? TRANSACTION_OPTION_EDEFAULT : newTransactionOption;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION, oldTransactionOption, transactionOption));
-    }
+		TransactionOption oldTransactionOption = transactionOption;
+		transactionOption = newTransactionOption == null ? TRANSACTION_OPTION_EDEFAULT : newTransactionOption;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION, oldTransactionOption, transactionOption));
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -132,81 +132,77 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
-                return getTransactionOption();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
+				return getTransactionOption();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
-                setTransactionOption((TransactionOption)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
+				setTransactionOption((TransactionOption)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
-                setTransactionOption(TRANSACTION_OPTION_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
+				setTransactionOption(TRANSACTION_OPTION_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
-                return transactionOption != TRANSACTION_OPTION_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
+				return transactionOption != TRANSACTION_OPTION_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String toString()
     {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (transactionOption: ");
-        result.append(transactionOption);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (transactionOption: ");
+		result.append(transactionOption);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASABaseTempTableImpl

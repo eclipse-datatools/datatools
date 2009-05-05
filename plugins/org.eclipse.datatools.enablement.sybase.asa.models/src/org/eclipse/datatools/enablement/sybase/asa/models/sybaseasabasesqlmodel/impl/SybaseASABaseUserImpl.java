@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseUserImpl.java,v 1.7 2007/07/16 08:01:51 linsong Exp $
+ * $Id: SybaseASABaseUserImpl.java,v 1.3 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -39,174 +39,164 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class SybaseASABaseUserImpl extends UserImpl implements SybaseASABaseUser
 {
     /**
-     * The cached value of the '{@link #getSqlContainer() <em>Sql Container</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSqlContainer() <em>Sql Container</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSqlContainer()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSqlContainer()
+	 * @generated
+	 * @ordered
+	 */
     protected SQLObject sqlContainer;
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SybaseASABaseUserImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_USER;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_USER;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SQLObject getSqlContainer()
     {
-        if (sqlContainer != null && sqlContainer.eIsProxy())
-        {
-            InternalEObject oldSqlContainer = (InternalEObject)sqlContainer;
-            sqlContainer = (SQLObject)eResolveProxy(oldSqlContainer);
-            if (sqlContainer != oldSqlContainer)
-            {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
-            }
-        }
-        return sqlContainer;
-    }
+		if (sqlContainer != null && sqlContainer.eIsProxy()) {
+			InternalEObject oldSqlContainer = (InternalEObject)sqlContainer;
+			sqlContainer = (SQLObject)eResolveProxy(oldSqlContainer);
+			if (sqlContainer != oldSqlContainer) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+			}
+		}
+		return sqlContainer;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SQLObject basicGetSqlContainer()
     {
-        return sqlContainer;
-    }
+		return sqlContainer;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setSqlContainer(SQLObject newSqlContainer)
     {
-        SQLObject oldSqlContainer = sqlContainer;
-        sqlContainer = newSqlContainer;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
-    }
+		SQLObject oldSqlContainer = sqlContainer;
+		sqlContainer = newSqlContainer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER, oldSqlContainer, sqlContainer));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
-                if (resolve) return getSqlContainer();
-                return basicGetSqlContainer();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
+				if (resolve) return getSqlContainer();
+				return basicGetSqlContainer();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
-                setSqlContainer((SQLObject)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
+				setSqlContainer((SQLObject)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
-                setSqlContainer((SQLObject)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
+				setSqlContainer((SQLObject)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
-                return sqlContainer != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER:
+				return sqlContainer != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
     {
-        if (baseClass == SybaseAuthorizationIdentifier.class)
-        {
-            switch (derivedFeatureID)
-            {
-                case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER: return SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == SybaseAuthorizationIdentifier.class) {
+			switch (derivedFeatureID) {
+				case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER: return SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
     {
-        if (baseClass == SybaseAuthorizationIdentifier.class)
-        {
-            switch (baseFeatureID)
-            {
-                case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == SybaseAuthorizationIdentifier.class) {
+			switch (baseFeatureID) {
+				case SybasesqlmodelPackage.SYBASE_AUTHORIZATION_IDENTIFIER__SQL_CONTAINER: return SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER__SQL_CONTAINER;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 } //SybaseASABaseUserImpl

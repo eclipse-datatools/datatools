@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseProcedure.java,v 1.7 2007/07/16 08:01:54 linsong Exp $
+ * $Id: SybaseASABaseProcedure.java,v 1.3 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -29,29 +29,29 @@ import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 public interface SybaseASABaseProcedure extends Procedure, SybaseRoutine
 {
     /**
-     * Returns the value of the '<em><b>On Exception Resume</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>On Exception Resume</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>On Exception Resume</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>On Exception Resume</em>' attribute.
-     * @see #setOnExceptionResume(boolean)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseProcedure_OnExceptionResume()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>On Exception Resume</em>' attribute.
+	 * @see #setOnExceptionResume(boolean)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseProcedure_OnExceptionResume()
+	 * @model
+	 * @generated
+	 */
 	boolean isOnExceptionResume();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure#isOnExceptionResume <em>On Exception Resume</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure#isOnExceptionResume <em>On Exception Resume</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>On Exception Resume</em>' attribute.
-     * @see #isOnExceptionResume()
-     * @generated
-     */
+	 * @param value the new value of the '<em>On Exception Resume</em>' attribute.
+	 * @see #isOnExceptionResume()
+	 * @generated
+	 */
 	void setOnExceptionResume(boolean value);
 
 } // SybaseASABaseProcedure

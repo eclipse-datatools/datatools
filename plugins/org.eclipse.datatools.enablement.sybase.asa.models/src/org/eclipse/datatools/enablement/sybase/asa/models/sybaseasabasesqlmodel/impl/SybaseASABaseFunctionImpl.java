@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseFunctionImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
+ * $Id: SybaseASABaseFunctionImpl.java,v 1.5 2008/04/28 17:14:18 bfitzpatrick Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -46,44 +46,44 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implements SybaseASABaseFunction 
 {
     /**
-     * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isOnExceptionResume()
-     * @generated
-     * @ordered
-     */
+	 * @see #isOnExceptionResume()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean ON_EXCEPTION_RESUME_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isOnExceptionResume()
-     * @generated
-     * @ordered
-     */
+	 * @see #isOnExceptionResume()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean onExceptionResume = ON_EXCEPTION_RESUME_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SybaseASABaseFunctionImpl()
     {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected EClass eStaticClass()
     {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_FUNCTION;
-    }
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_FUNCTION;
+	}
 
     /**
 	 * <!-- begin-user-doc -->
@@ -96,27 +96,27 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean isOnExceptionResume()
     {
-        return onExceptionResume;
-    }
+		return onExceptionResume;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setOnExceptionResume(boolean newOnExceptionResume)
     {
-        boolean oldOnExceptionResume = onExceptionResume;
-        onExceptionResume = newOnExceptionResume;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
-    }
+		boolean oldOnExceptionResume = onExceptionResume;
+		onExceptionResume = newOnExceptionResume;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -128,81 +128,77 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
-                return isOnExceptionResume() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
+				return isOnExceptionResume() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eSet(int featureID, Object newValue)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
-                setOnExceptionResume(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
+				setOnExceptionResume(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void eUnset(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
-                setOnExceptionResume(ON_EXCEPTION_RESUME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
+				setOnExceptionResume(ON_EXCEPTION_RESUME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public boolean eIsSet(int featureID)
     {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
-                return onExceptionResume != ON_EXCEPTION_RESUME_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FUNCTION__ON_EXCEPTION_RESUME:
+				return onExceptionResume != ON_EXCEPTION_RESUME_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String toString()
     {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (onExceptionResume: ");
-        result.append(onExceptionResume);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (onExceptionResume: ");
+		result.append(onExceptionResume);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASABaseFunctionImpl

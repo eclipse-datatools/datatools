@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseUniqueConstraint.java,v 1.7 2007/07/16 08:01:54 linsong Exp $
+ * $Id: SybaseASABaseUniqueConstraint.java,v 1.3 2008/03/27 07:35:07 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -28,55 +28,55 @@ import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 public interface SybaseASABaseUniqueConstraint extends UniqueConstraint
 {
     /**
-     * Returns the value of the '<em><b>Clustered</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Clustered</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Clustered</em>' attribute.
-     * @see #setClustered(boolean)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint_Clustered()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Clustered</em>' attribute.
+	 * @see #setClustered(boolean)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint_Clustered()
+	 * @model
+	 * @generated
+	 */
 	boolean isClustered();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered <em>Clustered</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#isClustered <em>Clustered</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Clustered</em>' attribute.
-     * @see #isClustered()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Clustered</em>' attribute.
+	 * @see #isClustered()
+	 * @generated
+	 */
 	void setClustered(boolean value);
 
     /**
-     * Returns the value of the '<em><b>System Gen Index</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>System Gen Index</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>System Gen Index</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>System Gen Index</em>' reference.
-     * @see #setSystemGenIndex(SybaseASABaseIndex)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint_SystemGenIndex()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>System Gen Index</em>' reference.
+	 * @see #setSystemGenIndex(SybaseASABaseIndex)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseUniqueConstraint_SystemGenIndex()
+	 * @model
+	 * @generated
+	 */
     SybaseASABaseIndex getSystemGenIndex();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#getSystemGenIndex <em>System Gen Index</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint#getSystemGenIndex <em>System Gen Index</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>System Gen Index</em>' reference.
-     * @see #getSystemGenIndex()
-     * @generated
-     */
+	 * @param value the new value of the '<em>System Gen Index</em>' reference.
+	 * @see #getSystemGenIndex()
+	 * @generated
+	 */
     void setSystemGenIndex(SybaseASABaseIndex value);
 
 } // SybaseASABaseUniqueConstraint

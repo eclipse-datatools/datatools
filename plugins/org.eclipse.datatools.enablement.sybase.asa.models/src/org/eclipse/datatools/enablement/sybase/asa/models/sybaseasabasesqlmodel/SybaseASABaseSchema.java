@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseSchema.java,v 1.8 2007/08/24 08:24:47 linsong Exp $
+ * $Id: SybaseASABaseSchema.java,v 1.3 2008/03/27 07:35:07 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -24,51 +24,51 @@ import org.eclipse.emf.common.util.EList;
 public interface SybaseASABaseSchema extends Schema
 {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getNormalTables();
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getTempTables();
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getSystemTables();
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getProxyTables();
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getViewTables(boolean systemFlag);
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
-     * @generated
-     */
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
+	 * @generated
+	 */
     List getSystemAndNormalTables();
     
     /**
