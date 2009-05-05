@@ -2,7 +2,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog;
 
 import java.util.HashMap;
 
-import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
+import org.eclipse.datatools.sqltools.sql.ui.dialogs.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.swt.widgets.Shell;
 

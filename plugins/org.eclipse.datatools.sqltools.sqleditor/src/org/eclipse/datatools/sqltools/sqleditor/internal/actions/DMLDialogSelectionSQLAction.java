@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.help.HelpUtil;
-import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
+import org.eclipse.datatools.sqltools.sql.ui.dialogs.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;

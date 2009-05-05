@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
-import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
+import org.eclipse.datatools.sqltools.sql.ui.dialogs.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterWrapper;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;

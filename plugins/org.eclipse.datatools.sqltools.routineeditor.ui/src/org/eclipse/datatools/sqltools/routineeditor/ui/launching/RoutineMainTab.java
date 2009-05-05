@@ -21,7 +21,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.help.HelpUtil;
-import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
+import org.eclipse.datatools.sqltools.sql.ui.dialogs.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;

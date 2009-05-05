@@ -16,7 +16,7 @@ import java.util.HashMap;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
-import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
+import org.eclipse.datatools.sqltools.sql.ui.dialogs.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
