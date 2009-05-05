@@ -174,13 +174,7 @@
 
 		<unzip src="${tmpsite}/dtp-all-signed.zip" dest="${tmpsite}/eclipse"/>
 		
-        <zip destfile="${tmpsite}/dtp-all-unsign.zip">
-           <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
-           <fileset dir="${tmpsite}/eclipse" includes="plugins/**"/>
-           <fileset dir="${eclipse.build.configs}/../../extras" includes="pack.properties"/>
-        </zip>
-		
-		<copy file="${tmpsite}/dtp-all-unsign.zip" tofile="${tmpsite}/dtp-p2repo.zip" overwrite="true"/>
+		<copy file="${tmpsite}/dtp-all-signed.zip" tofile="${tmpsite}/dtp-p2repo.zip" overwrite="true"/>
 		
 	</target>
 	
