@@ -44,13 +44,13 @@ IResultConstants_all_name =所有文件(*.*)
 ##########################################################
 #  ResultsViewPlugin Error Message
 ##########################################################
-ResultsViewPlugin_class_incompatible_error=Old results have been saved to \"backup\" folder
-ResultsViewPlugin_load_history_error=Error occurs when loading result history
-ResultsViewPlugin_persist_history_error=Error occurs when persisting result history
+ResultsViewPlugin_class_incompatible_error=旧结果已保存到 \"backup\" 文件夹
+ResultsViewPlugin_load_history_error=加载结果历史记录时出错
+ResultsViewPlugin_persist_history_error=保持结果历史记录时出错
 ResultsViewPlugin_load_listener_error=在加载 SQL 结果侦听程序时出现错误
-File_copy_error=Error occurs when copy files
+File_copy_error=复制文件时出错
 
-SerializationHelper_serialization_error=Error occurs when serializing result file
-SerializationHelper_deserialization_error=Error occurs when deserializing result file
+SerializationHelper_serialization_error=对结果文件进行串行化时出错
+SerializationHelper_deserialization_error=对结果文件进行反串行化时出错
 
-ResultSection_Status_ElapsedTime=Elapsed Time:  {0} hr, {1} min, {2} sec, {3} ms.
+ResultSection_Status_ElapsedTime=已用时间: {0} 小时 {1} 分 {2} 秒 {3} 毫秒。

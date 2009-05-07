@@ -44,13 +44,13 @@ IResultConstants_all_name =Tous les fichiers (*.*)
 ##########################################################
 #  ResultsViewPlugin Error Message
 ##########################################################
-ResultsViewPlugin_class_incompatible_error=Old results have been saved to \"backup\" folder
-ResultsViewPlugin_load_history_error=Error occurs when loading result history
-ResultsViewPlugin_persist_history_error=Error occurs when persisting result history
+ResultsViewPlugin_class_incompatible_error=Les résultats précédents ont été sauvegardés dans le dossier \"backup\"
+ResultsViewPlugin_load_history_error=Erreur lors du chargement de l'historique des résultats
+ResultsViewPlugin_persist_history_error=Erreur lors de la persistance de l'historique des résultats
 ResultsViewPlugin_load_listener_error=Erreur lors du chargement de l'écouteur des résultats SQL
-File_copy_error=Error occurs when copy files
+File_copy_error=Erreur lors de la copie des fichiers
 
-SerializationHelper_serialization_error=Error occurs when serializing result file
-SerializationHelper_deserialization_error=Error occurs when deserializing result file
+SerializationHelper_serialization_error=Erreur lors de la sérialisation du fichier de résultats
+SerializationHelper_deserialization_error=Erreur lors de la désérialisation du fichier de résultats
 
-ResultSection_Status_ElapsedTime=Elapsed Time:  {0} hr, {1} min, {2} sec, {3} ms.
+ResultSection_Status_ElapsedTime=Temps écoulé : {0} h, {1} min, {2} s, {3} ms.

@@ -44,13 +44,13 @@ IResultConstants_all_name =すべてのファイル (*.*)
 ##########################################################
 #  ResultsViewPlugin Error Message
 ##########################################################
-ResultsViewPlugin_class_incompatible_error=Old results have been saved to \"backup\" folder
-ResultsViewPlugin_load_history_error=Error occurs when loading result history
-ResultsViewPlugin_persist_history_error=Error occurs when persisting result history
+ResultsViewPlugin_class_incompatible_error=古い結果は \"バックアップ\" フォルダに保存されました。
+ResultsViewPlugin_load_history_error=結果の履歴を読み込み中にエラーが発生しました。
+ResultsViewPlugin_persist_history_error=結果の履歴を保存中にエラーが発生しました。
 ResultsViewPlugin_load_listener_error=SQL 結果リスナの読み込み中にエラーが発生しました。
-File_copy_error=Error occurs when copy files
+File_copy_error=ファイルのコピー中にエラーが発生しました。
 
-SerializationHelper_serialization_error=Error occurs when serializing result file
-SerializationHelper_deserialization_error=Error occurs when deserializing result file
+SerializationHelper_serialization_error=結果ファイルの直列化中にエラーが発生しました。
+SerializationHelper_deserialization_error=結果ファイルの非直列化中にエラーが発生しました。
 
-ResultSection_Status_ElapsedTime=Elapsed Time:  {0} hr, {1} min, {2} sec, {3} ms.
+ResultSection_Status_ElapsedTime=経過時間 : {0} 時間、{1} 分、{2} 秒、{3} マイクロ秒

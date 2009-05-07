@@ -44,13 +44,13 @@ IResultConstants_all_name =모든 파일(*.*)
 ##########################################################
 #  ResultsViewPlugin Error Message
 ##########################################################
-ResultsViewPlugin_class_incompatible_error=Old results have been saved to \"backup\" folder
-ResultsViewPlugin_load_history_error=Error occurs when loading result history
-ResultsViewPlugin_persist_history_error=Error occurs when persisting result history
+ResultsViewPlugin_class_incompatible_error=이전 결과가 \"backup\" 폴더에 저장되었습니다.
+ResultsViewPlugin_load_history_error=결과 기록을 로드하는 동안 오류가 발생했습니다.
+ResultsViewPlugin_persist_history_error=결과 기록을 유지하는 동안 오류가 발생했습니다.
 ResultsViewPlugin_load_listener_error=SQL 결과 수신기를 로드하는 동안 오류가 발생했습니다.
-File_copy_error=Error occurs when copy files
+File_copy_error=파일을 복사하는 동안 오류가 발생했습니다.
 
-SerializationHelper_serialization_error=Error occurs when serializing result file
-SerializationHelper_deserialization_error=Error occurs when deserializing result file
+SerializationHelper_serialization_error=결과 파일을 직렬화하는 동안 오류가 발생했습니다.
+SerializationHelper_deserialization_error=결과 파일을 역직렬화하는 동안 오류가 발생했습니다.
 
-ResultSection_Status_ElapsedTime=Elapsed Time:  {0} hr, {1} min, {2} sec, {3} ms.
+ResultSection_Status_ElapsedTime=경과 시간: {0}시간, {1}분, {2}초, {3}밀리초입니다.
