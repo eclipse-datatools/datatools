@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.10 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.11 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -310,7 +310,10 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
 
         if( getResultSets() == null )
             setResultSets( DesignFactory.eINSTANCE.createResultSets() );
-        getResultSets().addResultSetDefinition( 0, resultSetDefn );
+        if( getResultSets().getResultSetDefinitions().isEmpty() )
+            getResultSets().addResultSetDefinition( 0, resultSetDefn );
+        else
+            getResultSets().getResultSetDefinitions().set( 0, resultSetDefn );
 
         if( resultSetDefn.getName() != null ) // has name
             setPrimaryResultSetName( resultSetDefn.getName() );
