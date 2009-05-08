@@ -388,7 +388,7 @@ public interface IQuery
 	/**
      * <strong>EXPERIMENTAL</strong>.
      * Gets the current specification of characteristics to apply when preparing and executing this.
-	 * @return the current {@link QuerySpecification}, or null if none is available
+	 * @return the current {@link QuerySpecification}, or null if none is effective or available
      * @since 3.2 (DTP 1.7)
 	 */
 	QuerySpecification getSpecification();
