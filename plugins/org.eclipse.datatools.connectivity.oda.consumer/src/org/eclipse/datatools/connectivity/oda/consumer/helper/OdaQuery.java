@@ -1541,11 +1541,11 @@ public class OdaQuery extends OdaDriverObject implements IQuery
             String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
             log( context, msg );
             
-            return m_preparedText;    // returns the one passed to #prepare
+            return m_preparedText;    // returns the one successfully passed to #prepare w/o exception
         }
         catch( UnsupportedOperationException uoException )
         {
-            return m_preparedText;    // returns the one passed to #prepare
+            return m_preparedText;    // returns the one successfully passed to #prepare w/o exception
         }
         catch( RuntimeException rtException )
         {
@@ -1556,7 +1556,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
             resetContextClassloader();
         }
         
-        return null;
+        return m_preparedText;   // returns the one successfully passed to #prepare w/o exception
     }
 
     /* (non-Javadoc)
