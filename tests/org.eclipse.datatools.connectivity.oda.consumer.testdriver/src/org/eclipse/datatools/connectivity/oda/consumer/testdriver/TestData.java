@@ -113,6 +113,11 @@ public class TestData
     
     public static final Object createObjectData()
     {
+        return TestData.class;
+    }
+    
+    public static final Object createObjectDataWithString()
+    {
         return new String( "testObject" ); //$NON-NLS-1$
     }
     

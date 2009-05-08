@@ -102,6 +102,8 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 			    IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
             m_params.add( new TestParameterMetaData( "BooleanParamOut", Types.BOOLEAN, "BOOLEAN", -1, -1, 
                 IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
+            m_params.add( new TestParameterMetaData( "ObjectParamOut", Types.JAVA_OBJECT, "OBJECT", -1, -1, 
+                    IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
     	}
     }
 

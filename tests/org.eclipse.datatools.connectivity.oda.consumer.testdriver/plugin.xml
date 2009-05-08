@@ -50,6 +50,11 @@
                nativeDataType="BOOLEAN"
                nativeDataTypeCode="16"
                odaScalarDataType="Boolean"/>
+           <dataTypeMapping
+                 nativeDataType="JAVAOBJECT"
+                 nativeDataTypeCode="2000"
+                 odaScalarDataType="JavaObject">
+           </dataTypeMapping>
       </dataSet>
 
    </extension>

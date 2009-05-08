@@ -584,8 +584,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Object getObject( int parameterId ) throws OdaException
     {
-        // TODO Auto-generated method stub
-        return null;
+        checkOutputParameterIndex( parameterId );
+        m_wasNull = false;
+        return TestData.createObjectData();
     }
 
     /* (non-Javadoc)
@@ -593,8 +594,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Object getObject( String parameterName ) throws OdaException
     {
-        // TODO Auto-generated method stub
-        return null;
+        int index = getOutputParamIndex( parameterName );
+        return getObject( index );
     }
 
     /* (non-Javadoc)

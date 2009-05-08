@@ -645,6 +645,26 @@ public class AdvQueryTest extends ConnectionTest
         {
             checkGetParamValueBeforeExecutedError( e, isExecuted );
         }
+        
+        try
+        {
+            Object val = byPos ? 
+                    m_query.getObject( outParamStartIndex + 13 ) :
+                    m_query.getObject( "ObjectParamOut" );
+
+            if ( isExecuted )
+            {
+                Object refVal = TestData.createObjectData();
+                assertEquals( val, refVal );
+                assertFalse( m_query.wasNull() );
+            }
+            else
+                fail(); // should not get here.
+        }
+        catch( OdaException e )
+        {
+            checkGetParamValueBeforeExecutedError( e, isExecuted );
+        }
 	}
 	
 	private void checkGetParamValueBeforeExecutedError( OdaException e, boolean isExecuted )
