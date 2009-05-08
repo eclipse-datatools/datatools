@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ExpressionArguments.java,v 1.1 2009/03/03 07:42:08 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -91,8 +91,8 @@ public interface ExpressionArguments extends EObject
     void setExpressionParameters( ExpressionParameters value );
 
     /**
-     * Appends a new FilterParameterDefinition with the specified static value to 
-     * the '<em>Filter Parameters</em>' containment reference.
+     * Appends a new {@link ExpressionParameterDefinition} with the specified static value to 
+     * the '<em>Expression Parameters</em>' containment reference.
      * @param aStaticValue     a static argument value of a filter expression
      * @return  the new ExpressionParameterDefinition appended
      * @generated NOT
@@ -100,8 +100,9 @@ public interface ExpressionArguments extends EObject
     ExpressionParameterDefinition addStaticParameter( Object aStaticValue );
     
     /**
-     * Appends a new FilterParameterDefinition with the specified dynamic input parameter definition to 
-     * the '<em>Filter Parameters</em>' containment reference.
+     * Appends a new {@link ExpressionParameterDefinition} with the specified 
+     * dynamic input parameter definition to 
+     * the '<em>Expression Parameters</em>' containment reference.
      * @param inputParam    the definition of an input parameter
      * @return  the new ExpressionParameterDefinition appended
      * @generated NOT
