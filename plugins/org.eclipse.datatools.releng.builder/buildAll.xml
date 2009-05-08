@@ -363,27 +363,21 @@
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
         <!-- push update site to output directory -->
-    	<!--
-        <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" 
-        	dest="${postingDirectory}/${buildId}/UpdateSite"/>
-        <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" 
-        	dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
-      	-->
+
         <unzip src="${tmpsite}/dtp-p2repo.zip" 
         	dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
     	
-        <copy todir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
+        <copy todir="${postingDirectory}/${buildId}/UpdateSite" overwrite="true">
         	<fileset dir="${eclipse.build.configs}/../../extras">
         		<include name="pack.properties"/>
         	</fileset>
     	</copy>
     	
-    	<delete includeemptydirs="true">
-            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
+    	<delete includeemptydirs="true" failonerror="false">
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/features">
                 <include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
             </fileset>
-            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
-                <include name="readme/**"/>
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite">
                 <include name="*.html"/>
             </fileset>
         </delete>
@@ -391,6 +385,29 @@
 		<!-- push p2 repo to local update site for testing -->
 		<antcall target="genP2CompositeUpdateSite"/>
 		
+    	<!-- zip p2 repo-->
+		<zip destfile="${buildDirectory}/${buildId}/UpdateSite/dtp-p2repo.zip">
+			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/features/" prefix="features">
+				<include name="*.jar"/>
+				<include name="*.pack.gz"/>
+			</zipfileset>
+			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/plugins/" prefix="plugins">
+				<include name="*.jar"/>
+				<include name="*.pack.gz"/>
+			</zipfileset>
+			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/">
+				<include name="*.jar"/>
+			</zipfileset>
+		</zip>
+    	
+    	<delete includeemptydirs="true" failonerror="false">
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite">
+                <include name="features/**"/>
+            	<include name="plugins/**"/>
+            	<include name="*.jar"/>
+            </fileset>
+        </delete>    	
+    	
 	</target>
 
 	<target name="GenerateCVSChangeLog">
@@ -412,16 +429,17 @@
 			<arg line=" pack200" />
 		</exec>
 		
+    	<!-- create pack200 -->
     	<java jar="${basedir}/../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar"
                 fork="true"
                 timeout="10800000"
                 jvm="${jvm15_home}/bin/java"
                 failonerror="true"
                 maxmemory="512m"
-                dir="${postingDirectory}/${buildId}/UpdateSite/">
+                dir="${postingDirectory}/${buildId}/">
                 <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${eclipse.build.configs}/../../extras"/>
                 <arg line="-application org.eclipse.update.core.siteOptimizer -verbose"/>
-                <arg line="-jarProcessor -outputDir ${repo} -processAll -pack eclipse"/>
+                <arg line="-jarProcessor -outputDir ${repo} -processAll -pack UpdateSite"/>
         </java>
     	    	
         <!-- generator features and plugins metadata -->
@@ -441,6 +459,15 @@
         <p2.composite.artifact.repository.add location="file://${compsite.site}" child="${buildId}" />
         <p2.composite.metadata.repository.add location="file://${compsite.site}" child="${buildId}" />
 
+    	<!-- copy p2 metadata to build directory -->
+    	<copy todir="${postingDirectory}/${buildId}/UpdateSite" overwrite="true">
+    		<fileset dir="${compsite.site}/${buildId}">
+    			<include name="features/**"/>
+    			<include name="plugins/**"/>
+    			<include name="*.jar"/>
+    		</fileset>
+    	</copy>
+    	
     </target>
 	
 </project>
