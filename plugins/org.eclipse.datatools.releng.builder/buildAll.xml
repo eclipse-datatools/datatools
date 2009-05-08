@@ -386,16 +386,16 @@
 		<antcall target="genP2CompositeUpdateSite"/>
 		
     	<!-- zip p2 repo-->
-		<zip destfile="${buildDirectory}/${buildId}/UpdateSite/dtp-p2repo.zip">
-			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/features/" prefix="features">
+		<zip destfile="${postingDirectory}/${buildId}/UpdateSite/dtp-p2repo.zip">
+			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/features/" prefix="features">
 				<include name="*.jar"/>
 				<include name="*.pack.gz"/>
 			</zipfileset>
-			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/plugins/" prefix="plugins">
+			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/plugins/" prefix="plugins">
 				<include name="*.jar"/>
 				<include name="*.pack.gz"/>
 			</zipfileset>
-			<zipfileset dir="${buildDirectory}/${buildId}/UpdateSite/">
+			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/">
 				<include name="*.jar"/>
 			</zipfileset>
 		</zip>
