@@ -290,28 +290,15 @@ public class QuerySpecification
     }
     
     /**
-     * The identifier of a data set query parameter, defined by its native name or id (1-based).
+     * The identifier of a data set query parameter, defined by its native name and/or id (1-based).
      * <br>A name if specified takes precedence over its specified id.
      * This may be used as an unique key in a {@link Map}.
      * Comparison by name is case-sensitive.
      */
     public class ParameterIdentifier
     {
-        private Integer m_paramId;
         private String m_paramName;
-        
-        /**
-         * Creates a parameter identifier with its id.
-         * @param paramId   id of the parameter (1-based)
-         * @throws IllegalArgumentException if specified argument is not greater or equal to 1
-         */
-        public ParameterIdentifier( int paramId )
-        {
-            if( paramId < 1 )
-                throw new IllegalArgumentException( Integer.valueOf( paramId ).toString() );
-            
-            m_paramId = Integer.valueOf( paramId );
-        }
+        private Integer m_paramId;
         
         /**
          * Creates a parameter identifier with its native name.
@@ -320,12 +307,46 @@ public class QuerySpecification
          */
         public ParameterIdentifier( String paramName )
         {
+            setParameterName( paramName );
+        }
+        
+        /**
+         * Creates a parameter identifier with its id.
+         * @param paramId   id of the parameter (1-based)
+         * @throws IllegalArgumentException if specified argument is not greater or equal to 1
+         */
+        public ParameterIdentifier( int paramId )
+        {
+            setParameterId( paramId );
+        }
+
+        /**
+         * Creates a parameter identifier with both its native name and id.
+         * @param paramName native name of the parameter
+         * @param paramId   id of the parameter (1-based)
+         */
+        public ParameterIdentifier( String paramName, int paramId )
+        {
+            setParameterName( paramName );
+            setParameterId( paramId );
+        }
+        
+        private void setParameterId( int paramId )
+        {
+            if( paramId < 1 )
+                throw new IllegalArgumentException( Integer.valueOf( paramId ).toString() );
+            
+            m_paramId = Integer.valueOf( paramId );
+        }
+        
+        private void setParameterName( String paramName )
+        {
             if( paramName == null || paramName.length() == 0 )
                 throw new IllegalArgumentException( paramName );
             
             m_paramName = paramName;
         }
-
+        
         /**
          * Gets the parameter id, if specified.
          * @return  parameter id, or null if not specified
@@ -344,6 +365,24 @@ public class QuerySpecification
             return m_paramName;
         }
 
+        /**
+         * Indicates whether this has a native name.
+         * @return  true if a native name exists; false otherwise
+         */
+        public boolean hasName()
+        {
+            return ( m_paramName != null && m_paramName.length() > 0 );
+        }
+        
+        /**
+         * Indicates whether this has an 1-based id.
+         * @return  true if an id exists; false otherwise
+         */
+        public boolean hasId()
+        {
+            return ( m_paramId != null && m_paramId.intValue() > 0 );
+        }
+        
         /* (non-Javadoc)
          * @see java.lang.Object#equals(java.lang.Object)
          */
@@ -353,15 +392,22 @@ public class QuerySpecification
             if( ! (obj instanceof ParameterIdentifier) )
                 return false;
 
-            // compares by name, if exists
+            // compares by name first, if exists
+            boolean isNameEqual = false;
             ParameterIdentifier thatObj = (ParameterIdentifier) obj;
-            if( this.m_paramName != null && this.m_paramName.length() > 0 )
-                return this.m_paramName.equals( thatObj.m_paramName );
+            if( this.hasName() )
+            {
+                if( this.m_paramName.equals( thatObj.m_paramName ) )
+                    isNameEqual = true;
+                else
+                    return false;
+            }
 
-            if( this.m_paramId != null && this.m_paramId.intValue() > 0 )
+            // compares by id, if exists
+            if( this.hasId() )
                 return( this.m_paramId.equals( thatObj.m_paramId ));
             
-            return false;   // no valid identifier
+            return isNameEqual;
         }
 
         /* (non-Javadoc)
@@ -370,14 +416,15 @@ public class QuerySpecification
         @Override
         public int hashCode()
         {
+            int hashCode = 0;
             // use its name for hashcode if exists
-            if( m_paramName != null && m_paramName.length() > 0 )
-                return m_paramName.hashCode();
+            if( hasName() )
+                hashCode = m_paramName.hashCode();
             
-            if( m_paramId != null && m_paramId.intValue() > 0 )
-                return m_paramId.hashCode();
+            if( hasId() )
+                return hashCode ^ m_paramId.hashCode();
             
-            return super.hashCode();
+            return (hashCode == 0) ? super.hashCode() : hashCode;
         }       
     }
     

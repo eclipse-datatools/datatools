@@ -38,7 +38,8 @@ public class QuerySpecificationHelper
     /**
      * Constructor for use with the specified dynamicResultSet extension id.
      * @param dynamicResultSetExtnId    the id of an extension that implements 
-     *                      the oda.dynamicResultSet extension point
+     *                the oda.dynamicResultSet extension point; 
+     *                may be null to use the default factory
      */
     public QuerySpecificationHelper( String dynamicResultSetExtnId )
     {
@@ -49,8 +50,7 @@ public class QuerySpecificationHelper
         {
             ExtensionContributor contributor =
                 ResultExtensionExplorer.getInstance().getExtensionContributor( dynamicResultSetExtnId );
-            if( contributor != null )
-                setFactory( contributor );            
+            setFactory( contributor );            
         }
         catch( OdaException e )
         {
@@ -61,7 +61,8 @@ public class QuerySpecificationHelper
     
     /**
      * Constructor for use with the specified dynamicResultSet extension contributor.
-     * @param contributor   contributor of a dynamicResultSet extension
+     * @param contributor   contributor of a dynamicResultSet extension;
+     *                      may be null to use the default factory
      */
     public QuerySpecificationHelper( ExtensionContributor contributor )
     {
@@ -85,7 +86,7 @@ public class QuerySpecificationHelper
     private void setFactory( ExtensionContributor contributor )
     {
         if( contributor == null )
-            throw new NullPointerException( "Null ExtensionContributor argument." );
+            return;     // use the base class factory by default
         
         try
         {
