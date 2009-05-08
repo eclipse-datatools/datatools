@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.15 2008/11/15 00:57:29 lchan Exp $
+ * $Id: DesignUtil.java,v 1.16 2008/12/04 23:54:53 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -26,14 +26,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
+import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.datatools.connectivity.oda.design.nls.Messages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticException;
@@ -503,6 +508,54 @@ public class DesignUtil
         return null;
     }
 
+    /**
+     * Creates a new filter expression variable for the column defined in the 
+     * specified result set at the specified index.
+     * @param columns   a {@link ResultSetColumns} that contains a collection of column definitions
+     * @param columnIndex   0-based index of column in the specified columns; 
+     *                      must be a valid index within range of the specified columns
+     * @return  a new instance of {@link ExpressionVariable} based on the attributes 
+     *          of the specified column; may be null if specified column does not exist
+     */
+    public static ExpressionVariable createFilterVariable( ResultSetColumns columns, int columnIndex )
+    {
+        ColumnDefinition columnDefn = columns.getResultColumnDefinitions().get( columnIndex );
+        if( columnDefn == null )
+            return null;
+        
+        String identifier = columnDefn.getAttributes().getName();
+        if( identifier.length() == 0 )
+            identifier = (new Integer( columnDefn.getAttributes().getPosition() )).toString();
+
+        ExpressionVariable columnExprVar = DesignFactory.eINSTANCE.createExpressionVariable();
+        columnExprVar.setIdentifier( identifier );
+        columnExprVar.setNativeDataTypeCode( columnDefn.getAttributes().getNativeDataTypeCode() );
+        columnExprVar.setType( ExpressionVariableType.RESULT_SET_COLUMN );
+        return columnExprVar;
+    }
+    
+    /**
+     * Creates a new SortKey with the identifier, i.e. name and position, of the column 
+     * defined in the specified result set at the specified index.
+     * @param columns   a {@link ResultSetColumns} that contains a collection of column definitions
+     * @param columnIndex   0-based index of column in the specified columns; 
+     *                      must be a valid index within range of the specified columns
+     * @return  a new instance of {@link SortKey} based on the name and position 
+     *          of the specified column; may be null if specified column does not exist
+     */
+    public static SortKey createSortKeyWithColumnIdentifier( ResultSetColumns columns, int columnIndex )
+    {
+        ColumnDefinition columnDefn = columns.getResultColumnDefinitions().get( columnIndex );
+        if( columnDefn == null )
+            return null;
+
+        SortKey aSortKey = DesignFactory.eINSTANCE.createSortKey();
+        aSortKey.setColumnName( columnDefn.getAttributes().getName() );
+        aSortKey.setColumnPosition( columnDefn.getAttributes().getPosition() );
+        
+        return aSortKey;
+    }
+    
     private static Logger getLogger()
     {
         if( sm_logger == null )
