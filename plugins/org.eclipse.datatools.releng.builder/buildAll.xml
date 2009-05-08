@@ -354,7 +354,7 @@
         <property file="${buildDirectory}/finalFeaturesVersions.properties"/>
     	<property name="tmpsite" value="${buildDirectory}/tmpsite" />
         <mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
-        <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite/eclipse"/>
+        <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite"/>
         
     	<!-- replace the feature version in site.xml -->
         <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
@@ -386,7 +386,7 @@
 		<antcall target="genP2CompositeUpdateSite"/>
 		
     	<!-- zip p2 repo-->
-		<zip destfile="${postingDirectory}/${buildId}/UpdateSite/dtp-p2repo.zip">
+		<zip destfile="${postingDirectory}/${buildId}/dtp-p2repo.zip">
 			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/features/" prefix="features">
 				<include name="*.jar"/>
 				<include name="*.pack.gz"/>
@@ -397,17 +397,15 @@
 			</zipfileset>
 			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/">
 				<include name="*.jar"/>
+				<include name="site.xml"/>
 			</zipfileset>
 		</zip>
     	
     	<delete includeemptydirs="true" failonerror="false">
-            <fileset dir="${postingDirectory}/${buildId}/UpdateSite">
-                <include name="features/**"/>
-            	<include name="plugins/**"/>
-            	<include name="*.jar"/>
+            <fileset dir="${postingDirectory}/${buildId}">
+                <include name="UpdateSite/**"/>
             </fileset>
-        </delete>    	
-    	
+        </delete>    	   	
 	</target>
 
 	<target name="GenerateCVSChangeLog">
