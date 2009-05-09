@@ -244,8 +244,8 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
         AggregateDefinition defn = getDefinition();
         if( defn == null )
             throw new OdaException( 
-                    Messages.bind( "The custom expression ({0}) is not found in the dynamicResultSet extension registry.",
-                                getQualifiedId() ));
+                    Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR,
+                                getDeclaringExtensionId(), getQualifiedId() ));
         
         validate( context, defn );     
     }
@@ -265,11 +265,11 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
         // validates the capabilities
         if( ignoresDuplicateValues() && ! defn.canIgnoreDuplicateValues() )
             throw new OdaException( 
-                    Messages.bind( "The custom aggregate type ({0}) cannot ignore duplicate values.", getQualifiedId() ));
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_DUPL_CHECK, getQualifiedId() ));
  
         if( ignoresNullValues() && ! defn.canIgnoreNullValues() )
             throw new OdaException( 
-                    Messages.bind( "The custom aggregate type ({0}) cannot ignore null values.", getQualifiedId() ));
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_NULL_CHECK, getQualifiedId() ));
 
         // up to custom validator class to resolve a variable's data type and validate
         // against one of the expression's restricted data types

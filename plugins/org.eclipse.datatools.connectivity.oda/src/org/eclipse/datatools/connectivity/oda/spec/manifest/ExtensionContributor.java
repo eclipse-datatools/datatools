@@ -62,7 +62,7 @@ public class ExtensionContributor implements IContributor
     {
         m_contributorElement = contributorElement;
         if( ! m_contributorElement.isValid() || getDeclaringExtensionId() == null )
-            throw new OdaException( Messages.bind( "The {0} extension in ({1}) is invalid.  See the extension point schema definition for required content.",
+            throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ELEMENT,
                                     ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, contributorElement.getContributor().getName() ) );
         
         // supportedDataSetType child elements
@@ -98,7 +98,7 @@ public class ExtensionContributor implements IContributor
     {
         IConfigurationElement[] dataSetTypeElements = contributorElement.getChildren( SupportedDataSetType.ELEMENT_NAME );
         if( dataSetTypeElements.length == 0 )
-            throw new OdaException( Messages.bind( "The {0} extension ({1}) must have at least one {2} element defined .", 
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_MIN_ELEMENT, 
                     new Object[]{ ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                         contributorElement.getDeclaringExtension().getUniqueIdentifier(), SupportedDataSetType.ELEMENT_NAME} ) );
         
@@ -253,9 +253,8 @@ public class ExtensionContributor implements IContributor
                 if( validatorClass instanceof IValidator )
                     m_filterValidator = (IValidator) validatorClass;
                 else
-                    throw new OdaException( 
-                            Messages.bind( "Invalid validator class ({0}) defined; it must implement the {1} interface.",
-                                    validatorClassName, IValidator.class.getName() ));
+                    throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
+                        new Object[]{ validatorClassName, ATTR_VALIDATOR_CLASS, IValidator.class.getName()} ));
             }
             catch( CoreException ex )
             {
@@ -286,9 +285,8 @@ public class ExtensionContributor implements IContributor
                 if( factoryClass instanceof QuerySpecificationFactory )
                     m_specFactory = (QuerySpecificationFactory) factoryClass;
                 else
-                    throw new OdaException( 
-                            Messages.bind( "Invalid specification factory class ({0}) defined; it must use or extend from {1}.",
-                                    factoryClassName, QuerySpecificationFactory.class.getName() ));
+                    throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
+                        new Object[]{ factoryClassName, ATTR_SPEC_FACTORY_CLASS, QuerySpecificationFactory.class.getName()} ));
             }
             catch( CoreException ex )
             {

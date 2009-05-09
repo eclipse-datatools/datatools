@@ -62,10 +62,10 @@ public class NotExpression extends FilterExpression
 
         // validate the child expression
         if( m_expression == null )
-            throw new OdaException( Messages.bind( "Missing negating expression in NotExpression: ({0}).", this ));
+            throw new OdaException( Messages.bind( Messages.querySpec_NOT_EXPR_MISSING_CHILD, this ));
 
         if( ! m_expression.isNegatable() )
-            throw new OdaException( Messages.bind( "Invalid use of a non-negatable expression ({0}) in a {1}.",
+            throw new OdaException( Messages.bind( Messages.querySpec_NOT_EXPR_INCOMPATIBLE,
                     m_expression.getQualifiedId(), getQualifiedId() ));
 
         m_expression.validate( context );

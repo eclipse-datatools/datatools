@@ -204,9 +204,8 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     {
         FilterExpressionDefinition defn = getDefinition();
         if( defn == null )
-            throw new OdaException( 
-                    Messages.bind( "The custom expression ({0}) is not found in the dynamicResultSet extension registry.",
-                                getQualifiedId() ));
+            throw new OdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER,
+                    getDeclaringExtensionId(), getQualifiedId() ));
         
         validate( context, defn );
     }
@@ -229,7 +228,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
         int minArgs = defn.getMinArguments().intValue();
         if( numArgs < minArgs )
             throw new OdaException( 
-                    Messages.bind( "The custom expression ({0}) has {1} arguments, but requires a minimum of {2} arguments.",
+                    Messages.bind( Messages.querySpec_CUSTOM_FILTER_MISSING_MIN_ARGS,
                                 new Object[]{ getQualifiedId(), Integer.valueOf(numArgs), Integer.valueOf(minArgs) } ));
 
         if( ! defn.supportsUnboundedMaxArguments() ) // not unbounded upper limit, validate max arguments
@@ -237,7 +236,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
             int maxArgs = defn.getMaxArguments().intValue();
             if( numArgs > maxArgs )
                 throw new OdaException( 
-                    Messages.bind( "The custom filter expression ({0}) has {1} arguments, but allows a maximum of {2} arguments.", 
+                    Messages.bind( Messages.querySpec_CUSTOM_FILTER_EXCEED_MAX_ARGS, 
                                 new Object[]{ getQualifiedId(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ));
         }
         

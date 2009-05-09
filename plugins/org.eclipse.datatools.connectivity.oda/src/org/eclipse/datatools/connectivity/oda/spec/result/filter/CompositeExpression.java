@@ -102,7 +102,7 @@ public abstract class CompositeExpression extends FilterExpression
     protected void validateMinElements( int minimumChildren ) throws OdaException
     {
         if( getExpressions().size() < minimumChildren )
-            throw new OdaException( Messages.bind( "An {0} must contain at least {1} expressions.",
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_COMPOSITE_MIN_CHILDREN,
                             getQualifiedId(), Integer.valueOf( minimumChildren ) ));
     }
 

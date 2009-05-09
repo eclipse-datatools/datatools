@@ -422,7 +422,7 @@ public class ResultExtensionExplorer
         IExtension[] extensions = ManifestExplorer.getExtensions( DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT );        
         IExtension dynamicResultExtn = findExtension( extensionId, extensions );       
         if ( dynamicResultExtn == null )
-            throw new OdaException( Messages.bind( "No {0} extension found with the id ({1}).", 
+            throw new OdaException( Messages.bind( Messages.querySpec_EXTENSION_ID_NOT_FOUND, 
                     new Object[]{ ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                                     extensionId } ));
                
@@ -459,7 +459,7 @@ public class ResultExtensionExplorer
         IConfigurationElement contributorElement =
             ManifestUtil.getNamedElement( dynamicResultExtn, ExtensionContributor.ELEMENT_NAME );
         if( contributorElement == null )
-            throw new OdaException( Messages.bind( "The {0} extension ({1}) is missing the {2} element.", 
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_ELEMENT, 
                     new Object[]{ ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                                     dynamicResultExtn.getUniqueIdentifier(), ExtensionContributor.ELEMENT_NAME} ));
         

@@ -75,7 +75,7 @@ public class ExpressionFactory
         FilterExpressionDefinition filterExprDefn =
             ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( extensionId, exprId );
         if( filterExprDefn == null )
-            throw new IllegalArgumentException( Messages.bind( "Invalid custom filter expression id: {0}.{1}.", 
+            throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, 
                     extensionId, exprId ));
         return filterExprDefn;
     }
@@ -123,7 +123,7 @@ public class ExpressionFactory
         AggregateDefinition aggrgExprDefn =
             ResultExtensionExplorer.getInstance().getExtensionAggregateDefinition( extensionId, exprId );
         if( aggrgExprDefn == null )
-            throw new IllegalArgumentException( Messages.bind( "Invalid custom aggregate expression id: {0}.{1}.", 
+            throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR, 
                     extensionId, exprId ));
         return aggrgExprDefn;
     }

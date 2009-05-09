@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
+
 /**
  * <strong>EXPERIMENTAL</strong>.
  * Runtime argument(s) of an expression defined in an ODA query specification.
@@ -125,7 +127,7 @@ public class ExpressionArguments
         else
         {
             if( !( m_values instanceof List ))
-                throw new UnsupportedOperationException( "Unable to add a value to existing values.  The existing value is not a java.util.List." );
+                throw new UnsupportedOperationException( Messages.querySpec_UNABLE_ADD_TO_NON_LIST_COLLECTION );
         }
         
         ((List) m_values).add( aValue );

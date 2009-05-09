@@ -66,7 +66,7 @@ public class SortSpecMigrator
         {
             ColumnIdentifier sortColumn = resultSortSpec.getSortColumn( i );
             if( sortColumn == null )
-                throw new IllegalArgumentException( Messages.bind( "Invalid argument: {0}.", resultSortSpec ));
+                throw new IllegalArgumentException( Messages.bind( Messages.querySpec_INVALID_ARG, resultSortSpec ));
             oldSortSpec.addSortKey( sortColumn.getValueExpression(), resultSortSpec.getSortDirection( i ) );
         }
         return oldSortSpec;

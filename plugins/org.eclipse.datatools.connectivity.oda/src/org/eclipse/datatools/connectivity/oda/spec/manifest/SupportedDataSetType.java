@@ -41,13 +41,15 @@ public class SupportedDataSetType
     {
         m_odaDataSourceId = dataSetTypeElement.getAttribute( ATTR_DATA_SOURCE_ID );
         if( m_odaDataSourceId == null || m_odaDataSourceId.length() == 0 )
-            throw new OdaException( 
-                    Messages.bind( "Missing value in required attribute ({0}).", ATTR_DATA_SOURCE_ID ) );
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_ATTR_VALUE, 
+                new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
+                    dataSetTypeElement.getContributor().getName(), ATTR_DATA_SOURCE_ID, ELEMENT_NAME} ));
 
         m_odaDataSetId = dataSetTypeElement.getAttribute( ATTR_DATA_SET_ID );
         if( m_odaDataSetId == null || m_odaDataSetId.length() == 0 )
-            throw new OdaException( 
-                    Messages.bind( "Missing value in required attribute ({0}).", ATTR_DATA_SET_ID ) );
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_ATTR_VALUE, 
+                new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
+                    dataSetTypeElement.getContributor().getName(), ATTR_DATA_SET_ID, ELEMENT_NAME} ));
     }
 
     /**

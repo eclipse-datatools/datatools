@@ -61,7 +61,7 @@ public class AggregateDefinition
     private void init( IConfigurationElement exprElement, ExtensionContributor contributorInfo ) throws OdaException
     {
         if( ! exprElement.isValid() )
-            throw new OdaException( Messages.bind( "The {0} extension ({1}) is invalid.  See the schema definition for required content.",
+            throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ELEMENT,
                                     ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, exprElement.getContributor().getName() ) );
         
         m_exprElement = exprElement;
@@ -88,7 +88,7 @@ public class AggregateDefinition
             {
             }
             if( m_minVars == null || m_minVars.intValue() < 0 )
-                throw new OdaException( Messages.bind( "The {0} extension ({1}) has an invalid value ({2}) for the {3} attribute.",
+                throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ATTR_VALUE,
                         new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                                 exprElement.getContributor().getName(), attrValue, ATTR_MIN_VARS} ) );
         }
@@ -107,7 +107,7 @@ public class AggregateDefinition
             {
             }
             if( m_maxVars == null || m_maxVars.intValue() < m_minVars.intValue() )
-                throw new OdaException( Messages.bind( "The {0} extension ({1}) has an invalid value ({2}) for the {3} attribute.",
+                throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ATTR_VALUE,
                         new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                                 exprElement.getContributor().getName(), attrValue, ATTR_MAX_VARS} ) );
         }
@@ -133,7 +133,7 @@ public class AggregateDefinition
     {
         String id = exprElement.getAttribute( ATTR_ID );
         if( id == null || id.length() == 0 )
-            throw new OdaException( Messages.bind( "The {0} extension ({1}) is missing the {2} attribute value in the {3} element." , 
+            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_ATTR_VALUE, 
                     new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
                                     exprElement.getContributor().getName(), ATTR_ID, ELEMENT_NAME} ));
         return id;
@@ -169,7 +169,7 @@ public class AggregateDefinition
                 if( clazz instanceof CustomAggregate )
                     return (CustomAggregate) clazz;
                 else
-                    throw new OdaException( Messages.bind( "Invalid class type ({0}).  The {1} attribute must be an instance of {2}.", 
+                    throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
                             new Object[]{ className, ATTR_CLASS, CustomAggregate.class.getName()} ));
             }
             catch( CoreException ex )
