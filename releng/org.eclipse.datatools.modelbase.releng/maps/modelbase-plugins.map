@@ -1,6 +1,6 @@
 plugin@org.eclipse.datatools.modelbase.dbdefinition=v200902180845,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.dbdefinition
 plugin@org.eclipse.datatools.modelbase.sql.edit=v200902180845,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.edit
 plugin@org.eclipse.datatools.modelbase.sql.query.edit=v200903030815,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query.edit
-plugin@org.eclipse.datatools.modelbase.sql.query=v200905081727,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query
+plugin@org.eclipse.datatools.modelbase.sql.query=v200905090828,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query
 plugin@org.eclipse.datatools.modelbase.sql.xml.query=v200902180845,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.xml.query
 plugin@org.eclipse.datatools.modelbase.sql=v200904281302,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql
