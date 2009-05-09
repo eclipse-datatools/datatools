@@ -14,7 +14,7 @@ Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.util,
  org.eclipse.datatools.connectivity.oda.util.logging,
  org.eclipse.datatools.connectivity.oda.util.manifest
-Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)";visibility:=reexport,
  com.ibm.icu;bundle-version="[3.4.4,5.0.0)";visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
