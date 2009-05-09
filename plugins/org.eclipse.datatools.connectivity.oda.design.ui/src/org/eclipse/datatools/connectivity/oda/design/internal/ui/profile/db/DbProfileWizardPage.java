@@ -40,6 +40,7 @@ public class DbProfileWizardPage extends DataSourceWizardPage
         // expects argument to be not null
         m_wrappedPage = dbPropertyPage;
         setTitle( m_wrappedPage.getConnectionProfile().getName() );
+        setMessage( DbProfilePageWrapper.DEFAULT_MESSAGE );
     }
     
     /* (non-Javadoc)

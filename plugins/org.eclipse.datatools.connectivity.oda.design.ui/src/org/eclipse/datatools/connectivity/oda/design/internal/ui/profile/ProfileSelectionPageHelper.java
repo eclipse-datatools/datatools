@@ -420,6 +420,9 @@ class ProfileSelectionPageHelper
             m_odaDataSourceID = item.getParentItem().getData().toString();
             setSelectedDataSourceName( item.getText() );
             setExternalLinkOption( m_odaDataSourceID );
+
+            if( getMessageType() == IMessageProvider.NONE ) // no current error
+                setDefaultMessageAsError( false );
         }
     }
 
