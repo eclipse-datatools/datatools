@@ -178,6 +178,8 @@ public class DatabaseHelper {
                   }
               }
           }
+
+          schemaName = schemaName.trim();
           
           /* Try to match the given schema name with one of the schemas
            * from the database. The names are in catalog format, which means
