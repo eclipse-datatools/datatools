@@ -179,8 +179,6 @@ public class DatabaseHelper {
               }
           }
 
-          schemaName = schemaName.trim();
-          
           /* Try to match the given schema name with one of the schemas
            * from the database. The names are in catalog format, which means
            * they are not delimited. Try first for a direct match on the
