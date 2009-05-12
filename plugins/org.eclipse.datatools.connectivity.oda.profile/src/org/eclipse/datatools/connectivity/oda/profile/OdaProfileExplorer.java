@@ -24,7 +24,6 @@ import java.util.logging.Logger;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
-import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
@@ -521,9 +520,7 @@ public class OdaProfileExplorer
      */
     public static boolean isProfileNameUsed( String profileName )
     {
-        IConnectionProfile existingProfile = 
-            InternalProfileManager.getInstance().getProfileByName( profileName, false );
-        return ( existingProfile != null );
+        return OdaProfileFactory.isProfileNameUsed( profileName );
     }
     
 }

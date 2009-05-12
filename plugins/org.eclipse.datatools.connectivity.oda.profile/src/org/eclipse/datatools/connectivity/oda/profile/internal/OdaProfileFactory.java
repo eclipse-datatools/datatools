@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 
 /**
@@ -58,9 +59,11 @@ public class OdaProfileFactory
         }
     }
     
-    private static boolean isProfileNameUsed( String profileName )
+    public static boolean isProfileNameUsed( String profileName )
     {
-        return ( ProfileManager.getInstance().getProfileByName( profileName ) != null );
+        IConnectionProfile existingProfile = 
+            InternalProfileManager.getInstance().getProfileByName( profileName, false );
+        return ( existingProfile != null );
     }
     
     private static String getUniqueProfileName( String profileName )
