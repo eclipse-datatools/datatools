@@ -105,6 +105,7 @@
   <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>INT</name>
+    <name>INTEGER</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" maximumPrecision="38" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
