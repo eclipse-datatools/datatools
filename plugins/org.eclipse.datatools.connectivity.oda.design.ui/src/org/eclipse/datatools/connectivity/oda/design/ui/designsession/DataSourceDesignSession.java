@@ -227,14 +227,37 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     }
     
     /**
+     * TODO - 
+     * @deprecated obsolete to be removed before release
+     * @see #convertDesignToProfile(DesignSessionRequest, String, boolean, boolean, Shell)
+     */
+    public static OdaDesignSession convertDesignToLinkedProfile( 
+            DesignSessionRequest request, 
+            boolean promptCreateProfileStore, Shell parentShell )
+        throws OdaException
+    {
+        return convertDesignToLinkedProfile( request, null, true, 
+                promptCreateProfileStore, parentShell );
+    }
+    
+    /**
      * Converts the data source design, in the specified DesignSessionRequest,
-     * to export its connection properties to a new connection profile instance, and links to it.
-     * <br>The exported connection profile would persist in the default profile storage used
-     * by the DTP Data Source Explorer.
+     * to export its connection properties to a new connection profile instance, 
+     * and optionally links to it.
+     * <br>The exported connection profile would persist in the default profile storage 
+     * used by the DTP Data Source Explorer.
      * In addition, caller may optionally trigger prompting users whether
      * to copy the exported profile to a separate connection profile store file.
      * @param request   a design session request, must contain
      *                  a valid data source design to convert from
+     * @param newProfileBaseName    optional suggested base name of the new 
+     *                  connection profile; may be null or empty to use the same
+     *                  name as that of the data source design.
+     *                  If the suggested name is already used by an existing profile
+     *                  in the default repository, an unique name will be generated
+     *                  with a number appended to the base name.
+     * @param useProfileInDesign    indicates whether to update the data source design
+     *                  to link to the exported profile
      * @param promptCreateProfileStore  indicates whether to prompt users to
      *                  create a separate connection profile store
      * @param parentShell   the parent shell for the UI dialog to create profile store;
@@ -244,9 +267,12 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * @throws OdaException if the conversion task failed; 
      *          if the data source design in the specified request is already linked to 
      *          a connection profile, the cause of thrown exception is an IllegalArgumentException 
+     * @since 3.2 (DTP 1.7)
      */
     public static OdaDesignSession convertDesignToLinkedProfile( 
-            DesignSessionRequest request, boolean promptCreateProfileStore, Shell parentShell )
+            DesignSessionRequest request, 
+            String newProfileBaseName, boolean useProfileInDesign,
+            boolean promptCreateProfileStore, Shell parentShell )
         throws OdaException
     {
         // validate the specified request
@@ -263,7 +289,9 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
                
         // proceed with instantiating a design session to handle the conversion
         DataSourceDesignSession newSession = new DataSourceDesignSession( odaDataSourceId );
-        return newSession.convertDesignToProfile( request, promptCreateProfileStore, parentShell );
+        return newSession.convertDesignToProfile( request, 
+                newProfileBaseName, useProfileInDesign,
+                promptCreateProfileStore, parentShell );
     }
     
     /** Not allowed to instantiate the class directly;

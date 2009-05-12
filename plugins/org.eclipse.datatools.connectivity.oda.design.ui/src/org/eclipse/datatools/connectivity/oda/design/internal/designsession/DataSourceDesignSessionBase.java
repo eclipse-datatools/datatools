@@ -715,9 +715,15 @@ public class DataSourceDesignSessionBase
  
     /**
      * Converts the data source design, in the specified DesignSessionRequest,
-     * to export its connection properties to a new connection profile instance, and links to it.
+     * to export its connection properties to a new connection profile instance, 
+     * and optionally links to it.
      * @param request   a design session request, must contain
      *                  a valid data source design to convert from
+     * @param newProfileBaseName    optional suggested base name of the new 
+     *                  connection profile; may be null or empty to use the same
+     *                  name as that of the data source design
+     * @param useProfileInDesign    indicates whether to update the data source design
+     *                  to link to the exported profile
      * @param promptCreateProfileStore  indicates whether to prompt users to
      *                  create a separate connection profile store
      * @param parentShell   the parent shell for the UI dialog to create profile store;
@@ -727,15 +733,19 @@ public class DataSourceDesignSessionBase
      * @throws OdaException if the conversion task failed
      */
     protected OdaDesignSession convertDesignToProfile( 
-            DesignSessionRequest request, boolean promptCreateProfileStore, Shell parentShell )
+            DesignSessionRequest request, 
+            String newProfileBaseName, boolean useProfileInDesign,
+            boolean promptCreateProfileStore, Shell parentShell )
         throws OdaException
     {
         // first initialize design session
         initEditDesign( request );
         
-        // get a copy of the request data source design to convert
+        // make a copy of the request data source design to convert
         DataSourceDesign editDataSourceDesign =
             DesignerUtil.getAdaptableDataSourceDesign( m_designSession ).getDataSourceDesign();
+        if( newProfileBaseName != null && newProfileBaseName.length() > 0 )
+            editDataSourceDesign.setName( newProfileBaseName );
         
         // create a new connection profile in default profile store file 
         // with the design's connection properties
@@ -763,16 +773,20 @@ public class DataSourceDesignSessionBase
             }
         }
 
-        // if no user-defined profile store path, use the default profile store file 
-        if( linkedProfileStoreFile == null )
+        // update design to link to exported profile
+        if( useProfileInDesign )
         {
-            linkedProfileStoreFile = OdaProfileFactory.defaultProfileStoreFile();
+            // if no user-defined profile store path, use the default profile store file 
+            if( linkedProfileStoreFile == null )
+            {
+                linkedProfileStoreFile = OdaProfileFactory.defaultProfileStoreFile();
+            }
+    
+            // link the exported profile in data source design
+            editDataSourceDesign.setLinkedProfileName( exportedProfile.getName() );
+            editDataSourceDesign.setLinkedProfileStoreFile( linkedProfileStoreFile );
         }
-
-        // link the exported profile in data source design
-        editDataSourceDesign.setLinkedProfileName( exportedProfile.getName() );
-        editDataSourceDesign.setLinkedProfileStoreFile( linkedProfileStoreFile );
-
+        
         return setDesignSessionResponse( m_designSession, editDataSourceDesign, null );        
     }
 
