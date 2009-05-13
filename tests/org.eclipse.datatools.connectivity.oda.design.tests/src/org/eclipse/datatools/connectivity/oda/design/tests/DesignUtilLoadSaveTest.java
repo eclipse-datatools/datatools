@@ -115,6 +115,11 @@ public class DesignUtilLoadSaveTest extends TestCase
         return getGoldenTestFilePath() + "/jdbcBirtSampleSession_multDefValues.xml"; //$NON-NLS-1$
     }
     
+    private String getSampleDbTestMigrateDefaultValueOutFilePath()
+    {
+        return getGoldenTestFilePath() + "/jdbcBirtSampleSession_multDefValues_out.xml"; //$NON-NLS-1$
+    }
+    
     private String getSampleDbResourceFilePath()
     {
         return getGoldenTestFilePath() + "/BirtSampleResourceSession.xml"; //$NON-NLS-1$
@@ -295,6 +300,10 @@ public class DesignUtilLoadSaveTest extends TestCase
         // test saving updated design session with the filter expression
         File tempOut = getTempOutFile();
         saveDesignSession( design, tempOut );
+
+        File goldenOutFile = new File( 
+                getSampleDbTestMigrateDefaultValueOutFilePath() );
+        assertTrue( compareFileContent( goldenOutFile, tempOut ) );    
     }
     
     private void saveDesignSession( OdaDesignSession design, File tempOut )
