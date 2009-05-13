@@ -227,20 +227,6 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     }
     
     /**
-     * TODO - 
-     * @deprecated obsolete to be removed before release
-     * @see #convertDesignToProfile(DesignSessionRequest, String, boolean, boolean, Shell)
-     */
-    public static OdaDesignSession convertDesignToLinkedProfile( 
-            DesignSessionRequest request, 
-            boolean promptCreateProfileStore, Shell parentShell )
-        throws OdaException
-    {
-        return convertDesignToLinkedProfile( request, null, true, 
-                promptCreateProfileStore, parentShell );
-    }
-    
-    /**
      * Converts the data source design, in the specified DesignSessionRequest,
      * to export its connection properties to a new connection profile instance, 
      * and optionally links to it.
