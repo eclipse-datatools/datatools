@@ -13,7 +13,7 @@ package org.eclipse.datatools.sqltools.ddlgen.internal.ui;
 public interface IHelpContextsSQMFEUI {
 
 	/**
-	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.sqm.fe.ui
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.sqltools.ddlgen.ui
 	 */
 
 	/*
