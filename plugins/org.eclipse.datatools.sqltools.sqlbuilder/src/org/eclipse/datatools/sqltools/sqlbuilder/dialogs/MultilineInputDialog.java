@@ -14,8 +14,11 @@ package org.eclipse.datatools.sqltools.sqlbuilder.dialogs;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -46,6 +49,7 @@ public class MultilineInputDialog extends Dialog {
 		m_columnName = columnName;
         setShellStyle(SWT.RESIZE | SWT.TITLE | SWT.CLOSE | SWT.BORDER | SWT.SYSTEM_MODAL);
         setBlockOnOpen(true);
+       
 	}
 
 	/**
@@ -86,7 +90,11 @@ public class MultilineInputDialog extends Dialog {
 	
 	protected void okPressed(){
 		m_input = m_text.getText();
-		super.okPressed();
+		if (m_input.length() == 0 ){
+			super.getButton(OK).setEnabled(false);
+	    }else {
+		  super.okPressed();
+	    }
 	}
 	
 	protected Control createDialogArea(Composite parent){
@@ -96,6 +104,27 @@ public class MultilineInputDialog extends Dialog {
 		// NUM_LINES sets the height for the text box.
 		m_text = ViewUtility.createWrappedMultiTextField(parent, SWT.DEFAULT, NUM_LINES, true);
 		m_text.setText(m_input);
+		
+		//BZ203353 drigby 20090406
+		m_text.addModifyListener(new ModifyListener()
+        {
+            public void modifyText(ModifyEvent e)
+            {
+                updateButtonState();
+            }
+
+        });
+
 		return composite;
 	}
+	
+	private void updateButtonState() {
+		if (m_text.getText().trim().length() > 0 ){
+			super.getButton(OK).setEnabled(true);
+		}else {
+			super.getButton(OK).setEnabled(false);
+		}
+		m_text.setFocus();
+	}
+
 }

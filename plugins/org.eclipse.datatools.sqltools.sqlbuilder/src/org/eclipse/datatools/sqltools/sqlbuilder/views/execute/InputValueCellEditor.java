@@ -130,6 +130,7 @@ public class InputValueCellEditor extends ComboBoxCellEditor
     	String text = inputDialog.getText();
         parm.setValue(text);
         doSetValue(parm);
+        refreshViewer();
         return text;
     }
 }
