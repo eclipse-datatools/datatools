@@ -1,8 +1,8 @@
 plugin@org.eclipse.datatools.connectivity=v200904292355,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity
-plugin@org.eclipse.datatools.connectivity.ui=v200904300632,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui
+plugin@org.eclipse.datatools.connectivity.ui=v200905150650,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui
 plugin@org.eclipse.datatools.connectivity.ui.templates=v200902030445,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.templates
 plugin@org.eclipse.datatools.connectivity.ui.dse=v200904300022,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.dse
-plugin@org.eclipse.datatools.connectivity.sqm.core=v200904092351,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.core
+plugin@org.eclipse.datatools.connectivity.sqm.core=v200905150650,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.core
 plugin@org.eclipse.datatools.connectivity.sqm.core.ui=v200904070518,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.core.ui
 plugin@org.eclipse.datatools.connectivity.sqm.server.ui=v200904070848,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.server.ui
 plugin@org.eclipse.datatools.connectivity.oda=v200905091045,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.oda

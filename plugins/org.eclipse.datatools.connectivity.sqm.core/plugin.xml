@@ -10,6 +10,7 @@
    <extension-point id="catalog" name="%CatalogExtensionPointName" schema="schema/catalog.exsd"/>
    <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
    <extension-point id="metaDataExtension" name="metaDataExtension" schema="schema/metaDataExtension.exsd"/>
+   <extension-point id="mappings" name="Mappings" schema="schema/mappings.exsd"/>
 
    <extension
          point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">

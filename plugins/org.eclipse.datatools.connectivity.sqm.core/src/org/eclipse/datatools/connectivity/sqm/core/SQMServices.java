@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *  brianf - added ProviderIDMappingRegistry reference
  *************************************************************************
  */
 
@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.sqm.core;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.core.mappings.ProviderIDMappingRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 
 /**
@@ -43,4 +44,12 @@ public class SQMServices
         return RDBCorePlugin.getDefault().getContainmentService();
     }
     
+    /**
+     * Gets the provider ID mapping registry service.
+     * @return  a {@link ProviderIDMappingRegistry}
+     */
+    public static ProviderIDMappingRegistry getProviderIDMappingRegistry()
+    {
+        return ProviderIDMappingRegistry.getInstance();
+    }
 }

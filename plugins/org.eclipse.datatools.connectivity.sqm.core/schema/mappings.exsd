@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="mappings" name="Mappings"/>
+      </appInfo>
+      <documentation>
+         Provides a metadata-driven way to map a connection profile provider ID or a vendor/version combination to a driver category ID.
+
+&lt;p&gt;&lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;. This class or interface has been added
+as part of a work in progress. There is no guarantee that this API will
+work or that it will remain the same. Please do not use this API
+without consulting with the DTP Connectivity team.&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="providerIDtoDriverCategoryID"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="providerIDtoDriverCategoryID">
+      <annotation>
+         <documentation>
+            Map a connection profile provider ID to a driver category ID. If mapped for a particular provider ID, this will override the mapping used in the wizard page and property page classes used for the ExtensibleProfileDetailsWizardPage and ExtensibleProfileDetailsWizardPage
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="providerID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Connection Profile Provider ID. This maps to the provider ID defined in the connection profile extension point.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="driverCategoryID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Driver Category ID maps to the category id specified in the driver templates extension.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         DTP 1.7, June 2009
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         An example of use of this mapping can be seen in the org.eclipse.datatools.connectivity.ui plug-in in the o.e.d.connectivity.ui.wizards package for the ExtensibleProfileDetailsPropertyPage and ExtensibleProfileDetailsWizardPage.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         Currently this can be accessed from the SQMServices (o.e.d.connectivity.sqm.core.SQMServices) via the method:
+
+public static ProviderIDMappingRegistry getProviderIDMappingRegistry();
+
+From there you can access the Provider ID in a number of ways:
+
+public String getCategoryIDforProviderID ( String providerID );
+public String getProviderIDforDriverCategoryID ( String driverCategoryID );
+public String getProviderIDforVendorVersion ( String vendor, String version);
+
+So you&apos;ll be able to get a driver category ID for a connection profile provider ID, a connection profile provider ID from a driver category ID, and a connection profile provider ID from a vendor/version.
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright 2009 Sybase, Inc. and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made 
+available under the terms of the Eclipse Public License v1.0 which 
+accompanies this distribution, and is available at 
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

@@ -23,8 +23,10 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.DriverUIContributorComposite;
+import org.eclipse.datatools.connectivity.sqm.core.SQMServices;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -39,6 +41,18 @@ public class ExtensibleProfileDetailsWizardPage extends
 
 	private Properties properties = null;
 
+	/**
+	 * Requires that a mapping from the driver category ID be made from the provider ID via
+	 * the mappings extension point.
+	 */
+	public ExtensibleProfileDetailsWizardPage(String wizardPageName) {
+		super(wizardPageName);
+		setTitle(ConnectivityUIPlugin.getDefault().getResourceString(
+				"ExtensibleProfileDetailsWizardPage.title")); //$NON-NLS-1$
+		setDescription(ConnectivityUIPlugin.getDefault().getResourceString(
+				"ExtensibleProfileDetailsWizardPage.description")); //$NON-NLS-1$
+	}
+	
 	public ExtensibleProfileDetailsWizardPage(String wizardPageName,
 			String driverCategoryID) {
 		super(wizardPageName);
@@ -50,6 +64,22 @@ public class ExtensibleProfileDetailsWizardPage extends
 	}
 
 	public void createCustomControl(Composite parent) {
+		/*
+		 * This bit of code uses the new provider ID mapping functionality added
+		 * as an experimental API in DTP 1.7.
+		 * <p><strong>EXPERIMENTAL</strong>. This code has been added as
+		 * part of a work in progress. There is no guarantee that this API will
+		 * work or that it will remain the same. Please do not use this API without
+		 * consulting with the DTP Connectivity team.</p>
+		 */
+		IWizard wiz = getWizard();
+		if (wiz instanceof ExtensibleNewConnectionProfileWizard) {
+			ExtensibleNewConnectionProfileWizard wizard = (ExtensibleNewConnectionProfileWizard) wiz;
+			String tempDriverCategoryID = SQMServices.getProviderIDMappingRegistry().getCategoryIDforProviderID(wizard.getProfileProviderID());
+			if (tempDriverCategoryID != null && tempDriverCategoryID.trim().length() > 0)
+				this.driverCategoryID = tempDriverCategoryID;
+		}
+
 		parent.setLayout(new GridLayout());
 
 		driverCombo = new DriverListCombo();
