@@ -297,6 +297,7 @@ class ProfileSelectionPageHelper
                     public void run( )
                     {
                        populateTree( );
+                       setExternalLinkDefaultState(); 
                        
                        // clear any previously selected profile settings
                        clearSelectedProfile();
@@ -442,7 +443,7 @@ class ProfileSelectionPageHelper
      */
     private void setExternalLinkOption( String odaDataSourceId )
     {         
-        //by default, if no category is specified, it is optional to maintain an external link 
+        // by default, if no category is specified, it is optional to maintain an external link 
         OdaProfileCategoryInfo categoryInfo = getOdaProfileCategoryInfo( odaDataSourceId );
         boolean isExternalLinkOptional = ( categoryInfo != null ) ?
                                             categoryInfo.isExternalLinkOptional() : true;
@@ -485,9 +486,10 @@ class ProfileSelectionPageHelper
     {
         resetTreeViewer();
         if( ! hasConnectionProfilePath() )
-            return;
+            return;     // done, nothing to populate
 
         // populate tree with ODA extensions' profile instances
+
         OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         
         SortedSet odaCategoryInfoSet = getOdaCategoryInfoSet();
@@ -851,6 +853,8 @@ class ProfileSelectionPageHelper
         m_linkRefCheckBox.setLayoutData( data );
         m_linkRefCheckBox.setText( Messages.profilePage_checkboxLabel_maintainLink );
         m_linkRefCheckBox.setSelection( true );
+        setExternalLinkDefaultState();
+        
         m_linkRefCheckBox.addSelectionListener( new SelectionAdapter( ) 
         {
             public void widgetSelected( SelectionEvent e )
@@ -931,6 +935,12 @@ class ProfileSelectionPageHelper
         m_linkRefCheckBox.setEnabled( isExternalLinkOptional );
         if( ! isExternalLinkOptional )  // requires to maintain an external link
             m_linkRefCheckBox.setSelection( true );
+    }
+    
+    private void setExternalLinkDefaultState()
+    {
+        // initalize the link control state based on whether a profile file path exists
+        m_linkRefCheckBox.setEnabled( hasConnectionProfilePath() );
     }
     
     private boolean inEditMode()
