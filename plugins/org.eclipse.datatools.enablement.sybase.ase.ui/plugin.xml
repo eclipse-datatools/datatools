@@ -342,4 +342,11 @@
 	         </enablement>
 	      </actionProvider>
 	   </extension>    
-</plugin>
+    <extension
+          point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+       <providerIDtoDriverCategoryID
+             driverCategoryID="org.eclipse.datatools.enablement.sybase.ase.category"
+             providerID="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile">
+       </providerIDtoDriverCategoryID>
+    </extension>
+ </plugin>
