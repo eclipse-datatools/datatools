@@ -701,5 +701,13 @@
          </properties>
       </driverTemplate>
    </extension>
+   
+    <extension
+    	point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+       <providerIDtoDriverCategoryID
+          driverCategoryID="org.eclipse.datatools.connectivity.db.derby.driverCategory"
+          providerID="org.eclipse.datatools.connectivity.db.derby.embedded.connectionProfile">
+       </providerIDtoDriverCategoryID>
+    </extension>
 
 </plugin>

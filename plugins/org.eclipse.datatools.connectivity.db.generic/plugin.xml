@@ -84,6 +84,14 @@
                   visible="true"/>
          </properties>
       </driverTemplate>
-   </extension>   
+   </extension> 
+     
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+      <providerIDtoDriverCategoryID
+            driverCategoryID="org.eclipse.datatools.connectivity.db.genericDriverCategory"
+            providerID="org.eclipse.datatools.connectivity.db.generic.connectionProfile">
+      </providerIDtoDriverCategoryID>
+   </extension>
  
 </plugin>
