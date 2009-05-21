@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,6 +26,9 @@ import com.ibm.icu.util.ULocale;
  * association with an IQuery.  
  * The class is designed to be extendable to accommodate 
  * additional ways of expressing a sort mode or key.
+ * <br><strong>Note</strong>: This class will be deprecated in the release after DTP 1.7, 
+ * being replaced by 
+ * {@link org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification}.
  */
 public class SortSpec
 {
