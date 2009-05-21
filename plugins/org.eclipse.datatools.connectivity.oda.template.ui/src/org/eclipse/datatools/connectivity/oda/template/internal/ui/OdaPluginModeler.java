@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -101,7 +101,7 @@ class OdaPluginModeler
         dataSourceElement.setName( "dataSource" ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "driverClass", getKeyPackageName() + ".Driver" );  //$NON-NLS-1$ //$NON-NLS-2$
-        dataSourceElement.setAttribute( "odaVersion", "3.1" ); //$NON-NLS-1$ //$NON-NLS-2$
+        dataSourceElement.setAttribute( "odaVersion", "3.2" ); //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "defaultDisplayName", PROP_DATA_SOURCE_NAME  ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "setThreadContextClassLoader" , VALUE_FALSE );//$NON-NLS-1$
         extension.add( dataSourceElement );
