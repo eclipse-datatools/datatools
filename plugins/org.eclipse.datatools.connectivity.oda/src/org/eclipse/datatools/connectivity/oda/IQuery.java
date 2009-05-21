@@ -371,34 +371,33 @@ public interface IQuery
 	public SortSpec getSortSpec() throws OdaException;
 		
 	/**
-     * <strong>EXPERIMENTAL</strong>.
-     * Specifies the query characteristics to apply when this is prepared and executed.
-     * It takes effect only if specified prior to this preparing a query text
-     * at {@link #prepare(String)}.
-     * <p>An optional method.  Driver implementation that does not support this operation
+     * Specifies the query characteristics to apply when this query is prepared and executed.
+     * It takes effect only if set prior to preparing a query text on {@link #prepare(String)}.
+     * <p>An optional method.  Driver implementation that does not support this method
      * should throw an UnsupportedOperationException.
-	 * @param querySpec    specification of characteristics to apply when preparing and executing this
+	 * @param querySpec    specification of query characteristics to apply when 
+	 *                     this is prepared and executed
 	 * @throws OdaException        if data source error occurs
-     * @throws UnsupportedOperationException    if this operation is not supported
+     * @throws UnsupportedOperationException    if this method is not supported
      * @since 3.2 (DTP 1.7)
 	 */
 	void setSpecification( QuerySpecification querySpec ) 
 	    throws OdaException, UnsupportedOperationException;
 	
 	/**
-     * <strong>EXPERIMENTAL</strong>.
-     * Gets the current specification of characteristics to apply when preparing and executing this.
+     * Gets the current specification of query characteristics to apply when 
+     * this query is prepared and executed.
 	 * @return the current {@link QuerySpecification}, or null if none is effective or available
      * @since 3.2 (DTP 1.7)
 	 */
 	QuerySpecification getSpecification();
 	
 	/**
-     * <strong>EXPERIMENTAL</strong>.
-     * Gets the current effective query text prepared by {@link #prepare(String)}.
-     * The effective query text may have been adjusted based on the
-     * {@link QuerySpecification} specified, such as result set filtering or projection specifications.
-     * This info may be requested by a consumer before this query is executed. 
+     * Gets the current effective query text that this query has prepared.
+     * The effective query text may be different from the argument of {@link #prepare(String)},
+     * having been adjusted based on the {@link QuerySpecification} 
+     * set by {@link #setSpecification(QuerySpecification)}.
+     * This may be requested by a consumer before executing this query. 
      * <br>An optional method.
      * @return  the current effective query text,
      *          or null if no query text is effective or available at the current query state

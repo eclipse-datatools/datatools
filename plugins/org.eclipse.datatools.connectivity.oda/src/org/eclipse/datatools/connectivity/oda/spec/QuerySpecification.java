@@ -20,13 +20,8 @@ import java.util.Map;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Specification of the query characteristics to apply when preparing and executing 
- * a query text in an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
- * <br>It takes effect only if assigned prior to an IQuery prepares a query text.
- * If any part of the specification is not supported by a driver, an IQuery implementation 
- * should throw an OdaException at 
- * {@link org.eclipse.datatools.connectivity.oda.IQuery#prepare(String)}.
+ * an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
  * @since 3.2 (DTP 1.7)
  */
 public class QuerySpecification
@@ -35,31 +30,12 @@ public class QuerySpecification
     private Map<String,Object> m_propertyMap;
     private Map<ParameterIdentifier,Object> m_parameterValues;
     
-    /**
+    /*
      * Internal constructor.
      * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createQuerySpecification()} 
      * to create an instance.
      */
     public QuerySpecification() {}
-    
-    /**
-     * Specifies the characteristics of all the result set(s) to be retrieved by
-     * the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
-     * @param resultSpec    specification of a query's result set(s)
-     */
-    public void setResultSetSpecification( ResultSetSpecification resultSpec )
-    {
-        m_resultSpec = resultSpec;
-    }
-    
-    /**
-     * Gets the current result set specification of an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
-     * @return  the current {@link ResultSetSpecification}, or null if not specified
-     */
-    public ResultSetSpecification getResultSetSpecification()
-    {
-        return m_resultSpec;
-    }
 
     /**
      * Specifies the value(s) of a data set query property, overriding existing values if any.  
@@ -287,6 +263,27 @@ public class QuerySpecification
         if( m_parameterValues == null )
             m_parameterValues = new HashMap<ParameterIdentifier,Object>(5);
         return m_parameterValues;
+    }
+    
+    /**
+     * <strong>EXPERIMENTAL</strong>.
+     * Specifies the characteristics of all the result set(s) to be retrieved by
+     * the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
+     * @param resultSpec    specification of a query's result set(s)
+     */
+    public void setResultSetSpecification( ResultSetSpecification resultSpec )
+    {
+        m_resultSpec = resultSpec;
+    }
+    
+    /**
+     * <strong>EXPERIMENTAL</strong>.
+     * Gets the current result set specification of an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
+     * @return  the current {@link ResultSetSpecification}, or null if not specified
+     */
+    public ResultSetSpecification getResultSetSpecification()
+    {
+        return m_resultSpec;
     }
     
     /**
