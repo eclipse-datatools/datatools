@@ -51,6 +51,8 @@ public class PreferenceConstants
                                                                                + ".preferences.display.tablesnumber.limitation";
     public static final String VERTICAL_LAYOUT_RESULTS_VIEW            = PREFERENCE_PREFIX
                                                                                + ".preferences.results.vertical";
+    public static final String SQL_RESULT_VIEW_SHOW_LABELS			   = PREFERENCE_PREFIX
+        																		   + ".preferences.display.showlabels";
 
     /* Export format options */
     public static final String EXPORT_FORMAT_ADD_XML_HEADER            = PREFERENCE_PREFIX

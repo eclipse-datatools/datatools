@@ -93,6 +93,20 @@ public class ResultSetObject implements IResultSetObject
      */
     public ResultSetObject(ResultSet resultset, int maxRowCount, int maxDisplayRowCount) throws SQLException
     {
+    	this(resultset, maxRowCount, maxDisplayRowCount, true);
+    }
+    
+    /**
+     * Constructs a ResultSetObject instance from a JDBC ResultSet object
+     * 
+     * @param resultset the JDBC result set object
+     * @param maxRowCount to limit the max row count
+     * @param maxDisplayRowCount to limit the max display row count
+     * @param showLabels to check if label is required to display as column heading
+     * @exception SQLException - if a database access error occurs
+     */
+    public ResultSetObject(ResultSet resultset, int maxRowCount, int maxDisplayRowCount, boolean showLabels) throws SQLException
+    {
         ObjectOutputStream oos = null;
         try
         {
@@ -104,14 +118,19 @@ public class ResultSetObject implements IResultSetObject
             _columnNames = new String[columnCount];
             _columnDisplaySizes = new int[columnCount];
             _columnTypes = new int[columnCount];
-            
             for (int i = 0; i < columnCount; i++)
             {
-                _columnNames[i] = meta.getColumnLabel(i + 1);
-                
-                //If no label, use the column name instead. Fix BZ221334
-                if ( null == _columnNames[i] || _columnNames[i].trim().equals("") )
+            	if (showLabels) // If true, use the column label as the column heading, if available.
                 {
+                    _columnNames[i] = meta.getColumnLabel(i + 1);
+                    //If no label, use the column name instead. Fix BZ221334
+                    if ( null == _columnNames[i] || _columnNames[i].trim().equals("") )
+                    {
+                        _columnNames[i] = meta.getColumnName(i + 1);
+                    }
+                }
+                else // Otherwise use the column name as the heading
+                {	
                     _columnNames[i] = meta.getColumnName(i + 1);
                 }
 

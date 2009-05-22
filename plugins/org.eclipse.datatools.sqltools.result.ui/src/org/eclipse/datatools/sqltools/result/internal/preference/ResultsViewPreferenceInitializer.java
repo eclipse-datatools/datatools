@@ -46,6 +46,7 @@ public class ResultsViewPreferenceInitializer extends AbstractPreferenceInitiali
         store.setDefault(PreferenceConstants.SQL_RESULTS_VIEW_TABS_NUMBER, 50);
         store.setDefault(PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION, 50);
         store.setDefault(PreferenceConstants.VERTICAL_LAYOUT_RESULTS_VIEW, false);
+        store.setDefault(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS, true);
         
         // Set default values of export format options page
         store.setDefault(PreferenceConstants.EXPORT_FORMAT_ADD_XML_HEADER, true);

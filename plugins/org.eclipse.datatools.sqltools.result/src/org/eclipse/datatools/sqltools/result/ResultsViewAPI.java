@@ -654,7 +654,15 @@ public class ResultsViewAPI
     	return ResultConfiguration.getInstance().getMaxDisplayRowCount();
     }
     
-
+    /**
+     * Gets the show label preference
+     * @return the show label boolean 
+     */
+     public boolean getShowLabelPreference()
+     {
+        	return ResultConfiguration.getInstance().isShowLabel();
+     }
+    
     /**
      * Serialize a result instance according to a specific OperationCommand
      * @author juewu

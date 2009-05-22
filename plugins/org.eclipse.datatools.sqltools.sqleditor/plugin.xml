@@ -182,6 +182,16 @@
             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
       <key
+             sequence="M3+S"
+             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteCurrentAction"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+             sequence="M3+C"
+             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteAsOneStatementAction"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
             commandId="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"
             sequence="M1+/"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"

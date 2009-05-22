@@ -24,6 +24,8 @@ public class ResultConfiguration
 
     private boolean                    autoClean          = false;
     
+    private boolean                    showLabel  		  = true;
+    
     private ResultConfiguration()
     {
     }
@@ -58,6 +60,22 @@ public class ResultConfiguration
         return this.maxDisplayRowCount;
     }
 
+    /*  
+     * This method is to set ShowLabel variable with the default value
+     */
+    public void setShowLabel(boolean showLabel)
+    {
+        this.showLabel = showLabel;
+    }
+
+    /*
+     *  This method returns the boolean value for showLabel
+     */
+    public boolean isShowLabel()
+    {
+        return this.showLabel;
+    }
+    
     public void setAutoSave(boolean autoSave)
     {
         this.autoSave = autoSave;

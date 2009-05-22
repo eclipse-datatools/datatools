@@ -77,7 +77,7 @@ public class ResultInstanceFactory
     public IResultSetObject createResultSetObject(ResultSet resultset) throws SQLException
     {
         IResultSetObject r = new ResultSetObject(resultset, ResultConfiguration.getInstance().getMaxRowCount(), 
-                ResultConfiguration.getInstance().getMaxDisplayRowCount());
+                ResultConfiguration.getInstance().getMaxDisplayRowCount(), ResultConfiguration.getInstance().isShowLabel());
         return r;
     }
   

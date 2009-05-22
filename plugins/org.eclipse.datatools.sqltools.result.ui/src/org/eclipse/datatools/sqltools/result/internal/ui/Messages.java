@@ -163,6 +163,8 @@ public final class Messages extends NLS {
 	public static String SQLResultsViewPage_resultsetoptions_showrownumber;
 	public static String SQLResultsViewPage_resultsetoptions_showrowcount;
 	public static String SQLResultsViewPage_resultsetoptions_maxrowcount;
+	public static String SQLResultsViewPage_show_label;
+	public static String SQLResultsViewPage_show_label_tooltip;
 	public static String SQLResultsViewPage_resultsetoptions_maxdisplayrowcount;
 	public static String SQLResultsViewPage_resultsetoptions_nulldisplaystr;
 	public static String SQLResultsViewPage_resultsetoptions_lessthanzero;

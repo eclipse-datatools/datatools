@@ -29,7 +29,7 @@ import org.eclipse.datatools.sqltools.result.ui.ExternalResultSetViewerProvider;
 public class ResultSetViewerRegistryReader
 {
 	public static final String EXTERNAL_RESULT_VIEWER = 
-    	"org.eclipse.datatools.sqltools.result.resultSetViewer"; //$NON-NLS-1$ //$NON-NLS-2$
+    	"org.eclipse.datatools.sqltools.result.ui.resultSetViewer"; //$NON-NLS-1$ //$NON-NLS-2$
 	public static final String EXTERNAL_RESULT_VIEWER_CLASS = "class"; //$NON-NLS-1$ //$NON-NLS-2$
 	public static final String EXTERNAL_RESULT_VIEWER_VENDOR = "vendor";  //$NON-NLS-1$
 	public static final String EXTERNAL_RESULT_VIEWER_ID = "id"; //$NON-NLS-1$

@@ -105,7 +105,7 @@ public class PlanTypeDropDownAction extends Action implements IMenuCreator
     {
         IPlanInstance plan = _planView.getCurrentPlan();
 
-        if (plan == null)
+        if (plan == null || plan.getPlanRequest().getProfileName() == null)
         {
             setEnabled(false);
             return;

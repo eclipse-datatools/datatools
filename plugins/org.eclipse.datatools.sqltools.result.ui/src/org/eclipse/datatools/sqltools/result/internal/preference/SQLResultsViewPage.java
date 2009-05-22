@@ -69,6 +69,7 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
 
     private Label            _limitTables;
     private Text             _limitTablesNum;
+    private Button 			 _showLabels;
     
     private IPreferenceStore _store;
     private ModifyListener   _modifyListener = new ModifyListener()
@@ -341,6 +342,12 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
         _showHeadings = new Button(buttonComp, SWT.CHECK);
         _showHeadings.setLayoutData(new GridData());
         _showHeadings.setText(Messages.SQLResultsViewPage_resultsetoptions_showheadings); 
+        
+        //This part of code is added to display the checkbox for displaying Column Label as Column Heading.
+        _showLabels = new Button(buttonComp, SWT.CHECK);
+        _showLabels.setLayoutData(new GridData());
+        _showLabels.setText(Messages.SQLResultsViewPage_show_label);
+        _showLabels.setToolTipText(Messages.SQLResultsViewPage_show_label_tooltip);   
 
         _showRowNumber = new Button(buttonComp, SWT.CHECK);
         _showRowNumber.setLayoutData(new GridData());
@@ -490,6 +497,7 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
         _limitTabsNum.setText(Integer.toString(_store.getDefaultInt(PreferenceConstants.SQL_RESULTS_VIEW_TABS_NUMBER)));
         _limitTablesNum.setText(Integer.toString(_store
                 .getDefaultInt(PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION)));
+        _showLabels.setSelection(_store.getDefaultBoolean(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS));
         super.performDefaults();
     }
 
@@ -541,6 +549,8 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
         _splitMessages.setSelection(_store.getBoolean(PreferenceConstants.SQL_RESULTS_VIEW_SPLIT_MESSAGES));
         _limitTabsNum.setText(Integer.toString(_store.getInt(PreferenceConstants.SQL_RESULTS_VIEW_TABS_NUMBER)));
         _limitTablesNum.setText(Integer.toString(_store.getInt(PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION)));
+        
+        _showLabels.setSelection(_store.getBoolean(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS));
     }
 
     public boolean performOk()
@@ -573,6 +583,8 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_SPLIT_MESSAGES, _splitMessages.getSelection());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_TABS_NUMBER, _limitTabsNum.getText().trim());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_TABLES_LIMITATION, _limitTablesNum.getText().trim());
+        //The checkbox for Column Heading will set the value true/false at the time of pressing "OK" button. 
+        _store.setValue(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS,  _showLabels.getSelection());
         return super.performOk();
     }
 

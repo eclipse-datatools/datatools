@@ -157,7 +157,7 @@ public class GroupPlanSupportRunnable extends PlanSupportRunnable
 
             PlanSupportRunnable planRunnable = null;
             PlanRequest request = new PlanRequest(groups[i], _request.getDatabaseDefinitionId(),
-                    _request.getPlanType(), PlanRequest.VIEW_ACTIVATE);
+                    _request.getPlanType(), _request.getMode());
             request.setNoexec(_request.isNoexec());
 
             // request.setSql(SQLUtil.getSQLWithDefOfAssAndRefAndEvaluations(

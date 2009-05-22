@@ -101,6 +101,10 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
                         {
 						    ResultConfiguration.getInstance().setAutoClean(((Boolean)newValue).booleanValue());
                         }
+						if(name.equals(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS))
+                        {
+						    ResultConfiguration.getInstance().setShowLabel(((Boolean)newValue).booleanValue());
+                        }
 					}
         			
         		});
