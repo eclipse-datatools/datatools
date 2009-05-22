@@ -95,6 +95,9 @@
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUniqueConstraintNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASECheckConstraintNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEForeignKeyNode"/>
+                <instanceof
+                      value="org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter">
+                </instanceof>
 	            </or>
             </triggerPoints>
             <possibleChildren>
