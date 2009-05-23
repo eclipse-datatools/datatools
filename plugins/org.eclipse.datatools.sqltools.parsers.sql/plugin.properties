@@ -3,4 +3,4 @@
 !-- plugin.xml 
 pluginName = Eclipse Data Tools Platform SQL Parser Plugin
 nl1PluginName = SQL Parser Nl1 Fragment
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
