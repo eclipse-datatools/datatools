@@ -256,8 +256,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			{
 				predicate = getPredicates();
 			}
-			connFilter.setPredicate(predicate);
-		}
+			setConnectionFilter(predicate);
+		}		
     }
     
     public void setDefaultPageTitle ( String title ) {
