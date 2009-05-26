@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
 public class MySqlTableIndexLoader extends JDBCTableIndexLoader {
 
 	public MySqlTableIndexLoader() {
-		super(null);
+		super(null, null);
 	}
 
 	protected ResultSet createResultSet() throws SQLException {

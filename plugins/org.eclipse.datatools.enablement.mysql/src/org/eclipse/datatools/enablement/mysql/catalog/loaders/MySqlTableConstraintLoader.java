@@ -43,7 +43,7 @@ import com.ibm.icu.text.MessageFormat;
 public class MySqlTableConstraintLoader extends JDBCTableConstraintLoader {
 
 	public MySqlTableConstraintLoader() {
-		super(null);
+		super(null, null);
 	}
 
 	protected ForeignKey createForeignKey() {

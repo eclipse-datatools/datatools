@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class MySqlTableColumnLoader extends JDBCTableColumnLoader {
 
 	public MySqlTableColumnLoader(){
-		super(null);
+		super(null, null);
 	}
 
 	protected Column createColumn() {

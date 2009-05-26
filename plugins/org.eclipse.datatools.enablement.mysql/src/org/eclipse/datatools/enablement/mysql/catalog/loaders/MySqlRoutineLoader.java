@@ -22,7 +22,7 @@ import com.ibm.icu.text.MessageFormat;
 public class MySqlRoutineLoader extends JDBCRoutineLoader {
 
 	public MySqlRoutineLoader() {
-		super(null);
+		super(null, null);
 	}
 	
 	protected ResultSet createResultSet() throws SQLException {

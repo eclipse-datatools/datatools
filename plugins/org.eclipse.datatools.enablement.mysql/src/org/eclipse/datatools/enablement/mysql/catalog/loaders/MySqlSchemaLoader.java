@@ -22,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 public class MySqlSchemaLoader extends JDBCSchemaLoader {
 
 	public MySqlSchemaLoader() {
-		super(null);
+		super(null, null);
 	}
 
 	/* (non-Javadoc)
