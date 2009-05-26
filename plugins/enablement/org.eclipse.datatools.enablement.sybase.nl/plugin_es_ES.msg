@@ -1,11 +1,11 @@
 Plugin.name = High-level Sybase Enablement Plug-in
-Plugin.providerName = Eclipse.org
+Plugin.providerName = Eclipse Data Tools Platform
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Controladores asociados a productos Sybase
 # ====================================================================
 pluginName = Sybasesqlmodel Model
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 temptable.name = Tabla temporal
 trigger.name = Activador
 parameter.name = Parámetro

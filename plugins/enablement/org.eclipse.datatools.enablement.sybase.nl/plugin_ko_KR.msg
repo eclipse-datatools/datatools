@@ -1,11 +1,11 @@
 Plugin.name = High-level Sybase Enablement Plug-in
-Plugin.providerName = Eclipse.org
+Plugin.providerName = Eclipse Data Tools Platform
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Sybase 제품과 연관된 드라이버입니다.
 # ====================================================================
 pluginName = Sybasesqlmodel Model
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 temptable.name = 임시 테이블
 trigger.name = 트리거
 parameter.name = 매개 변수
