@@ -86,7 +86,7 @@ DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = 모델에서 현수 참조 제거
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = DDL 생성...
+GENERATE_DDL_MENU_TEXT = DDL 생성(&D)...
 
 #
 ## FE and RE Wizards

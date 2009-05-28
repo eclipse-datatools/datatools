@@ -86,7 +86,7 @@ DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = 从模型中除去悬挂引用
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = 生成 DDL...
+GENERATE_DDL_MENU_TEXT = 生成 DDL(&D)...
 
 #
 ## FE and RE Wizards

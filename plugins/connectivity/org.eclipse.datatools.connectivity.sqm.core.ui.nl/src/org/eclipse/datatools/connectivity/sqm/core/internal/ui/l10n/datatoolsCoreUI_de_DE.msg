@@ -86,7 +86,7 @@ DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = Alleinstehende Referenz von Modell 
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = DDL erstellen...
+GENERATE_DDL_MENU_TEXT = &DDL erstellen...
 
 #
 ## FE and RE Wizards

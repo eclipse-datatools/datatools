@@ -86,7 +86,7 @@ DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = Quitar referencia colgada del model
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = Generar DDL...
+GENERATE_DDL_MENU_TEXT = Generar &DDL...
 
 #
 ## FE and RE Wizards

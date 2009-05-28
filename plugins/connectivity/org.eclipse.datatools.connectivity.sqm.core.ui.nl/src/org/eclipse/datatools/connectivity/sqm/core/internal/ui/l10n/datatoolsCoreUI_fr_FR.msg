@@ -86,7 +86,7 @@ DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = Supprimer une référence pendante du
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = Générer un DDL...
+GENERATE_DDL_MENU_TEXT = Générer &DDL...
 
 #
 ## FE and RE Wizards
