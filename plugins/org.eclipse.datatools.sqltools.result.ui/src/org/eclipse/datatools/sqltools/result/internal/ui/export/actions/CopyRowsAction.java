@@ -47,11 +47,6 @@ public class CopyRowsAction extends Action
 
     public void run()
     {
-        if(!_table.getControl().isFocusControl())
-        {
-            return;
-        }
-        
         List rows = new ArrayList();
         if ( _table == null || _resultObj == null )
         {

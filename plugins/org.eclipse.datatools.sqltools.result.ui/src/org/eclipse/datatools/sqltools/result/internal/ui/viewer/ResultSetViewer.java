@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IViewSite;
 
@@ -83,8 +84,6 @@ public class ResultSetViewer extends TableViewer
     
     /* if the lenght of data is bigger than LONG_BOUNDARY, we will use a pop-up dialog to display it */
     public static final int     LONG_BOUNDARY          = 130; 
-    
-    protected CopyRowsAction _copyAction;
     
     /**
      * Creates a result set viewer.
@@ -331,31 +330,9 @@ public class ResultSetViewer extends TableViewer
         printMgr.add(new PrintResultSetAction(_result, _parent));
         printMgr.add(new PrintResultSetAction(_instance, _parent));
         
-        _copyAction = new CopyRowsAction(Messages.ResultSetViewer_copy_rows, this, _result);
-        _copyAction.setActionDefinitionId("org.eclipse.datatools.sqltools.result.copyrows");
-      
-        IViewReference[] viewRefs = ResultsViewUIPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow().
-        getActivePage().getViewReferences();
+        final CopyRowsAction copyAction = new CopyRowsAction(Messages.ResultSetViewer_copy_rows, this, _result);
         
-        IViewSite view = null;
-        
-        for(int index = 0; i < viewRefs.length; index++)
-        {
-            if(viewRefs[index].getId().equals("org.eclipse.datatools.sqltools.result.resultView"))
-            {
-                view = viewRefs[index].getView(false).getViewSite();
-                break;
-            }
-        }
-        
-        if(view != null && _copyAction != null)
-        {
-            IActionBars actionBars = view.getActionBars();
-            actionBars.setGlobalActionHandler("org.eclipse.datatools.sqltools.result.copyrows", _copyAction);
-            view.getKeyBindingService().registerAction(_copyAction);
-        }
-        
-        mgr.add(_copyAction);
+        mgr.add(copyAction);
         mgr.add(saveMgr);
         mgr.add(exportMgr);
         mgr.add(printMgr);
@@ -367,11 +344,11 @@ public class ResultSetViewer extends TableViewer
                 IStructuredSelection ss = (IStructuredSelection) ResultSetViewer.this.getSelection();
                 if ( ss == null || ss.toList().size() == 0 )
                 {
-                    _copyAction.setEnabled(false);
+                    copyAction.setEnabled(false);
                 }
                 else
                 {
-                    _copyAction.setEnabled(true);
+                    copyAction.setEnabled(true);
                 }
             }
         });

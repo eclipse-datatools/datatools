@@ -51,11 +51,6 @@
             categoryId="org.eclipse.datatools.sqltools.result.category"
             id="org.eclipse.datatools.sqltools.result.terminate"
             name="%TerminateInstanceAction.command.name"/>
-      <command
-            categoryId="org.eclipse.datatools.sqltools.result.category"
-            id="org.eclipse.datatools.sqltools.result.copyrows"
-            name="%CopyRowsAction.command.name">
-      </command>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
@@ -74,11 +69,6 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+BREAK"/>
-      <key
-            commandId="org.eclipse.datatools.sqltools.result.copyrows"
-            contextId="org.eclipse.ui.contexts.window"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+R"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

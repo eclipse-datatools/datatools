@@ -274,7 +274,7 @@ public class ResultsViewPlugin extends Plugin
     				IConfigurationElement[] elements = extensions[i].getConfigurationElements();
     				try
     				{
-						Object listener = elements[i].createExecutableExtension("listener");
+						Object listener = elements[0].createExecutableExtension("listener");
 						
 						if(listener instanceof IResultManagerListener)
 						{
