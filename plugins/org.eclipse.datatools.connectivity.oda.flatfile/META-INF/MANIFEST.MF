@@ -4,7 +4,7 @@ Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile; singleton:=true
 Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.plugin.FlatfilePlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.datatools.connectivity.oda.flatfile,org.eclipse.datatools.connectivity.oda.flatfile.util;x-friends:="org.eclipse.datatools.connectivity.oda.flatfile.tests",
