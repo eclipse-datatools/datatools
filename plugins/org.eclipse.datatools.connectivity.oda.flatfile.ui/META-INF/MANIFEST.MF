@@ -4,7 +4,7 @@ Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile.ui; singleton:=true
 Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.oda.flatfile.ui,
  org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards
