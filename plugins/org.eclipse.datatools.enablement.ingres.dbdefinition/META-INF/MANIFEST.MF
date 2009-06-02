@@ -4,6 +4,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres.dbdefinition;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %PROVIDER_NAME
 Eclipse-LazyStart: true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
