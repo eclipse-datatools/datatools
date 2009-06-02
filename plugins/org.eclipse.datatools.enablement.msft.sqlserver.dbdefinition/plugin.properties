@@ -11,7 +11,7 @@
 
 pluginName = Eclipse Data Tools Platform SQL Server Database Definition Plug-in
 nl1PluginName = SQL Server Database Definition  NL1 Fragment
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 2000ProductString = SQL Server
 2000VersionString = 2000
