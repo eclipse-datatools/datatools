@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.lexer;singleton:
 Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.lexer.LexerPlugin
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Export-Package: 
  org.eclipse.datatools.sqltools.parsers.sql.lexer
 Require-Bundle: 
