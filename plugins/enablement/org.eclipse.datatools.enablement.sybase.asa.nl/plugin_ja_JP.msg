@@ -22,4 +22,4 @@ org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = ‚»‚Ì‘¼‚Ìƒ
 org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = ‚»‚Ì‘¼‚Ìƒhƒ‰ƒCƒo
 
 Plugin.name = Sybase ASA Plug-in
-Plugin.providerName = Eclipse.org
+Plugin.providerName = Eclipse Data Tools Platform

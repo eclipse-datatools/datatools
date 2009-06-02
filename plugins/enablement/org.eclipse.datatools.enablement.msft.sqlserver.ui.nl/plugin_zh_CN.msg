@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Microsoft SQL Server UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.sqlserver.wizard.title = SQL Server
 profile.sqlserver.wizard.description = 创建 SQL Server 连接配置文件。

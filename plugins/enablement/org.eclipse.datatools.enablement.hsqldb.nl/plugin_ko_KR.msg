@@ -1,4 +1,4 @@
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse Data Tools Platform HSQLDB 사용 플러그인
 
 navigator.content.name = HSQLDB 프로필 콘텐츠 확장명

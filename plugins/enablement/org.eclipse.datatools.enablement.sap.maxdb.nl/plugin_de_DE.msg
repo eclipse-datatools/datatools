@@ -1,5 +1,5 @@
 pluginName=Eclipse Data Tools Platform MaxDB Enablement Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 vendor = Anbieter
 version = Version 
@@ -19,5 +19,4 @@ MaxDBName=MaxDB
 
 7_6_category_name = 7.6
 7_7_category_name = 7.7
-
             

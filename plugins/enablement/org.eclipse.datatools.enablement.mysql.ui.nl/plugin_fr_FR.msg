@@ -9,8 +9,9 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform MySQL UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.mysql.wizard.title = MySQL
 profile.mysql.wizard.description = Créer un profil de connexion MySQL.
 profile.mysql.properties = Propriétés de pilote
+

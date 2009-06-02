@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Microsoft SQL Server Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 driverClass = Clase de controlador
 driverVendor = Proveedor

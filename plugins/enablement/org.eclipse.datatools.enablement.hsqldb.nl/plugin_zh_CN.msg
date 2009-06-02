@@ -1,4 +1,4 @@
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse 数据工具平台 HSQLDB 启用插件
 
 navigator.content.name = HSQLDB 配置文件内容扩展

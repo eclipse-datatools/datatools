@@ -1,4 +1,4 @@
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse Data Tools Platform HSQLDB Database Definition Enablement Plug-in
 
 product.display.string = HSQLDB

@@ -1,5 +1,5 @@
 pluginName=Eclipse Data Tools Platform MaxDB Enablement Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 vendor = 공급업체
 version = 버전 

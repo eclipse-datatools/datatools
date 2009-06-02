@@ -1,5 +1,5 @@
 pluginName=Eclipse Data Tools Platform MaxDB Definition Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 productDisplayString_76="MaxDB"
 versionDisplayString_76="7.6"

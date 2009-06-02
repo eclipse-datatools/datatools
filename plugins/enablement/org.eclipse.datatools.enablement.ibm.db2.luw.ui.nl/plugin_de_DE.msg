@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB LUW UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.db2.luw.wizard.title = DB2 für Linux, UNIX und Windows
 profile.db2.luw.wizard.description = Erstellung eines Verbindungsprofils DB2 für Linux, UNIX und Windows.

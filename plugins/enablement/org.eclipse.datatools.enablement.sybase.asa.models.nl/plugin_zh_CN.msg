@@ -1,7 +1,7 @@
 # <copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.1 2007/03/05 15:52:18 jgraham Exp $
+# $Id: plugin.properties,v 1.2 2009/06/02 01:01:15 bfitzpatrick Exp $
 
 # ====================================================================
 # To code developer:
@@ -16,5 +16,5 @@
 # ====================================================================
 
 pluginName = Sybase ASA SQL Model
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 

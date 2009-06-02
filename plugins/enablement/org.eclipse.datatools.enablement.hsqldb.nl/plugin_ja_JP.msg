@@ -1,4 +1,4 @@
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse Data Tools Platform HSQLDB Enablement Plug-in
 
 navigator.content.name = HSQLDB プロファイルコンテンツの拡張
@@ -19,3 +19,4 @@ VERSION_PROPERTY_NAME=バージョン
 DATABASE_NAME_PROPERTY_NAME=データベース名
 CONNECTION_URL_PROPERTY_NAME=接続 URL
 USER_ID_PROPERTY_NAME=ユーザ ID
+

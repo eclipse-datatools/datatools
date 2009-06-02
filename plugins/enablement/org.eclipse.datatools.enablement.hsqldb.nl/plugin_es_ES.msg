@@ -1,4 +1,4 @@
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Complemento de activación de HSQLDB para Eclipse Data Tools Platform
 
 navigator.content.name = Extensión de contenido del perfil de HSQLDB
