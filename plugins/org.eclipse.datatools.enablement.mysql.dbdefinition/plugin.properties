@@ -9,7 +9,7 @@
 #     Versant Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform MySQL Database Definition Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 4.0_ProductString = MySQL
 4.0_VersionString = 4.0
 4.1_ProductString = MySQL
