@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: DTP Enablement SQLite Database Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sqlite;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sqlite.Activator
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.modelbase.dbdefinition,
  org.eclipse.datatools.modelbase.sql,
