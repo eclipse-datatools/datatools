@@ -9,7 +9,7 @@
 ##    Sybase, Inc. - initial API and implementation
 ################################################################################ 
 Plugin.Name=数据工具平台连接 UI 插件
-Plugin.ProviderName=Eclipse.org
+Plugin.ProviderName = Eclipse Data Tools Platform
 Database.category=数据库
 Extension.PropertyPage.General.Name=公共
 Extension.PropertyPage.Version.Name=版本

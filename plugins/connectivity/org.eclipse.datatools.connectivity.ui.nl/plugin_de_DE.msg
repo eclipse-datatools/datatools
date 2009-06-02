@@ -9,7 +9,7 @@
 ##    Sybase, Inc. - initial API and implementation
 ################################################################################ 
 Plugin.Name=Data Tools Platform - Plug-in für Konnektivitäts-UI
-Plugin.ProviderName=Eclipse.org
+Plugin.ProviderName = Eclipse Data Tools Platform
 Database.category=Datenbanken
 Extension.PropertyPage.General.Name=Allgemein
 Extension.PropertyPage.Version.Name=Version
