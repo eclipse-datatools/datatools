@@ -1,3 +1,16 @@
+###############################################################################
+# Copyright (c) 2008 Sybase, Inc. and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     Sybase, Inc. - initial API and implementation
+###############################################################################
+pluginName   = Eclipse Data Tools Platform SQL Editor
+providerName = Eclipse Data Tools Platform
+
 category.datatools.name=데이터베이스 도구
 category.datatools.description=데이터베이스 개발 도구
 
