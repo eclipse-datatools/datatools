@@ -10,7 +10,7 @@
 ###############################################################################
 
 pluginName = Eclipse Data Tools Platform DB2 UDB Database Definition Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 V81ProductString = DB2 für Linux, UNIX und Windows
 V81VersionString = V8.1

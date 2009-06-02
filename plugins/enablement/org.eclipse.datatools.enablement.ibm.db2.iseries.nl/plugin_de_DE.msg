@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB iSeries Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 driverClass = Treiberklasse
 driverVendor = Anbieter

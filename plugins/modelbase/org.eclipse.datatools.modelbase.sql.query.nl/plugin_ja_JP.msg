@@ -2,7 +2,7 @@
 # ====================================================================
 
 # ====================================================================
-# $Id: plugin.properties,v 1.4 2006/05/10 14:30:22 jgraham Exp $
+# $Id: plugin.properties,v 1.5 2009/06/02 14:49:15 bfitzpatrick Exp $
 # @generated NOT
 # ====================================================================
 
@@ -20,5 +20,5 @@
 
 pluginName = Eclipse Data Tools Platform SQL Query Model Plugin
 nl1PluginName = SQL Query Model Nl1 Fragment
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 

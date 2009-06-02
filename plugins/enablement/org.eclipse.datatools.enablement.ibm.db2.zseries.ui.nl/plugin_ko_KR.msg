@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB zSeries UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.db2.zseries.wizard.title = z/OS용 DB2
 profile.db2.zseries.wizard.description = z/OS 연결 프로필용 DB2를 생성합니다.

@@ -11,7 +11,7 @@
 
 
 # ====================================================================
-# $Id: plugin_ko_KR.msg,v 1.2 2009/03/09 17:43:16 ydoshiro Exp $
+# $Id: plugin_ko_KR.msg,v 1.3 2009/04/21 20:30:49 ydoshiro Exp $
 # @generated NOT
 # ===================================================================
 
@@ -32,7 +32,7 @@
 ###
 pluginName = SQL Query Edit Support Plugin
 nl1PluginName = SQL Query Edit Support Nl1 Fragment
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 ###
 ### Note to translators:  do not translate words that are in UPPER CASE in the

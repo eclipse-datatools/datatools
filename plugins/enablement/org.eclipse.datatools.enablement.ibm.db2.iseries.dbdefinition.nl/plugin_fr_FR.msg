@@ -10,7 +10,7 @@
 ###############################################################################
 
 pluginName = DB2 UDB iSeries Database Definition Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 V5R2ProductString = DB2 for i5/OS
 V5R2VersionString = V5R2

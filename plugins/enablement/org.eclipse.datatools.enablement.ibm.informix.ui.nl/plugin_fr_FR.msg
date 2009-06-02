@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Informix UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.informix.wizard.title = Informix
 profile.informix.wizard.description = Créer un profil de connexion Informix.
