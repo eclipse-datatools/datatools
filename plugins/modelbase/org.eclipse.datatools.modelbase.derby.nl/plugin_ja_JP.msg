@@ -1,7 +1,7 @@
 # <copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.3 2006/05/10 14:22:09 jgraham Exp $
+# $Id: plugin.properties,v 1.4 2009/06/02 01:01:24 bfitzpatrick Exp $
 
 # ====================================================================
 # To code developer:
@@ -16,5 +16,5 @@
 # ====================================================================
 
 pluginName = Eclipse Data Tools Platform Derby Model Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 

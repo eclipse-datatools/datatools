@@ -13,7 +13,7 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.7 2007/05/31 00:29:18 dpchou Exp $
+# $Id: plugin.properties,v 1.8 2009/06/02 14:49:22 bfitzpatrick Exp $
 #/
 
 # ====================================================================
@@ -29,7 +29,7 @@
 # ====================================================================
 
 pluginName = Eclipse Data Tools Platform SQLModel Edit Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 _UI_CreateChild_text = {0}
 _UI_CreateChild_text2 = {1} {0}

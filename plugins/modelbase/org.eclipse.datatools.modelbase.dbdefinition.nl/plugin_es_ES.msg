@@ -30,4 +30,4 @@
 # ====================================================================
 
 pluginName = Eclipse Data Tools Platform DBDefinition Model
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
