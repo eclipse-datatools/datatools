@@ -6,7 +6,7 @@ CONNECTION_URL_PROPERTY_NAME=Verbindungs-URL
 USER_ID_PROPERTY_NAME=Benutzer-ID
 PASSWORD_PROPERTY_NAME=Kennwort
 
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse Data Tools Platform HSQLDB UI Enablement Plug-in
 profile.page.name = HSQLDB Profileigenschaften
 
