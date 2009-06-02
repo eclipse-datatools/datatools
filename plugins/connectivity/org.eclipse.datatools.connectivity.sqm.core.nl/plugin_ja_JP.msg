@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform SQM Core Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 databaseDefinitionExtensionPointName=データベース定義
 logicalContainmentExtensionPointName=論理の格納
 DataModelElementFactoryExtensionPointName=データモデル要素ファクトリ

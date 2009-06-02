@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Server UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 serverExplorerLayout=服务器资源浏览器布局扩展
 serverExplorerInitialization=服务器初始化提供程序
 SQL_MODEL_CONTENT_EXTENSION_NAME=SQL 模型内容扩展

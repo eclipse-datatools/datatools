@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform SQM Core Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 databaseDefinitionExtensionPointName=Definición de base de datos
 logicalContainmentExtensionPointName=Contención lógica
 DataModelElementFactoryExtensionPointName=Fábrica de elementos del modelo de datos

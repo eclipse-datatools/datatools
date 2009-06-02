@@ -1,5 +1,5 @@
 # properties file for org.eclipse.datatools.connectivity.db.generic
-Bundle-Vendor = Eclipse.org
+Bundle-Vendor = Eclipse Data Tools Platform
 Bundle-Name = Eclipse Data Tools Platform Generic DB Connectivity Plug-in
 driverClass = 驱动程序类
 driverVendor = 供应商

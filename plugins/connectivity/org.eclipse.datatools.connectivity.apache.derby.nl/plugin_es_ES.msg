@@ -10,7 +10,7 @@
 ###############################################################################
 
 pluginName = Complemento Derby para Eclipse Data Tools Platform
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 DERBY_CONNECTION_PROFILE_NAME=Base de datos incrustada de Derby
 DERBY_JDBC_CONNECTION_FACTORY_NAME=Conexión JDBC

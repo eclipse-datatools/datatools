@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Apache Derby UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_NAME=Derby
 DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_DESCRIPTION = Créer un profil de connexion Derby.

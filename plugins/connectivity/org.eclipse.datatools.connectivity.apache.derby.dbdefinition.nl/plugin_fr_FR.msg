@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Apache Derby Database Definition
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 100ProductString = Derby
 100VersionString = 10.0
