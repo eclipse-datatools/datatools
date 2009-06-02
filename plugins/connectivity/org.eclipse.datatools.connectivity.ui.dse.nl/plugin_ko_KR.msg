@@ -1,6 +1,16 @@
-#Thu Jun 22 00:30:53 EDT 2006
-Plugin.Name=Eclipse 데이터 도구 플랫폼 데이터 소스 탐색기 플러그인
-Plugin.ProviderName=Eclipse.org
+################################################################################
+## Copyright (c) 2005 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+################################################################################ 
+Plugin.Name = Eclipse Data Tools Platform Data Source Explorer Plug-in
+Plugin.ProviderName = Eclipse Data Tools Platform
+
 DSE.Connect.label=연결(&C)
 DSE.Disconnect.label=연결 끊기(&D)
 DSE.Duplicate.label=중복(&P)
