@@ -1,3 +1,13 @@
+# *******************************************************************************
+# * Copyright (c) 2008 Sybase, Inc.
+# * 
+# * All rights reserved. This program and the accompanying materials are made
+# * available under the terms of the Eclipse Public License v1.0 which
+# * accompanies this distribution, and is available at
+# * http://www.eclipse.org/legal/epl-v10.html
+# * 
+# * Contributors: Sybase - initial API and implementation
+# ******************************************************************************/
 # package: com.sybase.suade.servers.sample.jdbc
 NewConnectionProfileWizard.ASA.title = Nouveau profil de connexion ASA
 NewConnectionProfileWizard.ASIQ.title = Nouveau profil de connexion ASIQ
@@ -157,3 +167,6 @@ JDBCProfileTabs.errors.requiredUID = Nom d'utilisateur requis
 events.folder.name=Evénements
 webservices.folder.name=Services Web
 datatypes.folder.name=Types de données
+
+SybaseDatabaseProfileSettingPage.showOwner=Show database object &owner
+SybaseDatabaseProfileSettingPage.showSchema=Show &schema

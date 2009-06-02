@@ -36,3 +36,7 @@ webservicetable.node.name = 웹 서비스 테이블 폴더
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org
 
+database.connection.profile.title = Database Connection Profile
+
+decorator.label = Sybase System Table Decorator
+
