@@ -9,7 +9,7 @@
 # Contributors: Sybase - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Sybase ASE Database Definition
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 12.xProductString = Sybase Adaptive Server Enterprise (ASE)
 12.xVersionString = 12.x
