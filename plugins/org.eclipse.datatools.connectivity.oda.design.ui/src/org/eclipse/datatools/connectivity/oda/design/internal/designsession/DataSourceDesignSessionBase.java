@@ -744,14 +744,12 @@ public class DataSourceDesignSessionBase
         // make a copy of the request data source design to convert
         DataSourceDesign editDataSourceDesign =
             DesignerUtil.getAdaptableDataSourceDesign( m_designSession ).getDataSourceDesign();
-        if( newProfileBaseName != null && newProfileBaseName.length() > 0 )
-            editDataSourceDesign.setName( newProfileBaseName );
         
         // create a new connection profile in default profile store file 
         // with the design's connection properties
         IConnectionProfile exportedProfile = 
-            DesignSessionUtil.createProfile( editDataSourceDesign );
- 
+            DesignSessionUtil.createProfile( editDataSourceDesign, newProfileBaseName );
+        
         // if the prompt indicator is set with a parent shell, open create profile store dialog 
         File linkedProfileStoreFile = null;
         if( promptCreateProfileStore && parentShell != null )

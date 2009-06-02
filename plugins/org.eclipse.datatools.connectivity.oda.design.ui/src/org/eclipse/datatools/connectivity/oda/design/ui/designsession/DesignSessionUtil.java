@@ -340,14 +340,17 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                                 linkedProfileName, dataSourceDesign.getLinkedProfileStoreFilePath() ));
         return profile;
     }
-
+    
     /**
      * Creates an ODA connection profile instance from the specified data source design.
      * @param dataSourceDesign  a data source design
+     * @param profileName       the name of the new profile; may be null or empty to use the same
+     *                          name as that of the specified data source design
      * @return  a new instance of {@link IConnectionProfile} that persists in the DTP profile cache
      * @throws OdaException
+     * @since 3.2 (DTP 1.7)
      */
-    public static IConnectionProfile createProfile( DataSourceDesign dataSourceDesign )
+    public static IConnectionProfile createProfile( DataSourceDesign dataSourceDesign, String profileName )
         throws OdaException
     {
         if( dataSourceDesign == null )
@@ -355,13 +358,16 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         
         if( dataSourceDesign.hasLinkToProfile() )
         {
-            // clear the linked profile properties from the design used in export
+            // clear the linked profile properties to exclude them from the created profile
             dataSourceDesign = (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
             dataSourceDesign.setLinkedProfileName( null );
             dataSourceDesign.setLinkedProfileStoreFile( null );
         }
 
-        return OdaProfileFactory.createProfile( dataSourceDesign.getName(), 
+        if( profileName == null || profileName.length() == 0 )
+            profileName = dataSourceDesign.getName();
+        
+        return OdaProfileFactory.createProfile( profileName, 
                 dataSourceDesign.getDisplayName(), 
                 dataSourceDesign.getOdaExtensionDataSourceId(), 
                 getEffectiveDataSourceProperties( dataSourceDesign ) );
@@ -728,7 +734,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * An utility method to look up the definition of the specified custom filter expression design.
      * @param customExpr    a custom filter expression specified in a data set design's filter specification 
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
-     * @since DTP 1.7
+     * @since 3.2 (DTP 1.7)
      */
     public static FilterExpressionDefinition getExtensionCustomDefinition( CustomFilterExpression customExpr )
     {
@@ -744,7 +750,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * @param extensionId   unique id of an extension that implements the filterExpressions extension point
      * @param exprId    id of a custom filter expression 
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
-     * @since DTP 1.7
+     * @since 3.2 (DTP 1.7)
      */
     public static FilterExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
     {
