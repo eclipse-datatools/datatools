@@ -12,3 +12,6 @@
 ## Preferences
 #
 datatools.core.ui.preferences.data = SQL °³¹ß
+
+Plugin.Name = Eclipse Data Tools Platform SQL Tools Common UI Plug-in
+Plugin.ProviderName = Eclipse Data Tools Platform
