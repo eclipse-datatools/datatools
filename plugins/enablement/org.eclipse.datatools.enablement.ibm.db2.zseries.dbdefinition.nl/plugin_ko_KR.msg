@@ -10,7 +10,7 @@
 ###############################################################################
 
 pluginName = DB2 UDB Database Definition Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 V7ProductString = z/OS¿ë DB2
 V7VersionString = V7

@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB UI iSeries Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.db2.iseries.wizard.title = DB2 pour i5/OS
 profile.db2.iseries.wizard.description = Créer un DB2 pour un profil de connexion i5/OS.

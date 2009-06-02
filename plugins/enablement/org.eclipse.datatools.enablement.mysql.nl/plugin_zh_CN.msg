@@ -9,7 +9,7 @@
 #     Versant Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform MySQL Enablement Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 driverClass = 驱动程序类
 driverVendor = 供应商

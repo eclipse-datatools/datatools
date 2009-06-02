@@ -11,3 +11,6 @@ PASSWORD_PROPERTY_NAME=パスワード
 
 POSTGRESQL_PROFILE_NAME=PostgreSQL JDBC 接続
 POSTGRESQL_JDBC_CONN_FACTORY_NAME=PostgreSQL JDBC 接続ファクトリ
+
+pluginName=PostgreSQL Connection Profile and Driver Template Plug-in
+providerName=Eclipse Data Tools Platform

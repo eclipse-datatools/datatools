@@ -10,7 +10,7 @@
 ###############################################################################
 
 pluginName = Eclipse Data Tools Platform Oracle Database Definition Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 11ProductString = Oracle
 11VersionString = 11

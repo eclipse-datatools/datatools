@@ -9,4 +9,4 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform IBM UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform

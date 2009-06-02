@@ -9,7 +9,7 @@
 #     IBM Corporation - initial API and implementation
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Oracle UI Plug-in
-providerName=Eclipse.org
+providerName=Eclipse Data Tools Platform
 
 profile.oracle.wizard.title = Oracle
 profile.oracle.wizard.description = Oracle 연결 프로필을 생성합니다.
