@@ -11,7 +11,7 @@
 
 pluginName = Eclipse Data Tools Platform Informix Database Definition Plug-in
 nl1PluginName = Informix Database Definition NL1 Fragment
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
 
 10.0ProductString = Informix
 10.0VersionString = 10.0
