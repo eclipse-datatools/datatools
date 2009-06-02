@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse Data Tools Platform SQL Tools Common UI Plug-in
+Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.common.ui.internal.Activator
-Bundle-Vendor: Eclipse Data Tools Platform
+Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",

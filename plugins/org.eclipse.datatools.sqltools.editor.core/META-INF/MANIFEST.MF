@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse Data Tools Platform SQL Editor Core Plug-in
+Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.editor.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.core.EditorCorePlugin
@@ -47,5 +47,5 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.sql.identifier,
  org.eclipse.datatools.sqltools.sql.updater,
  org.eclipse.datatools.sqltools.sql.util
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %Plugin.ProviderName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

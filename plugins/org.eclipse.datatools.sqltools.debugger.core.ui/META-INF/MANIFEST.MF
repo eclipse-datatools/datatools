@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse Data Tools Platform SQL Debugger UI Framework
+Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.debugger.core.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.debugger.core.ui.DebuggerCoreUIPlugin
@@ -24,5 +24,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.datatools.sqltools.debugger.actions,
  org.eclipse.datatools.sqltools.debugger.editorext
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin

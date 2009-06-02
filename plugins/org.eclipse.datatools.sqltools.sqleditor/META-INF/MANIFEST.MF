@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclipse Data Tools Platform SQL Editor
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqleditor; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.sqltools.sqleditor,
  org.eclipse.datatools.sqltools.sqleditor.internal,
