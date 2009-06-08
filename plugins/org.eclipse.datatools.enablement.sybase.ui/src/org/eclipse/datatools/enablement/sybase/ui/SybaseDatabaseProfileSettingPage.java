@@ -77,7 +77,8 @@ public class SybaseDatabaseProfileSettingPage extends PreferencePage implements 
 
         CommonNavigator navigator = DSEUtil.getDSEView(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
                 .getActivePage().getViewReferences());
-        navigator.getCommonViewer().refresh(true);
+        if (navigator != null)
+        	navigator.getCommonViewer().refresh(true);
 
         return super.performOk();
     }
