@@ -126,13 +126,13 @@
 		<copy todir="${buildDirectory}/plugins">
 			<fileset dir="${buildDirectory}/../staticFiles" includes="*.jar"/>
 		</copy>
-                <replace dir="${buildDirectory}/plugins" value="1.7.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/plugins" value="1.7.1.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
-                <replace dir="${buildDirectory}/features" value="1.7.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/features" value="1.7.1.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
-                <replace dir="${buildDirectory}/features" value="1.7.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/features" value="1.7.1.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
 	</target>
