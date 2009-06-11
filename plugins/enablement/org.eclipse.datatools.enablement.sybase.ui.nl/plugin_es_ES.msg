@@ -36,7 +36,7 @@ webservicetable.node.name = Servicios Web como Carpeta tablas
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org
 
-database.connection.profile.title = Database Connection Profile
+database.connection.profile.title = Perfil de conexión de la base de datos
 
-decorator.label = Sybase System Table Decorator
+decorator.label = Decorador de tablas del sistema Sybase
 

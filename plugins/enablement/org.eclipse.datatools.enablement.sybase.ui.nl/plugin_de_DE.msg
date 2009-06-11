@@ -36,7 +36,7 @@ webservicetable.node.name = Webdienste als Tabellenordner
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org
 
-database.connection.profile.title = Database Connection Profile
+database.connection.profile.title = Datenbankverbindungsprofil
 
-decorator.label = Sybase System Table Decorator
+decorator.label = Sybase-Systemtabellendekorator
 

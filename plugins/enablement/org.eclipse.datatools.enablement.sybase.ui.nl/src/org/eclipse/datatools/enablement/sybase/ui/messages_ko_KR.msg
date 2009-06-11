@@ -169,4 +169,4 @@ webservices.folder.name=웹 서비스
 datatypes.folder.name=데이터 형식
 
 SybaseDatabaseProfileSettingPage.showOwner=Show database object &owner
-SybaseDatabaseProfileSettingPage.showSchema=Show &schema
+SybaseDatabaseProfileSettingPage.showSchema=스키마 표시(&S)

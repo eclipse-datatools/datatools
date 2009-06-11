@@ -169,4 +169,4 @@ webservices.folder.name=Servicios web
 datatypes.folder.name=Tipos de datos
 
 SybaseDatabaseProfileSettingPage.showOwner=Show database object &owner
-SybaseDatabaseProfileSettingPage.showSchema=Show &schema
+SybaseDatabaseProfileSettingPage.showSchema=Mostrar &esquema

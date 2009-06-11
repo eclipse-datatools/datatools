@@ -169,4 +169,4 @@ webservices.folder.name=Web サービス
 datatypes.folder.name=データ型
 
 SybaseDatabaseProfileSettingPage.showOwner=Show database object &owner
-SybaseDatabaseProfileSettingPage.showSchema=Show &schema
+SybaseDatabaseProfileSettingPage.showSchema=スキーマの表示(&S)

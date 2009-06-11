@@ -169,4 +169,4 @@ webservices.folder.name=Web 服务
 datatypes.folder.name=数据类型
 
 SybaseDatabaseProfileSettingPage.showOwner=Show database object &owner
-SybaseDatabaseProfileSettingPage.showSchema=Show &schema
+SybaseDatabaseProfileSettingPage.showSchema=显示架构(&S)
