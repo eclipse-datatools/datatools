@@ -43,7 +43,7 @@ feature@org.eclipse.datatools.modelbase.feature=v200906050400,:pserver:anonymous
 
 !**************** DOCUMENT FEATURES *******************
 feature@org.eclipse.datatools.intro=v200906050400,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.intro
-feature@org.eclipse.datatools.doc.user=v200906050400,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.doc.user
-feature@org.eclipse.datatools.common.doc.user=v200906050400,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.common.doc.user
-feature@org.eclipse.datatools.connectivity.doc.user=v200906050400,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.connectivity.doc.user
-feature@org.eclipse.datatools.sqltools.doc.user=v200906050400,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqltools.doc.user
+feature@org.eclipse.datatools.doc.user=v200906111105,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.doc.user
+feature@org.eclipse.datatools.common.doc.user=v200906111105,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.common.doc.user
+feature@org.eclipse.datatools.connectivity.doc.user=v200906111105,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.connectivity.doc.user
+feature@org.eclipse.datatools.sqltools.doc.user=v200906111105,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqltools.doc.user
