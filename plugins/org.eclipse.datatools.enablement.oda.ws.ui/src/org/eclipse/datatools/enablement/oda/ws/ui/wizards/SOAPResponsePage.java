@@ -411,10 +411,10 @@ public class SOAPResponsePage extends DataSetWizardPage
 		if ( isControlCreated( ) && !saved )
 			saveToModel( );
 
-		design.getPublicProperties( ).setProperty( Constants.XML_FILE_URI,
+		design.getPrivateProperties( ).setProperty( Constants.XML_FILE_URI,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.XML_FILE_URI ) );
-		design.getPublicProperties( ).setProperty( Constants.XSD_FILE_URI,
+		design.getPrivateProperties( ).setProperty( Constants.XSD_FILE_URI,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.XSD_FILE_URI ) );
 

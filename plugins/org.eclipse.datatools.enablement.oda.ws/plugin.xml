@@ -95,6 +95,8 @@
                      type="string">
                </property>
             </propertyGroup>
+            <propertyVisibility name="queryText" visibility="hide"/>
+            <propertyVisibility name="xsdFileURI" visibility="hide"/>
             <propertyVisibility
                   name="operationTrace"
                   visibility="hide">
