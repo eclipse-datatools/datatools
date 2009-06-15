@@ -19,6 +19,7 @@ import javax.wsdl.Definition;
 import javax.wsdl.Operation;
 import javax.wsdl.Port;
 import javax.wsdl.Service;
+import javax.wsdl.WSDLException;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -271,7 +272,15 @@ public class OperationPage extends DataSetWizardPage
 		TreeItem root = new TreeItem( operationTree, SWT.NONE );
 		root.setText( wsdlURI );
 		root.setImage( wsdlImage );
-		Definition definition = WSDLAdvisor.getDefinition( wsdlURI );
+		Definition definition = null;
+		try
+		{
+			definition = WSDLAdvisor.getDefinition( wsdlURI );
+		}
+		catch ( WSDLException e )
+		{
+			this.setErrorMessage( e.getMessage( ) );
+		}
 		if ( definition == null )
 			return;
 

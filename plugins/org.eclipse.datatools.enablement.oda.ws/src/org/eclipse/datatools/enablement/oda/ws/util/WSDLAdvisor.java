@@ -88,29 +88,33 @@ public class WSDLAdvisor
 	 * @param wsdlURI
 	 * @return
 	 */
-	public static Definition getDefinition( String wsdlURI )
+	public static Definition getDefinition( String wsdlURI ) throws WSDLException
 	{
 		if ( definitionMap.containsKey( wsdlURI ) )
 			return (Definition) definitionMap.get( wsdlURI );
 
 		Definition definition;
+		WSDLReader reader = WSDLFactory.newInstance( ).newWSDLReader( );
+		reader.setFeature( "javax.wsdl.verbose", true ); //$NON-NLS-1$
+		reader.setFeature( "javax.wsdl.importDocuments", true ); //$NON-NLS-1$
+		definition = reader.readWSDL( null, wsdlURI );
+
+		definitionMap.put( wsdlURI, definition );
+
+		return definition;
+	}
+
+	public static Definition getDefinitionWithoutExcpe( String wsdlURI )
+	{
 		try
 		{
-			WSDLReader reader = WSDLFactory.newInstance( ).newWSDLReader( );
-			reader.setFeature( "javax.wsdl.verbose", true ); //$NON-NLS-1$
-			reader.setFeature( "javax.wsdl.importDocuments", true ); //$NON-NLS-1$
-			definition = reader.readWSDL( null, wsdlURI );
-
-			definitionMap.put( wsdlURI, definition );
+			return getDefinition( wsdlURI );
 		}
 		catch ( WSDLException e )
 		{
 			return null;
 		}
-
-		return definition;
 	}
-
 	/**
 	 * Retrieves the locationURI
 	 * 
@@ -124,7 +128,7 @@ public class WSDLAdvisor
 		if ( !checkOperationTrace( operationTrace ) )
 			return locationURI;
 
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
 			return locationURI;
 
@@ -234,7 +238,7 @@ public class WSDLAdvisor
 		if ( !checkOperationTrace( operationTrace ) )
 			return null;
 
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
 			return null;
 
@@ -270,7 +274,7 @@ public class WSDLAdvisor
 		if ( !checkOperationTrace( operationTrace ) )
 			return template;
 
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
 			return template;
 		String inOrOutput = "in"; //$NON-NLS-1$
@@ -296,7 +300,7 @@ public class WSDLAdvisor
 		if ( !checkOperationTrace( operationTrace ) )
 			return template;
 
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
 			return template;
 		String inOrOutput = "out"; //$NON-NLS-1$
@@ -452,7 +456,7 @@ public class WSDLAdvisor
 
 	private WSNonLeafNode generateTargetNode( String wsdlURI, String localPart )
 	{
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		Types types = definition.getTypes( );
 
 		if ( types != null && types.getExtensibilityElements( ) != null )
@@ -1196,7 +1200,7 @@ public class WSDLAdvisor
 	{
 		boolean isRPC = false;
 
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
 		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
 				opSplit[0] ) );// service
@@ -1452,7 +1456,7 @@ public class WSDLAdvisor
 	private static void addParamComplexType( String wsdlURI, String localPart,
 			List paramNameList, List paramTypeList )
 	{
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		Types types = definition.getTypes( );
 		List extElements = types.getExtensibilityElements( );
 		for ( int i = 0; i < extElements.size( ); i++ )
@@ -1744,7 +1748,7 @@ public class WSDLAdvisor
 	private static String getNameSpaceDoc( String wsdlURI )
 	{
 		String namespace = EMPTY_STRING;
-		Definition definition = getDefinition( wsdlURI );
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
 		Types types = definition.getTypes( );
 		if( types == null )
 			return namespace;
