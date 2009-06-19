@@ -245,7 +245,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
         if( defn == null )
             throw new OdaException( 
                     Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR,
-                                getDeclaringExtensionId(), getQualifiedId() ));
+                                getQualifiedId() ));
         
         validate( context, defn );     
     }

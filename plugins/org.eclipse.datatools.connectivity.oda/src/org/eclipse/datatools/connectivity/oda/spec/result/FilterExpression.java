@@ -38,6 +38,16 @@ public abstract class FilterExpression
     {
         return getClass().getName();
     }
+    
+    /**
+     * Gets the name of this filter expression.
+     * It may be used to identify this in user messages or logging.
+     * @return  name of this filter expression
+     */
+    public String getName()
+    {
+        return getClass().getSimpleName();
+    }
 
     /**
      * Checks whether two objects are equal using the
@@ -57,7 +67,8 @@ public abstract class FilterExpression
 
     /**
      * Validates this expression. 
-     * @throws OdaException
+     * @throws OdaException if validation failed. The concrete cause is 
+     *          defined by the subclass implementing this method.
      */
     public void validate() throws OdaException
     {
@@ -67,10 +78,19 @@ public abstract class FilterExpression
     /**
      * Validates this expression in the specified context. 
      * @param context   context for validation; may be null which would limit the scope of validation
-     * @throws OdaException if validation failed. The concrete reason is 
+     * @throws OdaException if validation failed. The concrete cause is 
      *          defined by the subclass implementing this method.
      */
     public abstract void validate( ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * Performs syntactic validation of this expression in the specified context. 
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The concrete cause is 
+     *          defined by the subclass implementing this method.
+     */
+    public abstract void validateSyntax( ValidationContext context ) 
         throws OdaException;
 
     /**

@@ -140,7 +140,7 @@ public class ExpressionVariable
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( getClass().getName() + " identifier: " ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " identifier: " ); //$NON-NLS-1$
         buffer.append( m_identifier );
 
         buffer.append( ", type: " ); //$NON-NLS-1$
@@ -152,7 +152,6 @@ public class ExpressionVariable
 //            case CUBE_DIMENSION_MEMBER: buffer.append( "CubeDimensionMember" ); break; //$NON-NLS-1$
             default: buffer.append( m_variableType.ordinal() ); break;
         }
-        buffer.append( " " ); //$NON-NLS-1$
         return buffer.toString();
     }
     

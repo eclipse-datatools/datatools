@@ -24,26 +24,16 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
  */
 public class OrExpression extends CompositeExpression
 {
-
-    /**
-     * Gets this expression's name.
-     * @return the simple name of this class
-     */
-    public static String getName()
-    {
-        return OrExpression.class.getSimpleName();
-    }
-
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression#validateChildren(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     @Override
-    public void validate( ValidationContext context ) throws OdaException
+    protected void validateChildren( ValidationContext context )
+            throws OdaException
     {
-        super.validate( context );
-        
         validateMinElements( 2 );
-    } 
+        super.validateChildren( context );
+    }
     
     /*
      * (non-Javadoc)

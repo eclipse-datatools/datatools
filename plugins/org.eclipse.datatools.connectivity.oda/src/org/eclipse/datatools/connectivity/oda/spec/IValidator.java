@@ -31,24 +31,6 @@ import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
 public interface IValidator
 {
     /**
-     * Validates the specified filter expression in the specified context. 
-     * @param filterExpr  filter expression to validate
-     * @param context   context for validation; may be null which would limit the scope of validation
-     * @throws OdaException if validation failed. The cause is defined 
-     *          by the class implementing this method.
-     */
-    public void validate( FilterExpression filterExpr, ValidationContext context ) throws OdaException;
-    
-    /**
-     * Validates the specified aggregate expression in the specified context. 
-     * @param aggrExpr  aggregate expression to validate
-     * @param context   context for validation; may be null which would limit the scope of validation
-     * @throws OdaException if validation failed. The cause is defined 
-     *          by the class implementing this method.
-     */
-    public void validate( AggregateExpression aggrExpr, ValidationContext context ) throws OdaException;
-
-    /**
      * Validates the specified query specification in the specified context.
      * @param querySpec  a {@link QuerySpecification} to validate
      * @param context      context for validation; may be null which would limit the scope of validation;
@@ -57,6 +39,40 @@ public interface IValidator
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
      */
-    public void validate( QuerySpecification querySpec, ValidationContext context ) throws OdaException;
+    public void validate( QuerySpecification querySpec, ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * Validates the specified filter expression in the specified context. 
+     * @param filterExpr  the filter expression to validate; may be the root of an expression tree
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+    public void validate( FilterExpression filterExpr, ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * Performs syntactic validation of the specified custom atomic filter expression 
+     * in the specified context. 
+     * @param filterExpr  the filter expression to validate; 
+     *              may be a single filter node at the root, or nested
+     *              within a filter expression tree
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+    public void validateSyntax( FilterExpression filterExpr, ValidationContext context )
+        throws OdaException;
+
+    /**
+     * Validates the specified aggregate expression in the specified context. 
+     * @param aggrExpr  aggregate expression to validate
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+    public void validate( AggregateExpression aggrExpr, ValidationContext context ) 
+        throws OdaException;
 
 }

@@ -63,6 +63,14 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     public void validate( FilterExpression expr, ValidationContext context )
             throws OdaException
     {
+        // TODO
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validateSyntax( FilterExpression expr, ValidationContext context ) throws OdaException
+    {
         if( !(expr instanceof CustomExpression) )
         {
             return;     // done
@@ -112,8 +120,7 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     public void validate( QuerySpecification querySpec, ValidationContext context )
             throws OdaException
     {
-        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( m_contributor.getDeclaringExtensionId() );
-        SortSpecification sortSpec = specHelper.getSortSpecification( querySpec );
+        SortSpecification sortSpec = QuerySpecificationHelper.getSortSpecification( querySpec );
         if( sortSpec != null )
         {
             for( int i=1; i <= sortSpec.getSortKeyCount(); i++ )

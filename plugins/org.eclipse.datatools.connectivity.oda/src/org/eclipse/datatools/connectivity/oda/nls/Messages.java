@@ -63,7 +63,9 @@ public class Messages extends NLS
     public static String querySpec_INVALID_CLASS_TYPE_ATTRIBUTE;
     public static String querySpec_INVALID_EXT_POINT_ATTR_VALUE;
     public static String querySpec_INVALID_EXT_POINT_ELEMENT;
+    public static String querySpec_MAX_ONE_NEGATING_EXPR;
     public static String querySpec_MISSING_COMPOSITE_MIN_CHILDREN;
+    public static String querySpec_MISSING_EXPR_VARIABLE;
     public static String querySpec_MISSING_EXT_POINT_ATTR_VALUE;
     public static String querySpec_MISSING_EXT_POINT_ELEMENT;
     public static String querySpec_MISSING_EXT_POINT_MIN_ELEMENT;
@@ -72,6 +74,9 @@ public class Messages extends NLS
     public static String querySpec_NOT_EXPR_INCOMPATIBLE;
     public static String querySpec_NOT_EXPR_MISSING_CHILD;
     public static String querySpec_UNABLE_ADD_TO_NON_LIST_COLLECTION;
+    public static String querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION;
+    public static String querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE;
+    public static String querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE;
 
     public static String sortSpec_INDEX_OUT_OF_BOUND;    
 	public static String sortSpec_INVALID_SORT_MODE_SPECIFIED;

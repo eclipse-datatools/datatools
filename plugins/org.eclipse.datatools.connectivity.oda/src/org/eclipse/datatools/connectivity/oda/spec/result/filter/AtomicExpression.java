@@ -88,11 +88,10 @@ public abstract class AtomicExpression extends FilterExpression
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( getClass().getName() + " Variable: (" ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getName() + " -> \n\t" ); //$NON-NLS-1$
         buffer.append( m_variable );
-        buffer.append( "); Argument(s): (" ); //$NON-NLS-1$
+        buffer.append( ";\n\t" ); //$NON-NLS-1$
         buffer.append( m_args );
-        buffer.append( ")." ); //$NON-NLS-1$
         return buffer.toString();
     }
 

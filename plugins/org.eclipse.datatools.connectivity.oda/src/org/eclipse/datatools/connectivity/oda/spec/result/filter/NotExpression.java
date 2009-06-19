@@ -19,28 +19,28 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * A negated runtime filter expression.
  * @since 3.2 (DTP 1.7)
  */
-public class NotExpression extends FilterExpression
+public class NotExpression extends CompositeExpression
 {
-    private FilterExpression m_expression;
-
-    /**
-     * Gets this expression's name.
-     * @return the simple name of this class
-     */
-    public static String getName()
-    {
-        return NotExpression.class.getSimpleName();
-    }
-
     public NotExpression( FilterExpression expression ) 
     {
         Assert.isNotNull( expression );
-        m_expression = expression;
+        super.add( expression );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression#add(org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression)
+     */
+    @Override
+    public CompositeExpression add( FilterExpression expression )
+    {
+        throw new IllegalStateException( Messages.bind( Messages.querySpec_MAX_ONE_NEGATING_EXPR, 
+                getName() ));
     }
 
     /**
@@ -49,28 +49,32 @@ public class NotExpression extends FilterExpression
      */
     public FilterExpression getNegatingExpression()
     {
-        return m_expression;
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    public void validate( ValidationContext context ) throws OdaException
-    {
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
-
-        // validate the child expression
-        if( m_expression == null )
-            throw new OdaException( Messages.bind( Messages.querySpec_NOT_EXPR_MISSING_CHILD, this ));
-
-        if( ! m_expression.isNegatable() )
-            throw new OdaException( Messages.bind( Messages.querySpec_NOT_EXPR_INCOMPATIBLE,
-                    m_expression.getQualifiedId(), getQualifiedId() ));
-
-        m_expression.validate( context );
+        return ( childCount() == 0 ) ?
+                    null :
+                    this.getExpressions().get( 0 );
     }
    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression#validateChildren(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    @Override
+    protected void validateChildren( ValidationContext context )
+            throws OdaException
+    {
+        validateMinElements( 1 );
+
+        // validate the child expression
+        FilterExpression negatingExpr = getNegatingExpression();
+        if( ! negatingExpr.isNegatable() )
+        {
+            throw ValidatorUtil.newOdaException( Messages.bind( Messages.querySpec_NOT_EXPR_INCOMPATIBLE,
+                        negatingExpr.getName(), getName() ), 
+                    getQualifiedId() );
+        }
+
+        super.validateChildren( context );
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -80,25 +84,7 @@ public class NotExpression extends FilterExpression
             return false;
 
         final NotExpression that = (NotExpression) object;
-        return m_expression.equals( that.m_expression );
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#isNegatable()
-     */
-    @Override
-    public boolean isNegatable()
-    {
-        return true;
-    }
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString()
-    {
-        return super.toString() + " (" + m_expression + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+        return getNegatingExpression().equals( that.getNegatingExpression() );
     }
     
 }

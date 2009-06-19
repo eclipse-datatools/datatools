@@ -122,9 +122,9 @@ public class ExtensionContributor implements IContributor
         {
             String exprName = odaExprElements[i].getAttribute( ATTR_ODA_FILTER_EXPR_NAME );
             if( exprName != null && 
-                ( exprName.equalsIgnoreCase( AndExpression.getName() ) ||
-                  exprName.equalsIgnoreCase( OrExpression.getName() ) || 
-                  exprName.equalsIgnoreCase( NotExpression.getName() ) ) )
+                ( exprName.equalsIgnoreCase( AndExpression.class.getSimpleName() ) ||
+                  exprName.equalsIgnoreCase( OrExpression.class.getSimpleName() ) || 
+                  exprName.equalsIgnoreCase( NotExpression.class.getSimpleName() ) ) )
             {
                 if( ! odaExprNames.contains( exprName ) )    // adds only if not already exists in collection
                     odaExprNames.add( exprName );

@@ -185,7 +185,7 @@ public class ExpressionArguments
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( super.toString()+ " Value(s): (" ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " value(s): (" ); //$NON-NLS-1$
         if( m_values instanceof List )
         {
             List valuesList = (List) m_values;

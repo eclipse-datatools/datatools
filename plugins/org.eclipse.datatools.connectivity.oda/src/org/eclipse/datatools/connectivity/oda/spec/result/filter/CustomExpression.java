@@ -26,11 +26,11 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * Represents an instance of custom filter expression contributed by an extension of
@@ -72,6 +72,8 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     public CustomExpression()
     {
         super( null, null );
+        // the actual extension id and expression id will be filled by #setInitializationData
+        // when instantiated by ExpressionFactory
     }
     
     /* (non-Javadoc)
@@ -118,6 +120,18 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
         return m_extensionId + QUALIFIER_SEPARATOR + m_id;
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#getName()
+     */
+    @Override
+    public String getName()
+    {
+        FilterExpressionDefinition defn = getDefinition();
+        if( defn == null )
+            return getQualifiedId();
+        return m_extensionId + QUALIFIER_SEPARATOR + defn.getDisplayName();
+    }
+
     /**
      * Indicates whether this expression can be applied to the specified data set type within the data source type.
      * @param odaDataSourceId   id of an ODA data source extension
@@ -192,6 +206,12 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
                 ex.printStackTrace();
                 return null;
             }
+            catch( IllegalArgumentException argEx )
+            {
+                // TODO log warning
+                argEx.printStackTrace();
+                return null;
+            }
         }
         return m_definition;
     }
@@ -202,69 +222,78 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
      */
     public void validate( ValidationContext context ) throws OdaException
     {
+        validateSyntax( context );
+
+        // pass to custom validator, if exists, for further validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );                
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    @Override
+    public void validateSyntax( ValidationContext context ) throws OdaException
+    {
         FilterExpressionDefinition defn = getDefinition();
         if( defn == null )
-            throw new OdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER,
-                    getDeclaringExtensionId(), getQualifiedId() ));
+            throw newOdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, getName() ) );
         
-        validate( context, defn );
+        validateSyntax( context, defn );
+
+        // pass to custom validator, if exists, for further validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validateSyntax( this, context );        
     }
 
     /**
      * Validates that this expression meets the restriction specified
      * by the expression definition. 
+     * @param context
      * @param defn
      * @throws OdaException  if validation fails
      */
-    protected void validate( ValidationContext context, FilterExpressionDefinition defn ) throws OdaException
+    protected void validateSyntax( ValidationContext context, FilterExpressionDefinition defn ) throws OdaException
     {
         assert( defn != null );
         
-        // TODO - validate type of associated variable
-        
-        // validates the number of argument values matches the range of arguments defined for the expression
+        // ODA filter spec allows for 0..1 associated ExpressionVariable; up to driver to add validation
+        // on the type of variable that it supports
+
+        // validates the associated arguments
+        validateExpressionArguments( context, defn );
+    }
+    
+    /**
+     * Validates the number of argument values matches the range of arguments defined for the expression
+     * @param context
+     * @param defn
+     * @throws OdaException  if validation fails
+     */
+    protected void validateExpressionArguments( ValidationContext context, FilterExpressionDefinition defn ) 
+        throws OdaException
+    {
         int numArgs = getArguments().valueCount();
 
         int minArgs = defn.getMinArguments().intValue();
         if( numArgs < minArgs )
-            throw new OdaException( 
+            throw newOdaException( 
                     Messages.bind( Messages.querySpec_CUSTOM_FILTER_MISSING_MIN_ARGS,
-                                new Object[]{ getQualifiedId(), Integer.valueOf(numArgs), Integer.valueOf(minArgs) } ));
+                                new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(minArgs) } ));
 
         if( ! defn.supportsUnboundedMaxArguments() ) // not unbounded upper limit, validate max arguments
         {
             int maxArgs = defn.getMaxArguments().intValue();
             if( numArgs > maxArgs )
-                throw new OdaException( 
+                throw newOdaException( 
                     Messages.bind( Messages.querySpec_CUSTOM_FILTER_EXCEED_MAX_ARGS, 
-                                new Object[]{ getQualifiedId(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ));
-        }
-        
-        // up to custom validator class to resolve a variable's data type and validate
-        // against one of the expression's restricted data types
-        IValidator customValidator = getValidator( context );
-        if( customValidator != null )
-            customValidator.validate( this, context );
+                                new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ) );
+        }       
     }
     
-    protected IValidator getValidator( ValidationContext context )
+    protected OdaException newOdaException( String message )
     {
-        // try use the validator in the context, if available
-        if( context != null && context.getValidator() != null )
-            return context.getValidator();
-
-        // use validator in the definition, if specified
-        try
-        {
-            if( getDefinition() != null )
-                return getDefinition().getValidator();
-        }
-        catch( OdaException ex )
-        {
-            // TODO log warning
-        }
-
-        return null;
+        return ValidatorUtil.newOdaException( message, getQualifiedId() );
     }
 
     /*

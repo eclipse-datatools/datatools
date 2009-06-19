@@ -65,9 +65,9 @@ public class FilterExtensionsTest extends TestCase
         if( contributor.getDeclaringExtensionId().equalsIgnoreCase( TEST_EXTENSION_ID ) )
             assertTrue( contributorDefns.length == extensionDefns.length ); 
         
-        assertTrue( contributor.supportsOdaFilterExpression( AndExpression.getName() ));
-        assertTrue( contributor.supportsOdaFilterExpression( OrExpression.getName() ));
-        assertTrue( contributor.supportsOdaFilterExpression( NotExpression.getName() ));
+        assertTrue( contributor.supportsOdaFilterExpression( AndExpression.class.getSimpleName() ));
+        assertTrue( contributor.supportsOdaFilterExpression( OrExpression.class.getSimpleName() ));
+        assertTrue( contributor.supportsOdaFilterExpression( NotExpression.class.getSimpleName() ));
         
         assertTrue( contributor.supportsDataSetType( TARGET_DATA_SOURCE_ID, TARGET_DATA_SET_ID ));
     }

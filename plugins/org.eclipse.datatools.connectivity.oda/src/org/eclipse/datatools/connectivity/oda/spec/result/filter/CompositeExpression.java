@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * The abstract base class for all composites of one or multiple child filter expressions.  
@@ -33,7 +34,7 @@ public abstract class CompositeExpression extends FilterExpression
     private static final FilterExpression[] EMPTY_ARRAY = new FilterExpression[0];
 
     protected List<FilterExpression> m_expressions;
-    
+
     /**
      * Appends the specified FilterExpression to its collection of child expressions.
      * @param expression    any type of filter expression
@@ -82,16 +83,40 @@ public abstract class CompositeExpression extends FilterExpression
     @Override
     public void validate( ValidationContext context ) throws OdaException
     {      
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
+        validateSyntax( context );
         
-        // validate each of its children, if exists
+        // pass this root-level expression tree to custom IValidator#validate for further overall validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );        
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    @Override
+    public void validateSyntax( ValidationContext context ) throws OdaException
+    {
+        // validate each of its children individually, if exists; 
+        validateChildren( context );
+    }
+
+    /**
+     * Iteratively walk thru each nested child node to validate individually.
+     * Any child node that is a CustomExpression is also passed to custom IValidator#validateCustomExpression
+     */
+    protected void validateChildren( ValidationContext context ) throws OdaException
+    {
         if( m_expressions == null )
-            return;
+            return;     // no children to validate
+
         for( Iterator<FilterExpression> iter = m_expressions.iterator(); iter.hasNext(); )
         {
-            iter.next().validate( context );
-        }        
+            FilterExpression childExpr = iter.next();
+            if( childExpr instanceof CompositeExpression )
+                ((CompositeExpression)childExpr).validateChildren( context );
+            else
+                childExpr.validateSyntax( context );
+        }    
     }
 
     /**
@@ -102,8 +127,8 @@ public abstract class CompositeExpression extends FilterExpression
     protected void validateMinElements( int minimumChildren ) throws OdaException
     {
         if( getExpressions().size() < minimumChildren )
-            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_COMPOSITE_MIN_CHILDREN,
-                            getQualifiedId(), Integer.valueOf( minimumChildren ) ));
+            throw ValidatorUtil.newOdaException( Messages.bind( Messages.querySpec_MISSING_COMPOSITE_MIN_CHILDREN,
+                    getName(), Integer.valueOf( minimumChildren ) ), getQualifiedId() );
     }
 
     /*
@@ -123,15 +148,20 @@ public abstract class CompositeExpression extends FilterExpression
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( super.toString() + " [" ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getName() + " [" ); //$NON-NLS-1$
         
         if( m_expressions == null )
             buffer.append( m_expressions );
+        else if( m_expressions.size() == 1 )
+        {
+            buffer.append( "\n     " + m_expressions.get(0).toString() ); //$NON-NLS-1$
+        }
         else
         {
-            for( Iterator<FilterExpression> iter = m_expressions.iterator(); iter.hasNext(); )
+            Iterator<FilterExpression> iter = m_expressions.iterator();
+            for( int i=1; iter.hasNext(); i++ )
             {
-                buffer.append( "\n (" + iter.next().toString() + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+                buffer.append( "\n " + i + ": " + iter.next().toString() ); //$NON-NLS-1$ //$NON-NLS-2$
             }
         }
         

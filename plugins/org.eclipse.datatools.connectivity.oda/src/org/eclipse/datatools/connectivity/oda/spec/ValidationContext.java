@@ -123,4 +123,46 @@ public class ValidationContext
         m_customData.put( key, value );
     }
     
+    /**
+     * A short-cut method to get the optional query text specified in this context.
+     * @return  the query text specified in context, may be null if none is specified
+     */
+    public String getQueryText()
+    {
+        Object value = getData( DATA_PROPERTY_QUERY_TEXT );
+        return (value instanceof String) ? (String) value : null;
+    }
+    
+    /**
+     * Sets the query text specified in this context.
+     * @param queryText query text; may be null to unset previous value
+     */
+    public void setQueryText( String queryText )
+    {
+        setData( DATA_PROPERTY_QUERY_TEXT, queryText );
+    }
+    
+    /**
+     * A short-cut method to get the optional connection profile instance specified in this context.
+     * The connection profile if exists may be used to open a connection for validation purpose.
+     * Caller may optimize the performance by re-using a profile that is already open.
+     * @return  the connection profile specified in context, may be null if none is specified
+     */
+    public Object getConnectionProfile()
+    {
+        return getData( DATA_PROPERTY_CONN_PROFILE );
+    }
+    
+    /**
+     * Sets the connection profile instance specified in this context.
+     * The connection profile if exists may be used to open a connection for validation purpose.
+     * Caller may optimize the performance by re-using a profile that is already open.
+     * @param connectionProfile  the connection profile specified in context, 
+     *              may be null to unset previous value
+     */
+    public void setConnectionProfile( Object connectionProfile )
+    {
+        setData( DATA_PROPERTY_CONN_PROFILE, connectionProfile );
+    }
+    
 }
