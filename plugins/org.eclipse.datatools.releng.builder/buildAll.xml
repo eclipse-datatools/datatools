@@ -354,7 +354,9 @@
         <property file="${buildDirectory}/finalFeaturesVersions.properties"/>
     	<property name="tmpsite" value="${buildDirectory}/tmpsite" />
         <mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
-        <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite"/>
+    	<mkdir dir="${postingDirectory}/${buildId}/pack200site"/>
+        <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite"/>  	
+    	<property name="pack200Dir" value="${postingDirectory}/${buildId}/pack200site"/>
         
     	<!-- replace the feature version in site.xml -->
         <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
@@ -437,7 +439,7 @@
                 dir="${postingDirectory}/${buildId}/">
                 <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${eclipse.build.configs}/../../extras"/>
                 <arg line="-application org.eclipse.update.core.siteOptimizer -verbose"/>
-                <arg line="-jarProcessor -outputDir ${repo} -processAll -pack UpdateSite"/>
+                <arg line="-jarProcessor -outputDir ${pack200Dir} -processAll -pack UpdateSite"/>
         </java>
     	    	
         <!-- generator features and plugins metadata -->
@@ -448,7 +450,7 @@
                       artifactRepositoryName="${p2.repo.name}"
                       publishArtifacts="true" p2OS="linux" mode="incremental"
                       site="file:${updateSiteDir}/site.xml"/-->
-        <copy file="${updateSiteDir}/site.xml" todir="${repo}"/>
+        <copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/>
         <java jar="${basedir}/../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar"
               fork="true"
               timeout="10800000"
@@ -458,12 +460,15 @@
               <arg line="-application org.eclipse.equinox.p2.publisher.UpdateSitePublisher"/>
               <arg line="-metadataRepository file:${repo}"/>
               <arg line="-artifactRepository file:${repo}"/>
-              <arg line="-source ${repo}"/>
+              <arg line="-source ${pack200Dir}"/>
               <arg line="-configs gtk.linux.x86"/>
               <arg line="-compress"/>
+        	  <arg line="-reusePack200Files"/>
               <arg line="-publishArtifacts"/>
         </java>
-        <delete file="${repo}/site.xml"/>
+    	<copy todir="${repo}/features">
+    	   <fileset dir="${pack200Dir}/features" includes="*.pack.gz"/>
+        </copy>
         
         <!--try create composite repository-->
         <p2.composite.artifact.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
