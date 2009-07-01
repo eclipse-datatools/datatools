@@ -1797,9 +1797,10 @@ public class WSDLAdvisor
 		primitiveDataTypeList.add( "decimal" ); //$NON-NLS-1$
 		primitiveDataTypeList.add( "string" ); //$NON-NLS-1$
 		primitiveDataTypeList.add( "boolean" ); //$NON-NLS-1$
-		primitiveDataTypeList.add( "datetime " ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "datetime" ); //$NON-NLS-1$
 		primitiveDataTypeList.add( "date" ); //$NON-NLS-1$
 		primitiveDataTypeList.add( "time" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "integer" ); //$NON-NLS-1$
 	}
 
 }
