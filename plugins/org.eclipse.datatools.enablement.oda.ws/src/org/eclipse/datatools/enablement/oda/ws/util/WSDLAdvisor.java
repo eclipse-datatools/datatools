@@ -626,6 +626,56 @@ public class WSDLAdvisor
 		return false;
 	}
 
+	private String getSimpleTypeBase( String wsdlURI, String typeName )
+	{
+		Definition definition = getDefinitionWithoutExcpe( wsdlURI );
+		Types types = definition.getTypes( );
+
+		if ( types != null && types.getExtensibilityElements( ) != null )
+		{
+			List extElements = types.getExtensibilityElements( );
+			List<Element> elementList = new ArrayList<Element>( );
+			for ( int i = 0; i < extElements.size( ); i++ )
+			{
+				if ( extElements.get( i ) instanceof SchemaImpl )
+				{
+					elementList.add( ( (SchemaImpl) extElements.get( i ) ).getElement( ) );
+				}
+			}
+			String[] parentNode = {
+				EMPTY_STRING
+			};
+			NodeList nodes = getChildNodes( elementList.toArray( new Element[0] ) );
+			Node XMLNode = findElementNodeByName( nodes, typeName );
+			if ( XMLNode != null )
+			{
+				// skip the middle node such as - <xs:sequence>, get
+				// the
+				// significant node
+				if ( getParamTypeLocalPart( XMLNode.getNodeName( ) ).equals( SIMPLE_TYPE ) )
+				{
+					return getSimpleTypeBase( XMLNode );
+				}
+			}
+		}
+		return null;
+	}
+	
+	private String getSimpleTypeBase( Node node )
+	{
+		NodeList subNodes = node.getChildNodes( );
+		for ( int i = 0; i < subNodes.getLength( ); i++ )
+		{
+			Node subNode = subNodes.item( i );
+			NamedNodeMap subNodeMap = subNode.getAttributes( );
+			if ( !WSUtil.isNull( subNodeMap ) && !WSUtil.isNull( subNodeMap.getNamedItem( BASE ) ) )
+			{
+				return subNodeMap.getNamedItem( BASE ).getNodeValue( );
+			}
+		}
+		return null;
+	}
+	
 	private void addNestedSimpleType( List lowerLeverList, Node node )
 	{
 		NodeList subs = node.getChildNodes( );
@@ -801,8 +851,8 @@ public class WSDLAdvisor
 		for ( int i = 0; i < nodes.getLength( ); i++ )
 		{
 			Node XMLNode = nodes.item( i );
-			if ( XMLNode.getNodeType( ) != Node.ELEMENT_NODE )
-				continue;
+//			if ( XMLNode.getNodeType( ) != Node.ELEMENT_NODE )
+//				continue;
 
 			NamedNodeMap XMLNodeNodeMap = XMLNode.getAttributes( );
 			if ( !WSUtil.isNull( XMLNodeNodeMap ) )
@@ -1575,14 +1625,28 @@ public class WSDLAdvisor
 				WSNonLeafNode newNode = generateTargetNode( wsdlURI, paramType );
 
 				// temporarily solution to handle simpleType
-				if ( newNode.getNodeList() == null )
+				if ( newNode.getNodeList() == null || newNode.getNodeList().size( ) == 0 )
 				{
 					if ( inOrOutput == "in" ) //$NON-NLS-1$
 					{
-						result += enter( )
-								+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
-								+ ">&?" + paramName //$NON-NLS-1$
-								+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+						String simpleType = getSimpleTypeBase( wsdlURI, paramType );
+						if ( simpleType == null )
+						{
+							result += enter( )
+									+ tab( tabCount )
+									+ "<" + nameSpace + paramName //$NON-NLS-1$
+									+ ">&?" + paramName //$NON-NLS-1$
+									+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+						else
+						{
+							result += enter( )
+									+ tab( tabCount )
+									+ "<" + nameSpace + paramName //$NON-NLS-1$
+									+ buildParamType( simpleType )
+									+ ">&?" + paramName //$NON-NLS-1$
+									+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
 					}
 					else
 					{
@@ -1780,6 +1844,7 @@ public class WSDLAdvisor
 			primitiveDataTypeList = new ArrayList( );
 
 		if ( primitiveDataTypeList.isEmpty( ) )
+		primitiveDataTypeList.clear( );
 			initDataTypeList( );
 
 		return primitiveDataTypeList;
