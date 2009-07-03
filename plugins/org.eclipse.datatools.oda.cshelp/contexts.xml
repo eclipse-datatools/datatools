@@ -148,7 +148,7 @@ Or
 
 The next field is the SOAP End Point. Leave this field empty if the descriptor defines the end point or if the WSDL does not require a SOAP end point. If your WSDL does require a SOAP end point, type the URL here.
 
-If you have written a Java class to perform the connection to and of the WSDL data source, type the fully qualified path to this class in Custom Driver Class. This class must implement the <code>org.eclipse.datatools.enablement.oda.ws.api.IWSDriver</code> interface.
+If you have written a Java class to perform the connection to the WSDL data source, type the fully qualified path to this class in Custom Driver Class. This class must implement the <code>org.eclipse.datatools.enablement.oda.ws.api.IWSDriver</code> interface.
 
 If you have a custom driver class, list the JAR files or folders to search for the class in Driver Class Path. Separate multiple folders and JAR files with semicolon (;) characters in the normal way.
 
