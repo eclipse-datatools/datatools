@@ -29,20 +29,6 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpressio
 public class ValidatorUtil
 {
     /**
-     * Creates and returns an OdaException with the specified message and
-     * an IllegalArgumentException cause with the specified causeIdentifier.
-     * @param message
-     * @param causeIdentifier
-     * @return  a new OdaException
-     */
-    public static OdaException newOdaException( String message, String causeIdentifier )
-    {
-        OdaException odaEx = new OdaException( message );
-        odaEx.initCause( new IllegalArgumentException( causeIdentifier ) );
-        return odaEx;
-    }
-
-    /**
      * Validates the specified CustomExpression to be an instance of the specified class.
      * @param customExpr
      * @param expectedExprClass
@@ -141,19 +127,82 @@ public class ValidatorUtil
                 Messages.bind( Messages.querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE, exprVar ), 
                 expr.getQualifiedId() );
     }
+
+    /**
+     * Creates and returns an OdaException with the specified message and
+     * an IllegalArgumentException cause with the specified causeIdentifier.
+     * @param message
+     * @param causeIdentifier
+     * @return  a new OdaException
+     */
+    public static OdaException newOdaException( String message, String causeIdentifier )
+    {
+        OdaException odaEx = new OdaException( message );
+        odaEx.initCause( new IllegalArgumentException( causeIdentifier ) );
+        return odaEx;
+    }
     
     /**
      * Adds the new OdaException object to the end of the OdaException chain.
      * @param rootEx    the root of an OdaException chain
-     * @param newEx     a new OdaException to append to the chain
+     * @param newEx     a new OdaException to append to the end of the chain
      * @return
      */
     public static OdaException addException( OdaException rootEx, OdaException newEx )
     {
         if( rootEx == null )
             return newEx;  // nothing to append to
-        rootEx.setNextException( newEx );
+        if( newEx != null )
+            rootEx.setNextException( newEx );
         return rootEx;
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified FilterExpression is the root cause of the specified exception.
+     * @param invalidFilterExpr a top-level FilterExpression that is invalid
+     * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid FilterExpression
+     *          identified as the root cause
+     * @see {@link #isInvalidFilterExpression(FilterExpression, OdaException)}
+     */
+    public static OdaException newFilterExprException( FilterExpression invalidFilterExpr, OdaException driverEx )
+    {
+        OdaException rootEx = newOdaException( Messages.querySpec_INVALID_FILTER_EXPR, 
+                invalidFilterExpr.getQualifiedId() );
+        addException( rootEx, driverEx );
+        return rootEx;
+    }
+    
+    /**
+     * Indicates whether the specified FilterExpression is identified as one of the cause(s)
+     * in the specified OdaException chain.
+     * @param filterExpr    a filter expression whose processing might have caused
+     *          an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing 
+     *          the filter expression
+     * @return  true if the specified FilterExpression is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidFilterExpression( FilterExpression filterExpr, OdaException rootEx )
+    {
+        if( filterExpr == null )
+            return true;
+
+        String filterExprId = filterExpr.getQualifiedId();
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    filterExprId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
     }
     
 }

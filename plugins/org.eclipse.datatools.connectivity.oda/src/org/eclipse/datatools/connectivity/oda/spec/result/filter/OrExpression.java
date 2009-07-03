@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.spec.result.filter;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * A runtime composite filter expression whose child expressions are combined by the Or boolean operator.  
@@ -31,8 +32,16 @@ public class OrExpression extends CompositeExpression
     protected void validateChildren( ValidationContext context )
             throws OdaException
     {
-        validateMinElements( 2 );
-        super.validateChildren( context );
+        try
+        {
+            validateMinElements( 2 );
+            super.validateChildren( context, false );
+        }
+        catch( OdaException ex )
+        {
+            // set this OrExpression as a root cause of exception if any child is invalid
+            throw ValidatorUtil.newFilterExprException( this, ex );
+        }
     }
     
     /*

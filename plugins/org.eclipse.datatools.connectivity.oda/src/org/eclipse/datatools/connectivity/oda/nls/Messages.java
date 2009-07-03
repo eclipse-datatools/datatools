@@ -63,6 +63,7 @@ public class Messages extends NLS
     public static String querySpec_INVALID_CLASS_TYPE_ATTRIBUTE;
     public static String querySpec_INVALID_EXT_POINT_ATTR_VALUE;
     public static String querySpec_INVALID_EXT_POINT_ELEMENT;
+    public static String querySpec_INVALID_FILTER_EXPR;
     public static String querySpec_MAX_ONE_NEGATING_EXPR;
     public static String querySpec_MISSING_COMPOSITE_MIN_CHILDREN;
     public static String querySpec_MISSING_EXPR_VARIABLE;

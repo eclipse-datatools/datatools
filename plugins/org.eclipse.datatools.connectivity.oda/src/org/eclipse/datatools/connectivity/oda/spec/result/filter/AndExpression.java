@@ -32,7 +32,7 @@ public class AndExpression extends CompositeExpression
             throws OdaException
     {
         validateMinElements( 2 );
-        super.validateChildren( context );
+        super.validateChildren( context, true );
     }
 
     /*

@@ -81,8 +81,15 @@ public abstract class FilterExpression
      * @throws OdaException if validation failed. The concrete cause is 
      *          defined by the subclass implementing this method.
      */
-    public abstract void validate( ValidationContext context ) 
-        throws OdaException;
+    public void validate( ValidationContext context ) 
+        throws OdaException
+    {
+        validateSyntax( context );
+
+        // pass this to custom validator, if exists, for further overall validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
+    }
 
     /**
      * Performs syntactic validation of this expression in the specified context. 

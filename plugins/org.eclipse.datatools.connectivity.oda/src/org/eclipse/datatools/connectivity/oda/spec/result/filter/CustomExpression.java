@@ -215,19 +215,6 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
         }
         return m_definition;
     }
-    
-    /*
-     * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    public void validate( ValidationContext context ) throws OdaException
-    {
-        validateSyntax( context );
-
-        // pass to custom validator, if exists, for further validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );                
-    }
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
@@ -235,15 +222,26 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     @Override
     public void validateSyntax( ValidationContext context ) throws OdaException
     {
-        FilterExpressionDefinition defn = getDefinition();
-        if( defn == null )
-            throw newOdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, getName() ) );
-        
-        validateSyntax( context, defn );
+        try
+        {
+            FilterExpressionDefinition defn = getDefinition();
+            if( defn == null )
+                throw newOdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, getName() ) );
+            
+            validateSyntax( context, defn );
 
-        // pass to custom validator, if exists, for further validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validateSyntax( this, context );        
+            // pass to custom validator, if exists, for further validation
+            if( context != null && context.getValidator() != null )
+                context.getValidator().validateSyntax( this, context );
+        }
+        catch( OdaException ex )
+        {
+            // if this filter expr is already identified as a cause in the caught exception,
+            // proceed to throw it as is; otherwise, add this filter expr as the root cause 
+            if( ValidatorUtil.isInvalidFilterExpression( this, ex ) )
+                throw ex;
+            throw ValidatorUtil.newFilterExprException( this, ex );
+        }                
     }
 
     /**

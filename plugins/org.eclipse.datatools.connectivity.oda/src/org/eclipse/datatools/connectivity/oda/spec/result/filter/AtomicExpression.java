@@ -14,9 +14,12 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.result.filter;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * The abstract base class for all basic, indivisible unit of filter expressions
@@ -80,6 +83,26 @@ public abstract class AtomicExpression extends FilterExpression
     public boolean isOptionable()
     {
         return false;   // an optional expression needs special handling and is not the default behavior
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validate( ValidationContext context ) throws OdaException
+    {
+        try
+        {
+            super.validate( context );
+        }
+        catch( OdaException ex )
+        {
+            // if this filter expr is already identified as a cause in the caught exception,
+            // proceed to throw it as is; otherwise, add this filter expr as the root cause 
+            if( ValidatorUtil.isInvalidFilterExpression( this, ex ) )
+                throw ex;
+            throw ValidatorUtil.newFilterExprException( this, ex );
+        }                
     }
 
     /* (non-Javadoc)

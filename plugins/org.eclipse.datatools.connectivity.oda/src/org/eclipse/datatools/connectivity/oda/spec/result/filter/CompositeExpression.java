@@ -75,20 +75,6 @@ public abstract class CompositeExpression extends FilterExpression
             m_expressions = new ArrayList<FilterExpression>( 2 );
         return m_expressions;
     }
-
-    /*
-     * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    @Override
-    public void validate( ValidationContext context ) throws OdaException
-    {      
-        validateSyntax( context );
-        
-        // pass this root-level expression tree to custom IValidator#validate for further overall validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );        
-    }
     
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
@@ -96,27 +82,58 @@ public abstract class CompositeExpression extends FilterExpression
     @Override
     public void validateSyntax( ValidationContext context ) throws OdaException
     {
-        // validate each of its children individually, if exists; 
+        // syntactic validation of each of its children individually, if exists
         validateChildren( context );
     }
 
     /**
-     * Iteratively walk thru each nested child node to validate individually.
-     * Any child node that is a CustomExpression is also passed to custom IValidator#validateCustomExpression
+     * Iteratively walks thru each nested child node to validate individually.
+     * Subclass implementation would determine its scope of validation and call 
+     * {@link #validateChildren(ValidationContext, boolean)} as appropriate.
      */
-    protected void validateChildren( ValidationContext context ) throws OdaException
+    protected abstract void validateChildren( ValidationContext context ) 
+        throws OdaException;
+    
+    /**
+     * Iteratively walks thru each nested child node to validate individually.
+     * Note that any child node that is a CustomExpression will also be validated 
+     * by custom IValidator#validateSyntax implementation.
+     * @param context   validation context
+     * @param validateAll   indicates whether to continue validate all children regardless if 
+     *           one is found to have validation exception.  True to validate all children and
+     *           append all validation exceptions in the thrown OdaException chain; 
+     *           false otherwise and throws an OdaException at the first detection
+     * @throws OdaException
+     */
+    protected void validateChildren( ValidationContext context, boolean validateAll ) 
+        throws OdaException
     {
         if( m_expressions == null )
             return;     // no children to validate
 
+        OdaException rootEx = null;
         for( Iterator<FilterExpression> iter = m_expressions.iterator(); iter.hasNext(); )
         {
             FilterExpression childExpr = iter.next();
-            if( childExpr instanceof CompositeExpression )
-                ((CompositeExpression)childExpr).validateChildren( context );
-            else
-                childExpr.validateSyntax( context );
-        }    
+            try
+            {
+                if( childExpr instanceof CompositeExpression )
+                    ((CompositeExpression)childExpr).validateChildren( context );
+                else
+                    childExpr.validateSyntax( context );
+            }
+            catch( OdaException ex )
+            {
+                if( ! validateAll )
+                    throw ex;
+                
+                // append exception to chain, and continue iterate next child expression
+                rootEx = ValidatorUtil.addException( rootEx, ex );
+            }
+        }  
+        
+        if( rootEx != null )
+            throw rootEx;
     }
 
     /**

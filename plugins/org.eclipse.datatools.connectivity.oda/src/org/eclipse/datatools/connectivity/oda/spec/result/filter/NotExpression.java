@@ -61,18 +61,26 @@ public class NotExpression extends CompositeExpression
     protected void validateChildren( ValidationContext context )
             throws OdaException
     {
-        validateMinElements( 1 );
-
-        // validate the child expression
-        FilterExpression negatingExpr = getNegatingExpression();
-        if( ! negatingExpr.isNegatable() )
+        try
         {
-            throw ValidatorUtil.newOdaException( Messages.bind( Messages.querySpec_NOT_EXPR_INCOMPATIBLE,
-                        negatingExpr.getName(), getName() ), 
-                    getQualifiedId() );
-        }
+            validateMinElements( 1 );
 
-        super.validateChildren( context );
+            // validate the child expression
+            FilterExpression negatingExpr = getNegatingExpression();
+            if( ! negatingExpr.isNegatable() )
+            {
+                throw ValidatorUtil.newOdaException( Messages.bind( Messages.querySpec_NOT_EXPR_INCOMPATIBLE,
+                            negatingExpr.getName(), getName() ), 
+                        negatingExpr.getQualifiedId() );
+            }
+
+            super.validateChildren( context, false );
+        }
+        catch( OdaException ex )
+        {
+            // set this NotExpression as a root cause of exception
+            throw ValidatorUtil.newFilterExprException( this, ex );
+        }
     }
 
     /* (non-Javadoc)
