@@ -13,15 +13,16 @@
 package org.eclipse.datatools.enablement.oda.xml.util.date;
 
 import java.sql.Time;
-import com.ibm.icu.text.DateFormat;
 import java.text.ParseException;
-import com.ibm.icu.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
+import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.ULocale;
 
 /**
@@ -35,9 +36,10 @@ public final class DateUtil
 	// Defalult Locale, if we have any problem parse string to date for Locale.getDefault()
 	// we will try to parse it for Locale.US
 	private static ULocale DEFAULT_LOCALE = ULocale.US;
-	
 	private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
-
+	
+	private static SimpleDateFormat MysqlUSDateFormatter = new SimpleDateFormat( "M/d/yyyy HH:mm" );
+	
 	// Default Date/Time Style 
 	private static int DEFAULT_DATE_STYLE = DateFormat.MEDIUM;
 
@@ -380,12 +382,31 @@ public final class DateUtil
 			}
 			catch ( OdaException use )
 			{
-				// format the String for Locale.US
-				return toDate( source, DEFAULT_LOCALE );
+				try
+				{
+					// format the String for Locale.US
+					return toDate( source, DEFAULT_LOCALE );
+				}
+				catch ( OdaException de )
+				{
+					return toDateForSpecialFormat( source );
+				}
 			}
 		}
 	}
 
+	private static Date toDateForSpecialFormat( String source ) throws OdaException
+	{
+		try
+		{
+			return MysqlUSDateFormatter.parse( source );
+		}
+		catch ( ParseException e1 )
+		{
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
+		}
+	}
+	
 	/**
 	 * convert String with ISO8601 date format to java.util.Date
 	 * 
