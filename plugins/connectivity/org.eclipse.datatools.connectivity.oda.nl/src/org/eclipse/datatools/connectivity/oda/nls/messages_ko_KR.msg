@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=잘못된 인수: {0}
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=잘못된 클래스 유형({0})입니다.  {1} 특성은 {2}의 인스턴스여야 합니다.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0} 확장({1})에 {3} 특성에 대해 잘못된 값({2})이 있습니다.
 querySpec_INVALID_EXT_POINT_ELEMENT={0} 확장({1})이 잘못되었습니다.  필요한 콘텐츠에 대한 스키마 정의를 참조하십시오.
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR={0}에 부정 식을 두 개 이상 추가할 수 없습니다.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=복합 {0}에는 {1}개 이상의 자식 식이 있어야 합니다.
 querySpec_MISSING_EXPR_VARIABLE=필터 식({0})에 관련 변수가 없습니다.

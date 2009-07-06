@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=无效参数: {0}。
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=无效类类型 ({0})。  {1} 属性必须是 {2} 的实例。
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0} 扩展 ({1}) 的 {3} 属性具有无效值 ({2})。
 querySpec_INVALID_EXT_POINT_ELEMENT={0} 扩展 ({1}) 无效。  参见架构定义以了解所需内容。
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR=不能向 {0} 添加多个否定表达式。
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=组合 {0} 必须至少包含 {1} 个子表达式。
 querySpec_MISSING_EXPR_VARIABLE=筛选表达式 ({0}) 缺少关联的变量。

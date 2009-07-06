@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=Argument non valide : {0}.
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=Type de classe non valide ({0}).  L''attribut {1} doit être une instance de {2}.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE=L''extension {0} ({1}) comporte une valeur incorrecte ({2}) pour l''attribut {3}.
 querySpec_INVALID_EXT_POINT_ELEMENT=L''extension {0} ({1}) est non valide.  Reportez-vous à la définition du schéma pour connaître le contenu requis.
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR=Impossible d'ajouter plus d'une expression de mise en négatif à {0}.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=Le composite {0} doit contenir au moins {1} expressions enfant.
 querySpec_MISSING_EXPR_VARIABLE=Une variable associée manque dans l'expression de filtre ({0}).

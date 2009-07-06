@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=Ungültiges Argument: {0}.
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=Ungültiger Klassentyp: ({0}).  Attribut {1} muss eine Instanz von {2} sein.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0}-Erweiterung ({1}) hat ungültigen Wert ({2}) für Attribut {3}.
 querySpec_INVALID_EXT_POINT_ELEMENT={0}-Erweiterung ({1}) ist ungültig.  Erforderliche Inhalte finden Sie in der Schemadefinition.
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR=Es kann nicht mehr als ein Ausdruck mit Negation zu {0} hinzugefügt werden.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=Composite {0} muss mindestens {1} untergeordnete Ausdrücke enthalten.
 querySpec_MISSING_EXPR_VARIABLE=Für Filterausdruck ({0}) fehlt eine verbundene Variable.

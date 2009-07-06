@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=Argumento no válido: {0}.
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=Tipo de clase no válido: ({0}).  El atributo {1} debe ser una instancia de {2}.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE=La extensión de {0} ({1}) contiene un valor no válido ({2}) para el atributo {3}.
 querySpec_INVALID_EXT_POINT_ELEMENT=La extensión de {0} ({1}) no es válida.  Consulte la definición del esquema para obtener información acerca del contenido necesario.
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR=Sólo se puede añadir una expresión negativa a {0}.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=La expresión compuesta {0} debe contener al menos {1} expresiones secundarias.
 querySpec_MISSING_EXPR_VARIABLE=Falta una expresión variable asociada a la expresión de filtro ({0}).

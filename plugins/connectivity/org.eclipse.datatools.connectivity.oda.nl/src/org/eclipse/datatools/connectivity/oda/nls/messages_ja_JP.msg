@@ -63,6 +63,7 @@ querySpec_INVALID_ARG=引数 {0} が無効です。
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=クラス型 ({0}) が無効です。  {1} 属性には、{2} のインスタンスを指定してください。
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0} 拡張 ({1}) の値 ({2}) が {3} 属性に対して無効です。
 querySpec_INVALID_EXT_POINT_ELEMENT={0} 拡張 ({1}) が無効です。  必要なコンテンツについては、スキーマの定義を参照してください。
+querySpec_INVALID_FILTER_EXPR=Invalid filter expression.
 querySpec_MAX_ONE_NEGATING_EXPR={0} には複数の負数の式は追加できません。
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=合成 {0} には、少なくとも {1} 個の子の式を含めてください。
 querySpec_MISSING_EXPR_VARIABLE=フィルタ式 ({0}) に関連付けられている変数が見つかりません。
