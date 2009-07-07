@@ -144,8 +144,8 @@ public abstract class CompositeExpression extends FilterExpression
     protected void validateMinElements( int minimumChildren ) throws OdaException
     {
         if( getExpressions().size() < minimumChildren )
-            throw ValidatorUtil.newOdaException( Messages.bind( Messages.querySpec_MISSING_COMPOSITE_MIN_CHILDREN,
-                    getName(), Integer.valueOf( minimumChildren ) ), getQualifiedId() );
+            throw ValidatorUtil.newFilterExprException( Messages.bind( Messages.querySpec_MISSING_COMPOSITE_MIN_CHILDREN,
+                    getName(), Integer.valueOf( minimumChildren ) ), this );
     }
 
     /*

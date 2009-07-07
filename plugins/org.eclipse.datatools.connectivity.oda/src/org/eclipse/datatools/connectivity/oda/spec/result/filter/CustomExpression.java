@@ -291,7 +291,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     
     protected OdaException newOdaException( String message )
     {
-        return ValidatorUtil.newOdaException( message, getQualifiedId() );
+        return ValidatorUtil.newFilterExprException( message, this );
     }
 
     /*

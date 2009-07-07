@@ -28,6 +28,8 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpressio
  */
 public class ValidatorUtil
 {
+    private static final String AT_SYMBOL = "@"; //$NON-NLS-1$
+    
     /**
      * Validates the specified CustomExpression to be an instance of the specified class.
      * @param customExpr
@@ -41,10 +43,10 @@ public class ValidatorUtil
             return;     // is expected type
 
         // not an instance of the expected class
-        throw newOdaException( 
+        throw newFilterExprException( 
                 Messages.bind( Messages.querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE,
                         customExpr.getName(), expectedExprClass.getName() ), 
-                customExpr.getQualifiedId() );
+                customExpr );
     }
 
     /**
@@ -86,9 +88,9 @@ public class ValidatorUtil
         throws OdaException
     {
         if( ! expectedExtensionId.equals( customExpr.getDeclaringExtensionId() ) )
-            throw newOdaException( 
+            throw newFilterExprException( 
                     Messages.bind( Messages.querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION, customExpr.getName() ), 
-                    customExpr.getQualifiedId() );
+                    customExpr );
     }
  
     /**
@@ -100,9 +102,9 @@ public class ValidatorUtil
         throws OdaException
     {
         if( expr.getVariable() == null )
-            throw newOdaException( 
+            throw newFilterExprException( 
                     Messages.bind( Messages.querySpec_MISSING_EXPR_VARIABLE, expr.getName() ), 
-                            expr.getQualifiedId() );
+                            expr );
     }
     
     /**
@@ -123,9 +125,9 @@ public class ValidatorUtil
         }
         
         // expr variable is not a supported type
-        throw newOdaException( 
+        throw newFilterExprException( 
                 Messages.bind( Messages.querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE, exprVar ), 
-                expr.getQualifiedId() );
+                expr );
     }
 
     /**
@@ -159,18 +161,36 @@ public class ValidatorUtil
     
     /**
      * Creates and returns a top-level OdaException to indicate that the 
-     * specified FilterExpression is the root cause of the specified exception.
+     * specified FilterExpression is the cause of the specified driverEx exception.
      * @param invalidFilterExpr a top-level FilterExpression that is invalid
      * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
      *              the invalid state; may be null
      * @return  an OdaException chain with the specified invalid FilterExpression
-     *          identified as the root cause
+     *          identified as the cause
      * @see {@link #isInvalidFilterExpression(FilterExpression, OdaException)}
      */
     public static OdaException newFilterExprException( FilterExpression invalidFilterExpr, OdaException driverEx )
     {
-        OdaException rootEx = newOdaException( Messages.querySpec_INVALID_FILTER_EXPR, 
-                invalidFilterExpr.getQualifiedId() );
+        return newFilterExprException( Messages.querySpec_INVALID_FILTER_EXPR, invalidFilterExpr, driverEx );
+    }
+    
+    /**
+     * Creates and returns an OdaException with the specified FilterExpression identified as the cause.
+     * @param message   custom exception message
+     * @param invalidFilterExpr    the invalid FilterExpression to set as the cause
+     * @return  an OdaException with the specified message and invalid FilterExpression
+     *          identified as the cause
+     * @see {@link #isInvalidFilterExpression(FilterExpression, OdaException)}
+     */
+    public static OdaException newFilterExprException( String message, FilterExpression invalidFilterExpr )
+    {
+        return newFilterExprException( message, invalidFilterExpr, null );
+    }
+    
+    private static OdaException newFilterExprException( String message, FilterExpression invalidFilterExpr, 
+            OdaException driverEx )
+    {
+        OdaException rootEx = newOdaException( message, getInstanceId( invalidFilterExpr ) );
         addException( rootEx, driverEx );
         return rootEx;
     }
@@ -190,7 +210,7 @@ public class ValidatorUtil
         if( filterExpr == null )
             return true;
 
-        String filterExprId = filterExpr.getQualifiedId();
+        String filterExprId = getInstanceId( filterExpr );
         OdaException currentEx = rootEx;
         while( currentEx != null )
         {
@@ -203,6 +223,11 @@ public class ValidatorUtil
         }
 
         return false;
+    }
+    
+    private static String getInstanceId( FilterExpression filterExpr )
+    {
+        return filterExpr.getQualifiedId() + AT_SYMBOL + Integer.toHexString( filterExpr.hashCode() );
     }
     
 }
