@@ -47,7 +47,7 @@ public class ExtensionContributor implements IContributor
     
     private IConfigurationElement m_contributorElement;
     private List<SupportedDataSetType> m_dataSetTypes;
-    private List<String> m_supportedOdaExprNames;
+    private List<String> m_supportedOdaFilterExprNames;
     private IValidator m_filterValidator;
     private QuerySpecificationFactory m_specFactory;
     private boolean m_supportsRowOrdering;
@@ -69,7 +69,7 @@ public class ExtensionContributor implements IContributor
         m_dataSetTypes = processDataSetTypeElements( m_contributorElement );
         
         // process supportedOdaExpression child elements
-        m_supportedOdaExprNames = processSupportedOdaExpressions( m_contributorElement );
+        m_supportedOdaFilterExprNames = processSupportedOdaFilterExpressions( m_contributorElement );
         
         // supportsRowOrdering child element
         m_supportsRowOrdering = false;  // default value
@@ -110,7 +110,7 @@ public class ExtensionContributor implements IContributor
         return dataSetTypes;
     }
     
-    private static List<String> processSupportedOdaExpressions( IConfigurationElement contributorElement ) 
+    private static List<String> processSupportedOdaFilterExpressions( IConfigurationElement contributorElement ) 
         throws OdaException
     {
         IConfigurationElement[] odaExprElements = contributorElement.getChildren( SUB_ELEMENT_FILTER_EXPRESSION_TYPE );
@@ -196,9 +196,9 @@ public class ExtensionContributor implements IContributor
      */
     public boolean supportsOdaFilterExpression( String odaExprName )
     {
-        if( m_supportedOdaExprNames == null )
+        if( m_supportedOdaFilterExprNames == null )
             return false;
-        return m_supportedOdaExprNames.contains( odaExprName );
+        return m_supportedOdaFilterExprNames.contains( odaExprName );
     }
     
     /**
@@ -207,9 +207,9 @@ public class ExtensionContributor implements IContributor
      */
     public String[] getSupportedOdaFilterExpressions()
     {
-        if( m_supportedOdaExprNames == null )
+        if( m_supportedOdaFilterExprNames == null )
             return EMPTY_STRING_ARRAY;
-        return m_supportedOdaExprNames.toArray( new String[ m_supportedOdaExprNames.size() ] ); 
+        return m_supportedOdaFilterExprNames.toArray( new String[ m_supportedOdaFilterExprNames.size() ] ); 
     }
 
     /**
@@ -296,4 +296,25 @@ public class ExtensionContributor implements IContributor
         
         return m_specFactory;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode()
+    {
+        return m_contributorElement.hashCode();
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals( Object obj )
+    {
+        if( ! (obj instanceof ExtensionContributor) )
+            return false;
+        return m_contributorElement.equals( ((ExtensionContributor)obj).m_contributorElement );
+    }
+    
 }

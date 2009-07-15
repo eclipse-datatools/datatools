@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
-
 /**
  * The identifier of a result set column, defined by its number (1-based) or native name/expression.
  * <br>A column number, if specified, takes precedence over its specified name/expression.
@@ -162,7 +161,8 @@ public class ColumnIdentifier
     @Override
     public String toString()
     {
-        return "ColumnIdentifier [number= " + m_pos + ", value expression= " + m_valueExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return "ColumnIdentifier@" + super.hashCode() + " [number= " + m_pos +   //$NON-NLS-1$//$NON-NLS-2$
+                ", value expression= " + m_valueExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }                  
 
 }
