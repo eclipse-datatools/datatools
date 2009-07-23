@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.14 2009/04/14 02:13:18 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.15 2009/04/30 06:04:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -4270,7 +4270,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getSortSpecification_SortKeys(),
                 this.getSortKey(),
                 null,
-                "sortKeys", null, 1, -1, SortSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "sortKeys", null, 0, -1, SortSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 staticValuesEClass,

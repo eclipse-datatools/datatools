@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSetCriteria.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -83,7 +83,8 @@ public interface ResultSetCriteria extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Specifies the ordering of rows in a result set.
+     * Specifies the ordering of rows in a result set.  An empty collection explicitly indicates that the result set has no sort keys defined.  
+     * Absence of this optional element, on the other hand, indicates that its row ordering specification is unknown or not available. 
      * <!-- end-model-doc -->
      * @return the value of the '<em>Row Ordering</em>' containment reference.
      * @see #setRowOrdering(SortSpecification)

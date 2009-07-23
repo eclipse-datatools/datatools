@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: SortSpecification.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -28,7 +28,8 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Specification of one or more sort keys.
+ * Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set 
+ * has no sort keys defined.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +64,7 @@ public interface SortSpecification extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>Sort Keys</em>' containment reference list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortSpecification_SortKeys()
-     * @model containment="true" required="true"
+     * @model containment="true"
      *        extendedMetaData="kind='element' name='sortKeys' namespace='##targetNamespace'"
      * @generated
      */

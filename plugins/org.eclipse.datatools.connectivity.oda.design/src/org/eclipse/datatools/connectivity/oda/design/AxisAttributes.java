@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: AxisAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: AxisAttributes.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface AxisAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Axis Type</b></em>' attribute.
@@ -53,7 +53,7 @@ public interface AxisAttributes extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * The axis type of the data element.  This provides hints to a consumer application on how the column should be used.
+     * The axis type of the data element.  It provides design hints to a consumer application on how the column data should be analyzed, or applied in a multi-dimensional view.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Axis Type</em>' attribute.
      * @see org.eclipse.datatools.connectivity.oda.design.AxisType
@@ -61,7 +61,7 @@ public interface AxisAttributes extends EObject
      * @see #unsetAxisType()
      * @see #setAxisType(AxisType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes_AxisType()
-     * @model default="Measure" unique="false" unsettable="true" required="true"
+     * @model default="Measure" unsettable="true"
      *        extendedMetaData="kind='element' name='axisType' namespace='##targetNamespace'"
      * @generated
      */
@@ -109,14 +109,14 @@ public interface AxisAttributes extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * A hint on how the dimension data element should be layout on column or row.  It is normally used by presentation element such as a crosstab to design a default layout.
+     * A design hint on whether the dimension data element should be laid out on a column or row.  It is normally used by presentation element such as a crosstab to design a default layout.
      * <!-- end-model-doc -->
      * @return the value of the '<em>On Column Layout</em>' attribute.
      * @see #isSetOnColumnLayout()
      * @see #unsetOnColumnLayout()
      * @see #setOnColumnLayout(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes_OnColumnLayout()
-     * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='onColumnLayout' namespace='##targetNamespace'"
      * @generated
      */

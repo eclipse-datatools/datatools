@@ -38,12 +38,12 @@
     <xsd:sequence>
       <xsd:element default="Measure" form="qualified" minOccurs="0" name="axisType" type="design:AxisType">
         <xsd:annotation>
-          <xsd:documentation>The axis type of the data element.  This provides hints to a consumer application on how the column should be used.</xsd:documentation>
+          <xsd:documentation>The axis type of the data element.  It provides design hints to a consumer application on how the column data should be analyzed, or applied in a multi-dimensional view.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element default="true" form="qualified" minOccurs="0" name="onColumnLayout" type="xsd:boolean">
         <xsd:annotation>
-          <xsd:documentation>A hint on how the dimension data element should be layout on column or row.  It is normally used by presentation element such as a crosstab to design a default layout.</xsd:documentation>
+          <xsd:documentation>A design hint on whether the dimension data element should be laid out on a column or row.  It is normally used by presentation element such as a crosstab to design a default layout.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -835,7 +835,7 @@ Applying the criteria may impact the data retrieved in a result set, in addition
       </xsd:element>
       <xsd:element form="qualified" minOccurs="0" name="rowOrdering" type="design:SortSpecification">
         <xsd:annotation>
-          <xsd:documentation>Specifies the ordering of rows in a result set.</xsd:documentation>
+          <xsd:documentation>Specifies the ordering of rows in a result set.  An empty collection explicitly indicates that the result set has no sort keys defined.  Absence of this optional element, on the other hand, indicates that its row ordering specification is unknown or not available. </xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -946,10 +946,10 @@ Applying the criteria may impact the data retrieved in a result set, in addition
   </xsd:complexType>
   <xsd:complexType name="SortSpecification">
     <xsd:annotation>
-      <xsd:documentation>Specification of one or more sort keys.</xsd:documentation>
+      <xsd:documentation>Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set has no sort keys defined.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element form="qualified" maxOccurs="unbounded" name="sortKeys" type="design:SortKey"/>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="sortKeys" type="design:SortKey"/>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:complexType name="StaticValues">

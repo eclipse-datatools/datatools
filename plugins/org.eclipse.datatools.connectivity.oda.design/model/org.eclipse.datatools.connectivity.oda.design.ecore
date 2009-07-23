@@ -62,7 +62,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="axisType" eType="#//AxisType"
         defaultValueLiteral="Measure" unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="The axis type of the data element.  This provides hints to a consumer application on how the column should be used."/>
+        <details key="documentation" value="The axis type of the data element.  It provides design hints to a consumer application on how the column data should be analyzed, or applied in a multi-dimensional view."/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -73,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="onColumnLayout" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         defaultValueLiteral="true" unsettable="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A hint on how the dimension data element should be layout on column or row.  It is normally used by presentation element such as a crosstab to design a default layout."/>
+        <details key="documentation" value="A design hint on whether the dimension data element should be laid out on a column or row.  It is normally used by presentation element such as a crosstab to design a default layout."/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1688,7 +1688,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rowOrdering" eType="#//SortSpecification"
         containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Specifies the ordering of rows in a result set."/>
+        <details key="documentation" value="Specifies the ordering of rows in a result set.  An empty collection explicitly indicates that the result set has no sort keys defined.  Absence of this optional element, on the other hand, indicates that its row ordering specification is unknown or not available. "/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -1905,14 +1905,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SortSpecification">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Specification of one or more sort keys."/>
+      <details key="documentation" value="Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set has no sort keys defined."/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="SortSpecification"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sortKeys" lowerBound="1"
-        upperBound="-1" eType="#//SortKey" containment="true" resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sortKeys" upperBound="-1"
+        eType="#//SortKey" containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="sortKeys"/>
