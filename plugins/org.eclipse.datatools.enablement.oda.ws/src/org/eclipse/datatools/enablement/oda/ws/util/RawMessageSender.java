@@ -125,6 +125,26 @@ public class RawMessageSender
 		
 		public void run( )
 		{
+			execute( );
+			if ( e != null
+					&& e.getMessage( ) != null
+					&& e.getMessage( ).indexOf( "NoSOAPAction" ) != -1 )
+			{
+				try
+				{
+					soapAction = ( new URL( spec ) ).toString( );
+					execute( );
+				}
+				catch ( MalformedURLException e1 )
+				{
+					soapAction = WSUtil.EMPTY_STRING;
+				}
+				soapAction = WSUtil.EMPTY_STRING;
+			}
+		}
+
+		private void execute( )
+		{
 			try
 			{
 				e = null;
