@@ -101,7 +101,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 	private String tableName;
 	private String xsdFileName;
+	private String lastXsdFileName;
 	private String xmlFileName;
+	private String lastXmlFileName;
 	private String xmlEncoding;
 	private String nameSpace;
 	private Map columnMap;
@@ -1470,10 +1472,12 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private String getNamespace( )
 	{
-		if( this.nameSpace != null )
+		if ( this.nameSpace != null
+				&& ( lastXsdFileName == null || lastXsdFileName.equals( xsdFileName ) )
+				&& ( lastXmlFileName == null || lastXmlFileName.equals( xmlFileName ) ) )
 		{
 			return this.nameSpace;
-		}		
+		}
 		Map prefixMapping = null;
 		boolean start = true;
 		try{
@@ -1517,6 +1521,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 			nameSpaceBuf.append( RIGHT_SHARP_ANGLED_BRACKET );
 		}
 		this.nameSpace = nameSpaceBuf.toString( ).trim( );
+		this.lastXsdFileName = this.xsdFileName;
+		this.lastXmlFileName = this.xmlFileName;
 		return this.nameSpace;
 	}
 	
