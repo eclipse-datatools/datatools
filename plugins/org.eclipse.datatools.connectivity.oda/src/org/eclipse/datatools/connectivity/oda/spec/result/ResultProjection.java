@@ -15,12 +15,14 @@
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -57,8 +59,12 @@ public class ResultProjection
      */
     public void setProjection( ColumnIdentifier resultColumn, AggregateExpression aggregate ) throws OdaException
     {
-        if( resultColumn == null )
-            throw new OdaException( new IllegalArgumentException() );
+        validateColumnIdentifier( resultColumn );
+        if( getHiddenResultColumns().contains( resultColumn ) )
+            throw ValidatorUtil.newAggregateException( 
+                    Messages.bind( "Cannot project aggregation on a hidden column {0}.", resultColumn ), 
+                    aggregate );
+        
         getAggregatedColumns().put( resultColumn, aggregate );
     }
     
@@ -84,7 +90,7 @@ public class ResultProjection
     public Map<ColumnIdentifier,AggregateExpression> getAggregatedColumns()
     {
         if( m_aggregateSpecByColumn == null )
-            m_aggregateSpecByColumn = new HashMap<ColumnIdentifier,AggregateExpression>(MAP_INITIAL_CAPACITY);
+            m_aggregateSpecByColumn = new LinkedHashMap<ColumnIdentifier,AggregateExpression>(MAP_INITIAL_CAPACITY);
 
         return m_aggregateSpecByColumn;
     }
@@ -133,7 +139,7 @@ public class ResultProjection
     public Map<ColumnIdentifier,ExpressionVariable> getAddedResultColumns()
     {
         if( m_addedColumns == null )
-            m_addedColumns = new HashMap<ColumnIdentifier, ExpressionVariable>(MAP_INITIAL_CAPACITY);
+            m_addedColumns = new LinkedHashMap<ColumnIdentifier, ExpressionVariable>(MAP_INITIAL_CAPACITY);
         
         return m_addedColumns;
     }
@@ -146,6 +152,8 @@ public class ResultProjection
      */
     public void hideResultColumn( ColumnIdentifier resultColumn ) throws OdaException
     {
+        validateColumnIdentifier( resultColumn );
+
         // remove aggregate projection, if any, on the hidden column
         getAggregatedColumns().remove( resultColumn );
         
@@ -174,6 +182,12 @@ public class ResultProjection
             m_hiddenColumns = new ArrayList<ColumnIdentifier>(MAP_INITIAL_CAPACITY);
         
         return m_hiddenColumns;
+    }
+    
+    private void validateColumnIdentifier( ColumnIdentifier resultColumn ) throws OdaException
+    {
+        if( resultColumn == null || ! resultColumn.isValid() )
+            throw new OdaException( new IllegalArgumentException( resultColumn.toString() ) );
     }
     
 }

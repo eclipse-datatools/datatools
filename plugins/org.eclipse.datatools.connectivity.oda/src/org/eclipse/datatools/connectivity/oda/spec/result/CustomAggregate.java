@@ -30,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
+import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
  * Represents an instance of custom aggregate expression contributed by an extension of
@@ -38,7 +39,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType
  */
 public class CustomAggregate extends AggregateExpression implements IExecutableExtension
 {
-    private static final String QUALIFER_SEPARATOR = "."; //$NON-NLS-1$
+    private static final String QUALIFIER_SEPARATOR = "."; //$NON-NLS-1$
     private String m_id;
     private String m_extensionId;
     private Map<String,Object> m_customData;
@@ -114,22 +115,20 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
      */
     public String getQualifiedId()
     {
-        return m_extensionId + QUALIFER_SEPARATOR + m_id;
+        return m_extensionId + QUALIFIER_SEPARATOR + m_id;
     }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression#getAlias()
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression#getName()
      */
     @Override
-    public String getAlias()
+    public String getName()
     {
-        if( getDefinition() == null )
-            return super.getAlias();
-        
-        StringBuffer alias = new StringBuffer( getDefinition().getDisplayName() );
-        alias.append( ALIAS_SEPARATOR );
-        alias.append( super.getAlias() );
-        return alias.toString();
+        AggregateDefinition defn = getDefinition();
+        if( defn == null )
+            return getQualifiedId();
+        return m_extensionId + QUALIFIER_SEPARATOR + defn.getDisplayName();
     }
 
     /**
@@ -201,7 +200,6 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
             catch( OdaException ex )
             {
                 // TODO log warning
-                ex.printStackTrace();
                 return null;
             }
         }
@@ -236,18 +234,29 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
 
     /*
      * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression#validate(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     * @see org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     @Override
-    public void validate( ValidationContext context ) throws OdaException
+    public void validateSyntax( ValidationContext context ) throws OdaException
     {
-        AggregateDefinition defn = getDefinition();
-        if( defn == null )
-            throw new OdaException( 
-                    Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR,
-                                getQualifiedId() ));
-        
-        validate( context, defn );     
+        try
+        {
+            AggregateDefinition defn = getDefinition();
+            if( defn == null )
+                throw new OdaException( 
+                        Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR, getName() ));
+            
+            validateSyntax( context, defn );     
+
+            // pass to custom validator, if exists, for further validation
+            IValidator customValidator = getValidator( context, defn );
+            if( customValidator != null )
+                customValidator.validateSyntax( this, context );
+        }
+        catch( OdaException ex )
+        {
+            throw ValidatorUtil.newAggregateException( this, ex );
+        }                
     }
 
     /**
@@ -256,29 +265,44 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
      * @param defn
      * @throws OdaException  if validation fails
      */
-    protected void validate( ValidationContext context, AggregateDefinition defn ) throws OdaException
+    protected void validateSyntax( ValidationContext context, AggregateDefinition defn ) throws OdaException
     {
         assert( defn != null );
         
-        // TODO - validate type of associated variable
+        // validate number of associated variable
+        int numArgs = getVariables().size();
+
+        int minArgs = defn.getMinInputVariables().intValue();
+        if( numArgs < minArgs )
+            throw newAggregateException( 
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_LESS_THAN_MIN_ARGS,
+                                new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(minArgs) } ));
+
+        if( ! defn.supportsUnboundedMaxInputVariables() ) // no unbounded upper limit, validate max arguments
+        {
+            int maxArgs = defn.getMaxInputVariables().intValue();
+            if( numArgs > maxArgs )
+                throw newAggregateException( 
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_EXCEED_MAX_ARGS, 
+                                new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ) );
+        }       
         
         // validates the capabilities
         if( ignoresDuplicateValues() && ! defn.canIgnoreDuplicateValues() )
-            throw new OdaException( 
-                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_DUPL_CHECK, getQualifiedId() ));
+            throw newAggregateException( 
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_DUPL_CHECK, getName() ) );
  
         if( ignoresNullValues() && ! defn.canIgnoreNullValues() )
-            throw new OdaException( 
-                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_NULL_CHECK, getQualifiedId() ));
-
-        // up to custom validator class to resolve a variable's data type and validate
-        // against one of the expression's restricted data types
-        IValidator customValidator = getValidator( context );
-        if( customValidator != null )
-            customValidator.validate( this, context );
+            throw newAggregateException( 
+                    Messages.bind( Messages.querySpec_CUSTOM_AGGR_INCOMPATIBLE_NULL_CHECK, getName() ) );
     }
-    
-    protected IValidator getValidator( ValidationContext context )
+
+    protected OdaException newAggregateException( String message )
+    {
+        return ValidatorUtil.newAggregateException( message, this );
+    }
+   
+    protected IValidator getValidator( ValidationContext context, AggregateDefinition defn )
     {
         // try use the validator in the context, if available
         if( context != null && context.getValidator() != null )
@@ -287,8 +311,8 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
         // use validator in the definition, if specified
         try
         {
-            if( getDefinition() != null )
-                return getDefinition().getValidator();
+            if( defn != null )
+                return defn.getValidator();
         }
         catch( OdaException ex )
         {

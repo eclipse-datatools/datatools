@@ -75,4 +75,15 @@ public interface IValidator
     public void validate( AggregateExpression aggrExpr, ValidationContext context ) 
         throws OdaException;
 
+    /**
+     * Performs syntactic validation of the specified custom aggregate expression 
+     * in the specified context. 
+     * @param aggrExpr  the aggregate expression to validate
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+    public void validateSyntax( AggregateExpression aggrExpr, ValidationContext context )
+        throws OdaException;
+
 }

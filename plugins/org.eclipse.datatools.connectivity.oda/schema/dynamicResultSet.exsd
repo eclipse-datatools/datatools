@@ -231,7 +231,7 @@
          <attribute name="minInputVariables" type="string" use="default" value="1">
             <annotation>
                <documentation>
-                  The minimum number of input source variables required by this aggregate expression type.  The value must be zero or higher integer value.
+                  The minimum number of input source variables required by this aggregate expression type.  The value must be zero or higher integer value.  The default value is  &quot;1&quot;.
                </documentation>
             </annotation>
          </attribute>
@@ -263,7 +263,7 @@
       <annotation>
          <documentation>
             Restriction on the type of variables that can be applied with the expression.
-The default type is applied as the restriction, if none is specified in an expression element.
+The driver-specific default type(s) are applied as the restriction, if none is specified in an expression element.
          </documentation>
       </annotation>
       <complexType>

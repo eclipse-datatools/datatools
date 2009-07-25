@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
@@ -203,13 +204,11 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
             catch( OdaException ex )
             {
                 // TODO log warning
-                ex.printStackTrace();
                 return null;
             }
             catch( IllegalArgumentException argEx )
             {
                 // TODO log warning
-                argEx.printStackTrace();
                 return null;
             }
         }
@@ -226,20 +225,17 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
         {
             FilterExpressionDefinition defn = getDefinition();
             if( defn == null )
-                throw newOdaException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, getName() ) );
+                throw newFilterExprException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, getName() ) );
             
             validateSyntax( context, defn );
 
             // pass to custom validator, if exists, for further validation
-            if( context != null && context.getValidator() != null )
-                context.getValidator().validateSyntax( this, context );
+            IValidator customValidator = getValidator( context, defn );
+            if( customValidator != null )
+                customValidator.validateSyntax( this, context );
         }
         catch( OdaException ex )
         {
-            // if this filter expr is already identified as a cause in the caught exception,
-            // proceed to throw it as is; otherwise, add this filter expr as the root cause 
-            if( ValidatorUtil.isInvalidFilterExpression( this, ex ) )
-                throw ex;
             throw ValidatorUtil.newFilterExprException( this, ex );
         }                
     }
@@ -275,21 +271,41 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
 
         int minArgs = defn.getMinArguments().intValue();
         if( numArgs < minArgs )
-            throw newOdaException( 
-                    Messages.bind( Messages.querySpec_CUSTOM_FILTER_MISSING_MIN_ARGS,
+            throw newFilterExprException( 
+                    Messages.bind( Messages.querySpec_CUSTOM_FILTER_LESS_THAN_MIN_ARGS,
                                 new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(minArgs) } ));
 
         if( ! defn.supportsUnboundedMaxArguments() ) // not unbounded upper limit, validate max arguments
         {
             int maxArgs = defn.getMaxArguments().intValue();
             if( numArgs > maxArgs )
-                throw newOdaException( 
+                throw newFilterExprException( 
                     Messages.bind( Messages.querySpec_CUSTOM_FILTER_EXCEED_MAX_ARGS, 
                                 new Object[]{ getName(), Integer.valueOf(numArgs), Integer.valueOf(maxArgs) } ) );
         }       
     }
     
-    protected OdaException newOdaException( String message )
+    protected IValidator getValidator( ValidationContext context, FilterExpressionDefinition defn )
+    {
+        // try use the validator in the context, if available
+        if( context != null && context.getValidator() != null )
+            return context.getValidator();
+
+        // use validator in the definition, if specified
+        try
+        {
+            if( defn != null )
+                return defn.getValidator();
+        }
+        catch( OdaException ex )
+        {
+            // TODO log warning
+        }
+
+        return null;
+    }
+
+    protected OdaException newFilterExprException( String message )
     {
         return ValidatorUtil.newFilterExprException( message, this );
     }

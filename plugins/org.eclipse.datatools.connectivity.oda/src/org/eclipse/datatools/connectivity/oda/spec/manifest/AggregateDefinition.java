@@ -167,7 +167,11 @@ public class AggregateDefinition
             {
                 Object clazz = m_exprElement.createExecutableExtension( ATTR_CLASS );
                 if( clazz instanceof CustomAggregate )
+                {
+                    if( variable != null )
+                        ((CustomAggregate) clazz).add( variable );
                     return (CustomAggregate) clazz;
+                }
                 else
                     throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
                             new Object[]{ className, ATTR_CLASS, CustomAggregate.class.getName()} ));

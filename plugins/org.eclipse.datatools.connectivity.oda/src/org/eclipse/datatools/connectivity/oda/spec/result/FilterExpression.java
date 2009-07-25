@@ -31,7 +31,7 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 public abstract class FilterExpression
 {
     /**
-     * Returns the qualified id of this expression.
+     * Returns the qualified id of this expression type.
      * @return  qualified id
      */
     public String getQualifiedId()
@@ -40,7 +40,7 @@ public abstract class FilterExpression
     }
     
     /**
-     * Gets the name of this filter expression.
+     * Gets the name of this filter expression type.
      * It may be used to identify this in user messages or logging.
      * @return  name of this filter expression
      */

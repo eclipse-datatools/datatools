@@ -54,11 +54,14 @@ public class Messages extends NLS
     public static String profileProperty_PROFILE_NAME;
     public static String profileProperty_PROFILE_STORE_PATH;
 
+    public static String querySpec_CUSTOM_AGGR_EXCEED_MAX_ARGS;
     public static String querySpec_CUSTOM_AGGR_INCOMPATIBLE_DUPL_CHECK;
     public static String querySpec_CUSTOM_AGGR_INCOMPATIBLE_NULL_CHECK;
+    public static String querySpec_CUSTOM_AGGR_LESS_THAN_MIN_ARGS;
     public static String querySpec_CUSTOM_FILTER_EXCEED_MAX_ARGS;
-    public static String querySpec_CUSTOM_FILTER_MISSING_MIN_ARGS;
+    public static String querySpec_CUSTOM_FILTER_LESS_THAN_MIN_ARGS;
     public static String querySpec_EXTENSION_ID_NOT_FOUND;
+    public static String querySpec_INVALID_AGGR_EXPR;
     public static String querySpec_INVALID_ARG;
     public static String querySpec_INVALID_CLASS_TYPE_ATTRIBUTE;
     public static String querySpec_INVALID_EXT_POINT_ATTR_VALUE;
@@ -72,9 +75,12 @@ public class Messages extends NLS
     public static String querySpec_MISSING_EXT_POINT_MIN_ELEMENT;
     public static String querySpec_NON_DEFINED_CUSTOM_AGGR;
     public static String querySpec_NON_DEFINED_CUSTOM_FILTER;
+    public static String querySpec_NONSUPPORTED_VAR_DATA_TYPE;
     public static String querySpec_NOT_EXPR_INCOMPATIBLE;
     public static String querySpec_NOT_EXPR_MISSING_CHILD;
     public static String querySpec_UNABLE_ADD_TO_NON_LIST_COLLECTION;
+    public static String querySpec_UNEXPECTED_AGGR_EXPR_EXTENSION;
+    public static String querySpec_UNEXPECTED_AGGR_EXPR_TYPE;
     public static String querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION;
     public static String querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE;
     public static String querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE;

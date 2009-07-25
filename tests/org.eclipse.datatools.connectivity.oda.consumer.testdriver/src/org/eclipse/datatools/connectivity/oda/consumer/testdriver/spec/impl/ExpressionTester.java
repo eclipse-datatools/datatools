@@ -115,6 +115,16 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validateSyntax( AggregateExpression aggrExpr,
+            ValidationContext context ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     public void validate( QuerySpecification querySpec, ValidationContext context )

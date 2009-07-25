@@ -97,10 +97,6 @@ public abstract class AtomicExpression extends FilterExpression
         }
         catch( OdaException ex )
         {
-            // if this filter expr is already identified as a cause in the caught exception,
-            // proceed to throw it as is; otherwise, add this filter expr as the root cause 
-            if( ValidatorUtil.isInvalidFilterExpression( this, ex ) )
-                throw ex;
             throw ValidatorUtil.newFilterExprException( this, ex );
         }                
     }

@@ -48,7 +48,8 @@ public abstract class AggregateExpression
      */
     protected AggregateExpression( ExpressionVariable inputSourceVar )
     {
-        add( inputSourceVar );
+        if( inputSourceVar != null )
+            add( inputSourceVar );
     }
     
     /**
@@ -86,36 +87,56 @@ public abstract class AggregateExpression
     }
 
     /**
-     * Returns the qualified id of this expression.
+     * Returns the qualified id of this expression type.
      * @return  qualified id
      */
     public String getQualifiedId()
     {
         return getClass().getName();
     }
+    
+    /**
+     * Gets the name of this expression type.
+     * It may be used to identify this in user messages or logging.
+     * @return  name of this expression
+     */
+    public String getName()
+    {
+        return getClass().getSimpleName();
+    }
 
     /**
-     * Gets the alias of this aggregate expression.  
+     * Gets the alias of this aggregate expression instance.  The alias may be used to reference
+     * an instance.
      * @return  the alias, or the combined aliases of its input source variables if no alias is specified
      * @return 
      */
     public String getAlias()
     {
         if( m_alias == null )
-        {   
-            StringBuffer combinedAlias = new StringBuffer();
-            Iterator<ExpressionVariable> iter = getVariables().iterator();
-            while( iter.hasNext() )
-            {
-                if( combinedAlias.length() > 0 )
-                    combinedAlias.append( ALIAS_SEPARATOR );
-                combinedAlias.append( iter.next().getAlias() );
-            }
-            m_alias = combinedAlias.toString();
+        {
+            StringBuffer alias = new StringBuffer( getQualifiedId() );
+            alias.append( ALIAS_SEPARATOR );
+            alias.append( getVariableAliases() );
+            m_alias = alias.toString();
         }
         return m_alias;
     }
 
+    protected String getVariableAliases()
+    {
+        // iterate thru each input variable and append its alias
+        StringBuffer combinedAlias = new StringBuffer();
+        Iterator<ExpressionVariable> iter = getVariables().iterator();
+        while( iter.hasNext() )
+        {
+            if( combinedAlias.length() > 0 )
+                combinedAlias.append( ALIAS_SEPARATOR );
+            combinedAlias.append( iter.next().getAlias() );
+        }
+        return combinedAlias.toString();
+    }
+    
     /**
      * Specifies the alias.
      * @param alias the alias to set
@@ -180,7 +201,25 @@ public abstract class AggregateExpression
      * @throws OdaException if validation failed. The concrete reason is 
      *          defined by the subclass implementing this method.
      */
-    public abstract void validate( ValidationContext context ) 
+    public void validate( ValidationContext context ) 
+        throws OdaException
+    {
+        validateSyntax( context );
+    
+        // pass this to custom validator, if exists, for further overall validation;
+        // up to custom validator class to resolve a variable's data type and validate
+        // against one of the expression's restricted data types
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
+    }
+
+    /**
+     * Performs syntactic validation of this expression in the specified context. 
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The concrete cause is 
+     *          defined by the subclass implementing this method.
+     */
+    public abstract void validateSyntax( ValidationContext context ) 
         throws OdaException;
     
 }
