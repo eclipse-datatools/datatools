@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -231,7 +233,7 @@ public class SortSpecification
 	/**
 	 * Returns the result set column identifier of the sort key 
      * at the specified position.
-	 * @param pos       position of the sort key (1-based).
+	 * @param pos       sequence position of the sort key (1-based).
      * @return          the name of the result set column for the specified sort key.
      * @throws          IndexOutOfBoundsException if <code>pos</code> is out of range 
      *                  (pos < 1 || pos > getSortKeyCount()).
@@ -244,7 +246,7 @@ public class SortSpecification
 	
 	/**
 	 * Returns the sort direction of the sort key at the specified position.
-	 * @param pos		position of the sort key (1-based)
+	 * @param pos		sequence position of the sort key (1-based)
 	 * @return			constant value of the sort direction for the specified sort key
 	 * @throws 			IndexOutOfBoundsException if <code>pos</code> is out of range 
 	 * 					(pos < 1 || pos > getSortKeyCount()).
@@ -256,7 +258,7 @@ public class SortSpecification
 
 	/**
      * Returns the null ordering of the sort key at the specified position.
-     * @param pos       position of the sort key (1-based)
+     * @param pos       sequence position of the sort key (1-based)
      * @return          constant value of the null ordering type for the specified sort key
      * @throws          IndexOutOfBoundsException if <code>pos</code> is out of range 
      *                  (pos < 1 || pos > getSortKeyCount()).
@@ -284,21 +286,13 @@ public class SortSpecification
 	}
 	
 	/**
-	 * Returns an array of all column identifiers for the sort keys of a 
-	 * <code>sortModeSingleOrder</code> <code>SortSpecification</code> object.
-	 * @return	an array of all column identifiers for the sort keys of a 
-	 * 			<code>sortModeSingleOrder</code> <code>SortSpecification</code> 
-	 * 			object; an empty array if no sort keys are associated 
-	 * 			with this <code>SortSpecification</code>.
-	 * @throws IllegalStateException	if this <code>SortSpecification</code>'s sort 
-	 * 									mode is not <code>sortModeSingleOrder</code>.
+	 * Returns an array of all column identifiers for the sort keys.
+	 * @return	an array of all column identifiers for the sort keys;
+	 *          may be an empty array if no sort keys are associated 
+	 * 			with this <code>SortSpecification</code>
 	 */
 	public ColumnIdentifier[] getSortColumns()
 	{
-		if( getSortMode() != IDataSetMetaData.sortModeSingleOrder )
-			throw new IllegalStateException( 
-					Messages.sortSpec_ONLY_IN_SINGLE_ORDER_MODE );
-		
 		int size = getSortKeyCountImpl();
 		ColumnIdentifier[] sortColumns = new ColumnIdentifier[ size ];
 		
@@ -406,6 +400,20 @@ public class SortSpecification
 				return ""; //$NON-NLS-1$
 		}
 	}
+
+    /**
+     * Validates this expression in the specified context. 
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The concrete reason is 
+     *          defined by the subclass implementing this method.
+     */
+    public void validate( ValidationContext context ) 
+        throws OdaException
+    {
+        // pass this to custom validator, if exists, for overall validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
+    }
 
 	/*
 	 * A simple private helper class that stores the state of 

@@ -25,6 +25,8 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.VariableRestrictions
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection;
+import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.AtomicExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
@@ -368,7 +370,7 @@ public class ValidatorUtil
     }
     
     /**
-     * Indicates whether the specified FilterExpression is identified as one of the cause(s)
+     * Indicates whether the specified FilterExpression is one of the cause(s)
      * in the specified OdaException chain.
      * @param filterExpr    a filter expression whose processing might have caused
      *          an OdaException
@@ -400,7 +402,7 @@ public class ValidatorUtil
     /**
      * Creates and returns a top-level OdaException to indicate that the 
      * specified aggregate expression is the cause of the specified driverEx exception.
-     * @param invalidAggrExpr a top-level aggregate expression that is invalid
+     * @param invalidAggrExpr the invalid AggregateExpression to set as the cause
      * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
      *              the invalid state; may be null
      * @return  an OdaException chain with the specified invalid aggregate expression
@@ -436,7 +438,7 @@ public class ValidatorUtil
     }
     
     /**
-     * Indicates whether the specified aggregate expression is identified as one of the cause(s)
+     * Indicates whether the specified aggregate expression is one of the cause(s)
      * in the specified OdaException chain.
      * @param aggrExpr    an aggregate expression whose processing might have caused an OdaException
      * @param rootEx    the root of an OdaException chain caught while processing 
@@ -463,6 +465,208 @@ public class ValidatorUtil
 
         return false;
     }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified result projection is the cause of the specified driverEx exception.
+     * @param resultProj  the invalid ResultProjection to set as the cause
+     * @param driverEx    optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid result projection
+     *          identified as the cause
+     * @see {@link #isInvalidResultProjection(ResultProjection, OdaException)}
+     */
+    public static OdaException newResultProjectionException( ResultProjection resultProj, OdaException driverEx )
+    {
+        return newResultProjectionException( Messages.querySpec_INVALID_RESULT_PROJ, resultProj, driverEx );
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified result projection is the cause of the specified driverEx exception.
+     * @param message   custom exception message
+     * @param resultProj  the invalid ResultProjection to set as the cause
+     * @return  an OdaException with the specified message and invalid result projection
+     *          identified as the cause
+     * @see {@link #isInvalidResultProjection(ResultProjection, OdaException)}
+     */
+    public static OdaException newResultProjectionException( String message, ResultProjection resultProj )
+    {
+        return newResultProjectionException( message, resultProj, null );
+    }
+    
+    private static OdaException newResultProjectionException( String message, ResultProjection resultProj, 
+            OdaException chainedEx )
+    {
+        // if this result projection is already identified as a cause in the caught exception,
+        // proceed to use it as is; otherwise, add this expr as the root cause 
+        if( chainedEx != null && isInvalidResultProjection( resultProj, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, getInstanceId( resultProj ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified result projection is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param resultProj  a result projection whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing the result projection
+     * @return  true if the specified result projection is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidResultProjection( ResultProjection resultProj, OdaException rootEx )
+    {
+        if( resultProj == null )
+            return true;
+
+        String resultProjId = getInstanceId( resultProj );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    resultProjId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified sort key is the cause of the specified driverEx exception.
+     * @param sortKeySequenceOrder the sequence ordering position of a sort key that is invalid
+     * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid sort key
+     *          identified as the cause
+     * @see {@link #isInvalidSortKey(int, OdaException)}
+     */
+    public static OdaException newSortKeyException( int sortKeySequenceOrder, OdaException driverEx )
+    {
+        return newSortKeyException( Messages.querySpec_INVALID_SORT_KEY, sortKeySequenceOrder, driverEx );
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified sort key is the cause of the specified driverEx exception.
+     * @param message   custom exception message
+     * @param sortKeySequenceOrder the sequence ordering position of a sort key that is invalid
+     * @return  an OdaException with the specified message and invalid sort key
+     *          identified as the cause
+     * @see {@link #isInvalidSortKey(int, OdaException)}
+     */
+    public static OdaException newSortKeyException( String message, int sortKeySequenceOrder )
+    {
+        return newSortKeyException( message, sortKeySequenceOrder, null );
+    }
+    
+    private static OdaException newSortKeyException( String message, int sortKeySequenceOrder, 
+            OdaException chainedEx )
+    {
+        // if this sort key is already identified as a cause in the caught exception,
+        // proceed to use it as is; otherwise, add this expr as the root cause 
+        if( chainedEx != null && isInvalidSortKey( sortKeySequenceOrder, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, String.valueOf( sortKeySequenceOrder ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified sort key is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param sortKeySequenceOrder  the sequence ordering position of a sort key
+     *                  whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing the sort key
+     * @return  true if the specified sort key is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidSortKey( int sortKeySequenceOrder, OdaException rootEx )
+    {
+        if( sortKeySequenceOrder == 0 )
+            return true;
+
+        String aggrExprId = String.valueOf( sortKeySequenceOrder );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    aggrExprId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified sort specification is the cause of the specified driverEx exception.
+     * @param sortSpec  the invalid SortSpecification to set as the cause
+     * @param driverEx    optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid sort key
+     *          identified as the cause
+     * @see {@link #isInvalidSortSpec(SortSpecification, OdaException)}
+     */
+    public static OdaException newSortSpecException( SortSpecification sortSpec, OdaException driverEx )
+    {
+        return newSortSpecException( Messages.querySpec_INVALID_SORT_SPEC, sortSpec, driverEx );
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified sort specification is the cause of the specified driverEx exception.
+     * @param message   custom exception message
+     * @param sortSpec  the invalid SortSpecification to set as the cause
+     * @return  an OdaException with the specified message and invalid sort key
+     *          identified as the cause
+     * @see {@link #isInvalidSortSpec(SortSpecification, OdaException)}
+     */
+    public static OdaException newSortSpecException( String message, SortSpecification sortSpec )
+    {
+        return newSortSpecException( message, sortSpec, null );
+    }
+    
+    private static OdaException newSortSpecException( String message, SortSpecification sortSpec, 
+            OdaException chainedEx )
+    {
+        // if this sort spec is already identified as a cause in the caught exception,
+        // proceed to use it as is; otherwise, add this expr as the root cause 
+        if( chainedEx != null && isInvalidSortSpec( sortSpec, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, getInstanceId( sortSpec ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified sort specification is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param sortSpec  a sort specification whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing the sort specification
+     * @return  true if the specified sort specification is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidSortSpec( SortSpecification sortSpec, OdaException rootEx )
+    {
+        if( sortSpec == null )
+            return true;
+
+        String sortSpecId = getInstanceId( sortSpec );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    sortSpecId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
 
     private static String getInstanceId( FilterExpression filterExpr )
     {
@@ -475,7 +679,21 @@ public class ValidatorUtil
     {
         if( aggrExpr == null )
             return null;
-        return aggrExpr.getAlias() + AT_SYMBOL + Integer.toHexString( aggrExpr.hashCode() );
+        return aggrExpr.getName() + AT_SYMBOL + Integer.toHexString( aggrExpr.hashCode() );
+    }
+    
+    private static String getInstanceId( ResultProjection resultProj )
+    {
+        if( resultProj == null )
+            return null;
+        return resultProj.getClass().getSimpleName() + AT_SYMBOL + Integer.toHexString( resultProj.hashCode() );
+    }
+    
+    private static String getInstanceId( SortSpecification sortSpec )
+    {
+        if( sortSpec == null )
+            return null;
+        return sortSpec + AT_SYMBOL + Integer.toHexString( sortSpec.hashCode() );
     }
     
 }

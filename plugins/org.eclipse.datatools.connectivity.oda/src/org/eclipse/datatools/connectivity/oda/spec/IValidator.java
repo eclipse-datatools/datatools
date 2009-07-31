@@ -17,6 +17,7 @@ package org.eclipse.datatools.connectivity.oda.spec;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -84,6 +85,16 @@ public interface IValidator
      *          by the class implementing this method.
      */
     public void validateSyntax( AggregateExpression aggrExpr, ValidationContext context )
+        throws OdaException;
+    
+    /**
+     * Validates the specified sort specification in the specified context.
+     * @param sortSpec  a {@link SortSpecification} to validate
+     * @param context      context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+    public void validate( SortSpecification sortSpec, ValidationContext context ) 
         throws OdaException;
 
 }

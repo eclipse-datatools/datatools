@@ -62,11 +62,15 @@ public class Messages extends NLS
     public static String querySpec_CUSTOM_FILTER_LESS_THAN_MIN_ARGS;
     public static String querySpec_EXTENSION_ID_NOT_FOUND;
     public static String querySpec_INVALID_AGGR_EXPR;
+    public static String querySpec_INVALID_AGGR_HIDE_COLUMN;
     public static String querySpec_INVALID_ARG;
     public static String querySpec_INVALID_CLASS_TYPE_ATTRIBUTE;
     public static String querySpec_INVALID_EXT_POINT_ATTR_VALUE;
     public static String querySpec_INVALID_EXT_POINT_ELEMENT;
     public static String querySpec_INVALID_FILTER_EXPR;
+    public static String querySpec_INVALID_RESULT_PROJ;
+    public static String querySpec_INVALID_SORT_KEY;
+    public static String querySpec_INVALID_SORT_SPEC;
     public static String querySpec_MAX_ONE_NEGATING_EXPR;
     public static String querySpec_MISSING_COMPOSITE_MIN_CHILDREN;
     public static String querySpec_MISSING_EXPR_VARIABLE;

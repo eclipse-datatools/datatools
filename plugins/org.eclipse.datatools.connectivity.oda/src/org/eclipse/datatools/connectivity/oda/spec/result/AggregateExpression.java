@@ -108,33 +108,11 @@ public abstract class AggregateExpression
     /**
      * Gets the alias of this aggregate expression instance.  The alias may be used to reference
      * an instance.
-     * @return  the alias, or the combined aliases of its input source variables if no alias is specified
-     * @return 
+     * @return  the alias; may be null
      */
     public String getAlias()
     {
-        if( m_alias == null )
-        {
-            StringBuffer alias = new StringBuffer( getQualifiedId() );
-            alias.append( ALIAS_SEPARATOR );
-            alias.append( getVariableAliases() );
-            m_alias = alias.toString();
-        }
         return m_alias;
-    }
-
-    protected String getVariableAliases()
-    {
-        // iterate thru each input variable and append its alias
-        StringBuffer combinedAlias = new StringBuffer();
-        Iterator<ExpressionVariable> iter = getVariables().iterator();
-        while( iter.hasNext() )
-        {
-            if( combinedAlias.length() > 0 )
-                combinedAlias.append( ALIAS_SEPARATOR );
-            combinedAlias.append( iter.next().getAlias() );
-        }
-        return combinedAlias.toString();
     }
     
     /**
@@ -221,5 +199,31 @@ public abstract class AggregateExpression
      */
     public abstract void validateSyntax( ValidationContext context ) 
         throws OdaException;
-    
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        StringBuffer buffer = new StringBuffer( getQualifiedId() );
+        buffer.append( ALIAS_SEPARATOR );
+        buffer.append( getVariableAliases() );
+        return buffer.toString();
+    }
+
+    protected String getVariableAliases()
+    {
+        // iterate thru each input variable and append its alias
+        StringBuffer combinedAlias = new StringBuffer();
+        Iterator<ExpressionVariable> iter = getVariables().iterator();
+        while( iter.hasNext() )
+        {
+            if( combinedAlias.length() > 0 )
+                combinedAlias.append( ALIAS_SEPARATOR );
+            combinedAlias.append( iter.next().getAlias() );
+        }
+        return combinedAlias.toString();
+    }
+   
 }

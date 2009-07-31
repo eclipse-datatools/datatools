@@ -101,7 +101,6 @@ public class ExpressionTester implements IValidator, IExecutableExtension
         // TODO 
         // validate a custom expression is supported 
         // vaildate ExpressionVariable is of type RESULT_COLUMN
-                
     }
 
     /* (non-Javadoc)
@@ -111,7 +110,6 @@ public class ExpressionTester implements IValidator, IExecutableExtension
             throws OdaException
     {
         // TODO Auto-generated method stub
-        
     }
 
     /* (non-Javadoc)
@@ -121,7 +119,15 @@ public class ExpressionTester implements IValidator, IExecutableExtension
             ValidationContext context ) throws OdaException
     {
         // TODO Auto-generated method stub
-        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validate( SortSpecification sortSpec, ValidationContext context )
+            throws OdaException
+    {
+        // TODO Auto-generated method stub  
     }
 
     /* (non-Javadoc)

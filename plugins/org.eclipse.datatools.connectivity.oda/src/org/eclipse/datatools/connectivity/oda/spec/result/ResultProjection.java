@@ -52,7 +52,8 @@ public class ResultProjection
      * Each set is grouped by the unique values of all the other result set column(s) 
      * that do not have an aggregate expression projected.
      * <br>A projected tabular result set returns one row for each group. 
-     * @param resultColumn   the projected column identifier in the result set
+     * @param resultColumn   the column identifier in the projected result set targeted for the 
+     *          output of the specified aggregate expression
      * @param aggregate an {@link AggregateExpression} whose output value is projected on the 
      *                  specified result set column
      * @throws OdaException
@@ -62,7 +63,7 @@ public class ResultProjection
         validateColumnIdentifier( resultColumn );
         if( getHiddenResultColumns().contains( resultColumn ) )
             throw ValidatorUtil.newAggregateException( 
-                    Messages.bind( "Cannot project aggregation on a hidden column {0}.", resultColumn ), 
+                    Messages.bind( Messages.querySpec_INVALID_AGGR_HIDE_COLUMN, resultColumn ), 
                     aggregate );
         
         getAggregatedColumns().put( resultColumn, aggregate );
@@ -105,26 +106,6 @@ public class ResultProjection
     {
         getAddedResultColumns().put( new ColumnIdentifier( columnExprVariable.getAlias() ), 
                                     columnExprVariable );
-    }
-    
-    /**
-     * Specifies the aggregate projection on a new result set column.
-     * The appended result column can be referenced in the result set by the specified aggregate's alias.
-     * @param aggregate an {@link AggregateExpression} whose output value is projected on the 
-     *                  new result set column
-     * @throws OdaException
-     * @see #setProjection(ColumnIdentifier, AggregateExpression)
-     */
-    public void addResultColumn( AggregateExpression aggregate ) throws OdaException
-    {
-        // add a new column with the aggregate's first input source variable, if available
-        ColumnIdentifier newColumn = new ColumnIdentifier( aggregate.getAlias() );
-        ExpressionVariable columnExprVariable = aggregate.getVariables().isEmpty() ? 
-                                                null : aggregate.getVariables().get( 0 );
-        getAddedResultColumns().put( newColumn, columnExprVariable );
-        
-        // project the aggregate expression onto the new column
-        setProjection( newColumn, aggregate );
     }
     
     /**
