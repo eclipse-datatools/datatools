@@ -18,6 +18,7 @@ driverDBName = 数据库名称
 driverConnectionURL = 连接 URL
 driverUID = 用户 ID
 driverPWD = 密码
+driverCP = Properties
 
 MYSQL_CATEGORY_NAME = MySQL
 4_0_VERSION_CATEGORY_NAME = 4.0

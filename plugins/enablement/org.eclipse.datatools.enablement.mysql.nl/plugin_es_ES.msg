@@ -18,6 +18,7 @@ driverDBName = Nombre de base de datos
 driverConnectionURL = URL de conexión
 driverUID = Identificador de usuario
 driverPWD = Contraseña
+driverCP = Properties
 
 MYSQL_CATEGORY_NAME = MySQL
 4_0_VERSION_CATEGORY_NAME = 4.0
