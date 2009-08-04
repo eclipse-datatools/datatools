@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQLITE" version="3.5.9" maximumIdentifierLength="64" maximumCommentLength="64" mQTSupported="true" aliasSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQLITE" version="3.5.9" maximumIdentifierLength="64" maximumCommentLength="64" mQTSupported="true" schemaSupported="false" aliasSupported="true">
   <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>INTEGER</name>
@@ -29,5 +29,4 @@
     <checkOption>LOCAL</checkOption>
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
-  <viewDefinition checkOptionSupported="false"/>
 </DBDefinition:DatabaseVendorDefinition>

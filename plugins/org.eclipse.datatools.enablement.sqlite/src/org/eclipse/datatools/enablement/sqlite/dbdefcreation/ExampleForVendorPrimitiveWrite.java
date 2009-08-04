@@ -49,6 +49,7 @@ public class ExampleForVendorPrimitiveWrite {
 			databaseVendorDefinition.setMaximumCommentLength(64);
 			databaseVendorDefinition.setMQTSupported(true);
 			databaseVendorDefinition.setAliasSupported(true);
+			databaseVendorDefinition.setSchemaSupported(false);
 			
 			ColumnDefinition columnDefinition = DatabaseDefinitionFactory.eINSTANCE.createColumnDefinition();
 			columnDefinition.setIdentitySupported(true);

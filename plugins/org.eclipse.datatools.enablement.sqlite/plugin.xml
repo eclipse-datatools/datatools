@@ -100,6 +100,12 @@
             provider="org.eclipse.datatools.enablement.sqlite.loader.SQLiteTableConstraintLoader"
             version="3.5.9">
       </overrideLoader>
+      <overrideLoader
+            eclass="org.eclipse.datatools.modelbase.sql.tables.Column"
+            product="SQLITE"
+            provider="org.eclipse.datatools.enablement.sqlite.loader.SQLiteTableColumnLoader"
+            version="3.5.9">
+      </overrideLoader>
    </extension>
    <extension
          point="org.eclipse.datatools.connectivity.sqm.core.mappings">
