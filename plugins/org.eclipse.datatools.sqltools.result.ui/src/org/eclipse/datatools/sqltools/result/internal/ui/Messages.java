@@ -309,6 +309,12 @@ public final class Messages extends NLS {
     public static String ResultHistoryPage_columns_selectedlist_name;
     public static String ResultHistoryPage_columns_availablelist_name;
     public static String find_replace_action_label;
+    public static String ShiftListMoveRight;
+    public static String ShiftListMoveRightAll;
+    public static String ShiftListMoveLeft;
+    public static String ShiftListMoveLeftAll;
+    public static String ShiftListMoveUp;
+    public static String ShiftListMoveDown;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

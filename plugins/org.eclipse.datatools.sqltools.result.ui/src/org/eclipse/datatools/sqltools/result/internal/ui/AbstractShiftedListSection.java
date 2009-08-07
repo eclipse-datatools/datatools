@@ -34,12 +34,12 @@ public abstract class AbstractShiftedListSection
     protected String _groupTitle;
     protected String _leftListTitle;
     protected String _rightListTitle;
-    protected String _left2Right    = "Re&move>>";
-    protected String _leaf2RightAll = "R&emove All>>";
-    protected String _right2Left    = "<<&Add";
-    protected String _right2LeafAll = "<<Add A&ll";
-    protected String _moveUp        = "Move &Up";
-    protected String _moveDown      = "Move &Down";
+    protected String _left2Right;
+    protected String _left2RightAll;
+    protected String _right2Left;
+    protected String _right2LeftAll;
+    protected String _moveUp;
+    protected String _moveDown;
 
     static final int BUTTON_WIDTH   = 80;
 
@@ -82,6 +82,8 @@ public abstract class AbstractShiftedListSection
         layout = new GridLayout();
         buttonsComp.setLayout(layout);
 
+        setShiftButtonText();
+        
         new Label(buttonsComp, SWT.NONE);
         _left2RightButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
@@ -108,7 +110,7 @@ public abstract class AbstractShiftedListSection
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
         gd.widthHint = BUTTON_WIDTH;
         _left2RightAllButton.setLayoutData(gd);
-        _left2RightAllButton.setText(_leaf2RightAll);
+        _left2RightAllButton.setText(_left2RightAll);
         _left2RightAllButton.addSelectionListener(new SelectionListener()
         {
 
@@ -149,7 +151,7 @@ public abstract class AbstractShiftedListSection
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
         gd.widthHint = BUTTON_WIDTH;
         _right2LeftAllButton.setLayoutData(gd);
-        _right2LeftAllButton.setText(_right2LeafAll);
+        _right2LeftAllButton.setText(_right2LeftAll);
         _right2LeftAllButton.addSelectionListener(new SelectionListener()
         {
 
@@ -457,5 +459,15 @@ public abstract class AbstractShiftedListSection
     {
         moveItem(_leftList, false);
         computeLeftData();
+    }
+    
+    protected void setShiftButtonText() {
+        _left2Right    = Messages.ShiftListMoveRight;
+        _left2RightAll = Messages.ShiftListMoveRightAll;
+        _right2Left    = Messages.ShiftListMoveLeft;
+        _right2LeftAll = Messages.ShiftListMoveLeftAll;
+        _moveUp        = Messages.ShiftListMoveUp;
+        _moveDown      = Messages.ShiftListMoveDown;
+
     }
 }
