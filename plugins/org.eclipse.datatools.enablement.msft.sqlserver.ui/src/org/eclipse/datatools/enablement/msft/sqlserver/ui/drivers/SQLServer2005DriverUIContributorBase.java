@@ -639,6 +639,11 @@ public class SQLServer2005DriverUIContributorBase implements IDriverUIContributo
 					this.databaseName = remainingURL.substring(new String(
 							"databaseName=").length()); //$NON-NLS-1$
 				}
+				String[] props = url.split(";"); //$NON-NLS-1$
+				for(int i = 0; i < props.length; i++) {
+					if(props[i].equalsIgnoreCase("integratedSecurity=true")) //$NON-NLS-1$
+						useClientAuthentication = true;
+				}
 			} catch (Exception e) {
 			}
 		}
