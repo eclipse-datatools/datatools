@@ -12,7 +12,9 @@
 package org.eclipse.datatools.connectivity.internal.ui.preferences;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
@@ -580,7 +582,19 @@ public class DriverPreferences extends PreferencePage implements
 				String copyIdSuffix = DriverMgmtMessages
 						.getString("PropertySetImpl.copy_id_suffix"); //$NON-NLS-1$
 				String name = copyPrefix + instance.getName();
-				String id = instance.getID() + copyIdSuffix;
+				String defnType = null;
+				Properties props = instance.getBaseProperties();
+				Iterator iter = props.entrySet().iterator();
+				while (iter.hasNext()) {
+					Map.Entry entry = (Map.Entry) iter.next();
+					String key = (String)entry.getKey();
+					if(key.equals(IDriverMgmtConstants.PROP_DEFN_TYPE))
+						defnType = (String) entry.getValue();
+				}
+				
+				String propIdPrefix = DriverMgmtMessages
+					.getString("EditDriverDialog.text.id_prefix"); //$NON-NLS-1$
+				String id = propIdPrefix + defnType + "." + copyPrefix + instance.getName(); //$NON-NLS-1$
 				cloned.setID(id);
 				cloned.setName(name);
 				
