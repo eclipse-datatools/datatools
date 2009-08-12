@@ -17,7 +17,7 @@
       <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="java.sql.Connection"
-            name="JDBC Connection"
+            name="%jdbc.connection.name"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
    
