@@ -517,6 +517,10 @@ public class CPWizardSelectionPage
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
 		}
+		else if(cpName.indexOf(":") != -1) { //$NON-NLS-1$
+			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
+				"NewConnectionProfileWizardPage.Status.ContainsColon");//$NON-NLS-1$
+		}		
 		else {
 			foundProfile = ProfileManager.getInstance().getProfileByName(cpName.trim());
 			if (foundProfile != null)
