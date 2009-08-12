@@ -14,7 +14,7 @@
       <connectionFactory
             class="org.eclipse.datatools.enablement.internal.oracle.JDBCOracleConnectionFactory"
             id="java.sql.Connection"
-            name="jdbc.connection.name"
+            name="%jdbc.connection.name"
             profile="org.eclipse.datatools.enablement.oracle.connectionProfile"/>
    </extension>
    
