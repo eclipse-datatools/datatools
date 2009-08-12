@@ -1,0 +1,1 @@
+Connectivity_description=展开树以编辑数据加工的首选项。
