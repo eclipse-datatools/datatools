@@ -333,6 +333,8 @@ public class CPWizardSelectionPage
 						if (iss != null && !iss.isEmpty()) {
 							CPWizardNode node = (CPWizardNode) iss
 									.getFirstElement();
+							if (getSelectedNode() != null && getSelectedNode().equals(node))
+								return;
 							int i = 0;
 							String newName = ConnectivityUIPlugin.getDefault().getResourceString(
 								"CPWizardSelectionPage.defaultName", new String[] {node.getProvider().getName()}); //$NON-NLS-1$
