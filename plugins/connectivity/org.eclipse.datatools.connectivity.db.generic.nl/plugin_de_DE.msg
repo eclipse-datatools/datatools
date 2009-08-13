@@ -13,3 +13,4 @@ org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = Generische
 org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = Generischer JDBC-Treiber
 databases.category = Datenbankverbindungen
 generic.profile.name = SQL Modell – JDBC-Verbindung
+jdbc.connection.name = JDBC Connection

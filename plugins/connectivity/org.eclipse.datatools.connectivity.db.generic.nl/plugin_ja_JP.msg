@@ -13,3 +13,4 @@ org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = 一般的な J
 org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = 一般的な JDBC ドライバ
 databases.category = データベース接続
 generic.profile.name = SQL モデル - JDBC 接続
+jdbc.connection.name = JDBC Connection
