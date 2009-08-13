@@ -186,3 +186,4 @@ Boolean.false = false
 
 NewRepositoryWizard.title = Nueva ventana de asistente de repositorio
 
+NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!

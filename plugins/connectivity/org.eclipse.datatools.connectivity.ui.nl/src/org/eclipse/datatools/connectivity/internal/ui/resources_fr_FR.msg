@@ -186,3 +186,5 @@ Boolean.false = faux
 
 NewRepositoryWizard.title = Fenêtre du nouvel Assistant du référentiel
 
+NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
+

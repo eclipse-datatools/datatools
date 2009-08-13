@@ -185,3 +185,5 @@ Boolean.true = true
 Boolean.false = false
 
 NewRepositoryWizard.title = レポジトリの新規作成ウィザードウィンドウ
+
+NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
