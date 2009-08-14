@@ -79,6 +79,7 @@ querySpec_MISSING_EXT_POINT_ELEMENT=L''élément {2} est manquant pour l''extensio
 querySpec_MISSING_EXT_POINT_MIN_ELEMENT=L''extension {0} ({1}) doit avoir au moins un élément {2} défini.
 querySpec_NON_DEFINED_CUSTOM_AGGR=L'expression d'agrégats personnalisée ({0}) est introuvable dans le registre des extensions du jeu de résultats dynamique.
 querySpec_NON_DEFINED_CUSTOM_FILTER=L'expression de filtre personnalisée ({0}) est introuvable dans le registre des extensions du jeu de résultats dynamique.
+querySpec_NONSUPPORTED_NULL_ORDERING=Null ordering specification is not supported by the data source provider.
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=Le type des données natives ({0}) de la variable d'expression ({1}) n'est pas pris en charge par le type d'expression personnalisée utilisé.
 querySpec_NOT_EXPR_INCOMPATIBLE=Utilisation incorrecte d''une expression ({0}) ne pouvant être niée dans un {1}.
 querySpec_NOT_EXPR_MISSING_CHILD=Expression de mise en négatif manquante dans l''expression Pas : ({0}).

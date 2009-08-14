@@ -79,6 +79,7 @@ querySpec_MISSING_EXT_POINT_ELEMENT={0} 扩展 ({1}) 缺少 {2} 元素。
 querySpec_MISSING_EXT_POINT_MIN_ELEMENT={0} 扩展 ({1}) 必须至少具有一个已定义的 {2} 元素。
 querySpec_NON_DEFINED_CUSTOM_AGGR=在 dynamicResultSet 扩展注册表中未找到自定义聚合表达式 ({0})。
 querySpec_NON_DEFINED_CUSTOM_FILTER=在 dynamicResultSet 扩展注册表中未找到自定义筛选表达式 ({0})。
+querySpec_NONSUPPORTED_NULL_ORDERING=Null ordering specification is not supported by the data source provider.
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=使用的自定义表达式类型不支持表达式变量 ({0}) 的本机数据类型 ({1})。
 querySpec_NOT_EXPR_INCOMPATIBLE=在 {1} 中使用的非否定表达式 ({0}) 无效。
 querySpec_NOT_EXPR_MISSING_CHILD=NotExpression: ({0}) 中缺少否定表达式。

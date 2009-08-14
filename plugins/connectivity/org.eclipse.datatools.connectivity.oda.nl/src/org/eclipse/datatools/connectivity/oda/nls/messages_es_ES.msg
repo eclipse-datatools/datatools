@@ -79,6 +79,7 @@ querySpec_MISSING_EXT_POINT_ELEMENT=Falta el elemento {2} en la extensión de {0}
 querySpec_MISSING_EXT_POINT_MIN_ELEMENT=La extensión de {0} ({1}) tener al menos un elemento {2} definido.
 querySpec_NON_DEFINED_CUSTOM_AGGR=No se encuentra la expresión de total personalizada ({0} en el registro de extensión dynamicResultSet.
 querySpec_NON_DEFINED_CUSTOM_FILTER=No se encuentra la expresión de filtro personalizada ({0}) en el registro de extensión dynamicResultSet.
+querySpec_NONSUPPORTED_NULL_ORDERING=Null ordering specification is not supported by the data source provider.
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=El tipo de datos nativo ({0}) de la variable de expresión ({1}) no es compatible con el tipo de expresión personalizada usada.
 querySpec_NOT_EXPR_INCOMPATIBLE=Uso no válido de una expresión que no puede ser negada ({0}) en {1}.
 querySpec_NOT_EXPR_MISSING_CHILD=Falta una expresión de negación en NotExpression: ({0}).
