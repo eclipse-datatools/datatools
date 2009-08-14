@@ -290,7 +290,30 @@ public class ValidatorUtil
                         exprVar.toString() );
         }
     }
-    
+
+    /**
+     * Validates that null ordering is not specified in the given sortSpec.
+     * This utility method can be used by the custom validator of an ODA driver that does not support null ordering.
+     * @param sortSpec      the sort specification found in a query spec
+     * @throws OdaException  if validation fails
+     */
+    public static void validateHasNoNullOrderingSpec( SortSpecification sortSpec ) 
+        throws OdaException
+    {
+        if( sortSpec == null || sortSpec.getSortKeyCount() == 0 )
+            return;     // nothing to validate
+
+        // null ordering is not supported, validate that none of the sort keys have specified null ordering
+        int numSortKeys = sortSpec.getSortKeyCount();
+        for( int i=1; i <= numSortKeys; i++ )
+        {
+            int nullOrderingType = sortSpec.getNullOrdering( i );
+            if( nullOrderingType != SortSpecification.NULL_ORDERING_NONE )
+                throw newSortSpecException( Messages.querySpec_NONSUPPORTED_NULL_ORDERING,
+                        sortSpec );
+        }
+    }
+
     /**
      * Creates and returns an OdaException with the specified message and
      * an IllegalArgumentException cause with the specified causeIdentifier.

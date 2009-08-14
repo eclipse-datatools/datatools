@@ -79,6 +79,7 @@ public class Messages extends NLS
     public static String querySpec_MISSING_EXT_POINT_MIN_ELEMENT;
     public static String querySpec_NON_DEFINED_CUSTOM_AGGR;
     public static String querySpec_NON_DEFINED_CUSTOM_FILTER;
+    public static String querySpec_NONSUPPORTED_NULL_ORDERING;
     public static String querySpec_NONSUPPORTED_VAR_DATA_TYPE;
     public static String querySpec_NOT_EXPR_INCOMPATIBLE;
     public static String querySpec_NOT_EXPR_MISSING_CHILD;
