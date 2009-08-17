@@ -215,7 +215,7 @@ public class DriverInstance {
 	 * @return ClassLoader URLClassLoader with jar list pre-loaded
 	 * @throws Exception
 	 */
-	public ClassLoader getClassLoader() throws Exception {
+	public synchronized ClassLoader getClassLoader() throws Exception {
 		if (mClassLoader == null || mClassLoader.get() == null ) {
 			mClassLoader = new SoftReference(createClassLoader(null));
 		}
