@@ -341,7 +341,9 @@
 		<copy file="${buildDirectory}/directory.txt" todir="${postingDirectory}/${buildId}"/>
         <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
 		<copy tofile="${postingDirectory}/monitor.properties" file="monitor.properties" overwrite="true" />
-        <copy file="*.log" todir="${postingDirectory}/${buildId}"/>
+        <copy todir="${postingDirectory}/${buildId}">
+		   <fileset dir="." includes="*.log"/>
+		</copy>
 		
         <tstamp prefix="timestamp">
             <format property="package.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
