@@ -95,7 +95,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
             // New... button
 			{
 		        Button newButton = new Button( group, SWT.PUSH );
-		        newButton.setText( Messages.profilePage_button_new );
+		        newButton.setText( Messages.profileStoreCreationDialog_button_new );
 		        newButton.setToolTipText( Messages.profileStoreCreationDialog_newbutton_tooltiptext );
 		        GridData newButtonData = new GridData();
 		        newButtonData.horizontalAlignment = SWT.RIGHT;

@@ -77,6 +77,7 @@ public class Messages extends NLS
     public static String ui_requiredFieldsMissingValue;
     public static String ui_errorLabel;
     public static String ui_errorCreatingCustomCtrls;
+    public static String profileStoreCreationDialog_button_new;
     public static String profileStoreCreationDialog_title;
     public static String profileStoreCreationDialog_grouptext;
     public static String profileStoreCreationDialog_newbutton_tooltiptext;
