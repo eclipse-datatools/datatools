@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=데이터 원본에서 연결 프로필 저장의 외부
 profilePage_checkboxLabel_maintainLink=연결 프로필 저장의 외부화된 속성(&E) 사용
 profilePage_error_invalidName=데이터 원본 이름이 잘못되었습니다.
 profilePage_error_invalidProfileStorePath=연결 프로필 저장소에 대한 잘못된 경로
+profileStoreCreationDialog_button_new=새로 만들기(&W)...
 profileStoreCreationDialog_title=연결 프로필 저장소 생성
 profileStoreCreationDialog_grouptext=저장소에 포함할 연결 프로필 선택(&P):
 profileStoreCreationDialog_newbutton_tooltiptext=새 연결 프로필을 생성합니다.

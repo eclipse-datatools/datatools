@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Utilice siempre los valores de propieda
 profilePage_checkboxLabel_maintainLink=Utilizar propiedades &externalizadas en el almacenamiento de perfil de conexión
 profilePage_error_invalidName=El nombre de la fuente de datos no es válido.
 profilePage_error_invalidProfileStorePath=Ruta no válida para almacenamiento de perfil de conexión
+profileStoreCreationDialog_button_new=&Nuevo...
 profileStoreCreationDialog_title=Crear almacenamiento de perfil de conexión
 profileStoreCreationDialog_grouptext=Seleccione los &perfiles de conexión que se incluirán en el almacenamiento:
 profileStoreCreationDialog_newbutton_tooltiptext=Crear un nuevo perfil de conexión

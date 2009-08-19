@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Toujours utiliser les valeurs de propri
 profilePage_checkboxLabel_maintainLink=Utiliser les propriétés &externalisées dans l'emplacement de stockage des profils de connexion
 profilePage_error_invalidName=Le nom de la source de données n'est pas valide.
 profilePage_error_invalidProfileStorePath=Chemin de l'emplacement de stockage des profils de connexion incorrect
+profileStoreCreationDialog_button_new=&Nouveau...
 profileStoreCreationDialog_title=Créer un emplacement de stockage des profils de connexion
 profileStoreCreationDialog_grouptext=Sélectionnez les &profils de connexion à inclure dans l'emplacement de stockage :
 profileStoreCreationDialog_newbutton_tooltiptext=Créer un nouveau profil de connexion

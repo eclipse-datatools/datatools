@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Verwenden Sie stets die externalisierte
 profilePage_checkboxLabel_maintainLink=&Externalisierte Eigenschaften im Speicher für Verbindungsprofile verwenden
 profilePage_error_invalidName=Datenquellname ist ungültig.
 profilePage_error_invalidProfileStorePath=Ungültiger Pfad für Verbindungsprofilspeicher
+profileStoreCreationDialog_button_new=N&eu...
 profileStoreCreationDialog_title=Speicher für Verbindungsprofile erstellen
 profileStoreCreationDialog_grouptext=Verbindungs&profile wählen, die der Speicher enthalten soll:
 profileStoreCreationDialog_newbutton_tooltiptext=Neues Verbindungsprofil erstellen

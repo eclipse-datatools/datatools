@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=ƒf[ƒ^ƒ\[ƒX‚É‚ÍAí‚ÉÚ‘±ƒvƒƒtƒ@ƒCƒ‹ƒ
 profilePage_checkboxLabel_maintainLink=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚ÌŠO•”‰»‚µ‚½ƒvƒƒpƒeƒB’l‚ğg—p‚·‚é(&E)
 profilePage_error_invalidName=ƒf[ƒ^ƒ\[ƒX–¼‚ª–³Œø‚Å‚·B
 profilePage_error_invalidProfileStorePath=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚ÌƒpƒX‚ª–³Œø‚Å‚·B
+profileStoreCreationDialog_button_new=V‹Kì¬(&W)...
 profileStoreCreationDialog_title=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚Ìì¬
 profileStoreCreationDialog_grouptext=ƒXƒgƒA‚ÉŠÜ‚ß‚éÚ‘±ƒvƒƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢(&P) :
 profileStoreCreationDialog_newbutton_tooltiptext=V‚µ‚¢Ú‘±ƒvƒƒtƒ@ƒCƒ‹‚Ìì¬

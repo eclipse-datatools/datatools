@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Ê¼ÖÕÊ¹ÓÃÊı¾İÔ´ÖĞÁ¬½ÓÅäÖÃÎÄ¼ş´æ´¢µÄÍâ²¿»
 profilePage_checkboxLabel_maintainLink=Ê¹ÓÃÁ¬½ÓÅäÖÃÎÄ¼ş´æ´¢ÖĞµÄÍâ²¿»¯ÊôĞÔ(&E)
 profilePage_error_invalidName=Êı¾İÔ´Ãû³ÆÎŞĞ§¡£
 profilePage_error_invalidProfileStorePath=Á¬½ÓÅäÖÃÎÄ¼ş´æ´¢µÄÎŞĞ§Â·¾¶
+profileStoreCreationDialog_button_new=ĞÂ½¨(&W)...
 profileStoreCreationDialog_title=´´½¨Á¬½ÓÅäÖÃÎÄ¼ş´æ´¢
 profileStoreCreationDialog_grouptext=Ñ¡ÔñÒª°üÀ¨ÔÚ´æ´¢ÖĞµÄÁ¬½ÓÅäÖÃÎÄ¼ş(&P):
 profileStoreCreationDialog_newbutton_tooltiptext=´´½¨ĞÂµÄÁ¬½ÓÅäÖÃÎÄ¼ş
