@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection;
+import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.AtomicExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
@@ -690,6 +691,55 @@ public class ValidatorUtil
 
         return false;
     }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified result set specification is the cause of the specified driverEx exception.
+     * @param message   custom exception message
+     * @param resultSetSpec  the invalid ResultSetSpecification to set as the cause
+     * @param driverEx    optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid result set specification
+     *          identified as the cause
+     * @see {@link #isInvalidResultSetSpec(ResultSetSpecification, OdaException)}
+     */
+    public static OdaException newResultSetSpecException( String message, ResultSetSpecification resultSetSpec, 
+            OdaException chainedEx )
+    {
+        // if this result set spec is already identified as a cause in the caught exception,
+        // proceed to use it as is; otherwise, add this spec as the root cause 
+        if( chainedEx != null && isInvalidResultSetSpec( resultSetSpec, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, getInstanceId( resultSetSpec ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified result set specification is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param resultSetSpec  a result set specification whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing the result set specification
+     * @return  true if the specified result set specification is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidResultSetSpec( ResultSetSpecification resultSetSpec, OdaException rootEx )
+    {
+        if( resultSetSpec == null )
+            return true;
+
+        String specId = getInstanceId( resultSetSpec );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    specId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
 
     private static String getInstanceId( FilterExpression filterExpr )
     {
@@ -717,6 +767,13 @@ public class ValidatorUtil
         if( sortSpec == null )
             return null;
         return sortSpec + AT_SYMBOL + Integer.toHexString( sortSpec.hashCode() );
+    }
+    
+    private static String getInstanceId( ResultSetSpecification resultSetSpec )
+    {
+        if( resultSetSpec == null )
+            return null;
+        return resultSetSpec.getClass().getSimpleName() + AT_SYMBOL + Integer.toHexString( resultSetSpec.hashCode() );
     }
     
 }
