@@ -70,10 +70,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -599,9 +597,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnMoveUp = new Button( btnComposite, SWT.NONE );
 		btnMoveUp.setText( Messages.getString( "button.moveUp" ) );
-		GridData btnMoveUpGd = new GridData( );
-		btnMoveUpGd.widthHint = 52;
-		btnMoveUp.setLayoutData( btnMoveUpGd );
 		btnMoveUp.setToolTipText( Messages.getString( "tooltip.button.up" ) );
 		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
 
@@ -613,9 +608,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnRemove = new Button( btnComposite, SWT.NONE );
 		btnRemove.setText( Messages.getString( "button.delete" ) );
-		GridData btnRemoveGd = new GridData( GridData.VERTICAL_ALIGN_CENTER );
-		btnRemoveGd.widthHint = 52;
-		btnRemove.setLayoutData( btnRemoveGd );
 		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) );
 		btnRemove.addSelectionListener( new SelectionAdapter( ) {
 
@@ -627,9 +619,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnMoveDown = new Button( btnComposite, SWT.NONE );
 		btnMoveDown.setText( Messages.getString( "button.moveDown" ) );
-		GridData btnMoveDownGd = new GridData( );
-		btnMoveDownGd.widthHint = 52;
-		btnMoveDown.setLayoutData( btnMoveDownGd );
 		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) );
 		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
 
@@ -638,6 +627,23 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				moveDownItem( );
 			}
 		} );
+		
+		resetButtonWidth( );
+	}
+
+	private void resetButtonWidth( )
+	{
+		int widthHint = Math.max( btnMoveUp.computeSize( SWT.DEFAULT,
+				SWT.DEFAULT ).x, btnRemove.computeSize( SWT.DEFAULT,
+				SWT.DEFAULT ).x );
+		widthHint = Math.max( widthHint, btnMoveDown.computeSize( SWT.DEFAULT,
+				SWT.DEFAULT ).x );
+		widthHint = Math.max( widthHint, 52 );
+		GridData btnGd = new GridData( );
+		btnGd.widthHint = widthHint;
+		btnMoveUp.setLayoutData( btnGd );
+		btnRemove.setLayoutData( btnGd );
+		btnMoveDown.setLayoutData( btnGd );
 	}
 
 	/**
