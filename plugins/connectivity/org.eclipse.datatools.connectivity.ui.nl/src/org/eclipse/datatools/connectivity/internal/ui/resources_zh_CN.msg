@@ -186,5 +186,5 @@ Boolean.false = 假
 
 NewRepositoryWizard.title = 新建存储库向导窗口
 
-NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
+NewConnectionProfileWizardPage.Status.ContainsColon= 连接配置文件名称不能包含冒号(:)!
 

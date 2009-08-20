@@ -186,4 +186,4 @@ Boolean.false = false
 
 NewRepositoryWizard.title = レポジトリの新規作成ウィザードウィンドウ
 
-NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
+NewConnectionProfileWizardPage.Status.ContainsColon= 接続プロファイル名にはコロン (:) を使用できません。

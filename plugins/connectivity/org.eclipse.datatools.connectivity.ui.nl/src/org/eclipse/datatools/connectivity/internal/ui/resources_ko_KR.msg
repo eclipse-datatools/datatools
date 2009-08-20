@@ -186,5 +186,5 @@ Boolean.false = 거짓
 
 NewRepositoryWizard.title = 새 리포지토리 마법사 창
 
-NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
+NewConnectionProfileWizardPage.Status.ContainsColon= 연결 프로필 이름은 콜론(:)을 포함할 수 없습니다.
 

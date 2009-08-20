@@ -18,7 +18,7 @@ driverDBName = データベース名
 driverConnectionURL = 接続 URL
 driverUID = ユーザ ID
 driverPWD = パスワード
-driverCP = Properties
+driverCP = プロパティ
 
 MYSQL_CATEGORY_NAME = MySQL
 4_0_VERSION_CATEGORY_NAME = 4.0

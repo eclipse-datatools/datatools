@@ -186,4 +186,4 @@ Boolean.false = false
 
 NewRepositoryWizard.title = Nueva ventana de asistente de repositorio
 
-NewConnectionProfileWizardPage.Status.ContainsColon= Connection profile name cannot contain colon(:)!
+NewConnectionProfileWizardPage.Status.ContainsColon= El nombre de perfil de conexión no puede contener dos puntos (:).
