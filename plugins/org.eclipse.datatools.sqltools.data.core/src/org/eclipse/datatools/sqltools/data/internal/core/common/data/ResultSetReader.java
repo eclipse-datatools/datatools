@@ -22,7 +22,10 @@ import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class ResultSetReader {
@@ -88,9 +91,10 @@ public class ResultSetReader {
 	    // Some Vendor implementation of timestamp is
 	    // not a subclass of java.sql.Timestamp
 	    if (type == Types.TIMESTAMP &&
-	    		! (o instanceof java.sql.Timestamp))
+	    		! (o instanceof Timestamp))
 	    {
-	    	return (rs.getString(column+1));
+	    	Timestamp ts = rs.getTimestamp(column + 1);
+            return formatTimestamp(ts);
 	    	    	
 	    }	    
 	    	    
@@ -148,5 +152,75 @@ public class ResultSetReader {
         os.close();
         return bytes;
     }
-    
+    /**
+     * Formats timestamp into version understand by the database
+     * @param ts the timestamp to convert
+     * @return the converted string format of the timestamp
+     */
+    protected static String formatTimestamp(Timestamp ts)
+    {    	
+    	Calendar cal = new GregorianCalendar();    	
+    	cal.setTime(ts);
+    	StringBuffer sb = new StringBuffer(30);
+    	// day of month first
+    	sb.append(cal.get(Calendar.DAY_OF_MONTH))
+    	  .append('-');
+    	int mon = cal.get(Calendar.MONTH);
+    	// month
+    	switch(mon)
+    	{
+    		case Calendar.JANUARY:
+    			sb.append("JAN-");
+    			break;
+    		case Calendar.FEBRUARY:
+    			sb.append("FEB-");
+    			break;
+    		case Calendar.MARCH:
+    			sb.append("MAR-");
+    			break;
+    		case Calendar.APRIL:
+    			sb.append("APR-");
+    			break;
+    		case Calendar.MAY:
+    			sb.append("MAY-");
+    			break;
+    		case Calendar.JUNE:
+    			sb.append("JUN-");
+    			break;
+    		case Calendar.JULY:
+    			sb.append("JUL-");
+    			break;
+    		case Calendar.AUGUST:
+    			sb.append("AUG-");
+    			break;
+    		case Calendar.SEPTEMBER:
+    			sb.append("SEP-");
+    			break;
+    		case Calendar.OCTOBER:
+    			sb.append("OCT-");
+    			break;
+    		case Calendar.NOVEMBER:
+    			sb.append("NOV-");
+    			break;
+    		case Calendar.DECEMBER:
+    			sb.append("DEC-");    			
+    	}
+    	//year
+    	sb.append(cal.get(Calendar.YEAR))
+    	  .append(' ');
+    	
+    	// hour, min, sec, milisec and am_pm.
+    	if(cal.get(Calendar.HOUR) == 0)
+    		sb.append("12");
+    	else
+    		sb.append(cal.get(Calendar.HOUR));
+    	sb.append('.').append(cal.get(Calendar.MINUTE)).append('.').append(
+				cal.get(Calendar.SECOND)).append('.').append(
+				cal.get(Calendar.MILLISECOND)).append(' ');
+    	if(cal.get(Calendar.AM_PM)==0)
+    		sb.append("AM");
+    	else
+    		sb.append("PM");
+    	return sb.toString();
+    }
 }

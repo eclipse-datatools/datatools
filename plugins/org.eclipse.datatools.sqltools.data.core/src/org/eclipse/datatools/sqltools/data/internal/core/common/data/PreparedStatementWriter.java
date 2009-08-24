@@ -43,7 +43,8 @@ public class PreparedStatementWriter {
             pst.setShort(column+1, ((Short)val).shortValue());
         else if (type == Types.BIGINT)
         	pst.setLong(column+1, ((BigInteger)val).longValue());
-
+        else if (type == Types.TIMESTAMP) 
+            pst.setString(column + 1, val.toString());
         else
             pst.setObject(column+1, val);
         
