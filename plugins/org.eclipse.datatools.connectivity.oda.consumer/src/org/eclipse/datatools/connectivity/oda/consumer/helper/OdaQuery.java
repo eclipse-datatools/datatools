@@ -127,7 +127,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setAppContext( Object context ) throws OdaException
 	{
 		final String methodName = "OdaQuery.setAppContext()\t"; //$NON-NLS-1$
-		final String contextObjInfo = ( context == null ) ? "null" : context.toString(); //$NON-NLS-1$
+		final String contextObjInfo = ( context == null ) ? "null" : context.getClass().getName(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_appContext == context )	// already set

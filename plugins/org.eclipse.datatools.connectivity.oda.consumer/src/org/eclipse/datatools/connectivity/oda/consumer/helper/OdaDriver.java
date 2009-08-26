@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -669,11 +669,12 @@ public class OdaDriver extends OdaObject
 	public void setAppContext( Object context ) throws OdaException
 	{
 		final String methodName = "OdaDriver.setAppContext()\t"; //$NON-NLS-1$
+        final String contextObjInfo = ( context == null ) ? "null" : context.getClass().getName(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_appContext == context )	// already set
 		{
-		    log( methodName, "Same pass-thru application context object: " + context ); //$NON-NLS-1$
+		    log( methodName, "Same pass-thru application context object: " + contextObjInfo ); //$NON-NLS-1$
 			logMethodExit( methodName );
 		    return;		// nothing to do
 		}
@@ -683,7 +684,7 @@ public class OdaDriver extends OdaObject
 			setContextClassloader();
 			
 		    log( methodName, 
-		    		"Passing thru application context to underlying ODA driver: " + context ); //$NON-NLS-1$
+		    		"Passing thru application context to underlying ODA driver: " + contextObjInfo ); //$NON-NLS-1$
 
 		    getDriver().setAppContext( context );
 		}

@@ -271,7 +271,7 @@ public class OdaConnection extends OdaObject
 	public void setAppContext( Object context ) throws OdaException
 	{
 		final String methodName = "OdaConnection.setAppContext()\t"; //$NON-NLS-1$
-		final String contextObjInfo = ( context == null ) ? "null" : String.valueOf(context.getClass().getName()); //$NON-NLS-1$
+		final String contextObjInfo = ( context == null ) ? "null" : context.getClass().getName(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_connAppContext == context )	// already set

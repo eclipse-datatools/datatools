@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -66,7 +66,7 @@ class ConnectionPropertyHandler extends OdaObject
     private void processConsumerAppContext( Object context )
     {
         final String methodName = "ConnectionPropertyHandler.processConsumerAppContext( " + //$NON-NLS-1$
-                                    context + " )\t"; //$NON-NLS-1$
+                                    context.getClass().getName() + " )\t"; //$NON-NLS-1$
         logMethodCalled( methodName );
 
         if( context == null || ! ( context instanceof Map ) )
