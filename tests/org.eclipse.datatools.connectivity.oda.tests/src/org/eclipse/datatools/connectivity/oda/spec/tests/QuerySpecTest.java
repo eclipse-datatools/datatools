@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification.ParameterIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
@@ -46,21 +47,43 @@ public class QuerySpecTest extends TestCase
         assertEquals( Integer.valueOf( 1 ), querySpec.getProperty( "prop1" ));
         assertEquals( Integer.valueOf( 2 ), querySpec.getProperties().get( "prop2" ));
         
-        querySpec.setParameterValue( "param1", "paramValue1" );
+        // test setting parameter value by name only
+        String paramName = "param1";
+        String paramValue = "paramValue1";
+        querySpec.setParameterValue( paramName, paramValue );
         assertEquals( 1, querySpec.getParameterValues().size() );
-        assertEquals( "paramValue1", querySpec.getParameterValue( "param1" ) );
-        assertEquals( "paramValue1", querySpec.getParameterValues().get( querySpec.new ParameterIdentifier( "param1" )) );
+        assertEquals( paramValue, querySpec.getParameterValue( paramName ) );
+        assertEquals( paramValue, querySpec.getParameterValues().get( querySpec.new ParameterIdentifier( paramName )) );
         
         // test case sensitive parameter name comparison
-        assertNotSame( "paramValue1", querySpec.getParameterValue( "Param1" ) );
+        assertNotSame( paramValue, querySpec.getParameterValue( "Param1" ) );
       
+        // test setting parameter value by position only
         int paramId = 2;
         querySpec.setParameterValue( paramId, "paramValue2" );
         querySpec.setParameterValue( querySpec.new ParameterIdentifier( paramId ), "overrideParamValue"  );
         assertEquals( 2, querySpec.getParameterValues().size() );
         assertEquals( "overrideParamValue", querySpec.getParameterValue( paramId ) );
         assertEquals( "overrideParamValue", querySpec.getParameterValues().get( querySpec.new ParameterIdentifier( paramId ) ) );
-    }
+
+        // test setting parameter value by name and position
+        paramName = "param3";
+        paramId = 3;
+        paramValue = "paramValue3";
+        ParameterIdentifier paramIdentifier = querySpec.new ParameterIdentifier( paramName, paramId );
+        querySpec.setParameterValue( paramIdentifier, paramValue );
+        assertEquals( paramValue, querySpec.getParameterValue( paramName ) );
+        assertEquals( paramValue, querySpec.getParameterValue( paramId ) );
+        assertEquals( paramValue, querySpec.getParameterValue( paramIdentifier ) );
+        
+        Object actualValue = querySpec.getParameterValue( "param1" );
+        assertNotNull( actualValue );
+        assertNotSame( paramValue, actualValue );
+        
+        actualValue = querySpec.getParameterValue( 2 );
+        assertNotNull( actualValue );
+        assertNotSame( paramValue, actualValue );
+}
     
     public void testCreateResultProjectionAggregates() throws Exception
     {
@@ -76,19 +99,22 @@ public class QuerySpecTest extends TestCase
         ResultProjection resultProj = specHelper.createResultProjection();
         resultProj.setProjection( new ColumnIdentifier( 2 ), orderNumAggr );
         resultProj.setProjection( new ColumnIdentifier( 4 ), creditLimitAggr );
-        resultProj.addResultColumn( creditLimitAggr );
+               
+        ExpressionVariable newColumnVar = new ExpressionVariable( "NEWCREDITLIMIT" );
+        resultProj.addResultColumn( newColumnVar );
+        resultProj.setProjection( new ColumnIdentifier( newColumnVar.getAlias() ), creditLimitAggr );
         
         // test aggregate getters of ResultProjection
         assertEquals( 3, resultProj.getAggregatedColumns().size() );
         assertNull( resultProj.getAggregateProjection( new ColumnIdentifier( 1 )));
         assertEquals( orderNumAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 2 )));
         assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 4 )));
-        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( creditLimitAggr.getAlias() )));
+        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( newColumnVar.getAlias() )));
 
         assertEquals( 1, resultProj.getAddedResultColumns().size() );
        
         // test hiding a new projected aggregate column
-        resultProj.hideResultColumn( new ColumnIdentifier( creditLimitAggr.getAlias() ) );
+        resultProj.hideResultColumn( new ColumnIdentifier( newColumnVar.getAlias() ) );
         assertEquals( 2, resultProj.getAggregatedColumns().size() );
         assertEquals( 0, resultProj.getAddedResultColumns().size() );
         assertEquals( 0, resultProj.getHiddenResultColumns().size() );        

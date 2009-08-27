@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.spec;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
@@ -220,7 +221,14 @@ public class QuerySpecification
     {
         if( m_parameterValues == null )
             return null;
-        return m_parameterValues.get( paramIdentifier );
+
+        for( Entry<ParameterIdentifier, Object> entry : m_parameterValues.entrySet() )
+        {
+            ParameterIdentifier paramIdKey = entry.getKey();
+            if( paramIdKey.equals( paramIdentifier ) )
+                return entry.getValue();
+        }
+        return null;
     }
     
     /**
@@ -389,10 +397,13 @@ public class QuerySpecification
             if( ! (obj instanceof ParameterIdentifier) )
                 return false;
 
+            ParameterIdentifier thatObj = (ParameterIdentifier) obj;
+            if( this == thatObj )
+                return true;
+            
             // compares by name first, if exists
             boolean isNameEqual = false;
-            ParameterIdentifier thatObj = (ParameterIdentifier) obj;
-            if( this.hasName() )
+            if( this.hasName() && thatObj.hasName() )
             {
                 if( this.m_paramName.equals( thatObj.m_paramName ) )
                     isNameEqual = true;
@@ -401,7 +412,7 @@ public class QuerySpecification
             }
 
             // compares by id, if exists
-            if( this.hasId() )
+            if( this.hasId() && thatObj.hasId() )
                 return( this.m_paramId.equals( thatObj.m_paramId ));
             
             return isNameEqual;
