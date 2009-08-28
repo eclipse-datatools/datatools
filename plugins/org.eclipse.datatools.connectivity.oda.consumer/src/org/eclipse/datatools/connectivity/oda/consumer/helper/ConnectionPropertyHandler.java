@@ -65,8 +65,7 @@ class ConnectionPropertyHandler extends OdaObject
      */
     private void processConsumerAppContext( Object context )
     {
-        final String methodName = "ConnectionPropertyHandler.processConsumerAppContext( " + //$NON-NLS-1$
-                                    context.getClass().getName() + " )\t"; //$NON-NLS-1$
+        final String methodName = "ConnectionPropertyHandler.processConsumerAppContext"; //$NON-NLS-1$
         logMethodCalled( methodName );
 
         if( context == null || ! ( context instanceof Map ) )
