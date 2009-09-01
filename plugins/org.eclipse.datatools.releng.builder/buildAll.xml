@@ -332,12 +332,22 @@
 			</zipfileset>
 		</zip>
 
+		<!-- package source package -->
+		<zip destfile="${buildDirectory}/${buildId}/dtp-source-${package.version}.zip">
+			<zipfileset dir="${buildDirectory}">
+			    <include name="*.txt"/>
+			    <include name="*.properties"/>
+			    <include name="*.xml"/>
+			</zipfileset>
+	    </zip>
+		
 		<!-- copy to output directory -->
 		<mkdir dir="${postingDirectory}/${buildId}" />
 		<copy file="${buildDirectory}/${buildId}/dtp-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
+		<copy file="${buildDirectory}/${buildId}/dtp-source-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/directory.txt" todir="${postingDirectory}/${buildId}"/>
         <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
 		<copy tofile="${postingDirectory}/monitor.properties" file="monitor.properties" overwrite="true" />
