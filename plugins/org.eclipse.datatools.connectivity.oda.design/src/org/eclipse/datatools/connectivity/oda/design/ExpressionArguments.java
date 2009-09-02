@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ExpressionArguments.java,v 1.1 2009/03/03 07:42:08 lchan Exp $
+ * $Id: ExpressionArguments.java,v 1.2 2009/05/08 00:42:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -56,7 +56,7 @@ public interface ExpressionArguments extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.
+     * A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).
      * <!-- end-model-doc -->
      * @return the value of the '<em>Expression Parameters</em>' containment reference.
      * @see #setExpressionParameters(ExpressionParameters)

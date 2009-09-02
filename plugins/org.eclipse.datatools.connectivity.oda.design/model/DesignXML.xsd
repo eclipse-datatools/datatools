@@ -414,7 +414,7 @@
     <xsd:sequence>
       <xsd:element form="qualified" name="expressionParameters" type="design:ExpressionParameters">
         <xsd:annotation>
-          <xsd:documentation>A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+          <xsd:documentation>A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
