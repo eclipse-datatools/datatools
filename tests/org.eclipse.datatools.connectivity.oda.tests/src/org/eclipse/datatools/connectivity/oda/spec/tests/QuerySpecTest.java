@@ -53,6 +53,7 @@ public class QuerySpecTest extends TestCase
         querySpec.setParameterValue( paramName, paramValue );
         assertEquals( 1, querySpec.getParameterValues().size() );
         assertEquals( paramValue, querySpec.getParameterValue( paramName ) );
+        assertEquals( paramValue, querySpec.getParameterValue( querySpec.new ParameterIdentifier( paramName, 100 )) );
         assertEquals( paramValue, querySpec.getParameterValues().get( querySpec.new ParameterIdentifier( paramName )) );
         
         // test case sensitive parameter name comparison
@@ -64,6 +65,7 @@ public class QuerySpecTest extends TestCase
         querySpec.setParameterValue( querySpec.new ParameterIdentifier( paramId ), "overrideParamValue"  );
         assertEquals( 2, querySpec.getParameterValues().size() );
         assertEquals( "overrideParamValue", querySpec.getParameterValue( paramId ) );
+        assertEquals( "overrideParamValue", querySpec.getParameterValue( querySpec.new ParameterIdentifier( "dummyName", paramId ) ) );
         assertEquals( "overrideParamValue", querySpec.getParameterValues().get( querySpec.new ParameterIdentifier( paramId ) ) );
 
         // test setting parameter value by name and position
@@ -75,6 +77,7 @@ public class QuerySpecTest extends TestCase
         assertEquals( paramValue, querySpec.getParameterValue( paramName ) );
         assertEquals( paramValue, querySpec.getParameterValue( paramId ) );
         assertEquals( paramValue, querySpec.getParameterValue( paramIdentifier ) );
+        assertEquals( paramValue, querySpec.getParameterValue( querySpec.new ParameterIdentifier( paramName, paramId ) ) );
         
         Object actualValue = querySpec.getParameterValue( "param1" );
         assertNotNull( actualValue );

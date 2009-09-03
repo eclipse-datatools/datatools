@@ -221,11 +221,16 @@ public class QuerySpecification
     {
         if( m_parameterValues == null )
             return null;
-
+        
+        Object paramValue = m_parameterValues.get( paramIdentifier );
+        if( paramValue != null )
+            return paramValue;
+        
+        // try match by name or id
         for( Entry<ParameterIdentifier, Object> entry : m_parameterValues.entrySet() )
         {
             ParameterIdentifier paramIdKey = entry.getKey();
-            if( paramIdKey.equals( paramIdentifier ) )
+            if( paramIdKey.matchesByNameOrId( paramIdentifier ) )
                 return entry.getValue();
         }
         return null;
@@ -388,6 +393,32 @@ public class QuerySpecification
             return ( m_paramId != null && m_paramId.intValue() > 0 );
         }
         
+        private boolean matchesByNameOrId( Object obj )
+        {
+            if( ! (obj instanceof ParameterIdentifier) )
+                return false;
+
+            ParameterIdentifier thatObj = (ParameterIdentifier) obj;
+            if( this == thatObj )
+                return true;
+            
+            // compares by name first, if exists
+            boolean matchesName = false;
+            if( this.hasName() && thatObj.hasName() )
+            {
+                if( this.m_paramName.equals( thatObj.m_paramName ) )
+                    matchesName = true;
+                else
+                    return false;
+            }
+
+            // compares by id, if exists
+            if( this.hasId() && thatObj.hasId() )
+                return( this.m_paramId.equals( thatObj.m_paramId ));
+            
+            return matchesName;
+        }
+        
         /* (non-Javadoc)
          * @see java.lang.Object#equals(java.lang.Object)
          */
@@ -403,7 +434,7 @@ public class QuerySpecification
             
             // compares by name first, if exists
             boolean isNameEqual = false;
-            if( this.hasName() && thatObj.hasName() )
+            if( this.hasName() )
             {
                 if( this.m_paramName.equals( thatObj.m_paramName ) )
                     isNameEqual = true;
@@ -412,7 +443,7 @@ public class QuerySpecification
             }
 
             // compares by id, if exists
-            if( this.hasId() && thatObj.hasId() )
+            if( this.hasId() )
                 return( this.m_paramId.equals( thatObj.m_paramId ));
             
             return isNameEqual;
