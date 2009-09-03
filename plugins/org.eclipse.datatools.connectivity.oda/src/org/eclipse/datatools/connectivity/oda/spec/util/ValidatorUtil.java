@@ -599,7 +599,7 @@ public class ValidatorUtil
     /**
      * Indicates whether the specified sort key is one of the cause(s)
      * in the specified OdaException chain.
-     * @param sortKeySequenceOrder  the sequence ordering position of a sort key
+     * @param sortKeySequenceOrder  the sequence ordering position (1-based) of a sort key
      *                  whose processing might have caused an OdaException
      * @param rootEx    the root of an OdaException chain caught while processing the sort key
      * @return  true if the specified sort key is one of the cause(s) in the OdaException chain;
