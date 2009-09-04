@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.helper;
 
-import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -68,26 +67,12 @@ class ConnectionPropertyHandler extends OdaObject
         final String methodName = "ConnectionPropertyHandler.processConsumerAppContext"; //$NON-NLS-1$
         logMethodCalled( methodName );
 
-        if( context == null || ! ( context instanceof Map ) )
-        {
-            logMethodExit( methodName );
-            return;     // nothing to process
-        }
-        
         // check for the consumer application id
-        Map contextMap = (Map) context;
-        Object value = contextMap.get( IPropertyProvider.ODA_CONSUMER_ID );
-        if( value == null || ! ( value instanceof String ) )
-        {
-            logMethodExit( methodName );
-            return;     // no valid consumer application id specified in context
-        }
-        
-        m_consumerApplId = (String) value;
+        m_consumerApplId = ProviderUtil.getConsumerApplicationId( context );
         log( methodName, "Consumer Application ID: " + m_consumerApplId ); //$NON-NLS-1$
         
         // check for optional externalized properties context
-        m_connPropContext = contextMap.get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );  
+        m_connPropContext = ProviderUtil.getConnectionPropertyContext( context );  
         log( methodName, "Externalized property context: " + m_connPropContext );        //$NON-NLS-1$
 
         logMethodExit( methodName );

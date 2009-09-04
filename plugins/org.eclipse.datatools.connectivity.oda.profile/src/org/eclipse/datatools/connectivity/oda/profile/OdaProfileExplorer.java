@@ -523,4 +523,27 @@ public class OdaProfileExplorer
         return OdaProfileFactory.isProfileNameUsed( profileName );
     }
     
+    /**
+     * Creates a new transient profile instance based on the specified data source profile id 
+     * and connection properties.
+     * @param odaDataSourceId   an ODA data source id as specified in an oda.dataSource extension
+     * @param profileProperties    connection properties to be stored as profile properties
+     * @return  a new instance of {@link IConnectionProfile} that are non persistent
+     * @throws OdaException
+     * @since 3.2.1 (DTP 1.7.1)
+     */
+    public IConnectionProfile createTransientProfile( String odaDataSourceId, 
+            Properties profileProperties )
+        throws OdaException
+    {
+        String profileProviderId = odaDataSourceId;
+        
+        // if referencing an existing profile instance, should use its current direct provider id
+        IConnectionProfile referencedProfile = getProfileByName( profileProperties, null );
+        if( referencedProfile instanceof OdaConnectionProfile )
+            profileProviderId = ((OdaConnectionProfile)referencedProfile).getDirectProviderId();
+
+        return OdaProfileFactory.createTransientProfile( profileProviderId, profileProperties );
+    }
+
 }

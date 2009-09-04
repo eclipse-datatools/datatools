@@ -58,7 +58,29 @@ public class OdaProfileFactory
             throw new OdaException( ex );
         }
     }
-    
+
+    /**
+     * Creates a transient ODA connection profile instance.
+     * @param odaDataSourceId   an ODA data source id as specified in an oda.dataSource extension
+     * @param profileProperties    connection properties to be stored as profile properties
+     * @return  a new instance of {@link IConnectionProfile} that are non persistent
+     * @throws OdaException
+     */
+    public static IConnectionProfile createTransientProfile( String odaDataSourceId, Properties profileProperties )
+        throws OdaException
+    {
+        try
+        {
+            IConnectionProfile newProfile =
+                ProfileManager.getInstance().createTransientProfile( odaDataSourceId, profileProperties );
+            return new OdaConnectionProfile( newProfile );
+        }
+        catch( ConnectionProfileException ex )
+        {
+            throw new OdaException( ex );
+        }
+    }
+
     public static boolean isProfileNameUsed( String profileName )
     {
         IConnectionProfile existingProfile = 
