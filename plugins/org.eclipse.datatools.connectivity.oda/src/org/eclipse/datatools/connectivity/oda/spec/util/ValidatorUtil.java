@@ -262,7 +262,7 @@ public class ValidatorUtil
             return;     // has no type restrictions
         
         boolean meetsRestriction = false;
-        if( hasRestrictedOdaDataTypes )
+        if( hasRestrictedOdaDataTypes && exprVar.getNativeDataType() != null )
         {
             // look up oda data type from the ExpressionVariable's native data type
             int nativeDataType = exprVar.getNativeDataType().intValue();

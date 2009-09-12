@@ -38,7 +38,7 @@ public abstract class AggregateExpression
     
     private List<ExpressionVariable> m_inputVariables;   // 0..n ExpressionVariable
     private boolean m_ignoresDups = false;
-    private boolean m_ignoresNull = false;
+    private boolean m_ignoresNull = true;
     private String m_alias;
     
     /**
