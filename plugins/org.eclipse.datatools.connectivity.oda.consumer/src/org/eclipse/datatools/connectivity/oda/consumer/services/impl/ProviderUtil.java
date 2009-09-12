@@ -85,7 +85,7 @@ public class ProviderUtil
      *          configuration framework.  May be null.
      * @return  the set of effective property name-value pairs to use
      * @throws OdaException     if provider error occurs
-     * @since 3.2.1 (DTP 1.7.1)
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public static Properties getEffectiveProperties( Properties candidateProperties, Object appContext )
         throws OdaException
@@ -109,7 +109,7 @@ public class ProviderUtil
      * @param appContext    the application context provided by an ODA consumer application
      * @return  the value mapped to the IPropertyProvider.ODA_CONSUMER_ID key
      *      in the specified application context map; may be null
-     * @since 3.2.1 (DTP 1.7.1)
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public static String getConsumerApplicationId( Object appContext ) 
     {
@@ -127,7 +127,7 @@ public class ProviderUtil
      * @param appContext    the application context provided by an ODA consumer application
      * @return  the value mapped to the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
      *      in the specified application context map; may be null
-     * @since 3.2.1 (DTP 1.7.1)
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public static Object getConnectionPropertyContext( Object appContext )
     {

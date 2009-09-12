@@ -530,7 +530,7 @@ public class OdaProfileExplorer
      * @param profileProperties    connection properties to be stored as profile properties
      * @return  a new instance of {@link IConnectionProfile} that are non persistent
      * @throws OdaException
-     * @since 3.2.1 (DTP 1.7.1)
+     * @since 3.2.1 (DTP 1.7.2)
      */
     public IConnectionProfile createTransientProfile( String odaDataSourceId, 
             Properties profileProperties )
