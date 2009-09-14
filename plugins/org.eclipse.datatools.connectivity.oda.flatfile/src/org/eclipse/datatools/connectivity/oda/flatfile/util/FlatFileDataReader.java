@@ -354,7 +354,10 @@ public class FlatFileDataReader
 		File file = new File( this.homeDir
 				+ File.separator + this.currentTableName.trim( ) );
 		if ( !file.exists( ) )
-			throw new OdaException( Messages.getString( "query_invalidTableName" ) + this.currentTableName ); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "query_invalidTableName" )
+					+ this.homeDir
+					+ File.separator
+					+ this.currentTableName ); //$NON-NLS-1$
 		return file.getAbsolutePath( );
 	}
 
