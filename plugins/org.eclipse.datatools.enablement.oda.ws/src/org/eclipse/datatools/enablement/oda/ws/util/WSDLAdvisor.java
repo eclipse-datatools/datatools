@@ -511,22 +511,30 @@ public class WSDLAdvisor
 	{
 		WSNonLeafNode newNode = new WSNonLeafNode( );
 		List lowerLeverList = new ArrayList( );
-		String nodeName = node.getAttributes( )
-				.getNamedItem( NAME )
-				.getNodeValue( );
-		newNode.setName( nodeName );
+		Node nodeName = node.getAttributes( ).getNamedItem( NAME );
+		String stringName = null;
+		if( nodeName != null )
+		{
+			stringName = nodeName.getNodeValue( );
+		}
+		else
+		{
+			stringName = node.getNodeName( );
+		}
+		
+		newNode.setName( stringName );
 
 		for ( int k = 0; k < anonymousComplexParentNode.length; k++ )
 		{
-			if ( nodeName.equals( anonymousComplexParentNode[k].toString( ) ) )
+			if ( stringName.equals( anonymousComplexParentNode[k].toString( ) ) )
 			{
 				newNode.setNodeList( lowerLeverList );
 				return newNode;
 			}
 		}
 
-		String[] subNodeParents = generateSubNodeParents( nodeName, parentNode );
-		String[] subAnonymousNodeParents = generateSubNodeParents( nodeName,
+		String[] subNodeParents = generateSubNodeParents( stringName, parentNode );
+		String[] subAnonymousNodeParents = generateSubNodeParents( stringName,
 				anonymousComplexParentNode );
 
 		Node middleNode = getSignificantNode( node );
