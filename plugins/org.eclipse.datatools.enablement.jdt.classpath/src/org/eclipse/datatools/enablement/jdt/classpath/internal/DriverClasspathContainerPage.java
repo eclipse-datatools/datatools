@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2009 Sybase, Inc. and Others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - fix for BZ 280668
  ******************************************************************************/
 package org.eclipse.datatools.enablement.jdt.classpath.internal;
 
@@ -158,28 +159,18 @@ public class DriverClasspathContainerPage extends WizardPage implements
 	}
 
 	private void update(DriverInstance di) {
+		// brianf - fix for BZ 280668
 		if (di != null) {
-			IClasspathContainer container = new DriverClasspathContainer(di.getName());
-			IClasspathContainer oldContainer;
+			IClasspathContainer container= new DriverClasspathContainer(di.getName());
 			try {
-				oldContainer = JavaCore.getClasspathContainer(container.getPath(), fProject);
+				JavaCore.setClasspathContainer(container.getPath(),
+					new IJavaProject[]{fProject}, new IClasspathContainer[] {container}, null);
+				IClasspathEntry entry = JavaCore.newContainerEntry(container.getPath());
+				fEditResult = entry;
 			} catch (JavaModelException e) {
 				// ignore
-				oldContainer = null;
+				fEditResult = null;
 			}
-			IClasspathEntry entry = null;
-			if (oldContainer != null) {
-				try {
-					JavaCore.setClasspathContainer(null, new IJavaProject[]{fProject}, new IClasspathContainer[] {oldContainer}, null);
-				} catch (JavaModelException e) {
-					e.printStackTrace();
-				}
-				entry = JavaCore.newContainerEntry(container.getPath());
-			}
-			else {
-				entry = JavaCore.newContainerEntry(container.getPath());
-			}
-			fEditResult = entry;
 		}
 		else {
 			fEditResult = null;
