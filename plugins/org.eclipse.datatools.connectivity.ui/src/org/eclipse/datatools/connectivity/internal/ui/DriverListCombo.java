@@ -44,6 +44,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -102,6 +103,9 @@ public class DriverListCombo {
 	private boolean mShowMenu = false;
 	private boolean mShowEditButton = true;
 	private ToolItem mTBButtonEdit;
+	private ToolItem item1;
+	private ToolItem item2;
+	private ToolItem item3;
 
 	/**
 	 * Constructor
@@ -266,10 +270,13 @@ public class DriverListCombo {
 
 		this.mComboList.addModifyListener(listener);
 		this.mComboList.addSelectionListener(listener);
+		
+		Composite tempComposite = new Composite(this.mPanel, SWT.NONE);
+		tempComposite.setLayout(new FillLayout());
 
-	    final ToolBar toolBar = new ToolBar(this.mPanel, SWT.FLAT);
 		if (mShowNewDriverButton) {
-		    final ToolItem item1 = new ToolItem(toolBar, SWT.PUSH);
+		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
+		    /*final ToolItem*/ item1 = new ToolItem(toolBar, SWT.PUSH);
 		    DecorationOverlayIcon icon = new DecorationOverlayIcon(mDriverImage, PLUS, IDecoration.TOP_RIGHT);
 		    item1.setImage(icon.createImage());
 		    item1.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
@@ -280,7 +287,8 @@ public class DriverListCombo {
 		}
 		
 		if (mShowGenericDriverButton) {
-		    final ToolItem item2 = new ToolItem(toolBar, SWT.PUSH);
+		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
+		    /*final ToolItem*/ item2 = new ToolItem(toolBar, SWT.PUSH);
 		    item2.setImage(mDriverImage);
 		    item2.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.generic")); //$NON-NLS-1$
 			item2.
@@ -290,16 +298,17 @@ public class DriverListCombo {
 		}
 		
 		if (mShowEditButton) {
+		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
 			mTBButtonEdit = new ToolItem(toolBar, SWT.PUSH);
 			mTBButtonEdit.setImage(mChangeImage);
 			mTBButtonEdit.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip")); //$NON-NLS-1$
 			mTBButtonEdit.
 				addSelectionListener(new EditButtonSelectionChangedListener(
 					this));
-//			mTBButtonEdit.setEnabled(!isReadOnly);
 		}
 
 		if (mShowMenu) {
+		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
 			final Menu menu = new Menu (this.mPanel.getShell(), SWT.POP_UP);
 			MenuItem mitem1 = new MenuItem(menu, SWT.PUSH);
 			mitem1.setText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
@@ -308,7 +317,7 @@ public class DriverListCombo {
 			mitem2.setText(DriverMgmtMessages.getString("DriverListCombo.button.generic")); //$NON-NLS-1$
 			mitem2.addSelectionListener(new NewGenericSelectionChangedListener(this));
 
-			final ToolItem item3 = new ToolItem(toolBar, SWT.PUSH );
+			/*final ToolItem*/ item3 = new ToolItem(toolBar, SWT.PUSH );
 			item3.setImage(mArrowImage);
 		    item3.addListener (SWT.Selection, new Listener () {
 		        public void handleEvent (org.eclipse.swt.widgets.Event event) {
@@ -321,7 +330,6 @@ public class DriverListCombo {
 		    });
 		    item3.setEnabled(!isReadOnly);
 		}
-
 		refreshCombo();
 	}
 
