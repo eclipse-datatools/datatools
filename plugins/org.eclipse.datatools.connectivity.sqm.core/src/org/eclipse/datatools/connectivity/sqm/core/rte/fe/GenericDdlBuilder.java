@@ -956,7 +956,7 @@ public class GenericDdlBuilder {
         
         String columnString = columnName + SPACE + getDataTypeString(column,column.getTable().getSchema());
         String defaultValue = column.getDefaultValue();
-        if(defaultValue != null) {
+        if(defaultValue != null && defaultValue.trim().length()>0) {
           columnString = columnString + SPACE + DEFAULT + SPACE + defaultValue;
         }
         
