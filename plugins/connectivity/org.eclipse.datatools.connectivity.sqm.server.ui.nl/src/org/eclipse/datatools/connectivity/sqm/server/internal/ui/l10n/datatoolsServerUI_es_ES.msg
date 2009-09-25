@@ -71,7 +71,8 @@ _UI_DIALOG_CONNECTION_TITLE  = Nueva conexión
 ## Error Connection Dialog
 #
 DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = Excepción de conexión no válida
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Error en la conexión
+#Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Error en la conexión
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = Notificación de excepción SQL
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = Volver a conectarse
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = Desconectarse
@@ -123,7 +124,8 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = Guardar sin conexión
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Trabajar sin conexión
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = El contenido sin conexión no se ha encontrado en su espacio de trabajo.\nEjecute "Guardar sin conexión" cuando esté conectado.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Error en la conexión
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Error en la conexión
+#Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Error en la conexión
 
 #
 ## Bookmark

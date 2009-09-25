@@ -71,7 +71,8 @@ _UI_DIALOG_CONNECTION_TITLE  = Neue Verbindung
 ## Error Connection Dialog
 #
 DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = Ungültige Verbindung – Ausnahmefehler
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
+#Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = SQL-Ausnahmefehler – Benachrichtigung
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = Verbindung wiederherstellen
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = Verbindung trennen
@@ -123,7 +124,8 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = Offline speichern
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Offline arbeiten
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Offline-Content wurde in Ihrem Workspace nicht gefunden.\nFühren Sie "Offline speichern" aus, wenn Sie verbunden sind.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Verbindung fehlgeschlagen
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
+#Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
 
 #
 ## Bookmark
