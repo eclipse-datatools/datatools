@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.msft.feature"
       label="%featureName"
-      version="1.7.0.qualifier"
+      version="1.7.2.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.finfo"
       image="eclipse_update_120.jpg">

@@ -88,4 +88,4 @@ fragment@org.eclipse.datatools.modelbase.sql.query.nl=HEAD,:pserver:anonymous@de
 fragment@org.eclipse.datatools.modelbase.sql.xml.query.nl=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/nl/org.eclipse.datatools.modelbase.sql.xml.query.nl
 
 !************** DATATOOLS NL FEATURE ******************
-feature@org.eclipse.birt.dtp.nl=v200902201427,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.birt.dtp.nl.feature
+feature@org.eclipse.birt.dtp.nl=v200909251450,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.birt.dtp.nl.feature
