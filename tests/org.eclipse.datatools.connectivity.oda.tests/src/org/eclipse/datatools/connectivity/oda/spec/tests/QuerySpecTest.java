@@ -35,7 +35,9 @@ import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper
 @SuppressWarnings("restriction")
 public class QuerySpecTest extends TestCase
 {
-    private static final String TEST_EXTENSION_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dynamicResultSetExtension"; //$NON-NLS-1$
+    static final String TEST_EXTENSION_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dynamicResultSetExtension"; //$NON-NLS-1$
+    static final String TARGET_DATA_SOURCE_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver"; //$NON-NLS-1$
+    static final String TARGET_DATA_SET_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"; //$NON-NLS-1$
 
     public void testCreateQuerySpec() throws Exception
     {

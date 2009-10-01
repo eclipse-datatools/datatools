@@ -68,8 +68,8 @@ public class ExtensionContributor implements IContributor
         // supportedDataSetType child elements
         m_dataSetTypes = processDataSetTypeElements( m_contributorElement );
         
-        // process supportedOdaExpression child elements
-        m_supportedOdaFilterExprNames = processSupportedOdaFilterExpressions( m_contributorElement );
+        // supportedOdaExpression child elements are in the filterExpressionTypes element,
+        // whose processing will be initiated by ResultExtensionExplorer
         
         // supportsRowOrdering child element
         m_supportsRowOrdering = false;  // default value
@@ -86,6 +86,12 @@ public class ExtensionContributor implements IContributor
         // processing of optional validator and specificationFactory attributes are deferred till it is needed
     }
 
+    void setSupportedOdaFilterExpressions( IConfigurationElement element ) 
+        throws OdaException
+    {
+        m_supportedOdaFilterExprNames = processSupportedOdaFilterExpressions( element );
+    }
+    
     /**
      * An utility method to process the specified contributor configuration element and 
      * returns a list of its supported data set types.
@@ -110,10 +116,10 @@ public class ExtensionContributor implements IContributor
         return dataSetTypes;
     }
     
-    private static List<String> processSupportedOdaFilterExpressions( IConfigurationElement contributorElement ) 
+    private static List<String> processSupportedOdaFilterExpressions( IConfigurationElement element ) 
         throws OdaException
     {
-        IConfigurationElement[] odaExprElements = contributorElement.getChildren( SUB_ELEMENT_FILTER_EXPRESSION_TYPE );
+        IConfigurationElement[] odaExprElements = element.getChildren( SUB_ELEMENT_FILTER_EXPRESSION_TYPE );
         if( odaExprElements.length == 0 )
             return null;
         
@@ -192,7 +198,7 @@ public class ExtensionContributor implements IContributor
     /**
      * Indicates whether this supports the specified ODA defined filter expression.
      * @param odaExprName   simple name of an ODA defined filter expression 
-     * @return
+     * @return  true if the specified filter expression is supported; false otherwise
      */
     public boolean supportsOdaFilterExpression( String odaExprName )
     {
@@ -230,6 +236,21 @@ public class ExtensionContributor implements IContributor
     public boolean supportsNullValueOrdering()
     {
         return supportsDynamicRowOrdering() && m_supportsNullOrdering;
+    }
+    
+    /**
+     * Indicates whether this supports the specified ODA built-in combined operator type.
+     * @param builtInOperatorId the id of a built-in value expression combined operator type; 
+     *          the constants are defined in 
+     *          {@link org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator}
+     * @return  true if the specified built-in combined operator type is supported;
+     *          false otherwise
+     * @see {@link org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory#getCombinedOperator(String, String)}
+     */
+    public boolean supportsOdaCombinedOperator( String builtInOperatorId )
+    {
+        return ResultExtensionExplorer.getInstance().supportsOdaCombinedOperator( 
+                getDeclaringExtensionId(), builtInOperatorId );
     }
     
     /**

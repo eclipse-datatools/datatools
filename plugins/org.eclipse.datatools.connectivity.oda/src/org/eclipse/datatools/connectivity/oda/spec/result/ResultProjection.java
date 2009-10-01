@@ -50,7 +50,8 @@ public class ResultProjection
      * The aggregation is applied on the values of its input source variable(s) 
      * across a set of data records.
      * Each set is grouped by the unique values of all the other result set column(s) 
-     * that do not have an aggregate expression projected.
+     * that do not have an aggregate expression projected.  Hidden result set column(s) 
+     * are excluded from the groupings.
      * <br>A projected tabular result set returns one row for each group. 
      * @param resultColumn   the column identifier in the projected result set targeted for the 
      *          output of the specified aggregate expression
@@ -168,7 +169,8 @@ public class ResultProjection
     private void validateColumnIdentifier( ColumnIdentifier resultColumn ) throws OdaException
     {
         if( resultColumn == null || ! resultColumn.isValid() )
-            throw new OdaException( new IllegalArgumentException( resultColumn.toString() ) );
+            throw new OdaException( new IllegalArgumentException( 
+                    Messages.bind( Messages.querySpec_INVALID_COLUMN_IDENTIFIER, resultColumn )) );
     }
     
 }

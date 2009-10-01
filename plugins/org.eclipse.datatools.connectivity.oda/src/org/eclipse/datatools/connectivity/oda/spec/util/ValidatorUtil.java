@@ -14,12 +14,12 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.util;
 
-import java.sql.Types;
 import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.VariableRestrictions;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
@@ -31,7 +31,6 @@ import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.AtomicExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -229,18 +228,36 @@ public class ValidatorUtil
             VariableRestrictions varRestrictions, String odaDataSourceId, String dataSetType ) 
         throws OdaException
     {
+        validateSupportedVariableDataTypes( exprVar.getValueExpression(), varRestrictions, 
+                odaDataSourceId, dataSetType );
+    }
+    
+    /**
+     * Validates that the data type of the specified value expression is one of the
+     * supported data types listed in the VariableRestrictions.
+     * @param valueExpr a value expression
+     * @param varRestrictions   supported data types defined by an oda dynamicResultSet extension
+     * @param odaDataSourceId   the id of an oda.dataSource extension
+     * @param dataSetType       the id of a data set type defined by an oda.dataSource extension;
+     *                          used to map native data type to corresponding ODA data type
+     * @throws OdaException  if validation fails
+     */
+    public static void validateSupportedVariableDataTypes( ValueExpression valueExpr, 
+            VariableRestrictions varRestrictions, String odaDataSourceId, String dataSetType ) 
+        throws OdaException
+    {
         // TODO - validate ExpressionVariable's instance type is one of restrictedInstanceTypes 
-        if( exprVar.getType() == VariableType.INSTANCE_OF )
+        if( valueExpr.getVariableType() == VariableType.INSTANCE_OF )
             return;     // validation is not supported yet 
         
-        if( exprVar.getNativeDataType() == null )
-            return;     // no native data type to validate
+        if( valueExpr.getOdaDataType() == null )
+            return;     // no data type to validate
         
         int[] restrictedOdaDataTypes = null;
 //        String[] restrictedInstanceTypes = null;
         boolean hasRestrictedOdaDataTypes = false;
         boolean hasRestrictedInstanceTypes = false;
-        switch( exprVar.getType() )
+        switch( valueExpr.getVariableType() )
         {
             case RESULT_SET_COLUMN:
                 restrictedOdaDataTypes = varRestrictions.getResultColumnRestrictedOdaDataTypes();
@@ -262,33 +279,24 @@ public class ValidatorUtil
             return;     // has no type restrictions
         
         boolean meetsRestriction = false;
-        if( hasRestrictedOdaDataTypes && exprVar.getNativeDataType() != null )
-        {
-            // look up oda data type from the ExpressionVariable's native data type
-            int nativeDataType = exprVar.getNativeDataType().intValue();
-            int odaDataType = Types.NULL;
-            if( odaDataSourceId != null && odaDataSourceId.length() > 0 )
-            {
-                odaDataType = ManifestExplorer.getInstance( ).getDefaultOdaDataTypeCode( 
-                        nativeDataType, odaDataSourceId, dataSetType );
-            }
-            
-            if( odaDataType == Types.NULL )     // oda data type is unknown 
-                return;     // unable to validate
-            
+        if( hasRestrictedOdaDataTypes )
+        {            
+            // look up oda data type if available in the value expression
+            Integer odaDataType = valueExpr.getOdaDataType();
+
             // check if the variable's oda type is one of the allowed data types
             for( int i=0; i < restrictedOdaDataTypes.length; i++ )
             {
-                if( restrictedOdaDataTypes[i] == odaDataType )
+                if( restrictedOdaDataTypes[i] == odaDataType.intValue() )
                 {
                     meetsRestriction = true;
                     break;
                 }
             }
+
             if( ! meetsRestriction )
-                throw newOdaException( Messages.bind( Messages.querySpec_NONSUPPORTED_VAR_DATA_TYPE,
-                        String.valueOf(nativeDataType), exprVar.getIdentifier() ),
-                        exprVar.toString() );
+                throw new OdaException( Messages.bind( Messages.querySpec_NONSUPPORTED_VAR_DATA_TYPE,
+                        odaDataType, valueExpr.getName() ));
         }
     }
 
@@ -482,6 +490,73 @@ public class ValidatorUtil
             Throwable cause = currentEx.getCause();
             if( cause instanceof IllegalArgumentException && 
                     aggrExprId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
+    
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified value expression is the cause of the specified driverEx exception.
+     * @param invalidValueExpr the invalid ValueExpression to set as the cause
+     * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalid value expression
+     *          identified as the cause
+     * @see {@link #isInvalidValueExpression(ValueExpression, OdaException)}
+     */
+    public static OdaException newValueExprException( ValueExpression invalidValueExpr, OdaException driverEx )
+    {
+        return newValueExprException( Messages.querySpec_INVALID_VALUE_EXPR, invalidValueExpr, driverEx );
+    }
+    
+    /**
+     * Creates and returns an OdaException with the specified value expression identified as the cause.
+     * @param message   custom exception message
+     * @param invalidValueExpr    the invalid ValueExpression to set as the cause
+     * @return  an OdaException with the specified message and invalid ValueExpression
+     *          identified as the cause
+     * @see {@link #isInvalidValueExpression(ValueExpression, OdaException)}
+     */
+    public static OdaException newValueExprException( String message, ValueExpression invalidValueExpr )
+    {
+        return newValueExprException( message, invalidValueExpr, null );
+    }
+    
+    private static OdaException newValueExprException( String message, ValueExpression invalidValueExpr, 
+            OdaException chainedEx )
+    {
+        // if this value expr is already identified as a cause in the caught exception,
+        // proceed to use it as is; otherwise, add this expr as the root cause 
+        if( chainedEx != null && isInvalidValueExpression( invalidValueExpr, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, getInstanceId( invalidValueExpr ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified value expression is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param valueExpr    a value expression whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing 
+     *          the value expression
+     * @return  true if the specified value expression is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     */
+    public static boolean isInvalidValueExpression( ValueExpression valueExpr, OdaException rootEx )
+    {
+        if( valueExpr == null )
+            return true;
+
+        String valueExprId = getInstanceId( valueExpr );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    valueExprId.equals( cause.getMessage() ) )
                 return true;
             
             currentEx = currentEx.getNextException();
@@ -753,6 +828,13 @@ public class ValidatorUtil
         if( aggrExpr == null )
             return null;
         return aggrExpr.getName() + AT_SYMBOL + Integer.toHexString( aggrExpr.hashCode() );
+    }
+    
+    private static String getInstanceId( ValueExpression valueExpr )
+    {
+        if( valueExpr == null )
+            return null;
+        return valueExpr.getName() + AT_SYMBOL + Integer.toHexString( valueExpr.hashCode() );
     }
     
     private static String getInstanceId( ResultProjection resultProj )

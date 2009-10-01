@@ -53,7 +53,9 @@ public class ResultExtensionExplorer
         "org.eclipse.datatools.connectivity.oda.dynamicResultSet";  //$NON-NLS-1$
     public static final String FILTER_GROUP_NAME = "filterExpressionTypes"; //$NON-NLS-1$
     public static final String AGGREGATE_GROUP_NAME = "aggregateExpressionTypes"; //$NON-NLS-1$
-
+    public static final String VALUE_EXPR_GROUP_NAME = "valueExpressionTypes"; //$NON-NLS-1$
+    private static final String COMBINED_OPERATOR_SUBGROUP_NAME = "combinedOperatorTypes"; //$NON-NLS-1$
+    
     private static ResultExtensionExplorer sm_instance = null;
     
     // trace logging variables
@@ -62,11 +64,18 @@ public class ResultExtensionExplorer
     private static final ExtensionContributor[] EMTPY_CONTRIBUTOR_ARRAY = new ExtensionContributor[0];
     private static final FilterExpressionDefinition[] EMPTY_FILTER_EXPRS_ARRAY = new FilterExpressionDefinition[0];
     private static final AggregateDefinition[] EMPTY_AGGR_EXPRS_ARRAY = new AggregateDefinition[0];
+    private static final CombinedExpressionOperatorDefinition[] EMPTY_COMBINED_OP_ARRAY = 
+        new CombinedExpressionOperatorDefinition[0];
+    private static final FunctionExpressionDefinition[] EMPTY_FUNC_TYPES_ARRAY = new FunctionExpressionDefinition[0];
     
     private Map<ExtensionContributor,Map<String,FilterExpressionDefinition>> 
-        m_filterExpressionsByExtn;  // cached copy of filter expression map by extension contributor
+        m_filterTypesByExtn;  // cached copy of filter expression type map by extension contributor
     private Map<ExtensionContributor,Map<String,AggregateDefinition>> 
         m_aggregateTypesByExtn;  // cached copy of aggregate type map by extension contributor
+    private Map<String,Map<String,CombinedExpressionOperatorDefinition>>
+        m_combinedOpTypesByExtnId;  // cached copy of supported combined operator type map by extension id
+    private Map<String,Map<String,FunctionExpressionDefinition>>
+        m_functionTypesByExtnId;  // cached copy of value expression function type map by extension id
     
     /**
      * Gets the singleton instance to explore the manifest of the dynamicResultSet extensions.
@@ -129,25 +138,29 @@ public class ResultExtensionExplorer
 
     private void resetCache()
     {
-        if( m_filterExpressionsByExtn != null )
-            m_filterExpressionsByExtn.clear();
+        if( m_filterTypesByExtn != null )
+            m_filterTypesByExtn.clear();
         if( m_aggregateTypesByExtn != null )
             m_aggregateTypesByExtn.clear();
+        if( m_combinedOpTypesByExtnId != null )
+            m_combinedOpTypesByExtnId.clear();      
+        if( m_functionTypesByExtnId != null )
+            m_functionTypesByExtnId.clear();
     }
     
     private Map<ExtensionContributor,Map<String,FilterExpressionDefinition>> getCachedFilterExtensions()
     {
-        if( m_filterExpressionsByExtn == null )
+        if( m_filterTypesByExtn == null )
         {
             synchronized( this )
             {
-                if( m_filterExpressionsByExtn == null )
+                if( m_filterTypesByExtn == null )
                 {
-                    m_filterExpressionsByExtn = new HashMap<ExtensionContributor,Map<String,FilterExpressionDefinition>>(4);
+                    m_filterTypesByExtn = new HashMap<ExtensionContributor,Map<String,FilterExpressionDefinition>>(4);
                 }
             }
         }
-        return m_filterExpressionsByExtn;
+        return m_filterTypesByExtn;
     }
     
     /**
@@ -225,6 +238,57 @@ public class ResultExtensionExplorer
         return null;
     }    
 
+    private Map<String,Map<String,CombinedExpressionOperatorDefinition>> 
+        getCachedCombinedOperatorExtensions()
+    {
+        if( m_combinedOpTypesByExtnId == null )
+        {
+            synchronized( this )
+            {
+                if( m_combinedOpTypesByExtnId == null )
+                {
+                    m_combinedOpTypesByExtnId = new HashMap<String,Map<String,CombinedExpressionOperatorDefinition>>(4);
+                }
+            }
+        }
+        return m_combinedOpTypesByExtnId;
+    }
+    
+    /**
+     * Gets the CombinedExpressionOperatorDefinition instances cached for the contributor defined with the specified extensionId.
+     * @param extensionId   oda.dynamicResultSet extension id
+     * @return  may be null if specified extensionId is not found in cache
+     */
+    private Map<String,CombinedExpressionOperatorDefinition> getCachedCombinedOpDefinitionsByExtension( String extensionId )
+    {
+        return getCachedCombinedOperatorExtensions().get( extensionId );
+    }   
+    
+    /**
+     * Gets the FunctionExpressionDefinition instances cached for the contributor defined with the specified extensionId.
+     * @param extensionId   oda.dynamicResultSet extension id
+     * @return  may be null if specified extensionId is not found in cache
+     */
+    private Map<String,FunctionExpressionDefinition> getCachedFunctionDefinitionsByExtension( String extensionId )
+    {
+        return getCachedFunctionExtensions().get( extensionId );
+    }   
+
+    private Map<String,Map<String,FunctionExpressionDefinition>> getCachedFunctionExtensions()
+    {
+        if( m_functionTypesByExtnId == null )
+        {
+            synchronized( this )
+            {
+                if( m_functionTypesByExtnId == null )
+                {
+                    m_functionTypesByExtnId = new HashMap<String,Map<String,FunctionExpressionDefinition>>(4);
+                }
+            }
+        }
+        return m_functionTypesByExtnId;
+    }
+    
     private static FilterExpressionDefinition[] convertFilterDefnValuesToSortByNameArray( 
             Map<String,FilterExpressionDefinition> exprDefns )
     {   
@@ -233,10 +297,8 @@ public class ResultExtensionExplorer
 
         // sort given expression definitions by their display names
         TreeMap<String,FilterExpressionDefinition> sortedDefnsByName = new TreeMap<String,FilterExpressionDefinition>();
-        Iterator<FilterExpressionDefinition> iter = exprDefns.values().iterator();
-        while( iter.hasNext() )
+        for( FilterExpressionDefinition exprDefn : exprDefns.values() )
         {
-            FilterExpressionDefinition exprDefn = iter.next();
             sortedDefnsByName.put( exprDefn.getDisplayName(), exprDefn );
         }
         
@@ -251,14 +313,37 @@ public class ResultExtensionExplorer
         
         // sort given expression definitions by their display names
         TreeMap<String,AggregateDefinition> sortedDefnsByName = new TreeMap<String,AggregateDefinition>();
-        Iterator<AggregateDefinition> iter = exprDefns.values().iterator();
-        while( iter.hasNext() )
+        for( AggregateDefinition exprDefn : exprDefns.values() )
         {
-            AggregateDefinition exprDefn = iter.next();
             sortedDefnsByName.put( exprDefn.getDisplayName(), exprDefn );
         }
 
         return sortedDefnsByName.values().toArray( new AggregateDefinition[ sortedDefnsByName.size() ] );
+    }
+
+    private static CombinedExpressionOperatorDefinition[] convertCombinedOpDefnValuesToArray( 
+            Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns )
+    {   
+        if( combinedOpDefns == null )
+            return EMPTY_COMBINED_OP_ARRAY;
+        
+        return combinedOpDefns.values().toArray( new CombinedExpressionOperatorDefinition[ combinedOpDefns.size() ] );
+    }
+
+    private static FunctionExpressionDefinition[] convertFunctionDefnValuesToSortByNameArray( 
+            Map<String,FunctionExpressionDefinition> functionTypes )
+    {   
+        if( functionTypes == null )
+            return EMPTY_FUNC_TYPES_ARRAY;
+        
+        // sort given expression definitions by their display names
+        TreeMap<String,FunctionExpressionDefinition> sortedDefnsByName = new TreeMap<String,FunctionExpressionDefinition>();
+        for( FunctionExpressionDefinition functionType : functionTypes.values() )
+        {
+            sortedDefnsByName.put( functionType.getDisplayName(), functionType );
+        }
+
+        return sortedDefnsByName.values().toArray( new FunctionExpressionDefinition[ sortedDefnsByName.size() ] );
     }
     
     /**
@@ -273,10 +358,8 @@ public class ResultExtensionExplorer
     public ExtensionContributor[] getContributorsOfDataSet( String odaDataSourceId, String odaDataSetId ) 
         throws IllegalArgumentException, OdaException
     {
-        if ( odaDataSourceId == null || odaDataSourceId.length() == 0 )
-            throw new IllegalArgumentException( odaDataSourceId );        
-        if ( odaDataSetId == null || odaDataSetId.length() == 0 )
-            throw new IllegalArgumentException( odaDataSetId );        
+        validateArgumentExists( odaDataSourceId );        
+        validateArgumentExists( odaDataSetId );        
         
         // first check if specified data set type is already in cache, and use it
         ExtensionContributor[] contributors = findCachedContributorsByDataSet( odaDataSourceId, odaDataSetId );
@@ -367,8 +450,7 @@ public class ResultExtensionExplorer
     public FilterExpressionDefinition getContributedFilterDefinition( ExtensionContributor extensionContributor, String exprId ) 
         throws IllegalArgumentException, OdaException
     {
-        if ( exprId == null || exprId.length() == 0 )
-            throw new IllegalArgumentException( exprId );
+        validateArgumentExists( exprId );
 
         Map<String,FilterExpressionDefinition> filterExprDefns = getFilterDefinitionsByContributor( extensionContributor );
         return ( filterExprDefns == null ) ? null : filterExprDefns.get( exprId );
@@ -400,8 +482,7 @@ public class ResultExtensionExplorer
     public FilterExpressionDefinition getExtensionFilterDefinition( String extensionId, String exprId ) 
         throws IllegalArgumentException, OdaException
     {
-        if( exprId == null || exprId.length() == 0 )
-            throw new IllegalArgumentException( exprId );
+        validateArgumentExists( exprId );
         
         Map<String,FilterExpressionDefinition> filterExprDefns = getFilterDefinitionsByExtension( extensionId );
         
@@ -412,8 +493,7 @@ public class ResultExtensionExplorer
     private Map<String,FilterExpressionDefinition> getFilterDefinitionsByExtension( String extensionId )
         throws IllegalArgumentException, OdaException
     {
-        if( extensionId == null || extensionId.length() == 0 )
-            throw new IllegalArgumentException( extensionId );        
+        validateArgumentExists( extensionId );        
         
         // since all extensions should already be loaded in instance,
         // just check if specified extension is already in cache, and use it
@@ -424,8 +504,7 @@ public class ResultExtensionExplorer
     private Map<String,FilterExpressionDefinition> getFilterDefinitionsByContributor( ExtensionContributor extensionContributor )
         throws IllegalArgumentException, OdaException
     {
-        if( extensionContributor == null )
-            throw new IllegalArgumentException( new NullPointerException() );  
+        validateArgumentExists( extensionContributor );  
         
         // since all extensions should already be loaded in instance,
         // just check if specified extension is already in cache, and use it
@@ -481,39 +560,7 @@ public class ResultExtensionExplorer
             }
         }
     }
-    
-/*
-    private ExtensionContributor addExtension( String extensionId )
-        throws OdaException
-    {
-        // look up extension from registry
-        IExtension[] extensions = ManifestExplorer.getExtensions( DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT );        
-        IExtension dynamicResultExtn = findExtension( extensionId, extensions );       
-        if ( dynamicResultExtn == null )
-            throw new OdaException( Messages.bind( Messages.querySpec_EXTENSION_ID_NOT_FOUND, 
-                    new Object[]{ ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
-                                    extensionId } ));
-               
-        // found extension, create definitions and add to cache, replacing existing ones if any             
-        ExtensionContributor contributor = addExtension( dynamicResultExtn, true );
-        return contributor;
-    }
- 
-    private static IExtension findExtension( String extensionId, IExtension[] extensions )
-        throws OdaException
-    {
-        int length = ( extensions == null ) ? 0 : extensions.length;
-    
-        for( int i = 0; i < length; i++ )
-        {
-            IExtension extension = extensions[i];
-            if( extensionId.equals( extension.getUniqueIdentifier() ))
-                return extension;
-        }
-        return null;
-    }
-*/    
-    
+        
     /**
      * Adds the specified extension definition to cached copy.  An extension is added 
      * if not already in cache.  Existing cached copy may be replaced as controlled by the
@@ -544,6 +591,10 @@ public class ResultExtensionExplorer
                 ManifestUtil.getNamedElements( dynamicResultExtn, FILTER_GROUP_NAME );
             if( filterExprGroup.length > 0 )
             {
+                // process supportedOdaFilterExpression child elements
+                contributor.setSupportedOdaFilterExpressions( filterExprGroup[0] );
+                
+                // process custom filterType child elements
                 IConfigurationElement[] filterExprElements = filterExprGroup[0].getChildren( FilterExpressionDefinition.ELEMENT_NAME ); 
     
                 Map<String,FilterExpressionDefinition> filterExprs = new HashMap<String,FilterExpressionDefinition>(filterExprElements.length);
@@ -581,7 +632,75 @@ public class ResultExtensionExplorer
             }
         }
         
+        // next process the valueExpressionTypes group element in extension; expects 0 or 1 group element
+        if( replaceExisting || getCachedCombinedOperatorExtensions().get( contributor.getDeclaringExtensionId() ) == null ) 
+        {           
+            IConfigurationElement[] valueExprGroup =
+                ManifestUtil.getNamedElements( dynamicResultExtn, VALUE_EXPR_GROUP_NAME );
+            if( valueExprGroup.length > 0 )
+                addExtensionValueExprGroupElement( contributor, valueExprGroup[0] );            
+        }
+        
         return contributor;
+    }
+    
+    private void addExtensionValueExprGroupElement( ExtensionContributor contributor, IConfigurationElement valueExprGroupElement )
+        throws OdaException
+    {
+        // process the combinedOperatorTypes subgroup element in extension; expects 0 or 1 subgroup element
+        IConfigurationElement[] combinedOperatorGroup =
+            valueExprGroupElement.getChildren( COMBINED_OPERATOR_SUBGROUP_NAME ); 
+        if( combinedOperatorGroup.length > 0 )
+            addExtensionCombinedOperatorGroupElement( contributor.getDeclaringExtensionId(), combinedOperatorGroup[0] );
+
+        // process the functionExpressionType sub elements in extension
+        IConfigurationElement[] functionTypeElements = valueExprGroupElement.getChildren( FunctionExpressionDefinition.ELEMENT_NAME ); 
+        addExtensionFunctionTypeElements( contributor, functionTypeElements );
+    }
+    
+    private void addExtensionCombinedOperatorGroupElement( String extensionId, IConfigurationElement combinedOperatorGroup )
+        throws OdaException
+    {
+        IConfigurationElement[] supportedOdaCombinedOpElements = 
+            combinedOperatorGroup.getChildren( CombinedExpressionOperatorDefinition.SUPPORTED_ELEMENT_NAME ); 
+        IConfigurationElement[] customCombinedOpElements = 
+            combinedOperatorGroup.getChildren( CombinedExpressionOperatorDefinition.CUSTOM_ELEMENT_NAME ); 
+
+        Map<String,CombinedExpressionOperatorDefinition> combinedOperatorTypes = new HashMap<String,CombinedExpressionOperatorDefinition>(
+                supportedOdaCombinedOpElements.length + customCombinedOpElements.length );
+        for( int i=0; i < supportedOdaCombinedOpElements.length; i++ )
+        {
+            CombinedExpressionOperatorDefinition supportedOdaCombinedOpDefn =
+                new CombinedExpressionOperatorDefinition( supportedOdaCombinedOpElements[i] );
+            combinedOperatorTypes.put( supportedOdaCombinedOpDefn.getId(), supportedOdaCombinedOpDefn );   // replace existing entry, if exists
+        }
+        for( int i=0; i < customCombinedOpElements.length; i++ )
+        {
+            CombinedExpressionOperatorDefinition.CustomCombinedOperatorDefinition customCombinedOpDefn =
+                CombinedExpressionOperatorDefinition.newCustomDefinition( customCombinedOpElements[i] );
+            combinedOperatorTypes.put( customCombinedOpDefn.getId(), customCombinedOpDefn );   // replace existing entry, if exists
+        }
+        
+        // cache supported and custom combined operator type map by extension id
+        getCachedCombinedOperatorExtensions().put( extensionId, combinedOperatorTypes );
+    }
+ 
+    private void addExtensionFunctionTypeElements( ExtensionContributor contributor, IConfigurationElement[] functionTypeElements )
+        throws OdaException
+    {
+        if( functionTypeElements.length == 0 )
+            return;     // nothing to add
+        
+        Map<String,FunctionExpressionDefinition> functionTypes = 
+            new HashMap<String,FunctionExpressionDefinition>( functionTypeElements.length );
+        for( int i=0; i < functionTypeElements.length; i++ )
+        {
+            FunctionExpressionDefinition funcDefn = new FunctionExpressionDefinition( functionTypeElements[i], contributor );
+            functionTypes.put( funcDefn.getId(), funcDefn );  // replace existing entry, if exists
+        }
+
+        // cache supported and custom combined operator type map by extension id
+        getCachedFunctionExtensions().put( contributor.getDeclaringExtensionId(), functionTypes );        
     }
     
     /**
@@ -611,8 +730,7 @@ public class ResultExtensionExplorer
     public AggregateDefinition getContributedAggregateDefinition( ExtensionContributor extensionContributor, String exprId ) 
         throws IllegalArgumentException, OdaException
     {
-        if( exprId == null || exprId.length() == 0 )
-            throw new IllegalArgumentException( exprId );
+        validateArgumentExists( exprId );
 
         Map<String,AggregateDefinition> aggrExprDefns = getAggregateDefinitionsByContributor( extensionContributor );
         return ( aggrExprDefns == null ) ? null : aggrExprDefns.get( exprId );
@@ -645,8 +763,7 @@ public class ResultExtensionExplorer
     public AggregateDefinition getExtensionAggregateDefinition( String extensionId, String exprId ) 
         throws IllegalArgumentException, OdaException
     {
-        if ( exprId == null || exprId.length() == 0 )
-            throw new IllegalArgumentException( exprId );
+        validateArgumentExists( exprId );
         
         Map<String,AggregateDefinition> aggrExprDefns = getAggregateDefinitionsByExtension( extensionId );
         
@@ -657,8 +774,7 @@ public class ResultExtensionExplorer
     private Map<String,AggregateDefinition> getAggregateDefinitionsByExtension( String extensionId )
         throws IllegalArgumentException, OdaException
     {
-        if( extensionId == null || extensionId.length() == 0 )
-            throw new IllegalArgumentException( extensionId );        
+        validateArgumentExists( extensionId );        
         
         // since all extensions should already be loaded in instance,
         // just check if specified extension is already in cache, and use it
@@ -669,14 +785,137 @@ public class ResultExtensionExplorer
     private Map<String,AggregateDefinition> getAggregateDefinitionsByContributor( ExtensionContributor extensionContributor )
         throws OdaException
     {
-        if( extensionContributor == null )
-            throw new IllegalArgumentException( new NullPointerException() );  
+        validateArgumentExists( extensionContributor );  
         
         // since all extensions should already be loaded in instance,
         // just check if specified extension is already in cache, and use it
         Map<String,AggregateDefinition> aggregateDefns = 
                         getCachedAggregateExtensions().get( extensionContributor );
         return aggregateDefns;
+    }
+    
+    /**
+     * Gets the collection of supported and custom value expression combined operator definitions 
+     * declared by the specified extension.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @return  an array of {@link CombinedExpressionOperatorDefinition} defined by the specified extension; 
+     *          or an empty array if none
+     * @throws IllegalArgumentException if specified argument is invalid or null
+     * @throws OdaException
+     */
+    public CombinedExpressionOperatorDefinition[] getExtensionCombinedOperatorDefinitions( String extensionId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        validateArgumentExists( extensionId );        
+
+        // since all extensions should already be loaded in instance,
+        // just check if specified extension is already in cache, and use it
+        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = getCachedCombinedOpDefinitionsByExtension( extensionId );
+        return convertCombinedOpDefnValuesToArray( combinedOpDefns );
+    }
+    
+    /**
+     * Gets the definition of the specified supported or custom value expression combined operator 
+     * declared by the specified extension.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @param operatorId    the id of a value expression combined operator type; 
+     *              may be an ODA built-in operator or a custom type contributed by the extension
+     * @return  an instance of {@link CombinedExpressionOperatorDefinition}, or null if no matching definition is found
+     * @throws IllegalArgumentException if any specified argument is null or empty
+     * @throws OdaException
+     */
+    public CombinedExpressionOperatorDefinition getExtensionCombinedOperatorDefinition( String extensionId, String operatorId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        validateArgumentExists( extensionId );        
+        validateArgumentExists( operatorId );
+        
+        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = getCachedCombinedOpDefinitionsByExtension( extensionId );
+        
+        // get the definition of the specified operator 
+        return ( combinedOpDefns == null ) ? null : combinedOpDefns.get( operatorId );
+    }
+    
+    /**
+     * Indicates whether the specified extension supports the specified built-in combined operator type.
+     * @param extensionId      unique id of an extension that implements the dynamicResultSet extension point
+     * @param builtInOperatorId the id of a built-in value expression combined operator type; 
+     *          the constants are defined in 
+     *          {@link org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator}
+     * @return  true if the specified built-in combined operator type is supported by the specified extension;
+     *          false otherwise
+     * @see {@link org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory#getCombinedOperator(String, String)}
+     */
+    boolean supportsOdaCombinedOperator( String extensionId, String builtInOperatorId )
+    {
+        CombinedExpressionOperatorDefinition opDefn = null;
+        try
+        {
+            opDefn = getExtensionCombinedOperatorDefinition( extensionId, builtInOperatorId );
+        }
+        catch( IllegalArgumentException ex )
+        {
+            // ignore
+            return false;
+        }
+        catch( OdaException ex )
+        {
+            // ignore
+            return false;
+        }
+        
+        return opDefn != null && opDefn.isBuiltInOperator();
+    }
+    
+    /**
+     * Gets the collection of supported and custom value expression function definitions 
+     * declared by the specified extension.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @return  an array of {@link FunctionExpressionDefinition} defined by the specified extension; 
+     *          or an empty array if none
+     * @throws IllegalArgumentException if specified argument is invalid or null
+     * @throws OdaException
+     */
+    public FunctionExpressionDefinition[] getExtensionFunctionDefinitions( String extensionId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        validateArgumentExists( extensionId );        
+
+        // since all extensions should already be loaded in instance,
+        // just check if specified extension is already in cache, and use it
+        Map<String,FunctionExpressionDefinition> functionDefns = getCachedFunctionDefinitionsByExtension( extensionId );
+        return convertFunctionDefnValuesToSortByNameArray( functionDefns );
+    }
+    
+    /**
+     * Gets the definition of the specified supported or custom value expression function
+     * declared by the specified extension.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @param functionId    the id of a value expression function type contributed by the extension
+     * @return  an instance of {@link FunctionExpressionDefinition}, or null if no matching definition is found
+     * @throws IllegalArgumentException if any specified argument is null or empty
+     * @throws OdaException
+     */
+    public FunctionExpressionDefinition getExtensionFunctionDefinition( String extensionId, String functionId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        validateArgumentExists( extensionId );        
+        validateArgumentExists( functionId );
+        
+        Map<String,FunctionExpressionDefinition> functionDefns = getCachedFunctionDefinitionsByExtension( extensionId );
+        
+        // get the definition of the specified function 
+        return ( functionDefns == null ) ? null : functionDefns.get( functionId );
+    }
+   
+    private static void validateArgumentExists( String arg ) throws IllegalArgumentException
+    {
+        ResultExtensionUtil.validateArgumentExists( arg );        
+    }
+    
+    private static void validateArgumentExists( ExtensionContributor contributor ) throws IllegalArgumentException
+    {
+        ResultExtensionUtil.validateArgumentExists( contributor ) ;
     }
 
 }

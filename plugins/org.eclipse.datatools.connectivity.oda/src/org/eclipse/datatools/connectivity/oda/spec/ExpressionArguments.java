@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -31,6 +32,8 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
  */
 public class ExpressionArguments
 {
+    protected static final String COMMA_SEPARATOR = ", "; //$NON-NLS-1$
+
     private Object m_values;
  
     /**
@@ -90,13 +93,14 @@ public class ExpressionArguments
     }
     
     /**
-     * Returns the value at the specified position in the ordered collection of argument values.
+     * Returns the value at the specified position of the ordered collection of argument values.
      * The value at a position is based on the sequence that a value is added using {@link #addValue(Object)}.
      * If the argument's values are not kept in a {@link List}, 
      * all the value(s) are returned at the 0 position.
      * @param index 0-based position of the list of argument values
      * @return  the value at the specified position, 
      *          or null if the index is out of range (index < 0 || index >= size()).
+     * @see #getValueExpression(int)
      */
     @SuppressWarnings("unchecked")
     public Object getValue( int index )
@@ -108,6 +112,23 @@ public class ExpressionArguments
             return ( index == 0 ) ? m_values : null;
         
         return ((List) m_values).get( index );
+    }
+    
+    /**
+     * Returns the value expression that represents the value at the specified position 
+     * of the ordered collection of argument values.
+     * @param index 0-based position of the list of argument values
+     * @return  an ValueExpression instance representing the value at the specified position, 
+     *          or null if the index is out of range (index < 0 || index >= size()).
+     * @see #getValue(int)
+     */
+    public ValueExpression getValueExpression( int index )
+    {
+        Object value = getValue( index );
+        if( value instanceof ValueExpression )
+            return (ValueExpression) value;
+        
+        return ( value == null ) ? null : new SimpleValueExpression( value );
     }
     
     /**
@@ -192,7 +213,7 @@ public class ExpressionArguments
             for( int i=0; i < valuesList.size(); i++ )
             {
                 if( i > 0 )
-                    buffer.append( " | " ); //$NON-NLS-1$
+                    buffer.append( COMMA_SEPARATOR );
                 buffer.append( valuesList.get(i) );
             }
         }

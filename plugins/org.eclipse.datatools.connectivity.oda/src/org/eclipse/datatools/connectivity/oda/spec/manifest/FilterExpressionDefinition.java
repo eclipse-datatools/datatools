@@ -41,8 +41,7 @@ public class FilterExpressionDefinition
     public static final String ATTR_NEGATABLE = "isNegatable"; //$NON-NLS-1$
     public static final String ATTR_OPTIONABLE = "isOptionable"; //$NON-NLS-1$
 
-    static final Integer ATTR_MIN_VARS_DEFAULT_VALUE = Integer.valueOf(1);
-    static final String ATTR_UNBOUNDED_MAX_ARGS = "*"; //$NON-NLS-1$
+    static final Integer ATTR_MIN_ARGS_DEFAULT_VALUE = Integer.valueOf(1);
     
     private IConfigurationElement m_exprElement;
     private ExtensionContributor m_contributorInfo;
@@ -62,67 +61,28 @@ public class FilterExpressionDefinition
     
     private void init( IConfigurationElement exprElement, ExtensionContributor contributorInfo ) throws OdaException
     {
-        if( ! exprElement.isValid() )
-            throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ELEMENT,
-                                    ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, exprElement.getContributor().getName() ) );
+        ResultExtensionUtil.validateConfigurationElement( exprElement );
         
         m_exprElement = exprElement;
         m_contributorInfo = contributorInfo;
         m_id = getIdAttributeValue( exprElement );
         
         m_name = exprElement.getAttribute( ATTR_NAME );
-        if( m_name == null )
-            m_name = m_id;
         
         m_desc = exprElement.getAttribute( ATTR_DESC );
         
         // minArguments
-        String attrValue = exprElement.getAttribute( ATTR_MIN_ARGS );
-        if( attrValue == null )
-            m_minArgs = ATTR_MIN_VARS_DEFAULT_VALUE;
-        else
-        {
-            try
-            {
-                m_minArgs = Integer.valueOf( attrValue );
-            }
-            catch( NumberFormatException ex )
-            {
-            }
-            if( m_minArgs == null || m_minArgs.intValue() < 0 )
-                throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ATTR_VALUE,
-                        new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
-                                exprElement.getContributor().getName(), attrValue, ATTR_MIN_ARGS} ) );
-        }
+        m_minArgs = ResultExtensionUtil.getMinAttributeValue( exprElement, ATTR_MIN_ARGS, ATTR_MIN_ARGS_DEFAULT_VALUE );
         
-        // maxArguments
-        attrValue = exprElement.getAttribute( ATTR_MAX_ARGS );
-        if( attrValue != null && ! attrValue.equals( ATTR_UNBOUNDED_MAX_ARGS ) )
-        {
-            try
-            {
-                m_maxArgs = Integer.valueOf( attrValue );
-            }
-            catch( NumberFormatException ex )
-            {
-            }
-            if( m_maxArgs == null || m_maxArgs.intValue() < m_minArgs.intValue() )
-                throw new OdaException( Messages.bind( Messages.querySpec_INVALID_EXT_POINT_ATTR_VALUE,
-                        new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
-                                exprElement.getContributor().getName(), attrValue, ATTR_MAX_ARGS} ) );
-        }
+        // maxArguments; default value is null for unbounded maximum
+        m_maxArgs = ResultExtensionUtil.getMaxAttributeValue( exprElement, ATTR_MAX_ARGS, 
+                            null, m_minArgs );
         
         // isNegatable
-        m_isNegatable = false;  // default value
-        attrValue = exprElement.getAttribute( ATTR_NEGATABLE );
-        if( attrValue != null )
-            m_isNegatable = Boolean.parseBoolean( attrValue );
+        m_isNegatable = ResultExtensionUtil.getBooleanAttributeValue( exprElement, ATTR_NEGATABLE, false );
 
         // isOptional
-        m_isOptionable = false;  // default value
-        attrValue = exprElement.getAttribute( ATTR_OPTIONABLE );
-        if( attrValue != null )
-            m_isOptionable = Boolean.parseBoolean( attrValue );
+        m_isOptionable = ResultExtensionUtil.getBooleanAttributeValue( exprElement, ATTR_OPTIONABLE, false );
         
         // process children of variable restrictions
         m_varRestrictions = new VariableRestrictions( exprElement );
@@ -133,12 +93,7 @@ public class FilterExpressionDefinition
      */
     public static String getIdAttributeValue( IConfigurationElement exprElement ) throws OdaException
     {
-        String id = exprElement.getAttribute( ATTR_ID );
-        if( id == null || id.length() == 0 )
-            throw new OdaException( Messages.bind( Messages.querySpec_MISSING_EXT_POINT_ATTR_VALUE, 
-                    new Object[] { ResultExtensionExplorer.DTP_ODA_DYNAMIC_RESULT_SETS_EXT_POINT, 
-                                    exprElement.getContributor().getName(), ATTR_ID, ELEMENT_NAME} ));
-        return id;
+        return ResultExtensionUtil.getRequiredAttributeValue( exprElement, ATTR_ID, ELEMENT_NAME );
     }
     
     /**

@@ -15,7 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
 /**
- * The identifier of a result set column, defined by its number (1-based) or native name/expression.
+ * The identifier of a result set column, defined by its number (1-based) and/or native name/expression.
  * <br>A column number, if specified, takes precedence over its specified name/expression.
  * It may be used as an unique key in a {@link java.util.Map}.
  * Comparison by name is case-sensitive.
@@ -23,10 +23,24 @@ package org.eclipse.datatools.connectivity.oda.spec.result;
 public class ColumnIdentifier
 {
     private Integer m_pos;
-    private String m_valueExpr;
+    private String m_nameExpr;
     
     /**
-     * Creates a column identifier with its ordinal position in the expected result set.
+     * Constructor that creates an instance that identifies a result set column by both its ordinal
+     * position and native name/expression.  This would uniquely identify a column when multiple columns
+     * in a result set have the same name.
+     * @param pos   column number (1-based)
+     * @param nameExpr native name or expression of the column
+     */
+    public ColumnIdentifier( int pos, String nameExpr )
+    {
+        this( pos );
+        setNameExpression( nameExpr );
+    }
+    
+    /**
+     * Constructor that creates an instance that identifies a result set column by its ordinal
+     * position.
      * @param pos   column number (1-based)
      * @throws IllegalArgumentException if specified argument is not greater or equal to 1
      */
@@ -39,16 +53,17 @@ public class ColumnIdentifier
     }
     
     /**
-     * Creates a column identifier with its native name or expression.
-     * @param valueExpr native name or expression of the column
+     * Constructor that creates an instance that identifies a result set column by its 
+     * native name or expression.
+     * @param nameExpr native name or expression of the column
      * @throws IllegalArgumentException if specified argument is null or empty
      */
-    public ColumnIdentifier( String valueExpr )
+    public ColumnIdentifier( String nameExpr )
     {
-        if( valueExpr == null || valueExpr.length() == 0 )
-            throw new IllegalArgumentException( valueExpr );
+        if( nameExpr == null || nameExpr.length() == 0 )
+            throw new IllegalArgumentException( nameExpr );
         
-        m_valueExpr = valueExpr;
+        m_nameExpr = nameExpr;
     }
 
     /**
@@ -62,11 +77,21 @@ public class ColumnIdentifier
 
     /**
      * Sets the column's native name or expression.
-     * @param valueExpr column's native name or expression; may be null
+     * @param nameExpr a column's native name or expression; may be null
+     */
+    public void setNameExpression( String nameExpr )
+    {
+        m_nameExpr = nameExpr;
+    }
+    
+    /**
+     * Sets the column's native name or expression.
+     * @param valueExpr a column's native name or expression; may be null
+     * @deprecated  replaced by {@link #setNameExpression(String)}
      */
     public void setValueExpression( String valueExpr )
     {
-        m_valueExpr = valueExpr;
+        setNameExpression( valueExpr );
     }
 
     /**
@@ -82,9 +107,19 @@ public class ColumnIdentifier
      * Gets the column's native name or expression, if specified.
      * @return  column's native name or expression, or null if not specified
      */
+    public String getNameExpression()
+    {
+        return m_nameExpr;
+    }
+    
+    /**
+     * Gets the column's native name or expression, if specified.
+     * @return  column's native name or expression, or null if not specified
+     * @deprecated {@link #getNameExpression()}
+     */
     public String getValueExpression()
     {
-        return m_valueExpr;
+        return getNameExpression();
     }
 
     /**
@@ -97,24 +132,35 @@ public class ColumnIdentifier
     }
     
     /**
-     * Indicates whether this has a value expression specified.
-     * The value expression, if exists, is ignored if this is identified by number. 
-     * @return  true if this has a value expression; false otherwise
+     * Indicates whether this has a name expression specified.
+     * The name expression is superceded by the ordinal position identifier, if exists. 
+     * @return  true if this has a name expression; false otherwise
+     */
+    public boolean hasNameExpression()
+    {
+        return ( m_nameExpr != null && m_nameExpr.length() > 0 );
+    }
+
+    /**
+     * Indicates whether this has a name expression specified.
+     * The name expression, if exists, is ignored if this is identified by number. 
+     * @return  true if this has a name expression; false otherwise
+     * @deprecated replaced by {@link #hasNameExpression()}
      */
     public boolean hasValueExpression()
     {
-        return ( m_valueExpr != null && m_valueExpr.length() > 0 );
+        return hasNameExpression();
     }
-    
+
     /**
-     * Indicates whether this has either a valid number or value expression.
-     * @return  true if this has a valid number or value expression; false otherwise
+     * Indicates whether this has either a valid number or name expression.
+     * @return  true if this has a valid number or name expression; false otherwise
      */
     public boolean isValid()
     {
         if( isIdentifiedByNumber() )
             return true;
-        if( hasValueExpression() )
+        if( hasNameExpression() )
             return true;
         return false;
     }
@@ -128,15 +174,25 @@ public class ColumnIdentifier
         if( ! (obj instanceof ColumnIdentifier) )
             return false;
 
-        // compares by number, if exists
         ColumnIdentifier thatObj = (ColumnIdentifier) obj;
-        if( this.isIdentifiedByNumber() )
-            return( this.m_pos.equals( thatObj.m_pos ));
-        
-        if( this.hasValueExpression() )
-            return this.m_valueExpr.equals( thatObj.m_valueExpr );
+        if( this == thatObj )
+            return true;
 
-        return false;   // no valid identifier
+        // compares by position first, if exists
+        boolean isEqual = false;
+        if( this.isIdentifiedByNumber() )
+        {
+            if( this.m_pos.equals( thatObj.m_pos ) )
+                isEqual = true;
+            else
+                return false;
+        }
+        
+        // compares by name, if exists
+        if( this.hasNameExpression() )
+            return this.m_nameExpr.equals( thatObj.m_nameExpr );
+
+        return isEqual;
     }
 
     /* (non-Javadoc)
@@ -145,14 +201,15 @@ public class ColumnIdentifier
     @Override
     public int hashCode()
     {
-        // use its name for hashcode if exists
+        int hashCode = 0;
+        // use its position for hashcode if exists
         if( isIdentifiedByNumber() )
-            return m_pos.hashCode();
+            hashCode = m_pos.hashCode();
         
-        if( hasValueExpression() )
-            return m_valueExpr.hashCode();
+        if( hasNameExpression() )
+            return hashCode ^ m_nameExpr.hashCode();
         
-        return super.hashCode();
+        return (hashCode == 0) ? super.hashCode() : hashCode;
     }
 
     /* (non-Javadoc)
@@ -162,7 +219,7 @@ public class ColumnIdentifier
     public String toString()
     {
         return "ColumnIdentifier@" + super.hashCode() + " [number= " + m_pos +   //$NON-NLS-1$//$NON-NLS-2$
-                ", value expression= " + m_valueExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+                ", name expression= " + m_nameExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }                  
 
 }

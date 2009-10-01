@@ -14,6 +14,9 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
+import java.math.BigDecimal;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.Hashtable;
 import java.util.Locale;
@@ -30,7 +33,12 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
  */
 public class DataTypeMapping
 {
-    private static Hashtable sm_odaTypeCodes;
+    public static final int[] ODA_NUMERIC_DATA_TYPE_CODES = new int[] { Types.INTEGER, Types.DOUBLE, Types.DECIMAL };
+    public static final int[] ODA_STRING_DATA_TYPE_CODES = new int[] { Types.CHAR };
+    public static final int[] ODA_DATETIME_DATA_TYPE_CODES = new int[]{ Types.DATE, Types.TIMESTAMP };
+    public static final int[] ODA_BOOLEAN_DATA_TYPE_CODES = new int[] { Types.BOOLEAN };
+
+    private static Hashtable<String,Integer> sm_odaTypeCodes;
     
 	private int m_nativeTypeCode;
 	private String m_nativeType;
@@ -214,48 +222,88 @@ public class DataTypeMapping
             odaDataTypeLiteral.length() == 0 )
             return Types.NULL;
         
-        Object typeCode = 
+        Integer typeCode = 
             getOdaTypeCodes().get( toOdaTypeKey( odaDataTypeLiteral ) );
         if( typeCode != null )
-            return ((Integer) typeCode).intValue();
-        
+            return typeCode.intValue();       
         return Types.NULL;
     }
-    
+
+    /**
+     * Returns the default ODA data type code of the specified value based on its object type.
+     * @param valueObj  a value object
+     * @return  an ODA data type code; may be Types.NULL for unknown data type 
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public static int getOdaDataTypeCodeOfObject( Object valueObj )
+    {
+        if( valueObj == null )
+            return Types.NULL;
+        
+        if( valueObj instanceof String )
+            return Types.CHAR;
+        if( valueObj instanceof Integer )
+            return Types.INTEGER;
+        if( valueObj instanceof Double )
+            return Types.DOUBLE;
+        if( valueObj instanceof BigDecimal )
+            return Types.DECIMAL;
+        if( valueObj instanceof Time )
+            return Types.TIME;
+        if( valueObj instanceof Timestamp )
+            return Types.TIMESTAMP;
+        if( valueObj instanceof java.sql.Date )
+            return Types.DATE;
+        if( valueObj instanceof Boolean )
+            return Types.BOOLEAN;
+        
+        // the remaining possible ODA data types cannot be derived for certain
+        // Types.BLOB
+        // Types.CLOB
+        // Types.JAVA_OBJECT
+        
+        return Types.NULL;  // unknown data type
+    }
+        
     /**
      * Returns the cached table that maps each ODA data type name 
      * to its corresponding data type code.
      * The data type name serves as the key in the cached table.
      */
-    @SuppressWarnings("unchecked")
-    private static Hashtable getOdaTypeCodes()
+    private static Hashtable<String, Integer> getOdaTypeCodes()
     {
         if( sm_odaTypeCodes == null )
         {
-            sm_odaTypeCodes = new Hashtable( 10 );
+            synchronized( DataTypeMapping.class )
+            {
+                if( sm_odaTypeCodes == null )
+                {
+                    sm_odaTypeCodes = new Hashtable<String,Integer>( 11 );
             
-            sm_odaTypeCodes.put( toOdaTypeKey( "String" ), //$NON-NLS-1$
+                    sm_odaTypeCodes.put( toOdaTypeKey( "String" ), //$NON-NLS-1$
                                 new Integer( Types.CHAR )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Integer" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Integer" ), //$NON-NLS-1$ 
                                 new Integer( Types.INTEGER )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Double" ), //$NON-NLS-1$  
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Double" ), //$NON-NLS-1$  
                                 new Integer( Types.DOUBLE )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Decimal" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Decimal" ), //$NON-NLS-1$ 
                                 new Integer( Types.DECIMAL )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Date" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Date" ), //$NON-NLS-1$ 
                                 new Integer( Types.DATE )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Time" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Time" ), //$NON-NLS-1$ 
                                 new Integer( Types.TIME )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Timestamp" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Timestamp" ), //$NON-NLS-1$ 
                                 new Integer( Types.TIMESTAMP ));
-            sm_odaTypeCodes.put( toOdaTypeKey( "Blob" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Blob" ), //$NON-NLS-1$ 
                                 new Integer( Types.BLOB )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Clob" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Clob" ), //$NON-NLS-1$ 
                                 new Integer( Types.CLOB )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "Boolean" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "Boolean" ), //$NON-NLS-1$ 
                                 new Integer( Types.BOOLEAN )); 
-            sm_odaTypeCodes.put( toOdaTypeKey( "JavaObject" ), //$NON-NLS-1$ 
+                    sm_odaTypeCodes.put( toOdaTypeKey( "JavaObject" ), //$NON-NLS-1$ 
                                 new Integer( Types.JAVA_OBJECT )); 
+                }
+            }
         }
         
         return sm_odaTypeCodes;        

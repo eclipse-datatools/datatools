@@ -18,42 +18,41 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
-import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
 
 /**
- * Represents the definition of a contributed aggregate type, as specifed in an extension of the
+ * Represents the definition of a value expression function type, as specified in an extension of the
  * <i>org.eclipse.datatools.connectivity.oda.dynamicResultSet</i> extension point.
- * @since 3.2 (DTP 1.7)
+ * @since 3.2.2 (DTP 1.7.2)
  */
-public class AggregateDefinition
+public class FunctionExpressionDefinition
 {
     // element and attribute tags defined in the extension point schema definition
-    public static final String ELEMENT_NAME = "aggregateType"; //$NON-NLS-1$
+    public static final String ELEMENT_NAME = "functionExpressionType"; //$NON-NLS-1$
     public static final String ATTR_ID = "id"; //$NON-NLS-1$
-    public static final String ATTR_NAME = "displayName"; //$NON-NLS-1$
+    public static final String ATTR_NAME = "name"; //$NON-NLS-1$
+    public static final String ATTR_DISPLAY_NAME = "displayName"; //$NON-NLS-1$
     public static final String ATTR_DESC = "description"; //$NON-NLS-1$
     public static final String ATTR_CLASS = "class"; //$NON-NLS-1$
-    public static final String ATTR_MIN_VARS = "minInputVariables"; //$NON-NLS-1$
-    public static final String ATTR_MAX_VARS = "maxInputVariables"; //$NON-NLS-1$
+    public static final String ATTR_MIN_ARGS = "minArguments"; //$NON-NLS-1$
+    public static final String ATTR_MAX_ARGS = "maxArguments"; //$NON-NLS-1$
     public static final String ATTR_CAN_IGNORE_DUPLS = "canIgnoreDuplicates"; //$NON-NLS-1$
-    public static final String ATTR_CAN_IGNORE_NULLS = "canIgnoreNull"; //$NON-NLS-1$
 
-    static final Integer ATTR_VARS_DEFAULT_VALUE = Integer.valueOf(1);
+    static final Integer ATTR_ARGS_DEFAULT_VALUE = Integer.valueOf(1);
     
     private IConfigurationElement m_exprElement;
     private ExtensionContributor m_contributorInfo;
     private String m_id;
     private String m_name;
+    private String m_displayName;
     private String m_desc;
-    private Integer m_minVars;
-    private Integer m_maxVars;  // null value means unlimited maximum number of arguments
+    private Integer m_minArgs;
+    private Integer m_maxArgs;  // null value means unlimited maximum number of arguments
     private boolean m_canIgnoreDupls;
-    private boolean m_canIgnoreNull;
     private VariableRestrictions m_varRestrictions;
-
-    AggregateDefinition( IConfigurationElement exprElement, ExtensionContributor providerInfo ) throws OdaException
+    
+    FunctionExpressionDefinition( IConfigurationElement exprElement, ExtensionContributor providerInfo ) throws OdaException
     {
         init( exprElement, providerInfo );
     }
@@ -67,19 +66,17 @@ public class AggregateDefinition
         m_id = getIdAttributeValue( exprElement );
         
         m_name = exprElement.getAttribute( ATTR_NAME );
-
+        m_displayName = exprElement.getAttribute( ATTR_DISPLAY_NAME );
         m_desc = exprElement.getAttribute( ATTR_DESC );
         
-        // minInputVariables
-        m_minVars = ResultExtensionUtil.getMinAttributeValue( exprElement, ATTR_MIN_VARS, ATTR_VARS_DEFAULT_VALUE );
+        // minArguments
+        m_minArgs = ResultExtensionUtil.getMinAttributeValue( exprElement, ATTR_MIN_ARGS, ATTR_ARGS_DEFAULT_VALUE );
         
-        // maxInputVariables
-        m_maxVars = ResultExtensionUtil.getMaxAttributeValue( exprElement, ATTR_MAX_VARS, 
-                        ATTR_VARS_DEFAULT_VALUE, m_minVars );
+        // maxArguments
+        m_maxArgs = ResultExtensionUtil.getMaxAttributeValue( exprElement, ATTR_MAX_ARGS, 
+                ATTR_ARGS_DEFAULT_VALUE, m_minArgs );
 
         m_canIgnoreDupls = ResultExtensionUtil.getBooleanAttributeValue( exprElement, ATTR_CAN_IGNORE_DUPLS, false );
-
-        m_canIgnoreNull = ResultExtensionUtil.getBooleanAttributeValue( exprElement, ATTR_CAN_IGNORE_NULLS, false );
 
         // process children of variable restrictions
         m_varRestrictions = new VariableRestrictions( exprElement );
@@ -94,24 +91,13 @@ public class AggregateDefinition
     }
     
     /**
-     * Creates and returns an instance of CustomAggregate for use in an ODA aggregate projection specification,
-     * based on the class defined in the attribute specified in this definition.
-     * @return  an instance of {@link CustomAggregate} or its subclass
+     * Creates and returns an instance of CustomFunction 
+     * based on the class attribute specified in this definition.
+     * @return  an instance of {@link CustomFunction} or its subclass,
+     *          with no assigned function arguments
      * @throws OdaException
      */
-    public CustomAggregate createExpression() throws OdaException
-    {
-        return createExpression( null );
-    }
-    
-    /**
-     * Creates and returns an instance of CustomAggregate for use in an ODA aggregate projection specification,
-     * based on the class defined in the attribute specified in this definition.
-     * @param variable  the initial input source variable to set on the created instance; may be null
-     * @return  an instance of {@link CustomAggregate} or its subclass
-     * @throws OdaException
-     */
-    public CustomAggregate createExpression( ExpressionVariable variable ) throws OdaException
+    public CustomFunction createExpression() throws OdaException
     {
     
         String className = m_exprElement.getAttribute( ATTR_CLASS );
@@ -120,15 +106,13 @@ public class AggregateDefinition
             try
             {
                 Object clazz = m_exprElement.createExecutableExtension( ATTR_CLASS );
-                if( clazz instanceof CustomAggregate )
+                if( clazz instanceof CustomFunction )
                 {
-                    if( variable != null )
-                        ((CustomAggregate) clazz).add( variable );
-                    return (CustomAggregate) clazz;
+                    return (CustomFunction) clazz;
                 }
                 else
                     throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
-                            new Object[]{ className, ATTR_CLASS, CustomAggregate.class.getName()} ));
+                            new Object[]{ className, ATTR_CLASS, CustomFunction.class.getName()} ));
             }
             catch( CoreException ex )
             {
@@ -137,15 +121,15 @@ public class AggregateDefinition
         }
         
         // no class attribute value, use the default class provided by the ODA framework
-        return new CustomAggregate( getDeclaringExtensionId(), getId(), variable );
+        return new CustomFunction( getDeclaringExtensionId(), getId() );
     }
     
     /**
-     * Indicates whether this type of custom aggregate type supports
+     * Indicates whether this type of custom function type supports
      * the specified data set type of the specified data source type.
      * @param odaDataSourceId   id of an ODA data source extension
      * @param odaDataSetId      id of an ODA data set defined within the data source extension
-     * @return  true if this ODA data set type can be used with this type of custom aggregate type; false otherwise
+     * @return  true if this ODA data set type can be used with this type of custom function type; false otherwise
      */
     public boolean supportsDataSetType( String odaDataSourceId, String odaDataSetId )
     {
@@ -153,7 +137,7 @@ public class AggregateDefinition
     }
 
     /**
-     * Gets the unique id of the dynamicResultSets extension that declares this type of custom aggregate type.
+     * Gets the unique id of the dynamicResultSets extension that declares this type of custom function type.
      * @return  unique id of the declaring dynamicResultSets extension 
      */
     public String getDeclaringExtensionId()
@@ -162,25 +146,37 @@ public class AggregateDefinition
     }
 
     /**
-     * Gets the id that uniquely identifies this type of custom aggregate type 
+     * Gets the id that uniquely identifies this type of custom function type 
      * within the contributing extension.
-     * @return  id of this type of custom aggregate type
+     * @return  id of this type of custom function type
      */
     public String getId()
     {
         return m_id;
     }
-
+    
     /**
-     * Gets the translateable name that can be used to refer to this particular aggregate type in dialogs presented to the user.
-     * Defaults to the expression type id if no name is specified.  The name should be unique within the extension.
-     * @return  display name of this type of custom aggregate type
+     * Gets the expression name of this function type.  Default to the function id if no name is specified. 
+     * @return  the name of this type of custom function type
      */
-    public String getDisplayName()
+    public String getName()
     {
         if( m_name != null && m_name.trim().length() > 0 )
             return m_name;
         return m_id;    // default to the expression id if no name is specified.
+    }
+
+    /**
+     * Gets the translatable name that will be used to refer to this particular 
+     * function expression type in dialogs presented to the user. 
+     * Default to the function name if no display name is specified.
+     * @return  the display name of this type of custom function type
+     */
+    public String getDisplayName()
+    {
+        if( m_displayName != null && m_displayName.trim().length() > 0 )
+            return m_displayName;
+        return getName();    // default to the expression name if no display name is specified.
     }
    
     /**
@@ -193,7 +189,7 @@ public class AggregateDefinition
     }
 
     /**
-     * Returns the contributor of this type of custom aggregate expression.
+     * Returns the contributor of this type of custom function expression.
      * @return  an instance of the {@link ExtensionContributor} that defines its scope and capabilities
      */
     public ExtensionContributor getContributor()
@@ -212,60 +208,49 @@ public class AggregateDefinition
     }
     
     /**
-     * Gets the minimum number of input source variables required by this expression type. 
+     * Gets the minimum number of argument values required by this expression type. 
      * The value may be greater than or equal to 0. 
-     * @return  an Integer for the minimum number of expected input variables
+     * @return  an Integer for the minimum number of expected argument values
      */
-    public Integer getMinInputVariables()
+    public Integer getMinArguments()
     {
-        return m_minVars;
+        return m_minArgs;
     }
     
     /**
-     * Indicates whether this expression type has no upper limit on the number of input source variables.
-     * @return  true if no upper limit on number of input variables; false otherwise
+     * Indicates whether this expression type has no upper limit on the number of argument values.
+     * @return  true if no upper limit on number of argument values; false otherwise
      */
-    public boolean supportsUnboundedMaxInputVariables()
+    public boolean supportsUnboundedMaxArguments()
     {
-        return ( getMaxInputVariables() == null );
+        return ( getMaxArguments() == null );
     }
     
     /**
-     * Gets the maximum number of input source variables required by this expression type.
-     * @return  an Integer for the maximum number of expected input variables,
-     *          or null if no upper limit on the maximum.
-     * @see {@link #supportsUnboundedMaxInputVariables()}
+     * Gets the maximum number of argument values required by this expression type.
+     * @return  an Integer for the maximum number of expected argument values,
+     *          or null if no upper limit on the maximum arguments.
+     * @see {@link #supportsUnboundedMaxArguments()}
      */
-    public Integer getMaxInputVariables()
+    public Integer getMaxArguments()
     {
-        return m_maxVars;
+        return m_maxArgs;
     }
     
     /**
-     * Indicates whether this aggregate type is capable of ignoring duplicate values of its input variable. 
+     * Indicates whether this function type is capable of ignoring duplicate values of its input variable. 
      * Default value is false if none is specified in the extension.
-     * @return true if this aggregate type is capable of ignoring duplicate values of its target variable;
+     * @return true if this function type is capable of ignoring duplicate values of its target variable;
      *          false otherwise 
      */
     public boolean canIgnoreDuplicateValues()
     {
         return m_canIgnoreDupls;
     }
-    
-    /**
-     * Indicates whether this aggregate type is capable of ignoring null values of its input variable. 
-     * Default value is false if none is specified in the extension.
-     * @return true if this aggregate type is capable of ignoring null values of its input variable;
-     *          false otherwise 
-     */
-    public boolean canIgnoreNullValues()
-    {
-        return m_canIgnoreNull;
-    }
 
     /**
      * Gets the restriction info on the types of expression variable that can be applied
-     * with this type of aggregate expression.
+     * with this type of function value expression.
      * @return an instance of VariableRestrictions
      */
     public VariableRestrictions getVariableRestrictions()

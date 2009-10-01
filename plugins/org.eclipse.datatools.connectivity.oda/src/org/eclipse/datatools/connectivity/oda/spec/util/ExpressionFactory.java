@@ -19,10 +19,14 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
+import org.eclipse.datatools.connectivity.oda.spec.manifest.CombinedExpressionOperatorDefinition;
+import org.eclipse.datatools.connectivity.oda.spec.manifest.FunctionExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -32,6 +36,8 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpressio
  */
 public class ExpressionFactory
 {
+    private static final String DOT_SEPARATOR = "."; //$NON-NLS-1$
+    
     /**
      * Creates a custom filter expression instance of the specified filter expression
      * contributed by the specified dynamicResultSet extension. 
@@ -76,7 +82,7 @@ public class ExpressionFactory
             ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( extensionId, exprId );
         if( filterExprDefn == null )
             throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FILTER, 
-                    extensionId, exprId ));
+                    extensionId + DOT_SEPARATOR + exprId ));
         return filterExprDefn;
     }
 
@@ -124,8 +130,64 @@ public class ExpressionFactory
             ResultExtensionExplorer.getInstance().getExtensionAggregateDefinition( extensionId, exprId );
         if( aggrgExprDefn == null )
             throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_AGGR, 
-                    extensionId, exprId ));
+                    extensionId + DOT_SEPARATOR + exprId ));
         return aggrgExprDefn;
     }
+ 
+    /**
+     * Obtains the instance of the specified combined operator type,
+     * as supported or contributed by the specified dynamicResultSet extension.
+     * A dynamicResultSet extension may override a built-in operator type, whose custom implementation
+     * would be returned.
+     * The returned operator instance may be applied to combine value expressions in an ODA 
+     * {@link org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpression}.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @param operatorId    the id of a value expression combined operator type
+     * @return  an instance of ValueExpressionCombinedOperator or its subclass contributed by 
+     *          the specified dynamicResultSet extension
+     * @throws IllegalArgumentException if the specified extension and/or operator are not valid
+     * @throws OdaException
+     */
+    public static CombinedValueExpressionOperator getCombinedOperator( String extensionId, String operatorId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        CombinedExpressionOperatorDefinition combinedOpDefn =
+            ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( extensionId, operatorId );
+        if( combinedOpDefn == null )
+            throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_COMBINED_OP, 
+                    extensionId + DOT_SEPARATOR + operatorId ));
+
+        return combinedOpDefn.getOperator();
+    }
+
+    /**
+     * Creates a custom function value expression instance of the specified function type
+     * contributed by the specified dynamicResultSet extension. 
+     * Caller may use the returned instance as a value expression, and 
+     * assign function arguments to it as appropriate.
+     * @param extensionId   unique id of an extension that implements the dynamicResultSet extension point
+     * @param functionId    id of a custom function expression type
+     * @return  an instance of CustomFunction or its subclass contributed by 
+     *          the specified dynamicResultSet extension
+     * @throws IllegalArgumentException if the specified extension and/or function ids are not valid
+     * @throws OdaException
+     */
+    public static CustomFunction createCustomFunction( String extensionId, String functionId )
+        throws IllegalArgumentException, OdaException
+    {
+        return findCustomFunctionDefinition( extensionId, functionId ).createExpression();
+    }
     
+    private static FunctionExpressionDefinition findCustomFunctionDefinition( String extensionId, 
+            String functionId ) 
+        throws IllegalArgumentException, OdaException
+    {
+        FunctionExpressionDefinition functionDefn =
+            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( extensionId, functionId );
+        if( functionDefn == null )
+            throw new IllegalArgumentException( Messages.bind( Messages.querySpec_NON_DEFINED_CUSTOM_FUNC, 
+                    extensionId + DOT_SEPARATOR + functionId ));
+        return functionDefn;
+    }
+
 }

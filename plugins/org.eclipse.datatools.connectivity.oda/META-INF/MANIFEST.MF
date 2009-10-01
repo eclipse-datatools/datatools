@@ -11,6 +11,7 @@ Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.spec.result;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.spec.result.filter;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.spec.util;x-internal:=true,
+ org.eclipse.datatools.connectivity.oda.spec.valueexpr;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.util,
  org.eclipse.datatools.connectivity.oda.util.logging,
  org.eclipse.datatools.connectivity.oda.util.manifest

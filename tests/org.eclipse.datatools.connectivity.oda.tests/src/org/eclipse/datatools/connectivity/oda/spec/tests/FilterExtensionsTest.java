@@ -39,9 +39,9 @@ import junit.framework.TestCase;
 @SuppressWarnings("restriction")
 public class FilterExtensionsTest extends TestCase
 {
-    private static final String TEST_EXTENSION_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dynamicResultSetExtension"; //$NON-NLS-1$
-    private static final String TARGET_DATA_SOURCE_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver"; //$NON-NLS-1$
-    private static final String TARGET_DATA_SET_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"; //$NON-NLS-1$
+    private static final String TEST_EXTENSION_ID = QuerySpecTest.TEST_EXTENSION_ID;
+    private static final String TARGET_DATA_SOURCE_ID = QuerySpecTest.TARGET_DATA_SOURCE_ID;
+    private static final String TARGET_DATA_SET_ID = QuerySpecTest.TARGET_DATA_SET_ID;
 
     private static final String EQUAL_EXPR_ID = "0"; //$NON-NLS-1$
     private static final String BETWEEN_EXPR_ID = "1001"; //$NON-NLS-1$

@@ -40,7 +40,7 @@ public class VariableRestrictions
     public static final String ATTR_VARIABLE_TYPE_QUERY_EXPR = "QueryExpression"; //$NON-NLS-1$
 
     public static final String SUB_ELEMENT_VARIABLE_RESTRICTION_ODA_DATA_TYPE = "variableOdaDataTypeRestriction"; //$NON-NLS-1$
-    public static final String ATTR_RESULT_COLUMN_DATA_TYPE = "odaScalarDataType"; //$NON-NLS-1$
+    public static final String ATTR_ODA_SCALAR_DATA_TYPE = "odaScalarDataType"; //$NON-NLS-1$
     public static final String SUB_ELEMENT_VARIABLE_RESTRICTION_INSTANCE = "variableClassRestriction"; //$NON-NLS-1$  
     public static final String ATTR_RESULT_INSTANCE_TYPE = "class"; //$NON-NLS-1$
 
@@ -103,7 +103,7 @@ public class VariableRestrictions
                 
                 for( int i = 0; i < dataTypeElements.length; i++ )
                 {
-                    String odaDataTypeLiteral = dataTypeElements[i].getAttribute( ATTR_RESULT_COLUMN_DATA_TYPE );
+                    String odaDataTypeLiteral = dataTypeElements[i].getAttribute( ATTR_ODA_SCALAR_DATA_TYPE );
                     int odaDataTypeCode = DataTypeMapping.toOdaDataTypeCode( odaDataTypeLiteral );
                     if( odaDataTypeCode == Types.NULL )
                         continue;   // ignore
@@ -142,7 +142,15 @@ public class VariableRestrictions
      */
     public boolean supportsVariableType( VariableType type )
     {
-        return m_restrictedVariableTypes.contains( type );
+        if( m_restrictedVariableTypes.contains( type ) )
+            return true;     // support is explicitly specified, done
+        
+        // A QueryExpression variable type is a superset that covers any value expression types 
+        // including a ResultSetColumn reference
+        if( type == VariableType.RESULT_SET_COLUMN )
+            return m_restrictedVariableTypes.contains( VariableType.QUERY_EXPRESSION );
+
+        return false;
     }
 
     /**
@@ -162,35 +170,101 @@ public class VariableRestrictions
      */
     public boolean hasDataTypeRestrictions( VariableType type )
     {
-        return ( getRestrictedDataTypeList(type).size() > 0 );
+        if( getRestrictedDataTypeList(type).size() > 0 )    // has explicit data type restrictions
+            return true;
+        
+        // result column data type restrictions are implied from those of VariableType.QUERY_EXPRESSION, 
+        // if none explicitly defined
+        if( type == VariableType.RESULT_SET_COLUMN )
+            return getRestrictedDataTypeList(VariableType.QUERY_EXPRESSION).size() > 0;
+
+        return false;
     }
     
     /**
      * Indicates whether this supports the specified ODA data type of the specified type of variable.
-     * @param type  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
+     * @param varType  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
      * @param odaDataType   ODA scalar data type code
      * @return  true if the specified ODA data type is supported; false otherwise
      */
-    @SuppressWarnings("unchecked")
-    public boolean supportsOdaDataType( VariableType type, int odaDataType )
+    public boolean supportsOdaDataType( VariableType varType, int odaDataType )
     {
-        if( type == VariableType.INSTANCE_OF )  // this type does not support odaDataType
+        if( varType == VariableType.INSTANCE_OF )  // this type does not support odaDataType
             return false;
-        if( ! supportsVariableType( type ) )
+        if( ! supportsVariableType( varType ) )
             return false;
         
-        if( ! hasDataTypeRestrictions( type ) )
+        if( ! hasDataTypeRestrictions( varType ) )
             return true;
         
-        Iterator<Integer> iter = getRestrictedDataTypeList(type).iterator();
-        while( iter.hasNext() )
+        int[] restrictedDataTypes = ( varType == VariableType.RESULT_SET_COLUMN ) ?
+                getResultColumnRestrictedOdaDataTypes() : getQueryExpressionRestrictedOdaDataTypes();
+        for( int i=0; i < restrictedDataTypes.length; i++ )
         {
-            if( iter.next().intValue() == odaDataType )
+            if( restrictedDataTypes[i] == odaDataType )
                 return true;
         }
         
         // no matching data type found in variable restricted type list
         return false;
+    }
+    
+    /**
+     * A convenient method to indicate whether this supports all the ODA numeric data types 
+     * of the specified type of variable.
+     * @param varType  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
+     * @return  true if all ODA numeric data types are supported; false otherwise
+     * @see #supportsOdaDataType(VariableType, int)
+     */
+    public boolean supportsOdaNumericDataTypes( VariableType varType )
+    {
+        return supportsOdaDataTypes( varType, DataTypeMapping.ODA_NUMERIC_DATA_TYPE_CODES );
+    }
+    
+    /**
+     * A convenient method to indicate whether this supports the ODA string/character data type 
+     * of the specified type of variable.
+     * @param varType  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
+     * @return  true if the ODA string/character data type is supported; false otherwise
+     * @see #supportsOdaDataType(VariableType, int)
+     */
+    public boolean supportsOdaStringDataTypes( VariableType varType )
+    {
+        return supportsOdaDataTypes( varType, DataTypeMapping.ODA_STRING_DATA_TYPE_CODES );
+    }
+    
+    /**
+     * A convenient method to indicate whether this supports all the ODA date and/or datetime data types 
+     * of the specified type of variable.
+     * @param varType  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
+     * @return  true if all ODA date and/or time data types are supported; false otherwise
+     * @see #supportsOdaDataType(VariableType, int)
+     */
+    public boolean supportsOdaDatetimeDataTypes( VariableType varType )
+    {
+        return supportsOdaDataTypes( varType, DataTypeMapping.ODA_DATETIME_DATA_TYPE_CODES );
+    }
+    
+    /**
+     * A convenient method to indicate whether this supports the ODA boolean data type 
+     * of the specified type of variable.
+     * @param varType  the type of variable; its value must be one of the pre-defined {@link ExpressionVariable#VariableType}
+     * @return  true if the ODA boolean data type is supported; false otherwise
+     * @see #supportsOdaDataType(VariableType, int)
+     */
+    public boolean supportsOdaBooleanDataTypes( VariableType varType )
+    {
+        return supportsOdaDataTypes( varType, DataTypeMapping.ODA_BOOLEAN_DATA_TYPE_CODES );
+    }
+    
+    private boolean supportsOdaDataTypes( VariableType varType, int[] odaDataTypeCodes )
+    {
+        for( int i=0; i < odaDataTypeCodes.length; i++ )
+        {
+            if( ! supportsOdaDataType( varType, odaDataTypeCodes[i] ) )
+                return false;
+        }
+        return true;    // supports all the specified data types
     }
     
     /**
@@ -233,6 +307,11 @@ public class VariableRestrictions
         List<Integer> restrictedDataTypeList = 
             (List<Integer>) getRestrictedDataTypeList( VariableType.RESULT_SET_COLUMN );
         
+        // result column data type restrictions are implied from those of VariableType.QUERY_EXPRESSION, 
+        // if none explicitly defined
+        if( restrictedDataTypeList.isEmpty() && ! m_restrictedVariableTypes.contains( VariableType.RESULT_SET_COLUMN ) )
+            restrictedDataTypeList = (List<Integer>) getRestrictedDataTypeList( VariableType.QUERY_EXPRESSION );
+
         return convertListToArrayInt( restrictedDataTypeList );
     }
     
@@ -286,11 +365,11 @@ public class VariableRestrictions
         if( restrictedDataTypes == null )
         {
             if( type == VariableType.RESULT_SET_COLUMN )
-                restrictedDataTypes = new ArrayList<Integer>();
+                restrictedDataTypes = new ArrayList<Integer>(0);
             else if( type == VariableType.QUERY_EXPRESSION )
-                restrictedDataTypes = new ArrayList<Integer>();
+                restrictedDataTypes = new ArrayList<Integer>(0);
             else // if( type == VariableType.INSTANCE_OF )
-                restrictedDataTypes = new ArrayList<String>();
+                restrictedDataTypes = new ArrayList<String>(0);
             
             m_restrictedDataTypesByVarType.put( type, restrictedDataTypes );
         }

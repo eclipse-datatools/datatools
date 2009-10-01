@@ -15,7 +15,6 @@
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -34,8 +33,6 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
  */
 public abstract class AggregateExpression
 {    
-    protected static final String ALIAS_SEPARATOR = "_"; //$NON-NLS-1$
-    
     private List<ExpressionVariable> m_inputVariables;   // 0..n ExpressionVariable
     private boolean m_ignoresDups = false;
     private boolean m_ignoresNull = true;
@@ -207,7 +204,7 @@ public abstract class AggregateExpression
     public String toString()
     {
         StringBuffer buffer = new StringBuffer( getQualifiedId() );
-        buffer.append( ALIAS_SEPARATOR );
+        buffer.append( ExpressionVariable.ALIAS_SEPARATOR );
         buffer.append( getVariableAliases() );
         return buffer.toString();
     }
@@ -216,12 +213,11 @@ public abstract class AggregateExpression
     {
         // iterate thru each input variable and append its alias
         StringBuffer combinedAlias = new StringBuffer();
-        Iterator<ExpressionVariable> iter = getVariables().iterator();
-        while( iter.hasNext() )
+        for( ExpressionVariable inputVar : getVariables() )
         {
             if( combinedAlias.length() > 0 )
-                combinedAlias.append( ALIAS_SEPARATOR );
-            combinedAlias.append( iter.next().getAlias() );
+                combinedAlias.append( ExpressionVariable.ALIAS_SEPARATOR );
+            combinedAlias.append( inputVar.getAlias() );
         }
         return combinedAlias.toString();
     }

@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
@@ -122,6 +123,24 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.ValueExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validate( ValueExpression valueExpr, ValidationContext context )
+            throws OdaException
+    {
+        // TODO Auto-generated method stub        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValueExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validateSyntax( ValueExpression valueExpr,
+            ValidationContext context ) throws OdaException
+    {
+        // TODO Auto-generated method stub      
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     public void validate( SortSpecification sortSpec, ValidationContext context )
@@ -144,7 +163,7 @@ public class ExpressionTester implements IValidator, IExecutableExtension
                 ColumnIdentifier column = sortSpec.getSortColumn( i );
                 
                 // test driver expects sort column identifier are defined as querySpec property names
-                String columnName = column.isIdentifiedByNumber() ? column.getNumber().toString() : column.getValueExpression();
+                String columnName = column.isIdentifiedByNumber() ? column.getNumber().toString() : column.getNameExpression();
                 if( ! querySpec.getProperties().containsKey( columnName ) )
                     throw new OdaException( "Unexpected sort column: " + column ); //$NON-NLS-1$
                 

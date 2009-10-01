@@ -54,7 +54,7 @@ public interface IValidator
         throws OdaException;
 
     /**
-     * Performs syntactic validation of the specified custom atomic filter expression 
+     * Performs syntactic validation of the specified filter expression 
      * in the specified context. 
      * @param filterExpr  the filter expression to validate; 
      *              may be a single filter node at the root, or nested
@@ -77,7 +77,7 @@ public interface IValidator
         throws OdaException;
 
     /**
-     * Performs syntactic validation of the specified custom aggregate expression 
+     * Performs syntactic validation of the specified aggregate expression 
      * in the specified context. 
      * @param aggrExpr  the aggregate expression to validate
      * @param context   context for validation; may be null which would limit the scope of validation
@@ -86,6 +86,27 @@ public interface IValidator
      */
     public void validateSyntax( AggregateExpression aggrExpr, ValidationContext context )
         throws OdaException;
+
+    /**
+     * Validates the specified value expression in the specified context. 
+     * @param valueExpr  value expression to validate
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+//    public void validate( ValueExpression valueExpr, ValidationContext context ) 
+//        throws OdaException;
+
+    /**
+     * Performs syntactic validation of the specified value expression 
+     * in the specified context. 
+     * @param valueExpr  the value expression to validate
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     */
+//    public void validateSyntax( ValueExpression valueExpr, ValidationContext context )
+//        throws OdaException;
     
     /**
      * Validates the specified sort specification in the specified context.

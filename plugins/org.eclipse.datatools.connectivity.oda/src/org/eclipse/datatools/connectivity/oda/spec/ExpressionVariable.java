@@ -14,6 +14,10 @@
 
 package org.eclipse.datatools.connectivity.oda.spec;
 
+import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.ColumnValueExpression;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
+
 /**
  * <strong>EXPERIMENTAL</strong>.
  * Represents the variable of an expression defined in an ODA query specification.
@@ -33,14 +37,14 @@ public class ExpressionVariable
 //        CUBE_DIMENSION_ATTRIBUTE,   // reserved
 //        CUBE_MEASURE                // reserved
     }
-    
-    private String m_identifier;
-    private VariableType m_variableType;
-    private Integer m_nativeDataTypeCode; 
+
+    public static final String ALIAS_SEPARATOR = "_"; //$NON-NLS-1$
+       
     private String m_alias;
+    private ValueExpression m_valueExpr;
     
     /**
-     * Constructor for an expression variable, which is one of the columns in a result set.
+     * Constructor for an expression variable that references a result set column by name or expression.
      * @param variableIdentfier the name or expression that identifies the variable to use in evaluating an expression.
      *              The identifier must be in a format recognized by the ODA data provider that will be 
      *              evaluating the expression.  
@@ -57,19 +61,62 @@ public class ExpressionVariable
      *              evaluating the expression.  
      * @param type  the type of variable; its value must be one of the pre-defined {@link VariableType}
      */
-    public ExpressionVariable( String variableIdentfier, VariableType type )
+    public ExpressionVariable( String variableIdentfier, VariableType varType )
     {
-        m_identifier = variableIdentfier;
-        setType( type );
+        switch( varType )
+        {
+            case RESULT_SET_COLUMN: 
+                setColumnExpression( new ColumnIdentifier( variableIdentfier ) ); break;
+            case QUERY_EXPRESSION:
+            default:
+                setValueExpression( new SimpleValueExpression( variableIdentfier )); break;
+        }
+    }
+
+    /**
+     * Constructor for an expression variable that references a result set column by its identifier.
+     * @param columnIdentifier  a column identifier
+     */
+    public ExpressionVariable( ColumnIdentifier columnIdentifier )
+    {
+        setColumnExpression( columnIdentifier );
     }
     
     /**
-     * Gets the name or expression that identifies the variable to use in evaluating an expression.
+     * Constructor for an expression variable that references the specified value expression.
+     * @param valueExpr a concrete ValueExpression instance
+     */
+    public ExpressionVariable( ValueExpression valueExpr )
+    {
+        setValueExpression( valueExpr );
+    }
+    
+    private void setColumnExpression( ColumnIdentifier columnIdentifier )
+    {
+        setValueExpression( new ColumnValueExpression( columnIdentifier ) );
+    }
+    
+    private void setValueExpression( ValueExpression valueExpr )
+    {
+        m_valueExpr = valueExpr;
+    }
+    
+    /**
+     * Returns the value expression of this variable.
+     * @return an instance of a concrete ValueExpression
+     */
+    public ValueExpression getValueExpression()
+    {
+        return m_valueExpr;
+    }
+
+    /**
+     * Gets the name or expression that identifies the variable in evaluating an expression.
      * @return  the name or expression of the variable
      */
     public String getIdentifier()
     {
-        return m_identifier; 
+        return ( m_valueExpr != null ) ? m_valueExpr.getName() : m_alias; 
     }
     
     /**
@@ -91,23 +138,24 @@ public class ExpressionVariable
     }
 
     /**
-     * Gets the type of variable, e.g. a column in a query result set.
-     * @return  a VariableType enum value;
-     *          default value is RESULT_COLUMN type if not specified
-     *          by {@link #setVariableType(VariableType)}.
+     * Gets the type of this variable, e.g. a column in a query result set.
+     * @return  a VariableType enum value
      */
     public VariableType getType()
     {
-        return m_variableType;
+        if( m_valueExpr != null )
+            return m_valueExpr.getVariableType();
+        return VariableType.QUERY_EXPRESSION;   // default
     }
     
     /**
      * Sets the type of variable, e.g. a column in a query result set.
      * @param type  a VariableType enum value
+     * @deprecated  replaced by deriving from the type of ValueExpression in this variable
      */
     public void setType( VariableType type )
     {
-        m_variableType = type;
+        // deprecated method
     }
 
     /**
@@ -115,10 +163,12 @@ public class ExpressionVariable
      * The valid values are implementation-specific.  
      * This serves as an optional hint that may have been specified at design time.
      * @return      the native data type code of this variable, or null if not available
+     * @deprecated  replaced by {@link #getOdaDataType()}
      */
     public Integer getNativeDataType()
     {
-        return m_nativeDataTypeCode;
+        // deprecated method
+        return null;    // not available
     }
 
     /**
@@ -128,10 +178,23 @@ public class ExpressionVariable
      * and may be ignored by the runtime driver, if appropriate.
      * @param nativeDataTypeCode the native data type code of this variable;
      *              may be null to unset current value
+     * @deprecated  replaced by {@link ValueExpression#setOdaDataType(Integer)}
      */
     public void setNativeDataType( Integer nativeDataTypeCode )
     {
-        m_nativeDataTypeCode = nativeDataTypeCode;
+        // deprecated method
+    }
+
+    /**
+     * Gets the ODA-defined code value of this variable's data type. 
+     * This serves as an optional hint that may have been specified by the variable expression.
+     * @return      the ODA data type code of this variable, or null if not available
+     */
+    public Integer getOdaDataType()
+    {
+        if( m_valueExpr != null )
+            return m_valueExpr.getOdaDataType();
+        return null;    // not available
     }
 
     /* (non-Javadoc)
@@ -140,18 +203,9 @@ public class ExpressionVariable
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " identifier: " ); //$NON-NLS-1$
-        buffer.append( m_identifier );
-
-        buffer.append( ", type: " ); //$NON-NLS-1$
-        switch( m_variableType)
-        {
-            case RESULT_SET_COLUMN: buffer.append( "ResultSetColumn" ); break; //$NON-NLS-1$
-            case INSTANCE_OF:   buffer.append( "InstanceOf" ); break; //$NON-NLS-1$
-            case QUERY_EXPRESSION: buffer.append( "QueryExpression" ); break; //$NON-NLS-1$
-//            case CUBE_DIMENSION_MEMBER: buffer.append( "CubeDimensionMember" ); break; //$NON-NLS-1$
-            default: buffer.append( m_variableType.ordinal() ); break;
-        }
+        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " valueExpression = [" ); //$NON-NLS-1$
+        buffer.append( m_valueExpr );
+        buffer.append( "]" ); //$NON-NLS-1$
         return buffer.toString();
     }
     

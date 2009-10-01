@@ -67,7 +67,7 @@ public class SortSpecMigrator
             ColumnIdentifier sortColumn = resultSortSpec.getSortColumn( i );
             if( sortColumn == null )
                 throw new IllegalArgumentException( Messages.bind( Messages.querySpec_INVALID_ARG, resultSortSpec ));
-            oldSortSpec.addSortKey( sortColumn.getValueExpression(), resultSortSpec.getSortDirection( i ) );
+            oldSortSpec.addSortKey( sortColumn.getNameExpression(), resultSortSpec.getSortDirection( i ) );
         }
         return oldSortSpec;
     }

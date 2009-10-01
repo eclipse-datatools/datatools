@@ -72,15 +72,6 @@
                odaDataSetId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.jdbc.dbprofile.sqbDataSet"
                odaDataSourceId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.jdbc.dbprofile">
          </supportedDataSetType>
-         <supportedOdaFilterExpression
-               name="AndExpression">
-         </supportedOdaFilterExpression>
-         <supportedOdaFilterExpression
-               name="OrExpression">
-         </supportedOdaFilterExpression>
-         <supportedOdaFilterExpression
-               name="NotExpression">
-         </supportedOdaFilterExpression>
          <supportsRowOrdering></supportsRowOrdering>
         </contributor>
         <filterExpressionTypes>
@@ -168,10 +159,19 @@
               </variableOdaDataTypeRestriction>
            </variableRestriction>
         </filterType>
+        <supportedOdaFilterExpression
+              name="AndExpression">
+        </supportedOdaFilterExpression>
+        <supportedOdaFilterExpression
+              name="OrExpression">
+        </supportedOdaFilterExpression>
+        <supportedOdaFilterExpression
+              name="NotExpression">
+        </supportedOdaFilterExpression>
        </filterExpressionTypes>
        <aggregateExpressionTypes>
         <aggregateType
-              canIgnoreDuplicate="false"
+              canIgnoreDuplicates="false"
               canIgnoreNull="true"
               displayName="Minimum"
               id="MIN">
@@ -192,13 +192,13 @@
            </variableRestriction>
         </aggregateType>
         <aggregateType
-              canIgnoreDuplicate="true"
+              canIgnoreDuplicates="true"
               canIgnoreNull="true"
               id="COUNT"
               minInputVariables="0">
         </aggregateType>
         <aggregateType
-              canIgnoreDuplicate="false"
+              canIgnoreDuplicates="false"
               canIgnoreNull="true"
               displayName="Average"
               id="AVG">
@@ -216,7 +216,7 @@
            </variableRestriction>
         </aggregateType>
         <aggregateType
-              canIgnoreDuplicate="false"
+              canIgnoreDuplicates="false"
               canIgnoreNull="true"
               displayName="Weighted Average"
               id="WtAvg"
@@ -236,7 +236,7 @@
            </variableRestriction>
         </aggregateType>
         <aggregateType
-              canIgnoreDuplicate="true"
+              canIgnoreDuplicates="true"
               canIgnoreNull="true"
               displayName="Standard Deviation"
               id="StdDev">
@@ -248,6 +248,210 @@
            </variableRestriction>
         </aggregateType>
        </aggregateExpressionTypes>
+       <valueExpressionTypes>
+	       <combinedOperatorTypes>
+	          <supportedOdaCombinedOperator
+	                id="Add">
+	          </supportedOdaCombinedOperator>
+           <supportedOdaCombinedOperator
+                 id="Multiply">
+           </supportedOdaCombinedOperator>
+	          <supportedOdaCombinedOperator
+	                class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCombinedOperator"
+	                id="Concatenate">
+	          </supportedOdaCombinedOperator>
+	          <combinedOperatorType
+	                class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCombinedOperator"
+	                displayName="Dot"
+	                id="org.eclipse.datatools.connectivity.oda.consumer.testdriver.combinedOperator.dot"
+	                literal=".">
+	          </combinedOperatorType>
+	          <combinedOperatorType
+	                displayName="At"
+	                id="org.eclipse.datatools.connectivity.oda.consumer.testdriver.combinedOperator.at"
+	                literal="@">
+	          </combinedOperatorType>
+	       </combinedOperatorTypes>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Round up to the next higher integer value"
+              displayName="Ceiling(&lt;numerical expression&gt;)"
+              id="CEIL"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Round down to the next least integer value"
+              displayName="Floor(&lt;numerical expression&gt;)"
+              id="FLOOR"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns the &lt;numeric_expression&gt; raised to the power of &lt;power&gt;"
+              displayName="Power(&lt;numeric_expression&gt;,&lt;power&gt;)  "
+              id="POWER"
+              maxArguments="2"
+              minArguments="2">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns the remainder of numeric_expression1 divided by numeric_expression2"
+              displayName="Modulo(&lt;numeric_expression1&gt;,&lt;numeric_expression2&gt;)"
+              id="MOD"
+              maxArguments="2"
+              minArguments="2">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns the square root of the positive numeric_expression"
+              displayName="Sqrt(&lt;numeric_expression&gt;)  "
+              id="SQRT">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns the absolute value of an numeric expression"
+              displayName="Absolute(&lt;numeric expression&gt;)  "
+              id="ABS"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Converts all characters in a string into uppercase"
+              displayName="Upper(&lt;string_expression&gt;)"
+              id="UPPER"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="String">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Converts all characters in a string into lowercase"
+              displayName="Lower(&lt;string_expression&gt;)"
+              id="LOWER">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="String">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns the current date"
+              displayName="Current Date"
+              id="CURRENT_DATE"
+              maxArguments="0"
+              minArguments="0">
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              description="Returns an integer value for the month part of date_expression"
+              displayName="Month(&lt;date_expression&gt;)"
+              id="MONTH"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="QueryExpression">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Date">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Timestamp">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </functionExpressionType>
+        <functionExpressionType
+              canIgnoreDuplicates="false"
+              class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomFunction"
+              description="Test custom class implementation"
+              displayName="Custom Function"
+              id="100"
+              maxArguments="1"
+              minArguments="1"
+              name="CustomFunc">
+        </functionExpressionType>
+       </valueExpressionTypes>
      </extension>
    
 </plugin>

@@ -28,9 +28,9 @@ import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 @SuppressWarnings("restriction")
 public class AggregateTest extends TestCase
 {
-    private static final String DBPROFILE_DATA_SOURCE_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver"; //$NON-NLS-1$
-    private static final String DBPROFILE_DATA_SET_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"; //$NON-NLS-1$
-    private static final String TEST_EXTENSION_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.dynamicResultSetExtension"; //$NON-NLS-1$
+    private static final String DBPROFILE_DATA_SOURCE_ID = QuerySpecTest.TARGET_DATA_SOURCE_ID;
+    private static final String DBPROFILE_DATA_SET_ID = QuerySpecTest.TARGET_DATA_SET_ID;
+    private static final String TEST_EXTENSION_ID = QuerySpecTest.TEST_EXTENSION_ID;
 
     private static final String COUNT_AGGRG_ID = "COUNT"; //$NON-NLS-1$
     private static final String AVG_AGGRG_ID = "WtAvg"; //$NON-NLS-1$
