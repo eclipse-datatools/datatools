@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
@@ -36,6 +37,9 @@ public class ResultProjection
     private Map<ColumnIdentifier,ExpressionVariable> m_addedColumns;
     private List<ColumnIdentifier> m_hiddenColumns;
     private static final int MAP_INITIAL_CAPACITY = 5;
+
+    private static final String LOG_SUB_ENTRY = "\n * "; //$NON-NLS-1$
+    private static final String LOG_PAIR_ENTRY_SEPARATOR = " ->\n    "; //$NON-NLS-1$
     
     /**
      * Internal constructor.
@@ -171,6 +175,45 @@ public class ResultProjection
         if( resultColumn == null || ! resultColumn.isValid() )
             throw new OdaException( new IllegalArgumentException( 
                     Messages.bind( Messages.querySpec_INVALID_COLUMN_IDENTIFIER, resultColumn )) );
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        StringBuffer buffer = new StringBuffer( ResultProjection.class.getSimpleName() + " [" ); //$NON-NLS-1$
+        
+        buffer.append( "\nAdded result columns <ColumnIdentifier, ExpressionVariable>:" ); //$NON-NLS-1$
+        if( m_addedColumns != null )
+        {
+            for( Entry<ColumnIdentifier, ExpressionVariable> addedColumnPair : m_addedColumns.entrySet() )
+            {
+                buffer.append( LOG_SUB_ENTRY + addedColumnPair.getKey() +
+                        LOG_PAIR_ENTRY_SEPARATOR + addedColumnPair.getValue() );
+            }
+        }
+        
+        buffer.append( "\nHidden result columns <ColumnIdentifier>: " ); //$NON-NLS-1$
+        if( m_hiddenColumns != null )
+        {
+            for( ColumnIdentifier hiddenColumnIdentifier : m_hiddenColumns )
+                buffer.append( LOG_SUB_ENTRY + hiddenColumnIdentifier );
+        }
+        
+        buffer.append( "\nAggregated columns <ColumnIdentifier, AggregateExpression>: " ); //$NON-NLS-1$
+        if( m_aggregateSpecByColumn != null )
+        {
+            for( Entry<ColumnIdentifier, AggregateExpression> aggrColumnPair : m_aggregateSpecByColumn.entrySet() )
+            {
+                buffer.append( LOG_SUB_ENTRY + aggrColumnPair.getKey() +
+                        LOG_PAIR_ENTRY_SEPARATOR + aggrColumnPair.getValue() );
+            }
+        }
+        
+        buffer.append( "]" ); //$NON-NLS-1$
+        return buffer.toString();
     }
     
 }

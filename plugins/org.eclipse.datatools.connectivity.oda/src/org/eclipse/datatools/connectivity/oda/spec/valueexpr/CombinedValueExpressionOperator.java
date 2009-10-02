@@ -172,5 +172,15 @@ public class CombinedValueExpressionOperator implements IExecutableExtension
     {
         return m_literal;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        return getClass().getName() + " [id= " + m_id +   //$NON-NLS-1$
+        ", literal= " + m_literal + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    }
     
 }

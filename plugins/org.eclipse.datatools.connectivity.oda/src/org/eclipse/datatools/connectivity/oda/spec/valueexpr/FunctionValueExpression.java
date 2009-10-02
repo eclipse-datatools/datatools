@@ -124,8 +124,10 @@ public abstract class FunctionValueExpression extends AtomicValueExpression
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( getName() + " : " + getQualifiedId() + SPACE ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getQualifiedId() );
+        buffer.append( "\n    ( function " ); //$NON-NLS-1$
         buffer.append( getArguments() );
+        buffer.append( " )" ); //$NON-NLS-1$
         return buffer.toString();
     }
 

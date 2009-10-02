@@ -53,6 +53,8 @@ public class SortSpecification
 	
 	private int m_sortMode;
 	private List<SortKey> m_sortKeys;
+
+    private static final String LOG_NEWLINE_CHAR = "\n "; //$NON-NLS-1$
 	
 	/**
 	 * Internal constructor with no pre-defined restriction on its sort mode.
@@ -333,15 +335,24 @@ public class SortSpecification
 		return sortKey.getSortDirection();
 	}
 	
-	/**
-	 * Returns a string representation of this <code>SortSpecification</code>.
-	 * @return	a string representation of this <code>SortSpecification</code>.
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
 	public String toString()
 	{
 		// override default toString() for convenient debugging and logging
-		return "Sort Mode: " + getSortModeLiteral( getSortMode() ) +  //$NON-NLS-1$
-			   ", Sort Keys: " + m_sortKeys; //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( SortSpecification.class.getSimpleName() + " [" ); //$NON-NLS-1$
+        
+        buffer.append( "Sort Mode: " + getSortModeLiteral( getSortMode() ));  //$NON-NLS-1$
+        buffer.append( "\nSort Keys: "); //$NON-NLS-1$
+        if( m_sortKeys != null )
+        {
+            for( SortKey sortKey : m_sortKeys )
+                buffer.append( LOG_NEWLINE_CHAR + sortKey );
+        }
+        
+        buffer.append( "]" ); //$NON-NLS-1$
+        return buffer.toString();
 	}
 	
 	/* 
@@ -367,10 +378,10 @@ public class SortSpecification
 	{
 	    switch( nullOrdering )
 	    {
-            case NULL_ORDERING_FIRST:   return "Nulls First"; //$NON-NLS-1$
-            case NULL_ORDERING_LAST:   return "Nulls Last"; //$NON-NLS-1$
+            case NULL_ORDERING_FIRST:   return "Nulls_First"; //$NON-NLS-1$
+            case NULL_ORDERING_LAST:   return "Nulls_Last"; //$NON-NLS-1$
             case NULL_ORDERING_NONE:
-	        default:                   return "None Null Ordering"; //$NON-NLS-1$
+	        default:                   return "No_Null_Ordering"; //$NON-NLS-1$
 	    }
 	}
 	
@@ -437,21 +448,7 @@ public class SortSpecification
 		{
 		    return m_column;
 		}
-		
-/*		private int getColumnNumber()
-		{
-            if( m_column == null || m_column.getNumber() == null )
-                return 0;
-            return m_column.getNumber().intValue();
-		}
-		
-		private String getColumnName()
-		{
-		    if( m_column == null )
-		        return null;
-			return m_column.getValueExpression();
-		}
-*/		
+
 		private int getSortDirection()
 		{
 			return m_sortDirection;

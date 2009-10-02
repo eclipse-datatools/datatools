@@ -137,9 +137,12 @@ public class CombinedValueExpression extends ValueExpression
     @Override
     public String toString()
     {
-        return m_leftExpr.getName() + 
-                SPACE + m_operator.getLiteral() + SPACE + 
-                m_rightExpr.getName();
+        StringBuffer buffer = new StringBuffer( CombinedValueExpression.class.getSimpleName() + SPACE );
+        buffer.append( m_leftExpr.getName() + SPACE + m_operator.getLiteral() + SPACE + m_rightExpr.getName() );
+        buffer.append( "\n     leftExpr=" + LEFT_CURLY_BRACKET + m_leftExpr + RIGHT_CURLY_BRACKET ); //$NON-NLS-1$
+        buffer.append( "\n     operator= " + m_operator ); //$NON-NLS-1$
+        buffer.append( "\n     rightExpr=" + LEFT_CURLY_BRACKET + m_rightExpr + RIGHT_CURLY_BRACKET ); //$NON-NLS-1$
+        return buffer.toString();
     }
    
 }

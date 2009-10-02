@@ -88,6 +88,10 @@ public class QuerySpecTest extends TestCase
         actualValue = querySpec.getParameterValue( 2 );
         assertNotNull( actualValue );
         assertNotSame( paramValue, actualValue );
+        
+        // formatting of querySpec content
+        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
+        assertTrue( contentStr.length() > 400); // not very useful testing; more for manual visualization
 }
     
     public void testCreateResultProjectionAggregates() throws Exception
@@ -128,6 +132,10 @@ public class QuerySpecTest extends TestCase
         QuerySpecification querySpec = specHelper.createQuerySpecification( resultProj );       
         ResultProjection resultProjOut = querySpec.getResultSetSpecification().getResultProjection();
         assertEquals( resultProj, resultProjOut );
+        
+        // formatting of querySpec content
+        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
+        assertTrue( contentStr.length() > 850);
     }
     
     public void testCreateResultProjectionColumns() throws Exception
@@ -184,6 +192,10 @@ public class QuerySpecTest extends TestCase
         {
             fail();     // test failed; expected test driver to pass validation
         }
+        
+        // formatting of querySpec content
+        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
+        assertTrue( contentStr.length() > 490); // not very useful testing; more for manual visualization
     }
  
     public void testCreateCustomSortSpec() throws Exception

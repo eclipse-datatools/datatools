@@ -14,9 +14,12 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.util;
 
+import java.util.Map.Entry;
+
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.AdvancedQuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification.ParameterIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
@@ -33,6 +36,10 @@ import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
  */
 public class QuerySpecificationHelper
 {    
+    private static final String LOG_NEWLINE_CHAR = "\n "; //$NON-NLS-1$
+    private static final String LOG_PAIR_ENTRY_SEPARATOR = " -> "; //$NON-NLS-1$
+    private static final String SPACE = " "; //$NON-NLS-1$
+
     private QuerySpecificationFactory m_factory;
     
     /**
@@ -274,4 +281,47 @@ public class QuerySpecificationHelper
         return ( querySpec != null ) ? querySpec.getResultSetSpecification() : null;
     }
     
+    /**
+     * Returns the string representation of the content found in the specified QuerySpecification.
+     * This utility method may be used for logging and debugging purpose.
+     * @param querySpec  a query specification
+     * @return  string representation of the query specification
+     */
+    public static String getContentAsString( QuerySpecification querySpec )
+    {
+        StringBuffer buffer = new StringBuffer( QuerySpecification.class.getSimpleName() + " [" ); //$NON-NLS-1$
+        if( querySpec == null )
+        {
+            buffer.append( "null]" ); //$NON-NLS-1$
+            return buffer.toString();
+        }
+
+        buffer.append( "\nProperty name-value pairs: " ); //$NON-NLS-1$
+        for( Entry<String,Object> propValuePair : querySpec.getProperties().entrySet() )
+        {
+            buffer.append( LOG_NEWLINE_CHAR + propValuePair.getKey() +
+                    LOG_PAIR_ENTRY_SEPARATOR + propValuePair.getValue().getClass().getSimpleName() +
+                    SPACE + propValuePair.getValue() );
+        }
+
+        buffer.append( "\nParameter values: " ); //$NON-NLS-1$
+        for( Entry<ParameterIdentifier,Object> parameterValuePair : querySpec.getParameterValues().entrySet() )
+        {
+            buffer.append( LOG_NEWLINE_CHAR + parameterValuePair.getKey() +
+                    LOG_PAIR_ENTRY_SEPARATOR + parameterValuePair.getValue().getClass().getSimpleName() +
+                    SPACE + parameterValuePair.getValue() );
+        }
+        
+        buffer.append( "\nFilter spec: " ); //$NON-NLS-1$
+        buffer.append( getFilterSpecification( querySpec ) );
+
+        buffer.append( "\nResult projection: " ); //$NON-NLS-1$
+        buffer.append( getResultProjection( querySpec ) );
+
+        buffer.append( "\nSort spec: " ); //$NON-NLS-1$
+        buffer.append( getSortSpecification( querySpec ) );
+
+        buffer.append( "]" ); //$NON-NLS-1$
+        return buffer.toString();
+    }
 }

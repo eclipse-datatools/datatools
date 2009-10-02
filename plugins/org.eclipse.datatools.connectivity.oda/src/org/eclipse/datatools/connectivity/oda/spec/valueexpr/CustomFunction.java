@@ -228,9 +228,8 @@ public class CustomFunction extends FunctionValueExpression implements IExecutab
 
             // pass to custom validator, if exists, for further validation
             IValidator customValidator = getValidator( context, defn );
-            // TODO - uncomment
-//            if( customValidator != null )
-//                customValidator.validateSyntax( this, context );
+            if( customValidator != null )
+                customValidator.validateSyntax( this, context );
         }
         catch( OdaException ex )
         {

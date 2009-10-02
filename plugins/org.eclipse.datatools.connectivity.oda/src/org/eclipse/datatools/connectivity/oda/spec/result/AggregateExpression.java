@@ -37,7 +37,9 @@ public abstract class AggregateExpression
     private boolean m_ignoresDups = false;
     private boolean m_ignoresNull = true;
     private String m_alias;
-    
+
+    private static final String LOG_VAR_ENTRY = "\n      "; //$NON-NLS-1$
+
     /**
      * Constructor with a single input source variable.
      * @param inputSourceVar an {@link ExpressionVariable} that identifies the source of input values 
@@ -204,22 +206,14 @@ public abstract class AggregateExpression
     public String toString()
     {
         StringBuffer buffer = new StringBuffer( getQualifiedId() );
-        buffer.append( ExpressionVariable.ALIAS_SEPARATOR );
-        buffer.append( getVariableAliases() );
-        return buffer.toString();
-    }
-
-    protected String getVariableAliases()
-    {
-        // iterate thru each input variable and append its alias
-        StringBuffer combinedAlias = new StringBuffer();
-        for( ExpressionVariable inputVar : getVariables() )
+        buffer.append( "\n    ( input variable(s): " ); //$NON-NLS-1$
+        if( m_inputVariables != null )
         {
-            if( combinedAlias.length() > 0 )
-                combinedAlias.append( ExpressionVariable.ALIAS_SEPARATOR );
-            combinedAlias.append( inputVar.getAlias() );
+            for( ExpressionVariable inputVar : m_inputVariables )
+                buffer.append( LOG_VAR_ENTRY + inputVar );
         }
-        return combinedAlias.toString();
+        buffer.append( " )" ); //$NON-NLS-1$
+        return buffer.toString();
     }
    
 }

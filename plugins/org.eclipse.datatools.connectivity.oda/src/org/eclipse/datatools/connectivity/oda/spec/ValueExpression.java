@@ -33,7 +33,9 @@ public abstract class ValueExpression
     protected static final String SPACE = " "; //$NON-NLS-1$    
     protected static final String LEFT_PARANTHESIS = "("; //$NON-NLS-1$
     protected static final String RIGHT_PARANTHESIS = ")"; //$NON-NLS-1$
-
+    protected static final String LEFT_CURLY_BRACKET = " {"; //$NON-NLS-1$
+    protected static final String RIGHT_CURLY_BRACKET = "} "; //$NON-NLS-1$
+    
     private Integer m_odaDataTypeCode; 
     
     /**
@@ -124,9 +126,8 @@ public abstract class ValueExpression
         validateSyntax( context );
 
         // pass this to custom validator, if exists, for further overall validation
-        // TODO - uncomment
-//        if( context != null && context.getValidator() != null )
-//            context.getValidator().validate( this, context );
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
     }
 
     /**

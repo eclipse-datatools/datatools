@@ -94,8 +94,8 @@ public interface IValidator
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
      */
-//    public void validate( ValueExpression valueExpr, ValidationContext context ) 
-//        throws OdaException;
+    public void validate( ValueExpression valueExpr, ValidationContext context ) 
+        throws OdaException;
 
     /**
      * Performs syntactic validation of the specified value expression 
@@ -105,8 +105,8 @@ public interface IValidator
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
      */
-//    public void validateSyntax( ValueExpression valueExpr, ValidationContext context )
-//        throws OdaException;
+    public void validateSyntax( ValueExpression valueExpr, ValidationContext context )
+        throws OdaException;
     
     /**
      * Validates the specified sort specification in the specified context.

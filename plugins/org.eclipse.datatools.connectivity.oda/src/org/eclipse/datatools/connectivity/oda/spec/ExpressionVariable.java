@@ -203,7 +203,8 @@ public class ExpressionVariable
     @Override
     public String toString()
     {
-        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " valueExpression = [" ); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + " alias= " + m_alias ); //$NON-NLS-1$
+        buffer.append( ", valueExpression = [" ); //$NON-NLS-1$
         buffer.append( m_valueExpr );
         buffer.append( "]" ); //$NON-NLS-1$
         return buffer.toString();

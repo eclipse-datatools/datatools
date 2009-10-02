@@ -219,7 +219,7 @@ public class ColumnIdentifier
     public String toString()
     {
         return "ColumnIdentifier@" + super.hashCode() + " [number= " + m_pos +   //$NON-NLS-1$//$NON-NLS-2$
-                ", name expression= " + m_nameExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+                ", name= " + m_nameExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }                  
 
 }

@@ -101,4 +101,15 @@ public class ColumnValueExpression extends AtomicValueExpression
                     this );
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        StringBuffer buffer = new StringBuffer( getName() + SPACE );
+        buffer.append( getColumnReference() );
+        return buffer.toString();
+    }
+
 }

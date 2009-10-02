@@ -79,4 +79,16 @@ public class SimpleValueExpression extends AtomicValueExpression
         return ( odaDataType == Types.NULL ) ? null : Integer.valueOf( odaDataType );
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString()
+    {
+        StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + SPACE );
+        buffer.append( "value: " + getValue().getClass().getSimpleName() ); //$NON-NLS-1$
+        buffer.append( SPACE + getName() );
+        return buffer.toString();
+    }
+
 }

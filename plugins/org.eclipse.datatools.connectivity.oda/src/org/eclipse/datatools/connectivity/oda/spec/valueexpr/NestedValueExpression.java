@@ -84,7 +84,10 @@ public class NestedValueExpression extends ValueExpression
     @Override
     public String toString()
     {
-        return LEFT_PARANTHESIS + m_nestedExpr.getName() + RIGHT_PARANTHESIS;
+        StringBuffer buffer = new StringBuffer( NestedValueExpression.class.getSimpleName() + SPACE + LEFT_PARANTHESIS );
+        buffer.append( m_nestedExpr.getName() + RIGHT_PARANTHESIS );
+        buffer.append( "\n      nestedExpr=" + LEFT_CURLY_BRACKET + m_nestedExpr + RIGHT_CURLY_BRACKET ); //$NON-NLS-1$
+        return buffer.toString();
     }
 
 }

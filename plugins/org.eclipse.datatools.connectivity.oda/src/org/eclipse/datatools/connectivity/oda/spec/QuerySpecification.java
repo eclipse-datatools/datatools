@@ -464,7 +464,18 @@ public class QuerySpecification
                 return hashCode ^ m_paramId.hashCode();
             
             return (hashCode == 0) ? super.hashCode() : hashCode;
-        }       
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Object#toString()
+         */
+        @Override
+        public String toString()
+        {
+            return ParameterIdentifier.class.getSimpleName() +
+                    "@" + super.hashCode() + " [number= " + m_paramId +   //$NON-NLS-1$//$NON-NLS-2$
+                    ", name= " + m_paramName + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        } 
     }
     
 }
