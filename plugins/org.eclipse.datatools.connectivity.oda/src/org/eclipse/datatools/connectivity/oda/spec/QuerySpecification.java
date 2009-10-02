@@ -310,6 +310,11 @@ public class QuerySpecification
         private String m_paramName;
         private Integer m_paramId;
         
+        private static final String LOG_CLASSNAME_PREFIX = "ParameterIdentifier@"; //$NON-NLS-1$
+        private static final String LOG_ID_LABEL = " [id= "; //$NON-NLS-1$
+        private static final String LOG_NAME_LABEL = ", name= "; //$NON-NLS-1$
+        private static final String LOG_END_BRACKET = "]"; //$NON-NLS-1$
+
         /**
          * Creates a parameter identifier with its native name.
          * @param paramName native name of the parameter
@@ -472,9 +477,14 @@ public class QuerySpecification
         @Override
         public String toString()
         {
-            return ParameterIdentifier.class.getSimpleName() +
-                    "@" + super.hashCode() + " [number= " + m_paramId +   //$NON-NLS-1$//$NON-NLS-2$
-                    ", name= " + m_paramName + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+            StringBuffer buffer = new StringBuffer( LOG_CLASSNAME_PREFIX );
+            buffer.append( super.hashCode() );
+            buffer.append( LOG_ID_LABEL );
+            buffer.append( m_paramId ); 
+            buffer.append( LOG_NAME_LABEL );
+            buffer.append( m_paramName );
+            buffer.append( LOG_END_BRACKET ); 
+            return buffer.toString();
         } 
     }
     

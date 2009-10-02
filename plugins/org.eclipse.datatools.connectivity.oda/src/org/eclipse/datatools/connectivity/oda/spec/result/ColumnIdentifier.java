@@ -24,7 +24,12 @@ public class ColumnIdentifier
 {
     private Integer m_pos;
     private String m_nameExpr;
-    
+ 
+    private static final String LOG_CLASSNAME_PREFIX = "ColumnIdentifier@"; //$NON-NLS-1$
+    private static final String LOG_ORDINAL_LABEL = " [ordinal= "; //$NON-NLS-1$
+    private static final String LOG_NAME_LABEL = ", name= "; //$NON-NLS-1$
+    private static final String LOG_END_BRACKET = "]"; //$NON-NLS-1$
+
     /**
      * Constructor that creates an instance that identifies a result set column by both its ordinal
      * position and native name/expression.  This would uniquely identify a column when multiple columns
@@ -218,8 +223,14 @@ public class ColumnIdentifier
     @Override
     public String toString()
     {
-        return "ColumnIdentifier@" + super.hashCode() + " [number= " + m_pos +   //$NON-NLS-1$//$NON-NLS-2$
-                ", name= " + m_nameExpr + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        StringBuffer buffer = new StringBuffer( LOG_CLASSNAME_PREFIX );
+        buffer.append( super.hashCode() );
+        buffer.append( LOG_ORDINAL_LABEL );
+        buffer.append( m_pos ); 
+        buffer.append( LOG_NAME_LABEL );
+        buffer.append( m_nameExpr );
+        buffer.append( LOG_END_BRACKET ); 
+        return buffer.toString();
     }                  
 
 }
