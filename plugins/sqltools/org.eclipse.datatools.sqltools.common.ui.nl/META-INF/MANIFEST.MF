@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Data Tools Platform SQL Tools Common UI NL Fragment
-Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui.nl
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui.nl1
 Bundle-Version: 1.0.0.qualifier
 Fragment-Host: org.eclipse.datatools.sqltools.common.ui;bundle-version="[1.0.0,1.5.0)"
 Bundle-Localization: plugin

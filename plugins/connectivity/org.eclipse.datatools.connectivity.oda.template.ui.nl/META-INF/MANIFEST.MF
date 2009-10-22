@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA New Plug-in Template Wizard Nl Fragment
-Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.template.ui.nl
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.template.ui.nl1
 Bundle-Version: 3.0.6.qualifier
 Fragment-Host: org.eclipse.datatools.connectivity.oda.template.ui;bundle-version="[3.0.3,4.0.0)"
 Bundle-Localization: nl_fragment
