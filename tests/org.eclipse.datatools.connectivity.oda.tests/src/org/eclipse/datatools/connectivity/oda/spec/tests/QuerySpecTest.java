@@ -186,7 +186,7 @@ public class QuerySpecTest extends TestCase
         IValidator validator = context.getValidator();
         try
         {
-            validator.validate( querySpec, context );
+            validator.validate( querySpec.getResultSetSpecification(), context );
         }
         catch( OdaException e )
         {

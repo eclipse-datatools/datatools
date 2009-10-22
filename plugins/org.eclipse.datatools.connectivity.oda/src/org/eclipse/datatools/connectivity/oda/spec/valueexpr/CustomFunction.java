@@ -32,8 +32,11 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType
 import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
- * Represents an instance of custom function value expression contributed by an extension of
+ * Represents a custom function value expression contributed by an extension of
  * the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
+ * <br>An ODA dynamicResultSet extension declares its contribution of 
+ * each custom function value expression in a functionExpressionType element 
+ * in its extension manifest.  
  * @since 3.2.2 (DTP 1.7.2)
  */
 public class CustomFunction extends FunctionValueExpression implements IExecutableExtension

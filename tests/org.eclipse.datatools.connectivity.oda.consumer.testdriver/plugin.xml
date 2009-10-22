@@ -248,7 +248,8 @@
            </variableRestriction>
         </aggregateType>
        </aggregateExpressionTypes>
-       <valueExpressionTypes>
+       <valueExpressionTypes
+             supportsNestedExpressions="true">
 	       <combinedOperatorTypes>
 	          <supportedOdaCombinedOperator
 	                id="Add">

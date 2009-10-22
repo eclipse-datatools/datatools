@@ -42,6 +42,7 @@ public class ExtensionContributor implements IContributor
     public static final String ATTR_SPEC_FACTORY_CLASS = "specificationFactoryClass"; //$NON-NLS-1$
     public static final String SUB_ELEMENT_ROW_ORDERING_SUPPORT = "supportsRowOrdering"; //$NON-NLS-1$
     public static final String ATTR_NULL_ORDERING_SUPPORT = "nullValueOrdering"; //$NON-NLS-1$
+    public static final String ATTR_NESTED_VALUEEXPR_SUPPORT = "supportsNestedExpressions"; //$NON-NLS-1$
     
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
     
@@ -52,6 +53,7 @@ public class ExtensionContributor implements IContributor
     private QuerySpecificationFactory m_specFactory;
     private boolean m_supportsRowOrdering;
     private boolean m_supportsNullOrdering;
+    private boolean m_supportsNestedValueExprs;
     
     public ExtensionContributor( IConfigurationElement contributorElement ) throws OdaException
     {
@@ -138,6 +140,14 @@ public class ExtensionContributor implements IContributor
             // else ignore unexpected value
         }
         return odaExprNames;
+    }
+    
+    void processSupportedValueExpressionType( IConfigurationElement valueExprGroupElement )
+    {
+        m_supportsNestedValueExprs = false;  // default value
+        String attrValue = valueExprGroupElement.getAttribute( ATTR_NESTED_VALUEEXPR_SUPPORT );
+        if( attrValue != null )
+            m_supportsNestedValueExprs = Boolean.parseBoolean( attrValue );
     }
     
     /**
@@ -246,13 +256,46 @@ public class ExtensionContributor implements IContributor
      * @return  true if the specified built-in combined operator type is supported;
      *          false otherwise
      * @see {@link org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory#getCombinedOperator(String, String)}
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public boolean supportsOdaCombinedOperator( String builtInOperatorId )
     {
-        return ResultExtensionExplorer.getInstance().supportsOdaCombinedOperator( 
-                getDeclaringExtensionId(), builtInOperatorId );
+        return ResultExtensionExplorer.getInstance()
+                    .supportsOdaCombinedOperator( getDeclaringExtensionId(), builtInOperatorId );
+    }
+
+    /**
+     * Indicates whether this extension supports handling of combined value expression type.
+     * @return true if supported; false otherwise
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public boolean supportsCombinedValueExpressionType()
+    {
+        return ResultExtensionExplorer.getInstance()
+                    .supportsCombinedValueExpressionType( getDeclaringExtensionId() );
+    }
+
+    /**
+     * Indicates whether this extension supports handling of nested value expression type.
+     * @return true if supported; false otherwise
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public boolean supportsNestedValueExpressionType()
+    {
+        return m_supportsNestedValueExprs;
     }
     
+    /**
+     * Indicates whether this extension supports handling of function value expression type.
+     * @return true if supported; false otherwise
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public boolean supportsFunctionValueExpressionType()
+    {
+        return ResultExtensionExplorer.getInstance()
+                    .supportsFunctionValueExpressionType( getDeclaringExtensionId() );
+    }
+
     /**
      * Gets the {@link IValidator} instance of this contributor.
      * @return  validator instance;

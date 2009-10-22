@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
 import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
@@ -64,7 +65,7 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     public void validate( FilterExpression expr, ValidationContext context )
             throws OdaException
     {
-        // TODO
+        validateSyntax( expr, context );
     }
 
     /* (non-Javadoc)
@@ -146,7 +147,16 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     public void validate( SortSpecification sortSpec, ValidationContext context )
             throws OdaException
     {
-        // TODO Auto-generated method stub  
+        if( sortSpec == null )
+            return;
+
+        for( int i=1; i <= sortSpec.getSortKeyCount(); i++ )
+        {
+            // validate that no null ordering is specified
+            int nullOrdering = sortSpec.getNullOrdering( i );
+            if( nullOrdering != SortSpecification.NULL_ORDERING_NONE )
+                throw new OdaException( "Cannot support null ordering: " + nullOrdering ); //$NON-NLS-1$
+        }
     }
 
     /* (non-Javadoc)
@@ -155,6 +165,8 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     public void validate( QuerySpecification querySpec, ValidationContext context )
             throws OdaException
     {
+        validate( querySpec.getResultSetSpecification(), context );
+        
         SortSpecification sortSpec = QuerySpecificationHelper.getSortSpecification( querySpec );
         if( sortSpec != null )
         {
@@ -166,11 +178,6 @@ public class ExpressionTester implements IValidator, IExecutableExtension
                 String columnName = column.isIdentifiedByNumber() ? column.getNumber().toString() : column.getNameExpression();
                 if( ! querySpec.getProperties().containsKey( columnName ) )
                     throw new OdaException( "Unexpected sort column: " + column ); //$NON-NLS-1$
-                
-                // validate that no null ordering is specified
-                int nullOrdering = sortSpec.getNullOrdering( i );
-                if( nullOrdering != SortSpecification.NULL_ORDERING_NONE )
-                    throw new OdaException( "Cannot support null ordering: " + nullOrdering ); //$NON-NLS-1$
             }
         }
         
@@ -181,6 +188,18 @@ public class ExpressionTester implements IValidator, IExecutableExtension
             if(  propValue != expectedPropValue )
                 throw new OdaException( "Unexpected query text: " + propValue ); //$NON-NLS-1$
         }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     */
+    public void validate( ResultSetSpecification resultSetSpec, ValidationContext context ) 
+        throws OdaException
+    {
+        if( resultSetSpec == null )
+            return;
+        validate( resultSetSpec.getSortSpecification(), context );
+        validate( resultSetSpec.getFilterSpecification(), context );
     }
 
 }

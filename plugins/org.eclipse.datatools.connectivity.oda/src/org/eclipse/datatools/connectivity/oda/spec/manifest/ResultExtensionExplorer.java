@@ -656,6 +656,9 @@ public class ResultExtensionExplorer
         // process the functionExpressionType sub elements in extension
         IConfigurationElement[] functionTypeElements = valueExprGroupElement.getChildren( FunctionExpressionDefinition.ELEMENT_NAME ); 
         addExtensionFunctionTypeElements( contributor, functionTypeElements );
+        
+        // delegates to the contributor to process the types of value expression declared as supported
+        contributor.processSupportedValueExpressionType( valueExprGroupElement );
     }
     
     private void addExtensionCombinedOperatorGroupElement( String extensionId, IConfigurationElement combinedOperatorGroup )
@@ -666,7 +669,8 @@ public class ResultExtensionExplorer
         IConfigurationElement[] customCombinedOpElements = 
             combinedOperatorGroup.getChildren( CombinedExpressionOperatorDefinition.CUSTOM_ELEMENT_NAME ); 
 
-        Map<String,CombinedExpressionOperatorDefinition> combinedOperatorTypes = new HashMap<String,CombinedExpressionOperatorDefinition>(
+        Map<String,CombinedExpressionOperatorDefinition> combinedOperatorTypes = 
+            new HashMap<String,CombinedExpressionOperatorDefinition>(
                 supportedOdaCombinedOpElements.length + customCombinedOpElements.length );
         for( int i=0; i < supportedOdaCombinedOpElements.length; i++ )
         {
@@ -810,7 +814,8 @@ public class ResultExtensionExplorer
 
         // since all extensions should already be loaded in instance,
         // just check if specified extension is already in cache, and use it
-        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = getCachedCombinedOpDefinitionsByExtension( extensionId );
+        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = 
+            getCachedCombinedOpDefinitionsByExtension( extensionId );
         return convertCombinedOpDefnValuesToArray( combinedOpDefns );
     }
     
@@ -830,7 +835,8 @@ public class ResultExtensionExplorer
         validateArgumentExists( extensionId );        
         validateArgumentExists( operatorId );
         
-        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = getCachedCombinedOpDefinitionsByExtension( extensionId );
+        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns = 
+            getCachedCombinedOpDefinitionsByExtension( extensionId );
         
         // get the definition of the specified operator 
         return ( combinedOpDefns == null ) ? null : combinedOpDefns.get( operatorId );
@@ -867,6 +873,15 @@ public class ResultExtensionExplorer
         return opDefn != null && opDefn.isBuiltInOperator();
     }
     
+    boolean supportsCombinedValueExpressionType( String extensionId )
+    {
+        // if extension has at least 1 supported combined operator, 
+        // it supports the complex expression type
+        Map<String,CombinedExpressionOperatorDefinition> combinedOpDefns =
+                getCachedCombinedOpDefinitionsByExtension( extensionId );
+        return combinedOpDefns != null && ! combinedOpDefns.isEmpty();
+    }
+   
     /**
      * Gets the collection of supported and custom value expression function definitions 
      * declared by the specified extension.
@@ -907,7 +922,16 @@ public class ResultExtensionExplorer
         // get the definition of the specified function 
         return ( functionDefns == null ) ? null : functionDefns.get( functionId );
     }
-   
+    
+    boolean supportsFunctionValueExpressionType( String extensionId )
+    {
+        // if extension has at least 1 supported custom function, 
+        // it supports the function expression type
+        Map<String,FunctionExpressionDefinition> functionDefns =
+            getCachedFunctionDefinitionsByExtension( extensionId );
+        return functionDefns != null && ! functionDefns.isEmpty();
+    }
+
     private static void validateArgumentExists( String arg ) throws IllegalArgumentException
     {
         ResultExtensionUtil.validateArgumentExists( arg );        

@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
 /**
@@ -297,6 +298,24 @@ public class QuerySpecification
     public ResultSetSpecification getResultSetSpecification()
     {
         return m_resultSpec;
+    }
+
+    /**
+     * <strong>EXPERIMENTAL</strong>.
+     * Validates this in the specified context. 
+     * @param context   context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed.  The exception thrown may be a chained OdaException, 
+     *          which identifies each of those specification component(s) that has caused 
+     *          the validation exception.
+     * @see {@link org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil}
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public void validate( ValidationContext context ) 
+        throws OdaException
+    {
+        // pass this to custom validator, if exists, for overall validation
+        if( context != null && context.getValidator() != null )
+            context.getValidator().validate( this, context );
     }
     
     /**

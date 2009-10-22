@@ -52,6 +52,7 @@ public class ValueExpressionTest extends TestCase
 
         ExtensionContributor contributor = getTestContributor();
         assertFalse( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.DIVIDE ));
+        assertTrue( contributor.supportsCombinedValueExpressionType() );
 
         // "Add" operator type
         assertTrue( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.ADD ));
@@ -115,6 +116,9 @@ public class ValueExpressionTest extends TestCase
         FunctionExpressionDefinition[] funcDefns =
             ResultExtensionExplorer.getInstance().getExtensionFunctionDefinitions( TEST_EXTENSION_ID );
         assertTrue( funcDefns.length >= 10 );
+
+        ExtensionContributor contributor = getTestContributor();
+        assertTrue( contributor.supportsFunctionValueExpressionType() );
         
         // MOD function
         FunctionExpressionDefinition funcDefn =
@@ -217,6 +221,12 @@ public class ValueExpressionTest extends TestCase
         assertEquals( "MOD", exprVar.getValueExpression().getName() );
         assertEquals( "Col", funcArgs.getValueExpression( 0 ).getName() );
         assertEquals( "3", funcArgs.getValueExpression( 1 ).getName() );
+
+        // test this extension supports the various complex expression types
+        ExtensionContributor contributor = getTestContributor();
+        assertTrue( contributor.supportsCombinedValueExpressionType() );
+        assertTrue( contributor.supportsNestedValueExpressionType() );
+        assertTrue( contributor.supportsFunctionValueExpressionType() );
         
         //  col1 * (1 + col2)
         String complexExprText1 = "col1 * (1 + col2)"; //$NON-NLS-1$

@@ -27,9 +27,11 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.CombinedExpressionOp
 
 /**
  * Represents the operator that combines two value expressions in a {@link CombinedValueExpression}.
- * An ODA dynamicResultSet extension may extend this class for its custom combined operator type(s), 
- * or override the literal representation of a built-in combined operator.  
- * <br>A subclass specified in a dynamicResultSet extension manifest must implement IExecutableExtension
+ * <br>An ODA dynamicResultSet extension declares its support of specific built-in operator types
+ * in the combinedOperatorTypes element in its extension manifest.  
+ * <br>An extension may extend this class to override the literal representation 
+ * of a built-in combined operator, or to implement its custom combined operator type(s). 
+ * A subclass specified in a dynamicResultSet extension manifest must implement IExecutableExtension
  * with a public 0-arg constructor, and override the #setLiteral and/or #getLiteral methods.
  * @since 3.2.2 (DTP 1.7.2)
  */

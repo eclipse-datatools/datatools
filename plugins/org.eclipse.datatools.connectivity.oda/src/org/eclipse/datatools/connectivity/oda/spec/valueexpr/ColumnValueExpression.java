@@ -24,6 +24,9 @@ import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 /**
  * A concrete value expression whose value is based on 
  * that of a referenced result set column.
+ * <br>An ODA driver that implements the ODA dynamicResultSet extension point
+ * must support this type of expressions defined in a 
+ * {@link org.eclipse.datatools.connectivity.oda.spec.QuerySpecification}.
  * @since 3.2.2 (DTP 1.7.2)
  */
 public class ColumnValueExpression extends AtomicValueExpression

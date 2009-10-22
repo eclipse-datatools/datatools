@@ -17,13 +17,14 @@ package org.eclipse.datatools.connectivity.oda.spec;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
  * Interface for a custom validator contributed by an extension of the 
  * ODA dynamicResultSet extension point.  It may be used by an ODA consumer
- * to validate an extension-defined expression or a dynamic query specification that 
+ * to validate a dynamic result set specification or an extension-defined expression that 
  * may be applied at runtime.
  * <br>It is implementation-dependent on the scope of validation covered, and 
  * whether it requires opening a connection to the underlying data source.
@@ -35,12 +36,27 @@ public interface IValidator
      * Validates the specified query specification in the specified context.
      * @param querySpec  a {@link QuerySpecification} to validate
      * @param context      context for validation; may be null which would limit the scope of validation;
-     *              should specify data for {@link ValidationContext#DATA_PROPERTY_QUERY_TEXT} 
-     *              context property to extend the scope of validation 
+     *              should contain the {@link ValidationContext#DATA_PROPERTY_QUERY_TEXT} 
+     *              context property value to extend the scope of validation 
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
      */
     public void validate( QuerySpecification querySpec, ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * Validates the specified result set specification in the specified context.
+     * @param resultSetSpec  a {@link ResultSetSpecification} to validate
+     * @param context      context for validation; may be null, which would limit the scope of validation;
+     *              should contain the {@link ValidationContext#DATA_PROPERTY_QUERY_TEXT} 
+     *              context property value to extend the scope of validation 
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     * @see {@link ValidationContext#setQueryText(String)}
+     * @see {@link ValidationContext#setConnectionProfile(Object)}
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public void validate( ResultSetSpecification resultSetSpec, ValidationContext context ) 
         throws OdaException;
 
     /**
@@ -93,6 +109,7 @@ public interface IValidator
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public void validate( ValueExpression valueExpr, ValidationContext context ) 
         throws OdaException;
@@ -104,6 +121,7 @@ public interface IValidator
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed. The cause is defined 
      *          by the class implementing this method.
+     * @since 3.2.2 (DTP 1.7.2)
      */
     public void validateSyntax( ValueExpression valueExpr, ValidationContext context )
         throws OdaException;

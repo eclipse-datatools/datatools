@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dynamicResultSet" name="ODA Dynamic Result Set"/>
       </appInfo>
       <documentation>
-         [Experimental API] This extension point is for declaring support of dynamic operations on a result set of an ODA data set extension.
+         [Experimental API] This extension point is for declaring support of dynamic operations, such as filtering, row ordering and projection, on a result set of an ODA data set extension.
       </documentation>
    </annotation>
 
@@ -439,7 +439,7 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    <element name="valueExpressionTypes">
       <annotation>
          <documentation>
-            A grouping of value expression type elements, defining the types of value expression contributed by this extension for all its supported data set types.
+            A grouping of value expression type elements, defining the types of value expression supported and contributed by this extension for all its supported data set types.  An extension must implement support of the simple and column value expression types. Support of complex expression types is optional and declared in this element.
          </documentation>
       </annotation>
       <complexType>
@@ -447,6 +447,13 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
             <element ref="combinedOperatorTypes" minOccurs="0" maxOccurs="1"/>
             <element ref="functionExpressionType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
+         <attribute name="supportsNestedExpressions" type="boolean">
+            <annotation>
+               <documentation>
+                  Indicates whether this extension supports handling of nested value expression type.  The default value is false for no support.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -509,7 +516,7 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    <element name="combinedOperatorType">
       <annotation>
          <documentation>
-            Defines a type of value expression combined operator contributed by this extension.
+            Defines a type of custom combined operator contributed by this extension.
          </documentation>
       </annotation>
       <complexType>
@@ -554,7 +561,7 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    <element name="functionExpressionType">
       <annotation>
          <documentation>
-            Defines a type of function value expression contributed by this extension.  
+            Defines a type of custom function value expression contributed by this extension.  
 Its variableRestriction sub-element defines the type of expression variable that can be associated with this function type.  The precise data types of the function argument(s) and return value are implementation-specific.
          </documentation>
       </annotation>
@@ -647,7 +654,7 @@ The name should be unique within the extension.
          <meta.section type="apiinfo"/>
       </appInfo>
       <documentation>
-         See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec* packages.
+         See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec.* packages.
       </documentation>
    </annotation>
 
