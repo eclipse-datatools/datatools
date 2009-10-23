@@ -35,6 +35,7 @@ import org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionType;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
@@ -233,6 +234,11 @@ public class DesignUtilLoadSaveTest extends TestCase
         dynamicFilterExpr.setContextVariable( exprVariable );
         dynamicFilterExpr.setContextArguments( exprArgs1 );
         dynamicFilterExpr.setIsOptional( false );
+        FilterExpressionType defaultType = DesignFactory.eINSTANCE.createFilterExpressionType();
+        defaultType.setDeclaringExtensionId( filterExprExtId );
+        defaultType.setId( "10005" );
+        dynamicFilterExpr.setDefaultType( defaultType );
+        assertEquals( defaultType, dynamicFilterExpr.getDefaultType() );
         
         dataSetDesign.getPrimaryResultSet().getCriteria().setFilterSpecification( orExpr );
         
