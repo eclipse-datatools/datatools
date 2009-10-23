@@ -151,7 +151,7 @@ public class ExtensionContributor implements IContributor
     }
     
     /**
-     * Gets the unique extension id that declares this filterExpressions contributor.
+     * Gets the unique extension id that declares this dynamicResultSet contributor.
      * @return unique extension id of this contributor
      */
     public String getDeclaringExtensionId()

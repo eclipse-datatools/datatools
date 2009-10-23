@@ -104,7 +104,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     }
     
     /**
-     * Gets the unique id of the filterExpressions extension that declares this custom expression type.
+     * Gets the unique id of the ODA dynamicResultSet extension that declares this custom expression type.
      * @return unique id of declaring extension
      */
     public String getDeclaringExtensionId()
