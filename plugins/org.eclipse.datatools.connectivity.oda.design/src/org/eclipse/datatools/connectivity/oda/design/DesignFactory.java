@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.10 2009/03/03 07:42:07 lchan Exp $
+ * $Id: DesignFactory.java,v 1.11 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -258,6 +258,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     ExpressionVariable createExpressionVariable();
+
+    /**
+     * Returns a new object of class '<em>Filter Expression Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filter Expression Type</em>'.
+     * @generated
+     */
+    FilterExpressionType createFilterExpressionType();
 
     /**
      * Returns a new object of class '<em>Input Element Attributes</em>'.

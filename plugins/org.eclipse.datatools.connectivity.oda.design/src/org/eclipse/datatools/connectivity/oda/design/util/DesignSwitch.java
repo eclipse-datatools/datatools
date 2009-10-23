@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.7 2009/03/03 07:42:08 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.8 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -316,6 +316,14 @@ public class DesignSwitch<T>
         {
             FilterExpression filterExpression = (FilterExpression) theEObject;
             T result = caseFilterExpression( filterExpression );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_EXPRESSION_TYPE:
+        {
+            FilterExpressionType filterExpressionType = (FilterExpressionType) theEObject;
+            T result = caseFilterExpressionType( filterExpressionType );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -944,6 +952,22 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseFilterExpression( FilterExpression object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Filter Expression Type</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Filter Expression Type</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFilterExpressionType( FilterExpressionType object )
     {
         return null;
     }

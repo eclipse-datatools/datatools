@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.12 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.13 2009/04/30 06:04:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -131,6 +131,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createExpressionParameters();
         case DesignPackage.EXPRESSION_VARIABLE:
             return createExpressionVariable();
+        case DesignPackage.FILTER_EXPRESSION_TYPE:
+            return createFilterExpressionType();
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
             return createInputElementAttributes();
         case DesignPackage.INPUT_ELEMENT_UI_HINTS:
@@ -611,6 +613,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
         return expressionVariable;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterExpressionType createFilterExpressionType()
+    {
+        FilterExpressionTypeImpl filterExpressionType = new FilterExpressionTypeImpl();
+        return filterExpressionType;
     }
 
     /**

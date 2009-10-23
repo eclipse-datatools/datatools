@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DynamicFilterExpression.java,v 1.1 2009/03/03 07:42:07 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -31,6 +31,7 @@ package org.eclipse.datatools.connectivity.oda.design;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getDefaultType <em>Default Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,19 +77,47 @@ public interface DynamicFilterExpression extends FilterExpression
     void setContext( AtomicExpressionContext value );
 
     /**
+     * Returns the value of the '<em><b>Default Type</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The default type of filter expression to apply at runtime.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Default Type</em>' containment reference; may be null.
+     * @see #setDefaultType(FilterExpressionType)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDynamicFilterExpression_DefaultType()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='defaultType' namespace='##targetNamespace'"
+     * @since 3.2.2 (DTP 1.7.2)
+     * @generated
+     */
+    FilterExpressionType getDefaultType();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getDefaultType <em>Default Type</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Default Type</em>' containment reference.
+     * @see #getDefaultType()
+     * @since 3.2.2 (DTP 1.7.2)
+     * @generated
+     */
+    void setDefaultType( FilterExpressionType value );
+
+    /**
      * Indicates whether this filter expression can be excluded at runtime.
      * @return  true if this can be excluded at runtime; false otherwise
      * @generated NOT
      */
     boolean isOptional();
-    
+
     /**
      * Specifies whether this filter expression can be excluded at runtime.
      * @param isOptional    true if this can be excluded at runtime; false otherwise
      * @generated NOT
      */
     void setIsOptional( boolean isOptional );
-    
+
     /**
      * Returns the expression variable design in the '<em><b>Context</b></em>' containment reference.
      * @return  the variable design in the '<em><b>Context</b></em>' containment reference, 
@@ -96,14 +125,14 @@ public interface DynamicFilterExpression extends FilterExpression
      * @generated NOT
      */
     ExpressionVariable getContextVariable();
-    
+
     /**
      * Sets the expression variable design in the '<em><b>Context</b></em>' containment reference.
      * @param variable  the variable design in the '<em><b>Context</b></em>' containment reference
      * @generated NOT
      */
     void setContextVariable( ExpressionVariable variable );
-    
+
     /**
      * Returns the expression arguments design in the '<em><b>Context</b></em>' containment reference.
      * @return  the arguments design in the '<em><b>Context</b></em>' containment reference, 
@@ -111,7 +140,7 @@ public interface DynamicFilterExpression extends FilterExpression
      * @generated NOT
      */
     ExpressionArguments getContextArguments();
-    
+
     /**
      * Sets the expression arguments design in the '<em><b>Context</b></em>' containment reference.
      * @param arguments   the arguments design in the '<em><b>Context</b></em>' containment reference

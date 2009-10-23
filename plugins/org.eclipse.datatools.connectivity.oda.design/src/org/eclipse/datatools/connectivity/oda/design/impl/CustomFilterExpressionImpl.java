@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: CustomFilterExpressionImpl.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
+ * $Id: CustomFilterExpressionImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext;
 import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionType;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,8 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl#getDeclaringExtensionId <em>Declaring Extension Id</em>}</li>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
@@ -57,44 +57,14 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     public static final String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * The default value of the '{@link #getDeclaringExtensionId() <em>Declaring Extension Id</em>}' attribute.
+     * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDeclaringExtensionId()
+     * @see #getType()
      * @generated
      * @ordered
      */
-    protected static final String DECLARING_EXTENSION_ID_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getDeclaringExtensionId() <em>Declaring Extension Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getDeclaringExtensionId()
-     * @generated
-     * @ordered
-     */
-    protected String m_declaringExtensionId = DECLARING_EXTENSION_ID_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
-    protected static final String ID_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
-    protected String m_id = ID_EDEFAULT;
+    protected FilterExpressionType m_type;
 
     /**
      * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
@@ -132,50 +102,107 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getDeclaringExtensionId()
+    public FilterExpressionType getType()
     {
-        return m_declaringExtensionId;
+        return m_type;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
+     */
+    public NotificationChain basicSetType( FilterExpressionType newType,
+            NotificationChain msgs )
+    {
+        FilterExpressionType oldType = m_type;
+        m_type = newType;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE, oldType,
+                    newType );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setType( FilterExpressionType newType )
+    {
+        if( newType != m_type )
+        {
+            NotificationChain msgs = null;
+            if( m_type != null )
+                msgs = ((InternalEObject) m_type).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE,
+                        null, msgs );
+            if( newType != null )
+                msgs = ((InternalEObject) newType).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE,
+                        null, msgs );
+            msgs = basicSetType( newType, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE, newType,
+                    newType ) );
+    }
+
+    /**
+     * Backward compatible method.
+     * @generated NOT
+     */
+    public String getDeclaringExtensionId()
+    {
+        return ( getType() != null ) ? getType().getDeclaringExtensionId() : null;
+    }
+
+    /**
+     * Backward compatible method.
+     * @generated NOT
      */
     public void setDeclaringExtensionId( String newDeclaringExtensionId )
     {
-        String oldDeclaringExtensionId = m_declaringExtensionId;
-        m_declaringExtensionId = newDeclaringExtensionId;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl(
-                    this,
-                    Notification.SET,
-                    DesignPackage.CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID,
-                    oldDeclaringExtensionId, m_declaringExtensionId ) );
+        if( getType() == null )
+            setType( DesignFactory.eINSTANCE.createFilterExpressionType() );
+        
+        getType().setDeclaringExtensionId( newDeclaringExtensionId );
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Backward compatible method to get the custom expression id 
+     * in the contained instance of expression type.
+     * @generated NOT
      */
     public String getId()
     {
-        return m_id;
+        return ( getType() != null ) ? getType().getId() : null;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * Backward compatible method to set the custom expression id 
+     * in the contained instance of expression type.
+     * @generated NOT
      */
     public void setId( String newId )
     {
-        String oldId = m_id;
-        m_id = newId;
-        if( eNotificationRequired() )
-            eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.CUSTOM_FILTER_EXPRESSION__ID, oldId, m_id ) );
+        if( getType() == null )
+            setType( DesignFactory.eINSTANCE.createFilterExpressionType() );
+        
+        getType().setId( newId );
     }
 
     /**
@@ -187,7 +214,7 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         return m_context;
     }
-    
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getContext()
      * @generated NOT
@@ -268,6 +295,8 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE:
+            return basicSetType( null, msgs );
         case DesignPackage.CUSTOM_FILTER_EXPRESSION__CONTEXT:
             return basicSetContext( null, msgs );
         }
@@ -284,10 +313,8 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID:
-            return getDeclaringExtensionId();
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__ID:
-            return getId();
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE:
+            return getType();
         case DesignPackage.CUSTOM_FILTER_EXPRESSION__CONTEXT:
             return getContext();
         }
@@ -304,11 +331,8 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID:
-            setDeclaringExtensionId( (String) newValue );
-            return;
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__ID:
-            setId( (String) newValue );
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE:
+            setType( (FilterExpressionType) newValue );
             return;
         case DesignPackage.CUSTOM_FILTER_EXPRESSION__CONTEXT:
             setContext( (AtomicExpressionContext) newValue );
@@ -327,11 +351,8 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID:
-            setDeclaringExtensionId( DECLARING_EXTENSION_ID_EDEFAULT );
-            return;
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__ID:
-            setId( ID_EDEFAULT );
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE:
+            setType( (FilterExpressionType) null );
             return;
         case DesignPackage.CUSTOM_FILTER_EXPRESSION__CONTEXT:
             setContext( (AtomicExpressionContext) null );
@@ -350,37 +371,12 @@ public class CustomFilterExpressionImpl extends FilterExpressionImpl implements
     {
         switch( featureID )
         {
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID:
-            return DECLARING_EXTENSION_ID_EDEFAULT == null ? m_declaringExtensionId != null
-                    : !DECLARING_EXTENSION_ID_EDEFAULT
-                            .equals( m_declaringExtensionId );
-        case DesignPackage.CUSTOM_FILTER_EXPRESSION__ID:
-            return ID_EDEFAULT == null ? m_id != null : !ID_EDEFAULT
-                    .equals( m_id );
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION__TYPE:
+            return m_type != null;
         case DesignPackage.CUSTOM_FILTER_EXPRESSION__CONTEXT:
             return m_context != null;
         }
         return super.eIsSet( featureID );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString()
-    {
-        if( eIsProxy() )
-            return super.toString();
-
-        StringBuffer result = new StringBuffer( super.toString() );
-        result.append( " (declaringExtensionId: " ); //$NON-NLS-1$
-        result.append( m_declaringExtensionId );
-        result.append( ", id: " ); //$NON-NLS-1$
-        result.append( m_id );
-        result.append( ')' );
-        return result.toString();
     }
 
     /* (non-Javadoc)

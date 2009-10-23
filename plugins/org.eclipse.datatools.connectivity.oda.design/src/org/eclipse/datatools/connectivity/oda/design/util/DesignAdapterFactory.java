@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.6 2009/03/03 07:42:08 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.7 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -245,6 +245,12 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         public Adapter caseFilterExpression( FilterExpression object )
         {
             return createFilterExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseFilterExpressionType( FilterExpressionType object )
+        {
+            return createFilterExpressionTypeAdapter();
         }
 
         @Override
@@ -804,6 +810,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createFilterExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionType <em>Filter Expression Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionType
+     * @generated
+     */
+    public Adapter createFilterExpressionTypeAdapter()
     {
         return null;
     }

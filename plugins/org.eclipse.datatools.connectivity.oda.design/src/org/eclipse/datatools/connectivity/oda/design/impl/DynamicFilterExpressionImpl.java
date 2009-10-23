@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DynamicFilterExpressionImpl.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
+ * $Id: DynamicFilterExpressionImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionType;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
 
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl#getDefaultType <em>Default Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +68,16 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
      * @ordered
      */
     protected AtomicExpressionContext m_context;
+
+    /**
+     * The cached value of the '{@link #getDefaultType() <em>Default Type</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDefaultType()
+     * @generated
+     * @ordered
+     */
+    protected FilterExpressionType m_defaultType;
 
     /**
      * <!-- begin-user-doc -->
@@ -97,7 +109,7 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
     {
         return m_context;
     }
-    
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getContext()
      * @generated NOT
@@ -172,6 +184,74 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public FilterExpressionType getDefaultType()
+    {
+        return m_defaultType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetDefaultType(
+            FilterExpressionType newDefaultType, NotificationChain msgs )
+    {
+        FilterExpressionType oldDefaultType = m_defaultType;
+        m_defaultType = newDefaultType;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE,
+                    oldDefaultType, newDefaultType );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDefaultType( FilterExpressionType newDefaultType )
+    {
+        if( newDefaultType != m_defaultType )
+        {
+            NotificationChain msgs = null;
+            if( m_defaultType != null )
+                msgs = ((InternalEObject) m_defaultType)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE,
+                                null, msgs );
+            if( newDefaultType != null )
+                msgs = ((InternalEObject) newDefaultType)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE,
+                                null, msgs );
+            msgs = basicSetDefaultType( newDefaultType, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE,
+                    newDefaultType, newDefaultType ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
@@ -180,6 +260,8 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         {
         case DesignPackage.DYNAMIC_FILTER_EXPRESSION__CONTEXT:
             return basicSetContext( null, msgs );
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE:
+            return basicSetDefaultType( null, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -196,6 +278,8 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         {
         case DesignPackage.DYNAMIC_FILTER_EXPRESSION__CONTEXT:
             return getContext();
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE:
+            return getDefaultType();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -212,6 +296,9 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         {
         case DesignPackage.DYNAMIC_FILTER_EXPRESSION__CONTEXT:
             setContext( (AtomicExpressionContext) newValue );
+            return;
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE:
+            setDefaultType( (FilterExpressionType) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -230,6 +317,9 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         case DesignPackage.DYNAMIC_FILTER_EXPRESSION__CONTEXT:
             setContext( (AtomicExpressionContext) null );
             return;
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE:
+            setDefaultType( (FilterExpressionType) null );
+            return;
         }
         super.eUnset( featureID );
     }
@@ -246,6 +336,8 @@ public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         {
         case DesignPackage.DYNAMIC_FILTER_EXPRESSION__CONTEXT:
             return m_context != null;
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION__DEFAULT_TYPE:
+            return m_defaultType != null;
         }
         return super.eIsSet( featureID );
     }

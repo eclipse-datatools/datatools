@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: CustomFilterExpression.java,v 1.1 2009/03/03 07:42:08 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -24,14 +24,13 @@ package org.eclipse.datatools.connectivity.oda.design;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.
+ * The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getDeclaringExtensionId <em>Declaring Extension Id</em>}</li>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
@@ -51,54 +50,87 @@ public interface CustomFilterExpression extends FilterExpression
     String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * Returns the value of the '<em><b>Declaring Extension Id</b></em>' attribute.
+     * Returns the value of the '<em><b>Type</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Type</em>' containment reference.
+     * @see #setType(FilterExpressionType)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCustomFilterExpression_Type()
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='type' namespace='##targetNamespace'"
+     * @generated
+     */
+    FilterExpressionType getType();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getType <em>Type</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Type</em>' containment reference.
+     * @see #getType()
+     * @generated
+     */
+    void setType( FilterExpressionType value );
+
+    /**
+     * Returns the value of the '<em><b>Declaring Extension Id</b></em>' attribute
+     * of this type of filter expression.
+     * <!-- begin-user-doc -->
+     * Preserved method for backward compatibility.
+     * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * The id of the filterExpressions extension that declares this custom expression.
+     * The id of the ODA dynamicResultSet extension that declares this custom expression.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Declaring Extension Id</em>' attribute.
+     * @see #getType()
      * @see #setDeclaringExtensionId(String)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCustomFilterExpression_DeclaringExtensionId()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="kind='element' name='declaringExtensionId' namespace='##targetNamespace'"
-     * @generated
+     * @generated NOT
      */
     String getDeclaringExtensionId();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getDeclaringExtensionId <em>Declaring Extension Id</em>}' attribute.
+     * Sets the value of the '<em><b>Declaring Extension Id</b></em>' attribute
+     * of this type of filter expression.
      * <!-- begin-user-doc -->
+     * Preserved method for backward compatibility.
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Declaring Extension Id</em>' attribute.
+     * @see #setType(FilterExpressionType)
      * @see #getDeclaringExtensionId()
-     * @generated
+     * @generated NOT
      */
     void setDeclaringExtensionId( String value );
 
     /**
-     * Returns the value of the '<em><b>Id</b></em>' attribute.
+     * Returns the value of the '<em><b>Id</b></em>' attribute
+     * of this type of filter expression.
      * <!-- begin-user-doc -->
+     * Preserved method for backward compatibility.
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * An id that uniquely identifies  a custom expression within an ODA filterExpressions extension.
+     * An id that uniquely identifies  a custom expression within an ODA dynamicResultSet extension.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Id</em>' attribute.
+     * @see #getType()
      * @see #setId(String)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCustomFilterExpression_Id()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     *        extendedMetaData="kind='element' name='id' namespace='##targetNamespace'"
-     * @generated
+     * @generated NOT
      */
     String getId();
 
     /**
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getId <em>Id</em>}' attribute.
+     * Sets the value of the '<em><b>Id</b></em>' attribute
+     * of this type of filter expression.
      * <!-- begin-user-doc -->
+     * Preserved method for backward compatibility.
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Id</em>' attribute.
+     * @see #setType(FilterExpressionType)
      * @see #getId()
-     * @generated
+     * @generated NOT
      */
     void setId( String value );
 
@@ -135,14 +167,14 @@ public interface CustomFilterExpression extends FilterExpression
      * @generated NOT
      */
     boolean isOptional();
-    
+
     /**
      * Specifies whether this filter expression can be excluded at runtime.
      * @param isOptional    true if this can be excluded at runtime; false otherwise
      * @generated NOT
      */
     void setIsOptional( boolean isOptional );
-    
+
     /**
      * Returns the expression variable design in the '<em><b>Context</b></em>' containment reference.
      * @return  the variable design in the '<em><b>Context</b></em>' containment reference, 
@@ -150,14 +182,14 @@ public interface CustomFilterExpression extends FilterExpression
      * @generated NOT
      */
     ExpressionVariable getContextVariable();
-    
+
     /**
      * Sets the expression variable design in the '<em><b>Context</b></em>' containment reference.
      * @param variable  the variable design in the '<em><b>Context</b></em>' containment reference
      * @generated NOT
      */
     void setContextVariable( ExpressionVariable variable );
-    
+
     /**
      * Returns the expression arguments design in the '<em><b>Context</b></em>' containment reference.
      * @return  the arguments design in the '<em><b>Context</b></em>' containment reference, 
@@ -165,7 +197,7 @@ public interface CustomFilterExpression extends FilterExpression
      * @generated NOT
      */
     ExpressionArguments getContextArguments();
-    
+
     /**
      * Sets the expression arguments design in the '<em><b>Context</b></em>' containment reference.
      * @param arguments   the arguments design in the '<em><b>Context</b></em>' containment reference
