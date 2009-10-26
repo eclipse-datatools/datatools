@@ -747,7 +747,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * <strong>EXPERIMENTAL</strong>.
      * An utility method to look up the definition of the specified custom filter expression
      * declared by the specified extension.
-     * @param extensionId   unique id of an extension that implements the filterExpressions extension point
+     * @param extensionId   unique id of an extension that implements the ODA dynamicResultSet extension point
      * @param exprId    id of a custom filter expression 
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
      * @since 3.2 (DTP 1.7)
