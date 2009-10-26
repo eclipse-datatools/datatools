@@ -25,7 +25,6 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
-import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
@@ -83,7 +82,7 @@ class ProfileSelectionPageHelper
     private transient Button m_useDefaultDSNameCheckBox = null;
     private transient Tree m_odaDataSourceTree = null;
     private transient String m_treeFilter;
-    private transient SortedSet m_dataSourceIDs = null;
+    private transient SortedSet<OdaProfileCategoryInfo> m_dataSourceIDs = null;
     private transient IDesignNameValidatorBase m_designNameValidator;
     
     private String m_dataSourceDesignName = EMPTY_STRING;
@@ -492,15 +491,11 @@ class ProfileSelectionPageHelper
 
         OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         
-        SortedSet odaCategoryInfoSet = getOdaCategoryInfoSet();
-
         // iterate thru each type of applicable ODA data source categories
+        SortedSet<OdaProfileCategoryInfo> odaCategoryInfoSet = getOdaCategoryInfoSet();
         TreeItem odaRoot = null;
-        Iterator iterator = odaCategoryInfoSet.iterator();
-        while( iterator.hasNext() )
+        for( OdaProfileCategoryInfo categoryInfo : odaCategoryInfoSet )
         {
-            OdaProfileCategoryInfo categoryInfo = (OdaProfileCategoryInfo) iterator.next();
-
             TreeItem categoryItem = 
                 createCategoryTreeItems( m_odaDataSourceTree, odaRoot, categoryInfo  );
             
@@ -641,7 +636,7 @@ class ProfileSelectionPageHelper
         return secondLevelItem.getItems()[0];
     }
 
-    private SortedSet getOdaCategoryInfoSet()
+    private SortedSet<OdaProfileCategoryInfo> getOdaCategoryInfoSet()
     {
         if( m_dataSourceIDs == null )
             m_dataSourceIDs = createOdaProfileCategoryInfoSet();
@@ -653,7 +648,7 @@ class ProfileSelectionPageHelper
      * on ODA data source extensions found in the extensions registry,
      * sorted by their category display names.
      */
-    private SortedSet createOdaProfileCategoryInfoSet()
+    private SortedSet<OdaProfileCategoryInfo> createOdaProfileCategoryInfoSet()
     {
         Filter profileTypeFilter = ManifestExplorer.createFilter();
         profileTypeFilter.setMissingDataSetTypesFilter( true );
@@ -663,8 +658,8 @@ class ProfileSelectionPageHelper
         Properties dsIdentifiers = ManifestExplorer.getInstance()
                 .getDataSourceIdentifiers( profileTypeFilter );
         
-        TreeSet sortedSet = new TreeSet();
-        Iterator keyIter = dsIdentifiers.keySet().iterator();
+        TreeSet<OdaProfileCategoryInfo> sortedSet = new TreeSet<OdaProfileCategoryInfo>();
+        Iterator<Object> keyIter = dsIdentifiers.keySet().iterator();
         while( keyIter.hasNext() )
         {
             String odaDataSourceId = keyIter.next().toString();
@@ -685,10 +680,9 @@ class ProfileSelectionPageHelper
         if( odaDataSourceId == null )
             return null;
         
-        Iterator iterator = getOdaCategoryInfoSet().iterator();
-        while( iterator.hasNext() )
+        SortedSet<OdaProfileCategoryInfo> odaCategoryInfoSet = getOdaCategoryInfoSet();
+        for( OdaProfileCategoryInfo categoryInfo : odaCategoryInfoSet )
         {
-            OdaProfileCategoryInfo categoryInfo = (OdaProfileCategoryInfo) iterator.next();
             if( odaDataSourceId.equals( categoryInfo.getOdaDataSourceId() ))
                 return categoryInfo;
         }
@@ -696,11 +690,12 @@ class ProfileSelectionPageHelper
         return null;    // no match found
     }
     
-    private Map getProfileIdentifiersByCategory( String categoryId )
+    private Map<String,String> getProfileIdentifiersByCategory( String categoryId )
     {
         try
         {
-            return DesignSessionUtil.getProfileIdentifiersByCategory( categoryId,
+            return OdaProfileExplorer.getInstance().getProfileIdsAndNamesByCategory( 
+                    categoryId, 
                     new Path( getConnProfilePathControlText() ).toFile( ) );
         }
         catch ( OdaException ex )
@@ -725,7 +720,7 @@ class ProfileSelectionPageHelper
             OdaProfileCategoryInfo categoryInfo ) 
     {
         String categoryId = categoryInfo.getEffectiveCategoryId();       
-        Map profileIds = getProfileIdentifiersByCategory( categoryId );
+        Map<String,String> profileIds = getProfileIdentifiersByCategory( categoryId );
         // if no profile instances found under given category
         if( profileIds == null || profileIds.isEmpty() )  
             return null;             // done; no need to create a child tree item for category
@@ -763,19 +758,17 @@ class ProfileSelectionPageHelper
     /**
      * Build a child tree item for each connection profile identifier in the specified Map.
      */
-    private void createChildTreeItems( TreeItem parentItem, Map profileIds, int style )
+    private void createChildTreeItems( TreeItem parentItem, Map<String,String> profileIds, int style )
     {
         if( profileIds == null )
             return;
 
-        Iterator iterator = profileIds.keySet().iterator();
-        while( iterator.hasNext() )
+        for( String profileInstanceId : profileIds.keySet() )
         {
-            Object profileInstanceId = iterator.next();
             TreeItem item = new TreeItem( parentItem, style );
             item.setData( profileInstanceId );
-            // profile instance display name
-            item.setText( profileIds.get( profileInstanceId ).toString( ) );   
+            // profile instance name
+            item.setText( profileIds.get( profileInstanceId ) );   
         }
     }
 
