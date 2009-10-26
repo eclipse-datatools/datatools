@@ -11,6 +11,7 @@
  *******************************************************************************/ 
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers;
 
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.StructuredViewer;
@@ -41,6 +42,7 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 		mPropertiesAction = new PropertyDialogAction(
 				mStructViewer.getControl().getShell(), 
 				mViewSite.getSelectionProvider());
+		mPropertiesAction.setText("&Properties");
 	}
 
 	public void dispose() {
@@ -72,6 +74,8 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 		mPropertiesAction = new PropertyDialogAction(
 				mStructViewer.getControl().getShell(), 
 				mViewSite.getSelectionProvider());
+		mPropertiesAction.setText(ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES")); //$NON-NLS-1$
+		mPropertiesAction.setActionDefinitionId("org.eclipse.ui.file.properties"); //$NON-NLS-1$
 	}
 
 }
