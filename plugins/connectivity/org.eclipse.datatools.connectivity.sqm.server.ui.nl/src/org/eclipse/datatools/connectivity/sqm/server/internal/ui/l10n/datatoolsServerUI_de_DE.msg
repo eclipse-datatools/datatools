@@ -31,6 +31,7 @@ DATATOOLS.SERVER.UI.EXPLORER.VIRTUAL_FOLDER = Virtueller Ordner
 DATATOOLS.SERVER.UI.EXPLORER.HIERARCHICAL = Hierarchisch
 DATATOOLS.SERVER.UI.EXPLORER.COLLAPSE_ALL = Alle ausblenden
 DATATOOLS.SERVER.UI.EXPLORER.REFRESH = &Aktualisieren
+DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES = &Properties
 
 #
 ## Filtering Decoration
@@ -72,7 +73,6 @@ _UI_DIALOG_CONNECTION_TITLE  = Neue Verbindung
 #
 DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = Ungültige Verbindung – Ausnahmefehler
 #Removed for bug 285485
-#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = SQL-Ausnahmefehler – Benachrichtigung
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = Verbindung wiederherstellen
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = Verbindung trennen
@@ -125,7 +125,6 @@ DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Offline arbeiten
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Offline-Content wurde in Ihrem Workspace nicht gefunden.\nFühren Sie "Offline speichern" aus, wenn Sie verbunden sind.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Verbindung fehlgeschlagen
 #Removed for bug 285485
-#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
 
 #
 ## Bookmark

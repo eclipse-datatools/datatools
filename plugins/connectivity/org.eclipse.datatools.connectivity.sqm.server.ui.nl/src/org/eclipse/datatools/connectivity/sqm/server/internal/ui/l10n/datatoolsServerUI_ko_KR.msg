@@ -1,5 +1,4 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -31,6 +30,7 @@ DATATOOLS.SERVER.UI.EXPLORER.VIRTUAL_FOLDER = 가상 폴더
 DATATOOLS.SERVER.UI.EXPLORER.HIERARCHICAL = 계층적
 DATATOOLS.SERVER.UI.EXPLORER.COLLAPSE_ALL = 모두 축소
 DATATOOLS.SERVER.UI.EXPLORER.REFRESH = 새로 고침(&R)
+DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES = &Properties
 
 #
 ## Filtering Decoration
@@ -72,7 +72,6 @@ _UI_DIALOG_CONNECTION_TITLE  = 새 연결
 #
 DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = 잘못된 연결 예외
 #Removed for bug 285485
-#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 연결 실패
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = SQL 예외 알림
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = 다시 연결
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = 연결 해제
@@ -125,7 +124,6 @@ DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = 오프라인으로 작업
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = 사용자의 작업 영역에서 오프라인 콘텐츠를 찾을 수 없습니다.\n 연결되면 "오프라인으로 저장"을 실행하십시오.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = 연결 실패
 #Removed for bug 285485
-#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 연결에 실패했습니다. 다음 오류가 보고되었습니다:\n"{0}"\n\n오프라인으로 작업하시겠습니까?
 
 #
 ## Bookmark
