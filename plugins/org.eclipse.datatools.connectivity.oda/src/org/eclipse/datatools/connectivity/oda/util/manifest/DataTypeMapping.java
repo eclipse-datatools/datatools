@@ -252,7 +252,7 @@ public class DataTypeMapping
             return Types.TIME;
         if( valueObj instanceof Timestamp )
             return Types.TIMESTAMP;
-        if( valueObj instanceof java.sql.Date )
+        if( valueObj instanceof java.util.Date )    // includes subclass java.sql.Date
             return Types.DATE;
         if( valueObj instanceof Boolean )
             return Types.BOOLEAN;
