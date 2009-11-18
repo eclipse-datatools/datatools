@@ -174,14 +174,14 @@ public class QuerySpecTest extends TestCase
                 SortSpecification.NULL_ORDERING_NONE );
         
         ValidationContext context = new ValidationContext( contributor );
-        context.setData( ValidationContext.DATA_PROPERTY_QUERY_TEXT, "test query text" );
+        context.setQueryText( "test query text" );
         
         QuerySpecification querySpec = specHelper.createQuerySpecification( sortSpec );
 
         // setup test property values used by test driver to validate sort keys
         querySpec.setProperty( "Column1", Integer.valueOf( SortSpecification.ORDERING_DESC ) );
         querySpec.setProperty( "2", Integer.valueOf( SortSpecification.ORDERING_ASC ) );
-        querySpec.setProperty( ValidationContext.DATA_PROPERTY_QUERY_TEXT, "test query text" );
+        querySpec.setProperty( "TESTER_EXPECTED_QUERY", "test query text" );
         
         IValidator validator = context.getValidator();
         try

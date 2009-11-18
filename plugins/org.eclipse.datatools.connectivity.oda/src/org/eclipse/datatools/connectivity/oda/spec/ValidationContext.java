@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.spec;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
@@ -23,7 +24,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor
 
 /**
  * <strong>EXPERIMENTAL</strong>.
- * The context for validation of a query specification and associated expression instances.
+ * The context for validation of a query specification and associated query specification expressions.
  * It may include a custom validator and/or the contributor of the expression being validated.
  * @since 3.2 (DTP 1.7)
  */
@@ -34,8 +35,8 @@ public class ValidationContext
     /**
      * Pre-defined property names of validation context data that may be used at validation
      */
-    public static final String DATA_PROPERTY_QUERY_TEXT = NAMESPACE + ".QueryTextProp"; //$NON-NLS-1$
-    public static final String DATA_PROPERTY_CONN_PROFILE = NAMESPACE + ".ConnProfileProp";  //$NON-NLS-1$
+    protected static final String DATA_PROPERTY_QUERY_TEXT = NAMESPACE + ".QueryTextProp"; //$NON-NLS-1$
+    protected static final String DATA_PROPERTY_CONNECTION = NAMESPACE + ".ConnProp";  //$NON-NLS-1$
     
     private ExtensionContributor m_contributor;
     private IValidator m_validator;
@@ -124,7 +125,7 @@ public class ValidationContext
     }
     
     /**
-     * A short-cut method to get the optional query text specified in this context.
+     * Gets the optional query text specified in this context.
      * @return  the query text specified in context, may be null if none is specified
      */
     public String getQueryText()
@@ -143,26 +144,71 @@ public class ValidationContext
     }
     
     /**
-     * A short-cut method to get the optional connection profile instance specified in this context.
-     * The connection profile if exists may be used to open a connection for validation purpose.
-     * Caller may optimize the performance by re-using a profile that is already open.
-     * @return  the connection profile specified in context, may be null if none is specified
+     * Gets the optional connection context that may be used by an {@link IValidator} implementation
+     * for online validation.
+     * A client may optimize performance by re-using its properties for opening a related connection 
+     * to prepare and execute a query.     
+     * @return  the connection context for online validation; may be null if none is specified
+     * @since 3.2.2 (DTP 1.7.2)
      */
-    public Object getConnectionProfile()
+    public Connection getConnection()
     {
-        return getData( DATA_PROPERTY_CONN_PROFILE );
+        Object value = getData( DATA_PROPERTY_CONNECTION );
+        return (value instanceof Connection) ? (Connection)value : null;
+    }
+
+    /**
+     * Sets the connection context for online validation.
+     * The connection context, if exists, may be used by an {@link IValidator} implementation
+     * to open a connection to perform online validation.
+     * @param props connection properties for opening a connection for online validation 
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public void setConnection( Connection validationConn )
+    {
+        setData( DATA_PROPERTY_CONNECTION, validationConn );
     }
     
+    
     /**
-     * Sets the connection profile instance specified in this context.
-     * The connection profile if exists may be used to open a connection for validation purpose.
-     * Caller may optimize the performance by re-using a profile that is already open.
-     * @param connectionProfile  the connection profile specified in context, 
-     *              may be null to unset previous value
+     * A connection context for online validation.  An instance can be shared 
+     * by multiple ValidationContext.  
+     * Its optional use by a client would expand the scope of validation performed.  
+     * An instance must contain the connection properties needed by a validator to open a connection.
+     * An {@link IValidator} implementation may add its own name-value pairs to its properties, 
+     * such as a connection handle, for optimizing its performance.  
+     * The client is responsible to close the connection context when it is no longer needed.
+     * @since 3.2.2 (DTP 1.7.2)
      */
-    public void setConnectionProfile( Object connectionProfile )
+    public class Connection
     {
-        setData( DATA_PROPERTY_CONN_PROFILE, connectionProfile );
+        private Properties m_properties;
+        
+        public Connection( Properties props )
+        {
+            setProperties( props );
+        }
+        
+        public Properties getProperties()
+        {
+            return m_properties;
+        }
+
+        public void setProperties( Properties props )
+        {
+            close();    // close any existing connection handle before replacing the existing properties
+            m_properties = props;
+        }
+        
+        /**
+         * Closes this connection context.
+         * <br>The client is responsible to close this when it is no longer needed.
+         */
+        public void close()
+        {
+            if( m_properties != null && ! m_properties.isEmpty() )
+                getValidator().closeConnection( this );
+        }
     }
     
 }

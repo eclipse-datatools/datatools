@@ -136,4 +136,11 @@ public interface IValidator
     public void validate( SortSpecification sortSpec, ValidationContext context ) 
         throws OdaException;
 
+    /**
+     * Closes any connection handle that a custom validator may have cached in the specified context.
+     * @param validationConnection  connection context used for online validation
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public void closeConnection( ValidationContext.Connection validationConnection );
+    
 }

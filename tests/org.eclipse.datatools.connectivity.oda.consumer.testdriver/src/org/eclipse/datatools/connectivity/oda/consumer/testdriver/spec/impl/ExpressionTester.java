@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
+import org.eclipse.datatools.connectivity.oda.spec.ValidationContext.Connection;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
@@ -183,8 +184,8 @@ public class ExpressionTester implements IValidator, IExecutableExtension
         
         if( context != null )
         {
-            String propValue = (String) context.getData( ValidationContext.DATA_PROPERTY_QUERY_TEXT );
-            String expectedPropValue = (String) querySpec.getProperties().get( ValidationContext.DATA_PROPERTY_QUERY_TEXT );
+            String propValue = context.getQueryText();
+            String expectedPropValue = (String) querySpec.getProperties().get( "TESTER_EXPECTED_QUERY" );
             if(  propValue != expectedPropValue )
                 throw new OdaException( "Unexpected query text: " + propValue ); //$NON-NLS-1$
         }
@@ -200,6 +201,15 @@ public class ExpressionTester implements IValidator, IExecutableExtension
             return;
         validate( resultSetSpec.getSortSpecification(), context );
         validate( resultSetSpec.getFilterSpecification(), context );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#closeConnection(org.eclipse.datatools.connectivity.oda.spec.ValidationContext.Connection)
+     */
+    public void closeConnection( Connection validationConnection )
+    {
+        // TODO Auto-generated method stub
+        
     }
 
 }
