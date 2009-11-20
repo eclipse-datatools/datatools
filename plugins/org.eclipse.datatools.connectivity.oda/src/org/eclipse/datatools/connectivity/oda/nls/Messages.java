@@ -32,6 +32,7 @@ public class Messages extends NLS
 
     public static String logManager_duplicateName;    
 
+    public static String manifest_CANNOT_FIND_EXTENSION;
     public static String manifest_nullArgument;
 	public static String manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED;
 	public static String manifest_INVALID_VERSION_VALUE;

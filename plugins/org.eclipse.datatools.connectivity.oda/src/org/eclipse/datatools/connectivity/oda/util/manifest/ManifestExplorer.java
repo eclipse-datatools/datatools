@@ -197,7 +197,8 @@ public class ManifestExplorer
 	    if( manifest != null )
 	        return manifest;
 
-	    throw new IllegalArgumentException( dataSourceId );
+	    throw new IllegalArgumentException( 
+	            Messages.bind( Messages.manifest_CANNOT_FIND_EXTENSION, dataSourceId ));
 	}
 	
 	/**
