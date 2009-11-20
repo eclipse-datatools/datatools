@@ -23,10 +23,14 @@ import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MenuDetectEvent;
+import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -35,6 +39,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -46,7 +52,9 @@ public class ColumnMappingDialog extends TrayDialog
 {
 
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    private String title;
+	private static final String XML_PARAMETER_QUOTION_LEFT = "{?"; //$NON-NLS-1$
+	private static final String XML_PARAMETER_QUOTION_RIGHT = "?}"; //$NON-NLS-1$
+	private String title;
 	private Combo typeCombo;
 
 	private String columnName;
@@ -60,26 +68,33 @@ public class ColumnMappingDialog extends TrayDialog
 	private Button customButton;
 
 	private Combo xmlPathCombo;
-	private Text xmlPathText;
+	private StyledText xmlPathText;
+	private Menu quickFixMenu;
+
 	private List xpathList;
 	private boolean isMappingMode;
-	
+
 	private static String[] dataTypeDisplayNames = new String[]{
-			Messages.getString( "datatypes.dateTime" ),           //$NON-NLS-1$
-			Messages.getString( "datatypes.decimal" ),            //$NON-NLS-1$
-			Messages.getString( "datatypes.float" ),              //$NON-NLS-1$
-			Messages.getString( "datatypes.integer" ),            //$NON-NLS-1$
-			Messages.getString( "datatypes.date" ),               //$NON-NLS-1$
-			Messages.getString( "datatypes.time" ),               //$NON-NLS-1$
-			Messages.getString( "datatypes.string" ),             //$NON-NLS-1$
-			Messages.getString( "datatypes.boolean" )             //$NON-NLS-1$
+			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.float" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.date" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.time" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.string" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.boolean" ) //$NON-NLS-1$
 	};
 
 	public ColumnMappingDialog( Shell parent, String title,
-			String selectedItem, String xpath, int dataType, boolean isMappingMode )
+			String selectedItem, String xpath, int dataType,
+			boolean isMappingMode )
 	{
 		super( parent );
-		initializeDialogInfos( title, selectedItem, xpath, dataType, isMappingMode );
+		initializeDialogInfos( title,
+				selectedItem,
+				xpath,
+				dataType,
+				isMappingMode );
 	}
 
 	private void initializeDialogInfos( String title, String selectedItem,
@@ -90,7 +105,7 @@ public class ColumnMappingDialog extends TrayDialog
 		this.xpath = ( xpath == null ? EMPTY_STRING : xpath );
 		this.type = DataTypeUtil.getDataTypeDisplayName( dataType );
 		this.isMappingMode = isMappingMode;
-		if( isMappingMode )
+		if ( isMappingMode )
 		{
 			this.xpathList = XPathPopulationUtil.getPathList( xpath );
 		}
@@ -109,13 +124,15 @@ public class ColumnMappingDialog extends TrayDialog
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets
+	 * .Composite)
 	 */
 	protected Control createDialogArea( Composite parent )
 	{
 		getShell( ).setText( title );
-		Composite panel = (Composite)super.createDialogArea( parent );
-		
+		Composite panel = (Composite) super.createDialogArea( parent );
+
 		Composite labelComposite = new Composite( panel, SWT.NONE );
 		GridLayout labelLayout = new GridLayout( );
 		labelLayout.marginLeft = 15;
@@ -123,16 +140,16 @@ public class ColumnMappingDialog extends TrayDialog
 		labelLayout.marginBottom = 0;
 		labelLayout.marginTop = 0;
 		labelComposite.setLayout( labelLayout );
-		
+
 		Label label = new Label( labelComposite, SWT.NONE );
 		label.setText( Messages.getString( "ColumnMappingDialog.dialog.info" ) ); //$NON-NLS-1$
 		GridData labelGd = new GridData( GridData.FILL_HORIZONTAL );
 		label.setLayoutData( labelGd );
-		
+
 		Composite composite = new Composite( panel, SWT.NONE );
 		GridData gd = new GridData( );
 		composite.setLayoutData( gd );
-		
+
 		GridLayout layout = new GridLayout( );
 		composite.setLayout( layout );
 
@@ -173,7 +190,8 @@ public class ColumnMappingDialog extends TrayDialog
 		Label label = new Label( topComposite, SWT.NONE );
 		label.setText( Messages.getString( "ColumnMappingDialog.info.columnName" ) ); //$NON-NLS-1$
 		label.setLayoutData( labelData );
-		labelData.widthHint = label.getSize().x > 100? label.getSize().x:100;
+		labelData.widthHint = label.getSize( ).x > 100 ? label.getSize( ).x
+				: 100;
 
 		columnNameText = new Text( topComposite, SWT.BORDER );
 		columnNameText.setLayoutData( comboData );
@@ -188,12 +206,13 @@ public class ColumnMappingDialog extends TrayDialog
 
 		} );
 
-		labelData = new GridData();
+		labelData = new GridData( );
 		Label label2 = new Label( topComposite, SWT.NONE );
 		label2.setText( Messages.getString( "ColumnMappingDialog.info.dataType" ) ); //$NON-NLS-1$
 		label2.setLayoutData( labelData );
-		labelData.widthHint = label2.getSize().x > 100? label2.getSize().x:100;
-		
+		labelData.widthHint = label2.getSize( ).x > 100 ? label2.getSize( ).x
+				: 100;
+
 		typeCombo = new Combo( topComposite, SWT.DROP_DOWN | SWT.READ_ONLY );
 
 		int typeIndex = -1;
@@ -240,7 +259,7 @@ public class ColumnMappingDialog extends TrayDialog
 	 * 
 	 * @param parent
 	 */
-	private void setupCustomExprArea( Composite parent )
+	private void setupCustomExprArea( final Composite parent )
 	{
 
 		GridData labelData = new GridData( );
@@ -249,9 +268,12 @@ public class ColumnMappingDialog extends TrayDialog
 		customLabel.setLayoutData( labelData );
 		GridData textData = new GridData( GridData.FILL_HORIZONTAL );
 		textData.widthHint = 320;
-		xmlPathText = new Text( parent, SWT.BORDER );
-		xmlPathText.setText( TextProcessor.process( xpath, "//") );
+		xmlPathText = new StyledText( parent, SWT.BORDER );
+		xmlPathText.setText( TextProcessor.process( xpath, "//" ) ); //$NON-NLS-1$
 		xmlPathText.setLayoutData( textData );
+
+		createQuickFixMenu( );
+
 		xmlPathText.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )
@@ -259,6 +281,65 @@ public class ColumnMappingDialog extends TrayDialog
 				xpath = xmlPathText.getText( );
 			}
 		} );
+
+		xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
+
+			public void menuDetected( MenuDetectEvent event )
+			{
+				quickFixMenu.setLocation( event.x, event.y );
+				quickFixMenu.setVisible( true );
+				
+				updateMenuItemStatus( );
+			}
+		} );
+	}
+
+	private void createQuickFixMenu( )
+	{
+		quickFixMenu = new Menu( xmlPathText );
+		MenuItem createItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		createItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.CreateParameter" ) ); //$NON-NLS-1$
+		createItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				createXMLParameter( );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+
+		MenuItem deleteItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		deleteItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.DeleteParameter" ) ); //$NON-NLS-1$
+		deleteItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				deleteXMLParameter( );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+		
+		updateMenuItemStatus( );
+
+	}
+	
+	private void updateMenuItemStatus( )
+	{
+		String selectionText = xmlPathText.getSelectionText( ).trim( );
+
+		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0 );
+		quickFixMenu.getItem( 1 ).setEnabled( selectionText.length( ) > 0
+				&& selectionText.startsWith( XML_PARAMETER_QUOTION_LEFT )
+				&& selectionText.endsWith( XML_PARAMETER_QUOTION_RIGHT ) );
+		
 	}
 
 	/**
@@ -300,7 +381,7 @@ public class ColumnMappingDialog extends TrayDialog
 		wrapLayout.marginLeft = 10;
 		wrapLayout.marginRight = 15;
 		wrap.setLayout( wrapLayout );
-		
+
 		Group exprBtnGroup = new Group( wrap, SWT.NONE );
 		exprBtnGroup.setText( Messages.getString( "ColumnMappingDialog.group.message" ) );
 
@@ -329,11 +410,13 @@ public class ColumnMappingDialog extends TrayDialog
 					anyLocationButton.setSelection( false );
 					customButton.setSelection( false );
 					xmlPathCombo.setEnabled( false );
-					xmlPathCombo.setText( TextProcessor.process(xpathList.get(0).toString(), "//"));
+					xmlPathCombo.setText( TextProcessor.process( xpathList.get( 0 )
+							.toString( ),
+							"//" ) );
 				}
 			}
 		} );
-		
+
 		anyLocationButton = new Button( exprBtnGroup, SWT.RADIO | SWT.WRAP );
 		anyLocationButton.setLayoutData( buttonGd );
 		anyLocationButton.addSelectionListener( new SelectionAdapter( ) {
@@ -347,7 +430,9 @@ public class ColumnMappingDialog extends TrayDialog
 					absolutePathButton.setSelection( false );
 					customButton.setSelection( false );
 					xmlPathCombo.setEnabled( false );
-					xmlPathCombo.setText( TextProcessor.process( xpathList.get(1).toString(), "//"));
+					xmlPathCombo.setText( TextProcessor.process( xpathList.get( 1 )
+							.toString( ),
+							"//" ) );
 				}
 			}
 		} );
@@ -396,7 +481,7 @@ public class ColumnMappingDialog extends TrayDialog
 				xpath = xmlPathCombo.getText( );
 			}
 		} );
-		
+
 		if ( xpathList != null && xpathList.size( ) > 0 )
 		{
 			absolutePathButton.setSelection( true );
@@ -425,11 +510,11 @@ public class ColumnMappingDialog extends TrayDialog
 		{
 			absolutePathButton.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.disable.absolutePath", //$NON-NLS-1$
 					new String[]{
-							columnName
-					} ));
+						columnName
+					} ) );
 			anyLocationButton.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
 					new String[]{
-							columnName
+						columnName
 					} ) );
 			setButtonsEnabled( true );
 		}
@@ -459,9 +544,12 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		if ( xpathList != null && xpathList.size( ) >= 2 )
 		{
-			xmlPathCombo.setText( TextProcessor.process(xpathList.get( 0 ).toString( ),"//") );
-			xmlPathCombo.add( TextProcessor.process(xpathList.get( 0 ).toString( ),"//") );
-			xmlPathCombo.add( TextProcessor.process(xpathList.get( 1 ).toString( ),"//") );
+			xmlPathCombo.setText( TextProcessor.process( xpathList.get( 0 )
+					.toString( ), "//" ) );
+			xmlPathCombo.add( TextProcessor.process( xpathList.get( 0 )
+					.toString( ), "//" ) );
+			xmlPathCombo.add( TextProcessor.process( xpathList.get( 1 )
+					.toString( ), "//" ) );
 		}
 		else
 		{
@@ -478,8 +566,7 @@ public class ColumnMappingDialog extends TrayDialog
 	 */
 	private void updateOKbuttonState( )
 	{
-		if ( columnName == null
-				|| columnName.trim( ).length( ) == 0 )
+		if ( columnName == null || columnName.trim( ).length( ) == 0 )
 		{
 			enableOKButton( false );
 		}
@@ -488,7 +575,7 @@ public class ColumnMappingDialog extends TrayDialog
 			enableOKButton( true );
 		}
 	}
-	
+
 	/**
 	 * Enable or disable the OK button
 	 * 
@@ -508,6 +595,31 @@ public class ColumnMappingDialog extends TrayDialog
 		Control control = super.createButtonBar( parent );
 		updateOKbuttonState( );
 		return control;
+	}
+
+	private void createXMLParameter( )
+	{
+		String selectedValue = xmlPathText.getSelectionText( );
+		String changedValue = XML_PARAMETER_QUOTION_LEFT
+				+ selectedValue + XML_PARAMETER_QUOTION_RIGHT;
+		resetXPathText( changedValue );
+	}
+
+	private void resetXPathText( String changedValue )
+	{
+		int range[] = xmlPathText.getSelectionRanges( );
+		String xpathString = xmlPathText.getText( ).trim( );
+		String result = xpathString.substring( 0, range[0] )
+				+ changedValue + xpathString.substring( range[0] + range[1] );
+		xmlPathText.setText( result );
+	}
+
+	private void deleteXMLParameter( )
+	{
+		String selectedValue = xmlPathText.getSelectionText( );
+		String changedValue = selectedValue.substring( 2,
+				selectedValue.length( ) - 2 );
+		resetXPathText( changedValue );
 	}
 
 }
