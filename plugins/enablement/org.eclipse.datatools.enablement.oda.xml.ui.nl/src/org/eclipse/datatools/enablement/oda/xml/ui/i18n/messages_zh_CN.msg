@@ -76,6 +76,8 @@ ColumnMappingDialog.info.xPath=XPath 表达式(&X):
 ColumnMappingDialog.info.dataType=数据类型(&D):
 ColumnMappingDialog.dialog.info=为当前列选择一个预定义 XPath，或者请输入另一个 XPath 表达式。 
 ColumnMappingDialog.prompt.maxRow=源数据大于 500 行。仅前 500 行可在此页面中预览。
+ColumnMappingDialog.MenuItem.CreateParameter=Create Parameter
+ColumnMappingDialog.MenuItem.DeleteParameter=Delete Parameter
 XMLDataPreviewDialog.title=示例 XML 数据
 
 dataset.editor.columnName=名称

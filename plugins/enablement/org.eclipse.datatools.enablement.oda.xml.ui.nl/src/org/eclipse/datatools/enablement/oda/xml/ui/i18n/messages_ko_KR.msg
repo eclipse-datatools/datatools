@@ -76,6 +76,8 @@ ColumnMappingDialog.info.xPath=XPath 식(&X):
 ColumnMappingDialog.info.dataType=데이터 형식(&D):
 ColumnMappingDialog.dialog.info=현재 열에 대해 미리 정의된 XPath 중 하나를 선택하거나 다른 XPath 식을 입력하십시오. 
 ColumnMappingDialog.prompt.maxRow=원본 데이터가 500줄 이상입니다. 이 페이지에는 처음 500줄만 표시됩니다.
+ColumnMappingDialog.MenuItem.CreateParameter=Create Parameter
+ColumnMappingDialog.MenuItem.DeleteParameter=Delete Parameter
 XMLDataPreviewDialog.title=샘플 XML 데이터
 
 dataset.editor.columnName=이름

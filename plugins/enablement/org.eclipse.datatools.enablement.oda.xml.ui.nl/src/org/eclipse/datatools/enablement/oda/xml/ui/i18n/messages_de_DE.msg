@@ -76,6 +76,8 @@ ColumnMappingDialog.info.xPath=&XPath-Ausdruck:
 ColumnMappingDialog.info.dataType=&Datentyp:
 ColumnMappingDialog.dialog.info=Wählen Sie einen vordefinierten XPath für die aktuelle Spalte, oder geben Sie einen anderen XPath-Ausdruck ein. 
 ColumnMappingDialog.prompt.maxRow=Die Quelldaten umfassen mehr als 500 Zeilen. Auf dieser Seite kann nur eine Vorschau der ersten 500 Zeilen angezeigt werden.
+ColumnMappingDialog.MenuItem.CreateParameter=Create Parameter
+ColumnMappingDialog.MenuItem.DeleteParameter=Delete Parameter
 XMLDataPreviewDialog.title=Beispiel-XML-Daten
 
 dataset.editor.columnName=Name

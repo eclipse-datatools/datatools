@@ -13,6 +13,7 @@
 #
 logManager_duplicateName=Protokollfunktion mit dem gleichen Namen ist bereits vorhanden.
 #
+manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).  Check that the extension bundle is loaded in workspace.
 manifest_nullArgument=Das Argument darf nicht Null sein.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=In der Datenquellenerweiterung der Datei 'plugin.xml' des ODA-Treibers fehlt ein Attribut 'id'.
 manifest_INVALID_VERSION_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für odaVersion ({0}) in der Datenquellenerweiterung ({1}).

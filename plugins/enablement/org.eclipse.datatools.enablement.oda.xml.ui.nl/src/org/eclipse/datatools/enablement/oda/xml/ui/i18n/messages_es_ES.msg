@@ -76,6 +76,8 @@ ColumnMappingDialog.info.xPath=E&xpresión XPath:
 ColumnMappingDialog.info.dataType=Tipo de &datos:
 ColumnMappingDialog.dialog.info=Seleccione alguna de las expresiones XPath predefinidas para la columna actual o introduzca otra expresión XPath. 
 ColumnMappingDialog.prompt.maxRow=Los datos fuente tienen más de 500 líneas. La vista previa sólo mostrará las primeras 500 líneas en esta página.
+ColumnMappingDialog.MenuItem.CreateParameter=Create Parameter
+ColumnMappingDialog.MenuItem.DeleteParameter=Delete Parameter
 XMLDataPreviewDialog.title=Datos XML de muestra
 
 dataset.editor.columnName=Nombre
