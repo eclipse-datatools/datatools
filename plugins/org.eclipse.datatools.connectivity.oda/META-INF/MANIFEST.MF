@@ -7,6 +7,7 @@ Bundle-Vendor: Eclipse Data Tools Platform
 Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.impl,
  org.eclipse.datatools.connectivity.oda.spec;x-internal:=true,
+ org.eclipse.datatools.connectivity.oda.spec.impl;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.spec.manifest;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.spec.result;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.spec.result.filter;x-internal:=true,

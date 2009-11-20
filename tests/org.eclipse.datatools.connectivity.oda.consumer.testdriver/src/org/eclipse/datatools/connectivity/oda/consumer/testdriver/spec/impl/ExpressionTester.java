@@ -21,11 +21,9 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
-import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
-import org.eclipse.datatools.connectivity.oda.spec.ValidationContext.Connection;
+import org.eclipse.datatools.connectivity.oda.spec.impl.ValidatorBaseImpl;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType;
-import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
@@ -37,7 +35,7 @@ import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper
  *  Sample custom validator of extension-defined filter expressions.
  */
 @SuppressWarnings("restriction")
-public class ExpressionTester implements IValidator, IExecutableExtension
+public class ExpressionTester extends ValidatorBaseImpl implements IValidator, IExecutableExtension
 {
     private ExtensionContributor m_contributor;
 
@@ -107,42 +105,6 @@ public class ExpressionTester implements IValidator, IExecutableExtension
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.filter.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression, org.eclipse.datatools.connectivity.oda.filter.ValidationContext)
-     */
-    public void validate( AggregateExpression expr, ValidationContext context )
-            throws OdaException
-    {
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    public void validateSyntax( AggregateExpression aggrExpr,
-            ValidationContext context ) throws OdaException
-    {
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.ValueExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    public void validate( ValueExpression valueExpr, ValidationContext context )
-            throws OdaException
-    {
-        // TODO Auto-generated method stub        
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.ValueExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
-     */
-    public void validateSyntax( ValueExpression valueExpr,
-            ValidationContext context ) throws OdaException
-    {
-        // TODO Auto-generated method stub      
-    }
-
-    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     public void validate( SortSpecification sortSpec, ValidationContext context )
@@ -201,15 +163,6 @@ public class ExpressionTester implements IValidator, IExecutableExtension
             return;
         validate( resultSetSpec.getSortSpecification(), context );
         validate( resultSetSpec.getFilterSpecification(), context );
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#closeConnection(org.eclipse.datatools.connectivity.oda.spec.ValidationContext.Connection)
-     */
-    public void closeConnection( Connection validationConnection )
-    {
-        // TODO Auto-generated method stub
-        
     }
 
 }

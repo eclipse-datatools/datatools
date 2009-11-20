@@ -67,7 +67,7 @@
                   The fully qualified name of a Java concrete class that implements the runtime validator to validate all its contributed expressions and any dynamic result set specification that may be set by an ODA consumer application. The class must be public and implement the &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.IValidator&lt;/i&gt; interface with a public 0-argument constructor.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.oda.spec.IValidator"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.impl.ValidatorBaseImpl:org.eclipse.datatools.connectivity.oda.spec.IValidator"/>
                </appInfo>
             </annotation>
          </attribute>
