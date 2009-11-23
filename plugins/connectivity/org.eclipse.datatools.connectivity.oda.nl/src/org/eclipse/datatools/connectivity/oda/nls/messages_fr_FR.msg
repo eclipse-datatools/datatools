@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=Un consignateur du même nom existe déjà.
 #
-manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).  Check that the extension bundle is loaded in workspace.
+manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).\n Check the workspace log file for any problems with loading the extension bundle and its dependencies.
 manifest_nullArgument=L'argument ne doit pas être null.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=L'extension de la source de données plugin.xml du pilote ODA ne contient pas d'attribut d'ID.
 manifest_INVALID_VERSION_VALUE=Le fichier plugin.xml du pilote ODA contient une valeur odaVersion incorrecte ({0}) dans l''extension de la source de données ({1}).

@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=已存在同名的记录器。
 #
-manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).  Check that the extension bundle is loaded in workspace.
+manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).\n Check the workspace log file for any problems with loading the extension bundle and its dependencies.
 manifest_nullArgument=参数不能为空。
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展缺少 id 属性。
 manifest_INVALID_VERSION_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 odaVersion 值（{0}）。

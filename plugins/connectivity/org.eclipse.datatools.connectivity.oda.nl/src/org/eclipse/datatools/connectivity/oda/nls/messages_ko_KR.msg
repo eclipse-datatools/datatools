@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=이름이 같은 로거(logger)가 이미 있습니다.
 #
-manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).  Check that the extension bundle is loaded in workspace.
+manifest_CANNOT_FIND_EXTENSION=Cannot find the ODA dataSource extension ({0}).\n Check the workspace log file for any problems with loading the extension bundle and its dependencies.
 manifest_nullArgument=인수는 널(null)일 수 없습니다.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=ODA 드라이버 plugin.xml 데이터 소스 확장에 ID 속성이 누락되었습니다.
 manifest_INVALID_VERSION_VALUE=ODA 드라이버 plugin.xml의 데이터 소스 확장({1})에 올바르지 않은 odaVersion 값({0})이 있습니다.
