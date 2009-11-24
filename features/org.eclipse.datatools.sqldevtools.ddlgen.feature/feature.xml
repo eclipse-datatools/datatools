@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.ddlgen.feature"
       label="%featureName"
-      version="1.7.2.qualifier"
+      version="1.8.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.sqltools.ddlgen.ui"
       image="eclipse_update_120.jpg">
@@ -74,20 +74,19 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.editor.core.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.sql.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-    
 
 </feature>

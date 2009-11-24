@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.data.feature"
       label="%featureName"
-      version="1.7.2.qualifier"
+      version="1.8.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
@@ -45,14 +45,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.result.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.common.ui"
          download-size="0"
