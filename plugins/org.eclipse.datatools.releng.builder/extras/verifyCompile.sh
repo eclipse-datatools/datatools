@@ -30,7 +30,7 @@ count=`awk '{print $1}' $1/error.plugins.count`
 #############################################
 
 if [ $count -gt 0 ] ; then
-        echo "#Compile has error in $1" >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
+        echo "#Compile has error in $1" >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
         awk -F "/" '{print "cp " $0 " "$1 FS $2 FS $3 FS $4 FS $5 FS $6 FS $7 FS $8 FS $9 FS $10 FS $11"_compilelog.html"  }' $1/error.plugins >  $1/error.plugins.rename
         chmod +x $1/error.plugins.rename
         $1/error.plugins.rename
@@ -40,11 +40,11 @@ if [ $count -gt 0 ] ; then
         awk -F "_" '{print " "$1"\\n\\"}' $1/notify.list > $1/notify.list.tmp
         mv $1/notify.list.tmp $1/notify.list
 
-        echo "compileHasError=true" >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
-        echo "error.plugin.list=\\" >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
-        cat $1/notify.list >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
-        echo " "  >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
+        echo "compileHasError=true" >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
+        echo "error.plugin.list=\\" >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
+        cat $1/notify.list >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
+        echo " "  >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
 else
-        echo "#No compile error in $1" >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
-        echo "compileHasError=false" >> /home/adb/releng.dtp.172/org.eclipse.datatools.releng.builder/monitor.properties
+        echo "#No compile error in $1" >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
+        echo "compileHasError=false" >> /home/adb/releng.dtp.180/org.eclipse.datatools.releng.builder/monitor.properties
 fi
