@@ -31,6 +31,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -607,10 +608,10 @@ public class ColumnMappingDialog extends TrayDialog
 
 	private void resetXPathText( String changedValue )
 	{
-		int range[] = xmlPathText.getSelectionRanges( );
+		Point point = xmlPathText.getSelection( );
 		String xpathString = xmlPathText.getText( ).trim( );
-		String result = xpathString.substring( 0, range[0] )
-				+ changedValue + xpathString.substring( range[0] + range[1] );
+		String result = xpathString.substring( 0, point.x )
+				+ changedValue + xpathString.substring( point.y );
 		xmlPathText.setText( result );
 	}
 
