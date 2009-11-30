@@ -76,8 +76,8 @@ ColumnMappingDialog.info.xPath=XPath 式(&X) :
 ColumnMappingDialog.info.dataType=データ型(&D) :
 ColumnMappingDialog.dialog.info=現在の列に定義済みの XPath を選択するか、別の XPath 式を入力してください。 
 ColumnMappingDialog.prompt.maxRow=500 行以上のソースデータがあります。このページには最初の 500 行だけが表示されます。
-ColumnMappingDialog.MenuItem.CreateParameter=Create Parameter
-ColumnMappingDialog.MenuItem.DeleteParameter=Delete Parameter
+ColumnMappingDialog.MenuItem.CreateParameter=パラメタの作成
+ColumnMappingDialog.MenuItem.DeleteParameter=パラメタの削除
 XMLDataPreviewDialog.title=サンプル XML データ
 
 dataset.editor.columnName=名前
