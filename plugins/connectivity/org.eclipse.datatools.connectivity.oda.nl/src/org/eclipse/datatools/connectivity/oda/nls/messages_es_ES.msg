@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=Ya existe un anotador con el mismo nombre.
 #
-manifest_CANNOT_FIND_EXTENSION=No se puede encontrar la extensión ({0}) de fuente de datos de ODA.  Compruebe que el paquete de extensión está cargado en el área de trabajo.
+manifest_CANNOT_FIND_EXTENSION=No se puede encontrar la extensión ({0}) de fuente de datos de ODA.\n Consulte el archivo de registro del área de trabajo en caso de producirse problemas con la carga del paquete de extensión y sus dependencias.
 manifest_nullArgument=El argumento no debe ser nulo.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=En la extensión de origen de datos del archivo plugin.xml del controlador de ODA falta un atributo id.
 manifest_INVALID_VERSION_VALUE=El archivo plugin.xml del controlador de ODA tiene un valor de odaVersion no válido ({0}) en la extensión de origen de datos ({1}).

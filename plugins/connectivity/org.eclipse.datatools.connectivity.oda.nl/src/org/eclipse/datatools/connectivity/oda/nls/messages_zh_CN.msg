@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=已存在同名的记录器。
 #
-manifest_CANNOT_FIND_EXTENSION=找不到 ODA 数据源表达式({0})。  检查扩展绑定是否装入工作区。
+manifest_CANNOT_FIND_EXTENSION=找不到 ODA 数据源表达式({0})。\n 检查工作区日志文件，查看是否有加载扩展绑定及其从属项时出现的问题。
 manifest_nullArgument=参数不能为空。
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展缺少 id 属性。
 manifest_INVALID_VERSION_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 odaVersion 值（{0}）。

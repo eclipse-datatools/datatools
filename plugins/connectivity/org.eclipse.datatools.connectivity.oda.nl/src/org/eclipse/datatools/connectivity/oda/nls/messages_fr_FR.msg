@@ -13,7 +13,7 @@
 #
 logManager_duplicateName=Un consignateur du même nom existe déjà.
 #
-manifest_CANNOT_FIND_EXTENSION=Impossible de trouver l'extension de source de données ODA ({0}).  Vérifiez que l'inclusion d'extension est chargée dans l'espace de travail.
+manifest_CANNOT_FIND_EXTENSION=Impossible de trouver l'extension de source de données ODA ({0}).\n En cas de problème avec le chargement de l'inclusion d'extension et de ses dépendances, consultez le fichier journal de l'espace de travail.
 manifest_nullArgument=L'argument ne doit pas être null.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=L'extension de la source de données plugin.xml du pilote ODA ne contient pas d'attribut d'ID.
 manifest_INVALID_VERSION_VALUE=Le fichier plugin.xml du pilote ODA contient une valeur odaVersion incorrecte ({0}) dans l''extension de la source de données ({1}).
