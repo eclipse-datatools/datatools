@@ -312,6 +312,7 @@ public class TableDataEditor extends EditorPart
     public void doDelete() {
         IRowData row = getRow();
         if (row!=null) {
+            dirtyBackgroundSet.remove(cursor.getRow());
 	        tableData.deleteRow(row);
 	        tableViewer.remove(row);
 	        setDirty(true);
