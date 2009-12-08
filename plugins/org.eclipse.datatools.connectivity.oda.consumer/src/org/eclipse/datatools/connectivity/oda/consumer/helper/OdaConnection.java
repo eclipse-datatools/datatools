@@ -214,7 +214,8 @@ public class OdaConnection extends OdaObject
 
 		// pass-thru driver context to the underlying connection
 		// before attempt to call open()
-		setAppContext( getDriverAppContext() );
+		if( getAppContext() == null )     // no connection level context is set directly
+		    setAppContext( getDriverAppContext() );
  
 		try
 		{	
@@ -770,6 +771,24 @@ public class OdaConnection extends OdaObject
 	private void processConsumerAppContext( Object context )
 	{
 	    m_propertyHandler = new ConnectionPropertyHandler( context );
+	    
+	    // try pass the connection level locale, if set in the context, 
+	    // to the underlying provider's connection via #setLocale;
+	    // this is done before passing the context object to underlying provider in case
+	    // it uses the context for setting its own locale, which can then override #setLocale
+	    try
+        {
+            if( m_propertyHandler.getAppLocale() != null )
+                setLocale( m_propertyHandler.getAppLocale() );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            // ignore
+        }
+        catch( OdaException ex )
+        {
+            // ignore
+        }
 	}
 	
     /**

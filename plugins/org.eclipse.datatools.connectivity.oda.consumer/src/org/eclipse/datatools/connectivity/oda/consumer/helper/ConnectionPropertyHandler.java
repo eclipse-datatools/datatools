@@ -14,11 +14,15 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.helper;
 
+import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * Handles ODA connection properties and the
@@ -29,6 +33,7 @@ class ConnectionPropertyHandler extends OdaObject
     private String m_consumerApplId;
     private Object m_connPropContext;
     private IPropertyProvider m_propertyProvider;
+    private ULocale m_appLocale;
     
     ConnectionPropertyHandler( Object context )
     {
@@ -58,6 +63,15 @@ class ConnectionPropertyHandler extends OdaObject
     }
     
     /**
+     * Returns the locale instance in the connection application context map.
+     * @return the locale instance set in the context; may be null if none is available
+     */
+    protected ULocale getAppLocale()
+    {
+        return m_appLocale;
+    }
+
+    /**
      * Processes the consumer application entries specified for property handling 
      * in the application context.
      * @param context   connection application context set by the consumer application
@@ -75,6 +89,10 @@ class ConnectionPropertyHandler extends OdaObject
         m_connPropContext = ProviderUtil.getConnectionPropertyContext( context );  
         log( methodName, "Externalized property context: " + m_connPropContext );        //$NON-NLS-1$
 
+        // check for the optional locale instance in the context
+        m_appLocale = getAppLocale( context );
+        log( methodName, "Application Locale in context: " + m_appLocale ); //$NON-NLS-1$
+        
         logMethodExit( methodName );
     }
     
@@ -126,5 +144,41 @@ class ConnectionPropertyHandler extends OdaObject
         }
         return m_propertyProvider;
     }
+    
+    /**
+     * Returns the locale instance specified by an ODA consumer in 
+     * the specified application context map.
+     * @param context   a Map that contains the IPropertyProvider.APP_RUNTIME_LOCALE_KEY key
+     *             with a value of locale object in either Locale, ULocale, or String type
+     */
+    private ULocale getAppLocale( Object appContext )
+    {
+        if( appContext == null || ! ( appContext instanceof Map ) )
+            return null;     // no context map to obtain value
+        
+        // get the locale instance from context map, if exists
+        String localeKey = IPropertyProvider.APP_RUNTIME_LOCALE_KEY;
+        Object localeValue = ((Map) appContext).get( localeKey );
+        if( localeValue == null )
+            return null;   // does not have locale info
+        
+        if( localeValue instanceof Locale )
+            return ULocale.forLocale( (Locale) localeValue );
+        
+        if( localeValue instanceof ULocale )
+            return (ULocale) localeValue;
+
+        if( localeValue instanceof String )
+        {
+            String localeString = (String) localeValue;
+            return new ULocale( localeString );
+        }
+        
+        // not a supported locale value type
+        logWarning( "getAppLocale(Object)",  //$NON-NLS-1$
+                "Ignoring invalid object type (" + localeValue.getClass().getName() //$NON-NLS-1$
+                + ") specified for the application locale key " + localeKey ); //$NON-NLS-1$
+        return null;
+    }   
 
 }
