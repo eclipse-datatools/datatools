@@ -51,11 +51,13 @@ public class ResultProjection
     /**
      * Specifies an aggregate expression whose output value is projected on the 
      * specified result set column identifier.
-     * The aggregation is applied on the values of its input source variable(s) 
+     * <br>The aggregation is applied on the values of its input source variable(s) 
      * across a set of data records.
      * Each set is grouped by the unique values of all the other result set column(s) 
      * that do not have an aggregate expression projected.  Hidden result set column(s) 
-     * are excluded from the groupings.
+     * are excluded from the groupings.  
+     * If the result set has sorting specification defined, the order of the
+     * column groupings should be in the same sequence as the sorted columns.
      * <br>A projected tabular result set returns one row for each group. 
      * @param resultColumn   the column identifier in the projected result set targeted for the 
      *          output of the specified aggregate expression
