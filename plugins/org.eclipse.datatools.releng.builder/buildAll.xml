@@ -400,7 +400,7 @@
 		<antcall target="genP2CompositeUpdateSite"/>
 		
     	<!-- zip p2 repo-->
-		<zip destfile="${postingDirectory}/${buildId}/dtp-p2repo.zip">
+		<zip destfile="${postingDirectory}/${buildId}/dtp-p2repo-${package.version}.zip">
 			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/features/" prefix="features">
 				<include name="*.jar"/>
 				<include name="*.pack.gz"/>
