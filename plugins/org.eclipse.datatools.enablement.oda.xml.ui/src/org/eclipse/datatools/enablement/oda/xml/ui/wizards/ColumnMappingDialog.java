@@ -31,7 +31,6 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -68,7 +67,7 @@ public class ColumnMappingDialog extends TrayDialog
 	private Button anyLocationButton;
 	private Button customButton;
 
-	private Combo xmlPathCombo;
+	private StyledCCombo xmlPathCombo;
 	private StyledText xmlPathText;
 	private Menu quickFixMenu;
 
@@ -273,7 +272,7 @@ public class ColumnMappingDialog extends TrayDialog
 		xmlPathText.setText( TextProcessor.process( xpath, "//" ) ); //$NON-NLS-1$
 		xmlPathText.setLayoutData( textData );
 
-		createQuickFixMenu( );
+		createQuickFixMenu( xmlPathText );
 
 		xmlPathText.addModifyListener( new ModifyListener( ) {
 
@@ -290,21 +289,21 @@ public class ColumnMappingDialog extends TrayDialog
 				quickFixMenu.setLocation( event.x, event.y );
 				quickFixMenu.setVisible( true );
 				
-				updateMenuItemStatus( );
+				updateMenuItemStatus( xmlPathText );
 			}
 		} );
 	}
 
-	private void createQuickFixMenu( )
+	private void createQuickFixMenu( final StyledText text )
 	{
-		quickFixMenu = new Menu( xmlPathText );
+		quickFixMenu = new Menu( text );
 		MenuItem createItem = new MenuItem( quickFixMenu, SWT.PUSH );
 		createItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.CreateParameter" ) ); //$NON-NLS-1$
 		createItem.addSelectionListener( new SelectionListener( ) {
 
 			public void widgetSelected( SelectionEvent event )
 			{
-				createXMLParameter( );
+				createXMLParameter( text );
 			}
 
 			public void widgetDefaultSelected( SelectionEvent event )
@@ -319,7 +318,7 @@ public class ColumnMappingDialog extends TrayDialog
 
 			public void widgetSelected( SelectionEvent event )
 			{
-				deleteXMLParameter( );
+				deleteXMLParameter( text );
 			}
 
 			public void widgetDefaultSelected( SelectionEvent event )
@@ -327,20 +326,20 @@ public class ColumnMappingDialog extends TrayDialog
 
 			}
 		} );
-		
-		updateMenuItemStatus( );
+
+		updateMenuItemStatus( text );
 
 	}
 	
-	private void updateMenuItemStatus( )
+	private void updateMenuItemStatus( StyledText text )
 	{
-		String selectionText = xmlPathText.getSelectionText( ).trim( );
+		String selectionText = text.getSelectionText( ).trim( );
 
 		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0 );
 		quickFixMenu.getItem( 1 ).setEnabled( selectionText.length( ) > 0
 				&& selectionText.startsWith( XML_PARAMETER_QUOTION_LEFT )
 				&& selectionText.endsWith( XML_PARAMETER_QUOTION_RIGHT ) );
-		
+
 	}
 
 	/**
@@ -465,21 +464,36 @@ public class ColumnMappingDialog extends TrayDialog
 		GridData txtGridData = new GridData( );
 		txtGridData.horizontalSpan = 1;
 		txtGridData.widthHint = 420;
-		xmlPathCombo = new Combo( exprBtnGroup, SWT.DROP_DOWN );
+		xmlPathCombo = new StyledCCombo( exprBtnGroup, SWT.DROP_DOWN | SWT.BORDER );
 		xmlPathCombo.setLayoutData( txtGridData );
 		xmlPathCombo.setVisible( true );
 		setupCustomXMLPathField( );
+		
+		createQuickFixMenu( xmlPathCombo.getStyledText( ) );
+
 		xmlPathCombo.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
 			}
 		} );
+		
 		xmlPathCombo.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )
 			{
 				xpath = xmlPathCombo.getText( );
+			}
+		} );
+		
+		xmlPathCombo.getStyledText( ).addMenuDetectListener( new MenuDetectListener( ) {
+
+			public void menuDetected( MenuDetectEvent event )
+			{
+				quickFixMenu.setLocation( event.x, event.y );
+				quickFixMenu.setVisible( true );
+				
+				updateMenuItemStatus( xmlPathCombo.getStyledText( ) );
 			}
 		} );
 
@@ -598,29 +612,29 @@ public class ColumnMappingDialog extends TrayDialog
 		return control;
 	}
 
-	private void createXMLParameter( )
+	private void createXMLParameter( StyledText text )
 	{
-		String selectedValue = xmlPathText.getSelectionText( );
+		String selectedValue = text.getSelectionText( );
 		String changedValue = XML_PARAMETER_QUOTION_LEFT
 				+ selectedValue + XML_PARAMETER_QUOTION_RIGHT;
-		resetXPathText( changedValue );
+		resetXPathText( text, changedValue );
 	}
 
-	private void resetXPathText( String changedValue )
+	private void resetXPathText( StyledText text, String changedValue )
 	{
-		Point point = xmlPathText.getSelection( );
-		String xpathString = xmlPathText.getText( ).trim( );
-		String result = xpathString.substring( 0, point.x )
-				+ changedValue + xpathString.substring( point.y );
-		xmlPathText.setText( result );
+		String xpathString = text.getText( ).trim( );
+		String result = xpathString.substring( 0, text.getSelection( ).x )
+				+ changedValue + xpathString.substring( text.getSelection( ).y );
+		text.setText( result );
 	}
 
-	private void deleteXMLParameter( )
+	private void deleteXMLParameter( StyledText text )
 	{
-		String selectedValue = xmlPathText.getSelectionText( );
+		String selectedValue = text.getSelectionText( );
 		String changedValue = selectedValue.substring( 2,
 				selectedValue.length( ) - 2 );
-		resetXPathText( changedValue );
+
+		resetXPathText( text, changedValue );
 	}
 
 }
