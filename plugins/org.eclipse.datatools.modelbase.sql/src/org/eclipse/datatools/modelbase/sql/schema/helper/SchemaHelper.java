@@ -10,11 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.schema.helper;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 
 /**
  * @author ckadner
@@ -56,5 +60,41 @@ public class SchemaHelper
         return returnTable;
     }
     
+    /**
+     * Retrieves all persistent tables in a given Schema.
+     **/
+    public static List getTables(Schema schema) {
+    	List tables = new ArrayList();
+    	
+        for (Iterator it = schema.getTables().iterator(); it.hasNext();)
+        {
+            Table currentTable = (Table) it.next();
+            
+            if (currentTable instanceof PersistentTable) 
+            {
+            	tables.add(currentTable);
+            }
+        }
+        
+        return tables;
+    }
     
+    /**
+     * Retrieves all views in a given Schema.
+     **/
+    public static List getViews(Schema schema) {
+    	List views = new ArrayList();
+    	
+        for (Iterator it = schema.getTables().iterator(); it.hasNext();)
+        {
+            Table currentTable = (Table) it.next();
+            
+            if (currentTable instanceof ViewTable) 
+            {
+            	views.add(currentTable);
+            }
+        }
+        
+        return views;
+    }
 }
