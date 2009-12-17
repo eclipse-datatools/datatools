@@ -362,7 +362,7 @@
 		
 	</target>
 
-    <target name="GenerateUpdateSite">
+    <target name="GenerateUpdateSite" unless="HQ.BIRT.skip">
         <property file="${buildDirectory}/finalFeaturesVersions.properties"/>
     	<property name="tmpsite" value="${buildDirectory}/tmpsite" />
         <mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
