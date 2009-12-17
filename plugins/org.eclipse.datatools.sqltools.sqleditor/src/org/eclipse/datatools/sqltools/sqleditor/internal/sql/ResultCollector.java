@@ -290,7 +290,7 @@ public class ResultCollector
         _results = new ArrayList[] 
         {
             _databaseList, _columnList, _tableList, _viewList, _storedProcedureList, _functionList, _triggerList,
-                _indexList, _eventList, _reservedKeywordList, _unreservedKeywordList, _variableList, _operator, _segmentList
+                _indexList, _eventList, _reservedKeywordList, _unreservedKeywordList, _variableList, _operator, _segmentList, _otherList
         }
         ;
 
