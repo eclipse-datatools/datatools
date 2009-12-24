@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2009 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *     Actuate Corporation - enhanced transient profile handling (bug #298357)
+ * 
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
@@ -138,7 +140,30 @@ public class ProfileManager implements IAdaptable {
 	public IConnectionProfile createTransientProfile(String providerID, Properties baseProperties) throws ConnectionProfileException {
 		return InternalProfileManager.getInstance().createTransientProfile(null, null, providerID, baseProperties);
 	}
+
+	/**
+     * Disconnect and remove the specified transient profile.
+     * This is for optional use by a client that wants to clean up before the 
+     * connectivity bundle is shutdown.
+     * @param profile  a transient connection profile instance created 
+     *             by {@link #createTransientProfile(String, String, String, Properties)}
+     * @return true if the specified profile is found and deleted; false otherwise
+     * @since DTP 1.7.2
+	 */
+	public boolean deleteTransientProfile(IConnectionProfile profile) {
+	    return InternalProfileManager.getInstance().deleteTransientProfile( profile );
+	}
 	
+    /**
+     * Indicates whether the specified connection profile is of a transient type.
+     * @param profile   a connection profile instance
+     * @return  true if the specified profile is transient; false otherwise
+     * @since DTP 1.7.2
+     */
+	public boolean isTransientProfile( IConnectionProfile profile ) {
+        return InternalProfileManager.isTransientProfile( profile );
+    }
+
 	/**
 	 * Create connection profile
 	 * 

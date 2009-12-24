@@ -11,6 +11,8 @@
  *     IBM Corporation -  fix for defect #241713
  *     Actuate Corporation - fix for bug #247587
  *     brianf - added Transient profile functionality for bug 253606
+ *     Actuate Corporation - enhanced transient profile handling (bug #298357)
+ *     
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -87,6 +89,8 @@ public class InternalProfileManager {
 	private ListenerList mProfileListeners = new ListenerList();
 	
 	private static final String PLUGIN_STATE_LOCATION = "Plugin_State_Location"; //$NON-NLS-1$
+	private static final String TRANSIENT_PROFILE_NAME_PREFIX = "Transient.";  //$NON-NLS-1$
+	
 	private boolean loadLocal = true;  // do we need to load locally registered db's?
 	
 	private IPropertySetListener mPropertySetListener = new IPropertySetListener() {
@@ -209,15 +213,25 @@ public class InternalProfileManager {
 	}
 
 	/**
-	 * Get connection profile by name
-	 * 
+	 * Get connection profile by name;
+	 * includes looking up a transient profile.
 	 * @param name
+	 * @param checkRepositories
 	 * @return IConnectionProfile
 	 */
 	public IConnectionProfile getProfileByName(String name,
 			boolean checkRepositories) {
+        IConnectionProfile cp = null;
+
+        // if name has the default transient profile prefix, 
+        // first check among the transient profiles
+        if (name.startsWith( TRANSIENT_PROFILE_NAME_PREFIX )) {
+            cp = getTransientProfileByName( name );
+            if (cp != null)    // found specified profile
+                return cp;
+        }
+        
 		IConnectionProfile[] cps = getProfiles(false);
-		IConnectionProfile cp = null;
 		for (int i = 0; i < cps.length; i++) {
 			if (cps[i].getName().equals(name)) {
 				cp = cps[i];
@@ -231,6 +245,12 @@ public class InternalProfileManager {
 						.getProfileByName(name);
 			}
 		}
+		
+		// if still not found, perhaps it is a transient profile whose name 
+		// does not start with the default prefix
+		if ( cp == null && ! name.startsWith( TRANSIENT_PROFILE_NAME_PREFIX ))
+            cp = getTransientProfileByName( name );
+
 		return cp;
 	}
 	
@@ -472,7 +492,7 @@ public class InternalProfileManager {
 		String transientName = name;
 		ConnectionProfile profile = null;
 		if (transientName == null) {
-			transientName = "Transient." + providerID; //$NON-NLS-1$
+			transientName = TRANSIENT_PROFILE_NAME_PREFIX + providerID;
 		}
 
 		if (mTransientProfiles == null) {
@@ -502,7 +522,6 @@ public class InternalProfileManager {
 	 * @return
 	 */
 	private String findUniqueTransientProfileName(String name) {
-		if (mTransientProfiles != null && !mTransientProfiles.isEmpty()) {
 			int count = 0;
 			boolean flag = (getTransientProfileByName(name) != null);
 			while (flag) {
@@ -510,8 +529,6 @@ public class InternalProfileManager {
 				flag = (getTransientProfileByName(name + count) != null);
 			}
 			return (count == 0) ? name : name + count;
-		}
-		return name;
 	}
 
 	/*
@@ -520,6 +537,9 @@ public class InternalProfileManager {
 	 * @return
 	 */
 	private IConnectionProfile getTransientProfileByName(String name) {
+        if ( mTransientProfiles == null || mTransientProfiles.isEmpty() )
+            return null;
+
 		IConnectionProfile[] cps = (IConnectionProfile[]) mTransientProfiles.toArray(new IConnectionProfile[mTransientProfiles.size()]);
 		IConnectionProfile cp = null;
 		for (int i = 0; i < cps.length; i++) {
@@ -530,6 +550,39 @@ public class InternalProfileManager {
 		}
 		return cp;
 	}
+    
+    /**
+     * Indicates whether the specified connection profile is of a transient type.
+     * @param profile
+     * @return  true if the specified profile is transient; false otherwise
+     */
+    public static boolean isTransientProfile( IConnectionProfile profile ) {
+        if ( profile == null )
+            return false;
+
+        // to optimize performance, simply check if the profile has the transient property 
+        // added by #createTransientProfile
+        return profile.getBaseProperties().getProperty( IConnectionProfile.TRANSIENT_PROPERTY_ID ) != null;
+    }
+
+	/**
+	 * Disconnect and remove the specified transient profile from cache.
+	 * @param profile  a transient connection profile instance created 
+	 *             by {@link #createTransientProfile(String, String, String, Properties)}
+	 * @return true if the specified profile is found and deleted from cache
+	 */
+	public boolean deleteTransientProfile(IConnectionProfile profile) {
+	    if ( mTransientProfiles == null || mTransientProfiles.isEmpty() ||
+	            ! isTransientProfile( profile ) )
+	        return false;
+	    
+        IStatus status = profile.disconnect();
+        if (status == Status.CANCEL_STATUS)
+            return false;
+
+        return mTransientProfiles.remove( profile );
+	}
+	
 	/**
 	 * Create connection profile
 	 * 
@@ -1180,6 +1233,7 @@ public class InternalProfileManager {
 					while (transientIter.hasNext()) {
 						((ConnectionProfile)transientIter.next()).dispose();
 					}
+	                mTransientProfiles = null;
 				}
 			}
 		}
