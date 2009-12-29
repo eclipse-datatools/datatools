@@ -24,7 +24,7 @@
    </url>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.nl"
+         id="org.eclipse.datatools.connectivity.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -32,7 +32,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.consumer.nl"
+         id="org.eclipse.datatools.connectivity.oda.consumer.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -40,7 +40,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.design.nl"
+         id="org.eclipse.datatools.connectivity.oda.design.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -48,7 +48,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.design.ui.nl"
+         id="org.eclipse.datatools.connectivity.oda.design.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -56,7 +56,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.flatfile.nl"
+         id="org.eclipse.datatools.connectivity.oda.flatfile.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -64,7 +64,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.flatfile.ui.nl"
+         id="org.eclipse.datatools.connectivity.oda.flatfile.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -72,7 +72,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.nl"
+         id="org.eclipse.datatools.connectivity.oda.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -80,7 +80,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.profile.nl"
+         id="org.eclipse.datatools.connectivity.oda.profile.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -88,7 +88,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.ui.dse.nl"
+         id="org.eclipse.datatools.connectivity.ui.dse.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -96,7 +96,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.ui.nl"
+         id="org.eclipse.datatools.connectivity.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -104,7 +104,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.oda.template.ui.nl"
+         id="org.eclipse.datatools.connectivity.oda.template.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -112,7 +112,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oda.xml.nl"
+         id="org.eclipse.datatools.enablement.oda.xml.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -120,7 +120,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oda.xml.ui.nl"
+         id="org.eclipse.datatools.enablement.oda.xml.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -128,7 +128,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oda.ws.nl"
+         id="org.eclipse.datatools.enablement.oda.ws.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -136,7 +136,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oda.ws.ui.nl"
+         id="org.eclipse.datatools.enablement.oda.ws.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -144,7 +144,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.apache.derby.nl"
+         id="org.eclipse.datatools.connectivity.apache.derby.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -152,7 +152,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.apache.derby.dbdefinition.nl"
+         id="org.eclipse.datatools.connectivity.apache.derby.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -160,7 +160,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.apache.derby.ui.nl"
+         id="org.eclipse.datatools.connectivity.apache.derby.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -168,7 +168,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.db.generic.nl"
+         id="org.eclipse.datatools.connectivity.db.generic.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -176,7 +176,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.db.generic.ui.nl"
+         id="org.eclipse.datatools.connectivity.db.generic.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -184,7 +184,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.dbdefinition.genericJDBC.nl"
+         id="org.eclipse.datatools.connectivity.dbdefinition.genericJDBC.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -192,7 +192,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.sqm.core.nl"
+         id="org.eclipse.datatools.connectivity.sqm.core.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -200,7 +200,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.sqm.core.ui.nl"
+         id="org.eclipse.datatools.connectivity.sqm.core.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -208,7 +208,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.sqm.server.ui.nl"
+         id="org.eclipse.datatools.connectivity.sqm.server.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -216,7 +216,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.console.profile.nl"
+         id="org.eclipse.datatools.connectivity.console.profile.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -224,7 +224,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.common.ui.nl"
+         id="org.eclipse.datatools.sqltools.common.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -232,7 +232,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.db.derby.nl"
+         id="org.eclipse.datatools.sqltools.db.derby.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -240,7 +240,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.db.generic.nl"
+         id="org.eclipse.datatools.sqltools.db.generic.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -248,7 +248,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.editor.core.nl"
+         id="org.eclipse.datatools.sqltools.editor.core.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -256,7 +256,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.parsers.sql.nl"
+         id="org.eclipse.datatools.sqltools.parsers.sql.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -264,7 +264,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.parsers.sql.query.nl"
+         id="org.eclipse.datatools.sqltools.parsers.sql.query.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -272,7 +272,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.plan.nl"
+         id="org.eclipse.datatools.sqltools.plan.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -280,7 +280,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.result.nl"
+         id="org.eclipse.datatools.sqltools.result.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -288,7 +288,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.sql.nl"
+         id="org.eclipse.datatools.sqltools.sql.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -296,7 +296,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.sqlbuilder.nl"
+         id="org.eclipse.datatools.sqltools.sqlbuilder.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -304,7 +304,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.sqltools.sqleditor.nl"
+         id="org.eclipse.datatools.sqltools.sqleditor.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -312,7 +312,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.hsqldb.nl"
+         id="org.eclipse.datatools.enablement.hsqldb.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -320,7 +320,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.hsqldb.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.hsqldb.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -328,7 +328,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.hsqldb.ui.nl"
+         id="org.eclipse.datatools.enablement.hsqldb.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -336,7 +336,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.iseries.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -344,7 +344,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -352,7 +352,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.iseries.ui.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -360,7 +360,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.luw.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.luw.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -368,7 +368,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -376,7 +376,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.luw.ui.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.luw.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -384,7 +384,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.zseries.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -392,7 +392,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -400,7 +400,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.db2.zseries.ui.nl"
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -408,7 +408,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.informix.nl"
+         id="org.eclipse.datatools.enablement.ibm.informix.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -416,7 +416,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.informix.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.ibm.informix.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -424,7 +424,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.informix.ui.nl"
+         id="org.eclipse.datatools.enablement.ibm.informix.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -432,7 +432,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.ibm.ui.nl"
+         id="org.eclipse.datatools.enablement.ibm.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -440,7 +440,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.msft.sqlserver.nl"
+         id="org.eclipse.datatools.enablement.msft.sqlserver.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -448,7 +448,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -456,7 +456,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.msft.sqlserver.ui.nl"
+         id="org.eclipse.datatools.enablement.msft.sqlserver.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -464,7 +464,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.mysql.nl"
+         id="org.eclipse.datatools.enablement.mysql.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -472,7 +472,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.mysql.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.mysql.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -480,7 +480,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.mysql.ui.nl"
+         id="org.eclipse.datatools.enablement.mysql.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -488,7 +488,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oracle.nl"
+         id="org.eclipse.datatools.enablement.oracle.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -496,7 +496,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oracle.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.oracle.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -504,7 +504,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.oracle.ui.nl"
+         id="org.eclipse.datatools.enablement.oracle.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -512,7 +512,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.postgresql.nl"
+         id="org.eclipse.datatools.enablement.postgresql.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -520,7 +520,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.postgresql.ui.nl"
+         id="org.eclipse.datatools.enablement.postgresql.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -528,7 +528,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sap.maxdb.nl"
+         id="org.eclipse.datatools.enablement.sap.maxdb.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -536,7 +536,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sap.maxdb.dbdefinition.nl"
+         id="org.eclipse.datatools.enablement.sap.maxdb.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -544,7 +544,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sap.maxdb.ui.nl"
+         id="org.eclipse.datatools.enablement.sap.maxdb.ui.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -552,7 +552,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.nl"
+         id="org.eclipse.datatools.modelbase.dbdefinition.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -560,7 +560,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.ui.nl"
+         id="org.eclipse.datatools.modelbase.derby.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -568,7 +568,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.asa.nl"
+         id="org.eclipse.datatools.modelbase.sql.edit.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -576,7 +576,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.asa.models.nl"
+         id="org.eclipse.datatools.modelbase.sql.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -584,7 +584,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.ase.dbdefinition.nl"
+         id="org.eclipse.datatools.modelbase.sql.query.edit.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -592,7 +592,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.ase.profile.nl"
+         id="org.eclipse.datatools.modelbase.sql.query.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -600,55 +600,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.modelbase.dbdefinition.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.derby.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.sql.edit.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.sql.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.sql.query.edit.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.sql.query.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.modelbase.sql.xml.query.nl"
+         id="org.eclipse.datatools.modelbase.sql.xml.query.nl1"
          download-size="0"
          install-size="0"
          version="0.0.0"
