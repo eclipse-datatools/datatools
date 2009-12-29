@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -92,29 +92,32 @@ public class DbProfilePageWrapper
         return m_wrappedPage.performOk();
     }
   
-    Properties collectCustomProperties( Properties initialProps )
+    Properties collectCustomProperties( boolean isSessionEditable )
     {
-        return getOdaConnectionProfile().getBaseProperties(); 
+        if( isSessionEditable )
+            performOk();    // triggers update of the page profile element w/ property values changed on UI page 
+        return getWrappedPageProfile().getBaseProperties(); 
     }
     
-    private IConnectionProfile getOdaConnectionProfile() 
+    private IConnectionProfile getWrappedPageProfile() 
     {
-        IConnectionProfile dbProfile = m_wrappedPage.getConnectionProfile();
-        if( dbProfile instanceof OdaConnectionProfile )
-        {
-            // ensure that if this is an oda wrapper, its oda wrapper id is visible
-            ((OdaConnectionProfile) dbProfile ).setHideWrapperId( false );
-        }
-        return dbProfile;
+        return m_wrappedPage.getConnectionProfile();
     }
     
     String getDbProfileProviderId()
     {
-        IConnectionProfile connProfile = getOdaConnectionProfile();
+        IConnectionProfile connProfile = getWrappedPageProfile();
         if( connProfile instanceof OdaConnectionProfile )
             return ((OdaConnectionProfile) connProfile ).getDirectProviderId();
 
         return null;
     }
 
+    void cleanup()
+    {
+        IConnectionProfile propertyPageProfile = getWrappedPageProfile();
+        if( propertyPageProfile instanceof OdaConnectionProfile )
+            ((OdaConnectionProfile) propertyPageProfile ).close();       
+    }
+    
 }

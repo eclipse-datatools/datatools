@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourcePropertyPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -88,19 +89,63 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
     protected DbProfilePageWrapper createDbProfilePageWrapper()
     {
         IConnectionProfile pageProfile = getConnectionProfile();
-        OdaConnectionProfile odaDbProfile = ( pageProfile instanceof OdaConnectionProfile ) ?
-                                (OdaConnectionProfile) pageProfile :
-                                new OdaConnectionProfile( pageProfile );
+        
+        IConnectionProfile customDbPropPageProfile = pageProfile;   // use the same profile by default
+        if( pageProfile instanceof OdaConnectionProfile )
+        {
+            if( ! ((OdaConnectionProfile)pageProfile).hasWrappedProfile() )
+                customDbPropPageProfile = createTransientProfile( pageProfile.getBaseProperties() );
+        }
+        if( customDbPropPageProfile == null )
+            return null;
+
+        OdaConnectionProfile customPageOdaDbProfile = ( customDbPropPageProfile instanceof OdaConnectionProfile ) ?
+                                (OdaConnectionProfile) customDbPropPageProfile :
+                                new OdaConnectionProfile( customDbPropPageProfile );
 
         // create the db profile's custom property page contribution for its wrapper
         ProfilePropertyPage customDbPropPage = 
-            DbProfileUtil.createDbPropertyPage( odaDbProfile, getOdaDataSourceId() );
-        
+            DbProfileUtil.createDbPropertyPage( customPageOdaDbProfile, getOdaDataSourceId() );       
         if( customDbPropPage == null )
             return null;
         
         // wraps the db profile property page in an ODA data source page        
         return new DbProfilePageWrapper( this, customDbPropPage );
+    }
+
+    /**
+     * Create a transient db profile with the specified properties.
+     * @param connProperties
+     * @return
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    protected IConnectionProfile createTransientProfile( Properties connProperties )
+    {
+        // the data source being edited may have no reference to an external profile store,
+        // and contains local profile properties only;
+        // try create a transient profile from the data source connection properties
+        try
+        {
+            return OdaProfileFactory.createTransientProfile( connProperties );
+        }
+        catch( OdaException ex )
+        {
+            // ignore
+        }
+        return null;
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#cleanup()
+     */
+    @Override
+    protected void cleanup()
+    {
+        super.cleanup();
+        if( m_pageHelper == null )
+            return;     // nothing to clean up
+        // cleanup transient profile, if exists
+        m_pageHelper.cleanup();
     }
 
     private DataSourceEditorPage createDefaultPropertyPage( Properties dbProfileProps )
@@ -165,13 +210,14 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         if( m_pageHelper == null )
             return profileProps;
 
+        // gets a copy of the profile's base properties
         Properties dbProfileProps =
-            m_pageHelper.collectCustomProperties( profileProps );
+            m_pageHelper.collectCustomProperties( isSessionEditable() );
         
         // reset/add the db profile provider id to the base properties 
         // collected from a connection profile instance
-        DbProfileUtil.setDbProviderIdInProperties( dbProfileProps, 
-                                getDbProfileProviderId() );
+        DbProfileUtil.setDbProviderIdInProperties( dbProfileProps, getDbProfileProviderId() );
+        
         return dbProfileProps;
     }
     
@@ -180,6 +226,21 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         if( m_pageHelper == null ) 
             return null;
         return m_pageHelper.getDbProfileProviderId();
+    }
+    
+    /**
+     * Indicates whether this property page is editing an externalized 
+     * connection profile instance.
+     * @return  true if page refers to an external connection profile instance; false 
+     *          if editing a local data source design with profile properties
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    protected boolean isEditingExternalProfile()
+    {
+        IConnectionProfile pageProfile = getConnectionProfile();
+        if( pageProfile instanceof OdaConnectionProfile )
+            return ((OdaConnectionProfile)pageProfile).hasWrappedProfile();
+        return false;
     }
     
     /*
@@ -196,7 +257,11 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
             Properties propertyValuePairs ) 
         throws OdaException
     {
-        DbProfileUtil.updateDataSourceDesignManifestProperties( design, propertyValuePairs );
+        // if editing external profile reference, do not import profile properties into the design
+        if( isEditingExternalProfile() )
+            DbProfileUtil.updateDataSourceDesignExternalProfileProvider( design, propertyValuePairs );
+        else
+            super.setDataSourceDesignProperties( design, propertyValuePairs );
     }
     
     /*

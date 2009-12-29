@@ -155,5 +155,23 @@ public class ManifestUtil
         
         return (Property[]) hiddenProps.toArray( new Property[ hiddenProps.size() ] );        
     }
+    
+    /**
+     * For internal use only.
+     * Process the specified boolean attribute of the specified element.
+     * @param element       an extension element
+     * @param attributeName name of the boolean attribute
+     * @param defaultValue  default value of the boolean attribute
+     * @return  the attribute value if specified; the default value otherwise
+     */
+    static boolean getBooleanAttributeValue( IConfigurationElement element, String attributeName, 
+                                            boolean defaultValue )
+    {
+        boolean booleanValue = defaultValue;  
+        String attrValueText = element.getAttribute( attributeName );
+        if( attrValueText != null )
+            booleanValue = Boolean.parseBoolean( attrValueText );
+        return booleanValue;
+    }
 
 }

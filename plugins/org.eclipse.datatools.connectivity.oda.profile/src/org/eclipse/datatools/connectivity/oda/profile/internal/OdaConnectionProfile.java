@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
+import org.eclipse.datatools.connectivity.ProfileManager;
 
 /**
  * An ODA wrapper of a Connectivity connection profile instance.
@@ -76,6 +77,19 @@ public class OdaConnectionProfile extends PlatformObject
     public IConnectionProfile getWrappedProfile()
     {
         return m_wrappedProfile;
+    }
+
+    /* Gets the leaf level wrapped profile if this has nested level of OdaConnectionProfile instances.
+    */
+    private IConnectionProfile getLeafWrappedProfile()
+    {
+        IConnectionProfile wrappedProfile = getWrappedProfile(); 
+        while( wrappedProfile instanceof OdaConnectionProfile && 
+               ((OdaConnectionProfile)wrappedProfile).hasWrappedProfile() )
+        {
+            wrappedProfile = ((OdaConnectionProfile)wrappedProfile).getWrappedProfile(); 
+        }
+        return wrappedProfile;
     }
 
     /**
@@ -157,7 +171,22 @@ public class OdaConnectionProfile extends PlatformObject
     {
         if( m_directProviderId != null )
             return m_directProviderId;
-        return hasWrappedProfile() ? getWrappedProfile().getProviderId() : null;
+        return hasWrappedProfile() ? getLeafWrappedProfile().getProviderId() : null;
+    }
+    
+    /**
+     * Close and clean up this connection profile wrapper and its wrapped profile instance.
+     */
+    public void close()
+    {
+        // in case this is a nested OdaConnectionProfile, get the lowest wrapped profile
+        IConnectionProfile wrappedProfile = getLeafWrappedProfile(); 
+        
+        // try to close and delete the wrapped profile if it is a transient profile type
+        boolean isClosed = ProfileManager.getInstance().deleteTransientProfile( wrappedProfile );
+        
+        if( ! isClosed )    // perhaps using a persisted connection profile
+            disconnect( null );   // simply disconnect this, does nothing if already disconnected
     }
     
     /* (non-Javadoc)

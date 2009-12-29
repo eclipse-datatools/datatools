@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,7 +46,8 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
  */
 public class DesignSessionUtilBase
 {
-
+    private static final String DEFAULT_PROPERTY_PROVIDER_ID = Constants.CONN_PROFILE_APPL_ID;
+    
     // logging variable
     private static final String sm_className = DesignSessionUtilBase.class.getName();
 
@@ -120,36 +121,39 @@ public class DesignSessionUtilBase
         throws OdaException
     {
         java.util.Properties candidateProps = DesignUtil.convertDataSourceProperties( dataSourceDesign );
-        IPropertyProvider profilePropProvider = getOdaProfilePropertyProvider();
-        if( profilePropProvider != null )
+        IPropertyProvider propProvider = 
+            getPropertyProvider( dataSourceDesign.getOdaExtensionDataSourceId() );
+        if( propProvider == null )   // oda data source does not have own provider, use the system default
+            propProvider = getPropertyProvider( DEFAULT_PROPERTY_PROVIDER_ID );
+        
+        if( propProvider != null )
         {
-            candidateProps = profilePropProvider.getDataSourceProperties( candidateProps, null );
+            candidateProps = propProvider.getDataSourceProperties( candidateProps, null );
         }
     
         return candidateProps;
     }
 
     /**
-    * Gets the ODA property provider which can locate and 
-	* read properties from a connection profile. 
+    * Gets the property provider of the specified ODA data source extension.
     */
-    private static IPropertyProvider getOdaProfilePropertyProvider()
+    private static IPropertyProvider getPropertyProvider( String odaDataSourceId )
     {
-        IPropertyProvider odaProfilePropProvider = null;
+        IPropertyProvider propProvider = null;
         try
         {
-            odaProfilePropProvider = 
-                ProviderUtil.createPropertyProvider( Constants.CONN_PROFILE_APPL_ID );
+            propProvider = 
+                ProviderUtil.createPropertyProvider( odaDataSourceId );
         }
         catch( OdaException ex )
         {
             DesignerLogger logger = DesignerLogger.getInstance();
-            logger.warning( sm_className, "getProfilePropertyProvider()", //$NON-NLS-1$
+            logger.warning( sm_className, "getPropertyProvider(String)", //$NON-NLS-1$
                     "Unable to get ODA Profile property provider.", ex ); //$NON-NLS-1$
             return null;
         }
     
-        return odaProfilePropProvider;
+        return propProvider;
     }
 
     /**

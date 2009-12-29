@@ -430,8 +430,8 @@ public class ManifestExplorer
                 
                 boolean includeExtension = true;
                 
-                // applies filter options, if specified
-                if( collectionFilter != null )
+                // applies filter options, if specified and not overriden by extension
+                if( collectionFilter != null && ! manifest.overrideFiltering() )
                 {
                     /* excludes this extension manifest if the specified filter argument  
                      * indicates to filter out those without a data set element

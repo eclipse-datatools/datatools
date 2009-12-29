@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,6 +37,8 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 public class ExtensionManifest
 {
     public static final String CLASS_ATTRIBUTE_NAME = "driverClass";  //$NON-NLS-1$
+    static final String ATTR_SET_THREAD_LOADER = "setThreadContextClassLoader"; //$NON-NLS-1$
+    static final String ATTR_OVERRIDE_FILTERING = "overrideExplorerFiltering"; //$NON-NLS-1$
 
     private String m_namespace;
 	private String m_dataSourceElementId;
@@ -51,6 +53,7 @@ public class ExtensionManifest
     private IConfigurationElement m_dataSourceElement;
     private IExtension m_dataSourceExtn;
     private List m_relationships;
+    private boolean m_overrideFiltering = false;
 
 	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
     {
@@ -82,27 +85,14 @@ public class ExtensionManifest
 		if( driverClass == null )
 			throw new OdaException( Messages.bind( Messages.manifest_NO_DRIVER_CLASS_DEFINED,
 												m_dataSourceElementId ) );
-		
-		String needSetThreadContextClassLoader = 
-            m_dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
-		if( needSetThreadContextClassLoader == null ||
-			needSetThreadContextClassLoader.length() == 0 )
-		{
-			// assign default
-			needSetThreadContextClassLoader = "false";	//$NON-NLS-1$
-		}
-		else	// validate specified value
-		{
-			if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
-				! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
-				throw new OdaException( Messages.bind( Messages.manifest_INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
-														needSetThreadContextClassLoader, m_dataSourceElementId ) );
-		}
-		
+				
+		boolean needSetThreadContextClassLoader = ManifestUtil.getBooleanAttributeValue( 
+		            m_dataSourceElement, ATTR_SET_THREAD_LOADER, false );
 		m_runtime = 
-			new JavaRuntimeInterface( driverClass, 
-									  Boolean.valueOf( needSetThreadContextClassLoader ).booleanValue(),
-									  m_namespace );
+			new JavaRuntimeInterface( driverClass, needSetThreadContextClassLoader, m_namespace );
+		
+		m_overrideFiltering = ManifestUtil.getBooleanAttributeValue( 
+		            m_dataSourceElement, ATTR_OVERRIDE_FILTERING, false );
 		
 		// data set definition elements in the same extension
 		m_dataSetTypes = ManifestExplorer.getDataSetElements( dataSourceExtn, m_dataSourceElementId );
@@ -592,6 +582,17 @@ public class ExtensionManifest
                 matchingRelationships.add( aRelationship );
         }
         return matchingRelationships.isEmpty() ? null : matchingRelationships;
+    }
+
+    /**
+     * Indicates whether the visibility of this extension should override that of the filtering by the
+     * ODA extension explorer.
+     * @return 
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public boolean overrideFiltering()
+    {
+        return m_overrideFiltering;
     }
     
 }

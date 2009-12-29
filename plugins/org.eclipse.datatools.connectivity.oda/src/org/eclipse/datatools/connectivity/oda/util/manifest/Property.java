@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -110,7 +110,7 @@ public class Property
 		if ( numChoices <= 0 )
 		    return;		// done
 		
-		ArrayList choices = new ArrayList( numChoices );
+		ArrayList<PropertyChoice> choices = new ArrayList<PropertyChoice>( numChoices );
 		for( int i = 0; i < numChoices; i++ )
 		{
 			IConfigurationElement choiceElement = choiceElements[i];
@@ -216,7 +216,8 @@ public class Property
     /**
      * Returns a flag that indicates whether an empty value of this property 
      * can be treated as a null value.
-     * @return  v
+     * @return  true if this property's empty value can be handled by the client 
+     *              as a null value
      */
     public boolean allowsEmptyValueAsNull()
     {

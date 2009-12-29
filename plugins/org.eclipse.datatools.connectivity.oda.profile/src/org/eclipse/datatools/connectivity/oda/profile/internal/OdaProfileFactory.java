@@ -16,6 +16,8 @@ package org.eclipse.datatools.connectivity.oda.profile.internal;
 
 import java.io.File;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -23,6 +25,7 @@ import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.profile.Constants;
 
 /**
  * Internal factory of an ODA connection profile instance.
@@ -30,33 +33,67 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 public class OdaProfileFactory
 {
     private static final String NAME_SEPARATOR = " "; //$NON-NLS-1$
+
+    // logging variables
+    private static final String sm_className = OdaProfileFactory.class.getName();
+    private static Logger sm_logger;
     
     /**
-     * Creates an ODA connection profile instance.
+     * Creates a persisted ODA connection profile instance.
      * @param name  profile name; its name may be adjusted for uniqueness among all the profiles
      *          managed by the DTP profile manager
      * @param description   optional description of the profile
      * @param odaDataSourceId   an ODA data source id as specified in an oda.dataSource extension
-     * @param baseProperties    connection properties to be stored as profile properties
+     * @param profileProperties    connection properties to be stored as profile properties
      * @return  a new instance of {@link IConnectionProfile} that persists in the DTP default profile store file
      * @throws OdaException
      */
     public static IConnectionProfile createProfile(
-            String name, String description, String odaDataSourceId, Properties baseProperties )
+            String name, String description, String odaDataSourceId, Properties profileProperties )
         throws OdaException
     {
         String uniqueName = getUniqueProfileName( name );
+        
+        // if profileProperties contains an entry for the profile provider id, use it instead of
+        // the specified odaDataSourceId
+        String profileProviderId = profileProperties.getProperty( Constants.DB_PROFILE_PROVIDER_ID );
+        if( profileProviderId != null )
+            odaDataSourceId = profileProviderId;
+        
         try
         {
             IConnectionProfile newProfile =
                 ProfileManager.getInstance().createProfile( uniqueName, description, 
-                    odaDataSourceId, baseProperties );
+                    odaDataSourceId, profileProperties );
             return new OdaConnectionProfile( newProfile );
         }
         catch( ConnectionProfileException ex )
         {
+            getLogger().logp( Level.WARNING, sm_className, "createProfile(String,String,String,Properties)",  //$NON-NLS-1$
+                    "Unable to create a persistent profile instance.", ex ); //$NON-NLS-1$
             throw new OdaException( ex );
         }
+    }
+
+    /**
+     * Creates a transient ODA connection profile instance.
+     * @param connProperties    connection properties to be stored as profile properties,
+     *              including a property entry for the profile provider id
+     * @return  a new instance of {@link IConnectionProfile} that are non persistent
+     * @throws OdaException
+     */
+    public static IConnectionProfile createTransientProfile( Properties connProperties ) 
+        throws OdaException
+    {
+        String profileProviderId = connProperties.getProperty( Constants.DB_PROFILE_PROVIDER_ID );
+        if( profileProviderId == null || profileProviderId.length() == 0 )
+        {
+            getLogger().logp( Level.FINE, sm_className, "createTransientProfile(Properties)",  //$NON-NLS-1$
+                    "No profile provider id specified in the connection properties." ); //$NON-NLS-1$
+            return null;
+        }
+
+        return createTransientProfile( profileProviderId, connProperties );
     }
 
     /**
@@ -77,6 +114,8 @@ public class OdaProfileFactory
         }
         catch( ConnectionProfileException ex )
         {
+            getLogger().logp( Level.WARNING, sm_className, "createTransientProfile(String,Properties)",  //$NON-NLS-1$
+                    "Unable to create a transient profile instance.", ex ); //$NON-NLS-1$
             throw new OdaException( ex );
         }
     }
@@ -117,6 +156,19 @@ public class OdaProfileFactory
         // TODO - refactor to have ProfileManager provide an API method directly 
         return ConnectionProfileMgmt.getStorageLocation().append( 
                             ConnectionProfileMgmt.FILENAME ).toFile();
+    }
+    
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+        {
+            synchronized( OdaProfileFactory.class )
+            {
+                if( sm_logger == null )
+                    sm_logger = Logger.getLogger( sm_className );
+            }
+        }
+        return sm_logger;
     }
 
 }

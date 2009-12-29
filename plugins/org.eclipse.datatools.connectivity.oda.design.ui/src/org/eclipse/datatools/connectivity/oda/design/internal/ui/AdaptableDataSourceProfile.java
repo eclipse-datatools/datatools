@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
@@ -281,11 +282,22 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
         if( hasLinkedProfile() )
             return super.disconnect();
 
+        // nothing to disconnect; return appropriate status
         return ( ! isConnected() ) ?
                     Status.OK_STATUS :
                     createNAConnectionStatus();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile#disconnect(org.eclipse.core.runtime.jobs.IJobChangeListener)
+     */
+    @Override
+    public void disconnect( IJobChangeListener listener )
+    {
+        if( hasLinkedProfile() )
+            super.disconnect( listener );
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#getManagedConnection(java.lang.String)
      */

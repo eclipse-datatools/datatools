@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2009 Sybase, Inc.
+ * Copyright (c) 2005, 2009 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -79,7 +79,9 @@ public class CPWizardSelectionPage
 	
 	private Text mCPName;
 	private Text mCPDesc;
-
+    private Label mCPNameLabel;
+    private Label mCPDescLabel;
+	
 	private String mCPNameStr;
 	private String mCPDescStr;
 	
@@ -353,10 +355,13 @@ public class CPWizardSelectionPage
 					}
 				});
 		
-		new Label(container, SWT.NONE).setText(ConnectivityUIPlugin
+		mCPNameLabel = new Label(container, SWT.NONE);
+		mCPNameLabel.setText(ConnectivityUIPlugin
 				.getDefault().getResourceString(
 						"NewConnectionProfileWizardPage.cp_name")); //$NON-NLS-1$
 		mCPName = new Text(container, SWT.BORDER);
+		if( mCPNameStr != null )
+		    mCPName.setText( mCPNameStr );
 		mCPName.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
@@ -366,11 +371,15 @@ public class CPWizardSelectionPage
 		});
 
 		mCPName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
 		// Connection profile description
-		new Label(container, SWT.NONE).setText(ConnectivityUIPlugin
+		mCPDescLabel = new Label(container, SWT.NONE);
+		mCPDescLabel.setText(ConnectivityUIPlugin
 				.getDefault().getResourceString(
 						"NewConnectionProfileWizardPage.cp_desc")); //$NON-NLS-1$
 		mCPDesc = new Text(container, SWT.BORDER);
+        if( mCPDescStr != null )
+            mCPDesc.setText( mCPDescStr );
 		mCPDesc.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		mCPDesc.addModifyListener(new ModifyListener() {
 
@@ -546,6 +555,17 @@ public class CPWizardSelectionPage
 		}
 	}
 
+    /**
+     * Set the visibility of the profile name controls.
+     * @param  visible the new visibility state
+     * @since DTP 1.7.2
+     */
+    protected void setProfileNameVisible( boolean visible )
+    {
+        mCPNameLabel.setVisible( visible );
+        mCPName.setVisible( visible );
+    }
+
 	public String getProfileDescription() {
         return ( mCPDesc == null || mCPDesc.isDisposed() ) ? 
                 mCPDescStr : mCPDesc.getText();
@@ -559,6 +579,17 @@ public class CPWizardSelectionPage
 			mCPDesc.setText(desc);
 		}
 	}
+
+	/**
+	 * Set the visibility of the profile description controls.
+	 * @param  visible the new visibility state
+     * @since DTP 1.7.2
+	 */
+    protected void setProfileDescriptionVisible( boolean visible )
+    {
+        mCPDescLabel.setVisible( visible );
+        mCPDesc.setVisible( visible );
+    }
 
 	class WizardFilter extends ViewerFilter {
 		

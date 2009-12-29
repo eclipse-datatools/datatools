@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -243,7 +243,13 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     private static Logger getLogger()
     {
         if( sm_logger == null )
-            sm_logger = Logger.getLogger( sm_className );
+        {
+            synchronized( ProfilePropertyProviderImpl.class )
+            {
+                if( sm_logger == null )
+                    sm_logger = Logger.getLogger( sm_className );
+            }
+        }
         return sm_logger;
     }
     

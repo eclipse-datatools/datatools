@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,6 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.internal.ui.ProfileUIManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
@@ -30,8 +29,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
  */
 public class DbProfileUtil
 {
-    private static final String DB_PROFILE_PROVIDER_ID = 
-                            Constants.DB_PROFILE_PROVIDER_ID;
+    private static final String DB_PROFILE_PROVIDER_ID = Constants.DB_PROFILE_PROVIDER_ID;
     /**
      * Obtains the provider id of the db connection profile type from the 
      * specified ODA connection profile's properties.
@@ -95,14 +93,14 @@ public class DbProfileUtil
     }
     
     /**
-     * Updates the specified data source design instance with the specified
-     * db connection profile properties for those properties that are defined 
-     * in the ODA data source extension manifest.
+     * Updates the specified data source design instance with the 
+     * db provider id in the specified db connection profile properties.
+     * All other profile properties are excluded from the data source design.
      * @param design
      * @param dbPropertyValues
      * @throws OdaException
      */
-    static void updateDataSourceDesignManifestProperties(
+    static void updateDataSourceDesignExternalProfileProvider(
                     DataSourceDesign design,
                     Properties dbPropertyValues ) 
         throws OdaException
@@ -110,13 +108,9 @@ public class DbProfileUtil
         if( dbPropertyValues == null || dbPropertyValues.isEmpty() )
             return;     // nothing to set
         
-        // saves the linked profile properties in design
-        design.setPublicProperties(
-                    DesignSessionUtil.createDataSourcePublicProperties( 
-                            design.getOdaExtensionDataSourceId(),
-                            dbPropertyValues ));
-        
-        // copies the db provider id as a private property
+        // if a data source design uses an external profile reference, 
+        // do not import the profile's base properties into the design definition;
+        // only the db provider id info is applied as a private property
         updateDbProviderIdInDesign( design, dbPropertyValues );
     }
     
@@ -127,9 +121,6 @@ public class DbProfileUtil
             DataSourceDesign design,
             Properties dbPropertyValues ) 
     {
-        // since a data source design that uses a db profile must use external profile
-        // reference, do not import a profile's base properties into the design definition;
-        // only the db provider id info is applied
         String dbProviderIdKey = DB_PROFILE_PROVIDER_ID;
         if( dbPropertyValues.containsKey( dbProviderIdKey ) )
         {

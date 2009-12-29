@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.IProfileWizardProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * An extended Connection Profile Type Selection Page for use by 
@@ -64,7 +65,7 @@ public class DbTypesSelectionPage extends CPWizardSelectionPage
         assert( getWizard() instanceof NewDbDataSourceWizardBase );
         NewDbDataSourceWizardBase sessionWizard = (NewDbDataSourceWizardBase) getWizard();
         
-        List wrappedWizardNodes = new ArrayList();
+        List<Object> wrappedWizardNodes = new ArrayList<Object>();
         Iterator iter = baseWizardNodes.iterator();
         while( iter.hasNext() )
         {
@@ -79,7 +80,20 @@ public class DbTypesSelectionPage extends CPWizardSelectionPage
         }
         return wrappedWizardNodes;
     }
-           
+          
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage#createControl(org.eclipse.swt.widgets.Composite)
+     */
+    @Override
+    public void createControl( Composite parent )
+    {       
+        super.createControl( parent );
+        
+        // hide the profile info controls whose conflicting values are ignored anyway
+        setProfileNameVisible( false );
+        setProfileDescriptionVisible( false );
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
      */

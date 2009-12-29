@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -104,7 +104,13 @@ public class DbProfileWizardPage extends DataSourceWizardPage
     public Properties collectCustomProperties()
     {
         if( m_pageHelper != null ) 
-            return m_pageHelper.collectCustomProperties( m_dataSourceProps );
+        {
+            boolean isSessionEditable = false;
+            if( getWizard() instanceof NewDbDataSourceWizardBase )
+                isSessionEditable = ! ((NewDbDataSourceWizardBase)getWizard()).isCreatingFromProfile();
+
+            return  m_pageHelper.collectCustomProperties( isSessionEditable );
+        }
 
         return ( m_dataSourceProps != null ) ?
                     m_dataSourceProps : new Properties();

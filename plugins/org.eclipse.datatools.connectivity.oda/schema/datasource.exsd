@@ -2,9 +2,9 @@
 <!-- Schema file written by PDE -->
 <schema targetNamespace="org.eclipse.datatools.connectivity.oda" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appinfo>
+      <appInfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          [API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
       </documentation>
@@ -12,9 +12,9 @@
 
    <element name="extension">
       <annotation>
-         <appinfo>
+         <appInfo>
             <meta.element />
-         </appinfo>
+         </appInfo>
       </annotation>
       <complexType>
          <sequence>
@@ -84,9 +84,9 @@ It can be used by an ODA consumer application&apos;s designer tool in displaying
                <documentation>
                   Concrete class that implements the &lt;i&gt;org.eclipse.datatools.connectivity.oda.IDriver&lt;/i&gt; interface. This is the entry point of the ODA runtime driver.  The same driver may support multiple data source extensions.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.IDriver"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="setThreadContextClassLoader" type="boolean" use="default" value="false">
@@ -96,6 +96,14 @@ It can be used by an ODA consumer application&apos;s designer tool in displaying
 Any data source plug-in extension with this flag set to true would take precedence, and is applied to all data source extensions implemented by this plug-in. 
 &lt;br&gt;
 If the thread context class loader being set is the OSGi class loader that was used to load this ODA runtime plugin, it is not designed to be used by a plugin to in turn load additional classes.  If further class loading is needed, it is up to individual ODA runtime plugin implementation to provide its own URLClassLoader, and switch thread context class loader as appropriate.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="overrideExplorerFiltering" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Overrides the ODA extension explorer filtering behavior.  Default value is false.  If set to true, this extension is always made visible to the client even if it would have been excluded by the ODA extension explorer filtering.
+&lt;br&gt;@since 3.2.2 (DTP 1.7.2)
                </documentation>
             </annotation>
          </attribute>
@@ -295,9 +303,9 @@ The configured values are passed through to the driver&apos;s implementation of 
                <documentation>
                   The class name of a concrete log formatter, suitable for use by the driver-specific logging utility.
                </documentation>
-               <appinfo>
+               <appInfo>
                   <meta.attribute kind="java"/>
-               </appinfo>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -517,18 +525,18 @@ Its value for a  &lt;i&gt;replacedBy&lt;/i&gt; type must match that of the corre
    </element>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="since"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          3.0
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="examples"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          &lt;p&gt;
    &lt;pre&gt;
@@ -661,18 +669,18 @@ Its value for a  &lt;i&gt;replacedBy&lt;/i&gt; type must match that of the corre
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="apiInfo"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          The data source extension&apos;s driver must implement the interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package. See the package&apos;s JavaDoc documentation and API interfaces for more information.
       </documentation>
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="implementation"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          The ODA framework provides an ODA Plug-in Project Template Wizard to automatically generate a custom ODA plug-in project with a set of default implementation of the main ODA interfaces.  The wizard is available in the New-&gt;Project... dialog; one for ODA Runtime Driver, another for ODA Designer. 
 &lt;br&gt;
@@ -682,9 +690,9 @@ These concrete classes are provided to aid in the development of a custom ODA da
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          Copyright (c) 2004-2009 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html

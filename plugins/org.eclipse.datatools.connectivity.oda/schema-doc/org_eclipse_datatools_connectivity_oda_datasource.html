@@ -2,8 +2,8 @@
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Open Data Access</title>
-<style type="text/css">@import url("file:/D:/dev/eclipse_34M5/plugins/org.eclipse.sdk_3.4.0.v20080107/book.css");</style>
-<style type="text/css">@import url("file:/D:/dev/eclipse_34M5/configuration/org.eclipse.osgi/bundles/168/1/.cp/schema.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_351/plugins/org.eclipse.sdk_3.5.1.v200909170800/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_351/configuration/org.eclipse.osgi/bundles/477/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1 style="text-align:center">Open Data Access</H1>
@@ -17,13 +17,13 @@
 <p></p>
 <p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSource">dataSource</a> , <a href="#e.dataSet">dataSet</a>+)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST extension</p>
-<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
 <p></p>
 <ul class="ConfigMarkupAttlistDesc">
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataSource">dataSource</a> (<a href="#e.traceLogging">traceLogging</a>? , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>*)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST dataSource</p>
-<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">odaVersion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "3.0"<p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">driverClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">setThreadContextClassLoader&nbsp;(true | false) "false"&gt;</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">odaVersion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "3.0"</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">driverClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">setThreadContextClassLoader&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">overrideExplorerFiltering&nbsp;&nbsp;&nbsp;(true | false) "false"</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 The definition of a type of ODA data source extension for use at design-time and run-time.</p>
@@ -38,10 +38,12 @@ It can be used by an ODA consumer application's designer tool in displaying a li
 Any data source plug-in extension with this flag set to true would take precedence, and is applied to all data source extensions implemented by this plug-in. 
 <br>
 If the thread context class loader being set is the OSGi class loader that was used to load this ODA runtime plugin, it is not designed to be used by a plugin to in turn load additional classes.  If further class loading is needed, it is up to individual ODA runtime plugin implementation to provide its own URLClassLoader, and switch thread context class loader as appropriate.</li>
+<li><b>overrideExplorerFiltering</b> - Overrides the ODA extension explorer filtering behavior.  Default value is false.  If set to true, this extension is always made visible to the client even if it would have been excluded by the ODA extension explorer filtering.
+<br>@since 3.2.2 (DTP 1.7.2)</li>
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataSet">dataSet</a> (<a href="#e.dataTypeMapping">dataTypeMapping</a>+ , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>?)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST dataSet</p>
-<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED&gt;</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 The definition of a type of data set supported by the dataSource extension.</p>
@@ -52,7 +54,7 @@ The definition of a type of data set supported by the dataSource extension.</p>
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataTypeMapping">dataTypeMapping</a> (<a href="#e.alternativeOdaDataType">alternativeOdaDataType</a>*)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST dataTypeMapping</p>
-<p class="code SchemaDtdAttlist">nativeDataType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">nativeDataTypeCode&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean) "String"&gt;</p>
+<p class="code SchemaDtdAttlist">nativeDataType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">nativeDataTypeCode&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean|JavaObject) "String"</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 A data types mapping from a data provider's native data type to one or more ODA data types.  
@@ -62,11 +64,11 @@ This data type mapping facilitates all ODA consumers to map from the same set of
 <ul class="ConfigMarkupAttlistDesc">
 <li><b>nativeDataType</b> - Native data type name (a string).  Used for information only.</li>
 <li><b>nativeDataTypeCode</b> - Native data type code (an integer). Its value must match one of the data type codes returned in the driver's ODA interface implementation.</li>
-<li><b>odaScalarDataType</b> - The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob and Boolean.</li>
+<li><b>odaScalarDataType</b> - The primary ODA scalar data type to which the native type is mapped. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob, Boolean and Java Object.</li>
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.alternativeOdaDataType">alternativeOdaDataType</a> EMPTY&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST alternativeOdaDataType</p>
-<p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean) &gt;</p>
+<p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean|JavaObject) </p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 Provide an alternative mapping to an ODA scalar data type.</p>
@@ -76,7 +78,7 @@ Provide an alternative mapping to an ODA scalar data type.</p>
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.traceLogging">traceLogging</a> EMPTY&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST traceLogging</p>
-<p class="code SchemaDtdAttlist">logLevel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "WARNING"<p class="code SchemaDtdAttlist">logFileNamePrefix&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">logDirectory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">logFormatterClass&nbsp;CDATA #IMPLIED&gt;</p>
+<p class="code SchemaDtdAttlist">logLevel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "WARNING"</p><p class="code SchemaDtdAttlist">logFileNamePrefix&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">logDirectory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">logFormatterClass&nbsp;CDATA #IMPLIED</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 Configures the ODA run-time driver's trace logging settings for the data source extension.
@@ -115,7 +117,7 @@ The configured values are passed through to the driver's implementation of the <
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.property">property</a> (<a href="#e.choice">choice</a>*)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST property</p>
-<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string|choice) "string"<p class="code SchemaDtdAttlist">canInherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class="code SchemaDtdAttlist">defaultValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">isEncryptable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"<p class="code SchemaDtdAttlist">allowsEmptyValueAsNull&nbsp;(true | false) "true"&gt;</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string|choice) "string"</p><p class="code SchemaDtdAttlist">canInherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"</p><p class="code SchemaDtdAttlist">defaultValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">isEncryptable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">allowsEmptyValueAsNull&nbsp;(true | false) "true"</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 A property whose value can be edited at design-time using an ODA consumer application's designer tool.  Its value is then passed to the ODA runtime driver during run-time.</p>
@@ -131,7 +133,7 @@ A property whose value can be edited at design-time using an ODA consumer applic
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyGroup">propertyGroup</a> (<a href="#e.property">property</a>+)&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST propertyGroup</p>
-<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED&gt;</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 A grouping of one or more properties in an ODA consumer application's designer tool.  The group attributes are for display only.  All properties listed under a propertyGroup are handled as scalar properties at run-time.</p>
@@ -142,7 +144,7 @@ A grouping of one or more properties in an ODA consumer application's designer t
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyVisibility">propertyVisibility</a> EMPTY&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST propertyVisibility</p>
-<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">visibility&nbsp;(change|lock|hide) &gt;</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">visibility&nbsp;(change|lock|hide) </p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 Used to set the visibility level of the named property when it is shown in the property sheet of an ODA consumer application's designer tool.</p>
@@ -153,7 +155,7 @@ Used to set the visibility level of the named property when it is shown in the p
 </ul>
 <br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.choice">choice</a> EMPTY&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST choice</p>
-<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class="code SchemaDtdAttlist">value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED&gt;</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 Choice of property values.</p>
@@ -170,7 +172,7 @@ A collection of property definitions in a data source extension or its supported
 <br><br>
 <p class="code SchemaDtd">&lt;!ELEMENT <a name="e.relationship">relationship</a> EMPTY&gt;</p>
 <p class="code SchemaDtd">&lt;!ATTLIST relationship</p>
-<p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(replacedBy|wrapperOf) <p class="code SchemaDtdAttlist">relatedId&nbsp;CDATA #REQUIRED&gt;</p>
+<p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(replacedBy|wrapperOf) </p><p class="code SchemaDtdAttlist">relatedId&nbsp;CDATA #REQUIRED</p>&gt;</p>
 <p></p>
 <p class="ConfigMarkupElementDesc">
 An optional element to specify the relationship(s) of this element.</p>
@@ -312,6 +314,9 @@ Its value for a  <i>replacedBy</i> type must match that of the corresponding <i>
 </p>
 <p></p>
 
+<h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>The data source extension's driver must implement the interfaces defined in the <i>org.eclipse.datatools.connectivity.oda</i> package. See the package's JavaDoc documentation and API interfaces for more information.
+<p></p>
+
 <h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>The ODA framework provides an ODA Plug-in Project Template Wizard to automatically generate a custom ODA plug-in project with a set of default implementation of the main ODA interfaces.  The wizard is available in the New->Project... dialog; one for ODA Runtime Driver, another for ODA Designer. 
 <br>
 Their generated implementation classes assume the behavior of a simple ODA driver and designer UI.  They contain TODO task tags for an ODA driver developer to implement data source specific behavior.
@@ -320,7 +325,7 @@ These concrete classes are provided to aid in the development of a custom ODA da
 
 <br>
 <p class="note SchemaCopyright">
-Copyright (c) 2004-2008 Actuate Corporation.
+Copyright (c) 2004-2009 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 
 </p>
