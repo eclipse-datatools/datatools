@@ -22,10 +22,12 @@ import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
+import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.datatools.connectivity.ui.wizards.IProfileWizardProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -92,6 +94,23 @@ public class DbTypesSelectionPage extends CPWizardSelectionPage
         // hide the profile info controls whose conflicting values are ignored anyway
         setProfileNameVisible( false );
         setProfileDescriptionVisible( false );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage#getNextPage()
+     */
+    @Override
+    public IWizardPage getNextPage()
+    {
+        boolean arePageControlsCreated = getSelectedNode() != null && getSelectedNode().isContentCreated();
+
+        IWizardPage wizardPage = super.getNextPage();
+        
+        if( ! arePageControlsCreated && wizardPage instanceof ConnectionProfileDetailsPage )
+        {
+            ((ConnectionProfileDetailsPage)wizardPage).setCreateAutoConnectControls( false );
+        }
+        return wizardPage;
     }
 
     /* (non-Javadoc)

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2008 Sybase, Inc.
+ * Copyright (c) 2005, 2009 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -275,6 +275,18 @@ public abstract class ConnectionProfileDetailsPage
 		this._showAutoConnect = flag;
 	}
 
+	/**
+	 * Specifies whether to create the controls for the auto connect options on this page.
+	 * @param flag true to create related controls; false otherwise
+     * @since DTP 1.7.2
+	 */
+	public void setCreateAutoConnectControls( boolean flag )
+	{
+        setAutoConnectOnFinishDefault( flag );
+        setShowAutoConnectOnFinish( flag );
+        setShowAutoConnect( flag );
+	}
+	
 	protected void setShowPing ( boolean flag ) {
 		this._showPing = flag;
 	}
