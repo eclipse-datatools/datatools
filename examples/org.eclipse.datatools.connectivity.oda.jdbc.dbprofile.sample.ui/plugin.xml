@@ -193,5 +193,13 @@
      </activeWhen>
     </handler>
    </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.consumer.propertyProvider">
+      <dataSourcePropertyService
+            consumerApplicationId="%oda.data.source.id"
+            providerClass="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui.impl.ProfilePropertyProvider">
+      </dataSourcePropertyService>
+   </extension>
 
 </plugin>

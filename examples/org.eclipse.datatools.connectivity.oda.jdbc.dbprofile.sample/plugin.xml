@@ -6,11 +6,12 @@
          id="%oda.data.source.id"
          point="org.eclipse.datatools.connectivity.oda.dataSource">
       <dataSource
-            driverClass="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.impl.Driver"
             defaultDisplayName="%data.source.name"
-            setThreadContextClassLoader="false"
+            driverClass="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.impl.Driver"
+            id="%oda.data.source.id"
             odaVersion="3.1"
-            id="%oda.data.source.id">
+            overrideExplorerFiltering="true"
+            setThreadContextClassLoader="false">
          <properties></properties>
          <relationship
                relatedId="%parent.category.id"
