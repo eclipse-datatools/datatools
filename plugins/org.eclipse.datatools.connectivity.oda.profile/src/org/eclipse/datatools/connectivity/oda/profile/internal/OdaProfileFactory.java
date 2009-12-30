@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 
 /**
  * Internal factory of an ODA connection profile instance.
@@ -79,16 +80,27 @@ public class OdaProfileFactory
      * Creates a transient ODA connection profile instance.
      * @param connProperties    connection properties to be stored as profile properties,
      *              including a property entry for the profile provider id
-     * @return  a new instance of {@link IConnectionProfile} that are non persistent
+     * @return  a new instance of {@link IConnectionProfile} that are non persistent;
+     *          or null if the specified properties do not contain expected property entries
      * @throws OdaException
      */
     public static IConnectionProfile createTransientProfile( Properties connProperties ) 
         throws OdaException
     {
+        final String methodName = "createTransientProfile(Properties)"; //$NON-NLS-1$
+        
+        if( ConnectionProfileProperty.hasProfileName( connProperties ) )
+        {
+            getLogger().logp( Level.FINE, sm_className, methodName,
+                "The connection properties contain an external profile name reference; " + //$NON-NLS-1$
+                "not expected to use for a transient profile." ); //$NON-NLS-1$
+            return null;
+        }
+        
         String profileProviderId = connProperties.getProperty( Constants.DB_PROFILE_PROVIDER_ID );
         if( profileProviderId == null || profileProviderId.length() == 0 )
         {
-            getLogger().logp( Level.FINE, sm_className, "createTransientProfile(Properties)",  //$NON-NLS-1$
+            getLogger().logp( Level.FINE, sm_className, methodName,
                     "No profile provider id specified in the connection properties." ); //$NON-NLS-1$
             return null;
         }

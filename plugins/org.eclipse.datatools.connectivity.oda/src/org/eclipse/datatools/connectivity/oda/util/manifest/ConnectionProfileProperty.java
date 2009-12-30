@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@
  */
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
+
+import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
@@ -33,6 +35,19 @@ public class ConnectionProfileProperty
 
     private static final String PROPERTY_GROUP_NAME = "ConnectionProfileProperties"; //$NON-NLS-1$
 
+    /**
+     * Checks whether the specified connection properties 
+     * contain the property that references an external profile by name
+     * @param connProperties   data source connection properties 
+     * @return  true if the specified properties contain a non-empty value 
+     *          for the profile name property; false otherwise
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public static boolean hasProfileName( Properties connProperties )
+    {
+        String profileName = connProperties.getProperty( PROFILE_NAME_PROP_KEY );
+        return ( profileName != null && profileName.length() > 0 );
+    }
     
     /**
      * Returns a new property definition for the specified property name.

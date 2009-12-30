@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSo
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -91,10 +92,17 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         IConnectionProfile pageProfile = getConnectionProfile();
         
         IConnectionProfile customDbPropPageProfile = pageProfile;   // use the same profile by default
+
         if( pageProfile instanceof OdaConnectionProfile )
         {
+            // if no wrapped db profile and no reference to external profile, 
+            // try create a transient profile
             if( ! ((OdaConnectionProfile)pageProfile).hasWrappedProfile() )
-                customDbPropPageProfile = createTransientProfile( pageProfile.getBaseProperties() );
+            {
+                Properties pageProfileProps = pageProfile.getBaseProperties();
+                if( ! ConnectionProfileProperty.hasProfileName( pageProfileProps ) )
+                    customDbPropPageProfile = createTransientProfile( pageProfileProps );
+            }
         }
         if( customDbPropPageProfile == null )
             return null;
