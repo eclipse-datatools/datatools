@@ -15,9 +15,11 @@
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
 /**
- * The identifier of a result set column, defined by its number (1-based) and/or native name/expression.
+ * The identifier of a result set column, defined by its number and/or native name/expression.
  * <br>A column number, if specified, takes precedence over its specified name/expression.
- * It may be used as an unique key in a {@link java.util.Map}.
+ * A column number is 1-based, as defined in an {@link org.eclipse.datatools.connectivity.oda.IResultSet}
+ * before any dynamic projection is applied.
+ * <br>A ColumnIdentifier instance may be used as an unique key in a {@link java.util.Map}.
  * Comparison by name is case-sensitive.
  */
 public class ColumnIdentifier
