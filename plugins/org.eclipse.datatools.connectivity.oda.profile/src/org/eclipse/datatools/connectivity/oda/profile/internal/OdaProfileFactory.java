@@ -97,7 +97,8 @@ public class OdaProfileFactory
             return null;
         }
         
-        String profileProviderId = connProperties.getProperty( Constants.DB_PROFILE_PROVIDER_ID );
+        String profileProviderId = ( connProperties != null ) ? 
+                connProperties.getProperty( Constants.DB_PROFILE_PROVIDER_ID ) : null;
         if( profileProviderId == null || profileProviderId.length() == 0 )
         {
             getLogger().logp( Level.FINE, sm_className, methodName,

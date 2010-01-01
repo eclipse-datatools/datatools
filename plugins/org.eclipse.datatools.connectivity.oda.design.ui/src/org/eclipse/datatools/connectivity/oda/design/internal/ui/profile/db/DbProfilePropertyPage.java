@@ -19,6 +19,7 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -28,6 +29,8 @@ import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProf
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -156,37 +159,52 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         m_pageHelper.cleanup();
     }
 
-    private DataSourceEditorPage createDefaultPropertyPage( Properties dbProfileProps )
+    /*
+     * Creates a default property page with a warning message.
+     */
+    private DataSourceEditorPage createDefaultPropertyPage( Properties profileProps )
     {
-        /* TODO - extend DefaultDataSourcePropertyPage, and 
-         * update page's initialized DataSourceDesign with dbProfileProps, 
-         * so that the page can create controls for the dbProfileProps.
-         * It needs to however mask property value like password.
-         * For now, create the default property page with an error message.
+        DefaultDataSourcePropertyPage defaultPropPage = new DefaultDataSourcePropertyPage();
+        String errorMessage = isInOdaDesignSession() ? 
+                Messages.dbProfilePage_noCustomPage : 
+                Messages.dbProfilePage_notInDesignSession;
+
+        /*
+         * Update page's initialized DataSourceDesign with specified profileProps, 
+         * so that the page can create controls with the profileProps values.
          */
-        
-        String errorMessage = null;
-        if( ! isInOdaDesignSession() )
+        OdaDesignSession requestSession = getDesignSession();
+        if( requestSession.getRequestDataSourceDesign() != null &&
+            ! requestSession.getRequestDataSourceDesign().hasLinkToProfile() )  // editing local properties
         {
-            errorMessage = Messages.dbProfilePage_notInDesignSession;
+            // makes a copy of the request session to update the data source design w/ local profileProps
+            requestSession = (OdaDesignSession) EcoreUtil.copy( requestSession );
+
+            DataSourceDesign localRequestDesign = requestSession.getRequestDataSourceDesign();
+            try
+            {
+                super.setDataSourceDesignProperties( localRequestDesign, profileProps );
+            }
+            catch( OdaException ex )
+            {
+                errorMessage += "\n"; //$NON-NLS-1$
+                errorMessage += ex.toString();
+            }
         }
-        else
-            errorMessage = Messages.dbProfilePage_noCustomPage;
-
-        DefaultDataSourcePropertyPage odaDefaultPage = new DefaultDataSourcePropertyPage();
-
+        
         try
         {
-            odaDefaultPage.initEditSession( getDesignSession() );
+            defaultPropPage.initEditSession( requestSession );
         }
         catch( OdaException ex )
         {
             errorMessage += "\n"; //$NON-NLS-1$
             errorMessage += ex.toString();
         }
-        setMessage( errorMessage );       
+
+        setMessage( errorMessage, IMessageProvider.WARNING );       
         
-        return odaDefaultPage;
+        return defaultPropPage;
     }
     
     /**

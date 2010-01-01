@@ -45,6 +45,8 @@ public class ConnectionProfileProperty
      */
     public static boolean hasProfileName( Properties connProperties )
     {
+        if( connProperties == null )
+            return false;
         String profileName = connProperties.getProperty( PROFILE_NAME_PROP_KEY );
         return ( profileName != null && profileName.length() > 0 );
     }
