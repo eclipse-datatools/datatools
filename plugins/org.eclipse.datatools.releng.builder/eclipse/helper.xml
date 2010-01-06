@@ -231,14 +231,42 @@
 
 		<!-- Sends email to recipient list in monitor.properties with compile logs attached if errors found-->
 		<!-- The shell scripts will gather compile error plugin list into monitor.properties -->
+		<!--
 		<echo message="${eclipse.build.configs}/../../extras/verifyCompile.sh"/>
 		<exec executable="${eclipse.build.configs}/../../extras/verifyCompile.sh">
 			<arg value="${postingDirectory}/${buildId}/compilelogs"/>
 		</exec>
-		<echo message=" start check compile error"/>
+		-->
+		<echo message="start check compile error"/>
+		<antcall target="verifyCompileUtil"/>
 		<antcall target="checkCompileError"/>
 	</target>
+	
+	<target name="checkUtilExists">
+		<available file="${eclipse.build.configs}/../../extras/org.eclipse.birt.build_2.2.0.jar" 
+			property="isFileAvail"/>
+	</target>
+	  
 
+	<target name="verifyCompileUtil" depends="checkUtilExists" if="isFileAvail">
+		<path id="customjar.classpath">
+			<fileset dir="${eclipse.build.configs}/../../extras/">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${buildDirectory}/plugins">
+				<include name="org.apache.xerces_*.jar"/>
+			</fileset>
+		</path>
+		
+		<!-- Using custom build tools to get failure/error summary of test result -->
+		<java classname="org.eclipse.birt.build.VerifyCompileUtils" output="${eclipse.build.configs}/../../verifyCompile.log">
+			<classpath refid="customjar.classpath" />
+			<arg value="${postingDirectory}/${buildId}/compilelogs/plugins" />
+			<arg value="${eclipse.build.configs}/../../monitor.properties" />
+		</java>
+		
+	</target>
+				
 	<target name="rSyncWithSnzZrh" unless="test">
 		<waitfor maxwait="300" maxwaitunit="minute" checkevery="1" checkeveryunit="minute">
 			<available file="${postingDirectory}/${buildId}/eclipse-Automated-Tests-${buildId}.zip" />
