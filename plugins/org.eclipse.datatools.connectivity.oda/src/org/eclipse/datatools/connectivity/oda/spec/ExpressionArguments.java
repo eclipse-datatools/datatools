@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -128,7 +128,7 @@ public class ExpressionArguments
         if( value instanceof ValueExpression )
             return (ValueExpression) value;
         
-        return ( value == null ) ? null : new SimpleValueExpression( value );
+        return new SimpleValueExpression( value );
     }
     
     /**

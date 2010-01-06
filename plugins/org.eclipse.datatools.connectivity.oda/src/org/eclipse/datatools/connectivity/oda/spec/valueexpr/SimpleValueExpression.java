@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -89,7 +89,7 @@ public class SimpleValueExpression extends AtomicValueExpression
     public String toString()
     {
         StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + SPACE );
-        buffer.append( "value: " + getValue().getClass().getSimpleName() ); //$NON-NLS-1$
+        buffer.append( "value: " + getValue() == null ? SPACE : getValue().getClass().getSimpleName() ); //$NON-NLS-1$
         buffer.append( SPACE + getName() );
         return buffer.toString();
     }
