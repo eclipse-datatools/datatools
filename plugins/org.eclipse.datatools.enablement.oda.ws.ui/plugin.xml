@@ -18,7 +18,7 @@
             initialPageId="org.eclipse.datatools.enablement.oda.ws.ui.OperationPage"
             id="org.eclipse.datatools.enablement.oda.ws.dataSet">
          <dataSetWizard
-               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"
+               class="org.eclipse.datatools.enablement.oda.ws.ui.wizards.SOAPDataSetWizard"
                windowTitle="%wizard.data.set.window.title">
          </dataSetWizard>
          <dataSetPage
