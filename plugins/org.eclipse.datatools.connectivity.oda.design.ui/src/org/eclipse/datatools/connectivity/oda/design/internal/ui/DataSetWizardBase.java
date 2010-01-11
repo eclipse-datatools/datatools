@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,6 +44,7 @@ public class DataSetWizardBase extends Wizard
 {
     private OdaDesignSession m_designSession;
     private DataSetUIElement m_dataSetUIElement;
+    private boolean m_isCreatingNewDesign;
     
     private DataSetDesign m_editDataSetDesign;
     private DesignerState m_responseDesignerState;
@@ -57,20 +58,32 @@ public class DataSetWizardBase extends Wizard
         super();
     }
 
-    /*
+    /**
      * Initializes this wizard with specified oda design
      * and data set ui extension element info.
      * @param odaDesign
      * @param dataSetUIElement
      * @throws OdaException
+     * @deprecated since 3.2.2; replaced by {@link #initialize(OdaDesignSession, DataSetUIElement, boolean)}
      */
-    public void initialize( OdaDesignSession odaDesign,
-                        DataSetUIElement dataSetUIElement )
+    public void initialize( OdaDesignSession odaDesign, DataSetUIElement dataSetUIElement )
+        throws OdaException
+    {
+        initialize( odaDesign, dataSetUIElement, true );
+    }
+
+    /**
+     * Initializes this wizard.
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    public void initialize( OdaDesignSession odaDesign, DataSetUIElement dataSetUIElement, 
+                            boolean isForNewDesign )
         throws OdaException
     {
         m_designSession = odaDesign;
         m_dataSetUIElement = dataSetUIElement;
         m_editDataSetDesign = null;
+        m_isCreatingNewDesign = isForNewDesign;
         
         if( getPageCount() == 0 )
             addCustomPages();
@@ -460,6 +473,16 @@ public class DataSetWizardBase extends Wizard
     protected void setResponseSessionStatus( SessionStatus sessionStatus )
     {
         m_responseSessionStatus = sessionStatus;
+    }
+
+    /**
+     * Indicates whether this wizard is creating a new data set design or editing an existing design.
+     * @return  true if creating a new data set design; false if editing an existing data set design
+     * @since 3.2.2 (DTP 1.7.2)
+     */
+    protected boolean isCreatingNewDesign()
+    {
+        return m_isCreatingNewDesign;
     }
     
 }

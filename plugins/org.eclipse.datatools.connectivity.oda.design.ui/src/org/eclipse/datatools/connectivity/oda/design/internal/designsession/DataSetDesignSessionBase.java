@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,15 +47,16 @@ public class DataSetDesignSessionBase
     private String m_odaDataSourceId;
     private DataSetUIElement m_dataSetUIElement;
     private DataSetWizard m_wizard;
-    private ArrayList m_editorPages;
+    private ArrayList<DataSetEditorPage> m_editorPages;
+    private boolean m_inCreateMode;
 
     /** Not allowed to instantiate the class directly;
      *  must start a design session using a subclass static start method
-     */  
-    protected DataSetDesignSessionBase( OdaDesignSession odaDesign )
+     */      
+    protected DataSetDesignSessionBase( OdaDesignSession odaDesign, boolean isForNewDesign )
         throws OdaException
     {
-        initOdaDesign( odaDesign );
+        initOdaDesign( odaDesign, isForNewDesign );
     }
         
     /**
@@ -97,7 +98,7 @@ public class DataSetDesignSessionBase
         OdaDesignSession odaDesign = 
             DesignSessionUtilBase.createNewDataSetRequestSession( newDataSetName, 
                             odaDataSetId, dataSourceDesign );
-        initOdaDesign( odaDesign );
+        initOdaDesign( odaDesign, true );
         
         // get a new wizard and initialize with 
         // this session's odaDesign
@@ -140,7 +141,7 @@ public class DataSetDesignSessionBase
         OdaDesignSession odaDesign =
             DesignFactory.eINSTANCE.createOdaDesignSession();
         odaDesign.setRequest( newRequest );
-        initOdaDesign( odaDesign );
+        initOdaDesign( odaDesign, false );
         
         // get a new wizard and initialize with this session's odaDesign
         disposePages(); // dispose existing wizard and custom pages
@@ -180,7 +181,7 @@ public class DataSetDesignSessionBase
         DataSetWizard wizard = getExtendedWizard();
 
         // initialize wizard
-        wizard.initialize( m_odaDesign, m_dataSetUIElement );
+        wizard.initialize( m_odaDesign, m_dataSetUIElement, m_inCreateMode );
     }
        
     /** 
@@ -188,7 +189,7 @@ public class DataSetDesignSessionBase
      * @param odaDesign
      * @throws OdaException
      */
-    private void initOdaDesign( OdaDesignSession odaDesign )
+    private void initOdaDesign( OdaDesignSession odaDesign, boolean isForNewDesign )
         throws OdaException
     {
         m_odaDesign = odaDesign;
@@ -199,6 +200,7 @@ public class DataSetDesignSessionBase
         m_dataSetUIElement = DesignSessionUtilBase
             .getDataSetUIElement( m_odaDataSourceId, 
                     dataSetDesign.getOdaExtensionDataSetId() );  
+        m_inCreateMode = isForNewDesign;
     }
 
     /**
@@ -366,7 +368,7 @@ public class DataSetDesignSessionBase
      */
     protected DataSetEditorPage[] getEditorPages() throws OdaException
     {
-        ArrayList editorPages = getExtendedEditorPages();
+        ArrayList<DataSetEditorPage> editorPages = getExtendedEditorPages();
         return (DataSetEditorPage[]) editorPages.toArray( 
                 new DataSetEditorPage[ editorPages.size() ] );
     }
@@ -390,7 +392,7 @@ public class DataSetDesignSessionBase
             return m_editorPages;
         
         IWizardPage[] pages = getExtendedWizard().getPages();
-        m_editorPages = new ArrayList( pages.length );
+        m_editorPages = new ArrayList<DataSetEditorPage>( pages.length );
 
         // for each wizard page, convert to an editor page
         for( int i = 0; i < pages.length; i++ )

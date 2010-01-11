@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -57,7 +57,7 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
             DesignSessionUtil.createNewDataSetRequestSession( newDataSetName, 
                             odaDataSetId, dataSourceDesign );
         DataSetDesignSession newSession = 
-            new DataSetDesignSession( odaDesign );
+            new DataSetDesignSession( odaDesign, true );
         
         // get a new wizard and initialize with odaDesign
         newSession.initWizard();
@@ -98,7 +98,7 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         odaDesign.setRequest( request );
 
         DataSetDesignSession newSession = 
-            new DataSetDesignSession( odaDesign );
+            new DataSetDesignSession( odaDesign, false );
                 
         // get a new wizard and initialize with odaDesign
         newSession.initWizard();
@@ -116,6 +116,15 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         DesignSessionUtil.validateRequestSession( newRequest );
         return super.restartEditDesign( newRequest, resetEditorPages );
     }
+
+    /** Not allowed to instantiate the class directly;
+     *  must start a design session using a static start method
+     */  
+    private DataSetDesignSession( OdaDesignSession odaDesign, boolean isForNewDesign )
+        throws OdaException
+    {
+        super( odaDesign, isForNewDesign );
+    }
     
     /*
      * (non-Javadoc)
@@ -125,15 +134,6 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         throws OdaException
     {
         return super.flush();
-    }
-
-    /** Not allowed to instantiate the class directly;
-     *  must start a design session using a static start method
-     */  
-    private DataSetDesignSession( OdaDesignSession odaDesign )
-        throws OdaException
-    {
-        super( odaDesign );
     }
     
     /**
