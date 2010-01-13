@@ -1,4 +1,4 @@
-plugin@org.eclipse.datatools.connectivity=v200912241233,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity
+plugin@org.eclipse.datatools.connectivity=v201001130813,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity
 plugin@org.eclipse.datatools.connectivity.ui=v200912300708,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui
 plugin@org.eclipse.datatools.connectivity.ui.templates=v200906020553,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.templates
 plugin@org.eclipse.datatools.connectivity.ui.dse=v200906020553,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.dse
