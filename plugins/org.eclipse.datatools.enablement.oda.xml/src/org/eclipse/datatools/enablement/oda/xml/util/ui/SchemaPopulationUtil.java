@@ -111,8 +111,7 @@ public class SchemaPopulationUtil
 			String xmlFileName,String xmlEncoding, int numberOfElementsAccessiable )
 			throws OdaException, MalformedURLException, URISyntaxException
 	{
-		if ( xsdFileName != null
-				&& xsdFileName.toUpperCase( ).endsWith( XSD_EXTENSION ) )
+		if ( xsdFileName != null )
 		{
 			if ( xmlFileName != null && xmlFileName.trim( ).length( ) > 0 )
 				return XSDFileSchemaTreePopulator.getSchemaTree( xsdFileName,
