@@ -281,8 +281,17 @@ public class DBHelper {
     
     public String getDefaultSchemaName(IConnectionProfile profile)
     {
-        DatabaseIdentifier dbid = new DatabaseIdentifier(profile.getName());
-        String defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
+        String defaultSchemaName = null;
+        
+        if (profile != null) 
+        {
+            String profileName = profile.getName();
+            if (profileName != null) 
+            {
+                DatabaseIdentifier dbid = new DatabaseIdentifier(profileName);
+                defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
+            }
+        }
         
         return defaultSchemaName;
     }
