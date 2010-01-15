@@ -60,6 +60,8 @@ public class WSConsole
 	private static final int BACKWARD = 0;
 	private static final int FORWARD = 1;
 	
+	private boolean needsRefreshTempFile = false;
+
 	private File templateFile, sampleXMLFile;
 
 	/**
@@ -99,6 +101,7 @@ public class WSConsole
 
 		if ( value != null )
 			props.setProperty( key, value );
+
 	}
 
 	/**
@@ -134,6 +137,7 @@ public class WSConsole
 		startWS( dataSetDesign );
 		startXML( dataSetDesign );
 		isSessionOK = true;
+		needsRefreshTempFile = false;
 	}
 
 	private void startWS( DataSetDesign dataSetDesign )
@@ -395,12 +399,14 @@ public class WSConsole
 
 		// check if there is implicit xmlURI
 		String xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
-		if ( WSUtil.isNull( xmlTempFileURI ) )
+		if ( WSUtil.isNull( xmlTempFileURI ) || needsRefreshTempFile )
 		{
 			// there is no xml temp file, create one
-			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, WSUtil.EMPTY_STRING );
+			setXMLPropertyValue( Constants.CONST_PROP_FILELIST,
+					WSUtil.EMPTY_STRING );
 			createXMLTempFileURI( );
 			xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
+			needsRefreshTempFile = false;
 		}
 		if ( !WSUtil.isNull( xmlTempFileURI )
 				&& !xmlTempFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
@@ -481,6 +487,11 @@ public class WSConsole
 			setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML,
 					xmlTempFileURI );
 		}
+	}
+
+	public void setRefreshTempFile( boolean needsRefreshTempFile )
+	{
+		this.needsRefreshTempFile = needsRefreshTempFile;
 	}
 
 	private File generateTempXMLFile( InputStream stream ) throws OdaException

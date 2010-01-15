@@ -463,8 +463,15 @@ public class OperationPage extends DataSetWizardPage
 
 	private void saveToModle( )
 	{
-		WSConsole.getInstance( ).setPropertyValue( Constants.OPERATION_TRACE,
-				operationTrace );
+		if ( operationTrace != null
+				&& !operationTrace.equals( WSConsole.getInstance( )
+						.getPropertyValue( Constants.OPERATION_TRACE ) ) )
+		{
+			WSConsole.getInstance( )
+					.setPropertyValue( Constants.OPERATION_TRACE,
+							operationTrace );
+			WSConsole.getInstance( ).setRefreshTempFile( true );
+		}
 	}
 
 	/*
