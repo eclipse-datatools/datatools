@@ -42,7 +42,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     private static SQLDevToolsConfiguration DEFAULT_CONFIG                = SQLDevToolsConfiguration.getDefaultInstance();
 	private static ArrayList _listeners = new ArrayList();
     //Hui Cao: we lazy load the factory classes to avoid circular dependency. Consequently all getXXX methods should check this field.
-    private Boolean                             _factoriesLoaded             = Boolean.FALSE;
+    private volatile Boolean                    _factoriesLoaded             = Boolean.FALSE;
     private Map                                 _products                    = new TreeMap();
     private Map                                 _factoriesById               = new TreeMap();
     private Map                                 _factoriesByVendorIdentifier = new TreeMap();
@@ -133,7 +133,6 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 
     private synchronized void init()
     {
-    	synchronized(_factoriesLoaded)
     	{
     		if (_factoriesLoaded.booleanValue())
     		{
@@ -247,7 +246,6 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     	_listeners.add(listener);
     	new Thread() {
 			public void run() {
-				synchronized(_factoriesLoaded)
 				{
 					if (_factoriesLoaded.booleanValue())
 					{
