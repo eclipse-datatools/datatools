@@ -24,10 +24,13 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -80,7 +83,12 @@ public class WebServiceSelectionPageHelper
 	 */
 	void createCustomControl( Composite parent )
 	{
-		Composite composite = new Composite( parent, SWT.NONE );
+		ScrolledComposite scrolledContent = new ScrolledComposite( parent,
+				SWT.V_SCROLL | SWT.H_SCROLL );
+
+		scrolledContent.setLayout( new FillLayout( ) );
+
+		Composite composite = new Composite( scrolledContent, SWT.NONE );
 		GridLayout layout = new GridLayout( 1, false );
 		composite.setLayout( layout );
 
@@ -88,7 +96,18 @@ public class WebServiceSelectionPageHelper
 		setupEndPointGroup( composite );
 		setupCustomClassGroup( composite );
 		setupClassPathGroup( composite );
-		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_DATASOURCE );
+
+		scrolledContent.setContent( composite );
+		scrolledContent.setAlwaysShowScrollBars( false );
+		scrolledContent.setExpandHorizontal( true );
+		scrolledContent.setExpandVertical( true );
+
+		Point size = composite.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		scrolledContent.setMinWidth( size.x + 20 );
+		scrolledContent.setMinHeight( size.y + 20 );
+
+		WSUIUtil.setSystemHelp( getControl( ),
+				IHelpConstants.CONEXT_ID_WS_DATASOURCE );
 	}
 
 	private void setupWSDLGroup( Composite parent )
