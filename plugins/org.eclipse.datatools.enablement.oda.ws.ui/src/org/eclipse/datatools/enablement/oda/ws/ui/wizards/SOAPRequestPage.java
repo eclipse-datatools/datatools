@@ -126,12 +126,11 @@ public class SOAPRequestPage extends DataSetWizardPage
 				| GridData.VERTICAL_ALIGN_FILL );
 		composite.setLayoutData( layoutData );
 
-		Button button = new Button( composite, SWT.NONE );
-		button.setText( Messages.getString( "soapRequestPage.button.regenerateTemplate" ) ); //$NON-NLS-1$
+		Button templateBtn = new Button( composite, SWT.NONE );
+		templateBtn.setText( Messages.getString( "soapRequestPage.button.regenerateTemplate" ) ); //$NON-NLS-1$
 		layoutData = new GridData( );
-		layoutData.widthHint = 120;
-		button.setLayoutData( layoutData );
-		button.addSelectionListener( new SelectionAdapter( ) {
+		templateBtn.setLayoutData( layoutData );
+		templateBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
@@ -143,13 +142,15 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 		} );
 
-		button = new Button( composite, SWT.NONE );
-		button.setText( Messages.getString( "soapRequestPage.button.insertParameter" ) );//$NON-NLS-1$
+		int width = getMaxWidth( templateBtn, 60 );
+
+		Button paramBtn = new Button( composite, SWT.NONE );
+		paramBtn.setText( Messages.getString( "soapRequestPage.button.insertParameter" ) );//$NON-NLS-1$
 		layoutData = new GridData( );
 		layoutData.widthHint = 120;
-		button.setLayoutData( layoutData );
+		paramBtn.setLayoutData( layoutData );
 
-		button.addSelectionListener( new SelectionAdapter( ) {
+		paramBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -164,13 +165,14 @@ public class SOAPRequestPage extends DataSetWizardPage
 			}
 
 		} );
+		width = getMaxWidth( paramBtn, width );
 
-		button = new Button( composite, SWT.NONE );
-		button.setText( Messages.getString( "soapRequestPage.button.clear" ) ); //$NON-NLS-1$
+		Button clearBtn = new Button( composite, SWT.NONE );
+		clearBtn.setText( Messages.getString( "soapRequestPage.button.clear" ) ); //$NON-NLS-1$
 		layoutData = new GridData( );
 		layoutData.widthHint = 120;
-		button.setLayoutData( layoutData );
-		button.addSelectionListener( new SelectionAdapter( ) {
+		clearBtn.setLayoutData( layoutData );
+		clearBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
@@ -178,6 +180,20 @@ public class SOAPRequestPage extends DataSetWizardPage
 			}
 
 		} );
+
+		width = getMaxWidth( clearBtn, width );
+		GridData gd = new GridData( );
+		gd.widthHint = width;
+		templateBtn.setLayoutData( gd );
+		paramBtn.setLayoutData( gd );
+		clearBtn.setLayoutData( gd );
+
+	}
+
+	private int getMaxWidth( Button button, int width )
+	{
+		int length = button.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x;
+		return length > width ? length : width;
 	}
 
 	private void regenerateTemplate( )
