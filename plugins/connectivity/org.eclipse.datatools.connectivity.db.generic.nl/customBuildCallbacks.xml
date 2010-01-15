@@ -52,9 +52,9 @@
 					  ext=".properties"
 					  includes="**/*_ko_KR.msg"/>
 
-		<move todir=".">
+		<copy todir=".">
 			<fileset dir="src" includes="org/**"/>
-		</move>
+		</copy>
 		
 	</target>
 
