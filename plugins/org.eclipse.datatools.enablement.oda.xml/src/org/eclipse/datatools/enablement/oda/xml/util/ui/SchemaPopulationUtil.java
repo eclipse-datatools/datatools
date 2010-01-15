@@ -111,16 +111,19 @@ public class SchemaPopulationUtil
 			String xmlFileName,String xmlEncoding, int numberOfElementsAccessiable )
 			throws OdaException, MalformedURLException, URISyntaxException
 	{
-		if ( xsdFileName != null )
+		if ( xsdFileName != null && xsdFileName.trim( ).length( ) > 0 )
 		{
 			if ( xmlFileName != null && xmlFileName.trim( ).length( ) > 0 )
 				return XSDFileSchemaTreePopulator.getSchemaTree( xsdFileName,
-						xmlFileName, xmlEncoding );
+						xmlFileName,
+						xmlEncoding );
 			else
-				return XSDFileSchemaTreePopulator.getSchemaTree( xsdFileName,xmlEncoding );
+				return XSDFileSchemaTreePopulator.getSchemaTree( xsdFileName,
+						xmlEncoding );
 		}
 		else
-			return new XMLFileSchemaTreePopulator( numberOfElementsAccessiable ).getSchemaTree( xmlFileName, xmlEncoding );
+			return new XMLFileSchemaTreePopulator( numberOfElementsAccessiable ).getSchemaTree( xmlFileName,
+					xmlEncoding );
 	}
 	/**
 	 * Get the schema tree's root node
