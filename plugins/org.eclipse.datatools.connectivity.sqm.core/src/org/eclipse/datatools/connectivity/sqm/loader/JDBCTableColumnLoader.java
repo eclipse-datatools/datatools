@@ -392,8 +392,10 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("scale"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs
+					if (feature != null) { // MISSING IF STATEMENT
+						pdt.eSet(feature, new Integer(rs
 							.getInt(COLUMN_DECIMAL_DIGITS)));
+					}
 				}
 				column.setDataType(pdt);
 				return;
