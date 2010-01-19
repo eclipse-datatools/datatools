@@ -259,6 +259,10 @@ public class NewConnectionProfileWizardPage
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
 		}
+		else if (cpName.trim().length() < cpName.length() ) {
+			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
+					"NewConnectionProfileWizardPage.Status.NoSpacesInName"); //$NON-NLS-1$
+		}
 		else if (foundProfile != null) { 
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$

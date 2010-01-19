@@ -66,6 +66,10 @@ public class RenameAction extends Action implements IActionDelegate {
 					return ConnectivityUIPlugin.getDefault().getResourceString(
 							"rename.dialog.errmsg.existing"); //$NON-NLS-1$                    
 				}
+				else if (newText.trim().length() < newText.length() ) {
+					return ConnectivityUIPlugin.getDefault().getResourceString(
+							"rename.dialog.errmsg.NoSpacesInName"); //$NON-NLS-1$
+				}
 				else {
 					return null;
 				}

@@ -519,12 +519,16 @@ public class CPWizardSelectionPage
 
 	private void validate() {
 		String errorMessage = null;
-		String cpName = mCPName.getText().trim();
+		String cpName = mCPName.getText();//.trim(); //removed for bug 290785
 		IConnectionProfile foundProfile = null;
 		
 		if (cpName == null || cpName.trim().length() == 0) {
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
+		}
+		else if (cpName.trim().length() < cpName.length() ) {
+			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
+					"NewConnectionProfileWizardPage.Status.NoSpacesInName"); //$NON-NLS-1$
 		}
 		else if(cpName.indexOf(":") != -1) { //$NON-NLS-1$
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
