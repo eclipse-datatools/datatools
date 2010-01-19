@@ -28,10 +28,14 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MenuDetectEvent;
+import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -39,7 +43,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.PlatformUI;
 
@@ -54,8 +59,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
 	private transient XMLTreeViewer availableXmlTree;
-	private transient Text xmlPathText;
+	private transient StyledText xmlPathText;
 	private transient Group rightGroup;
+	private Menu quickFixMenu;
 	
 	private ATreeNode treeNode;
 	private TreeItem selectedItem;
@@ -267,7 +273,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		data.top = new FormAttachment( 0, 25 );
 		data.left = new FormAttachment( 0, 5 );
 		data.right = new FormAttachment( 100, -5 );
-		xmlPathText = new Text( rightGroup, SWT.BORDER );
+		xmlPathText = new StyledText( rightGroup, SWT.BORDER );
 		xmlPathText.setLayoutData( data );
 		xmlPathText.setOrientation( SWT.LEFT_TO_RIGHT );
 		xmlPathText.addModifyListener( new ModifyListener( ) {
@@ -278,8 +284,97 @@ public class XPathChoosePage extends DataSetWizardPage
 				setPageStatus( );
 			}
 		} );
+
+		createQuickFixMenu( );
+
+		xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
+
+			public void menuDetected( MenuDetectEvent event )
+			{
+				quickFixMenu.setLocation( event.x, event.y );
+				quickFixMenu.setVisible( true );
+
+				updateMenuItemStatus( xmlPathText );
+			}
+		} );
+
 	}
 
+	private void createQuickFixMenu( )
+	{
+		quickFixMenu = new Menu( xmlPathText );
+		MenuItem createItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		createItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.CreateParameter" ) ); //$NON-NLS-1$
+		createItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				createXMLParameter( xmlPathText );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+
+		MenuItem deleteItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		deleteItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.DeleteParameter" ) ); //$NON-NLS-1$
+		deleteItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				deleteXMLParameter( xmlPathText );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+
+		updateMenuItemStatus( xmlPathText );
+
+	}
+
+	private void updateMenuItemStatus( StyledText text )
+	{
+		String selectionText = text.getSelectionText( ).trim( );
+
+		boolean deleteEnabled = selectionText.length( ) > 0
+				&& selectionText.startsWith( Constants.CONST_PARAMETER_START )
+				&& selectionText.endsWith( Constants.CONST_PARAMETER_END );
+
+		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0
+				&& !deleteEnabled );
+		quickFixMenu.getItem( 1 ).setEnabled( deleteEnabled );
+
+	}
+
+	private void createXMLParameter( StyledText text )
+	{
+		String selectedValue = text.getSelectionText( );
+		String changedValue = Constants.CONST_PARAMETER_START
+				+ selectedValue + Constants.CONST_PARAMETER_END;
+		resetXPathText( text, changedValue );
+	}
+
+	private void resetXPathText( StyledText text, String changedValue )
+	{
+		String xpathString = text.getText( ).trim( );
+		String result = xpathString.substring( 0, text.getSelection( ).x )
+				+ changedValue + xpathString.substring( text.getSelection( ).y );
+		text.setText( result );
+	}
+
+	private void deleteXMLParameter( StyledText text )
+	{
+		String selectedValue = text.getSelectionText( );
+		String changedValue = selectedValue.substring( 2,
+				selectedValue.length( ) - 2 );
+
+		resetXPathText( text, changedValue );
+	}
 
 	/**
 	 * populate xml tree

@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.List;
 
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
@@ -22,16 +23,21 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MenuDetectEvent;
+import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -49,8 +55,9 @@ public class RowMappingDialog extends TrayDialog
 	private Button absolutePathButton;
 	private Button anyLocationButton;
 	private Button customButton;
-	private Combo xmlPathField;
+	private StyledCCombo xmlPathField;
 	private TreeItem selectedItem;
+	private Menu quickFixMenu;
 
 	private String rootPath;
 	private int selectRadioIndex;
@@ -114,14 +121,29 @@ public class RowMappingDialog extends TrayDialog
 		dummy.setLayoutData( labelGd );
 		
 		GridData txtGridData = new GridData( GridData.FILL_HORIZONTAL  );
-		xmlPathField = new Combo( composite, SWT.DROP_DOWN );
+		xmlPathField = new StyledCCombo( composite, SWT.DROP_DOWN
+				| SWT.BORDER );
 		xmlPathField.setLayoutData( txtGridData );
+		xmlPathField.setVisible( true );
 		for ( int i = 0; i < pathList.size( ); i++ )
 		{
 			xmlPathField.setText( TextProcessor.process( pathList.get( i ).toString( ), "//") );
 			xmlPathField.add( TextProcessor.process( pathList.get( i ).toString( ), "//" ));
 		}
 		
+		createQuickFixMenu( xmlPathField.getStyledText( ) );
+		xmlPathField.getStyledText( )
+				.addMenuDetectListener( new MenuDetectListener( ) {
+
+					public void menuDetected( MenuDetectEvent event )
+					{
+						quickFixMenu.setLocation( event.x, event.y );
+						quickFixMenu.setVisible( true );
+
+						updateMenuItemStatus( xmlPathField.getStyledText( ) );
+					}
+				} );
+
 		setButtonTextAndListeners( composite );
 
 		XMLRelationInfoUtil.setSystemHelp( composite,
@@ -152,6 +174,82 @@ public class RowMappingDialog extends TrayDialog
     	return composite;
 	}
 	
+	private void createQuickFixMenu( final StyledText text )
+	{
+		quickFixMenu = new Menu( text );
+		MenuItem createItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		createItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.CreateParameter" ) ); //$NON-NLS-1$
+		createItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				createXMLParameter( text );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+
+		MenuItem deleteItem = new MenuItem( quickFixMenu, SWT.PUSH );
+		deleteItem.setText( Messages.getString( "ColumnMappingDialog.MenuItem.DeleteParameter" ) ); //$NON-NLS-1$
+		deleteItem.addSelectionListener( new SelectionListener( ) {
+
+			public void widgetSelected( SelectionEvent event )
+			{
+				deleteXMLParameter( text );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent event )
+			{
+
+			}
+		} );
+
+		updateMenuItemStatus( text );
+
+	}
+
+	private void updateMenuItemStatus( StyledText text )
+	{
+		String selectionText = text.getSelectionText( ).trim( );
+
+		boolean deleteEnabled = selectionText.length( ) > 0
+				&& selectionText.startsWith( Constants.CONST_PARAMETER_START )
+				&& selectionText.endsWith( Constants.CONST_PARAMETER_END );
+
+		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0
+				&& !deleteEnabled );
+		quickFixMenu.getItem( 1 ).setEnabled( deleteEnabled );
+
+	}
+
+	private void createXMLParameter( StyledText text )
+	{
+		String selectedValue = text.getSelectionText( );
+		String changedValue = Constants.CONST_PARAMETER_START
+				+ selectedValue + Constants.CONST_PARAMETER_END;
+		resetXPathText( text, changedValue );
+	}
+
+	private void resetXPathText( StyledText text, String changedValue )
+	{
+		String xpathString = text.getText( ).trim( );
+		String result = xpathString.substring( 0, text.getSelection( ).x )
+				+ changedValue + xpathString.substring( text.getSelection( ).y );
+		text.setText( result );
+	}
+
+	private void deleteXMLParameter( StyledText text )
+	{
+		String selectedValue = text.getSelectionText( );
+		String changedValue = selectedValue.substring( 2,
+				selectedValue.length( ) - 2 );
+
+		resetXPathText( text, changedValue );
+	}
+
 	protected boolean isResizable( )
 	{
 		return true;

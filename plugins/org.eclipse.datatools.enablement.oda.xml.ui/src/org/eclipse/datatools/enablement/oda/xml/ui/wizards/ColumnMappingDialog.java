@@ -14,6 +14,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
@@ -52,8 +53,6 @@ public class ColumnMappingDialog extends TrayDialog
 {
 
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-	private static final String XML_PARAMETER_QUOTION_LEFT = "{?"; //$NON-NLS-1$
-	private static final String XML_PARAMETER_QUOTION_RIGHT = "?}"; //$NON-NLS-1$
 	private String title;
 	private Combo typeCombo;
 
@@ -335,10 +334,13 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		String selectionText = text.getSelectionText( ).trim( );
 
-		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0 );
-		quickFixMenu.getItem( 1 ).setEnabled( selectionText.length( ) > 0
-				&& selectionText.startsWith( XML_PARAMETER_QUOTION_LEFT )
-				&& selectionText.endsWith( XML_PARAMETER_QUOTION_RIGHT ) );
+		boolean deleteEnabled = selectionText.length( ) > 0
+				&& selectionText.startsWith( Constants.CONST_PARAMETER_START )
+				&& selectionText.endsWith( Constants.CONST_PARAMETER_END );
+
+		quickFixMenu.getItem( 0 ).setEnabled( selectionText.length( ) > 0
+				&& !deleteEnabled );
+		quickFixMenu.getItem( 1 ).setEnabled( deleteEnabled );
 
 	}
 
@@ -615,8 +617,8 @@ public class ColumnMappingDialog extends TrayDialog
 	private void createXMLParameter( StyledText text )
 	{
 		String selectedValue = text.getSelectionText( );
-		String changedValue = XML_PARAMETER_QUOTION_LEFT
-				+ selectedValue + XML_PARAMETER_QUOTION_RIGHT;
+		String changedValue = Constants.CONST_PARAMETER_START
+				+ selectedValue + Constants.CONST_PARAMETER_END;
 		resetXPathText( text, changedValue );
 	}
 
