@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.16 2008/12/04 23:54:53 lchan Exp $
+ * $Id: DesignUtil.java,v 1.17 2009/05/08 00:55:25 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -365,7 +365,7 @@ public class DesignUtil
         }
         catch( MalformedURLException e )
         {
-            getLogger().warning( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+            getLogger().fine( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         catch( IOException e )
         {
