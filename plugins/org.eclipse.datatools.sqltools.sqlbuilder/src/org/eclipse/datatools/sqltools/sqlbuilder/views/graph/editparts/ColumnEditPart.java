@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -518,7 +518,8 @@ public class ColumnEditPart extends AbstractGraphicalEditPart implements NodeEdi
                 if ((colExpr.getName().trim().equalsIgnoreCase(currentColumn.getName().trim()))) {
                     TableExpression currentTable = currentColumn.getParentTableExpr();
                     TableExpression predTable = colExpr.getTableExpr();
-                    if (currentTable != null && predTable != null) {
+                    if (currentTable != null && currentTable.getName() != null && 
+                        predTable != null && predTable.getName() != null) {
                         if ((currentTable.getName().trim().equalsIgnoreCase(predTable.getName().trim())))
                             result.add(sqlPredicate);
                     }
@@ -656,7 +657,8 @@ public class ColumnEditPart extends AbstractGraphicalEditPart implements NodeEdi
                 if ((colExpr.getName().trim().equalsIgnoreCase(currentColumn.getName().trim()))) {
                     TableExpression currentTable = currentColumn.getParentTableExpr();
                     TableExpression predTable = colExpr.getTableExpr();
-                    if (currentTable != null && predTable != null) {
+                    if (currentTable != null && currentTable.getName() != null && 
+                        predTable != null && predTable.getName() != null) {
                         if ((currentTable.getName().trim().equalsIgnoreCase(predTable.getName().trim()))) {
                             result.add(sqlPredicate);
                         }
