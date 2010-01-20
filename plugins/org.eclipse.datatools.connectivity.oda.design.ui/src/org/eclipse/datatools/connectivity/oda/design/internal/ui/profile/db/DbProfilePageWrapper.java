@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsPropertyPage;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -73,19 +74,34 @@ public class DbProfilePageWrapper
         // it is up to the wrapped property page to initialize its controls based on
         // the page's connection profile element        
     }
-        
-    boolean isValid()
-    {
-        return m_wrappedPage.isValid();
-    }
     
     boolean hasDefaultPropertyPage()
     {
         return( m_wrappedPage instanceof DataSourceEditorPage );
     }
+    
+    boolean isValid()
+    {
+        return m_wrappedPage.isValid() && isPageComplete();
+    }
+    
+    private boolean isPageComplete()
+    {
+        if( m_wrappedPage instanceof ExtensibleProfileDetailsPropertyPage )
+        {
+            // check if page is missing required properties
+            return ((ExtensibleProfileDetailsPropertyPage)m_wrappedPage).determinePageCompletion();
+        }
+        return true;    // default
+    }
 
+    String getErrorMessage()
+    {
+        return m_wrappedPage.getErrorMessage();
+    }
+    
     /*
-     * Notifies that the OK button of the wrapped page's container has been pressed.
+     * Notifies that the OK button of the wrapped page's container has been pressed or triggered.
      */
     public boolean performOk() 
     {
@@ -95,7 +111,14 @@ public class DbProfilePageWrapper
     Properties collectCustomProperties( boolean isSessionEditable )
     {
         if( isSessionEditable )
-            performOk();    // triggers update of the page profile element w/ property values changed on UI page 
+        {
+            // if page is missing required properties, cannot perform Ok;
+            // #performOk triggers update of the page profile element w/ 
+            // the property values changed on UI page 
+            if( isPageComplete() )
+                performOk();    
+        }
+
         return getWrappedPageProfile().getBaseProperties(); 
     }
     

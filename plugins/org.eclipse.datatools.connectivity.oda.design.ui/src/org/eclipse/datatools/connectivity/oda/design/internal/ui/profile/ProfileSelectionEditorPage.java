@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -76,24 +76,20 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
      * @return  true if this page has a valid content; false otherwise
      */
     public boolean hasValidContent()
-    {
-        return isLinkedProfileFound();
-    }
-    
-    /* Check whether the profile currently referenced by 
-     * the edited data source design is not found.
-     */
-    private boolean isLinkedProfileFound()
-    {      
+    {    
         AdaptableDataSourceProfile adaptableProfile = getProfileElement();
         if( adaptableProfile == null )
             return true;     // nothing to check
         
-        // Check if the profile referenced by the editing data source design, if any, is not found
-        if( getEditingDataSource().hasLinkToProfile() &&
-            ! adaptableProfile.hasLinkedProfile() )
+        // Check if the profile referenced by the editing data source design, if any, is not found,
+        // or if the referenced profile store file does not exist
+        if( getEditingDataSource().hasLinkToProfile() )
         {
-            return false;
+            if( ! adaptableProfile.hasLinkedProfile() || 
+                getEditingDataSource().getLinkedProfileStoreFile() == null )
+            {
+                return false;
+            }
         }
         
         return true;

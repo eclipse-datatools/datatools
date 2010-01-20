@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -172,8 +172,9 @@ class ProfileSelectionPageHelper
             // this is done last so the message won't be overwritten by controls' event handler
             if( profileRef != null && hasInvalidProfileRef )
             {
-                String errorMessage = Messages.bind( Messages.designSession_invalidProfileName,
-                        profileRef.getName() );
+                String errorMessage = profileRef.getStorageFile() == null ?
+                    Messages.profilePage_error_invalidProfileStorePath :
+                    Messages.bind( Messages.designSession_invalidProfileName, profileRef.getName() );
                 setMessage( errorMessage, IMessageProvider.ERROR );
             }
         }
@@ -302,6 +303,9 @@ class ProfileSelectionPageHelper
                        clearSelectedProfile();
                        setSelectedDataSourceName( EMPTY_STRING );
                        setDefaultMessageAsError( hasConnectionProfilePath() );
+
+                       if( hasConnectionProfilePath() && ! new Path( getConnProfilePathControlText() ).toFile().exists() )
+                           setMessage( Messages.profilePage_error_invalidProfileStorePath, IMessageProvider.ERROR );
 
                        // check if profile tree has only one profile item, 
                        // automatically select it if feature is not disabled

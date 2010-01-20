@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,6 +35,8 @@ public class Messages extends NLS
     public static String common_missingDataSourceDesign;
     public static String common_createClassFailed;
     public static String dbProfilePage_defaultPageMessage;
+    public static String dbProfilePage_editPageMessage;
+    public static String dbProfilePage_invalidDataSource;
     public static String dbProfilePage_noCustomPage;
     public static String dbProfilePage_notInDesignSession;
     public static String extension_mustInheritFromODAPage;

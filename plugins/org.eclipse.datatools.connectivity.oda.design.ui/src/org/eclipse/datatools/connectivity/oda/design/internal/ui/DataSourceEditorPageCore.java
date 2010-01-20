@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,6 +50,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private Properties m_dataSourceProps;
     private DesignerState m_responseDesignerState;
     private Boolean m_setPingButtonVisible;
+    private Boolean m_setPingButtonEnabled;
 
     // logging variable
     private static final String sm_className = DataSourceEditorPageCore.class.getName();
@@ -563,6 +564,24 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         super.dispose();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage#setPingButtonEnabled(boolean)
+     */
+    @Override
+    public void setPingButtonEnabled( boolean enabled )
+    {
+        /* The enabled state setting takes effect during #createControl 
+         * if this is called before the ping button is created.
+         */
+        m_setPingButtonEnabled = null;  // first reset previous state
+        
+        // saves the state if the ping button is not created yet
+        if( this.btnPing == null )      
+            m_setPingButtonEnabled = new Boolean( enabled );
+        else
+            super.setPingButtonEnabled( enabled );
+    }
+
     /**
      * Marks the inherited Test Connection (Ping) button as visible
      * if the argument is true, and marks it invisible otherwise. 
@@ -590,7 +609,9 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         super.createControl( parent );
         
         // now that all control contents are created, go ahead and 
-        // override visibility of the inherited Test Connection ping button
+        // override the enabled and visibility state of the inherited Test Connection ping button
+        if( m_setPingButtonEnabled != null )
+            super.setPingButtonEnabled( m_setPingButtonEnabled.booleanValue() );
         if( m_setPingButtonVisible != null )
             super.setPingButtonVisible( m_setPingButtonVisible.booleanValue() );
     }

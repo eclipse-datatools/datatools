@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,10 +16,12 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.db;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.AdaptableDataSourceProfile;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -27,7 +29,6 @@ import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSo
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -42,11 +43,11 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
 {
     private DbProfilePageWrapper m_pageHelper = null;
     private IUpdateDesignTask m_profileUpdateDesignTask;
+    private boolean m_canEditProps = true;
 
     public DbProfilePropertyPage()
     {
         super();
-        setMessage( DbProfilePageWrapper.DEFAULT_MESSAGE );
     }
 
     /* (non-Javadoc)
@@ -96,17 +97,18 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         
         IConnectionProfile customDbPropPageProfile = pageProfile;   // use the same profile by default
 
-        if( pageProfile instanceof OdaConnectionProfile )
+        // if no wrapped db profile and no reference to external profile, 
+        // try create a transient db profile instance if the minimum required property is known
+        if( ! hasLinkedProfileInPageElement() &&
+            ! getEditingDataSource().hasLinkToProfile() )
         {
-            // if no wrapped db profile and no reference to external profile, 
-            // try create a transient profile
-            if( ! ((OdaConnectionProfile)pageProfile).hasWrappedProfile() )
-            {
-                Properties pageProfileProps = pageProfile.getBaseProperties();
-                if( ! ConnectionProfileProperty.hasProfileName( pageProfileProps ) )
-                    customDbPropPageProfile = createTransientProfile( pageProfileProps );
-            }
+            Properties pageProps = pageProfile.getBaseProperties();
+            if( hasMinimumProperties( pageProps ) )
+                customDbPropPageProfile = createTransientProfile( pageProps );
+            else    // missing required properties to edit 
+                m_canEditProps = false;
         }
+
         if( customDbPropPageProfile == null )
             return null;
 
@@ -119,6 +121,10 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
             DbProfileUtil.createDbPropertyPage( customPageOdaDbProfile, getOdaDataSourceId() );       
         if( customDbPropPage == null )
             return null;
+        
+        String pageMsg = m_canEditProps && isSessionEditable() ? 
+                Messages.dbProfilePage_editPageMessage : DbProfilePageWrapper.DEFAULT_MESSAGE;
+        setMessage( pageMsg );
         
         // wraps the db profile property page in an ODA data source page        
         return new DbProfilePageWrapper( this, customDbPropPage );
@@ -160,13 +166,15 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
     }
 
     /*
-     * Creates a default property page with a warning message.
+     * Creates a default property page with a warning/error message.
      */
     private DataSourceEditorPage createDefaultPropertyPage( Properties profileProps )
     {
         DefaultDataSourcePropertyPage defaultPropPage = new DefaultDataSourcePropertyPage();
         String errorMessage = isInOdaDesignSession() ? 
-                Messages.dbProfilePage_noCustomPage : 
+                ( m_canEditProps ? 
+                        Messages.dbProfilePage_noCustomPage : 
+                        Messages.dbProfilePage_invalidDataSource ) :
                 Messages.dbProfilePage_notInDesignSession;
 
         /*
@@ -202,7 +210,12 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
             errorMessage += ex.toString();
         }
 
-        setMessage( errorMessage, IMessageProvider.WARNING );       
+        int messageType = m_canEditProps ? IMessageProvider.WARNING : IMessageProvider.ERROR;
+        setMessage( errorMessage, messageType );       
+        
+        // missing required properties to test connection
+        if( ! m_canEditProps )
+            defaultPropPage.setPingButtonEnabled( false );
         
         return defaultPropPage;
     }
@@ -216,13 +229,22 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         return m_pageHelper;
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#getErrorMessage()
+     */
+    @Override
+    public String getErrorMessage()
+    {
+        return m_pageHelper != null ? m_pageHelper.getErrorMessage() : super.getErrorMessage();
+    }
+
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#refresh(java.util.Properties)
      */
     protected void refresh( Properties customConnectionProps  )
     {
-        // noop;
+        // no-op;
         // a db profile page does not allow a caller to re-initialize its controls
         // with another set of profile properties; and
         // the editable session state is handled when custom control is first created
@@ -254,6 +276,18 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         return m_pageHelper.getDbProfileProviderId();
     }
     
+    private boolean hasLinkedProfileInPageElement()
+    {
+        AdaptableDataSourceProfile pageProfile = getProfileElement();
+        return ( pageProfile != null && pageProfile.hasLinkedProfile() );
+    }
+    
+    private static boolean hasMinimumProperties( Properties props )
+    {
+        // check that the properties contain at least the driver definition id
+        return( props.getProperty( ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID ) != null );
+    }
+    
     /**
      * Indicates whether this property page is editing an externalized 
      * connection profile instance.
@@ -263,10 +297,7 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
      */
     protected boolean isEditingExternalProfile()
     {
-        IConnectionProfile pageProfile = getConnectionProfile();
-        if( pageProfile instanceof OdaConnectionProfile )
-            return ((OdaConnectionProfile)pageProfile).hasWrappedProfile();
-        return false;
+        return hasLinkedProfileInPageElement();
     }
     
     /*

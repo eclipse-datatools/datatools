@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,6 +29,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 
 /**
  * An ODA wrapper of a Connectivity connection profile instance.
@@ -488,7 +489,11 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public void setProperties( String type, Properties props )
     {
-        m_wrappedProfile.setProperties( type, props );
+        if( ProfileManager.getInstance().isTransientProfile( m_wrappedProfile ) && 
+                m_wrappedProfile instanceof ConnectionProfile )
+            ((ConnectionProfile)m_wrappedProfile).internalSetProperties( type, props ); // skip event notification
+        else
+            m_wrappedProfile.setProperties( type, props );
     }
 
     /* (non-Javadoc)
