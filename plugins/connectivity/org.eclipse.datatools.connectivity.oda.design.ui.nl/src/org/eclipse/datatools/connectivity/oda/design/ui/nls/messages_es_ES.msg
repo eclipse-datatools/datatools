@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2009 Actuate Corporation.
+# Copyright (c) 2006, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -60,6 +60,8 @@ profileStoreCreationDialog_title=Crear almacenamiento de perfil de conexión
 profileStoreCreationDialog_grouptext=Seleccione los &perfiles de conexión que se incluirán en el almacenamiento:
 profileStoreCreationDialog_newbutton_tooltiptext=Crear un nuevo perfil de conexión
 dbProfilePage_defaultPageMessage=Verifique el controlador JDBC y los detalles de conexión
+dbProfilePage_editPageMessage=Edit the JDBC Driver and Connection Details
+dbProfilePage_invalidDataSource=Invalid data source.  Update the connection profile reference, or create a new data source instead.
 dbProfilePage_notInDesignSession=No es posible abrir la página de propiedades fuera de una sesión de diseño ODA.
 dbProfilePage_noCustomPage=No es posible encontrar y abrir la página de propiedades específica del controlador de la base de datos.
 preferencesPage_openDataAccessDescription=Establezca las preferencias para las fuentes de datos de acceso a datos abiertos individuales \na través de las páginas recogidas en este nodo.

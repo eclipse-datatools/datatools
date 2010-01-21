@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2009 Actuate Corporation.
+# Copyright (c) 2006, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -60,6 +60,8 @@ profileStoreCreationDialog_title=Créer un emplacement de stockage des profils de
 profileStoreCreationDialog_grouptext=Sélectionnez les &profils de connexion à inclure dans l'emplacement de stockage :
 profileStoreCreationDialog_newbutton_tooltiptext=Créer un nouveau profil de connexion
 dbProfilePage_defaultPageMessage=Vérifiez le pilote JDBC et les informations de connexion
+dbProfilePage_editPageMessage=Edit the JDBC Driver and Connection Details
+dbProfilePage_invalidDataSource=Invalid data source.  Update the connection profile reference, or create a new data source instead.
 dbProfilePage_notInDesignSession=Impossible d'ouvrir une page de propriétés en dehors d'une session de conception ODA.
 dbProfilePage_noCustomPage=Impossible de trouver et d'ouvrir la page de propriété des pilotes de base de données.
 preferencesPage_openDataAccessDescription=Définissez les préférences pour les sources de données Open Data Access individuelles \nen utilisant les pages sous ce nœud.

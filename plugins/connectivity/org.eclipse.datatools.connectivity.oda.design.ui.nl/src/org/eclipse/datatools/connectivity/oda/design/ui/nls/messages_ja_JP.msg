@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2009 Actuate Corporation.
+# Copyright (c) 2006, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -60,6 +60,8 @@ profileStoreCreationDialog_title=接続プロファイルストアの作成
 profileStoreCreationDialog_grouptext=ストアに含める接続プロファイルを選択してください(&P) :
 profileStoreCreationDialog_newbutton_tooltiptext=新しい接続プロファイルの作成
 dbProfilePage_defaultPageMessage=JDBC ドライバと接続の詳細を確認してください。
+dbProfilePage_editPageMessage=Edit the JDBC Driver and Connection Details
+dbProfilePage_invalidDataSource=Invalid data source.  Update the connection profile reference, or create a new data source instead.
 dbProfilePage_notInDesignSession=ODA デザインセッション以外でプロパティページを開くことはできません。
 dbProfilePage_noCustomPage=データベースドライバ特有のプロパティページを検索して開くことはできません。
 preferencesPage_openDataAccessDescription=このノードの下にあるページを使って、オープンデータアクセスの\n個々のデータソースを設定してください。
