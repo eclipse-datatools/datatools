@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2008 Sybase, Inc. and others.
+ * Copyright (c) 2004-2010 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: brianf - initial API and implementation
  *               IBM Corporation - fix for 243829
+ *               Actuate Corporation - Bugzilla 300464
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
@@ -116,19 +117,17 @@ public class DriverManager {
 	}
 
 	private DriverInstance getDriverInstanceFromMapByName( String name ) {
-		if (mDriverInstanceMap.containsKey(name))
-			return (DriverInstance) mDriverInstanceMap.get(name);
+        Iterator iter = mDriverInstanceMap.values().iterator();
+        while (iter.hasNext()) {
+            DriverInstance di = (DriverInstance) iter.next();
+            if (di.getName().equals(name))
+                return di;
+        }
 		return null;
 	}
 	
 	private DriverInstance getDriverInstanceFromMapByID( String id ) {
-		Iterator iter = mDriverInstanceMap.values().iterator();
-		while (iter.hasNext()) {
-			DriverInstance di = (DriverInstance) iter.next();
-			if (di.getId().equals(id))
-				return di;
-		}
-		return null;
+        return (DriverInstance) mDriverInstanceMap.get(id);
 	}
 
 	private DriverInstance[] getDriverInstancesFromMapByCategoryID( String categoryid ) {
@@ -582,44 +581,50 @@ public class DriverManager {
 				IPropertySet newPset = createDefaultInstance(type);
 				if (newPset != null)
 					addDriverInstance(newPset);
-				ConnectivityPlugin.getDefault().
-					getPluginPreferences().setValue(type.getId(), true);
-				IPath metadataPath = 
-					ConnectivityPlugin.getDefault().getStateLocation();
-				metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
-				File file = metadataPath.toFile();
-				if (!file.exists()){
-					try {
-						file.createNewFile();
-					} catch (IOException e) {
-					}
-				}
-				FileOutputStream fos = null;
-				try {
-					fos = new FileOutputStream(file);
-					ConnectivityPlugin.getDefault().
-						getPluginPreferences().store(fos, 
-								"DriverManager.Preferences"); //$NON-NLS-1$
-				} catch (FileNotFoundException e) {
-					ConnectivityPlugin.getDefault().log(e);
-				} catch (IOException e) {
-					ConnectivityPlugin.getDefault().log(e);
-				} finally {
-					if (fos != null) {
-						try {
-							fos.close();
-						} catch (IOException e) {
-							ConnectivityPlugin.getDefault().log(e);
-						}
-					}
-				}
 				
+				setDefaultCreated( type.getId(), true );				
 			}
 		}
 		boolean markerCreated = createDefaultDriversMarker();
 		debug("Marker created: " + markerCreated); //$NON-NLS-1$
 	}
 
+	private void setDefaultCreated( String driverTemplateId, boolean isDefaultCreated )
+	{
+        ConnectivityPlugin.getDefault().
+            getPluginPreferences().setValue( driverTemplateId, isDefaultCreated );
+        
+        IPath metadataPath = 
+            ConnectivityPlugin.getDefault().getStateLocation();
+        metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+        File file = metadataPath.toFile();
+        if (!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+            }
+        }
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            ConnectivityPlugin.getDefault().
+                getPluginPreferences().store(fos, 
+                        "DriverManager.Preferences"); //$NON-NLS-1$
+        } catch (FileNotFoundException e) {
+            ConnectivityPlugin.getDefault().log(e);
+        } catch (IOException e) {
+            ConnectivityPlugin.getDefault().log(e);
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    ConnectivityPlugin.getDefault().log(e);
+                }
+            }
+        }
+	}
+	
 	/**
 	 * Creates a default instance of the driver.
 	 * @param id String ID of driver
@@ -822,6 +827,46 @@ public class DriverManager {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Removes the default driver instance of the specified driver template,
+	 * if it is invalid.
+	 * It may also optionally reset the state of having created a default instance to false.
+	 * @param driverTemplateId the id of a driver template type
+	 * @param resetDefaultCreated    true to reset the state of having created 
+	 *         a default instance if it is removed; false to leave the state as is
+	 * @return true if the specified driver template's default driver instance is invalid
+	 *             and successfully removed; false otherwise
+	 * @since 1.7.2
+	 */
+	public boolean removeInvalidDefaultInstance( String driverTemplateId, boolean resetDefaultCreated ) {
+	    if( driverTemplateId == null || driverTemplateId.length() == 0 )
+	        return false;
+	    
+        TemplateDescriptor driverTemplate = 
+            TemplateDescriptor.getDriverTemplateDescriptor( driverTemplateId );
+	    if ( driverTemplate == null  )
+	        return false;
+	    
+	    String defaultDefnName = driverTemplate.getDefaultDefinitionName();
+        if ( defaultDefnName == null || defaultDefnName.length() == 0 )
+            return false;
+	    
+        DriverInstance defaultInstance = getDriverInstanceByName( defaultDefnName );
+        if ( defaultInstance == null  )
+            return false;
+
+        if( new DriverValidator( defaultInstance ).isValid( false ) )
+            return false;   // valid driver instance is not removed
+
+	    boolean isRemoved = removeDriverInstance( defaultInstance.getId() );
+
+	    // reset the state of having previously created a default instance to false
+	    if ( isRemoved && resetDefaultCreated )
+	        setDefaultCreated( driverTemplateId, false );
+
+	    return isRemoved;
 	}
 
 	/**
