@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ package org.eclipse.datatools.connectivity.oda.spec;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
@@ -186,7 +187,7 @@ public class ValidationContext
         
         public Connection( Properties props )
         {
-            setProperties( props );
+            m_properties = props;
         }
         
         public Properties getProperties()
@@ -196,8 +197,12 @@ public class ValidationContext
 
         public void setProperties( Properties props )
         {
-            close();    // close any existing connection handle before replacing the existing properties
-            m_properties = props;
+            if( ! hasProperties( props ) )
+            {
+                // close any existing connection handle before replacing the existing properties
+                close();    
+                m_properties = props;
+            }
         }
         
         /**
@@ -208,6 +213,41 @@ public class ValidationContext
         {
             if( m_properties != null && ! m_properties.isEmpty() )
                 getValidator().closeConnection( this );
+        }
+        
+        /*
+         * Checks whether this connection's existing properties 
+         * contain each and every key-value pair of the specified props.
+         * It is ok if existing properties have additional entries than the specified ones.
+         */
+        private boolean hasProperties( Properties props )
+        {
+            if( props == null || props.isEmpty() || props == m_properties )
+                return true;
+            if( m_properties == null || m_properties.isEmpty() )
+                return false;
+
+            if( props.size() > m_properties.size() )
+                return false;
+
+            // check whether the key and value of each specified property exist
+            for( Entry<Object, Object> newPropEntry : props.entrySet() )
+            {
+                Object key = newPropEntry.getKey();
+                Object value = newPropEntry.getValue();
+                if( value == null )
+                {
+                    if( !( m_properties.containsKey( key ) && m_properties.get( key ) == null ) )
+                        return false;
+                }
+                else
+                {
+                    if( ! value.equals( m_properties.get( key ) ) )
+                        return false;
+                }
+            }
+
+            return true;
         }
     }
     
