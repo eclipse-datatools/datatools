@@ -14,20 +14,16 @@
 oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 #
 ###############################################################################
-# NLS String
-###############################################################################
+#
 oda.xml.datasource=DTP XML データソース
 oda.xml.dataset=DTP XML データセット
 oda.xml.tablemapping=テーブルのマッピング
 oda.xml.columnmapping=列のマッピング
 #
-###############################################################################
-# NLS messages
-#
 plugin.name=DTP XML File Designer
 newwizard.name=DTP XML ファイルのデータソース
 newwizard.description=DTP XML ファイルの接続プロファイルを作成します。
 wizard.window.title=DTP XML ファイルのデータソースのプロファイル
-wizard.data.source.page.title=XML ファイルとスキーマ情報への ULR を定義してください。
+wizard.data.source.page.title=XML データソースの定義
 profile.propertypage.name=DTP XML ファイルのデータソースの接続プロパティ
 preference.datasetpreview=XML データセット

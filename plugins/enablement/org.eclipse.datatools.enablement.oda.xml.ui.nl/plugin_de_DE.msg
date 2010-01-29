@@ -14,20 +14,16 @@
 oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 #
 ###############################################################################
-# NLS String
-###############################################################################
+#
 oda.xml.datasource=DTP-XML-Datenquelle
 oda.xml.dataset=DTP-XML-Datensatz
 oda.xml.tablemapping=Tabellenzuordnung
 oda.xml.columnmapping=Spaltenzuordnung
 #
-###############################################################################
-# NLS messages
-#
 plugin.name=DTP XML File Designer
 newwizard.name=Datenquelle der DTP-XML-Datei
 newwizard.description=Verbindungsprofil für DTP-XML-Datei erstellen
 wizard.window.title=Profil für Datenquelle der neuen XML-Datei
-wizard.data.source.page.title=Geben Sie die URLs und die Schemainformation für die XML-Datei an.
+wizard.data.source.page.title=XML-Datenquelle definieren
 profile.propertypage.name=Verbindungseigenschaften für Datenquelle der DTP-XML-Datei
 preference.datasetpreview=XML-Datensatz

@@ -14,20 +14,16 @@
 oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 #
 ###############################################################################
-# NLS String
-###############################################################################
+#
 oda.xml.datasource=DTP XML 数据源
 oda.xml.dataset=DTP XML 数据集
 oda.xml.tablemapping=表映射
 oda.xml.columnmapping=列映射
 #
-###############################################################################
-# NLS messages
-#
 plugin.name=DTP XML File Designer
 newwizard.name=DTP XML 文件数据源
 newwizard.description=创建 DTP XML 文件连接配置文件
 wizard.window.title=新建 XML 文件数据源配置文件
-wizard.data.source.page.title=定义 XML 文件和架构信息的 URL
+wizard.data.source.page.title=定义 XML 数据源
 profile.propertypage.name=DTP XML 文件数据源连接属性
 preference.datasetpreview=XML 数据集
