@@ -10,26 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.ui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.datatools.sqltools.result.ClassVersionIncompatibleException;
 import org.eclipse.datatools.sqltools.result.ResultConfiguration;
-import org.eclipse.datatools.sqltools.result.ResultManager;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
-import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsView;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -37,6 +25,7 @@ import org.eclipse.datatools.sqltools.result.internal.utils.StatusLogger;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.model.ResultItem;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -77,6 +66,15 @@ public class ResultsViewUIPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		// Set the ResultConfiguration values to what is stored in the preferences.
+		ResultConfiguration resultConfig = ResultConfiguration.getInstance();
+		IPreferenceStore prefStore = getPreferenceStore();
+		resultConfig.setMaxRowCount(prefStore.getInt(PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT));
+		resultConfig.setMaxDisplayRowCount(prefStore.getInt(PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT));
+		resultConfig.setAutoSave(prefStore.getBoolean(PreferenceConstants.RESULT_HISTORY_SAVE_HISTORY));
+		resultConfig.setAutoClean(prefStore.getBoolean(PreferenceConstants.RESULT_HISTORY_CLEAN_HISTORY));
+		resultConfig.setShowLabel(prefStore.getBoolean(PreferenceConstants.SQL_RESULT_VIEW_SHOW_LABELS));
 		
         getPreferenceStore().addPropertyChangeListener(
         		new IPropertyChangeListener()
