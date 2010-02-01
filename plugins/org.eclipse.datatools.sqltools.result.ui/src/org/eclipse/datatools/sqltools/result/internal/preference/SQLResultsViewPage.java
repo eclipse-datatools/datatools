@@ -576,9 +576,8 @@ public class SQLResultsViewPage extends AbstractDBPreferenceFieldPage implements
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_SHOW_HEADING, _showHeadings.getSelection());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_SHOW_ROW_COUNT_MSG, _showRowCountMessage.getSelection());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_SHOW_ROW_NUMBER, _showRowNumber.getSelection());
-        _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT, _maxRowCount.getText().trim());
-        _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT, _maxDisplayRowCount.getText()
-                .trim());
+        _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT, Integer.parseInt(_maxRowCount.getText().trim()));
+        _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT, Integer.parseInt(_maxDisplayRowCount.getText().trim()));
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_NULL_STRING, _nullDisplayStr.getText());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_SPLIT_MESSAGES, _splitMessages.getSelection());
         _store.setValue(PreferenceConstants.SQL_RESULTS_VIEW_TABS_NUMBER, _limitTabsNum.getText().trim());
