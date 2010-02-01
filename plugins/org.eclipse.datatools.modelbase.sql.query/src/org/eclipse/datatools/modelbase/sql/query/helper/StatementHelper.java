@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * Copyright (c) 2004, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -250,6 +250,10 @@ public class StatementHelper {
                 containsNonAlpha = true;
             }
 
+            // checks for leading '_' character, which was not checked by above pattern
+            if ( !containsNonAlpha && catalogIdentifier.length() > 0 && catalogIdentifier.charAt(0) == '_' )
+                containsNonAlpha = true;
+            
             if (containsDelimiters || containsSpace || containsDot || containsNonAlpha || isLowerOrMixedCase
                     || allDigits) {
                 String delimiter = String.valueOf(idDelimiterQuote);
