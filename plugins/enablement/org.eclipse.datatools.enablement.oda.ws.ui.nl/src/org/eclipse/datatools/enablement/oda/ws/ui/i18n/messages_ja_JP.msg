@@ -46,7 +46,7 @@ soapParametersPage.column.paramName=名前(&A)
 soapParametersPage.column.dataType=データ型(&T)
 
 # SoapRequestPage
-soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。データソースのカスタム接続クラスコードにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
+soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。 カスタム接続クラスにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
 soapRequestPage.message.regenerateTemplate=指定した SOAP 操作に基づいたクエリテキストのテンプレートが再生成されるため、テキストへの変更はすべて上書きされます。\n\n続行しますか ?
 soapRequestPage.title.regenerateTemplate=テンプレートの再生成
 soapRequestPage.button.regenerateTemplate=テンプレートの再生成(&R)

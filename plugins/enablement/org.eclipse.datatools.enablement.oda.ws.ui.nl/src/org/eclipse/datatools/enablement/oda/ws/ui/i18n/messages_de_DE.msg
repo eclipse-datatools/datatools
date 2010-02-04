@@ -46,7 +46,7 @@ soapParametersPage.column.paramName=N&ame
 soapParametersPage.column.dataType=Daten&typ
 
 # SoapRequestPage
-soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für den Code der benutzerdefinierten Verbindungsklasse Ihrer Datenquelle kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.
+soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für die benutzerdefinierte Verbindungsklasse kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.
 soapRequestPage.message.regenerateTemplate=Die Abfragetext-Vorlage wird auf Grundlage des gewählten SOAP-Vorgangs neu erstellt. Alle am Text vorgenommenen Änderungen gehen verloren.\n\nMöchten Sie wirklich fortfahren?
 soapRequestPage.title.regenerateTemplate=Vorlage neu erstellen
 soapRequestPage.button.regenerateTemplate=Vorlage &neu erstellen

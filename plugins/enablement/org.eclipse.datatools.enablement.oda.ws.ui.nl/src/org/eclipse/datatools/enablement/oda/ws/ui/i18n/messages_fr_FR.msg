@@ -46,7 +46,7 @@ soapParametersPage.column.paramName=N&om
 soapParametersPage.column.dataType=Type de &données
 
 # SoapRequestPage
-soapRequestPage.message.default=Modifiez le modèle de requête SOAP de ce jeu de données. Inutile de remplir cette zone si le code de classe de la connexion personnalisée de votre source de données ne requiert aucun texte de requête.
+soapRequestPage.message.default=Modifiez le modèle de requête SOAP de ce jeu de données. Inutile de remplir cette zone si la classe de connexion personnalisée ne requiert aucun texte de requête.
 soapRequestPage.message.regenerateTemplate=Le modèle de texte de requête sera à nouveau généré d'après l'opération SOAP sélectionnée. Les modifications que vous avez apportées au texte seront supprimées.\n\nVous confirmez ?
 soapRequestPage.title.regenerateTemplate=Générer à nouveau un modèle
 soapRequestPage.button.regenerateTemplate=Génére&r à nouveau un modèle

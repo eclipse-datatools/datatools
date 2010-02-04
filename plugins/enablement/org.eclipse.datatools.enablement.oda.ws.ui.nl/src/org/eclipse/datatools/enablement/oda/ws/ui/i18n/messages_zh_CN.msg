@@ -46,7 +46,7 @@ soapParametersPage.column.paramName=名称(&A)
 soapParametersPage.column.dataType=数据类型(&T)
 
 # SoapRequestPage
-soapRequestPage.message.default=编辑此数据集的 SOAP 请求模板。如果您的数据源自定义连接类代码不需要查询文本，您可以将文本留空。
+soapRequestPage.message.default=编辑此数据集的 SOAP 请求模板。 如果您的自定义连接类不需要查询文本，您可以将文本留空。
 soapRequestPage.message.regenerateTemplate=这将根据您选择的 SOAP 操作重新生成查询文本模板。它将删除您对文本所做的任何修改。\n\n是否确定?
 soapRequestPage.title.regenerateTemplate=重新生成模板
 soapRequestPage.button.regenerateTemplate=重新生成模板(&R)
