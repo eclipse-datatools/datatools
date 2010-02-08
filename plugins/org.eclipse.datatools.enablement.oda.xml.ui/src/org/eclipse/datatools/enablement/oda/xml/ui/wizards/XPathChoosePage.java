@@ -71,6 +71,8 @@ public class XPathChoosePage extends DataSetWizardPage
 	private String initRootPath;
 	private String rootPath;
 	private int selectRadioIndex = 1; // default selection is 3
+	
+	protected boolean supportsXMLParameter = true;
 
 	/**
 	 * @param string
@@ -89,6 +91,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		this.setTitle( pageName );
 		this.setMessage( DEFAULT_MESSAGE );
 		this.setPageComplete( false );
+		this.supportsXMLParameter = true;
 	}
 
 	/*
@@ -192,7 +195,7 @@ public class XPathChoosePage extends DataSetWizardPage
 						.getDisplay( )
 						.getActiveShell( ),
 						Messages.getString( "RowMappingDialog.title" ), //$NON-NLS-1$
-						selectedItem, selectRadioIndex, rootPath );
+						selectedItem, selectRadioIndex, rootPath, supportsXMLParameter );
 				if ( dialog.open( ) == Window.OK )
 				{
 					rootPath = dialog.getSelectedPath( );
@@ -285,18 +288,21 @@ public class XPathChoosePage extends DataSetWizardPage
 			}
 		} );
 
-		createQuickFixMenu( );
+		if ( supportsXMLParameter )
+		{
+			createQuickFixMenu( );
 
-		xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
+			xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
 
-			public void menuDetected( MenuDetectEvent event )
-			{
-				quickFixMenu.setLocation( event.x, event.y );
-				quickFixMenu.setVisible( true );
+				public void menuDetected( MenuDetectEvent event )
+				{
+					quickFixMenu.setLocation( event.x, event.y );
+					quickFixMenu.setVisible( true );
 
-				updateMenuItemStatus( xmlPathText );
-			}
-		} );
+					updateMenuItemStatus( xmlPathText );
+				}
+			} );
+		}
 
 	}
 

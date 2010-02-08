@@ -110,6 +110,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 	private List columnMappingList = new ArrayList( );
 
 	private String selectedTreeItemText;
+	
+	protected boolean supportsXMLParameter;
 
 	private static String COLUMN_NAME = Messages.getString( "dataset.editor.columnName" );                         //$NON-NLS-1$
 	private static String XPATH_NAME = Messages.getString( "dataset.editor.xpathexpression" );                     //$NON-NLS-1$
@@ -153,8 +155,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 		this.columnMap = new HashMap( );
 		this.columnMappingList = new ArrayList( );
 		this.setPageComplete( false );
+		this.supportsXMLParameter = true;
 		Arrays.sort( dataTypeDisplayNames );
 	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -323,12 +327,13 @@ public class ColumnMappingPage extends DataSetWizardPage
 						{
 							type = DataTypes.STRING;
 						}
-						ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
-								DEFAULT_PAGE_NAME,
-								name,
-								pathStr,
-								type,
-								true );
+								ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
+										DEFAULT_PAGE_NAME,
+										name,
+										pathStr,
+										type,
+										true,
+										supportsXMLParameter );
 						if ( columnDialog.open( ) == Window.OK )
 						{
 							columnElement = columnDialog.getColumnMapping( );
@@ -893,7 +898,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 				null,
 				null,
 				-1,
-				false );
+				false,
+				supportsXMLParameter );
 		if ( columnDialog.open( ) == Window.OK )
 		{
 			columnElement = columnDialog.getColumnMapping( );
@@ -944,7 +950,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 					columnMappingElement.getColumnName( ),
 					columnMappingElement.getXPath( ),
 					DataTypes.getType( columnMappingElement.getTypeStandardString( ) ),
-					false );
+					false,
+					supportsXMLParameter );
 			if ( columnDialog.open( ) == Window.OK )
 			{
 				columnMap.remove( columnMappingElement.getColumnName( ) );

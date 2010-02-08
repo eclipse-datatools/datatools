@@ -35,6 +35,7 @@ public class XMLTableMappingPage extends XPathChoosePage
 	public XMLTableMappingPage( String pageName )
 	{
 		super( pageName );
+		supportsXMLParameter = false;
 	}
 
 	/*

@@ -62,6 +62,8 @@ public class RowMappingDialog extends TrayDialog
 	private String rootPath;
 	private int selectRadioIndex;
 	private static final String PATH_SEPERATOR = "/";  //$NON-NLS-1$
+	
+	private boolean supportsXMLParameter;
 
 	/**
 	 * 
@@ -72,7 +74,7 @@ public class RowMappingDialog extends TrayDialog
 	 * @param selectStr
 	 */
 	public RowMappingDialog( Shell parent, String title, TreeItem selectedItem,
-			int selectRadioIndex, String selectStr )
+			int selectRadioIndex, String selectStr, boolean supportsXMLParameter )
 	{
 		super( parent );
 		this.title = title;
@@ -80,6 +82,7 @@ public class RowMappingDialog extends TrayDialog
 		this.pathList = this.getSelectedXPathList( );
 		this.selectRadioIndex = selectRadioIndex;
 		this.selectStr = selectStr;
+		this.supportsXMLParameter = supportsXMLParameter;
 	}
 
 	/*
@@ -131,18 +134,21 @@ public class RowMappingDialog extends TrayDialog
 			xmlPathField.add( TextProcessor.process( pathList.get( i ).toString( ), "//" ));
 		}
 		
-		createQuickFixMenu( xmlPathField.getStyledText( ) );
-		xmlPathField.getStyledText( )
-				.addMenuDetectListener( new MenuDetectListener( ) {
+		if ( supportsXMLParameter )
+		{
+			createQuickFixMenu( xmlPathField.getStyledText( ) );
+			xmlPathField.getStyledText( )
+					.addMenuDetectListener( new MenuDetectListener( ) {
 
-					public void menuDetected( MenuDetectEvent event )
-					{
-						quickFixMenu.setLocation( event.x, event.y );
-						quickFixMenu.setVisible( true );
+						public void menuDetected( MenuDetectEvent event )
+						{
+							quickFixMenu.setLocation( event.x, event.y );
+							quickFixMenu.setVisible( true );
 
-						updateMenuItemStatus( xmlPathField.getStyledText( ) );
-					}
-				} );
+							updateMenuItemStatus( xmlPathField.getStyledText( ) );
+						}
+					} );
+		}
 
 		setButtonTextAndListeners( composite );
 

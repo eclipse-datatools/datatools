@@ -40,6 +40,7 @@ public class XMLColumnMappingPage
 	public XMLColumnMappingPage( String pageName )
 	{
 		super( pageName );
+		supportsXMLParameter = false;
 	}
 
 	/*

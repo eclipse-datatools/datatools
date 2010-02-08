@@ -72,6 +72,7 @@ public class ColumnMappingDialog extends TrayDialog
 
 	private List xpathList;
 	private boolean isMappingMode;
+	private boolean supportsXMLParameter;
 
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
@@ -86,24 +87,28 @@ public class ColumnMappingDialog extends TrayDialog
 
 	public ColumnMappingDialog( Shell parent, String title,
 			String selectedItem, String xpath, int dataType,
-			boolean isMappingMode )
+			boolean isMappingMode, boolean supportsXMLParameter )
 	{
 		super( parent );
 		initializeDialogInfos( title,
 				selectedItem,
 				xpath,
 				dataType,
-				isMappingMode );
+				isMappingMode,
+				supportsXMLParameter );
 	}
 
 	private void initializeDialogInfos( String title, String selectedItem,
-			String xpath, int dataType, boolean isMappingMode )
+			String xpath, int dataType, boolean isMappingMode,
+			boolean supportsXMLParameter )
 	{
 		this.title = title;
 		this.columnName = ( selectedItem == null ? EMPTY_STRING : selectedItem );
 		this.xpath = ( xpath == null ? EMPTY_STRING : xpath );
 		this.type = DataTypeUtil.getDataTypeDisplayName( dataType );
 		this.isMappingMode = isMappingMode;
+		this.supportsXMLParameter = supportsXMLParameter;
+
 		if ( isMappingMode )
 		{
 			this.xpathList = XPathPopulationUtil.getPathList( xpath );
@@ -271,7 +276,21 @@ public class ColumnMappingDialog extends TrayDialog
 		xmlPathText.setText( TextProcessor.process( xpath, "//" ) ); //$NON-NLS-1$
 		xmlPathText.setLayoutData( textData );
 
-		createQuickFixMenu( xmlPathText );
+		if ( supportsXMLParameter )
+		{
+			createQuickFixMenu( xmlPathText );
+
+			xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
+
+				public void menuDetected( MenuDetectEvent event )
+				{
+					quickFixMenu.setLocation( event.x, event.y );
+					quickFixMenu.setVisible( true );
+
+					updateMenuItemStatus( xmlPathText );
+				}
+			} );
+		}
 
 		xmlPathText.addModifyListener( new ModifyListener( ) {
 
@@ -281,16 +300,6 @@ public class ColumnMappingDialog extends TrayDialog
 			}
 		} );
 
-		xmlPathText.addMenuDetectListener( new MenuDetectListener( ) {
-
-			public void menuDetected( MenuDetectEvent event )
-			{
-				quickFixMenu.setLocation( event.x, event.y );
-				quickFixMenu.setVisible( true );
-				
-				updateMenuItemStatus( xmlPathText );
-			}
-		} );
 	}
 
 	private void createQuickFixMenu( final StyledText text )
@@ -488,16 +497,20 @@ public class ColumnMappingDialog extends TrayDialog
 			}
 		} );
 		
-		xmlPathCombo.getStyledText( ).addMenuDetectListener( new MenuDetectListener( ) {
+		if ( supportsXMLParameter )
+		{
+			xmlPathCombo.getStyledText( )
+					.addMenuDetectListener( new MenuDetectListener( ) {
 
-			public void menuDetected( MenuDetectEvent event )
-			{
-				quickFixMenu.setLocation( event.x, event.y );
-				quickFixMenu.setVisible( true );
-				
-				updateMenuItemStatus( xmlPathCombo.getStyledText( ) );
-			}
-		} );
+						public void menuDetected( MenuDetectEvent event )
+						{
+							quickFixMenu.setLocation( event.x, event.y );
+							quickFixMenu.setVisible( true );
+
+							updateMenuItemStatus( xmlPathCombo.getStyledText( ) );
+						}
+					} );
+		}
 
 		if ( xpathList != null && xpathList.size( ) > 0 )
 		{
