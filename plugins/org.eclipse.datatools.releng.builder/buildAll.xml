@@ -372,7 +372,7 @@
         
     	<!-- replace the feature version in site.xml -->
         <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
-        <replace file="${updateSiteDir}/site.xml" value="1.7.2" token="@RELEASE.VERSION@"/>
+        <replace file="${updateSiteDir}/site.xml" value="1.8.0" token="@RELEASE.VERSION@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
