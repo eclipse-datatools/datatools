@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.sqlite.feature"
       label="%FEATURE_NAME"
-      version="1.7.2.qualifier"
+      version="1.8.0.qualifier"
       provider-name="%PROVIDER_NAME"
       plugin="org.eclipse.datatools.enablement.finfo">
 

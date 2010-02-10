@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.apache.derby.feature"
       label="%featureName"
-      version="1.7.2.qualifier"
+      version="1.8.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.sybase"
       image="eclipse_update_120.jpg">
