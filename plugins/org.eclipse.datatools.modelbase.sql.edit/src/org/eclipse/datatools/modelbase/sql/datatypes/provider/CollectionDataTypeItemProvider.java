@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionDataTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
+ * $Id: CollectionDataTypeItemProvider.java,v 1.4 2007/05/31 00:29:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -77,7 +77,7 @@ public class CollectionDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CollectionDataType_element_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CollectionDataType_element_feature", "_UI_CollectionDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.Literals.COLLECTION_DATA_TYPE__ELEMENT,
+				 SQLDataTypesPackage.Literals.COLLECTION_DATA_TYPE__ELEMENT_TYPE,
 				 true,
 				 false,
 				 false,

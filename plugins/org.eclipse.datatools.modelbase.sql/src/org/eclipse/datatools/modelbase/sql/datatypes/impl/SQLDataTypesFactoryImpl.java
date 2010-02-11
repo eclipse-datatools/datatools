@@ -82,6 +82,7 @@ public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataType
 			case SQLDataTypesPackage.APPROXIMATE_NUMERIC_DATA_TYPE: return createApproximateNumericDataType();
 			case SQLDataTypesPackage.INTEGER_DATA_TYPE: return createIntegerDataType();
 			case SQLDataTypesPackage.XML_DATA_TYPE: return createXMLDataType();
+			case SQLDataTypesPackage.ELEMENT_TYPE: return createElementType();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -339,6 +340,16 @@ public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataType
 	public XMLDataType createXMLDataType() {
 		XMLDataTypeImpl xmlDataType = new XMLDataTypeImpl();
 		return xmlDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementType createElementType() {
+		ElementTypeImpl elementType = new ElementTypeImpl();
+		return elementType;
 	}
 
 	/**

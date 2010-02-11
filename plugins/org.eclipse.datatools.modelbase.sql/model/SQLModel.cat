@@ -28,8 +28,7 @@
 	    tool       	"Ecore"
 	    name       	"prefix"
 	    value      	(value Text "SQLModel")))
-    quid       	"3E9B1F8201C1"	
-    
+    quid       	"3E9B1F8201C1"
     exportControl 	"Public"
     logical_models 	(list unit_reference_list
 	(object Association "$UNNAMED$0"
@@ -2966,17 +2965,7 @@
 		    origin_attachment 	(5034, 1902)
 		    terminal_attachment 	(5034, 1829)
 		    drawSupplier 	@121)
-		(object InheritView "" @128
-		    stereotype 	TRUE
-		    line_color 	3342489
-		    quidu      	"3FB90F5601FA"
-		    client     	@25
-		    supplier   	@68
-		    line_style 	3
-		    origin_attachment 	(2623, 2538)
-		    terminal_attachment 	(2623, 2498)
-		    drawSupplier 	@69)
-		(object InheritTreeView "" @129
+		(object InheritTreeView "" @128
 		    location   	(1557, 2450)
 		    line_color 	3342489
 		    fill_color 	13434879
@@ -2984,7 +2973,7 @@
 		    vertices   	(list Points
 			(1557, 2450)
 			(1557, 2348)))
-		(object InheritView "" @130
+		(object InheritView "" @129
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F4E452201D4"
@@ -2993,8 +2982,8 @@
 		    line_style 	3
 		    origin_attachment 	(1935, 2548)
 		    terminal_attachment 	(1935, 2450)
-		    drawSupplier 	@129)
-		(object InheritView "" @131
+		    drawSupplier 	@128)
+		(object InheritView "" @130
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F4E451F02FC"
@@ -3003,8 +2992,8 @@
 		    line_style 	3
 		    origin_attachment 	(1279, 2560)
 		    terminal_attachment 	(1279, 2450)
-		    drawSupplier 	@129)
-		(object InheritView "" @132
+		    drawSupplier 	@128)
+		(object InheritView "" @131
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3FB90F2302E1"
@@ -3014,7 +3003,7 @@
 		    origin_attachment 	(4260, 2599)
 		    terminal_attachment 	(4260, 2498)
 		    drawSupplier 	@69)
-		(object InheritView "" @133
+		(object InheritView "" @132
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3FB90F3400D1"
@@ -3024,7 +3013,7 @@
 		    origin_attachment 	(3529, 2239)
 		    terminal_attachment 	(3529, 2159)
 		    drawSupplier 	@100)
-		(object InheritTreeView "" @134
+		(object InheritTreeView "" @133
 		    location   	(2651, 3194)
 		    line_color 	3342489
 		    fill_color 	13434879
@@ -3032,7 +3021,7 @@
 		    vertices   	(list Points
 			(2651, 3194)
 			(2651, 3092)))
-		(object InheritView "" @135
+		(object InheritView "" @134
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F12DA7002F3"
@@ -3041,8 +3030,8 @@
 		    line_style 	3
 		    origin_attachment 	(2394, 3260)
 		    terminal_attachment 	(2394, 3194)
-		    drawSupplier 	@134)
-		(object InheritView "" @136
+		    drawSupplier 	@133)
+		(object InheritView "" @135
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F12DA580014"
@@ -3051,8 +3040,8 @@
 		    line_style 	3
 		    origin_attachment 	(2913, 3250)
 		    terminal_attachment 	(2913, 3194)
-		    drawSupplier 	@134)
-		(object InheritTreeView "" @137
+		    drawSupplier 	@133)
+		(object InheritTreeView "" @136
 		    location   	(4159, 2823)
 		    line_color 	3342489
 		    fill_color 	13434879
@@ -3060,7 +3049,7 @@
 		    vertices   	(list Points
 			(4159, 2823)
 			(4159, 2721)))
-		(object InheritView "" @138
+		(object InheritView "" @137
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"402BB4E7028D"
@@ -3069,8 +3058,8 @@
 		    line_style 	3
 		    origin_attachment 	(3662, 2842)
 		    terminal_attachment 	(3662, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @139
+		    drawSupplier 	@136)
+		(object InheritView "" @138
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F3004830361"
@@ -3079,8 +3068,8 @@
 		    line_style 	3
 		    origin_attachment 	(4178, 2848)
 		    terminal_attachment 	(4178, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @140
+		    drawSupplier 	@136)
+		(object InheritView "" @139
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F2FC6F3031D"
@@ -3089,8 +3078,8 @@
 		    line_style 	3
 		    origin_attachment 	(3947, 3026)
 		    terminal_attachment 	(3947, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @141
+		    drawSupplier 	@136)
+		(object InheritView "" @140
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"402BB4B30333"
@@ -3099,8 +3088,8 @@
 		    line_style 	3
 		    origin_attachment 	(5153, 2998)
 		    terminal_attachment 	(5153, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @142
+		    drawSupplier 	@136)
+		(object InheritView "" @141
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F218707016A"
@@ -3109,8 +3098,8 @@
 		    line_style 	3
 		    origin_attachment 	(4569, 2860)
 		    terminal_attachment 	(4569, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @143
+		    drawSupplier 	@136)
+		(object InheritView "" @142
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"402BB4EC0335"
@@ -3119,8 +3108,8 @@
 		    line_style 	3
 		    origin_attachment 	(5725, 3020)
 		    terminal_attachment 	(5725, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @144
+		    drawSupplier 	@136)
+		(object InheritView "" @143
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"400DFA6603D7"
@@ -3129,8 +3118,8 @@
 		    line_style 	3
 		    origin_attachment 	(5428, 2853)
 		    terminal_attachment 	(5428, 2823)
-		    drawSupplier 	@137)
-		(object ClassView "Class" "Logical View::SQLModel::DataTypes::NumericalDataType" @145
+		    drawSupplier 	@136)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::NumericalDataType" @144
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3147,7 +3136,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@145
+			Parent_View 	@144
 			location   	(4230, 3047)
 			fill_color 	13434879
 			nlines     	1
@@ -3162,17 +3151,17 @@
 		    height     	117
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritView "" @146
+		(object InheritView "" @145
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F2693F9022B"
-		    client     	@145
+		    client     	@144
 		    supplier   	@36
 		    line_style 	3
 		    origin_attachment 	(4463, 3035)
 		    terminal_attachment 	(4463, 2823)
-		    drawSupplier 	@137)
-		(object InheritView "" @147
+		    drawSupplier 	@136)
+		(object InheritView "" @146
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3E9B41A50390"
@@ -3182,7 +3171,7 @@
 		    origin_attachment 	(5268, 1504)
 		    terminal_attachment 	(5268, 1425)
 		    drawSupplier 	@123)
-		(object InheritView "" @148
+		(object InheritView "" @147
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3FB914DA038D"
@@ -3192,7 +3181,7 @@
 		    origin_attachment 	(5621, 1668)
 		    terminal_attachment 	(5621, 1425)
 		    drawSupplier 	@123)
-		(object ClassView "Class" "Logical View::SQLModel::Routines::Routine" @149
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Routine" @148
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3209,7 +3198,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@149
+			Parent_View 	@148
 			location   	(3290, 1112)
 			fill_color 	13434879
 			nlines     	1
@@ -3224,35 +3213,35 @@
 		    height     	122
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritTreeView "" @150
+		(object InheritTreeView "" @149
 		    location   	(3421, 1369)
 		    line_color 	3342489
 		    fill_color 	13434879
-		    supplier   	@149
+		    supplier   	@148
 		    vertices   	(list Points
 			(3421, 1369)
 			(3421, 1222)))
-		(object InheritView "" @151
+		(object InheritView "" @150
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F3D3B9D03E0"
 		    client     	@43
-		    supplier   	@149
+		    supplier   	@148
 		    line_style 	3
 		    origin_attachment 	(3221, 1444)
 		    terminal_attachment 	(3221, 1369)
-		    drawSupplier 	@150)
-		(object InheritView "" @152
+		    drawSupplier 	@149)
+		(object InheritView "" @151
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F3D37160216"
-		    client     	@149
+		    client     	@148
 		    supplier   	@48
 		    line_style 	3
 		    origin_attachment 	(3446, 1100)
 		    terminal_attachment 	(3446, 1038)
 		    drawSupplier 	@50)
-		(object ClassView "Class" "Logical View::SQLModel::Routines::Parameter" @153
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Parameter" @152
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3269,7 +3258,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@153
+			Parent_View 	@152
 			location   	(4631, 1712)
 			fill_color 	13434879
 			nlines     	1
@@ -3284,7 +3273,7 @@
 		    height     	122
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object ClassView "Class" "Logical View::SQLModel::Routines::Function" @154
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Function" @153
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3301,7 +3290,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@154
+			Parent_View 	@153
 			location   	(3503, 1459)
 			fill_color 	13434879
 			nlines     	1
@@ -3316,55 +3305,55 @@
 		    height     	122
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritTreeView "" @155
+		(object InheritTreeView "" @154
 		    location   	(3634, 1659)
 		    line_color 	3342489
 		    fill_color 	13434879
-		    supplier   	@154
+		    supplier   	@153
 		    vertices   	(list Points
 			(3634, 1659)
 			(3634, 1569)))
-		(object InheritView "" @156
+		(object InheritView "" @155
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"411A8B92012D"
 		    client     	@41
-		    supplier   	@154
+		    supplier   	@153
 		    line_style 	3
 		    origin_attachment 	(3821, 1738)
 		    terminal_attachment 	(3821, 1659)
-		    drawSupplier 	@155)
-		(object InheritView "" @157
+		    drawSupplier 	@154)
+		(object InheritView "" @156
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"411A8B8F006B"
 		    client     	@46
-		    supplier   	@154
+		    supplier   	@153
 		    line_style 	3
 		    origin_attachment 	(3331, 1731)
 		    terminal_attachment 	(3331, 1659)
-		    drawSupplier 	@155)
-		(object InheritView "" @158
+		    drawSupplier 	@154)
+		(object InheritView "" @157
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F3D3B9A01F1"
-		    client     	@154
-		    supplier   	@149
+		    client     	@153
+		    supplier   	@148
 		    line_style 	3
 		    origin_attachment 	(3659, 1446)
 		    terminal_attachment 	(3659, 1369)
-		    drawSupplier 	@150)
-		(object InheritView "" @159
+		    drawSupplier 	@149)
+		(object InheritView "" @158
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F3D3EDF00A0"
-		    client     	@153
+		    client     	@152
 		    supplier   	@71
 		    line_style 	3
 		    origin_attachment 	(4765, 1700)
 		    terminal_attachment 	(4765, 1490)
 		    drawSupplier 	@73)
-		(object ClassView "Class" "Logical View::SQLModel::DataTypes::Field" @160
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::Field" @159
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3381,7 +3370,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@160
+			Parent_View 	@159
 			location   	(4104, 1709)
 			fill_color 	13434879
 			nlines     	1
@@ -3396,7 +3385,7 @@
 		    height     	122
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object ClassView "Class" "Logical View::SQLModel::DataTypes::RowDataType" @161
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::RowDataType" @160
 		    ShowCompartmentStereotypes 	TRUE
 		    SuppressAttribute 	TRUE
 		    SuppressOperation 	TRUE
@@ -3413,7 +3402,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@161
+			Parent_View 	@160
 			location   	(2238, 2816)
 			fill_color 	13434879
 			nlines     	1
@@ -3428,21 +3417,21 @@
 		    height     	122
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritView "" @162
+		(object InheritView "" @161
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3F12DAFB013D"
-		    client     	@161
+		    client     	@160
 		    supplier   	@25
 		    line_style 	3
 		    origin_attachment 	(2382, 2804)
 		    terminal_attachment 	(2382, 2760)
 		    drawSupplier 	@35)
-		(object InheritView "" @163
+		(object InheritView "" @162
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"3ED2511800EF"
-		    client     	@160
+		    client     	@159
 		    supplier   	@71
 		    line_style 	3
 		    origin_attachment 	(4253, 1697)

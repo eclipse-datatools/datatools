@@ -275,7 +275,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/PredefinedDataType/primitiveType"/>
       </genClasses>
       <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/CollectionDataType">
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CollectionDataType/element"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CollectionDataType/elementType"/>
       </genClasses>
       <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/NumericalDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/NumericalDataType/precision"/>
@@ -368,6 +368,9 @@
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ApproximateNumericDataType"/>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/IntegerDataType"/>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/XMLDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ElementType">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ElementType/CollectionDataType"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLExpressions" basePackage="org.eclipse.datatools.modelbase.sql"
         disposableProviderFactory="true" ecorePackage="sqlmodel.ecore#//expressions">

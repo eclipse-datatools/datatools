@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public abstract class ConstructedDataTypeImpl extends SQLDataTypeImpl implements ConstructedDataType {
+public abstract class ConstructedDataTypeImpl extends DataTypeImpl implements ConstructedDataType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

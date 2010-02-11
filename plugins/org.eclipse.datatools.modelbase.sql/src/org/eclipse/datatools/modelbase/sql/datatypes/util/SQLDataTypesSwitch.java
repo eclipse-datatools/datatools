@@ -129,7 +129,6 @@ public class SQLDataTypesSwitch {
 				CollectionDataType collectionDataType = (CollectionDataType)theEObject;
 				Object result = caseCollectionDataType(collectionDataType);
 				if (result == null) result = caseConstructedDataType(collectionDataType);
-				if (result == null) result = caseSQLDataType(collectionDataType);
 				if (result == null) result = caseDataType(collectionDataType);
 				if (result == null) result = caseSQLObject(collectionDataType);
 				if (result == null) result = caseENamedElement(collectionDataType);
@@ -165,7 +164,6 @@ public class SQLDataTypesSwitch {
 				RowDataType rowDataType = (RowDataType)theEObject;
 				Object result = caseRowDataType(rowDataType);
 				if (result == null) result = caseConstructedDataType(rowDataType);
-				if (result == null) result = caseSQLDataType(rowDataType);
 				if (result == null) result = caseDataType(rowDataType);
 				if (result == null) result = caseSQLObject(rowDataType);
 				if (result == null) result = caseENamedElement(rowDataType);
@@ -178,7 +176,6 @@ public class SQLDataTypesSwitch {
 				Object result = caseArrayDataType(arrayDataType);
 				if (result == null) result = caseCollectionDataType(arrayDataType);
 				if (result == null) result = caseConstructedDataType(arrayDataType);
-				if (result == null) result = caseSQLDataType(arrayDataType);
 				if (result == null) result = caseDataType(arrayDataType);
 				if (result == null) result = caseSQLObject(arrayDataType);
 				if (result == null) result = caseENamedElement(arrayDataType);
@@ -191,7 +188,6 @@ public class SQLDataTypesSwitch {
 				Object result = caseMultisetDataType(multisetDataType);
 				if (result == null) result = caseCollectionDataType(multisetDataType);
 				if (result == null) result = caseConstructedDataType(multisetDataType);
-				if (result == null) result = caseSQLDataType(multisetDataType);
 				if (result == null) result = caseDataType(multisetDataType);
 				if (result == null) result = caseSQLObject(multisetDataType);
 				if (result == null) result = caseENamedElement(multisetDataType);
@@ -328,7 +324,6 @@ public class SQLDataTypesSwitch {
 				ReferenceDataType referenceDataType = (ReferenceDataType)theEObject;
 				Object result = caseReferenceDataType(referenceDataType);
 				if (result == null) result = caseConstructedDataType(referenceDataType);
-				if (result == null) result = caseSQLDataType(referenceDataType);
 				if (result == null) result = caseDataType(referenceDataType);
 				if (result == null) result = caseSQLObject(referenceDataType);
 				if (result == null) result = caseENamedElement(referenceDataType);
@@ -339,7 +334,6 @@ public class SQLDataTypesSwitch {
 			case SQLDataTypesPackage.CONSTRUCTED_DATA_TYPE: {
 				ConstructedDataType constructedDataType = (ConstructedDataType)theEObject;
 				Object result = caseConstructedDataType(constructedDataType);
-				if (result == null) result = caseSQLDataType(constructedDataType);
 				if (result == null) result = caseDataType(constructedDataType);
 				if (result == null) result = caseSQLObject(constructedDataType);
 				if (result == null) result = caseENamedElement(constructedDataType);

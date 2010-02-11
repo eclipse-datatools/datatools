@@ -25,5 +25,5 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model abstract="true"
  * @generated
  */
-public interface ConstructedDataType extends SQLDataType {
+public interface ConstructedDataType extends DataType {
 } // ConstructedDataType

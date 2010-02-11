@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,19 +34,31 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CollectionDataType extends ConstructedDataType {
 	/**
-	 * Returns the value of the '<em><b>Element</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.datatypes.DataType}.
+	 * Returns the value of the '<em><b>Element Type</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType#getCollectionDataType <em>Collection Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Element Type</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCollectionDataType_Element()
-	 * @model type="org.eclipse.datatools.modelbase.sql.datatypes.DataType" required="true"
+	 * @return the value of the '<em>Element Type</em>' containment reference.
+	 * @see #setElementType(ElementType)
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCollectionDataType_ElementType()
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.ElementType#getCollectionDataType
+	 * @model opposite="CollectionDataType" containment="true" required="true"
 	 * @generated
 	 */
-	EList getElement();
+	ElementType getElementType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Element Type</em>' containment reference.
+	 * @see #getElementType()
+	 * @generated
+	 */
+	void setElementType(ElementType value);
 
 } // CollectionDataType

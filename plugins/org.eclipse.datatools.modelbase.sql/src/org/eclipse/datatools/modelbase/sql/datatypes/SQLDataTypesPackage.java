@@ -437,7 +437,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__EANNOTATIONS = SQL_DATA_TYPE__EANNOTATIONS;
+	int CONSTRUCTED_DATA_TYPE__EANNOTATIONS = DATA_TYPE__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -446,7 +446,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__NAME = SQL_DATA_TYPE__NAME;
+	int CONSTRUCTED_DATA_TYPE__NAME = DATA_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -455,7 +455,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__DEPENDENCIES = SQL_DATA_TYPE__DEPENDENCIES;
+	int CONSTRUCTED_DATA_TYPE__DEPENDENCIES = DATA_TYPE__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -464,7 +464,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__DESCRIPTION = SQL_DATA_TYPE__DESCRIPTION;
+	int CONSTRUCTED_DATA_TYPE__DESCRIPTION = DATA_TYPE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -473,7 +473,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__LABEL = SQL_DATA_TYPE__LABEL;
+	int CONSTRUCTED_DATA_TYPE__LABEL = DATA_TYPE__LABEL;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' reference list.
@@ -482,7 +482,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__COMMENTS = SQL_DATA_TYPE__COMMENTS;
+	int CONSTRUCTED_DATA_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -491,7 +491,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE__PRIVILEGES = SQL_DATA_TYPE__PRIVILEGES;
+	int CONSTRUCTED_DATA_TYPE__PRIVILEGES = DATA_TYPE__PRIVILEGES;
 
 	/**
 	 * The number of structural features of the '<em>Constructed Data Type</em>' class.
@@ -500,7 +500,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRUCTED_DATA_TYPE_FEATURE_COUNT = SQL_DATA_TYPE_FEATURE_COUNT + 0;
+	int CONSTRUCTED_DATA_TYPE_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl <em>Collection Data Type</em>}' class.
@@ -576,13 +576,13 @@ public interface SQLDataTypesPackage extends EPackage {
 	int COLLECTION_DATA_TYPE__PRIVILEGES = CONSTRUCTED_DATA_TYPE__PRIVILEGES;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLECTION_DATA_TYPE__ELEMENT = CONSTRUCTED_DATA_TYPE_FEATURE_COUNT + 0;
+	int COLLECTION_DATA_TYPE__ELEMENT_TYPE = CONSTRUCTED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Collection Data Type</em>' class.
@@ -994,13 +994,13 @@ public interface SQLDataTypesPackage extends EPackage {
 	int ARRAY_DATA_TYPE__PRIVILEGES = COLLECTION_DATA_TYPE__PRIVILEGES;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_DATA_TYPE__ELEMENT = COLLECTION_DATA_TYPE__ELEMENT;
+	int ARRAY_DATA_TYPE__ELEMENT_TYPE = COLLECTION_DATA_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Max Cardinality</b></em>' attribute.
@@ -1094,13 +1094,13 @@ public interface SQLDataTypesPackage extends EPackage {
 	int MULTISET_DATA_TYPE__PRIVILEGES = COLLECTION_DATA_TYPE__PRIVILEGES;
 
 	/**
-	 * The feature id for the '<em><b>Element</b></em>' reference list.
+	 * The feature id for the '<em><b>Element Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTISET_DATA_TYPE__ELEMENT = COLLECTION_DATA_TYPE__ELEMENT;
+	int MULTISET_DATA_TYPE__ELEMENT_TYPE = COLLECTION_DATA_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Multiset Data Type</em>' class.
@@ -3273,6 +3273,115 @@ public interface SQLDataTypesPackage extends EPackage {
 	int XML_DATA_TYPE_FEATURE_COUNT = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ElementTypeImpl <em>Element Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ElementTypeImpl
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getElementType()
+	 * @generated
+	 */
+	int ELEMENT_TYPE = 30;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__EANNOTATIONS = SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__NAME = SQLSchemaPackage.TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__DEPENDENCIES = SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__DESCRIPTION = SQLSchemaPackage.TYPED_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__LABEL = SQLSchemaPackage.TYPED_ELEMENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__PRIVILEGES = SQLSchemaPackage.TYPED_ELEMENT__PRIVILEGES;
+
+	/**
+	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__CONTAINED_TYPE = SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__REFERENCED_TYPE = SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Collection Data Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__COLLECTION_DATA_TYPE = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Element Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_FEATURE_COUNT = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType <em>Coercibility Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3280,7 +3389,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getCoercibilityType()
 	 * @generated
 	 */
-	int COERCIBILITY_TYPE = 30;
+	int COERCIBILITY_TYPE = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType <em>Interval Qualifier Type</em>}' enum.
@@ -3290,7 +3399,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntervalQualifierType()
 	 * @generated
 	 */
-	int INTERVAL_QUALIFIER_TYPE = 31;
+	int INTERVAL_QUALIFIER_TYPE = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.OrderingType <em>Ordering Type</em>}' enum.
@@ -3300,7 +3409,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getOrderingType()
 	 * @generated
 	 */
-	int ORDERING_TYPE = 32;
+	int ORDERING_TYPE = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.OrderingCategoryType <em>Ordering Category Type</em>}' enum.
@@ -3310,7 +3419,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getOrderingCategoryType()
 	 * @generated
 	 */
-	int ORDERING_CATEGORY_TYPE = 33;
+	int ORDERING_CATEGORY_TYPE = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType <em>Primitive Type</em>}' enum.
@@ -3320,7 +3429,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 34;
+	int PRIMITIVE_TYPE = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.LinkControlOption <em>Link Control Option</em>}' enum.
@@ -3330,7 +3439,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getLinkControlOption()
 	 * @generated
 	 */
-	int LINK_CONTROL_OPTION = 35;
+	int LINK_CONTROL_OPTION = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.IntegrityControlOption <em>Integrity Control Option</em>}' enum.
@@ -3340,7 +3449,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntegrityControlOption()
 	 * @generated
 	 */
-	int INTEGRITY_CONTROL_OPTION = 36;
+	int INTEGRITY_CONTROL_OPTION = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.ReadPermissionOption <em>Read Permission Option</em>}' enum.
@@ -3350,7 +3459,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getReadPermissionOption()
 	 * @generated
 	 */
-	int READ_PERMISSION_OPTION = 37;
+	int READ_PERMISSION_OPTION = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.WritePermissionOption <em>Write Permission Option</em>}' enum.
@@ -3360,7 +3469,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getWritePermissionOption()
 	 * @generated
 	 */
-	int WRITE_PERMISSION_OPTION = 38;
+	int WRITE_PERMISSION_OPTION = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.UnlinkOption <em>Unlink Option</em>}' enum.
@@ -3370,7 +3479,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getUnlinkOption()
 	 * @generated
 	 */
-	int UNLINK_OPTION = 39;
+	int UNLINK_OPTION = 40;
 
 
 	/**
@@ -3447,15 +3556,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	EClass getCollectionDataType();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElement <em>Element</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Element</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElement()
+	 * @return the meta object for the containment reference '<em>Element Type</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType()
 	 * @see #getCollectionDataType()
 	 * @generated
 	 */
-	EReference getCollectionDataType_Element();
+	EReference getCollectionDataType_ElementType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType <em>Numerical Data Type</em>}'.
@@ -4235,6 +4344,27 @@ public interface SQLDataTypesPackage extends EPackage {
 	EClass getXMLDataType();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType <em>Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Element Type</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.ElementType
+	 * @generated
+	 */
+	EClass getElementType();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType#getCollectionDataType <em>Collection Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection Data Type</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.ElementType#getCollectionDataType()
+	 * @see #getElementType()
+	 * @generated
+	 */
+	EReference getElementType_CollectionDataType();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType <em>Coercibility Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4421,12 +4551,12 @@ public interface SQLDataTypesPackage extends EPackage {
 		EClass COLLECTION_DATA_TYPE = eINSTANCE.getCollectionDataType();
 
 		/**
-		 * The meta object literal for the '<em><b>Element</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Element Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLECTION_DATA_TYPE__ELEMENT = eINSTANCE.getCollectionDataType_Element();
+		EReference COLLECTION_DATA_TYPE__ELEMENT_TYPE = eINSTANCE.getCollectionDataType_ElementType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.NumericalDataTypeImpl <em>Numerical Data Type</em>}' class.
@@ -5063,6 +5193,24 @@ public interface SQLDataTypesPackage extends EPackage {
 		 * @generated
 		 */
 		EClass XML_DATA_TYPE = eINSTANCE.getXMLDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ElementTypeImpl <em>Element Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ElementTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getElementType()
+		 * @generated
+		 */
+		EClass ELEMENT_TYPE = eINSTANCE.getElementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Collection Data Type</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ELEMENT_TYPE__COLLECTION_DATA_TYPE = eINSTANCE.getElementType_CollectionDataType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType <em>Coercibility Type</em>}' enum.

@@ -13,13 +13,16 @@ package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -30,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,15 +41,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl implements CollectionDataType {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference list.
+	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
+	 * @see #getElementType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList element = null;
-
+	protected ElementType elementType;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,11 +72,70 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getElement() {
-		if (element == null) {
-			element = new EObjectResolvingEList(DataType.class, this, SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT);
+	public ElementType getElementType() {
+		return elementType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetElementType(ElementType newElementType, NotificationChain msgs) {
+		ElementType oldElementType = elementType;
+		elementType = newElementType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, oldElementType, newElementType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return element;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setElementType(ElementType newElementType) {
+		if (newElementType != elementType) {
+			NotificationChain msgs = null;
+			if (elementType != null)
+				msgs = ((InternalEObject)elementType).eInverseRemove(this, SQLDataTypesPackage.ELEMENT_TYPE__COLLECTION_DATA_TYPE, ElementType.class, msgs);
+			if (newElementType != null)
+				msgs = ((InternalEObject)newElementType).eInverseAdd(this, SQLDataTypesPackage.ELEMENT_TYPE__COLLECTION_DATA_TYPE, ElementType.class, msgs);
+			msgs = basicSetElementType(newElementType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, newElementType, newElementType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				if (elementType != null)
+					msgs = ((InternalEObject)elementType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE, null, msgs);
+				return basicSetElementType((ElementType)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				return basicSetElementType(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -84,8 +145,8 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT:
-				return getElement();
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				return getElementType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -97,9 +158,8 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT:
-				getElement().clear();
-				getElement().addAll((Collection)newValue);
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				setElementType((ElementType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -112,8 +172,8 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT:
-				getElement().clear();
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				setElementType((ElementType)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -126,8 +186,8 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT:
-				return element != null && !element.isEmpty();
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE__ELEMENT_TYPE:
+				return elementType != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -201,6 +201,15 @@ public interface SQLDataTypesFactory extends EFactory {
 	XMLDataType createXMLDataType();
 
 	/**
+	 * Returns a new object of class '<em>Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Type</em>'.
+	 * @generated
+	 */
+	ElementType createElementType();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

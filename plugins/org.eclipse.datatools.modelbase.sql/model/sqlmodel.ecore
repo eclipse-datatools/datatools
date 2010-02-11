@@ -352,8 +352,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.10 Collection Types"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="element" lowerBound="1"
-          upperBound="-1" eType="#//datatypes/DataType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elementType" lowerBound="1"
+          eType="#//datatypes/ElementType" containment="true" eOpposite="#//datatypes/ElementType/CollectionDataType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NumericalDataType" abstract="true"
         eSuperTypes="#//datatypes/PredefinedDataType">
@@ -565,7 +565,7 @@
           eType="#//datatypes/StructuredUserDefinedType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConstructedDataType" abstract="true"
-        eSuperTypes="#//datatypes/SQLDataType">
+        eSuperTypes="#//datatypes/DataType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"/>
       </eAnnotations>
@@ -645,6 +645,10 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ElementType" eSuperTypes="#//schema/TypedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="CollectionDataType" eType="#//datatypes/CollectionDataType"
+          transient="true" eOpposite="#//datatypes/CollectionDataType/elementType"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="expressions" nsURI="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"

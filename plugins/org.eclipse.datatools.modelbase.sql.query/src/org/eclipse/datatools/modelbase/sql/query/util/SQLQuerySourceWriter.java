@@ -1908,8 +1908,8 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      */
     protected void appendSpecificSQL(ArrayDataType dataType, StringBuffer sb)
     {
-        if (!dataType.getElement().isEmpty()) {
-            DataType elementType = (DataType) dataType.getElement().get(0);
+        if (!(dataType.getElementType().getDataType() != null) ) {
+            DataType elementType = dataType.getElementType().getDataType();
             appendSQL(elementType,sb);
         }
 
@@ -1927,8 +1927,8 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      */
     protected void appendSpecificSQL(MultisetDataType dataType, StringBuffer sb)
     {
-        if (!dataType.getElement().isEmpty()) {
-            DataType elementType = (DataType) dataType.getElement().get(0);
+        if (!(dataType.getElementType().getDataType() != null)) {
+            DataType elementType = dataType.getElementType().getDataType();
             appendSQL(elementType,sb);
         }
 
