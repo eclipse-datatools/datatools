@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB" version="V9.1" maximumIdentifierLength="8" 
 viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" mQTSupported="true" aliasSupported="true" SQLStatementSupported="true" nicknameSupported="true" userDefinedTypeSupported="true" xmlSupported="true" roleSupported="false"
-userSupported="true" groupSupported="true" packageSupported="true">
+userSupported="true" groupSupported="true" packageSupported="true" constructedDataTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
@@ -164,6 +164,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
   </constraintDefinition>
   <sequenceDefinition predefinedDataTypeDefinitions="BIGINT_1 INTEGER_1 SMALLINT_1 DECIMAL_1" defaultDataTypeDefinition="INTEGER_1" typeEnumerationSupported="true" cacheSupported="true" orderSupported="true" noMaximumValueString="NO MAXVALUE" noMinimumValueString="NO MINVALUE" noCacheString="NO CACHE" cacheDefaultValue="20"/>
   <udtDefinition maximumIdentifierLength="18" distinctTypeSupported="true" structuredTypeSupported="true"/>
+  <constructedDataTypeDefinition referenceDatatypeSupported="true"/>
   <indexDefinition maximumIdentifierLength="128" clusteringSupported="true"/>
   <queryDefinition hostVariableMarker=":"/>
   <nicknameDefinition maximumIdentifierLength="128" constraintSupported="true" indexSupported="true"/>
