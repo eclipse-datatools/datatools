@@ -14,6 +14,7 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
@@ -69,6 +70,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getPrivilegedElementDefinitions <em>Privileged Element Definitions</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getConstructedDataTypeDefinition <em>Constructed Data Type Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -101,6 +103,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isGroupSupported <em>Group Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isUserSupported <em>User Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,7 +118,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected EList predefinedDataTypeDefinitions = null;
+	protected EList predefinedDataTypeDefinitions;
 
 	/**
 	 * The cached value of the '{@link #getTableSpaceDefinition() <em>Table Space Definition</em>}' containment reference.
@@ -125,7 +128,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected TableSpaceDefinition tableSpaceDefinition = null;
+	protected TableSpaceDefinition tableSpaceDefinition;
 
 	/**
 	 * The cached value of the '{@link #getStoredProcedureDefinition() <em>Stored Procedure Definition</em>}' containment reference.
@@ -135,7 +138,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected StoredProcedureDefinition storedProcedureDefinition = null;
+	protected StoredProcedureDefinition storedProcedureDefinition;
 
 	/**
 	 * The cached value of the '{@link #getTriggerDefinition() <em>Trigger Definition</em>}' containment reference.
@@ -145,7 +148,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected TriggerDefinition triggerDefinition = null;
+	protected TriggerDefinition triggerDefinition;
 
 	/**
 	 * The cached value of the '{@link #getColumnDefinition() <em>Column Definition</em>}' containment reference.
@@ -155,7 +158,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected ColumnDefinition columnDefinition = null;
+	protected ColumnDefinition columnDefinition;
 
 	/**
 	 * The cached value of the '{@link #getConstraintDefinition() <em>Constraint Definition</em>}' containment reference.
@@ -165,7 +168,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected ConstraintDefinition constraintDefinition = null;
+	protected ConstraintDefinition constraintDefinition;
 
 	/**
 	 * The cached value of the '{@link #getExtendedDefinitions() <em>Extended Definitions</em>}' containment reference list.
@@ -175,7 +178,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected EList extendedDefinitions = null;
+	protected EList extendedDefinitions;
 
 	/**
 	 * The cached value of the '{@link #getIndexDefinition() <em>Index Definition</em>}' containment reference.
@@ -185,7 +188,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected IndexDefinition indexDefinition = null;
+	protected IndexDefinition indexDefinition;
 
 	/**
 	 * The cached value of the '{@link #getTableDefinition() <em>Table Definition</em>}' containment reference.
@@ -195,7 +198,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected TableDefinition tableDefinition = null;
+	protected TableDefinition tableDefinition;
 
 	/**
 	 * The cached value of the '{@link #getSequenceDefinition() <em>Sequence Definition</em>}' containment reference.
@@ -205,7 +208,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected SequenceDefinition sequenceDefinition = null;
+	protected SequenceDefinition sequenceDefinition;
 
 	/**
 	 * The cached value of the '{@link #getUdtDefinition() <em>Udt Definition</em>}' containment reference.
@@ -215,7 +218,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected UserDefinedTypeDefinition udtDefinition = null;
+	protected UserDefinedTypeDefinition udtDefinition;
 
 	/**
 	 * The cached value of the '{@link #getQueryDefinition() <em>Query Definition</em>}' containment reference.
@@ -225,7 +228,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected QueryDefinition queryDefinition = null;
+	protected QueryDefinition queryDefinition;
 
 	/**
 	 * The cached value of the '{@link #getSQLSyntaxDefinition() <em>SQL Syntax Definition</em>}' containment reference.
@@ -235,7 +238,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected SQLSyntaxDefinition sqlSyntaxDefinition = null;
+	protected SQLSyntaxDefinition sqlSyntaxDefinition;
 
 	/**
 	 * The cached value of the '{@link #getNicknameDefinition() <em>Nickname Definition</em>}' containment reference.
@@ -245,7 +248,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected NicknameDefinition nicknameDefinition = null;
+	protected NicknameDefinition nicknameDefinition;
 
 	/**
 	 * The cached value of the '{@link #getSchemaDefinition() <em>Schema Definition</em>}' containment reference.
@@ -255,7 +258,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected SchemaDefinition schemaDefinition = null;
+	protected SchemaDefinition schemaDefinition;
 
 	/**
 	 * The cached value of the '{@link #getViewDefinition() <em>View Definition</em>}' containment reference.
@@ -265,7 +268,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected ViewDefinition viewDefinition = null;
+	protected ViewDefinition viewDefinition;
 
 	/**
 	 * The cached value of the '{@link #getDebuggerDefinition() <em>Debugger Definition</em>}' containment reference.
@@ -275,7 +278,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected DebuggerDefinition debuggerDefinition = null;
+	protected DebuggerDefinition debuggerDefinition;
 
 	/**
 	 * The cached value of the '{@link #getPrivilegedElementDefinitions() <em>Privileged Element Definitions</em>}' containment reference list.
@@ -285,7 +288,17 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected EList privilegedElementDefinitions = null;
+	protected EList privilegedElementDefinitions;
+
+	/**
+	 * The cached value of the '{@link #getConstructedDataTypeDefinition() <em>Constructed Data Type Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstructedDataTypeDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected ConstructedDataTypeDefinition constructedDataTypeDefinition;
 
 	/**
 	 * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
@@ -926,6 +939,26 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected boolean roleAuthorizationSupported = ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isConstructedDataTypeSupported() <em>Constructed Data Type Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConstructedDataTypeSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isConstructedDataTypeSupported() <em>Constructed Data Type Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isConstructedDataTypeSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean constructedDataTypeSupported = CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1622,6 +1655,27 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isConstructedDataTypeSupported() {
+		return constructedDataTypeSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstructedDataTypeSupported(boolean newConstructedDataTypeSupported) {
+		boolean oldConstructedDataTypeSupported = constructedDataTypeSupported;
+		constructedDataTypeSupported = newConstructedDataTypeSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED, oldConstructedDataTypeSupported, constructedDataTypeSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -1660,6 +1714,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return basicSetDebuggerDefinition(null, msgs);
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
 				return ((InternalEList)getPrivilegedElementDefinitions()).basicRemove(otherEnd, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION:
+				return basicSetConstructedDataTypeDefinition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1707,6 +1763,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return getDebuggerDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
 				return getPrivilegedElementDefinitions();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION:
+				return getConstructedDataTypeDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return getVendor();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -1771,6 +1829,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return isUserSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
 				return isRoleAuthorizationSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
+				return isConstructedDataTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1838,6 +1898,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
 				getPrivilegedElementDefinitions().clear();
 				getPrivilegedElementDefinitions().addAll((Collection)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION:
+				setConstructedDataTypeDefinition((ConstructedDataTypeDefinition)newValue);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor((String)newValue);
@@ -1935,6 +1998,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
 				setRoleAuthorizationSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
+				setConstructedDataTypeSupported(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1999,6 +2065,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
 				getPrivilegedElementDefinitions().clear();
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION:
+				setConstructedDataTypeDefinition((ConstructedDataTypeDefinition)null);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor(VENDOR_EDEFAULT);
@@ -2096,6 +2165,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
 				setRoleAuthorizationSupported(ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
+				setConstructedDataTypeSupported(CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2143,6 +2215,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return debuggerDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
 				return privilegedElementDefinitions != null && !privilegedElementDefinitions.isEmpty();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION:
+				return constructedDataTypeDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -2207,6 +2281,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return userSupported != USER_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
 				return roleAuthorizationSupported != ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
+				return constructedDataTypeSupported != CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2897,6 +2973,49 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ConstructedDataTypeDefinition getConstructedDataTypeDefinition() {
+		return constructedDataTypeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetConstructedDataTypeDefinition(ConstructedDataTypeDefinition newConstructedDataTypeDefinition, NotificationChain msgs) {
+		ConstructedDataTypeDefinition oldConstructedDataTypeDefinition = constructedDataTypeDefinition;
+		constructedDataTypeDefinition = newConstructedDataTypeDefinition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, oldConstructedDataTypeDefinition, newConstructedDataTypeDefinition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstructedDataTypeDefinition(ConstructedDataTypeDefinition newConstructedDataTypeDefinition) {
+		if (newConstructedDataTypeDefinition != constructedDataTypeDefinition) {
+			NotificationChain msgs = null;
+			if (constructedDataTypeDefinition != null)
+				msgs = ((InternalEObject)constructedDataTypeDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, null, msgs);
+			if (newConstructedDataTypeDefinition != null)
+				msgs = ((InternalEObject)newConstructedDataTypeDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, null, msgs);
+			msgs = basicSetConstructedDataTypeDefinition(newConstructedDataTypeDefinition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_DEFINITION, newConstructedDataTypeDefinition, newConstructedDataTypeDefinition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -2965,6 +3084,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		result.append(userSupported);
 		result.append(", roleAuthorizationSupported: "); //$NON-NLS-1$
 		result.append(roleAuthorizationSupported);
+		result.append(", constructedDataTypeSupported: "); //$NON-NLS-1$
+		result.append(constructedDataTypeSupported);
 		result.append(')');
 		return result.toString();
 	}

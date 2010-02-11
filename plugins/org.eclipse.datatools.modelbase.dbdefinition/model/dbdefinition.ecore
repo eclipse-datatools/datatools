@@ -41,6 +41,8 @@
         eType="#//DebuggerDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="privilegedElementDefinitions"
         upperBound="-1" eType="#//PrivilegedElementDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constructedDataTypeDefinition"
+        lowerBound="1" eType="#//ConstructedDataTypeDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintsSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -85,6 +87,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleAuthorizationSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructedDataTypeSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredefinedDataTypeDefinition">
@@ -462,5 +466,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionElementDefinitions"
         upperBound="-1" eType="#//PrivilegedElementDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructedDataTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrayDatatypeSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multisetDatatypeSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowDatatypeSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="referenceDatatypeSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cursorDatatypeSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

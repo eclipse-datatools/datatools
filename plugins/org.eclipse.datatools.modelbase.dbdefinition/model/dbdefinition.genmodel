@@ -100,6 +100,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/viewDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/debuggerDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/privilegedElementDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/constructedDataTypeDefinition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/vendor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constraintsSupported"/>
@@ -132,6 +133,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/groupSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/userSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleAuthorizationSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constructedDataTypeSupported"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//PredefinedDataTypeDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierDefinition"/>
@@ -338,6 +340,13 @@
     <genClasses ecoreClass="dbdefinition.ecore#//PrivilegeDefinition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PrivilegeDefinition/actionElementDefinitions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PrivilegeDefinition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ConstructedDataTypeDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/arrayDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/multisetDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/rowDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/referenceDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/cursorDatatypeSupported"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

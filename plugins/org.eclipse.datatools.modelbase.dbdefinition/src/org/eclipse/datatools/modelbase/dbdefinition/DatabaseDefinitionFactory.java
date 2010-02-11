@@ -219,6 +219,15 @@ public interface DatabaseDefinitionFactory extends EFactory {
 	PrivilegeDefinition createPrivilegeDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Constructed Data Type Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constructed Data Type Definition</em>'.
+	 * @generated
+	 */
+	ConstructedDataTypeDefinition createConstructedDataTypeDefinition();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

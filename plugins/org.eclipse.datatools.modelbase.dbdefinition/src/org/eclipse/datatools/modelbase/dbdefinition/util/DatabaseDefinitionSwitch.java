@@ -218,18 +218,24 @@ public class DatabaseDefinitionSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DatabaseDefinitionPackage.CONSTRUCTED_DATA_TYPE_DEFINITION: {
+				ConstructedDataTypeDefinition constructedDataTypeDefinition = (ConstructedDataTypeDefinition)theEObject;
+				Object result = caseConstructedDataTypeDefinition(constructedDataTypeDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Database Vendor Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Database Vendor Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Database Vendor Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Database Vendor Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -238,13 +244,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Predefined Data Type Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Predefined Data Type Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Predefined Data Type Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Predefined Data Type Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -253,13 +259,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Table Space Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table Space Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Table Space Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table Space Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -268,13 +274,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Stored Procedure Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Stored Procedure Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Stored Procedure Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Stored Procedure Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -283,13 +289,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Trigger Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Trigger Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Trigger Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Trigger Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -298,13 +304,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Column Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Column Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Column Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Column Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -313,13 +319,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Constraint Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Constraint Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -328,13 +334,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Index Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Index Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Index Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Index Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -343,13 +349,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Extended Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Extended Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Extended Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Extended Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -358,13 +364,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Table Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Table Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -373,13 +379,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sequence Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sequence Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sequence Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sequence Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -388,13 +394,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>User Defined Type Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>User Defined Type Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>User Defined Type Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>User Defined Type Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -403,13 +409,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Query Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Query Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Query Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Query Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -418,13 +424,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Syntax Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Syntax Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Syntax Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Syntax Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -433,13 +439,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Nickname Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Nickname Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Nickname Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Nickname Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -448,13 +454,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Schema Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Schema Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Schema Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Schema Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -463,13 +469,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>View Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>View Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>View Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>View Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -478,13 +484,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Field Qualifier Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Field Qualifier Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Field Qualifier Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Field Qualifier Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -493,13 +499,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Debugger Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Debugger Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Debugger Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Debugger Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -508,13 +514,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Privileged Element Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Privileged Element Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Privileged Element Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Privileged Element Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -523,13 +529,13 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Privilege Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Privilege Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Privilege Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Privilege Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -538,13 +544,28 @@ public class DatabaseDefinitionSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constructed Data Type Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constructed Data Type Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseConstructedDataTypeDefinition(ConstructedDataTypeDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

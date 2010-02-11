@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPrivilegedElementDefinitions <em>Privileged Element Definitions</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getConstructedDataTypeDefinition <em>Constructed Data Type Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -71,6 +72,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isGroupSupported <em>Group Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported <em>User Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -920,6 +922,32 @@ public interface DatabaseVendorDefinition extends EObject {
 	void setRoleAuthorizationSupported(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Constructed Data Type Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constructed Data Type Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constructed Data Type Supported</em>' attribute.
+	 * @see #setConstructedDataTypeSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_ConstructedDataTypeSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isConstructedDataTypeSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Constructed Data Type Supported</em>' attribute.
+	 * @see #isConstructedDataTypeSupported()
+	 * @generated
+	 */
+	void setConstructedDataTypeSupported(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition}.
 	 * <!-- begin-user-doc -->
@@ -1356,5 +1384,31 @@ public interface DatabaseVendorDefinition extends EObject {
 	 * @generated
 	 */
 	EList getPrivilegedElementDefinitions();
+
+	/**
+	 * Returns the value of the '<em><b>Constructed Data Type Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constructed Data Type Definition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constructed Data Type Definition</em>' containment reference.
+	 * @see #setConstructedDataTypeDefinition(ConstructedDataTypeDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_ConstructedDataTypeDefinition()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ConstructedDataTypeDefinition getConstructedDataTypeDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getConstructedDataTypeDefinition <em>Constructed Data Type Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Constructed Data Type Definition</em>' containment reference.
+	 * @see #getConstructedDataTypeDefinition()
+	 * @generated
+	 */
+	void setConstructedDataTypeDefinition(ConstructedDataTypeDefinition value);
 
 } // DatabaseVendorDefinition
