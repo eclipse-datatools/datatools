@@ -130,6 +130,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int CONSTRAINT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,6 +246,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERTION__COMMENTS = CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSERTION__EXTENSIONS = CONSTRAINT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -375,6 +393,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int TABLE_CONSTRAINT__COMMENTS = CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONSTRAINT__EXTENSIONS = CONSTRAINT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -491,6 +518,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CONSTRAINT__EXTENSIONS = TABLE_CONSTRAINT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -620,6 +656,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int CHECK_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_CONSTRAINT__EXTENSIONS = TABLE_CONSTRAINT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,6 +790,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FOREIGN_KEY__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__EXTENSIONS = REFERENCE_CONSTRAINT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -937,6 +991,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int UNIQUE_CONSTRAINT__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIQUE_CONSTRAINT__EXTENSIONS = REFERENCE_CONSTRAINT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1073,6 +1136,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int PRIMARY_KEY__COMMENTS = UNIQUE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY__EXTENSIONS = UNIQUE_CONSTRAINT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1207,6 +1279,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDEX__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1370,6 +1451,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDEX_MEMBER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_MEMBER__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.

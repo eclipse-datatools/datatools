@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.ENamedElement;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getComments <em>Comments</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}</li>
  * </ul>
  * </p>
@@ -127,6 +128,24 @@ public interface SQLObject extends ENamedElement {
 	 * @generated
 	 */
 	EList getComments();
+
+	/**
+	 * Returns the value of the '<em><b>Extensions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension#getSQLObject <em>SQL Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Extensions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Extensions</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject_Extensions()
+	 * @see org.eclipse.datatools.modelbase.sql.schema.ObjectExtension#getSQLObject
+	 * @model type="org.eclipse.datatools.modelbase.sql.schema.ObjectExtension" opposite="SQLObject" containment="true"
+	 * @generated
+	 */
+	EList getExtensions();
 
 	/**
 	 * Returns the value of the '<em><b>Privileges</b></em>' reference list.

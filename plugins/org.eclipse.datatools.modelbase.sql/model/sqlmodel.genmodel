@@ -68,6 +68,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/label"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/comments"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/extensions"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/privileges"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/addEAnnotation">
@@ -126,6 +127,9 @@
             ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/Database"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/schemas"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//schema/ObjectExtension">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/ObjectExtension/SQLObject"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLConstraints" basePackage="org.eclipse.datatools.modelbase.sql"

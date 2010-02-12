@@ -141,13 +141,22 @@ public interface SQLSchemaPackage extends EPackage {
 	int SQL_OBJECT__COMMENTS = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_OBJECT__EXTENSIONS = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQL_OBJECT__PRIVILEGES = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 4;
+	int SQL_OBJECT__PRIVILEGES = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>SQL Object</em>' class.
@@ -156,7 +165,7 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 5;
+	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -211,6 +220,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTITY_SPECIFIER__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_SPECIFIER__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -349,6 +367,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int TYPED_ELEMENT__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -449,6 +476,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int DEPENDENCY__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -547,6 +583,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCHEMA__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -730,6 +775,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int SEQUENCE__COMMENTS = TYPED_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__EXTENSIONS = TYPED_ELEMENT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -846,6 +900,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATABASE__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -982,6 +1045,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1148,6 +1220,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int CATALOG__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__EXTENSIONS = SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1184,6 +1265,34 @@ public interface SQLSchemaPackage extends EPackage {
 	int CATALOG_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension <em>Object Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.schema.ObjectExtension
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getObjectExtension()
+	 * @generated
+	 */
+	int OBJECT_EXTENSION = 10;
+
+	/**
+	 * The feature id for the '<em><b>SQL Object</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_EXTENSION__SQL_OBJECT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Object Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_EXTENSION_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1191,7 +1300,7 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getGenerateType()
 	 * @generated
 	 */
-	int GENERATE_TYPE = 10;
+	int GENERATE_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType <em>Referential Action Type</em>}' enum.
@@ -1201,7 +1310,7 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getReferentialActionType()
 	 * @generated
 	 */
-	int REFERENTIAL_ACTION_TYPE = 11;
+	int REFERENTIAL_ACTION_TYPE = 12;
 
 	/**
 	 * The meta object id for the '<em>Date</em>' data type.
@@ -1211,7 +1320,7 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDate()
 	 * @generated
 	 */
-	int DATE = 12;
+	int DATE = 13;
 
 	/**
 	 * The meta object id for the '<em>List</em>' data type.
@@ -1221,7 +1330,7 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getList()
 	 * @generated
 	 */
-	int LIST = 13;
+	int LIST = 14;
 
 
 	/**
@@ -1550,6 +1659,17 @@ public interface SQLSchemaPackage extends EPackage {
 	EReference getSQLObject_Comments();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getExtensions <em>Extensions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Extensions</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLObject#getExtensions()
+	 * @see #getSQLObject()
+	 * @generated
+	 */
+	EReference getSQLObject_Extensions();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1796,6 +1916,27 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCatalog_Schemas();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension <em>Object Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Object Extension</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.ObjectExtension
+	 * @generated
+	 */
+	EClass getObjectExtension();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension#getSQLObject <em>SQL Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>SQL Object</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.ObjectExtension#getSQLObject()
+	 * @see #getObjectExtension()
+	 * @generated
+	 */
+	EReference getObjectExtension_SQLObject();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}'.
@@ -2112,6 +2253,14 @@ public interface SQLSchemaPackage extends EPackage {
 		EReference SQL_OBJECT__COMMENTS = eINSTANCE.getSQLObject_Comments();
 
 		/**
+		 * The meta object literal for the '<em><b>Extensions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SQL_OBJECT__EXTENSIONS = eINSTANCE.getSQLObject_Extensions();
+
+		/**
 		 * The meta object literal for the '<em><b>Privileges</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2304,6 +2453,24 @@ public interface SQLSchemaPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CATALOG__SCHEMAS = eINSTANCE.getCatalog_Schemas();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.ObjectExtension <em>Object Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.ObjectExtension
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getObjectExtension()
+		 * @generated
+		 */
+		EClass OBJECT_EXTENSION = eINSTANCE.getObjectExtension();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL Object</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECT_EXTENSION__SQL_OBJECT = eINSTANCE.getObjectExtension_SQLObject();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}' enum.

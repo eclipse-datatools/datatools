@@ -130,6 +130,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int DATA_TYPE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,6 +219,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_DEFINED_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPE__EXTENSIONS = DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -312,6 +330,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int SQL_DATA_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_DATA_TYPE__EXTENSIONS = DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -392,6 +419,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDEFINED_DATA_TYPE__COMMENTS = SQL_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE__EXTENSIONS = SQL_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -485,6 +521,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int CONSTRUCTED_DATA_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTED_DATA_TYPE__EXTENSIONS = DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,6 +610,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_DATA_TYPE__EXTENSIONS = CONSTRUCTED_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -656,6 +710,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERICAL_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -756,6 +819,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHARACTER_STRING_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHARACTER_STRING_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -894,6 +966,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int ROW_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROW_DATA_TYPE__EXTENSIONS = CONSTRUCTED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -983,6 +1064,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ARRAY_DATA_TYPE__COMMENTS = COLLECTION_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_DATA_TYPE__EXTENSIONS = COLLECTION_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1085,6 +1175,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int MULTISET_DATA_TYPE__COMMENTS = COLLECTION_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTISET_DATA_TYPE__EXTENSIONS = COLLECTION_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1176,6 +1275,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int BOOLEAN_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1265,6 +1373,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERVAL_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1403,6 +1520,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int BINARY_STRING_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_STRING_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1501,6 +1627,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHARACTER_SET__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHARACTER_SET__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1621,6 +1756,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int TIME_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1730,6 +1874,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int DISTINCT_USER_DEFINED_TYPE__COMMENTS = USER_DEFINED_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISTINCT_USER_DEFINED_TYPE__EXTENSIONS = USER_DEFINED_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1837,6 +1990,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURED_USER_DEFINED_TYPE__COMMENTS = USER_DEFINED_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_USER_DEFINED_TYPE__EXTENSIONS = USER_DEFINED_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -1993,6 +2155,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int ATTRIBUTE_DEFINITION__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DEFINITION__EXTENSIONS = SQLSchemaPackage.TYPED_ELEMENT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2120,6 +2291,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int EXACT_NUMERIC_DATA_TYPE__COMMENTS = NUMERICAL_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXACT_NUMERIC_DATA_TYPE__EXTENSIONS = NUMERICAL_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2229,6 +2409,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int FIXED_PRECISION_DATA_TYPE__COMMENTS = EXACT_NUMERIC_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_PRECISION_DATA_TYPE__EXTENSIONS = EXACT_NUMERIC_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2336,6 +2525,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN__COMMENTS = DISTINCT_USER_DEFINED_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN__EXTENSIONS = DISTINCT_USER_DEFINED_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -2465,6 +2663,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int FIELD__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD__EXTENSIONS = SQLSchemaPackage.TYPED_ELEMENT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2583,6 +2790,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int REFERENCE_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_TYPE__EXTENSIONS = CONSTRUCTED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2681,6 +2897,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_LINK_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_LINK_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -2837,6 +3062,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int USER_DEFINED_TYPE_ORDERING__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPE_ORDERING__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2946,6 +3180,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int DATE_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3035,6 +3278,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int APPROXIMATE_NUMERIC_DATA_TYPE__COMMENTS = NUMERICAL_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPROXIMATE_NUMERIC_DATA_TYPE__EXTENSIONS = NUMERICAL_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -3135,6 +3387,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTEGER_DATA_TYPE__COMMENTS = EXACT_NUMERIC_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_DATA_TYPE__EXTENSIONS = EXACT_NUMERIC_DATA_TYPE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -3246,6 +3507,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	int XML_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_DATA_TYPE__EXTENSIONS = PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3335,6 +3605,15 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_TYPE__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE__EXTENSIONS = SQLSchemaPackage.TYPED_ELEMENT__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.

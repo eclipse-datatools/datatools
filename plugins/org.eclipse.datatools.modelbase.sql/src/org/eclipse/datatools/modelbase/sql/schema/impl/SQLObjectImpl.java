@@ -23,6 +23,7 @@ import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage
 
 import org.eclipse.datatools.modelbase.sql.schema.Comment;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
+import org.eclipse.datatools.modelbase.sql.schema.ObjectExtension;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -67,7 +69,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * @generated
 	 * @ordered
 	 */
-	protected EList dependencies = null;
+	protected EList dependencies;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -117,7 +119,17 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * @generated
 	 * @ordered
 	 */
-	protected EList comments = null;
+	protected EList comments;
+
+	/**
+	 * The cached value of the '{@link #getExtensions() <em>Extensions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExtensions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList extensions;
 
 	/**
 	 * The cached value of the '{@link #getPrivileges() <em>Privileges</em>}' reference list.
@@ -127,7 +139,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * @generated
 	 * @ordered
 	 */
-	protected EList privileges = null;
+	protected EList privileges;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -211,6 +223,18 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			comments = new EObjectWithInverseResolvingEList(Comment.class, this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLSchemaPackage.COMMENT__SQL_OBJECT);
 		}
 		return comments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getExtensions() {
+		if (extensions == null) {
+			extensions = new EObjectContainmentWithInverseEList(ObjectExtension.class, this, SQLSchemaPackage.SQL_OBJECT__EXTENSIONS, SQLSchemaPackage.OBJECT_EXTENSION__SQL_OBJECT);
+		}
+		return extensions;
 	}
 
 	/**
@@ -334,6 +358,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return ((InternalEList)getComments()).basicAdd(otherEnd, msgs);
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				return ((InternalEList)getExtensions()).basicAdd(otherEnd, msgs);
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				return ((InternalEList)getPrivileges()).basicAdd(otherEnd, msgs);
 		}
@@ -351,6 +377,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return ((InternalEList)getComments()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				return ((InternalEList)getExtensions()).basicRemove(otherEnd, msgs);
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				return ((InternalEList)getPrivileges()).basicRemove(otherEnd, msgs);
 		}
@@ -372,6 +400,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return getLabel();
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return getComments();
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				return getExtensions();
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				return getPrivileges();
 		}
@@ -398,6 +428,10 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				getComments().clear();
 				getComments().addAll((Collection)newValue);
+				return;
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				getExtensions().clear();
+				getExtensions().addAll((Collection)newValue);
 				return;
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				getPrivileges().clear();
@@ -426,6 +460,9 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				getComments().clear();
 				return;
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				getExtensions().clear();
+				return;
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				getPrivileges().clear();
 				return;
@@ -448,6 +485,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return comments != null && !comments.isEmpty();
+			case SQLSchemaPackage.SQL_OBJECT__EXTENSIONS:
+				return extensions != null && !extensions.isEmpty();
 			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
 				return privileges != null && !privileges.isEmpty();
 		}

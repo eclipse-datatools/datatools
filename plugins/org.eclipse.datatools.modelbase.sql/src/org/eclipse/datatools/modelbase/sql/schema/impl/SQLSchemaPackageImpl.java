@@ -30,6 +30,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Dependency;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.GenerateType;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
+import org.eclipse.datatools.modelbase.sql.schema.ObjectExtension;
 import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaFactory;
@@ -128,6 +129,13 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * @generated
 	 */
 	private EClass catalogEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass objectExtensionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -526,8 +534,17 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSQLObject_Privileges() {
+	public EReference getSQLObject_Extensions() {
 		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSQLObject_Privileges() {
+		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -733,6 +750,24 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getObjectExtension() {
+		return objectExtensionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getObjectExtension_SQLObject() {
+		return (EReference)objectExtensionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getGenerateType() {
 		return generateTypeEEnum;
 	}
@@ -826,6 +861,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__DESCRIPTION);
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__LABEL);
 		createEReference(sqlObjectEClass, SQL_OBJECT__COMMENTS);
+		createEReference(sqlObjectEClass, SQL_OBJECT__EXTENSIONS);
 		createEReference(sqlObjectEClass, SQL_OBJECT__PRIVILEGES);
 
 		sequenceEClass = createEClass(SEQUENCE);
@@ -854,6 +890,9 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		catalogEClass = createEClass(CATALOG);
 		createEReference(catalogEClass, CATALOG__DATABASE);
 		createEReference(catalogEClass, CATALOG__SCHEMAS);
+
+		objectExtensionEClass = createEClass(OBJECT_EXTENSION);
+		createEReference(objectExtensionEClass, OBJECT_EXTENSION__SQL_OBJECT);
 
 		// Create enums
 		generateTypeEEnum = createEEnum(GENERATE_TYPE);
@@ -946,6 +985,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEAttribute(getSQLObject_Description(), ecorePackage.getEString(), "description", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getSQLObject_Label(), ecorePackage.getEString(), "label", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSQLObject_Comments(), this.getComment(), this.getComment_SQLObject(), "comments", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSQLObject_Extensions(), this.getObjectExtension(), this.getObjectExtension_SQLObject(), "extensions", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSQLObject_Privileges(), theSQLAccessControlPackage.getPrivilege(), theSQLAccessControlPackage.getPrivilege_Object(), "privileges", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "addEAnnotation", 0, 1); //$NON-NLS-1$
@@ -1000,6 +1040,9 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEClass(catalogEClass, Catalog.class, "Catalog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCatalog_Database(), this.getDatabase(), this.getDatabase_Catalogs(), "Database", null, 1, 1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCatalog_Schemas(), this.getSchema(), this.getSchema_Catalog(), "schemas", null, 0, -1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(objectExtensionEClass, ObjectExtension.class, "ObjectExtension", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getObjectExtension_SQLObject(), this.getSQLObject(), this.getSQLObject_Extensions(), "SQLObject", null, 1, 1, ObjectExtension.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(generateTypeEEnum, GenerateType.class, "GenerateType"); //$NON-NLS-1$
