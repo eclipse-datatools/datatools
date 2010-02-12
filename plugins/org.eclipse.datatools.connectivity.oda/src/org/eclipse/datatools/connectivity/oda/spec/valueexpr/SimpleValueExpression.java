@@ -89,7 +89,7 @@ public class SimpleValueExpression extends AtomicValueExpression
     public String toString()
     {
         StringBuffer buffer = new StringBuffer( getClass().getSimpleName() + SPACE );
-        buffer.append( "value: " + getValue() == null ? SPACE : getValue().getClass().getSimpleName() ); //$NON-NLS-1$
+        buffer.append( "value: " + (getValue() == null ? SPACE : getValue().getClass().getSimpleName()) ); //$NON-NLS-1$
         buffer.append( SPACE + getName() );
         return buffer.toString();
     }
