@@ -237,7 +237,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Parent Update DRI Rule Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_ParentUpdateDRIRuleType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType"
 	 * @generated
 	 */
 	EList getParentUpdateDRIRuleType();
@@ -255,7 +255,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Parent Delete DRI Rule Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_ParentDeleteDRIRuleType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType"
 	 * @generated
 	 */
 	EList getParentDeleteDRIRuleType();
@@ -273,7 +273,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Check Option</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.CheckOption
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_CheckOption()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.CheckOption"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.CheckOption"
 	 * @generated
 	 */
 	EList getCheckOption();

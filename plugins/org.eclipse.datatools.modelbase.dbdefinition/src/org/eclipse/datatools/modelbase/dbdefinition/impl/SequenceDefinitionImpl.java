@@ -54,7 +54,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * @generated
 	 * @ordered
 	 */
-	protected EList predefinedDataTypeDefinitions = null;
+	protected EList predefinedDataTypeDefinitions;
 
 	/**
 	 * The cached value of the '{@link #getDefaultDataTypeDefinition() <em>Default Data Type Definition</em>}' reference.
@@ -64,7 +64,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * @generated
 	 * @ordered
 	 */
-	protected PredefinedDataTypeDefinition defaultDataTypeDefinition = null;
+	protected PredefinedDataTypeDefinition defaultDataTypeDefinition;
 
 	/**
 	 * The default value of the '{@link #isTypeEnumerationSupported() <em>Type Enumeration Supported</em>}' attribute.

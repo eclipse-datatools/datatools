@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSyntaxDefinition.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
+ * $Id: SQLSyntaxDefinition.java,v 1.3 2006/03/09 23:48:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -40,7 +40,7 @@ public interface SQLSyntaxDefinition extends EObject{
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Keywords</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSQLSyntaxDefinition_Keywords()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getKeywords();
@@ -56,7 +56,7 @@ public interface SQLSyntaxDefinition extends EObject{
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operators</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSQLSyntaxDefinition_Operators()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getOperators();

@@ -15,15 +15,20 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
 import org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle;
+import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ProcedureType;
 import org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +37,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#isNullInputActionSupported <em>Null Input Action Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#isPackageGenerationSupported <em>Package Generation Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#isDetermininsticSupported <em>Determininstic Supported</em>}</li>
@@ -53,6 +59,16 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * @generated
  */
 public class StoredProcedureDefinitionImpl extends EObjectImpl implements StoredProcedureDefinition {
+	/**
+	 * The cached value of the '{@link #getPredefinedDataTypeDefinitions() <em>Predefined Data Type Definitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredefinedDataTypeDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList predefinedDataTypeDefinitions;
+
 	/**
 	 * The default value of the '{@link #isNullInputActionSupported() <em>Null Input Action Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -261,7 +277,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @generated
 	 * @ordered
 	 */
-	protected EList parameterStyle = null;
+	protected EList parameterStyle;
 
 	/**
 	 * The cached value of the '{@link #getLanguageType() <em>Language Type</em>}' attribute list.
@@ -271,7 +287,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @generated
 	 * @ordered
 	 */
-	protected EList languageType = null;
+	protected EList languageType;
 
 	/**
 	 * The cached value of the '{@link #getFunctionLanguageType() <em>Function Language Type</em>}' attribute list.
@@ -281,7 +297,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @generated
 	 * @ordered
 	 */
-	protected EList functionLanguageType = null;
+	protected EList functionLanguageType;
 
 	/**
 	 * The cached value of the '{@link #getProcedureType() <em>Procedure Type</em>}' attribute list.
@@ -291,7 +307,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @generated
 	 * @ordered
 	 */
-	protected EList procedureType = null;
+	protected EList procedureType;
 
 	/**
 	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
@@ -329,6 +345,18 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 */
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.Literals.STORED_PROCEDURE_DEFINITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getPredefinedDataTypeDefinitions() {
+		if (predefinedDataTypeDefinitions == null) {
+			predefinedDataTypeDefinitions = new EObjectContainmentEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS);
+		}
+		return predefinedDataTypeDefinitions;
 	}
 
 	/**
@@ -615,8 +643,23 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return ((InternalEList)getPredefinedDataTypeDefinitions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return getPredefinedDataTypeDefinitions();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				return isNullInputActionSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED:
@@ -658,6 +701,10 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				getPredefinedDataTypeDefinitions().clear();
+				getPredefinedDataTypeDefinitions().addAll((Collection)newValue);
+				return;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				setNullInputActionSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -718,6 +765,9 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				getPredefinedDataTypeDefinitions().clear();
+				return;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				setNullInputActionSupported(NULL_INPUT_ACTION_SUPPORTED_EDEFAULT);
 				return;
@@ -774,6 +824,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return predefinedDataTypeDefinitions != null && !predefinedDataTypeDefinitions.isEmpty();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				return nullInputActionSupported != NULL_INPUT_ACTION_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED:

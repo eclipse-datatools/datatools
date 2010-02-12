@@ -543,13 +543,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED = 51;
 
 	/**
+	 * The feature id for the '<em><b>UDF Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED = 52;
+
+	/**
 	 * The number of structural features of the '<em>Database Vendor Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 52;
+	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
@@ -985,13 +994,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC = 46;
 
 	/**
+	 * The feature id for the '<em><b>Language Type</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE = 47;
+
+	/**
 	 * The number of structural features of the '<em>Predefined Data Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 47;
+	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
@@ -1131,13 +1149,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int STORED_PROCEDURE_DEFINITION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS = 0;
+
+	/**
 	 * The feature id for the '<em><b>Null Input Action Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED = 0;
+	int STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED = 1;
 
 	/**
 	 * The feature id for the '<em><b>Package Generation Supported</b></em>' attribute.
@@ -1146,7 +1173,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED = 1;
+	int STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Determininstic Supported</b></em>' attribute.
@@ -1155,7 +1182,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__DETERMININSTIC_SUPPORTED = 2;
+	int STORED_PROCEDURE_DEFINITION__DETERMININSTIC_SUPPORTED = 3;
 
 	/**
 	 * The feature id for the '<em><b>Returned Null Supported</b></em>' attribute.
@@ -1164,7 +1191,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__RETURNED_NULL_SUPPORTED = 3;
+	int STORED_PROCEDURE_DEFINITION__RETURNED_NULL_SUPPORTED = 4;
 
 	/**
 	 * The feature id for the '<em><b>Returned Type Declaration Constraint Supported</b></em>' attribute.
@@ -1173,7 +1200,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__RETURNED_TYPE_DECLARATION_CONSTRAINT_SUPPORTED = 4;
+	int STORED_PROCEDURE_DEFINITION__RETURNED_TYPE_DECLARATION_CONSTRAINT_SUPPORTED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Init Value Supported</b></em>' attribute.
@@ -1182,7 +1209,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PARAMETER_INIT_VALUE_SUPPORTED = 5;
+	int STORED_PROCEDURE_DEFINITION__PARAMETER_INIT_VALUE_SUPPORTED = 6;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Style Supported</b></em>' attribute.
@@ -1191,7 +1218,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE_SUPPORTED = 6;
+	int STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE_SUPPORTED = 7;
 
 	/**
 	 * The feature id for the '<em><b>Return Type Supported</b></em>' attribute.
@@ -1200,7 +1227,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__RETURN_TYPE_SUPPORTED = 7;
+	int STORED_PROCEDURE_DEFINITION__RETURN_TYPE_SUPPORTED = 8;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Declaration Constraint Supported</b></em>' attribute.
@@ -1209,7 +1236,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED = 8;
+	int STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Action Body Length</b></em>' attribute.
@@ -1218,7 +1245,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH = 9;
+	int STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH = 10;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Style</b></em>' attribute list.
@@ -1227,7 +1254,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE = 10;
+	int STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Language Type</b></em>' attribute list.
@@ -1236,7 +1263,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE = 11;
+	int STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Function Language Type</b></em>' attribute list.
@@ -1245,7 +1272,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__FUNCTION_LANGUAGE_TYPE = 12;
+	int STORED_PROCEDURE_DEFINITION__FUNCTION_LANGUAGE_TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Procedure Type</b></em>' attribute list.
@@ -1254,7 +1281,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE = 13;
+	int STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE = 14;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
@@ -1263,7 +1290,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 14;
+	int STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 15;
 
 	/**
 	 * The number of structural features of the '<em>Stored Procedure Definition</em>' class.
@@ -1272,7 +1299,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION_FEATURE_COUNT = 15;
+	int STORED_PROCEDURE_DEFINITION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl <em>Trigger Definition</em>}' class.
@@ -2955,6 +2982,17 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getDatabaseVendorDefinition_ConstructedDataTypeSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUDFSupported <em>UDF Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>UDF Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUDFSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_UDFSupported();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3691,6 +3729,17 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getPredefinedDataTypeDefinition_LengthSemantic();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLanguageType <em>Language Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Language Type</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLanguageType()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LanguageType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition <em>Table Space Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3841,6 +3890,17 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStoredProcedureDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Predefined Data Type Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getPredefinedDataTypeDefinitions()
+	 * @see #getStoredProcedureDefinition()
+	 * @generated
+	 */
+	EReference getStoredProcedureDefinition_PredefinedDataTypeDefinitions();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#isNullInputActionSupported <em>Null Input Action Supported</em>}'.
@@ -5793,6 +5853,14 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		EAttribute DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_ConstructedDataTypeSupported();
 
 		/**
+		 * The meta object literal for the '<em><b>UDF Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_UDFSupported();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6179,6 +6247,14 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC = eINSTANCE.getPredefinedDataTypeDefinition_LengthSemantic();
 
 		/**
+		 * The meta object literal for the '<em><b>Language Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE = eINSTANCE.getPredefinedDataTypeDefinition_LanguageType();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6293,6 +6369,14 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STORED_PROCEDURE_DEFINITION = eINSTANCE.getStoredProcedureDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORED_PROCEDURE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS = eINSTANCE.getStoredProcedureDefinition_PredefinedDataTypeDefinitions();
 
 		/**
 		 * The meta object literal for the '<em><b>Null Input Action Supported</b></em>' attribute feature.

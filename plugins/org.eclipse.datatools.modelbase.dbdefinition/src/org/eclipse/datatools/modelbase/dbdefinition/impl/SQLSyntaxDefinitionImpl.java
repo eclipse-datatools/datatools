@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSyntaxDefinitionImpl.java,v 1.2 2006/03/09 23:48:17 dpchou Exp $
+ * $Id: SQLSyntaxDefinitionImpl.java,v 1.3 2006/10/11 20:34:54 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -47,7 +47,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * @generated
 	 * @ordered
 	 */
-	protected EList keywords = null;
+	protected EList keywords;
 
 	/**
 	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute list.
@@ -57,7 +57,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * @generated
 	 * @ordered
 	 */
-	protected EList operators = null;
+	protected EList operators;
 
 	/**
 	 * The default value of the '{@link #getTerminationCharacter() <em>Termination Character</em>}' attribute.

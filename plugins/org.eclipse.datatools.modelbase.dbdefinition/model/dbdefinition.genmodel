@@ -32,6 +32,7 @@
       <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/REXX"/>
       <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/RPG"/>
       <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/RPGLE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/PLSQL"/>
     </genEnums>
     <genEnums ecoreEnum="dbdefinition.ecore#//ParameterStyle">
       <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/DB2SQL"/>
@@ -134,6 +135,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/userSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleAuthorizationSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constructedDataTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/uDFSupported"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//PredefinedDataTypeDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierDefinition"/>
@@ -183,6 +185,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierLength"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemanticSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemantic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/languageType"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//TableSpaceDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/typeSupported"/>
@@ -199,6 +202,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/maximumIdentifierLength"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//StoredProcedureDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//StoredProcedureDefinition/predefinedDataTypeDefinitions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/nullInputActionSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/packageGenerationSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/determininsticSupported"/>

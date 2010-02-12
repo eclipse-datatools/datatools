@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterStyle.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
+ * $Id: ParameterStyle.java,v 1.3 2006/10/11 20:34:54 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -270,7 +270,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 			case JAVA: return JAVA_LITERAL;
 			case SQL: return SQL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

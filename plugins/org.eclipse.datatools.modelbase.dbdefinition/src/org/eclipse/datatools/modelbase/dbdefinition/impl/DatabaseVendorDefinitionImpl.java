@@ -104,6 +104,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isUserSupported <em>User Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isUDFSupported <em>UDF Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -788,7 +789,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean SQL_UDF_SUPPORTED_EDEFAULT = false;
+	protected static final boolean SQL_UDF_SUPPORTED_EDEFAULT = true;
 
 	/**
 	 * The cached value of the '{@link #isSqlUDFSupported() <em>Sql UDF Supported</em>}' attribute.
@@ -959,6 +960,26 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected boolean constructedDataTypeSupported = CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUDFSupported() <em>UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUDFSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UDF_SUPPORTED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isUDFSupported() <em>UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUDFSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean uDFSupported = UDF_SUPPORTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1676,6 +1697,27 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUDFSupported() {
+		return uDFSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUDFSupported(boolean newUDFSupported) {
+		boolean oldUDFSupported = uDFSupported;
+		uDFSupported = newUDFSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED, oldUDFSupported, uDFSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -1831,6 +1873,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return isRoleAuthorizationSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
 				return isConstructedDataTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED:
+				return isUDFSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2001,6 +2045,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
 				setConstructedDataTypeSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED:
+				setUDFSupported(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -2168,6 +2215,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
 				setConstructedDataTypeSupported(CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED:
+				setUDFSupported(UDF_SUPPORTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2283,6 +2333,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return roleAuthorizationSupported != ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRUCTED_DATA_TYPE_SUPPORTED:
 				return constructedDataTypeSupported != CONSTRUCTED_DATA_TYPE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDF_SUPPORTED:
+				return uDFSupported != UDF_SUPPORTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -3086,6 +3138,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		result.append(roleAuthorizationSupported);
 		result.append(", constructedDataTypeSupported: "); //$NON-NLS-1$
 		result.append(constructedDataTypeSupported);
+		result.append(", uDFSupported: "); //$NON-NLS-1$
+		result.append(uDFSupported);
 		result.append(')');
 		return result.toString();
 	}

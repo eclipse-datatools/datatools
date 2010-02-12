@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParentDeleteDRIRuleType.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
+ * $Id: ParentDeleteDRIRuleType.java,v 1.3 2006/10/11 20:34:55 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -216,7 +216,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 			case SET_NULL: return SET_NULL_LITERAL;
 			case SET_DEFAULT: return SET_DEFAULT_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

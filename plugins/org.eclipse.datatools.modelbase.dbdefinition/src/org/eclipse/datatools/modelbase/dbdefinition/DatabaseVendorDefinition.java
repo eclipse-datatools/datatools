@@ -73,6 +73,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported <em>User Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstructedDataTypeSupported <em>Constructed Data Type Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUDFSupported <em>UDF Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -713,6 +714,7 @@ public interface DatabaseVendorDefinition extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Sql UDF Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sql UDF Supported</em>' attribute isn't clear,
@@ -722,7 +724,7 @@ public interface DatabaseVendorDefinition extends EObject {
 	 * @return the value of the '<em>Sql UDF Supported</em>' attribute.
 	 * @see #setSqlUDFSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SqlUDFSupported()
-	 * @model
+	 * @model default="true"
 	 * @generated
 	 */
 	boolean isSqlUDFSupported();
@@ -946,6 +948,33 @@ public interface DatabaseVendorDefinition extends EObject {
 	 * @generated
 	 */
 	void setConstructedDataTypeSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>UDF Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>UDF Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>UDF Supported</em>' attribute.
+	 * @see #setUDFSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_UDFSupported()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isUDFSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUDFSupported <em>UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>UDF Supported</em>' attribute.
+	 * @see #isUDFSupported()
+	 * @generated
+	 */
+	void setUDFSupported(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.

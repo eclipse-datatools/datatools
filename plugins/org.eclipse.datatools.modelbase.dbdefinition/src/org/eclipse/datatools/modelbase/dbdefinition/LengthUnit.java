@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LengthUnit.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
+ * $Id: LengthUnit.java,v 1.3 2006/10/11 20:34:55 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -189,7 +189,7 @@ public final class LengthUnit extends AbstractEnumerator {
 			case BYTE: return BYTE_LITERAL;
 			case DOUBLE_BYTE: return DOUBLE_BYTE_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

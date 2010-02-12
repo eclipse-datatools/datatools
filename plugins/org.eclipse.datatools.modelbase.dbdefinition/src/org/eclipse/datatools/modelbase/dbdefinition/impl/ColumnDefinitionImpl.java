@@ -56,7 +56,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * @generated
 	 * @ordered
 	 */
-	protected EList identityColumnDataTypeDefinitions = null;
+	protected EList identityColumnDataTypeDefinitions;
 
 	/**
 	 * The default value of the '{@link #isIdentitySupported() <em>Identity Supported</em>}' attribute.

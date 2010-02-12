@@ -314,7 +314,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Table Space Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_TableSpaceType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType"
 	 * @generated
 	 */
 	EList getTableSpaceType();

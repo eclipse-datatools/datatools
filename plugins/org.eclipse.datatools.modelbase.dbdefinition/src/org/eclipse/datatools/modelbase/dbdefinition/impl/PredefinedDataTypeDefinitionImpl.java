@@ -14,6 +14,7 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
 import org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType;
 import org.eclipse.datatools.modelbase.dbdefinition.LengthUnit;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
@@ -87,6 +88,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLengthSemanticSupported <em>Length Semantic Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLengthSemantic <em>Length Semantic</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLanguageType <em>Language Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,7 +103,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList leadingFieldQualifierDefinition = null;
+	protected EList leadingFieldQualifierDefinition;
 
 	/**
 	 * The cached value of the '{@link #getTrailingFieldQualifierDefinition() <em>Trailing Field Qualifier Definition</em>}' containment reference list.
@@ -111,7 +113,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList trailingFieldQualifierDefinition = null;
+	protected EList trailingFieldQualifierDefinition;
 
 	/**
 	 * The cached value of the '{@link #getDefaultTrailingFieldQualifierDefinition() <em>Default Trailing Field Qualifier Definition</em>}' reference.
@@ -121,7 +123,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldQualifierDefinition defaultTrailingFieldQualifierDefinition = null;
+	protected FieldQualifierDefinition defaultTrailingFieldQualifierDefinition;
 
 	/**
 	 * The cached value of the '{@link #getDefaultLeadingFieldQualifierDefinition() <em>Default Leading Field Qualifier Definition</em>}' reference.
@@ -131,7 +133,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected FieldQualifierDefinition defaultLeadingFieldQualifierDefinition = null;
+	protected FieldQualifierDefinition defaultLeadingFieldQualifierDefinition;
 
 	/**
 	 * The default value of the '{@link #isLengthSupported() <em>Length Supported</em>}' attribute.
@@ -481,7 +483,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList defaultValueTypes = null;
+	protected EList defaultValueTypes;
 
 	/**
 	 * The default value of the '{@link #getPrimitiveType() <em>Primitive Type</em>}' attribute.
@@ -511,7 +513,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList name = null;
+	protected EList name;
 
 	/**
 	 * The default value of the '{@link #getJdbcEnumType() <em>Jdbc Enum Type</em>}' attribute.
@@ -541,7 +543,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList characterSet = null;
+	protected EList characterSet;
 
 	/**
 	 * The cached value of the '{@link #getEncodingScheme() <em>Encoding Scheme</em>}' attribute list.
@@ -551,7 +553,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList encodingScheme = null;
+	protected EList encodingScheme;
 
 	/**
 	 * The default value of the '{@link #getCharacterSetSuffix() <em>Character Set Suffix</em>}' attribute.
@@ -941,7 +943,17 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 * @ordered
 	 */
-	protected EList lengthSemantic = null;
+	protected EList lengthSemantic;
+
+	/**
+	 * The cached value of the '{@link #getLanguageType() <em>Language Type</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLanguageType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList languageType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1924,6 +1936,18 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getLanguageType() {
+		if (languageType == null) {
+			languageType = new EDataTypeUniqueEList(LanguageType.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE);
+		}
+		return languageType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -2037,6 +2061,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return isLengthSemanticSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
 				return getLengthSemantic();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE:
+				return getLanguageType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2196,6 +2222,10 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				getLengthSemantic().clear();
 				getLengthSemantic().addAll((Collection)newValue);
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE:
+				getLanguageType().clear();
+				getLanguageType().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -2348,6 +2378,9 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
 				getLengthSemantic().clear();
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE:
+				getLanguageType().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2453,6 +2486,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return lengthSemanticSupported != LENGTH_SEMANTIC_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
 				return lengthSemantic != null && !lengthSemantic.isEmpty();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LANGUAGE_TYPE:
+				return languageType != null && !languageType.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2552,6 +2587,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 		result.append(lengthSemanticSupported);
 		result.append(", lengthSemantic: "); //$NON-NLS-1$
 		result.append(lengthSemantic);
+		result.append(", languageType: "); //$NON-NLS-1$
+		result.append(languageType);
 		result.append(')');
 		return result.toString();
 	}

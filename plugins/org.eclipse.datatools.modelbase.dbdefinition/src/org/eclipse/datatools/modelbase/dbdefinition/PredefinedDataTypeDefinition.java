@@ -69,6 +69,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSemanticSupported <em>Length Semantic Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthSemantic <em>Length Semantic</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLanguageType <em>Language Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -616,7 +617,7 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Value Types</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultValueTypes()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getDefaultValueTypes();
@@ -661,7 +662,7 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_Name()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getName();
@@ -703,7 +704,7 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Character Set</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_CharacterSet()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getCharacterSet();
@@ -719,7 +720,7 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Encoding Scheme</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_EncodingScheme()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getEncodingScheme();
@@ -1236,9 +1237,27 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Length Semantic</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LengthSemantic()
-	 * @model type="java.lang.String"
+	 * @model
 	 * @generated
 	 */
 	EList getLengthSemantic();
+
+	/**
+	 * Returns the value of the '<em><b>Language Type</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType}.
+	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Language Type</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Language Type</em>' attribute list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.LanguageType
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LanguageType()
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.LanguageType"
+	 * @generated
+	 */
+	EList getLanguageType();
 
 } // PredefinedDataTypeDefinition

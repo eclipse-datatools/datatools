@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#isNullInputActionSupported <em>Null Input Action Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#isPackageGenerationSupported <em>Package Generation Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#isDetermininsticSupported <em>Determininstic Supported</em>}</li>
@@ -44,6 +45,22 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface StoredProcedureDefinition extends EObject{
+	/**
+	 * Returns the value of the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predefined Data Type Definitions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predefined Data Type Definitions</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_PredefinedDataTypeDefinitions()
+	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition" containment="true"
+	 * @generated
+	 */
+	EList getPredefinedDataTypeDefinitions();
+
 	/**
 	 * Returns the value of the '<em><b>Null Input Action Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -317,7 +334,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Parameter Style</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ParameterStyle()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle"
 	 * @generated
 	 */
 	EList getParameterStyle();
@@ -335,7 +352,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Language Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.LanguageType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_LanguageType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.LanguageType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.LanguageType"
 	 * @generated
 	 */
 	EList getLanguageType();
@@ -353,7 +370,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Function Language Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.LanguageType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_FunctionLanguageType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.LanguageType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.LanguageType"
 	 * @generated
 	 */
 	EList getFunctionLanguageType();
@@ -371,7 +388,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Procedure Type</em>' attribute list.
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.ProcedureType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ProcedureType()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.ProcedureType"
+	 * @model dataType="org.eclipse.datatools.modelbase.dbdefinition.ProcedureType"
 	 * @generated
 	 */
 	EList getProcedureType();

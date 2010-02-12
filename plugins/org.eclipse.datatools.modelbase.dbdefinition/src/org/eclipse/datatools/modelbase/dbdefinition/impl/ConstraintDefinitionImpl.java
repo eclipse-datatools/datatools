@@ -199,7 +199,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * @generated
 	 * @ordered
 	 */
-	protected EList parentUpdateDRIRuleType = null;
+	protected EList parentUpdateDRIRuleType;
 
 	/**
 	 * The cached value of the '{@link #getParentDeleteDRIRuleType() <em>Parent Delete DRI Rule Type</em>}' attribute list.
@@ -209,7 +209,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * @generated
 	 * @ordered
 	 */
-	protected EList parentDeleteDRIRuleType = null;
+	protected EList parentDeleteDRIRuleType;
 
 	/**
 	 * The cached value of the '{@link #getCheckOption() <em>Check Option</em>}' attribute list.
@@ -219,7 +219,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * @generated
 	 * @ordered
 	 */
-	protected EList checkOption = null;
+	protected EList checkOption;
 
 	/**
 	 * The default value of the '{@link #getMaximumPrimaryKeyIdentifierLength() <em>Maximum Primary Key Identifier Length</em>}' attribute.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FieldQualifierDefinitionImpl.java,v 1.1 2006/03/09 23:48:17 dpchou Exp $
+ * $Id: FieldQualifierDefinitionImpl.java,v 1.2 2006/10/11 20:34:54 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -54,7 +54,7 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 	 * @generated
 	 * @ordered
 	 */
-	protected EList validTrailingFieldQualifierDefinitions = null;
+	protected EList validTrailingFieldQualifierDefinitions;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.

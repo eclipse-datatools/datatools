@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LanguageType.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
+ * $Id: LanguageType.java,v 1.3 2006/10/11 20:34:55 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -175,6 +175,21 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @ordered
 	 */
 	public static final int RPGLE = 13;
+
+	/**
+	 * The '<em><b>PLSQL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PLSQL</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PLSQL_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PLSQL = 14;
 
 	/**
 	 * The '<em><b>SQL</b></em>' literal object.
@@ -373,6 +388,16 @@ public final class LanguageType extends AbstractEnumerator {
 	public static final LanguageType RPGLE_LITERAL = new LanguageType(RPGLE, "RPGLE", "RPGLE"); //$NON-NLS-1$
 
 	/**
+	 * The '<em><b>PLSQL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PLSQL
+	 * @generated
+	 * @ordered
+	 */
+	public static final LanguageType PLSQL_LITERAL = new LanguageType(PLSQL, "PLSQL", "PLSQL"); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * An array of all the '<em><b>Language Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -394,6 +419,7 @@ public final class LanguageType extends AbstractEnumerator {
 			REXX_LITERAL,
 			RPG_LITERAL,
 			RPGLE_LITERAL,
+			PLSQL_LITERAL,
 		};
 
 	/**
@@ -458,8 +484,9 @@ public final class LanguageType extends AbstractEnumerator {
 			case REXX: return REXX_LITERAL;
 			case RPG: return RPG_LITERAL;
 			case RPGLE: return RPGLE_LITERAL;
+			case PLSQL: return PLSQL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

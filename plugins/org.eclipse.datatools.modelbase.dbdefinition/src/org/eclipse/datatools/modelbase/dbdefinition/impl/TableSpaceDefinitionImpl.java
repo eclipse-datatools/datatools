@@ -256,7 +256,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * @generated
 	 * @ordered
 	 */
-	protected EList tableSpaceType = null;
+	protected EList tableSpaceType;
 
 	/**
 	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.

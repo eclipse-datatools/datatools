@@ -77,7 +77,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmlSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mQTIndexSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sqlUDFSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sqlUDFSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storedProcedureSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -90,6 +91,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constructedDataTypeSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uDFSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredefinedDataTypeDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="leadingFieldQualifierDefinition"
@@ -162,6 +165,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lengthSemantic" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="languageType" upperBound="-1"
+        eType="#//LanguageType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CheckOption">
     <eLiterals name="NONE"/>
@@ -183,6 +188,7 @@
     <eLiterals name="REXX" value="11"/>
     <eLiterals name="RPG" value="12"/>
     <eLiterals name="RPGLE" value="13"/>
+    <eLiterals name="PLSQL" value="14"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ParameterStyle">
     <eLiterals name="DB2SQL"/>
@@ -242,6 +248,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StoredProcedureDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predefinedDataTypeDefinitions"
+        upperBound="-1" eType="#//PredefinedDataTypeDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullInputActionSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageGenerationSupported"
