@@ -322,6 +322,7 @@
     <eClassifiers xsi:type="ecore:EEnum" name="IncrementType">
       <eLiterals name="ASC"/>
       <eLiterals name="DESC" value="1"/>
+      <eLiterals name="RANDOM" value="2"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="datatypes" nsURI="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"

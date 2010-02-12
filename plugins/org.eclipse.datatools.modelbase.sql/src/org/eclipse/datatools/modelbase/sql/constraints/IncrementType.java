@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IncrementType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: IncrementType.java,v 1.3 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints;
 
@@ -45,6 +45,21 @@ public final class IncrementType extends AbstractEnumerator {
 	public static final int DESC = 1;
 
 	/**
+	 * The '<em><b>RANDOM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>RANDOM</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RANDOM_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RANDOM = 2;
+
+	/**
 	 * The '<em><b>ASC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -73,6 +88,16 @@ public final class IncrementType extends AbstractEnumerator {
 	public static final IncrementType DESC_LITERAL = new IncrementType(DESC, "DESC", "DESC"); //$NON-NLS-1$
 
 	/**
+	 * The '<em><b>RANDOM</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RANDOM
+	 * @generated
+	 * @ordered
+	 */
+	public static final IncrementType RANDOM_LITERAL = new IncrementType(RANDOM, "RANDOM", "RANDOM"); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * An array of all the '<em><b>Increment Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +107,7 @@ public final class IncrementType extends AbstractEnumerator {
 		new IncrementType[] {
 			ASC_LITERAL,
 			DESC_LITERAL,
+			RANDOM_LITERAL,
 		};
 
 	/**
@@ -134,8 +160,9 @@ public final class IncrementType extends AbstractEnumerator {
 		switch (value) {
 			case ASC: return ASC_LITERAL;
 			case DESC: return DESC_LITERAL;
+			case RANDOM: return RANDOM_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

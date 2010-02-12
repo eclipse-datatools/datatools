@@ -772,6 +772,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		initEEnum(incrementTypeEEnum, IncrementType.class, "IncrementType"); //$NON-NLS-1$
 		addEEnumLiteral(incrementTypeEEnum, IncrementType.ASC_LITERAL);
 		addEEnumLiteral(incrementTypeEEnum, IncrementType.DESC_LITERAL);
+		addEEnumLiteral(incrementTypeEEnum, IncrementType.RANDOM_LITERAL);
 
 		// Create resource
 		createResource(eNS_URI);

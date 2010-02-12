@@ -142,6 +142,7 @@
       <genEnums ecoreEnum="sqlmodel.ecore#//constraints/IncrementType">
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/ASC"/>
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/DESC"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/RANDOM"/>
       </genEnums>
       <genClasses ecoreClass="sqlmodel.ecore#//constraints/Assertion">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Assertion/searchCondition"/>
