@@ -60,5 +60,16 @@ public interface CollectionDataType extends ConstructedDataType {
 	 * @generated
 	 */
 	void setElementType(ElementType value);
+	
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Element Type</em>' containment reference.
+	 * @deprecated As of release DTP 1.8, this method has been replaced by 
+	 * {@link #getElementType} and {@link #setElementType(ElementType newElementType)}
+	 */
+	@Deprecated
+	EList getElement();
 
 } // CollectionDataType

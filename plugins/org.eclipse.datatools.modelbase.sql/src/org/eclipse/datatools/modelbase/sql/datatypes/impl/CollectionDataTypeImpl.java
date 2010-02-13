@@ -18,6 +18,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -190,6 +191,34 @@ public abstract class CollectionDataTypeImpl extends ConstructedDataTypeImpl imp
 				return elementType != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	
+	
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType#getElementType <em>Element Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Element Type</em>' containment reference.
+	 * @deprecated As of release DTP 1.8, this method has been replaced by 
+	 * {@link #getElementType} and {@link #setElementType(ElementType newElementType)}
+	 */
+	@Deprecated 
+	public EList getElement() {
+		class InternalEList extends BasicEList {	
+			@Override
+			public boolean add(Object object) {
+				getElementType().setDataType((DataType)object);
+				return true;
+			}
+		}
+		
+		InternalEList list = new InternalEList();
+		if ( (getElementType() != null) &&  (getElementType().getDataType() != null) ) {
+			list.add(getElementType().getDataType());
+		}
+		return list;
+		
+		
 	}
 
 } //CollectionDataTypeImpl
