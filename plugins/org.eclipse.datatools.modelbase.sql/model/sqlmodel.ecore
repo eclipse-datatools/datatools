@@ -380,7 +380,7 @@
           changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="characterSet" lowerBound="1"
-          eType="#//datatypes/CharacterSet"/>
+          eType="#//datatypes/CharacterSet" eOpposite="#//datatypes/CharacterSet/CharacterStringDataType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RowDataType" eSuperTypes="#//datatypes/ConstructedDataType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -433,6 +433,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="repertoire" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultCollation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="encoding" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="CharacterStringDataType"
+          lowerBound="1" eType="#//datatypes/CharacterStringDataType" eOpposite="#//datatypes/CharacterStringDataType/characterSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
           eType="#//schema/Schema" eOpposite="#//schema/Schema/charSets"/>
     </eClassifiers>

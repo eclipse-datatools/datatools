@@ -1674,13 +1674,22 @@ public interface SQLDataTypesPackage extends EPackage {
 	int CHARACTER_SET__ENCODING = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Character String Data Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHARACTER_SET__CHARACTER_STRING_DATA_TYPE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHARACTER_SET__SCHEMA = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+	int CHARACTER_SET__SCHEMA = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Character Set</em>' class.
@@ -1689,7 +1698,7 @@ public interface SQLDataTypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHARACTER_SET_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+	int CHARACTER_SET_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.TimeDataTypeImpl <em>Time Data Type</em>}' class.
@@ -4123,6 +4132,17 @@ public interface SQLDataTypesPackage extends EPackage {
 	EAttribute getCharacterSet_Encoding();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType <em>Character String Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Character String Data Type</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType()
+	 * @see #getCharacterSet()
+	 * @generated
+	 */
+	EReference getCharacterSet_CharacterStringDataType();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getSchema <em>Schema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5062,6 +5082,14 @@ public interface SQLDataTypesPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CHARACTER_SET__ENCODING = eINSTANCE.getCharacterSet_Encoding();
+
+		/**
+		 * The meta object literal for the '<em><b>Character String Data Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHARACTER_SET__CHARACTER_STRING_DATA_TYPE = eINSTANCE.getCharacterSet_CharacterStringDataType();
 
 		/**
 		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.

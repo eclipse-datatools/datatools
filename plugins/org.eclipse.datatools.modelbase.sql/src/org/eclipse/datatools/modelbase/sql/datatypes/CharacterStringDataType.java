@@ -135,6 +135,7 @@ public interface CharacterStringDataType extends PredefinedDataType {
 
 	/**
 	 * Returns the value of the '<em><b>Character Set</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType <em>Character String Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Character Set</em>' reference isn't clear,
@@ -144,7 +145,8 @@ public interface CharacterStringDataType extends PredefinedDataType {
 	 * @return the value of the '<em>Character Set</em>' reference.
 	 * @see #setCharacterSet(CharacterSet)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType_CharacterSet()
-	 * @model required="true"
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType
+	 * @model opposite="CharacterStringDataType" required="true"
 	 * @generated
 	 */
 	CharacterSet getCharacterSet();

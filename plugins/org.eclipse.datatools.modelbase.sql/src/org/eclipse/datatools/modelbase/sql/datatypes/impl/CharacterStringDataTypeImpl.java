@@ -131,7 +131,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected CharacterSet characterSet = null;
+	protected CharacterSet characterSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,11 +254,61 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCharacterSet(CharacterSet newCharacterSet) {
+	public NotificationChain basicSetCharacterSet(CharacterSet newCharacterSet, NotificationChain msgs) {
 		CharacterSet oldCharacterSet = characterSet;
 		characterSet = newCharacterSet;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, oldCharacterSet, characterSet));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, oldCharacterSet, newCharacterSet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCharacterSet(CharacterSet newCharacterSet) {
+		if (newCharacterSet != characterSet) {
+			NotificationChain msgs = null;
+			if (characterSet != null)
+				msgs = ((InternalEObject)characterSet).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
+			if (newCharacterSet != null)
+				msgs = ((InternalEObject)newCharacterSet).eInverseAdd(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
+			msgs = basicSetCharacterSet(newCharacterSet, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, newCharacterSet, newCharacterSet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET:
+				if (characterSet != null)
+					msgs = ((InternalEObject)characterSet).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, CharacterSet.class, msgs);
+				return basicSetCharacterSet((CharacterSet)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET:
+				return basicSetCharacterSet(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

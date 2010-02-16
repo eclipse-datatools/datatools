@@ -777,8 +777,17 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCharacterSet_Schema() {
+	public EReference getCharacterSet_CharacterStringDataType() {
 		return (EReference)characterSetEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCharacterSet_Schema() {
+		return (EReference)characterSetEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1377,6 +1386,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		createEAttribute(characterSetEClass, CHARACTER_SET__REPERTOIRE);
 		createEAttribute(characterSetEClass, CHARACTER_SET__DEFAULT_COLLATION);
 		createEAttribute(characterSetEClass, CHARACTER_SET__ENCODING);
+		createEReference(characterSetEClass, CHARACTER_SET__CHARACTER_STRING_DATA_TYPE);
 		createEReference(characterSetEClass, CHARACTER_SET__SCHEMA);
 
 		timeDataTypeEClass = createEClass(TIME_DATA_TYPE);
@@ -1544,7 +1554,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		initEAttribute(getCharacterStringDataType_Coercibility(), this.getCoercibilityType(), "coercibility", null, 0, 1, CharacterStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCharacterStringDataType_FixedLength(), ecorePackage.getEBoolean(), "fixedLength", null, 0, 1, CharacterStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCharacterStringDataType_CollationName(), ecorePackage.getEString(), "collationName", null, 0, 1, CharacterStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCharacterStringDataType_CharacterSet(), this.getCharacterSet(), null, "characterSet", null, 1, 1, CharacterStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCharacterStringDataType_CharacterSet(), this.getCharacterSet(), this.getCharacterSet_CharacterStringDataType(), "characterSet", null, 1, 1, CharacterStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(rowDataTypeEClass, RowDataType.class, "RowDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRowDataType_Fields(), this.getField(), null, "fields", null, 1, -1, RowDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1572,6 +1582,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		initEAttribute(getCharacterSet_Repertoire(), ecorePackage.getEString(), "repertoire", null, 0, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCharacterSet_DefaultCollation(), ecorePackage.getEString(), "defaultCollation", null, 0, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCharacterSet_Encoding(), ecorePackage.getEString(), "encoding", null, 0, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCharacterSet_CharacterStringDataType(), this.getCharacterStringDataType(), this.getCharacterStringDataType_CharacterSet(), "CharacterStringDataType", null, 1, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getCharacterSet_Schema(), theSQLSchemaPackage.getSchema(), theSQLSchemaPackage.getSchema_CharSets(), "schema", null, 1, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(timeDataTypeEClass, TimeDataType.class, "TimeDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

@@ -13,6 +13,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getRepertoire <em>Repertoire</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getDefaultCollation <em>Default Collation</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getEncoding <em>Encoding</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getCharacterStringDataType <em>Character String Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
@@ -103,6 +105,16 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	protected String encoding = ENCODING_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getCharacterStringDataType() <em>Character String Data Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCharacterStringDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected CharacterStringDataType characterStringDataType;
+
+	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,7 +122,7 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -198,6 +210,66 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CharacterStringDataType getCharacterStringDataType() {
+		if (characterStringDataType != null && characterStringDataType.eIsProxy()) {
+			InternalEObject oldCharacterStringDataType = (InternalEObject)characterStringDataType;
+			characterStringDataType = (CharacterStringDataType)eResolveProxy(oldCharacterStringDataType);
+			if (characterStringDataType != oldCharacterStringDataType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, oldCharacterStringDataType, characterStringDataType));
+			}
+		}
+		return characterStringDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CharacterStringDataType basicGetCharacterStringDataType() {
+		return characterStringDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCharacterStringDataType(CharacterStringDataType newCharacterStringDataType, NotificationChain msgs) {
+		CharacterStringDataType oldCharacterStringDataType = characterStringDataType;
+		characterStringDataType = newCharacterStringDataType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, oldCharacterStringDataType, newCharacterStringDataType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCharacterStringDataType(CharacterStringDataType newCharacterStringDataType) {
+		if (newCharacterStringDataType != characterStringDataType) {
+			NotificationChain msgs = null;
+			if (characterStringDataType != null)
+				msgs = ((InternalEObject)characterStringDataType).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
+			if (newCharacterStringDataType != null)
+				msgs = ((InternalEObject)newCharacterStringDataType).eInverseAdd(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
+			msgs = basicSetCharacterStringDataType(newCharacterStringDataType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE, newCharacterStringDataType, newCharacterStringDataType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
 			InternalEObject oldSchema = (InternalEObject)schema;
@@ -260,6 +332,10 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				if (characterStringDataType != null)
+					msgs = ((InternalEObject)characterStringDataType).eInverseRemove(this, SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET, CharacterStringDataType.class, msgs);
+				return basicSetCharacterStringDataType((CharacterStringDataType)otherEnd, msgs);
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				if (schema != null)
 					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__CHAR_SETS, Schema.class, msgs);
@@ -275,6 +351,8 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				return basicSetCharacterStringDataType(null, msgs);
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				return basicSetSchema(null, msgs);
 		}
@@ -294,6 +372,9 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 				return getDefaultCollation();
 			case SQLDataTypesPackage.CHARACTER_SET__ENCODING:
 				return getEncoding();
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				if (resolve) return getCharacterStringDataType();
+				return basicGetCharacterStringDataType();
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				if (resolve) return getSchema();
 				return basicGetSchema();
@@ -316,6 +397,9 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 				return;
 			case SQLDataTypesPackage.CHARACTER_SET__ENCODING:
 				setEncoding((String)newValue);
+				return;
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				setCharacterStringDataType((CharacterStringDataType)newValue);
 				return;
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				setSchema((Schema)newValue);
@@ -340,6 +424,9 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 			case SQLDataTypesPackage.CHARACTER_SET__ENCODING:
 				setEncoding(ENCODING_EDEFAULT);
 				return;
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				setCharacterStringDataType((CharacterStringDataType)null);
+				return;
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				setSchema((Schema)null);
 				return;
@@ -360,6 +447,8 @@ public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 				return DEFAULT_COLLATION_EDEFAULT == null ? defaultCollation != null : !DEFAULT_COLLATION_EDEFAULT.equals(defaultCollation);
 			case SQLDataTypesPackage.CHARACTER_SET__ENCODING:
 				return ENCODING_EDEFAULT == null ? encoding != null : !ENCODING_EDEFAULT.equals(encoding);
+			case SQLDataTypesPackage.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE:
+				return characterStringDataType != null;
 			case SQLDataTypesPackage.CHARACTER_SET__SCHEMA:
 				return schema != null;
 		}

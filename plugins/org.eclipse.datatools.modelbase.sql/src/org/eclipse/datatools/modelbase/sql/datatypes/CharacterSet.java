@@ -29,6 +29,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getRepertoire <em>Repertoire</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getDefaultCollation <em>Default Collation</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getEncoding <em>Encoding</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType <em>Character String Data Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getSchema <em>Schema</em>}</li>
  * </ul>
  * </p>
@@ -115,6 +116,34 @@ public interface CharacterSet extends SQLObject {
 	 * @generated
 	 */
 	void setEncoding(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Character String Data Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getCharacterSet <em>Character Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Character String Data Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Character String Data Type</em>' reference.
+	 * @see #setCharacterStringDataType(CharacterStringDataType)
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet_CharacterStringDataType()
+	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getCharacterSet
+	 * @model opposite="characterSet" required="true"
+	 * @generated
+	 */
+	CharacterStringDataType getCharacterStringDataType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet#getCharacterStringDataType <em>Character String Data Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Character String Data Type</em>' reference.
+	 * @see #getCharacterStringDataType()
+	 * @generated
+	 */
+	void setCharacterStringDataType(CharacterStringDataType value);
 
 	/**
 	 * Returns the value of the '<em><b>Schema</b></em>' reference.
