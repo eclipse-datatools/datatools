@@ -13,7 +13,7 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.8 2009/06/02 14:49:22 bfitzpatrick Exp $
+# $Id: plugin.properties,v 1.9 2010/02/16 06:51:00 hkolwalka Exp $
 #/
 
 # ====================================================================
@@ -440,3 +440,11 @@ _UI_Privilege_withHierarchy_feature = 階層指定
 _UI_Privilege_grantee_feature = 許可対象者
 _UI_Privilege_actionObjects_feature = アクションオブジェクト
 _UI_User_group_feature = グループ
+_UI_ObjectExtension_type = Object Extension
+_UI_ElementType_type = Element Type
+_UI_SQLObject_extensions_feature = Extensions
+_UI_ObjectExtension_SQLObject_feature = SQL オブジェクト
+_UI_CollectionDataType_elementType_feature = Element Type
+_UI_CharacterSet_CharacterStringDataType_feature = 文字列のデータ型
+_UI_ElementType_CollectionDataType_feature = コレクションのデータ型
+_UI_IncrementType_RANDOM_literal = RANDOM

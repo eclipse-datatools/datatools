@@ -13,7 +13,7 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.8 2009/06/02 14:49:22 bfitzpatrick Exp $
+# $Id: plugin.properties,v 1.9 2010/02/16 06:51:00 hkolwalka Exp $
 #/
 
 # ====================================================================
@@ -440,3 +440,11 @@ _UI_Privilege_withHierarchy_feature = 带有分层结构
 _UI_Privilege_grantee_feature = 被授予人
 _UI_Privilege_actionObjects_feature = 操作对象
 _UI_User_group_feature = 组
+_UI_ObjectExtension_type = Object Extension
+_UI_ElementType_type = Element Type
+_UI_SQLObject_extensions_feature = Extensions
+_UI_ObjectExtension_SQLObject_feature = SQL 对象
+_UI_CollectionDataType_elementType_feature = Element Type
+_UI_CharacterSet_CharacterStringDataType_feature = 字符串数据类型
+_UI_ElementType_CollectionDataType_feature = 集合数据类型
+_UI_IncrementType_RANDOM_literal = RANDOM
