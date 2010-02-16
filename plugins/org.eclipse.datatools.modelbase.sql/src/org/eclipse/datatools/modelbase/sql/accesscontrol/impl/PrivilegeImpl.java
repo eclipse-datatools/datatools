@@ -121,7 +121,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * @generated
 	 * @ordered
 	 */
-	protected AuthorizationIdentifier grantor = null;
+	protected AuthorizationIdentifier grantor;
 
 	/**
 	 * The cached value of the '{@link #getActionObjects() <em>Action Objects</em>}' reference list.
@@ -131,7 +131,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList actionObjects = null;
+	protected EList actionObjects;
 
 	/**
 	 * The cached value of the '{@link #getObject() <em>Object</em>}' reference.
@@ -141,7 +141,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * @generated
 	 * @ordered
 	 */
-	protected SQLObject object = null;
+	protected SQLObject object;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -68,7 +68,7 @@ public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	 * @generated
 	 * @ordered
 	 */
-	protected Column column = null;
+	protected Column column;
 
 	/**
 	 * <!-- begin-user-doc -->

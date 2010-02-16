@@ -45,7 +45,7 @@ public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataT
 	 * @generated
 	 * @ordered
 	 */
-	protected EList fields = null;
+	protected EList fields;
 
 	/**
 	 * <!-- begin-user-doc -->

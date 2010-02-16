@@ -76,7 +76,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList triggers = null;
+	protected EList triggers;
 
 	/**
 	 * The cached value of the '{@link #getIndices() <em>Indices</em>}' reference list.
@@ -86,7 +86,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList indices = null;
+	protected EList indices;
 
 	/**
 	 * The cached value of the '{@link #getTables() <em>Tables</em>}' reference list.
@@ -96,7 +96,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList tables = null;
+	protected EList tables;
 
 	/**
 	 * The cached value of the '{@link #getSequences() <em>Sequences</em>}' reference list.
@@ -106,7 +106,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList sequences = null;
+	protected EList sequences;
 
 	/**
 	 * The cached value of the '{@link #getDatabase() <em>Database</em>}' reference.
@@ -116,7 +116,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected Database database = null;
+	protected Database database;
 
 	/**
 	 * The cached value of the '{@link #getCatalog() <em>Catalog</em>}' reference.
@@ -126,7 +126,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected Catalog catalog = null;
+	protected Catalog catalog;
 
 	/**
 	 * The cached value of the '{@link #getAssertions() <em>Assertions</em>}' reference list.
@@ -136,7 +136,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList assertions = null;
+	protected EList assertions;
 
 	/**
 	 * The cached value of the '{@link #getUserDefinedTypes() <em>User Defined Types</em>}' reference list.
@@ -146,7 +146,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList userDefinedTypes = null;
+	protected EList userDefinedTypes;
 
 	/**
 	 * The cached value of the '{@link #getCharSets() <em>Char Sets</em>}' reference list.
@@ -156,7 +156,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList charSets = null;
+	protected EList charSets;
 
 	/**
 	 * The cached value of the '{@link #getRoutines() <em>Routines</em>}' reference list.
@@ -166,7 +166,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList routines = null;
+	protected EList routines;
 
 	/**
 	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
@@ -176,7 +176,7 @@ public class SchemaImpl extends SQLObjectImpl implements Schema {
 	 * @generated
 	 * @ordered
 	 */
-	protected AuthorizationIdentifier owner = null;
+	protected AuthorizationIdentifier owner;
 
 	/**
 	 * <!-- begin-user-doc -->

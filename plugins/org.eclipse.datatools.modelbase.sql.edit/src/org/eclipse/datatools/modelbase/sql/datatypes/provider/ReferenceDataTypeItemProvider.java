@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferenceDataTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
+ * $Id: ReferenceDataTypeItemProvider.java,v 1.4 2007/05/31 00:29:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -135,24 +135,14 @@ public class ReferenceDataTypeItemProvider
 	}
 
 	/**
-	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing all of the children that can be created under this object.
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourceLocator getResourceLocator() {
-		return SqlmodelEditPlugin.INSTANCE;
 	}
 
 }

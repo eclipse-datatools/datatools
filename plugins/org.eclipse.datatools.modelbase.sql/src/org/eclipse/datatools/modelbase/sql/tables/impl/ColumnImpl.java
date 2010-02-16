@@ -65,7 +65,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 * @ordered
 	 */
-	protected IdentitySpecifier identitySpecifier = null;
+	protected IdentitySpecifier identitySpecifier;
 
 /**
 	 * The cached value of the '{@link #getGenerateExpression() <em>Generate Expression</em>}' containment reference.
@@ -75,7 +75,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 * @ordered
 	 */
-	protected ValueExpression generateExpression = null;
+	protected ValueExpression generateExpression;
 
 /**
 	 * The default value of the '{@link #isImplementationDependent() <em>Implementation Dependent</em>}' attribute.

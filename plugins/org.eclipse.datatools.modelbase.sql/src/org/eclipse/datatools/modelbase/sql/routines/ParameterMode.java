@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterMode.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: ParameterMode.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines;
 
@@ -165,7 +165,7 @@ public final class ParameterMode extends AbstractEnumerator {
 			case OUT: return OUT_LITERAL;
 			case INOUT: return INOUT_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

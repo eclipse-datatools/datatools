@@ -131,6 +131,15 @@ public interface DerbyModelPackage extends EPackage {
 	int SYNONYM__COMMENTS = SQLTablesPackage.TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__EXTENSIONS = SQLTablesPackage.TABLE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -311,6 +320,24 @@ public interface DerbyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int DERBY_SCHEMA__COMMENTS = SQLSchemaPackage.SCHEMA__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__EXTENSIONS = SQLSchemaPackage.SCHEMA__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__PRIVILEGES = SQLSchemaPackage.SCHEMA__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Triggers</b></em>' reference list.

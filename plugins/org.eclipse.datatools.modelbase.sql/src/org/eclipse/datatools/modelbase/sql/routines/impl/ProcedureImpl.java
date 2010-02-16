@@ -94,7 +94,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList resultSet = null;
+	protected EList resultSet;
 
 	/**
 	 * <!-- begin-user-doc -->

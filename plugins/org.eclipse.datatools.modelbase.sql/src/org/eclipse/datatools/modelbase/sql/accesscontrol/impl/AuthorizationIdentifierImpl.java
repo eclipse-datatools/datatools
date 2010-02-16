@@ -60,7 +60,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList ownedSchema = null;
+	protected EList ownedSchema;
 
 	/**
 	 * The cached value of the '{@link #getDatabase() <em>Database</em>}' reference.
@@ -70,7 +70,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected Database database = null;
+	protected Database database;
 
 	/**
 	 * The cached value of the '{@link #getReceivedRoleAuthorization() <em>Received Role Authorization</em>}' reference list.
@@ -80,7 +80,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList receivedRoleAuthorization = null;
+	protected EList receivedRoleAuthorization;
 
 	/**
 	 * The cached value of the '{@link #getGrantedRoleAuthorization() <em>Granted Role Authorization</em>}' reference list.
@@ -90,7 +90,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList grantedRoleAuthorization = null;
+	protected EList grantedRoleAuthorization;
 
 	/**
 	 * The cached value of the '{@link #getGrantedPrivilege() <em>Granted Privilege</em>}' reference list.
@@ -100,7 +100,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList grantedPrivilege = null;
+	protected EList grantedPrivilege;
 
 	/**
 	 * The cached value of the '{@link #getReceivedPrivilege() <em>Received Privilege</em>}' containment reference list.
@@ -110,7 +110,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 * @ordered
 	 */
-	protected EList receivedPrivilege = null;
+	protected EList receivedPrivilege;
 
 	/**
 	 * <!-- begin-user-doc -->

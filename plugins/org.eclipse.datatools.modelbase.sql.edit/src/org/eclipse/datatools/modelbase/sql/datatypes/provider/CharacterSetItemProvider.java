@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CharacterSetItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: CharacterSetItemProvider.java,v 1.3 2007/05/31 00:29:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -64,6 +64,7 @@ public class CharacterSetItemProvider
 			addRepertoirePropertyDescriptor(object);
 			addDefaultCollationPropertyDescriptor(object);
 			addEncodingPropertyDescriptor(object);
+			addCharacterStringDataTypePropertyDescriptor(object);
 			addSchemaPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -136,6 +137,28 @@ public class CharacterSetItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Character String Data Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCharacterStringDataTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CharacterSet_CharacterStringDataType_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_CharacterStringDataType_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLDataTypesPackage.Literals.CHARACTER_SET__CHARACTER_STRING_DATA_TYPE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Schema feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -201,8 +224,8 @@ public class CharacterSetItemProvider
 	}
 
 	/**
-	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing all of the children that can be created under this object.
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CatalogImpl.java,v 1.1 2006/09/07 00:19:49 dpchou Exp $
+ * $Id: CatalogImpl.java,v 1.2 2008/01/23 23:59:35 hkolwalka Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -49,7 +49,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * @generated
 	 * @ordered
 	 */
-	protected Database database = null;
+	protected Database database;
 
 	/**
 	 * The cached value of the '{@link #getSchemas() <em>Schemas</em>}' reference list.
@@ -59,7 +59,7 @@ public class CatalogImpl extends SQLObjectImpl implements Catalog {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList schemas = null;
+	protected EList schemas;
 
 	/**
 	 * <!-- begin-user-doc -->

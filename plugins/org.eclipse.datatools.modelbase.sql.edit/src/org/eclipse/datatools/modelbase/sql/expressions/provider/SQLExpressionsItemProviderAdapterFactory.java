@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLExpressionsItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: SQLExpressionsItemProviderAdapterFactory.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -70,7 +70,7 @@ public class SQLExpressionsItemProviderAdapterFactory extends SQLExpressionsAdap
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);		
+		supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**

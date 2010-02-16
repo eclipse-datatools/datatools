@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CommentImpl.java,v 1.1 2006/09/07 00:19:49 dpchou Exp $
+ * $Id: CommentImpl.java,v 1.2 2008/01/23 23:59:35 hkolwalka Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -63,7 +63,7 @@ public class CommentImpl extends EObjectImpl implements Comment {
 	 * @generated
 	 * @ordered
 	 */
-	protected SQLObject sqlObject = null;
+	protected SQLObject sqlObject;
 
 	/**
 	 * <!-- begin-user-doc -->

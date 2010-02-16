@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderingType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: OrderingType.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -139,7 +139,7 @@ public final class OrderingType extends AbstractEnumerator {
 			case EQUALS: return EQUALS_LITERAL;
 			case FULL: return FULL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

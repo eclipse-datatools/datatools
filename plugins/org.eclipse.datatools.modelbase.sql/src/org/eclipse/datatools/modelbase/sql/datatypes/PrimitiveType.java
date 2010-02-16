@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
+ * $Id: PrimitiveType.java,v 1.4 2006/10/18 18:37:56 avainchte Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -732,7 +732,7 @@ public final class PrimitiveType extends AbstractEnumerator {
 			case DATALINK: return DATALINK_LITERAL;
 			case XML_TYPE: return XML_TYPE_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

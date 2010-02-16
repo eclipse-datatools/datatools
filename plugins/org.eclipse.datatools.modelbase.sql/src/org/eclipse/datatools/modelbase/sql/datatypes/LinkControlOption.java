@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkControlOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: LinkControlOption.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -135,7 +135,7 @@ public final class LinkControlOption extends AbstractEnumerator {
 			case FILE_LINK_CONTROL: return FILE_LINK_CONTROL_LITERAL;
 			case NO_FILE_LINK_CONTROL: return NO_FILE_LINK_CONTROL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

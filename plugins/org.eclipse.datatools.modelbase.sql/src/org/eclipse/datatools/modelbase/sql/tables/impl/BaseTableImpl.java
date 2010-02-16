@@ -60,7 +60,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList constraints = null;
+	protected EList constraints;
 
 	/**
 	 * The cached value of the '{@link #getReferencingForeignKeys() <em>Referencing Foreign Keys</em>}' reference list.
@@ -70,7 +70,7 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList referencingForeignKeys = null;
+	protected EList referencingForeignKeys;
 
 	/**
 	 * <!-- begin-user-doc -->

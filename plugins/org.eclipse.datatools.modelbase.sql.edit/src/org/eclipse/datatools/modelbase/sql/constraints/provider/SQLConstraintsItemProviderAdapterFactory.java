@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLConstraintsItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: SQLConstraintsItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -69,7 +69,7 @@ public class SQLConstraintsItemProviderAdapterFactory extends SQLConstraintsAdap
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);		
+		supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**

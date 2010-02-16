@@ -47,7 +47,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected Table scopeTable = null;
+	protected Table scopeTable;
 
 	/**
 	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference.
@@ -57,7 +57,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected StructuredUserDefinedType referencedType = null;
+	protected StructuredUserDefinedType referencedType;
 
 	/**
 	 * <!-- begin-user-doc -->

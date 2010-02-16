@@ -71,7 +71,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * The cached value of the '{@link #getSubjectTable() <em>Subject Table</em>}' reference.
@@ -81,7 +81,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 * @ordered
 	 */
-	protected Table subjectTable = null;
+	protected Table subjectTable;
 
 	/**
 	 * The cached value of the '{@link #getActionStatement() <em>Action Statement</em>}' containment reference list.
@@ -91,7 +91,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList actionStatement = null;
+	protected EList actionStatement;
 
 	/**
 	 * The cached value of the '{@link #getTriggerColumn() <em>Trigger Column</em>}' reference list.
@@ -101,7 +101,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList triggerColumn = null;
+	protected EList triggerColumn;
 
 	/**
 	 * The default value of the '{@link #getActionGranularity() <em>Action Granularity</em>}' attribute.
@@ -131,7 +131,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 * @ordered
 	 */
-	protected SearchCondition when = null;
+	protected SearchCondition when;
 
 	/**
 	 * The default value of the '{@link #getTimeStamp() <em>Time Stamp</em>}' attribute.

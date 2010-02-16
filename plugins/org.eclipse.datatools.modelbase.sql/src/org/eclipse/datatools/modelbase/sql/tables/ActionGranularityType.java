@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionGranularityType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: ActionGranularityType.java,v 1.3 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -138,7 +138,7 @@ public final class ActionGranularityType extends AbstractEnumerator {
 			case STATEMENT: return STATEMENT_LITERAL;
 			case ROW: return ROW_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

@@ -63,7 +63,7 @@ public class SynonymImpl extends TableImpl implements Synonym {
 	 * @generated
 	 * @ordered
 	 */
-	protected Table table = null;
+	protected Table table;
 
 	/**
 	 * <!-- begin-user-doc -->

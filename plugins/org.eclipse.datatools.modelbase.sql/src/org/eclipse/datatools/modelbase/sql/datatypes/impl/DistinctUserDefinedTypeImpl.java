@@ -48,7 +48,7 @@ public class DistinctUserDefinedTypeImpl extends UserDefinedTypeImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected PredefinedDataType predefinedRepresentation = null;
+	protected PredefinedDataType predefinedRepresentation;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -52,7 +52,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList constraint = null;
+	protected EList constraint;
 
 	/**
 	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.

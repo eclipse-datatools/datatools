@@ -48,7 +48,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * The cached value of the '{@link #getOrdering() <em>Ordering</em>}' containment reference.
@@ -58,7 +58,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * @generated
 	 * @ordered
 	 */
-	protected UserDefinedTypeOrdering ordering = null;
+	protected UserDefinedTypeOrdering ordering;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -48,7 +48,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * @generated
 	 * @ordered
 	 */
-	protected SQLDataType containedType = null;
+	protected SQLDataType containedType;
 
 	/**
 	 * The cached value of the '{@link #getReferencedType() <em>Referenced Type</em>}' reference.
@@ -58,7 +58,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * @generated
 	 * @ordered
 	 */
-	protected UserDefinedType referencedType = null;
+	protected UserDefinedType referencedType;
 
 	/**
 	 * <!-- begin-user-doc -->

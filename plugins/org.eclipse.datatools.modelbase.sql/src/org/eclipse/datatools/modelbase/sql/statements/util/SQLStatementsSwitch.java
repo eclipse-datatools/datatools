@@ -178,13 +178,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -193,13 +193,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Data Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Data Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Data Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Data Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -208,13 +208,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Schema Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Schema Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Schema Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Schema Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -223,13 +223,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Control Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Control Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Control Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Control Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -238,13 +238,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Data Change Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Data Change Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Data Change Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Data Change Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -253,13 +253,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Statement Default</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Statement Default</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Statement Default</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Statement Default</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -268,13 +268,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Connection Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Connection Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Connection Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Connection Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -283,13 +283,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Diagnostics Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Diagnostics Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Diagnostics Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Diagnostics Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -298,13 +298,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Dynamic Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Dynamic Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Dynamic Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Dynamic Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -313,13 +313,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Session Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Session Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Session Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Session Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -328,13 +328,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Transaction Statement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Transaction Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Transaction Statement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Transaction Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -343,13 +343,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -358,13 +358,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -373,13 +373,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -388,13 +388,13 @@ public class SQLStatementsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

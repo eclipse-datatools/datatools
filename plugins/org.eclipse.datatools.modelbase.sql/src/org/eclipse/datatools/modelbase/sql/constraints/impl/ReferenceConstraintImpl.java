@@ -47,7 +47,7 @@ public abstract class ReferenceConstraintImpl extends TableConstraintImpl implem
 	 * @generated
 	 * @ordered
 	 */
-	protected EList members = null;
+	protected EList members;
 
 	/**
 	 * <!-- begin-user-doc -->

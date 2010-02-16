@@ -46,7 +46,7 @@ public class UserImpl extends AuthorizationIdentifierImpl implements User {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList group = null;
+	protected EList group;
 
 	/**
 	 * <!-- begin-user-doc -->

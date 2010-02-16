@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataAccess.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: DataAccess.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines;
 
@@ -192,7 +192,7 @@ public final class DataAccess extends AbstractEnumerator {
 			case READS_SQL_DATA: return READS_SQL_DATA_LITERAL;
 			case MODIFIES_SQL_DATA: return MODIFIES_SQL_DATA_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

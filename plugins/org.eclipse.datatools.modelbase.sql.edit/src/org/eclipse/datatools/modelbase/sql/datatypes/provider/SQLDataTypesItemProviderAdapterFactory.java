@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLDataTypesItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: SQLDataTypesItemProviderAdapterFactory.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -70,7 +70,7 @@ public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterF
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);		
+		supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**
@@ -492,6 +492,28 @@ public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ElementTypeItemProvider elementTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createElementTypeAdapter() {
+		if (elementTypeItemProvider == null) {
+			elementTypeItemProvider = new ElementTypeItemProvider(this);
+		}
+
+		return elementTypeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,6 +628,7 @@ public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterF
 		if (approximateNumericDataTypeItemProvider != null) approximateNumericDataTypeItemProvider.dispose();
 		if (integerDataTypeItemProvider != null) integerDataTypeItemProvider.dispose();
 		if (xmlDataTypeItemProvider != null) xmlDataTypeItemProvider.dispose();
+		if (elementTypeItemProvider != null) elementTypeItemProvider.dispose();
 	}
 
 }

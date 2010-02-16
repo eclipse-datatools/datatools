@@ -47,7 +47,7 @@ public class CheckConstraintImpl extends TableConstraintImpl implements CheckCon
 	 * @generated
 	 * @ordered
 	 */
-	protected SearchCondition searchCondition = null;
+	protected SearchCondition searchCondition;
 
 	/**
 	 * <!-- begin-user-doc -->

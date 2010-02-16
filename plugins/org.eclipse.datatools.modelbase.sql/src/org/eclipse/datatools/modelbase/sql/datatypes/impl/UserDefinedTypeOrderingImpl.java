@@ -90,7 +90,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * @generated
 	 * @ordered
 	 */
-	protected Routine orderingRoutine = null;
+	protected Routine orderingRoutine;
 
 	/**
 	 * <!-- begin-user-doc -->

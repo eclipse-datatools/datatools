@@ -119,7 +119,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * @generated
 	 * @ordered
 	 */
-	protected UniqueConstraint uniqueConstraint = null;
+	protected UniqueConstraint uniqueConstraint;
 
 	/**
 	 * The cached value of the '{@link #getReferencedMembers() <em>Referenced Members</em>}' reference list.
@@ -129,7 +129,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * @generated
 	 * @ordered
 	 */
-	protected EList referencedMembers = null;
+	protected EList referencedMembers;
 
 	/**
 	 * The cached value of the '{@link #getUniqueIndex() <em>Unique Index</em>}' reference.
@@ -139,7 +139,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * @generated
 	 * @ordered
 	 */
-	protected Index uniqueIndex = null;
+	protected Index uniqueIndex;
 
 	/**
 	 * The cached value of the '{@link #getReferencedTable() <em>Referenced Table</em>}' reference.
@@ -149,7 +149,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * @generated
 	 * @ordered
 	 */
-	protected BaseTable referencedTable = null;
+	protected BaseTable referencedTable;
 
 	/**
 	 * <!-- begin-user-doc -->

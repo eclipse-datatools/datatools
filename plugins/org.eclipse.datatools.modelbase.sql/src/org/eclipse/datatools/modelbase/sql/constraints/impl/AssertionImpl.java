@@ -52,7 +52,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * @generated
 	 * @ordered
 	 */
-	protected SearchCondition searchCondition = null;
+	protected SearchCondition searchCondition;
 
 	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
@@ -62,7 +62,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * The cached value of the '{@link #getConstrainedTables() <em>Constrained Tables</em>}' reference list.
@@ -72,7 +72,7 @@ public class AssertionImpl extends ConstraintImpl implements Assertion {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList constrainedTables = null;
+	protected EList constrainedTables;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventImpl.java,v 1.2 2006/09/07 00:19:49 dpchou Exp $
+ * $Id: EventImpl.java,v 1.3 2008/01/23 23:59:35 hkolwalka Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -129,7 +129,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * @generated
 	 * @ordered
 	 */
-	protected Database database = null;
+	protected Database database;
 
 	/**
 	 * <!-- begin-user-doc -->

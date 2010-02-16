@@ -94,7 +94,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * @generated
 	 * @ordered
 	 */
-	protected CharacterStringDataType stringTypeOption = null;
+	protected CharacterStringDataType stringTypeOption;
 
 	/**
 	 * <!-- begin-user-doc -->

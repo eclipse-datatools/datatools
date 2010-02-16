@@ -47,7 +47,7 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 * @generated
 	 * @ordered
 	 */
-	protected EList foreignKey = null;
+	protected EList foreignKey;
 
 	/**
 	 * <!-- begin-user-doc -->

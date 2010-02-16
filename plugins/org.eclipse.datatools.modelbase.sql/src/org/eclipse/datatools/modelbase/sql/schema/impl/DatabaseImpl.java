@@ -102,7 +102,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList schemas = null;
+	protected EList schemas;
 
 	/**
 	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference list.
@@ -112,7 +112,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList events = null;
+	protected EList events;
 
 	/**
 	 * The cached value of the '{@link #getCatalogs() <em>Catalogs</em>}' reference list.
@@ -122,7 +122,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList catalogs = null;
+	protected EList catalogs;
 
 	/**
 	 * The cached value of the '{@link #getAuthorizationIds() <em>Authorization Ids</em>}' reference list.
@@ -132,7 +132,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList authorizationIds = null;
+	protected EList authorizationIds;
 
 	/**
 	 * <!-- begin-user-doc -->

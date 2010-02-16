@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MatchType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: MatchType.java,v 1.3 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints;
 
@@ -165,7 +165,7 @@ public final class MatchType extends AbstractEnumerator {
 			case MATCH_FULL: return MATCH_FULL_LITERAL;
 			case MATCH_PARTIAL: return MATCH_PARTIAL_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

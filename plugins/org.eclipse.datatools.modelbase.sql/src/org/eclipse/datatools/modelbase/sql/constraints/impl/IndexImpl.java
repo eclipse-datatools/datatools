@@ -62,7 +62,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * The default value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
@@ -152,7 +152,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList members = null;
+	protected EList members;
 
 	/**
 	 * The cached value of the '{@link #getTable() <em>Table</em>}' reference.
@@ -162,7 +162,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 * @ordered
 	 */
-	protected Table table = null;
+	protected Table table;
 
 	/**
 	 * The cached value of the '{@link #getForeignKey() <em>Foreign Key</em>}' reference list.
@@ -172,7 +172,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList foreignKey = null;
+	protected EList foreignKey;
 
 	/**
 	 * The cached value of the '{@link #getIncludedMembers() <em>Included Members</em>}' containment reference list.
@@ -182,7 +182,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList includedMembers = null;
+	protected EList includedMembers;
 
 	/**
 	 * <!-- begin-user-doc -->

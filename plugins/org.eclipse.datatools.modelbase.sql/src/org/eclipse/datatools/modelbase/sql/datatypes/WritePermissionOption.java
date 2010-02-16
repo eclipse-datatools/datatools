@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WritePermissionOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: WritePermissionOption.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -162,7 +162,7 @@ public final class WritePermissionOption extends AbstractEnumerator {
 			case ADMIN: return ADMIN_LITERAL;
 			case BLOCKED: return BLOCKED_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

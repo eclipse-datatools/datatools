@@ -45,7 +45,7 @@ public class RoleImpl extends AuthorizationIdentifierImpl implements Role {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList roleAuthorization = null;
+	protected EList roleAuthorization;
 
 	/**
 	 * <!-- begin-user-doc -->

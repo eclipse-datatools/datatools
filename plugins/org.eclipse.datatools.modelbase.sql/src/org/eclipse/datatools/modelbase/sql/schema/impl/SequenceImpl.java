@@ -49,7 +49,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * @generated
 	 * @ordered
 	 */
-	protected IdentitySpecifier identity = null;
+	protected IdentitySpecifier identity;
 
 	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
@@ -59,7 +59,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * <!-- begin-user-doc -->

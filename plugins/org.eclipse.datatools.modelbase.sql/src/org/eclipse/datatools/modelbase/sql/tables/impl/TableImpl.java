@@ -65,7 +65,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList columns = null;
+	protected EList columns;
 
 	/**
 	 * The cached value of the '{@link #getSupertable() <em>Supertable</em>}' reference.
@@ -75,7 +75,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected Table supertable = null;
+	protected Table supertable;
 
 	/**
 	 * The cached value of the '{@link #getSubtables() <em>Subtables</em>}' reference list.
@@ -85,7 +85,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList subtables = null;
+	protected EList subtables;
 
 	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
@@ -95,7 +95,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * The cached value of the '{@link #getUdt() <em>Udt</em>}' reference.
@@ -105,7 +105,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected StructuredUserDefinedType udt = null;
+	protected StructuredUserDefinedType udt;
 
 	/**
 	 * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' reference list.
@@ -115,7 +115,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList triggers = null;
+	protected EList triggers;
 
 	/**
 	 * The cached value of the '{@link #getIndex() <em>Index</em>}' reference list.
@@ -125,7 +125,7 @@ public abstract class TableImpl extends SQLObjectImpl implements Table {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList index = null;
+	protected EList index;
 
 	/**
 	 * The default value of the '{@link #getSelfRefColumnGeneration() <em>Self Ref Column Generation</em>}' attribute.

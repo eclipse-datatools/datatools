@@ -46,7 +46,7 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList user = null;
+	protected EList user;
 
 	/**
 	 * <!-- begin-user-doc -->

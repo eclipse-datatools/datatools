@@ -266,7 +266,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList parameters = null;
+	protected EList parameters;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
@@ -276,7 +276,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * @generated
 	 * @ordered
 	 */
-	protected Source source = null;
+	protected Source source;
 
 	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
@@ -286,7 +286,7 @@ public abstract class RoutineImpl extends SQLObjectImpl implements Routine {
 	 * @generated
 	 * @ordered
 	 */
-	protected Schema schema = null;
+	protected Schema schema;
 
 	/**
 	 * <!-- begin-user-doc -->

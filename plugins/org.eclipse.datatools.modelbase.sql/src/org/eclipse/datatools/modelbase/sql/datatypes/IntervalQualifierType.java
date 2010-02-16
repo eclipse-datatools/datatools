@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalQualifierType.java,v 1.3 2006/03/09 23:45:43 dpchou Exp $
+ * $Id: IntervalQualifierType.java,v 1.4 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -274,7 +274,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 			case SECOND: return SECOND_LITERAL;
 			case FRACTION: return FRACTION_LITERAL;
 		}
-		return null;	
+		return null;
 	}
 
 	/**

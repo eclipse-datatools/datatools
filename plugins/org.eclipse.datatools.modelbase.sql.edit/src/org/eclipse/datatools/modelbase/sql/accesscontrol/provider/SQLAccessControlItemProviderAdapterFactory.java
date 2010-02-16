@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLAccessControlItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
+ * $Id: SQLAccessControlItemProviderAdapterFactory.java,v 1.3 2007/05/31 00:29:18 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -69,7 +69,7 @@ public class SQLAccessControlItemProviderAdapterFactory extends SQLAccessControl
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
-		supportedTypes.add(IItemPropertySource.class);		
+		supportedTypes.add(IItemPropertySource.class);
 	}
 
 	/**

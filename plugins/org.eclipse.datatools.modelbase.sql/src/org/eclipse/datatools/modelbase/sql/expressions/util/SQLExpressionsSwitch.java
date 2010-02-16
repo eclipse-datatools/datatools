@@ -147,13 +147,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Query Expression</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Query Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Query Expression</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Query Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -162,13 +162,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Value Expression</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Value Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Value Expression</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Value Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -177,13 +177,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Search Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Search Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Search Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Search Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -192,13 +192,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Query Expression Default</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Query Expression Default</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Query Expression Default</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Query Expression Default</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -207,13 +207,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Search Condition Default</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Search Condition Default</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Search Condition Default</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Search Condition Default</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -222,13 +222,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Default</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Value Expression Default</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Value Expression Default</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Value Expression Default</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -237,13 +237,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -252,13 +252,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -267,13 +267,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -282,13 +282,13 @@ public class SQLExpressionsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

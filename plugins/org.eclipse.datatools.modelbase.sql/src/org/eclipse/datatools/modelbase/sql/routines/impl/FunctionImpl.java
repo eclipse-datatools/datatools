@@ -158,7 +158,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * @generated
 	 * @ordered
 	 */
-	protected RoutineResultTable returnTable = null;
+	protected RoutineResultTable returnTable;
 
 	/**
 	 * The cached value of the '{@link #getReturnScalar() <em>Return Scalar</em>}' containment reference.
@@ -168,7 +168,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * @generated
 	 * @ordered
 	 */
-	protected Parameter returnScalar = null;
+	protected Parameter returnScalar;
 
 	/**
 	 * The cached value of the '{@link #getReturnCast() <em>Return Cast</em>}' containment reference.
@@ -178,7 +178,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * @generated
 	 * @ordered
 	 */
-	protected Parameter returnCast = null;
+	protected Parameter returnCast;
 
 	/**
 	 * <!-- begin-user-doc -->

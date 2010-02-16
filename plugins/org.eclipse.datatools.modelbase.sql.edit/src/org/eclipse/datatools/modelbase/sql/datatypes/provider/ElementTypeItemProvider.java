@@ -2,38 +2,38 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLStatementDefaultItemProvider.java,v 1.3 2007/05/31 00:29:18 dpchou Exp $
+ * $Id$
  */
-package org.eclipse.datatools.modelbase.sql.statements.provider;
+package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.schema.provider.SQLObjectItemProvider;
+import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
+
 import org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin;
-import org.eclipse.datatools.modelbase.sql.statements.SQLStatementDefault;
-import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
+import org.eclipse.datatools.modelbase.sql.schema.provider.TypedElementItemProvider;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.statements.SQLStatementDefault} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.ElementType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SQLStatementDefaultItemProvider
-	extends SQLObjectItemProvider
+public class ElementTypeItemProvider
+	extends TypedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +46,7 @@ public class SQLStatementDefaultItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SQLStatementDefaultItemProvider(AdapterFactory adapterFactory) {
+	public ElementTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,41 +60,18 @@ public class SQLStatementDefaultItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSQLPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the SQL feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSQLPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SQLStatementDefault_SQL_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_SQLStatementDefault_SQL_feature", "_UI_SQLStatementDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLStatementsPackage.Literals.SQL_STATEMENT_DEFAULT__SQL,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns SQLStatementDefault.gif.
+	 * This returns ElementType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SQLStatementDefault")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -104,10 +81,10 @@ public class SQLStatementDefaultItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((SQLStatementDefault)object).getName();
+		String label = ((ElementType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_SQLStatementDefault_type") : //$NON-NLS-1$
-			getString("_UI_SQLStatementDefault_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_ElementType_type") : //$NON-NLS-1$
+			getString("_UI_ElementType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -119,12 +96,6 @@ public class SQLStatementDefaultItemProvider
 	 */
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(SQLStatementDefault.class)) {
-			case SQLStatementsPackage.SQL_STATEMENT_DEFAULT__SQL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

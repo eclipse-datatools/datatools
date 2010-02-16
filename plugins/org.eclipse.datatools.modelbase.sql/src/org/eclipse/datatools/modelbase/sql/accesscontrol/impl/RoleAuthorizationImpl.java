@@ -72,7 +72,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * @generated
 	 * @ordered
 	 */
-	protected Role role = null;
+	protected Role role;
 
 	/**
 	 * The cached value of the '{@link #getGrantee() <em>Grantee</em>}' reference.
@@ -82,7 +82,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * @generated
 	 * @ordered
 	 */
-	protected AuthorizationIdentifier grantee = null;
+	protected AuthorizationIdentifier grantee;
 
 	/**
 	 * The cached value of the '{@link #getGrantor() <em>Grantor</em>}' reference.
@@ -92,7 +92,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * @generated
 	 * @ordered
 	 */
-	protected AuthorizationIdentifier grantor = null;
+	protected AuthorizationIdentifier grantor;
 
 	/**
 	 * <!-- begin-user-doc -->

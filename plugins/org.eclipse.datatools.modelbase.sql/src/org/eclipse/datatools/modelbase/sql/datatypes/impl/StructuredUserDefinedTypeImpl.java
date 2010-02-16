@@ -97,7 +97,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected StructuredUserDefinedType super_ = null;
+	protected StructuredUserDefinedType super_;
 
 /**
 	 * The cached value of the '{@link #getSub() <em>Sub</em>}' reference list.
@@ -107,7 +107,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList sub = null;
+	protected EList sub;
 
 /**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
@@ -117,7 +117,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList attributes = null;
+	protected EList attributes;
 
 /**
 	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
@@ -127,7 +127,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList methods = null;
+	protected EList methods;
 
 /**
 	 * <!-- begin-user-doc -->

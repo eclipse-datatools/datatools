@@ -46,7 +46,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject targetEnd = null;
+	protected EObject targetEnd;
 
 	/**
 	 * The default value of the '{@link #getDependencyType() <em>Dependency Type</em>}' attribute.

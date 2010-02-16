@@ -205,13 +205,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Assertion</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Assertion</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Assertion</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Assertion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -220,13 +220,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -235,13 +235,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Table Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Table Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -250,13 +250,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Reference Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Reference Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Reference Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Reference Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -265,13 +265,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Check Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Check Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Check Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Check Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -280,13 +280,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Foreign Key</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Foreign Key</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Foreign Key</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Foreign Key</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -295,13 +295,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Unique Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Unique Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Unique Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Unique Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -310,13 +310,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Primary Key</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Primary Key</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Primary Key</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Primary Key</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -325,13 +325,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Index</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Index</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Index</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Index</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -340,13 +340,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Index Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Index Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Index Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Index Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -355,13 +355,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -370,13 +370,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -385,13 +385,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -400,13 +400,13 @@ public class SQLConstraintsSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

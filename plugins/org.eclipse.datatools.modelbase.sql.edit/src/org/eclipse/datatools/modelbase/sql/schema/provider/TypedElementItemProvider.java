@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TypedElementItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: TypedElementItemProvider.java,v 1.3 2007/05/31 00:29:18 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -15,6 +15,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -103,6 +104,18 @@ public class TypedElementItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns TypedElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,8 +157,8 @@ public class TypedElementItemProvider
 	}
 
 	/**
-	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing all of the children that can be created under this object.
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -157,11 +170,6 @@ public class TypedElementItemProvider
 			(createChildParameter
 				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
-				 SQLDataTypesFactory.eINSTANCE.createRowDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -212,16 +220,6 @@ public class TypedElementItemProvider
 			(createChildParameter
 				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createXMLDataType()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResourceLocator getResourceLocator() {
-		return SqlmodelEditPlugin.INSTANCE;
 	}
 
 }

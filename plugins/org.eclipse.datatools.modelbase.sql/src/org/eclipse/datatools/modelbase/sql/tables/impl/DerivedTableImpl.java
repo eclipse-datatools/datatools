@@ -50,7 +50,7 @@ public abstract class DerivedTableImpl extends TableImpl implements DerivedTable
 	 * @generated
 	 * @ordered
 	 */
-	protected QueryExpression queryExpression = null;
+	protected QueryExpression queryExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
