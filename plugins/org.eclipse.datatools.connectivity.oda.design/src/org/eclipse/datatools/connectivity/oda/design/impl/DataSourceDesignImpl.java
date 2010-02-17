@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.13 2008/07/23 04:12:28 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.14 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 
+import org.eclipse.datatools.connectivity.oda.design.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -50,6 +51,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileName <em>Linked Profile Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getResourceFile <em>Resource File</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,8 +65,13 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
+    /*
+     * @generated NOT
+     */
+    private static final String RESOURCE_FILE_SUFFIX = ".properties"; //$NON-NLS-1$
+    
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -218,6 +225,26 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     protected ResourceIdentifiers m_hostResourceIdentifiers;
 
     /**
+     * The default value of the '{@link #getResourceFile() <em>Resource File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getResourceFile()
+     * @generated
+     * @ordered
+     */
+    protected static final String RESOURCE_FILE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getResourceFile() <em>Resource File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getResourceFile()
+     * @generated
+     * @ordered
+     */
+    protected String m_resourceFile = RESOURCE_FILE_EDEFAULT;
+
+    /**
      * property name for storing linked profile instance's name
      * TODO - share common constants defined by core ODA plugin which introduces new plugin dependency
      * @generated NOT
@@ -352,15 +379,15 @@ public class DataSourceDesignImpl extends EObjectImpl implements
                     DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID,
                     oldOdaExtensionDataSourceId, m_odaExtensionDataSourceId ) );
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName()
+     * @generated NOT
      */
     public String getDisplayName()
     {
-        return m_displayName;
+        return DesignUtil.getDefaultResourceString( getDisplayNameGen() );
     }
 
     /**
@@ -368,7 +395,28 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    protected String getDisplayNameGen()
+    {
+        return m_displayName;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setDisplayName(java.lang.String)
+     * @generated NOT
+     */
     public void setDisplayName( String newDisplayName )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newDisplayName, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void setDisplayNameGen( String newDisplayName )
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
@@ -376,6 +424,25 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME,
                     oldDisplayName, m_displayName ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayNameKey()
+     * @generated NOT
+     */
+    public String getDisplayNameKey()
+    {
+        return DesignUtil.getResourceKey( getDisplayNameGen() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setDisplayNameKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setDisplayNameKey( String newDisplayNameKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newDisplayNameKey, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
     }
 
     /**
@@ -772,6 +839,46 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getResourceFile()
+    {
+        return m_resourceFile;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setResourceFile(java.lang.String)
+     * @generated NOT
+     */
+    public void setResourceFile( String newResourceFile )
+    {
+        if( newResourceFile != null )
+        {
+            if( ! newResourceFile.endsWith( RESOURCE_FILE_SUFFIX ) )
+                throw new IllegalArgumentException( 
+                        Messages.bind( Messages.design_invalidResourceFileName, newResourceFile ));
+        }
+        setResourceFileGen( newResourceFile );
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void setResourceFileGen( String newResourceFile )
+    {
+        String oldResourceFile = m_resourceFile;
+        m_resourceFile = newResourceFile;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__RESOURCE_FILE,
+                    oldResourceFile, m_resourceFile ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
@@ -816,6 +923,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return getLinkedProfileStoreFilePath();
         case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
             return getHostResourceIdentifiers();
+        case DesignPackage.DATA_SOURCE_DESIGN__RESOURCE_FILE:
+            return getResourceFile();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -856,6 +965,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
             setHostResourceIdentifiers( (ResourceIdentifiers) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__RESOURCE_FILE:
+            setResourceFile( (String) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -898,6 +1010,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
             setHostResourceIdentifiers( (ResourceIdentifiers) null );
             return;
+        case DesignPackage.DATA_SOURCE_DESIGN__RESOURCE_FILE:
+            setResourceFile( RESOURCE_FILE_EDEFAULT );
+            return;
         }
         super.eUnset( featureID );
     }
@@ -939,6 +1054,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
                             .equals( m_linkedProfileStoreFilePath );
         case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
             return m_hostResourceIdentifiers != null;
+        case DesignPackage.DATA_SOURCE_DESIGN__RESOURCE_FILE:
+            return RESOURCE_FILE_EDEFAULT == null ? m_resourceFile != null
+                    : !RESOURCE_FILE_EDEFAULT.equals( m_resourceFile );
         }
         return super.eIsSet( featureID );
     }
@@ -1015,6 +1133,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         result.append( m_linkedProfileName );
         result.append( ", linkedProfileStoreFilePath: " ); //$NON-NLS-1$
         result.append( m_linkedProfileStoreFilePath );
+        result.append( ", resourceFile: " ); //$NON-NLS-1$
+        result.append( m_resourceFile );
         result.append( ')' );
         return result.toString();
     }

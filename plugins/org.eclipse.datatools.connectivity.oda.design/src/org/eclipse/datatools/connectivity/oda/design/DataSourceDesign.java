@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesign.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DataSourceDesign.java,v 1.4 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName <em>Linked Profile Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getResourceFile <em>Resource File</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,7 +54,7 @@ public interface DataSourceDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -65,7 +66,7 @@ public interface DataSourceDesign extends EObject
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_Name()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
@@ -91,7 +92,7 @@ public interface DataSourceDesign extends EObject
      * @return the value of the '<em>Oda Extension Id</em>' attribute.
      * @see #setOdaExtensionId(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_OdaExtensionId()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='odaExtensionId' namespace='##targetNamespace'"
      * @generated
      */
@@ -117,7 +118,7 @@ public interface DataSourceDesign extends EObject
      * @return the value of the '<em>Oda Extension Data Source Id</em>' attribute.
      * @see #setOdaExtensionDataSourceId(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_OdaExtensionDataSourceId()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='odaExtensionDataSourceId' namespace='##targetNamespace'"
      * @generated
      */
@@ -137,10 +138,14 @@ public interface DataSourceDesign extends EObject
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Text can be localized with a resource key.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Display Name</em>' attribute.
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_DisplayName()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @see #getDisplayNameKey()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
@@ -152,10 +157,34 @@ public interface DataSourceDesign extends EObject
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Display Name</em>' attribute.
      * @see #getDisplayName()
+     * @see #setDisplayNameKey(String)
      * @generated
      */
     void setDisplayName( String value );
 
+    /**
+     * Returns the resource key of the '<em><b>Display Name</b></em>' attribute.
+     * @return  the resource key of the '<em>Display Name</em>' attribute; may be null if none is available
+     * @see #setDisplayNameKey(String)
+     * @see #getDisplayName()
+     * @see #getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    String getDisplayNameKey();
+    
+    /**
+     * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName <em>Display Name</em>}' attribute.
+     * @param value  the new resource key of the '<em>Display Name</em>' attribute;
+     *              may be null to reset
+     * @see #getDisplayNameKey()
+     * @see #setDisplayName(String)
+     * @see #getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    void setDisplayNameKey( String value );
+    
     /**
      * Returns the value of the '<em><b>Public Properties</b></em>' containment reference.
      * <!-- begin-user-doc -->
@@ -218,7 +247,7 @@ public interface DataSourceDesign extends EObject
      * @return the value of the '<em>Linked Profile Name</em>' attribute.
      * @see #setLinkedProfileName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_LinkedProfileName()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='linkedProfileName' namespace='##targetNamespace'"
      * @generated
      */
@@ -244,7 +273,7 @@ public interface DataSourceDesign extends EObject
      * @return the value of the '<em>Linked Profile Store File Path</em>' attribute.
      * @see #setLinkedProfileStoreFilePath(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_LinkedProfileStoreFilePath()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='linkedProfileStoreFilePath' namespace='##targetNamespace'"
      * @generated
      */
@@ -287,6 +316,34 @@ public interface DataSourceDesign extends EObject
      * @since DTP 1.6.1
      */
     void setHostResourceIdentifiers( ResourceIdentifiers value );
+
+    /**
+     * Returns the value of the '<em><b>Resource File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The base name of a resource file for all localizable design attributes. The file name must end with .properties, and must locate relative to one of the host resource identifiers.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Resource File</em>' attribute.
+     * @see #setResourceFile(String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_ResourceFile()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='resourceFile' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.2.3
+     */
+    String getResourceFile();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getResourceFile <em>Resource File</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Resource File</em>' attribute.
+     * @see #getResourceFile()
+     * @generated
+     * @since 3.2.3
+     */
+    void setResourceFile( String value );
 
     /**
      * Returns the profile storage file

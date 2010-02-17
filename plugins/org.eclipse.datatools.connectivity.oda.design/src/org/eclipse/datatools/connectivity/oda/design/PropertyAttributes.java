@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: PropertyAttributes.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: PropertyAttributes.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -45,16 +45,20 @@ public interface PropertyAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Text can be localized with a resource key.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Display Name</em>' attribute.
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes_DisplayName()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @see #getDisplayNameKey()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
@@ -66,9 +70,33 @@ public interface PropertyAttributes extends EObject
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Display Name</em>' attribute.
      * @see #getDisplayName()
+     * @see #setDisplayNameKey(String)
      * @generated
      */
     void setDisplayName( String value );
+
+    /**
+     * Returns the resource key of the '<em><b>Display Name</b></em>' attribute.
+     * @return  the resource key of the '<em>Display Name</em>' attribute; may be null if none is available
+     * @see #setDisplayNameKey(String)
+     * @see #getDisplayName()
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    String getDisplayNameKey();
+    
+    /**
+     * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.PropertyAttributes#getDisplayName <em>Display Name</em>}' attribute.
+     * @param value  the new resource key of the '<em>Display Name</em>' attribute;
+     *              may be null to reset
+     * @see #getDisplayNameKey()
+     * @see #setDisplayName(String)
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    void setDisplayNameKey( String value );
 
     /**
      * Returns the value of the '<em><b>Element Attributes</b></em>' containment reference.
@@ -106,7 +134,7 @@ public interface PropertyAttributes extends EObject
      * @see #unsetDerivedMetaData()
      * @see #setDerivedMetaData(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes_DerivedMetaData()
-     * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='derivedMetaData' namespace='##targetNamespace'"
      * @generated
      */

@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.6 2009/01/30 00:23:58 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.7 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -52,7 +52,7 @@ public interface DataSetDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the ODA data source element ID of the
@@ -191,9 +191,13 @@ public interface DataSetDesign extends EObject
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Text can be localized with a resource key.
+     * <!-- end-model-doc -->
      * @return the value of the '<em>Display Name</em>' attribute.
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_DisplayName()
+     * @see #getDisplayNameKey()
      * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
@@ -206,9 +210,33 @@ public interface DataSetDesign extends EObject
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Display Name</em>' attribute.
      * @see #getDisplayName()
+     * @see #setDisplayNameKey(String)
      * @generated
      */
     void setDisplayName( String value );
+
+    /**
+     * Returns the resource key of the '<em><b>Display Name</b></em>' attribute.
+     * @return  the resource key of the '<em>Display Name</em>' attribute; may be null if none is available
+     * @see #setDisplayNameKey(String)
+     * @see #getDisplayName()
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    String getDisplayNameKey();
+    
+    /**
+     * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getDisplayName <em>Display Name</em>}' attribute.
+     * @param value  the new resource key of the '<em>Display Name</em>' attribute;
+     *              may be null to reset
+     * @see #getDisplayNameKey()
+     * @see #setDisplayName(String)
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    void setDisplayNameKey( String value );
 
     /**
      * Returns the value of the '<em><b>Public Properties</b></em>' containment reference.

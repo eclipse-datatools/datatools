@@ -1,22 +1,23 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DataElementUIHintsImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DataElementUIHintsImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -44,7 +45,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -106,23 +107,41 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
     {
         return DesignPackage.Literals.DATA_ELEMENT_UI_HINTS;
     }
-
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#getDisplayName()
+     * @generated NOT
+     */
+    public String getDisplayName()
+    {
+        return DesignUtil.getDefaultResourceString( getDisplayNameGen() );
+    }
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getDisplayName()
+    protected String getDisplayNameGen()
     {
         return m_displayName;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#setDisplayName(java.lang.String)
+     * @generated NOT
+     */
+    public void setDisplayName( String newDisplayName )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newDisplayName, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisplayName( String newDisplayName )
+    protected void setDisplayNameGen( String newDisplayName )
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
@@ -131,15 +150,53 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
                     DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME,
                     oldDisplayName, m_displayName ) );
     }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#getDisplayNameKey()
+     * @generated NOT
+     */
+    public String getDisplayNameKey()
+    {
+        return DesignUtil.getResourceKey( getDisplayNameGen() );
+    }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#setDisplayNameKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setDisplayNameKey( String newDisplayNameKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newDisplayNameKey, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#getDescription()
+     * @generated NOT
+     */
+    public String getDescription()
+    {
+        return DesignUtil.getDefaultResourceString( getDescriptionGen() );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getDescription()
+    protected String getDescriptionGen()
     {
         return m_description;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#setDescription(java.lang.String)
+     * @generated NOT
+     */
+    public void setDescription( String newDescription )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newDescription, getDescriptionGen() );
+        setDescriptionGen( newAttrValue );
     }
 
     /**
@@ -147,7 +204,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDescription( String newDescription )
+    protected void setDescriptionGen( String newDescription )
     {
         String oldDescription = m_description;
         m_description = newDescription;
@@ -155,6 +212,25 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION,
                     oldDescription, m_description ) );
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#getDescriptionKey()
+     * @generated NOT
+     */
+    public String getDescriptionKey()
+    {
+        return DesignUtil.getResourceKey( getDescriptionGen() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementUIHints#setDescriptionKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setDescriptionKey( String newDescriptionKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newDescriptionKey, getDescriptionGen() );
+        setDescriptionGen( newAttrValue );
     }
 
     /**

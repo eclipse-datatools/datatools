@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.17 2009/05/08 00:55:25 lchan Exp $
+ * $Id: DesignUtil.java,v 1.18 2010/01/20 05:02:09 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +54,11 @@ import org.eclipse.emf.ecore.util.Diagnostician;
  */
 public class DesignUtil
 {
+    private static final String RESOURCE_KEY_PREFIX = "%"; //$NON-NLS-1$
+    private static final String RESOURCE_KEY_DOUBLE_PREFIX = "%%"; //$NON-NLS-1$ 
+    private static final char RESOURCE_KEY_SEPARATOR = ' ';
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+    
     private static Diagnostician sm_diagnostician;
     
     // trace logging variables
@@ -169,9 +173,8 @@ public class DesignUtil
             return null;
 
         String errMsg = diagnostic.getMessage();
-        for( Iterator i = diagnostic.getChildren().iterator(); i.hasNext();)
+        for( Diagnostic childDiagnostic : diagnostic.getChildren() )
         {
-            Diagnostic childDiagnostic = (Diagnostic) i.next();
             if( childDiagnostic.getSeverity() == messageType1 ||
                 childDiagnostic.getSeverity() == messageType2 )
             {
@@ -246,11 +249,8 @@ public class DesignUtil
         if( designProps == null || designProps.isEmpty() )
             return utilProps;  // return an empty collection
         
-        Iterator itr = designProps.getProperties().iterator();
-        while( itr.hasNext() )
+        for( Property designProp : designProps.getProperties() )
         {
-            Property designProp = (Property) itr.next();
-
             // util collection does not allow null name or value;
             // excludes the property in such case, which would allow
             // consumer to get a null value 
@@ -281,10 +281,8 @@ public class DesignUtil
         if( utilProps == null || utilProps.size() == 0 )
             return designProps;  // return an empty collection
         
-        Iterator iter = utilProps.entrySet().iterator();
-        while( iter.hasNext() )
+        for( Entry<Object, Object> utilProp : utilProps.entrySet() )
         {
-            Entry utilProp = (Entry) iter.next();
             designProps.setProperty( (String) utilProp.getKey(), 
                                     (String) utilProp.getValue() );
         }
@@ -516,6 +514,7 @@ public class DesignUtil
      *                      must be a valid index within range of the specified columns
      * @return  a new instance of {@link ExpressionVariable} based on the attributes 
      *          of the specified column; may be null if specified column does not exist
+     * @since 3.2.0 (DTP 1.7.0)
      */
     public static ExpressionVariable createFilterVariable( ResultSetColumns columns, int columnIndex )
     {
@@ -542,6 +541,7 @@ public class DesignUtil
      *                      must be a valid index within range of the specified columns
      * @return  a new instance of {@link SortKey} based on the name and position 
      *          of the specified column; may be null if specified column does not exist
+     * @since 3.2.0 (DTP 1.7.0)
      */
     public static SortKey createSortKeyWithColumnIdentifier( ResultSetColumns columns, int columnIndex )
     {
@@ -555,7 +555,125 @@ public class DesignUtil
         
         return aSortKey;
     }
+
+    /**
+     * Returns the resource key, if any, in the specified design attribute value.
+     * @param attributeValue    the persisted value of a localizable attribute
+     *          that may contain a resource key and a default resource string
+     * @return  the resource key found in the specified design attribute value;
+     *          may be null if none is available
+     * @since 3.2.3
+     */
+    public static String getResourceKey( String attributeValue )
+    {
+        return parseResourceValue( attributeValue, true );
+    }
     
+    /**
+     * Adds or replaces the resource key in the specified design attribute value.
+     * @param newKey    the resource key to add or replace in the specified attributeValue;
+     *          the key must not contain any embedded white space
+     * @param attributeValue    the current persisted value of a localizable attribute
+     *          that may contain a resource key and a default string
+     * @return  the new formatted attribute value that contains the new resource key 
+     *      and existing default string, if any
+     * @since 3.2.3
+     */
+    public static String addKeyToResourceAttribute( String newKey, String attributeValue )
+    {
+        String defaultValue = getDefaultResourceString( attributeValue );
+        return formatResourceAttribute( newKey, defaultValue );
+    }
+
+    /**
+     * Returns the default resource string, if any, in the specified design attribute value.
+     * @param attributeValue    the persisted value of a localizable attribute
+     *          that may contain a resource key and a default resource string
+     * @return  the default resource string in the specified attribute value;
+     *          may be null if none is available
+     * @since 3.2.3
+     */
+    public static String getDefaultResourceString( String attributeValue )
+    {
+        return parseResourceValue( attributeValue, false );
+    }
+    
+    /**
+     * Adds or replaces the default resource string in the specified design attribute value.
+     * @param newDefault    the new default resource string to add or replace in the specified attributeValue
+     * @param attributeValue    the current persisted value of a localizable attribute
+     *          that may contain a resource key and a default string
+     * @return  the new formatted attribute value that contains the existing resource key, if any,
+     *      and the new default string
+     * @since 3.2.3
+     */
+    public static String addDefaultToResourceAttribute( String newDefault, String attributeValue )
+    {
+        String key = getResourceKey( attributeValue );
+        return formatResourceAttribute( key, newDefault );
+    }
+    
+    private static String formatResourceAttribute( String key, String defaultValue )
+    {
+        // adopts similar formatting rule of a resource value that may contain both
+        // resource key and default string,
+        // as in org.eclipse.core.runtime.Platform#getResourceString
+        if( key == null || key.trim().length() == 0 )
+        {
+            if( defaultValue == null )
+                return EMPTY_STRING ;
+            if( defaultValue.startsWith( RESOURCE_KEY_PREFIX ) )
+                return RESOURCE_KEY_PREFIX + defaultValue;   // escapes the leading char
+            return defaultValue;
+        }
+        
+        key = key.trim();
+        // validate the key does not contain any embedded white space
+        if( key.indexOf( RESOURCE_KEY_SEPARATOR ) != -1 )   // has embedded white space
+            throw new IllegalArgumentException( 
+                    Messages.bind( Messages.design_invalidResourceKey, key ));
+            
+        if( ! key.startsWith( RESOURCE_KEY_PREFIX ) )
+            key = RESOURCE_KEY_PREFIX + key;
+
+        if( defaultValue == null || defaultValue.length() == 0 )
+            return key;
+        
+        return key + RESOURCE_KEY_SEPARATOR + defaultValue;
+    }
+
+    private static String parseResourceValue( String attributeValue, boolean getKey )
+    {
+        if( attributeValue == null )
+            return null;
+
+        String key = null;
+        String defaultValue = null;
+
+        String s = attributeValue;
+        if( ! s.startsWith( RESOURCE_KEY_PREFIX ) ) // no resource key 
+            defaultValue = attributeValue;
+        else 
+        {
+            if( s.startsWith( RESOURCE_KEY_DOUBLE_PREFIX ) )   // has escaped key prefix, i.e. no resource key
+                defaultValue = s.substring( 1 );    // strips the escaped char
+            else    // has resource key
+            {
+                int keySeparatorIndex = s.indexOf( RESOURCE_KEY_SEPARATOR );
+                if( keySeparatorIndex == -1 )    // no default value after key
+                    key = s.substring( 1 ); // strips the key prefix
+                else
+                {
+                    key = s.substring( 1, keySeparatorIndex );   // strips the key prefix
+                    if( (keySeparatorIndex + 1) < s.length() )
+                        defaultValue = s.substring( keySeparatorIndex + 1 );
+                }
+            }
+        }
+
+        return getKey ? key : defaultValue;
+    }
+
     private static Logger getLogger()
     {
         if( sm_logger == null )

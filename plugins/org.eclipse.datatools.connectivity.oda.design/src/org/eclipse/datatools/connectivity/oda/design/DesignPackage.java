@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.11 2009/04/30 06:04:18 lchan Exp $
+ * $Id: DesignPackage.java,v 1.12 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The package name.
@@ -769,13 +769,22 @@ public interface DesignPackage extends EPackage
     int DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = 8;
 
     /**
+     * The feature id for the '<em><b>Resource File</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SOURCE_DESIGN__RESOURCE_FILE = 9;
+
+    /**
      * The number of structural features of the '<em>Data Source Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 9;
+    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 10;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
@@ -3264,6 +3273,17 @@ public interface DesignPackage extends EPackage
     EReference getDataSourceDesign_HostResourceIdentifiers();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getResourceFile <em>Resource File</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Resource File</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getResourceFile()
+     * @see #getDataSourceDesign()
+     * @generated
+     */
+    EAttribute getDataSourceDesign_ResourceFile();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>Designer State</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5533,6 +5553,15 @@ public interface DesignPackage extends EPackage
          */
         EReference DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = eINSTANCE
                 .getDataSourceDesign_HostResourceIdentifiers();
+
+        /**
+         * The meta object literal for the '<em><b>Resource File</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__RESOURCE_FILE = eINSTANCE
+                .getDataSourceDesign_ResourceFile();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.

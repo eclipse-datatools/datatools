@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: OutputElementAttributesImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
+ * $Id: OutputElementAttributesImpl.java,v 1.4 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -49,7 +50,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -122,22 +123,41 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
         return DesignPackage.Literals.OUTPUT_ELEMENT_ATTRIBUTES;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabel()
+     * @generated NOT
+     */
+    public String getLabel()
+    {
+        return DesignUtil.getDefaultResourceString( getLabelGen() );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getLabel()
+    protected String getLabelGen()
     {
         return m_label;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabel(java.lang.String)
+     * @generated NOT
+     */
+    public void setLabel( String newLabel )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newLabel, getLabelGen() );
+        setLabelGen( newAttrValue );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setLabel( String newLabel )
+    protected void setLabelGen( String newLabel )
     {
         String oldLabel = m_label;
         m_label = newLabel;
@@ -145,6 +165,25 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL, oldLabel,
                     m_label ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getLabelKey()
+     * @generated NOT
+     */
+    public String getLabelKey()
+    {
+        return DesignUtil.getResourceKey( getLabelGen() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setLabelKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setLabelKey( String newLabelKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newLabelKey, getLabelGen() );
+        setLabelGen( newAttrValue );
     }
 
     /**
@@ -228,22 +267,41 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
                     newFormattingHints, newFormattingHints ) );
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpText()
+     * @generated NOT
+     */
+    public String getHelpText()
+    {
+        return DesignUtil.getDefaultResourceString( getHelpTextGen() );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getHelpText()
+    protected String getHelpTextGen()
     {
         return m_helpText;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpText(java.lang.String)
+     * @generated NOT
+     */
+    public void setHelpText( String newHelpText )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newHelpText, getHelpTextGen() );
+        setHelpTextGen( newAttrValue );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setHelpText( String newHelpText )
+    protected void setHelpTextGen( String newHelpText )
     {
         String oldHelpText = m_helpText;
         m_helpText = newHelpText;
@@ -251,6 +309,25 @@ public class OutputElementAttributesImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT,
                     oldHelpText, m_helpText ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#getHelpTextKey()
+     * @generated NOT
+     */
+    public String getHelpTextKey()
+    {
+        return DesignUtil.getResourceKey( getHelpTextGen() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes#setHelpTextKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setHelpTextKey( String newHelpTextKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newHelpTextKey, getHelpTextGen() );
+        setHelpTextGen( newAttrValue );
     }
 
     /**

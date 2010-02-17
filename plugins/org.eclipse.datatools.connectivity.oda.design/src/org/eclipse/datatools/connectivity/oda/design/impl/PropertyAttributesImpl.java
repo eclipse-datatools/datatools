@@ -1,23 +1,24 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: PropertyAttributesImpl.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
+ * $Id: PropertyAttributesImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -48,7 +49,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -130,14 +131,13 @@ public class PropertyAttributesImpl extends EObjectImpl implements
         return DesignPackage.Literals.PROPERTY_ATTRIBUTES;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.PropertyAttributes#getDisplayName()
+     * @generated NOT
      */
     public String getDisplayName()
     {
-        return m_displayName;
+        return DesignUtil.getDefaultResourceString( getDisplayNameGen() );
     }
 
     /**
@@ -145,7 +145,27 @@ public class PropertyAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    protected String getDisplayNameGen()
+    {
+        return m_displayName;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.PropertyAttributes#setDisplayName(java.lang.String)
+     * @generated NOT
+     */
     public void setDisplayName( String newDisplayName )
+    {
+        String newAttrValue = DesignUtil.addDefaultToResourceAttribute( newDisplayName, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void setDisplayNameGen( String newDisplayName )
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
@@ -153,6 +173,25 @@ public class PropertyAttributesImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME,
                     oldDisplayName, m_displayName ) );
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.PropertyAttributes#getDisplayNameKey()
+     * @generated NOT
+     */
+    public String getDisplayNameKey()
+    {
+        return DesignUtil.getResourceKey( getDisplayNameGen() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.PropertyAttributes#setDisplayNameKey(java.lang.String)
+     * @generated NOT
+     */
+    public void setDisplayNameKey( String newDisplayNameKey )
+    {
+        String newAttrValue = DesignUtil.addKeyToResourceAttribute( newDisplayNameKey, getDisplayNameGen() );
+        setDisplayNameGen( newAttrValue );
     }
 
     /**

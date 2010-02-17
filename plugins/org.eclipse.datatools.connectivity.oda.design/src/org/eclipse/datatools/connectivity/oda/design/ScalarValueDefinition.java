@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: ScalarValueDefinition.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: ScalarValueDefinition.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface ScalarValueDefinition extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -53,7 +53,7 @@ public interface ScalarValueDefinition extends EObject
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getScalarValueDefinition_Value()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='value' namespace='##targetNamespace'"
      * @generated
      */
@@ -74,12 +74,13 @@ public interface ScalarValueDefinition extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * A localized name that describes the value.
+     * A localized name that describes the value.  Text can be localized with a resource key.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Display Name</em>' attribute.
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getScalarValueDefinition_DisplayName()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @see #getDisplayNameKey()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
@@ -91,8 +92,32 @@ public interface ScalarValueDefinition extends EObject
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Display Name</em>' attribute.
      * @see #getDisplayName()
+     * @see #setDisplayNameKey(String)
      * @generated
      */
     void setDisplayName( String value );
+    
+    /**
+     * Returns the resource key of the '<em><b>Display Name</b></em>' attribute.
+     * @return  the resource key of the '<em>Display Name</em>' attribute; may be null if none is available
+     * @see #setDisplayNameKey(String)
+     * @see #getDisplayName()
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    String getDisplayNameKey();
+    
+    /**
+     * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition#getDisplayName <em>Display Name</em>}' attribute.
+     * @param value  the new resource key of the '<em>Display Name</em>' attribute;
+     *              may be null to reset
+     * @see #getDisplayNameKey()
+     * @see #setDisplayName(String)
+     * @see DataSourceDesign#getResourceFile()
+     * @generated NOT
+     * @since 3.2.3
+     */
+    void setDisplayNameKey( String value );
 
 } // ScalarValueDefinition

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.16 2009/07/23 21:43:17 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.17 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -105,7 +105,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc -->
@@ -1338,6 +1338,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 8 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDataSourceDesign_ResourceFile()
+    {
+        return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
+                .get( 9 );
     }
 
     /**
@@ -3160,6 +3171,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH );
         createEReference( dataSourceDesignEClass,
                 DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS );
+        createEAttribute( dataSourceDesignEClass,
+                DATA_SOURCE_DESIGN__RESOURCE_FILE );
 
         designerStateEClass = createEClass( DESIGNER_STATE );
         createEAttribute( designerStateEClass, DESIGNER_STATE__VERSION );
@@ -3740,6 +3753,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getResourceIdentifiers(),
                 null,
                 "hostResourceIdentifiers", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getDataSourceDesign_ResourceFile(),
+                theXMLTypePackage.getString(),
+                "resourceFile", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 designerStateEClass,
@@ -4844,6 +4861,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "hostResourceIdentifiers", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( getDataSourceDesign_ResourceFile(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "resourceFile", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( designerStateEClass, source, new String[]
         { "name", "DesignerState", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$

@@ -312,6 +312,107 @@ public class DesignUtilLoadSaveTest extends TestCase
         assertTrue( compareFileContent( goldenOutFile, tempOut ) );    
     }
     
+    public void testAddResourceKeys()
+    {
+        File goldenFile = new File( getSampleDbTestFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSourceDesign dataSourceDesign = design.getResponseDataSourceDesign();
+
+        String displayName = dataSourceDesign.getDisplayName();
+        
+        // adding resource key
+        String displayNameKey = "sourceDesignKey";
+        dataSourceDesign.setDisplayNameKey( displayNameKey );
+        assertEquals( displayNameKey, dataSourceDesign.getDisplayNameKey() );
+        // test that the display name remains the same after having added resource key
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        
+        // add default resource string
+        displayName = "newDefault";
+        dataSourceDesign.setDisplayName( displayName );
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        // test that the key remains the same after having added resource default
+        assertEquals( displayNameKey, dataSourceDesign.getDisplayNameKey() );
+
+        // change resource key
+        displayNameKey = " sourceDesignKey2 ";
+        dataSourceDesign.setDisplayNameKey( displayNameKey );
+        assertEquals( displayNameKey.trim(), dataSourceDesign.getDisplayNameKey() );
+        // test that the display name remains the same after having changed resource key
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        
+        // change default resource string
+        displayName = " %new Default 2 ";
+        dataSourceDesign.setDisplayName( displayName );
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        // test that the key remains the same after having added resource default
+        assertEquals( displayNameKey.trim(), dataSourceDesign.getDisplayNameKey() );
+        
+        // change default resource string to contain literal key prefix
+        displayName = "%new Default 2 ";
+        dataSourceDesign.setDisplayName( displayName );
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        // test that the key remains the same after having added resource default
+        assertEquals( displayNameKey.trim(), dataSourceDesign.getDisplayNameKey() );
+        
+        // test the added resource keys are valid and can be saved
+        try
+        {
+            DesignUtil.validateObject( dataSourceDesign );
+        }
+        catch( IllegalStateException ex )
+        {
+            fail();
+        }  
+        
+        // test saving updated design session with the resource keys
+        File tempOut = getTempOutFile();
+        saveDesignSession( design, tempOut );
+
+        // reset resource key
+        displayNameKey = null;
+        dataSourceDesign.setDisplayNameKey( displayNameKey );
+        assertEquals( displayNameKey, dataSourceDesign.getDisplayNameKey() );
+        // test that the display name remains the same after having changed resource key
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        
+        // test invalid resource key
+        boolean hasException = false;
+        try
+        {
+            dataSourceDesign.setDisplayNameKey( " invalid key " );  // contains embedded white space
+        }
+        catch( IllegalArgumentException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );
+    }
+
+    
+    public void testAddResourceFileName()
+    {
+        File goldenFile = new File( getSampleDbTestFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSourceDesign dataSourceDesign = design.getResponseDataSourceDesign();
+
+        String resourceFileName = "dummyFile.properties";
+        dataSourceDesign.setResourceFile( resourceFileName );
+        assertEquals( resourceFileName, dataSourceDesign.getResourceFile() );
+        
+        // test invalid resource file name
+        boolean hasException = false;
+        try
+        {
+            dataSourceDesign.setResourceFile( "dummyFile" );    // missing expected suffix
+        }
+        catch( IllegalArgumentException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );        
+    }
+    
     private void saveDesignSession( OdaDesignSession design, File tempOut )
     {
         try

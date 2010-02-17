@@ -233,7 +233,7 @@
   </xsd:element>
   <xsd:complexType name="CustomFilterExpression">
     <xsd:annotation>
-      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="design:FilterExpression">
@@ -246,7 +246,7 @@
   </xsd:complexType>
   <xsd:element name="CustomFilterExpression" type="design:CustomFilterExpression">
     <xsd:annotation>
-      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="DataAccessDesign">
@@ -307,12 +307,12 @@
     </xsd:annotation>
     <xsd:attribute name="displayName" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>Business name of the data element.  Could be localized.</xsd:documentation>
+        <xsd:documentation>Business name of the data element.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="description" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>More extensive description of the data element.</xsd:documentation>
+        <xsd:documentation>More extensive description of the data element.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -355,7 +355,11 @@
         <xsd:documentation>The dataSet element ID defined in an ODA extension plugin manifest.  It identifies the type of data set design supported by the ODA extension.  Optional if only one dataSet element is defined in the manifest.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="displayName" type="xsd:string"/>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="primaryResultSetName" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>Identifies the primary result set if more than one result sets are available, and can be identified by name.  If results sets are identified by sequence, the first result set is the primary one.</xsd:documentation>
@@ -436,7 +440,11 @@
         <xsd:documentation>The data source element ID defined in an ODA extension plugin manifest.  Optional, defaults to be same as the ODA extension id if only one dataSource element is defined in the manifest.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="displayName" type="xsd:string"/>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="linkedProfileName" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>The name of a linked connection profile.</xsd:documentation>
@@ -445,6 +453,11 @@
     <xsd:attribute name="linkedProfileStoreFilePath" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>The full path name of a linked connection profiles storage file where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="resourceFile" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base name of a resource file for all localizable design attributes. The file name must end with .properties, and must locate relative to one of the host resource identifiers.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -786,7 +799,7 @@
     </xsd:annotation>
     <xsd:attribute name="groupPromptDisplayName" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>For grouping multiple top-level input parameters under the same UI group prompt.</xsd:documentation>
+        <xsd:documentation>For grouping multiple top-level input parameters under the same UI group prompt.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -885,12 +898,12 @@
     </xsd:sequence>
     <xsd:attribute name="label" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>A free-format string used to identify the data element in a heading, such as a column header.</xsd:documentation>
+        <xsd:documentation>A free-format string used to identify the data element in a heading, such as a column header.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="helpText" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>Provides additional information to the user about this data element, such as in a balloon help.</xsd:documentation>
+        <xsd:documentation>Provides additional information to the user about this data element, such as in a balloon help.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -1014,7 +1027,11 @@
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="0" name="elementAttributes" type="design:InputElementAttributes"/>
     </xsd:sequence>
-    <xsd:attribute name="displayName" type="xsd:string"/>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute default="true" name="derivedMetaData" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>If the property metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
@@ -1144,7 +1161,7 @@ Applying the criteria may impact the data retrieved in a result set, in addition
     <xsd:attribute name="value" type="xsd:string" use="required"/>
     <xsd:attribute name="displayName" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>A localized name that describes the value.</xsd:documentation>
+        <xsd:documentation>A localized name that describes the value.  Text can be localized with a resource key.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>

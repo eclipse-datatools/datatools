@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -30,10 +30,10 @@ public class Messages extends NLS
         NLS.initializeMessages( BUNDLE_NAME, Messages.class );
     }
 
+    public static String design_invalidResourceFileName;
+    public static String design_invalidResourceKey;
     public static String design_nullArgument;
-
     public static String design_missingDataSourceDesign;
-
     public static String design_missingId;
 
 }
