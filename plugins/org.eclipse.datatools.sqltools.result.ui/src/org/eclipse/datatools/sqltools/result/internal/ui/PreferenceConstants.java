@@ -1,7 +1,8 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
- * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others.
+ * All rights reserved. This program and the accompanying materials are made available
+ * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, 
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: Sybase, Inc. - initial API and implementation
  *******************************************************************************/
@@ -124,5 +125,11 @@ public class PreferenceConstants
     /* Result Set viewer options */
     public static final String RESULT_SET_VIEWER_VIEWERNAME            = PREFERENCE_PREFIX
                                                                                + ".preferences.resultsetviewer.viewername";
+    /* Parameter viewer options */
+    public static final String PARAMETER_VIEWER_VIEWERNAME             = PREFERENCE_PREFIX
+                                                                               + ".preferences.parameterviewer.viewername";
+    
+    public static final String ELLIPSIS_ENABLED_VALUE_LENGTH           = PREFERENCE_PREFIX
+                                                                               + ".preferences.parameterviewer.maxlength";
 
 }

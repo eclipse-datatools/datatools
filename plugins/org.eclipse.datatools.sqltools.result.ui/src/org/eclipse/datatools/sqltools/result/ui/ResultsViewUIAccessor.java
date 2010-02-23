@@ -13,7 +13,9 @@ package org.eclipse.datatools.sqltools.result.ui;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
+import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
+import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsView;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
@@ -292,4 +294,14 @@ public class ResultsViewUIAccessor
             });
         }
     }
+    
+    /**
+     * Gets the maximum length to display ellipsis[...] button 
+     * @return the maximum length of parameter to display ellipsis[...] button
+     */
+    public int getMaxLengthToShowEllipses(){
+        return ResultsViewUIPlugin.getDefault().getPreferenceStore().getInt(
+                PreferenceConstants.ELLIPSIS_ENABLED_VALUE_LENGTH);
+     }
+
 }

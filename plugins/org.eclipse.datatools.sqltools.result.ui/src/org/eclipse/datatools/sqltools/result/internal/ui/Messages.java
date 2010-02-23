@@ -53,6 +53,7 @@ public final class Messages extends NLS {
 	public static String ResultSection_resultset_tooltip;
 	public static String ResultSetLabelProvider_longdata;
 	public static String ResultSection_resultset_tooltip1;
+	public static String MultibleTabsEllipsisToolTipText;
 	public static String MultipleTabsGridSection_parameter_name;
 	public static String MultipleTabsGridSection_parameter_type;
 	public static String MultipleTabsTextSection_parameter_name;
@@ -315,6 +316,13 @@ public final class Messages extends NLS {
     public static String ShiftListMoveLeftAll;
     public static String ShiftListMoveUp;
     public static String ShiftListMoveDown;
+    public static String ParameterViewerPage_group;
+    public static String ParameterViewerPage_select_viewer;
+    public static String ParameterViewerPage_viewer_tooltip;
+    public static String ParameterViewerPage_defaultViewer;
+    public static String ParameterViewer_ellipsisEnabledValue;
+    public static String ParameterViewerPreferencePage_parameterResultOptions_LessthanOne;
+    public static String ParameterViewerPreferencePage_parameterResultOptions_maxParmeterCount_tooltip;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,10 +34,10 @@ import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.model.ResultItem;
 import org.eclipse.datatools.sqltools.result.ui.ExternalResultSetViewerProvider;
 import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIPlugin;
+import org.eclipse.datatools.sqltools.result.ui.view.ParameterViewerProvider;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -47,9 +47,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -62,12 +59,8 @@ public class MultipleTabsGridSection extends MultipleTabsModeSection
 {
     private Text             _statusView;
     private Text             _messageView;
-    private static final int PARAM_NAME      = 0;
-    private static final int PARAM_TYPE      = 1;
-    private static final int PARAM_DATA_TYPE = 2;
-    private static final int PARAM_VALUE     = 3;
-    private static final int PARAM_VALUE_OUT = 4;
-    private Table            _paramTable;
+    
+    private ParameterViewerProvider provider;
     
     public MultipleTabsGridSection(Composite composite, ResultsViewControl resultsViewControl)
     {
@@ -337,81 +330,55 @@ public class MultipleTabsGridSection extends MultipleTabsModeSection
         _statusView.setText(""); //$NON-NLS-1$
     }
     
-    private void createTableForParameters(Composite comp)
-    {
-        TableViewer paramViewer = new TableViewer(comp, SWT.V_SCROLL | SWT.FULL_SELECTION);
-        _paramTable = paramViewer.getTable();
-        
-        _paramTable.setLinesVisible(true);
-        _paramTable.setHeaderVisible(true);
-        _paramTable.setLayoutData(new GridData(GridData.FILL_BOTH));
-        
-        TableColumn nameColumn = new TableColumn(_paramTable, SWT.NONE);
-        nameColumn.setText(Messages.MultipleTabsGridSection_parameter_name); 
-        
-        TableColumn typeColumn = new TableColumn(_paramTable, SWT.NONE);
-        typeColumn.setText(Messages.MultipleTabsGridSection_parameter_type); 
-        
-        TableColumn dataTypeColumn = new TableColumn(_paramTable, SWT.NONE);
-        dataTypeColumn.setText(Messages.MultipleTabsGridSection_parameter_datatype); 
-        
-        TableColumn valueColumn = new TableColumn(_paramTable, SWT.NONE);
-        valueColumn.setText(Messages.MultipleTabsGridSection_value); 
-        
-        TableColumn outValueColumn = new TableColumn(_paramTable, SWT.NONE);
-        outValueColumn.setText(Messages.MultipleTabsGridSection_value_out);
-        
-        int defaultWidth = 0;
+    /**
+     * This method creates Viewer for Parameters depends on the preferences set.
+     * @params params 
+     */
+     protected void appendAndShowParameters(List params) {
+         if (_paramsItem == null) {
+             _paramsItem = new CTabItem(_tabFolder, SWT.NONE, _numberStaticTab);
+             _paramsItem.setText(Messages.MultipleTabsGridSection_parameter);
+             _numberStaticTab++;
+             _isParamShown = true;
+             _paramTabNumber = _numberStaticTab - 1;
+             IPreferenceStore store = ResultsViewUIPlugin.getDefault()
+             .getPreferenceStore();
+             String viewerName = store
+             .getString(PreferenceConstants.PARAMETER_VIEWER_VIEWERNAME);
+             if (ResultSetViewerPreferencePage.PARAM_DEFAULT_VIEWER.equalsIgnoreCase(viewerName))
+             {
+                 createTableForParameters(_tabFolder);
+             }
+             else
+             {
+                 createExternalViewerForParameter(_tabFolder, viewerName);
+             }
+             _paramsItem.setControl(provider.getTable());
+         }
+         // overwrite the original parameters
+         provider.fillDataIntoParamsTable(params);
+     }
 
-        int columnCount = _paramTable.getColumnCount();
-        for (int i=0; i < columnCount; i++)
-        {
-            TableColumn column = _paramTable.getColumn(i);
-            column.pack();
-            defaultWidth = defaultWidth + column.getWidth() + _paramTable.getGridLineWidth();
-        }
-
-        int moreWidth = comp.getParent().getBounds().width - 2 - defaultWidth;
-        if (moreWidth > 0)
-        {
-            for (int i=0; i < columnCount; i++)
-            {
-                TableColumn col = _paramTable.getColumn(i);
-                col.setWidth(col.getWidth() + moreWidth / columnCount);
-            }
-        }
-        _paramTable.pack();
-    }
-
-    protected void appendAndShowParameters(List params)
-    {
-        if(_paramsItem == null)
-        {
-            _paramsItem = new CTabItem(_tabFolder, SWT.NONE, _numberStaticTab);
-            _paramsItem.setText(Messages.MultipleTabsGridSection_parameter); 
-            _numberStaticTab++;
-            _isParamShown = true;
-            _paramTabNumber = _numberStaticTab - 1;
-            createTableForParameters(_tabFolder);
-            _paramsItem.setControl(_paramTable);
-        }
-        // overwrite the orginal parameters
-        fillDataIntoParamsTable(params);
-    }
-    
-    private void fillDataIntoParamsTable(List params)
-    {
-        _paramTable.removeAll();
-        Iterator iter = params.iterator();
-        while(iter.hasNext())
-        {
-            Parameter param = (Parameter)iter.next();
-            TableItem item = new TableItem(_paramTable, SWT.NONE);
-            item.setText(PARAM_NAME, param.getParamName());
-            item.setText(PARAM_TYPE, param.getParamType());
-            item.setText(PARAM_DATA_TYPE, param.getParamDataType());
-            item.setText(PARAM_VALUE, param.getParamValue());
-            item.setText(PARAM_VALUE_OUT, param.getParamOutValue());
-        }
-    }
+     /**
+      * Creates table viewer for parameter
+      * 
+      * @param composite the parent composite
+      */
+     private void createTableForParameters(Composite comp) {
+         provider = new ParameterViewerProvider();
+         provider.configureViewer(comp, SWT.V_SCROLL | SWT.FULL_SELECTION);
+     }
+         
+     /**
+      * Creates the external viewer for parameter table viewer
+      * @param composite the parent Composite
+      * @param viewerName the external viewer name
+      */
+     private void createExternalViewerForParameter(Composite comp, String viewerName) {
+         ParameterViewerRegistryReader reader = ParameterViewerRegistryReader
+         .getInstance();
+         provider = reader
+         .getParameterViewerExecutable(viewerName);
+         provider.configureViewer(comp, SWT.V_SCROLL | SWT.FULL_SELECTION);
+     }
 }

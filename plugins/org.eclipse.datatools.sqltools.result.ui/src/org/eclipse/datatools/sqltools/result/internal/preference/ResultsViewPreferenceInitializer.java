@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -94,6 +94,13 @@ public class ResultsViewPreferenceInitializer extends AbstractPreferenceInitiali
         		ResultSetViewerPreferencePage.DEFAULT_VIEWER);
         store.setValue(PreferenceConstants.RESULT_SET_VIEWER_VIEWERNAME, 
         		ResultSetViewerPreferencePage.getViewerNameFromExtension());
+        
+        // Set values of parameter viewer
+        store.setDefault(PreferenceConstants.PARAMETER_VIEWER_VIEWERNAME, 
+                ResultSetViewerPreferencePage.PARAM_DEFAULT_VIEWER);
+        store.setValue(PreferenceConstants.PARAMETER_VIEWER_VIEWERNAME, 
+                ResultSetViewerPreferencePage.getParameterViewerNameFromExtension());
+        store.setDefault(PreferenceConstants.ELLIPSIS_ENABLED_VALUE_LENGTH, 60);
     }
 
 }
