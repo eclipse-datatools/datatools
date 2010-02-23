@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
+
 
 
 public class PreparedStatementWriter {
@@ -33,7 +35,7 @@ public class PreparedStatementWriter {
             return;
         }
         
-        if (type==Types.OTHER)
+        if (type==Types.OTHER || type==DataCorePlugin.Types_SQLXML)
         	pst.setString(column+1, val.toString());
         else if (type==Types.CLOB)
             pst.setCharacterStream(column+1, new StringReader((String)val), ((String)val).length());

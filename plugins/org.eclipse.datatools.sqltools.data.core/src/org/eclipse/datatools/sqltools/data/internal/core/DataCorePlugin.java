@@ -60,6 +60,13 @@ public class DataCorePlugin extends Plugin
 	//public static final String ID = "org.eclipse.wst.rdb.data.core"; //$NON-NLS-1$
 	public static final String ID = "org.eclipse.datatools.sqltools.data.core"; //$NON-NLS-1$
 	
+    // TEMPORARY:  Starting with JDBC 4.0 (Java 6), JDBC uses Types.SQLXML (value 2009) instead of Types.OTHER 
+    // for the datatype of XML columns.  We compile with Java 5, so we can't use that constant.  However we can 
+    // be run with Java 6, so we might encounter the JDBC 4.0 value. Therefore we define a stand-in constant here 
+    // for the real JDBC 4.0 value.  This temporary constant can be removed and its usage replaced with the real 
+    // JDBC constant when we know that this code is being compiled with Java 6. 
+    public static final int Types_SQLXML = 2009; 
+    
 	protected Vector columnDataAccessors;
 	
 	/**

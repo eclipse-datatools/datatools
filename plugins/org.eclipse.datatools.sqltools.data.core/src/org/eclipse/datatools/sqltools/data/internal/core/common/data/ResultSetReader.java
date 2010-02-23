@@ -24,8 +24,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
+import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 
 
 public class ResultSetReader {
@@ -68,7 +68,7 @@ public class ResultSetReader {
 
 	    int type = rs.getMetaData().getColumnType(column+1);
 	    
-	    if (type==Types.OTHER)
+	    if (type == Types.OTHER || type == DataCorePlugin.Types_SQLXML)
 	    	return rs.getString(column+1);
 	    
 	    if (type == Types.BIGINT) {

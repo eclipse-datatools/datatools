@@ -18,6 +18,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
+
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.NumberFormat;
 
@@ -26,7 +28,7 @@ public class DataSerializer {
 
     protected static final int[] NEEDS_QUOTE = {Types.BIT, Types.BLOB, Types.CLOB,
             Types.CHAR, Types.VARCHAR, Types.LONGVARCHAR, Types.BINARY, Types.VARBINARY,
-            Types.LONGVARBINARY, Types.DATE, Types.TIME, Types.TIMESTAMP, Types.OTHER };
+            Types.LONGVARBINARY, Types.DATE, Types.TIME, Types.TIMESTAMP, Types.OTHER, DataCorePlugin.Types_SQLXML};
     
         
     public static String serialize(Object val, int type)
@@ -90,7 +92,7 @@ public class DataSerializer {
             return val.toString();
         else if (type==Types.BLOB)
             return serializeBytes((byte[])val);
-        else if (type==Types.OTHER)
+        else if (type==Types.OTHER || type==DataCorePlugin.Types_SQLXML)
         	return val.toString();
         else if (type==Types.ARRAY || type==Types.REF || type==Types.STRUCT || type==Types.JAVA_OBJECT)
             return null;

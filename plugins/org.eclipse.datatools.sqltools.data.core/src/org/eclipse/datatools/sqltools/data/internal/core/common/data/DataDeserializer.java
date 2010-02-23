@@ -11,13 +11,14 @@
 
 package org.eclipse.datatools.sqltools.data.internal.core.common.data;
 
-import java.sql.Timestamp;
-import java.sql.Types;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
+
+import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 
 public class DataDeserializer {
 
@@ -109,7 +110,7 @@ public class DataDeserializer {
                 return val;
             else if (type==Types.BLOB)
                 return deserializeBytes(val);
-            else if (type==Types.OTHER)
+            else if (type==Types.OTHER || type==DataCorePlugin.Types_SQLXML)
             	return val;
             else if (type==Types.ARRAY || type==Types.REF || type==Types.STRUCT || type==Types.JAVA_OBJECT)
             	return null;
