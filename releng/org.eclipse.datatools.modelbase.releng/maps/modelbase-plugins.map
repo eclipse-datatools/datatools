@@ -1,6 +1,6 @@
 plugin@org.eclipse.datatools.modelbase.dbdefinition=v201002130228,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.dbdefinition
 plugin@org.eclipse.datatools.modelbase.sql.edit=v201002161452,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.edit
 plugin@org.eclipse.datatools.modelbase.sql.query.edit=v200906022249,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query.edit
-plugin@org.eclipse.datatools.modelbase.sql.query=v201002120355,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query
+plugin@org.eclipse.datatools.modelbase.sql.query=v201002231845,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.query
 plugin@org.eclipse.datatools.modelbase.sql.xml.query=v200906022249,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql.xml.query
-plugin@org.eclipse.datatools.modelbase.sql=v201002161452,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql
+plugin@org.eclipse.datatools.modelbase.sql=v201002231845,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.modelbase/plugins/org.eclipse.datatools.modelbase.sql
