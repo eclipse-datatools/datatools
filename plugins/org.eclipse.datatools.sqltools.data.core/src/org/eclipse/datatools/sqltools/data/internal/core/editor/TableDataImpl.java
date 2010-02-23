@@ -22,6 +22,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -33,6 +39,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
@@ -84,6 +91,10 @@ public class TableDataImpl implements ITableData {
     
     /** The actual columns in the result */
     protected List resultColumns;
+    
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER = "org.eclipse.datatools.modelbase.sql.sqlObjectNameHelper"; //$NON-NLS-1$
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER_DBTYPE = "databaseType"; //$NON-NLS-1$
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER_CLASS = "class"; //$NON-NLS-1$
     
     
 
@@ -217,7 +228,8 @@ public class TableDataImpl implements ITableData {
     
     protected String computeSelectStatement()
     {
-        StringBuffer sb = new StringBuffer("SELECT"); //$NON-NLS-1$
+    	Database database = null;
+    	StringBuffer sb = new StringBuffer("SELECT"); //$NON-NLS-1$
         for (int i=0; i<sqlTable.getColumns().size(); ++i) {
         	if (i==0)
                 sb.append(" "); //$NON-NLS-1$
@@ -226,8 +238,34 @@ public class TableDataImpl implements ITableData {
             sb.append( colDataAccessor[i].getSelectExpr() );
         }
         sb.append(" FROM "); //$NON-NLS-1$
-        sb.append(getQualifiedTableName());
+        // Get the qualified form of the table name from the name handler, if one
+        // is registered.  Otherwise qualify it locally.
+        String tableName = null;
+        database = getDatabase(sqlTable.getSchema());
+        String quote = "\""; //$NON-NLS-1$
+        try {
+        	quote = con.getMetaData().getIdentifierQuoteString();
+        }
+        catch (Exception ex)  {
+            // ignore
+        }        
+        ISQLObjectNameHelper nameProvider = getSQLObjectNameHelper(database);
+        if (nameProvider != null) {
+            nameProvider.setIdentifierQuoteString(quote);
+            tableName = nameProvider.getQualifiedNameInSQLFormat(sqlTable);
+        }
+        if (tableName == null) {
+            tableName = getQualifiedTableName();
+        }
+        sb.append(tableName);        
+        
         return sb.toString();
+    }
+    
+    private Database getDatabase (Schema schema)
+    {
+        return schema.getCatalog() == 
+        	null ? schema.getDatabase() : schema.getCatalog().getDatabase();
     }
     
     protected void findKey(BaseTable baseTable)
@@ -464,6 +502,55 @@ public class TableDataImpl implements ITableData {
     
     public boolean isReadonly() {
         return readonly;
+    }
+    
+    /**
+     * Gets a SQL Object name helper for the given database, if any.
+     * 
+     * @param database the current database
+     * @return the name helper, or null if none found for the current database
+     */
+    private ISQLObjectNameHelper getSQLObjectNameHelper(Database database) {
+        ISQLObjectNameHelper nameHelper = null;
+        
+        if (database != null) {
+            /* Get the current database type. */
+            String currentDBVendor = database.getVendor();
+            
+            /* Get an array of extenders of the SQL Object Name Handler extension point. */
+            IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+            IExtensionPoint nameHandlerExtensionPoint = 
+                extensionRegistry.getExtensionPoint(TableDataImpl.EXTERNAL_SQL_OBJECT_NAME_HELPER);
+            IExtension [] nameHandlerExtensions = nameHandlerExtensionPoint.getExtensions();
+
+            /* Scan the array to get an extender registered for the current database type, if any. 
+             * Stop on the first one found. */
+            int i = 0;
+            while (i < nameHandlerExtensions.length && nameHelper == null) {
+                IExtension ext = nameHandlerExtensions[i];
+                IConfigurationElement [] configElements = ext.getConfigurationElements();
+                int j = 0;
+                while (j < configElements.length && nameHelper == null) {
+                    String extVendor = configElements[j].getAttribute(TableDataImpl.EXTERNAL_SQL_OBJECT_NAME_HELPER_DBTYPE);
+                    if (currentDBVendor.equalsIgnoreCase(extVendor)) {
+                        try {
+                            Object executableExtension = 
+                                configElements[j].createExecutableExtension(TableDataImpl.EXTERNAL_SQL_OBJECT_NAME_HELPER_CLASS);
+                            if (executableExtension instanceof ISQLObjectNameHelper) {
+                                nameHelper = (ISQLObjectNameHelper) executableExtension;
+                            }
+                        }
+                        catch(CoreException ex) {
+                            // ignore error
+                        }
+                    }
+                    j++;
+                }
+                i++;
+            }
+        }
+
+        return nameHelper;
     }
     
     public String getQualifiedTableName()

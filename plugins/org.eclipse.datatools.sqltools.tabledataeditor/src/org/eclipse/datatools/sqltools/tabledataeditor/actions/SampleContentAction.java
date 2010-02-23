@@ -32,13 +32,12 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
-import org.eclipse.datatools.modelbase.sql.tables.DerivedTable;
+import org.eclipse.datatools.sqltools.internal.tabledataeditor.IExternalRunQuery;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute.QueryOutputHelper;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.util.ResourceLoader;
-import org.eclipse.datatools.sqltools.internal.tabledataeditor.IExternalRunQuery;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -57,6 +56,10 @@ public class SampleContentAction extends AbstractAction
     	"org.eclipse.datatools.sqltools.tabledataeditor.externalRunQuery"; //$NON-NLS-1$ //$NON-NLS-2$
     private static final String EXTERNAL_RUN_QUERY_VENDOR = "vendor"; //$NON-NLS-1$ //$NON-NLS-2$
     private static final String EXTERNAL_RUN_QUERY_CLASS = "class"; //$NON-NLS-1$ //$NON-NLS-2$
+    
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER = "org.eclipse.datatools.modelbase.sql.sqlObjectNameHelper"; //$NON-NLS-1$
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER_DBTYPE = "databaseType"; //$NON-NLS-1$
+    private static final String EXTERNAL_SQL_OBJECT_NAME_HELPER_CLASS = "class"; //$NON-NLS-1$
 
     private String wrapName(String name)
     {
@@ -85,8 +88,7 @@ public class SampleContentAction extends AbstractAction
         DatabaseDefinition dbDefinition = 
             plugin.getDatabaseDefinitionRegistry().getDefinition(db);
 
-       if (dbDefinition.supportsSchema() && (table instanceof DerivedTable ||
-    		   table instanceof BaseTable)) {
+       if (dbDefinition.supportsSchema()) {
             return this.wrapName(table.getSchema().getName())
                     + "." + this.wrapName(table.getName()); //$NON-NLS-1$
         } else {
@@ -98,6 +100,55 @@ public class SampleContentAction extends AbstractAction
     private Database getDatabase (Schema schema)
     {
         return schema.getCatalog() == null ? schema.getDatabase() : schema.getCatalog().getDatabase();
+    }
+    
+    /**
+     * Gets a SQL Object name helper for the given database, if any.
+     * 
+     * @param database the current database
+     * @return the name helper, or null if none found for the current database
+     */
+    private ISQLObjectNameHelper getSQLObjectNameHelper(Database database) {
+        ISQLObjectNameHelper nameHelper = null;
+        
+        if (database != null) {
+            /* Get the current database type. */
+            String currentDBVendor = database.getVendor();
+            
+            /* Get an array of extenders of the SQL Object Name Handler extension point. */
+            IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+            IExtensionPoint nameHandlerExtensionPoint = 
+                extensionRegistry.getExtensionPoint(SampleContentAction.EXTERNAL_SQL_OBJECT_NAME_HELPER);
+            IExtension [] nameHandlerExtensions = nameHandlerExtensionPoint.getExtensions();
+
+            /* Scan the array to get an extender registered for the current database type, if any. 
+             * Stop on the first one found. */
+            int i = 0;
+            while (i < nameHandlerExtensions.length && nameHelper == null) {
+                IExtension ext = nameHandlerExtensions[i];
+                IConfigurationElement [] configElements = ext.getConfigurationElements();
+                int j = 0;
+                while (j < configElements.length && nameHelper == null) {
+                    String extVendor = configElements[j].getAttribute(SampleContentAction.EXTERNAL_SQL_OBJECT_NAME_HELPER_DBTYPE);
+                    if (currentDBVendor.equalsIgnoreCase(extVendor)) {
+                        try {
+                            Object executableExtension = 
+                                configElements[j].createExecutableExtension(SampleContentAction.EXTERNAL_SQL_OBJECT_NAME_HELPER_CLASS);
+                            if (executableExtension instanceof ISQLObjectNameHelper) {
+                                nameHelper = (ISQLObjectNameHelper) executableExtension;
+                            }
+                        }
+                        catch(CoreException ex) {
+                            // ignore error
+                        }
+                    }
+                    j++;
+                }
+                i++;
+            }
+        }
+
+        return nameHelper;
     }
     
     public void selectionChanged(SelectionChangedEvent event)
@@ -141,10 +192,12 @@ public class SampleContentAction extends AbstractAction
              */
             Object selectedObj = iter.next();
             Database database = null;
-            
+                        
             if (selectedObj instanceof Table)
             {
-                database = getDatabase(((Table)selectedObj).getSchema());
+                Table table = (Table) selectedObj;
+                database = getDatabase(table.getSchema());
+                
                 if (connection == null)
                 {
                     connection = ((ICatalogObject) selectedObj).getConnection();
@@ -161,7 +214,19 @@ public class SampleContentAction extends AbstractAction
                     // ignore
                 }
 
-                selectString += "SELECT * FROM " + this.getFullyQualifiedName((Table) selectedObj); //$NON-NLS-1$
+                // Get the qualified form of the table name from the name handler, if one
+                // is registered.  Otherwise qualify it locally.
+                String tableName = null;
+                ISQLObjectNameHelper nameProvider = getSQLObjectNameHelper(database);
+                if (nameProvider != null) {
+                    nameProvider.setIdentifierQuoteString(this.quote);
+                    tableName = nameProvider.getQualifiedNameInSQLFormat(table);
+                }
+                if (tableName == null) {
+                    tableName = this.getFullyQualifiedName(table);
+                }
+                
+                selectString += "SELECT * FROM " + tableName; //$NON-NLS-1$
             }
             else if (selectedObj instanceof Column)
             {
@@ -193,17 +258,29 @@ public class SampleContentAction extends AbstractAction
                 final PredefinedDataTypeDefinition datatypeDefinition = databaseDefinition
                         .getPredefinedDataTypeDefinition(datatype.getName());
 
+                // Get the qualified form of the table name from the name handler, if one
+                // is registered.  Otherwise qualify it locally.
+                Table table = column.getTable();
+                String tableName = null;
+                ISQLObjectNameHelper nameProvider = getSQLObjectNameHelper(database);
+                if (nameProvider != null) {
+                    tableName = nameProvider.getQualifiedNameInSQLFormat(table);
+                }
+                if (tableName == null) {
+                    tableName = this.getFullyQualifiedName(table);
+                }
+                
                 if (datatypeDefinition.isOrderingSupported() && datatypeDefinition.isGroupingSupported())
                 {
                     selectString += "SELECT DISTINCT " + this.wrapName(columnName) + " , COUNT(*) AS OCCURRENCE"; //$NON-NLS-1$ //$NON-NLS-2$
-                    selectString += " FROM " + this.getFullyQualifiedName(column.getTable()); //$NON-NLS-1$
+                    selectString += " FROM " + tableName; //$NON-NLS-1$
                     selectString += " GROUP BY " + this.wrapName(columnName); //$NON-NLS-1$
                     selectString += " ORDER BY " + this.wrapName(columnName); //$NON-NLS-1$
                 }
                 else
                 {
                     selectString += "SELECT " + this.wrapName(columnName); //$NON-NLS-1$
-                    selectString += " FROM " + this.getFullyQualifiedName(column.getTable()); //$NON-NLS-1$
+                    selectString += " FROM " + tableName; //$NON-NLS-1$
                 }
             }
             
@@ -239,12 +316,12 @@ public class SampleContentAction extends AbstractAction
     		try
     		{
     			IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-    			IExtensionPoint extensionPoint = 
+    			IExtensionPoint runQueryExtensionPoint = 
 		        	extensionRegistry.getExtensionPoint(SampleContentAction.EXTERNAL_RUN_QUERY);
-    			IExtension [] extensions = extensionPoint.getExtensions();
-    			for (int numExt=0;numExt<extensions.length;numExt++)
+    			IExtension [] runQueryExtensions = runQueryExtensionPoint.getExtensions();
+    			for (int numExt=0;numExt<runQueryExtensions.length;numExt++)
 		        {
-		        	IExtension ext = extensions[numExt];
+		        	IExtension ext = runQueryExtensions[numExt];
 		        	IConfigurationElement [] configElements = ext.getConfigurationElements();
 		        	for (int config=0;config<configElements.length;config++)
 		        	{
