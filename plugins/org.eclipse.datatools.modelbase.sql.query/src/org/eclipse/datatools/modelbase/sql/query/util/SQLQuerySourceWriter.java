@@ -17,6 +17,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
@@ -114,8 +120,11 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 
 
@@ -219,8 +228,10 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      */
     protected boolean alwaysQualifyColumnNamesReferencedInSubqueries = true;
     
+    protected static final String SQL_OBJECT_NAME_HELPER = "org.eclipse.datatools.modelbase.sql.sqlObjectNameHelper"; //$NON-NLS-1$
+    protected static final String SQL_OBJECT_NAME_HELPER_DBTYPE = "databaseType"; //$NON-NLS-1$
+    protected static final String SQL_OBJECT_NAME_HELPER_CLASS = "class"; //$NON-NLS-1$
 
-    
     
     /* ******************************************** public constants ******** */
 
@@ -3244,9 +3255,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     {
         String tableName = null;
         
-        if (tableInDB.getDatabaseTable() != null) {
+        //if (tableInDB.getDatabaseTable() != null) {
+        Table dbTable = tableInDB.getDatabaseTable();
+        if (dbTable != null) {
+            /* Get the object name helper from the SQL model. */
+            ISQLObjectNameHelper nameHelper = null;
+            Database db = getDatabase(dbTable);
+            if (db != null) {
+                nameHelper = getSQLObjectNameHelper(db);
+            }
             
             Schema schema = tableInDB.getDatabaseTable().getSchema();
+            String rawTableName = tableInDB.getName();
             tableName = StatementHelper.convertCatalogIdentifierToSQLFormat(tableInDB.getName(), getDelimitedIdentifierQuote());
 
             if (schema != null && schema.getName() != null && schema.getName().length() > 0) {
@@ -3267,6 +3287,16 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                 }
                 else if (qualifySpec == SQLQuerySourceFormat.QUALIFY_IDENTIFIERS_IN_CONTEXT) {
                     qualify = !StatementHelper.omitSchema(tableInDB);
+                }
+                
+                /* Find out if the object name helper would qualify the table name with the schema
+                 * name.  This handles cases such as Synonyms in DB2 for zOS which are never
+                 * qualified. */          
+                if (qualify == true && nameHelper != null) {
+                    String qualifiedTableName = nameHelper.getQualifiedNameInSQLFormat(dbTable);
+                    if (qualifiedTableName.length() <= tableName.length()) {
+                        qualify = false;
+                    }
                 }
                 
                 if (qualify)
@@ -4264,6 +4294,74 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             appendSQLForSQLObjectList(valuesRow.getExprList(), sb);  
             sb.append(PAREN_RIGHT);
         }
+    }
+    
+    /**
+     * Gets the Database object associated with the given Table object.
+     * 
+     * @param table the table for which the database is wanted
+     * @return the database associated with the table
+     */
+    private Database getDatabase(Table table) {
+        Database db = null;
+        
+        if (table != null) {
+            Schema schema = table.getSchema();
+            if (schema != null) {
+                db = schema.getCatalog() == null ? schema.getDatabase() : schema.getCatalog().getDatabase();
+            }
+        }
+        
+        return db;
+    }
+    
+    /**
+     * Gets a SQL Object name helper for the given database, if any.
+     * 
+     * @param database the current database
+     * @return the name helper, or null if none found for the current database
+     */
+    private ISQLObjectNameHelper getSQLObjectNameHelper(Database database) {
+        ISQLObjectNameHelper nameHelper = null;
+        
+        if (database != null) {
+            /* Get the current database type. */
+            String currentDBVendor = database.getVendor();
+            
+            /* Get an array of extenders of the SQL Object Name Handler extension point. */
+            IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+            IExtensionPoint nameHandlerExtensionPoint = 
+                extensionRegistry.getExtensionPoint(SQL_OBJECT_NAME_HELPER);
+            IExtension [] nameHandlerExtensions = nameHandlerExtensionPoint.getExtensions();
+
+            /* Scan the array to get an extender registered for the current database type, if any. 
+             * Stop on the first one found. */
+            int i = 0;
+            while (i < nameHandlerExtensions.length && nameHelper == null) {
+                IExtension ext = nameHandlerExtensions[i];
+                IConfigurationElement [] configElements = ext.getConfigurationElements();
+                int j = 0;
+                while (j < configElements.length && nameHelper == null) {
+                    String extVendor = configElements[j].getAttribute(SQL_OBJECT_NAME_HELPER_DBTYPE);
+                    if (currentDBVendor.equalsIgnoreCase(extVendor)) {
+                        try {
+                            Object executableExtension = 
+                                configElements[j].createExecutableExtension(SQL_OBJECT_NAME_HELPER_CLASS);
+                            if (executableExtension instanceof ISQLObjectNameHelper) {
+                                nameHelper = (ISQLObjectNameHelper) executableExtension;
+                            }
+                        }
+                        catch(CoreException ex) {
+                            // ignore error
+                        }
+                    }
+                    j++;
+                }
+                i++;
+            }
+        }
+
+        return nameHelper;
     }
 
 }
