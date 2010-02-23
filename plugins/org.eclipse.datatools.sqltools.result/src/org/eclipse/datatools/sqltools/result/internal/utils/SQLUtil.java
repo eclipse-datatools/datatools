@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -167,6 +167,10 @@ public class SQLUtil
     	{
             case Types.TIMESTAMP:
                 return resultSet.getTimestamp(index);
+            case Types.CLOB:                
+                return resultSet.getString(index);
+            case Types.BLOB:
+                return resultSet.getString(index);
     		default:
                 return resultSet.getObject(index);
     	}
