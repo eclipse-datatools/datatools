@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -217,6 +217,8 @@ public class NewDbDataSourceWizardBase extends NewDataSourceWizard
         
         // add the db profile provider id to the base properties collected
         // from a connection profile instance
+        if( dbProfileProps == null )
+            dbProfileProps = new Properties();
         DbProfileUtil.setDbProviderIdInProperties( dbProfileProps, dbProviderId );
         return dbProfileProps;
     }

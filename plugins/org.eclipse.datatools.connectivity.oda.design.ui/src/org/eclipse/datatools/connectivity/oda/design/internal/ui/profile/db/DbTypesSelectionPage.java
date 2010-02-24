@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -118,7 +118,15 @@ public class DbTypesSelectionPage extends CPWizardSelectionPage
      */
     public boolean isPageComplete()
     {
-        return super.isPageComplete() || getSelectedNode() != null;
+        if( super.isPageComplete() )
+            return true;
+        if( getSelectedNode() != null )
+        {
+            IWizard cpNodeWizard = getSelectedNodeWizard();
+            return cpNodeWizard != null && cpNodeWizard.canFinish();
+        }
+        
+        return false;
     }
     
     IWizard getSelectedNodeWizard()
