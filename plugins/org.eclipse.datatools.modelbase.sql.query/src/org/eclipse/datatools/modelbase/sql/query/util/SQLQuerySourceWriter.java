@@ -1715,32 +1715,35 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
             IExtensionPoint nameHandlerExtensionPoint = 
                 extensionRegistry.getExtensionPoint(SQL_OBJECT_NAME_HELPER);
-            IExtension [] nameHandlerExtensions = nameHandlerExtensionPoint.getExtensions();
+            
+            if (nameHandlerExtensionPoint != null) {
+                IExtension [] nameHandlerExtensions = nameHandlerExtensionPoint.getExtensions();
 
-            /* Scan the array to get an extender registered for the current database type, if any. 
-             * Stop on the first one found. */
-            int i = 0;
-            while (i < nameHandlerExtensions.length && nameHelper == null) {
-                IExtension ext = nameHandlerExtensions[i];
-                IConfigurationElement [] configElements = ext.getConfigurationElements();
-                int j = 0;
-                while (j < configElements.length && nameHelper == null) {
-                    String extVendor = configElements[j].getAttribute(SQL_OBJECT_NAME_HELPER_DBTYPE);
-                    if (currentDBVendor.equalsIgnoreCase(extVendor)) {
-                        try {
-                            Object executableExtension = 
-                                configElements[j].createExecutableExtension(SQL_OBJECT_NAME_HELPER_CLASS);
-                            if (executableExtension instanceof ISQLObjectNameHelper) {
-                                nameHelper = (ISQLObjectNameHelper) executableExtension;
+                /* Scan the array to get an extender registered for the current database type, if any. 
+                 * Stop on the first one found. */
+                int i = 0;
+                while (i < nameHandlerExtensions.length && nameHelper == null) {
+                    IExtension ext = nameHandlerExtensions[i];
+                    IConfigurationElement [] configElements = ext.getConfigurationElements();
+                    int j = 0;
+                    while (j < configElements.length && nameHelper == null) {
+                        String extVendor = configElements[j].getAttribute(SQL_OBJECT_NAME_HELPER_DBTYPE);
+                        if (currentDBVendor.equalsIgnoreCase(extVendor)) {
+                            try {
+                                Object executableExtension = 
+                                    configElements[j].createExecutableExtension(SQL_OBJECT_NAME_HELPER_CLASS);
+                                if (executableExtension instanceof ISQLObjectNameHelper) {
+                                    nameHelper = (ISQLObjectNameHelper) executableExtension;
+                                }
+                            }
+                            catch(CoreException ex) {
+                                // ignore error
                             }
                         }
-                        catch(CoreException ex) {
-                            // ignore error
-                        }
+                        j++;
                     }
-                    j++;
+                    i++;
                 }
-                i++;
             }
         }
 
