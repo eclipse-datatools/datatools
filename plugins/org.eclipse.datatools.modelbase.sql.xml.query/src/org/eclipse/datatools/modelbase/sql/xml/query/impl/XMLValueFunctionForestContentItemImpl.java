@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionForestContentItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionForestContentItemImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionForestContentItemImpl extends QueryValueExpressionI
      * @generated
      */
     public XMLValueFunctionForest getValueFunctionForest() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST) return null;
         return (XMLValueFunctionForest)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionForestContentItemImpl extends QueryValueExpressionI
      * @generated
      */
     public void setValueFunctionForest(XMLValueFunctionForest newValueFunctionForest) {
-        if (newValueFunctionForest != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST && newValueFunctionForest != null)) {
+        if (newValueFunctionForest != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST && newValueFunctionForest != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionForest))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionForestContentItemImpl extends QueryValueExpressionI
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_FOREST__FOREST_CONTENT_LIST, XMLValueFunctionForest.class, msgs);
         }

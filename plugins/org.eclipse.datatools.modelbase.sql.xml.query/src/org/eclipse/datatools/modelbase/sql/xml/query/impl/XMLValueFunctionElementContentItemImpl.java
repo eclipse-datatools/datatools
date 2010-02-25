@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElementContentItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionElementContentItemImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -147,7 +147,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
      * @generated
      */
     public XMLValueFunctionElementContentList getElementContentList() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST) return null;
         return (XMLValueFunctionElementContentList)eContainer();
     }
 
@@ -167,7 +167,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
      * @generated
      */
     public void setElementContentList(XMLValueFunctionElementContentList newElementContentList) {
-        if (newElementContentList != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST && newElementContentList != null)) {
+        if (newElementContentList != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST && newElementContentList != null)) {
             if (EcoreUtil.isAncestor(this, newElementContentList))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, XMLValueFunctionElementContentList.class, msgs);
         }

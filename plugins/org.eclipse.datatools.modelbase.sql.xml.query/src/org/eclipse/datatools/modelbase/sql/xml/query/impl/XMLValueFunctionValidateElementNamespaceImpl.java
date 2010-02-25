@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateElementNamespaceImpl.java,v 1.4 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionValidateElementNamespaceImpl.java,v 1.5 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -143,7 +143,7 @@ public class XMLValueFunctionValidateElementNamespaceImpl extends SQLQueryObject
      * @generated
      */
     public XMLValueFunctionValidateElement getValidateElement() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT) return null;
         return (XMLValueFunctionValidateElement)eContainer();
     }
 
@@ -163,7 +163,7 @@ public class XMLValueFunctionValidateElementNamespaceImpl extends SQLQueryObject
      * @generated
      */
     public void setValidateElement(XMLValueFunctionValidateElement newValidateElement) {
-        if (newValidateElement != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT && newValidateElement != null)) {
+        if (newValidateElement != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT && newValidateElement != null)) {
             if (EcoreUtil.isAncestor(this, newValidateElement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -212,7 +212,7 @@ public class XMLValueFunctionValidateElementNamespaceImpl extends SQLQueryObject
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE, XMLValueFunctionValidateElement.class, msgs);
         }

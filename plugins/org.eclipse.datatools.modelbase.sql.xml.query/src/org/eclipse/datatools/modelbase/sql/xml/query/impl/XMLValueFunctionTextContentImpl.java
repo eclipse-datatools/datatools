@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionTextContentImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
+ * $Id: XMLValueFunctionTextContentImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionTextContentImpl extends QueryValueExpressionImpl im
      * @generated
      */
     public XMLValueFunctionText getValueFunctionText() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT) return null;
         return (XMLValueFunctionText)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionTextContentImpl extends QueryValueExpressionImpl im
      * @generated
      */
     public void setValueFunctionText(XMLValueFunctionText newValueFunctionText) {
-        if (newValueFunctionText != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT && newValueFunctionText != null)) {
+        if (newValueFunctionText != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT && newValueFunctionText != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionText))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionTextContentImpl extends QueryValueExpressionImpl im
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_TEXT__TEXT_CONTENT, XMLValueFunctionText.class, msgs);
         }

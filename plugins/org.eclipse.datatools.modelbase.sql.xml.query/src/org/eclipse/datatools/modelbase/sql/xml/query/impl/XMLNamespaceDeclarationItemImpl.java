@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationItemImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationItemImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -106,7 +106,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
      * @generated
      */
     public XMLNamespacesDeclaration getNamespacesDecl() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL) return null;
         return (XMLNamespacesDeclaration)eContainer();
     }
 
@@ -126,7 +126,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
      * @generated
      */
     public void setNamespacesDecl(XMLNamespacesDeclaration newNamespacesDecl) {
-        if (newNamespacesDecl != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL && newNamespacesDecl != null)) {
+        if (newNamespacesDecl != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL && newNamespacesDecl != null)) {
             if (EcoreUtil.isAncestor(this, newNamespacesDecl))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -175,7 +175,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
         }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespacesDeclarationImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLNamespacesDeclarationImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -95,7 +95,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public XMLValueFunctionElement getValueFunctionElement() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT) return null;
         return (XMLValueFunctionElement)eContainer();
     }
 
@@ -115,7 +115,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public void setValueFunctionElement(XMLValueFunctionElement newValueFunctionElement) {
-        if (newValueFunctionElement != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
+        if (newValueFunctionElement != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionElement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -136,7 +136,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public XMLValueFunctionForest getValueFunctionForest() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST) return null;
         return (XMLValueFunctionForest)eContainer();
     }
 
@@ -156,7 +156,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public void setValueFunctionForest(XMLValueFunctionForest newValueFunctionForest) {
-        if (newValueFunctionForest != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST && newValueFunctionForest != null)) {
+        if (newValueFunctionForest != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST && newValueFunctionForest != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionForest))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -177,7 +177,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public XMLTableFunction getTableFunction() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION) return null;
         return (XMLTableFunction)eContainer();
     }
 
@@ -197,7 +197,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
     public void setTableFunction(XMLTableFunction newTableFunction) {
-        if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION && newTableFunction != null)) {
+        if (newTableFunction != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION && newTableFunction != null)) {
             if (EcoreUtil.isAncestor(this, newTableFunction))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -262,7 +262,7 @@ public class XMLNamespacesDeclarationImpl extends SQLQueryObjectImpl implements 
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__NAMESPACES_DECL, XMLValueFunctionElement.class, msgs);
             case SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAttributeDeclarationItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLAttributeDeclarationItemImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -147,7 +147,7 @@ public class XMLAttributeDeclarationItemImpl extends QueryValueExpressionImpl im
      * @generated
      */
     public XMLAttributesDeclaration getAttributesDecl() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL) return null;
         return (XMLAttributesDeclaration)eContainer();
     }
 
@@ -167,7 +167,7 @@ public class XMLAttributeDeclarationItemImpl extends QueryValueExpressionImpl im
      * @generated
      */
     public void setAttributesDecl(XMLAttributesDeclaration newAttributesDecl) {
-        if (newAttributesDecl != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL && newAttributesDecl != null)) {
+        if (newAttributesDecl != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL && newAttributesDecl != null)) {
             if (EcoreUtil.isAncestor(this, newAttributesDecl))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLAttributeDeclarationItemImpl extends QueryValueExpressionImpl im
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM, XMLAttributesDeclaration.class, msgs);
         }

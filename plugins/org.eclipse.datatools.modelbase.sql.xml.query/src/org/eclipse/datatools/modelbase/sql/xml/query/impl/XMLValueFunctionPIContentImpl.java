@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionPIContentImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionPIContentImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionPIContentImpl extends QueryValueExpressionImpl impl
      * @generated
      */
     public XMLValueFunctionPI getValueFunctionPI() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI) return null;
         return (XMLValueFunctionPI)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionPIContentImpl extends QueryValueExpressionImpl impl
      * @generated
      */
     public void setValueFunctionPI(XMLValueFunctionPI newValueFunctionPI) {
-        if (newValueFunctionPI != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI && newValueFunctionPI != null)) {
+        if (newValueFunctionPI != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI && newValueFunctionPI != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionPI))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionPIContentImpl extends QueryValueExpressionImpl impl
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, XMLValueFunctionPI.class, msgs);
         }

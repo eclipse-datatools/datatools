@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionDefaultImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionDefaultImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -147,7 +147,7 @@ public class XMLTableColumnDefinitionDefaultImpl extends QueryValueExpressionImp
      * @generated
      */
     public XMLTableColumnDefinitionRegular getColumnDefinitionRegular() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR) return null;
         return (XMLTableColumnDefinitionRegular)eContainer();
     }
 
@@ -167,7 +167,7 @@ public class XMLTableColumnDefinitionDefaultImpl extends QueryValueExpressionImp
      * @generated
      */
     public void setColumnDefinitionRegular(XMLTableColumnDefinitionRegular newColumnDefinitionRegular) {
-        if (newColumnDefinitionRegular != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR && newColumnDefinitionRegular != null)) {
+        if (newColumnDefinitionRegular != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR && newColumnDefinitionRegular != null)) {
             if (EcoreUtil.isAncestor(this, newColumnDefinitionRegular))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLTableColumnDefinitionDefaultImpl extends QueryValueExpressionImp
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, XMLTableColumnDefinitionRegular.class, msgs);
         }

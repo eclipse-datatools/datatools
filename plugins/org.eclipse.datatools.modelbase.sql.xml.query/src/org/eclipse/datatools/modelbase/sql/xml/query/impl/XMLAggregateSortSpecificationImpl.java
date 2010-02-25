@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateSortSpecificationImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
+ * $Id: XMLAggregateSortSpecificationImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -77,7 +77,7 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
     public XMLAggregateFunction getAggregateFunction() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION) return null;
         return (XMLAggregateFunction)eContainer();
     }
 
@@ -97,7 +97,7 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
     public void setAggregateFunction(XMLAggregateFunction newAggregateFunction) {
-        if (newAggregateFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION && newAggregateFunction != null)) {
+        if (newAggregateFunction != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION && newAggregateFunction != null)) {
             if (EcoreUtil.isAncestor(this, newAggregateFunction))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -191,7 +191,7 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, XMLAggregateFunction.class, msgs);
         }

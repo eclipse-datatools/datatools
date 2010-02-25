@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryModelPackage.java,v 1.3 2007/05/31 00:28:55 dpchou Exp $
+ * $Id: SQLXMLQueryModelPackage.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -131,6 +131,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION__EXTENSIONS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -573,6 +582,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_CONCAT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_CONCAT__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1033,6 +1051,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_NAMESPACE_DECLARATION_ITEM__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1133,6 +1160,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACE_DECLARATION_PREFIX__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_NAMESPACE_DECLARATION_PREFIX__EXTENSIONS = XML_NAMESPACE_DECLARATION_ITEM__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1242,6 +1278,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACE_DECLARATION_DEFAULT__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_NAMESPACE_DECLARATION_DEFAULT__EXTENSIONS = XML_NAMESPACE_DECLARATION_ITEM__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1351,6 +1396,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_ATTRIBUTE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_ATTRIBUTE_DECLARATION_ITEM__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1766,6 +1820,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_ELEMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_ELEMENT__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2253,6 +2316,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2668,6 +2740,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_FOREST__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_FOREST__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3146,6 +3227,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_COMMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_COMMENT__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3606,6 +3696,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_DOCUMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_DOCUMENT__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4066,6 +4165,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PARSE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PARSE__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4535,6 +4643,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PI__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PI__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5004,6 +5121,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_QUERY__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_QUERY__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5482,6 +5608,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_TEXT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_TEXT__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5942,6 +6077,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE__EXTENSIONS = XML_VALUE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6411,6 +6555,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_EXPRESSION_CAST__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_EXPRESSION_CAST__EXTENSIONS = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6826,6 +6979,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE__COMMENTS = SQLQueryModelPackage.PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE__EXTENSIONS = SQLQueryModelPackage.PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6925,6 +7087,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_PREDICATE__NEST = SQLQueryModelPackage.PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE__MERGE_ON_CONDITION = SQLQueryModelPackage.PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7025,6 +7196,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_CONTENT__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_CONTENT__EXTENSIONS = XML_PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7124,6 +7304,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_PREDICATE_CONTENT__NEST = XML_PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_CONTENT__MERGE_ON_CONDITION = XML_PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7224,6 +7413,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_DOCUMENT__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_DOCUMENT__EXTENSIONS = XML_PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7323,6 +7521,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_PREDICATE_DOCUMENT__NEST = XML_PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_DOCUMENT__MERGE_ON_CONDITION = XML_PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7423,6 +7630,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_EXISTS__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_EXISTS__EXTENSIONS = XML_PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7522,6 +7738,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_PREDICATE_EXISTS__NEST = XML_PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_EXISTS__MERGE_ON_CONDITION = XML_PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7640,6 +7865,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_VALID__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_VALID__EXTENSIONS = XML_PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7739,6 +7973,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_PREDICATE_VALID__NEST = XML_PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_PREDICATE_VALID__MERGE_ON_CONDITION = XML_PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7839,6 +8082,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_QUERY_EXPRESSION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_QUERY_EXPRESSION__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7948,6 +8200,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_QUERY_ARGUMENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_QUERY_ARGUMENT_LIST__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8075,6 +8336,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_QUERY_ARGUMENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_QUERY_ARGUMENT_ITEM__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8499,6 +8769,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_SERIALIZE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SERIALIZE_FUNCTION__EXTENSIONS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8986,6 +9265,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_SERIALIZE_FUNCTION_TARGET__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SERIALIZE_FUNCTION_TARGET__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9401,6 +9689,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_AGGREGATE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_AGGREGATE_FUNCTION__EXTENSIONS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9861,6 +10158,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10276,6 +10582,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_COMMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_COMMENT_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10691,6 +11006,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11106,6 +11430,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_AGGREGATE_SORT_SPECIFICATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_AGGREGATE_SORT_SPECIFICATION__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11206,6 +11539,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11621,6 +11963,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PARSE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PARSE_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12036,6 +12387,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PI_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PI_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12451,6 +12811,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_FUNCTION__COMMENTS = SQLQueryModelPackage.TABLE_FUNCTION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_FUNCTION__EXTENSIONS = SQLQueryModelPackage.TABLE_FUNCTION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12496,6 +12865,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_TABLE_FUNCTION__NEST = SQLQueryModelPackage.TABLE_FUNCTION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_FUNCTION__MERGE_SOURCE_TABLE = SQLQueryModelPackage.TABLE_FUNCTION__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12532,6 +12910,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS = SQLQueryModelPackage.TABLE_FUNCTION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_FUNCTION__MERGE_TARGET_TABLE = SQLQueryModelPackage.TABLE_FUNCTION__MERGE_TARGET_TABLE;
+
+    /**
      * The feature id for the '<em><b>Function</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12659,6 +13046,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_TEXT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_TEXT_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13074,6 +13470,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_CONTENT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13489,6 +13894,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_COLUMN_DEFINITION_ITEM__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13580,6 +13994,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_REGULAR__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_COLUMN_DEFINITION_REGULAR__EXTENSIONS = XML_TABLE_COLUMN_DEFINITION_ITEM__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13707,6 +14130,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EXTENSIONS = XML_TABLE_COLUMN_DEFINITION_ITEM__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13798,6 +14230,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13898,6 +14339,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EXTENSIONS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14025,6 +14475,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EXTENSIONS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14143,6 +14602,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14234,6 +14702,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14343,6 +14820,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACES_DECLARATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_NAMESPACES_DECLARATION__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14498,6 +14984,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14607,6 +15102,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_QUERY_RETURNING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_QUERY_RETURNING__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14716,6 +15220,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14825,6 +15338,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_DEFAULT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_COLUMN_DEFINITION_DEFAULT__EXTENSIONS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15240,6 +15762,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_SERIALIZE_FUNCTION_ENCODING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SERIALIZE_FUNCTION_ENCODING__EXTENSIONS = SQLQueryModelPackage.SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

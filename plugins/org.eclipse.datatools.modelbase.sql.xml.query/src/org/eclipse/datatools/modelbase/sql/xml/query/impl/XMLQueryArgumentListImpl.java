@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryArgumentListImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLQueryArgumentListImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -126,7 +126,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public XMLPredicateExists getPredicateExists() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS) return null;
         return (XMLPredicateExists)eContainer();
     }
 
@@ -146,7 +146,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public void setPredicateExists(XMLPredicateExists newPredicateExists) {
-        if (newPredicateExists != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS && newPredicateExists != null)) {
+        if (newPredicateExists != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS && newPredicateExists != null)) {
             if (EcoreUtil.isAncestor(this, newPredicateExists))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -179,7 +179,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public XMLValueFunctionQuery getValueFunctionQuery() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY) return null;
         return (XMLValueFunctionQuery)eContainer();
     }
 
@@ -199,7 +199,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public void setValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery) {
-        if (newValueFunctionQuery != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
+        if (newValueFunctionQuery != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionQuery))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -220,7 +220,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public XMLTableFunction getTableFunction() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION) return null;
         return (XMLTableFunction)eContainer();
     }
 
@@ -240,7 +240,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
     public void setTableFunction(XMLTableFunction newTableFunction) {
-        if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION && newTableFunction != null)) {
+        if (newTableFunction != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION && newTableFunction != null)) {
             if (EcoreUtil.isAncestor(this, newTableFunction))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -305,7 +305,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, XMLPredicateExists.class, msgs);
             case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:

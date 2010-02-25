@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryArgumentItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLQueryArgumentItemImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -147,7 +147,7 @@ public class XMLQueryArgumentItemImpl extends QueryValueExpressionImpl implement
      * @generated
      */
     public XMLQueryArgumentList getXqueryArgList() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST) return null;
         return (XMLQueryArgumentList)eContainer();
     }
 
@@ -167,7 +167,7 @@ public class XMLQueryArgumentItemImpl extends QueryValueExpressionImpl implement
      * @generated
      */
     public void setXqueryArgList(XMLQueryArgumentList newXqueryArgList) {
-        if (newXqueryArgList != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST && newXqueryArgList != null)) {
+        if (newXqueryArgList != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST && newXqueryArgList != null)) {
             if (EcoreUtil.isAncestor(this, newXqueryArgList))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -261,7 +261,7 @@ public class XMLQueryArgumentItemImpl extends QueryValueExpressionImpl implement
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN, XMLQueryArgumentList.class, msgs);
         }

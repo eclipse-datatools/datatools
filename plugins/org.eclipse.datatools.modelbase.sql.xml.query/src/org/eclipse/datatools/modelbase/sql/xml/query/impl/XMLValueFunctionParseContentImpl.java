@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionParseContentImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
+ * $Id: XMLValueFunctionParseContentImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionParseContentImpl extends QueryValueExpressionImpl i
      * @generated
      */
     public XMLValueFunctionParse getValueFunctionParse() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE) return null;
         return (XMLValueFunctionParse)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionParseContentImpl extends QueryValueExpressionImpl i
      * @generated
      */
     public void setValueFunctionParse(XMLValueFunctionParse newValueFunctionParse) {
-        if (newValueFunctionParse != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE && newValueFunctionParse != null)) {
+        if (newValueFunctionParse != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE && newValueFunctionParse != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionParse))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionParseContentImpl extends QueryValueExpressionImpl i
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PARSE__PARSE_CONTENT, XMLValueFunctionParse.class, msgs);
         }

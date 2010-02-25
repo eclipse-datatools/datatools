@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionConcatContentItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionConcatContentItemImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionConcatContentItemImpl extends QueryValueExpressionI
      * @generated
      */
     public XMLValueFunctionConcat getValueFunctionConcat() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT) return null;
         return (XMLValueFunctionConcat)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionConcatContentItemImpl extends QueryValueExpressionI
      * @generated
      */
     public void setValueFunctionConcat(XMLValueFunctionConcat newValueFunctionConcat) {
-        if (newValueFunctionConcat != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT && newValueFunctionConcat != null)) {
+        if (newValueFunctionConcat != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT && newValueFunctionConcat != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionConcat))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionConcatContentItemImpl extends QueryValueExpressionI
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST, XMLValueFunctionConcat.class, msgs);
         }

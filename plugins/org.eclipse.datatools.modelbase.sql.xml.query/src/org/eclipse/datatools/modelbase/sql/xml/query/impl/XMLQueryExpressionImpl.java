@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryExpressionImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLQueryExpressionImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -108,7 +108,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
      * @generated
      */
     public XMLPredicateExists getPredicateExists() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS) return null;
         return (XMLPredicateExists)eContainer();
     }
 
@@ -128,7 +128,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
      * @generated
      */
     public void setPredicateExists(XMLPredicateExists newPredicateExists) {
-        if (newPredicateExists != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS && newPredicateExists != null)) {
+        if (newPredicateExists != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS && newPredicateExists != null)) {
             if (EcoreUtil.isAncestor(this, newPredicateExists))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -149,7 +149,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
      * @generated
      */
     public XMLValueFunctionQuery getValueFunctionQuery() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY) return null;
         return (XMLValueFunctionQuery)eContainer();
     }
 
@@ -169,7 +169,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
      * @generated
      */
     public void setValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery) {
-        if (newValueFunctionQuery != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
+        if (newValueFunctionQuery != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionQuery))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -224,7 +224,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, XMLPredicateExists.class, msgs);
             case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:

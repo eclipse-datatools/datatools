@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionDocumentContentImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
+ * $Id: XMLValueFunctionDocumentContentImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionDocumentContentImpl extends QueryValueExpressionImp
      * @generated
      */
     public XMLValueFunctionDocument getValueFunctionDocument() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT) return null;
         return (XMLValueFunctionDocument)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionDocumentContentImpl extends QueryValueExpressionImp
      * @generated
      */
     public void setValueFunctionDocument(XMLValueFunctionDocument newValueFunctionDocument) {
-        if (newValueFunctionDocument != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT && newValueFunctionDocument != null)) {
+        if (newValueFunctionDocument != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT && newValueFunctionDocument != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionDocument))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionDocumentContentImpl extends QueryValueExpressionImp
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, XMLValueFunctionDocument.class, msgs);
         }

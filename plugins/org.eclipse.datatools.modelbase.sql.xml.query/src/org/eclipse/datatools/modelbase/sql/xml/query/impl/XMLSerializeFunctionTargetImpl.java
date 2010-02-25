@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunctionTargetImpl.java,v 1.4 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLSerializeFunctionTargetImpl.java,v 1.5 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -97,7 +97,7 @@ public class XMLSerializeFunctionTargetImpl extends QueryValueExpressionImpl imp
      * @generated
      */
     public XMLSerializeFunction getSerializeFunction() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION) return null;
         return (XMLSerializeFunction)eContainer();
     }
 
@@ -117,7 +117,7 @@ public class XMLSerializeFunctionTargetImpl extends QueryValueExpressionImpl imp
      * @generated
      */
     public void setSerializeFunction(XMLSerializeFunction newSerializeFunction) {
-        if (newSerializeFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION && newSerializeFunction != null)) {
+        if (newSerializeFunction != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION && newSerializeFunction != null)) {
             if (EcoreUtil.isAncestor(this, newSerializeFunction))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -211,7 +211,7 @@ public class XMLSerializeFunctionTargetImpl extends QueryValueExpressionImpl imp
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, XMLSerializeFunction.class, msgs);
         }

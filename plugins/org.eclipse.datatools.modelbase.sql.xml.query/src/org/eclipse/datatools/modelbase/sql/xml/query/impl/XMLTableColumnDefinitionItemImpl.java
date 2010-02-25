@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionItemImpl.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -64,7 +64,7 @@ public class XMLTableColumnDefinitionItemImpl extends SQLQueryObjectImpl impleme
      * @generated
      */
     public XMLTableFunction getTableFunction() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION) return null;
         return (XMLTableFunction)eContainer();
     }
 
@@ -84,7 +84,7 @@ public class XMLTableColumnDefinitionItemImpl extends SQLQueryObjectImpl impleme
      * @generated
      */
     public void setTableFunction(XMLTableFunction newTableFunction) {
-        if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION && newTableFunction != null)) {
+        if (newTableFunction != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION && newTableFunction != null)) {
             if (EcoreUtil.isAncestor(this, newTableFunction))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -133,7 +133,7 @@ public class XMLTableColumnDefinitionItemImpl extends SQLQueryObjectImpl impleme
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
         }

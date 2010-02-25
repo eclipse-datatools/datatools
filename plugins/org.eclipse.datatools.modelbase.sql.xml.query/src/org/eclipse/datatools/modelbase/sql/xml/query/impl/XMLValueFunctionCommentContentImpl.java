@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionCommentContentImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
+ * $Id: XMLValueFunctionCommentContentImpl.java,v 1.4 2008/07/07 19:55:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -104,7 +104,7 @@ public class XMLValueFunctionCommentContentImpl extends QueryValueExpressionImpl
      * @generated
      */
     public XMLValueFunctionComment getValueFunctionComment() {
-        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT) return null;
+        if (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT) return null;
         return (XMLValueFunctionComment)eContainer();
     }
 
@@ -124,7 +124,7 @@ public class XMLValueFunctionCommentContentImpl extends QueryValueExpressionImpl
      * @generated
      */
     public void setValueFunctionComment(XMLValueFunctionComment newValueFunctionComment) {
-        if (newValueFunctionComment != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT && newValueFunctionComment != null)) {
+        if (newValueFunctionComment != eInternalContainer() || (eContainerFeatureID() != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT && newValueFunctionComment != null)) {
             if (EcoreUtil.isAncestor(this, newValueFunctionComment))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -218,7 +218,7 @@ public class XMLValueFunctionCommentContentImpl extends QueryValueExpressionImpl
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT:
                 return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT, XMLValueFunctionComment.class, msgs);
         }
