@@ -11,8 +11,8 @@
 #  
 #************************************************************************
 #
-design_invalidResourceFileName=Invalid resource file name ({0}); it must end with .properties.
-design_invalidResourceKey=Invalid resource key ({0}); it must not contain any embedded white space.
+design_invalidResourceFileName=Le nom du fichier de ressources ({0}) est incorrect, car il doit se terminer par .properties.
+design_invalidResourceKey=La clé de ressources ({0}) est incorrecte, car elle ne doit contenir aucun espace intercalé.
 design_nullArgument=L'argument ne doit pas être null.
 design_missingDataSourceDesign=Conception de source de données manquante dans l'instance OdaDesignSession.
 design_missingId=ID de source de données manquante dans la conception de source de données.

@@ -13,7 +13,7 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin.properties,v 1.9 2010/02/16 06:51:00 hkolwalka Exp $
+# $Id: plugin_ko_KR.msg,v 1.4 2010/02/16 18:09:19 ydoshiro Exp $
 #/
 
 # ====================================================================
@@ -440,11 +440,11 @@ _UI_Privilege_withHierarchy_feature = 계층 구조 사용
 _UI_Privilege_grantee_feature = 피부여자
 _UI_Privilege_actionObjects_feature = 작업 개체
 _UI_User_group_feature = 그룹
-_UI_ObjectExtension_type = Object Extension
-_UI_ElementType_type = Element Type
-_UI_SQLObject_extensions_feature = Extensions
+_UI_ObjectExtension_type = 개체 확장명
+_UI_ElementType_type = 요소 형식
+_UI_SQLObject_extensions_feature = 확장명
 _UI_ObjectExtension_SQLObject_feature = SQL 개체
-_UI_CollectionDataType_elementType_feature = Element Type
+_UI_CollectionDataType_elementType_feature = 요소 형식
 _UI_CharacterSet_CharacterStringDataType_feature = 문자열 데이터 형식
 _UI_ElementType_CollectionDataType_feature = 컬렉션 데이터 형식
-_UI_IncrementType_RANDOM_literal = RANDOM
+_UI_IncrementType_RANDOM_literal = 임의

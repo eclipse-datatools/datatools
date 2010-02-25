@@ -11,8 +11,8 @@
 #  
 #************************************************************************
 #
-design_invalidResourceFileName=Invalid resource file name ({0}); it must end with .properties.
-design_invalidResourceKey=Invalid resource key ({0}); it must not contain any embedded white space.
+design_invalidResourceFileName=잘못된 리소스 파일 이름({0})입니다. 파일 이름은 .properties로 끝나야 합니다.
+design_invalidResourceKey=잘못된 리소스 키({0})입니다. 리소스 키에 포함된 공백이 있으면 안 됩니다.
 design_nullArgument=인수는 널(null)일 수 없습니다.
 design_missingDataSourceDesign=OdaDesignSession 인스턴스에서 데이터 소스 디자인이 누락되었습니다.
 design_missingId=데이터 소스 디자인에서 데이터 소스 ID가 누락되었습니다.

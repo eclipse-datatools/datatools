@@ -11,8 +11,8 @@
 #  
 #************************************************************************
 #
-design_invalidResourceFileName=Invalid resource file name ({0}); it must end with .properties.
-design_invalidResourceKey=Invalid resource key ({0}); it must not contain any embedded white space.
+design_invalidResourceFileName=リソースファイル名 ({0}) が無効です。拡張子は .properties にしてください。
+design_invalidResourceKey=リソースキー ({0}) が無効です。埋め込みスペースは使用できません。
 design_nullArgument=引数は null にできません。
 design_missingDataSourceDesign=OdaDesignSession インスタンスのデータ・ソース・デザインがありません。
 design_missingId=データ・ソース・デザインのデータ・ソース ID がありません。
