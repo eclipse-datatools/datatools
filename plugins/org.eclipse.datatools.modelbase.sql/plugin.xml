@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-
-     <extension
+   <extension-point id="sqlObjectNameHelper" name="SQL Object Name Helper" schema="schema/sqlObjectNameHelper.exsd"/>
+   
+   <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
@@ -66,6 +67,5 @@
             genModel="model/sqlmodel.genmodel">
       </package>
    </extension>
-
 
 </plugin>
