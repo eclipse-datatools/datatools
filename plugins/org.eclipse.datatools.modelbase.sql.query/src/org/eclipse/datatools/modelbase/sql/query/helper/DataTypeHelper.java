@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * Copyright (c) 2004, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -18,70 +18,75 @@ import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
  * This helper class provides convenience methods related to
  * {@link org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType}.
  *
- *
  * @author ckadner
- *
  */
-public class DataTypeHelper
-{
-    // TODO: sort out which names to publish, doc them with value:"xxx"
-    public static final String TYPENAME_DOUBLE_PRECISION = "DOUBLE PRECISION";
-    public static final String TYPENAME_BIGINT 		= "BIGINT";
-	public static final String TYPENAME_BLOB 		= "BLOB";
-	public static final String TYPENAME_CHAR		= "CHAR";
-	public static final String TYPENAME_DBCLOB 		= "DBCLOB";
-	public static final String TYPENAME_CHARACTER 	= "CHARACTER";
-	public static final String TYPENAME_CHARACTER_VARYING = "CHARACTER VARYING";
-	public static final String TYPENAME_CLOB 		= "CLOB";
-	public static final String TYPENAME_DATALINK 	= "DATALINK";
-	public static final String TYPENAME_DATE 		= "DATE";
-	public static final String TYPENAME_DECIMAL 	= "DECIMAL";
-	public static final String TYPENAME_DOUBLE 		= "DOUBLE";
-	public static final String TYPENAME_GRAPHIC 	= "GRAPHIC";
-	public static final String TYPENAME_INT 		= "INT";
-	public static final String TYPENAME_INTEGER 	= "INTEGER";
-	public static final String TYPENAME_LONGVARG 	= "LONGVARG";
-	public static final String TYPENAME_LONGVARN 	= "LONGVARN";
-	public static final String TYPENAME_LONGVARCHAR = "LONGVARCHAR";
-	public static final String TYPENAME_LONG_VARGRAPHIC = "LONG VARGRAPHIC";
-	public static final String TYPENAME_LONG_VARCHAR = "LONG VARCHAR";
-	public static final String TYPENAME_REAL 		= "REAL";
-	public static final String TYPENAME_SMALLINT 	= "SMALLINT";
-	public static final String TYPENAME_TIMESTAMP 	= "TIMESTAMP";
-	public static final String TYPENAME_TIME 		= "TIME";
-	public static final String TYPENAME_NUMERIC 	= "NUMERIC";
-	public static final String TYPENAME_VARBINARY 	= "VARBINARY";
-	public static final String TYPENAME_VARCHAR 	= "VARCHAR";
-	public static final String TYPENAME_VARGRAPHIC 	= "VARGRAPHIC";
-	
-	//!TODO: who is going to maintain this DatatypeHelper hack? should be close
-	// to EMF stuff and not in a separate class in different PlugIn 
-	
-    public static final String TYPENAME_CHARACTER_LARGE_OBJECT = TYPENAME_CLOB;    
-    public static final String TYPENAME_NATIONAL_CHARACTER = "NATIONAL CHARACTER";
-    public static final String TYPENAME_NATIONAL_CHARACTER_VARYING = "NATIONAL CHARACTER VARYING";
-    public static final String TYPENAME_NATIONAL_CHARACTER_LARGE_OBJECT = TYPENAME_DBCLOB;
-    public static final String TYPENAME_BINARY = "BINARY";
-    public static final String TYPENAME_BINARY_VARYING = "BINARY VARYING";
-    public static final String TYPENAME_BINARY_LARGE_OBJECT = TYPENAME_BLOB;
-    public static final String TYPENAME_FLOAT = "FLOAT";
-    public static final String TYPENAME_BOOLEAN = "BOOLEAN";
-    public static final String TYPENAME_INTERVAL = "INTERVAL";
-    public static final String TYPENAME_XML_TYPE = "XML";
+public class DataTypeHelper {
 
-	/** CHECK IMPLEMENTATION! CODE UNTESTED!
-	 * Gets the JDBC datatype identifier corresponding to the given named  datatype.
+    public static final String TYPENAME_ARRAY                  = "ARRAY"; //$NON-NLS-1$
+    public static final String TYPENAME_BIGINT                 = "BIGINT"; //$NON-NLS-1$
+    public static final String TYPENAME_BINARY                 = "BINARY"; //$NON-NLS-1$
+    public static final String TYPENAME_BINARY_VARYING         = "BINARY VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_BINARY_LARGE_OBJECT    = "BINARY LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_BLOB                   = "BLOB"; //$NON-NLS-1$
+    public static final String TYPENAME_BOOLEAN                = "BOOLEAN"; //$NON-NLS-1$
+    public static final String TYPENAME_CHAR                   = "CHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_CHAR_LARGE_OBJECT      = "CHAR LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_CHAR_VARYING           = "CHAR VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_CHARACTER              = "CHARACTER"; //$NON-NLS-1$
+    public static final String TYPENAME_CHARACTER_LARGE_OBJECT = "CHARACTER LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_CHARACTER_VARYING      = "CHARACTER VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_CLOB                   = "CLOB"; //$NON-NLS-1$
+    public static final String TYPENAME_DATALINK               = "DATALINK"; //$NON-NLS-1$
+    public static final String TYPENAME_DATE                   = "DATE"; //$NON-NLS-1$
+    public static final String TYPENAME_DBCLOB                 = "DBCLOB"; //$NON-NLS-1$
+    public static final String TYPENAME_DEC                    = "DEC"; //$NON-NLS-1$
+    public static final String TYPENAME_DECFLOAT               = "DECFLOAT"; //$NON-NLS-1$
+    public static final String TYPENAME_DECIMAL                = "DECIMAL"; //$NON-NLS-1$
+    public static final String TYPENAME_DOUBLE                 = "DOUBLE"; //$NON-NLS-1$
+    public static final String TYPENAME_DOUBLE_PRECISION       = "DOUBLE PRECISION"; //$NON-NLS-1$
+    public static final String TYPENAME_FLOAT                  = "FLOAT"; //$NON-NLS-1$
+    public static final String TYPENAME_GRAPHIC                = "GRAPHIC"; //$NON-NLS-1$
+    public static final String TYPENAME_INT                    = "INT"; //$NON-NLS-1$
+    public static final String TYPENAME_INTEGER                = "INTEGER"; //$NON-NLS-1$
+    public static final String TYPENAME_INTERVAL               = "INTERVAL"; //$NON-NLS-1$
+    public static final String TYPENAME_LONGVARCHAR            = "LONGVARCHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_LONGVARG               = "LONGVARG"; //$NON-NLS-1$
+    public static final String TYPENAME_LONGVARN               = "LONGVARN"; //$NON-NLS-1$
+    public static final String TYPENAME_LONG_VARCHAR           = "LONG VARCHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_LONG_VARGRAPHIC        = "LONG VARGRAPHIC"; //$NON-NLS-1$
+    public static final String TYPENAME_MULTISET               = "MULTISET"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHAR          = "NATIONAL CHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHAR_LARGE_OBJECT = "NATIONAL CHAR LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHAR_VARYING  = "NATIONAL CHAR VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHARACTER     = "NATIONAL CHARACTER"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHARACTER_LARGE_OBJECT = "NATIONAL CHARACTER LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_NATIONAL_CHARACTER_VARYING = "NATIONAL CHARACTER VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_NCHAR                  = "NCHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_NCHAR_LARGE_OBJECT     = "NCHAR LARGE OBJECT"; //$NON-NLS-1$
+    public static final String TYPENAME_NCHAR_VARYING          = "NCHAR VARYING"; //$NON-NLS-1$
+    public static final String TYPENAME_NCLOB                  = "NCLOB"; //$NON-NLS-1$
+    public static final String TYPENAME_NUM                    = "NUM"; //$NON-NLS-1$
+    public static final String TYPENAME_NUMERIC                = "NUMERIC"; //$NON-NLS-1$
+    public static final String TYPENAME_REAL                   = "REAL"; //$NON-NLS-1$
+    public static final String TYPENAME_REF                    = "REF"; //$NON-NLS-1$
+    public static final String TYPENAME_ROW                    = "ROW"; //$NON-NLS-1$
+    public static final String TYPENAME_ROWID                  = "ROWID"; //$NON-NLS-1$
+    public static final String TYPENAME_SMALLINT               = "SMALLINT"; //$NON-NLS-1$
+    public static final String TYPENAME_TIME                   = "TIME"; //$NON-NLS-1$
+    public static final String TYPENAME_TIMESTAMP              = "TIMESTAMP"; //$NON-NLS-1$
+    public static final String TYPENAME_VARBINARY              = "VARBINARY"; //$NON-NLS-1$
+    public static final String TYPENAME_VARCHAR                = "VARCHAR"; //$NON-NLS-1$
+    public static final String TYPENAME_VARGRAPHIC             = "VARGRAPHIC"; //$NON-NLS-1$
+    public static final String TYPENAME_XML                    = "XML"; //$NON-NLS-1$
+    public static final String TYPENAME_XML_TYPE               = "XML"; //$NON-NLS-1$
+	
+	/** 
+	 * Gets the JDBC datatype identifier corresponding to the given named datatype.
 	 * This is for use with the datatype names returned from the FunctionHelper.
 	 * Note: there is probably a utility somewhere else that does this.  If so,
 	 * we can get rid of this method.
 	 *
-	 * Use type names in constants <code>TYPENAME_*</code> provided by
-	 * <code>ValueExpressionHelper</code>.
-	 *
-	 * @see #TYPENAME_BIGINT
-	 * @see #TYPENAME_VARGRAPHIC
-	 *
-	 * @param aTypeName a  type name to use to lookup a JDBC datatype
+	 * @param aTypeName a type name to use to lookup a JDBC datatype
 	 * @return int a JDBC type identifier.
 	 */
 	public static int getJDBCTypeForNamedType( String aTypeName ) {
@@ -90,80 +95,76 @@ public class DataTypeHelper
 	  // The types that appear most frequently in the FunctionHelper parameter
 	  // lists are checked first.
 	  if (aTypeName.equalsIgnoreCase(TYPENAME_INTEGER) || aTypeName.equalsIgnoreCase(TYPENAME_INT)) {
-	    jdbcTypeID = java.sql.Types.INTEGER;
+	    jdbcTypeID = java.sql.Types.INTEGER; /* 4 */
 	  }
-	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DECIMAL) || aTypeName.equalsIgnoreCase("DEC")
-	        || aTypeName.equalsIgnoreCase(TYPENAME_NUMERIC) || aTypeName.equalsIgnoreCase("NUM")) {
-	    jdbcTypeID = java.sql.Types.DECIMAL;
+	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DECIMAL) || aTypeName.equalsIgnoreCase(TYPENAME_DEC)
+	        || aTypeName.equalsIgnoreCase(TYPENAME_NUMERIC) || aTypeName.equalsIgnoreCase("NUM")) { //$NON-NLS-1$
+	    jdbcTypeID = java.sql.Types.DECIMAL; /* 3 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_VARCHAR)
-	        || aTypeName.equalsIgnoreCase(TYPENAME_CHARACTER_VARYING) || aTypeName.equalsIgnoreCase("CHAR VARYING")) {
-	    jdbcTypeID = java.sql.Types.VARCHAR;
+	        || aTypeName.equalsIgnoreCase(TYPENAME_CHARACTER_VARYING) || aTypeName.equalsIgnoreCase("CHAR VARYING")) { //$NON-NLS-1$
+	    jdbcTypeID = java.sql.Types.VARCHAR; /* 12 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DOUBLE) || aTypeName.equalsIgnoreCase(TYPENAME_DOUBLE_PRECISION)) {
-	    jdbcTypeID = java.sql.Types.DOUBLE;
+	    jdbcTypeID = java.sql.Types.DOUBLE; /* 8 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_CHARACTER) || aTypeName.equalsIgnoreCase(TYPENAME_CHAR)) {
-	    jdbcTypeID = java.sql.Types.CHAR;
+	    jdbcTypeID = java.sql.Types.CHAR; /* 1 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_SMALLINT)) {
-	    jdbcTypeID = java.sql.Types.SMALLINT;
+	    jdbcTypeID = java.sql.Types.SMALLINT; /* 5 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_BIGINT)) {
-	    jdbcTypeID = java.sql.Types.BIGINT;
+	    jdbcTypeID = java.sql.Types.BIGINT; /* -5 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_REAL)) {
-	    jdbcTypeID = java.sql.Types.REAL;
+	    jdbcTypeID = java.sql.Types.REAL; /* 7 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DATE)) {
-	    jdbcTypeID = java.sql.Types.DATE;
+	    jdbcTypeID = java.sql.Types.DATE; /* 91 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_TIME)) {
-	    jdbcTypeID = java.sql.Types.TIME;
+	    jdbcTypeID = java.sql.Types.TIME; /* 92 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_TIMESTAMP)) {
-	    jdbcTypeID = java.sql.Types.TIMESTAMP;
+	    jdbcTypeID = java.sql.Types.TIMESTAMP; /* 93 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_LONG_VARCHAR)) {
-	    jdbcTypeID = java.sql.Types.LONGVARCHAR;
+	    jdbcTypeID = java.sql.Types.LONGVARCHAR; /* -1 */
 	  }
 	  // Graphic types map to JDBC char types.
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_GRAPHIC)) {
-	    jdbcTypeID = java.sql.Types.CHAR;
+	    jdbcTypeID = java.sql.Types.CHAR; /* 1 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_VARGRAPHIC)) {
-	    jdbcTypeID = java.sql.Types.VARCHAR;
+	    jdbcTypeID = java.sql.Types.VARCHAR; /* 12 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_LONG_VARGRAPHIC)) {
-	    jdbcTypeID = java.sql.Types.LONGVARCHAR;
+	    jdbcTypeID = java.sql.Types.LONGVARCHAR; /* -1 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_VARBINARY)) {
-	    jdbcTypeID = java.sql.Types.VARBINARY;
+	    jdbcTypeID = java.sql.Types.VARBINARY; /* -3 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DATALINK)) {
-	    jdbcTypeID = 70;  // is this java.sql.Types.REF?
+	    jdbcTypeID = java.sql.Types.DATALINK; /* 70 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_BLOB)) {
-	    jdbcTypeID = java.sql.Types.BLOB;
+	    jdbcTypeID = java.sql.Types.BLOB; /* 2004 */
 	  }
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_CLOB)) {
-	    jdbcTypeID = java.sql.Types.CLOB;
+	    jdbcTypeID = java.sql.Types.CLOB; /* 2005 */
 	  }
 	  // DBCLOB maps to JDBC CLOB type.
 	  else if (aTypeName.equalsIgnoreCase(TYPENAME_DBCLOB)) {
-	    jdbcTypeID = java.sql.Types.CLOB;
+	    jdbcTypeID = java.sql.Types.CLOB; /* 2005 */
 	  }
 
 	  return jdbcTypeID;
 	}
 
-	/** CHECK IMPLEMENTATION! CODE UNTESTED!
+	/**
 	 * Gets the PrimitiveType enum value corresponding to the given type name.
-	 * Use type names in constants <code>TYPENAME_*</code> provided by
-	 * <code>ValueExpressionHelper</code>.
 	 *
-	 * @see #TYPENAME_BIGINT
-	 * @see #TYPENAME_VARGRAPHIC
 	 * @param aTypeName a  type name to use to lookup a PrimitiveType
 	 * @return the PrimitiveType corresponding to the named type
 	 */
@@ -231,14 +232,12 @@ public class DataTypeHelper
 	  return typeEnum;
 	}
 
-	/** CHECK IMPLEMENTATION! CODE UNTESTED!
+    /**
 	 * Gets the <code>PredefinedDataType</code> PrimitiveType enum value corresponding to the given type name.
 	 * Use type names in constants <code>TYPENAME_*</code> provided by
 	 * <code>ValueExpressionHelper</code>.
 	 *
-	 * @see #TYPENAME_BIGINT
-	 * @see #TYPENAME_VARGRAPHIC
-	 * @param aTypeName a  type name to use to lookup a PrimitiveType
+	 * @param aTypeName a type name to use to look up a PrimitiveType
 	 * @return the PrimitiveType corresponding to the named type
 	 */
 	public static PredefinedDataType getPredefinedDataTypeForNamedType( String aTypeName ) {
@@ -352,10 +351,10 @@ public class DataTypeHelper
 
 	/**
 	 * Returns the name of the given '<em><b>Primitive Type</b></em>' literal.
-	 * @param primitiveType
-	 * @return the String representing the <code>PrimitiveType</code> one of the
+	 * 
+	 * @param primitiveType the primitive type for which the name is needed
+	 * @return the String representing the <code>PrimitiveType</code>, one of the
 	 * 		<code>TYPENAME_xxx</code> constants
-	 *
 	 * @see PrimitiveType
 	 */
 	public static String getPrimitiveTypeName(PrimitiveType primitiveType) {

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceImpl.java,v 1.4 2007/02/08 17:00:31 bpayton Exp $
+ * $Id: UpdateSourceImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -59,7 +59,7 @@ public class UpdateSourceImpl extends SQLQueryObjectImpl implements UpdateSource
      * @generated
      */
   public UpdateAssignmentExpression getUpdateAssignmentExpr() {
-        if (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR) return null;
         return (UpdateAssignmentExpression)eContainer();
     }
 
@@ -79,7 +79,7 @@ public class UpdateSourceImpl extends SQLQueryObjectImpl implements UpdateSource
      * @generated
      */
   public void setUpdateAssignmentExpr(UpdateAssignmentExpression newUpdateAssignmentExpr) {
-        if (newUpdateAssignmentExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR && newUpdateAssignmentExpr != null)) {
+        if (newUpdateAssignmentExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR && newUpdateAssignmentExpr != null)) {
             if (EcoreUtil.isAncestor(this, newUpdateAssignmentExpr))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -128,7 +128,7 @@ public class UpdateSourceImpl extends SQLQueryObjectImpl implements UpdateSource
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
         }

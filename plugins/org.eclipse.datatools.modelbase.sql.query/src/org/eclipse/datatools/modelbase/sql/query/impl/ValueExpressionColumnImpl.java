@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionColumnImpl.java,v 1.4 2007/02/08 17:00:30 bpayton Exp $
+ * $Id: ValueExpressionColumnImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
@@ -62,6 +63,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl#getInsertStatement <em>Insert Statement</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl#getTableExpr <em>Table Expr</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl#getTableInDatabase <em>Table In Database</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl#getMergeInsertSpec <em>Merge Insert Spec</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,6 +111,16 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
     protected TableInDatabase tableInDatabase;
 
 	/**
+     * The cached value of the '{@link #getMergeInsertSpec() <em>Merge Insert Spec</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMergeInsertSpec()
+     * @generated
+     * @ordered
+     */
+    protected EList mergeInsertSpec;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -144,7 +156,7 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
      * @generated
      */
     public TableExpression getParentTableExpr() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR) return null;
         return (TableExpression)eContainer();
     }
 
@@ -164,7 +176,7 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
      * @generated
      */
     public void setParentTableExpr(TableExpression newParentTableExpr) {
-        if (newParentTableExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR && newParentTableExpr != null)) {
+        if (newParentTableExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR && newParentTableExpr != null)) {
             if (EcoreUtil.isAncestor(this, newParentTableExpr))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -301,6 +313,18 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList getMergeInsertSpec() {
+        if (mergeInsertSpec == null) {
+            mergeInsertSpec = new EObjectWithInverseResolvingEList.ManyInverse(MergeInsertSpecification.class, this, SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC, SQLQueryModelPackage.MERGE_INSERT_SPECIFICATION__TARGET_COLUMN_LIST);
+        }
+        return mergeInsertSpec;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -322,6 +346,8 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
                 if (tableInDatabase != null)
                     msgs = ((InternalEObject)tableInDatabase).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__DERIVED_COLUMN_LIST, TableInDatabase.class, msgs);
                 return basicSetTableInDatabase((TableInDatabase)otherEnd, msgs);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                return ((InternalEList)getMergeInsertSpec()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -343,6 +369,8 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
                 return basicSetTableExpr(null, msgs);
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE:
                 return basicSetTableInDatabase(null, msgs);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                return ((InternalEList)getMergeInsertSpec()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -353,7 +381,7 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__COLUMN_LIST, TableExpression.class, msgs);
         }
@@ -379,6 +407,8 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE:
                 if (resolve) return getTableInDatabase();
                 return basicGetTableInDatabase();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                return getMergeInsertSpec();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -407,6 +437,10 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE:
                 setTableInDatabase((TableInDatabase)newValue);
                 return;
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                getMergeInsertSpec().clear();
+                getMergeInsertSpec().addAll((Collection)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -433,6 +467,9 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE:
                 setTableInDatabase((TableInDatabase)null);
                 return;
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                getMergeInsertSpec().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -454,6 +491,8 @@ public class ValueExpressionColumnImpl extends ValueExpressionAtomicImpl impleme
                 return tableExpr != null;
             case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE:
                 return tableInDatabase != null;
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC:
+                return mergeInsertSpec != null && !mergeInsertSpec.isEmpty();
         }
         return super.eIsSet(featureID);
     }

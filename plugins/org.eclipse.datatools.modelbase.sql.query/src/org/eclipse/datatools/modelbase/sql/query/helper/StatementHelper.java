@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 IBM Corporation and others.
+ * Copyright (c) 2004, 2005 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -27,6 +27,12 @@ import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSets;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
+import org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification;
 import org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal;
 import org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn;
 import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
@@ -37,6 +43,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
@@ -58,6 +65,7 @@ import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined;
@@ -71,6 +79,7 @@ import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -96,6 +105,7 @@ public class StatementHelper {
     public static final int STATEMENT_TYPE_SELECT = 0;
     public static final int STATEMENT_TYPE_UPDATE = 2;
     public static final int STATEMENT_TYPE_WITH = 5;
+    public static final int STATEMENT_TYPE_MERGE = 6;
 
     private static List templates = new ArrayList();
 
@@ -158,15 +168,6 @@ public class StatementHelper {
         sql2 = stripWhiteSpaceAndComments(sql2, identifierDelimiterQt);
         return sql1.compareTo(sql2);
     }
-
-    // TODO: set this to false for production build! valid for all SQL Query
-    // model and SQL parser
-    // private static final boolean DEBUG = true;
-    // static {
-    // if (DEBUG)
-    // System.err.println("org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper#DEBUG
-    // set to false for no console writing");
-    // }
     
     /**
      * Converts an identifier from catalog format to SQL format. See following
@@ -260,13 +261,6 @@ public class StatementHelper {
 
                 if (containsDelimiters) {
                     StringBuffer sqlIdentSB = new StringBuffer(sqlIdentifier);
-                    // RATLC00395405  QVO
-                    // if delimiters at each end then ignore 
-                    if (sqlIdentSB.charAt(0) == idDelimiterQuote &&
-                            sqlIdentSB.charAt(sqlIdentSB.length() - 1) == idDelimiterQuote)
-                    {
-                        return sqlIdentSB.toString();
-                    }
                     for (int i = 0; i < sqlIdentSB.length(); i++) {
                         if (sqlIdentSB.charAt(i) == idDelimiterQuote) {
                             sqlIdentSB.insert(i, idDelimiterQuote);
@@ -334,7 +328,7 @@ public class StatementHelper {
             boolean isDelimited = sqlIdentifier.startsWith(delimiter) && sqlIdentifier.endsWith(delimiter);
             boolean containsQuotedDelimiters = sqlIdentifier.indexOf(delimiter + delimiter) > -1;
 
-            if (isDelimited) {
+            if (isDelimited && sqlIdentifier.length() > 1) {
                 catalogIdentifier = sqlIdentifier.substring(1, sqlIdentifier.length() - 1);
 
                 if (containsQuotedDelimiters) {
@@ -505,6 +499,19 @@ public class StatementHelper {
     }
 
     /**
+     * Creates an empty MERGE statement with the given name.
+     * 
+     * @param name the name for the statement
+     * @return the merge statement
+     */
+    public static QueryMergeStatement createMergeStatement(String name) {
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
+        QueryMergeStatement mergeStmt = factory.createQueryMergeStatement();
+        mergeStmt.setName(name);
+        return mergeStmt;
+    }
+
+    /**
      * Creates a QueryCombined
      * 
      * @return the created QueryCombined
@@ -655,6 +662,9 @@ public class StatementHelper {
                 break;
             case STATEMENT_TYPE_WITH:
                 stmt = createWithStatement(stmtName);
+                break;
+            case STATEMENT_TYPE_MERGE:
+                stmt = createMergeStatement(stmtName);
                 break;
         }
 
@@ -1090,8 +1100,8 @@ public class StatementHelper {
     }
     
     /**
-     *  Return a new name concatonating the int (inside delimiters if need be)
-     *  Assumes that the name is well formed, ending with a delimiter if it
+     *  Return a new name concatenating the int (inside delimiters if need be)
+     *  Assumes that the name is well-formed, ending with a delimiter if it
      *  begins with one.
      */
     public static String concatName(String name, int count)   {
@@ -1166,11 +1176,6 @@ public class StatementHelper {
         return derivedTable;
     }
 
-    /**
-     * Provide the name that will be generated next this is for populating alias
-     * text field with a default
-     */
-    // QMP -this method is never used
     /**
      * Returns the <code>TableInDatabase</code>s, that the given
      * <code>columnExpr</code>s were derived from, if the given columns are
@@ -1294,7 +1299,6 @@ public class StatementHelper {
         return effectiveResultColumnList;
     }
 
-    // API-method for Hong-Lee, written by ckadner
     /**
      * This method compiles a list of <code>ValueExpressionColumn</code>s
      * that reflects the columns, in order and with datatype, which are the
@@ -1302,7 +1306,7 @@ public class StatementHelper {
      * <p>
      * <b>Note:</b> this method will not return the <code>ResultColumn</code>
      * list of the given <code>selectStmt</code>'s <code>QuerySelect</code>,
-     * because these don't necessarily reflect the effectiv result colomns of a
+     * because these don't necessarily reflect the effective result columns of a
      * star-query for example.
      * <p>
      * <b>Note:</b> the returned <code>ValueExpressionColumn</code>'s
@@ -1328,46 +1332,9 @@ public class StatementHelper {
     }
 
     /**
-     * @deprecated Use createDeleteStatement(String name) instead.
-     */
-    /*
-     * public SQLDeleteStatement createDeleteStatement() { SQLQueryModelFactory
-     * factory = SQLQueryModelFactoryImpl.instance();
-     * 
-     * SQLDeleteStatement sqlDeleteStatement =
-     * factory.createSQLDeleteStatement();
-     * sqlDeleteStatement.setName(getNewName(sqlDeleteStatement));
-     * 
-     * database.getStatement().add(sqlDeleteStatement);
-     * 
-     * return sqlDeleteStatement; } public SQLDeleteStatement
-     * createDeleteStatement(String name) { SQLQueryModelFactory factory =
-     * SQLQueryModelFactoryImpl.instance();
-     * 
-     * SQLDeleteStatement sqlDeleteStatement =
-     * factory.createSQLDeleteStatement(); sqlDeleteStatement.setName(name);
-     * 
-     * database.getStatement().add(sqlDeleteStatement);
-     * 
-     * return sqlDeleteStatement; }
-     * 
-     * public SQLDeleteStatement createDeleteStatement(String name, boolean
-     * addToDb) { SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.instance();
-     * 
-     * SQLDeleteStatement sqlDeleteStatement =
-     * factory.createSQLDeleteStatement(); sqlDeleteStatement.setName(name);
-     * 
-     * if (addToDb) { database.getStatement().add(sqlDeleteStatement); }
-     * 
-     * return sqlDeleteStatement; }
-     */
-
-    /**
-     * TODO: ck: commment better
-     * 
      * <b>Note:</b> to avoid too deep recursion
      * <code>referencePathFilter</code> and <code>typeFilter</code> will
-     * implicitely contain <code>SQLObject.class</code>, so no references to
+     * implicitly contain <code>SQLObject.class</code>, so no references to
      * Objects of another type will be traversed.
      * 
      * give the EObject <code>referencedBy</code>, that referenced the given
@@ -1375,7 +1342,7 @@ public class StatementHelper {
      * back-reference and don't end up in an endless loop.
      * 
      * 
-     * @param eObject the object we want to find refernces of
+     * @param eObject the object we want to find references of
      * @param referencedBy the object that referenced the given eObject so we
      *        can avoid traversing the back-reference and don't end up in an
      *        endless loop
@@ -1384,9 +1351,9 @@ public class StatementHelper {
      * @param visited the set of <code>EObject</code>s already referenced but
      *        not necessarily in the <code>references</code> set of
      *        <code>EObject</code>s due to the given <code>typeFilter</code>
-     * @param typeFilter optional the type of the refernced Objects to be
+     * @param typeFilter optional the type of the referenced Objects to be
      *        returned, may be <code>null</code> or <code>Object.class</code>
-     *        to not filter the refernces
+     *        to not filter the references
      * @param referencePathFilter the types of references that are traversed to
      *        reach Objects indirectly referenced by the given
      *        <code>eObject</code>
@@ -1413,15 +1380,15 @@ public class StatementHelper {
             referencePathFilter = new Class[] { SQLQueryObject.class };
         }
 
-        // we might wanna get all references;
+        // we might want to get all references;
         // - but then without following all it's references a second time
-        // so we eliminate the loop by checking if the refernce is already
+        // so we eliminate the loop by checking if the reference is already
         // recorded in the set of references
-        // we eliminate the imediate backflip with the comparison of
+        // we eliminate the immediate back-flip with the comparison of
         // referencedBy
         // with eObject.eGet(Ref) so we compare our parent with our child
 
-        // don't travers references if we already traversed!
+        // don't traverse references if we already traversed!
         if (visited.contains(eObject)) {
             return references;
         }
@@ -1497,6 +1464,40 @@ public class StatementHelper {
         return havingCon;
     }
 
+    /**
+     * Gets a list of the column value expression in the "modification operations" (Update/Insert) of the given 
+     * Merge statement that are known to be references to columns in the target table of the Merge statement.
+     * That is the columns on the left side of the Update Set expressions and the Insert target columns.  
+     * @param mergeStmt the Merge statement for which the modification target columns are needed
+     * @return the list of <code>ValueExpressionColumn</code> objects
+     */
+    public static List getMergeModificationTargetColumnReferences(QueryMergeStatement mergeStmt) {
+        List colList = new ArrayList();
+        
+        List operSpecList = mergeStmt.getOperationSpecList();
+        Iterator operSpecListIter = operSpecList.iterator();
+        while (operSpecListIter.hasNext()) {
+            MergeOperationSpecification operSpec = (MergeOperationSpecification) operSpecListIter.next();
+            if (operSpec instanceof MergeUpdateSpecification) {
+                MergeUpdateSpecification updateSpec = (MergeUpdateSpecification) operSpec;
+                List assignExprList = updateSpec.getAssignementExprList();
+                Iterator assignExprListIter = assignExprList.iterator();
+                while (assignExprListIter.hasNext()) {
+                    UpdateAssignmentExpression assignExpr = (UpdateAssignmentExpression) assignExprListIter.next();
+                    List targetColList = assignExpr.getTargetColumnList();
+                    colList.addAll(targetColList);
+                }
+            }
+            else if (operSpec instanceof MergeInsertSpecification) {
+                MergeInsertSpecification insertSpec = (MergeInsertSpecification) operSpec;
+                List targetColList = insertSpec.getTargetColumnList();
+                colList.addAll(targetColList);
+            }
+        }
+        
+        return colList;
+    }
+    
     /**
      * Returns the <code>Predicate</code> of the given <code>variable</code>
      * or <code>null</code>, if the <code>variable</code> has no reference
@@ -1594,7 +1595,6 @@ public class StatementHelper {
         return queryStmt;
     }
 
-    // TODO: ck: commment better
     /**
      * Returns all Objects recursively referenced by the given
      * <code>eObject</code>, that are of type or a subtype of the given
@@ -1611,7 +1611,6 @@ public class StatementHelper {
         return getEObjectReferencesRecursively(eObject, null, null, null, typeFilter, null);
     }
 
-    // TODO: ck: commment better
     /**
      * Returns Objects recursively referenced by the given <code>eObject</code>,
      * that are of type or a subtype of the given <code>typeFilter</code>.
@@ -1680,6 +1679,12 @@ public class StatementHelper {
                 searchCon = qSelect.getWhereClause();
             }
         }
+        else if (stmt instanceof QueryMergeStatement) {
+            QueryMergeStatement mergeStmt = (QueryMergeStatement) stmt;
+            MergeOnCondition mergeOnCond = mergeStmt.getOnCondition();
+            searchCon = mergeOnCond.getSearchCondition();
+        }
+        
         return searchCon;
     }
 
@@ -1788,10 +1793,10 @@ public class StatementHelper {
     }
 
     /**
-     * Returnes the generated SQL source for the given <code>queryObject</code>
+     * Returns the generated SQL source for the given <code>queryObject</code>
      * without any formatting and without comments in a single line. The
-     * returned String will have no occurence of more than one blank " " or and
-     * no occurence of a line break "\n", so that for any given
+     * returned String will have no occurrence of more than one blank " " or and
+     * no occurrence of a line break "\n", so that for any given
      * <code>SQLQueryObject</code> <code>queryObject</code>
      * <code>getSQLSourceUnformatted(queryObject).indexOf(" "+" ") &lt; 0</code>
      * is <code>true</code> and
@@ -1818,9 +1823,9 @@ public class StatementHelper {
     }
 
     /**
-     * Returnes the given SQL source String in a single line without any
-     * formatting. The returned String will have no occurence of more than one
-     * blank " " or and no occurence of a line break "\n", so that for any given
+     * Returns the given SQL source String in a single line without any
+     * formatting. The returned String will have no occurrence of more than one
+     * blank " " or and no occurrence of a line break "\n", so that for any given
      * <code>QueryStatement</code> <code>queryStmt</code>
      * <code>getSQLSourceUnformatted(queryStmt).indexOf(" "+" ") &lt; 0</code>
      * is <code>true</code> and
@@ -1894,7 +1899,7 @@ public class StatementHelper {
     }
 
     /**
-     * Returnes the generated SQL source for the given <code>queryObject</code>
+     * Returns the generated SQL source for the given <code>queryObject</code>
      * with all comments.
      * 
      * @param queryObject a <code>SQLQueryObject</code> to get the SQL source
@@ -1918,7 +1923,7 @@ public class StatementHelper {
     }
 
     /**
-     * Returnes the generated SQL source for the given <code>queryObject</code>
+     * Returns the generated SQL source for the given <code>queryObject</code>
      * without any comments.
      * 
      * @param queryObject a <code>SQLQueryObject</code> to get the SQL source
@@ -1973,6 +1978,10 @@ public class StatementHelper {
         else if (statement instanceof QueryDeleteStatement) {
             type = STATEMENT_TYPE_DELETE;
         }
+        else if (statement instanceof QueryMergeStatement) {
+            type = STATEMENT_TYPE_MERGE;
+        }
+        
         return type;
     }
 
@@ -2114,11 +2123,7 @@ public class StatementHelper {
                     if (eContainer instanceof QuerySelect) {
                         QuerySelect superSelect = (QuerySelect) eContainer;
                         List superTables = getTableExpressionsVisibleInQuerySelect(superSelect);
-                        // While adding the update and delete cases below, noticed that superTables list
-                        // is not getting added to the tableExprList here.  Not sure why not.
-                        // When I added the code to do this, it affected the generated SQL
-                        // for some test cases, causing columns to be qualified with table names when
-                        // they weren't previously.  So am leaving it out for now.
+                        tableExprList.addAll(superTables);
                         break;
                     }
                     else if (eContainer instanceof QueryUpdateStatement) {
@@ -2130,6 +2135,10 @@ public class StatementHelper {
                         QueryDeleteStatement deleteStmt = (QueryDeleteStatement) eContainer;
                         List superTables = getTablesForStatement(deleteStmt);
                         tableExprList.addAll(superTables);
+                    }
+                    else if (eContainer instanceof QueryMergeStatement) {
+                        // The source (INTO) table of the Merge statement is NOT visible to a
+                        // QuerySelect in the source (USING) clause.  So don't need to add it.
                     }
                     eContainer = eContainer.eContainer();
                 }
@@ -2143,11 +2152,11 @@ public class StatementHelper {
      * Returns List of tables (<code>TableExpression</code>) referenced in
      * the statement. For Select statement it returns the source tables of the
      * "From" clause. For Insert, Update and Delete returns the target table.
+     * For Merge it returns the target (INTO) table and the source (USING) table.
      * 
      * @param stmt the SQLQueryStatement from which the table are wanted
      * @return the List of table
      */
-    // TODO add support select stmt
     public static List getTablesForStatement(QueryStatement stmt) {
         List tableList = new ArrayList();
 
@@ -2186,7 +2195,17 @@ public class StatementHelper {
                 }
             }
         }
-        // TODO: is there more? QueryMergeStatement?
+        else if (stmt instanceof QueryMergeStatement) {
+            QueryMergeStatement mergeStmt = (QueryMergeStatement) stmt;
+            
+             MergeTargetTable mergeTarget = mergeStmt.getTargetTable();
+             TableExpression tableExpr = mergeTarget.getTableExpr();
+             tableList.add(tableExpr);
+             
+             MergeSourceTable mergeSource = mergeStmt.getSourceTable();
+             TableReference tableRef = mergeSource.getTableRef();
+             tableList.add(tableRef);
+        }
 
         return tableList;
     }
@@ -2305,80 +2324,86 @@ public class StatementHelper {
     }
 
     /**
-     * Returns <code>true</code> only if the given <code>columnExpr</code>
-     * name is equal to another <code>ValueExpressionColumn</code>'s name in
-     * a different table and therefore needs to be qualified.
+     * Returns true only if the name of the given column expression is equal 
+     * to another column's name in a different table.  This check only applies
+     * to columns in QuerySelect objects and in Merge statements.
      * 
-     * @param columnExpr
-     * @return true if the given column's name has to be qualified with it's
-     *         table name/alias
+     * @param colExpr the column expression to check
+     * @return true when the column name is ambiguous in its context, otherwise false
      */
-    public static boolean isColumnNameAmbiguous(ValueExpressionColumn columnExpr) {
-        boolean need2qualify = false;
+    public static boolean isColumnNameAmbiguous(ValueExpressionColumn colExpr) {
+        boolean isAmbiguous = false;
 
-        // we need to qualify only when there are ambiguous column names
-        // in more than one table and eventually in different schemas
-        // only relevant for selects with joined table references (subquery!)
+        if (colExpr != null && colExpr.getTableExpr() != null) {
+            TableExpression colTableExpr = colExpr.getTableExpr();
+            String colName = colExpr.getName();
+            List tableRefList = new ArrayList();
+            TableExpression mergeTargetTableExpr = null;
+            
+            /* Get a list of the visible table references.  First assume we have a QuerySelect as 
+             * the column's container, and try to get it. */
+            QuerySelect querySelect = (QuerySelect) getEContainerRecursively(colExpr, QuerySelect.class);
+            if (querySelect != null) {
+                /* Get all the tables that are in scope.  (That is, tables of the local query and all
+                 * of its super queries.) */
+                tableRefList = getTableExpressionsVisibleInQuerySelect(querySelect);
+            }
+            /* If we don't have a QuerySelect, then see if the container is a Merge statement, and
+             * get the visible table ref list from that. */
+            else {
+                QueryMergeStatement mergeStmt = (QueryMergeStatement) getEContainerRecursively(colExpr, QueryMergeStatement.class);
+                /* When we have a Merge statement, get a list of the statement's table references. */
+                if (mergeStmt != null) {
+                    tableRefList = getTablesForStatement(mergeStmt);
+                    MergeTargetTable mergeTargetTable = mergeStmt.getTargetTable();
+                    mergeTargetTableExpr = mergeTargetTable.getTableExpr();
+                }
+            }
 
-        // get the columns query select stmt
-        if (columnExpr != null && columnExpr.getTableExpr() != null) {
-            TableExpression colsTableExpr = columnExpr.getTableExpr();
-            String colName = columnExpr.getName();
+            if (tableRefList.size() > 1) {
+                /* Check the column against the columns of the table in the table ref list. */
+                Iterator tableRefListIter = tableRefList.iterator();
+                while (isAmbiguous == false && tableRefListIter.hasNext()) {
+                    TableExpression tableRef = (TableExpression) tableRefListIter.next();
 
-            // get other tables from QuerySelect that contains the column
-            // reference
-            QuerySelect queryStmt = (QuerySelect) getEContainerRecursively(columnExpr, QuerySelect.class);
+                    /* Make sure we don't compare a table to itself.  Also don't compare to
+                     * a table ref that is actually the QuerySelect that contains the column.
+                     * For example in "select col1 from (select col1 from table0 where col1 = 5) as query0;"
+                     * the nested query "select col1 from table0 where col1 = 5" has a 
+                     * "result" or "exposed" column of "col1".  There is also a column "col1" in 
+                     * the super query as an exposed column of the virtual table "query0".  
+                     * But "query0.col1" is not visible in the nested query and is not ambiguous 
+                     * to "table0.col1".     
+                     * Also note that columns in the Merge target table are not ambiguous. */
+                    if (tableRef != colTableExpr && tableRef != querySelect) {
 
-            // get all the tables of super queries and the local query
-            List queryTableRefs = getTableExpressionsVisibleInQuerySelect(queryStmt);
-
-            if (queryTableRefs != null && queryTableRefs.size() > 1) {
-
-                for (Iterator tableIt = queryTableRefs.iterator(); tableIt.hasNext();) {
-                    TableExpression tableRef = (TableExpression) tableIt.next();
-
-                    // check if we don't compare to the same table
-                    // and check that we don't compare a nested query/table
-                    // query,
-                    // e.g. in "select col1 from (select col1 from table0 where
-                    // col1 = 5) query0;"
-                    // nested query/table query "select col1 from table0 where
-                    // col1 = 5" has a "result"/"exposed" column: "col1"
-                    // and the column "col1" in the super query is a exposed
-                    // column of virtual table "query0"
-                    // but "query0.col1" can not be visible in the nested query
-                    // and is not ambiguous to "table0.col1"!!!
-                    if (tableRef != colsTableExpr && tableRef != queryStmt) {
-
-                        // check if the table was already populated with
-                        // its columns, if so we try to find a columnExpr with
-                        // the name as the stmt itself might reveal ambiguities
-                        if (tableRef.getColumnList() != null && TableHelper.getColumnExpressionForName(tableRef, colName) != null) {
-
-                            need2qualify = true;
-                            break;
+                        /* Check if the table ref was already populated with its columns.  
+                         * If so, see if the table ref has a column with the same name.  This can pick up
+                         * ambiguities from the query definition itself, not just from database tables. */
+                        if (tableRef.getColumnList() != null) {
+                            ValueExpressionColumn tableRefCol = TableHelper.getColumnExpressionForName(tableRef, colName);
+                            if (tableRefCol != null) {
+                                isAmbiguous = true;
+                            }
                         }
-                        // check if we have the table information from the
-                        // database and can find a column with the name, in case
-                        // the population of columnList was not done
-                        else if (tableRef instanceof TableInDatabase && TableHelper.getColumnForName((TableInDatabase) tableRef, colName) != null) {
-
-                            need2qualify = true;
-                            break;
+                        /* If we have a database table, the check its columns. */
+                        if (isAmbiguous == false && tableRef instanceof TableInDatabase) {
+                            Column dbTableCol = TableHelper.getColumnForName((TableInDatabase) tableRef, colName);
+                            if (dbTableCol != null) {
+                                isAmbiguous = true;
+                            }
                         }
-                        // if we do not have the table information from the
-                        // database we try to find out if there are other
-                        // columns referencing the table with the same name
-                        else if (TableHelper.isTableReferencedByColumnWithName(tableRef, colName)) {
-
-                            need2qualify = true;
-                            break;
+                        /* In the case the table expr doesn't have column info, we can try to find out if there 
+                         * are other columns with the same name that reference the table. */
+                        if (isAmbiguous == false && TableHelper.isTableReferencedByColumnWithName(tableRef, colName)) {
+                            isAmbiguous = true;
                         }
                     }
                 }
             }
         }
-        return need2qualify;
+        
+        return isAmbiguous;
     }
 
     /**
@@ -2577,6 +2602,7 @@ public class StatementHelper {
             templates.add((StatementHelper.createQueryStatement(3, "")).getSQL());
             templates.add((StatementHelper.createQueryStatement(4, "")).getSQL());
             templates.add((StatementHelper.createQueryStatement(5, "")).getSQL());
+            // Merge (type 6) is not supported here
         }
         Iterator itr = templates.iterator();
         String template;
@@ -3075,6 +3101,7 @@ public class StatementHelper {
             QueryDeleteStatement stmt = (QueryDeleteStatement) queryObj;
             stmt.setTargetTable(null);
         }
+        // QueryMergeStatement is not supported here
     }
 
     /**
@@ -3180,7 +3207,6 @@ public class StatementHelper {
      *         removed from their <code>OrderByValueExpression</code>
      */
     public static Set resolveOrderByColumns(QuerySelect select, List orderByList) {
-        // TODO: resolveOrderByColumns
         // for the ORDER BY specifications that currently are of type
         // OrderByValueExpression, check if the ValueExpression is a ColumnExpr.
         // if so resolve it with the ResultColumns of the given select and
@@ -3249,8 +3275,6 @@ public class StatementHelper {
 
             if (orderBy instanceof OrderByResultColumn) {
                 OrderByResultColumn orderByRC = (OrderByResultColumn) orderBy;
-
-                // TODO: check for (right) association with resultColumn
             }
 
         }
@@ -3411,6 +3435,7 @@ public class StatementHelper {
         else if (statement instanceof QueryDeleteStatement) {
             ((QueryDeleteStatement) statement).setWhereClause(newSearchCon);
         }
+        // QueryMergeStatement is not supported here
     }
 
     /**
@@ -3553,8 +3578,6 @@ public class StatementHelper {
                 }
             }
 
-            // TODO: test if copyAllDirectNonNullReferences() method works
-            // correct!
             copyAllDirectNonNullReferences(oldTableRef, substitute);
             // the following code is obsolete if copyAllDirectNonNullReferences
             // works correctly
@@ -3658,10 +3681,9 @@ public class StatementHelper {
         else if (parent instanceof QuerySelect && !isHaving) {
             ((QuerySelect) parent).setWhereClause(searchCon);
         }
-
+        // QueryMergeStatement is not supported here
     }
 
-    // QMP -this method is never used
     /**
      * Provide the name that will be generated next this is for populating alias
      * text field with a default
@@ -3698,7 +3720,6 @@ public class StatementHelper {
         sqlInsertStatement.setName(name);
 
         if (addToDb) {
-            // TODO QMP - resolve and uncomment
             // database.getStatement().add(sqlInsertStatement);
         }
 
@@ -3724,7 +3745,6 @@ public class StatementHelper {
         QueryUpdateStatement sqlUpdateStatement = factory.createQueryUpdateStatement();
         sqlUpdateStatement.setName(name);
         if (addToDb) {
-            // QMP - resolve and uncomment
             // database.getStatement().add(sqlUpdateStatement);
         }
 
@@ -3735,7 +3755,6 @@ public class StatementHelper {
      * return false if we cannot find the input name
      */
     private boolean findInsert(String name) {
-        // TODO uncomment after the db -stmt issue is sorted out
         /*
          * Iterator iterator = database.getStatement().iterator();
          * 
@@ -3750,25 +3769,9 @@ public class StatementHelper {
     }
 
     /**
-     * Provide the name that will be generated next this is for populating alias
-     * text field with a default
-     */
-    // QMP -this method is never used
-    /*
-     * public String getNextName(RDBAbstractTable selectedTable) { String token =
-     * selectedTable.getName();
-     * 
-     * String newAlias = token; Integer number = (Integer) nameList.get(token);
-     * 
-     * int value = 0; if (number != null) { value = number.intValue(); value++;
-     * return token + value; } else return ""; }
-     */
-    /**
      * return false if we cannot find the input name
      */
-
     private boolean findSelect(String name) {
-        // TODO QMP-ALL
         /*
          * Iterator iterator = database.getStatement().iterator(); while
          * (iterator.hasNext()) { Object o = iterator.next(); if (o instanceof
@@ -3831,7 +3834,6 @@ public class StatementHelper {
                result = h1Loc - h2Loc;
            }
            else {
-              // TODO: Move this message to a properties file for translation
 //               StatementHelper.logError(StatementHelper.class.getName() + "could not compare the location of host variables or parameter markers as no "
 //                       + SQLQuerySourceInfo.class.getName() + " was associated with them. For host variables or parameter markers: " + h1 + " and " + h2);
            }

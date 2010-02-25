@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSearchContentImpl.java,v 1.4 2007/02/08 17:00:28 bpayton Exp $
+ * $Id: ValueExpressionCaseSearchContentImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -169,7 +169,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
     public ValueExpressionCaseSearch getValueExprCaseSearch() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH) return null;
         return (ValueExpressionCaseSearch)eContainer();
     }
 
@@ -189,7 +189,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
     public void setValueExprCaseSearch(ValueExpressionCaseSearch newValueExprCaseSearch) {
-        if (newValueExprCaseSearch != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH && newValueExprCaseSearch != null)) {
+        if (newValueExprCaseSearch != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH && newValueExprCaseSearch != null)) {
             if (EcoreUtil.isAncestor(this, newValueExprCaseSearch))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -250,7 +250,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST, ValueExpressionCaseSearch.class, msgs);
         }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderBySpecification.java,v 1.2 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: OrderBySpecification.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,6 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getOrderingSpecOption <em>Ordering Spec Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getNullOrderingOption <em>Null Ordering Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getSelectStatement <em>Select Statement</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,5 +139,33 @@ public interface OrderBySpecification extends SQLQueryObject{
      * @generated
      */
     void setSelectStatement(QuerySelectStatement value);
+
+    /**
+     * Returns the value of the '<em><b>Query</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getSortSpecList <em>Sort Spec List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Query</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Query</em>' container reference.
+     * @see #setQuery(QueryExpressionBody)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification_Query()
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getSortSpecList
+     * @model opposite="sortSpecList"
+     * @generated
+     */
+    QueryExpressionBody getQuery();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery <em>Query</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Query</em>' container reference.
+     * @see #getQuery()
+     * @generated
+     */
+    void setQuery(QueryExpressionBody value);
 
 } // SQLOrderBySpecification

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelAdapterFactory.java,v 1.3 2008/01/31 02:57:17 bpayton Exp $
+ * $Id: SQLQueryModelAdapterFactory.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
@@ -333,6 +333,30 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
             }
             public Object caseValueExpressionRow(ValueExpressionRow object) {
                 return createValueExpressionRowAdapter();
+            }
+            public Object caseMergeTargetTable(MergeTargetTable object) {
+                return createMergeTargetTableAdapter();
+            }
+            public Object caseMergeSourceTable(MergeSourceTable object) {
+                return createMergeSourceTableAdapter();
+            }
+            public Object caseMergeOnCondition(MergeOnCondition object) {
+                return createMergeOnConditionAdapter();
+            }
+            public Object caseMergeUpdateSpecification(MergeUpdateSpecification object) {
+                return createMergeUpdateSpecificationAdapter();
+            }
+            public Object caseMergeInsertSpecification(MergeInsertSpecification object) {
+                return createMergeInsertSpecificationAdapter();
+            }
+            public Object caseMergeOperationSpecification(MergeOperationSpecification object) {
+                return createMergeOperationSpecificationAdapter();
+            }
+            public Object caseUpdateOfColumn(UpdateOfColumn object) {
+                return createUpdateOfColumnAdapter();
+            }
+            public Object caseUpdatabilityExpression(UpdatabilityExpression object) {
+                return createUpdatabilityExpressionAdapter();
             }
             public Object caseEModelElement(EModelElement object) {
                 return createEModelElementAdapter();
@@ -1552,6 +1576,118 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createValueExpressionRowAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable <em>Merge Target Table</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable
+     * @generated
+     */
+    public Adapter createMergeTargetTableAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable <em>Merge Source Table</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable
+     * @generated
+     */
+    public Adapter createMergeSourceTableAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition <em>Merge On Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOnCondition
+     * @generated
+     */
+    public Adapter createMergeOnConditionAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification <em>Merge Update Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification
+     * @generated
+     */
+    public Adapter createMergeUpdateSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification <em>Merge Insert Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification
+     * @generated
+     */
+    public Adapter createMergeInsertSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification <em>Merge Operation Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification
+     * @generated
+     */
+    public Adapter createMergeOperationSpecificationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn <em>Update Of Column</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn
+     * @generated
+     */
+    public Adapter createUpdateOfColumnAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression <em>Updatability Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression
+     * @generated
+     */
+    public Adapter createUpdatabilityExpressionAdapter() {
         return null;
     }
 

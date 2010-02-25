@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingExpressionImpl.java,v 1.4 2007/02/08 17:00:25 bpayton Exp $
+ * $Id: GroupingExpressionImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -116,7 +116,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
      * @generated
      */
     public SuperGroupElementExpression getSuperGroupElementExpr() {
-        if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR) return null;
         return (SuperGroupElementExpression)eContainer();
     }
 
@@ -136,7 +136,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
      * @generated
      */
     public void setSuperGroupElementExpr(SuperGroupElementExpression newSuperGroupElementExpr) {
-        if (newSuperGroupElementExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR && newSuperGroupElementExpr != null)) {
+        if (newSuperGroupElementExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR && newSuperGroupElementExpr != null)) {
             if (EcoreUtil.isAncestor(this, newSuperGroupElementExpr))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -191,7 +191,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR, SuperGroupElementExpression.class, msgs);
         }

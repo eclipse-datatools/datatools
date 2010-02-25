@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementExpressionImpl.java,v 1.4 2007/02/08 17:00:28 bpayton Exp $
+ * $Id: GroupingSetsElementExpressionImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -72,7 +72,7 @@ public class GroupingSetsElementExpressionImpl extends GroupingSetsElementImpl i
      * @generated
      */
     public GroupingSetsElementSublist getGroupingSetsElementSublist() {
-        if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST) return null;
         return (GroupingSetsElementSublist)eContainer();
     }
 
@@ -92,7 +92,7 @@ public class GroupingSetsElementExpressionImpl extends GroupingSetsElementImpl i
      * @generated
      */
     public void setGroupingSetsElementSublist(GroupingSetsElementSublist newGroupingSetsElementSublist) {
-        if (newGroupingSetsElementSublist != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST && newGroupingSetsElementSublist != null)) {
+        if (newGroupingSetsElementSublist != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST && newGroupingSetsElementSublist != null)) {
             if (EcoreUtil.isAncestor(this, newGroupingSetsElementSublist))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -190,7 +190,7 @@ public class GroupingSetsElementExpressionImpl extends GroupingSetsElementImpl i
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST, GroupingSetsElementSublist.class, msgs);
         }

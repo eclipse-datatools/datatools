@@ -80,6 +80,10 @@
       <genEnumLiterals ecoreEnumLiteral="SQLQueryModel.ecore#//OrderingSpecType/ASC"/>
       <genEnumLiterals ecoreEnumLiteral="SQLQueryModel.ecore#//OrderingSpecType/DESC"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SQLQueryModel.ecore#//UpdatabilityType">
+      <genEnumLiterals ecoreEnumLiteral="SQLQueryModel.ecore#//UpdatabilityType/READ_ONLY"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLQueryModel.ecore#//UpdatabilityType/UPDATE"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryStatement"/>
     <genClasses ecoreClass="SQLQueryModel.ecore#//QueryDeleteStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryDeleteStatement/whereCurrentOfClause"/>
@@ -95,6 +99,7 @@
     <genClasses ecoreClass="SQLQueryModel.ecore#//QuerySelectStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySelectStatement/queryExpr"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySelectStatement/orderByClause"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySelectStatement/updatabilityExpr"/>
     </genClasses>
     <genClasses ecoreClass="SQLQueryModel.ecore#//QueryUpdateStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryUpdateStatement/assignmentClause"/>
@@ -106,6 +111,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdateAssignmentExpression/updateStatement"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdateAssignmentExpression/targetColumnList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdateAssignmentExpression/updateSource"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdateAssignmentExpression/mergeUpdateSpec"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//CursorReference">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//CursorReference/updateStatement"/>
@@ -122,8 +128,10 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySearchCondition/querySelectWhere"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySearchCondition/valueExprCaseSearchContent"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySearchCondition/nest"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QuerySearchCondition/mergeOnCondition"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryExpressionBody">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//QueryExpressionBody/rowFetchLimit"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/queryExpression"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/combinedLeft"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/combinedRight"/>
@@ -131,6 +139,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/updateSourceQuery"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/withTableSpecification"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/queryNest"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionBody/sortSpecList"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryValueExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//QueryValueExpression/unaryOperator"/>
@@ -193,12 +202,14 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableReference/tableJoinedLeft"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableReference/querySelect"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableReference/nest"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableReference/mergeSourceTable"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//TableExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableExpression/columnList"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableExpression/tableCorrelation"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableExpression/resultTableAllColumns"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableExpression/valueExprColumns"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableExpression/mergeTargetTable"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//TableJoined">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//TableJoined/joinOperator"/>
@@ -312,6 +323,7 @@
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionColumn/insertStatement"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionColumn/tableExpr"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionColumn/tableInDatabase"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionColumn/mergeInsertSpec"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//ValueExpressionVariable">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionVariable/querySelect"/>
@@ -423,7 +435,12 @@
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//TableNested">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableNested/nestedTableRef"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryMergeStatement"/>
+    <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryMergeStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryMergeStatement/targetTable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryMergeStatement/sourceTable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryMergeStatement/onCondition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryMergeStatement/operationSpecList"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//SearchConditionNested">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//SearchConditionNested/nestedCondition"/>
     </genClasses>
@@ -436,6 +453,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//OrderBySpecification/OrderingSpecOption"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//OrderBySpecification/NullOrderingOption"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//OrderBySpecification/selectStatement"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//OrderBySpecification/query"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//OrderByOrdinal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//OrderByOrdinal/ordinalValue"/>
@@ -464,6 +482,37 @@
     </genClasses>
     <genClasses ecoreClass="SQLQueryModel.ecore#//ValueExpressionRow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionRow/valueExprList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeTargetTable">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeTargetTable/mergeStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeTargetTable/tableExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeSourceTable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeSourceTable/QueryMergeStatement"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeSourceTable/mergeStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeSourceTable/tableRef"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeOnCondition">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeOnCondition/mergeStatement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeOnCondition/searchCondition"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeUpdateSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeUpdateSpecification/assignementExprList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeInsertSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeInsertSpecification/targetColumnList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeInsertSpecification/sourceValuesRow"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//MergeOperationSpecification">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//MergeOperationSpecification/mergeStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//UpdateOfColumn">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdateOfColumn/updatabilityExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//UpdatabilityExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//UpdatabilityExpression/updatabilityType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdatabilityExpression/updateOfColumnList"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdatabilityExpression/selectStatement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

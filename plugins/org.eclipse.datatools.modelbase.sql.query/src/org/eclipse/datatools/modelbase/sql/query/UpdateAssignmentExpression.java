@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateAssignmentExpression.java,v 1.2 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: UpdateAssignmentExpression.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateStatement <em>Update Statement</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getTargetColumnList <em>Target Column List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateSource <em>Update Source</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getMergeUpdateSpec <em>Merge Update Spec</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +101,33 @@ public interface UpdateAssignmentExpression extends SQLQueryObject{
      * @generated
      */
   void setUpdateSource(UpdateSource value);
+
+    /**
+     * Returns the value of the '<em><b>Merge Update Spec</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification#getAssignementExprList <em>Assignement Expr List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Merge Update Spec</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Merge Update Spec</em>' container reference.
+     * @see #setMergeUpdateSpec(MergeUpdateSpecification)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateAssignmentExpression_MergeUpdateSpec()
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification#getAssignementExprList
+     * @model opposite="assignementExprList"
+     * @generated
+     */
+    MergeUpdateSpecification getMergeUpdateSpec();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getMergeUpdateSpec <em>Merge Update Spec</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Merge Update Spec</em>' container reference.
+     * @see #getMergeUpdateSpec()
+     * @generated
+     */
+    void setMergeUpdateSpec(MergeUpdateSpecification value);
 
 } // SQLAssignmentExpression

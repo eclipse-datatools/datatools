@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableSpecificationImpl.java,v 1.4 2007/02/08 17:00:27 bpayton Exp $
+ * $Id: WithTableSpecificationImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -98,7 +98,7 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
      * @generated
      */
     public QueryExpressionRoot getQueryExpressionRoot() {
-        if (eContainerFeatureID != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT) return null;
         return (QueryExpressionRoot)eContainer();
     }
 
@@ -118,7 +118,7 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
      * @generated
      */
     public void setQueryExpressionRoot(QueryExpressionRoot newQueryExpressionRoot) {
-        if (newQueryExpressionRoot != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT && newQueryExpressionRoot != null)) {
+        if (newQueryExpressionRoot != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT && newQueryExpressionRoot != null)) {
             if (EcoreUtil.isAncestor(this, newQueryExpressionRoot))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -248,7 +248,7 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__WITH_CLAUSE, QueryExpressionRoot.class, msgs);
         }

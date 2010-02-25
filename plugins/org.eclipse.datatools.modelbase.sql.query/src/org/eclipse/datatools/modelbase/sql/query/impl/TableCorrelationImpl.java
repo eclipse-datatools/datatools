@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableCorrelationImpl.java,v 1.4 2007/02/08 17:00:31 bpayton Exp $
+ * $Id: TableCorrelationImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -73,7 +73,7 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
      * @generated
      */
     public TableExpression getTableExpr() {
-        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR) return null;
         return (TableExpression)eContainer();
     }
 
@@ -93,7 +93,7 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
      * @generated
      */
     public void setTableExpr(TableExpression newTableExpr) {
-        if (newTableExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
+        if (newTableExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
             if (EcoreUtil.isAncestor(this, newTableExpr))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -158,7 +158,7 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
         }

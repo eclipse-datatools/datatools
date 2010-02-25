@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpressionImpl.java,v 1.5 2007/02/08 17:00:24 bpayton Exp $
+ * $Id: TableExpressionImpl.java,v 1.6 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 
@@ -39,6 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl#getTableCorrelation <em>Table Correlation</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl#getResultTableAllColumns <em>Result Table All Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl#getValueExprColumns <em>Value Expr Columns</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl#getMergeTargetTable <em>Merge Target Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -184,6 +187,47 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeTargetTable getMergeTargetTable() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE) return null;
+        return (MergeTargetTable)eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMergeTargetTable(MergeTargetTable newMergeTargetTable, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newMergeTargetTable, SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMergeTargetTable(MergeTargetTable newMergeTargetTable) {
+        if (newMergeTargetTable != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE && newMergeTargetTable != null)) {
+            if (EcoreUtil.isAncestor(this, newMergeTargetTable))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newMergeTargetTable != null)
+                msgs = ((InternalEObject)newMergeTargetTable).eInverseAdd(this, SQLQueryModelPackage.MERGE_TARGET_TABLE__TABLE_EXPR, MergeTargetTable.class, msgs);
+            msgs = basicSetMergeTargetTable(newMergeTargetTable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE, newMergeTargetTable, newMergeTargetTable));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -199,6 +243,10 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
                 return ((InternalEList)getResultTableAllColumns()).basicAdd(otherEnd, msgs);
             case SQLQueryModelPackage.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS:
                 return ((InternalEList)getValueExprColumns()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetMergeTargetTable((MergeTargetTable)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -218,11 +266,26 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
                 return ((InternalEList)getResultTableAllColumns()).basicRemove(otherEnd, msgs);
             case SQLQueryModelPackage.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS:
                 return ((InternalEList)getValueExprColumns()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                return basicSetMergeTargetTable(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.MERGE_TARGET_TABLE__TABLE_EXPR, MergeTargetTable.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -237,6 +300,8 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
                 return getResultTableAllColumns();
             case SQLQueryModelPackage.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS:
                 return getValueExprColumns();
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                return getMergeTargetTable();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -263,6 +328,9 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
                 getValueExprColumns().clear();
                 getValueExprColumns().addAll((Collection)newValue);
                 return;
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                setMergeTargetTable((MergeTargetTable)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -286,6 +354,9 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
             case SQLQueryModelPackage.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS:
                 getValueExprColumns().clear();
                 return;
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                setMergeTargetTable((MergeTargetTable)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -305,6 +376,8 @@ public abstract class TableExpressionImpl extends TableReferenceImpl implements 
                 return resultTableAllColumns != null && !resultTableAllColumns.isEmpty();
             case SQLQueryModelPackage.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS:
                 return valueExprColumns != null && !valueExprColumns.isEmpty();
+            case SQLQueryModelPackage.TABLE_EXPRESSION__MERGE_TARGET_TABLE:
+                return getMergeTargetTable() != null;
         }
         return super.eIsSet(featureID);
     }

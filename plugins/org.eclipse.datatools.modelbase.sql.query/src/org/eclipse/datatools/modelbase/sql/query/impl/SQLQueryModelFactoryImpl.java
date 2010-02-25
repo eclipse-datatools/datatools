@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactoryImpl.java,v 1.3 2008/01/31 02:57:15 bpayton Exp $
+ * $Id: SQLQueryModelFactoryImpl.java,v 1.4 2008/07/07 19:53:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -126,6 +126,14 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
             case SQLQueryModelPackage.WITH_TABLE_REFERENCE: return createWithTableReference();
             case SQLQueryModelPackage.QUERY_NESTED: return createQueryNested();
             case SQLQueryModelPackage.VALUE_EXPRESSION_ROW: return createValueExpressionRow();
+            case SQLQueryModelPackage.MERGE_TARGET_TABLE: return createMergeTargetTable();
+            case SQLQueryModelPackage.MERGE_SOURCE_TABLE: return createMergeSourceTable();
+            case SQLQueryModelPackage.MERGE_ON_CONDITION: return createMergeOnCondition();
+            case SQLQueryModelPackage.MERGE_UPDATE_SPECIFICATION: return createMergeUpdateSpecification();
+            case SQLQueryModelPackage.MERGE_INSERT_SPECIFICATION: return createMergeInsertSpecification();
+            case SQLQueryModelPackage.MERGE_OPERATION_SPECIFICATION: return createMergeOperationSpecification();
+            case SQLQueryModelPackage.UPDATE_OF_COLUMN: return createUpdateOfColumn();
+            case SQLQueryModelPackage.UPDATABILITY_EXPRESSION: return createUpdatabilityExpression();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -160,6 +168,8 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
                 return createNullOrderingTypeFromString(eDataType, initialValue);
             case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
                 return createOrderingSpecTypeFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.UPDATABILITY_TYPE:
+                return createUpdatabilityTypeFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -194,6 +204,8 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
                 return convertNullOrderingTypeToString(eDataType, instanceValue);
             case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
                 return convertOrderingSpecTypeToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.UPDATABILITY_TYPE:
+                return convertUpdatabilityTypeToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -851,6 +863,86 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeTargetTable createMergeTargetTable() {
+        MergeTargetTableImpl mergeTargetTable = new MergeTargetTableImpl();
+        return mergeTargetTable;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeSourceTable createMergeSourceTable() {
+        MergeSourceTableImpl mergeSourceTable = new MergeSourceTableImpl();
+        return mergeSourceTable;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeOnCondition createMergeOnCondition() {
+        MergeOnConditionImpl mergeOnCondition = new MergeOnConditionImpl();
+        return mergeOnCondition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeUpdateSpecification createMergeUpdateSpecification() {
+        MergeUpdateSpecificationImpl mergeUpdateSpecification = new MergeUpdateSpecificationImpl();
+        return mergeUpdateSpecification;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeInsertSpecification createMergeInsertSpecification() {
+        MergeInsertSpecificationImpl mergeInsertSpecification = new MergeInsertSpecificationImpl();
+        return mergeInsertSpecification;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeOperationSpecification createMergeOperationSpecification() {
+        MergeOperationSpecificationImpl mergeOperationSpecification = new MergeOperationSpecificationImpl();
+        return mergeOperationSpecification;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UpdateOfColumn createUpdateOfColumn() {
+        UpdateOfColumnImpl updateOfColumn = new UpdateOfColumnImpl();
+        return updateOfColumn;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UpdatabilityExpression createUpdatabilityExpression() {
+        UpdatabilityExpressionImpl updatabilityExpression = new UpdatabilityExpressionImpl();
+        return updatabilityExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1070,6 +1162,26 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UpdatabilityType createUpdatabilityTypeFromString(EDataType eDataType, String initialValue) {
+        UpdatabilityType result = UpdatabilityType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertUpdatabilityTypeToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated

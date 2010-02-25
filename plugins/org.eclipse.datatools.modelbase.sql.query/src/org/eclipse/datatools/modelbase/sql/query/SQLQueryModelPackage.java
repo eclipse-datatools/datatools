@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackage.java,v 1.4 2008/01/31 02:57:16 bpayton Exp $
+ * $Id: SQLQueryModelPackage.java,v 1.5 2008/07/07 19:53:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -127,6 +127,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SQL_QUERY_OBJECT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SQL_QUERY_OBJECT__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,6 +218,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_STATEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_STATEMENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,6 +309,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_CHANGE_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_CHANGE_STATEMENT__EXTENSIONS = QUERY_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,6 +400,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_DELETE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_DELETE_STATEMENT__EXTENSIONS = QUERY_CHANGE_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,6 +518,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_INSERT_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_INSERT_STATEMENT__EXTENSIONS = QUERY_CHANGE_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -600,6 +645,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT_STATEMENT__EXTENSIONS = QUERY_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -627,13 +681,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE = QUERY_STATEMENT_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Updatability Expr</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR = QUERY_STATEMENT_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Query Select Statement</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_SELECT_STATEMENT_FEATURE_COUNT = QUERY_STATEMENT_FEATURE_COUNT + 2;
+	int QUERY_SELECT_STATEMENT_FEATURE_COUNT = QUERY_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryUpdateStatementImpl <em>Query Update Statement</em>}' class.
@@ -700,6 +763,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_UPDATE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_UPDATE_STATEMENT__EXTENSIONS = QUERY_CHANGE_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,6 +890,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_ASSIGNMENT_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_ASSIGNMENT_EXPRESSION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -854,13 +935,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+     * The feature id for the '<em><b>Merge Update Spec</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Update Assignment Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int UPDATE_ASSIGNMENT_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
+	int UPDATE_ASSIGNMENT_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.CursorReferenceImpl <em>Cursor Reference</em>}' class.
@@ -927,6 +1017,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int CURSOR_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CURSOR_REFERENCE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1027,6 +1126,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SEARCH_CONDITION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SEARCH_CONDITION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1126,13 +1234,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SEARCH_CONDITION__NEST = SQL_QUERY_OBJECT_FEATURE_COUNT + 9;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION = SQL_QUERY_OBJECT_FEATURE_COUNT + 10;
+
+    /**
      * The number of structural features of the '<em>Query Search Condition</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_SEARCH_CONDITION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 10;
+	int QUERY_SEARCH_CONDITION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 11;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl <em>Table Reference</em>}' class.
@@ -1199,6 +1316,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_REFERENCE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1244,13 +1370,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_REFERENCE__NEST = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_REFERENCE__MERGE_SOURCE_TABLE = SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Table Reference</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TABLE_REFERENCE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
+	int TABLE_REFERENCE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl <em>Table Expression</em>}' class.
@@ -1317,6 +1452,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_EXPRESSION__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_EXPRESSION__EXTENSIONS = TABLE_REFERENCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1362,6 +1506,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_EXPRESSION__NEST = TABLE_REFERENCE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_EXPRESSION__MERGE_SOURCE_TABLE = TABLE_REFERENCE__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1398,13 +1551,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_EXPRESSION__VALUE_EXPR_COLUMNS = TABLE_REFERENCE_FEATURE_COUNT + 3;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_EXPRESSION__MERGE_TARGET_TABLE = TABLE_REFERENCE_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Table Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TABLE_EXPRESSION_FEATURE_COUNT = TABLE_REFERENCE_FEATURE_COUNT + 4;
+	int TABLE_EXPRESSION_FEATURE_COUNT = TABLE_REFERENCE_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionBodyImpl <em>Query Expression Body</em>}' class.
@@ -1471,6 +1633,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_BODY__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_BODY__EXTENSIONS = TABLE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1516,6 +1687,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_BODY__NEST = TABLE_EXPRESSION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_BODY__MERGE_SOURCE_TABLE = TABLE_EXPRESSION__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1552,13 +1732,31 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_BODY__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_BODY__MERGE_TARGET_TABLE = TABLE_EXPRESSION__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT = TABLE_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Query Expression</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__QUERY_EXPRESSION = TABLE_EXPRESSION_FEATURE_COUNT + 0;
+	int QUERY_EXPRESSION_BODY__QUERY_EXPRESSION = TABLE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
      * The feature id for the '<em><b>Combined Left</b></em>' container reference.
@@ -1567,7 +1765,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__COMBINED_LEFT = TABLE_EXPRESSION_FEATURE_COUNT + 1;
+	int QUERY_EXPRESSION_BODY__COMBINED_LEFT = TABLE_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
      * The feature id for the '<em><b>Combined Right</b></em>' container reference.
@@ -1576,7 +1774,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__COMBINED_RIGHT = TABLE_EXPRESSION_FEATURE_COUNT + 2;
+	int QUERY_EXPRESSION_BODY__COMBINED_RIGHT = TABLE_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
      * The feature id for the '<em><b>Predicate Exists</b></em>' container reference.
@@ -1585,7 +1783,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__PREDICATE_EXISTS = TABLE_EXPRESSION_FEATURE_COUNT + 3;
+	int QUERY_EXPRESSION_BODY__PREDICATE_EXISTS = TABLE_EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
      * The feature id for the '<em><b>Update Source Query</b></em>' container reference.
@@ -1594,7 +1792,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__UPDATE_SOURCE_QUERY = TABLE_EXPRESSION_FEATURE_COUNT + 4;
+	int QUERY_EXPRESSION_BODY__UPDATE_SOURCE_QUERY = TABLE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
      * The feature id for the '<em><b>With Table Specification</b></em>' container reference.
@@ -1603,7 +1801,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY__WITH_TABLE_SPECIFICATION = TABLE_EXPRESSION_FEATURE_COUNT + 5;
+	int QUERY_EXPRESSION_BODY__WITH_TABLE_SPECIFICATION = TABLE_EXPRESSION_FEATURE_COUNT + 6;
 
 	/**
      * The feature id for the '<em><b>Query Nest</b></em>' container reference.
@@ -1612,7 +1810,16 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int QUERY_EXPRESSION_BODY__QUERY_NEST = TABLE_EXPRESSION_FEATURE_COUNT + 6;
+    int QUERY_EXPRESSION_BODY__QUERY_NEST = TABLE_EXPRESSION_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_BODY__SORT_SPEC_LIST = TABLE_EXPRESSION_FEATURE_COUNT + 8;
 
     /**
      * The number of structural features of the '<em>Query Expression Body</em>' class.
@@ -1621,7 +1828,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_BODY_FEATURE_COUNT = TABLE_EXPRESSION_FEATURE_COUNT + 7;
+	int QUERY_EXPRESSION_BODY_FEATURE_COUNT = TABLE_EXPRESSION_FEATURE_COUNT + 9;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl <em>Query Value Expression</em>}' class.
@@ -1688,6 +1895,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_VALUE_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUE_EXPRESSION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2085,6 +2301,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_ROOT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_EXPRESSION_ROOT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2248,6 +2473,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUES_ROW__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUES_ROW__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2357,6 +2591,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_VALUES__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUES__EXTENSIONS = QUERY_EXPRESSION_BODY__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2402,6 +2645,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_VALUES__NEST = QUERY_EXPRESSION_BODY__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUES__MERGE_SOURCE_TABLE = QUERY_EXPRESSION_BODY__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2438,6 +2690,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_VALUES__VALUE_EXPR_COLUMNS = QUERY_EXPRESSION_BODY__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUES__MERGE_TARGET_TABLE = QUERY_EXPRESSION_BODY__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUES__ROW_FETCH_LIMIT = QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT;
+
+    /**
      * The feature id for the '<em><b>Query Expression</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2499,6 +2769,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int QUERY_VALUES__QUERY_NEST = QUERY_EXPRESSION_BODY__QUERY_NEST;
+
+    /**
+     * The feature id for the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUES__SORT_SPEC_LIST = QUERY_EXPRESSION_BODY__SORT_SPEC_LIST;
 
     /**
      * The feature id for the '<em><b>Values Row List</b></em>' containment reference list.
@@ -2583,6 +2862,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_JOINED__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_JOINED__EXTENSIONS = TABLE_REFERENCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2628,6 +2916,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_JOINED__NEST = TABLE_REFERENCE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_JOINED__MERGE_SOURCE_TABLE = TABLE_REFERENCE__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Join Operator</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2737,6 +3034,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int WITH_TABLE_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WITH_TABLE_SPECIFICATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2855,6 +3161,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE__EXTENSIONS = QUERY_SEARCH_CONDITION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2954,6 +3269,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE__NEST = QUERY_SEARCH_CONDITION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE__MERGE_ON_CONDITION = QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3054,6 +3378,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SEARCH_CONDITION_COMBINED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEARCH_CONDITION_COMBINED__EXTENSIONS = QUERY_SEARCH_CONDITION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3153,6 +3486,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SEARCH_CONDITION_COMBINED__NEST = QUERY_SEARCH_CONDITION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEARCH_CONDITION_COMBINED__MERGE_ON_CONDITION = QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Combined Operator</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3253,6 +3595,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_SPECIFICATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3298,13 +3649,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_SPECIFICATION__SELECT_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+     * The feature id for the '<em><b>Query</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_SPECIFICATION__QUERY = SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Order By Specification</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ORDER_BY_SPECIFICATION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
+	int ORDER_BY_SPECIFICATION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 5;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByValueExpressionImpl <em>Order By Value Expression</em>}' class.
@@ -3371,6 +3731,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_VALUE_EXPRESSION__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_VALUE_EXPRESSION__EXTENSIONS = ORDER_BY_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3416,6 +3785,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_VALUE_EXPRESSION__SELECT_STATEMENT = ORDER_BY_SPECIFICATION__SELECT_STATEMENT;
 
 	/**
+     * The feature id for the '<em><b>Query</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_VALUE_EXPRESSION__QUERY = ORDER_BY_SPECIFICATION__QUERY;
+
+    /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3498,6 +3876,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_COMBINED__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_COMBINED__EXTENSIONS = QUERY_EXPRESSION_BODY__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3543,6 +3930,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_COMBINED__NEST = QUERY_EXPRESSION_BODY__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_COMBINED__MERGE_SOURCE_TABLE = QUERY_EXPRESSION_BODY__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3579,6 +3975,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_COMBINED__VALUE_EXPR_COLUMNS = QUERY_EXPRESSION_BODY__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_COMBINED__MERGE_TARGET_TABLE = QUERY_EXPRESSION_BODY__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_COMBINED__ROW_FETCH_LIMIT = QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT;
+
+    /**
      * The feature id for the '<em><b>Query Expression</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3640,6 +4054,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int QUERY_COMBINED__QUERY_NEST = QUERY_EXPRESSION_BODY__QUERY_NEST;
+
+    /**
+     * The feature id for the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_COMBINED__SORT_SPEC_LIST = QUERY_EXPRESSION_BODY__SORT_SPEC_LIST;
 
     /**
      * The feature id for the '<em><b>Combined Operator</b></em>' attribute.
@@ -3742,6 +4165,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT__EXTENSIONS = QUERY_EXPRESSION_BODY__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3787,6 +4219,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT__NEST = QUERY_EXPRESSION_BODY__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT__MERGE_SOURCE_TABLE = QUERY_EXPRESSION_BODY__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3823,6 +4264,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT__VALUE_EXPR_COLUMNS = QUERY_EXPRESSION_BODY__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT__MERGE_TARGET_TABLE = QUERY_EXPRESSION_BODY__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT__ROW_FETCH_LIMIT = QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT;
+
+    /**
      * The feature id for the '<em><b>Query Expression</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3884,6 +4343,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int QUERY_SELECT__QUERY_NEST = QUERY_EXPRESSION_BODY__QUERY_NEST;
+
+    /**
+     * The feature id for the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_SELECT__SORT_SPEC_LIST = QUERY_EXPRESSION_BODY__SORT_SPEC_LIST;
 
     /**
      * The feature id for the '<em><b>Distinct</b></em>' attribute.
@@ -4022,6 +4490,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_SPECIFICATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4113,6 +4590,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_RESULT_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_RESULT_SPECIFICATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4204,6 +4690,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int RESULT_TABLE_ALL_COLUMNS__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_TABLE_ALL_COLUMNS__EXTENSIONS = QUERY_RESULT_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4304,6 +4799,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int RESULT_COLUMN__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_COLUMN__EXTENSIONS = QUERY_RESULT_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4413,6 +4917,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_BASIC__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_BASIC__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4512,6 +5025,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_BASIC__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_BASIC__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4639,6 +5161,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4738,6 +5269,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4838,6 +5378,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_BETWEEN__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_BETWEEN__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4937,6 +5486,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_BETWEEN__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_BETWEEN__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5073,6 +5631,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_EXISTS__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_EXISTS__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5172,6 +5739,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_EXISTS__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_EXISTS__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5281,6 +5857,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5380,6 +5965,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5489,6 +6083,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_LIKE__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_LIKE__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5588,6 +6191,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_LIKE__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_LIKE__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5724,6 +6336,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IS_NULL__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IS_NULL__EXTENSIONS = PREDICATE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5823,6 +6444,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IS_NULL__NEST = PREDICATE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IS_NULL__MERGE_ON_CONDITION = PREDICATE__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5941,6 +6571,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED_VALUE_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED_VALUE_SELECT__EXTENSIONS = PREDICATE_QUANTIFIED__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6040,6 +6679,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED_VALUE_SELECT__NEST = PREDICATE_QUANTIFIED__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED_VALUE_SELECT__MERGE_ON_CONDITION = PREDICATE_QUANTIFIED__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6176,6 +6824,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED_ROW_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED_ROW_SELECT__EXTENSIONS = PREDICATE_QUANTIFIED__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6275,6 +6932,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED_ROW_SELECT__NEST = PREDICATE_QUANTIFIED__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_QUANTIFIED_ROW_SELECT__MERGE_ON_CONDITION = PREDICATE_QUANTIFIED__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6402,6 +7068,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_SELECT__EXTENSIONS = PREDICATE_IN__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6501,6 +7176,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_SELECT__NEST = PREDICATE_IN__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_SELECT__MERGE_ON_CONDITION = PREDICATE_IN__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6628,6 +7312,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_LIST__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_LIST__EXTENSIONS = PREDICATE_IN__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6727,6 +7420,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_LIST__NEST = PREDICATE_IN__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_LIST__MERGE_ON_CONDITION = PREDICATE_IN__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6854,6 +7556,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_ROW_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_ROW_SELECT__EXTENSIONS = PREDICATE_IN__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6953,6 +7664,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_ROW_SELECT__NEST = PREDICATE_IN__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PREDICATE_IN_VALUE_ROW_SELECT__MERGE_ON_CONDITION = PREDICATE_IN__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Negated Predicate</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7080,6 +7800,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_ATOMIC__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ATOMIC__EXTENSIONS = QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7477,6 +8206,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_SIMPLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SIMPLE__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7883,6 +8621,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COLUMN__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COLUMN__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8252,13 +8999,22 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 4;
 
 	/**
+     * The feature id for the '<em><b>Merge Insert Spec</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 5;
+
+    /**
      * The number of structural features of the '<em>Value Expression Column</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int VALUE_EXPRESSION_COLUMN_FEATURE_COUNT = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 5;
+	int VALUE_EXPRESSION_COLUMN_FEATURE_COUNT = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 6;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionVariableImpl <em>Value Expression Variable</em>}' class.
@@ -8325,6 +9081,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_VARIABLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_VARIABLE__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8731,6 +9496,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_SCALAR_SELECT__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SCALAR_SELECT__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9137,6 +9911,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_LABELED_DURATION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_LABELED_DURATION__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9552,6 +10335,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9958,6 +10750,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CAST__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CAST__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10364,6 +11165,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_NULL_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NULL_VALUE__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10761,6 +11571,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_DEFAULT_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_DEFAULT_VALUE__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11158,6 +11977,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_FUNCTION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_FUNCTION__EXTENSIONS = VALUE_EXPRESSION_ATOMIC__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11600,6 +12428,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COMBINED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COMBINED__EXTENSIONS = QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12024,6 +12861,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_SETS__EXTENSIONS = GROUPING_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12124,6 +12970,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING__EXTENSIONS = GROUPING_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12224,6 +13079,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_SETS_ELEMENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12315,6 +13179,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS_ELEMENT_SUBLIST__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_SETS_ELEMENT_SUBLIST__EXTENSIONS = GROUPING_SETS_ELEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12415,6 +13288,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS_ELEMENT_EXPRESSION__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_SETS_ELEMENT_EXPRESSION__EXTENSIONS = GROUPING_SETS_ELEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12524,6 +13406,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SUPER_GROUP__COMMENTS = GROUPING__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_GROUP__EXTENSIONS = GROUPING__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12642,6 +13533,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_EXPRESSION__COMMENTS = GROUPING__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GROUPING_EXPRESSION__EXTENSIONS = GROUPING__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12760,6 +13660,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SUPER_GROUP_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_GROUP_ELEMENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12851,6 +13760,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SUPER_GROUP_ELEMENT_SUBLIST__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_GROUP_ELEMENT_SUBLIST__EXTENSIONS = SUPER_GROUP_ELEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12951,6 +13869,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SUPER_GROUP_ELEMENT_EXPRESSION__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_GROUP_ELEMENT_EXPRESSION__EXTENSIONS = SUPER_GROUP_ELEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13060,6 +13987,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SEARCH__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SEARCH__EXTENSIONS = VALUE_EXPRESSION_CASE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13475,6 +14411,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SIMPLE__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SIMPLE__EXTENSIONS = VALUE_EXPRESSION_CASE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13899,6 +14844,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_ELSE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_ELSE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13999,6 +14953,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14108,6 +15071,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14217,6 +15189,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_IN_DATABASE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_IN_DATABASE__EXTENSIONS = TABLE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14262,6 +15243,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_IN_DATABASE__NEST = TABLE_EXPRESSION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_IN_DATABASE__MERGE_SOURCE_TABLE = TABLE_EXPRESSION__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14298,6 +15288,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_IN_DATABASE__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_IN_DATABASE__MERGE_TARGET_TABLE = TABLE_EXPRESSION__MERGE_TARGET_TABLE;
+
+    /**
      * The feature id for the '<em><b>Update Statement</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14416,6 +15415,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_FUNCTION__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_FUNCTION__EXTENSIONS = TABLE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14461,6 +15469,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_FUNCTION__NEST = TABLE_EXPRESSION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_FUNCTION__MERGE_SOURCE_TABLE = TABLE_EXPRESSION__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14497,6 +15514,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_FUNCTION__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_FUNCTION__MERGE_TARGET_TABLE = TABLE_EXPRESSION__MERGE_TARGET_TABLE;
+
+    /**
      * The feature id for the '<em><b>Function</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -14588,6 +15614,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int COLUMN_NAME__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COLUMN_NAME__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14688,6 +15723,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_NESTED__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_NESTED__EXTENSIONS = TABLE_REFERENCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14733,6 +15777,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_NESTED__NEST = TABLE_REFERENCE__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_NESTED__MERGE_SOURCE_TABLE = TABLE_REFERENCE__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Nested Table Ref</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14815,6 +15868,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_MERGE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_MERGE_STATEMENT__EXTENSIONS = QUERY_CHANGE_STATEMENT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14824,13 +15886,49 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_MERGE_STATEMENT__PRIVILEGES = QUERY_CHANGE_STATEMENT__PRIVILEGES;
 
 	/**
+     * The feature id for the '<em><b>Target Table</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_MERGE_STATEMENT__TARGET_TABLE = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Source Table</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_MERGE_STATEMENT__SOURCE_TABLE = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>On Condition</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_MERGE_STATEMENT__ON_CONDITION = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Operation Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_MERGE_STATEMENT__OPERATION_SPEC_LIST = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Query Merge Statement</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_MERGE_STATEMENT_FEATURE_COUNT = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 0;
+	int QUERY_MERGE_STATEMENT_FEATURE_COUNT = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 4;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionNestedImpl <em>Search Condition Nested</em>}' class.
@@ -14897,6 +15995,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SEARCH_CONDITION_NESTED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEARCH_CONDITION_NESTED__EXTENSIONS = QUERY_SEARCH_CONDITION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14996,6 +16103,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SEARCH_CONDITION_NESTED__NEST = QUERY_SEARCH_CONDITION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge On Condition</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SEARCH_CONDITION_NESTED__MERGE_ON_CONDITION = QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION;
+
+    /**
      * The feature id for the '<em><b>Nested Condition</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15078,6 +16194,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_NESTED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NESTED__EXTENSIONS = QUERY_VALUE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15484,6 +16609,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_ORDINAL__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_ORDINAL__EXTENSIONS = ORDER_BY_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15529,6 +16663,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_ORDINAL__SELECT_STATEMENT = ORDER_BY_SPECIFICATION__SELECT_STATEMENT;
 
 	/**
+     * The feature id for the '<em><b>Query</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_ORDINAL__QUERY = ORDER_BY_SPECIFICATION__QUERY;
+
+    /**
      * The feature id for the '<em><b>Ordinal Value</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15611,6 +16754,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_CORRELATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_CORRELATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15711,6 +16863,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_SOURCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_SOURCE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15802,6 +16963,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_SOURCE_EXPR_LIST__COMMENTS = UPDATE_SOURCE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_SOURCE_EXPR_LIST__EXTENSIONS = UPDATE_SOURCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15902,6 +17072,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_SOURCE_QUERY__COMMENTS = UPDATE_SOURCE__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_SOURCE_QUERY__EXTENSIONS = UPDATE_SOURCE__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16002,6 +17181,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_RESULT_COLUMN__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_RESULT_COLUMN__EXTENSIONS = ORDER_BY_SPECIFICATION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16047,6 +17235,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_RESULT_COLUMN__SELECT_STATEMENT = ORDER_BY_SPECIFICATION__SELECT_STATEMENT;
 
 	/**
+     * The feature id for the '<em><b>Query</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORDER_BY_RESULT_COLUMN__QUERY = ORDER_BY_SPECIFICATION__QUERY;
+
+    /**
      * The feature id for the '<em><b>Result Col</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16129,6 +17326,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int WITH_TABLE_REFERENCE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WITH_TABLE_REFERENCE__EXTENSIONS = TABLE_EXPRESSION__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16174,6 +17380,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int WITH_TABLE_REFERENCE__NEST = TABLE_EXPRESSION__NEST;
 
 	/**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WITH_TABLE_REFERENCE__MERGE_SOURCE_TABLE = TABLE_EXPRESSION__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16210,6 +17425,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int WITH_TABLE_REFERENCE__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WITH_TABLE_REFERENCE__MERGE_TARGET_TABLE = TABLE_EXPRESSION__MERGE_TARGET_TABLE;
+
+    /**
      * The feature id for the '<em><b>With Table Specification</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16292,6 +17516,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int QUERY_NESTED__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
     /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_NESTED__EXTENSIONS = QUERY_EXPRESSION_BODY__EXTENSIONS;
+
+    /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16337,6 +17570,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int QUERY_NESTED__NEST = QUERY_EXPRESSION_BODY__NEST;
 
     /**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_NESTED__MERGE_SOURCE_TABLE = QUERY_EXPRESSION_BODY__MERGE_SOURCE_TABLE;
+
+    /**
      * The feature id for the '<em><b>Column List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -16371,6 +17613,24 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int QUERY_NESTED__VALUE_EXPR_COLUMNS = QUERY_EXPRESSION_BODY__VALUE_EXPR_COLUMNS;
+
+    /**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_NESTED__MERGE_TARGET_TABLE = QUERY_EXPRESSION_BODY__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_NESTED__ROW_FETCH_LIMIT = QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT;
 
     /**
      * The feature id for the '<em><b>Query Expression</b></em>' container reference.
@@ -16434,6 +17694,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int QUERY_NESTED__QUERY_NEST = QUERY_EXPRESSION_BODY__QUERY_NEST;
+
+    /**
+     * The feature id for the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_NESTED__SORT_SPEC_LIST = QUERY_EXPRESSION_BODY__SORT_SPEC_LIST;
 
     /**
      * The feature id for the '<em><b>Nested Query</b></em>' containment reference.
@@ -16516,6 +17785,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_ROW__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__EXTENSIONS = QUERY_VALUE_EXPRESSION__EXTENSIONS;
 
     /**
      * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -16860,6 +18138,887 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_ROW_FEATURE_COUNT = QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeTargetTableImpl <em>Merge Target Table</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeTargetTableImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeTargetTable()
+     * @generated
+     */
+    int MERGE_TARGET_TABLE = 84;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__MERGE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Table Expr</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE__TABLE_EXPR = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Merge Target Table</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_TARGET_TABLE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeSourceTableImpl <em>Merge Source Table</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeSourceTableImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeSourceTable()
+     * @generated
+     */
+    int MERGE_SOURCE_TABLE = 85;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Query Merge Statement</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__QUERY_MERGE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__MERGE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Table Ref</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE__TABLE_REF = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Merge Source Table</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_SOURCE_TABLE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeOnConditionImpl <em>Merge On Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeOnConditionImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeOnCondition()
+     * @generated
+     */
+    int MERGE_ON_CONDITION = 86;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__MERGE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Search Condition</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION__SEARCH_CONDITION = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Merge On Condition</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_ON_CONDITION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeOperationSpecificationImpl <em>Merge Operation Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeOperationSpecificationImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeOperationSpecification()
+     * @generated
+     */
+    int MERGE_OPERATION_SPECIFICATION = 89;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION__MERGE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Merge Operation Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeUpdateSpecificationImpl <em>Merge Update Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeUpdateSpecificationImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeUpdateSpecification()
+     * @generated
+     */
+    int MERGE_UPDATE_SPECIFICATION = 87;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__EANNOTATIONS = MERGE_OPERATION_SPECIFICATION__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__NAME = MERGE_OPERATION_SPECIFICATION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__DEPENDENCIES = MERGE_OPERATION_SPECIFICATION__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__DESCRIPTION = MERGE_OPERATION_SPECIFICATION__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__LABEL = MERGE_OPERATION_SPECIFICATION__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__COMMENTS = MERGE_OPERATION_SPECIFICATION__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__EXTENSIONS = MERGE_OPERATION_SPECIFICATION__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__PRIVILEGES = MERGE_OPERATION_SPECIFICATION__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__MERGE_STATEMENT = MERGE_OPERATION_SPECIFICATION__MERGE_STATEMENT;
+
+    /**
+     * The feature id for the '<em><b>Assignement Expr List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION__ASSIGNEMENT_EXPR_LIST = MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Merge Update Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_UPDATE_SPECIFICATION_FEATURE_COUNT = MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeInsertSpecificationImpl <em>Merge Insert Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeInsertSpecificationImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeInsertSpecification()
+     * @generated
+     */
+    int MERGE_INSERT_SPECIFICATION = 88;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__EANNOTATIONS = MERGE_OPERATION_SPECIFICATION__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__NAME = MERGE_OPERATION_SPECIFICATION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__DEPENDENCIES = MERGE_OPERATION_SPECIFICATION__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__DESCRIPTION = MERGE_OPERATION_SPECIFICATION__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__LABEL = MERGE_OPERATION_SPECIFICATION__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__COMMENTS = MERGE_OPERATION_SPECIFICATION__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__EXTENSIONS = MERGE_OPERATION_SPECIFICATION__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__PRIVILEGES = MERGE_OPERATION_SPECIFICATION__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Merge Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__MERGE_STATEMENT = MERGE_OPERATION_SPECIFICATION__MERGE_STATEMENT;
+
+    /**
+     * The feature id for the '<em><b>Target Column List</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__TARGET_COLUMN_LIST = MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Source Values Row</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION__SOURCE_VALUES_ROW = MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Merge Insert Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MERGE_INSERT_SPECIFICATION_FEATURE_COUNT = MERGE_OPERATION_SPECIFICATION_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateOfColumnImpl <em>Update Of Column</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateOfColumnImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateOfColumn()
+     * @generated
+     */
+    int UPDATE_OF_COLUMN = 90;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Updatability Expr</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN__UPDATABILITY_EXPR = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Update Of Column</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_OF_COLUMN_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdatabilityExpressionImpl <em>Updatability Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdatabilityExpressionImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityExpression()
+     * @generated
+     */
+    int UPDATABILITY_EXPRESSION = 91;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Updatability Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__UPDATABILITY_TYPE = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Update Of Column List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Select Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION__SELECT_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Updatability Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATABILITY_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16867,7 +19026,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupType()
      * @generated
      */
-	int SUPER_GROUP_TYPE = 84;
+	int SUPER_GROUP_TYPE = 92;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType <em>Predicate Quantified Type</em>}' enum.
@@ -16877,7 +19036,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedType()
      * @generated
      */
-	int PREDICATE_QUANTIFIED_TYPE = 85;
+	int PREDICATE_QUANTIFIED_TYPE = 93;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator <em>Predicate Comparison Operator</em>}' enum.
@@ -16887,7 +19046,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateComparisonOperator()
      * @generated
      */
-	int PREDICATE_COMPARISON_OPERATOR = 86;
+	int PREDICATE_COMPARISON_OPERATOR = 94;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator <em>Search Condition Combined Operator</em>}' enum.
@@ -16897,7 +19056,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombinedOperator()
      * @generated
      */
-	int SEARCH_CONDITION_COMBINED_OPERATOR = 87;
+	int SEARCH_CONDITION_COMBINED_OPERATOR = 95;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator <em>Table Joined Operator</em>}' enum.
@@ -16907,7 +19066,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoinedOperator()
      * @generated
      */
-	int TABLE_JOINED_OPERATOR = 88;
+	int TABLE_JOINED_OPERATOR = 96;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator <em>Query Combined Operator</em>}' enum.
@@ -16917,7 +19076,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombinedOperator()
      * @generated
      */
-	int QUERY_COMBINED_OPERATOR = 89;
+	int QUERY_COMBINED_OPERATOR = 97;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator <em>Value Expression Unary Operator</em>}' enum.
@@ -16927,7 +19086,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionUnaryOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_UNARY_OPERATOR = 90;
+	int VALUE_EXPRESSION_UNARY_OPERATOR = 98;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator <em>Value Expression Combined Operator</em>}' enum.
@@ -16937,7 +19096,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombinedOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_COMBINED_OPERATOR = 91;
+	int VALUE_EXPRESSION_COMBINED_OPERATOR = 99;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType <em>Value Expression Labeled Duration Type</em>}' enum.
@@ -16947,7 +19106,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDurationType()
      * @generated
      */
-	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 92;
+	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 100;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType <em>Null Ordering Type</em>}' enum.
@@ -16957,7 +19116,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getNullOrderingType()
      * @generated
      */
-	int NULL_ORDERING_TYPE = 93;
+	int NULL_ORDERING_TYPE = 101;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType <em>Ordering Spec Type</em>}' enum.
@@ -16967,10 +19126,21 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderingSpecType()
      * @generated
      */
-	int ORDERING_SPEC_TYPE = 94;
+	int ORDERING_SPEC_TYPE = 102;
 
 
 	/**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityType <em>Updatability Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityType
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityType()
+     * @generated
+     */
+    int UPDATABILITY_TYPE = 103;
+
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryStatement <em>Query Statement</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17110,6 +19280,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getQuerySelectStatement_OrderByClause();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement#getUpdatabilityExpr <em>Updatability Expr</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Updatability Expr</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement#getUpdatabilityExpr()
+     * @see #getQuerySelectStatement()
+     * @generated
+     */
+    EReference getQuerySelectStatement_UpdatabilityExpr();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement <em>Query Update Statement</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17207,6 +19388,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getUpdateAssignmentExpression_UpdateSource();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getMergeUpdateSpec <em>Merge Update Spec</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Update Spec</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getMergeUpdateSpec()
+     * @see #getUpdateAssignmentExpression()
+     * @generated
+     */
+    EReference getUpdateAssignmentExpression_MergeUpdateSpec();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.CursorReference <em>Cursor Reference</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17359,6 +19551,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getQuerySearchCondition_Nest();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getMergeOnCondition <em>Merge On Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge On Condition</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getMergeOnCondition()
+     * @see #getQuerySearchCondition()
+     * @generated
+     */
+    EReference getQuerySearchCondition_MergeOnCondition();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody <em>Query Expression Body</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17369,6 +19572,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EClass getQueryExpressionBody();
 
 	/**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getRowFetchLimit <em>Row Fetch Limit</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Row Fetch Limit</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getRowFetchLimit()
+     * @see #getQueryExpressionBody()
+     * @generated
+     */
+    EAttribute getQueryExpressionBody_RowFetchLimit();
+
+    /**
      * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getQueryExpression <em>Query Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17444,6 +19658,17 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      */
     EReference getQueryExpressionBody_QueryNest();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getSortSpecList <em>Sort Spec List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Sort Spec List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getSortSpecList()
+     * @see #getQueryExpressionBody()
+     * @generated
+     */
+    EReference getQueryExpressionBody_SortSpecList();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression <em>Query Value Expression</em>}'.
@@ -18068,6 +20293,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getTableReference_Nest();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.TableReference#getMergeSourceTable <em>Merge Source Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Source Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableReference#getMergeSourceTable()
+     * @see #getTableReference()
+     * @generated
+     */
+    EReference getTableReference_MergeSourceTable();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.TableExpression <em>Table Expression</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18122,6 +20358,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getTableExpression_ValueExprColumns();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getMergeTargetTable <em>Merge Target Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Target Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableExpression#getMergeTargetTable()
+     * @see #getTableExpression()
+     * @generated
+     */
+    EReference getTableExpression_MergeTargetTable();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.TableJoined <em>Table Joined</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19076,6 +21323,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getValueExpressionColumn_TableInDatabase();
 
 	/**
+     * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getMergeInsertSpec <em>Merge Insert Spec</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Merge Insert Spec</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getMergeInsertSpec()
+     * @see #getValueExpressionColumn()
+     * @generated
+     */
+    EReference getValueExpressionColumn_MergeInsertSpec();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable <em>Value Expression Variable</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19925,6 +22183,50 @@ public interface SQLQueryModelPackage extends EPackage {
 	EClass getQueryMergeStatement();
 
 	/**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getTargetTable <em>Target Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Target Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getTargetTable()
+     * @see #getQueryMergeStatement()
+     * @generated
+     */
+    EReference getQueryMergeStatement_TargetTable();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getSourceTable <em>Source Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Source Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getSourceTable()
+     * @see #getQueryMergeStatement()
+     * @generated
+     */
+    EReference getQueryMergeStatement_SourceTable();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getOnCondition <em>On Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>On Condition</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getOnCondition()
+     * @see #getQueryMergeStatement()
+     * @generated
+     */
+    EReference getQueryMergeStatement_OnCondition();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getOperationSpecList <em>Operation Spec List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Operation Spec List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getOperationSpecList()
+     * @see #getQueryMergeStatement()
+     * @generated
+     */
+    EReference getQueryMergeStatement_OperationSpecList();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested <em>Search Condition Nested</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20031,6 +22333,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getOrderBySpecification_SelectStatement();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Query</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery()
+     * @see #getOrderBySpecification()
+     * @generated
+     */
+    EReference getOrderBySpecification_Query();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal <em>Order By Ordinal</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20231,6 +22544,251 @@ public interface SQLQueryModelPackage extends EPackage {
     EReference getValueExpressionRow_ValueExprList();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable <em>Merge Target Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge Target Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable
+     * @generated
+     */
+    EClass getMergeTargetTable();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getMergeStatement <em>Merge Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getMergeStatement()
+     * @see #getMergeTargetTable()
+     * @generated
+     */
+    EReference getMergeTargetTable_MergeStatement();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getTableExpr <em>Table Expr</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Table Expr</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getTableExpr()
+     * @see #getMergeTargetTable()
+     * @generated
+     */
+    EReference getMergeTargetTable_TableExpr();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable <em>Merge Source Table</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge Source Table</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable
+     * @generated
+     */
+    EClass getMergeSourceTable();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getQueryMergeStatement <em>Query Merge Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Query Merge Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getQueryMergeStatement()
+     * @see #getMergeSourceTable()
+     * @generated
+     */
+    EReference getMergeSourceTable_QueryMergeStatement();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getMergeStatement <em>Merge Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getMergeStatement()
+     * @see #getMergeSourceTable()
+     * @generated
+     */
+    EReference getMergeSourceTable_MergeStatement();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getTableRef <em>Table Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Table Ref</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getTableRef()
+     * @see #getMergeSourceTable()
+     * @generated
+     */
+    EReference getMergeSourceTable_TableRef();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition <em>Merge On Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge On Condition</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOnCondition
+     * @generated
+     */
+    EClass getMergeOnCondition();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition#getMergeStatement <em>Merge Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOnCondition#getMergeStatement()
+     * @see #getMergeOnCondition()
+     * @generated
+     */
+    EReference getMergeOnCondition_MergeStatement();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition#getSearchCondition <em>Search Condition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Search Condition</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOnCondition#getSearchCondition()
+     * @see #getMergeOnCondition()
+     * @generated
+     */
+    EReference getMergeOnCondition_SearchCondition();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification <em>Merge Update Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge Update Specification</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification
+     * @generated
+     */
+    EClass getMergeUpdateSpecification();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification#getAssignementExprList <em>Assignement Expr List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Assignement Expr List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification#getAssignementExprList()
+     * @see #getMergeUpdateSpecification()
+     * @generated
+     */
+    EReference getMergeUpdateSpecification_AssignementExprList();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification <em>Merge Insert Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge Insert Specification</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification
+     * @generated
+     */
+    EClass getMergeInsertSpecification();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getTargetColumnList <em>Target Column List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Target Column List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getTargetColumnList()
+     * @see #getMergeInsertSpecification()
+     * @generated
+     */
+    EReference getMergeInsertSpecification_TargetColumnList();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getSourceValuesRow <em>Source Values Row</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Source Values Row</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getSourceValuesRow()
+     * @see #getMergeInsertSpecification()
+     * @generated
+     */
+    EReference getMergeInsertSpecification_SourceValuesRow();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification <em>Merge Operation Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Merge Operation Specification</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification
+     * @generated
+     */
+    EClass getMergeOperationSpecification();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification#getMergeStatement <em>Merge Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Merge Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification#getMergeStatement()
+     * @see #getMergeOperationSpecification()
+     * @generated
+     */
+    EReference getMergeOperationSpecification_MergeStatement();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn <em>Update Of Column</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Update Of Column</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn
+     * @generated
+     */
+    EClass getUpdateOfColumn();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn#getUpdatabilityExpr <em>Updatability Expr</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Updatability Expr</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn#getUpdatabilityExpr()
+     * @see #getUpdateOfColumn()
+     * @generated
+     */
+    EReference getUpdateOfColumn_UpdatabilityExpr();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression <em>Updatability Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Updatability Expression</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression
+     * @generated
+     */
+    EClass getUpdatabilityExpression();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getUpdatabilityType <em>Updatability Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Updatability Type</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getUpdatabilityType()
+     * @see #getUpdatabilityExpression()
+     * @generated
+     */
+    EAttribute getUpdatabilityExpression_UpdatabilityType();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getUpdateOfColumnList <em>Update Of Column List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Update Of Column List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getUpdateOfColumnList()
+     * @see #getUpdatabilityExpression()
+     * @generated
+     */
+    EReference getUpdatabilityExpression_UpdateOfColumnList();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getSelectStatement <em>Select Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Select Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression#getSelectStatement()
+     * @see #getUpdatabilityExpression()
+     * @generated
+     */
+    EReference getUpdatabilityExpression_SelectStatement();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20341,6 +22899,16 @@ public interface SQLQueryModelPackage extends EPackage {
 	EEnum getOrderingSpecType();
 
 	/**
+     * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityType <em>Updatability Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Updatability Type</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityType
+     * @generated
+     */
+    EEnum getUpdatabilityType();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20475,6 +23043,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE = eINSTANCE.getQuerySelectStatement_OrderByClause();
 
 		/**
+         * The meta object literal for the '<em><b>Updatability Expr</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR = eINSTANCE.getQuerySelectStatement_UpdatabilityExpr();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryUpdateStatementImpl <em>Query Update Statement</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20551,6 +23127,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE = eINSTANCE.getUpdateAssignmentExpression_UpdateSource();
 
 		/**
+         * The meta object literal for the '<em><b>Merge Update Spec</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC = eINSTANCE.getUpdateAssignmentExpression_MergeUpdateSpec();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.CursorReferenceImpl <em>Cursor Reference</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20667,6 +23251,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference QUERY_SEARCH_CONDITION__NEST = eINSTANCE.getQuerySearchCondition_Nest();
 
 		/**
+         * The meta object literal for the '<em><b>Merge On Condition</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION = eINSTANCE.getQuerySearchCondition_MergeOnCondition();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionBodyImpl <em>Query Expression Body</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20677,6 +23269,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EClass QUERY_EXPRESSION_BODY = eINSTANCE.getQueryExpressionBody();
 
 		/**
+         * The meta object literal for the '<em><b>Row Fetch Limit</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT = eINSTANCE.getQueryExpressionBody_RowFetchLimit();
+
+        /**
          * The meta object literal for the '<em><b>Query Expression</b></em>' container reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20731,6 +23331,14 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
         EReference QUERY_EXPRESSION_BODY__QUERY_NEST = eINSTANCE.getQueryExpressionBody_QueryNest();
+
+        /**
+         * The meta object literal for the '<em><b>Sort Spec List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_EXPRESSION_BODY__SORT_SPEC_LIST = eINSTANCE.getQueryExpressionBody_SortSpecList();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl <em>Query Value Expression</em>}' class.
@@ -21199,6 +23807,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference TABLE_REFERENCE__NEST = eINSTANCE.getTableReference_Nest();
 
 		/**
+         * The meta object literal for the '<em><b>Merge Source Table</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TABLE_REFERENCE__MERGE_SOURCE_TABLE = eINSTANCE.getTableReference_MergeSourceTable();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl <em>Table Expression</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21241,6 +23857,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference TABLE_EXPRESSION__VALUE_EXPR_COLUMNS = eINSTANCE.getTableExpression_ValueExprColumns();
 
 		/**
+         * The meta object literal for the '<em><b>Merge Target Table</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TABLE_EXPRESSION__MERGE_TARGET_TABLE = eINSTANCE.getTableExpression_MergeTargetTable();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl <em>Table Joined</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22003,6 +24627,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE = eINSTANCE.getValueExpressionColumn_TableInDatabase();
 
 		/**
+         * The meta object literal for the '<em><b>Merge Insert Spec</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC = eINSTANCE.getValueExpressionColumn_MergeInsertSpec();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionVariableImpl <em>Value Expression Variable</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22705,6 +25337,38 @@ public interface SQLQueryModelPackage extends EPackage {
 		EClass QUERY_MERGE_STATEMENT = eINSTANCE.getQueryMergeStatement();
 
 		/**
+         * The meta object literal for the '<em><b>Target Table</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_MERGE_STATEMENT__TARGET_TABLE = eINSTANCE.getQueryMergeStatement_TargetTable();
+
+        /**
+         * The meta object literal for the '<em><b>Source Table</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_MERGE_STATEMENT__SOURCE_TABLE = eINSTANCE.getQueryMergeStatement_SourceTable();
+
+        /**
+         * The meta object literal for the '<em><b>On Condition</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_MERGE_STATEMENT__ON_CONDITION = eINSTANCE.getQueryMergeStatement_OnCondition();
+
+        /**
+         * The meta object literal for the '<em><b>Operation Spec List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_MERGE_STATEMENT__OPERATION_SPEC_LIST = eINSTANCE.getQueryMergeStatement_OperationSpecList();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionNestedImpl <em>Search Condition Nested</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22793,6 +25457,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference ORDER_BY_SPECIFICATION__SELECT_STATEMENT = eINSTANCE.getOrderBySpecification_SelectStatement();
 
 		/**
+         * The meta object literal for the '<em><b>Query</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ORDER_BY_SPECIFICATION__QUERY = eINSTANCE.getOrderBySpecification_Query();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByOrdinalImpl <em>Order By Ordinal</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22963,6 +25635,206 @@ public interface SQLQueryModelPackage extends EPackage {
         EReference VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST = eINSTANCE.getValueExpressionRow_ValueExprList();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeTargetTableImpl <em>Merge Target Table</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeTargetTableImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeTargetTable()
+         * @generated
+         */
+        EClass MERGE_TARGET_TABLE = eINSTANCE.getMergeTargetTable();
+
+        /**
+         * The meta object literal for the '<em><b>Merge Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_TARGET_TABLE__MERGE_STATEMENT = eINSTANCE.getMergeTargetTable_MergeStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Table Expr</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_TARGET_TABLE__TABLE_EXPR = eINSTANCE.getMergeTargetTable_TableExpr();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeSourceTableImpl <em>Merge Source Table</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeSourceTableImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeSourceTable()
+         * @generated
+         */
+        EClass MERGE_SOURCE_TABLE = eINSTANCE.getMergeSourceTable();
+
+        /**
+         * The meta object literal for the '<em><b>Query Merge Statement</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_SOURCE_TABLE__QUERY_MERGE_STATEMENT = eINSTANCE.getMergeSourceTable_QueryMergeStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Merge Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_SOURCE_TABLE__MERGE_STATEMENT = eINSTANCE.getMergeSourceTable_MergeStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Table Ref</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_SOURCE_TABLE__TABLE_REF = eINSTANCE.getMergeSourceTable_TableRef();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeOnConditionImpl <em>Merge On Condition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeOnConditionImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeOnCondition()
+         * @generated
+         */
+        EClass MERGE_ON_CONDITION = eINSTANCE.getMergeOnCondition();
+
+        /**
+         * The meta object literal for the '<em><b>Merge Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_ON_CONDITION__MERGE_STATEMENT = eINSTANCE.getMergeOnCondition_MergeStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Search Condition</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_ON_CONDITION__SEARCH_CONDITION = eINSTANCE.getMergeOnCondition_SearchCondition();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeUpdateSpecificationImpl <em>Merge Update Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeUpdateSpecificationImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeUpdateSpecification()
+         * @generated
+         */
+        EClass MERGE_UPDATE_SPECIFICATION = eINSTANCE.getMergeUpdateSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Assignement Expr List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_UPDATE_SPECIFICATION__ASSIGNEMENT_EXPR_LIST = eINSTANCE.getMergeUpdateSpecification_AssignementExprList();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeInsertSpecificationImpl <em>Merge Insert Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeInsertSpecificationImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeInsertSpecification()
+         * @generated
+         */
+        EClass MERGE_INSERT_SPECIFICATION = eINSTANCE.getMergeInsertSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Target Column List</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_INSERT_SPECIFICATION__TARGET_COLUMN_LIST = eINSTANCE.getMergeInsertSpecification_TargetColumnList();
+
+        /**
+         * The meta object literal for the '<em><b>Source Values Row</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_INSERT_SPECIFICATION__SOURCE_VALUES_ROW = eINSTANCE.getMergeInsertSpecification_SourceValuesRow();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.MergeOperationSpecificationImpl <em>Merge Operation Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.MergeOperationSpecificationImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getMergeOperationSpecification()
+         * @generated
+         */
+        EClass MERGE_OPERATION_SPECIFICATION = eINSTANCE.getMergeOperationSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Merge Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MERGE_OPERATION_SPECIFICATION__MERGE_STATEMENT = eINSTANCE.getMergeOperationSpecification_MergeStatement();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateOfColumnImpl <em>Update Of Column</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateOfColumnImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateOfColumn()
+         * @generated
+         */
+        EClass UPDATE_OF_COLUMN = eINSTANCE.getUpdateOfColumn();
+
+        /**
+         * The meta object literal for the '<em><b>Updatability Expr</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference UPDATE_OF_COLUMN__UPDATABILITY_EXPR = eINSTANCE.getUpdateOfColumn_UpdatabilityExpr();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdatabilityExpressionImpl <em>Updatability Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdatabilityExpressionImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityExpression()
+         * @generated
+         */
+        EClass UPDATABILITY_EXPRESSION = eINSTANCE.getUpdatabilityExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Updatability Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute UPDATABILITY_EXPRESSION__UPDATABILITY_TYPE = eINSTANCE.getUpdatabilityExpression_UpdatabilityType();
+
+        /**
+         * The meta object literal for the '<em><b>Update Of Column List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST = eINSTANCE.getUpdatabilityExpression_UpdateOfColumnList();
+
+        /**
+         * The meta object literal for the '<em><b>Select Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference UPDATABILITY_EXPRESSION__SELECT_STATEMENT = eINSTANCE.getUpdatabilityExpression_SelectStatement();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -23071,6 +25943,16 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
 		EEnum ORDERING_SPEC_TYPE = eINSTANCE.getOrderingSpecType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityType <em>Updatability Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityType
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityType()
+         * @generated
+         */
+        EEnum UPDATABILITY_TYPE = eINSTANCE.getUpdatabilityType();
 
 	}
 

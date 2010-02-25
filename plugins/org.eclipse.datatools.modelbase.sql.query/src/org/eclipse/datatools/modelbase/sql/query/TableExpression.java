@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpression.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
+ * $Id: TableExpression.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getTableCorrelation <em>Table Correlation</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getResultTableAllColumns <em>Result Table All Columns</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getValueExprColumns <em>Value Expr Columns</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getMergeTargetTable <em>Merge Target Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,5 +110,33 @@ public interface TableExpression extends TableReference{
      * @generated
      */
     EList getValueExprColumns();
+
+    /**
+     * Returns the value of the '<em><b>Merge Target Table</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getTableExpr <em>Table Expr</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Merge Target Table</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Merge Target Table</em>' container reference.
+     * @see #setMergeTargetTable(MergeTargetTable)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_MergeTargetTable()
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getTableExpr
+     * @model opposite="tableExpr"
+     * @generated
+     */
+    MergeTargetTable getMergeTargetTable();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getMergeTargetTable <em>Merge Target Table</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Merge Target Table</em>' container reference.
+     * @see #getMergeTargetTable()
+     * @generated
+     */
+    void setMergeTargetTable(MergeTargetTable value);
 
 } // SQLTableExpression

@@ -13,4 +13,12 @@
             implPackageName="org.eclipse.datatools.modelbase.sql.query.impl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"
+            class="org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage"
+            genModel="model/SQLQueryModel.genmodel">
+      </package>
+    </extension>
+    
 </plugin>

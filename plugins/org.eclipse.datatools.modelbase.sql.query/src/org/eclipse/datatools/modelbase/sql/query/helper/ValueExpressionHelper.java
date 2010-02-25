@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2002, 2005 IBM Corporation and others.
+ * Copyright (c) 2002, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -30,14 +30,18 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBetween;
 import org.eclipse.datatools.modelbase.sql.query.PredicateInValueList;
 import org.eclipse.datatools.modelbase.sql.query.PredicateIsNull;
 import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
+import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
@@ -1116,203 +1120,205 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
             else
             {
                 // Handle the special cases.
-                if (funcName.equals("AVG") || funcName.equals("SUM"))
-                {
-                    if (param1DataType instanceof IntegerDataType) 
+                if (funcName != null) {
+                    if (funcName.equals("AVG") || funcName.equals("SUM"))
                     {
-                        IntegerDataType intDataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-                        intDataType.setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
-                        dataType = intDataType;
-                    }
-                    else if (param1DataType instanceof ApproximateNumericDataType) 
-                    {
-                        ApproximateNumericDataType doubleDataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
-                        doubleDataType.setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
-                        dataType = doubleDataType;
-                    }
-                    else if (param1DataType instanceof FixedPrecisionDataType) {
-                        FixedPrecisionDataType decimalDataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
-                        decimalDataType.setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
-                        decimalDataType.setPrecision(31);
-                        int scale = ((FixedPrecisionDataType) param1DataType).getScale();
-                        decimalDataType.setScale(scale);
-                        dataType = decimalDataType;
-                    }
-                    else {
-                        dataType = copyDataType(param1DataType);
-                    }
-                }
-                else if(funcName.equals("CHAR"))
-                {
-                    dataType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-                    // an arbitrary default length
-                    int length = 254;
-                    if (param1DataType instanceof CharacterStringDataType
-                            && param1DataType != null)
-                    {
-                        length = ((CharacterStringDataType)param1DataType).getLength();
-                    }
-                    else if (param1DataType instanceof DateDataType)
-                    {
-                        length = 10;
-                    }
-                    else if (param1DataType instanceof TimeDataType)
-                    {
-                        if(param1PrimType == PrimitiveType.TIME_LITERAL)
+                        if (param1DataType instanceof IntegerDataType) 
                         {
-                            length = 8;
+                            IntegerDataType intDataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+                            intDataType.setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
+                            dataType = intDataType;
                         }
-                        else if(param1PrimType == PrimitiveType.TIMESTAMP_LITERAL)
+                        else if (param1DataType instanceof ApproximateNumericDataType) 
                         {
-                            length = 26;
+                            ApproximateNumericDataType doubleDataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+                            doubleDataType.setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+                            dataType = doubleDataType;
+                        }
+                        else if (param1DataType instanceof FixedPrecisionDataType) {
+                            FixedPrecisionDataType decimalDataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
+                            decimalDataType.setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
+                            decimalDataType.setPrecision(31);
+                            int scale = ((FixedPrecisionDataType) param1DataType).getScale();
+                            decimalDataType.setScale(scale);
+                            dataType = decimalDataType;
+                        }
+                        else {
+                            dataType = copyDataType(param1DataType);
                         }
                     }
-                    else if (param1DataType instanceof IntegerDataType)
+                    else if(funcName.equals("CHAR"))
                     {
-                        if (param1PrimType == PrimitiveType.SMALLINT_LITERAL && param2PrimType == PrimitiveType.SMALLINT_LITERAL)
+                        dataType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+                        // an arbitrary default length
+                        int length = 254;
+                        if (param1DataType instanceof CharacterStringDataType
+                                && param1DataType != null)
                         {
-                            length = 6;
+                            length = ((CharacterStringDataType)param1DataType).getLength();
                         }
-                        else if (param1PrimType == PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
+                        else if (param1DataType instanceof DateDataType)
                         {
-                            length = 20;
+                            length = 10;
                         }
-                        else
-                            length = 11;
-                    }
-                    else if (param1DataType instanceof FixedPrecisionDataType 
-                            && param1DataType != null)
-                    {
-                        length = ((FixedPrecisionDataType)param1DataType).getPrecision() + 2;
-                        
-                    }
-                    else if (param1DataType instanceof ApproximateNumericDataType)
-                    {
-                        length = 24;
-                    }
-                    length = length > 254 ? 254 : length;
-    
-                    ((CharacterStringDataType)dataType).setLength(length);
-                }
-                else if (funcName.equals("CEILING") || funcName.equals("CEIL") || funcName.equals("FLOOR"))
-                {
-                    if (param1DataType instanceof FixedPrecisionDataType)
-                    {
-                        int precision = ((FixedPrecisionDataType) param1DataType).getPrecision();
-                        if (precision < 31)
-                            ((FixedPrecisionDataType) param1DataType).setPrecision(precision + 1);
-                        ((FixedPrecisionDataType) param1DataType).setScale(0);
-                    }
-                    dataType = param1DataType;
-                }
-                else if (funcName.equals("MOD"))
-                {
-                    dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    
-                    if (param1DataType instanceof IntegerDataType || param2DataType instanceof IntegerDataType)
-                    {
-                        if (param1PrimType == PrimitiveType.SMALLINT_LITERAL && param2PrimType == PrimitiveType.SMALLINT_LITERAL)
+                        else if (param1DataType instanceof TimeDataType)
                         {
-                            ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.SMALLINT_LITERAL);
-                        }
-                        else if (param1PrimType != PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
-                        {
-                            ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
-                        }
-                        else
-                            ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
-                    }
-                }
-                else if(funcName.equals("MULTIPLY_ALT"))
-                {
-                    dataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
-                    ((FixedPrecisionDataType) dataType).setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
-    
-                    if (param1PrimType == PrimitiveType.DECIMAL_LITERAL && param2PrimType == PrimitiveType.DECIMAL_LITERAL)
-                    {
-                        int p1 = ((FixedPrecisionDataType)param1DataType).getPrecision();
-                        int s1 = ((FixedPrecisionDataType)param1DataType).getScale();
-                        
-                        int p2 = ((FixedPrecisionDataType)param2DataType).getPrecision();
-                        int s2 = ((FixedPrecisionDataType)param2DataType).getScale();
-                        
-                        int p = (p1 + p2) > 31 ? 31 : (p1 + p2);
-                        int s = s1 + s2;
-                        if(s != 0)
-                        {
-                            if(p1 + p2 > 31)
+                            if(param1PrimType == PrimitiveType.TIME_LITERAL)
                             {
-                                int t1 = (s > 3 ? 3 : s);
-                                int t2 = 31 - (p1 - s1 + p2 -s2);
-                                s = t1 > t2 ? t1 : t2;
+                                length = 8;
+                            }
+                            else if(param1PrimType == PrimitiveType.TIMESTAMP_LITERAL)
+                            {
+                                length = 26;
+                            }
+                        }
+                        else if (param1DataType instanceof IntegerDataType)
+                        {
+                            if (param1PrimType == PrimitiveType.SMALLINT_LITERAL && param2PrimType == PrimitiveType.SMALLINT_LITERAL)
+                            {
+                                length = 6;
+                            }
+                            else if (param1PrimType == PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
+                            {
+                                length = 20;
+                            }
+                            else
+                                length = 11;
+                        }
+                        else if (param1DataType instanceof FixedPrecisionDataType 
+                                && param1DataType != null)
+                        {
+                            length = ((FixedPrecisionDataType)param1DataType).getPrecision() + 2;
+
+                        }
+                        else if (param1DataType instanceof ApproximateNumericDataType)
+                        {
+                            length = 24;
+                        }
+                        length = length > 254 ? 254 : length;
+
+                        ((CharacterStringDataType)dataType).setLength(length);
+                    }
+                    else if (funcName.equals("CEILING") || funcName.equals("CEIL") || funcName.equals("FLOOR"))
+                    {
+                        if (param1DataType instanceof FixedPrecisionDataType)
+                        {
+                            int precision = ((FixedPrecisionDataType) param1DataType).getPrecision();
+                            if (precision < 31)
+                                ((FixedPrecisionDataType) param1DataType).setPrecision(precision + 1);
+                            ((FixedPrecisionDataType) param1DataType).setScale(0);
+                        }
+                        dataType = param1DataType;
+                    }
+                    else if (funcName.equals("MOD"))
+                    {
+                        dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+
+                        if (param1DataType instanceof IntegerDataType || param2DataType instanceof IntegerDataType)
+                        {
+                            if (param1PrimType == PrimitiveType.SMALLINT_LITERAL && param2PrimType == PrimitiveType.SMALLINT_LITERAL)
+                            {
+                                ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.SMALLINT_LITERAL);
+                            }
+                            else if (param1PrimType != PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
+                            {
+                                ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
+                            }
+                            else
+                                ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
+                        }
+                    }
+                    else if(funcName.equals("MULTIPLY_ALT"))
+                    {
+                        dataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
+                        ((FixedPrecisionDataType) dataType).setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
+
+                        if (param1PrimType == PrimitiveType.DECIMAL_LITERAL && param2PrimType == PrimitiveType.DECIMAL_LITERAL)
+                        {
+                            int p1 = ((FixedPrecisionDataType)param1DataType).getPrecision();
+                            int s1 = ((FixedPrecisionDataType)param1DataType).getScale();
+
+                            int p2 = ((FixedPrecisionDataType)param2DataType).getPrecision();
+                            int s2 = ((FixedPrecisionDataType)param2DataType).getScale();
+
+                            int p = (p1 + p2) > 31 ? 31 : (p1 + p2);
+                            int s = s1 + s2;
+                            if(s != 0)
+                            {
+                                if(p1 + p2 > 31)
+                                {
+                                    int t1 = (s > 3 ? 3 : s);
+                                    int t2 = 31 - (p1 - s1 + p2 -s2);
+                                    s = t1 > t2 ? t1 : t2;
+                                }
+                                else
+                                {
+                                    s = s > 31 ? 31 : s;
+                                }
+                            }
+                            ((FixedPrecisionDataType) dataType).setPrecision(p);
+                            ((FixedPrecisionDataType) dataType).setScale(s);
+                        }
+                        else
+                        {
+                            ((FixedPrecisionDataType)dataType).setPrecision(31);
+                            ((FixedPrecisionDataType)dataType).setScale(10);
+                        }                
+                    }
+                    else if (funcName.equals("POWER"))
+                    {
+                        if (param1DataType instanceof IntegerDataType || param2DataType instanceof IntegerDataType)
+                        {
+                            dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+
+                            if (param1PrimType != PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
+                            {
+                                ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
                             }
                             else
                             {
-                                s = s > 31 ? 31 : s;
+                                ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
                             }
-                        }
-                        ((FixedPrecisionDataType) dataType).setPrecision(p);
-                        ((FixedPrecisionDataType) dataType).setScale(s);
-                    }
-                    else
-                    {
-                        ((FixedPrecisionDataType)dataType).setPrecision(31);
-                        ((FixedPrecisionDataType)dataType).setScale(10);
-                    }                
-                }
-                else if (funcName.equals("POWER"))
-                {
-                    if (param1DataType instanceof IntegerDataType || param2DataType instanceof IntegerDataType)
-                    {
-                        dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    
-                        if (param1PrimType != PrimitiveType.BIGINT_LITERAL && param2PrimType != PrimitiveType.BIGINT_LITERAL)
-                        {
-                            ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
                         }
                         else
                         {
-                            ((IntegerDataType) dataType).setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
+                            dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+                            ((ApproximateNumericDataType) dataType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
                         }
                     }
+                    else if (funcName.equals("ROUND"))
+                    {
+                        if (param1DataType instanceof FixedPrecisionDataType)
+                        {
+                            int precision = ((FixedPrecisionDataType) param1DataType).getPrecision();
+                            if (precision < 31)
+                                ((FixedPrecisionDataType) param1DataType).setPrecision(precision + 1);
+                        }
+                        dataType = param1DataType;
+                    }
+                    else if (funcName.equals("SIGN"))
+                    {
+                        if (param1DataType instanceof IntegerDataType)
+                        {
+                            dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+
+                            ((IntegerDataType) dataType).setPrimitiveType(((IntegerDataType) param1DataType).getPrimitiveType());
+
+                        }
+                        else
+                        {
+                            dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+                            ((ApproximateNumericDataType) dataType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+                        }
+                    }
+                    else if (funcName.equals("CONCAT"))
+                    {
+                        dataType = concatCharStringDataTypePromotion(param1DataType, param2DataType);
+                    }
                     else
                     {
-                        dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
-                        ((ApproximateNumericDataType) dataType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+                        dataType = param1DataType;
                     }
-                }
-                else if (funcName.equals("ROUND"))
-                {
-                    if (param1DataType instanceof FixedPrecisionDataType)
-                    {
-                        int precision = ((FixedPrecisionDataType) param1DataType).getPrecision();
-                        if (precision < 31)
-                            ((FixedPrecisionDataType) param1DataType).setPrecision(precision + 1);
-                    }
-                    dataType = param1DataType;
-                }
-                else if (funcName.equals("SIGN"))
-                {
-                    if (param1DataType instanceof IntegerDataType)
-                    {
-                        dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    
-                        ((IntegerDataType) dataType).setPrimitiveType(((IntegerDataType) param1DataType).getPrimitiveType());
-    
-                    }
-                    else
-                    {
-                        dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
-                        ((ApproximateNumericDataType) dataType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
-                    }
-                }
-                else if (funcName.equals("CONCAT"))
-                {
-                    dataType = concatCharStringDataTypePromotion(param1DataType, param2DataType);
-                }
-                else
-                {
-                    dataType = param1DataType;
                 }
             }
         }
@@ -1603,32 +1609,65 @@ public static void resolveValueExpressionVariableDatatype( ValueExpressionVariab
 
   if (resolved == false) {
     // A var may appear as a value in an insert row in a Insert statement,
-    // or in the assignment clause of an Update statement.
+    // or in the assignment clause of an Update statement, or in a When Not Matched clause
+    // in a Merge statement.
     // We should be able to get the datatype from the corresponding target
     // column.
 
-    // Case: var is a value in an Insert row
+    // Case: var is a value in an Values Row, which might be attached to an Insert
+    // statement or a QueryValues (a kind of table reference).
     ValuesRow valRow = aValExpr.getValuesRow();
     if (valRow != null) {
-      EList valExprList = valRow.getExprList();
+      List valExprList = valRow.getExprList();
       int valExprIndex = valExprList.indexOf( aValExpr );
+      
+      // First check for and process the Insert statement case.
       QueryInsertStatement insertStmt = valRow.getInsertStatement();
-      EList intoColList = insertStmt.getTargetColumnList();
-      if (intoColList != null && intoColList.size() > valExprIndex) { 
+      if (insertStmt != null) {
+        List intoColList = insertStmt.getTargetColumnList();
+        if (intoColList != null && intoColList.size() > valExprIndex) { 
           ValueExpressionColumn intoCol = (ValueExpressionColumn) intoColList.get( valExprIndex );
           copyDataType( intoCol, varExpr );
           resolved = true;
-      }
-      else {
+        }
+        else {
           TableInDatabase intoTable = insertStmt.getTargetTable();
           if (intoTable != null
-                      && intoTable.getColumnList() != null
-                      && intoTable.getColumnList().size() > valExprIndex)
+           && intoTable.getColumnList() != null
+           && intoTable.getColumnList().size() > valExprIndex)
           {
-              intoColList = intoTable.getColumnList();
-              ValueExpressionColumn intoCol = (ValueExpressionColumn) intoColList.get( valExprIndex );
-              copyDataType( intoCol, varExpr );
-              resolved = true;
+            intoColList = intoTable.getColumnList();
+            ValueExpressionColumn intoCol = (ValueExpressionColumn) intoColList.get( valExprIndex );
+            copyDataType( intoCol, varExpr );
+            resolved = true;
+          }
+        }
+      }
+      else {
+          // Otherwise check to see if part of a VALUES table expression.  If the VALUES table expr
+          // is part of a MERGE statement, then we might be able to get the column datatype from
+          // the target table.
+          QueryValues queryValues = valRow.getQueryValues();
+          if (queryValues != null) {
+              MergeSourceTable mergeSourceTable = queryValues.getMergeSourceTable();
+              if (mergeSourceTable != null) {
+                  QueryMergeStatement mergeStmt = mergeSourceTable.getMergeStatement();
+                  if (mergeStmt != null) {
+                      MergeTargetTable mergeTargetTbl = mergeStmt.getTargetTable();
+                      if (mergeTargetTbl != null) {
+                          TableExpression tableExpr = mergeTargetTbl.getTableExpr();
+                          if (tableExpr instanceof TableInDatabase) {
+                              TableInDatabase tableInDB = (TableInDatabase) tableExpr;
+                              if (tableInDB.getColumnList() != null && tableInDB.getColumnList().size() > valExprIndex) {
+                                List colList = tableInDB.getColumnList();
+                                ValueExpressionColumn col = (ValueExpressionColumn) colList.get( valExprIndex );
+                                copyDataType( col, varExpr );
+                                resolved = true;
+                              }
+                          }
+                      }
+                  }
+              }
           }
       }
     }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElementImpl.java,v 1.4 2007/02/08 17:00:29 bpayton Exp $
+ * $Id: SuperGroupElementImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -59,7 +59,7 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
      * @generated
      */
     public SuperGroup getSuperGroup() {
-        if (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP) return null;
         return (SuperGroup)eContainer();
     }
 
@@ -79,7 +79,7 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
      * @generated
      */
     public void setSuperGroup(SuperGroup newSuperGroup) {
-        if (newSuperGroup != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP && newSuperGroup != null)) {
+        if (newSuperGroup != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP && newSuperGroup != null)) {
             if (EcoreUtil.isAncestor(this, newSuperGroup))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -128,7 +128,7 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SuperGroup.class, msgs);
         }

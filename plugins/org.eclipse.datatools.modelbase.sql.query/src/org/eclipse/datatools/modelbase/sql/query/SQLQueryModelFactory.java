@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactory.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
+ * $Id: SQLQueryModelFactory.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -609,6 +609,78 @@ public interface SQLQueryModelFactory extends EFactory {
      * @generated
      */
     ValueExpressionRow createValueExpressionRow();
+
+    /**
+     * Returns a new object of class '<em>Merge Target Table</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge Target Table</em>'.
+     * @generated
+     */
+    MergeTargetTable createMergeTargetTable();
+
+    /**
+     * Returns a new object of class '<em>Merge Source Table</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge Source Table</em>'.
+     * @generated
+     */
+    MergeSourceTable createMergeSourceTable();
+
+    /**
+     * Returns a new object of class '<em>Merge On Condition</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge On Condition</em>'.
+     * @generated
+     */
+    MergeOnCondition createMergeOnCondition();
+
+    /**
+     * Returns a new object of class '<em>Merge Update Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge Update Specification</em>'.
+     * @generated
+     */
+    MergeUpdateSpecification createMergeUpdateSpecification();
+
+    /**
+     * Returns a new object of class '<em>Merge Insert Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge Insert Specification</em>'.
+     * @generated
+     */
+    MergeInsertSpecification createMergeInsertSpecification();
+
+    /**
+     * Returns a new object of class '<em>Merge Operation Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Merge Operation Specification</em>'.
+     * @generated
+     */
+    MergeOperationSpecification createMergeOperationSpecification();
+
+    /**
+     * Returns a new object of class '<em>Update Of Column</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Update Of Column</em>'.
+     * @generated
+     */
+    UpdateOfColumn createUpdateOfColumn();
+
+    /**
+     * Returns a new object of class '<em>Updatability Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Updatability Expression</em>'.
+     * @generated
+     */
+    UpdatabilityExpression createUpdatabilityExpression();
 
     /**
      * Returns the package supported by this factory.

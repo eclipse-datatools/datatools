@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * Copyright (c) 2004, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -14,50 +14,46 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 /**
- * The <code>SQLQuerySourceFormat</code> can be used to provide settings
- * regarding the SQL source text for parsing or source generation from
- * a <code>SQLQueryObject</code> model representation.
- * The SQLQuerySourceFormat will be maintained during the lifecycle of a
- * <code>QueryStatement</code> instance (via reference to SQLQuerySourceInfo,
- * see {@link org.eclipse.datatools.modelbase.sql.query.SQLQueryObject#getSourceInfo()},
+ * The <code>SQLQuerySourceFormat</code> can be used to provide settings regarding the SQL source 
+ * text for parsing or source generation from a <code>SQLQueryObject</code> model representation.
+ * The SQLQuerySourceFormat will be maintained during the life cycle of a <code>QueryStatement</code> 
+ * instance (via reference to SQLQuerySourceInfo, see 
+ * {@link org.eclipse.datatools.modelbase.sql.query.SQLQueryObject#getSourceInfo()},
  * {@link org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo#getSqlFormat()}),
- * where all <code>SQLQueryObject</code> elements of one
- * <code>QueryStatement</code> share one instance of a
- * <code>SQLQuerySourceFormat</code>. That way the settings you specify for the
- * parse are still available for generating the SQL source text for a
- * <code>QueryStatement</code>.
- * Most source format options can be modified during the life cycle of a
- * <code>QueryStatement</code>, exceptions are marked with a * below.<p>
+ * where all <code>SQLQueryObject</code> elements of one <code>QueryStatement</code> share one instance 
+ * of a <code>SQLQuerySourceFormat</code>.  That way the settings you specify for the parse are still 
+ * available for generating the SQL source text for a <code>QueryStatement</code>.
+ * Most source format options can be modified during the life cycle of a <code>QueryStatement</code>, 
+ * exceptions are marked with a * below.
+ * <p>
  * Source format options:
- * 
  * <ul>
- *     <li> <code>preserveSourceFormat</code> = the option to preserve the
- * 			input source formating when SQL source text is generated
- *     <li> <code>statementTerminator</code> = the character separating multiple
- * 			SQL statements
- *     <li> <code>hostVariablePrefix</code> = the character that preceedes a
- * 			host language variable
- *     <li> <code>parameterMarker</code> = the character that identifies a
- * 			host language parameter
- *     <li> <code>delimitedIdentifierQuote</code>* = the character that encloses
- * 			delimited identifiers whose writing in case will be preserved
- *     <li> <code>omitSchema</code> = the current schema 
- *          (omitted in SQL source, implicit to unqualified table references)
- *     <li> <code>qualifyIdentifiers</code> = the flag describing how
- *          identifiers in the SQL source will be qualified
- *     <li> <code>preserveComments</code> = the option to preserve comments in
- *          the parsed SQL source or/and the generated SQL source
- *     <li> <code>generateCommentsForStatementOnly</code> = the option to
- *          generate comments for the SQL source only in the
- *          context of the complete statement, or if set to <code>false</code>,
- *          for single SQL Query objects outside the context of a statement
- *          as well
+ *     <li> <code>preserveSourceFormat</code> = the option to preserve the input source formating when 
+ *     SQL source text is generated (default: false)
+ *     <li> <code>statementTerminator</code> = the character separating multiple SQL statements (default: '')
+ *     <li> <code>hostVariablePrefix</code> = the character that precedes a	host language variable (default: ':')
+ *     <li> <code>parameterMarker</code> = the character that identifies a host language parameter (default: '?')
+ *     <li> <code>delimitedIdentifierQuote</code>* = the character that encloses delimited identifiers whose
+ *     writing in case will be preserved (default: '"')
+ *     <li> <code>omitSchema</code> = the current schema (omitted in SQL source, implicit to unqualified 
+ *     table references) (default: null)
+ *     <li> <code>qualifyIdentifiers</code> = the flag describing how identifiers in the SQL source will 
+ *     be qualified.  See the QUALIFY_IDENTIFIER_xxx constants defined in this class 
+ *     (default: qualify identifiers in context)
+ *     <li> <code>preserveComments</code> = the option to preserve comments in the parsed SQL source or/and 
+ *     the generated SQL source (default: true)
+ *     <li> <code>generateCommentsForStatementOnly</code> = the option to generate comments for the SQL source 
+ *     only in the context of the complete statement, or if set to <code>false</code>, for single SQL Query 
+ *     objects outside the context of a statement as well (default: true)
+ *     <li><code>instanceIsFinal</code> = indicates whether or not the instance can be modified (default: false)
+ *     <li><code>generateAsKeywordForTableCorrID</code> = option to include (or not) the AS keyword when 
+ *     generating SQL for a table correlation ID.  (The AS is optional for DB2.  Oracle does not allow it at all.)
+ *     (default: true)
  * </ul> 
  *    
  * <br><br>
  *  * Source format options that can not be modified during the life cycle of a
  * <code>QueryStatement</code>
-
  * <br><br>
  * See {@link #copyDefaultFormat()} to see how to get a
  * <code>SQLQuerySourceFormat</code> with the default settings.
@@ -68,28 +64,36 @@ import java.lang.reflect.Modifier;
  * @author ckadner
  */
 public class SQLQuerySourceFormat
-{
-    
+{   
+    /**
+     * Default value for <code>preserveSourceFourmat</code> setting: <code>false</code>
+     */
+    public static final boolean PRESERVE_SOURCE_FORMAT_DEFAULT = false;
     
     /**
-     *  Default value for <code>statementTerminator</code>: ';' 
+     *  Default value for the <code>statementTerminator</code> setting: ';' 
      */
     public static final char STATEMENT_TERMINATOR_DEFAULT = ';';
     
     /**
-     *  Default value for <code>hostVariablePrefix</code>: ':' 
+     *  Default value for the <code>hostVariablePrefix</code> setting: ':' 
      */
     public static final char HOSTVARIABLE_PREFIX_DEFAULT = ':';
     
     /**
-     *  Default value for <code>parameterMarker</code>: '?' 
+     *  Default value for the <code>parameterMarker</code> setting: '?' 
      */
     public static final char PARAMETER_MARKER_DEFAULT = '?';
     
     /**
-     *  Default value for <code>delimitedIdentifierQuote</code>: '"' 
+     *  Default value for the <code>delimitedIdentifierQuote</code> setting: '"' 
      */
     public static final char DELIMITED_IDENTIFIER_QUOTE_DEFAULT = '\"';
+    
+    /**
+     * Default value for <code>omitSchema</code> setting: <code>null</code>
+     */
+    public static final String OMIT_SCHEMA_DEFAULT = null;
     
     /**
      * Default constant for {@link #setQualifyIdentifiers(int)}, and
@@ -129,12 +133,35 @@ public class SQLQuerySourceFormat
      */
     public static final int QUALIFY_IDENTIFIERS_NEVER = 3;
 
+    /**
+     * Default value for the <code>qualifyIdentifiers</code> setting: <code>QUALIFY_IDENTIFIERS_IN_CONTEXT</code>
+     */
+    public static final int QUALIFY_IDENTIFIERS_DEFAULT = QUALIFY_IDENTIFIERS_IN_CONTEXT;
     
     /**
-     * <p>
-     * <b>Note:</b> this <code>SQLQuerySourceFormat</code>'s is
-     * <code>final</code> that means modifications on its members are not allowed.
-     * Every attempt to do so will raise an
+     * Default value for the <code>preserveComments</code> setting: <code>true</code>
+     */
+    public static final boolean PRESERVE_COMMENTS_DEFAULT = true;
+    
+    /**
+     * Default value for the <code>generateCommentsForStatementOnly</code> setting: <code>true</code>
+     */
+    public static final boolean GENERATE_COMMENTS_FOR_STATEMENT_DEFAULT = true;
+    
+    /**
+     * Default value for the <code>instanceIsFinal</code> setting: <code>false</code>
+     */
+    public static final boolean INSTANCE_IS_FINAL_DEFAULT = false;
+    
+    /**
+     * Default value for the <code>generateAsKeywordForTableCorrID</code> setting: <code>true</code>
+     */
+    public static final boolean GENERATE_AS_KEYWORD_FOR_TABLE_CORR_ID_DEFAULT = true;
+    
+    /**
+     * Define the default <code>SQLQuerySourceFormat</code> object.
+     * <b>Note:</b> this <code>SQLQuerySourceFormat</code>'s <code>instanceIsFinal</code> setting
+     * means modifications on its members are not allowed.  Every attempt to do so will raise an
      * <code>UnsupportedOperationException</code>. Use
      * <code>{@link #copyDefaultFormat()}</code> to get a copy of 
      * <code>{@link #SQL_SOURCE_FORMAT_DEFAULT}</code>
@@ -154,40 +181,30 @@ public class SQLQuerySourceFormat
      * @see #copyDefaultFormat()
      */
     public static final SQLQuerySourceFormat SQL_SOURCE_FORMAT_DEFAULT          
-            = new SQLQuerySourceFormat( false,
+            = new SQLQuerySourceFormat( PRESERVE_SOURCE_FORMAT_DEFAULT,
                                         STATEMENT_TERMINATOR_DEFAULT,
                                         HOSTVARIABLE_PREFIX_DEFAULT,
                                         PARAMETER_MARKER_DEFAULT,
                                         DELIMITED_IDENTIFIER_QUOTE_DEFAULT,
-                                        null, QUALIFY_IDENTIFIERS_IN_CONTEXT,
-                                        true,true,true);
-    
-    private boolean thisInstanceIsFinal = false;
-    
-
-    private boolean preserveSourceFormat = false;
+                                        OMIT_SCHEMA_DEFAULT, 
+                                        QUALIFY_IDENTIFIERS_DEFAULT,
+                                        PRESERVE_COMMENTS_DEFAULT,
+                                        GENERATE_COMMENTS_FOR_STATEMENT_DEFAULT,
+                                        true,
+                                        GENERATE_AS_KEYWORD_FOR_TABLE_CORR_ID_DEFAULT);
+        
+    private boolean preserveSourceFormat = PRESERVE_SOURCE_FORMAT_DEFAULT;
     private char statementTerminator = STATEMENT_TERMINATOR_DEFAULT;
     private char hostVariablePrefix = HOSTVARIABLE_PREFIX_DEFAULT;
     private char parameterMarker = PARAMETER_MARKER_DEFAULT;
     private char delimitedIdentifierQuote = DELIMITED_IDENTIFIER_QUOTE_DEFAULT;
-    private String omitSchema = null;
+    private String omitSchema = OMIT_SCHEMA_DEFAULT;
     private int qualifyIdentifiers = QUALIFY_IDENTIFIERS_IN_CONTEXT;
-    private boolean preserveComments = true;
-    private boolean generateCommentsForStatementOnly = true;
-
+    private boolean preserveComments = PRESERVE_COMMENTS_DEFAULT;
+    private boolean generateCommentsForStatementOnly = GENERATE_COMMENTS_FOR_STATEMENT_DEFAULT;
+    private boolean instanceIsFinal = INSTANCE_IS_FINAL_DEFAULT;
+    private boolean generateAsKeywordForTableCorrID = GENERATE_AS_KEYWORD_FOR_TABLE_CORR_ID_DEFAULT;
     
-    
-    /**
-     * @param preserveSourceFormat
-     * @param statementTerminator
-     * @param hostVariablePrefix
-     * @param parameterMarker
-     * @param delimitedIdentifierQuote
-     * @param omitSchema
-     * @param qualifyIdentifiers
-     * @param preserveComments
-     * @param generateCommentsForStatementOnly
-     */
     protected SQLQuerySourceFormat(boolean preserveSourceFormat,
                                 char statementTerminator,
                                 char hostVariablePrefix,
@@ -196,11 +213,10 @@ public class SQLQuerySourceFormat
                                 String omitSchema,
                                 int qualifyIdentifiers,
                                 boolean preserveComments,
-                                boolean generateCommentsForStatementOnly)
-    {
-        this(preserveSourceFormat,statementTerminator,hostVariablePrefix,parameterMarker,delimitedIdentifierQuote,omitSchema,qualifyIdentifiers,preserveComments,generateCommentsForStatementOnly,false);
+                                boolean generateCommentsForStatementOnly)  {
+        this(preserveSourceFormat,statementTerminator,hostVariablePrefix,parameterMarker,delimitedIdentifierQuote,omitSchema,qualifyIdentifiers,preserveComments,generateCommentsForStatementOnly,INSTANCE_IS_FINAL_DEFAULT, GENERATE_AS_KEYWORD_FOR_TABLE_CORR_ID_DEFAULT);
     }
-    
+        
     /**
      * @param preserveSourceFormat
      * @param statementTerminator
@@ -222,7 +238,8 @@ public class SQLQuerySourceFormat
                                 int qualifyIdentifiers,
                                 boolean preserveComments,
                                 boolean generateCommentsForStatementOnly,
-                                boolean finalInstance)
+                                boolean finalInstance,
+                                boolean generateAsKeywordForTableCorrID)
     {
         this.preserveSourceFormat = preserveSourceFormat;
         this.statementTerminator = statementTerminator;
@@ -233,40 +250,33 @@ public class SQLQuerySourceFormat
         this.qualifyIdentifiers = qualifyIdentifiers;
         this.preserveComments = preserveComments;
         this.generateCommentsForStatementOnly = generateCommentsForStatementOnly;
-        this.thisInstanceIsFinal = finalInstance;
+        this.instanceIsFinal = finalInstance;
+        this.generateAsKeywordForTableCorrID = generateAsKeywordForTableCorrID;
     }
     
-
-    
+    /*
+     * The default constructor is private to make sure instances can't be created this way.
+     */
     private SQLQuerySourceFormat() {}
     
-    
     /**
+     * Creates and returns a copy of the default <code>SQLQuerySourceFormat</code> object.
+     * <b>Note:</b> the copy will have the <code>instanceIsfinal</code> setting set to false.
+     * 
      * @return a new copy of the {@link #SQL_SOURCE_FORMAT_DEFAULT}
      */
-    public static SQLQuerySourceFormat copyDefaultFormat()
-    {
+    public static SQLQuerySourceFormat copyDefaultFormat() {
         return copySourceFormat(SQL_SOURCE_FORMAT_DEFAULT);
     }
     
     /**
-     * @param sourceFormat the <code>SQLQuerySourceFormat</code> to be copied.
-     * @return a new copy of the given <code>sourceFormat</code>.
+     * Creates and returns a copy of the given <code>SQLQuerySourceFormat</code> object.
+     * 
+     * @param sourceFormat the <code>SQLQuerySourceFormat</code> to copy
+     * @return the copy
      */
-    public static SQLQuerySourceFormat copySourceFormat(SQLQuerySourceFormat sourceFormat)
-    {
-        SQLQuerySourceFormat copy = 
-            new SQLQuerySourceFormat();
-//          new SQLQuerySourceFormat(
-//                        sourceFormat.isPreserveSourceFormat(),
-//                        sourceFormat.getStatementTerminator(),
-//                        sourceFormat.getHostVariablePrefix(),
-//                        sourceFormat.getParameterMarker(),
-//                        sourceFormat.getDelimitedIdentifierQuote(),
-//                        sourceFormat.getOmitSchema(),
-//                        sourceFormat.getQualifyIdentifiers(),
-//                        sourceFormat.getPreserveComments(),
-//                        sourceFormat.getGenerateCommentsForStatementOnly());
+    public static SQLQuerySourceFormat copySourceFormat(SQLQuerySourceFormat sourceFormat) {
+        SQLQuerySourceFormat copy = new SQLQuerySourceFormat();
         copyFields(sourceFormat, copy);
         return copy;
     }
@@ -277,62 +287,50 @@ public class SQLQuerySourceFormat
      * to the <code>SQLQuerySourceFormat</code>
      * <code>recipient</code>.
      * 
-     * @param donor
-     *            the <code>SQLQuerySourceFormat</code> whichs fields to copy
-     * @param recipient
-     *            the <code>SQLQuerySourceFormat</code> whichs fields to be
-     *            overwritten
+     * @param source the <code>SQLQuerySourceFormat</code> object containing the fields to copy
+     * @param target the <code>SQLQuerySourceFormat</code> object to update
      */
-    public static void copyFields(SQLQuerySourceFormat donor, SQLQuerySourceFormat recipient)
-    {
+    public static void copyFields(SQLQuerySourceFormat source, SQLQuerySourceFormat target) {
         Field[] fields = SQLQuerySourceFormat.class.getDeclaredFields();
         
-        for (int i = 0; i < fields.length; i++)
-        {
+        for (int i = 0; i < fields.length; i++) {
             Field field = fields[i];
-            //field.setAccessible(true);
             
-            if (!Modifier.isFinal(field.getModifiers())
-                            && !field.getName().equals("thisInstanceIsFinal")) //$NON-NLS-1$
-            {
-	            try
-	            {
-	                field.set(recipient, field.get(donor));
+            if (!Modifier.isFinal(field.getModifiers()) && !field.getName().equals("instanceIsFinal")) { //$NON-NLS-1$
+	            try {
+	                field.set(target, field.get(source));
 	            }
-	            catch (IllegalArgumentException e)
-	            {
+	            catch (IllegalArgumentException e) {
 	                e.printStackTrace();
 	            }
-	            catch (IllegalAccessException e)
-	            {
+	            catch (IllegalAccessException e) {
 	                e.printStackTrace();
 	            }
             }
-            
         }
         
-        // just to make sure
-        recipient.thisInstanceIsFinal = false;
+        /* Make sure that the copy is modifiable. */
+        target.instanceIsFinal = false;
     }
     
     /**
-     * Copies the fields from the given <code>SQLQuerySourceFormat</code>
-     * <code>sourceFormat</code> to this <code>SQLQuerySourceFormat</code>.
+     * Copies the fields from the given <code>SQLQuerySourceFormat</code> to this object.
      * 
-     * @param sourceFormat
-     *            the <code>SQLQuerySourceFormat</code> whichs fields to copy
+     * @param sourceFormat the source <code>SQLQuerySourceFormat</code> object
      */
-    public void copyFields(SQLQuerySourceFormat sourceFormat)
-    {
+    public void copyFields(SQLQuerySourceFormat sourceFormat) {
         SQLQuerySourceFormat.copyFields(sourceFormat, this);
     }
     
     
-    /** This method is to be called first within every setter 
-     * @throws UnsupportedOperationException */
-    private void checkThisForFinalInstance() throws UnsupportedOperationException 
-    {
-        if (this.thisInstanceIsFinal) {
+    /** 
+     * Checks whether the <code>instanceIsFinal</code> setting is true, and if so, throws an exception.  This is called
+     * from each setter method in this class.
+     * 
+     * @throws UnsupportedOperationException when the instance can not be modified
+     */
+    private void checkThisForFinalInstance() throws UnsupportedOperationException {
+        if (this.instanceIsFinal) {
             throw new UnsupportedOperationException("This " + this.getClass().getName() +
                             " is final! Property modifications illegal." +
                             " Use "+ this.getClass().getName() + "#copyDefaultFormat() to get a copy of this instance.");
@@ -340,156 +338,170 @@ public class SQLQuerySourceFormat
     }
     
     /**
-     * @return Returns the delimitedIdentifierQuote.
+     * Gets the delimited identifier quote character to use for parsing and code generation.
      */
-    public char getDelimitedIdentifierQuote()
-    {
+    public char getDelimitedIdentifierQuote() {
         return delimitedIdentifierQuote;
     }
+    
     /**
+     * Sets the delimited identifier quote character to use for parsing and code generation.
      * <b>Note:</b>
-     * No modifications of that field allowed, after using this
-     * <code>SQLQuerySourceFormat</code> as a parameter for a parse!
-     * The delimited identifier quote is stored within
-     * the identifiers of the <code>SQLQueryObject</code>s and further
-     * modifications of this <code>SQLQuerySourceFormat</code>'s
-     * <code>delimitedIdentifierQuote</code>, would result into wrong name
+     * No modifications of of this setting are allowed after using this <code>SQLQuerySourceFormat</code> 
+     * as a parameter for a parse!  The delimited identifier quote character is stored within the identifiers 
+     * of the <code>SQLQueryObject</code>s and further modifications to this setting would result into wrong name
      * comparisons.
-     * If you need to modify it, make a copy of the current
-     * <code>SQLQuerySourceFormat</code> by using
-     * {@link #copySourceFormat(SQLQuerySourceFormat)} to keep previously
-     * parsed <code>SQLQueryObject</code>s reference to
-     * this <code>SQLQuerySourceFormat</code> and its
-     * <code>delimitedIdentifierQuote</code> valid.
-     * 
-     * @param delimitedIdentifierQuote The delimitedIdentifierQuote to set.
+     * If you need to modify it, make a copy of the current <code>SQLQuerySourceFormat</code> by using
+     * {@link #copySourceFormat(SQLQuerySourceFormat)} to keep the previously parsed <code>SQLQueryObject</code>s 
+     * references to this <code>SQLQuerySourceFormat</code> and its <code>delimitedIdentifierQuote</code> valid.
      */
-    public void setDelimitedIdentifierQuote(char delimitedIdentifierQuote)
-    {
+    public void setDelimitedIdentifierQuote(char delimitedIdentifierQuote) {
         checkThisForFinalInstance();
         this.delimitedIdentifierQuote = delimitedIdentifierQuote;
     }
     
     /**
-     * @return Returns the hostVariablePrefix.
+     * Gets the host variable prefix character to use.
      */
-    public char getHostVariablePrefix()
-    {
+    public char getHostVariablePrefix() {
         return hostVariablePrefix;
     }
     /**
-     * @param hostVariablePrefix The hostVariablePrefix to set.
-
-     *     */
-    public void setHostVariablePrefix(char hostVariablePrefix)
-    {
+     * Sets the host variable prefix character to use to the given character.
+     */
+    public void setHostVariablePrefix(char hostVariablePrefix) {
         checkThisForFinalInstance();
         this.hostVariablePrefix = hostVariablePrefix;
     }
+    
     /**
-     * @return Returns the parameterMarker.
+     * Gets the parameter marker character to use.
      */
-    public char getParameterMarker()
-    {
+    public char getParameterMarker() {
         return parameterMarker;
     }
+    
     /**
-     * @param parameterMarker The parameterMarker to set.
+     * Sets the parameter marker character to use to the given character.
      */
-    public void setParameterMarker(char parameterMarker)
-    {
+    public void setParameterMarker(char parameterMarker) {
+        checkThisForFinalInstance();
         this.parameterMarker = parameterMarker;
     }
+    
     /**
-     * @return Returns the omitSchema.
+     * Gets the omit schema name to use.  If non-null, this schema name is omitted from generated SQL.
      */
-    public String getOmitSchema()
-    {
+    public String getOmitSchema() {
         return omitSchema;
     }
+    
     /**
-     * @param omitSchema The omitSchema to set.
+     * Sets the omit schema name to use.  If non-null, this schema name is omitted from generated SQL.
      */
-    public void setOmitSchema(String omitSchema)
-    {
+    public void setOmitSchema(String omitSchema) {
         checkThisForFinalInstance();
         this.omitSchema = omitSchema;
     }
+    
     /**
-     * @return Returns the preserveSourceFormat.
+     * Gets the preserve source format setting.
      */
-    public boolean isPreserveSourceFormat()
-    {
+    public boolean isPreserveSourceFormat() {
         return preserveSourceFormat;
     }
+    
     /**
-     * @param preserveSourceFormat The preserveSourceFormat to set.
+     * Sets the preserve source format setting to the given value.
      */
-    public void setPreserveSourceFormat(boolean preserveSourceFormat)
-    {
+    public void setPreserveSourceFormat(boolean preserveSourceFormat) {
         checkThisForFinalInstance();
         this.preserveSourceFormat = preserveSourceFormat;
     }
+    
     /**
-     * @return Returns the statementTerminator.
+     * Gets the statement terminator character to use.
      */
-    public char getStatementTerminator()
-    {
+    public char getStatementTerminator() {
         return statementTerminator;
     }
+    
     /**
-     * @param statementTerminator The statementTerminator to set.
+     * Sets the statement terminator character to use to the given character.
      */
-    public void setStatementTerminator(char statementTerminator)
-    {
+    public void setStatementTerminator(char statementTerminator) {
         checkThisForFinalInstance();
         this.statementTerminator = statementTerminator;
     }
+    
     /**
-     * Returns the policy on how identifiers in the SQL source will be qualified,
-     * compare to one of the constants {@link #QUALIFY_IDENTIFIERS_IN_CONTEXT},
-     * , or .
-     * 
-     * @return The constant determining how the identifiers in
-     *        the SQL source will be qualified, default is
-     *        {@link #QUALIFY_IDENTIFIERS_IN_CONTEXT}
+     * Gets the policy setting on how identifiers in the SQL source will be qualified.  See the
+     * <cod>QUALIFY_IDENTIFIER_xxx</code> constants defined in this class.  The default is
+     * {@link #QUALIFY_IDENTIFIERS_IN_CONTEXT}.
      */
     public int getQualifyIdentifiers() {
         return qualifyIdentifiers;
     }
+    
     /**
-     * Sets the policy on how identifiers in the SQL source will be qualified,
-     * default is {@link #QUALIFY_IDENTIFIERS_IN_CONTEXT}.
-     * 
-     * @param qualifyIdentifiers The constant determining how the identifiers in
-     *        the SQL source will be qualified, default is
-     *        {@link #QUALIFY_IDENTIFIERS_IN_CONTEXT}
+     * Sets the policy on how identifiers in the SQL source will be qualified.
      */
     public void setQualifyIdentifiers(int qualifyIdentifiers) {
+        checkThisForFinalInstance();
         this.qualifyIdentifiers = qualifyIdentifiers;
     }
-    /**DOCME
-     * @return Returns the preserveComments.
+    
+    /**
+     * Gets whether or not to preserve comments in the generated SQL.
+     */
+    public boolean getPreserveComments() {
+        return preserveComments;
+    }
+    
+    /**
+     * Gets whether or not to preserve comments in the generated SQL is set true.
      */
     public boolean isPreserveComments() {
         return preserveComments;
     }
-    /**DOCME
-     * @param preserveComments The preserveComments to set.
+    
+    /**
+     * Sets whether or not to preserve comments in the generated SQL.
      */
     public void setPreserveComments(boolean preserveComments) {
+        checkThisForFinalInstance();
         this.preserveComments = preserveComments;
     }
-    /** DOCME
-     * @return Returns the generateCommentsForStatementOnly.
+    
+    /** 
+     * Gets whether or not to generate comments in the context of a complete statement only.  When false, comments will
+     * be generated in the SQL objects outside the context of a complete statement.
      */
     public boolean isGenerateCommentsForStatementOnly() {
         return generateCommentsForStatementOnly;
     }
-    /** DOCME
-     * @param generateCommentsForStatementOnly The generateCommentsForStatementOnly to set.
+    
+    /** 
+     * Sets whether or not to generate comments in the context of a complete statement only.  When false, comments will
+     * be generated in the SQL objects outside the context of a complete statement.
      */
     public void setGenerateCommentsForStatementOnly(boolean generateCommentsForStatementOnly) {
+        checkThisForFinalInstance();
         this.generateCommentsForStatementOnly = generateCommentsForStatementOnly;
+    }
+    
+    /**
+     * Gets whether or not to include the AS keyword when generating SQL for a table correlation ID.
+     */
+    public boolean getGenerateAsKeywordForTableCorrID() {
+        return this.generateAsKeywordForTableCorrID;
+    }
+    
+    /**
+     * Sets whether or not to include the AS keyword when generating SQL for a table correlation ID. 
+     */
+    public void setGenerateAsKeywordForTableCorrID(boolean genAsKeywordForTableCorrID) {
+        checkThisForFinalInstance();
+        this.generateAsKeywordForTableCorrID = genAsKeywordForTableCorrID;
     }
 }

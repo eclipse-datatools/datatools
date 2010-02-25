@@ -24,11 +24,14 @@ import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
-import org.eclipse.datatools.modelbase.sql.query.CursorReference;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSets;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
+import org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification;
 import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.Predicate;
@@ -45,6 +48,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
+import org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
@@ -91,6 +95,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
 import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
@@ -100,18 +105,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-
 /**
- * Provides utility functions related to tables
+ * Provides utility functions related to tables and columns.
  *
- * @author nbhatia, ckadner
  */
 public class TableHelper {
-    
-    /* TODO: make the DELIMITED_IDENTIFIER_QUOTE string configurable with Database info */ 
-    /** The quote character to use for delimited identifiers like "Col1".  When 
-     * comparing with a delimited identifier, the characters inside the delimiters must 
+     
+    /** This is the default quote character to use for delimited identifiers like "Col1".  
+     * When comparing with a delimited identifier, the characters inside the delimiters must 
      * match exactly.
+     * <p>
+     * Note: this character can vary depending on the database type, so use of this constant
+     * is not recommended.  Instead get the identifier quote character from the database
+     * configuration.
      */
     public static final String DELIMITED_IDENTIFIER_QUOTE = "\"";
 
@@ -185,8 +191,9 @@ public class TableHelper {
       }
 
     /**
-     * Creates and Returns SQLRDBTable for the given Table and initializes its
-     * list of SQLValueExpressColumn corresponding to each column of the table.
+     * Creates and returns a <code>TableInDatabase</code> object for the given 
+     * <code>Table</code> object and initializes its list of SQLValueExpressColumn 
+     * objects corresponding to each column of the table.
      *
      * @param table
      *          the Table for which we need a SQLRDBTable
@@ -194,10 +201,11 @@ public class TableHelper {
      */
     public static TableInDatabase createTableExpressionForTable(Table table) {
       TableInDatabase tableInDB = null;
+      
       if (table != null) {
         List rdbColumnList;
         List cList;
-        //SQLQueryModelFactory factory = new SQLQueryModelFactoryImpl();
+
         SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         tableInDB = factory.createTableInDatabase();
         tableInDB.setDatabaseTable(table);
@@ -214,6 +222,7 @@ public class TableHelper {
           rdbColumnList.add(valueExprColumn);
         }
       }
+      
       return tableInDB;
     }
 
@@ -228,8 +237,8 @@ public class TableHelper {
      * <code>QuerySelect</code>, so that nested full-select can be treated like
      * any other <code>TableReference</code> with its <code>columnList</code>.
      * 
-     * @param nestedQuery
-     * @return List of already or newly exposed <code>ValueExpressionColumn</code>s
+     * @param nestedQuery the query whose columns should be exposed
+     * @return a list of already or newly exposed <code>ValueExpressionColumn</code>s
      */
     public static List exposeEffectiveResultColumns(QueryExpressionBody nestedQuery)
     {
@@ -262,15 +271,14 @@ public class TableHelper {
         return exposedColumns;
     }
 
-    //ckadner
     /**
      * Populates the given <code>tableExpr</code>'s <code>columnList</code> with
      * <code>ValueExpressionColumn</code>s, with <code>name</code>,
      * <code>dataType</code> and in ordering, so the given
      * <code>tableExpr</code> can be handled like a <code>TableInDatabase</code>.
      * 
-     * @param tableExpr
-     * @return List of already or newly exposed <code>ValueExpressionColumn</code>s
+     * @param tableExpr the table expression whose columns should be expose
+     * @return a list of already or newly exposed <code>ValueExpressionColumn</code>s
      */
     public static List exposeEffectiveResultColumns(TableExpression tableExpr) {
         List resultColExprList = new ArrayList();
@@ -354,15 +362,14 @@ public class TableHelper {
         return resultColExprList;
     }
 
-    //ckadner
     /**
      * Populates the given <code>withTable</code>'s <code>columnList</code> with
      * <code>ValueExpressionColumn</code>s, with <code>name</code>,
      * <code>dataType</code> and in ordering, so the given
      * <code>tableExpr</code> can be handled like a <code>TableInDatabase</code>.
      * 
-     * @param withTable
-     * @return List of already or newly exposed <code>ValueExpressionColumn</code>s
+     * @param withTable the WITH table whose columns should be exposed
+     * @return a list of already or newly exposed <code>ValueExpressionColumn</code>s
      */
     public static List exposeEffectiveResultColumns(WithTableReference withTable) {
         List resultColExprList = new ArrayList();
@@ -381,9 +388,7 @@ public class TableHelper {
         List withTableQueryResultCols = 
             getEffectiveResultColumns(withTableQuery);
         
-        List withTableColNames = withTableSpec.getColumnNameList();
-        
-        
+        List withTableColNames = withTableSpec.getColumnNameList();        
         
         // if WITH table has not specified column names
         // the effective result columns (with name and type) are determined by
@@ -451,11 +456,10 @@ public class TableHelper {
     }
     
     /**
-       * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+       * Returns a Set containing all <code>ValueExpressionColumn</code>s found
        * in the given <code>GroupingExpression</code>.
        */
-        public static Set findColumnReferencesInGroupingExpression(
-                                                                   GroupingExpression groupingExpr)
+        public static Set findColumnReferencesInGroupingExpression(GroupingExpression groupingExpr)
         {
             if (groupingExpr == null) { return Collections.EMPTY_SET; }
     
@@ -467,11 +471,10 @@ public class TableHelper {
         }
 
     /**
-     * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+     * Returns a Set containing all <code>ValueExpressionColumn</code>s found
      * in the given <code>GroupingSpecification</code>.
      */
-    public static Set findColumnReferencesInGroupingSpecification(
-                                                                  GroupingSpecification groupingSpec)
+    public static Set findColumnReferencesInGroupingSpecification(GroupingSpecification groupingSpec)
     {
         HashSet columnSet = new HashSet();
 
@@ -541,11 +544,10 @@ public class TableHelper {
     }
 
     /**
-     * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+     * Returns a Set containing all <code>ValueExpressionColumn</code>s found
      * in the given <code>GroupingSpecification</code> list.
      */
-    public static Set findColumnReferencesInGroupingSpecificationList(
-                                                                      List groupingSpecList)
+    public static Set findColumnReferencesInGroupingSpecificationList(List groupingSpecList)
     {
         HashSet columnSet = new HashSet();
 
@@ -567,8 +569,7 @@ public class TableHelper {
      * Returns a Set containing all <code>ValueExpressionColumn</code> s found
      * in the given <code>OrderBySpecification</code>.
      */
-    public static Set findColumnReferencesInOrderBySpecification(
-                                                                 OrderBySpecification orderBySpec)
+    public static Set findColumnReferencesInOrderBySpecification(OrderBySpecification orderBySpec)
     {
         if (orderBySpec == null) { return Collections.EMPTY_SET; }
         HashSet columnSet = new HashSet();
@@ -610,18 +611,14 @@ public class TableHelper {
      }
 
     /**
-       * Returns a Set containing all, not neccessarily distinct,
-       * <code>ValueExpressionColumn</code> s found in the given
-       * <code>Predicate</code>, means you have to expect duplicate
-       * <code>ValueExpressionColumn</code> s regarding their column names.
-       *
-       * TODO: consider all possible <code>Predicate</code> types here, that
-       * contain <code>QueryValueExpression</code>s. State:2004-11-01
+       * Returns a Set containing all, not necessarily distinct,
+       * <code>ValueExpressionColumn</code>s found in the given
+       * <code>Predicate</code>. This means you have to expect duplicate
+       * <code>ValueExpressionColumn</code>s regarding their column names.
        *
        * @param predicate
        * @return
        */
-      /** Returns a Set containing all <code>ValueExpressionColumn</code>s found in the given <code>Predicate</code>. */
       public static Set findColumnReferencesInPredicate(Predicate predicate) {
         if (predicate == null) {
           return Collections.EMPTY_SET;
@@ -703,13 +700,10 @@ public class TableHelper {
       }
 
   /**
-   * TODO: Developer Note: not completely implemented.
-   *
    * Returns a Set containing all <code>ValueExpressionColumn</code>s found in
    * the given <code>QueryExpressionBody</code>.
    */
-   public static Set findColumnReferencesInQueryExpressionBody(
-                                                              QueryExpressionBody queryExprBody) {
+   public static Set findColumnReferencesInQueryExpressionBody(QueryExpressionBody queryExprBody) {
     if (queryExprBody == null) {
       return Collections.EMPTY_SET;
     }
@@ -739,12 +733,14 @@ public class TableHelper {
         // nothing to do here, no column references possible in VALUES clause
     }
     else {
-        throw new UnsupportedOperationException(
-            TableHelper.class.getName()
-                + "#findColumnReferencesInQueryExpressionBody( ("+queryExprBody.getClass().getName()+") QueryExpressionBody ) not implemented.");
+//        throw new UnsupportedOperationException(
+//            TableHelper.class.getName()
+//                + "#findColumnReferencesInQueryExpressionBody( ("+queryExprBody.getClass().getName()+") QueryExpressionBody ) not implemented.");
     }
-      
 
+    List sortSpecList = queryExprBody.getSortSpecList();
+    columnSet.addAll( findColumnReferencesInOrderBySpecificationList(sortSpecList));
+    
     return columnSet;
   }
 
@@ -769,12 +765,53 @@ public class TableHelper {
     return columnSet;
   }
 
+   /**
+    * Returns a set containing all the column value expression objects in the given statement.
+    * 
+    * @param mergeStmt the statement from which column expressions are wanted 
+    * @return a set containing the column expressions in the statement
+    */
+   public static Set findColumnReferencesInQueryMergeStatement(QueryMergeStatement mergeStmt) {
+       Set colSet = new HashSet();
+       
+       if (mergeStmt == null) {
+           colSet = Collections.EMPTY_SET;
+       }
+       else {
+           MergeOnCondition onCondition = mergeStmt.getOnCondition();
+           QuerySearchCondition searchCond = onCondition.getSearchCondition();
+           Set searchCondColSet = findColumnReferencesInSearchCondition(searchCond);
+           colSet.addAll(searchCondColSet);
+           
+           List operSpecList = mergeStmt.getOperationSpecList();
+           Iterator operSpecListIter = operSpecList.iterator();
+           while (operSpecListIter.hasNext()) {
+               MergeOperationSpecification operSpec = (MergeOperationSpecification) operSpecListIter.next();
+               if (operSpec instanceof MergeUpdateSpecification) {
+                   MergeUpdateSpecification updateSpec = (MergeUpdateSpecification) operSpec;
+                   List assignExprList = updateSpec.getAssignementExprList();
+                   Set assignExprListColSet = findColumnReferencesInUpdateAssignmentExprList(assignExprList);
+                   colSet.addAll(assignExprListColSet);
+               }
+               else if (operSpec instanceof MergeInsertSpecification) {
+                   MergeInsertSpecification insertSpec = (MergeInsertSpecification) operSpec;
+                   List targetColList = insertSpec.getTargetColumnList();
+                   colSet.addAll(targetColList);
+                   ValuesRow valRow = insertSpec.getSourceValuesRow();
+                   Set valRowColSet = findColumnReferencesInValuesRow(valRow);
+                   colSet.addAll(valRowColSet);
+               }
+           }
+       }
+       
+       return colSet;
+   }
+   
 /**
- * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+ * Returns a Set containing all <code>ValueExpressionColumn</code>s found
  * in the given <code>QueryResultSpecification</code>.
  */
-public static Set findColumnReferencesInQueryResultSpecification(
-                                                                 QueryResultSpecification queryResult)
+public static Set findColumnReferencesInQueryResultSpecification(QueryResultSpecification queryResult)
 {
     if (queryResult == null) { return Collections.EMPTY_SET; }
     HashSet columnSet = new HashSet();
@@ -789,11 +826,10 @@ public static Set findColumnReferencesInQueryResultSpecification(
   
   
 /**
- * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+ * Returns a Set containing all <code>ValueExpressionColumn</code>s found
  * in the given <code>QueryResultSpecification</code> list.
  */
-public static Set findColumnReferencesInQueryResultSpecificationList(
-                                                                     List queryResultSpecList)
+public static Set findColumnReferencesInQueryResultSpecificationList(List queryResultSpecList)
 {
     if (queryResultSpecList == null) { return Collections.EMPTY_SET; }
     HashSet columnSet = new HashSet();
@@ -808,11 +844,10 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
 }
 
   /**
-    * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+    * Returns a Set containing all <code>ValueExpressionColumn</code>s found
     * in the given <code>QuerySelectStatement</code>.
     */
-    public static Set findColumnReferencesInQuerySelectStatement(
-                                                                 QuerySelectStatement querySelect)
+    public static Set findColumnReferencesInQuerySelectStatement(QuerySelectStatement querySelect)
     {
         if (querySelect == null) { return Collections.EMPTY_SET; }
 
@@ -828,11 +863,10 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
     }
 
   /**
-   * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+   * Returns a Set containing all <code>ValueExpressionColumn</code>s found
    * in the given <code>QueryUpdateStatement</code>.
    */
-   public static Set findColumnReferencesInQueryUpdateStatement(
-                                                                QueryUpdateStatement updateStmt)
+   public static Set findColumnReferencesInQueryUpdateStatement(QueryUpdateStatement updateStmt)
    {
        if (updateStmt == null) { return Collections.EMPTY_SET; }
 
@@ -965,13 +999,13 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
       return columnSet;
   }
 
-  /**
- * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+/**
+ * Returns a Set containing all <code>ValueExpressionColumn</code>s found
  * in the given List of <code>UpdateAssignmentExpression</code>.
  * 
  * @param updateAssignmentExpr
  *            the <code>UpdateAssignmentExpression</code> to search in
- * @return Set containing all <code>ValueExpressionColumn</code> s found
+ * @return Set containing all <code>ValueExpressionColumn</code>s found
  */
  public static Set findColumnReferencesInUpdateAssignmentExpr(UpdateAssignmentExpression updateAssignmentExpr)
  {
@@ -979,9 +1013,9 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
 
      columnSet.addAll(updateAssignmentExpr.getTargetColumnList());
      
-     // we only want column references in updateSourceExpressionList,
-     //  NOT in UpdateSourceQuery, cause the columns conatained there are localy
-     //  resolved within the context of the source Query
+     // We only want column references in updateSourceExpressionList,
+     // NOT in UpdateSourceQuery, cause the columns contained there are locally
+     // resolved within the context of the source Query.
      if (updateAssignmentExpr.getUpdateSource() instanceof UpdateSourceExprList)
      {
          UpdateSourceExprList updateSrcExprList = 
@@ -993,16 +1027,14 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
  }
 
   /**
-    * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+    * Returns a Set containing all <code>ValueExpressionColumn</code>s found
     * in the given List of <code>UpdateAssignmentExpression</code>s.
     * 
     * @param updateAssignmentExprList
-    *            the list of <code>UpdateAssignmentExpression</code> s to
-    *            search in
-    * @return Set containing all <code>ValueExpressionColumn</code> s found
+    *            the list of <code>UpdateAssignmentExpression</code>s to search in
+    * @return Set containing all <code>ValueExpressionColumn</code>s found
     */
-    public static Set findColumnReferencesInUpdateAssignmentExprList(
-                                                                     List updateAssignmentExprList)
+    public static Set findColumnReferencesInUpdateAssignmentExprList(List updateAssignmentExprList)
     {
         Set columnSet = new HashSet();
 
@@ -1021,7 +1053,7 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
   
   
   /**
- * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+ * Returns a Set containing all <code>ValueExpressionColumn</code>s found
  * in the given <code>UpdateSourceExprList</code>.
  */
 public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprList updateSourceExprList)
@@ -1035,19 +1067,13 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
 }
 
   /**
-   * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+   * Returns a Set containing all <code>ValueExpressionColumn</code>s found
    * in the given <code>QueryValueExpression</code>.
    *
    * @param valueExpr
    * @return a Set of <code>ValueExpressionColumn</code>s
    */
-  public static Set findColumnReferencesInValueExpression(
-      QueryValueExpression valueExpr) {
-
-// Client: Lin 2 Xu   for ValueExpressionFunctions
-      
-// TODO: consider all possible QueryValueExpression types here, that contain
-// QueryValueExpressions. State: 2004-10-31
+  public static Set findColumnReferencesInValueExpression(QueryValueExpression valueExpr) {
 
     if (valueExpr == null)
       return Collections.EMPTY_SET;
@@ -1058,7 +1084,7 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
       columnSet.add(valueExpr);
       return columnSet;
     }
-    // catch these types for performance! are very likely to occure!
+    // catch these types for performance! are very likely to occur!
     else if (valueExpr instanceof ValueExpressionSimple) {
         return Collections.EMPTY_SET;
     }
@@ -1068,7 +1094,7 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
         columnSet.addAll(findColumnReferencesInValueExpression(combi.getLeftValueExpr()));
         return columnSet;
     }
-    // catch these types for performance! are very likely to occure!
+    // catch these types for performance! are very likely to occur!
     else if (valueExpr instanceof ValueExpressionDefaultValue
                     || valueExpr instanceof ValueExpressionNullValue
                     || valueExpr instanceof ValueExpressionVariable) {
@@ -1085,7 +1111,6 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
           .iterator(); searchContentList.hasNext();) {
         ValueExpressionCaseSearchContent searchContent = (ValueExpressionCaseSearchContent) searchContentList.next();
         columnSet.addAll(findColumnReferencesInValueExpression(searchContent.getValueExpr()));
-        // TODO: correct?
         columnSet.addAll(findColumnReferencesInSearchCondition(searchContent.getSearchCondition()));
       }
       ValueExpressionCaseElse caseElse = (ValueExpressionCaseElse) caseSearch.getCaseElse();
@@ -1129,7 +1154,7 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
     }
 
     else if (valueExpr instanceof ValueExpressionScalarSelect) {
-        // we don't want the column references in scalar subselect,
+        // we don't want the column references in scalar sub-select,
         // these are only valid and resolved within the context of its QueryExpressionRoot
         //**DON'T**//ValueExpressionScalarSelect scalar = (ValueExpressionScalarSelect) valueExpr;
         //**DON'T**//return findColumnReferencesInQueryExpressionRoot(scalar.getQueryExpr());
@@ -1139,11 +1164,10 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
   }
 
   /**
-   * Returns a Set containing all <code>ValueExpressionColumn</code> s found
+   * Returns a Set containing all <code>ValueExpressionColumn</code>s found
    * in the given <code>ValueExpression</code> list.
    */
-    public static Set findColumnReferencesInValueExpressionList(
-                                                                List valueExprList)
+    public static Set findColumnReferencesInValueExpressionList(List valueExprList)
     {
         HashSet columnSet = null;
 
@@ -1162,7 +1186,7 @@ public static Set findColumnReferencesInUpdateSourceExprList(UpdateSourceExprLis
         return columnSet;
     }
 
-  /**
+/**
  * Returns a Set containing all <code>ValueExpressionColumn</code>s found in
  * the given <code>ValuesRow</code>.
  */
@@ -1251,7 +1275,7 @@ public static Set findColumnReferencesInWithTableSpecification(WithTableSpecific
     }
 
   /**
- * Finds in the given List of <code>TableExpression</code> s the
+ * Finds in the given List of <code>TableExpression</code>s the
  * <code>TableExpression</code> with a name that matches the given
  * <code>tableNameOrAlias</code> or a <code>tableCorrelation</code> with
  * a name that matches <code>tableNameOrAlias</code>. If multiple tables
@@ -1646,7 +1670,7 @@ static public Column getColumnForName(TableInDatabase tableInDB,
     return columnFound;
 }
 
-  /**
+/**
  * Returns the Column matching the columnName from the given TableReference.
  *
  * @param tableRef the TableReference to search for the matching column name
@@ -1686,11 +1710,10 @@ static public Column getColumnForName(TableReference tableRef,
     return foundColumn;
 }
 
-  /**
- * Returns the Column matching the columnName from the given
- * <code>WithTableReference</code>.
+/**
+ * Returns the Column matching the columnName from the given <code>WithTableReference</code>.
  * 
- * @param withTableRef the <code>WithTableReference</code> to seach for the
+ * @param withTableRef the <code>WithTableReference</code> to search for the
  *        matching column name
  * @param columnName the name of the column to search for
  * @return the found column object or null if not found
@@ -1709,14 +1732,13 @@ static public Column getColumnForName(WithTableReference withTableRef,
 
 //            StatementHelper.logError(TableHelper.class.getName()+
 //            "#getColumnForName(WithTableReference,String) is not implemented.");
-            //TODO: implement if it makes sense, we needed the datatype but that
+            // Note: implement if it makes sense, we needed the datatype but that
             //      could be different from the original column!
         }
     }
 
     return columnFound;
 }
-
 
     /**
      * Returns a List of <code>ValueExpressionColumn</code>s,
@@ -1730,7 +1752,7 @@ static public Column getColumnForName(WithTableReference withTableRef,
     public static List getEffectiveResultColumns(TableReference tableRef) {
         
         // must be a copy of the exposed result columns of the given tableRef
-        // to not allow minipulations on it to effect the underlying tableRefs
+        // to not allow manipulations on it to effect the underlying tableRefs
         List resultColExprList = new ArrayList();
         
         if (tableRef == null) {
@@ -1750,7 +1772,7 @@ static public Column getColumnForName(WithTableReference withTableRef,
         }
         else if (tableRef instanceof TableJoined) 
         {
-            // TODO: naming rules for result columns in the higher star-query
+            // Note: naming rules for result columns in the higher star-query
             //   different Databases will have different naming schemes!!!
             //   hand-in a String pattern or a formatter object that does it
             //   e.g. assume TABLE_A (col1, col2, col3) and TABLE_B (col1,col5)
@@ -1779,8 +1801,7 @@ static public Column getColumnForName(WithTableReference withTableRef,
 //                            ": implement getEffectiveResultColumns(TableReference)" +
 //                            " for "+tableRef.getClass().getName());
         }
-        
-        
+               
         return resultColExprList;
     }
 
@@ -1848,7 +1869,7 @@ static public Column getColumnForName(WithTableReference withTableRef,
   }
 
    
-   /**
+/**
  * Returns the <code>ValueExpressionColumn</code> with the given
  * <code>columnName</code> from the given <code>tableExpression</code>'s
  * <code>columnList</code> or, if the given <code>tableExpression</code>'s
@@ -1886,7 +1907,7 @@ public static ValueExpressionColumn getOrCreateColumnExpression(String columnNam
         newCol = StatementHelper.createColumnExpression(columnName);
 // in question if we want the references from column to table
 // or the table have this column added to its exposed columnList
-// we don't wanna mess with the exposed columnList though!!! (ordering, names, types!
+// we don't want to mess with the exposed columnList though!!! (ordering, names, types!
 // will be added to table's exposedColumnList from caller of this method anyways, right?
 //          newCol.setTableExpr(tableExpr);
     }
@@ -1918,7 +1939,7 @@ public static ValueExpressionColumn getOrCreateColumnExpression(String columnNam
     return primarykeyCols;
   }
   
-   /**
+/**
  * Returns the <code>ResultColumn</code> contained in the
  * <code>selectClause</code> of the given <code>QueryExpressionBody</code>,
  * whose <code>name</code> matches the given <code>columnName</code>
@@ -1988,7 +2009,7 @@ public static ResultColumn getResultColumnForAliasOrColumnName(QueryExpressionBo
         return resultColFound;
     }
   
-  /**
+/**
  * Returns the <code>ResultColumn</code>s of the given
  * <code>QueryExpressionBody queryExpr</code>.
  * <p>
@@ -2038,7 +2059,7 @@ static public List getResultColumnsOfQueryExpression(QueryExpressionBody queryEx
     return resultColList;
 }
 
-  /**
+/**
  * @param tableInDB
  * @return
  */
@@ -2079,7 +2100,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     }
     return schemaName;
   }
-  
   
   /**
    * Gets the table object from the given list of table references that is
@@ -2207,18 +2227,15 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     
         return tableExprList;
       }
-
-
   
   /**
-   * Retrieves a List of <code>TableExpression</code> s from the given List of
+   * Retrieves a List of <code>TableExpression</code>s from the given List of
    * <code>TableReference</code>s.
    *
    * @param tableReferenceList
    * @return
    */
-  public static List getTableExpressionsInTableReferenceList(
-      List tableReferenceList) {
+  public static List getTableExpressionsInTableReferenceList(List tableReferenceList) {
     List tableExprList = new ArrayList();
 
     for (Iterator tableRefIt = tableReferenceList.iterator(); tableRefIt.hasNext();) {
@@ -2296,7 +2313,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     return retValue;
   }
 
-
   /**
    * Returns true if the given ValueExpressionColumn is part of Foreign key constraint.
    *
@@ -2314,7 +2330,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     }
     return retValue;
   }
-
 
 /**
    * Returns true if the given column is part of a primary key constraint.
@@ -2336,8 +2351,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     return retValue;
   }
 
-
-
     /**
        * Returns true if the given ValueExpressionColumn is part of a primary key constraint.
        *
@@ -2356,9 +2369,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         return retValue;
       }
 
-
-
-
     /**
        * Returns the <code>true</code> if the given <code>tableExpr</code>
        * is referenced by another <code>ValueExpressionColumn</code>
@@ -2366,7 +2376,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
        * 
        * 
        * @param tableExpr
-       *            the TableReference seached for the matching column name reference
+       *            the TableReference searched for the matching column name reference
        * @param referencedByColumnName
        *            the String name of the ValueExpressionColumn to be searched in the
        * list of column references to the given <code>tableExpr</code>
@@ -2394,8 +2404,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
           return colExprFound;
       }
 
-
-
     /**
        * Populates the list of ValueExpressionColumn in the given table expression
        * using the columns in the given Table object
@@ -2419,8 +2427,8 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
           Column col = (Column) colItr.next();
           ValueExpressionColumn valueExprColumn = null;
           
-          // we don't need that anymore, since we'll have a list of only the exposed
-          // columns vs the list of clumn references to the table
+          // we don't need this anymore, since we'll have a list of only the exposed
+          // columns vs. the list of column references to the table
     //      ValueExpressionColumn valueExprColumn = TableHelper.getColumnExpressionForColumn(tableExpr, col);
     //      if (valueExprColumn == null) {
           
@@ -2444,17 +2452,16 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         }
       }
 
-
     /**
        * Removes a columnExpression from its tableExpression if it has
-       * no other refernces to objects other than its tableExpression.
+       * no other references to objects other than its tableExpression.
        * 
        * @param columnExpr
        */
       public static void removeColumnExpressionFromTableIfNotReferenced(ValueExpressionColumn col) {
           boolean isReferenced = false;
           
-          // if col has it's table reference and all the columns references are only 1
+          // if col has its table reference and all the columns references are only 1
           // this one ref is the table ref and will be deleted
           if (col != null && col.getTableExpr() != null) {
     
@@ -2462,7 +2469,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                 EReference ref = (EReference) refIt.next();
                 if(ref.isMany()) {
                     EList refList = (EList)col.eGet(ref);
-                    // is there an refernce
+                    // is there a reference
                     if (refList.size() > 0) {
                         isReferenced = true;
                     }
@@ -2483,7 +2490,6 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
     
           }
       }
-
 
     /**
      * Link table references in column expressions to tables in the given
@@ -2521,6 +2527,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         String colQualifier = null;  // the table qualifier of the column
         
         TableExpression refTableFound = null;   // table to match the column
+        boolean isOffLine = getIsOffLine(tableExprList);  // find out if we're in off-line (non-connected) mode
         
         for (Iterator colIt = unresolvedColumns.iterator(); colIt.hasNext();)
         {
@@ -2533,8 +2540,8 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
             
             if (colTblRef == null)
             {
-                // there is only one tableExpr, it must be it
-                if (tableExprList.size() == 1)
+             // If we're off-line and there is only one tableExpr, assume the columns are in it.
+                if (isOffLine && tableExprList.size() == 1)
                 {
                     refTableFound = (TableExpression) tableExprList.get(0);
                     // don't check here if the table found really 
@@ -2570,7 +2577,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                 // consider the alias of the columns table ref, if there are
                 // two FROM-tables with the same name, but different aliases
                 // select t1.col1 from table1 t1, table1 t2;
-                // befor first resolving:
+                // before first resolving:
                 //   col1.getTable() == t1 and
                 //   col1.getTable().getCorrelation() == null
                 // after first resolving:
@@ -2667,11 +2674,10 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
 
     }
 
-
     /**
-     * Resolves the <code>TableReference</code> s of the
+     * Resolves the <code>TableReference</code>s of the
      * <code>ResultTableAllColumns</code> in the given
-     * <code>resultTableList</code> with the <code>TableExpression</code> s
+     * <code>resultTableList</code> with the <code>TableExpression</code>s
      * in the given <code>tableExprList</code>.
      * 
      * @param resultTableList
@@ -2692,10 +2698,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                 
             if (resultTable != null && resultTable.getName() != null) 
             {
-                String resultTableName = resultTable.getName();
-                
-                // TODO: check w/ Brian if only named TableReferences with name, ergo TableExpressions, otherwise we have to work with TableRefernces here
-                
+                String resultTableName = resultTable.getName();           
                 TableExpression tableExpr = getTableExpressionFromTableExprList(resultTableName, tableExprList);
                 
                 if (tableExpr != null) {
@@ -2748,7 +2751,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                 ValueExpressionColumn copy = 
                     (ValueExpressionColumn)EcoreUtil.copy(original);
                 
-                // copy the refernce to the derived TableInDatabase
+                // copy the reference to the derived TableInDatabase
                 // we should have a reference called "derivedFromTableInDatabase"
                 copy.setTableInDatabase(original.getTableInDatabase());
                 
@@ -2758,13 +2761,12 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         return result;
    }
 
-
     /**
      * Adds <code>ValueExpressionColumn</code>s to the given
      * <code>queryCombined</code> for each of its queries' exposed columns, see
      * {@link #exposeEffectiveResultColumns(QueryExpressionBody)}, if both
-     * combined queries have the same number of exposed columns (explizitly by
-     * <code>ResultColumn</code>s or implizit by
+     * combined queries have the same number of exposed columns (explicitly by
+     * <code>ResultColumn</code>s or implicit by
      * <code>ResultTableAllColumns</code> or no
      * <code>QueryResultSpecification</code> at all - "select * from ...")
      * If the related <code>ValueExpressionColumn</code> names of both combined
@@ -2890,7 +2892,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
             //                +" implement exposeResultColumnsOfQuerySelect(QuerySelect)" 
             //                +" for star queries (\"SELECT * FROM ...\")");
             
-            // determin the number of columns implied by table, tables or joins
+            // Determine the number of columns implied by table, tables or joins
             // in the select's from-clause, expose as many columnExpressions with
             // name = null to make it correct for further resolving
             for (Iterator it = querySelect.getFromClause().iterator(); it.hasNext();)
@@ -2918,7 +2920,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     //        +" implement exposeResultColumnsOfQuerySelect(QuerySelect)" 
                     //        +" for table-star queries (\"SELECT t1.* ... FROM table1 AS t1...\")");
                     
-                    // determin the number of columns implied by table, tables or joins
+                    // Determine the number of columns implied by table, tables or joins
                     // in the select's from-clause, expose as many columnExpressions with
                     // name = null to make it correct for further resolving
                     
@@ -2926,9 +2928,9 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     TableExpression tableExpr = tableAll.getTableExpr();
                     
                     // has the tableExpr already been resolved? check 
-                    //  if tableAll.getTableExpr() only returns a place holder
+                    // if tableAll.getTableExpr() only returns a place holder
                     // we assume a resolved tableExpression would have a exposed
-                    // columnList, therefor if columnList is empty we only have
+                    // columnList, therefore if columnList is empty we only have
                     // a place holder table
                     if (tableExpr.getColumnList().isEmpty())
                     {
@@ -2982,9 +2984,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
 //                  if (exposedColumnName == null)
 //                  {
 //                      exposedColumnName = "_"+String.valueOf(exposedColumns.size() + 1);
-//                  }
-
-                    
+//                  }                    
                     
                     // check if column table reference was resolved already
                     if (resultColExpr != null 
@@ -3001,9 +3001,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                             List tableRefList = querySelect.getFromClause();
                             resolveColumnTableReferences(unresolvedColumns, tableRefList);
                         }
-                    }
-
-                    
+                    }               
                     
                     // if the result column was derived from a TableInDB column
                     // keep this information
@@ -3020,7 +3018,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                         // a random collection of columns that refer to that table
                         // but it reflects the exact list of columns in order like
                         // in the database below
-                        // here: we should have a special refernce to a TableInDB
+                        // here: we should have a special reference to a TableInDB
                         // with name "derivedFromTableInDatabase"
                         
                         // get corresponding exposed column of the colExpr's table
@@ -3037,15 +3035,11 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                         
                     }
                     
-
-
-                    
                     // create a new ValueExpressionColumn and associate with this
                     // querySelect or find a already exposed column
                     ValueExpressionColumn exposedColumn = 
                         getOrCreateColumnExpression(exposedColumnName, querySelect);
-                    
-                    
+                                      
                     // check for datatype
                     if (resultColExpr != null)
                     {
@@ -3064,12 +3058,12 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     // originally derived from, we should use a reference called
                     // "derivedFromTableInDatabase"
                     exposedColumn.setTableInDatabase(derivedFromTableInDB);
-                    
-                    
+                            
                     exposedColumns.add(exposedColumn);
                 }
             }
         }
+        
         // all the previously associated columns (if previously exposed)
         // are in exposedColumns @see #getOrCreateColumnExpression()
         // so clear the old columnList to not duplicate and preserve ordering
@@ -3124,10 +3118,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
             {
                 ValueExpressionHelper.resolveValueExpressionDatatypeRecursively(valueExpr);
             }
-            
-            DataType exposedDataType = valueExpr.getDataType();
-            
-            exposedCol.setDataType(exposedDataType);
+            ValueExpressionHelper.copyDataType(valueExpr, exposedCol);
             
             exposedColumns.add(exposedCol);
         }
@@ -3274,7 +3265,7 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         // if we didn't find a table maybe the reason is that all the
         // TableInDatabases were not populated because no database is connected
         // in that case we want to be smart enough to find out about other
-        // columns refering to the table
+        // columns referring to the table
         // e.g. "select col1, col2 from tbl1 JOIN tbl2 ON tbl1.col1 = tbl2.col2"
         // we know that "col1" belongs to "tbl1" and "col2" to "tbl2", right?
         if (tableFound == null && checkDisconnected)
@@ -3298,8 +3289,8 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
        * a <code>TableExpression</code> without a schema name or with the
        * current default <code>Schema</code> can match.
        * (see {@link SQLQueryObject#getSourceInfo()},
-       * {@link com.ibm.db.models.sql.query.util.SQLQuerySourceInfo#getSqlFormat()},
-       * {@link com.ibm.db.models.sql.query.util.SQLQuerySourceFormat#getOmitSchema()})
+       * {@link SQLQuerySourceInfo#getSqlFormat()},
+       * {@link SQLQuerySourceFormat#getOmitSchema()})
        * <b>Note:</b> a table can only match if it has no alias, which would cascade
        * the table name and schema.
        *
@@ -3344,14 +3335,10 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     if (StatementHelper.equalSQLIdentifiers(tableName, tableExprName))
                     {
     
-                        // attention: no schemaName given can match any schema name
-                        // of
-                        // the tables here (doesn't mean the defaultSchema as the
-                        // column
-                        // trying to be resolved doesn't have to be qualified with
-                        // the
-                        // schema), but if the schemaName was given it is binding
-                        // and
+                        // attention: no schemaName given can match any schema name of
+                        // the tables here (doesn't mean the defaultSchema as the column
+                        // trying to be resolved doesn't have to be qualified with the
+                        // schema), but if the schemaName was given it is binding and
                         // we assume the given
     
                         if (schemaName != null)
@@ -3436,6 +3423,45 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         return defaultSchema;
     }
     
+    /**
+     * Tries to determines whether or not we are operating in off-line mode by examining the
+     * given list of table expression objects. Off-line mode means that there isn't an instance
+     * of the SQL model reachable from the table objects.  (That is, there is no database 
+     * connection available.)
+     *  
+     * @param aTableExprList the table expression list to examine
+     * @return true when the tables appear to be off-line, otherwise false
+     */
+    private static boolean getIsOffLine(List aTableExprList) {
+        boolean isOffLine = true;
+        
+        if (aTableExprList != null && aTableExprList.size() > 0) {
+            // Look for a TableInDatabase in the list.  If find one, see if the Table
+            // object attached to it is (indirectly) attached to a Database object.
+            // If so, we assume we are on-line.
+            Iterator tableExprListIter = aTableExprList.iterator();
+            while (tableExprListIter.hasNext() && isOffLine == true) {
+                TableExpression tableExpr = (TableExpression) tableExprListIter.next();
+                if (tableExpr instanceof TableInDatabase) {
+                    TableInDatabase tableInDB = (TableInDatabase) tableExpr;
+                    Table table = tableInDB.getDatabaseTable();
+                    if (table != null) {
+                        Schema schema = table.getSchema();
+                        if (schema != null) {
+                            if (schema.getDatabase() != null 
+                              || (schema.getCatalog() != null && schema.getCatalog().getDatabase() != null)
+                               ) {
+                                isOffLine = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return isOffLine;
+    }
+
     /**
      * Convenience method:
      * Returns the Schema name of the given <code>TableExpression</code> if the

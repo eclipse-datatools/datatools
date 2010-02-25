@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElementExpressionImpl.java,v 1.4 2007/02/08 17:00:30 bpayton Exp $
+ * $Id: SuperGroupElementExpressionImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -72,7 +72,7 @@ public class SuperGroupElementExpressionImpl extends SuperGroupElementImpl imple
      * @generated
      */
     public SuperGroupElementSublist getSuperGroupElementSublist() {
-        if (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST) return null;
         return (SuperGroupElementSublist)eContainer();
     }
 
@@ -92,7 +92,7 @@ public class SuperGroupElementExpressionImpl extends SuperGroupElementImpl imple
      * @generated
      */
     public void setSuperGroupElementSublist(SuperGroupElementSublist newSuperGroupElementSublist) {
-        if (newSuperGroupElementSublist != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST && newSuperGroupElementSublist != null)) {
+        if (newSuperGroupElementSublist != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST && newSuperGroupElementSublist != null)) {
             if (EcoreUtil.isAncestor(this, newSuperGroupElementSublist))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -190,7 +190,7 @@ public class SuperGroupElementExpressionImpl extends SuperGroupElementImpl imple
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP_ELEMENT_SUBLIST__SUPER_GROUP_ELEMENT_EXPR_LIST, SuperGroupElementSublist.class, msgs);
         }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionColumn.java,v 1.2 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: ValueExpressionColumn.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getInsertStatement <em>Insert Statement</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr <em>Table Expr</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableInDatabase <em>Table In Database</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getMergeInsertSpec <em>Merge Insert Spec</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,6 +137,24 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
     void setTableInDatabase(TableInDatabase value);
 
 	/**
+     * Returns the value of the '<em><b>Merge Insert Spec</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getTargetColumnList <em>Target Column List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Merge Insert Spec</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Merge Insert Spec</em>' reference list.
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_MergeInsertSpec()
+     * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getTargetColumnList
+     * @model type="org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification" opposite="targetColumnList"
+     * @generated
+     */
+    EList getMergeInsertSpec();
+
+    /**
      * Returns the value of the '<em><b>Insert Statement</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement}.
      * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getTargetColumnList <em>Target Column List</em>}'.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValuesRowImpl.java,v 1.4 2007/02/08 17:00:27 bpayton Exp $
+ * $Id: ValuesRowImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -75,7 +75,7 @@ public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
      * @generated
      */
     public QueryInsertStatement getInsertStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT) return null;
         return (QueryInsertStatement)eContainer();
     }
 
@@ -95,7 +95,7 @@ public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
      * @generated
      */
     public void setInsertStatement(QueryInsertStatement newInsertStatement) {
-        if (newInsertStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT && newInsertStatement != null)) {
+        if (newInsertStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT && newInsertStatement != null)) {
             if (EcoreUtil.isAncestor(this, newInsertStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -128,7 +128,7 @@ public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
      * @generated
      */
     public QueryValues getQueryValues() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES) return null;
         return (QueryValues)eContainer();
     }
 
@@ -148,7 +148,7 @@ public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
      * @generated
      */
     public void setQueryValues(QueryValues newQueryValues) {
-        if (newQueryValues != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES && newQueryValues != null)) {
+        if (newQueryValues != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES && newQueryValues != null)) {
             if (EcoreUtil.isAncestor(this, newQueryValues))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -207,7 +207,7 @@ public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST, QueryInsertStatement.class, msgs);
             case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionRootImpl.java,v 1.5 2007/02/08 17:00:27 bpayton Exp $
+ * $Id: QueryExpressionRootImpl.java,v 1.6 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -108,7 +108,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public QueryInsertStatement getInsertStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__INSERT_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__INSERT_STATEMENT) return null;
         return (QueryInsertStatement)eContainer();
     }
 
@@ -128,7 +128,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setInsertStatement(QueryInsertStatement newInsertStatement) {
-        if (newInsertStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__INSERT_STATEMENT && newInsertStatement != null)) {
+        if (newInsertStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__INSERT_STATEMENT && newInsertStatement != null)) {
             if (EcoreUtil.isAncestor(this, newInsertStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -149,7 +149,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public QuerySelectStatement getSelectStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT) return null;
         return (QuerySelectStatement)eContainer();
     }
 
@@ -169,7 +169,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setSelectStatement(QuerySelectStatement newSelectStatement) {
-        if (newSelectStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT && newSelectStatement != null)) {
+        if (newSelectStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT && newSelectStatement != null)) {
             if (EcoreUtil.isAncestor(this, newSelectStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -245,7 +245,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public PredicateInValueRowSelect getInValueRowSelectRight() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_ROW_SELECT_RIGHT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_ROW_SELECT_RIGHT) return null;
         return (PredicateInValueRowSelect)eContainer();
     }
 
@@ -265,7 +265,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setInValueRowSelectRight(PredicateInValueRowSelect newInValueRowSelectRight) {
-        if (newInValueRowSelectRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_ROW_SELECT_RIGHT && newInValueRowSelectRight != null)) {
+        if (newInValueRowSelectRight != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_ROW_SELECT_RIGHT && newInValueRowSelectRight != null)) {
             if (EcoreUtil.isAncestor(this, newInValueRowSelectRight))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -286,7 +286,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public PredicateInValueSelect getInValueSelectRight() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_SELECT_RIGHT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_SELECT_RIGHT) return null;
         return (PredicateInValueSelect)eContainer();
     }
 
@@ -306,7 +306,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setInValueSelectRight(PredicateInValueSelect newInValueSelectRight) {
-        if (newInValueSelectRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_SELECT_RIGHT && newInValueSelectRight != null)) {
+        if (newInValueSelectRight != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__IN_VALUE_SELECT_RIGHT && newInValueSelectRight != null)) {
             if (EcoreUtil.isAncestor(this, newInValueSelectRight))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -327,7 +327,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public PredicateQuantifiedRowSelect getQuantifiedRowSelectRight() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_ROW_SELECT_RIGHT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_ROW_SELECT_RIGHT) return null;
         return (PredicateQuantifiedRowSelect)eContainer();
     }
 
@@ -347,7 +347,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setQuantifiedRowSelectRight(PredicateQuantifiedRowSelect newQuantifiedRowSelectRight) {
-        if (newQuantifiedRowSelectRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_ROW_SELECT_RIGHT && newQuantifiedRowSelectRight != null)) {
+        if (newQuantifiedRowSelectRight != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_ROW_SELECT_RIGHT && newQuantifiedRowSelectRight != null)) {
             if (EcoreUtil.isAncestor(this, newQuantifiedRowSelectRight))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -368,7 +368,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public PredicateQuantifiedValueSelect getQuantifiedValueSelectRight() {
-        if (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT) return null;
         return (PredicateQuantifiedValueSelect)eContainer();
     }
 
@@ -388,7 +388,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
     public void setQuantifiedValueSelectRight(PredicateQuantifiedValueSelect newQuantifiedValueSelectRight) {
-        if (newQuantifiedValueSelectRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT && newQuantifiedValueSelectRight != null)) {
+        if (newQuantifiedValueSelectRight != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT && newQuantifiedValueSelectRight != null)) {
             if (EcoreUtil.isAncestor(this, newQuantifiedValueSelectRight))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -493,7 +493,7 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__INSERT_STATEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_QUERY, QueryInsertStatement.class, msgs);
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__SELECT_STATEMENT:

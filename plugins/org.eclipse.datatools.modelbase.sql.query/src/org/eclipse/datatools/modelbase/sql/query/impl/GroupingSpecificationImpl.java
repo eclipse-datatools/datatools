@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSpecificationImpl.java,v 1.4 2007/02/08 17:00:27 bpayton Exp $
+ * $Id: GroupingSpecificationImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -59,7 +59,7 @@ public abstract class GroupingSpecificationImpl extends SQLQueryObjectImpl imple
      * @generated
      */
     public QuerySelect getQuerySelect() {
-        if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SPECIFICATION__QUERY_SELECT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_SPECIFICATION__QUERY_SELECT) return null;
         return (QuerySelect)eContainer();
     }
 
@@ -79,7 +79,7 @@ public abstract class GroupingSpecificationImpl extends SQLQueryObjectImpl imple
      * @generated
      */
     public void setQuerySelect(QuerySelect newQuerySelect) {
-        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SPECIFICATION__QUERY_SELECT && newQuerySelect != null)) {
+        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.GROUPING_SPECIFICATION__QUERY_SELECT && newQuerySelect != null)) {
             if (EcoreUtil.isAncestor(this, newQuerySelect))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -128,7 +128,7 @@ public abstract class GroupingSpecificationImpl extends SQLQueryObjectImpl imple
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.GROUPING_SPECIFICATION__QUERY_SELECT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__GROUP_BY_CLAUSE, QuerySelect.class, msgs);
         }

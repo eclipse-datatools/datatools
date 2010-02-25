@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateAssignmentExpressionImpl.java,v 1.4 2007/02/08 17:00:29 bpayton Exp $
+ * $Id: UpdateAssignmentExpressionImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl#getUpdateStatement <em>Update Statement</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl#getTargetColumnList <em>Target Column List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl#getUpdateSource <em>Update Source</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl#getMergeUpdateSpec <em>Merge Update Spec</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,7 +87,7 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
      * @generated
      */
   public QueryUpdateStatement getUpdateStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT) return null;
         return (QueryUpdateStatement)eContainer();
     }
 
@@ -105,7 +107,7 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
      * @generated
      */
   public void setUpdateStatement(QueryUpdateStatement newUpdateStatement) {
-        if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT && newUpdateStatement != null)) {
+        if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT && newUpdateStatement != null)) {
             if (EcoreUtil.isAncestor(this, newUpdateStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -177,6 +179,47 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeUpdateSpecification getMergeUpdateSpec() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC) return null;
+        return (MergeUpdateSpecification)eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMergeUpdateSpec(MergeUpdateSpecification newMergeUpdateSpec, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newMergeUpdateSpec, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMergeUpdateSpec(MergeUpdateSpecification newMergeUpdateSpec) {
+        if (newMergeUpdateSpec != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC && newMergeUpdateSpec != null)) {
+            if (EcoreUtil.isAncestor(this, newMergeUpdateSpec))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newMergeUpdateSpec != null)
+                msgs = ((InternalEObject)newMergeUpdateSpec).eInverseAdd(this, SQLQueryModelPackage.MERGE_UPDATE_SPECIFICATION__ASSIGNEMENT_EXPR_LIST, MergeUpdateSpecification.class, msgs);
+            msgs = basicSetMergeUpdateSpec(newMergeUpdateSpec, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC, newMergeUpdateSpec, newMergeUpdateSpec));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -192,6 +235,10 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
                 if (updateSource != null)
                     msgs = ((InternalEObject)updateSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, null, msgs);
                 return basicSetUpdateSource((UpdateSource)otherEnd, msgs);
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetMergeUpdateSpec((MergeUpdateSpecification)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -209,6 +256,8 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
                 return ((InternalEList)getTargetColumnList()).basicRemove(otherEnd, msgs);
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
                 return basicSetUpdateSource(null, msgs);
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                return basicSetMergeUpdateSpec(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -219,9 +268,11 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, QueryUpdateStatement.class, msgs);
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.MERGE_UPDATE_SPECIFICATION__ASSIGNEMENT_EXPR_LIST, MergeUpdateSpecification.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -239,6 +290,8 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
                 return getTargetColumnList();
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
                 return getUpdateSource();
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                return getMergeUpdateSpec();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -260,6 +313,9 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
                 setUpdateSource((UpdateSource)newValue);
                 return;
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                setMergeUpdateSpec((MergeUpdateSpecification)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -280,6 +336,9 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
                 setUpdateSource((UpdateSource)null);
                 return;
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                setMergeUpdateSpec((MergeUpdateSpecification)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -297,6 +356,8 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
                 return targetColumnList != null && !targetColumnList.isEmpty();
             case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
                 return updateSource != null;
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC:
+                return getMergeUpdateSpec() != null;
         }
         return super.eIsSet(featureID);
     }

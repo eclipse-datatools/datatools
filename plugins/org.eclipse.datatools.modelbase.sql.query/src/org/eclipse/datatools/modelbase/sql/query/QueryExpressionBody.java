@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionBody.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
+ * $Id: QueryExpressionBody.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -15,6 +17,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getRowFetchLimit <em>Row Fetch Limit</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getQueryExpression <em>Query Expression</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getCombinedLeft <em>Combined Left</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getCombinedRight <em>Combined Right</em>}</li>
@@ -22,6 +25,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getUpdateSourceQuery <em>Update Source Query</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getWithTableSpecification <em>With Table Specification</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getQueryNest <em>Query Nest</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getSortSpecList <em>Sort Spec List</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,6 +35,32 @@ package org.eclipse.datatools.modelbase.sql.query;
  */
 public interface QueryExpressionBody extends TableExpression{
 	/**
+     * Returns the value of the '<em><b>Row Fetch Limit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Row Fetch Limit</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Row Fetch Limit</em>' attribute.
+     * @see #setRowFetchLimit(int)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_RowFetchLimit()
+     * @model
+     * @generated
+     */
+    int getRowFetchLimit();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getRowFetchLimit <em>Row Fetch Limit</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Row Fetch Limit</em>' attribute.
+     * @see #getRowFetchLimit()
+     * @generated
+     */
+    void setRowFetchLimit(int value);
+
+    /**
      * Returns the value of the '<em><b>Query Expression</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuery <em>Query</em>}'.
      * <!-- begin-user-doc -->
@@ -225,5 +255,23 @@ public interface QueryExpressionBody extends TableExpression{
      * @generated
      */
     void setQueryNest(QueryNested value);
+
+    /**
+     * Returns the value of the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Sort Spec List</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Sort Spec List</em>' containment reference list.
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_SortSpecList()
+     * @see org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getQuery
+     * @model type="org.eclipse.datatools.modelbase.sql.query.OrderBySpecification" opposite="query" containment="true"
+     * @generated
+     */
+    EList getSortSpecList();
 
 } // SQLQueryExpressionBody

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ColumnNameImpl.java,v 1.4 2007/02/08 17:00:27 bpayton Exp $
+ * $Id: ColumnNameImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -62,7 +62,7 @@ public class ColumnNameImpl extends SQLQueryObjectImpl implements ColumnName {
      * @generated
      */
     public TableCorrelation getTableCorrelation() {
-        if (eContainerFeatureID != SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION) return null;
         return (TableCorrelation)eContainer();
     }
 
@@ -82,7 +82,7 @@ public class ColumnNameImpl extends SQLQueryObjectImpl implements ColumnName {
      * @generated
      */
     public void setTableCorrelation(TableCorrelation newTableCorrelation) {
-        if (newTableCorrelation != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION && newTableCorrelation != null)) {
+        if (newTableCorrelation != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION && newTableCorrelation != null)) {
             if (EcoreUtil.isAncestor(this, newTableCorrelation))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -103,7 +103,7 @@ public class ColumnNameImpl extends SQLQueryObjectImpl implements ColumnName {
      * @generated
      */
     public WithTableSpecification getWithTableSpecification() {
-        if (eContainerFeatureID != SQLQueryModelPackage.COLUMN_NAME__WITH_TABLE_SPECIFICATION) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.COLUMN_NAME__WITH_TABLE_SPECIFICATION) return null;
         return (WithTableSpecification)eContainer();
     }
 
@@ -123,7 +123,7 @@ public class ColumnNameImpl extends SQLQueryObjectImpl implements ColumnName {
      * @generated
      */
     public void setWithTableSpecification(WithTableSpecification newWithTableSpecification) {
-        if (newWithTableSpecification != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.COLUMN_NAME__WITH_TABLE_SPECIFICATION && newWithTableSpecification != null)) {
+        if (newWithTableSpecification != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.COLUMN_NAME__WITH_TABLE_SPECIFICATION && newWithTableSpecification != null)) {
             if (EcoreUtil.isAncestor(this, newWithTableSpecification))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -178,7 +178,7 @@ public class ColumnNameImpl extends SQLQueryObjectImpl implements ColumnName {
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST, TableCorrelation.class, msgs);
             case SQLQueryModelPackage.COLUMN_NAME__WITH_TABLE_SPECIFICATION:

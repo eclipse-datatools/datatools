@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackageImpl.java,v 1.3 2008/01/31 02:57:15 bpayton Exp $
+ * $Id: SQLQueryModelPackageImpl.java,v 1.4 2008/07/07 19:53:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -31,6 +31,12 @@ import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
+import org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification;
 import org.eclipse.datatools.modelbase.sql.query.NullOrderingType;
 import org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal;
 import org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn;
@@ -90,7 +96,10 @@ import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityType;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
+import org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSource;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery;
@@ -745,6 +754,62 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeTargetTableEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeSourceTableEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeOnConditionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeUpdateSpecificationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeInsertSpecificationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mergeOperationSpecificationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass updateOfColumnEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass updatabilityExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -821,6 +886,13 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	private EEnum orderingSpecTypeEEnum = null;
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum updatabilityTypeEEnum = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
      * package URI value.
@@ -847,20 +919,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	private static boolean isInited = false;
 
 	/**
-     * Creates, registers, and initializes the <b>Package</b> for this
-     * model, and for any others upon which it depends.  Simple
-     * dependencies are satisfied by calling this method on all
-     * dependent packages before doing anything else.  This method drives
-     * initialization for interdependent packages directly, in parallel
-     * with this package, itself.
-     * <p>Of this package and its interdependencies, all packages which
-     * have not yet been registered by their URI values are first created
-     * and registered.  The packages are then initialized in two steps:
-     * meta-model objects for all of the packages are created before any
-     * are initialized, since one package's meta-model objects may refer to
-     * those of another.
-     * <p>Invocation of this method will not affect any packages that have
-     * already been initialized.
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link SQLQueryModelPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @see #eNS_URI
@@ -872,7 +934,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         if (isInited) return (SQLQueryModelPackage)EPackage.Registry.INSTANCE.getEPackage(SQLQueryModelPackage.eNS_URI);
 
         // Obtain or create and register package
-        SQLQueryModelPackageImpl theSQLQueryModelPackage = (SQLQueryModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLQueryModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLQueryModelPackageImpl());
+        SQLQueryModelPackageImpl theSQLQueryModelPackage = (SQLQueryModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SQLQueryModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SQLQueryModelPackageImpl());
 
         isInited = true;
 
@@ -895,6 +957,9 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         // Mark meta-data to indicate it can't be changed
         theSQLQueryModelPackage.freeze();
 
+  
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(SQLQueryModelPackage.eNS_URI, theSQLQueryModelPackage);
         return theSQLQueryModelPackage;
     }
 
@@ -1017,6 +1082,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQuerySelectStatement_UpdatabilityExpr() {
+        return (EReference)querySelectStatementEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1097,6 +1171,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUpdateAssignmentExpression_MergeUpdateSpec() {
+        return (EReference)updateAssignmentExpressionEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1224,6 +1307,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQuerySearchCondition_MergeOnCondition() {
+        return (EReference)querySearchConditionEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1233,19 +1325,19 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_QueryExpression() {
-        return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(0);
+    public EAttribute getQueryExpressionBody_RowFetchLimit() {
+        return (EAttribute)queryExpressionBodyEClass.getEStructuralFeatures().get(0);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_CombinedLeft() {
+	public EReference getQueryExpressionBody_QueryExpression() {
         return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(1);
     }
 
@@ -1254,7 +1346,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_CombinedRight() {
+	public EReference getQueryExpressionBody_CombinedLeft() {
         return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(2);
     }
 
@@ -1263,7 +1355,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_PredicateExists() {
+	public EReference getQueryExpressionBody_CombinedRight() {
         return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(3);
     }
 
@@ -1272,7 +1364,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_UpdateSourceQuery() {
+	public EReference getQueryExpressionBody_PredicateExists() {
         return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(4);
     }
 
@@ -1281,8 +1373,17 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EReference getQueryExpressionBody_WithTableSpecification() {
+	public EReference getQueryExpressionBody_UpdateSourceQuery() {
         return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(5);
+    }
+
+	/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EReference getQueryExpressionBody_WithTableSpecification() {
+        return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(6);
     }
 
 	/**
@@ -1291,7 +1392,16 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
      * @generated
      */
     public EReference getQueryExpressionBody_QueryNest() {
-        return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(6);
+        return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryExpressionBody_SortSpecList() {
+        return (EReference)queryExpressionBodyEClass.getEStructuralFeatures().get(8);
     }
 
     /**
@@ -1809,6 +1919,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTableReference_MergeSourceTable() {
+        return (EReference)tableReferenceEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1853,6 +1972,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTableExpression_MergeTargetTable() {
+        return (EReference)tableExpressionEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -2655,6 +2783,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getValueExpressionColumn_MergeInsertSpec() {
+        return (EReference)valueExpressionColumnEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3375,6 +3512,42 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryMergeStatement_TargetTable() {
+        return (EReference)queryMergeStatementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryMergeStatement_SourceTable() {
+        return (EReference)queryMergeStatementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryMergeStatement_OnCondition() {
+        return (EReference)queryMergeStatementEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryMergeStatement_OperationSpecList() {
+        return (EReference)queryMergeStatementEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3464,6 +3637,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getOrderBySpecification_Query() {
+        return (EReference)orderBySpecificationEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -3636,6 +3818,213 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeTargetTable() {
+        return mergeTargetTableEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeTargetTable_MergeStatement() {
+        return (EReference)mergeTargetTableEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeTargetTable_TableExpr() {
+        return (EReference)mergeTargetTableEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeSourceTable() {
+        return mergeSourceTableEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeSourceTable_QueryMergeStatement() {
+        return (EReference)mergeSourceTableEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeSourceTable_MergeStatement() {
+        return (EReference)mergeSourceTableEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeSourceTable_TableRef() {
+        return (EReference)mergeSourceTableEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeOnCondition() {
+        return mergeOnConditionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeOnCondition_MergeStatement() {
+        return (EReference)mergeOnConditionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeOnCondition_SearchCondition() {
+        return (EReference)mergeOnConditionEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeUpdateSpecification() {
+        return mergeUpdateSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeUpdateSpecification_AssignementExprList() {
+        return (EReference)mergeUpdateSpecificationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeInsertSpecification() {
+        return mergeInsertSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeInsertSpecification_TargetColumnList() {
+        return (EReference)mergeInsertSpecificationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeInsertSpecification_SourceValuesRow() {
+        return (EReference)mergeInsertSpecificationEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMergeOperationSpecification() {
+        return mergeOperationSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMergeOperationSpecification_MergeStatement() {
+        return (EReference)mergeOperationSpecificationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getUpdateOfColumn() {
+        return updateOfColumnEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUpdateOfColumn_UpdatabilityExpr() {
+        return (EReference)updateOfColumnEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getUpdatabilityExpression() {
+        return updatabilityExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getUpdatabilityExpression_UpdatabilityType() {
+        return (EAttribute)updatabilityExpressionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUpdatabilityExpression_UpdateOfColumnList() {
+        return (EReference)updatabilityExpressionEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getUpdatabilityExpression_SelectStatement() {
+        return (EReference)updatabilityExpressionEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3735,6 +4124,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getUpdatabilityType() {
+        return updatabilityTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3777,6 +4175,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         querySelectStatementEClass = createEClass(QUERY_SELECT_STATEMENT);
         createEReference(querySelectStatementEClass, QUERY_SELECT_STATEMENT__QUERY_EXPR);
         createEReference(querySelectStatementEClass, QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE);
+        createEReference(querySelectStatementEClass, QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR);
 
         queryUpdateStatementEClass = createEClass(QUERY_UPDATE_STATEMENT);
         createEReference(queryUpdateStatementEClass, QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE);
@@ -3788,6 +4187,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(updateAssignmentExpressionEClass, UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT);
         createEReference(updateAssignmentExpressionEClass, UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST);
         createEReference(updateAssignmentExpressionEClass, UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE);
+        createEReference(updateAssignmentExpressionEClass, UPDATE_ASSIGNMENT_EXPRESSION__MERGE_UPDATE_SPEC);
 
         cursorReferenceEClass = createEClass(CURSOR_REFERENCE);
         createEReference(cursorReferenceEClass, CURSOR_REFERENCE__UPDATE_STATEMENT);
@@ -3804,8 +4204,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(querySearchConditionEClass, QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE);
         createEReference(querySearchConditionEClass, QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT);
         createEReference(querySearchConditionEClass, QUERY_SEARCH_CONDITION__NEST);
+        createEReference(querySearchConditionEClass, QUERY_SEARCH_CONDITION__MERGE_ON_CONDITION);
 
         queryExpressionBodyEClass = createEClass(QUERY_EXPRESSION_BODY);
+        createEAttribute(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__ROW_FETCH_LIMIT);
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__QUERY_EXPRESSION);
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__COMBINED_LEFT);
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__COMBINED_RIGHT);
@@ -3813,6 +4215,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__UPDATE_SOURCE_QUERY);
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__WITH_TABLE_SPECIFICATION);
         createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__QUERY_NEST);
+        createEReference(queryExpressionBodyEClass, QUERY_EXPRESSION_BODY__SORT_SPEC_LIST);
 
         queryValueExpressionEClass = createEClass(QUERY_VALUE_EXPRESSION);
         createEAttribute(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__UNARY_OPERATOR);
@@ -3875,12 +4278,14 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(tableReferenceEClass, TABLE_REFERENCE__TABLE_JOINED_LEFT);
         createEReference(tableReferenceEClass, TABLE_REFERENCE__QUERY_SELECT);
         createEReference(tableReferenceEClass, TABLE_REFERENCE__NEST);
+        createEReference(tableReferenceEClass, TABLE_REFERENCE__MERGE_SOURCE_TABLE);
 
         tableExpressionEClass = createEClass(TABLE_EXPRESSION);
         createEReference(tableExpressionEClass, TABLE_EXPRESSION__COLUMN_LIST);
         createEReference(tableExpressionEClass, TABLE_EXPRESSION__TABLE_CORRELATION);
         createEReference(tableExpressionEClass, TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS);
         createEReference(tableExpressionEClass, TABLE_EXPRESSION__VALUE_EXPR_COLUMNS);
+        createEReference(tableExpressionEClass, TABLE_EXPRESSION__MERGE_TARGET_TABLE);
 
         tableJoinedEClass = createEClass(TABLE_JOINED);
         createEAttribute(tableJoinedEClass, TABLE_JOINED__JOIN_OPERATOR);
@@ -3995,6 +4400,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(valueExpressionColumnEClass, VALUE_EXPRESSION_COLUMN__INSERT_STATEMENT);
         createEReference(valueExpressionColumnEClass, VALUE_EXPRESSION_COLUMN__TABLE_EXPR);
         createEReference(valueExpressionColumnEClass, VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE);
+        createEReference(valueExpressionColumnEClass, VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC);
 
         valueExpressionVariableEClass = createEClass(VALUE_EXPRESSION_VARIABLE);
         createEReference(valueExpressionVariableEClass, VALUE_EXPRESSION_VARIABLE__QUERY_SELECT);
@@ -4106,6 +4512,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(tableNestedEClass, TABLE_NESTED__NESTED_TABLE_REF);
 
         queryMergeStatementEClass = createEClass(QUERY_MERGE_STATEMENT);
+        createEReference(queryMergeStatementEClass, QUERY_MERGE_STATEMENT__TARGET_TABLE);
+        createEReference(queryMergeStatementEClass, QUERY_MERGE_STATEMENT__SOURCE_TABLE);
+        createEReference(queryMergeStatementEClass, QUERY_MERGE_STATEMENT__ON_CONDITION);
+        createEReference(queryMergeStatementEClass, QUERY_MERGE_STATEMENT__OPERATION_SPEC_LIST);
 
         searchConditionNestedEClass = createEClass(SEARCH_CONDITION_NESTED);
         createEReference(searchConditionNestedEClass, SEARCH_CONDITION_NESTED__NESTED_CONDITION);
@@ -4120,6 +4530,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEAttribute(orderBySpecificationEClass, ORDER_BY_SPECIFICATION__ORDERING_SPEC_OPTION);
         createEAttribute(orderBySpecificationEClass, ORDER_BY_SPECIFICATION__NULL_ORDERING_OPTION);
         createEReference(orderBySpecificationEClass, ORDER_BY_SPECIFICATION__SELECT_STATEMENT);
+        createEReference(orderBySpecificationEClass, ORDER_BY_SPECIFICATION__QUERY);
 
         orderByOrdinalEClass = createEClass(ORDER_BY_ORDINAL);
         createEAttribute(orderByOrdinalEClass, ORDER_BY_ORDINAL__ORDINAL_VALUE);
@@ -4149,6 +4560,37 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         valueExpressionRowEClass = createEClass(VALUE_EXPRESSION_ROW);
         createEReference(valueExpressionRowEClass, VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST);
 
+        mergeTargetTableEClass = createEClass(MERGE_TARGET_TABLE);
+        createEReference(mergeTargetTableEClass, MERGE_TARGET_TABLE__MERGE_STATEMENT);
+        createEReference(mergeTargetTableEClass, MERGE_TARGET_TABLE__TABLE_EXPR);
+
+        mergeSourceTableEClass = createEClass(MERGE_SOURCE_TABLE);
+        createEReference(mergeSourceTableEClass, MERGE_SOURCE_TABLE__QUERY_MERGE_STATEMENT);
+        createEReference(mergeSourceTableEClass, MERGE_SOURCE_TABLE__MERGE_STATEMENT);
+        createEReference(mergeSourceTableEClass, MERGE_SOURCE_TABLE__TABLE_REF);
+
+        mergeOnConditionEClass = createEClass(MERGE_ON_CONDITION);
+        createEReference(mergeOnConditionEClass, MERGE_ON_CONDITION__MERGE_STATEMENT);
+        createEReference(mergeOnConditionEClass, MERGE_ON_CONDITION__SEARCH_CONDITION);
+
+        mergeUpdateSpecificationEClass = createEClass(MERGE_UPDATE_SPECIFICATION);
+        createEReference(mergeUpdateSpecificationEClass, MERGE_UPDATE_SPECIFICATION__ASSIGNEMENT_EXPR_LIST);
+
+        mergeInsertSpecificationEClass = createEClass(MERGE_INSERT_SPECIFICATION);
+        createEReference(mergeInsertSpecificationEClass, MERGE_INSERT_SPECIFICATION__TARGET_COLUMN_LIST);
+        createEReference(mergeInsertSpecificationEClass, MERGE_INSERT_SPECIFICATION__SOURCE_VALUES_ROW);
+
+        mergeOperationSpecificationEClass = createEClass(MERGE_OPERATION_SPECIFICATION);
+        createEReference(mergeOperationSpecificationEClass, MERGE_OPERATION_SPECIFICATION__MERGE_STATEMENT);
+
+        updateOfColumnEClass = createEClass(UPDATE_OF_COLUMN);
+        createEReference(updateOfColumnEClass, UPDATE_OF_COLUMN__UPDATABILITY_EXPR);
+
+        updatabilityExpressionEClass = createEClass(UPDATABILITY_EXPRESSION);
+        createEAttribute(updatabilityExpressionEClass, UPDATABILITY_EXPRESSION__UPDATABILITY_TYPE);
+        createEReference(updatabilityExpressionEClass, UPDATABILITY_EXPRESSION__UPDATE_OF_COLUMN_LIST);
+        createEReference(updatabilityExpressionEClass, UPDATABILITY_EXPRESSION__SELECT_STATEMENT);
+
         // Create enums
         superGroupTypeEEnum = createEEnum(SUPER_GROUP_TYPE);
         predicateQuantifiedTypeEEnum = createEEnum(PREDICATE_QUANTIFIED_TYPE);
@@ -4161,6 +4603,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         valueExpressionLabeledDurationTypeEEnum = createEEnum(VALUE_EXPRESSION_LABELED_DURATION_TYPE);
         nullOrderingTypeEEnum = createEEnum(NULL_ORDERING_TYPE);
         orderingSpecTypeEEnum = createEEnum(ORDERING_SPEC_TYPE);
+        updatabilityTypeEEnum = createEEnum(UPDATABILITY_TYPE);
     }
 
 	/**
@@ -4284,6 +4727,14 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         withTableReferenceEClass.getESuperTypes().add(this.getTableExpression());
         queryNestedEClass.getESuperTypes().add(this.getQueryExpressionBody());
         valueExpressionRowEClass.getESuperTypes().add(this.getQueryValueExpression());
+        mergeTargetTableEClass.getESuperTypes().add(this.getSQLQueryObject());
+        mergeSourceTableEClass.getESuperTypes().add(this.getSQLQueryObject());
+        mergeOnConditionEClass.getESuperTypes().add(this.getSQLQueryObject());
+        mergeUpdateSpecificationEClass.getESuperTypes().add(this.getMergeOperationSpecification());
+        mergeInsertSpecificationEClass.getESuperTypes().add(this.getMergeOperationSpecification());
+        mergeOperationSpecificationEClass.getESuperTypes().add(this.getSQLQueryObject());
+        updateOfColumnEClass.getESuperTypes().add(this.getSQLQueryObject());
+        updatabilityExpressionEClass.getESuperTypes().add(this.getSQLQueryObject());
 
         // Initialize classes and features; add operations and parameters
         initEClass(queryStatementEClass, QueryStatement.class, "QueryStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4302,6 +4753,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEClass(querySelectStatementEClass, QuerySelectStatement.class, "QuerySelectStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getQuerySelectStatement_QueryExpr(), this.getQueryExpressionRoot(), this.getQueryExpressionRoot_SelectStatement(), "queryExpr", null, 1, 1, QuerySelectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQuerySelectStatement_OrderByClause(), this.getOrderBySpecification(), this.getOrderBySpecification_SelectStatement(), "orderByClause", null, 0, -1, QuerySelectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQuerySelectStatement_UpdatabilityExpr(), this.getUpdatabilityExpression(), this.getUpdatabilityExpression_SelectStatement(), "updatabilityExpr", null, 0, 1, QuerySelectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryUpdateStatementEClass, QueryUpdateStatement.class, "QueryUpdateStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getQueryUpdateStatement_AssignmentClause(), this.getUpdateAssignmentExpression(), this.getUpdateAssignmentExpression_UpdateStatement(), "assignmentClause", null, 1, -1, QueryUpdateStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4313,6 +4765,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getUpdateAssignmentExpression_UpdateStatement(), this.getQueryUpdateStatement(), this.getQueryUpdateStatement_AssignmentClause(), "updateStatement", null, 0, 1, UpdateAssignmentExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getUpdateAssignmentExpression_TargetColumnList(), this.getValueExpressionColumn(), this.getValueExpressionColumn_AssignmentExprTarget(), "targetColumnList", null, 1, -1, UpdateAssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getUpdateAssignmentExpression_UpdateSource(), this.getUpdateSource(), this.getUpdateSource_UpdateAssignmentExpr(), "updateSource", null, 1, 1, UpdateAssignmentExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUpdateAssignmentExpression_MergeUpdateSpec(), this.getMergeUpdateSpecification(), this.getMergeUpdateSpecification_AssignementExprList(), "mergeUpdateSpec", null, 0, 1, UpdateAssignmentExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cursorReferenceEClass, CursorReference.class, "CursorReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getCursorReference_UpdateStatement(), this.getQueryUpdateStatement(), this.getQueryUpdateStatement_WhereCurrentOfClause(), "updateStatement", null, 0, 1, CursorReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4329,8 +4782,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getQuerySearchCondition_QuerySelectWhere(), this.getQuerySelect(), this.getQuerySelect_WhereClause(), "querySelectWhere", null, 0, 1, QuerySearchCondition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQuerySearchCondition_ValueExprCaseSearchContent(), this.getValueExpressionCaseSearchContent(), this.getValueExpressionCaseSearchContent_SearchCondition(), "valueExprCaseSearchContent", null, 0, 1, QuerySearchCondition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQuerySearchCondition_Nest(), this.getSearchConditionNested(), this.getSearchConditionNested_NestedCondition(), "nest", null, 0, 1, QuerySearchCondition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQuerySearchCondition_MergeOnCondition(), this.getMergeOnCondition(), this.getMergeOnCondition_SearchCondition(), "mergeOnCondition", null, 0, 1, QuerySearchCondition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryExpressionBodyEClass, QueryExpressionBody.class, "QueryExpressionBody", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getQueryExpressionBody_RowFetchLimit(), ecorePackage.getEInt(), "rowFetchLimit", null, 0, 1, QueryExpressionBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryExpressionBody_QueryExpression(), this.getQueryExpressionRoot(), this.getQueryExpressionRoot_Query(), "queryExpression", null, 0, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryExpressionBody_CombinedLeft(), this.getQueryCombined(), this.getQueryCombined_LeftQuery(), "combinedLeft", null, 0, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryExpressionBody_CombinedRight(), this.getQueryCombined(), this.getQueryCombined_RightQuery(), "combinedRight", null, 0, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4338,6 +4793,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getQueryExpressionBody_UpdateSourceQuery(), this.getUpdateSourceQuery(), this.getUpdateSourceQuery_QueryExpr(), "updateSourceQuery", null, 1, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryExpressionBody_WithTableSpecification(), this.getWithTableSpecification(), this.getWithTableSpecification_WithTableQueryExpr(), "withTableSpecification", null, 1, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryExpressionBody_QueryNest(), this.getQueryNested(), this.getQueryNested_NestedQuery(), "queryNest", null, 0, 1, QueryExpressionBody.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryExpressionBody_SortSpecList(), this.getOrderBySpecification(), this.getOrderBySpecification_Query(), "sortSpecList", null, 0, -1, QueryExpressionBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryValueExpressionEClass, QueryValueExpression.class, "QueryValueExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getQueryValueExpression_UnaryOperator(), this.getValueExpressionUnaryOperator(), "unaryOperator", null, 0, 1, QueryValueExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4400,12 +4856,14 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getTableReference_TableJoinedLeft(), this.getTableJoined(), this.getTableJoined_TableRefLeft(), "tableJoinedLeft", null, 1, 1, TableReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTableReference_QuerySelect(), this.getQuerySelect(), this.getQuerySelect_FromClause(), "querySelect", null, 0, 1, TableReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTableReference_Nest(), this.getTableNested(), this.getTableNested_NestedTableRef(), "nest", null, 0, 1, TableReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTableReference_MergeSourceTable(), this.getMergeSourceTable(), this.getMergeSourceTable_TableRef(), "mergeSourceTable", null, 0, 1, TableReference.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tableExpressionEClass, TableExpression.class, "TableExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTableExpression_ColumnList(), this.getValueExpressionColumn(), this.getValueExpressionColumn_ParentTableExpr(), "columnList", null, 0, -1, TableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTableExpression_TableCorrelation(), this.getTableCorrelation(), this.getTableCorrelation_TableExpr(), "tableCorrelation", null, 0, 1, TableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTableExpression_ResultTableAllColumns(), this.getResultTableAllColumns(), this.getResultTableAllColumns_TableExpr(), "resultTableAllColumns", null, 0, -1, TableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTableExpression_ValueExprColumns(), this.getValueExpressionColumn(), this.getValueExpressionColumn_TableExpr(), "valueExprColumns", null, 0, -1, TableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTableExpression_MergeTargetTable(), this.getMergeTargetTable(), this.getMergeTargetTable_TableExpr(), "mergeTargetTable", null, 0, 1, TableExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tableJoinedEClass, TableJoined.class, "TableJoined", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTableJoined_JoinOperator(), this.getTableJoinedOperator(), "joinOperator", null, 0, 1, TableJoined.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4520,6 +4978,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getValueExpressionColumn_InsertStatement(), this.getQueryInsertStatement(), this.getQueryInsertStatement_TargetColumnList(), "insertStatement", null, 0, -1, ValueExpressionColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getValueExpressionColumn_TableExpr(), this.getTableExpression(), this.getTableExpression_ValueExprColumns(), "tableExpr", null, 1, 1, ValueExpressionColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getValueExpressionColumn_TableInDatabase(), this.getTableInDatabase(), this.getTableInDatabase_DerivedColumnList(), "tableInDatabase", null, 0, 1, ValueExpressionColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getValueExpressionColumn_MergeInsertSpec(), this.getMergeInsertSpecification(), this.getMergeInsertSpecification_TargetColumnList(), "mergeInsertSpec", null, 0, -1, ValueExpressionColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(valueExpressionVariableEClass, ValueExpressionVariable.class, "ValueExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getValueExpressionVariable_QuerySelect(), this.getQuerySelect(), this.getQuerySelect_IntoClause(), "querySelect", null, 0, 1, ValueExpressionVariable.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4636,6 +5095,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getTableNested_NestedTableRef(), this.getTableReference(), this.getTableReference_Nest(), "nestedTableRef", null, 1, 1, TableNested.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryMergeStatementEClass, QueryMergeStatement.class, "QueryMergeStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getQueryMergeStatement_TargetTable(), this.getMergeTargetTable(), this.getMergeTargetTable_MergeStatement(), "targetTable", null, 1, 1, QueryMergeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryMergeStatement_SourceTable(), this.getMergeSourceTable(), this.getMergeSourceTable_MergeStatement(), "sourceTable", null, 1, 1, QueryMergeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryMergeStatement_OnCondition(), this.getMergeOnCondition(), this.getMergeOnCondition_MergeStatement(), "onCondition", null, 1, 1, QueryMergeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryMergeStatement_OperationSpecList(), this.getMergeOperationSpecification(), this.getMergeOperationSpecification_MergeStatement(), "operationSpecList", null, 1, -1, QueryMergeStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(searchConditionNestedEClass, SearchConditionNested.class, "SearchConditionNested", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getSearchConditionNested_NestedCondition(), this.getQuerySearchCondition(), this.getQuerySearchCondition_Nest(), "nestedCondition", null, 1, 1, SearchConditionNested.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4650,6 +5113,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEAttribute(getOrderBySpecification_OrderingSpecOption(), this.getOrderingSpecType(), "OrderingSpecOption", null, 0, 1, OrderBySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getOrderBySpecification_NullOrderingOption(), this.getNullOrderingType(), "NullOrderingOption", null, 0, 1, OrderBySpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getOrderBySpecification_SelectStatement(), this.getQuerySelectStatement(), this.getQuerySelectStatement_OrderByClause(), "selectStatement", null, 0, 1, OrderBySpecification.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOrderBySpecification_Query(), this.getQueryExpressionBody(), this.getQueryExpressionBody_SortSpecList(), "query", null, 0, 1, OrderBySpecification.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(orderByOrdinalEClass, OrderByOrdinal.class, "OrderByOrdinal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getOrderByOrdinal_OrdinalValue(), ecorePackage.getEInt(), "ordinalValue", null, 0, 1, OrderByOrdinal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4678,6 +5142,37 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
         initEClass(valueExpressionRowEClass, ValueExpressionRow.class, "ValueExpressionRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getValueExpressionRow_ValueExprList(), this.getQueryValueExpression(), this.getQueryValueExpression_ValueExprRow(), "valueExprList", null, 0, -1, ValueExpressionRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeTargetTableEClass, MergeTargetTable.class, "MergeTargetTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeTargetTable_MergeStatement(), this.getQueryMergeStatement(), this.getQueryMergeStatement_TargetTable(), "mergeStatement", null, 0, 1, MergeTargetTable.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMergeTargetTable_TableExpr(), this.getTableExpression(), this.getTableExpression_MergeTargetTable(), "tableExpr", null, 1, 1, MergeTargetTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeSourceTableEClass, MergeSourceTable.class, "MergeSourceTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeSourceTable_QueryMergeStatement(), this.getQueryMergeStatement(), null, "QueryMergeStatement", null, 0, -1, MergeSourceTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMergeSourceTable_MergeStatement(), this.getQueryMergeStatement(), this.getQueryMergeStatement_SourceTable(), "mergeStatement", null, 0, 1, MergeSourceTable.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMergeSourceTable_TableRef(), this.getTableReference(), this.getTableReference_MergeSourceTable(), "tableRef", null, 1, 1, MergeSourceTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeOnConditionEClass, MergeOnCondition.class, "MergeOnCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeOnCondition_MergeStatement(), this.getQueryMergeStatement(), this.getQueryMergeStatement_OnCondition(), "mergeStatement", null, 0, 1, MergeOnCondition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMergeOnCondition_SearchCondition(), this.getQuerySearchCondition(), this.getQuerySearchCondition_MergeOnCondition(), "searchCondition", null, 1, 1, MergeOnCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeUpdateSpecificationEClass, MergeUpdateSpecification.class, "MergeUpdateSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeUpdateSpecification_AssignementExprList(), this.getUpdateAssignmentExpression(), this.getUpdateAssignmentExpression_MergeUpdateSpec(), "assignementExprList", null, 1, -1, MergeUpdateSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeInsertSpecificationEClass, MergeInsertSpecification.class, "MergeInsertSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeInsertSpecification_TargetColumnList(), this.getValueExpressionColumn(), this.getValueExpressionColumn_MergeInsertSpec(), "targetColumnList", null, 0, -1, MergeInsertSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMergeInsertSpecification_SourceValuesRow(), this.getValuesRow(), null, "sourceValuesRow", null, 1, 1, MergeInsertSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(mergeOperationSpecificationEClass, MergeOperationSpecification.class, "MergeOperationSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getMergeOperationSpecification_MergeStatement(), this.getQueryMergeStatement(), this.getQueryMergeStatement_OperationSpecList(), "mergeStatement", null, 0, 1, MergeOperationSpecification.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(updateOfColumnEClass, UpdateOfColumn.class, "UpdateOfColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getUpdateOfColumn_UpdatabilityExpr(), this.getUpdatabilityExpression(), this.getUpdatabilityExpression_UpdateOfColumnList(), "updatabilityExpr", null, 0, 1, UpdateOfColumn.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(updatabilityExpressionEClass, UpdatabilityExpression.class, "UpdatabilityExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getUpdatabilityExpression_UpdatabilityType(), this.getUpdatabilityType(), "updatabilityType", null, 0, 1, UpdatabilityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUpdatabilityExpression_UpdateOfColumnList(), this.getUpdateOfColumn(), this.getUpdateOfColumn_UpdatabilityExpr(), "updateOfColumnList", null, 0, -1, UpdatabilityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getUpdatabilityExpression_SelectStatement(), this.getQuerySelectStatement(), this.getQuerySelectStatement_UpdatabilityExpr(), "selectStatement", null, 0, 1, UpdatabilityExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(superGroupTypeEEnum, SuperGroupType.class, "SuperGroupType");
@@ -4747,6 +5242,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         addEEnumLiteral(orderingSpecTypeEEnum, OrderingSpecType.NONE_LITERAL);
         addEEnumLiteral(orderingSpecTypeEEnum, OrderingSpecType.ASC_LITERAL);
         addEEnumLiteral(orderingSpecTypeEEnum, OrderingSpecType.DESC_LITERAL);
+
+        initEEnum(updatabilityTypeEEnum, UpdatabilityType.class, "UpdatabilityType");
+        addEEnumLiteral(updatabilityTypeEEnum, UpdatabilityType.READ_ONLY_LITERAL);
+        addEEnumLiteral(updatabilityTypeEEnum, UpdatabilityType.UPDATE_LITERAL);
 
         // Create resource
         createResource(eNS_URI);

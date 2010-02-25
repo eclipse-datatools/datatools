@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CursorReferenceImpl.java,v 1.4 2007/02/08 17:00:29 bpayton Exp $
+ * $Id: CursorReferenceImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -61,7 +61,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
      * @generated
      */
     public QueryUpdateStatement getUpdateStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT) return null;
         return (QueryUpdateStatement)eContainer();
     }
 
@@ -81,7 +81,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
      * @generated
      */
     public void setUpdateStatement(QueryUpdateStatement newUpdateStatement) {
-        if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT && newUpdateStatement != null)) {
+        if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT && newUpdateStatement != null)) {
             if (EcoreUtil.isAncestor(this, newUpdateStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -102,7 +102,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
      * @generated
      */
     public QueryDeleteStatement getDeleteStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT) return null;
         return (QueryDeleteStatement)eContainer();
     }
 
@@ -122,7 +122,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
      * @generated
      */
     public void setDeleteStatement(QueryDeleteStatement newDeleteStatement) {
-        if (newDeleteStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT && newDeleteStatement != null)) {
+        if (newDeleteStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT && newDeleteStatement != null)) {
             if (EcoreUtil.isAncestor(this, newDeleteStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -177,7 +177,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryUpdateStatement.class, msgs);
             case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingImpl.java,v 1.4 2007/02/08 17:00:26 bpayton Exp $
+ * $Id: GroupingImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -60,7 +60,7 @@ public abstract class GroupingImpl extends GroupingSpecificationImpl implements 
      * @generated
      */
     public GroupingSetsElementExpression getGroupingSetsElementExpr() {
-        if (eContainerFeatureID != SQLQueryModelPackage.GROUPING__GROUPING_SETS_ELEMENT_EXPR) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.GROUPING__GROUPING_SETS_ELEMENT_EXPR) return null;
         return (GroupingSetsElementExpression)eContainer();
     }
 
@@ -80,7 +80,7 @@ public abstract class GroupingImpl extends GroupingSpecificationImpl implements 
      * @generated
      */
     public void setGroupingSetsElementExpr(GroupingSetsElementExpression newGroupingSetsElementExpr) {
-        if (newGroupingSetsElementExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING__GROUPING_SETS_ELEMENT_EXPR && newGroupingSetsElementExpr != null)) {
+        if (newGroupingSetsElementExpr != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.GROUPING__GROUPING_SETS_ELEMENT_EXPR && newGroupingSetsElementExpr != null)) {
             if (EcoreUtil.isAncestor(this, newGroupingSetsElementExpr))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -129,7 +129,7 @@ public abstract class GroupingImpl extends GroupingSpecificationImpl implements 
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.GROUPING__GROUPING_SETS_ELEMENT_EXPR:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING, GroupingSetsElementExpression.class, msgs);
         }

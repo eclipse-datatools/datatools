@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableReferenceImpl.java,v 1.4 2007/02/08 17:00:25 bpayton Exp $
+ * $Id: TableReferenceImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl#getTableJoinedLeft <em>Table Joined Left</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl#getQuerySelect <em>Query Select</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl#getNest <em>Nest</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl#getMergeSourceTable <em>Merge Source Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,7 +66,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public TableJoined getTableJoinedRight() {
-        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT) return null;
         return (TableJoined)eContainer();
     }
 
@@ -84,7 +86,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public void setTableJoinedRight(TableJoined newTableJoinedRight) {
-        if (newTableJoinedRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT && newTableJoinedRight != null)) {
+        if (newTableJoinedRight != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT && newTableJoinedRight != null)) {
             if (EcoreUtil.isAncestor(this, newTableJoinedRight))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -105,7 +107,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public TableJoined getTableJoinedLeft() {
-        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT) return null;
         return (TableJoined)eContainer();
     }
 
@@ -125,7 +127,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public void setTableJoinedLeft(TableJoined newTableJoinedLeft) {
-        if (newTableJoinedLeft != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT && newTableJoinedLeft != null)) {
+        if (newTableJoinedLeft != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT && newTableJoinedLeft != null)) {
             if (EcoreUtil.isAncestor(this, newTableJoinedLeft))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -146,7 +148,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public QuerySelect getQuerySelect() {
-        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT) return null;
         return (QuerySelect)eContainer();
     }
 
@@ -166,7 +168,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
     public void setQuerySelect(QuerySelect newQuerySelect) {
-        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT && newQuerySelect != null)) {
+        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT && newQuerySelect != null)) {
             if (EcoreUtil.isAncestor(this, newQuerySelect))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -187,7 +189,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
   public TableNested getNest() {
-        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__NEST) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__NEST) return null;
         return (TableNested)eContainer();
     }
 
@@ -207,7 +209,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
   public void setNest(TableNested newNest) {
-        if (newNest != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__NEST && newNest != null)) {
+        if (newNest != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__NEST && newNest != null)) {
             if (EcoreUtil.isAncestor(this, newNest))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -223,6 +225,47 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MergeSourceTable getMergeSourceTable() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE) return null;
+        return (MergeSourceTable)eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetMergeSourceTable(MergeSourceTable newMergeSourceTable, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newMergeSourceTable, SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setMergeSourceTable(MergeSourceTable newMergeSourceTable) {
+        if (newMergeSourceTable != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE && newMergeSourceTable != null)) {
+            if (EcoreUtil.isAncestor(this, newMergeSourceTable))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newMergeSourceTable != null)
+                msgs = ((InternalEObject)newMergeSourceTable).eInverseAdd(this, SQLQueryModelPackage.MERGE_SOURCE_TABLE__TABLE_REF, MergeSourceTable.class, msgs);
+            msgs = basicSetMergeSourceTable(newMergeSourceTable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE, newMergeSourceTable, newMergeSourceTable));
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -245,6 +288,10 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetNest((TableNested)otherEnd, msgs);
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetMergeSourceTable((MergeSourceTable)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -264,6 +311,8 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 return basicSetQuerySelect(null, msgs);
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 return basicSetNest(null, msgs);
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                return basicSetMergeSourceTable(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -274,7 +323,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
             case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
@@ -283,6 +332,8 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.MERGE_SOURCE_TABLE__TABLE_REF, MergeSourceTable.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -302,6 +353,8 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 return getQuerySelect();
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 return getNest();
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                return getMergeSourceTable();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -324,6 +377,9 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 return;
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 setNest((TableNested)newValue);
+                return;
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                setMergeSourceTable((MergeSourceTable)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -348,6 +404,9 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 setNest((TableNested)null);
                 return;
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                setMergeSourceTable((MergeSourceTable)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -367,6 +426,8 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
                 return getQuerySelect() != null;
             case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
                 return getNest() != null;
+            case SQLQueryModelPackage.TABLE_REFERENCE__MERGE_SOURCE_TABLE:
+                return getMergeSourceTable() != null;
         }
         return super.eIsSet(featureID);
     }

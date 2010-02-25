@@ -204,6 +204,22 @@ public class DatabaseHelper {
                   }
               }    
           }
+          
+          /* If we still didn't find a match, trim *trailing* blanks from the 
+           * schema names and try again.  Some databases (such as DB2 for LUW)
+           * when given a new schema named "  schema  ", will create the schema
+           * in the catalog as "  schema". */
+          if (returnSchema == null) {
+              String trimmedSchemaName = trimTrailing(schemaName);
+              dbSchemaListIter = dbSchemaList.iterator();
+              while (dbSchemaListIter.hasNext() && returnSchema == null) {
+                  Schema dbSchema = (Schema) dbSchemaListIter.next();
+                  String trimmedDBSchemaName = trimTrailing(dbSchema.getName());
+                  if (trimmedSchemaName.equals(trimmedDBSchemaName)) {
+                      returnSchema = dbSchema;
+                  }
+              }     
+          }
       }
   
       return returnSchema;
@@ -254,6 +270,15 @@ public class DatabaseHelper {
       }
       
       return returnTable;
+  }
+  
+  /**
+   * Returns a copy of the given string with whitespace characters removed from the end of the string.
+   * 
+   * @return the trimmed string
+   */
+  protected static String trimTrailing(String str) { 
+      return str.replaceAll("\\s+$", "");
   }
 
 } // end class DatabaseHelper

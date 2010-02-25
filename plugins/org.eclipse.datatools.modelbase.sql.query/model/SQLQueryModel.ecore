@@ -28,6 +28,8 @@
         eType="#//QueryExpressionRoot" containment="true" eOpposite="#//QueryExpressionRoot/selectStatement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orderByClause" upperBound="-1"
         eType="#//OrderBySpecification" containment="true" eOpposite="#//OrderBySpecification/selectStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updatabilityExpr" eType="#//UpdatabilityExpression"
+        containment="true" eOpposite="#//UpdatabilityExpression/selectStatement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryUpdateStatement" eSuperTypes="#//QueryChangeStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignmentClause" lowerBound="1"
@@ -46,6 +48,8 @@
         upperBound="-1" eType="#//ValueExpressionColumn" eOpposite="#//ValueExpressionColumn/assignmentExprTarget"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateSource" lowerBound="1"
         eType="#//UpdateSource" containment="true" eOpposite="#//UpdateSource/updateAssignmentExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeUpdateSpec" eType="#//MergeUpdateSpecification"
+        transient="true" eOpposite="#//MergeUpdateSpecification/assignementExprList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CursorReference" eSuperTypes="#//SQLQueryObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateStatement" eType="#//QueryUpdateStatement"
@@ -78,9 +82,12 @@
         eType="#//ValueExpressionCaseSearchContent" transient="true" eOpposite="#//ValueExpressionCaseSearchContent/searchCondition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nest" eType="#//SearchConditionNested"
         transient="true" eOpposite="#//SearchConditionNested/nestedCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeOnCondition" eType="#//MergeOnCondition"
+        transient="true" eOpposite="#//MergeOnCondition/searchCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionBody" abstract="true"
       eSuperTypes="#//TableExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowFetchLimit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryExpression" eType="#//QueryExpressionRoot"
         transient="true" eOpposite="#//QueryExpressionRoot/query"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="combinedLeft" eType="#//QueryCombined"
@@ -95,6 +102,8 @@
         lowerBound="1" eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/withTableQueryExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryNest" eType="#//QueryNested"
         transient="true" eOpposite="#//QueryNested/nestedQuery"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sortSpecList" upperBound="-1"
+        eType="#//OrderBySpecification" containment="true" eOpposite="#//OrderBySpecification/query"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryValueExpression" abstract="true"
       eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/ValueExpression">
@@ -209,6 +218,8 @@
         transient="true" eOpposite="#//QuerySelect/fromClause"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nest" eType="#//TableNested"
         transient="true" eOpposite="#//TableNested/nestedTableRef"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeSourceTable" eType="#//MergeSourceTable"
+        transient="true" eOpposite="#//MergeSourceTable/tableRef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableExpression" abstract="true" eSuperTypes="#//TableReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columnList" upperBound="-1"
@@ -219,6 +230,8 @@
         upperBound="-1" eType="#//ResultTableAllColumns" eOpposite="#//ResultTableAllColumns/tableExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprColumns" upperBound="-1"
         eType="#//ValueExpressionColumn" eOpposite="#//ValueExpressionColumn/tableExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeTargetTable" eType="#//MergeTargetTable"
+        transient="true" eOpposite="#//MergeTargetTable/tableExpr"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableJoined" eSuperTypes="#//TableReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinOperator" eType="#//TableJoinedOperator"/>
@@ -394,6 +407,8 @@
         <details key="documentation" value="Gets the &lt;code>TableInDatabase&lt;/code> from which this column is ulitimately derived, if any."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeInsertSpec" upperBound="-1"
+        eType="#//MergeInsertSpecification" eOpposite="#//MergeInsertSpecification/targetColumnList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionVariable" eSuperTypes="#//ValueExpressionAtomic">
     <eStructuralFeatures xsi:type="ecore:EReference" name="querySelect" eType="#//QuerySelect"
@@ -621,7 +636,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedTableRef" lowerBound="1"
         eType="#//TableReference" containment="true" eOpposite="#//TableReference/nest"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QueryMergeStatement" eSuperTypes="#//QueryChangeStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryMergeStatement" eSuperTypes="#//QueryChangeStatement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;MERGE INTO &lt;target table> [ [ AS] &lt;merge correlation name> ]&#xD;&#xA;USING &lt;table reference>&#xD;&#xA;ON &lt;search condition> &#xD;&#xA;&lt;merge operation specificaion list>&#xD;&#xA;&#xD;&#xA;where:&#xD;&#xA;&lt;merge operation specification list> ::=&#xD;&#xA;    &lt;merge operation specification> [&lt;merge operation specification ...]&#xD;&#xA;&lt;merge operation specification> ::=&#xD;&#xA;    &lt;merge update specification>  |  &lt;merge insert specification>&#xD;&#xA;&#xD;&#xA;Note: a non-syntactic rule is that the operation specification list can contain at most one update specification and one insert specification.&#xD;&#xA;&#xD;&#xA;Example:&#xD;&#xA;MERGE INTO inventory AS in&#xD;&#xA;USING &#xD;&#xA;  (SELECT partno, description, count &#xD;&#xA;   FROM shipment&#xD;&#xA;   WHERE shipment.partno IS NOT NULL) AS sh&#xD;&#xA;ON (in.partno = sh.partno)&#xD;&#xA;WHEN MATCHED THEN&#xD;&#xA;   UPDATE SET&#xD;&#xA;        description = sh.description,&#xD;&#xA;        quantity = in.quantity + sh.count&#xD;&#xA;WHEN NOT MATCHED THEN&#xD;&#xA;    INSERT (partno, description, quantity)&#xD;&#xA;    VALUES (sh.partno, sh.description, sh.count) "/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetTable" lowerBound="1"
+        eType="#//MergeTargetTable" containment="true" eOpposite="#//MergeTargetTable/mergeStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceTable" lowerBound="1"
+        eType="#//MergeSourceTable" containment="true" eOpposite="#//MergeSourceTable/mergeStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onCondition" lowerBound="1"
+        eType="#//MergeOnCondition" containment="true" eOpposite="#//MergeOnCondition/mergeStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationSpecList" lowerBound="1"
+        upperBound="-1" eType="#//MergeOperationSpecification" containment="true"
+        eOpposite="#//MergeOperationSpecification/mergeStatement"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SearchConditionNested" eSuperTypes="#//QuerySearchCondition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedCondition" lowerBound="1"
         eType="#//QuerySearchCondition" containment="true" eOpposite="#//QuerySearchCondition/nest"/>
@@ -639,6 +667,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="NullOrderingOption" eType="#//NullOrderingType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selectStatement" eType="#//QuerySelectStatement"
         transient="true" eOpposite="#//QuerySelectStatement/orderByClause"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//QueryExpressionBody"
+        transient="true" eOpposite="#//QueryExpressionBody/sortSpecList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderByOrdinal" eSuperTypes="#//OrderBySpecification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ordinalValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -686,5 +716,72 @@
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionRow" eSuperTypes="#//QueryValueExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprList" upperBound="-1"
         eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/valueExprRow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeTargetTable" eSuperTypes="#//SQLQueryObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;&lt;target table> [[AS] &lt;merge correlation name>]&#xD;&#xA;&#xD;&#xA;where:&#xD;&#xA;&lt;target table> is a simple or qualified table name.&#xD;&#xA;&lt;merge correlation name> is a simple identifier"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeStatement" eType="#//QueryMergeStatement"
+        transient="true" eOpposite="#//QueryMergeStatement/targetTable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableExpr" lowerBound="1"
+        eType="#//TableExpression" containment="true" eOpposite="#//TableExpression/mergeTargetTable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeSourceTable" eSuperTypes="#//SQLQueryObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;&lt;table reference>&#xD;&#xA;&#xD;&#xA;The source table reference can be a table name, a query (SELECT expression), a joined table, a table function..."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="QueryMergeStatement" upperBound="-1"
+        eType="#//QueryMergeStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeStatement" eType="#//QueryMergeStatement"
+        transient="true" eOpposite="#//QueryMergeStatement/sourceTable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableRef" lowerBound="1"
+        eType="#//TableReference" containment="true" eOpposite="#//TableReference/mergeSourceTable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeOnCondition" eSuperTypes="#//SQLQueryObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;&lt;search condition>&#xD;&#xA;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeStatement" eType="#//QueryMergeStatement"
+        transient="true" eOpposite="#//QueryMergeStatement/onCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="searchCondition" lowerBound="1"
+        eType="#//QuerySearchCondition" containment="true" eOpposite="#//QuerySearchCondition/mergeOnCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeUpdateSpecification" eSuperTypes="#//MergeOperationSpecification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;WHEN MATCHED THEN UPDATE SET &lt;set clause list>&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;&lt;set clause list> is a list of assignement expressions, such as &#xD;&#xA;  description = sh.description&#xD;&#xA;&#xD;&#xA;The assignment expression list is modelled as a list of UpdateAssignementExpression objects, which in the general case can have a query exrpession as the assignement source, but for Merge only simple assignment list is allowed."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignementExprList" lowerBound="1"
+        upperBound="-1" eType="#//UpdateAssignmentExpression" containment="true" eOpposite="#//UpdateAssignmentExpression/mergeUpdateSpec"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeInsertSpecification" eSuperTypes="#//MergeOperationSpecification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;WHEN NOT MATCHED THEN &#xD;&#xA;INSERT &lt;target column list> &#xD;&#xA;VALUES &lt;insert value list>&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;&lt;target column list> is a simple list of column names&#xD;&#xA;&lt;insert value list> is a list of value expressions&#xD;&#xA;&#xD;&#xA;Note that the MergeInsertSpecification object does not &quot;own&quot; the column objects in the target column list.  They are &quot;owned&quot; by the table object in the MergeTargetTable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetColumnList" upperBound="-1"
+        eType="#//ValueExpressionColumn" eOpposite="#//ValueExpressionColumn/mergeInsertSpec"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceValuesRow" lowerBound="1"
+        eType="#//ValuesRow" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MergeOperationSpecification" eSuperTypes="#//SQLQueryObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="SQL syntax:&#xD;&#xA;&lt;merge update specification>  |  &lt;merge insert specification>&#xD;&#xA;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeStatement" eType="#//QueryMergeStatement"
+        transient="true" eOpposite="#//QueryMergeStatement/operationSpecList"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateOfColumn" eSuperTypes="#//SQLQueryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updatabilityExpr" eType="#//UpdatabilityExpression"
+        transient="true" eOpposite="#//UpdatabilityExpression/updateOfColumnList"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UpdatabilityType">
+    <eLiterals name="READ_ONLY"/>
+    <eLiterals name="UPDATE" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdatabilityExpression" eSuperTypes="#//SQLQueryObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updatabilityType" eType="#//UpdatabilityType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="updateOfColumnList" upperBound="-1"
+        eType="#//UpdateOfColumn" containment="true" eOpposite="#//UpdateOfColumn/updatabilityExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectStatement" eType="#//QuerySelectStatement"
+        transient="true" eOpposite="#//QuerySelectStatement/updatabilityExpr"/>
   </eClassifiers>
 </ecore:EPackage>

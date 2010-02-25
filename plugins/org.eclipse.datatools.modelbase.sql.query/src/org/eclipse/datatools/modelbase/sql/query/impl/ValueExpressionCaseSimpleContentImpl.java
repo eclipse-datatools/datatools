@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimpleContentImpl.java,v 1.4 2007/02/08 17:00:25 bpayton Exp $
+ * $Id: ValueExpressionCaseSimpleContentImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -82,7 +82,7 @@ public class ValueExpressionCaseSimpleContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
     public ValueExpressionCaseSimple getValueExprCaseSimple() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE) return null;
         return (ValueExpressionCaseSimple)eContainer();
     }
 
@@ -102,7 +102,7 @@ public class ValueExpressionCaseSimpleContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
     public void setValueExprCaseSimple(ValueExpressionCaseSimple newValueExprCaseSimple) {
-        if (newValueExprCaseSimple != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE && newValueExprCaseSimple != null)) {
+        if (newValueExprCaseSimple != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE && newValueExprCaseSimple != null)) {
             if (EcoreUtil.isAncestor(this, newValueExprCaseSimple))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -249,7 +249,7 @@ public class ValueExpressionCaseSimpleContentImpl extends SQLQueryObjectImpl imp
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST, ValueExpressionCaseSimple.class, msgs);
         }

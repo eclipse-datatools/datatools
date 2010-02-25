@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelectStatementImpl.java,v 1.4 2007/02/08 17:00:30 bpayton Exp $
+ * $Id: QuerySelectStatementImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -13,6 +13,7 @@ import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getQueryExpr <em>Query Expr</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getOrderByClause <em>Order By Clause</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl#getUpdatabilityExpr <em>Updatability Expr</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,16 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
     protected EList orderByClause;
 
 	/**
+     * The cached value of the '{@link #getUpdatabilityExpr() <em>Updatability Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getUpdatabilityExpr()
+     * @generated
+     * @ordered
+     */
+    protected UpdatabilityExpression updatabilityExpr;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -133,6 +145,49 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public UpdatabilityExpression getUpdatabilityExpr() {
+        return updatabilityExpr;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr, NotificationChain msgs) {
+        UpdatabilityExpression oldUpdatabilityExpr = updatabilityExpr;
+        updatabilityExpr = newUpdatabilityExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, oldUpdatabilityExpr, newUpdatabilityExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setUpdatabilityExpr(UpdatabilityExpression newUpdatabilityExpr) {
+        if (newUpdatabilityExpr != updatabilityExpr) {
+            NotificationChain msgs = null;
+            if (updatabilityExpr != null)
+                msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
+            if (newUpdatabilityExpr != null)
+                msgs = ((InternalEObject)newUpdatabilityExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATABILITY_EXPRESSION__SELECT_STATEMENT, UpdatabilityExpression.class, msgs);
+            msgs = basicSetUpdatabilityExpr(newUpdatabilityExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, newUpdatabilityExpr, newUpdatabilityExpr));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -144,6 +199,10 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
                 return basicSetQueryExpr((QueryExpressionRoot)otherEnd, msgs);
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
                 return ((InternalEList)getOrderByClause()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                if (updatabilityExpr != null)
+                    msgs = ((InternalEObject)updatabilityExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR, null, msgs);
+                return basicSetUpdatabilityExpr((UpdatabilityExpression)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -159,6 +218,8 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
                 return basicSetQueryExpr(null, msgs);
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
                 return ((InternalEList)getOrderByClause()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                return basicSetUpdatabilityExpr(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -174,6 +235,8 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
                 return getQueryExpr();
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
                 return getOrderByClause();
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                return getUpdatabilityExpr();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -192,6 +255,9 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
                 getOrderByClause().clear();
                 getOrderByClause().addAll((Collection)newValue);
                 return;
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                setUpdatabilityExpr((UpdatabilityExpression)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -209,6 +275,9 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
                 getOrderByClause().clear();
                 return;
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                setUpdatabilityExpr((UpdatabilityExpression)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -224,6 +293,8 @@ public class QuerySelectStatementImpl extends QueryStatementImpl implements Quer
                 return queryExpr != null;
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
                 return orderByClause != null && !orderByClause.isEmpty();
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
+                return updatabilityExpr != null;
         }
         return super.eIsSet(featureID);
     }

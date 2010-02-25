@@ -1,7 +1,7 @@
 /**
  * </copyright>
  *
- * $Id: OrderBySpecificationImpl.java,v 1.4 2007/02/08 17:00:25 bpayton Exp $
+ * $Id: OrderBySpecificationImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -11,6 +11,7 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.NullOrderingType;
 import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.OrderingSpecType;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl#getOrderingSpecOption <em>Ordering Spec Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl#getNullOrderingOption <em>Null Ordering Option</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl#getSelectStatement <em>Select Statement</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
  *
@@ -186,7 +188,7 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
     public QuerySelectStatement getSelectStatement() {
-        if (eContainerFeatureID != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT) return null;
         return (QuerySelectStatement)eContainer();
     }
 
@@ -206,7 +208,7 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
     public void setSelectStatement(QuerySelectStatement newSelectStatement) {
-        if (newSelectStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT && newSelectStatement != null)) {
+        if (newSelectStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT && newSelectStatement != null)) {
             if (EcoreUtil.isAncestor(this, newSelectStatement))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -223,6 +225,47 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public QueryExpressionBody getQuery() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY) return null;
+        return (QueryExpressionBody)eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetQuery(QueryExpressionBody newQuery, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newQuery, SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setQuery(QueryExpressionBody newQuery) {
+        if (newQuery != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY && newQuery != null)) {
+            if (EcoreUtil.isAncestor(this, newQuery))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newQuery != null)
+                msgs = ((InternalEObject)newQuery).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_BODY__SORT_SPEC_LIST, QueryExpressionBody.class, msgs);
+            msgs = basicSetQuery(newQuery, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY, newQuery, newQuery));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -232,6 +275,10 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetSelectStatement((QuerySelectStatement)otherEnd, msgs);
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetQuery((QueryExpressionBody)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -245,6 +292,8 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
         switch (featureID) {
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 return basicSetSelectStatement(null, msgs);
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                return basicSetQuery(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -255,9 +304,11 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, QuerySelectStatement.class, msgs);
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_BODY__SORT_SPEC_LIST, QueryExpressionBody.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -277,6 +328,8 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
                 return getNullOrderingOption();
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 return getSelectStatement();
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                return getQuery();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -299,6 +352,9 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
                 return;
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 setSelectStatement((QuerySelectStatement)newValue);
+                return;
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                setQuery((QueryExpressionBody)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -323,6 +379,9 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 setSelectStatement((QuerySelectStatement)null);
                 return;
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                setQuery((QueryExpressionBody)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -342,6 +401,8 @@ public abstract class OrderBySpecificationImpl extends SQLQueryObjectImpl implem
                 return nullOrderingOption != NULL_ORDERING_OPTION_EDEFAULT;
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__SELECT_STATEMENT:
                 return getSelectStatement() != null;
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__QUERY:
+                return getQuery() != null;
         }
         return super.eIsSet(featureID);
     }

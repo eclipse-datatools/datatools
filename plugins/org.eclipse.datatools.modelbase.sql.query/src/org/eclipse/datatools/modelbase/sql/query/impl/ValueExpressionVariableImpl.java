@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionVariableImpl.java,v 1.4 2007/02/08 17:00:29 bpayton Exp $
+ * $Id: ValueExpressionVariableImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -84,7 +84,7 @@ public class ValueExpressionVariableImpl extends ValueExpressionAtomicImpl imple
      * @generated
      */
     public QuerySelect getQuerySelect() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE__QUERY_SELECT) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE__QUERY_SELECT) return null;
         return (QuerySelect)eContainer();
     }
 
@@ -104,7 +104,7 @@ public class ValueExpressionVariableImpl extends ValueExpressionAtomicImpl imple
      * @generated
      */
     public void setQuerySelect(QuerySelect newQuerySelect) {
-        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE__QUERY_SELECT && newQuerySelect != null)) {
+        if (newQuerySelect != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE__QUERY_SELECT && newQuerySelect != null)) {
             if (EcoreUtil.isAncestor(this, newQuerySelect))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -153,7 +153,7 @@ public class ValueExpressionVariableImpl extends ValueExpressionAtomicImpl imple
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE__QUERY_SELECT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__INTO_CLAUSE, QuerySelect.class, msgs);
         }

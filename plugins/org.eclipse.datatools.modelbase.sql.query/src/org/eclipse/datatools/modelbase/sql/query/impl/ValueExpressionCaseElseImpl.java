@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseElseImpl.java,v 1.4 2007/02/08 17:00:26 bpayton Exp $
+ * $Id: ValueExpressionCaseElseImpl.java,v 1.5 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -71,7 +71,7 @@ public class ValueExpressionCaseElseImpl extends SQLQueryObjectImpl implements V
      * @generated
      */
     public ValueExpressionCase getValueExprCase() {
-        if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE) return null;
+        if (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE) return null;
         return (ValueExpressionCase)eContainer();
     }
 
@@ -91,7 +91,7 @@ public class ValueExpressionCaseElseImpl extends SQLQueryObjectImpl implements V
      * @generated
      */
     public void setValueExprCase(ValueExpressionCase newValueExprCase) {
-        if (newValueExprCase != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE && newValueExprCase != null)) {
+        if (newValueExprCase != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE && newValueExprCase != null)) {
             if (EcoreUtil.isAncestor(this, newValueExprCase))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
@@ -189,7 +189,7 @@ public class ValueExpressionCaseElseImpl extends SQLQueryObjectImpl implements V
      * @generated
      */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID) {
+        switch (eContainerFeatureID()) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, ValueExpressionCase.class, msgs);
         }
