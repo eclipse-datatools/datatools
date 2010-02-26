@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright  2001, 2004 ,2009 IBM Corporation and others.
+ * Copyright  2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -199,8 +200,33 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     	{
     		Routine routine=(Routine) getParent();
     		return routine.getName() +IFilterNode.SEPARATOR +virtualNodeType;
-    		
     	}
     	return null;		
 	}
+	
+	   public boolean isCreateActionSupported(DatabaseDefinition dbdef) {
+	        ICreationInfoProvider provider = CreationInfoRegistry.INSTANCE.getProvider(dbdef);
+	        if (provider != null) {
+	            return provider.isCreateActionSupported(this);
+	        }
+	        return true;
+	    }
+
+	    public boolean isCreateDistinctTypeSupported(
+	            DatabaseDefinition dbdef) {
+	        ICreationInfoProvider provider = CreationInfoRegistry.INSTANCE.getProvider(dbdef);
+	        if (provider != null) {
+	            return provider.isCreateDistinctType();
+	        }
+	        return true;
+	    }
+
+	    public boolean isCreateRowTypeSupported(DatabaseDefinition dbdef) {
+	        ICreationInfoProvider provider = CreationInfoRegistry.INSTANCE.getProvider(dbdef);
+	        if (provider != null) {
+	            return provider.isCreateRowTypeSupported();
+	        }
+	        return true;
+	    }
+
 }
