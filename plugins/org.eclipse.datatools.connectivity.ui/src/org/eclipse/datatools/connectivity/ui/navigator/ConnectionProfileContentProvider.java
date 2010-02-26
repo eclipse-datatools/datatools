@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -25,8 +25,10 @@ import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.Category;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
+import org.eclipse.datatools.connectivity.internal.ui.AddConnectListenerRegistry;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode;
+import org.eclipse.datatools.connectivity.ui.IAddConnectListener;
 import org.eclipse.datatools.connectivity.ui.RefreshProfileJob;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -78,7 +80,7 @@ public class ConnectionProfileContentProvider implements ICommonContentProvider 
 		}
 
 		public void profileChanged(IConnectionProfile profile) {
-			refreshViewer(profile, false);
+			// refreshViewer(profile, false);
 		}
 
 	};
@@ -422,6 +424,16 @@ public class ConnectionProfileContentProvider implements ICommonContentProvider 
 						.addPropertySetListener(mPropertyListener);
 			}
 			
+	         for (Iterator it = Arrays.asList(
+	                    ProfileManager.getInstance().getProfiles()).iterator(); it
+	                    .hasNext();) {
+	             IConnectionProfile thisProfile = (IConnectionProfile)it.next();
+	             IAddConnectListener provider = AddConnectListenerRegistry.INSTANCE.getProvider(thisProfile);
+	             if (provider != null) {
+	                 provider.addConnectListener(thisProfile);
+	             }
+	        }
+
 			if (mViewer instanceof CommonViewer) {
 				((CommonViewer) mViewer).getNavigatorContentService()
 						.findStateModel(ConnectivityUIPlugin.SERVERS_VIEW_CONTENT_EXTENSION_ID)

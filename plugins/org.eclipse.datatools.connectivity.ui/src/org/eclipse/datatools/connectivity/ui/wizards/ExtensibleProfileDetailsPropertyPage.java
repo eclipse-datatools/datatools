@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.DriverUIContributorComposite;
 import org.eclipse.datatools.connectivity.sqm.core.SQMServices;
 import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -169,4 +170,9 @@ public class ExtensibleProfileDetailsPropertyPage extends
 		}
 		return copy;
 	}
+	
+	public Point computeSize(){
+	    return doComputeSize();
+	}
+
 }

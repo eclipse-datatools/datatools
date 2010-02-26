@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -27,6 +27,7 @@ import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ltk.core.refactoring.CheckConditionsOperation;
 import org.eclipse.ltk.core.refactoring.PerformRefactoringOperation;
@@ -43,6 +44,8 @@ public class RenameAction extends Action implements IActionDelegate {
 	private Shell mParentShell;
 
 	private IConnectionProfile mProfile;
+
+    protected static StructuredViewer viewer;
 
 	/**
 	 * 
@@ -86,6 +89,9 @@ public class RenameAction extends Action implements IActionDelegate {
 
 		try {
 			refactor(mProfile, d.getValue());
+	        if (this.viewer != null){
+	            viewer.refresh(mProfile);
+	        }
 //			ProfileManager.getInstance().modifyProfile(mProfile, d.getValue(),
 //					null);
 //		} catch (ConnectionProfileException e) {
@@ -99,6 +105,10 @@ public class RenameAction extends Action implements IActionDelegate {
 		}
 	}
 	
+    public void setViewer(StructuredViewer viewer) {
+	    this.viewer = viewer;
+	}   
+
 	private void refactor (IConnectionProfile profile, String newName) throws CoreException {
     	//  Refactor for rename
     	PerformRefactoringOperation refOperation = new PerformRefactoringOperation(

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2007 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -271,6 +271,7 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 							"actions.export.norepository")); //$NON-NLS-1$
 			return;
 		}
+		mOverwrite = btnOverwrite.getSelection();
 		try {
 			byte[] bytes = new byte[5];
 			char[] xml = {'<','?','x','m','l'};
@@ -283,19 +284,19 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 			}
 			if (isXML) {
 				// not encrpyted
-				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
-						.getText()), null);
+				mProfiles = ConnectionProfileMgmt.importCPs(new File(txtFile
+						.getText()), null, mOverwrite);
 			}
 			else {
 				// encrypted
-				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
-						.getText()), SecurityManager.getInstance().getDefaultCipherProvider());
+				mProfiles = ConnectionProfileMgmt.importCPs(new File(txtFile
+						.getText()), SecurityManager.getInstance().getDefaultCipherProvider(), mOverwrite);
 			}
 		}
 		catch (Exception e) {
 			mException = e;
 		}
-		mOverwrite = btnOverwrite.getSelection();
+		
 		super.okPressed();
 	}
 

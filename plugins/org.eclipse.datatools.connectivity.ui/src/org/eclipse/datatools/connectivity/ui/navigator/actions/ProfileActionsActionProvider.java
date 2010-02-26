@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2008 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -195,6 +195,7 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
     	renameAction = createRenameAction();
     	renameAction.setActionDefinitionId("org.eclipse.ui.edit.rename"); //$NON-NLS-1$
     	renameAction.setText(ConnectivityUIPlugin.getDefault().getResourceString("DSE.Rename.label")); //$NON-NLS-1$
+        renameAction.setViewer(aViewer);
     	
     	deleteAction = createDeleteAction();
     	deleteAction.setText(ConnectivityUIPlugin.getDefault().getResourceString("DSE.Delete.label")); //$NON-NLS-1$
