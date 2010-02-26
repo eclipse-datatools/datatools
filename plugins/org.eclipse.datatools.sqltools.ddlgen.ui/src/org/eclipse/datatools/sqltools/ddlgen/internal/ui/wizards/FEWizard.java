@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -58,6 +58,8 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.PlatformUI;
@@ -110,7 +112,7 @@ public class FEWizard extends Wizard implements IGenerateDDL, IContextProvider {
 
 	private boolean hasGenerated = false;
 
-	private static String LINE_RETURN = System.getProperty("line.separator");
+	private String LINE_RETURN = System.getProperty("line.separator");
 
 	public FEWizard(List selection) {
 		super();
@@ -134,11 +136,21 @@ public class FEWizard extends Wizard implements IGenerateDDL, IContextProvider {
 						.toArray(new SQLObject[selection.size()])));
 
 		selectOptionsPage = new FESelectOptionsWizardPage(
-				SELECT_OPTIONS_WIZARD_PAGE_NAME, configurationData);
+                SELECT_OPTIONS_WIZARD_PAGE_NAME, configurationData,new Listener(){
+                    public void handleEvent(Event event) {
+                        if (selectFilePage != null){
+                            selectFilePage.clearDeltaDDL();
+                        }
+                    }});
 		addPage(selectOptionsPage);
 
 		selectObjectsPage = new FESelectObjectsWizardPage(
-				SELECT_OBJECTS_WIZARD_PAGE_NAME, configurationData);
+                SELECT_OBJECTS_WIZARD_PAGE_NAME, configurationData,new Listener(){
+                    public void handleEvent(Event event) {
+                        if (selectFilePage != null){
+                            selectFilePage.clearDeltaDDL();
+                        }
+                    }});
 		addPage(selectObjectsPage);
 
 		selectFilePage = new FESelectFileWizardPage(
@@ -182,6 +194,11 @@ public class FEWizard extends Wizard implements IGenerateDDL, IContextProvider {
 	}
 
 	public StringWriter generateDDL() {
+	    if ((databaseDefinition.getProduct().equals("Oracle"))
+	           || (databaseDefinition.getProduct().equals("DB2 UDB"))
+	           || (databaseDefinition.getProduct().equals("DB2 UDB zSeries"))){
+	           LINE_RETURN = "\n";
+	       }
 		try {
 			getContainer().run(false, false, new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor)
@@ -214,11 +231,18 @@ public class FEWizard extends Wizard implements IGenerateDDL, IContextProvider {
 													.size()]), monitor);
 							hasGenerated = true;
 							monitor.worked(3);
-
-							for (int i = 0; i < ddlScripts.length; i++) {
-								writer.write(ddlScripts[i]
-										+ fullStatementTermination);
-							}
+                            String defaultEditorTermnator = "--<ScriptOptions statementTerminator=\"" 
+                                + statementTerminator 
+                                + "\"/>"
+                                + LINE_RETURN + LINE_RETURN;
+                            writer.write(defaultEditorTermnator);
+                            for (int i = 0; i < ddlScripts.length; i++) {
+                                ddlScripts[i] = ddlScripts[i].trim();
+                                if(ddlScripts[i].endsWith(statementTerminator)){
+                                    ddlScripts[i] = ddlScripts[i].substring(0, ddlScripts[i].length()-statementTerminator.length());
+                                }
+                                writer.write(ddlScripts[i] + fullStatementTermination);
+                            }
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 
 
 public class FESelectObjectsWizardPage 
@@ -58,6 +59,12 @@ public class FESelectObjectsWizardPage
     private FEConfigurationData configurationData;
     private FEConfigurationData filteredConfigurationData = new FEConfigurationData(new EngineeringOption[0]);
 
+    private Listener eventListener = null;
+    
+    public FESelectObjectsWizardPage(String pageName, FEConfigurationData configurationData, Listener selectionChangedListener) {
+        this(pageName, configurationData);
+        eventListener = selectionChangedListener;   
+    }
 
     public FESelectObjectsWizardPage(String pageName, FEConfigurationData configurationData) {
         super(pageName); 
@@ -157,6 +164,9 @@ public class FESelectObjectsWizardPage
                     ((EngineeringOption) button.getData()).setBoolean(true);
                     button.setSelection(true);                    
                 }
+                if (FESelectObjectsWizardPage.this.eventListener != null){
+                    FESelectObjectsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -172,6 +182,9 @@ public class FESelectObjectsWizardPage
                     ((EngineeringOption) button.getData()).setBoolean(false);
                     button.setSelection(false);
                 }
+                if (FESelectObjectsWizardPage.this.eventListener != null){
+                    FESelectObjectsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -186,6 +199,9 @@ public class FESelectObjectsWizardPage
                     Button button = (Button)it.next();
                     ((EngineeringOption) button.getData()).setBoolean(((Boolean)m_Default.get(i)).booleanValue());
                     button.setSelection(((Boolean)m_Default.get(i)).booleanValue());
+                }
+                if (FESelectObjectsWizardPage.this.eventListener != null){
+                    FESelectObjectsWizardPage.this.eventListener.handleEvent(null);
                 }
             }
 
@@ -217,6 +233,9 @@ public class FESelectObjectsWizardPage
             public void widgetSelected(SelectionEvent e) {
                 ((EngineeringOption) button.getData()).setBoolean(button
                         .getSelection());
+                if (FESelectObjectsWizardPage.this.eventListener != null){
+                    FESelectObjectsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {

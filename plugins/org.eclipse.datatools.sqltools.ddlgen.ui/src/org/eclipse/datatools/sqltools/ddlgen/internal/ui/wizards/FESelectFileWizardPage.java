@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004, 2007 IBM Corporation and others. All rights reserved.
+ * Copyright (c) 2001, 2009 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -88,6 +88,14 @@ public class FESelectFileWizardPage
 
 	private static final String SCRIPT_FILE_EXTENSION = "sql";
 
+	private String deltaddl = null;
+
+	private boolean needsGenerateDDL;
+
+	private boolean executeDisallowed = false;
+
+	private boolean editDisallowed = false;
+
 	public FESelectFileWizardPage(String pageName) {
 		this(pageName, null);
 	}
@@ -169,6 +177,10 @@ public class FESelectFileWizardPage
 				| SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		data = new GridData(GridData.FILL_BOTH);
 		data.horizontalSpan = 3;
+	    //the following two lines seem to fix the preview window scroll bar disappearing issues
+        //when there is a lot of DDL statements.
+        data.heightHint = 400;
+        data.widthHint = 400;
 		ddlPreviewText.setLayoutData(data);
 
 		Label terminatorLabel = new Label(previewGroup, SWT.NULL);
@@ -236,6 +248,7 @@ public class FESelectFileWizardPage
 		String ddlScriptText = ((IGenerateDDL) this.getWizard()).generateDDL()
 				.toString();
 		ddlPreviewText.setText(ddlScriptText);
+	    deltaddl = ddlScriptText;
 	}
 
 	protected String getSubtitle() {
@@ -352,6 +365,16 @@ public class FESelectFileWizardPage
 		}
 		return selected;
 	}
+	
+	public void disallowExecute() {
+	    executeDisallowed  = true;
+	    executeCheckBox.setSelection(false);
+	    executeCheckBox.setEnabled(false);
+	}
+
+	public boolean isExecuteDisallowed() {
+	    return executeDisallowed;
+	}
 
 	public boolean isOpenDDLSelected() {
 		boolean isSelected = false;
@@ -361,10 +384,22 @@ public class FESelectFileWizardPage
 		return isSelected;
 	}
 
+	public void disallowEdit() {
+	    editDisallowed  = true;
+	    openDDLCheckbox.setSelection(false);
+	    openDDLCheckbox.setEnabled(false);
+	}
+
+	public boolean isEditDisallowed() {
+	    return editDisallowed;
+	}
+
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		if (visible) {
-			populatePreviewDDL();
+	        if (deltaddl == null) {
+	            populatePreviewDDL();   
+	        }           
 		}
 	}
 
@@ -384,10 +419,12 @@ public class FESelectFileWizardPage
 			this.terminator = terminatorText.getText().trim();
 			populatePreviewDDL();			
 			this.applyTerminatorButton.setEnabled(false);
+	        this.setNeedsGenerateDDL(false);
 		}		
 	}
 	
 	private void onTerminatorTextModified(){
+	    this.setNeedsGenerateDDL(true);
 		this.applyTerminatorButton.setEnabled(true);
 	}
 	
@@ -462,4 +499,15 @@ public class FESelectFileWizardPage
 		return contextProviderDelegate.getSearchExpression(target);
 	}
 
+	public void setNeedsGenerateDDL(boolean needsGenerateDDL) {
+	    this.needsGenerateDDL = needsGenerateDDL;
+	}
+
+	public boolean isNeedsGenerateDDL() {
+	    return needsGenerateDDL;
+	}
+	    
+	public void clearDeltaDDL() {
+	    this.deltaddl = null;
+	}
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,7 +32,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.swt.widgets.Listener;
 
 
 public class FESelectOptionsWizardPage
@@ -58,6 +58,13 @@ public class FESelectOptionsWizardPage
     private Button m_restoreDefaults; 
     private FEConfigurationData configurationData;
     private FEConfigurationData filteredConfigurationData = new FEConfigurationData(new EngineeringOption[0]);
+
+    private Listener eventListener = null;
+    
+    public FESelectOptionsWizardPage(String pageName, FEConfigurationData configurationData, Listener selectionChangedListener) {
+        this(pageName, configurationData);
+        eventListener = selectionChangedListener;   
+    }
 
     public FESelectOptionsWizardPage(String pageName, FEConfigurationData configurationData) {
         super(pageName); 
@@ -125,8 +132,7 @@ public class FESelectOptionsWizardPage
         layout = new GridLayout();
         layout.numColumns = 2;//3;
         layout.marginHeight = 0;
-        layout.marginWidth = 2;
-//        layout.makeColumnsEqualWidth = true;
+        layout.marginWidth = 2;        
         composite3.setLayout(layout);
         generateData = new GridData(GridData.FILL_HORIZONTAL);
         generateData.horizontalSpan = 2;//3;
@@ -158,6 +164,9 @@ public class FESelectOptionsWizardPage
                     ((EngineeringOption) button.getData()).setBoolean(true);
                     button.setSelection(true);                    
                 }
+                if (FESelectOptionsWizardPage.this.eventListener != null){
+                    FESelectOptionsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -173,6 +182,9 @@ public class FESelectOptionsWizardPage
                     ((EngineeringOption) button.getData()).setBoolean(false);
                     button.setSelection(false);
                 }
+                if (FESelectOptionsWizardPage.this.eventListener != null){
+                    FESelectOptionsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -187,6 +199,9 @@ public class FESelectOptionsWizardPage
                     Button button = (Button)it.next();
                     ((EngineeringOption) button.getData()).setBoolean(((Boolean)m_Default.get(i)).booleanValue());
                     button.setSelection(((Boolean)m_Default.get(i)).booleanValue());
+                }
+                if (FESelectOptionsWizardPage.this.eventListener != null){
+                    FESelectOptionsWizardPage.this.eventListener.handleEvent(null);
                 }
             }
 
@@ -218,6 +233,9 @@ public class FESelectOptionsWizardPage
             public void widgetSelected(SelectionEvent e) {
                 ((EngineeringOption) button.getData()).setBoolean(button
                         .getSelection());
+                if (FESelectOptionsWizardPage.this.eventListener != null){
+                    FESelectOptionsWizardPage.this.eventListener.handleEvent(null);
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
