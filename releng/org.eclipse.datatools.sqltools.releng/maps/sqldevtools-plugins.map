@@ -1,7 +1,7 @@
 plugin@org.eclipse.datatools.sqltools.common.ui=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.common.ui
 plugin@org.eclipse.datatools.sqltools.data.core=v201002240700,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.core
 plugin@org.eclipse.datatools.sqltools.data.ui=v200912080845,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.ui
-plugin@org.eclipse.datatools.sqltools.ddlgen.ui=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.ddlgen.ui
+plugin@org.eclipse.datatools.sqltools.ddlgen.ui=v201002270530,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.ddlgen.ui
 plugin@org.eclipse.datatools.sqltools.debugger.core=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.debugger.core
 plugin@org.eclipse.datatools.sqltools.debugger.core.ui=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.debugger.core.ui
 plugin@org.eclipse.datatools.sqltools.editor.core=v201001150815,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.editor.core
