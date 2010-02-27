@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.Vector;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -218,35 +217,6 @@ public class DriverManager {
 	}
 
 	/**
-     * Retrieve DriverInstances by name.
-     * @param name Name of the driver
-     * @return Driver Instances
-     */
-    public DriverInstance[] getDriverInstancesByName(String name) {
-        Vector driverInstanceCollection = new Vector();
-            XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-            try {
-                IPropertySet[] psets = XMLFileManager.loadPropertySets();
-                if (psets.length > 0) {
-                    for (int i = 0; i < psets.length; i++) {
-                        IPropertySet pset = psets[i];
-                        if (pset.getName().equals(name)) {
-                            DriverInstance driver = new DriverInstance(pset);
-                            driverInstanceCollection.add(new DriverInstance(pset));
-                            mDriverInstanceMap.put(driver.getId(), driver);
-                        }
-                    }
-                }
-            }
-            catch (CoreException e) {
-                ConnectivityPlugin.getDefault().log(e);
-            }
-            DriverInstance[] driverInstanceArray = new DriverInstance [driverInstanceCollection.size()];
-            driverInstanceCollection.copyInto(driverInstanceArray);
-        return driverInstanceArray;
-    }
-
-	/**
 	 * Return a comma-delimited list of all jars for all drivers.
 	 * @return String
 	 */
@@ -353,39 +323,6 @@ public class DriverManager {
 		}
 		return (IPropertySet[]) list.toArray(new IPropertySet[list.size()]);
 	}
-
-   /**
-     * Create a new DriverInstance based on the incoming templateID,
-     * driver name, and jar list.
-     * @param templateID String ID of the template
-     * @param name String name to give the driver
-     * @param jarList String jar list to give the driver
-     * @return DriverInstance
-     */
-    public DriverInstance createNewDriverInstance(String templateID,
-            String name, String jarList, String driverClass) {
-        if (templateID == null) return null;
-        if (name == null) return null;
-        
-        IPropertySet pset = createDefaultInstance(templateID);
-        
-        // if for some reason, we get back a null, pass that back
-        if (pset == null)
-            return null;
-        
-        if (name != null)
-            pset.setName(name);
-        String prefix = DriverMgmtMessages
-                .getString("NewDriverDialog.text.id_prefix"); //$NON-NLS-1$
-        String id = prefix + templateID + "." + name; //$NON-NLS-1$
-        pset.setID(id);
-        Properties props = pset.getBaseProperties();
-        if (jarList != null)
-            props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
-        props.setProperty("org.eclipse.datatools.connectivity.db.driverClass", driverClass);
-        addDriverInstance(pset);
-        return getDriverInstanceByID(pset.getID());
-    }
 
 	/**
 	 * Create a new DriverInstance based on the incoming templateID,

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2010 Sybase, Inc. and others.
+ * Copyright (c) 2005, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -40,10 +40,4 @@ public interface IJDBCConnectionProfileConstants extends IJDBCDriverDefinitionCo
 	 */
 	public static final String SAVE_PASSWORD_PROP_ID = PROP_PREFIX + "savePWD"; //$NON-NLS-1$
 
-	   /**
-     * Property used to store the default schema.  This property is used
-     * the generic DB connection profile wizard during initialization.  This
-     * property is also used by the DB connection profile.
-     */
-    public static final String DEFAULT_SCHEMA_PROP_ID = PROP_PREFIX + "defaultSchema"; //$NON-NLS-1$
 }

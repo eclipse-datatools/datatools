@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 Sybase, Inc. and others.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -48,14 +48,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
-import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
-import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.w3c.dom.DOMException;
@@ -298,8 +295,7 @@ public class ConnectionProfileMgmt {
 					hasDriverReference = true;
 				}
 				if (key.equals(IDriverMgmtConstants.PROP_DEFN_JARLIST)) {
-	                // Set to false so that actual jarList will be used if available
-                    hasJarList = false;
+					hasJarList = true;
 				}
 				appendPropertyToElement ( document, baseProps, key, value );
 			}
@@ -633,17 +629,14 @@ public class ConnectionProfileMgmt {
 					// Bug 240433 - brianf
 					// Issue with importing 2 profiles with same driver ID but from different exports
 					boolean existingDriverHasName = false;
-	                DriverInstance[] testDI = DriverManager.getInstance().getDriverInstancesByName(driverName);
-	                if (testDI != null) {
-	                    // we found the driver, so we're ok to continue
-	                    for (int index = 0; index < testDI.length; index++){
-	                        if (testDI[index].getTemplate().getId().equalsIgnoreCase(driverTypeID)) {
-	                            // the driver with the same name happens to have the same template ID, so we should be ok
-	                            existingDriverHasName = true;
-	                        }
-	                    }
-	                }
-
+					DriverInstance testDI = DriverManager.getInstance().getDriverInstanceByName(driverName);
+					if (testDI != null) {
+						// we found the driver, so we're ok to continue
+						if (testDI.getTemplate().getId().equalsIgnoreCase(driverTypeID)) {
+							// the driver with the same name happens to have the same template ID, so we should be ok
+							existingDriverHasName = true;
+						}
+					}
 					if (testDI == null || (testDI != null && !existingDriverHasName)) {
 						DriverInstance di = DriverManager.getInstance().createNewDriverInstance(driverTypeID, driverName, new String());
 						if (di != null) {
@@ -741,129 +734,6 @@ public class ConnectionProfileMgmt {
 		return updatedIDs;
 	}
 	
-   /**
-     * Import all connection profiles from file
-     * 
-     * @param file
-     * @param isp
-     * @return IConnectionProfile[]
-     * @throws ConnectionProfileException
-     * @throws IOException
-     * @throws GeneralSecurityException
-     * @throws SAXException
-     * @throws TransformerException
-     * @throws ParserConfigurationException
-     * @throws TransformerConfigurationException
-     * @throws TransformerException
-     */
-    public static IConnectionProfile[] importCPs(File file,
-            ICipherProvider isp, boolean isOverwrite) throws CoreException,
-            ConnectionProfileException {
-        IConnectionProfile[] newConnectionProfiles = new IConnectionProfile[0];
-        newConnectionProfiles = loadCPs(file, isp);
-
-        // Post-process imported connection profiles
-        for (int index = 0; index < newConnectionProfiles.length; index++) {
-
-            IConnectionProfile currentConnectionProfile = newConnectionProfiles[index];
-
-            // if isOverwrite then remove existing connection profile with same
-            // name before
-            // adding the new one
-            if (isOverwrite) {
-                IConnectionProfile profile = ProfileManager.getInstance()
-                        .getProfileByName(currentConnectionProfile.getName());
-                if (profile != null) {
-                    ProfileManager.getInstance().deleteProfile(profile);
-                }
-            }
-            ProfileManager.getInstance().addProfile(currentConnectionProfile);
-
-            Properties baseProperties = currentConnectionProfile
-                    .getBaseProperties();
-            String jarList = baseProperties.getProperty(
-                    IDriverMgmtConstants.PROP_DEFN_JARLIST, null);
-            String driverDefinitionID = baseProperties.getProperty(
-                    ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, null);
-            String driverTemplateID = baseProperties.getProperty(
-                    IDriverMgmtConstants.PROP_DEFN_TYPE, null);
-            TemplateDescriptor templateDescriptor = TemplateDescriptor
-                    .getDriverTemplateDescriptor(driverTemplateID);
-
-            DriverInstance driverInstance = DriverManager.getInstance()
-                    .getDriverInstanceByID(driverDefinitionID);
-            // Check to see if the jarList specified in the file is the same as
-            // the one in the workspace's driver definition that has same name
-            if (((driverInstance == null) && (jarList != null))
-                    || ((driverInstance != null) && (jarList != null) && !(jarList
-                            .equals(driverInstance.getJarList())))) {
-                // Check to see if there is an existing driver definition that
-                // can be used
-                DriverInstance[] driverInstances = DriverManager.getInstance()
-                        .getDriverInstancesByTemplate(driverTemplateID);
-                String existingDriverDefinitionID = null;
-                for (int driverIndex = 0; driverIndex < driverInstances.length; driverIndex++) {
-                    if (jarList.equals(driverInstances[driverIndex]
-                            .getJarList())) {
-                        // if jarList is the same then re-use the driver
-                        // definition
-                        existingDriverDefinitionID = driverInstances[driverIndex]
-                                .getId();
-                        break;
-                    }
-                }               
-                if (existingDriverDefinitionID != null) {
-                    baseProperties
-                            .setProperty(
-                                    ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
-                                    existingDriverDefinitionID);
-                    currentConnectionProfile.setProperties(
-                            currentConnectionProfile.getProviderId(),
-                            baseProperties);
-                } else {
-                    // Create new driver definition and assign to connection
-                    // profile
-                    String driverDefinitionNameBase = currentConnectionProfile
-                            .getName();
-                    if (templateDescriptor != null) {
-                        driverDefinitionNameBase = templateDescriptor
-                                .getDefaultDefinitionName();
-                    }
-                    String driverClass = baseProperties
-                            .getProperty("org.eclipse.datatools.connectivity.db.driverClass").toString();
-                    String uniqueDriverInstanceName = generateUniqueDriverDefinitionName(driverDefinitionNameBase);
-                    DriverInstance newDriverInstance = DriverManager
-                            .getInstance().createNewDriverInstance(
-                                    driverTemplateID, uniqueDriverInstanceName,
-                                    jarList, driverClass);
-                    if (newDriverInstance != null) {
-                        baseProperties
-                                .setProperty(
-                                        ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
-                                        newDriverInstance.getId());
-                        currentConnectionProfile.setProperties(
-                                currentConnectionProfile.getProviderId(),
-                                baseProperties);
-                    }
-                }
-            }
-        }
-        return newConnectionProfiles;
-    }
-
-    private static String generateUniqueDriverDefinitionName(String baseDriverInstanceName) {
-        int index = 0;
-        if (baseDriverInstanceName == null){
-            baseDriverInstanceName = "0";
-        }   
-        String testName = baseDriverInstanceName;
-        while (DriverManager.getInstance().getDriverInstanceByName(testName) != null) {
-            index++;
-            testName = baseDriverInstanceName + String.valueOf(index);
-        }
-        return testName;
-    }
-
 	/**
 	 * Load all connection profiles from storage
 	 * 
