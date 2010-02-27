@@ -12,9 +12,10 @@ $Define
 
 $import_classes
     /.
-        import org.eclipse.datatools.modelbase.sql.query.*;
-        import org.eclipse.datatools.modelbase.sql.query.util.*;
         import org.eclipse.datatools.modelbase.sql.datatypes.*;
+        import org.eclipse.datatools.modelbase.sql.query.*;
+        import org.eclipse.datatools.modelbase.sql.query.helper.*;
+        import org.eclipse.datatools.modelbase.sql.query.util.*;
         import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
     ./
 $End
@@ -69,6 +70,7 @@ $Define
 	$RT_datatype_time			 		/.TimeDataType./
 	$RT_datatype_user_defined_distinct	/.UserDefinedType./
 	$RT_datatype_user_defined_structured/.StructuredUserDefinedType./
+	$RT_datatype_user_defined_type      /.UserDefinedType./
 	$RT_datatype_xml			 		/.XMLDataType./
 	$RT_datatype_opt_size_unit			/.String./
 	$RT_delete_stmt 					/.QueryDeleteStatement./
@@ -95,6 +97,10 @@ $Define
 	$RT_insert_stmt 					/.QueryInsertStatement./
 	$RT_intervaltest 					/.PredicateBetween./
 	$RT_liketest 						/. ./
+	$RT_merge_on_condition              /.MergeOnCondition./
+	$RT_merge_source_table              /.MergeSourceTable./
+	$RT_merge_target_table              /.MergeTargetTable./
+	$RT_merge_when_clause               /.MergeOperationSpecification./
 	$RT_nulltest 						/. ./
 	$RT_opt_all_distinct 				/.String./
 	$RT_opt_as 							/. ./
@@ -147,6 +153,7 @@ $Define
 	$RT_table_ref_commalist 			/. ./
 	$RT_target_column_list			 	/. ./
 	$RT_target_table 					/.TableInDatabase./
+	$RT_updatability_expression         /.UpdatabilityExpression./
 	$RT_update_assignment_clause 		/.List./
 	$RT_update_assignment_expression 	/.UpdateAssignmentExpression./
 	$RT_update_assignment_expression_commalist /.List./

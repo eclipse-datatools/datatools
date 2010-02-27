@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.parsers.sql.query;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
@@ -22,6 +24,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
+import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
 import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalDataType;
@@ -31,8 +34,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.impl.ArrayDataTypeImpl;
-import org.eclipse.datatools.modelbase.sql.datatypes.impl.MultisetDataTypeImpl;
+import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.Grouping;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
@@ -41,6 +43,12 @@ import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
+import org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification;
 import org.eclipse.datatools.modelbase.sql.query.NullOrderingType;
 import org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal;
 import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
@@ -65,6 +73,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
@@ -92,7 +101,10 @@ import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityType;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
+import org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
@@ -120,6 +132,8 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryArrayDataTypeImpl;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryMultisetDataTypeImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
@@ -163,9 +177,9 @@ public class SQLQueryParserFactory implements SQLParserFactory,SQLQueryParserFac
   }
 
 
-  static  SQLSchemaFactory rdbFactory           = null;
-  static  SQLQueryModelFactory  sqlQueryModelFactory = null;
-  static  SQLTablesFactory tableFactory         = null; //hetty
+  protected static  SQLSchemaFactory rdbFactory           = null;
+  protected static  SQLQueryModelFactory  sqlQueryModelFactory = null;
+  protected static  SQLTablesFactory tableFactory         = null;
 
   // TODO: wherever we use delimitedIdentifierQuote change to quote property in source format
   // but use it from the given SQLObjects created by the parser
@@ -475,7 +489,17 @@ public class SQLQueryParserFactory implements SQLParserFactory,SQLQueryParserFac
        */
       public final static int QUERY_COMBINED_EXCEPT_ALL = QueryCombinedOperator.EXCEPT_ALL;
     
-    
+      /**
+       * int constant for {@link UpdatabilityType#READ_ONLY} "FOR READ ONLY"
+       * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityType#READ_ONLY
+       */
+      public final static int UPDATABILITY_TYPE_FOR_READ_ONLY = UpdatabilityType.READ_ONLY;
+      
+      /**
+       * int constant for {@link UpdatabilityType#UPDATE} "FOR UPDATE"
+       * @see org.eclipse.datatools.modelbase.sql.query.UpdatabilityType#UPDATE
+       */
+      public final static int UPDATABILITY_TYPE_FOR_UPDATE = UpdatabilityType.UPDATE;
     
     
       // ****************************************************** String constants
@@ -561,8 +585,6 @@ public class SQLQueryParserFactory implements SQLParserFactory,SQLQueryParserFac
        * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#isDistinct()
        */
       public final static String DISTINCT              = "DISTINCT"; //$NON-NLS-1$
-
-
 
   /**
    * proxy method for later logger implementation,
@@ -666,58 +688,76 @@ public List listConcat(Object p_lhs, List p_list) {
 
 
 
-public List createUpdateAssignmentClause(List aExprList, UpdateAssignmentExpression aExpr ) {
-  //if (statementTypeOnly) {return null;}
-  if (aExprList == null)
-    aExprList = new Vector();
-  aExprList.add( aExpr );
-  return aExprList;
+/**
+ * Adds the given <code>tableCorrelation</code> to the given <code>tableExpr</code>.
+ * @param tableExpr
+ * @param tableCorrelation
+ * @return the given <code>tableExpr</code>
+ */
+public TableExpression addTableCorrelationToTableExpression(TableExpression tableExpr, TableCorrelation tableCorrelation) {
+    tableExpr.setTableCorrelation(tableCorrelation);
+    return tableExpr;
 }
 
-public UpdateAssignmentExpression createUpdateAssignmentExpression( ValueExpressionColumn aTargetCol, QueryValueExpression aExpr ) {
-  //if (statementTypeOnly) {return null;}
-    List targetColList = new Vector(1);
-    List exprList = new Vector(1);
-    targetColList.add(aTargetCol);
-    exprList.add(aExpr);
-    return createUpdateAssignmentExpression(targetColList, exprList);
-}
 
-public UpdateAssignmentExpression createUpdateAssignmentExpression( List aTargetColList, List aExprList ) {
-  //if (statementTypeOnly) {return null;}
-    // parser conflict -> filter out accidently created ScalarSelect
-    if (aExprList != null && aExprList.size() == 1 && aExprList.get(0) != null
-                    && aExprList.get(0) instanceof ValueExpressionScalarSelect) {
-        ValueExpressionScalarSelect scalarSelect =
-            (ValueExpressionScalarSelect) aExprList.get(0);
-        QueryExpressionRoot queryExpr = scalarSelect.getQueryExpr();
-        QueryExpressionBody query = queryExpr.getQuery();
-        queryExpr.setQuery(null); // unhook the query in case of EMF ownership is not modelled correctly
-        return createUpdateAssignmentExpression(aTargetColList, query);
+/* see IBM DB2 Universal Database
+ * SQL Reference for Cross-Platform Development Version 2
+ * Chapter 5. Statements p.427 */
+protected int convertIntoBytesFromBytesInUnit(int bytesInUnit, String unit, int primitiveType) {
+    int kilo = 1024,
+		mega = 1024 * 1024,
+		giga = 1024 * 1024 * 1024;
+    int maxInt = Integer.MAX_VALUE; //2147483647;
+    // the SQL spec allows round up of the correct compution
+    //int maxKilo = maxInt/kilo, //-> 2147483647 / (1024) == 2097151.999
+	//	  maxMega = maxInt/mega, //-> 2147483647 / (1024*1024) == 2047.999
+	//	  maxGiga = maxInt/giga; //-> 2147483647 / (1024*1024*1024) == 1.999
+    int maxKilo = 2097152,	//-> 2147483647 / (1024) == 2097151.999
+		maxMega = 2048,		//-> 2147483647 / (1024*1024) == 2047.999
+		maxGiga = 2;		//-> 2147483647 / (1024*1024*1024) == 1.999
+
+    int sizeInByte = bytesInUnit;
+    boolean sizeExceeds_MAX_INT = false;
+
+    if (UNIT_INDICATOR_K.equalsIgnoreCase(unit)) {
+        // catch overflow by 1 we're tolerant and so is the SQL spec
+        if (bytesInUnit == maxKilo) {
+            sizeInByte = maxInt;
+        } else if (bytesInUnit < maxKilo) {
+            sizeInByte *= kilo;
+        } else {
+            sizeExceeds_MAX_INT = true;
+        }
     }
-    else
-    {
-        UpdateAssignmentExpression assign = sqlQueryModelFactory.createUpdateAssignmentExpression();
-        EList targetColList = assign.getTargetColumnList();
-        targetColList.addAll( aTargetColList );
-        UpdateSourceExprList exprList = sqlQueryModelFactory.createUpdateSourceExprList();
-        EList valueExprList = exprList.getValueExprList();
-        valueExprList.addAll( aExprList );
-        assign.setUpdateSource(exprList);
-        return assign;
+    else if (UNIT_INDICATOR_M.equalsIgnoreCase(unit)) {
+        // catch overflow by 1 we're tolerant and so is the SQL spec
+        if (bytesInUnit == maxMega) {
+            sizeInByte = maxInt;
+        } else if (bytesInUnit < maxMega) {
+            sizeInByte *= mega;
+        } else {
+            sizeExceeds_MAX_INT = true;
+        }
     }
+    else if (UNIT_INDICATOR_G.equalsIgnoreCase(unit)) {
+        // catch overflow by 1 we're tolerant and so is the SQL spec
+        if (bytesInUnit == maxGiga) {
+            sizeInByte = maxInt;
+        } else if (bytesInUnit < maxGiga) {
+            sizeInByte *= giga;
+        } else {
+            sizeExceeds_MAX_INT = true;
+        }
+    }
+
+    if (sizeExceeds_MAX_INT) {
+        throw new NumberFormatException("Size "+bytesInUnit+" in "+unit+"byte for "+PrimitiveType.get(primitiveType)+" exceeds "+Integer.MAX_VALUE+" byte."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    }
+
+    return sizeInByte;
+
 }
 
-public UpdateAssignmentExpression createUpdateAssignmentExpression( List aTargetColList, QueryExpressionBody aUpdateQuery ) {
-  //if (statementTypeOnly) {return null;}
-    UpdateAssignmentExpression assign = sqlQueryModelFactory.createUpdateAssignmentExpression();
-    EList targetColList = assign.getTargetColumnList();
-    targetColList.addAll( aTargetColList );
-    UpdateSourceQuery sourceQuery = sqlQueryModelFactory.createUpdateSourceQuery();
-    sourceQuery.setQueryExpr(aUpdateQuery);
-    assign.setUpdateSource(sourceQuery);
-    return assign;
-}
 
 public ValueExpressionCaseElse createCaseElse( QueryValueExpression expr ) {
   //if (statementTypeOnly) {return null;}
@@ -952,126 +992,59 @@ public DataType createDataType(String aTypeName) {
   //if (statementTypeOnly) {return null;}
     DataType dataType = createPredefinedDataType(aTypeName);
     if (dataType == null) {
-        dataType = createDistinctUserDefinedType(aTypeName);
+        dataType = createDataTypeDistinctUserDefinedType(aTypeName);
     }
     return dataType;
 }
-
-public DistinctUserDefinedType createDistinctUserDefinedType(String aTypeName) {
-  //if (statementTypeOnly) {return null;}
-    DistinctUserDefinedType dataType = SQLDataTypesFactory.eINSTANCE.createDistinctUserDefinedType();
-    dataType.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aTypeName,  getDelimitedIdentifierQuote()));
-    return dataType;
-}
-
-/**
- * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeCharacterString(int, int, String)
- */
-public CharacterStringDataType createDataTypeCharacterString(int primitiveType, int length, String optionalUnitsIndicator) {
-  //if (statementTypeOnly) {return null;}
-    CharacterStringDataType dataType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    // int constant for primitve type here must be equal to the
-    // int constant for PrimitiveType literal in PrimitveType
-    dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
-
-//  TODO: dangerous, consider model change to add measuring unit
-    dataType.setLength(convertIntoBytesFromBytesInUnit(length,optionalUnitsIndicator,primitiveType));
-
-    return dataType;
-}
-
-/* see IBM DB2 Universal Database
- * SQL Reference for Cross-Platform Development Version 2
- * Chapter 5. Statements p.427 */
-protected int convertIntoBytesFromBytesInUnit(int bytesInUnit, String unit, int primitiveType) {
-    int kilo = 1024,
-		mega = 1024 * 1024,
-		giga = 1024 * 1024 * 1024;
-    int maxInt = Integer.MAX_VALUE; //2147483647;
-    // the SQL spec allows round up of the correct compution
-    //int maxKilo = maxInt/kilo, //-> 2147483647 / (1024) == 2097151.999
-	//	  maxMega = maxInt/mega, //-> 2147483647 / (1024*1024) == 2047.999
-	//	  maxGiga = maxInt/giga; //-> 2147483647 / (1024*1024*1024) == 1.999
-    int maxKilo = 2097152,	//-> 2147483647 / (1024) == 2097151.999
-		maxMega = 2048,		//-> 2147483647 / (1024*1024) == 2047.999
-		maxGiga = 2;		//-> 2147483647 / (1024*1024*1024) == 1.999
-
-
-    int sizeInByte = bytesInUnit;
-    boolean sizeExceeds_MAX_INT = false;
-
-
-    if (UNIT_INDICATOR_K.equals(unit)) {
-        // catch overflow by 1 we're tolerant and so is the SQL spec
-        if (bytesInUnit == maxKilo) {
-            sizeInByte = maxInt;
-        } else if (bytesInUnit < maxKilo) {
-            sizeInByte *= kilo;
-        } else {
-            sizeExceeds_MAX_INT = true;
-        }
-    }
-    if (UNIT_INDICATOR_M.equals(unit)) {
-        // catch overflow by 1 we're tolerant and so is the SQL spec
-        if (bytesInUnit == maxMega) {
-            sizeInByte = maxInt;
-        } else if (bytesInUnit < maxMega) {
-            sizeInByte *= mega;
-        } else {
-            sizeExceeds_MAX_INT = true;
-        }
-    }
-    if (UNIT_INDICATOR_G.equals(unit)) {
-        // catch overflow by 1 we're tolerant and so is the SQL spec
-        if (bytesInUnit == maxGiga) {
-            sizeInByte = maxInt;
-        } else if (bytesInUnit < maxGiga) {
-            sizeInByte *= giga;
-        } else {
-            sizeExceeds_MAX_INT = true;
-        }
-    }
-
-    if (sizeExceeds_MAX_INT) {
-        throw new NumberFormatException("Size "+bytesInUnit+" in "+unit+"byte for "+PrimitiveType.get(primitiveType)+" exceeds "+Integer.MAX_VALUE+" byte."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
-    }
-
-    return sizeInByte;
-
-}
-
-
 
 /**
  * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeArray(DataType)
  */
-public ArrayDataType createDataTypeArray(DataType elementDataType) {
-    // TODO make use of the proper factory methods to be created in SQL Model
-    ArrayDataType dataType = new ArrayDataTypeImpl() {};            
-    dataType.getElement().add(elementDataType);
-    return dataType;            
+public ArrayDataType createDataTypeArray(DataType dataType) {
+    return createDataTypeArray(dataType, 0, null);         
 }
 
 /**
  * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeArray(DataType, int)
  */
-public ArrayDataType createDataTypeArray(DataType elementDataType, int maxCardinality) {
+public ArrayDataType createDataTypeArray(DataType dataType, int maxCardinality) {
+    return createDataTypeArray(dataType, maxCardinality, null);
+}
+
+/**
+ * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeArray(DataType, int)
+ */
+public ArrayDataType createDataTypeArray(DataType dataType, int maxCardinality, String typeName) {
     // TODO make use of the proper factory methods to be created in SQL Model
-    ArrayDataType dataType = new ArrayDataTypeImpl() {};            
-    dataType.getElement().add(elementDataType);
-    dataType.setMaxCardinality(maxCardinality);
-    return dataType;
+    ArrayDataType arrayDataType = new SQLQueryArrayDataTypeImpl();        
+    ElementType elementType = SQLDataTypesFactory.eINSTANCE.createElementType();
+    elementType.setDataType(dataType);
+    arrayDataType.setElementType(elementType);
+    if (maxCardinality != 0) {
+        arrayDataType.setMaxCardinality(maxCardinality);
+    }
+    arrayDataType.setName(DataTypeHelper.TYPENAME_ARRAY);
+    
+    return arrayDataType;
 }
 
 /**
  * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeBinaryString(int, int, String)
  */
 public BinaryStringDataType createDataTypeBinaryString(int primitiveType, int length, String optionalUnitsIndicator) {
+    return createDataTypeBinaryString(primitiveType, length, optionalUnitsIndicator, null );
+}
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeBinaryString(int, int, String)
+ */
+public BinaryStringDataType createDataTypeBinaryString(int primitiveType, int length, String optionalUnitsIndicator, String typeName) {
   //if (statementTypeOnly) {return null;}
     BinaryStringDataType dataType = SQLDataTypesFactory.eINSTANCE.createBinaryStringDataType();
     // int constant for primitve type here must be equal to the
     // int constant for PrimitiveType literal in PrimitveType
     dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
+    dataType.setName(typeName);
 
 //  TODO: dangerous, consider model change to add measuring unit
     dataType.setLength(convertIntoBytesFromBytesInUnit(length,optionalUnitsIndicator,primitiveType));
@@ -1083,23 +1056,89 @@ public BinaryStringDataType createDataTypeBinaryString(int primitiveType, int le
  * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeBoolean()
  */
 public BooleanDataType createDataTypeBoolean() {
+    return createDataTypeBoolean(null);
+}
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeBoolean()
+ */
+public BooleanDataType createDataTypeBoolean(String typeName) {
   //if (statementTypeOnly) {return null;}
     BooleanDataType dataType = SQLDataTypesFactory.eINSTANCE.createBooleanDataType();
     dataType.setPrimitiveType(PrimitiveType.BOOLEAN_LITERAL);
+    dataType.setName(typeName);
+    
     return dataType;
 }
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeCharacterString(int, int, String)
+ */
+public CharacterStringDataType createDataTypeCharacterString(int primitiveType, int length, String optionalUnitsIndicator) {
+    return createDataTypeCharacterString(primitiveType, length, optionalUnitsIndicator, null);
+}
+
+public CharacterStringDataType createDataTypeCharacterString(int primitiveType, int length, String optionalUnitsIndicator, String typeName) {
+    //if (statementTypeOnly) {return null;}
+      CharacterStringDataType dataType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+      // int constant for primitve type here must be equal to the
+      // int constant for PrimitiveType literal in PrimitveType
+      dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
+      dataType.setName(typeName);
+
+  //  TODO: dangerous, consider model change to add measuring unit
+      int convertedLength = convertIntoBytesFromBytesInUnit(length,optionalUnitsIndicator,primitiveType);
+      dataType.setLength(convertedLength);
+
+      return dataType;
+  }
 
 /**
  * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeDataLink(int)
  */
 public DataLinkDataType createDataTypeDataLink(int length) {
+    return createDataTypeDataLink(length, null);
+}
+    
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeDataLink(int)
+ */
+public DataLinkDataType createDataTypeDataLink(int length, String typeName) {
   //if (statementTypeOnly) {return null;}
     DataLinkDataType dataType = SQLDataTypesFactory.eINSTANCE.createDataLinkDataType();
     // int constant for primitve type here must be equal to the
     // int constant for PrimitiveType literal in PrimitveType
     dataType.setLength(length);
     dataType.setPrimitiveType(PrimitiveType.DATALINK_LITERAL);
-    //TODO: finish DataLinkDataType
+    dataType.setName(typeName);
+    
+    return dataType;
+}
+
+/**
+ * @see SQLDataTypesFactory#createDateDataType()
+ */
+public DateDataType createDataTypeDate() {
+    return createDataTypeDate(null);
+}
+
+/**
+ * @see SQLDataTypesFactory#createDateDataType()
+ */
+public DateDataType createDataTypeDate(String typeName) {
+  //if (statementTypeOnly) {return null;}
+    DateDataType dataType = SQLDataTypesFactory.eINSTANCE.createDateDataType();
+    // int constant for primitve type here must be equal to the
+    // int constant for PrimitiveType literal in PrimitveType
+    dataType.setPrimitiveType(PrimitiveType.DATE_LITERAL);
+    dataType.setName(typeName);
+    
+    return dataType;
+}
+
+public DistinctUserDefinedType createDataTypeDistinctUserDefinedType(String aTypeName) {
+    DistinctUserDefinedType dataType = SQLDataTypesFactory.eINSTANCE.createDistinctUserDefinedType();
+    dataType.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aTypeName,  getDelimitedIdentifierQuote()));
     return dataType;
 }
 
@@ -1111,6 +1150,18 @@ public IntervalDataType createDataTypeInterval(IntervalQualifierType leadingQual
                                                int leadingFieldPrecision,
                                                int trailingFieldPrecision,
                                                int fractionalSecondsPrecision) {
+    return createDataTypeInterval(leadingQualifier, trailingQualifier, leadingFieldPrecision, trailingFieldPrecision, fractionalSecondsPrecision, null);
+}
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeInterval(IntervalQualifierType, IntervalQualifierType, int, int,int)
+ */
+public IntervalDataType createDataTypeInterval(IntervalQualifierType leadingQualifier,
+                                               IntervalQualifierType trailingQualifier,
+                                               int leadingFieldPrecision,
+                                               int trailingFieldPrecision,
+                                               int fractionalSecondsPrecision,
+                                               String typeName) {
 	//if (statementTypeOnly) {return null;}
     IntervalDataType dataType = SQLDataTypesFactory.eINSTANCE.createIntervalDataType();
     // int constant for primitve type here must be equal to the
@@ -1121,38 +1172,69 @@ public IntervalDataType createDataTypeInterval(IntervalQualifierType leadingQual
     dataType.setLeadingFieldPrecision(leadingFieldPrecision);
     dataType.setTrailingFieldPrecision(trailingFieldPrecision);
     dataType.setFractionalSecondsPrecision(fractionalSecondsPrecision);
+    dataType.setName(typeName);
+    
     return dataType;
 }
 
+
 /**
- * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeTime(int, int)
+ * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeMultiset(DataType)
  */
-public TimeDataType createDataTypeTime(int primitiveType, int precision) {
+public MultisetDataType createDataTypeMultiset(DataType dataType) {
+    return createDataTypeMultiset(dataType, DataTypeHelper.TYPENAME_MULTISET);
+}
+
+/**
+ * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeMultiset(DataType)
+ */
+public MultisetDataType createDataTypeMultiset(DataType dataType, String typeName) {
+    // TODO make use of the proper factory methods to be created in SQL Model
+    MultisetDataType multisetDataType = new SQLQueryMultisetDataTypeImpl();    
+    ElementType elementType = SQLDataTypesFactory.eINSTANCE.createElementType();
+    elementType.setDataType(dataType);
+    multisetDataType.setElementType(elementType);
+    multisetDataType.setName(typeName);
+    
+    return multisetDataType;            
+}
+
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericApproximate(int,int)
+ */
+public ApproximateNumericDataType createDataTypeNumericApproximate(int primitiveType, int precision) {
+    return createDataTypeNumericApproximate(primitiveType, precision, null);
+}
+
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericApproximate(int,int)
+ */
+public ApproximateNumericDataType createDataTypeNumericApproximate(int primitiveType, int precision, String typeName) {
   //if (statementTypeOnly) {return null;}
-    TimeDataType dataType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
+    ApproximateNumericDataType dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
     // int constant for primitve type here must be equal to the
     // int constant for PrimitiveType literal in PrimitveType
+    dataType.setPrecision(precision);
     dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
-    dataType.setFractionalSecondsPrecision(precision);
+    dataType.setName(typeName);
+    
     return dataType;
 }
 
-/**
- * @see SQLDataTypesFactory#createDateDataType()
- */
-public DateDataType createDataTypeDate() {
-  //if (statementTypeOnly) {return null;}
-    DateDataType dataType = SQLDataTypesFactory.eINSTANCE.createDateDataType();
-    // int constant for primitve type here must be equal to the
-    // int constant for PrimitiveType literal in PrimitveType
-    dataType.setPrimitiveType(PrimitiveType.DATE_LITERAL);
-    return dataType;
-}
 
 /**
  * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericFixedPrecision(int,int,int)
  */
 public FixedPrecisionDataType createDataTypeNumericFixedPrecision(int primitiveType, int precision, int scale) {
+    return createDataTypeNumericFixedPrecision( primitiveType, precision, scale, null);
+}
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericFixedPrecision(int,int,int)
+ */
+public FixedPrecisionDataType createDataTypeNumericFixedPrecision(int primitiveType, int precision, int scale, String typeName) {
   //if (statementTypeOnly) {return null;}
     FixedPrecisionDataType dataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
     // int constant for primitve type here must be equal to the
@@ -1160,6 +1242,8 @@ public FixedPrecisionDataType createDataTypeNumericFixedPrecision(int primitiveT
     dataType.setPrecision(precision);
     dataType.setScale(scale);
     dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
+    dataType.setName(typeName);
+    
     return dataType;
 }
 
@@ -1167,6 +1251,14 @@ public FixedPrecisionDataType createDataTypeNumericFixedPrecision(int primitiveT
  * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericInteger(int, int)
  */
 public IntegerDataType createDataTypeNumericInteger(int primitiveType, int precision) {
+    return createDataTypeNumericInteger( primitiveType, precision, null);
+}
+
+
+/**
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericInteger(int, int)
+ */
+public IntegerDataType createDataTypeNumericInteger(int primitiveType, int precision, String typeName) {
   //if (statementTypeOnly) {return null;}
     IntegerDataType dataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
     // int constant for primitve type here must be equal to the
@@ -1183,34 +1275,54 @@ public IntegerDataType createDataTypeNumericInteger(int primitiveType, int preci
     dataType.setPrecision(precision);
     dataType.setScale(0);
     dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
+    dataType.setName(typeName);
+    
     return dataType;
 }
 
+public PredefinedDataType createDataTypePredefinedDataType(String typeName) {
+    return DataTypeHelper.getPredefinedDataTypeForNamedType(typeName);
+}
+
 /**
- * @see org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeMultiset(DataType)
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeTime(int, int)
  */
-public MultisetDataType createDataTypeMultiset(DataType elementDataType) {
-    // TODO make use of the proper factory methods to be created in SQL Model
-    MultisetDataType dataType = new MultisetDataTypeImpl() {};            
-    dataType.getElement().add(elementDataType);
-    return dataType;            
+public TimeDataType createDataTypeTime(int primitiveType, int precision) {
+    return createDataTypeTime(primitiveType, precision, null);
 }
 
 
 /**
- * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeNumericApproximate(int,int)
+ * @inheritDoc org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactoryDataTypes#createDataTypeTime(int, int)
  */
-public ApproximateNumericDataType createDataTypeNumericApproximate(int primitiveType, int precision) {
+public TimeDataType createDataTypeTime(int primitiveType, int precision, String typeName) {
   //if (statementTypeOnly) {return null;}
-    ApproximateNumericDataType dataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+    TimeDataType dataType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
     // int constant for primitve type here must be equal to the
     // int constant for PrimitiveType literal in PrimitveType
-    dataType.setPrecision(precision);
     dataType.setPrimitiveType(PrimitiveType.get(primitiveType));
+    dataType.setFractionalSecondsPrecision(precision);
+    dataType.setName(typeName);
+    
     return dataType;
 }
 
-
+public UserDefinedType createDataTypeUserDefinedType(String aSchemaName, String aTypeName) {
+    /* At this time only the Distinct flavor of user-defined type is supported. */
+    UserDefinedType dataType = SQLDataTypesFactory.eINSTANCE.createDistinctUserDefinedType();
+    String catalogTypeName = StatementHelper.convertSQLIdentifierToCatalogFormat(aTypeName,  getDelimitedIdentifierQuote());
+    dataType.setName(catalogTypeName);
+    
+    /* Add the schema, if provided. */
+    if (aSchemaName != null) {
+        Schema rdbSchema = rdbFactory.createSchema();
+        String catalogSchemaName = StatementHelper.convertSQLIdentifierToCatalogFormat(aSchemaName,  getDelimitedIdentifierQuote());
+        rdbSchema.setName(catalogSchemaName);
+        dataType.setSchema(rdbSchema);
+    }
+    
+    return dataType;
+}
 
 public ValueExpressionDefaultValue  createDefaultExpression() {
 	//if (statementTypeOnly) {return null;}
@@ -1240,6 +1352,11 @@ public QueryDeleteStatement createDeleteStatement( TableInDatabase aTargetTable,
 
     return sqlDelete;
   }
+
+
+public DistinctUserDefinedType createDistinctUserDefinedType(String aTypeName) {
+    return createDataTypeDistinctUserDefinedType(aTypeName);
+}
 
 
 public List createExpressionList( List aExprList, QueryValueExpression aValExpr ) {
@@ -1305,68 +1422,6 @@ public GroupingExpression createGroupingExpression( QueryValueExpression aExpr )
 }
 
 //ck
-public List createGroupingSpecificationList( List aGroupingSpecList, GroupingSpecification aGroupingSpec ) {
-  //if (statementTypeOnly) {return null;}
-    if (aGroupingSpecList == null) {
-        aGroupingSpecList = new Vector();
-    }
-    aGroupingSpecList.add( aGroupingSpec );
-    return aGroupingSpecList;
-}
-
-//ck
-public SuperGroup createSuperGroups( List aSuperGroupsElementList, int aSuperGroupType ) {
-  //if (statementTypeOnly) {return null;}
-    SuperGroup superGroup = sqlQueryModelFactory.createSuperGroup();
-    if (aSuperGroupsElementList != null) {
-        superGroup.getSuperGroupElementList().addAll(aSuperGroupsElementList);
-    }
-    superGroup.setSuperGroupType( SuperGroupType.get(aSuperGroupType) );
-    return superGroup;
-}
-
-//ck
-public List createSuperGroupsElementList( List aSuperGroupsElementList, SuperGroupElement aSuperGroupsElement ) {
-  //if (statementTypeOnly) {return null;}
-    if (aSuperGroupsElementList == null) {
-        aSuperGroupsElementList = new Vector();
-    }
-    aSuperGroupsElementList.add( aSuperGroupsElement );
-    return aSuperGroupsElementList;
-}
-
-//ck
-public SuperGroupElementExpression createSuperGroupsElementExpression( GroupingExpression aGroupingExpr ) {
-  //if (statementTypeOnly) {return null;}
-    SuperGroupElementExpression superGroupsElementExpr = sqlQueryModelFactory.createSuperGroupElementExpression();
-    superGroupsElementExpr.setGroupingExpr( aGroupingExpr );
-    return superGroupsElementExpr;
-}
-
-//ck
-public List createSuperGroupsElementExprList( List aSuperGroupsElementExprList, SuperGroupElementExpression aSuperGroupsElementExpr ) {
-  //if (statementTypeOnly) {return null;}
-    if (aSuperGroupsElementExprList == null) {
-        aSuperGroupsElementExprList = new Vector();
-    }
-    aSuperGroupsElementExprList.add( aSuperGroupsElementExpr );
-    return aSuperGroupsElementExprList;
-}
-
-//ck
-public SuperGroupElementSublist createSuperGroupsElementSublist( List aSuperGroupsElementExprList ) {
-  //if (statementTypeOnly) {return null;}
-    SuperGroupElementSublist superGroupSublist = sqlQueryModelFactory.createSuperGroupElementSublist();
-    if (aSuperGroupsElementExprList != null) {
-        superGroupSublist.getSuperGroupElementExprList().addAll(aSuperGroupsElementExprList);
-    }
-    return superGroupSublist;
-}
-
-
-
-
-//ck
 public GroupingSets createGroupingSets( List aGroupingSetsElementList ) {
   //if (statementTypeOnly) {return null;}
   GroupingSets superGroup = sqlQueryModelFactory.createGroupingSets();
@@ -1417,32 +1472,23 @@ public GroupingSetsElementSublist createGroupingSetsElementSublist( List aGroupi
 
 
 
+//ck
+public List createGroupingSpecificationList( List aGroupingSpecList, GroupingSpecification aGroupingSpec ) {
+  //if (statementTypeOnly) {return null;}
+    if (aGroupingSpecList == null) {
+        aGroupingSpecList = new Vector();
+    }
+    aGroupingSpecList.add( aGroupingSpec );
+    return aGroupingSpecList;
+}
+
+
 public List createInsertRow( List aInsertExprList, ValuesRow aInsertExpr ) {
   //if (statementTypeOnly) {return null;}
   if (aInsertExprList == null)
     aInsertExprList = new Vector();
   aInsertExprList.add( aInsertExpr );
   return aInsertExprList;
-}
-
-public ValuesRow createInsertValuesRow( List aExprList ) {
-  //if (statementTypeOnly) {return null;}
-  ValuesRow valuesRow = sqlQueryModelFactory.createValuesRow();
-  EList exprList = valuesRow.getExprList();
-  if (aExprList != null) {
-    exprList.addAll( aExprList );
-  }
-  return valuesRow;
-}
-
-public ValuesRow createInsertValuesRow( QueryValueExpression aValueExpr ) {
-  //if (statementTypeOnly) {return null;}
-    ValuesRow valuesRow = sqlQueryModelFactory.createValuesRow();
-    EList exprList = valuesRow.getExprList();
-    if (aValueExpr != null) {
-        exprList.add( aValueExpr );
-    }
-    return valuesRow;
 }
 
 /**
@@ -1510,6 +1556,28 @@ public QueryInsertStatement createInsertStatement( TableInDatabase aTargetTable,
   return sqlInsert;
 }
 
+public ValuesRow createInsertValuesRow( List aExprList ) {
+  //if (statementTypeOnly) {return null;}
+  ValuesRow valuesRow = sqlQueryModelFactory.createValuesRow();
+  EList exprList = valuesRow.getExprList();
+  if (aExprList != null) {
+    exprList.addAll( aExprList );
+  }
+  return valuesRow;
+}
+
+
+public ValuesRow createInsertValuesRow( QueryValueExpression aValueExpr ) {
+  //if (statementTypeOnly) {return null;}
+    ValuesRow valuesRow = sqlQueryModelFactory.createValuesRow();
+    EList exprList = valuesRow.getExprList();
+    if (aValueExpr != null) {
+        exprList.add( aValueExpr );
+    }
+    return valuesRow;
+}
+
+
 public TableJoined createJoinedTable( TableReference aLeftTable, int aJoinType, TableReference aRightTable, QuerySearchCondition aJoinCond ) {
   //if (statementTypeOnly) {return null;}
   TableJoined joinedTable = sqlQueryModelFactory.createTableJoined();
@@ -1532,6 +1600,93 @@ public ValueExpressionLabeledDuration createLabeledDurationExpression( QueryValu
   //labeledDur.setName( ValueExpressionLabeledDurationType.get( aDurationType ).toString() );
 
   return labeledDur;
+}
+
+public QueryMergeStatement createMergeStatement(MergeTargetTable aTargetTable, MergeSourceTable aSourceTable, MergeOnCondition aOnCondition, List aOperSpecList) {
+    QueryMergeStatement mergeStmt = sqlQueryModelFactory.createQueryMergeStatement();
+    
+    mergeStmt.setTargetTable(aTargetTable);
+    mergeStmt.setSourceTable(aSourceTable);
+    mergeStmt.setOnCondition(aOnCondition);
+    
+    /* Ignore any extra update spec or insert spec.  Can have at most one of each. */
+    List operSpecList = mergeStmt.getOperationSpecList();
+    boolean addedUpdateSpec = false;
+    boolean addedInsertSpec = false;
+    Iterator aOperSpecListIter = aOperSpecList.iterator();
+    while (aOperSpecListIter.hasNext()) {
+        MergeOperationSpecification aOperSpec = (MergeOperationSpecification) aOperSpecListIter.next();
+        if (aOperSpec instanceof MergeUpdateSpecification && addedUpdateSpec == false) {
+            operSpecList.add(aOperSpec);
+            addedUpdateSpec = true;
+        }
+        if (aOperSpec instanceof MergeInsertSpecification && addedInsertSpec == false) {
+            operSpecList.add(aOperSpec);
+            addedInsertSpec = true;
+        }
+    }
+    
+    return mergeStmt;
+}
+
+public MergeTargetTable createMergeTargetTable(TableExpression aTableExpr, String aTableAliasName) {
+    MergeTargetTable targetTable = sqlQueryModelFactory.createMergeTargetTable();
+    
+    if (aTableAliasName != null) {
+        TableCorrelation tableCorr = sqlQueryModelFactory.createTableCorrelation();
+        String convertedName = StatementHelper.convertSQLIdentifierToCatalogFormat( aTableAliasName,  getDelimitedIdentifierQuote());
+        tableCorr.setName(convertedName);
+        aTableExpr.setTableCorrelation(tableCorr);
+    }
+    targetTable.setTableExpr(aTableExpr);
+    
+    return targetTable;
+}
+
+public MergeSourceTable createMergeSourceTable(TableReference aTableRef) {
+    MergeSourceTable sourceTable = sqlQueryModelFactory.createMergeSourceTable();
+    
+    sourceTable.setTableRef(aTableRef);
+    
+    return sourceTable;
+}
+
+public MergeOnCondition createMergeOnCondition(QuerySearchCondition aSearchCond) {
+    MergeOnCondition onCondition = sqlQueryModelFactory.createMergeOnCondition();
+    
+    onCondition.setSearchCondition(aSearchCond);
+    
+    return onCondition;
+}
+
+public MergeInsertSpecification createMergeInsertSpecification(List aTargetColList, ValuesRow aValuesRow) {
+    MergeInsertSpecification mergeInsertSpec = sqlQueryModelFactory.createMergeInsertSpecification();
+    
+    mergeInsertSpec.getTargetColumnList().addAll(aTargetColList);
+    mergeInsertSpec.setSourceValuesRow(aValuesRow);
+    
+    return mergeInsertSpec;
+}
+
+public MergeUpdateSpecification createMergeUpdateSpecification(List aAssignmentExprList) {
+    MergeUpdateSpecification mergeUpdateSpec = sqlQueryModelFactory.createMergeUpdateSpecification();
+    
+    mergeUpdateSpec.getAssignementExprList().addAll(aAssignmentExprList);
+    
+    return mergeUpdateSpec;
+}
+
+/** 
+ * This is for as syntax hack in the parser.  The Merge statement can have an update operation spec, 
+ * or an insert operation spec or both, in either order.  The simple way to handle this in the grammar 
+ * is to treat them as a list of merge operation specs. */
+public List createMergeOperatationSpecificationList(List aMergeSpecList, MergeOperationSpecification aMergeSpec) {
+    if (aMergeSpecList == null) {
+        aMergeSpecList = new ArrayList();
+    }
+    aMergeSpecList.add(aMergeSpec);
+    
+    return aMergeSpecList;
 }
 
 public ValueExpressionNullValue createNullExpression() {
@@ -1662,11 +1817,8 @@ public OrderBySpecification createOrderByExpression( QueryValueExpression aOrder
 	return orderBy;
 }
 
-public PredefinedDataType createPredefinedDataType(String typeName) {
-  //if (statementTypeOnly) {return null;}
-    // TODO: that needs more thinking!
-    // TODO: post parse processing vendor specific datatypes
-    return DataTypeHelper.getPredefinedDataTypeForNamedType(typeName);
+public PredefinedDataType createPredefinedDataType(String aTypeName) {
+    return createDataTypePredefinedDataType(aTypeName);
 }
 
 public PredicateBasic createPredicateBasic( QueryValueExpression aLeftExpr, int aRelOper, QueryValueExpression aRightExpr ) {
@@ -1784,10 +1936,18 @@ public PredicateQuantifiedRowSelect createPredicateQuantifiedRowSelect( List aVa
     return predQuant;
   }
 
-//ck
+public QueryCombined createQueryCombined(QueryExpressionBody aLeftQuery,
+        int combinedOperator,
+        QueryExpressionBody aRightQuery) {
+    return createQueryCombined(aLeftQuery, combinedOperator, aRightQuery, null, 0);
+}
+
+
 public QueryCombined createQueryCombined(QueryExpressionBody aLeftQuery,
                                          int combinedOperator,
-                                         QueryExpressionBody aRightQuery) {
+                                         QueryExpressionBody aRightQuery,
+                                         List aSortSpecList,
+                                         int aRowFetchLimit) {
 	//if (statementTypeOnly) {return null;}
     QueryCombined queryCombined = sqlQueryModelFactory.createQueryCombined();
 
@@ -1797,14 +1957,31 @@ public QueryCombined createQueryCombined(QueryExpressionBody aLeftQuery,
     queryCombined.setCombinedOperator(QueryCombinedOperator.get(combinedOperator));
     queryCombined.setRightQuery(aRightQuery);
 
+    if (aSortSpecList != null) {
+        List sortSpecList = queryCombined.getSortSpecList();
+        sortSpecList.addAll(aSortSpecList);
+    }
+    queryCombined.setRowFetchLimit(aRowFetchLimit);
+    
     return queryCombined;
 }
 
 public QueryNested createQueryNested(QueryExpressionBody queryExprBody){
+    return createQueryNested(queryExprBody, null, 0);
+}
+
+public QueryNested createQueryNested(QueryExpressionBody queryExprBody, List aSortSpecList, int aRowFetchLimit){
     QueryNested queryNested = sqlQueryModelFactory.createQueryNested();
     
     queryNested.setNestedQuery(queryExprBody);
     queryExprBody.setQueryNest(queryNested);
+    
+    if (aSortSpecList != null) {
+        List sortSpecList = queryNested.getSortSpecList();
+        sortSpecList.addAll(aSortSpecList);
+    }
+    queryNested.setRowFetchLimit(aRowFetchLimit);
+    
     return queryNested;
 }
 
@@ -1812,22 +1989,23 @@ public QueryNested createQueryNested(QueryExpressionBody queryExprBody){
 //have been processed.  This method also relinks the pointers to the
 //table ref for the columns from Select clause and Where clause, to the
 //correct table ref pointers from the From clause.
-/**
- *
- * @param optAllOrDistinct
- * @param aResultColList the select clause
- * @param aTableRefList
- * @param aWhereClaus
- * @param aGroupByList
- * @param aHavingClaus
- * @return SQLQuerySelect
- */
+public QuerySelect createQuerySelect(String optAllOrDistinct,
+                                       List aResultColList,
+                                       List aTableRefList,
+                                       QuerySearchCondition aWhereClause,
+                                       List aGroupByList,
+                                       QuerySearchCondition aHavingClause) {
+    return createQuerySelect(optAllOrDistinct, aResultColList, aTableRefList, aWhereClause, aGroupByList, aHavingClause, null, 0);
+}
+
 public QuerySelect createQuerySelect(String optAllOrDistinct,
                                         List aResultColList,
                                         List aTableRefList,
                                         QuerySearchCondition aWhereClaus,
                                         List aGroupByList,
-                                        QuerySearchCondition aHavingClaus) {
+                                        QuerySearchCondition aHavingClaus,
+                                        List aSortSpecList,
+                                        int aRowFetchLimit) {
   //if (statementTypeOnly) {return null;}
   QuerySelect qrySel = sqlQueryModelFactory.createQuerySelect();
 
@@ -1845,7 +2023,34 @@ public QuerySelect createQuerySelect(String optAllOrDistinct,
   }
   qrySel.setHavingClause(aHavingClaus);
 
+  if (aSortSpecList != null) {
+      List sortSpecList = qrySel.getSortSpecList();
+      sortSpecList.addAll(aSortSpecList);
+  }
+  qrySel.setRowFetchLimit(aRowFetchLimit);
+  
   return qrySel;
+}
+
+public QueryValues createQueryValues(List aValuesRowList) {
+    return createQueryValues(aValuesRowList, null, 0);
+}
+
+public QueryValues createQueryValues(List aValuesRowList, List aSortSpecList, int aRowFetchLimit) {
+  //if (statementTypeOnly) {return null;}
+    QueryValues queryValues = sqlQueryModelFactory.createQueryValues();
+
+	if (aValuesRowList != null) {
+	    queryValues.getValuesRowList().addAll(aValuesRowList);
+	}
+	
+	if (aSortSpecList != null) {
+        List sortSpecList = queryValues.getSortSpecList();
+        sortSpecList.addAll(aSortSpecList);
+    }
+	queryValues.setRowFetchLimit(aRowFetchLimit);
+	
+	return queryValues;
 }
 
 public QueryExpressionRoot createQueryExpressionRoot(QueryExpressionBody aQuery, List aWithTableSpecList) {
@@ -1856,50 +2061,6 @@ public QueryExpressionRoot createQueryExpressionRoot(QueryExpressionBody aQuery,
         queryExpr.getWithClause().addAll(aWithTableSpecList);
     }
     return queryExpr;
-}
-
-public QueryValues createQueryValues(List aValuesRowList) {
-  //if (statementTypeOnly) {return null;}
-    QueryValues queryValues = sqlQueryModelFactory.createQueryValues();
-
-	if (aValuesRowList != null) {
-	    queryValues.getValuesRowList().addAll(aValuesRowList);
-	}
-	return queryValues;
-}
-
-/**
- * [New Model]
- * substitutes SQLQueryStatement createQueryStatement( SQLQuerySelect aQrySelect, List aOrderByList )
- * TODO: check correctness of implementation, check createQueryStatement(..)
- */
-public QuerySelectStatement createSelectStatement( QueryExpressionRoot aQryExpr, List aOrderByList ) {
-  QuerySelectStatement qryStatement = sqlQueryModelFactory.createQuerySelectStatement();
-  qryStatement.setQueryExpr(aQryExpr);
-//TODO: check createSelectStatement, what is SQLQueryExtended's new model representation
-/*
-  SQLQueryExtended qryExtended = sqlModelFactory.createSQLQueryExtended();
-  qryExtended.setQuery( aQrySelect );
-  qryExtended.setQueryStatement( qryStatement );  // is this necessary?
-  qryStatement.setQueryExtended( qryExtended );
-*/
-  EList orderByList = qryStatement.getOrderByClause();
-  if (aOrderByList != null) {
-    orderByList.addAll( aOrderByList );
-  }
-
-  return qryStatement;
-}
-
-/**
- * [New Model]
- * substitutes SQLQueryStatement createQueryStatement( SQLQuerySelect aQrySelect, List aOrderByList )
- * TODO: check correctness of implementation, check createQueryStatement(..)
- */
-public QuerySelectStatement createSelectStatement( QuerySelect aQrySel, List aOrderByList ) {
-  QueryExpressionRoot qryExpr = sqlQueryModelFactory.createQueryExpressionRoot();
-  qryExpr.setQuery(aQrySel);
-  return createSelectStatement(qryExpr, aOrderByList);
 }
 
 
@@ -1920,84 +2081,6 @@ public TableExpression createReferenceTable( String aSchemaName, String aTableNa
     return table;
   }
 
-/**
- * Adds the given <code>tableCorrelation</code> to the given <code>tableExpr</code>.
- * @param tableExpr
- * @param tableCorrelation
- * @return the given <code>tableExpr</code>
- */
-public TableExpression addTableCorrelationToTableExpression(TableExpression tableExpr, TableCorrelation tableCorrelation) {
-    tableExpr.setTableCorrelation(tableCorrelation);
-    return tableExpr;
-}
-
-/**
- * @param aCorrName correlation name
- * @return SQLTableCorrelation or null if given correlation name is null
- */
-public TableCorrelation createTableCorrelation(String aCorrName) {
-    return createTableCorrelation(aCorrName, null);
-}
-
-public TableCorrelation createTableCorrelation(String aCorrName, List aColNameList) {
-    TableCorrelation corr = null;
-    if (aCorrName != null) {
-        corr = sqlQueryModelFactory.createTableCorrelation();
-        corr.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aCorrName,  getDelimitedIdentifierQuote()));
-        
-        if (aColNameList != null && aColNameList.size() > 0) {
-            corr.getColumnNameList().addAll(aColNameList);
-        }
-    }
-    return corr;
-}
-
-
-/**
- * use <code>createTableExpressionQuery(aSubquery,
- *  createTableCorrelation(aCorrName))</code>
- * @param aSubquery
- * @param aCorrName
- * @return
- * @deprecated use {@link #createTableExpressionQuery(QueryExpressionBody, TableCorrelation)}
- */
-public TableExpression createTableExpressionQuery(QueryExpressionBody aSubquery, String aCorrName) {
-    //if (statementTypeOnly) {return null;}
-    return createTableExpressionQuery(aSubquery, createTableCorrelation(aCorrName));
-}
-
-public TableExpression createTableExpressionQuery(QueryExpressionBody aSubquery, TableCorrelation aTableCorr) {
-  //if (statementTypeOnly) {return null;}
-    TableExpression nestedQueryTableExpr = aSubquery;
-    nestedQueryTableExpr.setTableCorrelation(aTableCorr);
-    return nestedQueryTableExpr;
-}
-
-public TableFunction createTableFunction(String aFuncName, List aFuncParmList, String aSchemaName, TableCorrelation aTableCorr) {
-    TableFunction func = sqlQueryModelFactory.createTableFunction();
-    Function function = SQLRoutinesFactory.eINSTANCE.createFunction();
-    func.setFunction(function);
-    func.setName(StatementHelper.convertSQLIdentifierToCatalogFormat( aFuncName,  getDelimitedIdentifierQuote()));
-
-    if(aSchemaName != null){
-      Schema schema = createSchema(aSchemaName);
-      function.setSchema(schema);
-    }
-
-    if(aSchemaName != null){
-      Schema schema = createSchema(aSchemaName);
-      function.setSchema(schema);
-    }
-
-    if (aFuncParmList != null) {
-      EList funcParmList = func.getParameterList();
-      funcParmList.addAll( aFuncParmList );
-    }
-    
-    func.setTableCorrelation(aTableCorr);
-    
-    return func;
-}
 
 public ResultColumn createResultColumn( QueryValueExpression aResultColExpr, String aAsName ) {
   //if (statementTypeOnly) {return null;}
@@ -2021,9 +2104,11 @@ public ResultColumn createResultColumn( QueryValueExpression aResultColExpr, Str
   return resultCol;
 }
 
+
 public ResultTableAllColumns createResultTableAllColumns(String aTableName) {
       return createResultTableAllColumns(aTableName, null);
   }
+
 
 public ResultTableAllColumns createResultTableAllColumns(String aTableName, String aSchemaName) {
     //if (statementTypeOnly) {return null;}
@@ -2058,6 +2143,22 @@ public ResultTableAllColumns createResultTableAllColumns(String aTableName, Stri
       return resultTableAll;
   }
 
+
+public ValueExpressionScalarSelect createScalarSelectExpression( QueryExpressionRoot aQueryExpr ) {
+  //if (statementTypeOnly) {return null;}
+    ValueExpressionScalarSelect scalarSelect = sqlQueryModelFactory.createValueExpressionScalarSelect();
+    scalarSelect.setQueryExpr( aQueryExpr );
+    return scalarSelect;
+}
+
+
+public Schema createSchema(String aSchemaName){
+	Schema schema = rdbFactory.createSchema();
+    schema.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aSchemaName,  getDelimitedIdentifierQuote()));
+	return schema;
+}
+
+
 public List createSelectClause( List aResultSpecList, QueryResultSpecification aResultCol ) {
   //if (statementTypeOnly) {return null;}
   if (aResultSpecList == null)
@@ -2067,17 +2168,29 @@ public List createSelectClause( List aResultSpecList, QueryResultSpecification a
   return aResultSpecList;
 }
 
-public ValueExpressionScalarSelect createScalarSelectExpression( QueryExpressionRoot aQueryExpr ) {
-  //if (statementTypeOnly) {return null;}
-    ValueExpressionScalarSelect scalarSelect = sqlQueryModelFactory.createValueExpressionScalarSelect();
-    scalarSelect.setQueryExpr( aQueryExpr );
-    return scalarSelect;
+
+public QuerySelectStatement createSelectStatement( QuerySelect aQrySel, List aOrderByList ) {
+    QueryExpressionRoot qryExpr = sqlQueryModelFactory.createQueryExpressionRoot();
+    qryExpr.setQuery(aQrySel);
+    return createSelectStatement(qryExpr, aOrderByList);
 }
 
-public Schema createSchema(String aSchemaName){
-	Schema schema = rdbFactory.createSchema();
-    schema.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aSchemaName,  getDelimitedIdentifierQuote()));
-	return schema;
+public QuerySelectStatement createSelectStatement( QueryExpressionRoot aQryExpr, List aOrderByList ) {
+    return createSelectStatement(aQryExpr, aOrderByList, null);
+}
+
+public QuerySelectStatement createSelectStatement( QueryExpressionRoot aQryExpr, List aOrderByList, UpdatabilityExpression aUpdatabilityExpr ) {
+    QuerySelectStatement qryStatement = sqlQueryModelFactory.createQuerySelectStatement();
+    qryStatement.setQueryExpr(aQryExpr);
+    EList orderByList = qryStatement.getOrderByClause();
+    if (aOrderByList != null) {
+      orderByList.addAll( aOrderByList );
+    }
+    if (aUpdatabilityExpr != null) {
+        qryStatement.setUpdatabilityExpr(aUpdatabilityExpr);
+    }
+    
+    return qryStatement;
 }
 
 public ValueExpressionSimple createSimpleExpression( String aExpr ) {
@@ -2133,10 +2246,27 @@ public ValueExpressionFunction createSpecialRegisterExpression( String aSpecialR
 }
 
 /**
- * Creates a <code>ValueExpressionFunction</code> with name <code>aSpecialReg</code>
- * and field <code>{@link ValueExpressionFunction#isSpecialRegister()}==true</code>
- * @param aSpecialReg the register name, e.g. {@link #SPECIAL_REGISTER_CURRENT_DATE}.
+ * Creates a function expression object for the special register with the name and 
+ * user-defined data type.  This is for the special register CURRENT_TRANSFORM_GROUP_FOR_TYPE.
+ */
+public ValueExpressionFunction createSpecialRegisterExpression( String aRegName, UserDefinedType aDataType ) {
+  ValueExpressionFunction func = sqlQueryModelFactory.createValueExpressionFunction();
+  func.setName( aRegName );
+  func.setSpecialRegister( true );
+  
+  if(aDataType != null){
+      func.setDataType(aDataType);
+  }
+  
+  return func;
+}
+
+
+/**
+ * Creates a function expression object for the special register with the name and 
+ * user-defined type name.  This is for the special register CURRENT_TRANSFORM_GROUP_FOR_TYPE.
  * @return a <code>ValueExpressionFunction</code>
+ * @deprecated use createSpecialRegisterExpression(String, UserDefinedType) instead
  */
 public ValueExpressionFunction createSpecialRegisterExpression( String aSpecialReg, String value ) {
   ValueExpressionFunction func = sqlQueryModelFactory.createValueExpressionFunction();
@@ -2151,30 +2281,210 @@ public ValueExpressionFunction createSpecialRegisterExpression( String aSpecialR
 }
 
 //ck
-public WithTableSpecification createWithTableSpecification( String aTableIdentifier, List aColumnNameList, QueryExpressionBody aWithSource ) {
+public SuperGroup createSuperGroups( List aSuperGroupsElementList, int aSuperGroupType ) {
   //if (statementTypeOnly) {return null;}
-    WithTableSpecification withTable = sqlQueryModelFactory.createWithTableSpecification();
-
-    withTable.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aTableIdentifier,  getDelimitedIdentifierQuote()));
-
-
-    if (aColumnNameList != null && !aColumnNameList.isEmpty()) {
-	    withTable.getColumnNameList().addAll(aColumnNameList);
+    SuperGroup superGroup = sqlQueryModelFactory.createSuperGroup();
+    if (aSuperGroupsElementList != null) {
+        superGroup.getSuperGroupElementList().addAll(aSuperGroupsElementList);
     }
-    withTable.setWithTableQueryExpr(aWithSource);
+    superGroup.setSuperGroupType( SuperGroupType.get(aSuperGroupType) );
+    return superGroup;
+}
 
-    return withTable;
-  }
 
 //ck
-public List createWithTableSpecificationList( List aTableWithSpecList, WithTableSpecification aTableWithSpec ) {
+public List createSuperGroupsElementList( List aSuperGroupsElementList, SuperGroupElement aSuperGroupsElement ) {
   //if (statementTypeOnly) {return null;}
-    if (aTableWithSpecList == null) {
-        aTableWithSpecList = new Vector();
+    if (aSuperGroupsElementList == null) {
+        aSuperGroupsElementList = new Vector();
     }
-    aTableWithSpecList.add( aTableWithSpec );
-    return aTableWithSpecList;
+    aSuperGroupsElementList.add( aSuperGroupsElement );
+    return aSuperGroupsElementList;
 }
+
+
+//ck
+public SuperGroupElementExpression createSuperGroupsElementExpression( GroupingExpression aGroupingExpr ) {
+  //if (statementTypeOnly) {return null;}
+    SuperGroupElementExpression superGroupsElementExpr = sqlQueryModelFactory.createSuperGroupElementExpression();
+    superGroupsElementExpr.setGroupingExpr( aGroupingExpr );
+    return superGroupsElementExpr;
+}
+
+
+//ck
+public List createSuperGroupsElementExprList( List aSuperGroupsElementExprList, SuperGroupElementExpression aSuperGroupsElementExpr ) {
+  //if (statementTypeOnly) {return null;}
+    if (aSuperGroupsElementExprList == null) {
+        aSuperGroupsElementExprList = new Vector();
+    }
+    aSuperGroupsElementExprList.add( aSuperGroupsElementExpr );
+    return aSuperGroupsElementExprList;
+}
+
+
+//ck
+public SuperGroupElementSublist createSuperGroupsElementSublist( List aSuperGroupsElementExprList ) {
+  //if (statementTypeOnly) {return null;}
+    SuperGroupElementSublist superGroupSublist = sqlQueryModelFactory.createSuperGroupElementSublist();
+    if (aSuperGroupsElementExprList != null) {
+        superGroupSublist.getSuperGroupElementExprList().addAll(aSuperGroupsElementExprList);
+    }
+    return superGroupSublist;
+}
+
+
+/**
+ * @param aCorrName correlation name
+ * @return SQLTableCorrelation or null if given correlation name is null
+ */
+public TableCorrelation createTableCorrelation(String aCorrName) {
+    return createTableCorrelation(aCorrName, null);
+}
+
+
+public TableCorrelation createTableCorrelation(String aCorrName, List aColNameList) {
+    TableCorrelation corr = null;
+    if (aCorrName != null) {
+        corr = sqlQueryModelFactory.createTableCorrelation();
+        corr.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aCorrName,  getDelimitedIdentifierQuote()));
+        
+        if (aColNameList != null && aColNameList.size() > 0) {
+            corr.getColumnNameList().addAll(aColNameList);
+        }
+    }
+    return corr;
+}
+
+
+/**
+ * use <code>createTableExpressionQuery(aSubquery,
+ *  createTableCorrelation(aCorrName))</code>
+ * @param aSubquery
+ * @param aCorrName
+ * @return
+ * @deprecated use {@link #createTableExpressionQuery(QueryExpressionBody, TableCorrelation)}
+ */
+public TableExpression createTableExpressionQuery(QueryExpressionBody aSubquery, String aCorrName) {
+    //if (statementTypeOnly) {return null;}
+    return createTableExpressionQuery(aSubquery, createTableCorrelation(aCorrName));
+}
+
+
+public TableExpression createTableExpressionQuery(QueryExpressionBody aSubquery, TableCorrelation aTableCorr) {
+  //if (statementTypeOnly) {return null;}
+    TableExpression nestedQueryTableExpr = aSubquery;
+    nestedQueryTableExpr.setTableCorrelation(aTableCorr);
+    return nestedQueryTableExpr;
+}
+
+
+public TableFunction createTableFunction(String aFuncName, List aFuncParmList, String aSchemaName, TableCorrelation aTableCorr) {
+    TableFunction func = sqlQueryModelFactory.createTableFunction();
+    Function function = SQLRoutinesFactory.eINSTANCE.createFunction();
+    func.setFunction(function);
+    func.setName(StatementHelper.convertSQLIdentifierToCatalogFormat( aFuncName,  getDelimitedIdentifierQuote()));
+
+    if(aSchemaName != null){
+      Schema schema = createSchema(aSchemaName);
+      function.setSchema(schema);
+    }
+
+    if(aSchemaName != null){
+      Schema schema = createSchema(aSchemaName);
+      function.setSchema(schema);
+    }
+
+    if (aFuncParmList != null) {
+      EList funcParmList = func.getParameterList();
+      funcParmList.addAll( aFuncParmList );
+    }
+    
+    func.setTableCorrelation(aTableCorr);
+    
+    return func;
+}
+
+
+public UpdatabilityExpression createUpdatabilityExpression(int aUpdatabilityType, List aUpdateOfColList) {
+    UpdatabilityExpression updatabilityExpr = sqlQueryModelFactory.createUpdatabilityExpression();
+    
+    updatabilityExpr.setUpdatabilityType(UpdatabilityType.get(aUpdatabilityType));
+    if (aUpdateOfColList != null) {
+        List updateOfColList = updatabilityExpr.getUpdateOfColumnList();
+        Iterator aUpdateOfColListIter = aUpdateOfColList.iterator();
+        while (aUpdateOfColListIter.hasNext()) {
+            Object listObj = aUpdateOfColListIter.next();
+            if (listObj instanceof ColumnName) {
+                ColumnName colNameObj = (ColumnName) listObj;
+                String colName = colNameObj.getName();
+                UpdateOfColumn updateOfCol = sqlQueryModelFactory.createUpdateOfColumn();
+                updateOfCol.setName(colName);
+                updateOfColList.add(updateOfCol);
+            }
+        }
+    }
+    
+    return updatabilityExpr;
+}
+
+
+public List createUpdateAssignmentClause(List aExprList, UpdateAssignmentExpression aExpr ) {
+  //if (statementTypeOnly) {return null;}
+  if (aExprList == null)
+    aExprList = new Vector();
+  aExprList.add( aExpr );
+  return aExprList;
+}
+
+
+public UpdateAssignmentExpression createUpdateAssignmentExpression( ValueExpressionColumn aTargetCol, QueryValueExpression aExpr ) {
+  //if (statementTypeOnly) {return null;}
+    List targetColList = new Vector(1);
+    List exprList = new Vector(1);
+    targetColList.add(aTargetCol);
+    exprList.add(aExpr);
+    return createUpdateAssignmentExpression(targetColList, exprList);
+}
+
+
+public UpdateAssignmentExpression createUpdateAssignmentExpression( List aTargetColList, List aExprList ) {
+  //if (statementTypeOnly) {return null;}
+    // parser conflict -> filter out accidently created ScalarSelect
+    if (aExprList != null && aExprList.size() == 1 && aExprList.get(0) != null
+                    && aExprList.get(0) instanceof ValueExpressionScalarSelect) {
+        ValueExpressionScalarSelect scalarSelect =
+            (ValueExpressionScalarSelect) aExprList.get(0);
+        QueryExpressionRoot queryExpr = scalarSelect.getQueryExpr();
+        QueryExpressionBody query = queryExpr.getQuery();
+        queryExpr.setQuery(null); // unhook the query in case of EMF ownership is not modelled correctly
+        return createUpdateAssignmentExpression(aTargetColList, query);
+    }
+    else
+    {
+        UpdateAssignmentExpression assign = sqlQueryModelFactory.createUpdateAssignmentExpression();
+        EList targetColList = assign.getTargetColumnList();
+        targetColList.addAll( aTargetColList );
+        UpdateSourceExprList exprList = sqlQueryModelFactory.createUpdateSourceExprList();
+        EList valueExprList = exprList.getValueExprList();
+        valueExprList.addAll( aExprList );
+        assign.setUpdateSource(exprList);
+        return assign;
+    }
+}
+
+
+public UpdateAssignmentExpression createUpdateAssignmentExpression( List aTargetColList, QueryExpressionBody aUpdateQuery ) {
+  //if (statementTypeOnly) {return null;}
+    UpdateAssignmentExpression assign = sqlQueryModelFactory.createUpdateAssignmentExpression();
+    EList targetColList = assign.getTargetColumnList();
+    targetColList.addAll( aTargetColList );
+    UpdateSourceQuery sourceQuery = sqlQueryModelFactory.createUpdateSourceQuery();
+    sourceQuery.setQueryExpr(aUpdateQuery);
+    assign.setUpdateSource(sourceQuery);
+    return assign;
+}
+
 
 public QueryUpdateStatement createUpdateStatement( TableInDatabase aTargetTable,
                 								 TableCorrelation aAsTable,
@@ -2195,15 +2505,9 @@ public QueryUpdateStatement createUpdateStatement( TableInDatabase aTargetTable,
 
 //TODO scan the domain name for quotes and delimited identifiers with dots and ge
 // parse out the schema name and the UDT e.g: "schema"".""1"."Udt" schema:   schema"."1    UDT: Udt
-
+/** @deprecated */
 public DataType createUserDefinedTypeFromDomainName(String domainName){
     return null; 
-}
-
-public QueryValueExpression setUnaryOperator(QueryValueExpression expr, int op) {
-  //if (statementTypeOnly) {return null;}
-    expr.setUnaryOperator( ValueExpressionUnaryOperator.get( op ) );
-    return expr;
 }
 
 public ValueExpressionVariable createVariableExpression( String aVarName ) {
@@ -2263,6 +2567,34 @@ public List createValuesRowList(List aValuesRowList, ValuesRow aValuesRow) {
     }
     aValuesRowList.add( aValuesRow );
     return aValuesRowList;
+}
+
+
+//ck
+public WithTableSpecification createWithTableSpecification( String aTableIdentifier, List aColumnNameList, QueryExpressionBody aWithSource ) {
+  //if (statementTypeOnly) {return null;}
+    WithTableSpecification withTable = sqlQueryModelFactory.createWithTableSpecification();
+
+    withTable.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aTableIdentifier,  getDelimitedIdentifierQuote()));
+
+
+    if (aColumnNameList != null && !aColumnNameList.isEmpty()) {
+	    withTable.getColumnNameList().addAll(aColumnNameList);
+    }
+    withTable.setWithTableQueryExpr(aWithSource);
+
+    return withTable;
+  }
+
+
+//ck
+public List createWithTableSpecificationList( List aTableWithSpecList, WithTableSpecification aTableWithSpec ) {
+  //if (statementTypeOnly) {return null;}
+    if (aTableWithSpecList == null) {
+        aTableWithSpecList = new Vector();
+    }
+    aTableWithSpecList.add( aTableWithSpec );
+    return aTableWithSpecList;
 }
 
 
@@ -2346,6 +2678,13 @@ public Predicate negatePredicate(Predicate aPredicate, boolean negate) {
     }
 
     return aPredicate;
+}
+
+
+public QueryValueExpression setUnaryOperator(QueryValueExpression expr, int op) {
+  //if (statementTypeOnly) {return null;}
+    expr.setUnaryOperator( ValueExpressionUnaryOperator.get( op ) );
+    return expr;
 }
 
 

@@ -1,6 +1,8 @@
 ------------------------------------------------------------------------------
 -- Alias definitions
--- my alias                            ::= the terminal symbol being aliased
+--
+-- Specify the alias that should be used instead of the terminal symbol, like this:
+--   MY_ALIAS_A ::= TERMINAL_A
 ------------------------------------------------------------------------------
 
 $ALIAS
@@ -51,7 +53,6 @@ $ALIAS
   _CONCAT_OPERATOR                     ::= CONCAT_OPERATOR
   <double_period>                      ::= DOUBLE_PERIOD
   <right_arrow>                        ::= RIGHT_ARROW
-
 
 --   END-EXEC                             ::= END_EXEC
 
@@ -123,7 +124,14 @@ $ALIAS
   $ERROR ::= PARSE_ERROR
 
 --                                                                  @Ed41850cpz
+<left paren>       ::= _LPAREN
+<right paren>      ::= _RPAREN
 
+<merge on condition> ::= <merge_on_condition>
+<merge source table> ::= <merge_source_table>
+<merge target table> ::= <merge_target_table>
+<target table>       ::= <target_table>
+<value expression>   ::= <expression>
 
 
 $End

@@ -44,10 +44,11 @@ $Rules
 
 
 <sql_dml_stmt> ->
-			<query_stmt>
-		|	<insert_stmt>
-		|	<update_stmt>
-		|	<delete_stmt>
+            <query_stmt>
+        |   <insert_stmt>
+        |   <update_stmt>
+        |   <delete_stmt>
+        |   <merge statement>
 --        |   <error>
 
 
@@ -77,6 +78,10 @@ $Rules
 --        |   <expression> <relop> ALL <column_ref>
 --              /. $BeginAction   $EndAction ./
 
+
+[AS] ::=
+            $empty
+        |   AS
 
 --//TODO: fix up name of this rule and usage
 <as_alias> ::=
@@ -166,8 +171,8 @@ $Rules
 
 <cast_target> ::=
             <datatype>
-        |   <domain_name>
-                /. $BeginAction setSym1(m_factory.createUserDefinedTypeFromDomainName(getString(1))); $EndAction ./
+--       |   <domain_name>
+--                /. $BeginAction setSym1(m_factory.createUserDefinedTypeFromDomainName(getString(1))); $EndAction ./
 
 
 <column> ->
@@ -232,7 +237,7 @@ $Rules
 		|	<datatype_user_defined_distinct>
 --ToDo:    	|	<datatype_user_defined_structured>
 --ToDo:	    |	<datatype_row_type>
---ToDo:	 	|	<datatype_path-resolved_user-defined_type_name>
+	 	|	<datatype_path-resolved_user-defined_type_name>
 --ToDo:	 	|	<datatype_reference_type>
 		|	<datatype_collection_type>
 
@@ -242,13 +247,13 @@ $Rules
 
 <datatype_array_type> ::=
 			<datatype> ARRAY
-				/. $BeginAction setSym1(m_factory.createDataTypeArray(($RT_datatype)getSym(1))); $EndAction ./
-		|	<datatype> ARRAY <left_bracket_or_trigraph> <unsigned_integer> <right_bracket_or_trigraph>
-		        /. $BeginAction setSym1(m_factory.createDataTypeArray(($RT_datatype)getSym(1), getInt(4))); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeArray(($RT_datatype)getSym(1), 0, DataTypeHelper.TYPENAME_ARRAY)); $EndAction ./
+		|	<datatype> ARRAY <left_bracket_or_trigraph> _INTNUMBER <right_bracket_or_trigraph>
+		        /. $BeginAction setSym1(m_factory.createDataTypeArray(($RT_datatype)getSym(1), Integer.parseInt(getTokenName(4)), DataTypeHelper.TYPENAME_ARRAY )); $EndAction ./
 
 <datatype_multiset_type> ::=
             <datatype> MULTISET
-                /. $BeginAction setSym1(m_factory.createDataTypeMultiset(($RT_datatype)getSym(1))); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createDataTypeMultiset(($RT_datatype)getSym(1), DataTypeHelper.TYPENAME_MULTISET )); $EndAction ./
 
 
 
@@ -268,13 +273,13 @@ $Rules
 
 <datatype_date> ::=
 			DATE
-				/. $BeginAction setSym1(m_factory.createDataTypeDate()); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeDate( DataTypeHelper.TYPENAME_DATE )); $EndAction ./
 
 <datatype_time> ::=
 			TIME
-				/. $BeginAction setSym1(m_factory.createDataTypeTime( $parser_factory.PRIMITIVE_TYPE_TIME, 0 )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeTime( $parser_factory.PRIMITIVE_TYPE_TIME, 0, DataTypeHelper.TYPENAME_TIME )); $EndAction ./
 		|	TIMESTAMP
-				/. $BeginAction setSym1(m_factory.createDataTypeTime( $parser_factory.PRIMITIVE_TYPE_TIMESTAMP, 0 )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeTime( $parser_factory.PRIMITIVE_TYPE_TIMESTAMP, 0, DataTypeHelper.TYPENAME_TIMESTAMP )); $EndAction ./
 
 <datatype_numerical> ->
 			<datatype_numerical_exact>
@@ -287,107 +292,107 @@ $Rules
 
 <datatype_numerical_approximate> ::=
 			FLOAT
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_FLOAT, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_FLOAT, 0, DataTypeHelper.TYPENAME_FLOAT)); $EndAction ./
 		|	FLOAT _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_FLOAT, Integer.parseInt(getTokenName(3))) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_FLOAT, Integer.parseInt(getTokenName(3)), DataTypeHelper.TYPENAME_FLOAT )); $EndAction ./
 		|	REAL
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_REAL, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_REAL, 0, DataTypeHelper.TYPENAME_REAL)); $EndAction ./
 		|	DOUBLE
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_DOUBLE_PRECISION, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_DOUBLE_PRECISION, 0, DataTypeHelper.TYPENAME_DOUBLE )); $EndAction ./
 		|	DOUBLE PRECISION
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_DOUBLE_PRECISION, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericApproximate( $parser_factory.PRIMITIVE_TYPE_DOUBLE_PRECISION, 0, DataTypeHelper.TYPENAME_DOUBLE_PRECISION )); $EndAction ./
 
 
 <datatype_numerical_fixed_precision> ::=
 			NUMERIC
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, 0, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, 0, 0, DataTypeHelper.TYPENAME_NUMERIC)); $EndAction ./
 		|	DECIMAL
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, 0, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, 0, 0, DataTypeHelper.TYPENAME_DECIMAL)); $EndAction ./
 		|	DEC
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, 0, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, 0, 0, DataTypeHelper.TYPENAME_DEC)); $EndAction ./
 
 		|	NUMERIC _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, Integer.parseInt(getTokenName(3)), 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, Integer.parseInt(getTokenName(3)), 0, DataTypeHelper.TYPENAME_NUMERIC)); $EndAction ./
 		|	DECIMAL _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), 0, DataTypeHelper.TYPENAME_DECIMAL)); $EndAction ./
 		|	DEC _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), 0, DataTypeHelper.TYPENAME_DEC)); $EndAction ./
 
 		|	NUMERIC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5))) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_NUMERIC, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5)), DataTypeHelper.TYPENAME_NUMERIC )); $EndAction ./
 		|	DECIMAL _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5))) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5)), DataTypeHelper.TYPENAME_DECIMAL )); $EndAction ./
 		|	DEC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5))) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericFixedPrecision( $parser_factory.PRIMITIVE_TYPE_DECIMAL, Integer.parseInt(getTokenName(3)), Integer.parseInt(getTokenName(5)), DataTypeHelper.TYPENAME_DEC )); $EndAction ./
 
 
 <datatype_numerical_integer> ::=
 			INTEGER
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_INTEGER, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_INTEGER, 0, DataTypeHelper.TYPENAME_INTEGER )); $EndAction ./
 		|	INT
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_INTEGER, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_INTEGER, 0, DataTypeHelper.TYPENAME_INT )); $EndAction ./
 		|	SMALLINT
-				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_SMALLINT, 0) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_SMALLINT, 0, DataTypeHelper.TYPENAME_SMALLINT )); $EndAction ./
         |   BIGINT
-                /. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_BIGINT, 0) ); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_BIGINT, 0, DataTypeHelper.TYPENAME_BIGINT )); $EndAction ./
 
 
 -- BINARY_LARGE_OBJECT (BLOB)
 <datatype_binary> ::=
             BLOB
-                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null )); $EndAction ./         
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_BLOB )); $EndAction ./         
         |   BLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4), DataTypeHelper.TYPENAME_BLOB )); $EndAction ./
         |   BINARY LARGE OBJECT
-                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null )); $EndAction ./         
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_BINARY_LARGE_OBJECT )); $EndAction ./         
         |   BINARY LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4), DataTypeHelper.TYPENAME_BINARY_LARGE_OBJECT )); $EndAction ./
                 
 
 -- CHARACTER, CHARACTER_VARYING, CHARACTER_LARGE_OBJECT
 <datatype_character> ::=
 			CHARACTER
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, 0, null) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, 0, null, DataTypeHelper.TYPENAME_CHARACTER )); $EndAction ./
 		|	CHAR
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, 0, null) ); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, 0, null, DataTypeHelper.TYPENAME_CHAR )); $EndAction ./
 		|	CHARACTER _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, Integer.parseInt(getTokenName(3)), null, DataTypeHelper.TYPENAME_CHARACTER )); $EndAction ./
 		|	CHAR _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, Integer.parseInt(getTokenName(3)), null, DataTypeHelper.TYPENAME_CHAR )); $EndAction ./
 
 		|	CHARACTER VARYING _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(4)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(4)), null, DataTypeHelper.TYPENAME_CHARACTER_VARYING )); $EndAction ./
 		|	CHAR VARYING _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(4)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(4)), null, DataTypeHelper.TYPENAME_CHAR_VARYING )); $EndAction ./
 		|	VARCHAR _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_VARYING, Integer.parseInt(getTokenName(3)), null, DataTypeHelper.TYPENAME_VARCHAR )); $EndAction ./
 
 		|	CLOB
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_CLOB )); $EndAction ./
 		|	CLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4), DataTypeHelper.TYPENAME_CLOB )); $EndAction ./
 		|	CHARACTER LARGE OBJECT
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_CHARACTER_LARGE_OBJECT )); $EndAction ./
 		|	CHARACTER LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(5)), getString(6) )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(5)), getString(6), DataTypeHelper.TYPENAME_CHARACTER_LARGE_OBJECT )); $EndAction ./
 		|	CHAR LARGE OBJECT
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_CHAR_LARGE_OBJECT )); $EndAction ./
 		|	CHAR LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(5)), getString(6) )); $EndAction ./
+				/. $BeginAction	setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(5)), getString(6), DataTypeHelper.TYPENAME_CHAR_LARGE_OBJECT )); $EndAction ./
 
 
 -- NATIONAL_CHARACTER, NATIONAL_CHARACTER_VARYING, NATIONAL_CHARACTER_LARGE_OBJECT
 <datatype_character_national> ::=
 			GRAPHIC
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER, 0, null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER, 0, null, DataTypeHelper.TYPENAME_GRAPHIC )); $EndAction ./
 		|	GRAPHIC	_LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER, Integer.parseInt(getTokenName(3)), null, DataTypeHelper.TYPENAME_GRAPHIC )); $EndAction ./
 		|	VARGRAPHIC _LPAREN _INTNUMBER _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_VARYING, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_VARYING, Integer.parseInt(getTokenName(3)), null, DataTypeHelper.TYPENAME_VARGRAPHIC )); $EndAction ./
         |   DBCLOB
-                /. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, 0, null )); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, 0, null, DataTypeHelper.TYPENAME_DBCLOB )); $EndAction ./
 		|	DBCLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4), DataTypeHelper.TYPENAME_DBCLOB )); $EndAction ./
 
 
 <datatype_opt_size_unit> ::=
@@ -400,6 +405,10 @@ $Rules
 		|	$empty
 				/. $BeginAction setSym1( null ); $EndAction ./
 
+
+<datatype_path-resolved_user-defined_type_name> ::= 
+			<opt_schema_dot> <identifier>
+                /. $BeginAction setSym1(m_factory.createDataTypeUserDefinedType(getString(1), getString(2))); $EndAction ./
 
 
 --ToDo: user defined data type must not be named:
@@ -444,7 +453,7 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createColumnList(getList(1),($RT_column_ref) getSym(3)));  $EndAction ./
 
 
-<domain_name> -> <schema_qualified_name>
+--<domain_name> -> <schema_qualified_name>
 
 
 <duration> ::=
@@ -579,6 +588,9 @@ $Rules
 --            |   <blob value expression> <concatenation operator> <blob factor>
 
 
+<fetch_first_clause> ::=
+            FETCH FIRST <opt_fetch_first_row_count> <row_or_rows> ONLY
+                /. $BeginAction setInt1(getInt(3)); $EndAction ./
 
 
 <func_ref> ::=
@@ -734,8 +746,6 @@ $Rules
             	/. $BeginStatement setSym1(m_factory.createInsertStatement(($RT_target_table)getSym(3), getList(4), ($RT_query_exp_root)getSym(5))); $EndAction ./
 
 
-
-
 <intervaltest> ::=
 			<expression> NOT BETWEEN <expression> AND <expression>
 				/. $BeginAction boolean notBetween = true;
@@ -757,6 +767,57 @@ $Rules
 		|	<expression> LIKE <expression> <opt_escape>
 				/. $BeginAction boolean notLike = false;
 					setSym1(m_factory.createPredicateLike(($RT_string_expression)getSym(1), notLike, ($RT_string_expression)getSym(3), ($RT_opt_escape)getSym(4))); $EndAction ./
+
+<merge statement> ::=
+      MERGE INTO <merge target table>
+      USING <merge source table>
+      ON <merge on condition> 
+      <merge operation specification list>
+        /. $BeginAction setSym1( m_factory.createMergeStatement(($RT_merge_target_table) getSym(3), ($RT_merge_source_table) getSym(5), ($RT_merge_on_condition) getSym(7), getList(8)) ); $EndAction ./
+
+<merge target table> ::= <target_table> <opt_as_alias>
+        /. $BeginAction setSym1( m_factory.createMergeTargetTable(($RT_target_table) getSym(1), getString(2)) ); $EndAction ./
+
+<merge source table> ::= <table_ref>
+        /. $BeginAction setSym1( m_factory.createMergeSourceTable(($RT_table_ref) getSym(1)) ); $EndAction ./
+
+<merge on condition> ::= <condition>
+        /. $BeginAction setSym1( m_factory.createMergeOnCondition(($RT_condition) getSym(1)) ); $EndAction ./
+
+-- The "real" rule for <merge operation specification> is something like this:
+--      <merge when matched clause>
+--    | <merge when not matched clause>
+--    | <merge when matched clause> <merge when not matched clause>
+--    | <merge when not matched clause> <merge when matched clause>
+-- but that would require too much look-ahead to parse. So this rule is defined such that it
+-- looks like you can have as many when-clauses as you want, but there is a non-syntactic rule
+-- that says you can have only a single when-matched-clause and single when-not-matched-clause.
+<merge operation specification list> ::=
+      <merge when clause>
+        /. $BeginAction setSym1( m_factory.createMergeOperatationSpecificationList(null, ($RT_merge_when_clause) getSym(1)) ); $EndAction ./
+    | <merge operation specification list> <merge when clause>
+        /. $BeginAction setSym1( m_factory.createMergeOperatationSpecificationList(getList(1), ($RT_merge_when_clause) getSym(2)) ); $EndAction ./
+
+<merge when clause> ::=
+      <merge when matched clause>
+    | <merge when not matched clause>
+
+<merge when matched clause> ::=
+      WHEN MATCHED THEN <merge update specification>
+        /. $BeginAction setSym1(getSym(4)); $EndAction ./
+
+<merge when not matched clause> ::=
+      WHEN NOT MATCHED THEN <merge insert specification>
+        /. $BeginAction setSym1(getSym(5)); $EndAction ./
+
+<merge update specification> ::= 
+      UPDATE SET <update_assignment_clause>
+        /. $BeginAction setSym1( m_factory.createMergeUpdateSpecification(getList(3)) ); $EndAction ./
+
+<merge insert specification> ::=
+      INSERT <opt_target_column_list>
+      VALUES <insert_row>
+        /. $BeginAction setSym1( m_factory.createMergeInsertSpecification(getList(2), ($RT_insert_row)getSym(4)) );  $EndAction ./
 
 
 <nulltest> ::=
@@ -838,10 +899,16 @@ $Rules
 				/. $BeginAction setSym1(null); $EndAction ./
 
 <opt_expression_commalist> ::=
-           <expression_commalist>
-        |
-            $empty
+            <expression_commalist>
+        |   $empty
             /. $BeginAction setSym1(null); $EndAction ./
+
+
+<opt_fetch_first_clause> ::=
+            <fetch_first_clause>
+        |   $empty
+                /. $BeginAction setInt1(0); $EndAction ./
+
 
 
 <opt_group_by_clause> ::=
@@ -916,6 +983,29 @@ $Rules
 				/. $BeginAction setSym1(null); $EndAction ./
 
 
+<opt_updatability_clause> ::=
+           <updatability_expression>
+                /. $BeginAction setSym1(getSym(1)); $EndAction ./
+        |  $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+
+-- This "optional" element is unusual in that an empty element returns 1 rather than null.
+<opt_fetch_first_row_count> ::=
+            <unsigned_integer>
+            /. $BeginAction 
+                String rowCountStr = getTokenName(1);
+                int rowCount = 1;
+                try {
+                    rowCount = Integer.parseInt(rowCountStr);
+                }
+                catch(NumberFormatException e) {
+                    // ignore
+                }
+                setInt1(rowCount);
+                $EndAction ./
+        |  $empty
+                /. $BeginAction setInt1(1); $EndAction ./
+
 <opt_where_clause> ::=
 			WHERE <condition>
 				/. $BeginAction setSym1_keepSpan(getSym(2)); $EndAction ./
@@ -948,12 +1038,6 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createVariableExpression(null)); $EndAction ./
 
 
-<path-resolved user-defined type name> ::= <opt_schema_dot> <identifier>
-                /. $BeginAction
-                    setSym1(getString(1).concat(".").concat(getString(2))); //$NON-NLS-1$
-                   $EndAction ./
-
-
 <project> ::=
 			<expression> <opt_as_alias>
 				/. $BeginAction setSym1(m_factory.createResultColumn(($RT_expression) getSym(1), getString(2))); $EndAction ./
@@ -966,8 +1050,8 @@ $Rules
 
 
 <query_combined> ::=
-    		<query_exp> <query_combined_operator> <query_term>
-    			/. $BeginAction setSym1(m_factory.createQueryCombined(($RT_query_exp) getSym(1),getInt(2),($RT_query_term) getSym(3)));  $EndAction ./
+            <query_exp> <query_combined_operator> <query_term> <opt_order_by_clause> <opt_fetch_first_clause>
+                /. $BeginAction setSym1(m_factory.createQueryCombined(($RT_query_exp) getSym(1),getInt(2),($RT_query_term) getSym(3), getList(4), getInt(5)));  $EndAction ./
 
 <query_combined_operator> ::=
 			UNION
@@ -1004,25 +1088,27 @@ $Rules
 
 -- returns QuerySelect (subselect)
 <query_select> ::=
-			SELECT <opt_all_distinct>
-			<selection> FROM <table_ref_commalist>
-			<opt_where_clause>
-			<opt_group_by_clause>
-			<opt_having_clause>
-				/. $BeginAction setSym1(m_factory.createQuerySelect(getString(2),getList(3),getList(5),($RT_opt_where_clause)getSym(6),getList(7),($RT_opt_having_clause)getSym(8))); $EndAction ./
+            SELECT <opt_all_distinct> <selection> 
+            FROM <table_ref_commalist>
+            <opt_where_clause>
+            <opt_group_by_clause>
+            <opt_having_clause>
+            <opt_order_by_clause>
+            <opt_fetch_first_clause>
+                /. $BeginAction setSym1(m_factory.createQuerySelect(getString(2),getList(3),getList(5),($RT_opt_where_clause)getSym(6),getList(7),($RT_opt_having_clause)getSym(8), getList(9), getInt(10))); $EndAction ./
 
 
 -- returns QuerySelectStatement (select-statement)
 <query_stmt> ::=
-			<query_exp_root> <opt_order_by_clause>
-				/. $BeginStatement setSym1(m_factory.createSelectStatement(($RT_query_exp_root)getSym(1), getList(2))); $EndAction ./
-
-
+			<query_exp_root> <opt_order_by_clause> <opt_updatability_clause>
+				/. $BeginStatement setSym1(m_factory.createSelectStatement(($RT_query_exp_root)getSym(1), getList(2), ($RT_updatability_expression) getSym(3))); $EndAction ./
+            
+            
 <query_term> ::=
-    		<query_select>
-		|	<query_values>
-        |   _LPAREN <query_exp> _RPAREN
-                /. $BeginAction setSym1( m_factory.createQueryNested(($RT_query_exp)getSym(2)) );  $EndAction ./
+            <query_select>
+        |   <query_values>
+        |   _LPAREN <query_exp> _RPAREN <opt_order_by_clause> <opt_fetch_first_clause>
+                /. $BeginAction setSym1( m_factory.createQueryNested(($RT_query_exp)getSym(2), getList(4), getInt(5)));  $EndAction ./
                 
 			--  this nested combined query rule causes extra parser conflicts
 			--  with nested expression, where the <expression> -> <subquery> ->
@@ -1033,8 +1119,8 @@ $Rules
 --// VALUES (1, 2, 3) 			 - 1 row of 3 columns
 --// VALUES (1,21),(2,22),(3,23) - 3 rows of 2 columns
 <query_values> ::=
-    		VALUES <values_row_commalist>
-    			/. $BeginAction setSym1(m_factory.createQueryValues(getList(2))); $EndAction ./
+            VALUES <values_row_commalist> <opt_order_by_clause> <opt_fetch_first_clause>
+                /. $BeginAction setSym1(m_factory.createQueryValues(getList(2), getList(3), getInt(4))); $EndAction ./
 
 
 <relop> ::=  	-- relative operator
@@ -1061,6 +1147,11 @@ $Rules
 			<value_expr_row> <relop> <value_expr_row>
 				/. $BeginAction setSym1(m_factory.createPredicateBasic(($RT_expression)getSym(1),getInt(2),($RT_expression)getSym(3))); $EndAction ./
 				
+
+<row_or_rows> ::=
+            ROW
+        |   ROWS
+
 
 <scalar_comparison> ::=
 			<expression> <relop> <expression>
@@ -1129,8 +1220,8 @@ $Rules
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_PATH)); $EndAction ./
         |   CURRENT_ROLE
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_ROLE)); $EndAction ./
-        |   CURRENT_TRANSFORM_GROUP_FOR_TYPE <path-resolved user-defined type name>
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_TRANSFORM_GROUP_FOR_TYPE,getString(2))); $EndAction ./
+        |   CURRENT_TRANSFORM_GROUP_FOR_TYPE <datatype_path-resolved_user-defined_type_name>
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_TRANSFORM_GROUP_FOR_TYPE, ($RT_datatype_user_defined_type) getSym(2))); $EndAction ./
         |   CURRENT_USER
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_USER)); $EndAction ./
         |   SESSION_USER
@@ -1215,22 +1306,24 @@ $Rules
     			/. $BeginAction setSym1(m_factory.createTableCorrelation(getString(1), getList(2))); $EndAction ./
 
 
+<table_func> ::= 
+			TABLE _LPAREN <opt_schema_dot> <identifier> _LPAREN <opt_expression_commalist> _RPAREN _RPAREN <table_correlation>
+				/. $BeginAction setSym1(m_factory.createTableFunction(getString(4), getList(6), getString(3), ($RT_table_correlation)getSym(9)) ); $EndAction ./
+
+
 <table_join> ::=
 			<table_ref> <opt_join_type> JOIN <table_ref> ON <condition>
             	/. $BeginAction setSym1(m_factory.createJoinedTable(($RT_table_ref)getSym(1), getInt(2), ($RT_table_ref)getSym(4), ($RT_condition)getSym(6))); $EndAction ./
 
 
-<table_ref> ::=
+<table_nested> ::=
+			_LPAREN <table_ref> _RPAREN
+				/. $BeginAction setSym1(m_factory.createNestedTable(($RT_table_ref)getSym(2))); $EndAction ./
+
+
+<table_qualified> ::=
 			<schema> _DOT <table> <opt_table_correlation>
 				/. $BeginAction setSym1(m_factory.createReferenceTable(getString(1), getString(3), ($RT_table_correlation)getSym(4))); $EndAction ./
-		|	<table> <opt_table_correlation>
-				/. $BeginAction setSym1(m_factory.createReferenceTable(null, getString(1), ($RT_table_correlation)getSym(2))); $EndAction ./
-        |   <table_join>
-		|	<table_query>
-		|	_LPAREN <table_ref> _RPAREN
-				/. $BeginAction setSym1(m_factory.createNestedTable(($RT_table_ref)getSym(2))); $EndAction ./
-		|   TABLE _LPAREN <opt_schema_dot> <identifier> _LPAREN <opt_expression_commalist> _RPAREN _RPAREN <table_correlation>
-				/. $BeginAction setSym1(m_factory.createTableFunction(getString(4), getList(6), getString(3), ($RT_table_correlation)getSym(9)) ); $EndAction ./
 
 
 <table_query> ::=
@@ -1240,11 +1333,25 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createTableExpressionQuery(($RT_query_exp)getSym(3), ($RT_table_correlation)getSym(5))); $EndAction ./
 
 
+<table_ref> ::=	
+			<table_simple>
+		|   <table_qualified>
+        |   <table_join>
+		|	<table_query>
+		|	<table_nested>
+		|   <table_func>
+
+
 <table_ref_commalist> ::=
 			<table_ref>
 				/. $BeginAction setSym1(m_factory.createFromClause((List)null,($RT_table_ref)getSym(1))); $EndAction ./
 		|	<table_ref_commalist> _COMMA <table_ref>
 				/. $BeginAction setSym1(m_factory.createFromClause(getList(1),($RT_table_ref)getSym(3))); $EndAction ./
+
+
+<table_simple> ::=
+			<table> <opt_table_correlation>
+				/. $BeginAction setSym1(m_factory.createReferenceTable(null, getString(1), ($RT_table_correlation)getSym(2))); $EndAction ./
 
 
 <target_column_list> ::=
@@ -1271,6 +1378,14 @@ $Rules
 <timestamp precision> ::= UNSIGNED_INTEGER
                 /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
 
+
+<updatability_expression> ::=
+            FOR READ ONLY
+               /. $BeginAction setSym1(m_factory.createUpdatabilityExpression($parser_factory.UPDATABILITY_TYPE_FOR_READ_ONLY , null)); $EndAction ./
+        |   FOR UPDATE
+               /. $BeginAction setSym1(m_factory.createUpdatabilityExpression($parser_factory.UPDATABILITY_TYPE_FOR_UPDATE , null)); $EndAction ./
+        |   FOR UPDATE OF <column_name_list>
+               /. $BeginAction setSym1(m_factory.createUpdatabilityExpression($parser_factory.UPDATABILITY_TYPE_FOR_UPDATE , getList(4))); $EndAction ./
 
 <update_assignment_clause> ->
 			<update_assignment_expression_commalist>

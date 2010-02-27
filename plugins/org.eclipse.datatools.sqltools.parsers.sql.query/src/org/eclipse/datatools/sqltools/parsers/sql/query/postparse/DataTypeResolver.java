@@ -228,8 +228,8 @@ public class DataTypeResolver implements PostParseProcessor
                 (List) resolvedVariableMap.get(valueExpr.getName());
             
             // if we have one hostVar resolved keep a reference to it for future
-            // resolving of other occurences of the same hostVar (same name)
-            if (valueExpr.getDataType() != null) 
+            // resolving of other occurrences of the same hostVar (same name)
+            if (valueExpr.getName() != null && valueExpr.getDataType() != null) 
             {
                 if (sameNameVars == null) {
                     sameNameVars = new ArrayList();
@@ -240,10 +240,10 @@ public class DataTypeResolver implements PostParseProcessor
             else
             {
                 // if we couldn't resolve the hostVar datatype, try to find
-                // another occurence (same name) that was resolved
+                // another occurrence (same name) that was resolved
                 if (sameNameVars != null && sameNameVars.size() > 0) {
-                    // TODO: don't just take the first other occurence but try
-                    // to figure out common datatype for all its occurences!
+                    // TODO: don't just take the first other occurrence but try
+                    // to figure out common datatype for all its occurrences!
                     ValueExpressionVariable otherOccurence = 
                         (ValueExpressionVariable) sameNameVars.get(0);
                     ValueExpressionHelper.copyDataType(otherOccurence, valueExpr);
