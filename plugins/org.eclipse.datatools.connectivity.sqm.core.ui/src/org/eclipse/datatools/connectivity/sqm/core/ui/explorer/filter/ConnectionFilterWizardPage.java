@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2008 IBM Corporation and others. All rights reserved.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -27,19 +27,22 @@ public abstract class ConnectionFilterWizardPage extends WizardPage implements I
 
 	protected ISelection selection;
 
+	private String DEFAULT_MESSAGE = resource
+			.queryString("_UI_DESCRIPTION_FILTER"); //$NON-NLS-1$
+
 	private static final String SELECTION_ONLY_MESSAGE = resource
 			.queryString("_UI_DESCRIPTION_SELECTION_ONLY"); //$NON-NLS-1$
 	
 	private static final String EXPRESSION_ONLY_MESSAGE = resource
 		.queryString("_UI_DESCRIPTION_EXPRESSION_ONLY"); //$NON-NLS-1$
 	
-	protected String defaultTitleText = resource
-       .queryString("_UI_TITLE_FILTER_DIALOG");
+	protected String defaultTitleText = "Connection Filter Properties";
 
 	private ConnectionFilterComposite filterComposite;
 	
 	public ConnectionFilterWizardPage(String pageName) {
 		super(pageName);
+		setDescription(DEFAULT_MESSAGE);
 	}
 
     /**
@@ -51,6 +54,7 @@ public abstract class ConnectionFilterWizardPage extends WizardPage implements I
             ImageDescriptor titleImage, ISelection sel) {
         super(pageName, title, titleImage);
         selection = sel;
+        setMessage(DEFAULT_MESSAGE);
     }
     
 	public void createControl(Composite parent) {
@@ -60,20 +64,18 @@ public abstract class ConnectionFilterWizardPage extends WizardPage implements I
 	public void createControl(Composite parent, boolean hideExpressionOption, boolean hideSelectionOption) {
 		filterComposite = new ConnectionFilterComposite(parent, SWT.NONE, this, hideExpressionOption, hideSelectionOption);
 		filterComposite.initializeValues();
-	    setDescription(filterComposite.DEFAULT_MESSAGE);
 
-        if (filterComposite.isHideExpressionOption()) {
-            filterComposite.DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;
-            this.setDescription(filterComposite.DEFAULT_MESSAGE);
-        }
-        else if (filterComposite.isHideSelectionOption()) {
-            filterComposite.DEFAULT_MESSAGE = EXPRESSION_ONLY_MESSAGE;
-            this.setDescription(filterComposite.DEFAULT_MESSAGE);
-        }
-        else {
-            this.setDescription(filterComposite.DEFAULT_MESSAGE);
-        }
-
+		if (filterComposite.isHideExpressionOption()) {
+			DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;
+			this.setDescription(DEFAULT_MESSAGE);
+		}
+		else if (filterComposite.isHideSelectionOption()) {
+			DEFAULT_MESSAGE = EXPRESSION_ONLY_MESSAGE;
+			this.setDescription(DEFAULT_MESSAGE);
+		}
+		else {
+			this.setDescription(DEFAULT_MESSAGE);
+		}
 		setControl(filterComposite);	
 		validatePage();
 	}
@@ -126,10 +128,6 @@ public abstract class ConnectionFilterWizardPage extends WizardPage implements I
 	 */
 	public void populateSelectionTable() {
 		filterComposite.populateSelectionTable();
-	}
-
-	public void setSelectionListPopulated(boolean isPopulated){
-	    filterComposite.setSelectionListPopulated(isPopulated);
 	}
 
 	/**

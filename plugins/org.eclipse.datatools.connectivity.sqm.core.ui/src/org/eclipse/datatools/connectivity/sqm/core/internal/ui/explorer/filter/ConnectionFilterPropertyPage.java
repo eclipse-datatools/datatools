@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2008 IBM Corporation and others. All rights reserved.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -66,14 +66,6 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 	public void dataChanged() {
 		setValid(validatePage());
-	}
-	
-	public Table getSelectionTable(){
-	    return filterComposite.selectionTable;
-	}
-	    
-	public void setSelectionListPopulated( boolean populated){
-	    filterComposite.isSelectionListPopulated = populated;
 	}
 
 	protected Control createContents(Composite parent) {

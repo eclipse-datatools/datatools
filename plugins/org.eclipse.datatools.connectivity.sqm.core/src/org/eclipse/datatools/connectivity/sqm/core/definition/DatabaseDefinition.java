@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,12 +18,13 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLParser;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
-import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 
 
@@ -38,9 +39,6 @@ public interface DatabaseDefinition {
 	public Iterator getPredefinedDataTypes();
 	public Iterator getSequenceSupportedPredefinedDataTypes();
 	public Iterator getIdentityColumnSupportedPredefinedDataTypes();
-    public Iterator getRoutineParameterPredefinedDataTypeDefinitions();
-	public Iterator getRoutineParameterPredefinedDataTypeDefinitions(LanguageType languageType);
-
 	
 	public boolean supportsSchema();
 	public boolean supportsIdentityColumns();
@@ -82,13 +80,7 @@ public interface DatabaseDefinition {
 	public boolean supportsUserDefinedType();
 	public boolean supportsStructuredUserDefinedType();
 	public boolean supportsDistinctUserDefinedType();
-    public boolean supportsConstructedDataType();
-	public boolean supportsArrayDataType();
-	public boolean supportsMultiSetDataType();
-	public boolean supportsRowDataType();
-	public boolean supportsReferenceDataType();
-	public boolean supportsCursorDataType();
-
+	
 	public boolean supportsSnapshotViews();
 	public boolean supportsViewTriggers();
 	public boolean supportsViewIndex();
@@ -150,7 +142,6 @@ public interface DatabaseDefinition {
 	
 	public DebuggerDefinition getDebuggerDefinition();
 	public boolean supportsEvents();
-	public boolean supportsUDF();
 	public boolean supportsSQLUDFs();
 	public boolean supportsStoredProcedures();
 	

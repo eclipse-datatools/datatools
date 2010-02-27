@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.widgets.DataContainerSelectionGroup;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.widgets.IDataSelectionValidator;
@@ -60,9 +59,6 @@ public class ResourceChooserDialog extends SelectionDialog {
 
     // the root resource to populate the viewer with
     private IContainer initialSelection;
-
-    // the file preselected in the viewer
-    private IFile selectedFile;
 
     // allow the user to type in a new container name
     private boolean allowNewContainerName = true;
@@ -131,30 +127,6 @@ public class ResourceChooserDialog extends SelectionDialog {
         setShellStyle(getShellStyle() | SWT.RESIZE);
     }
 
-    /**
-     * Creates a resource container selection dialog rooted at the given
-     * resource. All selections are considered valid.
-     * 
-     * @param parentShell
-     *            the parent shell
-     * @param initialRoot
-     *            the initial selection in the tree
-     * @param initialFile
-     *            the initial file selection in the tree
-     * @param allowNewContainerName
-     *            <code>true</code> to enable the user to type in a new
-     *            container name, and <code>false</code> to restrict the user
-     *            to just selecting from existing ones
-     * @param message
-     *            the message to be displayed at the top of this dialog, or
-     *            <code>null</code> to display a default message
-     */
-    public ResourceChooserDialog(Shell parentShell, IContainer initialRoot, IFile initialFile,
-            boolean allowNewContainerName, String message, boolean showFiles) {
-        this(parentShell, initialRoot, allowNewContainerName, message, showFiles);
-        this.selectedFile = initialFile;
-    }
-
     /*
      * (non-Javadoc) Method declared on Dialog.
      */
@@ -184,15 +156,11 @@ public class ResourceChooserDialog extends SelectionDialog {
         group = new DataContainerSelectionGroup(area, listener,
                 allowNewContainerName, getMessage(), showClosedProjects,
                 projectNatureFilter, showFiles, fileFilter, this.allowMultipleSelection, filesToExclude);
-        
-        if (selectedFile != null) {
-            group.setSelectedFile(selectedFile);
-        } 
-        else if (initialSelection != null) {
+        if (initialSelection != null) {
             group.setSelectedContainer(initialSelection);
         }
 
-        statusMessage = new Label(group, SWT.NONE);
+        statusMessage = new Label(parent, SWT.NONE);
         statusMessage.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         statusMessage.setFont(parent.getFont());
 

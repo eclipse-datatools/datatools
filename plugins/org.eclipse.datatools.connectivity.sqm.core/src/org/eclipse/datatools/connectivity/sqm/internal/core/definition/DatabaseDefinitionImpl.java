@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,12 +38,10 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerato
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDeltaDdlGenerator;
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
-import org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
-import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition;
@@ -68,7 +66,6 @@ import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
@@ -967,25 +964,12 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.TIMESTAMP: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-                if (predefinedDataTypeDefinition != null) {
-                    if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
-                        String temp = predefinedDataTypeDefinition.getDisplayName();
-                        if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isPrecisionSupported()) {
-                            int precision = ((TimeDataType)predefinedDataType).getFractionalSecondsPrecision();
-                            if ( (precision > 0) && (precision != predefinedDataTypeDefinition.getDefaultPrecision()) ) {
-                                predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(precision)});
-                            }
-                        }
-                    }
-                    else {
-                        if (predefinedDataTypeDefinition.isPrecisionSupported() ) {
-                            int precision = ((TimeDataType)predefinedDataType).getFractionalSecondsPrecision();
-                            if ( (precision > 0) && (precision != predefinedDataTypeDefinition.getDefaultPrecision()) ) {
-                                predefinedDataTypeFormattedName += "(" + precision + ")"; //$NON-NLS-1$ //$NON-NLS-2$
-                            }
-                        }
-                    }
-                }
+				if ( (predefinedDataTypeDefinition != null) && predefinedDataTypeDefinition.isPrecisionSupported() ) {
+					int precision = ((TimeDataType)predefinedDataType).getFractionalSecondsPrecision();
+					if (precision > 0) {
+						predefinedDataTypeFormattedName += "(" + precision + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
 			}
 			break;
 			
@@ -1052,90 +1036,12 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		}
 	}
 	
-	public Iterator getRoutineParameterPredefinedDataTypeDefinitions() {
-	    List datatypes = new ArrayList();
-	    Iterator pdtIter = this.getPredefinedDataTypes();
-	    while(pdtIter.hasNext()) {
-	        datatypes.add(pdtIter.next());
-	    }
-	    Iterator rpdtIter = this.getRoutineParameterSpecificPredefinedDataTypeDefinitions();
-	    while(rpdtIter.hasNext()) {
-	        datatypes.add(rpdtIter.next());
-	    }
-	    return datatypes.iterator();
-	}
-	    
-	public Iterator getRoutineParameterPredefinedDataTypeDefinitions(LanguageType languageType) {
-	    List dataTypeDefinitions = new ArrayList();
-	    Iterator pdtDefIter = this.getPredefinedDataTypes();
-	    while(pdtDefIter.hasNext()) {
-	        PredefinedDataTypeDefinition pdtDef = (PredefinedDataTypeDefinition)pdtDefIter.next();
-	        if ( (languageType != null) && languageType.equals(LanguageType.PLSQL_LITERAL)) {
-	            if (pdtDef.getLanguageType().contains(languageType)) {
-	                dataTypeDefinitions.add(pdtDef);
-	            }
-	        }
-	        else {
-	            dataTypeDefinitions.add(pdtDef);    
-	        }
-	    }
-	    Iterator rpdtIter = this.getRoutineParameterSpecificPredefinedDataTypeDefinitions(languageType);
-	    while(rpdtIter.hasNext()) {
-	        dataTypeDefinitions.add(rpdtIter.next());
-	    }
-	    return dataTypeDefinitions.iterator();
-	}
-	    
-	private Iterator getRoutineParameterSpecificPredefinedDataTypeDefinitions() {
-	    this.loadDatabaseDefinition();
-	    StoredProcedureDefinition storedProcedureDefinition = this.databaseVendorDefinition.getStoredProcedureDefinition();
-	    if (storedProcedureDefinition != null) {
-	        return storedProcedureDefinition.getPredefinedDataTypeDefinitions().iterator();
-	    }
-	    else {
-	        return (new ArrayList()).iterator();
-	    }
-	}
-	    
-	private Iterator getRoutineParameterSpecificPredefinedDataTypeDefinitions(LanguageType languageType) {
-	    List dataTypeDefinitions = new ArrayList();
-	    this.loadDatabaseDefinition();
-	    StoredProcedureDefinition storedProcedureDefinition = this.databaseVendorDefinition.getStoredProcedureDefinition();
-	    if (storedProcedureDefinition != null) {
-	        Iterator pdtDefIter =  storedProcedureDefinition.getPredefinedDataTypeDefinitions().iterator();
-	        while(pdtDefIter.hasNext()) {
-	            PredefinedDataTypeDefinition pdtDef = (PredefinedDataTypeDefinition)pdtDefIter.next();
-	            if ( (languageType != null) && languageType.equals(LanguageType.PLSQL_LITERAL)) {
-	                if (pdtDef.getLanguageType().contains(languageType)) {
-	                    dataTypeDefinitions.add(pdtDef);
-	                }
-	            }
-	            else {
-	                dataTypeDefinitions.add(pdtDef);    
-	            }
-	        }
-	            
-	        return dataTypeDefinitions.iterator();
-	    }
-	    else {
-	        return (new ArrayList()).iterator();
-	    }
-	}
-
 	public boolean isKeyConstraintSupported(DataType dataType) {
 		if (dataType instanceof PredefinedDataType) {
 			PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(dataType.getName());
 			if (predefinedDataTypeDefinition != null)
 				return predefinedDataTypeDefinition.isKeyConstraintSupported();
 		}
-		
-	    if(dataType instanceof DistinctUserDefinedType){
-	        DistinctUserDefinedType userDefinedType = (DistinctUserDefinedType)dataType;
-	        PredefinedDataTypeDefinition predefinedDataTypeDefinition  = this.getPredefinedDataTypeDefinition(userDefinedType.getPredefinedRepresentation().getName());
-	        if (predefinedDataTypeDefinition  != null)
-	            return predefinedDataTypeDefinition.isKeyConstraintSupported();
-	    }
-
 		return false;
 	}
 	
@@ -1179,66 +1085,6 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		else {
 			return false;
 		}
-	}
-	
-	public boolean supportsConstructedDataType() {
-	    this.loadDatabaseDefinition();
-	    return this.databaseVendorDefinition.isUserDefinedTypeSupported();
-	}
-	    
-	public boolean supportsArrayDataType() {
-	    this.loadDatabaseDefinition();
-	    ConstructedDataTypeDefinition constructedDataTypeDefinition = this.databaseVendorDefinition.getConstructedDataTypeDefinition();
-	    if ( (constructedDataTypeDefinition != null) && this.supportsConstructedDataType() ) {
-	        return constructedDataTypeDefinition.isArrayDatatypeSupported();
-	    }
-	    else {
-	        return false;
-	    }
-	}
-	    
-	public boolean supportsMultiSetDataType() {
-	    this.loadDatabaseDefinition();
-	    ConstructedDataTypeDefinition constructedDataTypeDefinition = this.databaseVendorDefinition.getConstructedDataTypeDefinition();
-	    if ( (constructedDataTypeDefinition != null) && this.supportsConstructedDataType() ) {
-	        return constructedDataTypeDefinition.isMultisetDatatypeSupported();
-	    }
-	    else {
-	        return false;
-	    }
-	}
-	    
-	public boolean supportsRowDataType() {
-	    this.loadDatabaseDefinition();
-	    ConstructedDataTypeDefinition constructedDataTypeDefinition = this.databaseVendorDefinition.getConstructedDataTypeDefinition();
-	    if ( (constructedDataTypeDefinition != null) && this.supportsConstructedDataType() ) {
-	        return constructedDataTypeDefinition.isRowDatatypeSupported();
-	    }
-	    else {
-	        return false;
-	    }
-	}
-	    
-	public boolean supportsReferenceDataType() {
-	    this.loadDatabaseDefinition();
-	    ConstructedDataTypeDefinition constructedDataTypeDefinition = this.databaseVendorDefinition.getConstructedDataTypeDefinition();
-	    if ( (constructedDataTypeDefinition != null) && this.supportsConstructedDataType() ) {
-	        return constructedDataTypeDefinition.isReferenceDatatypeSupported();
-	    }
-	    else {
-	        return false;
-	    }
-	}
-
-	public boolean supportsCursorDataType() {
-	    this.loadDatabaseDefinition();
-	    ConstructedDataTypeDefinition constructedDataTypeDefinition = this.databaseVendorDefinition.getConstructedDataTypeDefinition();
-	    if ( (constructedDataTypeDefinition != null) && this.supportsConstructedDataType() ) {
-	        return constructedDataTypeDefinition.isCursorDatatypeSupported();
-	    }
-	    else {
-	        return false;
-	    }
 	}
 	
 	public boolean supportsIdentityColumns() {
@@ -1956,11 +1802,6 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		this.loadDatabaseDefinition();
 		return this.databaseVendorDefinition.isSqlUDFSupported();
 	}
-	
-	public boolean supportsUDF() {
-	    this.loadDatabaseDefinition();
-	    return this.databaseVendorDefinition.isUDFSupported();
-	}
 		
 	public boolean supportsStoredProcedures() {
 		this.loadDatabaseDefinition();
@@ -2225,23 +2066,6 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
         								}
         							}
         						}
-                                Iterator m = this.databaseVendorDefinition.getStoredProcedureDefinition().getPredefinedDataTypeDefinitions().iterator();
-                                while (m.hasNext()) {
-                                    Object p = m.next();
-                                    if (p instanceof PredefinedDataTypeDefinition) {
-                                        PredefinedDataTypeDefinition pd = (PredefinedDataTypeDefinition)p;
-                                        Iterator k = pd.getName().iterator();
-                                        while (k.hasNext()) {
-                                            Object q = k.next();
-                                            if (q instanceof String) {
-                                                String name = (String)q;
-                                                if (this.nameToPrimitiveDataTypeDefinitionMap.get(name) == null) {
-                                                    this.nameToPrimitiveDataTypeDefinitionMap.put(name, pd);
-                                                } 
-                                            }
-                                        }
-                                    }
-                                }
         					}
         				}
         			}	

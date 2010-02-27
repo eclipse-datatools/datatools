@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2008 IBM Corporation and others.
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -325,21 +324,6 @@ public void setSelectedContainer(IContainer container) {
 	}
 	treeViewer.setExpandedElements(itemsToExpand.toArray()); 
 	treeViewer.setSelection(new StructuredSelection(container),true);
-}
-
-/**
- * Sets the selected existing file.
- */
-public void setSelectedFile(IFile selectedFile) {
-    //expand to and select the specified container
-    List itemsToExpand = new ArrayList();
-    IContainer parent = selectedFile.getParent();
-    while (parent != null) {
-        itemsToExpand.add(0,parent);
-        parent = parent.getParent();
-    }
-    treeViewer.setExpandedElements(itemsToExpand.toArray()); 
-    treeViewer.setSelection(new StructuredSelection(selectedFile),true);
 }
 
 public IStructuredSelection getSelection(){

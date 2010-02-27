@@ -7,8 +7,6 @@
    <extension-point id="markerNavigationProvider" name="%MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME" schema="schema/markerNavigationProvider.exsd"/>
    <extension-point id="sorterValidatorProvider" name="%DATA_SOURCE_EXPLORER_SORTER" schema="schema/sorterValidatorProvider.exsd"/>
    <extension-point id="filterInformation" name="%FILTER_INFORMATION_EXTENSION_POINT_NAME" schema="schema/filterInformation.exsd"/>
-   <extension-point id="creationInfoProvider" name="Creation Info Provider" schema="schema/creationInfoProvider.exsd"/>
-   <extension-point id="addObjectProvider" name="Add Object Provider" schema="schema/addObjectProvider.exsd"/>
 
    <extension
          point="org.eclipse.ui.preferencePages">

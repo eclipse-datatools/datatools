@@ -93,8 +93,6 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 	}
 
 	public DatabaseDefinition getDefinition(String product, String version) {
-	    if (product == null) return null;
-
 		Map versions = (Map) this.products.get(product);
 		if(versions == null) {
 			return null;

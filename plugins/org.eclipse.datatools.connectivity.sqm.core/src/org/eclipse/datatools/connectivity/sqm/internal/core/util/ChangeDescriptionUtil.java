@@ -1,13 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2009 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
 import java.util.ArrayList;
@@ -31,33 +21,22 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 public class ChangeDescriptionUtil {
 	private ChangeDescription changeDescription;
-	private Set deletedObjects;
-	private Set createdObjects;
 	
 	public ChangeDescriptionUtil (ChangeDescription changeDescription) {
 		this.changeDescription = changeDescription;		
 	}
 	
 	public boolean isCreated (EObject element) {
-	    if (createdObjects == null) {
-	        createdObjects = new HashSet();
-	        for (Iterator i = EcoreUtil.getAllContents(this.changeDescription.getObjectsToDetach()); i.hasNext(); )
-	        {
-	            createdObjects.add(i.next());
-	        }           
-	    }
-	    return createdObjects.contains(element);    
+		return this.changeDescription.getObjectsToDetach().contains(element);	
 	}
 	
     public boolean isDeleted (EObject element) {
-        if (deletedObjects == null) {
-	        Set deletedObjects = new HashSet();
-	        for (Iterator i = EcoreUtil.getAllContents(this.changeDescription.getObjectsToAttach()); i.hasNext(); )
-	        {
-	            deletedObjects.add(i.next());
-	        }
-        }
-	    return deletedObjects != null && deletedObjects.contains(element);
+	      Set deletedObjects = new HashSet();
+	      for (Iterator i = EcoreUtil.getAllContents(this.changeDescription.getObjectsToAttach()); i.hasNext(); )
+	      {
+	        deletedObjects.add(i.next());
+	      }
+	      return deletedObjects != null && deletedObjects.contains(element);
     }
     
     public Set getDeletedObjects()

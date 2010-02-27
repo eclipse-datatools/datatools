@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,15 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
-import java.util.ArrayList;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 
@@ -74,7 +67,6 @@ public class StatementAdapter implements Statement {
 			return new ResultSetAdapter(this, resultSet);
 		}
 		catch(SQLException e) {
-	        notifySQLExceptionHandler(e);
 		    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
 		            e.getClass().getName(),
 		            e);
@@ -168,40 +160,4 @@ public class StatementAdapter implements Statement {
 	public String toString() {
 		return statement.toString();
 	}
-	
-	private void notifySQLExceptionHandler (SQLException sqlexception) {
-	    ArrayList handlers = getSQLExceptionHandler();
-	    for (int i = 0; i < handlers.size(); i++) {
-	        SQLExceptionHandler handler = (SQLExceptionHandler) handlers.get(i);
-	        handler.handleException(sqlexception);
-	    }
-	}
-	    
-	private ArrayList getSQLExceptionHandler(){
-	    if (handers != null) 
-	        return handers;
-	    handers = new ArrayList();
-	    IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-	    IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "sqlexceptionHandler"); //$NON-NLS-1$ //$NON-NLS-2$
-	    IExtension[] extensions = extensionPoint.getExtensions();
-	    for(int i=0; i<extensions.length; ++i) {
-	        IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
-	        for(int j=0; j<configElements.length; ++j) {
-	            if(configElements[j].getName().equals("handler")) { //$NON-NLS-1$
-	                try {
-	                    SQLExceptionHandler handler = (SQLExceptionHandler) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
-	                    handers.add(handler);
-	                } catch(CoreException e) {
-	                    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
-	                            "The error was detected when creating the exception handler ", e); //$NON-NLS-2$
-	                    RDBCorePlugin.getDefault().getLog().log(status);
-	                }
-	            }            
-	        }
-	    }
-
-	    return handers;
-	}
-	    
-	private static ArrayList handers = null;
 }

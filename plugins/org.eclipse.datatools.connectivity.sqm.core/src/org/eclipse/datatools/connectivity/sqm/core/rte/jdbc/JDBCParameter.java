@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2009 Sybase, Inc. and others.
+ * Copyright (c) 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,7 +14,6 @@ import java.sql.Connection;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
-import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
@@ -39,6 +38,6 @@ public class JDBCParameter extends ParameterImpl implements ICatalogObject {
 	}
 	
 	public Database getCatalogDatabase() {
-        return ((Routine)this.eContainer()).getSchema().getCatalog().getDatabase(); 
+		return this.getRoutine().getSchema().getDatabase();	
 	}
 }
