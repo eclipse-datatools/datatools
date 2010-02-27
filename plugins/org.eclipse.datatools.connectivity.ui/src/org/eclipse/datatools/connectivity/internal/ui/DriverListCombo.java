@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 Sybase, Inc. and others
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -240,11 +240,13 @@ public class DriverListCombo {
 		makeImages();
 		this.mPanel = new Composite(parent, SWT.NULL);
 
-		GridData vdata = new GridData(GridData.FILL_HORIZONTAL);
+		GridData vdata = new GridData(GridData.FILL_HORIZONTAL
+				| GridData.VERTICAL_ALIGN_FILL);
+		vdata.horizontalSpan = 2;
 		this.mPanel.setLayoutData(vdata);
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 3;
+		gridLayout.numColumns = 4;
 		gridLayout.marginWidth = 0;
 		gridLayout.marginHeight = 0;
 		this.mPanel.setLayout(gridLayout);
@@ -252,7 +254,7 @@ public class DriverListCombo {
 		if (this.mShowLabel) {
 			this.mLabel = new Label(this.mPanel, SWT.NONE);
 			GridData ldata = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-			ldata.horizontalSpan = 1;
+			ldata.horizontalSpan = 2;
 			this.mLabel.setLayoutData(ldata);
 			this.mLabel.setText(this.mLabelText);
 		}
@@ -260,8 +262,8 @@ public class DriverListCombo {
 		this.mComboList = new Combo(this.mPanel, SWT.DROP_DOWN | SWT.BORDER
 				| SWT.READ_ONLY);
 		this.mComboList.setEnabled(!isReadOnly);
-		GridData cdata = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
-		cdata.widthHint = 20;
+		GridData cdata = new GridData(GridData.HORIZONTAL_ALIGN_FILL
+				| GridData.GRAB_HORIZONTAL);
 		this.mComboList.setLayoutData(cdata);
 
 		ComboSelectionListener listener = new ComboSelectionListener(this);
@@ -274,9 +276,6 @@ public class DriverListCombo {
 
 		if (mShowNewDriverButton) {
 		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
-	        GridData gd = new GridData();
-		    gd.horizontalAlignment = GridData.END;
-		    toolBar.setLayoutData(gd);
 		    /*final ToolItem*/ item1 = new ToolItem(toolBar, SWT.PUSH);
 		    DecorationOverlayIcon icon = new DecorationOverlayIcon(mDriverImage, PLUS, IDecoration.TOP_RIGHT);
 		    item1.setImage(icon.createImage());
@@ -289,9 +288,6 @@ public class DriverListCombo {
 		
 		if (mShowGenericDriverButton) {
 		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
-	        GridData gd = new GridData();
-	        gd.horizontalAlignment = GridData.END;
-	        toolBar.setLayoutData(gd);
 		    /*final ToolItem*/ item2 = new ToolItem(toolBar, SWT.PUSH);
 		    item2.setImage(mDriverImage);
 		    item2.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.generic")); //$NON-NLS-1$
@@ -303,9 +299,6 @@ public class DriverListCombo {
 		
 		if (mShowEditButton) {
 		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
-	        GridData gd = new GridData();
-	        gd.horizontalAlignment = GridData.END;
-	        toolBar.setLayoutData(gd);
 			mTBButtonEdit = new ToolItem(toolBar, SWT.PUSH);
 			mTBButtonEdit.setImage(mChangeImage);
 			mTBButtonEdit.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip")); //$NON-NLS-1$
@@ -316,9 +309,6 @@ public class DriverListCombo {
 
 		if (mShowMenu) {
 		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
-	        GridData gd = new GridData();
-	        gd.horizontalAlignment = GridData.END;
-	        toolBar.setLayoutData(gd);
 			final Menu menu = new Menu (this.mPanel.getShell(), SWT.POP_UP);
 			MenuItem mitem1 = new MenuItem(menu, SWT.PUSH);
 			mitem1.setText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
