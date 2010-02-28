@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005, 2008 Sybase, Inc.
+ * Copyright (c) 2004, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -240,13 +240,11 @@ public class DriverListCombo {
 		makeImages();
 		this.mPanel = new Composite(parent, SWT.NULL);
 
-		GridData vdata = new GridData(GridData.FILL_HORIZONTAL
-				| GridData.VERTICAL_ALIGN_FILL);
-		vdata.horizontalSpan = 2;
+		GridData vdata = new GridData(GridData.FILL_HORIZONTAL);
 		this.mPanel.setLayoutData(vdata);
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 4;
+		gridLayout.numColumns = 3;
 		gridLayout.marginWidth = 0;
 		gridLayout.marginHeight = 0;
 		this.mPanel.setLayout(gridLayout);
@@ -254,7 +252,7 @@ public class DriverListCombo {
 		if (this.mShowLabel) {
 			this.mLabel = new Label(this.mPanel, SWT.NONE);
 			GridData ldata = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-			ldata.horizontalSpan = 2;
+			ldata.horizontalSpan = 1;
 			this.mLabel.setLayoutData(ldata);
 			this.mLabel.setText(this.mLabelText);
 		}
@@ -262,8 +260,8 @@ public class DriverListCombo {
 		this.mComboList = new Combo(this.mPanel, SWT.DROP_DOWN | SWT.BORDER
 				| SWT.READ_ONLY);
 		this.mComboList.setEnabled(!isReadOnly);
-		GridData cdata = new GridData(GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.GRAB_HORIZONTAL);
+		GridData cdata = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+		cdata.widthHint = 20;
 		this.mComboList.setLayoutData(cdata);
 
 		ComboSelectionListener listener = new ComboSelectionListener(this);
