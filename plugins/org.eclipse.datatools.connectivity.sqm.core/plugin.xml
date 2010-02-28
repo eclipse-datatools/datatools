@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-     <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
+   <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
    <extension-point id="logicalContainment" name="%logicalContainmentExtensionPointName" schema="schema/logicalContainment.exsd"/>
    <extension-point id="dataModelElementFactory" name="%DataModelElementFactoryExtensionPointName" schema="schema/dataModelElementFactory.exsd"/>
    <extension-point id="ddlParser" name="%DDLParserExtensionPointName" schema="schema/ddlParser.exsd"/>
@@ -11,6 +11,8 @@
    <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
    <extension-point id="metaDataExtension" name="metaDataExtension" schema="schema/metaDataExtension.exsd"/>
    <extension-point id="mappings" name="Mappings" schema="schema/mappings.exsd"/>
+   <extension-point id="sqlexceptionHandler" name="sqlexceptionHandler" schema="schema/sqlexceptionHandler.exsd"/>
+   
 
    <extension
          point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">

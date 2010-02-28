@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004, 2008 IBM Corporation and others. All rights reserved.
+ * Copyright (c) 2001, 2008 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -23,7 +23,6 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.Re
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterImpl;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -104,15 +103,13 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 
 	private static String IDENTIFIER_DELIMITER = "'"; //$NON-NLS-1$
 
-	private String DEFAULT_MESSAGE = resource
+	public String DEFAULT_MESSAGE = resource
 			.queryString("_UI_DESCRIPTION_FILTER"); //$NON-NLS-1$
 
 	private boolean hideExpressionOption = false;
 
 	private boolean hideSelectionOption = false;
 
-	protected String defaultTitleText = "Connection Filter Properties";
-	
 	private Collator collator = Collator.getInstance(Locale.getDefault());
 	
 	private IConnectionFilterProvider connectionFilterProvider;
@@ -1014,5 +1011,9 @@ public class ConnectionFilterComposite extends Composite implements Listener {
     
     public void setSelection(ISelection selection){
     	this.selection = selection;
+    }
+    
+    public void setSelectionListPopulated(boolean isPopulated){
+        this.isSelectionListPopulated = isPopulated;
     }
 }

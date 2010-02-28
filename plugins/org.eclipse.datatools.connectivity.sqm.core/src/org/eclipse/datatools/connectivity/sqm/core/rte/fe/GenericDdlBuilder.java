@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -286,8 +286,11 @@ public class GenericDdlBuilder {
         if(columns != null) {
             viewDefinition += LEFT_PARENTHESIS + columns + RIGHT_PARENTHESIS + SPACE;
         }
-        viewDefinition += AS + NEWLINE;
-        viewDefinition += view.getQueryExpression().getSQL();
+        // make sure the queryExpression exists
+        if(view.getQueryExpression()!=null){
+            viewDefinition += AS + NEWLINE;
+            viewDefinition += view.getQueryExpression().getSQL();
+        }
         CheckType checkType = view.getCheckType();
         if(checkType == CheckType.CASCADED_LITERAL) {
             viewDefinition += NEWLINE + WITH + SPACE + CASCADED + SPACE + CHECK + SPACE + OPTION;
@@ -1086,8 +1089,7 @@ public class GenericDdlBuilder {
     protected String getIndexKeyColumns(Index index, boolean quoteIdentifiers) {
         String columns;
 
-        // changed from getMembers() to fix BZ 195533 - BTF
-        Iterator it = index.getIncludedMembers().iterator();
+        Iterator it = index.getMembers().iterator();
         if(it.hasNext()) {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();

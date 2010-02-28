@@ -68,6 +68,8 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	private EngineeringOption[] options = null;
 	private EngineeringOptionCategory[] categories = null;
 	private ChangeDescriptionUtil changeDescriptionUtil;
+	private boolean destructive = false;
+
 	
 	public String[] generateDeltaDDL(EObject rootObject, ChangeDescription changeDescription, SQLObject[] impacts, IProgressMonitor monitor) 
 	{
@@ -75,11 +77,16 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	}
 
 	public final String[] generateDeltaDDL(EObject rootObject, ChangeDescription changeDescription, IProgressMonitor monitor) {
-		this.rootObject = rootObject;
+        ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
+        setDestructive(false);
+	    this.rootObject = rootObject;
 		this.changeDescription = changeDescription;
 		changeDescriptionUtil = new ChangeDescriptionUtil(this.changeDescription);
+        monitor.setTaskName(resource.getString("DELTA_DDL_MONITOR_TASK_LOOKING_FOR_CHANGES")); //$NON-NLS-1$
         Map changeMap = buildChangeMap(monitor);
+        monitor.setTaskName(resource.getString("DELTA_DDL_MONITOR_TASK_ANALYZING_CHANGES")); //$NON-NLS-1$
         analyze(changeMap);
+        monitor.setTaskName(resource.getString("DELTA_DDL_MONITOR_TASK_GENERATING_DDL")); //$NON-NLS-1$
         String[] statements = processChangeMap(changeMap, monitor);
         this.changeDescription = null;
         this.redoChanges = null;
@@ -342,6 +349,9 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 			int flag = ((Integer) changeMap.get(key)).intValue();
 			if((flag & (DROP)) != 0) {
 				elements.add(key);
+                if (((flag & (CREATE)) != 0) && 
+                        SQLTablesPackage.eINSTANCE.getPersistentTable().isSuperTypeOf(key.eClass())) 
+                    setDestructive(true);
 			}
 		}
 		if(elements.size() > 0) {
@@ -455,7 +465,8 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 					if(previousValue == null) previousValue = ""; //$NON-NLS-1$
 					if(currentValue == null) {
 						if (this.underContainer(f,changed,previousValue)) {
-							flag = DROP;
+	                        if (isDetach(f, changed, previousValue)) flag = DROP;
+	                        else flag = 0;
 							break;
 						} else {
 							currentValue = ""; //$NON-NLS-1$
@@ -495,6 +506,10 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	      	}
 		}      	
 		return changeMap;
+	}
+
+	protected boolean isCreated(EObject element) {
+	    return changeDescriptionUtil.isCreated(element);
 	}
 
 	// START Privilege Specific
@@ -661,6 +676,18 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 
 	}
 
+	private boolean isDetach (EStructuralFeature f,Object obj, Object container) {
+	    if (!(obj instanceof EObject) || !(container instanceof EObject)) return false;
+	    if (f instanceof EReference){
+	        List oldValues = (List) this.getOldValue(((EReference)f).getEOpposite(), (EObject) container);
+	        List currentValues =  (List) ((EObject) container).eGet(((EReference)f).getEOpposite());
+	        if (oldValues != null && oldValues.contains(obj)
+	            && currentValues != null && !currentValues.contains(obj))
+	            return true;
+	    }
+	    return false;
+	}
+	
 	private void executeChangeRecords(Collection changeRecords) {
 		Iterator it = changeRecords.iterator();
 		while(it.hasNext()) {
@@ -696,6 +723,14 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
     	return EngineeringOptionID.getOptionValueByID(optionID, options);
     }
     
+    public boolean isDestructive() {
+        return destructive;
+    }
+    
+    protected void setDestructive(boolean iDestructive) {
+        destructive = iDestructive;
+    }
+
 	private static class ChangeRecord {
 		public EObject element;
 		public EStructuralFeature feature;

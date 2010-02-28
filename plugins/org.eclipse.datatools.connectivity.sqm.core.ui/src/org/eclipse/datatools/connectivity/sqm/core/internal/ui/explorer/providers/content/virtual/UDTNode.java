@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,16 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDTNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons.ImageDescription;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.AddObjectRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IAddObjectProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
@@ -30,6 +35,12 @@ import org.eclipse.jface.resource.ImageDescriptor;
 public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
 {
 	protected boolean isStructuredUDTSupported;
+	protected boolean isArrayTypeSupported;
+	protected boolean isRowTypeSupported;
+	protected boolean isDistinctTypeSupported;
+	protected ImageDescriptor addObjectDescriptor = null;
+	protected String addObjectLabel = null;
+	protected EClass addObjectEClass = null;
 	
 	/**
 	 * @param name
@@ -37,8 +48,15 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
 	 */
 	public UDTNode(String name, String displayName, Object parent)
 	{
-		super(name, displayName, parent);
-		isStructuredUDTSupported = isStructuredUserDefinedTypeSupported();
+        super(name, displayName, parent);
+        isDistinctTypeSupported = isDistinctTypeSupported();
+        isStructuredUDTSupported = isStructuredUserDefinedTypeSupported();
+        isArrayTypeSupported = isArrayTypeSupported();
+        isRowTypeSupported = isRowTypeSupported();
+        IAddObjectProvider provider = AddObjectRegistry.INSTANCE.getProvider(this);
+        if (provider != null) {
+            setAddedObjectValues(provider);
+        }
 	}
 
 	public String getGroupID ()
@@ -52,29 +70,97 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
     
     //@Override
 	public ImageDescriptor[] getCreateImageDescriptor() {		
-		return isStructuredUDTSupported ? new ImageDescriptor[] { 
-				ImageDescription.getUDTDescriptor(),
-				ImageDescription.getUDTDescriptor()
-		}
-		: new ImageDescriptor[] { ImageDescription.getUDTDescriptor() };
+        List imageDescriptors = new ArrayList();
+        if (isDistinctTypeSupported) {
+            imageDescriptors.add(ImageDescription.getUDTDescriptor());  
+        }       
+        if (isStructuredUDTSupported)
+        {
+            imageDescriptors.add(ImageDescription.getUDTDescriptor());
+        }
+        if (isArrayTypeSupported)
+        {
+            imageDescriptors.add(ImageDescription.getUDTDescriptor());
+        }
+        if (isRowTypeSupported)
+        {
+            imageDescriptors.add(ImageDescription.getUDTDescriptor());
+        }
+        if (addObjectDescriptor != null) {
+            imageDescriptors.add(addObjectDescriptor);
+        }
+        return (ImageDescriptor[])imageDescriptors.toArray(new ImageDescriptor[0]);
+        
+        /*return isStructuredUDTSupported ? new ImageDescriptor[] { 
+                ImageDescription.getUDTDescriptor(),
+                ImageDescription.getUDTDescriptor(),
+                ImageDescription.getUDTDescriptor(),
+                ImageDescription.getUDTDescriptor()
+        }
+        : new ImageDescriptor[] { ImageDescription.getUDTDescriptor() }; */
 	}
 
 	//@Override
 	public String[] getCreateLabel() {
-		return isStructuredUDTSupported ? new String[] {
-				ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE"),
-				ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE")
-		}
-		: new String[] { ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE") };
+	      List labels = new ArrayList();
+	        if (this.isDistinctTypeSupported) {
+	            labels.add(ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE"));   
+	        }       
+	        if (isStructuredUDTSupported)
+	        {
+	            labels.add(ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE"));
+	        }
+	        if (isArrayTypeSupported)
+	        {
+	            labels.add(ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_ARRAY_TYPE"));
+	        }
+	        if (isRowTypeSupported)
+	        {
+	            labels.add(ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_ROW_TYPE"));
+	        }
+	        if (addObjectLabel != null) {
+	            labels.add(addObjectLabel);
+	        }
+	        return (String[])labels.toArray(new String[0]);
+	        
+	    /*  return isStructuredUDTSupported ? new String[] {
+	                ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE"),
+	                ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE"),
+	                ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_ARRAY_TYPE"),
+	                ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_ROW_TYPE")
+	        }
+	        : new String[] { ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE") }; */
 	}
 
 	//@Override
 	public EClass[] getCreateType() {
-		return isStructuredUDTSupported ? new EClass[] {
-				SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType(),
-				SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType()
-		}
-		: new EClass[] { SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType() };
+	      List types = new ArrayList();
+	        if (isDistinctTypeSupported) {
+	            types.add(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType());  
+	        }       
+	        if (isStructuredUDTSupported)
+	        {
+	            types.add(SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType());
+	        }
+	        if (isArrayTypeSupported)
+	        {
+	            types.add(SQLDataTypesPackage.eINSTANCE.getArrayDataType());
+	        }
+	        if (isRowTypeSupported)
+	        {
+	            types.add(SQLDataTypesPackage.eINSTANCE.getRowDataType());
+	        }
+	        if (addObjectEClass != null) {
+	            types.add(addObjectEClass);
+	        }
+	        return ((EClass[])types.toArray(new EClass[0]));
+	        
+	    /*  return isStructuredUDTSupported ? new EClass[] {
+	                SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType(),
+	                SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType()
+	        }
+	        : new EClass[] { SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType() };
+	    */
 	}
 
 	//@Override
@@ -85,6 +171,21 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
 	//@Override
 	public boolean shouldDisplayAdd() {
 		return false;
+	}
+
+	protected boolean isDistinctTypeSupported() {
+	    boolean isSupported = false;
+	    Object parent = getParent();
+	    if (parent != null && parent instanceof Schema)
+	    {
+	        Database db = ((Schema)parent).getDatabase();
+	        if (db != null)
+	        {
+	            isSupported = isCreateDistinctTypeSupported(RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db));
+	        }
+	    }
+	        
+	    return isSupported;
 	}
 
 	protected boolean isStructuredUserDefinedTypeSupported() {
@@ -99,5 +200,55 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
 		}
 		return isSupported;
 	}
+
+	   /**
+     * Gets whether or not Array data type is supported
+     * @return true if array type is supported, false if not
+     */
+    protected boolean isArrayTypeSupported()
+    {       
+        boolean isSupported = false;
+        Object parent = getParent();
+        if (parent != null && parent instanceof Schema)
+        {
+            Database db = ((Schema)parent).getDatabase();
+            if (db != null)
+            {
+                isSupported = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db).supportsArrayDataType();
+            }
+        }
+        return isSupported; 
+    }
+    
+    /**
+     * Gets whether or not Row data type is supported
+     * @return true if Row data type is supported, false if not
+     */
+    protected boolean isRowTypeSupported()
+    {       
+        boolean isSupported = false;
+        Object parent = getParent();
+        if (parent != null && parent instanceof Schema)
+        {
+            Database db = ((Schema)parent).getDatabase();
+            if (db != null)
+            {
+                isSupported = isCreateRowTypeSupported(RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db));
+                if (isSupported) {
+                    isSupported = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db).supportsRowDataType();   
+                }               
+            }
+        }
+        return isSupported; 
+    }
+    
+    protected void setAddedObjectValues(IAddObjectProvider provider) {
+        Object objParent = getParent();
+        if (objParent != null) {
+            addObjectDescriptor = provider.getCreateImageDescriptor(objParent);
+            addObjectLabel = provider.getCreateLabel(objParent);
+            addObjectEClass = provider.getCreateType(objParent);
+        }
+    }
 
 }

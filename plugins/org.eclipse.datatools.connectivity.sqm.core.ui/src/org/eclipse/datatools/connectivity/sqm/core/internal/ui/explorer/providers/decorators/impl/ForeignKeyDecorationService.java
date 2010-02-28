@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.jface.viewers.IDecoration;
 
 
@@ -37,7 +38,13 @@ public class ForeignKeyDecorationService extends AbstractDecorationService
 		SQLObject uc = foreignKey.getUniqueConstraint();
 		if(uc != null) 
 		{
-			parentTableName = ((UniqueConstraint)uc).getBaseTable().getName();
+	         Table tbl = ((UniqueConstraint)uc).getBaseTable();
+	         if(tbl != null) {
+	             parentTableName = tbl.getName();
+	         }
+	         else {
+	             parentTableName = "";
+	         }
 		}
 		else if ((uc = foreignKey.getUniqueIndex()) != null) 
 		{
