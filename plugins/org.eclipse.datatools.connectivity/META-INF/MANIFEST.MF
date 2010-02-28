@@ -15,6 +15,7 @@ Export-Package: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.drivers,
  org.eclipse.datatools.connectivity.drivers.jdbc,
  org.eclipse.datatools.connectivity.drivers.models,
+ org.eclipse.datatools.connectivity.exceptions,
  org.eclipse.datatools.connectivity.internal,
  org.eclipse.datatools.connectivity.internal.repository,
  org.eclipse.datatools.connectivity.internal.security
