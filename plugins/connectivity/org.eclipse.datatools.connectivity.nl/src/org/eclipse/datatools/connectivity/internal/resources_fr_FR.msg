@@ -1,4 +1,14 @@
-#Thu Jun 22 00:30:48 EDT 2006
+## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##    IBM Corporation - migrated to new wizard framework
+##    IBM Corporation - fix for defect 222818
+################################################################################ 
 plugin.internal_error=Erreur interne - org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=inconnue
 dialog.title.error.loadconnectionfactory=Erreur lors du chargement de la fabrique de connexions dans "{0}".
@@ -61,4 +71,6 @@ ManagedConnection_offline_not_supported_error = {0} ne prend pas en charge le tr
 drivers.error.finding.property.no.template = Un problème a été rencontré lors de la tentative de récupération de {0} à partir d'un modèle de pilote.
 
 JDBCConnection.technologyName = JDBC
+
+error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
 

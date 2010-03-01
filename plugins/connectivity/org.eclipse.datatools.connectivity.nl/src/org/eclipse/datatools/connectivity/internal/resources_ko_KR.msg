@@ -1,4 +1,14 @@
-#Thu Jun 22 00:30:48 EDT 2006
+## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##    IBM Corporation - migrated to new wizard framework
+##    IBM Corporation - fix for defect 222818
+################################################################################ 
 plugin.internal_error=내부 오류 - org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=알 수 없음
 dialog.title.error.loadconnectionfactory="{0}"에서 연결 팩토리 로드 중 오류 발생.
@@ -61,4 +71,6 @@ ManagedConnection_offline_not_supported_error = {0}이(가) 오프라인 작업을 지원하
 drivers.error.finding.property.no.template = 드라이버 템플릿에서 {0}을(를) 검색하는 동안 문제가 발생했습니다.
 
 JDBCConnection.technologyName = JDBC
+
+error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
 

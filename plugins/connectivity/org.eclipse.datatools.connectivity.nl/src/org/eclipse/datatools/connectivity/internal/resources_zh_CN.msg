@@ -1,4 +1,14 @@
-#Thu Jun 22 00:30:48 EDT 2006
+## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##    IBM Corporation - migrated to new wizard framework
+##    IBM Corporation - fix for defect 222818
+################################################################################ 
 plugin.internal_error=内部错误 － org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=未知
 dialog.title.error.loadconnectionfactory=在“{0}”中装入连接工厂时出错！
@@ -61,4 +71,6 @@ ManagedConnection_offline_not_supported_error = {0} 不支持脱机工作。
 drivers.error.finding.property.no.template = 尝试从驱动程序模板中检索 {0} 时出现问题。
 
 JDBCConnection.technologyName = JDBC
+
+error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
 
