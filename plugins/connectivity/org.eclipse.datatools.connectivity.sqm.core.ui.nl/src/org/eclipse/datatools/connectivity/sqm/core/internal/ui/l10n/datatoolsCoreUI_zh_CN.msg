@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
+# Copyright (c) 2001, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -232,6 +232,8 @@ SCHEMA_MANAGEMENT_CREATE_BUFFER_POOL = 缓冲池
 SCHEMA_MANAGEMENT_CREATE_PARTITION_GROUP = 分区组
 SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE = 单值用户定义类型
 SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE = 结构化用户定义类型
+SCHEMA_MANAGEMENT_CREATE_ARRAY_TYPE = Array Data Type
+SCHEMA_MANAGEMENT_CREATE_ROW_TYPE = Row Data Type
 SCHEMA_MANAGEMENT_CREATE_SEQUENCE = 序列
 SCHEMA_MANAGEMENT_CREATE_MQT = MQT
 SCHEMA_MANAGEMENT_CREATE_ALIAS = 别名

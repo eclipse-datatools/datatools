@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
+# Copyright (c) 2001, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -232,6 +232,8 @@ SCHEMA_MANAGEMENT_CREATE_BUFFER_POOL = Réserve du tampon
 SCHEMA_MANAGEMENT_CREATE_PARTITION_GROUP = Groupe de partition
 SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE = Type distinct défini par l'utilisateur
 SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE = Type structuré défini par l'utilisateur
+SCHEMA_MANAGEMENT_CREATE_ARRAY_TYPE = Array Data Type
+SCHEMA_MANAGEMENT_CREATE_ROW_TYPE = Row Data Type
 SCHEMA_MANAGEMENT_CREATE_SEQUENCE = Séquence
 SCHEMA_MANAGEMENT_CREATE_MQT = MQT
 SCHEMA_MANAGEMENT_CREATE_ALIAS = Pseudo
