@@ -212,7 +212,11 @@ public class ValidationContext
         public void close()
         {
             if( m_properties != null && ! m_properties.isEmpty() )
-                getValidator().closeConnection( this );
+            {
+                IValidator validator = getValidator();
+                if( validator != null )
+                    validator.closeConnection( this );
+            }
         }
         
         /*

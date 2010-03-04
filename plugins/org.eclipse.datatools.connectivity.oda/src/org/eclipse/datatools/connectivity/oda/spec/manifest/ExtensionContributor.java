@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,7 @@ public class ExtensionContributor implements IContributor
     private IConfigurationElement m_contributorElement;
     private List<SupportedDataSetType> m_dataSetTypes;
     private List<String> m_supportedOdaFilterExprNames;
-    private IValidator m_filterValidator;
+    private IValidator m_validator;
     private QuerySpecificationFactory m_specFactory;
     private boolean m_supportsRowOrdering;
     private boolean m_supportsNullOrdering;
@@ -304,7 +304,7 @@ public class ExtensionContributor implements IContributor
      */
     public IValidator getValidator() throws OdaException
     {
-        if( m_filterValidator == null )
+        if( m_validator == null )
         {
             String validatorClassName = m_contributorElement.getAttribute( ATTR_VALIDATOR_CLASS );
             if( validatorClassName == null || validatorClassName.length() == 0 ) // no validator class specified
@@ -315,7 +315,7 @@ public class ExtensionContributor implements IContributor
             {
                 Object validatorClass = m_contributorElement.createExecutableExtension( ATTR_VALIDATOR_CLASS );
                 if( validatorClass instanceof IValidator )
-                    m_filterValidator = (IValidator) validatorClass;
+                    m_validator = (IValidator) validatorClass;
                 else
                     throw new OdaException( Messages.bind( Messages.querySpec_INVALID_CLASS_TYPE_ATTRIBUTE, 
                         new Object[]{ validatorClassName, ATTR_VALIDATOR_CLASS, IValidator.class.getName()} ));
@@ -326,7 +326,7 @@ public class ExtensionContributor implements IContributor
             }
         }
         
-        return m_filterValidator;
+        return m_validator;
     }
 
     /**
