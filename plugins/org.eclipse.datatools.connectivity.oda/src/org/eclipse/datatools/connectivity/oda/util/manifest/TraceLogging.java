@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,7 +29,7 @@ public class TraceLogging
 	private String m_logFileNamePrefix;
 	private String m_logDirectory;
 	private String m_logFormatterClass;
-    private static HashMap sm_logLevelLiterals = null;
+    private static HashMap<String, Integer> sm_logLevelLiterals = null;
 	
 	TraceLogging( IConfigurationElement traceLogging, String dataSourceElementId ) throws OdaException
 	{
@@ -113,12 +113,12 @@ public class TraceLogging
         }
     }
     
-    static private HashMap getLogLevelLiterals()
+    static private HashMap<String, Integer> getLogLevelLiterals()
     {
         if( sm_logLevelLiterals != null )
             return sm_logLevelLiterals;
         
-        sm_logLevelLiterals = new HashMap( 18, 1 );
+        sm_logLevelLiterals = new HashMap<String, Integer>( 18, 1 );
         sm_logLevelLiterals.put( "SEVERE", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
         sm_logLevelLiterals.put( "1000", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
         sm_logLevelLiterals.put( "WARNING", new Integer( Level.WARNING ) ); //$NON-NLS-1$

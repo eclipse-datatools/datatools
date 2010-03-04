@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Vector;
@@ -36,12 +35,12 @@ public class DataSetType
 {
 	private String m_id;
 	private String m_displayName;
-	private Hashtable m_dataTypeMappingsByNativeCode;
-    private Hashtable m_dataTypeMappingsByNativeName;
+	private Hashtable<Integer, DataTypeMapping> m_dataTypeMappingsByNativeCode;
+    private Hashtable<String, DataTypeMapping> m_dataTypeMappingsByNativeName;
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_configElement;
-    private List m_relationships;
+    private List<Relationship> m_relationships;
 	
 	DataSetType( IConfigurationElement dataSetElement ) throws OdaException
     {
@@ -59,8 +58,8 @@ public class DataSetType
 		m_displayName = ManifestExplorer.getElementDisplayName( dataSetElement );
 
 		// dataTypeMapping elements
-		m_dataTypeMappingsByNativeCode = new Hashtable();
-        m_dataTypeMappingsByNativeName = new Hashtable();
+		m_dataTypeMappingsByNativeCode = new Hashtable<Integer, DataTypeMapping>();
+        m_dataTypeMappingsByNativeName = new Hashtable<String, DataTypeMapping>();
 		IConfigurationElement[] typeMappings = dataSetElement.getChildren( "dataTypeMapping" ); //$NON-NLS-1$
 		int numOfTypeMappings = typeMappings.length;
 		if( numOfTypeMappings == 0 )
@@ -85,7 +84,7 @@ public class DataSetType
 		    IConfigurationElement propertiesElement =
 	            propertiesElements[ propertiesElements.length - 1 ];
 
-		    ArrayList extensionProps = ExtensionManifest.getPropertyDefinitions( propertiesElement );
+		    ArrayList<Property> extensionProps = ExtensionManifest.getPropertyDefinitions( propertiesElement );
             m_properties = (Property[]) extensionProps.toArray( new Property[ extensionProps.size() ] );      
 
             m_propsVisibility = ExtensionManifest.getPropertyVisibilities( propertiesElement );
@@ -162,7 +161,7 @@ public class DataSetType
 	 */
 	public DataTypeMapping[] getDataTypeMappings()
 	{
-		Collection typeMappings = m_dataTypeMappingsByNativeCode.values();
+		Collection<DataTypeMapping> typeMappings = m_dataTypeMappingsByNativeCode.values();
 		int count = typeMappings.size();
 		return ( DataTypeMapping[] ) typeMappings.toArray( new DataTypeMapping[count] );
 	}
@@ -280,7 +279,7 @@ public class DataSetType
      */
     public boolean isDeprecated()
     {
-        List replacedBy = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        List<Relationship> replacedBy = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
         return ( replacedBy != null && ! replacedBy.isEmpty() );
     }
 
@@ -290,7 +289,7 @@ public class DataSetType
      */
     public boolean isWrapper()
     {
-        List wrappersOf = getRelationships( Relationship.TYPE_WRAPPER_OF_CODE );
+        List<Relationship> wrappersOf = getRelationships( Relationship.TYPE_WRAPPER_OF_CODE );
         return ( wrappersOf != null && ! wrappersOf.isEmpty() );
     }
 
@@ -304,7 +303,7 @@ public class DataSetType
      */
     public String getRelatedDataSetId()
     {
-        List relationships = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        List<Relationship> relationships = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
         if( relationships == null )
             return null;
         Relationship replacedBy = (Relationship) relationships.get( 0 );
@@ -319,16 +318,14 @@ public class DataSetType
      * @see {@link Relationship.TYPE_* constants}
      * @since 3.1.2
      */
-    public List getRelationships( int relationshipType )
+    public List<Relationship> getRelationships( int relationshipType )
     {
         if( m_relationships == null || m_relationships.isEmpty() )
             return null;
         
-        Vector matchingRelationships = new Vector( m_relationships.size() );
-        Iterator iter = m_relationships.iterator();
-        while( iter.hasNext() )
+        Vector<Relationship> matchingRelationships = new Vector<Relationship>( m_relationships.size() );
+        for( Relationship aRelationship : m_relationships )
         {
-            Relationship aRelationship = (Relationship) iter.next();
             if( aRelationship.getType() == relationshipType )
                 matchingRelationships.add( aRelationship );
         }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008, 2009 Actuate Corporation.
+ * Copyright (c) 2008, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,11 +36,11 @@ public class ResourceIdentifiers
     private static final String APPL_RESOURCE_TYPE = "ApplResourceType"; //$NON-NLS-1$
     private static final String DESIGN_RESOURCE_TYPE = "DesignResourceType"; //$NON-NLS-1$
     
-    private HashMap m_uriLocators;
+    private HashMap<String, URILocator> m_uriLocators;
 
     public ResourceIdentifiers()
     {
-        m_uriLocators = new HashMap(2);
+        m_uriLocators = new HashMap<String, URILocator>(2);
     }
 
     /**

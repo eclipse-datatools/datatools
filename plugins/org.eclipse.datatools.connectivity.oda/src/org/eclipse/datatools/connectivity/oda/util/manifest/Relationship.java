@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,7 +52,7 @@ class Relationship
      * @return  a list of relationship instances, or null if none is defined or 
      *          has an invalid element
      */
-    static List createInstances( IConfigurationElement relationshipParentElement )
+    static List<Relationship> createInstances( IConfigurationElement relationshipParentElement )
     {
         if( relationshipParentElement == null )
             return null;       // nothing to create from
@@ -61,7 +61,7 @@ class Relationship
         if( elements.length < 1 )           // no relationship element
             return null;
         
-        Vector instances = new Vector( elements.length );
+        Vector<Relationship> instances = new Vector<Relationship>( elements.length );
         for( int i=0; i < elements.length; i++ )
         {
             Relationship anInstance = new Relationship();
