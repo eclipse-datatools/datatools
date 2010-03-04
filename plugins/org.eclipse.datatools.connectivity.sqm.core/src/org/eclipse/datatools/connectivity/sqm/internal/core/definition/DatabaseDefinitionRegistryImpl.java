@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *     IBM Corporation - initial API and implementation
  *     Actuate Corporation - added use of default DatabaseRecognizer (BZ 253523),
  *              plus OSGi stop and restart usage support
+ *     Actuate Corporation - fix for bug 304756
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
@@ -59,6 +60,10 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
             INSTANCE = null;
         }
 	}
+
+    private Collection recognizers = null;
+    private Map products = new TreeMap();
+    private Map connectibleProductVersions = new TreeMap();
 	
 	public Iterator getProducts() {
 		return this.products.keySet().iterator();
@@ -105,7 +110,12 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 	}
 	
 	public DatabaseDefinition recognize(Connection connection) {
-		if(this.recognizers == null) loadRecognizers();
+		if(this.recognizers == null) {
+		    synchronized( this ) {
+		        if(this.recognizers == null) 
+		            loadRecognizers();
+		    }
+		}
 		Iterator it = this.recognizers.iterator();
 		while(it.hasNext()) {
 			IDatabaseRecognizer recognizer = (IDatabaseRecognizer) it.next();
@@ -213,7 +223,4 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 		}
 	}
 
-	private Collection recognizers = null;
-	private Map products = new TreeMap();
-	private Map connectibleProductVersions = new TreeMap();
 }
