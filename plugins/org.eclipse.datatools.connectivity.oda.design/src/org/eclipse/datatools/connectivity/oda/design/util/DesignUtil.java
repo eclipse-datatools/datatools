@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.18 2010/01/20 05:02:09 lchan Exp $
+ * $Id: DesignUtil.java,v 1.19 2010/02/17 02:20:41 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -57,8 +57,6 @@ public class DesignUtil
     private static final String RESOURCE_KEY_PREFIX = "%"; //$NON-NLS-1$
     private static final String RESOURCE_KEY_DOUBLE_PREFIX = "%%"; //$NON-NLS-1$ 
     private static final char RESOURCE_KEY_SEPARATOR = ' ';
-    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    
     private static Diagnostician sm_diagnostician;
     
     // trace logging variables
@@ -621,7 +619,7 @@ public class DesignUtil
         if( key == null || key.trim().length() == 0 )
         {
             if( defaultValue == null )
-                return EMPTY_STRING ;
+                return null;
             if( defaultValue.startsWith( RESOURCE_KEY_PREFIX ) )
                 return RESOURCE_KEY_PREFIX + defaultValue;   // escapes the leading char
             return defaultValue;

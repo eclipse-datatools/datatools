@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -375,6 +375,12 @@ public class DesignUtilLoadSaveTest extends TestCase
         assertEquals( displayNameKey, dataSourceDesign.getDisplayNameKey() );
         // test that the display name remains the same after having changed resource key
         assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        
+        displayName = null;
+        dataSourceDesign.setDisplayName( displayName );
+        assertEquals( displayName, dataSourceDesign.getDisplayName() );
+        // test that the display name remains the same after having changed resource key
+        assertEquals( displayNameKey, dataSourceDesign.getDisplayNameKey() );
         
         // test invalid resource key
         boolean hasException = false;
