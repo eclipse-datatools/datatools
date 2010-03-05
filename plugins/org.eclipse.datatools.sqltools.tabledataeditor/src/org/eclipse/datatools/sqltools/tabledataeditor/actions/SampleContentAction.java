@@ -155,13 +155,22 @@ public class SampleContentAction extends AbstractAction
     {
         super.selectionChanged(event);
 
-        if (event.getSelection() instanceof IStructuredSelection
-                && ((IStructuredSelection) event.getSelection()).getFirstElement() instanceof EObject)
+        if (event.getSelection() instanceof IStructuredSelection)
         {
-            EObject o = (EObject) ((IStructuredSelection) event.getSelection()).getFirstElement();
-            ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
-            String groupID = containmentService.getGroupId(o);
-            setEnabled((groupID != null) && (groupID.startsWith(GroupID.CORE_PREFIX)));
+            Object[] sel = ((IStructuredSelection) event.getSelection()).toArray();
+            // Disable if selected more than one table or column
+            if (sel == null || sel.length > 1)
+            {
+                setEnabled(false);
+                return;
+            }
+            if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof EObject)
+            {
+                EObject o = (EObject) ((IStructuredSelection) event.getSelection()).getFirstElement();
+                ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
+                String groupID = containmentService.getGroupId(o);
+                setEnabled((groupID != null) && (groupID.startsWith(GroupID.CORE_PREFIX)));
+            }
         }
     }
 
