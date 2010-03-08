@@ -646,8 +646,11 @@ public class WSConsole
 			return;
 
 		SOAPParameter[] parameters = soapRequest.getParameters( );
+		
 		for ( int i = 0; parameters != null && i < parameters.length; i++ )
 		{
+			if( soapParameters == null || soapParameters.length != parameters.length )
+				return;
 			if ( !WSUtil.isNull( soapParameters[i] ) )
 			{
 				int pos = -1;
