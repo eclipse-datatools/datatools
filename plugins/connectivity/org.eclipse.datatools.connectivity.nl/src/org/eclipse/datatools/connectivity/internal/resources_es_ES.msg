@@ -72,5 +72,5 @@ drivers.error.finding.property.no.template = Se ha producido un problema al inte
 
 JDBCConnection.technologyName = JDBC
 
-error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
+error.database.not.start = No se ha introducido ningún comando de inicio de base de datos. ErrorCode = {0}, SQLState = {1}.
 

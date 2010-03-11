@@ -72,6 +72,6 @@ drivers.error.finding.property.no.template = Beim Versuch, {0} aus der Treibervo
 
 JDBCConnection.technologyName = JDBC
 
-error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
+error.database.not.start = Es wurde kein Befehl zum Start der Datenbank ausgegeben. ErrorCode = {0}, SQL-Status = {1}.
 
 

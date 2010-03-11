@@ -72,5 +72,5 @@ drivers.error.finding.property.no.template = µå¶óÀÌ¹ö ÅÛÇÃ¸´¿¡¼­ {0}À»(¸¦) °Ë»öÇ
 
 JDBCConnection.technologyName = JDBC
 
-error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
+error.database.not.start = ½ÃÀÛ µ¥ÀÌÅÍº£ÀÌ½º ¸í·ÉÀÌ Àü´ŞµÇÁö ¾Ê¾Ò½À´Ï´Ù. ¿À·ù ÄÚµå = {0}, SQL ¹® = {1}.
 

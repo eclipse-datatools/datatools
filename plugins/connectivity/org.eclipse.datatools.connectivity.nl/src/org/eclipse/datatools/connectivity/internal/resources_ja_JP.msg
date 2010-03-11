@@ -72,5 +72,5 @@ drivers.error.finding.property.no.template = ドライバのテンプレートから {0} を取
 
 JDBCConnection.technologyName = JDBC
 
-error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
+error.database.not.start = データベースの起動コマンドは発行されていません。 ErrorCode = {0}、SQLState = {1}
 

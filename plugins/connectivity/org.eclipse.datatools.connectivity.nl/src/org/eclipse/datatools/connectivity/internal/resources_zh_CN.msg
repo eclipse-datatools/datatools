@@ -72,5 +72,5 @@ drivers.error.finding.property.no.template = 尝试从驱动程序模板中检索 {0} 时出现
 
 JDBCConnection.technologyName = JDBC
 
-error.database.not.start = No start database command was issued. ErrorCode = {0}, SQLState = {1}.
+error.database.not.start = 未发出启动数据库命令。 ErrorCode = {0}，SQLState = {1}。
 
