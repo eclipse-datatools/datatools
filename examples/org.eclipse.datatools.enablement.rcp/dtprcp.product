@@ -29,13 +29,16 @@
       </win>
    </launcher>
 
+
    <vm>
+      <linux>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/OSGi%Minimum-1.0</linux>
    </vm>
 
    <plugins>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.servlet"/>
       <plugin id="javax.servlet.jsp"/>
+      <plugin id="javax.transaction" fragment="true"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
       <plugin id="org.apache.ant"/>
       <plugin id="org.apache.commons.el"/>
@@ -71,11 +74,6 @@
       <plugin id="org.eclipse.datatools.connectivity.apache.derby.ui"/>
       <plugin id="org.eclipse.datatools.connectivity.db.generic"/>
       <plugin id="org.eclipse.datatools.connectivity.db.generic.ui"/>
-      <plugin id="org.eclipse.datatools.connectivity.oda"/>
-      <plugin id="org.eclipse.datatools.connectivity.oda.consumer"/>
-      <plugin id="org.eclipse.datatools.connectivity.oda.design"/>
-      <plugin id="org.eclipse.datatools.connectivity.oda.design.ui"/>
-      <plugin id="org.eclipse.datatools.connectivity.oda.profile"/>
       <plugin id="org.eclipse.datatools.connectivity.sqm.core"/>
       <plugin id="org.eclipse.datatools.connectivity.sqm.core.ui"/>
       <plugin id="org.eclipse.datatools.connectivity.sqm.server.ui"/>
@@ -100,7 +98,6 @@
       <plugin id="org.eclipse.datatools.enablement.ingres"/>
       <plugin id="org.eclipse.datatools.enablement.ingres.dbdefinition"/>
       <plugin id="org.eclipse.datatools.enablement.ingres.ui"/>
-      <plugin id="org.eclipse.datatools.enablement.jdt.classpath"/>
       <plugin id="org.eclipse.datatools.enablement.msft.sqlserver"/>
       <plugin id="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition"/>
       <plugin id="org.eclipse.datatools.enablement.msft.sqlserver.ui"/>
@@ -136,7 +133,6 @@
       <plugin id="org.eclipse.datatools.sqltools.db.derby"/>
       <plugin id="org.eclipse.datatools.sqltools.db.generic"/>
       <plugin id="org.eclipse.datatools.sqltools.ddlgen.ui"/>
-      <plugin id="org.eclipse.datatools.sqltools.debugger.core"/>
       <plugin id="org.eclipse.datatools.sqltools.editor.core"/>
       <plugin id="org.eclipse.datatools.sqltools.editor.core.ui"/>
       <plugin id="org.eclipse.datatools.sqltools.parsers.sql"/>
@@ -165,7 +161,6 @@
       <plugin id="org.eclipse.ecf.ssl" fragment="true"/>
       <plugin id="org.eclipse.emf.codegen"/>
       <plugin id="org.eclipse.emf.codegen.ecore"/>
-      <plugin id="org.eclipse.emf.codegen.ecore.ui"/>
       <plugin id="org.eclipse.emf.common"/>
       <plugin id="org.eclipse.emf.common.ui"/>
       <plugin id="org.eclipse.emf.ecore"/>
@@ -175,19 +170,13 @@
       <plugin id="org.eclipse.emf.ecore.xmi"/>
       <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.emf.edit.ui"/>
-      <plugin id="org.eclipse.emf.mapping"/>
-      <plugin id="org.eclipse.emf.mapping.ecore2ecore"/>
-      <plugin id="org.eclipse.emf.mapping.ecore2ecore.editor"/>
-      <plugin id="org.eclipse.emf.mapping.ecore2xml"/>
-      <plugin id="org.eclipse.emf.mapping.ecore2xml.ui"/>
-      <plugin id="org.eclipse.emf.mapping.ui"/>
-      <plugin id="org.eclipse.emf.mapping.xsd2ecore"/>
-      <plugin id="org.eclipse.emf.mapping.xsd2ecore.editor"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.concurrent"/>
       <plugin id="org.eclipse.equinox.http.jetty"/>
       <plugin id="org.eclipse.equinox.http.servlet"/>
+      <plugin id="org.eclipse.equinox.launcher"/>
+      <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86" fragment="true"/>
       <plugin id="org.eclipse.equinox.p2.artifact.repository"/>
       <plugin id="org.eclipse.equinox.p2.core"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
@@ -202,13 +191,6 @@
       <plugin id="org.eclipse.help"/>
       <plugin id="org.eclipse.help.base"/>
       <plugin id="org.eclipse.help.ui"/>
-      <plugin id="org.eclipse.jdt.compiler.apt" fragment="true"/>
-      <plugin id="org.eclipse.jdt.compiler.tool" fragment="true"/>
-      <plugin id="org.eclipse.jdt.core"/>
-      <plugin id="org.eclipse.jdt.core.manipulation"/>
-      <plugin id="org.eclipse.jdt.debug"/>
-      <plugin id="org.eclipse.jdt.launching"/>
-      <plugin id="org.eclipse.jdt.ui"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.jface.text"/>
@@ -216,6 +198,7 @@
       <plugin id="org.eclipse.ltk.ui.refactoring"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.persistence.jpa.equinox.weaving" fragment="true"/>
       <plugin id="org.eclipse.search"/>
       <plugin id="org.eclipse.swt"/>
       <plugin id="org.eclipse.swt.gtk.linux.x86" fragment="true"/>
@@ -234,19 +217,10 @@
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.eclipse.update.configurator"/>
-      <plugin id="org.eclipse.xsd"/>
-      <plugin id="org.eclipse.xsd.edit"/>
-      <plugin id="org.eclipse.xsd.editor"/>
-      <plugin id="org.eclipse.zest.core"/>
-      <plugin id="org.eclipse.zest.layouts"/>
+      <plugin id="org.jboss.tools.xulrunner.initializer" fragment="true"/>
       <plugin id="org.mortbay.jetty.server"/>
       <plugin id="org.mortbay.jetty.util"/>
    </plugins>
 
-   <configurations>
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.update.configurator" autoStart="true" startLevel="3" />
-   </configurations>
 
 </product>
