@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,8 @@
  */
 
 package org.eclipse.datatools.connectivity.oda.spec;
+
+import java.sql.Types;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
@@ -30,13 +32,15 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableTy
  */
 public abstract class ValueExpression
 {
+    public static final Integer UNKNOWN_ODA_DATA_TYPE = Integer.valueOf( Types.NULL );
+
     protected static final String SPACE = " "; //$NON-NLS-1$    
     protected static final String LEFT_PARANTHESIS = "("; //$NON-NLS-1$
     protected static final String RIGHT_PARANTHESIS = ")"; //$NON-NLS-1$
     protected static final String LEFT_CURLY_BRACKET = " {"; //$NON-NLS-1$
     protected static final String RIGHT_CURLY_BRACKET = "} "; //$NON-NLS-1$
     
-    private Integer m_odaDataTypeCode; 
+    private Integer m_odaDataType; 
     
     /**
      * Returns the qualified id of this value expression type.
@@ -73,7 +77,7 @@ public abstract class ValueExpression
      */
     public Integer getOdaDataType()
     {
-        return m_odaDataTypeCode;
+        return m_odaDataType;
     }
 
     /**
@@ -83,11 +87,22 @@ public abstract class ValueExpression
      * @param odaDataTypeCode the ODA data type code of this variable;
      *              may be null to unset current value
      */
-    public void setOdaDataType( Integer odaDataTypeCode )
+    public void setOdaDataType( Integer odaDataType )
     {
-        m_odaDataTypeCode = odaDataTypeCode;
+        m_odaDataType = odaDataType;
     }
-    
+
+    protected static boolean isNumeric( Integer odaDataType )
+    {
+        if( odaDataType == null || odaDataType == UNKNOWN_ODA_DATA_TYPE )
+            return false;
+        
+        int odaDataTypeCode = odaDataType.intValue();
+        return odaDataTypeCode == Types.INTEGER || 
+                odaDataTypeCode == Types.DOUBLE || 
+                odaDataTypeCode == Types.DECIMAL;
+    }
+
     /**
      * Checks whether two objects are equal using the
      * <code>equals(Object)</code> method of the <code>left</code> object.

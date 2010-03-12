@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -103,31 +103,46 @@ public class CombinedValueExpression extends ValueExpression
     public Integer getOdaDataType()
     {
         // no data type explicitly specified
-        if( super.getOdaDataType() == null )
-        {
-            // derive from the combined operator and/or combined expressions
-            // compare operator by id in case it is a custom contributed instance
-            if( m_operator.getId().equals( CombinedValueExpressionOperator.CONCATENATE ) )  // string concatenation
-                return Integer.valueOf( Types.CHAR );
-            
-            Integer leftExprDataType = m_leftExpr.getOdaDataType();
-            Integer rightExprDataType = m_rightExpr.getOdaDataType();
+        if( super.getOdaDataType() != null )
+            return super.getOdaDataType();
 
-            // for those combined operator types that would not change the data type of the combined value;
-            if( m_operator.getId().equals( CombinedValueExpressionOperator.ADD ) ||
-                m_operator.getId().equals( CombinedValueExpressionOperator.SUBTRACT ) )
-            {
-                if( leftExprDataType == null )
-                    return rightExprDataType;
-                if( rightExprDataType == null )
-                    return leftExprDataType;
-                if( leftExprDataType == rightExprDataType )
-                    return leftExprDataType;
-            }
-            // TODO - handle the other types of combined operator
+        // not a built-in combined operator type
+        if( CombinedValueExpressionOperator.get( m_operator.getId() ) == null )
+            return UNKNOWN_ODA_DATA_TYPE;
+
+        // derive from the combined operator and/or combined expressions
+        // compare operator by id in case it is a custom contributed instance
+        if( m_operator.getId().equals( CombinedValueExpressionOperator.CONCATENATE ) )  // string concatenation
+            return Integer.valueOf( Types.CHAR );
+        
+        Integer leftOdaDataType = m_leftExpr.getOdaDataType();
+        Integer rightOdaDataType = m_rightExpr.getOdaDataType();
+        if( leftOdaDataType == rightOdaDataType || 
+            (leftOdaDataType != null && leftOdaDataType.equals( rightOdaDataType )) )
+            return rightOdaDataType;
+
+        // for remaining built-in combined operator types
+
+        if( leftOdaDataType == null || leftOdaDataType == UNKNOWN_ODA_DATA_TYPE ||
+            rightOdaDataType == null || rightOdaDataType == UNKNOWN_ODA_DATA_TYPE )
+            return UNKNOWN_ODA_DATA_TYPE;
+
+        if( isNumeric( leftOdaDataType ) && isNumeric( rightOdaDataType ) )
+        {
+            int leftOdaDataTypeCode = leftOdaDataType.intValue();
+            int rightOdaDataTypeCode = rightOdaDataType.intValue();
+
+            // combined data type is the most scaled data type of the 2 operands
+            if( leftOdaDataTypeCode == Types.DECIMAL || rightOdaDataTypeCode == Types.DECIMAL )
+                return Integer.valueOf( Types.DECIMAL );
+            if( leftOdaDataTypeCode == Types.DOUBLE || rightOdaDataTypeCode == Types.DOUBLE )
+                return Integer.valueOf( Types.DOUBLE );
+            if( leftOdaDataTypeCode == Types.INTEGER || rightOdaDataTypeCode == Types.INTEGER )
+                return Integer.valueOf( Types.INTEGER );
         }
         
-        return super.getOdaDataType();
+        // TODO - handles other data types besides numeric ones      
+        return UNKNOWN_ODA_DATA_TYPE;
     }
 
     /*

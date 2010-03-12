@@ -273,7 +273,7 @@ public class CustomFunction extends FunctionValueExpression implements IExecutab
             throw newValueExprException( 
                     Messages.bind( Messages.querySpec_CUSTOM_FUNC_INCOMPATIBLE_DUPL_CHECK, getName() ) ); 
         
-        // TODO - validate the data type of arguments
+        // up to custom validator to validate the data type of function arguments
     }
 
     protected OdaException newValueExprException( String message )

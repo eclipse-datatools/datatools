@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,6 +31,7 @@ import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.AtomicExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
 
 /**
  * <strong>EXPERIMENTAL</strong>.
@@ -74,6 +75,26 @@ public class ValidatorUtil
         // not an instance of the expected class
         throw newAggregateException( 
                 Messages.bind( Messages.querySpec_UNEXPECTED_AGGR_EXPR_TYPE,
+                        customExpr.getName(), expectedExprClass.getName() ), 
+                customExpr );
+    }
+
+    /**
+     * Validates the specified CustomFunction to be an instance of the specified class.
+     * @param customExpr    a custom function value expression instance
+     * @param expectedExprClass the expected class of the custom function value expression
+     * @throws OdaException  if validation fails
+     * @since 3.2.3
+     */
+    public static void validateCustomExprType( CustomFunction customExpr, Class<?> expectedExprClass ) 
+        throws OdaException
+    {
+        if( expectedExprClass.isInstance( customExpr ) )
+            return;     // is expected type
+    
+        // not an instance of the expected class
+        throw newValueExprException( 
+                Messages.bind( Messages.querySpec_UNEXPECTED_FUNC_EXPR_TYPE,
                         customExpr.getName(), expectedExprClass.getName() ), 
                 customExpr );
     }
@@ -136,6 +157,23 @@ public class ValidatorUtil
             throw newAggregateException( 
                     Messages.bind( Messages.querySpec_UNEXPECTED_AGGR_EXPR_EXTENSION, customAggrExpr.getName() ), 
                     customAggrExpr );
+    }
+
+    /**
+     * Validates that the specified CustomFunction is contributed by the specified dynamicResultSet
+     * extension id.
+     * @param customFuncExpr    a custom function value expression instance
+     * @param expectedExtensionId   id of the expected oda dynamicResultSet extension
+     * @throws OdaException if validation fails
+     * @since 3.2.3
+     */
+    public static void validateCustomExprExtension( CustomFunction customFuncExpr, String expectedExtensionId )
+        throws OdaException
+    {
+        if( ! expectedExtensionId.equals( customFuncExpr.getDeclaringExtensionId() ) )
+            throw newValueExprException( 
+                    Messages.bind( Messages.querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION, customFuncExpr.getName() ), 
+                    customFuncExpr );
     }
  
     /**
@@ -250,7 +288,9 @@ public class ValidatorUtil
         if( valueExpr.getVariableType() == VariableType.INSTANCE_OF )
             return;     // validation is not supported yet 
         
-        if( valueExpr.getOdaDataType() == null )
+        // look up oda data type if available in the value expression
+        Integer odaDataType = valueExpr.getOdaDataType();
+        if( odaDataType == null || odaDataType == ValueExpression.UNKNOWN_ODA_DATA_TYPE )
             return;     // no data type to validate
         
         int[] restrictedOdaDataTypes = null;
@@ -281,9 +321,6 @@ public class ValidatorUtil
         boolean meetsRestriction = false;
         if( hasRestrictedOdaDataTypes )
         {            
-            // look up oda data type if available in the value expression
-            Integer odaDataType = valueExpr.getOdaDataType();
-
             // check if the variable's oda type is one of the allowed data types
             for( int i=0; i < restrictedOdaDataTypes.length; i++ )
             {

@@ -78,8 +78,10 @@ public class SimpleValueExpression extends AtomicValueExpression
     private static Integer getValueOdaDataType( Object exprValue )
     {
         // derive the ODA data type from the type of object value
-        int odaDataType = DataTypeMapping.getOdaDataTypeCodeOfObject( exprValue );
-        return ( odaDataType == Types.NULL ) ? null : Integer.valueOf( odaDataType );
+        int odaDataTypeCode = DataTypeMapping.getOdaDataTypeCodeOfObject( exprValue );
+        return ( odaDataTypeCode == Types.NULL ) ? 
+                UNKNOWN_ODA_DATA_TYPE : 
+                Integer.valueOf( odaDataTypeCode );
     }
 
     /* (non-Javadoc)
