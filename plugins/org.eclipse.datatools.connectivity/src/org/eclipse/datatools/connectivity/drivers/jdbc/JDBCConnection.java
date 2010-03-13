@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: rcernich - initial API and implementation
  *      IBM Corporation - migrated to new wizard framework
+ *      Actuate Corporation - fix for Bugzilla 305757
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.jdbc;
 
@@ -51,7 +52,7 @@ public class JDBCConnection extends DriverConnectionBase {
 	private Version mServerVersion = Version.NULL_VERSION;
 	private String mServerName;
 	
-	private boolean mHasDriver = true;
+	private boolean mHasDriverDefn = true;
 
 	public JDBCConnection(IConnectionProfile profile, Class factoryClass) {
 		super(profile, factoryClass);
@@ -72,10 +73,12 @@ public class JDBCConnection extends DriverConnectionBase {
 				super.open();
 			}
 		} catch (Exception e) {
-			if (e.getMessage().equalsIgnoreCase(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotSpecified"))) //$NON-NLS-1$
+		    String exceptionCause = e.getCause().getMessage();
+			if (exceptionCause.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotSpecified" ) || //$NON-NLS-1$
+			    exceptionCause.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotFound" )) //$NON-NLS-1$
 			{
 				if (profileHasDriverDetails()) {
-					mHasDriver = false;
+					mHasDriverDefn = false;
 				}
 				else {
 					e.printStackTrace();
@@ -165,7 +168,7 @@ public class JDBCConnection extends DriverConnectionBase {
 
 //		boolean hasDriver = (getDriverDefinition() != null);
 		String driverClass = null;
-		if (mHasDriver)
+		if (mHasDriverDefn)
 			driverClass = getDriverDefinition().getProperty(
 				IJDBCConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
 		else

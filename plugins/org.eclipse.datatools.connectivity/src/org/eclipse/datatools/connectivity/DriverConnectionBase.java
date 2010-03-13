@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ *      Actuate Corporation - fix for Bugzilla 305757
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
@@ -130,13 +131,17 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 					.getProperty(
 							ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
 			if (driverID == null) {
-				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotSpecified")); //$NON-NLS-1$
+			    String messageId = "DriverConnectionBase.error.driverDefinitionNotSpecified"; //$NON-NLS-1$
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString(messageId), 
+				        new Throwable( messageId ));
 			}
 
 			mDriver = DriverManager.getInstance().getDriverInstanceByID(
 					driverID);
 			if (mDriver == null) {
-				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotFound")); //$NON-NLS-1$
+                String messageId = "DriverConnectionBase.error.driverDefinitionNotFound"; //$NON-NLS-1$
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString(messageId),
+				        new Throwable( messageId ));
 			}
 		}
 
