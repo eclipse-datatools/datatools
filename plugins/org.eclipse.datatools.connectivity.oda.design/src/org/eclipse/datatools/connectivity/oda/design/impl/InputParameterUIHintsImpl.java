@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputParameterUIHintsImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
+ * $Id: InputParameterUIHintsImpl.java,v 1.4 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -157,7 +157,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -165,7 +165,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            return getGroupPromptDisplayName();
+            return getGroupPromptDisplayNameGen();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -173,7 +173,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -181,7 +181,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            setGroupPromptDisplayName( (String) newValue );
+            setGroupPromptDisplayNameGen( (String) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -190,7 +190,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -198,7 +198,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-            setGroupPromptDisplayName( GROUP_PROMPT_DISPLAY_NAME_EDEFAULT );
+            setGroupPromptDisplayNameGen( GROUP_PROMPT_DISPLAY_NAME_EDEFAULT );
             return;
         }
         super.eUnset( featureID );

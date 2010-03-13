@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ScalarValueDefinitionImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
+ * $Id: ScalarValueDefinitionImpl.java,v 1.4 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -199,7 +199,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -209,7 +209,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
         case DesignPackage.SCALAR_VALUE_DEFINITION__VALUE:
             return getValue();
         case DesignPackage.SCALAR_VALUE_DEFINITION__DISPLAY_NAME:
-            return getDisplayName();
+            return getDisplayNameGen();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -217,7 +217,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -228,7 +228,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
             setValue( (String) newValue );
             return;
         case DesignPackage.SCALAR_VALUE_DEFINITION__DISPLAY_NAME:
-            setDisplayName( (String) newValue );
+            setDisplayNameGen( (String) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -237,7 +237,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -248,7 +248,7 @@ public class ScalarValueDefinitionImpl extends EObjectImpl implements
             setValue( VALUE_EDEFAULT );
             return;
         case DesignPackage.SCALAR_VALUE_DEFINITION__DISPLAY_NAME:
-            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            setDisplayNameGen( DISPLAY_NAME_EDEFAULT );
             return;
         }
         super.eUnset( featureID );

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementUIHintsImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
+ * $Id: DataElementUIHintsImpl.java,v 1.4 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -236,7 +236,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -244,9 +244,9 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-            return getDisplayName();
+            return getDisplayNameGen();
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-            return getDescription();
+            return getDescriptionGen();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -254,7 +254,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -262,10 +262,10 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-            setDisplayName( (String) newValue );
+            setDisplayNameGen( (String) newValue );
             return;
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-            setDescription( (String) newValue );
+            setDescriptionGen( (String) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -274,7 +274,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -282,10 +282,10 @@ public class DataElementUIHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            setDisplayNameGen( DISPLAY_NAME_EDEFAULT );
             return;
         case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-            setDescription( DESCRIPTION_EDEFAULT );
+            setDescriptionGen( DESCRIPTION_EDEFAULT );
             return;
         }
         super.eUnset( featureID );

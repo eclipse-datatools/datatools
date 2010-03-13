@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.12 2009/05/08 00:58:08 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.13 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -881,7 +881,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -897,7 +897,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
         case DesignPackage.DATA_SET_DESIGN__QUERY:
             return getQuery();
         case DesignPackage.DATA_SET_DESIGN__DISPLAY_NAME:
-            return getDisplayName();
+            return getDisplayNameGen();
         case DesignPackage.DATA_SET_DESIGN__PUBLIC_PROPERTIES:
             return getPublicProperties();
         case DesignPackage.DATA_SET_DESIGN__PRIVATE_PROPERTIES:
@@ -915,7 +915,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -935,7 +935,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
             setQuery( (DataSetQuery) newValue );
             return;
         case DesignPackage.DATA_SET_DESIGN__DISPLAY_NAME:
-            setDisplayName( (String) newValue );
+            setDisplayNameGen( (String) newValue );
             return;
         case DesignPackage.DATA_SET_DESIGN__PUBLIC_PROPERTIES:
             setPublicProperties( (Properties) newValue );
@@ -959,7 +959,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -979,7 +979,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
             setQuery( (DataSetQuery) null );
             return;
         case DesignPackage.DATA_SET_DESIGN__DISPLAY_NAME:
-            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            setDisplayNameGen( DISPLAY_NAME_EDEFAULT );
             return;
         case DesignPackage.DATA_SET_DESIGN__PUBLIC_PROPERTIES:
             setPublicProperties( (Properties) null );

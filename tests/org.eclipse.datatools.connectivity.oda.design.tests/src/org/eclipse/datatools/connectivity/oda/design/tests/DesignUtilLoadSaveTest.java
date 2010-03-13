@@ -194,6 +194,21 @@ public class DesignUtilLoadSaveTest extends TestCase
         ExpressionArguments exprArgs1 = DesignFactory.eINSTANCE.createExpressionArguments();
 
         DataSetParameters dataSetParams = dataSetDesign.getParameters();
+        
+        // test that the localizable attribute is properly handled by EcoreUtil.copy
+        {
+            ParameterDefinition paramDefn = dataSetParams.getParameterDefinitions().get( 0 );
+            String desc = "default desc"; //$NON-NLS-1$
+            String descKey = "myDescKey"; //$NON-NLS-1$
+            paramDefn.getAttributes().setUiDescription( desc );
+            paramDefn.getAttributes().getUiHints().setDescriptionKey( descKey );
+            
+            DataSetParameters copy = (DataSetParameters) EcoreUtil.copy( dataSetParams );
+            ParameterDefinition paramDefnCopy = copy.getParameterDefinitions().get( 0 );
+            assertEquals( desc, paramDefnCopy.getAttributes().getUiHints().getDescription() );
+            assertEquals( descKey, paramDefnCopy.getAttributes().getUiHints().getDescriptionKey() );
+        }
+        
         Iterator<ParameterDefinition> iter = dataSetParams.getParameterDefinitions().iterator();
         while( iter.hasNext() )
         {

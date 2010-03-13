@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertyAttributesImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
+ * $Id: PropertyAttributesImpl.java,v 1.4 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -339,7 +339,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -347,7 +347,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-            return getDisplayName();
+            return getDisplayNameGen();
         case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
             return getElementAttributes();
         case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
@@ -359,7 +359,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -367,7 +367,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-            setDisplayName( (String) newValue );
+            setDisplayNameGen( (String) newValue );
             return;
         case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
             setElementAttributes( (InputElementAttributes) newValue );
@@ -382,7 +382,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -390,7 +390,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            setDisplayNameGen( DISPLAY_NAME_EDEFAULT );
             return;
         case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
             setElementAttributes( (InputElementAttributes) null );

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.14 2009/04/24 03:20:26 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.15 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -898,7 +898,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
@@ -912,7 +912,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
             return getOdaExtensionDataSourceId();
         case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-            return getDisplayName();
+            return getDisplayNameGen();
         case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
             return getPublicProperties();
         case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
@@ -932,7 +932,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eSet( int featureID, Object newValue )
@@ -949,7 +949,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             setOdaExtensionDataSourceId( (String) newValue );
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-            setDisplayName( (String) newValue );
+            setDisplayNameGen( (String) newValue );
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
             setPublicProperties( (Properties) newValue );
@@ -976,7 +976,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void eUnset( int featureID )
@@ -993,7 +993,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             setOdaExtensionDataSourceId( ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT );
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            setDisplayNameGen( DISPLAY_NAME_EDEFAULT );
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
             setPublicProperties( (Properties) null );
