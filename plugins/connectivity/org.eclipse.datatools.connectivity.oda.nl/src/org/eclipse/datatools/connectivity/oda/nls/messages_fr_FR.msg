@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2009 Actuate Corporation.
+# Copyright (c) 2004, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -100,3 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=L'expression d'agrégats personnalisée ({0}) 
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=Impossible de prendre en charge l'expression de filtre personnalisée ({0}) de l'autre extension.
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=L'expression de filtre personnalisée ({0}) n'est pas une instance {1}.\n L'application consommateur doit utiliser ExpressionFactory\#createCustomExpression pour créer une instance d'expression de filtre personnalisée.
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=Impossible de prendre en charge ce type de ExpressionVariable ({1}).
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.

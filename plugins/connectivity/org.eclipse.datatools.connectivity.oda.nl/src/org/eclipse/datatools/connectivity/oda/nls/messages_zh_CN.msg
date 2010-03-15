@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2009 Actuate Corporation.
+# Copyright (c) 2004, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -100,3 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=×Ô¶¨Òå¾ÛºÏ±í´ïÊ½ ({0}) ²»ÊÇ {1} ÊµÀý¡£ ¿Í»§Ó
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=ÎÞ·¨Ö§³ÖÆäËüÀ©Õ¹ÃûµÄ×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½ ({0})¡£
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½({0}) ²»ÊÇ {1} ÊµÀý¡£\n ¿Í»§Ó¦ÓÃ³ÌÐò±ØÐëÊ¹ÓÃ ExpressionFactory\#createCustomExpression ²ÅÄÜ´´½¨×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½ÊµÀý¡£
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=²»Ö§³Ö´ËÀàÐÍµÄ ExpressionVariable ({1})¡£
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.

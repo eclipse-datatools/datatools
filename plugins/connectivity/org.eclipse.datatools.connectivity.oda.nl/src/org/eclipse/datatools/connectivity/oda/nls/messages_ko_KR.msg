@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2009 Actuate Corporation.
+# Copyright (c) 2004, 2010 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -100,3 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=사용자 지정 집계 식({0})이 {1} 인스턴스가 아
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=다른 확장명의 사용자 지정 필터 식({0})은 지원할 수 없습니다.
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=사용자 지정 필터 식({0})이 {1} 인스턴스가 아닙니다.\n 소비자 응용 프로그램은 ExpressionFactory\#createCustomExpression을 사용하여 사용자 지정 필터 식 인스턴스를 생성해야 합니다.
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=이 ExpressionVariable({1}) 형식을 지원할 수 없습니다.
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.
