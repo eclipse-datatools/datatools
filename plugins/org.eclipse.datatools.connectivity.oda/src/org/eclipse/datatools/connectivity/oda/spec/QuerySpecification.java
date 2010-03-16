@@ -280,7 +280,6 @@ public class QuerySpecification
     }
     
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * Specifies the characteristics of all the result set(s) to be retrieved by
      * the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
      * @param resultSpec    specification of a query's result set(s)
@@ -291,7 +290,6 @@ public class QuerySpecification
     }
     
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * Gets the current result set specification of an {@link org.eclipse.datatools.connectivity.oda.IQuery}.
      * @return  the current {@link ResultSetSpecification}, or null if not specified
      */
@@ -301,7 +299,6 @@ public class QuerySpecification
     }
 
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * Validates this in the specified context. 
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed.  The exception thrown may be a chained OdaException, 

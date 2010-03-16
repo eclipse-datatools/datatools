@@ -19,12 +19,11 @@ import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Specification of the characteristics of an {@link org.eclipse.datatools.connectivity.oda.IResultSet} 
  * to be retrieved by the associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
  * <br>Its application would impact the shape of data retrieved in a result set,
  * in addition to any specification expressed in a query text.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ResultSetSpecification
 {

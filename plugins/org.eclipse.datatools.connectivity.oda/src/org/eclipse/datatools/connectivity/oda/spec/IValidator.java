@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,14 +21,13 @@ import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Interface for a custom validator contributed by an extension of the 
  * ODA dynamicResultSet extension point.  It may be used by an ODA consumer
  * to validate a dynamic result set specification or an extension-defined expression that 
  * may be applied at runtime.
  * <br>It is implementation-dependent on the scope of validation covered, and 
  * whether it requires opening a connection to the underlying data source.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public interface IValidator
 {

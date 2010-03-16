@@ -29,10 +29,10 @@ import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpres
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Factory of expression instances for use in a 
  * {@link org.eclipse.datatools.connectivity.oda.spec.QuerySpecification}.
  * <br>Provides convenient methods to create expression instances.
+ * @since 3.3 (DTP 1.8)
  */
 public class ExpressionFactory
 {

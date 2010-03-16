@@ -22,14 +22,12 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * The abstract base class for all ODA aggregate expressions.
  * <p>
  * An expression may be validated by an {@link org.eclipse.datatools.connectivity.oda.spec.IValidator} implemented
  * by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.
  * </p>
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public abstract class AggregateExpression
 {    

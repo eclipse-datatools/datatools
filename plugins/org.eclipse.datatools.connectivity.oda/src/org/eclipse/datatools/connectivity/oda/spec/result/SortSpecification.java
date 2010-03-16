@@ -23,12 +23,11 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Specification of one or more dynamic sort keys of a query result set.
  * <br>Its application would impact the ordering of data rows retrieved in a result set,
  * in addition to any required sort specification expressed in a query text.
  * This may be extended to define additional ways of expressing a sort mode or key.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class SortSpecification
 {

@@ -21,12 +21,11 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Extended specification of the query characteristics to apply when preparing and executing 
  * a query text of an {@link org.eclipse.datatools.connectivity.oda.IAdvancedQuery}.
  * It takes effect only if assigned prior to an IAdvancedQuery prepares a query text
  * at {@link IQuery#prepare(String)}.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class AdvancedQuerySpecification extends QuerySpecification
 {

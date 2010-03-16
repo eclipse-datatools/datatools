@@ -34,18 +34,12 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestUtil;
 
 
 /**
- * <p>
- * <strong>EXPERIMENTAL</strong>. This class has been added as
- * part of a work in progress. There is no guarantee that this API will
- * work or that it will remain the same. Please do not use this API without
- * consulting with the DTP Open Data Access team.
- * </p>
  * This singleton explorer is the entry point to explore and access
  * the manifest of all the extensions that implement the 
  * <code>org.eclipse.datatools.connectivity.oda.dynamicResultSet</code> extension point.
  * The <code>ResultExtensionExplorer</code> singleton instance is retrieved 
  * using the <code>getInstance()</code> method.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ResultExtensionExplorer
 {

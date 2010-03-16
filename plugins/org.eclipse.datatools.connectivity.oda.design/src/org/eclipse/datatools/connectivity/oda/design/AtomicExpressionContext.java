@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AtomicExpressionContext.java,v 1.2 2009/03/03 07:42:08 lchan Exp $
+ * $Id: AtomicExpressionContext.java,v 1.3 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Atomic Expression Context</b></em>'.
  * <!-- end-user-doc -->
  *

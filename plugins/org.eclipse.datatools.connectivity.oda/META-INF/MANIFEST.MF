@@ -2,17 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP Open Data Access
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda; singleton:=true
-Bundle-Version: 3.2.3.qualifier
+Bundle-Version: 3.3.0.qualifier
 Bundle-Vendor: Eclipse Data Tools Platform
 Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.impl,
- org.eclipse.datatools.connectivity.oda.spec;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.impl;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.manifest;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.result;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.result.filter;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.util;x-internal:=true,
- org.eclipse.datatools.connectivity.oda.spec.valueexpr;x-internal:=true,
+ org.eclipse.datatools.connectivity.oda.spec,
+ org.eclipse.datatools.connectivity.oda.spec.impl,
+ org.eclipse.datatools.connectivity.oda.spec.manifest,
+ org.eclipse.datatools.connectivity.oda.spec.result,
+ org.eclipse.datatools.connectivity.oda.spec.result.filter,
+ org.eclipse.datatools.connectivity.oda.spec.util,
+ org.eclipse.datatools.connectivity.oda.spec.valueexpr,
  org.eclipse.datatools.connectivity.oda.util,
  org.eclipse.datatools.connectivity.oda.util.logging,
  org.eclipse.datatools.connectivity.oda.util.manifest

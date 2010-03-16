@@ -34,8 +34,8 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpressio
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Utility class for use by implementation of IValidator.
+ * @since 3.3 (DTP 1.8)
  */
 public class ValidatorUtil
 {

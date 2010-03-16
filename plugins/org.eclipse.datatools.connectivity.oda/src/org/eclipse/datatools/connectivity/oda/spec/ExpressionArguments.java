@@ -22,13 +22,12 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Runtime argument(s) of an expression defined in an ODA query specification.
  * <br>Their values are used by an ODA driver to evaluate an expression and its variable
  * specified in an ODA query specification.
  * The argument values are normally provided by an ODA consumer application during runtime,
  * such as by collecting user-input values for an expression's arguments.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ExpressionArguments
 {

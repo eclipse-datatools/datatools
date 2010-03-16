@@ -28,11 +28,11 @@ import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * The helper that locates the factory class, associated
  * with an org.eclipse.datatools.connectivity.oda.dynamicResultSet extension,
  * to create and/or access the content of a {@link QuerySpecification}.
  * <br>Provides convenient methods to create and access specification instances.
+ * @since 3.3 (DTP 1.8)
  */
 public class QuerySpecificationHelper
 {    

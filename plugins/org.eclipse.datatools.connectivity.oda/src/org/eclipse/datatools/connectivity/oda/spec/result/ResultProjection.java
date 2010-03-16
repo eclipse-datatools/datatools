@@ -26,10 +26,9 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Specification for the projection of an {@link org.eclipse.datatools.connectivity.oda.IResultSet} 
  * to be retrieved by an associated {@link org.eclipse.datatools.connectivity.oda.IQuery}.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ResultProjection
 {

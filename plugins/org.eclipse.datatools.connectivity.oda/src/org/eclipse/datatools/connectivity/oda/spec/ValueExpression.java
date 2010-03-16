@@ -20,7 +20,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * The abstract base class for an ODA expression
  * that resolves to a value.
  * It may be associated with an {@link ExpressionVariable} or
@@ -28,7 +27,7 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableTy
  * <br>It is the responsibility of an ODA driver to resolve an expression,
  * when evaluating it with a query result spec expression.
  * This may be extended to represent complex types of value expression.
- * @since 3.2.2 (DTP 1.7.2)
+ * @since 3.3 (DTP 1.8)
  */
 public abstract class ValueExpression
 {

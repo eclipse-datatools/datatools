@@ -24,10 +24,9 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor
 
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * The context for validation of a query specification and associated query specification expressions.
  * It may include a custom validator and/or the contributor of the expression being validated.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ValidationContext
 {

@@ -20,12 +20,11 @@ import org.eclipse.datatools.connectivity.oda.spec.valueexpr.FunctionValueExpres
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
 
 /**
- * <strong>EXPERIMENTAL</strong>.
  * Represents the variable of an expression defined in an ODA query specification.
  * <br>It is the responsibility of an ODA driver to resolve a variable,
  * when evaluating it with an expression.
  * This may be extended to represent complex types of variables.
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class ExpressionVariable
 {
