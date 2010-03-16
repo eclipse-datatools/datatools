@@ -51,7 +51,7 @@
                <with variable="selection">
                   <iterate>
                      <or>
-                        <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput"/>
+                        <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ui.ProcEditorInput"/>
                         <instanceof value="org.eclipse.datatools.sqltools.core.ProcIdentifier"/>
                         <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
                         <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
@@ -150,8 +150,8 @@
     <extension
           point="org.eclipse.ui.navigator.linkHelper">
        <linkHelper
-             class="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper"
-             id="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper">
+             class="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper"
+             id="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper">
           <selectionEnablement>
              <or>
                 <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
@@ -161,7 +161,7 @@
           </selectionEnablement>
           <editorInputEnablement>
              <or>
-                <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput"/>
+                <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ui.ProcEditorInput"/>
              </or>
           </editorInputEnablement>
        </linkHelper>
@@ -170,7 +170,7 @@
           point="org.eclipse.ui.navigator.viewer">
        <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
           <includes>
-             <contentExtension pattern="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper"/>
+             <contentExtension pattern="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper"/>
           </includes>
        </viewerContentBinding>
        <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">

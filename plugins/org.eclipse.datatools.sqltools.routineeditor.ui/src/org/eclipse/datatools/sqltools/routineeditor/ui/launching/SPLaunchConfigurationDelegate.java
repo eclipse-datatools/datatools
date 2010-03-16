@@ -33,6 +33,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.launching.IExtendedLaunchSupport;
+import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
 import org.eclipse.datatools.sqltools.routineeditor.launching.LaunchHelper;
 import org.eclipse.datatools.sqltools.routineeditor.launching.Messages;
 import org.eclipse.datatools.sqltools.routineeditor.launching.SPDebugTarget_Run;
@@ -265,7 +266,7 @@ public class SPLaunchConfigurationDelegate implements
 				IExtensionRegistry pluginRegistry = Platform
 						.getExtensionRegistry();
 				IExtensionPoint extensionPoint = pluginRegistry
-						.getExtensionPoint(RoutineEditorUIActivator.PLUGIN_ID,
+						.getExtensionPoint(RoutineEditorActivator.PLUGIN_ID,
 								"launchConfigurationTypes"); //$NON-NLS-1$ //$NON-NLS-2$
 				IExtension[] extensions = extensionPoint.getExtensions();
 				if (extensionPoint != null) {

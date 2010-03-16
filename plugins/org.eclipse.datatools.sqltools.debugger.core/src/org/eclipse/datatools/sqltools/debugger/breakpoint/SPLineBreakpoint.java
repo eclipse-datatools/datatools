@@ -42,7 +42,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
     /**
      * The maker type associated with this breakpoint.
      */
-    public static final String MARKER_TYPE         = DebuggerCorePlugin.PLUGIN_ID + ".spLineBreakpointMarker"; //$NON-NLS-1$
+    public static final String MARKER_TYPE         = DebuggerCorePlugin.PLUGIN_ID + ".ui.spLineBreakpointMarker"; //$NON-NLS-1$
     /**
      * Breakpoint attribute describing the breakpoint condition.
      */

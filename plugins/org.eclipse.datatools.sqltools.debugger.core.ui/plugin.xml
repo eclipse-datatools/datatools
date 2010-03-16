@@ -216,7 +216,7 @@
          point="org.eclipse.debug.core.breakpoints">
       <breakpoint
             class="org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint"
-            markerType="org.eclipse.datatools.sqltools.debugger.core.spLineBreakpointMarker"
+            markerType="org.eclipse.datatools.sqltools.debugger.core.ui.spLineBreakpointMarker"
             id="spLineBreakpoint"/>
    </extension>
    
