@@ -91,17 +91,17 @@
 		lastMapTag=r18_${buildId}
 		</echo>
 		<echo message="tagging org.eclipse.datatools.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r18_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.connectivity.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" command="tag r18_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.enablement.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" command="tag r18_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.modelbase.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r18_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.sqltools.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r18_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.incubator.releng..."/>
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" command="tag r17_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" command="tag r18_${buildId}" />
 	</target>
 	
 	<!-- ===================================================================== -->
