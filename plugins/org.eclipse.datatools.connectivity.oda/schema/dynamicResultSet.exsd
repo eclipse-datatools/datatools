@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dynamicResultSet" name="ODA Dynamic Result Set"/>
       </appInfo>
       <documentation>
-         [API] This extension point is for declaring support of dynamic operations, such as filtering, row ordering and projection, on a result set of an ODA data set extension.
+         [API] This extension point is for declaring support of dynamic operations, such as filtering, row ordering and projection, on a result set of an ODA data source extension.
       </documentation>
    </annotation>
 
@@ -654,7 +654,7 @@ The name should be unique within the extension.
          <meta.section type="apiinfo"/>
       </appInfo>
       <documentation>
-         See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec.* packages.
+         See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec package and its sub-packages.
       </documentation>
    </annotation>
 
