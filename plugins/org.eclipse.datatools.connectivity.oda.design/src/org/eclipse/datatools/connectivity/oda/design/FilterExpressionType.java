@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: FilterExpressionType.java,v 1.1 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Filter Expression Type</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -38,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getFilterExpressionType()
- * @since 3.2.2 (DTP 1.7.2)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='FilterExpressionType' kind='elementOnly'"
  * @generated
  */

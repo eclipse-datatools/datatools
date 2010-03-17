@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetCriteria.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
+ * $Id: ResultSetCriteria.java,v 1.2 2009/07/23 21:43:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Result Set Criteria</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -39,7 +36,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getResultSetCriteria()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='ResultSetCriteria' kind='elementOnly'"
  * @generated
  */

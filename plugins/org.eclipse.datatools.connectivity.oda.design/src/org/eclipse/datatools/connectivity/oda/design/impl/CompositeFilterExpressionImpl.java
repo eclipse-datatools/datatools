@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: CompositeFilterExpressionImpl.java,v 1.1 2009/01/30 00:23:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -33,9 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * An implementation of the model object '<em><b>Composite Filter Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
@@ -46,7 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  *
  * @generated
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class CompositeFilterExpressionImpl extends FilterExpressionImpl
         implements CompositeFilterExpression

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: FilterExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,12 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>. This interface has been added as
- * part of a work in progress. There is no guarantee that this API will
- * work or that it will remain the same. Please do not use this API without
- * consulting with the DTP Open Data Access team.
- * </p>
  * A representation of the model object '<em><b>Filter Expression</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -40,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getFilterExpression()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model abstract="true"
  *        extendedMetaData="name='FilterExpression' kind='empty'"
  * @generated

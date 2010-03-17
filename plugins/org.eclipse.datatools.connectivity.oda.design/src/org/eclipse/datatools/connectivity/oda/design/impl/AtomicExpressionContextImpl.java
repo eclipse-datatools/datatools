@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AtomicExpressionContextImpl.java,v 1.2 2009/03/03 07:42:07 lchan Exp $
+ * $Id: AtomicExpressionContextImpl.java,v 1.3 2009/04/14 02:13:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -31,9 +31,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * An implementation of the model object '<em><b>Atomic Expression Context</b></em>'.
  * <!-- end-user-doc -->
  * <p>
@@ -46,7 +43,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * </p>
  *
  * @generated
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class AtomicExpressionContextImpl extends EObjectImpl implements
         AtomicExpressionContext

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: SortKey.java,v 1.2 2009/04/14 02:13:18 lchan Exp $
+ * $Id: SortKey.java,v 1.3 2009/04/30 06:04:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,9 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Sort Key</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -41,7 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortKey()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='SortKey' kind='elementOnly'"
  * @generated
  */

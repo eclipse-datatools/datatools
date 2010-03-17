@@ -11,15 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: OrExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Or Expression</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -29,7 +26,7 @@ package org.eclipse.datatools.connectivity.oda.design;
  *
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOrExpression()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='OrExpression' kind='elementOnly'"
  * @generated
  */

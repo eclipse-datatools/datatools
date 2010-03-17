@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: SortDirectionType.java,v 1.1 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -23,9 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the literals of the enumeration '<em><b>Sort Direction Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
@@ -33,7 +30,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * The type of sort direction defined in a sort key.
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortDirectionType()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='SortDirectionType'"
  * @generated
  */

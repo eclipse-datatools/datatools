@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetDefinition.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
+ * $Id: ResultSetDefinition.java,v 1.3 2009/03/13 05:19:46 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -100,7 +100,6 @@ public interface ResultSetDefinition extends EObject
     void setResultSetColumns( ResultSetColumns value );
 
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * Returns the value of the '<em><b>Criteria</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -114,19 +113,18 @@ public interface ResultSetDefinition extends EObject
      * @model containment="true"
      *        extendedMetaData="kind='element' name='criteria' namespace='##targetNamespace'"
      * @generated
-     * @since 3.2 (DTP 1.7)
+     * @since 3.3 (DTP 1.8)
      */
     ResultSetCriteria getCriteria();
 
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition#getCriteria <em>Criteria</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Criteria</em>' containment reference.
      * @see #getCriteria()
      * @generated
-     * @since 3.2 (DTP 1.7)
+     * @since 3.3 (DTP 1.8)
      */
     void setCriteria( ResultSetCriteria value );
 

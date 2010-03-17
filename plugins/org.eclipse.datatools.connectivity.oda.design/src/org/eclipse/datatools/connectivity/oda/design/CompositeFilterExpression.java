@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: CompositeFilterExpression.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -19,9 +19,6 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * A representation of the model object '<em><b>Composite Filter Expression</b></em>'.
  * <!-- end-user-doc -->
  *
@@ -37,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getCompositeFilterExpression()
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  * @model extendedMetaData="name='CompositeFilterExpression' kind='elementOnly'"
  * @generated
  */

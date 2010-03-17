@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: FilterExpressionImpl.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -27,12 +27,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>. This interface has been added as
- * part of a work in progress. There is no guarantee that this API will
- * work or that it will remain the same. Please do not use this API without
- * consulting with the DTP Open Data Access team.
- * </p>
  * An implementation of the model object '<em><b>Filter Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
@@ -43,7 +37,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * </p>
  *
  * @generated
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public abstract class FilterExpressionImpl extends EObjectImpl implements
         FilterExpression

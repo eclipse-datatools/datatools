@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DynamicFilterExpressionImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
+ * $Id: DynamicFilterExpressionImpl.java,v 1.4 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -33,9 +33,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * An implementation of the model object '<em><b>Dynamic Filter Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
@@ -47,7 +44,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  *
  * @generated
- * @since 3.2 (DTP 1.7)
+ * @since 3.3 (DTP 1.8)
  */
 public class DynamicFilterExpressionImpl extends FilterExpressionImpl implements
         DynamicFilterExpression

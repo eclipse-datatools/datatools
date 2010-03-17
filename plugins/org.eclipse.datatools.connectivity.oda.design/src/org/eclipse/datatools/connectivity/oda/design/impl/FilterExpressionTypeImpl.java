@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: FilterExpressionTypeImpl.java,v 1.1 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -27,9 +27,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * <p>
- * <strong>EXPERIMENTAL</strong>.
- * </p>
  * An implementation of the model object '<em><b>Filter Expression Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
@@ -41,7 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * </p>
  *
  * @generated
- * @since 3.2.2 (DTP 1.7.2)
+ * @since 3.3 (DTP 1.8)
  */
 public class FilterExpressionTypeImpl extends EObjectImpl implements
         FilterExpressionType

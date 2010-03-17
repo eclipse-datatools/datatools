@@ -730,7 +730,6 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     }
     
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * An utility method to look up the definition of the specified custom filter expression design.
      * @param customExpr    a custom filter expression specified in a data set design's filter specification 
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
@@ -744,7 +743,6 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     }
     
     /**
-     * <strong>EXPERIMENTAL</strong>.
      * An utility method to look up the definition of the specified custom filter expression
      * declared by the specified extension.
      * @param extensionId   unique id of an extension that implements the ODA dynamicResultSet extension point
