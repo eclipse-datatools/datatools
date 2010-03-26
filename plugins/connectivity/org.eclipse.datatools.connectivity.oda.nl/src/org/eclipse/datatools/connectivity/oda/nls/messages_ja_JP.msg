@@ -100,5 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=カスタム集計式 ({0}) は {1} インスタンスでは
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=その他の拡張子のカスタムフィルタ式 ({0}) はサポートされていません。
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=カスタムフィルタ式 ({0}) は {1} インスタンスではありません。\nカスタムフィルタ式のインスタンスを作成するには、使用者は ExpressionFactory\#createCustomExpression を使用してください。
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=この型の ExpressionVariable ({1}) は使用できません。
-querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
-querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=その他の拡張子のカスタム関数 ({0}) はサポートされていません。
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=カスタム関数 ({0}) は {1} インスタンスではありません。 カスタム関数のインスタンスを作成するには、使用者は ExpressionFactory\#createCustomFunction を使用してください。

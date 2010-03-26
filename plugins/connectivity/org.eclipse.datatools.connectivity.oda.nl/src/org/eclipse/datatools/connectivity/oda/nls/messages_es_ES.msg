@@ -100,5 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=La expresión de total personalizada ({0} no 
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=No es posible admitir la expresión de filtro personalizada ({0}) de otra extensión.
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=La expresión de filtro personalizada ({0}) no es una instancia {1}.\n La aplicación del consumidor debe utilizar ExpressionFactory\#createCustomExpression para crear una instancia de expresión de filtro personalizada.
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=No se puede admitir este tipo de ExpressionVariable ({1}).
-querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
-querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=No es posible admitir la función personalizada ({0}) de otra extensión.
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=La función personalizada ({0} no es una instancia {1}. La aplicación del consumidor debe utilizar ExpressionFactory\#createCustomFunction para crear una instancia de función personalizada.

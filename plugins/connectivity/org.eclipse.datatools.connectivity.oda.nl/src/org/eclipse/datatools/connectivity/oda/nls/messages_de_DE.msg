@@ -100,5 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=Der benutzerdefinierte Aggregatausdruck ({0}
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=Benutzerdefinierter Filterausdruck ({0}) einer anderen Erweiterung wird nicht unterstützt.
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=Benutzerdefinierter Filterausdruck ({0}) ist keine {1}-Instanz.\nVerbraucheranwendung muss zum Erstellen eines benutzerdefinierten Filterausdrucks ExpressionFactory\#createCustomExpression verwenden.
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=Dieser Typ von ExpressionVariable ({1}) wird nicht unterstützt.
-querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
-querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Benutzerdefinierte Funktion ({0}) einer anderen Erweiterung wird nicht unterstützt.
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=Die benutzerdefinierte Funktion ({0}) ist keine Instanz von {1}. Verbraucheranwendung muss ExpressionFactory\#createCustomFunction zum Erstellen einer benutzerdefinierten Funktionsinstanz verwenden.

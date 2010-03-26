@@ -100,5 +100,5 @@ querySpec_UNEXPECTED_AGGR_EXPR_TYPE=×Ô¶¨Òå¾ÛºÏ±í´ïÊ½ ({0}) ²»ÊÇ {1} ÊµÀı¡£ ¿Í»§Ó
 querySpec_UNEXPECTED_CUSTOM_EXPR_EXTENSION=ÎŞ·¨Ö§³ÖÆäËüÀ©Õ¹ÃûµÄ×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½ ({0})¡£
 querySpec_UNEXPECTED_CUSTOM_EXPR_TYPE=×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½({0}) ²»ÊÇ {1} ÊµÀı¡£\n ¿Í»§Ó¦ÓÃ³ÌĞò±ØĞëÊ¹ÓÃ ExpressionFactory\#createCustomExpression ²ÅÄÜ´´½¨×Ô¶¨ÒåÉ¸Ñ¡±í´ïÊ½ÊµÀı¡£
 querySpec_UNEXPECTED_EXPR_VARIABLE_TYPE=²»Ö§³Ö´ËÀàĞÍµÄ ExpressionVariable ({1})¡£
-querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=Unable to support the custom function ({0}) of other extension.
-querySpec_UNEXPECTED_FUNC_EXPR_TYPE=The custom function ({0}) is not a {1} instance. Consumer application must use ExpressionFactory\#createCustomFunction to create a custom function instance.
+querySpec_UNEXPECTED_FUNC_EXPR_EXTENSION=ÎŞ·¨Ö§³ÖÆäËüÀ©Õ¹ÃûµÄ×Ô¶¨Òåº¯Êı({0})¡£
+querySpec_UNEXPECTED_FUNC_EXPR_TYPE=×Ô¶¨Òåº¯Êı({0})²»ÊÇ {1} ÊµÀı¡£ ¿Í»§Ó¦ÓÃ³ÌĞò±ØĞëÊ¹ÓÃ ExpressionFactory\#createCustomFunction ²ÅÄÜ´´½¨×Ô¶¨Òåº¯ÊıÊµÀı¡£
