@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
+import org.eclipse.datatools.connectivity.oda.spec.result.InternalResultSpecFactory;
 
 /**
  * Represents the definition of a contributed aggregate type, as specifed in an extension of the
@@ -137,7 +138,7 @@ public class AggregateDefinition
         }
         
         // no class attribute value, use the default class provided by the ODA framework
-        return new CustomAggregate( getDeclaringExtensionId(), getId(), variable );
+        return InternalResultSpecFactory.createCustomAggregate( getDeclaringExtensionId(), getId(), variable );
     }
     
     /**

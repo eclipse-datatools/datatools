@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.filter.InternalFilterFactory;
 
 /**
  * Represents the definition of a contributed filter expression type, as specifed in an extension of the
@@ -142,7 +143,7 @@ public class FilterExpressionDefinition
         }
         
         // no class attribute value, use the default class provided by the ODA framework
-        return new CustomExpression( getDeclaringExtensionId(), getId(), variable, args );
+        return InternalFilterFactory.createCustomFilter( getDeclaringExtensionId(), getId(), variable, args );
     }
     
     /**

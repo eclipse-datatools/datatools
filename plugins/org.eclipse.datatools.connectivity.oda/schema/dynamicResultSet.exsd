@@ -135,11 +135,11 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression">
+         <attribute name="class" type="string">
             <annotation>
                <documentation>
                   The fully qualified name of a concrete implementation class of this custom filter expression. 
-&lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
+&lt;br&gt;Must extend from the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression&lt;/i&gt; base class.  The extended class must be public with a public 0-argument constructor.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression:"/>
@@ -227,11 +227,11 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate">
+         <attribute name="class" type="string">
             <annotation>
                <documentation>
                   The fully qualified name of a concrete implementation class of this custom aggregate type 
-&lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
+&lt;br&gt;Must extend from the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate&lt;/i&gt; base class.  The extended class must be public with a public 0-argument constructor.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate:"/>
@@ -502,11 +502,11 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
          <attribute name="class" type="string">
             <annotation>
                <documentation>
-                  The fully qualified name of a concrete implementation class that extends this built-in combined operator. 
-&lt;br&gt;The class must extend the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.ValueExpressionCombinedOperator&lt;/i&gt; base class.  An extended class must be public with a public 0-argument constructor.  Defaults to the built-in operator class.
+                  The fully qualified name of a concrete implementation class that extends this built-in combined operator.
+&lt;br&gt;The class must extend the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator&lt;/i&gt; base class.  The extended class must be public with a public 0-argument constructor.  Defaults to the built-in operator class.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.valueexpr.ValueExpressionCombinedOperator:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator:"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -548,7 +548,7 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
             <annotation>
                <documentation>
                   The fully qualified name of a concrete implementation class of this custom combined operator. 
-&lt;br&gt;Must extend from the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator&lt;/i&gt; base class.  An extended class must be public with a public 0-argument constructor.
+&lt;br&gt;Must extend from the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator&lt;/i&gt; base class.  The extended class must be public with a public 0-argument constructor.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator:"/>
@@ -604,11 +604,11 @@ The name should be unique within the extension.
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction">
+         <attribute name="class" type="string">
             <annotation>
                <documentation>
                   The fully qualified name of a concrete implementation class of this custom function type.
-&lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
+&lt;br&gt;Must extend from the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction&lt;/i&gt; base class.  The extended class must be public with a public 0-argument constructor.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction:"/>

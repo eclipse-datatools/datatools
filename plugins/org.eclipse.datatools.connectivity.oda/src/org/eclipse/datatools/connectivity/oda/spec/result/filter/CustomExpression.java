@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,19 +47,19 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     private FilterExpressionDefinition m_definition;  // expects 1-n-only-1 associated FilterExpressionDefinition
 
     /*
-     * Constructor for internal use only.
+     * Base class constructor.
      * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
-    public CustomExpression( String extensionId, String id )
+    protected CustomExpression( String extensionId, String id )
     {
         this( extensionId, id, null, null );
     }
     
     /*
-     * Constructor for internal use only.
+     * Base class constructor.
      * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
-    public CustomExpression( String extensionId, String id, ExpressionVariable variable, ExpressionArguments args )
+    protected CustomExpression( String extensionId, String id, ExpressionVariable variable, ExpressionArguments args )
     {
         super( variable, args );
         m_extensionId = extensionId;
@@ -67,10 +67,11 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     }
     
     /*
-     * Constructor for internal use only by org.eclipse.core.runtime.IExecutableExtension#setInitializationData.
+     * Constructor for use by org.eclipse.core.runtime.IExecutableExtension#createExecutableExtension
+     * to instantiate an extended class.
      * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
-    public CustomExpression()
+    protected CustomExpression()
     {
         super( null, null );
         // the actual extension id and expression id will be filled by #setInitializationData

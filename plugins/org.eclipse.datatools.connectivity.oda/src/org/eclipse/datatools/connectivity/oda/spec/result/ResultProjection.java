@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,11 +41,11 @@ public class ResultProjection
     private static final String LOG_PAIR_ENTRY_SEPARATOR = " ->\n    "; //$NON-NLS-1$
     
     /**
-     * Internal constructor.
+     * Base class constructor.
      * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createResultProjection()} 
      * to create an instance.
      */
-    public ResultProjection() {}
+    protected ResultProjection() {}
     
     /**
      * Specifies an aggregate expression whose output value is projected on the 

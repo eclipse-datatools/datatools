@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.InternalValueExprFactory;
 
 /**
  * Represents the definition of a value expression combined operator type, as specified in an extension of the
@@ -156,7 +157,7 @@ public class CombinedExpressionOperatorDefinition
                 // literal attribute is required in custom combinedOperatorType element
                 String literal = ResultExtensionUtil.getRequiredAttributeValue( opElement, ATTR_LITERAL, 
                         CUSTOM_ELEMENT_NAME );
-                customOp = new CombinedValueExpressionOperator( getId(), literal );
+                customOp = InternalValueExprFactory.createCombinedOperator( getId(), literal );
             }
             return customOp;
         }

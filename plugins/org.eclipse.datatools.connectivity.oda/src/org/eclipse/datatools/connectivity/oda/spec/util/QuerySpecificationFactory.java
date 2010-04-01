@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,8 +15,10 @@
 package org.eclipse.datatools.connectivity.oda.spec.util;
 
 import org.eclipse.datatools.connectivity.oda.spec.AdvancedQuerySpecification;
+import org.eclipse.datatools.connectivity.oda.spec.InternalSpecFactory;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.InternalResultSpecFactory;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
@@ -29,13 +31,15 @@ import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
  */
 public class QuerySpecificationFactory
 {
+    protected QuerySpecificationFactory() {}
+    
     /**
      * Returns an empty query specification instance.
      * @return  a new {@link QuerySpecification} instance
      */
     protected QuerySpecification createQuerySpecification()
     {
-        return new QuerySpecification();
+        return InternalSpecFactory.createQuerySpecification();
     }
     
     /**
@@ -44,7 +48,7 @@ public class QuerySpecificationFactory
      */
     protected AdvancedQuerySpecification createAdvancedQuerySpecification()
     {
-        return new AdvancedQuerySpecification();
+        return InternalSpecFactory.createAdvancedQuerySpecification();
     }
     
     /**
@@ -53,7 +57,7 @@ public class QuerySpecificationFactory
      */
     protected ResultSetSpecification createResultSetSpecification()
     {
-        return new ResultSetSpecification();
+        return InternalResultSpecFactory.createResultSetSpecification();
     }
     
     /**
@@ -62,7 +66,7 @@ public class QuerySpecificationFactory
      */
     protected ResultProjection createResultProjection()
     {
-        return new ResultProjection();
+        return InternalResultSpecFactory.createResultProjection();
     }
     
     /**
@@ -71,7 +75,7 @@ public class QuerySpecificationFactory
      */
     protected SortSpecification createSortSpecification()
     {
-        return new SortSpecification();
+        return InternalResultSpecFactory.createSortSpecification();
     }
    
     /**
@@ -87,7 +91,7 @@ public class QuerySpecificationFactory
      */
     protected SortSpecification createSortSpecification( int sortMode )
     {
-        return new SortSpecification( sortMode );
+        return InternalResultSpecFactory.createSortSpecification( sortMode );
     }
 
     /**
@@ -100,7 +104,7 @@ public class QuerySpecificationFactory
      *                  of a query result set
      * @return  a new {@link QuerySpecification} instance
      */
-    public QuerySpecification createQuerySpecification( FilterExpression filterExpr,
+    protected QuerySpecification createQuerySpecification( FilterExpression filterExpr,
             ResultProjection projectionSpec, SortSpecification sortSpec )
     {
         ResultSetSpecification resultSetSpec = createResultSetSpecification();

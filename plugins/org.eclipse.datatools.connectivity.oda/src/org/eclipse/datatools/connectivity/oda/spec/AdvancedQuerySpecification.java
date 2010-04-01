@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,7 +37,7 @@ public class AdvancedQuerySpecification extends QuerySpecification
      * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createAdvancedQuerySpecification()} 
      * to create an instance.
      */
-    public AdvancedQuerySpecification() {}
+    AdvancedQuerySpecification() {}
     
     /**
      * Specifies the characteristics of the named result set to be retrieved by

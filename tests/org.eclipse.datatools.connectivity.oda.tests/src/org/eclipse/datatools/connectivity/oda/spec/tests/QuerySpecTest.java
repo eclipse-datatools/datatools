@@ -91,7 +91,7 @@ public class QuerySpecTest extends TestCase
         
         // formatting of querySpec content
         String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
-        assertTrue( contentStr.length() > 400); // not very useful testing; more for manual visualization
+        assertTrue( contentStr.length() > 390); // not very useful testing; more for manual visualization
 }
     
     public void testCreateResultProjectionAggregates() throws Exception
@@ -195,7 +195,7 @@ public class QuerySpecTest extends TestCase
         
         // formatting of querySpec content
         String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
-        assertTrue( contentStr.length() > 490); // not very useful testing; more for manual visualization
+        assertTrue( contentStr.length() > 440); // not very useful testing; more for manual visualization
     }
  
     public void testCreateCustomSortSpec() throws Exception

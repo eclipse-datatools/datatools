@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,10 +46,10 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     private AggregateDefinition m_definition;  // expects 1-n-only-1 associated AggregateDefinition
 
     /*
-     * Constructor for internal use only.
+     * Base class constructor.
      * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
-    public CustomAggregate( String extensionId, String id, ExpressionVariable inputSourceVar )
+    protected CustomAggregate( String extensionId, String id, ExpressionVariable inputSourceVar )
     {
         super( inputSourceVar );
         m_extensionId = extensionId;
@@ -57,19 +57,20 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     }
 
     /*
-     * Constructor for internal use only.
+     * Base class constructor.
      * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
-    public CustomAggregate( String extensionId, String id )
+    protected CustomAggregate( String extensionId, String id )
     {
         this( extensionId, id, null );
     }
     
     /*
-     * Constructor for internal use only by org.eclipse.core.runtime.IExecutableExtension#setInitializationData.
+     * Constructor for use by org.eclipse.core.runtime.IExecutableExtension#createExecutableExtension
+     * to instantiate an extended class.
      * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
-    public CustomAggregate()
+    protected CustomAggregate()
     {
         super( null );
     }

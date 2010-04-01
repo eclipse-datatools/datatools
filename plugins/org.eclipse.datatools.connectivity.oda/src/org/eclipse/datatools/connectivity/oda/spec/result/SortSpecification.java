@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2009 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -56,17 +56,17 @@ public class SortSpecification
     private static final String LOG_NEWLINE_CHAR = "\n "; //$NON-NLS-1$
 	
 	/**
-	 * Internal constructor with no pre-defined restriction on its sort mode.
+	 * Base class constructor with no pre-defined restriction on its sort mode.
      * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createSortSpecification()} 
      * to create an instance.
 	 */
-	public SortSpecification()
+	protected SortSpecification()
 	{
 	    this( SORT_MODE_UNDEFINED );
 	}
 	
 	/**
-	 * Internal constructor with the defined <code>sortMode</code>.
+	 * Base class constructor with the defined <code>sortMode</code>.
      * By specifiying a sort mode, a sort key that gets added to this specification
      * will be validated to match the sort mode.
      * <br>Use {@link org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper#createSortSpecification(int)} 
@@ -79,7 +79,7 @@ public class SortSpecification
 	 * @throws IllegalArgumentException	if the <code>sortMode</code> is not a 
 	 * 									valid value.
 	 */
-	public SortSpecification( int sortMode )
+	protected SortSpecification( int sortMode )
 	{
 		if( sortMode != IDataSetMetaData.sortModeNone &&
 			sortMode != IDataSetMetaData.sortModeSingleOrder &&

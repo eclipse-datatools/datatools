@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,21 +49,22 @@ public class CustomFunction extends FunctionValueExpression implements IExecutab
     private Map<String,Object> m_customData;
     
     /*
-     * Constructor for internal use only.
+     * Base class constructor.
      * Use ExpressionFactory#createCustomFunction to create a custom function instance.
      */
-    public CustomFunction( String extensionId, String id )
+    protected CustomFunction( String extensionId, String id )
     {
-        this();
+        super( null );  // initialize with no function arguments
         m_extensionId = extensionId;
         m_id = id;
     }
     
     /*
-     * Constructor for internal use only by org.eclipse.core.runtime.IExecutableExtension#setInitializationData.
+     * Constructor for use by org.eclipse.core.runtime.IExecutableExtension#createExecutableExtension
+     * to instantiate an extended class.
      * Use ExpressionFactory#createCustomFunction to create a custom function instance.
      */
-    public CustomFunction()
+    protected CustomFunction()
     {
         super( null );  // no function arguments
     }

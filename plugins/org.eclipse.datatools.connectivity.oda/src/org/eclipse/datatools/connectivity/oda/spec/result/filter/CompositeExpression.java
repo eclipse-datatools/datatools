@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -42,6 +42,8 @@ public abstract class CompositeExpression extends FilterExpression
      */
     public CompositeExpression add( FilterExpression expression )
     {
+        if( expression == null )
+            throw new IllegalArgumentException( "null FilterExpression" ); //$NON-NLS-1$
         if( m_expressions == null )
             m_expressions = new ArrayList<FilterExpression>( 2 );
         m_expressions.add( expression );
@@ -171,14 +173,14 @@ public abstract class CompositeExpression extends FilterExpression
             buffer.append( m_expressions );
         else if( m_expressions.size() == 1 )
         {
-            buffer.append( "\n     " + m_expressions.get(0).toString() ); //$NON-NLS-1$
+            buffer.append( "\n     " + m_expressions.get(0) ); //$NON-NLS-1$
         }
         else
         {
-            Iterator<FilterExpression> iter = m_expressions.iterator();
-            for( int i=1; iter.hasNext(); i++ )
+            int i=0;
+            for( FilterExpression childExpr : m_expressions )
             {
-                buffer.append( "\n " + i + ": " + iter.next().toString() ); //$NON-NLS-1$ //$NON-NLS-2$
+                buffer.append( "\n " + (++i) + ": " + childExpr ); //$NON-NLS-1$ //$NON-NLS-2$
             }
         }
         
