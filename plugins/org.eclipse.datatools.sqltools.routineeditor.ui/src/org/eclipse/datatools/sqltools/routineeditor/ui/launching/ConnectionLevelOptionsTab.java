@@ -60,8 +60,6 @@ public class ConnectionLevelOptionsTab extends AbstractLaunchConfigurationTab im
 {
     public static final String CONNECTION_LEVEL_OPTIONS_PAGE = "org.eclipse.datatools.sqltools.editor.core.preferences.ConnectionLevelOptionsPage"; //$NON-NLS-1$
 
-    private CTabFolder         _folder;
-
     private Composite          _comp;
 
     private Button             _useDefault;
@@ -87,9 +85,7 @@ public class ConnectionLevelOptionsTab extends AbstractLaunchConfigurationTab im
      */
     public void createControl(Composite parent)
     {
-        _folder = (CTabFolder) parent;
-
-        _comp = new Composite(_folder, SWT.NONE);
+        _comp = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout();
         layout.verticalSpacing = 0;
         _comp.setLayout(layout);
