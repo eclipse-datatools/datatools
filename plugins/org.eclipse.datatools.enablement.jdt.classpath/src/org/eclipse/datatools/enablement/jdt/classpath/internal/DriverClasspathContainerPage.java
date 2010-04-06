@@ -176,5 +176,9 @@ public class DriverClasspathContainerPage extends WizardPage implements
 			fEditResult = null;
 		}
 	}
-	
+
+	public void dispose() {
+		this.combo.dispose();
+		super.dispose();
+	}
 }
