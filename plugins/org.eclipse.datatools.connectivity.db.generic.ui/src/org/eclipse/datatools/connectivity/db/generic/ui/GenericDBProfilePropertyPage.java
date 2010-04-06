@@ -371,5 +371,10 @@ public class GenericDBProfilePropertyPage
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpContextsGenericDBProfile.GENERIC_DB_PROFILE_WIZARD_PAGE, GenericDBUIPlugin.getDefault().getBundle().getSymbolicName()));
 		return contents;
 	}
+
+	public void dispose() {
+		this.combo.dispose();
+		super.dispose();
+	}
 }
 

@@ -175,4 +175,8 @@ public class ExtensibleProfileDetailsPropertyPage extends
 	    return doComputeSize();
 	}
 
+	public void dispose() {
+		this.driverCombo.dispose();
+		super.dispose();
+	}
 }

@@ -177,4 +177,12 @@ public class ExtensibleProfileDetailsWizardPage extends
 			return false;
 		return super.isPageComplete();
 	}
+
+	@Override
+	public void dispose() {
+		if (this.driverCombo != null) {
+			this.driverCombo.dispose();
+		}
+		super.dispose();
+	}
 }

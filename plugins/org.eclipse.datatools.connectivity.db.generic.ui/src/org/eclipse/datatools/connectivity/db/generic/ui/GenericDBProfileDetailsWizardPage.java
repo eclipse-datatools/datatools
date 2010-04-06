@@ -472,4 +472,9 @@ public class GenericDBProfileDetailsWizardPage
 		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpContextsGenericDBProfile.GENERIC_DB_PROFILE_WIZARD_PAGE, GenericDBUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
+
+	public void dispose() {
+		this.combo.dispose();
+		super.dispose();
+	}
 }

@@ -87,6 +87,7 @@ public class DriverListCombo {
 	private ListenerList changeListeners;
 
 	private Image mDriverImage = null;
+	private Image mDriverWithPlusImage = null;
 	private Image mChangeImage = null;
 
 	private static ImageDescriptor PLUS = null;
@@ -275,8 +276,7 @@ public class DriverListCombo {
 		if (mShowNewDriverButton) {
 		    final ToolBar toolBar = new ToolBar(tempComposite/*this.mPanel*/, SWT.FLAT);
 		    /*final ToolItem*/ item1 = new ToolItem(toolBar, SWT.PUSH);
-		    DecorationOverlayIcon icon = new DecorationOverlayIcon(mDriverImage, PLUS, IDecoration.TOP_RIGHT);
-		    item1.setImage(icon.createImage());
+		    item1.setImage(mDriverWithPlusImage);
 		    item1.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
 			item1
 				.addSelectionListener(new NewButtonSelectionChangedListener(
@@ -1055,10 +1055,11 @@ public class DriverListCombo {
 		}
 	}
 
-	protected void finalize() throws Throwable {
+	public void dispose() {
 		this.mDriverImage.dispose();
+		this.mDriverWithPlusImage.dispose();
 		this.mChangeImage.dispose();
-		super.finalize();
+		this.mArrowImage.dispose();
 	}
 	
 	private void makeImages() {
@@ -1068,7 +1069,8 @@ public class DriverListCombo {
 			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
 				.getBundle().getSymbolicName(), "icons/add_obj2.gif"); //$NON-NLS-1$
 
-		PLUS.createImage();
+		DecorationOverlayIcon icon = new DecorationOverlayIcon(mDriverImage, PLUS, IDecoration.TOP_RIGHT);
+		mDriverWithPlusImage = icon.createImage();
 
 		ARROW = AbstractUIPlugin
 			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
@@ -1081,9 +1083,6 @@ public class DriverListCombo {
 					.getBundle().getSymbolicName(), "icons/change_obj.gif"); //$NON-NLS-1$
 		
 		mChangeImage = CHANGE.createImage();
-
-
-		PLUS.createImage();
 	}
 
 	private IPropertySet duplicatePropertySet ( IPropertySet pset ) {
