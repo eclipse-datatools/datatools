@@ -67,7 +67,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
     Button           _openFileAfterSaveas;
 
     boolean          _dirty;
-    static final int BUTTON_WIDTH = 80;
+    static final int BUTTON_WIDTH = 120;
 
     public SchemaObjectEditorPreferencePage()
     {
