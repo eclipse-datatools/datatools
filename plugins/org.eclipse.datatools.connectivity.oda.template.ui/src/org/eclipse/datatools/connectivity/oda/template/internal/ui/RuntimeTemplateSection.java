@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -162,8 +162,10 @@ class RuntimeTemplateSection extends OdaTemplateSection
     public IPluginReference[] getDependencies( String schemaVersion )
     {
         Version version320 = new Version( 3, 2, 0 );
+        Version version330 = new Version( 3, 3, 0 );
         Version version400 = new Version( 4, 0, 0 );
         VersionRange compatible320 = new VersionRange( version320, true, version400, false );       
+        VersionRange compatible330 = new VersionRange( version330, true, version400, false );       
         
         return new IPluginReference[] 
                     {   
@@ -171,7 +173,7 @@ class RuntimeTemplateSection extends OdaTemplateSection
                         "org.eclipse.core.runtime", null, 0 ), //$NON-NLS-1$
                       new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda",  //$NON-NLS-1$
-                        compatible320.toString() ),
+                        compatible330.toString() ),
                       new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.profile",  //$NON-NLS-1$
                         compatible320.toString() )

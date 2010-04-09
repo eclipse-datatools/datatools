@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 <<Your Company Name here>>
+ * Copyright (c) 2010 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -344,7 +344,6 @@ public class Query implements IQuery
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
      */
-    @SuppressWarnings("restriction")
     public void setSpecification( QuerySpecification querySpec )
             throws OdaException, UnsupportedOperationException
     {
@@ -355,7 +354,6 @@ public class Query implements IQuery
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
      */
-    @SuppressWarnings("restriction")
     public QuerySpecification getSpecification()
     {
         // assumes no support
