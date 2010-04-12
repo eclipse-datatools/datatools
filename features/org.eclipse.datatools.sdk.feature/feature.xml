@@ -69,15 +69,16 @@
 
    <includes
          id="org.eclipse.datatools.connectivity.oda.designer.feature.source"
-         version="0.0.0"/>
+         version="0.0.0" optional="true"/>
 
    <includes
          id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source"
-         version="0.0.0"/>
+         version="0.0.0" optional="true"/>
          
    <includes
          id="org.eclipse.datatools.connectivity.oda.feature.source"
-         version="0.0.0"/>
+         version="0.0.0" optional="true"/>
+         
    <includes
          id="org.eclipse.datatools.sqldevtools.data.feature.source"
          version="0.0.0"/>
