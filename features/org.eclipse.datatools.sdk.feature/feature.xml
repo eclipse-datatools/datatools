@@ -72,6 +72,10 @@
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source"
+         version="0.0.0"/>
+         
+   <includes
          id="org.eclipse.datatools.connectivity.oda.feature.source"
          version="0.0.0"/>
    <includes
