@@ -371,10 +371,10 @@
     	<property name="pack200Dir" value="${postingDirectory}/${buildId}/pack200site"/>
         
     	<!-- replace the feature version in site.xml -->
-        <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
+        <!--copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
         <replace file="${updateSiteDir}/site.xml" value="1.8.0" token="@RELEASE.VERSION@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
-        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
+        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/-->
 
         <!-- push update site to output directory -->
 
@@ -411,7 +411,6 @@
 			</zipfileset>
 			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/">
 				<include name="*.jar"/>
-				<include name="site.xml"/>
 			</zipfileset>
 		</zip>
     	
@@ -455,29 +454,14 @@
         </java>
     	    	
         <!-- generator features and plugins metadata -->
-        <!--p2.generator updatesite="${repo}" compress="true" append="true" flavor="tooling"
-                      metadataRepository="file:${repo}"
-                      artifactRepository="file:${repo}"
-                      metadataRepositoryName="${p2.repo.name}"
-                      artifactRepositoryName="${p2.repo.name}"
-                      publishArtifacts="true" p2OS="linux" mode="incremental"
-                      site="file:${updateSiteDir}/site.xml"/-->
-        <copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/>
-        <java jar="${basedir}/../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar"
-              fork="true"
-              timeout="10800000"
-              jvm="${jvm15_home}/bin/java"
-              failonerror="true"
-              maxmemory="512m">
-              <arg line="-application org.eclipse.equinox.p2.publisher.UpdateSitePublisher"/>
-              <arg line="-metadataRepository file:${repo}"/>
-              <arg line="-artifactRepository file:${repo}"/>
-              <arg line="-source ${pack200Dir}"/>
-              <arg line="-configs gtk.linux.x86"/>
-              <arg line="-compress"/>
-        	  <arg line="-reusePack200Files"/>
-              <arg line="-publishArtifacts"/>
-        </java>
+        <!--copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/-->
+    	<p2.publish.featuresAndBundles
+    	      metadataRepository="file:${repo}"
+    	      artifactRepository="file:${repo}"
+    	      source="${pack200Dir}"
+    	      publishArtifacts="true"
+    	      compress="true"
+    	      reusePackedFiles="true"/>
     	<copy todir="${repo}/features">
     	   <fileset dir="${pack200Dir}/features" includes="*.pack.gz"/>
         </copy>
