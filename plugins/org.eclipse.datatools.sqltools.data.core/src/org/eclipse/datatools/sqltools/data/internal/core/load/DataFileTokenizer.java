@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import org.eclipse.core.resources.ResourcesPlugin;
 
 
 public class DataFileTokenizer
@@ -65,7 +66,15 @@ public class DataFileTokenizer
     public void open() throws IOException
     {
     	FileInputStream fis = new FileInputStream(filePath);
-		InputStreamReader isw = new InputStreamReader(fis, "UTF-8");
+    	// Save the file using encoding specified by user in
+    	// Window->Preferences...
+        	
+    	String encoding = ResourcesPlugin.getEncoding();
+	    if (encoding == null) {
+	    	encoding = "UTF-8";
+	    }
+
+		InputStreamReader isw = new InputStreamReader(fis, encoding);
 		reader = new BufferedReader(isw);    	
 		
 		//Skip the first character if it is BOM
