@@ -163,7 +163,7 @@
     <name>BINARY VARYING</name>
     <name>VARBIN</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="1111" orderingSupported="false" groupingSupported="false">
+  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="1111" orderingSupported="false" groupingSupported="false" javaClassName="java.lang.String">
     <name>XML</name>
   </predefinedDataTypeDefinitions>
   <tableSpaceDefinition maximumIdentifierLength="8" typeSupported="true" extentSizeSupported="true" prefetchSizeSupported="true" managedBySupported="true" pageSizeSupported="true" bufferPoolSupported="true">

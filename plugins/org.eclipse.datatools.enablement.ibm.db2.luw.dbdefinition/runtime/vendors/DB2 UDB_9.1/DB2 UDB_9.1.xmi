@@ -127,7 +127,7 @@ userSupported="true" groupSupported="true" packageSupported="true" constructedDa
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONG VARCHAR FOR BIT DATA</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="1111" orderingSupported="false" groupingSupported="false">
+  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="1111" orderingSupported="false" groupingSupported="false" javaClassName="java.lang.String">
     <name>XML</name>
   </predefinedDataTypeDefinitions>
   <tableSpaceDefinition maximumIdentifierLength="18" typeSupported="true" extentSizeSupported="true" prefetchSizeSupported="true" managedBySupported="true" pageSizeSupported="true" bufferPoolSupported="true">
