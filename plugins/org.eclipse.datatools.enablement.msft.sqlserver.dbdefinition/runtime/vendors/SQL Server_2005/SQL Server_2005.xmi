@@ -127,7 +127,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SQL_VARIANT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="509" orderingSupported="false" groupingSupported="false">
+  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="509" orderingSupported="false" groupingSupported="false" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>XML</name>
   </predefinedDataTypeDefinitions>
