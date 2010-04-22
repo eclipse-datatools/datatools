@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
@@ -61,8 +61,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
     {
         _ramDir = new RAMDirectory();
         
-        // Use which space tokenizer as the tokenizer
-        _analyzer = new WhitespaceAnalyzer();
+        _analyzer = new StandardAnalyzer();
         _id2result = new HashMap();
         _result2id = new HashMap();
         _instances = new ArrayList();
