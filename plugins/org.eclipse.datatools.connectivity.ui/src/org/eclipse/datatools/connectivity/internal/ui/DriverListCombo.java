@@ -37,6 +37,8 @@ import org.eclipse.jface.viewers.DecorationOverlayIcon;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.accessibility.AccessibleAdapter;
+import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -282,6 +284,13 @@ public class DriverListCombo {
 				.addSelectionListener(new NewButtonSelectionChangedListener(
 					this));
 			item1.setEnabled(!isReadOnly);
+			toolBar.getAccessible().addAccessibleListener(
+					new AccessibleAdapter() {			
+						public void getName(AccessibleEvent e) {
+							e.result = DriverMgmtMessages.getString("DriverListCombo.button.newdriver"); //$NON-NLS-1$
+						}
+					}
+			);		
 		}
 		
 		if (mShowGenericDriverButton) {
@@ -293,6 +302,13 @@ public class DriverListCombo {
 				addSelectionListener(new NewGenericSelectionChangedListener(
 						this));
 			item2.setEnabled(!isReadOnly);
+			toolBar.getAccessible().addAccessibleListener(
+					new AccessibleAdapter() {			
+						public void getName(AccessibleEvent e) {
+							e.result = DriverMgmtMessages.getString("DriverListCombo.button.generic"); //$NON-NLS-1$
+						}
+					}
+			);		
 		}
 		
 		if (mShowEditButton) {
@@ -303,6 +319,13 @@ public class DriverListCombo {
 			mTBButtonEdit.
 				addSelectionListener(new EditButtonSelectionChangedListener(
 					this));
+			toolBar.getAccessible().addAccessibleListener(
+					new AccessibleAdapter() {			
+						public void getName(AccessibleEvent e) {
+							e.result = DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip"); //$NON-NLS-1$
+						}
+					}
+			);		
 		}
 
 		if (mShowMenu) {
