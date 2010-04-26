@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2007 Sybase, Inc.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -119,8 +119,26 @@ public class ConnectivityPlugin extends Plugin {
 	 * @param message Error message.
 	 */
 	public void log(String message) {
-		log(createErrorStatus(message));
+	    logError(message);
 	}
+	
+    /**
+     * Logs error message.
+     * @param message   error message
+     * @since DTP 1.8
+     */
+    public void logError(String message) {
+        log(createErrorStatus(message));
+    }
+    
+    /**
+     * Logs informational message.
+     * @param message   informational message
+     * @since DTP 1.8
+     */
+    public void logInfo(String message) {
+        log( createStatus( IStatus.INFO, message) );
+    }
 
 	/**
 	 * Logs and exception.
@@ -132,7 +150,11 @@ public class ConnectivityPlugin extends Plugin {
 	}
 
 	public IStatus createErrorStatus(String message) {
-		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+	    return createStatus( IStatus.ERROR, message );
+	}
+	
+	private IStatus createStatus(int severity, String message) {
+		return new Status(severity, getBundle().getSymbolicName(),
 				INTERNAL_ERROR, message, null);
 	}
 

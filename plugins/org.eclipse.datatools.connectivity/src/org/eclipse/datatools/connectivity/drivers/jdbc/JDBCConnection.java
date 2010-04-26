@@ -79,6 +79,10 @@ public class JDBCConnection extends DriverConnectionBase {
 			{
 				if (profileHasDriverDetails()) {
 					mHasDriverDefn = false;
+                    ConnectivityPlugin.getDefault().logInfo( 
+                            ConnectivityPlugin.getDefault().getResourceString(
+                                    "JDBCConnection.invalidDriverDefinition", //$NON-NLS-1$
+                                    new Object[] { exceptionCause, getDriverDefinitionId() } ));
 				}
 				else {
 					e.printStackTrace();

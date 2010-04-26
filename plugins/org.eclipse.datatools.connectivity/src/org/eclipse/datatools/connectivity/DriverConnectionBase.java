@@ -126,10 +126,7 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 	 */
 	protected DriverInstance getDriverDefinition() throws Exception {
 		if (mDriver == null) {
-			String driverID = getConnectionProfile()
-					.getBaseProperties()
-					.getProperty(
-							ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
+			String driverID = getDriverDefinitionId();
 			if (driverID == null) {
 			    String messageId = "DriverConnectionBase.error.driverDefinitionNotSpecified"; //$NON-NLS-1$
 				throw new Exception(ConnectivityPlugin.getDefault().getResourceString(messageId), 
@@ -148,4 +145,12 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 		return mDriver;
 	}
 
+	protected String getDriverDefinitionId() {
+        IConnectionProfile profile = getConnectionProfile();
+        if( profile == null )
+            return null;
+        return profile.getBaseProperties().getProperty(
+                ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
+	}
+	
 }

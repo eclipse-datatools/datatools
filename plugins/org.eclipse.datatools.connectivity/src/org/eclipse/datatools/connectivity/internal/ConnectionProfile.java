@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004, 2010 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,7 +7,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich, shongxum - initial API and implementation
+ *     Actuate Corporation - transient profile handling (bug #310356)
+ *
  ******************************************************************************/
+
 package org.eclipse.datatools.connectivity.internal;
 
 import java.util.ArrayList;
@@ -694,7 +697,9 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	private void notifyManager() {
-		if (!mIsCreating)
+	    // notify manager only when updating a non-transient profile;
+	    // note that transient profile has no listener; thus no need to manage its updates (BZ 310356)
+		if (!mIsCreating && !InternalProfileManager.isTransientProfile(this) )
 			try {
 				InternalProfileManager.getInstance().modifyProfile(this);
 			}
