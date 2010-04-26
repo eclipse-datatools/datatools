@@ -280,6 +280,9 @@
             <insertionPoint
                  name="additions"
                  separator="true"/>
+            <insertionPoint
+                 name="group.properties"
+                 separator="true"/>
      	</popupMenu>
       </viewer>
       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
