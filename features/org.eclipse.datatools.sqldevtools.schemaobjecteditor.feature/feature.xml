@@ -20,8 +20,8 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.draw2d" version="3.5.0.v20090316-1158-44-7w311A141702258"/>
-      <import feature="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="1.7.0.v200904011704-77--CcNBC0BUCbIlKO"/>
+      <import feature="org.eclipse.draw2d" version="3.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

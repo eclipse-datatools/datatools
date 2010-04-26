@@ -24,8 +24,8 @@
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
 </feature>

@@ -21,7 +21,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.jdt" version="3.2.2" match="greaterOrEqual"/>
+      <import feature="org.eclipse.jdt" version="3.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

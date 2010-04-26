@@ -52,13 +52,13 @@
          id="org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature"
          version="0.0.0"
          optional="true"/>
-         
+
    <requires>
-      <import feature="org.eclipse.gef" version="3.2.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.doc.user" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.gef" version="3.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.doc.user" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -130,42 +130,40 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-    
-    <plugin
+
+   <plugin
          id="org.eclipse.datatools.sqltools.debugger.core.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.datatools.sqltools.editor.core.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.datatools.sqltools.result.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.datatools.sqltools.routineeditor.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    <plugin
+
+   <plugin
          id="org.eclipse.datatools.sqltools.sql.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-    
 
 </feature>

@@ -20,9 +20,9 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.sqldevtools.ddl.feature" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.sqldevtools.ddl.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -45,14 +45,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.result.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.common.ui"
          download-size="0"

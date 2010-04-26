@@ -21,7 +21,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.emf" version="2.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf" version="2.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

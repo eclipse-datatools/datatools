@@ -22,9 +22,9 @@
 
    <requires>
       <import feature="org.eclipse.emf" version="2.4.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.oda.feature" version="1.7.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.doc.user" version="1.7.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.7.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.oda.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.doc.user" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

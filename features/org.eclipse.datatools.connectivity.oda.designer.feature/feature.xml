@@ -21,7 +21,7 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.pde" version="3.4.1" match="greaterOrEqual"/>
+      <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.connectivity.oda.designer.core.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 

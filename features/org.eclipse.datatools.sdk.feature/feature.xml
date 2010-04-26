@@ -58,27 +58,30 @@
    <includes
          id="org.eclipse.datatools.sqltools.doc.user"
          version="0.0.0"/>
-                  
+
    <includes
          id="org.eclipse.datatools.connectivity.feature.source"
          version="0.0.0"/>
-         
+
    <includes
          id="org.eclipse.datatools.sqldevtools.feature.source"
-         version="0.0.0"/>      
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.datatools.connectivity.oda.designer.feature.source"
-         version="0.0.0" optional="true"/>
+         version="0.0.0"
+         optional="true"/>
 
    <includes
          id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source"
-         version="0.0.0" optional="true"/>
-         
+         version="0.0.0"
+         optional="true"/>
+
    <includes
          id="org.eclipse.datatools.connectivity.oda.feature.source"
-         version="0.0.0" optional="true"/>
-         
+         version="0.0.0"
+         optional="true"/>
+
    <includes
          id="org.eclipse.datatools.sqldevtools.data.feature.source"
          version="0.0.0"/>
@@ -98,11 +101,13 @@
    <includes
          id="org.eclipse.datatools.sqldevtools.results.feature.source"
          version="0.0.0"/>
-   
-   <includes id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source" version="0.0.0"/>
-            
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"
+         version="0.0.0"/>
+
    <requires>
-      <import feature="org.eclipse.pde" version="3.3.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -118,18 +123,19 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.connectivity.ui.templates"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>  
-          
+         unpack="false"/>
+
    <plugin
          id="org.eclipse.datatools.connectivity.ui.templates.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>               
+         unpack="false"/>
+
 </feature>
