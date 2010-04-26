@@ -1,7 +1,7 @@
 plugin@org.eclipse.datatools.connectivity=v201004270302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity
 plugin@org.eclipse.datatools.connectivity.ui=v201004240415,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui
 plugin@org.eclipse.datatools.connectivity.ui.templates=v200906020553,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.templates
-plugin@org.eclipse.datatools.connectivity.ui.dse=v201001270323,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.dse
+plugin@org.eclipse.datatools.connectivity.ui.dse=v201004270430,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.dse
 plugin@org.eclipse.datatools.connectivity.sqm.core=v201003050725,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.core
 plugin@org.eclipse.datatools.connectivity.sqm.core.ui=v201002281800,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.core.ui
 plugin@org.eclipse.datatools.connectivity.sqm.server.ui=v200910270503,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.sqm.server.ui
