@@ -71,6 +71,7 @@ ManagedConnection_offline_not_supported_error = {0} 不支持脱机工作。
 drivers.error.finding.property.no.template = 尝试从驱动程序模板中检索 {0} 时出现问题。
 
 JDBCConnection.technologyName = JDBC
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
 
 error.database.not.start = 未发出启动数据库命令。 ErrorCode = {0}，SQLState = {1}。
 

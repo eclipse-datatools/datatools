@@ -71,6 +71,7 @@ ManagedConnection_offline_not_supported_error = {0} ne prend pas en charge le tr
 drivers.error.finding.property.no.template = Un problème a été rencontré lors de la tentative de récupération de {0} à partir d'un modèle de pilote.
 
 JDBCConnection.technologyName = JDBC
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
 
 error.database.not.start = Aucune commande de base de données de démarrage établie. Code d'erreur = {0}, état SQL = {1}.
 

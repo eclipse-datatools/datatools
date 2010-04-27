@@ -71,6 +71,7 @@ ManagedConnection_offline_not_supported_error = {0} unterstützt Offline-Arbeiten
 drivers.error.finding.property.no.template = Beim Versuch, {0} aus der Treibervorlage abzurufen, ist ein Problem aufgetreten.
 
 JDBCConnection.technologyName = JDBC
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
 
 error.database.not.start = Es wurde kein Befehl zum Start der Datenbank ausgegeben. ErrorCode = {0}, SQL-Status = {1}.
 
