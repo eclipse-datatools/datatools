@@ -11,7 +11,7 @@
    </description>
 
    <license url="%LICENSE_URL">
-      %LICENSE
+      %license
    </license>
 
    <url>

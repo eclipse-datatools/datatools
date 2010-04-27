@@ -30,7 +30,7 @@
    </copyright>
 
    <license url="%featureLicenseURL">
-      %featureLicenseTxt
+      %license
    </license>
 
    <url>
