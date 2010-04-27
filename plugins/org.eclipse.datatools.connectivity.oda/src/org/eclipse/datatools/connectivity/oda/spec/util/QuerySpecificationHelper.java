@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,8 @@
 package org.eclipse.datatools.connectivity.oda.spec.util;
 
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.AdvancedQuerySpecification;
@@ -324,4 +326,33 @@ public class QuerySpecificationHelper
         buffer.append( "]" ); //$NON-NLS-1$
         return buffer.toString();
     }
+    
+    /**
+     * Gets a Logger by the specified name.
+     * @param loggerName    the name of logger 
+     * @return  the Logger associated with the specified name
+     */
+    public static Logger getLogger( String loggerName )
+    {
+        return Logger.getLogger( loggerName );
+    }
+    
+    /**
+     * Logs the validation exception message at the FINE log level.
+     * @param className     name of class that initiates the logging
+     * @param exception     validation exception
+     */
+    public static void logValidationException( String className, Throwable exception )
+    {
+        if( exception == null )
+            return;     // nothing to log
+
+        final String loggerName = "org.eclipse.datatools.connectivity.oda.spec"; //$NON-NLS-1$
+        final String methodName = "validate(ValidationContext)"; //$NON-NLS-1$
+        final String logMsg = "Validation result: "; //$NON-NLS-1$
+
+        getLogger( loggerName )
+            .logp( Level.FINE, className, methodName, logMsg + exception.toString() );
+    }
+
 }

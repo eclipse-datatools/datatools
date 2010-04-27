@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.spec.result;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 
 /**
@@ -30,6 +31,8 @@ public class ResultSetSpecification
     private FilterExpression m_filterSpec;
     private ResultProjection m_projectionSpec;
     private SortSpecification m_sortSpec;
+    // trace logging variables
+    private static final String sm_className = ResultSetSpecification.class.getName();
     
     /**
      * Base class constructor.
@@ -118,9 +121,18 @@ public class ResultSetSpecification
     public void validate( ValidationContext context ) 
         throws OdaException
     {
-        // pass this to custom validator, if exists, for overall validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
+        try
+        {
+            // pass this to custom validator, if exists, for overall validation
+            if( context != null && context.getValidator() != null )
+                context.getValidator().validate( this, context );
+        }
+        catch( OdaException ex )
+        {
+            // log the exception before re-throwing it to the caller
+            QuerySpecificationHelper.logValidationException( sm_className, ex );
+            throw ex;
+        }
     }
         
 }

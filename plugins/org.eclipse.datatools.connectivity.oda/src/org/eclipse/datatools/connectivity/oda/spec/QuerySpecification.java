@@ -20,6 +20,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
  * Specification of the query characteristics to apply when preparing and executing 
@@ -31,6 +32,9 @@ public class QuerySpecification
     private ResultSetSpecification m_resultSpec;
     private Map<String,Object> m_propertyMap;
     private Map<ParameterIdentifier,Object> m_parameterValues;
+
+    // trace logging variables
+    private static final String sm_className = QuerySpecification.class.getName();
     
     /*
      * Internal constructor.
@@ -311,8 +315,17 @@ public class QuerySpecification
         throws OdaException
     {
         // pass this to custom validator, if exists, for overall validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
+        try
+        {
+            if( context != null && context.getValidator() != null )
+                context.getValidator().validate( this, context );
+        }
+        catch( OdaException ex )
+        {
+            // log the exception before re-throwing it to the caller
+            QuerySpecificationHelper.logValidationException( sm_className, ex );
+            throw ex;
+        }
     }
     
     /**

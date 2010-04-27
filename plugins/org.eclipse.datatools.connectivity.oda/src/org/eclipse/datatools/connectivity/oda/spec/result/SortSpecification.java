@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
  * Specification of one or more dynamic sort keys of a query result set.
@@ -54,6 +55,7 @@ public class SortSpecification
 	private List<SortKey> m_sortKeys;
 
     private static final String LOG_NEWLINE_CHAR = "\n "; //$NON-NLS-1$
+    private static final String sm_className = SortSpecification.class.getName();
 	
 	/**
 	 * Base class constructor with no pre-defined restriction on its sort mode.
@@ -420,9 +422,18 @@ public class SortSpecification
     public void validate( ValidationContext context ) 
         throws OdaException
     {
-        // pass this to custom validator, if exists, for overall validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
+        try
+        {
+            // pass this to custom validator, if exists, for overall validation
+            if( context != null && context.getValidator() != null )
+                context.getValidator().validate( this, context );
+        }
+        catch( OdaException ex )
+        {
+            // log the exception before re-throwing it to the caller
+            QuerySpecificationHelper.logValidationException( sm_className, ex );
+            throw ex;
+        }
     }
 
 	/*

@@ -18,6 +18,7 @@ import java.sql.Types;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
  * The abstract base class for an ODA expression
@@ -38,6 +39,8 @@ public abstract class ValueExpression
     protected static final String RIGHT_PARANTHESIS = ")"; //$NON-NLS-1$
     protected static final String LEFT_CURLY_BRACKET = " {"; //$NON-NLS-1$
     protected static final String RIGHT_CURLY_BRACKET = "} "; //$NON-NLS-1$
+    // trace logging variables
+    private static final String sm_className = ValueExpression.class.getName();
     
     private Integer m_odaDataType; 
     
@@ -137,11 +140,20 @@ public abstract class ValueExpression
     public void validate( ValidationContext context ) 
         throws OdaException
     {
-        validateSyntax( context );
+        try
+        {
+            validateSyntax( context );
 
-        // pass this to custom validator, if exists, for further overall validation
-        if( context != null && context.getValidator() != null )
-            context.getValidator().validate( this, context );
+            // pass this to custom validator, if exists, for further overall validation
+            if( context != null && context.getValidator() != null )
+                context.getValidator().validate( this, context );
+        }
+        catch( OdaException ex )
+        {
+            // log the exception before re-throwing it to the caller
+            QuerySpecificationHelper.logValidationException( sm_className, ex );
+            throw ex;
+        }
     }
 
     /**
