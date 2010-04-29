@@ -59,6 +59,8 @@ public abstract class AbstractTestSQLParser extends TestCase
     /** newline character "\n" */
     protected static final char NL = '\n';
 
+    /** Standard statement separator -- semi-colon and newline. */
+    protected static final String SEP = ";\n";
 
     private static boolean isTestIsRegistrationChecked = false;
     /**
@@ -306,25 +308,61 @@ public abstract class AbstractTestSQLParser extends TestCase
     }
 */
     
-
+    /**
+     * Parses the statements in the given script and returns a list of SQL statement objects
+     * if the parse was successful.  Optionally compare the generated statement SQL with the 
+     * original script statements.
+     * 
+     * @param sourceScript the SQL script to parse and verify
+     * @param compareGeneratedSQLToSource when true, compare the generated SQL with the source script
+     * @return a list of <code>SQLStatement</code> objects or an empty list if the script did not parse
+     */
+    protected List parserVerifySuccess(String sourceScript, boolean compareGeneratedSQLToSource) 
+        throws SQLParserException,SQLParserInternalException {
+        List stmtObjList = parserVerifySuccess(sourceScript);
+        
+        if (compareGeneratedSQLToSource == true) {
+            compareStatementListToTemplateScript(stmtObjList, sourceScript, true, true);
+        }
+        
+        return stmtObjList;
+    }
     
     
     /**
-     * @param p_script SQL script String
-     * @param p_matchInput flag to indicate whether or not the input SQL is
-     *        checked against the generated SQL
-     * @return List of <code>SQLStatement</code> s
+     * Parses the statements in the given source script and returns a list of SQL statement objects
+     * if the parse was successful.  Optionally compare the generated statement SQL with the 
+     * given template script.
+     * 
+     * @param sourceScript the SQL script to parse and verify 
+     * @param a template script to compare with the generated SQL or null if comparison is not wanted
+     * @return a list of <code>SQLStatement</code> objects or an empty list if the script did not parse
      */
-    protected List parserVerifySuccess(String p_script, boolean p_matchInput) 
-    	throws SQLParserException,SQLParserInternalException
+    protected List parserVerifySuccess(String sourceScript, String templateScript) 
+        throws SQLParserException,SQLParserInternalException {
+        List stmtObjList = parserVerifySuccess(sourceScript);
+        
+        if (templateScript != null && templateScript.length() > 0) {
+            compareStatementListToTemplateScript(stmtObjList, templateScript, true, false);
+        }
+        
+        return stmtObjList;
+    }
     
-    {
-        try {
-            
+    /**
+     * Parses the statements in the given script and returns a list of SQL statement objects
+     * if the parse was successful.
+     * 
+     * @param p_script the SQL script to parse
+     * @return a list of <code>SQLStatement</code> objects or an empty list if the script did not parse
+     */
+    protected List parserVerifySuccess(String p_script) 
+        throws SQLParserException, SQLParserInternalException {
+        try {          
             if (DEBUG) {
-	            printColumnIndexNumbers();
-	            System.out.println(p_script);
-	        }
+                printColumnIndexNumbers();
+                System.out.println(p_script);
+            }
             else if (CONTROL) 
             {
                 System.out.println("parsing \n" + p_script); //$NON-NLS-1$
@@ -359,33 +397,26 @@ public abstract class AbstractTestSQLParser extends TestCase
                 
                 if (DEBUG) {
                     System.out.println("\nStatement "+i+":"+NL+sqlStmt.getSQL()); //$NON-NLS-1$ //$NON-NLS-2$
-    	            getParserManager().printAST(sqlStmt);
+                    getParserManager().printAST(sqlStmt);
                     printErrorList(errorList);
 
                     StringBuffer testSeparator = new StringBuffer(TEST_SEPARATOR);
                     String testCaseName = getName();
                     testSeparator.replace(testSeparator.length()-testCaseName.length(), testSeparator.length(), testCaseName);
-        	        System.out.println(testSeparator+"\n"); //$NON-NLS-1$
-    	        } else if (CONTROL) {
-    	            System.out.println("\nStatement "+i+":"+NL+sqlStmt.getSQL()); //$NON-NLS-1$ //$NON-NLS-2$
-    	        } else {
-    	            System.out.println("...parse successful"); //$NON-NLS-1$
-    	        }
+                    System.out.println(testSeparator+"\n"); //$NON-NLS-1$
+                } else if (CONTROL) {
+                    System.out.println("\nStatement "+i+":"+NL+sqlStmt.getSQL()); //$NON-NLS-1$ //$NON-NLS-2$
+                } else {
+                    System.out.println("...parse successful"); //$NON-NLS-1$
+                }
             }
             
-            
-	        if (p_matchInput)
-	        {
-	            matchInputScript(p_script,parseResultStmts);
-	        }
-	        
-	        return parseResultStmts;
-	        
+            return parseResultStmts;            
         } 
         catch( SQLParserException e) 
         {
-        	getParserManager().printParseRuntimeException(e);
-        	throw e;
+            getParserManager().printParseRuntimeException(e);
+            throw e;
         }
     }
 
@@ -448,49 +479,103 @@ public abstract class AbstractTestSQLParser extends TestCase
      * @param p_script
      * @param parseResultStmts
      */
-    protected void matchInputScript(String p_script, List parseResultStmts)
-    {
-        String stmtTerm = ";"; //$NON-NLS-1$
-        if (getParserManager().getSourceFormat() != null)
-        {
-            stmtTerm = String.valueOf(getParserManager().getSourceFormat()
-                            .getStatementTerminator());
-        }
-        
-        // remove trailing statement terminator and line breaks before,
-        // to also catch stmt terminators that have a line break after them
-        p_script = p_script.replaceAll("\n", " ").trim(); //$NON-NLS-1$ //$NON-NLS-2$
-        if (p_script.endsWith(stmtTerm)) {
-            p_script = p_script.substring(0, p_script.length()-1);
-        }
-        
-        String[] stmtList = p_script.split(stmtTerm);
-        
-        assertTrue("number of input statements != number of parsed statements -" + //$NON-NLS-1$
-        		" ! discard that warning if there is a Statement terminator in a String or a comment", //$NON-NLS-1$
-                        stmtList.length == parseResultStmts.size());
-        
-        for (int i = 0; i < stmtList.length; i++)
-        {
-            matchInputStatement(stmtList[i], ((SQLStatement) parseResultStmts
-                            .get(i)));
-        }
-
+    protected void matchInputScript(String p_script, List parseResultStmts) {
+        compareStatementListToTemplateScript(parseResultStmts, p_script, true, true);
     }
     
     /**
-	 * Matches the input SQL source against the generated output SQL source.
-     * @param input
-     * @param parsedStmt
+     * Compares the SQL generated from the given list of SQL statement objects to the 
+     * SQL of the given script.  Optionally ignore extra whitespace and AS keywords when 
+     * doing the comparison.
+     * 
+     * @param stmtObjList the list of SQL statement objects to use for the comparison
+     * @param templateScript the template SQL script to use for the comparison
+     * @param ignoreExtraWhiteSpace when true, ignore extra whitespace in the SQL statement strings when comparing
+     * @param ignoreAS when true, ignore AS keywords in the SQL statement strings when comparing
      */
-    protected void matchInputStatement(String input, SQLStatement parsedStmt)
-    {
-        input = stripWhiteSpaceAndAS(input);
-        String output = stripWhiteSpaceAndAS(parsedStmt.getSQL());
-        assertTrue("input SQL != generated SQL:\n" //$NON-NLS-1$
-                        + " in: " + input + "\n" //$NON-NLS-1$ //$NON-NLS-2$
-                        + "out: " + output, //$NON-NLS-1$
-                        input.equals(output));
+    protected void compareStatementListToTemplateScript(List stmtObjList, String templateScript, boolean ignoreExtraWhiteSpace, boolean ignoreAS) {
+        /* Get the current statement terminator. */
+        String stmtTerm = ";";
+        SQLQuerySourceFormat srcFormat = getParserManager().getSourceFormat();
+        if (srcFormat != null) {
+            stmtTerm = String.valueOf(srcFormat.getStatementTerminator());
+        }
+       
+        /* Prepare the template script by removing newlines with spaces and removing the final
+         * statement terminator. */ 
+        templateScript = templateScript.replaceAll("\n", " ").trim();
+        if (templateScript.endsWith(stmtTerm)) {
+            templateScript = templateScript.substring(0, templateScript.length()-1);
+        }
+        
+        /* Create an array of statement strings from the script. Check that the number of 
+         * template statements matches the number of statement objects. */
+        String[] templateStmtArray = templateScript.split(stmtTerm);       
+        assertTrue("the number of parsed statements != the number of template statements",
+                stmtObjList.size() == templateStmtArray.length);
+        
+        /* Compare the generated SQL for each statement object with the corresponding template SQL. */
+        for (int i = 0; i < templateStmtArray.length; i++) {
+            SQLStatement stmtObj = (SQLStatement) stmtObjList.get(i);
+            String genSQL = stmtObj.getSQL();
+            String templateSQL = templateStmtArray[i];
+            compareGeneratedSQLToTemplateSQL(genSQL, templateSQL, ignoreExtraWhiteSpace, ignoreAS);
+        }
+    }
+    
+    /**
+     * Compares a given template SQL string against the generated SQL from the given SQL 
+     * statement object and throws an assertion exception if they do not match.  Extra 
+     * whitespace and AS keywords are ignored in the comparison.
+     * 
+     * @param templateSQL the template SQL string to compare against
+     * @param stmtObj the SQL statement object to check
+     */
+    protected void matchInputStatement(String templateSQL, SQLStatement stmtObj) {
+        String genSQL = stmtObj.getSQL();
+        compareGeneratedSQLToTemplateSQL(genSQL, templateSQL, true, true);
+    }
+    
+    /**
+     * Compares the given generated SQL source against the given template and throws
+     * an assertion exception if they do not match.  Optionally ignore extra whitespace  
+     * and AS keywords when doing the comparison.
+     * 
+     * @param genSQL the generated SQL string
+     * @param templateSQL the template SQL string to compare against
+     * @param ignoreExtraWhiteSpace when true, ignore extra whitespace in the SQL statement strings when comparing
+     * @param ignoreAS when true, ignore AS keywords in the SQL statement strings when comparing
+     */
+    protected void compareGeneratedSQLToTemplateSQL(String genSQL, String templateSQL, boolean ignoreExtraWhiteSpace, boolean ignoreAS) {
+        String tmpGenSQL = genSQL;
+        String tmpTemplateSQL = templateSQL;
+
+        if (ignoreExtraWhiteSpace == true) {
+            tmpGenSQL = stripWhiteSpace(genSQL);
+            tmpTemplateSQL = stripWhiteSpace(templateSQL);
+        }
+        if (ignoreAS == true) {
+            tmpGenSQL = removeAS(tmpGenSQL);
+            tmpTemplateSQL = removeAS(tmpTemplateSQL);
+        }
+
+        assertTrue("generated SQL does not match template SQL:\n" //$NON-NLS-1$
+                        + "generated: " + tmpGenSQL + "\n" //$NON-NLS-1$ //$NON-NLS-2$
+                        + "template:  " + tmpTemplateSQL, //$NON-NLS-1$
+                        tmpGenSQL.equals(tmpTemplateSQL));
+    }
+    
+    /**
+     * Removes the "AS" keyword from the input SQL string and returns it.  The AS keyword is usually
+     * optional, so remove it before comparing two SQL strings.
+     * 
+     * @param sql the SQL statement to process
+     * @return the SQL statement with AS keywords removed
+     */
+    private String removeAS(String sql) {
+        sql = sql.replaceAll(" AS ", " ");      // AS is optional //$NON-NLS-1$ //$NON-NLS-2$
+        
+        return sql;
     }
     
     /**
@@ -502,7 +587,7 @@ public abstract class AbstractTestSQLParser extends TestCase
      * 		<code>sql.toUpperCase().replaceAll(" AS ", " ").replaceAll("\n",
      * 				" ").replaceAll("\\s+", " ");</code>
      */
-    private String stripWhiteSpaceAndAS(String sql)
+    private String stripWhiteSpace(String sql)
     {
         String stmtTerm = ";"; //$NON-NLS-1$
         if (getParserManager().getSourceFormat() != null)

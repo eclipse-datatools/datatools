@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2000, 2009 IBM Corporation and others.
+* Copyright (c) 2000, 2010 IBM Corporation and others.
 * All rights reserved. This program and the accompanying materials 
 * are made available under the terms of the Eclipse Public License v1.0
 * which is available at
@@ -14,7 +14,6 @@ import org.eclipse.datatools.modelbase.sql.datatypes.*;
 import org.eclipse.datatools.modelbase.sql.query.*;
 import org.eclipse.datatools.modelbase.sql.query.helper.*;
 import org.eclipse.datatools.modelbase.sql.query.util.*;
-import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 
 
 import lpg.lpgjavaruntime.*;
@@ -139,9 +138,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 11:  <all_or_any_cond> ::= <expression> <relop> ANY <subquery>
+         *  Rule 12:  <all_or_any_cond> ::= <expression> <relop> ANY <subquery>
          */
-        case 11: 
+        case 12: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -152,9 +151,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 12:  <all_or_any_cond> ::= <expression> <relop> SOME <subquery>
+         *  Rule 13:  <all_or_any_cond> ::= <expression> <relop> SOME <subquery>
          */
-        case 12: 
+        case 13: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -165,9 +164,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 13:  <all_or_any_cond> ::= <expression> <relop> ALL <subquery>
+         *  Rule 14:  <all_or_any_cond> ::= <expression> <relop> ALL <subquery>
          */
-        case 13: 
+        case 14: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -178,9 +177,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 14:  <all_or_any_cond> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN _EQ ANY <subquery>
+         *  Rule 15:  <all_or_any_cond> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN _EQ ANY <subquery>
          */
-        case 14: 
+        case 15: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -191,9 +190,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 15:  <all_or_any_cond> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN _EQ SOME <subquery>
+         *  Rule 16:  <all_or_any_cond> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN _EQ SOME <subquery>
          */
-        case 15: 
+        case 16: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -204,9 +203,48 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 18:  <as_alias> ::= <opt_as> <alias_name>
+         *  Rule 18:  <argument_list> ::= _LPAREN <opt_argument_list_body> _RPAREN
          */
         case 18: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(getList(2));   
+        }
+        break;  
+ 
+        /*
+         *  Rule 19:  <argument_list_body> ::= <argument>
+         */
+        case 19: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1( m_factory.listConcat(null, getSym(1)));
+    
+        }
+        break;   
+        /*
+         *  Rule 20:  <argument_list_body> ::= <argument_list_body> _COMMA <argument>
+         */
+        case 20: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1( m_factory.listConcat(getList(1), getSym(3)));
+    
+        }
+        break;   
+        /*
+         *  Rule 23:  <as_alias> ::= <opt_as> <alias_name>
+         */
+        case 23: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -217,9 +255,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 20:  <boolean_expression> ::= <boolean_expression> OR <boolean_term>
+         *  Rule 25:  <boolean_expression> ::= <boolean_expression> OR <boolean_term>
          */
-        case 20: 
+        case 25: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -230,9 +268,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 22:  <boolean_term> ::= <boolean_term> AND <boolean_factor>
+         *  Rule 27:  <boolean_term> ::= <boolean_term> AND <boolean_factor>
          */
-        case 22: 
+        case 27: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -243,9 +281,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 24:  <boolean_factor> ::= <boolean_primary> IS <boolean_values>
+         *  Rule 29:  <boolean_factor> ::= <boolean_primary> IS <boolean_values>
          */
-        case 24: 
+        case 29: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -256,9 +294,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 25:  <boolean_factor> ::= <boolean_primary> IS NOT <boolean_values>
+         *  Rule 30:  <boolean_factor> ::= <boolean_primary> IS NOT <boolean_values>
          */
-        case 25: 
+        case 30: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -269,9 +307,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 26:  <boolean_values> ::= TRUE
+         *  Rule 31:  <boolean_values> ::= TRUE
          */
-        case 26: 
+        case 31: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -282,9 +320,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 27:  <boolean_values> ::= FALSE
+         *  Rule 32:  <boolean_values> ::= FALSE
          */
-        case 27: 
+        case 32: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -295,9 +333,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 29:  <boolean_primary> ::= NOT <simplecomp>
+         *  Rule 34:  <boolean_primary> ::= NOT <simplecomp>
          */
-        case 29: 
+        case 34: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -308,9 +346,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 30:  <boolean_primary> ::= _LPAREN <boolean_expression> _RPAREN
+         *  Rule 35:  <boolean_primary> ::= _LPAREN <boolean_expression> _RPAREN
          */
-        case 30: 
+        case 35: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -321,9 +359,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 31:  <boolean_primary> ::= NOT _LPAREN <boolean_expression> _RPAREN
+         *  Rule 36:  <boolean_primary> ::= NOT _LPAREN <boolean_expression> _RPAREN
          */
-        case 31: 
+        case 36: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -334,9 +372,23 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 32:  <case_expression> ::= CASE <case_search_when_list> <opt_case_else> END
+         *  Rule 37:  <call_statement> ::= CALL <procedure_object> <opt_argument_list>
          */
-        case 32: 
+        case 37: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            
+        setSym1(m_factory.createCallStatement((ProcedureReference)getSym(2), getList(3)));
+        
+        }
+        break;   
+        /*
+         *  Rule 38:  <case_expression> ::= CASE <case_search_when_list> <opt_case_else> END
+         */
+        case 38: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -347,9 +399,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 33:  <case_expression> ::= CASE <expression> <case_simple_when_list> <opt_case_else> END
+         *  Rule 39:  <case_expression> ::= CASE <expression> <case_simple_when_list> <opt_case_else> END
          */
-        case 33: 
+        case 39: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -360,9 +412,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 34:  <case_search_when> ::= WHEN <condition> THEN <expression>
+         *  Rule 40:  <case_search_when> ::= WHEN <condition> THEN <expression>
          */
-        case 34: 
+        case 40: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -373,9 +425,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 35:  <case_search_when_list> ::= <case_search_when>
+         *  Rule 41:  <case_search_when_list> ::= <case_search_when>
          */
-        case 35: 
+        case 41: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -386,9 +438,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 36:  <case_search_when_list> ::= <case_search_when_list> <case_search_when>
+         *  Rule 42:  <case_search_when_list> ::= <case_search_when_list> <case_search_when>
          */
-        case 36: 
+        case 42: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -399,9 +451,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 37:  <case_simple_when> ::= WHEN <expression> THEN <expression>
+         *  Rule 43:  <case_simple_when> ::= WHEN <expression> THEN <expression>
          */
-        case 37: 
+        case 43: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -412,9 +464,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 38:  <case_simple_when_list> ::= <case_simple_when>
+         *  Rule 44:  <case_simple_when_list> ::= <case_simple_when>
          */
-        case 38: 
+        case 44: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -425,9 +477,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 39:  <case_simple_when_list> ::= <case_simple_when_list> <case_simple_when>
+         *  Rule 45:  <case_simple_when_list> ::= <case_simple_when_list> <case_simple_when>
          */
-        case 39: 
+        case 45: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -438,9 +490,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 40:  <cast_expression> ::= CAST _LPAREN <cast_operand> AS <cast_target> _RPAREN
+         *  Rule 46:  <cast_expression> ::= CAST _LPAREN <cast_operand> AS <cast_target> _RPAREN
          */
-        case 40: 
+        case 46: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -451,9 +503,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 45:  <column_name> ::= <identifier>
+         *  Rule 51:  <column_name> ::= <identifier>
          */
-        case 45: 
+        case 51: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -464,9 +516,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 46:  <column_name_list> ::= <column_name>
+         *  Rule 52:  <column_name_list> ::= <column_name>
          */
-        case 46: 
+        case 52: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -477,9 +529,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 47:  <column_name_list> ::= <column_name_list> _COMMA <column_name>
+         *  Rule 53:  <column_name_list> ::= <column_name_list> _COMMA <column_name>
          */
-        case 47: 
+        case 53: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -490,9 +542,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 48:  <column_ref> ::= <column>
+         *  Rule 54:  <column_ref> ::= <column>
          */
-        case 48: 
+        case 54: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -503,9 +555,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 49:  <column_ref> ::= <opt_schema_dot> <table> _DOT <column>
+         *  Rule 55:  <column_ref> ::= <opt_schema_dot> <table> _DOT <column>
          */
-        case 49: 
+        case 55: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -516,85 +568,7 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 51:  <constant> ::= _STRING
-         */
-        case 51: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
-        }
-        break;  
- 
-        /*
-         *  Rule 52:  <constant> ::= G _STRING
-         */
-        case 52: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression( "G".concat(getTokenName(2)) ));  //$NON-NLS-1$
-			   
-        }
-        break;   
-        /*
-         *  Rule 53:  <constant> ::= N _STRING
-         */
-        case 53: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression( "N".concat(getTokenName(2)) ));  //$NON-NLS-1$
-			   
-        }
-        break;   
-        /*
-         *  Rule 54:  <constant> ::= HEX_STRING_LITERAL
-         */
-        case 54: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression( getTokenName(1) ));  //$NON-NLS-1$
-           
-        }
-        break;   
-        /*
-         *  Rule 55:  <constant> ::= _INTNUMBER
-         */
-        case 55: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
-        }
-        break;  
- 
-        /*
-         *  Rule 56:  <constant> ::= _BIGINTEGER
-         */
-        case 56: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
-        }
-        break;  
- 
-        /*
-         *  Rule 57:  <constant> ::= _DECIMALNUMBER
+         *  Rule 57:  <constant> ::= _STRING
          */
         case 57: 
         {
@@ -607,9 +581,48 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 58:  <constant> ::= _REALNUMBER
+         *  Rule 58:  <constant> ::= G _STRING
          */
         case 58: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression( "G".concat(getTokenName(2)) ));  //$NON-NLS-1$
+			   
+        }
+        break;   
+        /*
+         *  Rule 59:  <constant> ::= N _STRING
+         */
+        case 59: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression( "N".concat(getTokenName(2)) ));  //$NON-NLS-1$
+			   
+        }
+        break;   
+        /*
+         *  Rule 60:  <constant> ::= HEX_STRING_LITERAL
+         */
+        case 60: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression( getTokenName(1) ));  //$NON-NLS-1$
+           
+        }
+        break;   
+        /*
+         *  Rule 61:  <constant> ::= _INTNUMBER
+         */
+        case 61: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -620,9 +633,48 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 65:  <datatype_array_type> ::= <datatype> ARRAY
+         *  Rule 62:  <constant> ::= _BIGINTEGER
          */
-        case 65: 
+        case 62: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 63:  <constant> ::= _DECIMALNUMBER
+         */
+        case 63: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 64:  <constant> ::= _REALNUMBER
+         */
+        case 64: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(m_factory.createSimpleExpression(getTokenName(1))); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 71:  <datatype_array_type> ::= <datatype> ARRAY
+         */
+        case 71: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -633,9 +685,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 66:  <datatype_array_type> ::= <datatype> ARRAY <left_bracket_or_trigraph> _INTNUMBER <right_bracket_or_trigraph>
+         *  Rule 72:  <datatype_array_type> ::= <datatype> ARRAY <left_bracket_or_trigraph> _INTNUMBER <right_bracket_or_trigraph>
          */
-        case 66: 
+        case 72: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -646,9 +698,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 67:  <datatype_multiset_type> ::= <datatype> MULTISET
+         *  Rule 73:  <datatype_multiset_type> ::= <datatype> MULTISET
          */
-        case 67: 
+        case 73: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -659,9 +711,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 74:  <datatype_date> ::= DATE
+         *  Rule 80:  <datatype_date> ::= DATE
          */
-        case 74: 
+        case 80: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -672,9 +724,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 75:  <datatype_time> ::= TIME
+         *  Rule 81:  <datatype_time> ::= TIME
          */
-        case 75: 
+        case 81: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -685,9 +737,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 76:  <datatype_time> ::= TIMESTAMP
+         *  Rule 82:  <datatype_time> ::= TIMESTAMP
          */
-        case 76: 
+        case 82: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -698,9 +750,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 81:  <datatype_numerical_approximate> ::= FLOAT
+         *  Rule 87:  <datatype_numerical_approximate> ::= FLOAT
          */
-        case 81: 
+        case 87: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -711,9 +763,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 82:  <datatype_numerical_approximate> ::= FLOAT _LPAREN _INTNUMBER _RPAREN
+         *  Rule 88:  <datatype_numerical_approximate> ::= FLOAT _LPAREN _INTNUMBER _RPAREN
          */
-        case 82: 
+        case 88: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -724,9 +776,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 83:  <datatype_numerical_approximate> ::= REAL
+         *  Rule 89:  <datatype_numerical_approximate> ::= REAL
          */
-        case 83: 
+        case 89: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -737,9 +789,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 84:  <datatype_numerical_approximate> ::= DOUBLE
+         *  Rule 90:  <datatype_numerical_approximate> ::= DOUBLE
          */
-        case 84: 
+        case 90: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -750,9 +802,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 85:  <datatype_numerical_approximate> ::= DOUBLE PRECISION
+         *  Rule 91:  <datatype_numerical_approximate> ::= DOUBLE PRECISION
          */
-        case 85: 
+        case 91: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -763,9 +815,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 86:  <datatype_numerical_fixed_precision> ::= NUMERIC
+         *  Rule 92:  <datatype_numerical_fixed_precision> ::= NUMERIC
          */
-        case 86: 
+        case 92: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -776,9 +828,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 87:  <datatype_numerical_fixed_precision> ::= DECIMAL
+         *  Rule 93:  <datatype_numerical_fixed_precision> ::= DECIMAL
          */
-        case 87: 
+        case 93: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -789,9 +841,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 88:  <datatype_numerical_fixed_precision> ::= DEC
+         *  Rule 94:  <datatype_numerical_fixed_precision> ::= DEC
          */
-        case 88: 
+        case 94: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -802,9 +854,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 89:  <datatype_numerical_fixed_precision> ::= NUMERIC _LPAREN _INTNUMBER _RPAREN
+         *  Rule 95:  <datatype_numerical_fixed_precision> ::= NUMERIC _LPAREN _INTNUMBER _RPAREN
          */
-        case 89: 
+        case 95: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -815,9 +867,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 90:  <datatype_numerical_fixed_precision> ::= DECIMAL _LPAREN _INTNUMBER _RPAREN
+         *  Rule 96:  <datatype_numerical_fixed_precision> ::= DECIMAL _LPAREN _INTNUMBER _RPAREN
          */
-        case 90: 
+        case 96: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -828,9 +880,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 91:  <datatype_numerical_fixed_precision> ::= DEC _LPAREN _INTNUMBER _RPAREN
+         *  Rule 97:  <datatype_numerical_fixed_precision> ::= DEC _LPAREN _INTNUMBER _RPAREN
          */
-        case 91: 
+        case 97: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -841,9 +893,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 92:  <datatype_numerical_fixed_precision> ::= NUMERIC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
+         *  Rule 98:  <datatype_numerical_fixed_precision> ::= NUMERIC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
          */
-        case 92: 
+        case 98: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -854,9 +906,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 93:  <datatype_numerical_fixed_precision> ::= DECIMAL _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
+         *  Rule 99:  <datatype_numerical_fixed_precision> ::= DECIMAL _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
          */
-        case 93: 
+        case 99: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -867,9 +919,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 94:  <datatype_numerical_fixed_precision> ::= DEC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
+         *  Rule 100:  <datatype_numerical_fixed_precision> ::= DEC _LPAREN _INTNUMBER _COMMA _INTNUMBER _RPAREN
          */
-        case 94: 
+        case 100: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -880,9 +932,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 95:  <datatype_numerical_integer> ::= INTEGER
+         *  Rule 101:  <datatype_numerical_integer> ::= INTEGER
          */
-        case 95: 
+        case 101: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -893,9 +945,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 96:  <datatype_numerical_integer> ::= INT
+         *  Rule 102:  <datatype_numerical_integer> ::= INT
          */
-        case 96: 
+        case 102: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -906,9 +958,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 97:  <datatype_numerical_integer> ::= SMALLINT
+         *  Rule 103:  <datatype_numerical_integer> ::= SMALLINT
          */
-        case 97: 
+        case 103: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -919,9 +971,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 98:  <datatype_numerical_integer> ::= BIGINT
+         *  Rule 104:  <datatype_numerical_integer> ::= BIGINT
          */
-        case 98: 
+        case 104: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -932,9 +984,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 99:  <datatype_binary> ::= BLOB
+         *  Rule 105:  <datatype_binary> ::= BLOB
          */
-        case 99: 
+        case 105: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -945,9 +997,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 100:  <datatype_binary> ::= BLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 106:  <datatype_binary> ::= BLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 100: 
+        case 106: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -958,9 +1010,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 101:  <datatype_binary> ::= BINARY LARGE OBJECT
+         *  Rule 107:  <datatype_binary> ::= BINARY LARGE OBJECT
          */
-        case 101: 
+        case 107: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -971,9 +1023,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 102:  <datatype_binary> ::= BINARY LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 108:  <datatype_binary> ::= BINARY LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 102: 
+        case 108: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -984,9 +1036,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 103:  <datatype_character> ::= CHARACTER
+         *  Rule 109:  <datatype_character> ::= CHARACTER
          */
-        case 103: 
+        case 109: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -997,9 +1049,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 104:  <datatype_character> ::= CHAR
+         *  Rule 110:  <datatype_character> ::= CHAR
          */
-        case 104: 
+        case 110: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1010,9 +1062,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 105:  <datatype_character> ::= CHARACTER _LPAREN _INTNUMBER _RPAREN
+         *  Rule 111:  <datatype_character> ::= CHARACTER _LPAREN _INTNUMBER _RPAREN
          */
-        case 105: 
+        case 111: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1023,9 +1075,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 106:  <datatype_character> ::= CHAR _LPAREN _INTNUMBER _RPAREN
+         *  Rule 112:  <datatype_character> ::= CHAR _LPAREN _INTNUMBER _RPAREN
          */
-        case 106: 
+        case 112: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1036,9 +1088,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 107:  <datatype_character> ::= CHARACTER VARYING _LPAREN _INTNUMBER _RPAREN
+         *  Rule 113:  <datatype_character> ::= CHARACTER VARYING _LPAREN _INTNUMBER _RPAREN
          */
-        case 107: 
+        case 113: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1049,9 +1101,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 108:  <datatype_character> ::= CHAR VARYING _LPAREN _INTNUMBER _RPAREN
+         *  Rule 114:  <datatype_character> ::= CHAR VARYING _LPAREN _INTNUMBER _RPAREN
          */
-        case 108: 
+        case 114: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1062,9 +1114,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 109:  <datatype_character> ::= VARCHAR _LPAREN _INTNUMBER _RPAREN
+         *  Rule 115:  <datatype_character> ::= VARCHAR _LPAREN _INTNUMBER _RPAREN
          */
-        case 109: 
+        case 115: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1075,9 +1127,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 110:  <datatype_character> ::= CLOB
+         *  Rule 116:  <datatype_character> ::= CLOB
          */
-        case 110: 
+        case 116: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1088,9 +1140,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 111:  <datatype_character> ::= CLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 117:  <datatype_character> ::= CLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 111: 
+        case 117: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1101,9 +1153,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 112:  <datatype_character> ::= CHARACTER LARGE OBJECT
+         *  Rule 118:  <datatype_character> ::= CHARACTER LARGE OBJECT
          */
-        case 112: 
+        case 118: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1114,9 +1166,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 113:  <datatype_character> ::= CHARACTER LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 119:  <datatype_character> ::= CHARACTER LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 113: 
+        case 119: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1127,9 +1179,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 114:  <datatype_character> ::= CHAR LARGE OBJECT
+         *  Rule 120:  <datatype_character> ::= CHAR LARGE OBJECT
          */
-        case 114: 
+        case 120: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1140,9 +1192,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 115:  <datatype_character> ::= CHAR LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 121:  <datatype_character> ::= CHAR LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 115: 
+        case 121: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1153,9 +1205,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 116:  <datatype_character_national> ::= GRAPHIC
+         *  Rule 122:  <datatype_character_national> ::= GRAPHIC
          */
-        case 116: 
+        case 122: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1166,9 +1218,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 117:  <datatype_character_national> ::= GRAPHIC _LPAREN _INTNUMBER _RPAREN
+         *  Rule 123:  <datatype_character_national> ::= GRAPHIC _LPAREN _INTNUMBER _RPAREN
          */
-        case 117: 
+        case 123: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1179,9 +1231,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 118:  <datatype_character_national> ::= VARGRAPHIC _LPAREN _INTNUMBER _RPAREN
+         *  Rule 124:  <datatype_character_national> ::= VARGRAPHIC _LPAREN _INTNUMBER _RPAREN
          */
-        case 118: 
+        case 124: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1192,9 +1244,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 119:  <datatype_character_national> ::= DBCLOB
+         *  Rule 125:  <datatype_character_national> ::= DBCLOB
          */
-        case 119: 
+        case 125: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1205,9 +1257,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 120:  <datatype_character_national> ::= DBCLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+         *  Rule 126:  <datatype_character_national> ::= DBCLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
          */
-        case 120: 
+        case 126: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1218,9 +1270,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 121:  <datatype_opt_size_unit> ::= K
+         *  Rule 127:  <datatype_opt_size_unit> ::= K
          */
-        case 121: 
+        case 127: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1231,9 +1283,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 122:  <datatype_opt_size_unit> ::= M
+         *  Rule 128:  <datatype_opt_size_unit> ::= M
          */
-        case 122: 
+        case 128: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1244,9 +1296,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 123:  <datatype_opt_size_unit> ::= G
+         *  Rule 129:  <datatype_opt_size_unit> ::= G
          */
-        case 123: 
+        case 129: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1257,9 +1309,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 124:  <datatype_opt_size_unit> ::= $Empty
+         *  Rule 130:  <datatype_opt_size_unit> ::= $Empty
          */
-        case 124: 
+        case 130: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1270,9 +1322,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 125:  <datatype_path-resolved_user-defined_type_name> ::= <opt_schema_dot> <identifier>
+         *  Rule 131:  <datatype_path-resolved_user-defined_type_name> ::= <opt_schema_dot> <identifier>
          */
-        case 125: 
+        case 131: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1283,9 +1335,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 126:  <datatype_user_defined_distinct> ::= <identifier>
+         *  Rule 132:  <datatype_user_defined_distinct> ::= <identifier>
          */
-        case 126: 
+        case 132: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1296,9 +1348,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 128:  <default_option> ::= USER
+         *  Rule 134:  <default_option> ::= USER
          */
-        case 128: 
+        case 134: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1309,9 +1361,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 129:  <default_option> ::= CURRENT_USER
+         *  Rule 135:  <default_option> ::= CURRENT_USER
          */
-        case 129: 
+        case 135: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1322,9 +1374,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 130:  <default_option> ::= CURRENT_ROLE
+         *  Rule 136:  <default_option> ::= CURRENT_ROLE
          */
-        case 130: 
+        case 136: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1335,9 +1387,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 131:  <default_option> ::= SESSION_USER
+         *  Rule 137:  <default_option> ::= SESSION_USER
          */
-        case 131: 
+        case 137: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1348,9 +1400,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 132:  <default_option> ::= SYSTEM_USER
+         *  Rule 138:  <default_option> ::= SYSTEM_USER
          */
-        case 132: 
+        case 138: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1361,9 +1413,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 133:  <default_option> ::= CURRENT_PATH
+         *  Rule 139:  <default_option> ::= CURRENT_PATH
          */
-        case 133: 
+        case 139: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1374,18 +1426,18 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 134:  <delete_stmt> ::= DELETE FROM <target_table> <opt_as_target_table> <opt_where_clause>
+         *  Rule 140:  <delete_stmt> ::= DELETE FROM <target_table> <opt_as_target_table> <opt_where_clause>
          */
-        case 134: 
+        case 140: 
         {
             setSym1(m_factory.createDeleteStatement((TableInDatabase)getSym(3), (TableCorrelation)getSym(4), (QuerySearchCondition)getSym(5))); 
         }
         break;  
  
         /*
-         *  Rule 135:  <derived_column_list> ::= <column_ref>
+         *  Rule 141:  <derived_column_list> ::= <column_ref>
          */
-        case 135: 
+        case 141: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1396,9 +1448,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 136:  <derived_column_list> ::= <target_column_list> _COMMA <column_ref>
+         *  Rule 142:  <derived_column_list> ::= <target_column_list> _COMMA <column_ref>
          */
-        case 136: 
+        case 142: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1409,9 +1461,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 137:  <duration> ::= DAYS
+         *  Rule 143:  <duration> ::= DAYS
          */
-        case 137: 
+        case 143: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1422,9 +1474,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 138:  <duration> ::= HOURS
+         *  Rule 144:  <duration> ::= HOURS
          */
-        case 138: 
+        case 144: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1435,9 +1487,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 139:  <duration> ::= MICROSECONDS
+         *  Rule 145:  <duration> ::= MICROSECONDS
          */
-        case 139: 
+        case 145: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1448,9 +1500,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 140:  <duration> ::= MINUTES
+         *  Rule 146:  <duration> ::= MINUTES
          */
-        case 140: 
+        case 146: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1461,9 +1513,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 141:  <duration> ::= MONTHS
+         *  Rule 147:  <duration> ::= MONTHS
          */
-        case 141: 
+        case 147: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1474,9 +1526,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 142:  <duration> ::= SECONDS
+         *  Rule 148:  <duration> ::= SECONDS
          */
-        case 142: 
+        case 148: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1487,9 +1539,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 143:  <duration> ::= YEARS
+         *  Rule 149:  <duration> ::= YEARS
          */
-        case 143: 
+        case 149: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1500,9 +1552,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 144:  <exists> ::= EXISTS _LPAREN <query_exp> _RPAREN
+         *  Rule 150:  <exists> ::= EXISTS _LPAREN <query_exp> _RPAREN
          */
-        case 144: 
+        case 150: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1513,9 +1565,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 145:  <expression> ::= <expression> _PLUS <expression_term>
+         *  Rule 151:  <expression> ::= <expression> _PLUS <expression_term>
          */
-        case 145: 
+        case 151: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1526,9 +1578,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 146:  <expression> ::= <expression> _MINUS <expression_term>
+         *  Rule 152:  <expression> ::= <expression> _MINUS <expression_term>
          */
-        case 146: 
+        case 152: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1539,9 +1591,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 148:  <expression_commalist> ::= <expression>
+         *  Rule 154:  <expression_commalist> ::= <expression>
          */
-        case 148: 
+        case 154: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1552,9 +1604,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 149:  <expression_commalist> ::= <expression_commalist> _COMMA <expression>
+         *  Rule 155:  <expression_commalist> ::= <expression_commalist> _COMMA <expression>
          */
-        case 149: 
+        case 155: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1565,9 +1617,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 151:  <expression_commalist_multiple_elements> ::= <expression_commalist> _COMMA <expression>
+         *  Rule 157:  <expression_commalist_multiple_elements> ::= <expression_commalist> _COMMA <expression>
          */
-        case 151: 
+        case 157: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1578,9 +1630,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 152:  <expression_factor> ::= _LPAREN <expression> _RPAREN
+         *  Rule 158:  <expression_factor> ::= _LPAREN <expression> _RPAREN
          */
-        case 152: 
+        case 158: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1591,9 +1643,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 153:  <expression_factor> ::= <subquery>
+         *  Rule 159:  <expression_factor> ::= <subquery>
          */
-        case 153: 
+        case 159: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1604,9 +1656,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 161:  <expression_factor> ::= _PLUS <expression_factor>
+         *  Rule 167:  <expression_factor> ::= _PLUS <expression_factor>
          */
-        case 161: 
+        case 167: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1617,9 +1669,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 162:  <expression_factor> ::= _MINUS <expression_factor>
+         *  Rule 168:  <expression_factor> ::= _MINUS <expression_factor>
          */
-        case 162: 
+        case 168: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1630,9 +1682,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 163:  <expression_factor> ::= DEFAULT
+         *  Rule 169:  <expression_factor> ::= DEFAULT
          */
-        case 163: 
+        case 169: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1643,9 +1695,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 164:  <expression_factor> ::= NULL
+         *  Rule 170:  <expression_factor> ::= NULL
          */
-        case 164: 
+        case 170: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1656,9 +1708,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 165:  <expression_term> ::= <expression_term> _STAR <expression_factor>
+         *  Rule 171:  <expression_term> ::= <expression_term> _STAR <expression_factor>
          */
-        case 165: 
+        case 171: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1669,9 +1721,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 166:  <expression_term> ::= <expression_term> _SLASH <expression_factor>
+         *  Rule 172:  <expression_term> ::= <expression_term> _SLASH <expression_factor>
          */
-        case 166: 
+        case 172: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1682,9 +1734,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 167:  <expression_term> ::= <expression_term> CONCAT <expression_factor>
+         *  Rule 173:  <expression_term> ::= <expression_term> CONCAT <expression_factor>
          */
-        case 167: 
+        case 173: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1695,9 +1747,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 168:  <expression_term> ::= <expression_term> _CONCAT_OPERATOR <expression_factor>
+         *  Rule 174:  <expression_term> ::= <expression_term> _CONCAT_OPERATOR <expression_factor>
          */
-        case 168: 
+        case 174: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1708,9 +1760,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 169:  <expression_term> ::= <expression_term> <duration>
+         *  Rule 175:  <expression_term> ::= <expression_term> <duration>
          */
-        case 169: 
+        case 175: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1721,9 +1773,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 172:  <fetch_first_clause> ::= FETCH FIRST <opt_fetch_first_row_count> <row_or_rows> ONLY
+         *  Rule 178:  <fetch_first_clause> ::= FETCH FIRST <opt_fetch_first_row_count> <row_or_rows> ONLY
          */
-        case 172: 
+        case 178: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1734,9 +1786,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 174:  <func_ref> ::= <alias_name> _DOT <identifier>
+         *  Rule 180:  <func_ref> ::= <alias_name> _DOT <identifier>
          */
-        case 174: 
+        case 180: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1747,9 +1799,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 175:  <function> ::= <opt_schema_dot> <identifier> _LPAREN _STAR _RPAREN
+         *  Rule 181:  <function> ::= <opt_schema_dot> <identifier> _LPAREN _STAR _RPAREN
          */
-        case 175: 
+        case 181: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1760,9 +1812,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 176:  <function> ::= <opt_schema_dot> <identifier> _LPAREN <opt_all_distinct> <opt_expression_commalist> _RPAREN
+         *  Rule 182:  <function> ::= <opt_schema_dot> <identifier> _LPAREN <opt_all_distinct> <opt_expression_commalist> _RPAREN
          */
-        case 176: 
+        case 182: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1773,9 +1825,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 179:  <grouping_exp> ::= <expression>
+         *  Rule 185:  <grouping_exp> ::= <expression>
          */
-        case 179: 
+        case 185: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1786,9 +1838,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 180:  <grouping_sets> ::= GROUPING SETS _LPAREN <grouping_sets_element_list> _RPAREN
+         *  Rule 186:  <grouping_sets> ::= GROUPING SETS _LPAREN <grouping_sets_element_list> _RPAREN
          */
-        case 180: 
+        case 186: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1799,9 +1851,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 181:  <grouping_sets_element_list> ::= <grouping_sets_element>
+         *  Rule 187:  <grouping_sets_element_list> ::= <grouping_sets_element>
          */
-        case 181: 
+        case 187: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1812,9 +1864,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 182:  <grouping_sets_element_list> ::= <grouping_sets_element_list> _COMMA <grouping_sets_element>
+         *  Rule 188:  <grouping_sets_element_list> ::= <grouping_sets_element_list> _COMMA <grouping_sets_element>
          */
-        case 182: 
+        case 188: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1825,9 +1877,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 183:  <grouping_sets_element> ::= _LPAREN <grouping_sets_element_exp_list> _RPAREN
+         *  Rule 189:  <grouping_sets_element> ::= _LPAREN <grouping_sets_element_exp_list> _RPAREN
          */
-        case 183: 
+        case 189: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1838,9 +1890,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 185:  <grouping_sets_element_exp> ::= <grouping>
+         *  Rule 191:  <grouping_sets_element_exp> ::= <grouping>
          */
-        case 185: 
+        case 191: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1851,9 +1903,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 186:  <grouping_sets_element_exp_list> ::= <grouping_sets_element_exp>
+         *  Rule 192:  <grouping_sets_element_exp_list> ::= <grouping_sets_element_exp>
          */
-        case 186: 
+        case 192: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1864,9 +1916,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 187:  <grouping_sets_element_exp_list> ::= <grouping_sets_element_exp_list> _COMMA <grouping_sets_element_exp>
+         *  Rule 193:  <grouping_sets_element_exp_list> ::= <grouping_sets_element_exp_list> _COMMA <grouping_sets_element_exp>
          */
-        case 187: 
+        case 193: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1877,9 +1929,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 190:  <grouping_spec_list> ::= <grouping_spec>
+         *  Rule 196:  <grouping_spec_list> ::= <grouping_spec>
          */
-        case 190: 
+        case 196: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1890,9 +1942,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 191:  <grouping_spec_list> ::= <grouping_spec_list> _COMMA <grouping_spec>
+         *  Rule 197:  <grouping_spec_list> ::= <grouping_spec_list> _COMMA <grouping_spec>
          */
-        case 191: 
+        case 197: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1903,9 +1955,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 192:  <identifier> ::= REGULAR_IDENTIFIER
+         *  Rule 198:  <identifier> ::= REGULAR_IDENTIFIER
          */
-        case 192: 
+        case 198: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1916,9 +1968,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 193:  <identifier> ::= DELIMITED_IDENTIFIER
+         *  Rule 199:  <identifier> ::= DELIMITED_IDENTIFIER
          */
-        case 193: 
+        case 199: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1929,9 +1981,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 195:  <in_cond> ::= <expression> NOT IN _LPAREN <expression_commalist> _RPAREN
+         *  Rule 201:  <in_cond> ::= <expression> NOT IN _LPAREN <expression_commalist> _RPAREN
          */
-        case 195: 
+        case 201: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1942,9 +1994,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 196:  <in_cond> ::= <expression> IN _LPAREN <expression_commalist> _RPAREN
+         *  Rule 202:  <in_cond> ::= <expression> IN _LPAREN <expression_commalist> _RPAREN
          */
-        case 196: 
+        case 202: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1955,9 +2007,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 197:  <in_cond> ::= <expression> NOT IN <subquery>
+         *  Rule 203:  <in_cond> ::= <expression> NOT IN <subquery>
          */
-        case 197: 
+        case 203: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1968,9 +2020,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 198:  <in_cond> ::= <expression> IN <subquery>
+         *  Rule 204:  <in_cond> ::= <expression> IN <subquery>
          */
-        case 198: 
+        case 204: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1981,9 +2033,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 199:  <in_cond> ::= _LPAREN <expression_commalist> _COMMA <expression> _RPAREN NOT IN <subquery>
+         *  Rule 205:  <in_cond> ::= _LPAREN <expression_commalist> _COMMA <expression> _RPAREN NOT IN <subquery>
          */
-        case 199: 
+        case 205: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -1994,9 +2046,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 200:  <in_cond> ::= _LPAREN <expression_commalist> _COMMA <expression> _RPAREN IN <subquery>
+         *  Rule 206:  <in_cond> ::= _LPAREN <expression_commalist> _COMMA <expression> _RPAREN IN <subquery>
          */
-        case 200: 
+        case 206: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2007,9 +2059,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 201:  <insert_row> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN
+         *  Rule 207:  <insert_row> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN
          */
-        case 201: 
+        case 207: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2020,9 +2072,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 202:  <insert_row> ::= <expression>
+         *  Rule 208:  <insert_row> ::= <expression>
          */
-        case 202: 
+        case 208: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2033,9 +2085,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 203:  <insert_row_commalist> ::= <insert_row>
+         *  Rule 209:  <insert_row_commalist> ::= <insert_row>
          */
-        case 203: 
+        case 209: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2046,9 +2098,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 204:  <insert_row_commalist> ::= <insert_row_commalist> _COMMA <insert_row>
+         *  Rule 210:  <insert_row_commalist> ::= <insert_row_commalist> _COMMA <insert_row>
          */
-        case 204: 
+        case 210: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2059,27 +2111,27 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 205:  <insert_stmt> ::= INSERT INTO <target_table> <opt_target_column_list> VALUES <insert_row_commalist>
+         *  Rule 211:  <insert_stmt> ::= INSERT INTO <target_table> <opt_target_column_list> VALUES <insert_row_commalist>
          */
-        case 205: 
+        case 211: 
         {
             setSym1(m_factory.createInsertStatement((TableInDatabase) getSym(3), getList(4), getList(6))); 
         }
         break;  
  
         /*
-         *  Rule 206:  <insert_stmt> ::= INSERT INTO <target_table> <opt_target_column_list> <query_exp_root>
+         *  Rule 212:  <insert_stmt> ::= INSERT INTO <target_table> <opt_target_column_list> <query_exp_root>
          */
-        case 206: 
+        case 212: 
         {
             setSym1(m_factory.createInsertStatement((TableInDatabase)getSym(3), getList(4), (QueryExpressionRoot)getSym(5))); 
         }
         break;  
  
         /*
-         *  Rule 207:  <intervaltest> ::= <expression> NOT BETWEEN <expression> AND <expression>
+         *  Rule 213:  <intervaltest> ::= <expression> NOT BETWEEN <expression> AND <expression>
          */
-        case 207: 
+        case 213: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2090,9 +2142,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 208:  <intervaltest> ::= <expression> BETWEEN <expression> AND <expression>
+         *  Rule 214:  <intervaltest> ::= <expression> BETWEEN <expression> AND <expression>
          */
-        case 208: 
+        case 214: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2103,9 +2155,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 211:  <liketest> ::= <expression> NOT LIKE <expression> <opt_escape>
+         *  Rule 217:  <liketest> ::= <expression> NOT LIKE <expression> <opt_escape>
          */
-        case 211: 
+        case 217: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2116,9 +2168,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 212:  <liketest> ::= <expression> LIKE <expression> <opt_escape>
+         *  Rule 218:  <liketest> ::= <expression> LIKE <expression> <opt_escape>
          */
-        case 212: 
+        case 218: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2129,9 +2181,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 213:  <merge statement> ::= MERGE INTO <merge target table> USING <merge source table> ON <merge on condition> <merge operation specification list>
+         *  Rule 219:  <merge statement> ::= MERGE INTO <merge target table> USING <merge source table> ON <merge on condition> <merge operation specification list>
          */
-        case 213: 
+        case 219: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2142,9 +2194,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 214:  <merge target table> ::= <target_table> <opt_as_alias>
+         *  Rule 220:  <merge target table> ::= <target_table> <opt_as_alias>
          */
-        case 214: 
+        case 220: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2155,9 +2207,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 215:  <merge source table> ::= <table_ref>
+         *  Rule 221:  <merge source table> ::= <table_ref>
          */
-        case 215: 
+        case 221: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2168,9 +2220,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 216:  <merge on condition> ::= <condition>
+         *  Rule 222:  <merge on condition> ::= <condition>
          */
-        case 216: 
+        case 222: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2181,9 +2233,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 217:  <merge operation specification list> ::= <merge when clause>
+         *  Rule 223:  <merge operation specification list> ::= <merge when clause>
          */
-        case 217: 
+        case 223: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2194,9 +2246,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 218:  <merge operation specification list> ::= <merge operation specification list> <merge when clause>
+         *  Rule 224:  <merge operation specification list> ::= <merge operation specification list> <merge when clause>
          */
-        case 218: 
+        case 224: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2207,9 +2259,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 221:  <merge when matched clause> ::= WHEN MATCHED THEN <merge update specification>
+         *  Rule 227:  <merge when matched clause> ::= WHEN MATCHED THEN <merge update specification>
          */
-        case 221: 
+        case 227: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2220,9 +2272,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 222:  <merge when not matched clause> ::= WHEN NOT MATCHED THEN <merge insert specification>
+         *  Rule 228:  <merge when not matched clause> ::= WHEN NOT MATCHED THEN <merge insert specification>
          */
-        case 222: 
+        case 228: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2233,9 +2285,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 223:  <merge update specification> ::= UPDATE SET <update_assignment_clause>
+         *  Rule 229:  <merge update specification> ::= UPDATE SET <update_assignment_clause>
          */
-        case 223: 
+        case 229: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2246,9 +2298,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 224:  <merge insert specification> ::= INSERT <opt_target_column_list> VALUES <insert_row>
+         *  Rule 230:  <merge insert specification> ::= INSERT <opt_target_column_list> VALUES <insert_row>
          */
-        case 224: 
+        case 230: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2259,9 +2311,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 225:  <nulltest> ::= <expression> IS NOT NULL
+         *  Rule 231:  <nulltest> ::= <expression> IS NOT NULL
          */
-        case 225: 
+        case 231: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2272,9 +2324,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 226:  <nulltest> ::= <expression> IS NULL
+         *  Rule 232:  <nulltest> ::= <expression> IS NULL
          */
-        case 226: 
+        case 232: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2285,9 +2337,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 227:  <null_specification> ::= NULL
+         *  Rule 233:  <null_specification> ::= NULL
          */
-        case 227: 
+        case 233: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2298,9 +2350,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 228:  <opt_all_distinct> ::= $Empty
+         *  Rule 234:  <opt_all_distinct> ::= $Empty
          */
-        case 228: 
+        case 234: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2311,9 +2363,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 229:  <opt_all_distinct> ::= ALL
+         *  Rule 235:  <opt_all_distinct> ::= ALL
          */
-        case 229: 
+        case 235: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2324,9 +2376,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 230:  <opt_all_distinct> ::= DISTINCT
+         *  Rule 236:  <opt_all_distinct> ::= DISTINCT
          */
-        case 230: 
+        case 236: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2337,9 +2389,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 234:  <opt_as_alias> ::= $Empty
+         *  Rule 244:  <opt_as_alias> ::= $Empty
          */
-        case 234: 
+        case 244: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2350,9 +2402,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 235:  <opt_as_target_table> ::= <opt_as> <table>
+         *  Rule 245:  <opt_as_target_table> ::= <opt_as> <table>
          */
-        case 235: 
+        case 245: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2363,9 +2415,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 236:  <opt_as_target_table> ::= $Empty
+         *  Rule 246:  <opt_as_target_table> ::= $Empty
          */
-        case 236: 
+        case 246: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2376,9 +2428,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 237:  <opt_asc_desc> ::= ASC
+         *  Rule 247:  <opt_asc_desc> ::= ASC
          */
-        case 237: 
+        case 247: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2389,9 +2441,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 238:  <opt_asc_desc> ::= DESC
+         *  Rule 248:  <opt_asc_desc> ::= DESC
          */
-        case 238: 
+        case 248: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2402,9 +2454,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 239:  <opt_asc_desc> ::= $Empty
+         *  Rule 249:  <opt_asc_desc> ::= $Empty
          */
-        case 239: 
+        case 249: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2415,9 +2467,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 240:  <opt_case_else> ::= ELSE <expression>
+         *  Rule 250:  <opt_case_else> ::= ELSE <expression>
          */
-        case 240: 
+        case 250: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2428,9 +2480,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 241:  <opt_case_else> ::= $Empty
+         *  Rule 251:  <opt_case_else> ::= $Empty
          */
-        case 241: 
+        case 251: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2441,9 +2493,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 242:  <opt_column_name_list> ::= _LPAREN <column_name_list> _RPAREN
+         *  Rule 252:  <opt_column_name_list> ::= _LPAREN <column_name_list> _RPAREN
          */
-        case 242: 
+        case 252: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2454,9 +2506,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 243:  <opt_column_name_list> ::= $Empty
+         *  Rule 253:  <opt_column_name_list> ::= $Empty
          */
-        case 243: 
+        case 253: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2467,9 +2519,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 244:  <opt_default_clause> ::= DEFAULT <default_option>
+         *  Rule 254:  <opt_default_clause> ::= DEFAULT <default_option>
          */
-        case 244: 
+        case 254: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2480,9 +2532,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 245:  <opt_default_clause> ::= $Empty
+         *  Rule 255:  <opt_default_clause> ::= $Empty
          */
-        case 245: 
+        case 255: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2493,9 +2545,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 246:  <opt_escape> ::= ESCAPE _STRING
+         *  Rule 256:  <opt_escape> ::= ESCAPE _STRING
          */
-        case 246: 
+        case 256: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2506,111 +2558,7 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 247:  <opt_escape> ::= $Empty
-         */
-        case 247: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(null); 
-        }
-        break;  
- 
-        /*
-         *  Rule 249:  <opt_expression_commalist> ::= $Empty
-         */
-        case 249: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(null); 
-        }
-        break;  
- 
-        /*
-         *  Rule 251:  <opt_fetch_first_clause> ::= $Empty
-         */
-        case 251: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(0); 
-        }
-        break;  
- 
-        /*
-         *  Rule 252:  <opt_group_by_clause> ::= GROUP BY <grouping_spec_list>
-         */
-        case 252: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(getList(3)); 
-        }
-        break;  
- 
-        /*
-         *  Rule 253:  <opt_group_by_clause> ::= GROUP BY <super_groups_element_list> WITH CUBE
-         */
-        case 253: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1( m_factory.createGroupingSpecificationList(null, m_factory.createSuperGroups(getList(3),SQLQueryParserFactory.SUPERGROUP_TYPE_CUBE)) ); 
-        }
-        break;  
- 
-        /*
-         *  Rule 254:  <opt_group_by_clause> ::= GROUP BY <super_groups_element_list> WITH ROLLUP
-         */
-        case 254: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1( m_factory.createGroupingSpecificationList(null, m_factory.createSuperGroups(getList(3),SQLQueryParserFactory.SUPERGROUP_TYPE_ROLLUP)) ); 
-        }
-        break;  
- 
-        /*
-         *  Rule 255:  <opt_group_by_clause> ::= $Empty
-         */
-        case 255: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1((List)null); 
-        }
-        break;  
- 
-        /*
-         *  Rule 256:  <opt_having_clause> ::= HAVING <condition>
-         */
-        case 256: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setSym1(getSym(2)); 
-        }
-        break;  
- 
-        /*
-         *  Rule 257:  <opt_having_clause> ::= $Empty
+         *  Rule 257:  <opt_escape> ::= $Empty
          */
         case 257: 
         {
@@ -2623,20 +2571,7 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 258:  <opt_join_type> ::= INNER
-         */
-        case 258: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.JOIN_EXPLICIT_INNER); 
-        }
-        break;  
- 
-        /*
-         *  Rule 259:  <opt_join_type> ::= LEFT <opt_join_type_outer>
+         *  Rule 259:  <opt_expression_commalist> ::= $Empty
          */
         case 259: 
         {
@@ -2644,25 +2579,12 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setInt1(SQLQueryParserFactory.JOIN_LEFT_OUTER); 
+            setSym1(null); 
         }
         break;  
  
         /*
-         *  Rule 260:  <opt_join_type> ::= RIGHT <opt_join_type_outer>
-         */
-        case 260: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.JOIN_RIGHT_OUTER); 
-        }
-        break;  
- 
-        /*
-         *  Rule 261:  <opt_join_type> ::= FULL <opt_join_type_outer>
+         *  Rule 261:  <opt_fetch_first_clause> ::= $Empty
          */
         case 261: 
         {
@@ -2670,66 +2592,14 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setInt1(SQLQueryParserFactory.JOIN_FULL_OUTER); 
+            setInt1(0); 
         }
         break;  
  
         /*
-         *  Rule 262:  <opt_join_type> ::= $Empty
+         *  Rule 262:  <opt_group_by_clause> ::= GROUP BY <grouping_spec_list>
          */
         case 262: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.JOIN_DEFAULT_INNER); 
-        }
-        break;  
- 
-        /*
-         *  Rule 265:  <opt_null_order> ::= NULLS FIRST
-         */
-        case 265: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NULLS_FIRST); 
-        }
-        break;  
- 
-        /*
-         *  Rule 266:  <opt_null_order> ::= NULLS LAST
-         */
-        case 266: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NULLS_LAST); 
-        }
-        break;  
- 
-        /*
-         *  Rule 267:  <opt_null_order> ::= $Empty
-         */
-        case 267: 
-        {
-            if (checkStmtOnly) {
-                setSym1(null);
-                break;
-            }
-            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NONE); 
-        }
-        break;  
- 
-        /*
-         *  Rule 268:  <opt_order_by_clause> ::= ORDER BY <ordering_spec_commalist>
-         */
-        case 268: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2740,9 +2610,35 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 269:  <opt_order_by_clause> ::= $Empty
+         *  Rule 263:  <opt_group_by_clause> ::= GROUP BY <super_groups_element_list> WITH CUBE
          */
-        case 269: 
+        case 263: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1( m_factory.createGroupingSpecificationList(null, m_factory.createSuperGroups(getList(3),SQLQueryParserFactory.SUPERGROUP_TYPE_CUBE)) ); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 264:  <opt_group_by_clause> ::= GROUP BY <super_groups_element_list> WITH ROLLUP
+         */
+        case 264: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1( m_factory.createGroupingSpecificationList(null, m_factory.createSuperGroups(getList(3),SQLQueryParserFactory.SUPERGROUP_TYPE_ROLLUP)) ); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 265:  <opt_group_by_clause> ::= $Empty
+         */
+        case 265: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2753,9 +2649,165 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 270:  <opt_schema_dot> ::= <schema> _DOT
+         *  Rule 266:  <opt_having_clause> ::= HAVING <condition>
+         */
+        case 266: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(getSym(2)); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 267:  <opt_having_clause> ::= $Empty
+         */
+        case 267: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(null); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 268:  <opt_join_type> ::= INNER
+         */
+        case 268: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.JOIN_EXPLICIT_INNER); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 269:  <opt_join_type> ::= LEFT <opt_join_type_outer>
+         */
+        case 269: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.JOIN_LEFT_OUTER); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 270:  <opt_join_type> ::= RIGHT <opt_join_type_outer>
          */
         case 270: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.JOIN_RIGHT_OUTER); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 271:  <opt_join_type> ::= FULL <opt_join_type_outer>
+         */
+        case 271: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.JOIN_FULL_OUTER); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 272:  <opt_join_type> ::= $Empty
+         */
+        case 272: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.JOIN_DEFAULT_INNER); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 275:  <opt_null_order> ::= NULLS FIRST
+         */
+        case 275: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NULLS_FIRST); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 276:  <opt_null_order> ::= NULLS LAST
+         */
+        case 276: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NULLS_LAST); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 277:  <opt_null_order> ::= $Empty
+         */
+        case 277: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setInt1(SQLQueryParserFactory.NULL_ORDERING_TYPE_NONE); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 278:  <opt_order_by_clause> ::= ORDER BY <ordering_spec_commalist>
+         */
+        case 278: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1(getList(3)); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 279:  <opt_order_by_clause> ::= $Empty
+         */
+        case 279: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1((List)null); 
+        }
+        break;  
+ 
+        /*
+         *  Rule 280:  <opt_schema_dot> ::= <schema> _DOT
+         */
+        case 280: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2766,9 +2818,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 271:  <opt_schema_dot> ::= $Empty
+         *  Rule 281:  <opt_schema_dot> ::= $Empty
          */
-        case 271: 
+        case 281: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2779,9 +2831,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 273:  <opt_table_correlation> ::= $Empty
+         *  Rule 283:  <opt_table_correlation> ::= $Empty
          */
-        case 273: 
+        case 283: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2792,9 +2844,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 274:  <opt_target_column_list> ::= _LPAREN <target_column_list> _RPAREN
+         *  Rule 284:  <opt_target_column_list> ::= _LPAREN <target_column_list> _RPAREN
          */
-        case 274: 
+        case 284: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2805,9 +2857,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 275:  <opt_target_column_list> ::= $Empty
+         *  Rule 285:  <opt_target_column_list> ::= $Empty
          */
-        case 275: 
+        case 285: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2818,9 +2870,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 276:  <opt_updatability_clause> ::= <updatability_expression>
+         *  Rule 286:  <opt_updatability_clause> ::= <updatability_expression>
          */
-        case 276: 
+        case 286: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2831,9 +2883,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 277:  <opt_updatability_clause> ::= $Empty
+         *  Rule 287:  <opt_updatability_clause> ::= $Empty
          */
-        case 277: 
+        case 287: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2844,9 +2896,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 278:  <opt_fetch_first_row_count> ::= <unsigned_integer>
+         *  Rule 288:  <opt_fetch_first_row_count> ::= <unsigned_integer>
          */
-        case 278: 
+        case 288: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2866,9 +2918,9 @@ public void ruleAction( int ruleNumber)
         }
         break;   
         /*
-         *  Rule 279:  <opt_fetch_first_row_count> ::= $Empty
+         *  Rule 289:  <opt_fetch_first_row_count> ::= $Empty
          */
-        case 279: 
+        case 289: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2879,9 +2931,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 280:  <opt_where_clause> ::= WHERE <condition>
+         *  Rule 290:  <opt_where_clause> ::= WHERE <condition>
          */
-        case 280: 
+        case 290: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2892,9 +2944,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 281:  <opt_where_clause> ::= $Empty
+         *  Rule 291:  <opt_where_clause> ::= $Empty
          */
-        case 281: 
+        case 291: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2905,9 +2957,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 282:  <ordering_spec> ::= <expression> <opt_asc_desc> <opt_null_order>
+         *  Rule 292:  <ordering_spec> ::= <expression> <opt_asc_desc> <opt_null_order>
          */
-        case 282: 
+        case 292: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2918,9 +2970,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 283:  <ordering_spec_commalist> ::= <ordering_spec>
+         *  Rule 293:  <ordering_spec_commalist> ::= <ordering_spec>
          */
-        case 283: 
+        case 293: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2931,9 +2983,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 284:  <ordering_spec_commalist> ::= <ordering_spec_commalist> _COMMA <ordering_spec>
+         *  Rule 294:  <ordering_spec_commalist> ::= <ordering_spec_commalist> _COMMA <ordering_spec>
          */
-        case 284: 
+        case 294: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2944,9 +2996,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 285:  <parameter> ::= _HOSTVAR
+         *  Rule 295:  <parameter> ::= _HOSTVAR
          */
-        case 285: 
+        case 295: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2957,9 +3009,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 286:  <parameter> ::= _PARAM_MARKER
+         *  Rule 296:  <parameter> ::= _PARAM_MARKER
          */
-        case 286: 
+        case 296: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2970,9 +3022,22 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 287:  <project> ::= <expression> <opt_as_alias>
+         *  Rule 297:  <procedure_object> ::= <opt_schema_dot> <identifier>
          */
-        case 287: 
+        case 297: 
+        {
+            if (checkStmtOnly) {
+                setSym1(null);
+                break;
+            }
+            setSym1( m_factory.createProcedureReference(getString(1), getString(2)));
+    
+        }
+        break;   
+        /*
+         *  Rule 298:  <project> ::= <expression> <opt_as_alias>
+         */
+        case 298: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2983,9 +3048,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 288:  <project> ::= _STAR
+         *  Rule 299:  <project> ::= _STAR
          */
-        case 288: 
+        case 299: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -2996,9 +3061,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 289:  <project> ::= <table> _DOT _STAR
+         *  Rule 300:  <project> ::= <table> _DOT _STAR
          */
-        case 289: 
+        case 300: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3009,9 +3074,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 290:  <project> ::= <schema> _DOT <table> _DOT _STAR
+         *  Rule 301:  <project> ::= <schema> _DOT <table> _DOT _STAR
          */
-        case 290: 
+        case 301: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3022,9 +3087,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 291:  <query_combined> ::= <query_exp> <query_combined_operator> <query_term> <opt_order_by_clause> <opt_fetch_first_clause>
+         *  Rule 302:  <query_combined> ::= <query_exp> <query_combined_operator> <query_term> <opt_order_by_clause> <opt_fetch_first_clause>
          */
-        case 291: 
+        case 302: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3035,9 +3100,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 292:  <query_combined_operator> ::= UNION
+         *  Rule 303:  <query_combined_operator> ::= UNION
          */
-        case 292: 
+        case 303: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3048,9 +3113,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 293:  <query_combined_operator> ::= UNION ALL
+         *  Rule 304:  <query_combined_operator> ::= UNION ALL
          */
-        case 293: 
+        case 304: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3061,9 +3126,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 294:  <query_combined_operator> ::= INTERSECT
+         *  Rule 305:  <query_combined_operator> ::= INTERSECT
          */
-        case 294: 
+        case 305: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3074,9 +3139,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 295:  <query_combined_operator> ::= INTERSECT ALL
+         *  Rule 306:  <query_combined_operator> ::= INTERSECT ALL
          */
-        case 295: 
+        case 306: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3087,9 +3152,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 296:  <query_combined_operator> ::= EXCEPT
+         *  Rule 307:  <query_combined_operator> ::= EXCEPT
          */
-        case 296: 
+        case 307: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3100,9 +3165,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 297:  <query_combined_operator> ::= EXCEPT ALL
+         *  Rule 308:  <query_combined_operator> ::= EXCEPT ALL
          */
-        case 297: 
+        case 308: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3113,9 +3178,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 300:  <query_exp_root> ::= <with_clause> <query_exp>
+         *  Rule 311:  <query_exp_root> ::= <with_clause> <query_exp>
          */
-        case 300: 
+        case 311: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3126,9 +3191,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 301:  <query_select> ::= SELECT <opt_all_distinct> <selection> FROM <table_ref_commalist> <opt_where_clause> <opt_group_by_clause> <opt_having_clause> <opt_order_by_clause> <opt_fetch_first_clause>
+         *  Rule 312:  <query_select> ::= SELECT <opt_all_distinct> <selection> FROM <table_ref_commalist> <opt_where_clause> <opt_group_by_clause> <opt_having_clause> <opt_order_by_clause> <opt_fetch_first_clause>
          */
-        case 301: 
+        case 312: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3139,18 +3204,18 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 302:  <query_stmt> ::= <query_exp_root> <opt_order_by_clause> <opt_updatability_clause>
+         *  Rule 313:  <query_stmt> ::= <query_exp_root> <opt_order_by_clause> <opt_updatability_clause>
          */
-        case 302: 
+        case 313: 
         {
             setSym1(m_factory.createSelectStatement((QueryExpressionRoot)getSym(1), getList(2), (UpdatabilityExpression) getSym(3))); 
         }
         break;  
  
         /*
-         *  Rule 305:  <query_term> ::= _LPAREN <query_exp> _RPAREN <opt_order_by_clause> <opt_fetch_first_clause>
+         *  Rule 316:  <query_term> ::= _LPAREN <query_exp> _RPAREN <opt_order_by_clause> <opt_fetch_first_clause>
          */
-        case 305: 
+        case 316: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3161,9 +3226,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 306:  <query_values> ::= VALUES <values_row_commalist> <opt_order_by_clause> <opt_fetch_first_clause>
+         *  Rule 317:  <query_values> ::= VALUES <values_row_commalist> <opt_order_by_clause> <opt_fetch_first_clause>
          */
-        case 306: 
+        case 317: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3174,9 +3239,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 307:  <relop> ::= _EQ
+         *  Rule 318:  <relop> ::= _EQ
          */
-        case 307: 
+        case 318: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3187,9 +3252,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 308:  <relop> ::= _LT
+         *  Rule 319:  <relop> ::= _LT
          */
-        case 308: 
+        case 319: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3200,9 +3265,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 309:  <relop> ::= _LE
+         *  Rule 320:  <relop> ::= _LE
          */
-        case 309: 
+        case 320: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3213,9 +3278,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 310:  <relop> ::= _NE
+         *  Rule 321:  <relop> ::= _NE
          */
-        case 310: 
+        case 321: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3226,9 +3291,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 311:  <relop> ::= _GT
+         *  Rule 322:  <relop> ::= _GT
          */
-        case 311: 
+        case 322: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3239,9 +3304,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 312:  <relop> ::= _GE
+         *  Rule 323:  <relop> ::= _GE
          */
-        case 312: 
+        case 323: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3252,9 +3317,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 315:  <row_comparison> ::= <value_expr_row> <relop> <value_expr_row>
+         *  Rule 326:  <row_comparison> ::= <value_expr_row> <relop> <value_expr_row>
          */
-        case 315: 
+        case 326: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3265,9 +3330,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 318:  <scalar_comparison> ::= <expression> <relop> <expression>
+         *  Rule 329:  <scalar_comparison> ::= <expression> <relop> <expression>
          */
-        case 318: 
+        case 329: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3278,9 +3343,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 319:  <schema> ::= <identifier>
+         *  Rule 330:  <schema> ::= <identifier>
          */
-        case 319: 
+        case 330: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3291,9 +3356,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 320:  <schema_qualified_name> ::= <identifier>
+         *  Rule 331:  <schema_qualified_name> ::= <identifier>
          */
-        case 320: 
+        case 331: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3304,9 +3369,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 321:  <schema_qualified_name> ::= <schema> _DOT <identifier>
+         *  Rule 332:  <schema_qualified_name> ::= <schema> _DOT <identifier>
          */
-        case 321: 
+        case 332: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3317,9 +3382,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 322:  <selection> ::= <project>
+         *  Rule 333:  <selection> ::= <project>
          */
-        case 322: 
+        case 333: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3330,9 +3395,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 323:  <selection> ::= <selection> _COMMA <project>
+         *  Rule 334:  <selection> ::= <selection> _COMMA <project>
          */
-        case 323: 
+        case 334: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3343,9 +3408,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 332:  <special_register> ::= CURRENT_DATE
+         *  Rule 343:  <special_register> ::= CURRENT_DATE
          */
-        case 332: 
+        case 343: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3356,9 +3421,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 333:  <special_register> ::= CURRENT_TIME
+         *  Rule 344:  <special_register> ::= CURRENT_TIME
          */
-        case 333: 
+        case 344: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3369,9 +3434,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 334:  <special_register> ::= CURRENT_TIMESTAMP
+         *  Rule 345:  <special_register> ::= CURRENT_TIMESTAMP
          */
-        case 334: 
+        case 345: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3382,9 +3447,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 335:  <special_register> ::= CURRENT_TIMESTAMP _LPAREN <timestamp precision> _RPAREN
+         *  Rule 346:  <special_register> ::= CURRENT_TIMESTAMP _LPAREN <timestamp precision> _RPAREN
          */
-        case 335: 
+        case 346: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3395,9 +3460,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 336:  <special_register> ::= LOCALTIME
+         *  Rule 347:  <special_register> ::= LOCALTIME
          */
-        case 336: 
+        case 347: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3408,9 +3473,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 337:  <special_register> ::= LOCALTIME _LPAREN <time precision> _RPAREN
+         *  Rule 348:  <special_register> ::= LOCALTIME _LPAREN <time precision> _RPAREN
          */
-        case 337: 
+        case 348: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3421,9 +3486,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 338:  <special_register> ::= LOCALTIMESTAMP
+         *  Rule 349:  <special_register> ::= LOCALTIMESTAMP
          */
-        case 338: 
+        case 349: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3434,9 +3499,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 339:  <special_register> ::= LOCALTIMESTAMP _LPAREN <timestamp precision> _RPAREN
+         *  Rule 350:  <special_register> ::= LOCALTIMESTAMP _LPAREN <timestamp precision> _RPAREN
          */
-        case 339: 
+        case 350: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3447,9 +3512,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 340:  <special_register> ::= CURRENT_DEFAULT_TRANSFORM_GROUP
+         *  Rule 351:  <special_register> ::= CURRENT_DEFAULT_TRANSFORM_GROUP
          */
-        case 340: 
+        case 351: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3460,9 +3525,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 341:  <special_register> ::= CURRENT_PATH
+         *  Rule 352:  <special_register> ::= CURRENT_PATH
          */
-        case 341: 
+        case 352: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3473,9 +3538,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 342:  <special_register> ::= CURRENT_ROLE
+         *  Rule 353:  <special_register> ::= CURRENT_ROLE
          */
-        case 342: 
+        case 353: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3486,9 +3551,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 343:  <special_register> ::= CURRENT_TRANSFORM_GROUP_FOR_TYPE <datatype_path-resolved_user-defined_type_name>
+         *  Rule 354:  <special_register> ::= CURRENT_TRANSFORM_GROUP_FOR_TYPE <datatype_path-resolved_user-defined_type_name>
          */
-        case 343: 
+        case 354: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3499,9 +3564,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 344:  <special_register> ::= CURRENT_USER
+         *  Rule 355:  <special_register> ::= CURRENT_USER
          */
-        case 344: 
+        case 355: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3512,9 +3577,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 345:  <special_register> ::= SESSION_USER
+         *  Rule 356:  <special_register> ::= SESSION_USER
          */
-        case 345: 
+        case 356: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3525,9 +3590,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 346:  <special_register> ::= SYSTEM_USER
+         *  Rule 357:  <special_register> ::= SYSTEM_USER
          */
-        case 346: 
+        case 357: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3538,9 +3603,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 347:  <special_register> ::= USER
+         *  Rule 358:  <special_register> ::= USER
          */
-        case 347: 
+        case 358: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3551,9 +3616,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 348:  <special_register> ::= VALUE
+         *  Rule 359:  <special_register> ::= VALUE
          */
-        case 348: 
+        case 359: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3564,9 +3629,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 349:  <subquery> ::= _LPAREN <query_exp_root> _RPAREN
+         *  Rule 360:  <subquery> ::= _LPAREN <query_exp_root> _RPAREN
          */
-        case 349: 
+        case 360: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3577,9 +3642,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 350:  <super_groups> ::= CUBE _LPAREN <super_groups_element_list> _RPAREN
+         *  Rule 361:  <super_groups> ::= CUBE _LPAREN <super_groups_element_list> _RPAREN
          */
-        case 350: 
+        case 361: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3590,9 +3655,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 351:  <super_groups> ::= ROLLUP _LPAREN <super_groups_element_list> _RPAREN
+         *  Rule 362:  <super_groups> ::= ROLLUP _LPAREN <super_groups_element_list> _RPAREN
          */
-        case 351: 
+        case 362: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3603,9 +3668,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 352:  <super_groups> ::= _LPAREN _RPAREN
+         *  Rule 363:  <super_groups> ::= _LPAREN _RPAREN
          */
-        case 352: 
+        case 363: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3616,9 +3681,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 353:  <super_groups_element_exp> ::= <grouping_exp>
+         *  Rule 364:  <super_groups_element_exp> ::= <grouping_exp>
          */
-        case 353: 
+        case 364: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3629,9 +3694,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 354:  <super_groups_element_exp_list> ::= <super_groups_element_exp>
+         *  Rule 365:  <super_groups_element_exp_list> ::= <super_groups_element_exp>
          */
-        case 354: 
+        case 365: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3642,9 +3707,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 355:  <super_groups_element_exp_list> ::= <super_groups_element_exp_list> _COMMA <super_groups_element_exp>
+         *  Rule 366:  <super_groups_element_exp_list> ::= <super_groups_element_exp_list> _COMMA <super_groups_element_exp>
          */
-        case 355: 
+        case 366: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3655,9 +3720,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 356:  <super_groups_element> ::= _LPAREN <super_groups_element_exp_list> _RPAREN
+         *  Rule 367:  <super_groups_element> ::= _LPAREN <super_groups_element_exp_list> _RPAREN
          */
-        case 356: 
+        case 367: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3668,9 +3733,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 358:  <super_groups_element_list> ::= <super_groups_element>
+         *  Rule 369:  <super_groups_element_list> ::= <super_groups_element>
          */
-        case 358: 
+        case 369: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3681,9 +3746,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 359:  <super_groups_element_list> ::= <super_groups_element_list> _COMMA <super_groups_element>
+         *  Rule 370:  <super_groups_element_list> ::= <super_groups_element_list> _COMMA <super_groups_element>
          */
-        case 359: 
+        case 370: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3694,9 +3759,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 360:  <table> ::= <identifier>
+         *  Rule 371:  <table> ::= <identifier>
          */
-        case 360: 
+        case 371: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3707,9 +3772,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 361:  <table_correlation> ::= <as_alias> <opt_column_name_list>
+         *  Rule 372:  <table_correlation> ::= <as_alias> <opt_column_name_list>
          */
-        case 361: 
+        case 372: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3720,9 +3785,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 362:  <table_func> ::= TABLE _LPAREN <opt_schema_dot> <identifier> _LPAREN <opt_expression_commalist> _RPAREN _RPAREN <table_correlation>
+         *  Rule 373:  <table_func> ::= TABLE _LPAREN <opt_schema_dot> <identifier> _LPAREN <opt_expression_commalist> _RPAREN _RPAREN <table_correlation>
          */
-        case 362: 
+        case 373: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3733,9 +3798,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 363:  <table_join> ::= <table_ref> <opt_join_type> JOIN <table_ref> ON <condition>
+         *  Rule 374:  <table_join> ::= <table_ref> <opt_join_type> JOIN <table_ref> ON <condition>
          */
-        case 363: 
+        case 374: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3746,9 +3811,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 364:  <table_nested> ::= _LPAREN <table_ref> _RPAREN
+         *  Rule 375:  <table_nested> ::= _LPAREN <table_ref> _RPAREN
          */
-        case 364: 
+        case 375: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3759,9 +3824,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 365:  <table_qualified> ::= <schema> _DOT <table> <opt_table_correlation>
+         *  Rule 376:  <table_qualified> ::= <schema> _DOT <table> <opt_table_correlation>
          */
-        case 365: 
+        case 376: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3772,9 +3837,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 366:  <table_query> ::= _LPAREN <query_exp> _RPAREN <table_correlation>
+         *  Rule 377:  <table_query> ::= _LPAREN <query_exp> _RPAREN <table_correlation>
          */
-        case 366: 
+        case 377: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3785,9 +3850,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 367:  <table_query> ::= TABLE _LPAREN <query_exp> _RPAREN <table_correlation>
+         *  Rule 378:  <table_query> ::= TABLE _LPAREN <query_exp> _RPAREN <table_correlation>
          */
-        case 367: 
+        case 378: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3798,9 +3863,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 374:  <table_ref_commalist> ::= <table_ref>
+         *  Rule 385:  <table_ref_commalist> ::= <table_ref>
          */
-        case 374: 
+        case 385: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3811,9 +3876,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 375:  <table_ref_commalist> ::= <table_ref_commalist> _COMMA <table_ref>
+         *  Rule 386:  <table_ref_commalist> ::= <table_ref_commalist> _COMMA <table_ref>
          */
-        case 375: 
+        case 386: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3824,9 +3889,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 376:  <table_simple> ::= <table> <opt_table_correlation>
+         *  Rule 387:  <table_simple> ::= <table> <opt_table_correlation>
          */
-        case 376: 
+        case 387: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3837,9 +3902,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 377:  <target_column_list> ::= <column_ref>
+         *  Rule 388:  <target_column_list> ::= <column_ref>
          */
-        case 377: 
+        case 388: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3850,9 +3915,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 378:  <target_column_list> ::= <target_column_list> _COMMA <column_ref>
+         *  Rule 389:  <target_column_list> ::= <target_column_list> _COMMA <column_ref>
          */
-        case 378: 
+        case 389: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3863,9 +3928,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 379:  <target_table> ::= <table>
+         *  Rule 390:  <target_table> ::= <table>
          */
-        case 379: 
+        case 390: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3876,9 +3941,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 380:  <target_table> ::= <schema> _DOT <table>
+         *  Rule 391:  <target_table> ::= <schema> _DOT <table>
          */
-        case 380: 
+        case 391: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3889,9 +3954,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 381:  <time precision> ::= UNSIGNED_INTEGER
+         *  Rule 392:  <time precision> ::= UNSIGNED_INTEGER
          */
-        case 381: 
+        case 392: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3902,9 +3967,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 382:  <timestamp precision> ::= UNSIGNED_INTEGER
+         *  Rule 393:  <timestamp precision> ::= UNSIGNED_INTEGER
          */
-        case 382: 
+        case 393: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3915,9 +3980,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 383:  <updatability_expression> ::= FOR READ ONLY
+         *  Rule 394:  <updatability_expression> ::= FOR READ ONLY
          */
-        case 383: 
+        case 394: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3928,9 +3993,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 384:  <updatability_expression> ::= FOR UPDATE
+         *  Rule 395:  <updatability_expression> ::= FOR UPDATE
          */
-        case 384: 
+        case 395: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3941,9 +4006,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 385:  <updatability_expression> ::= FOR UPDATE OF <column_name_list>
+         *  Rule 396:  <updatability_expression> ::= FOR UPDATE OF <column_name_list>
          */
-        case 385: 
+        case 396: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3954,9 +4019,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 387:  <update_assignment_expression> ::= <column_ref> _EQ <expression>
+         *  Rule 398:  <update_assignment_expression> ::= <column_ref> _EQ <expression>
          */
-        case 387: 
+        case 398: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3967,9 +4032,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 388:  <update_assignment_expression> ::= _LPAREN <target_column_list> _RPAREN _EQ _LPAREN <query_exp> _RPAREN
+         *  Rule 399:  <update_assignment_expression> ::= _LPAREN <target_column_list> _RPAREN _EQ _LPAREN <query_exp> _RPAREN
          */
-        case 388: 
+        case 399: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3980,9 +4045,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 389:  <update_assignment_expression> ::= _LPAREN <target_column_list> _RPAREN _EQ _LPAREN <expression_commalist> _RPAREN
+         *  Rule 400:  <update_assignment_expression> ::= _LPAREN <target_column_list> _RPAREN _EQ _LPAREN <expression_commalist> _RPAREN
          */
-        case 389: 
+        case 400: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -3993,9 +4058,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 390:  <update_assignment_expression_commalist> ::= <update_assignment_expression>
+         *  Rule 401:  <update_assignment_expression_commalist> ::= <update_assignment_expression>
          */
-        case 390: 
+        case 401: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4006,9 +4071,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 391:  <update_assignment_expression_commalist> ::= <update_assignment_expression_commalist> _COMMA <update_assignment_expression>
+         *  Rule 402:  <update_assignment_expression_commalist> ::= <update_assignment_expression_commalist> _COMMA <update_assignment_expression>
          */
-        case 391: 
+        case 402: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4019,18 +4084,18 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 392:  <update_stmt> ::= UPDATE <target_table> <opt_as_target_table> SET <update_assignment_clause> <opt_where_clause>
+         *  Rule 403:  <update_stmt> ::= UPDATE <target_table> <opt_as_target_table> SET <update_assignment_clause> <opt_where_clause>
          */
-        case 392: 
+        case 403: 
         {
             setSym1(m_factory.createUpdateStatement((TableInDatabase)getSym(2), (TableCorrelation)getSym(3), getList(5), (QuerySearchCondition)getSym(6))); 
         }
         break;  
  
         /*
-         *  Rule 393:  <value_expr_row> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN
+         *  Rule 404:  <value_expr_row> ::= _LPAREN <expression_commalist_multiple_elements> _RPAREN
          */
-        case 393: 
+        case 404: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4041,9 +4106,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 394:  <values_row> ::= _LPAREN <expression_commalist> _RPAREN
+         *  Rule 405:  <values_row> ::= _LPAREN <expression_commalist> _RPAREN
          */
-        case 394: 
+        case 405: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4054,9 +4119,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 395:  <values_row> ::= <expression>
+         *  Rule 406:  <values_row> ::= <expression>
          */
-        case 395: 
+        case 406: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4067,9 +4132,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 396:  <values_row_commalist> ::= <values_row>
+         *  Rule 407:  <values_row_commalist> ::= <values_row>
          */
-        case 396: 
+        case 407: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4080,9 +4145,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 397:  <values_row_commalist> ::= <values_row_commalist> _COMMA <values_row>
+         *  Rule 408:  <values_row_commalist> ::= <values_row_commalist> _COMMA <values_row>
          */
-        case 397: 
+        case 408: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4093,9 +4158,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 398:  <with_clause> ::= WITH <with_table_spec_list>
+         *  Rule 409:  <with_clause> ::= WITH <with_table_spec_list>
          */
-        case 398: 
+        case 409: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4106,9 +4171,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 399:  <with_clause> ::= $Empty
+         *  Rule 410:  <with_clause> ::= $Empty
          */
-        case 399: 
+        case 410: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4119,9 +4184,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 400:  <with_table_spec_list> ::= <with_table_spec>
+         *  Rule 411:  <with_table_spec_list> ::= <with_table_spec>
          */
-        case 400: 
+        case 411: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4132,9 +4197,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 401:  <with_table_spec_list> ::= <with_table_spec_list> _COMMA <with_table_spec>
+         *  Rule 412:  <with_table_spec_list> ::= <with_table_spec_list> _COMMA <with_table_spec>
          */
-        case 401: 
+        case 412: 
         {
             if (checkStmtOnly) {
                 setSym1(null);
@@ -4145,9 +4210,9 @@ public void ruleAction( int ruleNumber)
         break;  
  
         /*
-         *  Rule 402:  <with_table_spec> ::= <table> <opt_column_name_list> AS _LPAREN <query_exp> _RPAREN
+         *  Rule 413:  <with_table_spec> ::= <table> <opt_column_name_list> AS _LPAREN <query_exp> _RPAREN
          */
-        case 402: 
+        case 413: 
         {
             if (checkStmtOnly) {
                 setSym1(null);

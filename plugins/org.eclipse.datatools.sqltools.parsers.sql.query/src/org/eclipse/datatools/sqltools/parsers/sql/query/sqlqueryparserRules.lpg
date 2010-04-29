@@ -49,6 +49,9 @@ $Rules
         |   <update_stmt>
         |   <delete_stmt>
         |   <merge statement>
+-- The following is not really a DML statement (it's a "control" statement in ISO terms), but we're including
+-- it here for convenience.
+        |   <call_statement>
 --        |   <error>
 
 
@@ -78,7 +81,20 @@ $Rules
 --        |   <expression> <relop> ALL <column_ref>
 --              /. $BeginAction   $EndAction ./
 
+<argument> ::= <expression>
 
+<argument_list> ::=
+            _LPAREN <opt_argument_list_body> _RPAREN
+             /. $BeginAction setSym1(getList(2));   $EndAction ./
+
+<argument_list_body> ::=
+            <argument>
+            /. $BeginAction setSym1( m_factory.listConcat(null, getSym(1)));
+            $EndAction ./
+        |   <argument_list_body> _COMMA <argument>
+         /. $BeginAction setSym1( m_factory.listConcat(getList(1), getSym(3)));
+            $EndAction ./
+            
 [AS] ::=
             $empty
         |   AS
@@ -124,6 +140,15 @@ $Rules
 		|	NOT _LPAREN <boolean_expression> _RPAREN
 				/. $BeginAction setSym1(m_factory.createNestedConditionNegated(($RT_boolean_expression)getSym(3))); $EndAction ./
 
+<call_statement> ::=
+            CALL <procedure_object> <opt_argument_list>  
+            -- Note: in ISO SQL the argument list is not optional (that is, parens enclosing the argument list are 
+            --   required, though the list itself might be empty), but major SQL dialects allow the argument list to
+            --   be omitted completely.
+                /. $BeginAction 
+                setSym1(m_factory.createCallStatement(($RT_proc_ref)getSym(2), getList(3)));
+                $EndAction ./
+                
 <case_expression> ::=
 			CASE <case_search_when_list> <opt_case_else> END
 				/. $BeginAction setSym1(m_factory.createCaseSearchExpression(getList(2), ($RT_opt_case_else)getSym(3))); $EndAction ./
@@ -842,6 +867,13 @@ $Rules
         |   DISTINCT
         		/. $BeginAction setSym1($parser_factory.DISTINCT); $EndAction ./
 
+<opt_argument_list> ::=
+            <argument_list>
+        |   $empty
+
+<opt_argument_list_body> ::=
+            <argument_list_body>
+        |   $empty
 
 <opt_as> ->
 			AS
@@ -1037,6 +1069,10 @@ $Rules
 		|	_PARAM_MARKER
 				/. $BeginAction setSym1(m_factory.createVariableExpression(null)); $EndAction ./
 
+<procedure_object> ::=
+           <opt_schema_dot> <identifier>
+         /. $BeginAction setSym1( m_factory.createProcedureReference(getString(1), getString(2)));
+            $EndAction ./
 
 <project> ::=
 			<expression> <opt_as_alias>

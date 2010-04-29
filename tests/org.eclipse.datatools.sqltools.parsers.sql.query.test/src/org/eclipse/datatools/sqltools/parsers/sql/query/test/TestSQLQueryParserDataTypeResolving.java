@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.parsers.sql.query.test;
 import org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
@@ -105,7 +106,7 @@ public class TestSQLQueryParserDataTypeResolving extends AbstractTestSQLQueryPar
 
         QuerySelectStatement stmt =
             (QuerySelectStatement) parserVerifySuccessSingleQuery(
-                "SELECT CAST(col1 AS CHAR ARRAY), CAST(col2 AS CHAR ARRAY[10])"                                       + NL + //$NON-NLS-1$
+                "SELECT CAST(col1 AS CHARACTER ARRAY), CAST(col2 AS CHARACTER ARRAY[10])"                                       + NL + //$NON-NLS-1$
                 "  FROM table1;", matchInput);                                    //$NON-NLS-1$
 
         assertDataType(getResultColumn(stmt, 0).getValueExpr(),
@@ -114,7 +115,11 @@ public class TestSQLQueryParserDataTypeResolving extends AbstractTestSQLQueryPar
                 "maxCardinality", "0"); //$NON-NLS-1$ //$NON-NLS-2$
 
         DataType dataType = getResultColumn(stmt, 0).getValueExpr().getDataType();
-        assertTrue("collection data tyope not set right, expected CHAR, got"+dataType.getName(), dataType instanceof CharacterStringDataType);
+        assertTrue("collection data type not set right, expected ArrayDataType, got"+dataType.getName(), dataType instanceof ArrayDataType);
+        ElementType elementType = ((ArrayDataType) dataType).getElementType();
+        assertTrue("collection element type is null", elementType != null);
+        DataType elementDataType = elementType.getDataType();
+        assertTrue("collection element data type not set right, expected CHAR, got"+dataType.getName(), elementDataType instanceof CharacterStringDataType);
         
         assertDataType(getResultColumn(stmt, 1).getValueExpr(),
                 ArrayDataType.class);
@@ -133,7 +138,7 @@ public class TestSQLQueryParserDataTypeResolving extends AbstractTestSQLQueryPar
 
         QuerySelectStatement stmt =
             (QuerySelectStatement) parserVerifySuccessSingleQuery(
-                "SELECT CAST(col1 AS CHAR MULTISET)"                                       + NL + //$NON-NLS-1$
+                "SELECT CAST(col1 AS CHARACTER MULTISET)"                                       + NL + //$NON-NLS-1$
                 "  FROM table1;", matchInput);                                    //$NON-NLS-1$
 
         assertDataType(getResultColumn(stmt, 0).getValueExpr(),

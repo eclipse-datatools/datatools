@@ -17,15 +17,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLCharacterKindMap;
-import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLVariableSymbols;
-
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessor;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessorConfiguration;
 import org.eclipse.datatools.sqltools.parsers.sql.util.EObjectPrinter;
@@ -312,6 +311,8 @@ public abstract class SQLParserManager {
     
     protected abstract SQLParseResult createParseResult(SQLStatement stmt, List errorList);
     
+    protected abstract SQLParseResult createControlParseResult(SQLStatement stmt, List errorList);
+
     public SQLParserManager()
     {
         configParser(SQLQuerySourceFormat.copyDefaultFormat(),
@@ -550,8 +551,17 @@ public abstract class SQLParserManager {
         {
             for (Iterator it = script.iterator(); it.hasNext();)
             {
-                QueryStatement stmt = (QueryStatement) it.next();
-                resultList.add( createParseResult(stmt, null) );
+                SQLStatement stmt = (SQLStatement) it.next();
+                SQLParseResult parseResult = null;
+                if (stmt instanceof QueryStatement) {
+                    parseResult = createParseResult(stmt, null);
+                }
+                else if (stmt instanceof CallStatement) {
+                    parseResult = createControlParseResult(stmt, null);
+                }
+                if (parseResult != null) {
+                    resultList.add( parseResult );
+                }
                 
             }
         }
@@ -581,17 +591,21 @@ public abstract class SQLParserManager {
         {
             for (Iterator scriptIt = queryStmtList.iterator(); scriptIt.hasNext();)
             {
-                QueryStatement queryStmt = (QueryStatement) scriptIt.next();
+                SQLQueryObject queryStmt = (SQLQueryObject) scriptIt.next();
                 List errorList = postParseProcess(queryStmt, queryElements, postParseProcessors);
-                
-                
                 // TODO: think about how to go with internal P3s
                 if (postParseProcessors == getInternalDefaultPostParseProcessorList())
                 {
                     errorList = null;
                 }
-                
-                parseResultList.add(createParseResult(queryStmt,errorList));
+                if (queryStmt instanceof QueryStatement)
+                {  
+                    parseResultList.add(createParseResult((QueryStatement)queryStmt,errorList));
+                }
+                else if (queryStmt instanceof CallStatement)
+                {
+                    parseResultList.add(createControlParseResult((CallStatement)queryStmt,errorList));
+                }
             }
         } 
         return parseResultList;
@@ -629,7 +643,7 @@ public abstract class SQLParserManager {
 	 * @param postParseProcessors List of <code>PostParseProcessor</code>s
 	 * @return list of <code>SQLParseErrorInfo</code> objects
      */
-    private List postParseProcess(QueryStatement queryStatement, 
+    private List postParseProcess(SQLQueryObject queryStatement,  
                                          List queryElements, 
                                          List postParseProcessors) throws SQLParserException
     {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * Copyright (c) 2004, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -30,6 +31,7 @@ import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
+import org.eclipse.datatools.sqltools.parsers.sql.SQLParserManager;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManager;
 import org.eclipse.datatools.sqltools.parsers.sql.test.AbstractTestSQLParser;
 import org.eclipse.datatools.sqltools.parsers.sql.test.TestSQLParser;
@@ -248,7 +250,24 @@ public abstract class AbstractTestSQLQueryParser extends AbstractTestSQLParser
     	return (QueryStatement) parserVerifySuccessSingle(p_stmt, p_matchInput);
     }
 
-
+    /**
+     * Parses the given statement, which must be a CALL statement. The statement is assumed
+     * to parse correctly.  The generated statement will be compared to the input statement
+     * when the match input parm is true.
+     * 
+     * @param p_stmt the statement to parse
+     * @param p_matchInput true when the generated output statement should be matched against
+     * the input statement, otherwise false
+     * @return the generated CALL statement object
+     * @throws SQLParserException when the statement does not parse
+     * @throws SQLParserInternalException when a parser internal error occurs
+     */
+    public CallStatement parserVerifySuccessSingleCall(String p_stmt, boolean p_matchInput)
+        throws SQLParserException,SQLParserInternalException
+    {
+        return (CallStatement) parserVerifySuccessSingle(p_stmt, p_matchInput);
+    }
+    
     /**
      * @param stmt
      * @param columnSQLSource
@@ -465,6 +484,30 @@ public abstract class AbstractTestSQLQueryParser extends AbstractTestSQLParser
 
     }
     
-
+    /**
+     * Gets the current <code>SQLQuerySourceFormat</code> <code>generateAsKeywordForTableCorrID</code> option setting.
+     * 
+     * @return the parser manager source format setting
+     */
+    protected boolean getGenerateAsKeywordForTableCorrID() {
+        SQLParserManager parserMgr = getParserManager();
+        SQLQuerySourceFormat sourceFormat = parserMgr.getSourceFormat();
+        boolean genAsKeywordForTableCorrID = sourceFormat.getGenerateAsKeywordForTableCorrID();
+        return genAsKeywordForTableCorrID;
+    }
+    
+    /**
+     * Sets the <code>SQLQuerySourceFormat</code> <code>generateAsKeywordForTableCorrID</code> option setting 
+     * to the given value.  Subsequently, SQL generated from the query model will use this setting.
+     * 
+     * @param generateAsKeywordForTableCorrID the option value to set
+     */
+    protected void setGenerateAsKeywordForTableCorrID(boolean genAsKeywordForTableCorrID) {
+        SQLParserManager parserMgr = getParserManager();
+        SQLQuerySourceFormat sourceFormat = parserMgr.getSourceFormat();
+        SQLQuerySourceFormat sourceFormat2 = SQLQuerySourceFormat.copySourceFormat(sourceFormat);
+        sourceFormat2.setGenerateAsKeywordForTableCorrID(genAsKeywordForTableCorrID);
+        parserMgr.setSourceFormat(sourceFormat2);
+    }
 
 }

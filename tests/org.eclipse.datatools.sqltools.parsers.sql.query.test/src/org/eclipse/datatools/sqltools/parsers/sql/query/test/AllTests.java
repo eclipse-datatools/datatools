@@ -25,8 +25,11 @@ public class AllTests {
                     TestSQLQueryParserInsert.class,
                     TestSQLQueryParserUpdate.class,
                     TestSQLQueryParserDelete.class,
+                    TestSQLQueryParserMerge.class,
                     TestSQLQueryParserColumnTableReferences.class,
-                    TestSQLQueryParserDataTypeResolving.class};
+                    TestSQLQueryParserDataTypeResolving.class,
+                    TestSQLQueryParserCallStmt.class
+                    };
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite(

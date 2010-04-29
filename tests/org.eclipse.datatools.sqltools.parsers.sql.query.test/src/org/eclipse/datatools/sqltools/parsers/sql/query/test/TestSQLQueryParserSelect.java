@@ -319,7 +319,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
             "select col1 as \"ColA\" from table13 order by \"ColA\";" + NL +  //$NON-NLS-1$
             "select colA from table14 order by \"ColA\";" + NL +  //$NON-NLS-1$
             "select col1 as colA from table15 order by \"ColA\";" + NL +  //$NON-NLS-1$
-            "", matchInput); //$NON-NLS-1$
+            "", false); //$NON-NLS-1$
 
         // here the input != output
         parserVerifySuccess(
@@ -327,10 +327,26 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
             "select col3 from table5 order by col2 desc, col3 asc;" + NL +  //$NON-NLS-1$
             "", false); //$NON-NLS-1$
 
+        // Test ORDER BY at the fullselect level.
         parserVerifySuccess(
-                "select col3 from table4 order by col2 desc, col1 asc NULLS FIRST;" + NL +  //$NON-NLS-1$
-                "select col3 from table5 order by col2 desc, col3 asc NULLS LAST;" + NL +  //$NON-NLS-1$
-                "", matchInput); //$NON-NLS-1$
+            "(select c1 from t1 order by c1 asc);" + NL +
+            "select * from (select * from t1 order by c1) as t2;" + NL +
+            "select * from (select * from t1 order by c1) as t2 order by c2;" + NL +
+            "select c1 from t1 order by c1 union select c2 from t2 order by c2;" + NL +
+            "select c1 from t1 order by c1 desc intersect select c2 from t2 order by c2 union select c3 from t3 order by c3 order by c1;" + NL +
+            "values (1, 2, 3) order by 1;" + NL +
+            "select * from (values (1, 2, 3) order by 1) as t1;" + NL +
+            "select * from (values (1, 2, 3) order by 1 asc, 2 desc) as t1;" + NL +
+            "select * from (select * from t1 order by c1 asc, c2 desc) as t2 order by c3;" + NL +
+            "select * from (select * from t1 order by c1 + 10 asc) as t2 order by c3 - c4 / 5;" + NL +
+            "(select deptno from department where deptno in (select workdept from employee order by workdept) order by deptno) intersect (select workdept from employee order by workdept) union (values ('E22') order by 1) order by 1" + NL +
+            "", false);
+        
+// NULLS FIRST/LAST not supported by DB2
+//        parserVerifySuccess(
+//                "select col3 from table4 order by col2 desc, col1 asc NULLS FIRST;" + NL +  //$NON-NLS-1$
+//                "select col3 from table5 order by col2 desc, col3 asc NULLS LAST;" + NL +  //$NON-NLS-1$
+//                "", matchInput); //$NON-NLS-1$
 
         
     }
@@ -451,7 +467,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         parserVerifySuccess(
             "select * from tableA where (colA,colB,1+3) = any (select colB from tableB);" + NL +  //$NON-NLS-1$
             "select * from tableA where (colA,colB,1+3) = some (select colB from tableB);" + NL +  //$NON-NLS-1$
-            "", matchInput); //$NON-NLS-1$
+            "", false); //$NON-NLS-1$
         // parsed as PredicateQuantifiedValueSelect as one-element PredicateQuantifiedRowSelect
         parserVerifySuccess(
             "select * from tableA where (colB+3) = any (select colA from tableB);" + NL +  //$NON-NLS-1$
@@ -494,7 +510,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         parserVerifySuccess(
             "select * from table0 where (col0,col1,col2) in (select col0,col1,col2 from tableA);" + NL +  //$NON-NLS-1$
             "select * from table1 where (col0,col1,col2) not in (select col0,col1,col2 from tableB);" + NL +  //$NON-NLS-1$
-            "select * from table2 where not (col0,col1,col2) in (select col0,col1,col2 from tableC);", matchInput); //$NON-NLS-1$
+            "select * from table2 where not (col0,col1,col2) in (select col0,col1,col2 from tableC);", false); //$NON-NLS-1$
     }
 
     public void testSqlDmlParser004_inPredicate_valueRowSelect_parser_conflict()  throws Exception {
@@ -754,6 +770,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
                 "LOCALTIMESTAMP", //$NON-NLS-1$
                 "CURRENT_DEFAULT_TRANSFORM_GROUP", //$NON-NLS-1$
                 "CURRENT_TRANSFORM_GROUP_FOR_TYPE schema1.type1", //$NON-NLS-1$
+                "CURRENT_TRANSFORM_GROUP_FOR_TYPE \"schema1\".\"type1\"", //$NON-NLS-1$
                 "CURRENT_PATH", //$NON-NLS-1$
                 "CURRENT_ROLE", //$NON-NLS-1$
                 "CURRENT_USER", //$NON-NLS-1$
@@ -803,59 +820,59 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         
         String[][] dataTypeGroupList = new String[][] {
                         new String[] {  "SMALLINT", //verify error on precision //$NON-NLS-1$
-                                        "INT", //$NON-NLS-1$
-                                        "INTEGER" //$NON-NLS-1$
-                                        //, BIGINT (10)
+                                        "INT",
+                                        "INTEGER",
+                                        "BIGINT"
                         },
-                        new String[] {  "DECIMAL", //$NON-NLS-1$
-                                        "DEC", //$NON-NLS-1$
-                                        "NUMERIC", //$NON-NLS-1$
-                                        "DECIMAL (1)", //$NON-NLS-1$
-                                        "DEC (10)", //$NON-NLS-1$
-                                        "NUMERIC (31)", // verify error in precision greater 31 //$NON-NLS-1$
-                                        "DECIMAL (5,0)", //$NON-NLS-1$
-                                        "DEC (10,10)", //$NON-NLS-1$
-                                        "NUMERIC (15,5)" //verify error on scale larger than precision 'DEC(5,6)' //$NON-NLS-1$
+                        new String[] {  "DECIMAL", 
+                                        "DEC", 
+                                        "NUMERIC", 
+                                        "DECIMAL (1)", 
+                                        "DEC (10)",
+                                        "NUMERIC (31)", // verify error in precision greater 31 
+                                      //  "DECIMAL (5,0)", // gets generated as DECIMAL(5), so doesn't match
+                                        "DEC (10,10)", 
+                                        "NUMERIC (15,5)" //verify error on scale larger than precision 'DEC(5,6)' 
                         },
-                        new String[] {  "FLOAT", //$NON-NLS-1$
-                                        "FLOAT (1)", //$NON-NLS-1$
-                                        "FLOAT (53)", // verify error in precision greater 53 //$NON-NLS-1$
-                                        "REAL", //$NON-NLS-1$
-                                        "DOUBLE PRECISION", //$NON-NLS-1$
-                                        "DOUBLE" //$NON-NLS-1$
+                        new String[] {  "FLOAT", 
+                                        "FLOAT (1)", 
+                                        "FLOAT (53)", // verify error in precision greater 53 
+                                        "REAL", 
+                                        "DOUBLE", 
+                                        "DOUBLE PRECISION"  
                         },
-                        new String[] {  "CHARACTER", //$NON-NLS-1$
-                                        "CHARACTER (1)", //$NON-NLS-1$
-                                        "CHARACTER (256)", //$NON-NLS-1$
-                                        "CHAR", //$NON-NLS-1$
-                                        "CHAR (256)", //$NON-NLS-1$
-                                        "CHARACTER VARYING (1)", //$NON-NLS-1$
-                                        "CHARACTER VARYING (256)", //$NON-NLS-1$
-                                        "CHAR VARYING (256)", //$NON-NLS-1$
-                                        "VARCHAR (1)", //verify error on missing '(length)' //$NON-NLS-1$
-                                        "VARCHAR (256)", //$NON-NLS-1$
-                                        "CLOB (1024)", //$NON-NLS-1$
-                                        "CLOB (1024 K)", //$NON-NLS-1$
-                                        "CLOB (2048 M)", //$NON-NLS-1$
-                                        "CLOB (2 G)" //$NON-NLS-1$
+                        new String[] {  //"CHARACTER", // gets generated as CHARACTER(1), so doesn't match
+                                        "CHARACTER (1)", 
+                                        "CHARACTER (256)", 
+                                        //"CHAR", // gets generated as CHARACTER(1), so doesn't match
+                                        "CHAR (256)", 
+                                        "CHARACTER VARYING (1)", 
+                                        "CHARACTER VARYING (256)", 
+                                        "CHAR VARYING (256)", 
+                                        "VARCHAR (1)", //verify error on missing '(length)'
+                                        "VARCHAR (256)", 
+                                        "CLOB (1024)", 
+                                        "CLOB (1024K)",
+                                    //    "CLOB (2048M)", // gets generated as CLOB (2G), so doesn't match
+                                        "CLOB (2G)" 
                         },
-                        new String[] {  "GRAPHIC", //$NON-NLS-1$
-                                        "GRAPHIC (1)", //$NON-NLS-1$
-                                        "GRAPHIC (256)", //$NON-NLS-1$
-                                        "VARGRAPHIC (256)", //$NON-NLS-1$
-                                        "DBCLOB (1024)", //$NON-NLS-1$
-                                        "DBCLOB (1024 K)", //$NON-NLS-1$
-                                        "DBCLOB (2048 M)", //$NON-NLS-1$
-                                        "DBCLOB (2 G)" //$NON-NLS-1$
+                        new String[] {  //"GRAPHIC", // gets generated as GRAPHIC(1), so doesn't match
+                                        "GRAPHIC (1)", 
+                                        "GRAPHIC (256)", 
+                                        "VARGRAPHIC (256)",
+                                        "DBCLOB (1024)",
+                                        "DBCLOB (1024K)", 
+                                     //  "DBCLOB (2048M)", // gets generated as DBCLOB (2G), so doesn't match
+                                        "DBCLOB (2G)" 
                         },
-                        new String[] {  "BLOB (1024)", //$NON-NLS-1$
-                                        "BLOB (1024 K)", //$NON-NLS-1$
-                                        "BLOB (2048 M)", //$NON-NLS-1$
-                                        "BLOB (2 G)" //$NON-NLS-1$
+                        new String[] {  "BLOB (1024)",
+                                        "BLOB (1024 )",
+                                     //   "BLOB (2048M)", // gets generated as BLOB(2G), so doesn't match
+                                        "BLOB (2G)"
                         },
-                        new String[] {  "DATE", //$NON-NLS-1$
-                                        "TIME", //$NON-NLS-1$
-                                        "TIMESTAMP" //$NON-NLS-1$
+                        new String[] {  "DATE",
+                                        "TIME",
+                                        "TIMESTAMP"
                         }
                          
         
@@ -973,10 +990,13 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
     }
 
     public void testSqlDmlParser004_castExpression_UserDefinedType()  throws Exception {
-        System.out.println("test 004_castExpression_UserDefinedType"); //$NON-NLS-1$
+        System.out.println("test 004_castExpression_UserDefinedType");
         String u = "update cl_sched set col0 = 00120"; //$NON-NLS-1$
         parserVerifySuccess(
-            u+ " where col0 = cast( col0 as user_def_distinct_type );" + NL + //$NON-NLS-1$
+            "update cl_sched set col0 = 00120 where col0 = cast( col0 as user_def_distinct_type );" + NL +
+            "select cast(col1 as myschema.mytype) from t1;" + NL +
+            "select cast(col1 as myschema.\"mytype\") from t1;" + NL +
+            "select cast(col1 as \"myschema\".\"mytype\") from t1;" + NL +
             "", matchInput); //$NON-NLS-1$
     }
 
@@ -1485,15 +1505,50 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         
         parserVerifySuccess(
             "VALUES (1),(2),(3);         -- 3 rows of 1 column" + NL + //$NON-NLS-1$
-            "VALUES 1, 2, 3; 			 -- 3 rows of 1 column" + NL + //$NON-NLS-1$
-            "VALUES (1, 2, 3); 			 -- 1 row of 3 columns" + NL + //$NON-NLS-1$
+            "VALUES 1, 2, 3;             -- 3 rows of 1 column" + NL + //$NON-NLS-1$
+            "VALUES (1, 2, 3);           -- 1 row of 3 columns" + NL + //$NON-NLS-1$
             "VALUES (1,21),(2,22),(3,23);-- 3 rows of 2 columns" + NL + //$NON-NLS-1$
+            "select * from (values (cast(? as integer), cast(? as varchar(10)))) as t1;" + NL +
+            "select * from (values (cast(:var1 as integer), cast(:var2 as varchar(10)))) as t1;" + NL +
             "select * from t5 union values (1, 2, 3);" + NL + //$NON-NLS-1$
             "select * from t6 union values 1, 2, 3;" + NL + //$NON-NLS-1$
             "select * from t7 union values (1),(2),(3);" + NL + //$NON-NLS-1$
             "select * from t8 union values (1,21),(2,22),(3,23);" + NL + //$NON-NLS-1$
-        	"", false); // input "VALUES (1),(2),(3)" will not match generated "VALUES 1, 2, 3"  //$NON-NLS-1$
-        	
+            "", false); // input "VALUES (1),(2),(3)" will not match generated "VALUES 1, 2, 3"  //$NON-NLS-1$
+            
+    }
+
+    public void testSqlDmlParser004_updatability()  throws Exception {
+        System.out.println("test 004_updatability");
+        parserVerifySuccess(
+            "select col1 from table0;" + NL +  
+            "select col1 from table1 for read only;" + NL + 
+            "select col1 from table1 for update;" + NL +
+            "select col1 from table1 for update of col1, col2;" + NL +
+            "select col1 from table1 where col1 = 1 for update of col1, col2;" + NL +
+            "select col1 from table1 order by col1 asc for update of col1, col2;" + NL +
+            "", true);
+    }
+    
+    public void testSqlDmlParser004_fetch_first() throws Exception {
+        System.out.println("test 004_fetch_first");
+        parserVerifySuccess(
+            "select col1 from table1;" + NL +
+            "select col1 from table1 fetch first row only;" + NL +
+            "select col1 from table1 fetch first 5 rows only;" + NL +
+            "select col1 from table1 where col1 in (select col2 from table2 fetch first 5 rows only);" + NL +
+            "select col1 from table1 where col1 in (select col2 from table2 fetch first 5 rows only) fetch first row only;" + NL +
+            "select * from table1 union select * from table2 fetch first 10 rows only;" + NL +
+            "(select * from table1) fetch first 10 rows only;" + NL +
+            "values (1, 2, 3, 4) fetch first 10 rows only;" + NL +
+            "", true);
+        
+        /* The following will generate SQL slightly different than the input. */
+        parserVerifySuccess(
+            "select col1 from table1 fetch first 1 row only;" + NL +
+            "select col1 from table1 fetch first 1 rows only;" + NL +
+            "select col1 from table1 fetch first 5 row only;" + NL +
+            "", false);
     }
 
     public void testSqlDmlParser004_guessing_datatypes()  throws Exception {
@@ -1577,21 +1632,21 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
     
     
 
-    public void testSqlDmlParser000_empty()  throws Exception {
-        System.out.println("test 004_empty"); //$NON-NLS-1$
-        parserVerifyError(""); //$NON-NLS-1$
-    }
+//    public void testSqlDmlParser000_empty()  throws Exception {
+//        System.out.println("test 004_empty"); //$NON-NLS-1$
+//        parserVerifyError(""); //$NON-NLS-1$
+//    }
 
-    public void testSqlDmlParser000_null()  throws Exception {
-        System.out.println("test 005_null"); //$NON-NLS-1$
-        try {
-            parserVerifyError(null);
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.err.println(e.getClass().getName()+" at "+getClass().getName()+".testSqlDmlParser005_null()"); //$NON-NLS-1$ //$NON-NLS-2$
-            e.printStackTrace();
-        }
-    }
+//    public void testSqlDmlParser000_null()  throws Exception {
+//        System.out.println("test 005_null"); //$NON-NLS-1$
+//        try {
+//            parserVerifyError(null);
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//            System.err.println(e.getClass().getName()+" at "+getClass().getName()+".testSqlDmlParser005_null()"); //$NON-NLS-1$ //$NON-NLS-2$
+//            e.printStackTrace();
+//        }
+//    }
 
     public void testSqlDmlParser000_invalidCharacters() throws Exception {
         System.out.println("test 000_invalidCharacters");
@@ -1757,6 +1812,31 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
 
     }
     
-
+    public void testGenerateAsKeywordOption() throws Exception {
+        System.out.println("test generateAsKeywordOption");
+        String sourceSQL = 
+            "with withTable (col1, col2) as (values (256, 255)) " + NL +
+            "select *                                           " + NL +
+            "  from table1 t1, (table2 n1), ((table2 n2)),      " + NL + 
+            "       tbl3 t3 join tbl4 on t3.c1 = t4.c1,         " + NL + 
+            "       withTable as wt,                            " + NL + 
+            "       (select * from tbl5, tbl6) as nq1;";
+        QuerySelectStatement query =(QuerySelectStatement) parserVerifySuccessSingleQuery(sourceSQL, true);
+        
+        setGenerateAsKeywordForTableCorrID(false);
+        query =(QuerySelectStatement) parserVerifySuccessSingleQuery(sourceSQL, true);
+ 
+        String genSQL = query.getSQL();
+        
+        String templateSQL = 
+            "WITH WITHTABLE (COL1, COL2) AS (VALUES (256, 255)) " + NL +
+            "SELECT *                                           " + NL +
+            "  FROM TABLE1 T1, (TABLE2 N1), ((TABLE2 N2)),      " + NL + 
+            "       TBL3 T3 JOIN TBL4 ON T3.C1 = T4.C1,         " + NL + 
+            "       WITHTABLE WT,                               " + NL + 
+            "       (SELECT * FROM TBL5, TBL6) NQ1;";
+        
+        compareGeneratedSQLToTemplateSQL(genSQL, templateSQL, true, false);
+    }
 
 }

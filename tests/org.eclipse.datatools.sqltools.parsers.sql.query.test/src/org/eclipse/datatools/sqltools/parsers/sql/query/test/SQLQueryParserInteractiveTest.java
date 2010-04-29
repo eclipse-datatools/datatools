@@ -16,17 +16,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParseErrorInfo;
+import org.eclipse.datatools.sqltools.parsers.sql.SQLParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
-import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParseResult;
+import org.eclipse.datatools.sqltools.parsers.sql.query.SQLControlParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManager;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
+import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.RoutineReferenceResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 
 /**
@@ -70,42 +74,43 @@ public class SQLQueryParserInteractiveTest
               List p3s = new ArrayList(); // = SQLQueryParserManager.DEFAULT_POST_PARSE_PROCESSOR_LIST;
               p3s.add( new TableReferenceResolver() );
               p3s.add( new DataTypeResolver() );
+              p3s.add(new RoutineReferenceResolver());
               
+              SQLQuerySourceFormat sourceFormat = SQLQuerySourceFormat.copyDefaultFormat();
+//              sourceFormat.setGenerateAsKeywordForTableCorrID(false);
               parserManager.configParser(
-                              SQLQuerySourceFormat.SQL_SOURCE_FORMAT_DEFAULT,
+                              sourceFormat,
                               p3s);
               
               timeStart = System.currentTimeMillis();
 
               try {
-                  SQLQueryParseResult parseResult = parserManager.parseQuery(qstmt);
+                  SQLParseResult parseResult = parserManager.parse(qstmt);
 
                   timeConsumed = System.currentTimeMillis() - timeStart;
 
-                  QueryStatement resultObject = parseResult.getQueryStatement();
-                  //System.out.println( "In string = " + p.getInString() );
-
-                  System.out.println( "\nGenerated root query model object: "); //$NON-NLS-1$
-                  System.out.println( resultObject );
-                  if (resultObject != null) {
+                  SQLStatement stmt = parseResult.getSQLStatement();
+                  System.out.println( "\nGenerated root model object: "); //$NON-NLS-1$
+                  System.out.println( stmt );
+                  if (stmt != null) {
                       System.out.println( "\nGenerated query model AST:" ); //$NON-NLS-1$
-                      parserManager.printAST(resultObject);
+                      parserManager.printAST(stmt);
                       System.out.println( "\nGenerated SQL from the query model:" ); //$NON-NLS-1$
-                      System.out.println( resultObject.getSQL() );
+                      System.out.println( stmt.getSQL() );
 
-                      if (resultObject instanceof QuerySelectStatement)
-                      {
-                          printEffectiveResultColumns(resultObject);
+                      if (stmt instanceof QuerySelectStatement) {
+                          QuerySelectStatement selectStmt = (QuerySelectStatement) stmt;
+                          printEffectiveResultColumns(selectStmt);
                       }
 
                       List parseErrorList = parseResult.getErrorList();
                       printErrorList(parseErrorList);
-
-                      System.out.println("total time consumed:   "+timeConsumed+" ms"); //$NON-NLS-1$ //$NON-NLS-2$
                   }
                   else {
                       System.out.println( "No query model objects generated!" ); //$NON-NLS-1$
                   }
+
+                  System.out.println("total time consumed:   "+timeConsumed+" ms"); //$NON-NLS-1$ //$NON-NLS-2$
               }
               catch(SQLParserException sqlEx) {
                   timeConsumed = System.currentTimeMillis() - timeStart;

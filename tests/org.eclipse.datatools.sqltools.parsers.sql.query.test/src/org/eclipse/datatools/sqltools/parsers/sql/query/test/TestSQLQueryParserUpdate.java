@@ -115,7 +115,7 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     		"update table2 set col0 = (select col0 from table1);" + NL + //$NON-NLS-1$
     		"update table2 set (col1,col2,col3) = (select col1,col2,col3 from table1);" + NL + //$NON-NLS-1$
     		"update table2 set (col1,col2,col3) = (select col1,col2,col3 from table1)," + NL + //$NON-NLS-1$
-    		"                  (col3,col4)      = (select col3,col4 from table1);", matchInput); //$NON-NLS-1$
+    		"                  (col3,col4)      = (select col3,col4 from table1);", false); //$NON-NLS-1$
     }
     
 
@@ -133,9 +133,11 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     public void testSqlDmlParser002_updateWhereExists()  throws Exception {
         System.out.println("test 002_updateWhereExists"); //$NON-NLS-1$
         parserVerifySuccess(
-            "update employee set salary = salary * 0.1 where exists (select * from department where mgrno = empno);" + NL + //$NON-NLS-1$
-            "update employee as e set e.salary = e.salary * 0.1 where exists (select * from department d where d.mgrno = e.empno);" + NL, matchInput //$NON-NLS-1$
-            );
+                "update employee set salary = salary * 0.1 where exists (select * from department where mgrno = empno);" + NL, matchInput //$NON-NLS-1$
+                );
+            parserVerifySuccess(
+                "update employee as e set e.salary = e.salary * 0.1 where exists (select * from department d where d.mgrno = e.empno);" + NL, false //$NON-NLS-1$
+                );
     }  
     
     

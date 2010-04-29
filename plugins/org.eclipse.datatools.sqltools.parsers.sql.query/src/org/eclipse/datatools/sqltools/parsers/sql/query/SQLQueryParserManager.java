@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.parsers.sql.query;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
@@ -26,6 +27,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessor;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
+import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.RoutineReferenceResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 
 /**
@@ -86,13 +88,15 @@ public class SQLQueryParserManager extends SQLParserManager {
      * <ol>
      * 	<li>{@link TableReferenceResolver}</li>
      * 	<li>{@link DataTypeResolver}</li>
+     *  <li>{@link RoutineReferenceResolver}</li>
      * </ol>
      * 
      */
     public static final List DEFAULT_POST_PARSE_PROCESSOR_LIST = 
         Arrays.asList( new PostParseProcessor[] {
                                         new TableReferenceResolver(true),
-                                        new DataTypeResolver(true)
+                                        new DataTypeResolver(true),
+                                        new RoutineReferenceResolver()
                                         });
     
     /* will be used as hidden internal postparse processors, to 
@@ -105,11 +109,9 @@ public class SQLQueryParserManager extends SQLParserManager {
     private static final List INTERNAL_DEFAULT_POST_PARSE_PROCESSOR_LIST =
         Arrays.asList( new PostParseProcessor[] {
                         new TableReferenceResolver(false),
-                        new DataTypeResolver(false)
+                        new DataTypeResolver(false),
+                        new RoutineReferenceResolver()
                         });
-
-
-    
     
     
     public SQLQueryParserManager()
@@ -212,18 +214,30 @@ public class SQLQueryParserManager extends SQLParserManager {
         }
     }
     
-    /** Create a <code>SQLQueryParseResult</code> as subclass of 
-     * <code>SQLParseResult</code> 
-     * @param stmt
-     * @param errorList
-     * @return <code>SQLQueryParseResult</code>
+    /** Creates a parse result for the given Query (DML) statement.
+     * 
+     * @param stmt the statement for which the parse result is needed
+     * @param errorList the error list to include in the parse result
+     * @return the parse result object
      */
     protected SQLParseResult createParseResult(SQLStatement stmt, List errorList)
     {
         return new SQLQueryParseResult((QueryStatement)stmt, errorList);
     }
 
-
+    /**
+     * Creates a parse result object for the given "control" (that is, CALL) statement model.  
+     * (The CALL and RETURN statements are "control" statements in ISO SQL terms.)
+     * 
+     * @param stmt the statement for which the parse result is needed
+     * @param errorList the error list to include in the parse result
+     * @return the parse result object
+     */
+    protected SQLControlParseResult createControlParseResult(SQLStatement stmt, List errorList)
+    {
+        return new SQLControlParseResult((CallStatement)stmt,errorList);
+    }
+    
     /**************************************************************************
      *                overwritten protected methods
      **************************************************************************/
@@ -256,11 +270,10 @@ public class SQLQueryParserManager extends SQLParserManager {
     {
         return Arrays.asList( new PostParseProcessor[] {
                 new TableReferenceResolver(true),
-                new DataTypeResolver(true)
+                new DataTypeResolver(true),
+                new RoutineReferenceResolver()
                 });
     }
-    
-    
     
     public void setSourceFormat(SQLQuerySourceFormat sourceFormat)
     {
@@ -324,6 +337,22 @@ public class SQLQueryParserManager extends SQLParserManager {
                     SQLParserInternalException
     {
         return (SQLQueryParseResult) super.parse(stmt);
+    }
+    
+    /**
+     * Parses the given control statement string and returns the result of the parse.  (In ISO SQL,
+     * the CALL statement is a "control" statement.)
+     * 
+     * @param stmt the statement string to parse
+     * @return the parse result containing the generated control model or error information
+     * @throws SQLParserException when the statement can't be parsed
+     * @throws SQLParserInternalException when a parser internal error occurs
+     */
+    public SQLControlParseResult parseControlStatement(String stmt) throws SQLParserException, 
+    SQLParserInternalException
+    {
+        SQLParseResult parseResult= super.parse(stmt);
+        return (SQLControlParseResult) parseResult;   
     }
     
     /**

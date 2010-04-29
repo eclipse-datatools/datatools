@@ -35,6 +35,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.Grouping;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
@@ -67,6 +68,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
+import org.eclipse.datatools.modelbase.sql.query.ProcedureReference;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
@@ -136,6 +138,7 @@ import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryArrayDataTypeImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryMultisetDataTypeImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaFactory;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -1936,6 +1939,33 @@ public PredicateQuantifiedRowSelect createPredicateQuantifiedRowSelect( List aVa
     return predQuant;
   }
 
+public ProcedureReference createProcedureReference(String aSchemaName, String aProcName) {  
+    ProcedureReference procRef = sqlQueryModelFactory.createProcedureReference();
+    Procedure proc = SQLRoutinesFactory.eINSTANCE.createProcedure();
+    Schema rdbSchema = rdbFactory.createSchema();
+    
+    char quoteChar = getDelimitedIdentifierQuote();
+    if (aSchemaName != null) {
+        String convertedSchemaName = StatementHelper.convertSQLIdentifierToCatalogFormat(aSchemaName, quoteChar);
+        rdbSchema.setName(convertedSchemaName);
+    } 
+    else {
+        /* If there is no schema name, then use the schema name that was set as the "omit schema" in the source format. 
+         * Note: the "omit schema" name is already in catalog format. */
+        if (this.sourceFormat != null) {     
+            String omitSchemaName = this.sourceFormat.getOmitSchema();
+            rdbSchema.setName(omitSchemaName);
+        }
+    }
+    
+    proc.setSchema(rdbSchema);      
+    String convertedProcName = StatementHelper.convertSQLIdentifierToCatalogFormat(aProcName, quoteChar);
+    proc.setName(convertedProcName);
+    procRef.setProcedure(proc);
+      
+    return procRef;
+}
+
 public QueryCombined createQueryCombined(QueryExpressionBody aLeftQuery,
         int combinedOperator,
         QueryExpressionBody aRightQuery) {
@@ -2501,6 +2531,22 @@ public QueryUpdateStatement createUpdateStatement( TableInDatabase aTargetTable,
   sqlUpdate.setWhereClause( aWhereCond );
 
   return sqlUpdate;
+}
+
+public CallStatement createCallStatement(ProcedureReference procRef, List argList) {
+    CallStatement callStmt = sqlQueryModelFactory.createCallStatement();
+    callStmt.setProcedureRef(procRef);
+    
+    if (argList != null) {
+        List callStmtArgList = callStmt.getArgumentList();
+        Iterator argListIter = argList.iterator();
+        while (argListIter.hasNext()) {
+            Object obj = argListIter.next();
+            callStmtArgList.add(obj);
+        }
+    }
+    
+    return callStmt;
 }
 
 //TODO scan the domain name for quotes and delimited identifiers with dots and ge

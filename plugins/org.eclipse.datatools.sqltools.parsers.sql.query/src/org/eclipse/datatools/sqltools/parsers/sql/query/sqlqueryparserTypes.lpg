@@ -16,7 +16,6 @@ $import_classes
         import org.eclipse.datatools.modelbase.sql.query.*;
         import org.eclipse.datatools.modelbase.sql.query.helper.*;
         import org.eclipse.datatools.modelbase.sql.query.util.*;
-        import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
     ./
 $End
 
@@ -122,6 +121,7 @@ $Define
 	$RT_ordering_spec 					/.OrderBySpecification./
 	$RT_ordering_spec_commalist		 	/. ./
 	$RT_parameter 						/. ./
+	$RT_proc_ref						/.ProcedureReference./
 	$RT_project 						/.QueryResultSpecification./
 	$RT_query_combined_operator 		/.Integer./
 	$RT_query_exp 						/.QueryExpressionBody./
