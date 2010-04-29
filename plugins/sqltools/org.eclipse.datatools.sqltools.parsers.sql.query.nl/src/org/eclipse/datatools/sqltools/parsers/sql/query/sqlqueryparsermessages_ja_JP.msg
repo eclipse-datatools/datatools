@@ -3,13 +3,13 @@
 # File: sqlqueryparsermessage.properties
 # Description: Properties file for classes in the SQLQueryParser Plugin
 
-# =============================================================================
+# ==============================================================================
 # Copyright (c) 2004, 2005 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials 
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
 # http://www.eclipse.org/legal/epl-v10.html
-# =============================================================================
+# ==============================================================================
 
 DataTypeResolver.DATA_TYPE_UNDETERMINED 		= "{0}" のデータ型が不明です。
 DataTypeResolver.VARIABLE_TYPE_UNDETERMINED 	= 変数 "{0}" のデータ型が不明です。
@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= 列名 "{0}" があいまいです。
 TableReferenceResolver.AMBIGUOUS_TABLE			= テーブル名 "{0}" があいまいです。
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= テーブルのエイリアス "{0}" があいまいです。
 
-
-
+RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error
@@ -212,3 +212,5 @@ SQLQueryDB2Parser.<xml_namespaces_function>		= XMLNAMESPACES 関数
 SQLQueryDB2Parser.<xml_value_datatype>			= XML 値のデータ型
 SQLQueryDB2Parser.<xml_value_function_list>		= XML 値の関数のリスト
 SQLQueryDB2Parser.<xml_value_function>			= XML 値の関数
+
+

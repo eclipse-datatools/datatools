@@ -3,13 +3,13 @@
 # File: sqlqueryparsermessage.properties
 # Description: Properties file for classes in the SQLQueryParser Plugin
 
-# =============================================================================
+# ==============================================================================
 # Copyright (c) 2004, 2005 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials 
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
 # http://www.eclipse.org/legal/epl-v10.html
-# =============================================================================
+# ==============================================================================
 
 DataTypeResolver.DATA_TYPE_UNDETERMINED 		= "{0}"의 데이터 형식을 확인할 수 없습니다.
 DataTypeResolver.VARIABLE_TYPE_UNDETERMINED 	= 변수 "{0}"의 데이터 형식을 확인할 수 없습니다.
@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= 열 이름 "{0}"이(가) 모호합니다.
 TableReferenceResolver.AMBIGUOUS_TABLE			= 테이블 이름 "{0}"이(가) 모호합니다.
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= 테이블 별칭 "{0}"이(가) 모호합니다.
 
-
-
+RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error
@@ -212,3 +212,5 @@ SQLQueryDB2Parser.<xml_namespaces_function>		= XMLNAMESPACES 함수
 SQLQueryDB2Parser.<xml_value_datatype>			= XML 값 데이터 형식
 SQLQueryDB2Parser.<xml_value_function_list>		= XML 값 함수 목록
 SQLQueryDB2Parser.<xml_value_function>			= XML 값 함수
+
+

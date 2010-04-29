@@ -3,13 +3,13 @@
 # File: sqlqueryparsermessage.properties
 # Description: Properties file for classes in the SQLQueryParser Plugin
 
-# =============================================================================
+# ==============================================================================
 # Copyright (c) 2004, 2005 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials 
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
 # http://www.eclipse.org/legal/epl-v10.html
-# =============================================================================
+# ==============================================================================
 
 DataTypeResolver.DATA_TYPE_UNDETERMINED 		= Impossible de déterminer le type de données de "{0}".
 DataTypeResolver.VARIABLE_TYPE_UNDETERMINED 	= Impossible de déterminer le type de données de variable "{0}".
@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= Le nom de la colonne "{0}" est ambig
 TableReferenceResolver.AMBIGUOUS_TABLE			= Le nom de la table "{0}" est ambigu.
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= Le pseudo de la table "{0}" est ambigu.
 
-
-
+RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error
@@ -212,3 +212,5 @@ SQLQueryDB2Parser.<xml_namespaces_function>		= fonction XMLNAMESPACES
 SQLQueryDB2Parser.<xml_value_datatype>			= type de données de valeurs XML
 SQLQueryDB2Parser.<xml_value_function_list>		= liste de fonctions de valeurs XML
 SQLQueryDB2Parser.<xml_value_function>			= fonction de valeur XML
+
+
