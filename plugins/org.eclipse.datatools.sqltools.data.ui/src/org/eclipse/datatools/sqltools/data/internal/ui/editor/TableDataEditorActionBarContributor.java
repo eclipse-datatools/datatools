@@ -16,6 +16,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
 import org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -86,9 +87,9 @@ public class TableDataEditorActionBarContributor extends EditorActionBarContribu
     }
     
     public void setActiveEditor(IEditorPart targetEditor) {
-        TableDataEditor editor = null;
-        if (targetEditor instanceof TableDataEditor)
-            editor = (TableDataEditor)targetEditor;
+        ITableDataEditor editor = null;
+        if (targetEditor instanceof ITableDataEditor)
+            editor = (ITableDataEditor)targetEditor;
         insertAction.setActiveEditor(editor);
         updateAction.setActiveEditor(editor);
         deleteAction.setActiveEditor(editor);
@@ -148,22 +149,51 @@ public class TableDataEditorActionBarContributor extends EditorActionBarContribu
 
     }
     
+
+    public IAction getRevertAction() {
+        return this.revertAction;
+    }
+
+    public IAction getRefreshAction() {
+        return this.refreshAction;
+    }
+
+    public IAction getUpdateAction() {
+        return this.updateAction;
+    }
+
+    public IAction getSetNullAction() {
+        return this.setNullAction;
+    }
+
+    public IAction getInsertAction() {
+        return this.insertAction;
+    }
+
+    public IAction getSaveAction() {
+        return this.saveAction;
+    }
+
+    public IAction getDeleteAction() {
+        return this.deleteAction;
+    }
+    
 }
 
 class EditorAction extends Action implements IPropertyListener
 {
-    protected TableDataEditor editor = null;
+    protected ITableDataEditor editor = null;
     
     public EditorAction(String text) {
         super(text);
     }
     
-    public void setActiveEditor(TableDataEditor editor) {
+    public void setActiveEditor(ITableDataEditor editor) {
         setActiveEditor1(editor);
         setEnabled(isEnabled());
     }
     
-    public void setActiveEditor1(TableDataEditor editor) {
+    public void setActiveEditor1(ITableDataEditor editor) {
         if (this.editor!=null)
             this.editor.removePropertyListener(this);
         this.editor = editor;
@@ -198,7 +228,7 @@ abstract class CursorAction extends EditorAction implements ISelectionChangedLis
         super(text);
     }
     
-    public void setActiveEditor1(TableDataEditor editor) {
+    public void setActiveEditor1(ITableDataEditor editor) {
         if (editor!=null)
             editor.getSelectionProvider().removeSelectionChangedListener(this);
         super.setActiveEditor1(editor);

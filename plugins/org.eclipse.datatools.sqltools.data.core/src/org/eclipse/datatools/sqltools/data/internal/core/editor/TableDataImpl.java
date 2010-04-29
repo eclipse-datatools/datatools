@@ -62,7 +62,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * @author groux
  */
-public class TableDataImpl implements ITableData {
+public class TableDataImpl implements ITableData2 {
 
     protected Table sqlTable;
     protected Connection con;  

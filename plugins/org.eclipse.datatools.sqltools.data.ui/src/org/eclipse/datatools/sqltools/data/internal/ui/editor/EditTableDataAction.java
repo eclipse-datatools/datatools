@@ -60,8 +60,7 @@ public class EditTableDataAction extends AbstractAction
 	
 	        try
 	        {
-	            workbenchPage.openEditor(new TableDataEditorInput(table),
-	                    "org.eclipse.datatools.sqltools.data.internal.ui.editor.tableDataEditor"); //$NON-NLS-1$
+                workbenchPage.openEditor(new TableDataEditorInput(table), getEditorId());
 	        }
 	        catch (PartInitException e)
 	        {
@@ -82,5 +81,10 @@ public class EditTableDataAction extends AbstractAction
         b &= table != null && table.getColumns().size() > 0;
         b &= DataUIPlugin.isGroupIDOK(table);
         setEnabled(b);
+    }
+    
+    protected String getEditorId() 
+    {
+        return "org.eclipse.datatools.sqltools.data.internal.ui.editor.tableDataEditor"; //$NON-NLS-1$
     }
 }

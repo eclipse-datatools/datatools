@@ -26,13 +26,13 @@ public class TableDataCellModifier implements ICellModifier {
 
     protected static final int MAX_LENGTH = Integer.MAX_VALUE;
     
-    protected TableDataEditor editor;
+    protected ITableDataEditor editor;
     protected TableViewer viewer;
     
     protected boolean canModify = false;
     protected boolean isModifying = false;
     
-    public TableDataCellModifier(TableDataEditor editor, TableViewer viewer)
+    public TableDataCellModifier(ITableDataEditor editor, TableViewer viewer)
     {
         this.editor = editor;
         this.viewer = viewer;

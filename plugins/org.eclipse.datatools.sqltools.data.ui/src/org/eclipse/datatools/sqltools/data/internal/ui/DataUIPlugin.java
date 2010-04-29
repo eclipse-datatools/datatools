@@ -25,11 +25,14 @@ import java.util.List;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
@@ -42,14 +45,11 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.ui.editor.IExternalTableDataEditor;
-import org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditor;
+import org.eclipse.datatools.sqltools.data.internal.ui.editor.ITableDataEditor;
 import org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditorActionBarContributor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.FileLocator;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -331,7 +331,7 @@ public class DataUIPlugin extends AbstractUIPlugin
      * @param columnIndex the index of the sql table column 
      * @return the best fitting IExternalTableDataEditor or null if none matches
      */
-    public IExternalTableDataEditor newExternalTableDataCellEditor(TableDataEditor editor, int columnIndex){
+    public IExternalTableDataEditor newExternalTableDataCellEditor(ITableDataEditor editor, int columnIndex){
         // input validation
         if ( (editor==null) || (editor.getSqlTable()==null) || 
              (editor.getSqlTable().getColumns() == null)){

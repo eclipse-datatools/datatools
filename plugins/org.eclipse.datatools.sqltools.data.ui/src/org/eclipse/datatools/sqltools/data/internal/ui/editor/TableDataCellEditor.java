@@ -9,9 +9,9 @@ import org.eclipse.swt.widgets.Control;
 
 public class TableDataCellEditor extends TextCellEditor {
 
-    protected TableDataEditor editor;
+    protected ITableDataEditor editor;
     
-    public TableDataCellEditor(TableDataEditor editor, Composite parent)
+    public TableDataCellEditor(ITableDataEditor editor, Composite parent)
     {
         super(parent);
         

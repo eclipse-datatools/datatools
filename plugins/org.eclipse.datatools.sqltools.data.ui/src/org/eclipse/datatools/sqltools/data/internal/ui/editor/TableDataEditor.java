@@ -59,7 +59,7 @@ import org.eclipse.ui.part.EditorPart;
  * The logic for accessing and altering the data is implemented in TableDataImpl.
  * @author groux
  */
-public class TableDataEditor extends EditorPart
+public class TableDataEditor extends EditorPart implements ITableDataEditor
 {
     /** JFace table viewer */
     protected TableViewer tableViewer;
@@ -224,7 +224,7 @@ public class TableDataEditor extends EditorPart
         return dirty;
     }
     
-    protected void setDirty(boolean value) {    	
+    public void setDirty(boolean value) {    	
         dirty = value;
         firePropertyChange(PROP_DIRTY);
     }
@@ -250,7 +250,7 @@ public class TableDataEditor extends EditorPart
 	        }
     }
     
-    protected IRowData getRow()
+    public IRowData getRow()
     {
         Object row = cursor.getRow().getData();
         if (row instanceof IRowData)
@@ -461,5 +461,9 @@ public class TableDataEditor extends EditorPart
 			item.setBackground(columnIndex, display.getSystemColor(SWT.COLOR_WHITE));			
 			dirtyBackgroundSet.remove(item);
 		}
+	}
+	
+	public TableViewer getTableViewer() {
+	    return this.tableViewer;
 	}
 }

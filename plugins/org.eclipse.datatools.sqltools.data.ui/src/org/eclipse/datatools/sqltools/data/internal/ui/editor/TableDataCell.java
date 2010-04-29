@@ -32,11 +32,11 @@ import org.eclipse.ui.IActionFilter;
  */
 public class TableDataCell implements IActionFilter {
 
-	protected TableDataEditor editor;
+	protected ITableDataEditor editor;
     protected Object row;
     protected int col;
     
-    public TableDataCell(TableDataEditor editor, Object row, int col)
+    public TableDataCell(ITableDataEditor editor, Object row, int col)
     {
     	this.editor = editor;
         this.row = row;
@@ -51,7 +51,7 @@ public class TableDataCell implements IActionFilter {
 		return row;
 	}
     
-    public TableDataEditor getEditor() {
+    public ITableDataEditor getEditor() {
 		return editor;
 	}
 

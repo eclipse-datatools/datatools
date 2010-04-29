@@ -44,7 +44,7 @@ import org.eclipse.swt.widgets.TableItem;
 public class DefaultExternalTableDataWizardPage extends WizardPage implements SelectionListener {
 
     /** the TableDataEditor associated with this wizard */
-    protected TableDataEditor editor;
+    protected ITableDataEditor editor;
     
     /** the row in which the currently edited cell is */
 	protected IRowData rowData;
@@ -96,7 +96,7 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
 		super(pageName);
 	}
 	
-	public void init(TableDataEditor editor)
+	public void init(ITableDataEditor editor)
 	{
         // input validation
         if ((editor == null) || (editor.getCursor() == null) || 
@@ -353,7 +353,7 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
                 }else{
                     rowData.updateValue(columnIndex, getEditorAreaContent());
                 }
-                editor.tableViewer.refresh(rowData);
+                editor.getTableViewer().refresh(rowData);
                 editor.getCursor().redraw();
                 editor.setDirty(true);
             }

@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Control;
 public class TableDataTableCursorExternalEditingSupport extends TableDataTableCursor{
 
     /** the editor this cursor belongs to */
-    private TableDataEditor editor;
+    private ITableDataEditor editor;
     
     protected Button button;
     
@@ -42,7 +42,7 @@ public class TableDataTableCursorExternalEditingSupport extends TableDataTableCu
 	 * @param tableViewer this editor's TableViewer
      * @param editor this cursor's TableDataEditor
 	 */
-	public TableDataTableCursorExternalEditingSupport(TableViewer tableViewer, TableDataEditor editor) {
+	public TableDataTableCursorExternalEditingSupport(TableViewer tableViewer, ITableDataEditor editor) {
 	    super(tableViewer);
         this.editor = editor;
         

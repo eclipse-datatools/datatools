@@ -39,7 +39,7 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
     protected DefaultExternalTableDataWizardPage defaultPage;
 	
     /** The reference to the TableDataEditor */
-    protected TableDataEditor editor;
+    protected ITableDataEditor editor;
 
     /**
      */
@@ -51,7 +51,7 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
      * initializes the wizard and opens the wizard dialog 
      * @see org.eclipse.datatools.sqltools.data.internal.ui.editor.IExternalTableDataEditor#externalEdit(org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditor)
      */
-    public void externalEdit(TableDataEditor editor) {
+    public void externalEdit(ITableDataEditor editor) {
         init(editor);   
         refreshValueFromDatabase();
         WizardDialog dialog = new WizardDialog(editor.getEditorSite().getShell(), this);
@@ -100,7 +100,7 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
             return false;
         }
         
-        editor.tableViewer.refresh((RowDataImpl)editor.getRow());
+        editor.getTableViewer().refresh((RowDataImpl)editor.getRow());
         editor.getCursor().redraw();
 
     	return true;
@@ -110,7 +110,7 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
      * initializes the wizard with the TableDataEditor
      * @param editor
      */
-    protected void init(TableDataEditor editor){
+    protected void init(ITableDataEditor editor){
 	    // input validation
         if (editor == null) {
             throw new IllegalArgumentException(Messages.getString("DefaultExternalTableDataEditorWizard.InitError"));  //$NON-NLS-1$

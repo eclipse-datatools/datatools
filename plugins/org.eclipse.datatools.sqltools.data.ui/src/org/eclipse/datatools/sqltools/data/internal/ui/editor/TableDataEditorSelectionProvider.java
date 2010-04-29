@@ -20,11 +20,11 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class TableDataEditorSelectionProvider implements ISelectionProvider
 {
-	protected TableDataEditor editor;
+	protected ITableDataEditor editor;
 	
 	protected ListenerList selectionChangedListeners = new ListenerList();
 	
-	public TableDataEditorSelectionProvider(TableDataEditor editor)
+	public TableDataEditorSelectionProvider(ITableDataEditor editor)
 	{
 		this.editor = editor;
 		registerSelectionListener();

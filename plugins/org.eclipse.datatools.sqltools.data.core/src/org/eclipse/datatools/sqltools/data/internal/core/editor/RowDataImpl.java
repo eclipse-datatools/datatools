@@ -28,11 +28,11 @@ import com.ibm.icu.util.StringTokenizer;
  */
 public class RowDataImpl extends AbstractRowData
 {
-    protected TableDataImpl table;
+    protected ITableData2 table;
     private String GRAPHIC = "GRAPHIC";
     private String VARGRAPHIC = "VARGRAPHIC";
     
-    public RowDataImpl(TableDataImpl table, int state, Object[] data)
+    public RowDataImpl(ITableData2 table, int state, Object[] data)
     {
         super(state, data);
         this.table = table;

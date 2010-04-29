@@ -32,5 +32,5 @@ public interface IExternalTableDataEditor {
      * @see TableDataTableCursorExternalEditingSupport#edit()
      * @param editor the TableDataEditor 
 	 */
-	public void externalEdit(TableDataEditor editor);
+	public void externalEdit(ITableDataEditor editor);
 }
