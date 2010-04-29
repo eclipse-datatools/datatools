@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValueExpressionImpl.java,v 1.7 2008/07/07 19:53:16 bpayton Exp $
+ * $Id: QueryValueExpressionImpl.java,v 1.8 2010/02/25 01:57:24 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
@@ -89,6 +90,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl#getUpdateSourceExprList <em>Update Source Expr List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl#getTableFunction <em>Table Function</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl#getValueExprRow <em>Value Expr Row</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl#getCallStatement <em>Call Statement</em>}</li>
  * </ul>
  * </p>
  *
@@ -1562,6 +1564,47 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CallStatement getCallStatement() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT) return null;
+        return (CallStatement)eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetCallStatement(CallStatement newCallStatement, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newCallStatement, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCallStatement(CallStatement newCallStatement) {
+        if (newCallStatement != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT && newCallStatement != null)) {
+            if (EcoreUtil.isAncestor(this, newCallStatement))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newCallStatement != null)
+                msgs = ((InternalEObject)newCallStatement).eInverseAdd(this, SQLQueryModelPackage.CALL_STATEMENT__ARGUMENT_LIST, CallStatement.class, msgs);
+            msgs = basicSetCallStatement(newCallStatement, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT, newCallStatement, newCallStatement));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -1699,6 +1742,10 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetValueExprRow((ValueExpressionRow)otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetCallStatement((CallStatement)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -1778,6 +1825,8 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 return basicSetTableFunction(null, msgs);
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 return basicSetValueExprRow(null, msgs);
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                return basicSetCallStatement(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -1855,6 +1904,8 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_FUNCTION__PARAMETER_LIST, TableFunction.class, msgs);
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST, ValueExpressionRow.class, msgs);
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.CALL_STATEMENT__ARGUMENT_LIST, CallStatement.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -1936,6 +1987,8 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 return getTableFunction();
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 return getValueExprRow();
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                return getCallStatement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -2051,6 +2104,9 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 return;
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 setValueExprRow((ValueExpressionRow)newValue);
+                return;
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                setCallStatement((CallStatement)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -2168,6 +2224,9 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 setValueExprRow((ValueExpressionRow)null);
                 return;
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                setCallStatement((CallStatement)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -2249,6 +2308,8 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
                 return getTableFunction() != null;
             case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW:
                 return getValueExprRow() != null;
+            case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT:
+                return getCallStatement() != null;
         }
         return super.eIsSet(featureID);
     }

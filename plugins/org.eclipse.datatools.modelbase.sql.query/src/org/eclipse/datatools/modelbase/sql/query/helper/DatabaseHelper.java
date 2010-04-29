@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -145,6 +146,49 @@ public class DatabaseHelper {
            */
           TableHelper.populateTableExpressionColumns(aTableInDB, rdbTable);
       }
+  }
+  
+  /**
+   * Finds and returns a Procedure object with the given name associated with the given Schema object.
+   * 
+   * @param schema the Schema object to use to find the Procedure object
+   * @param procName the name of the Procedure object to find
+   * @return the found Procedure object, or null if not found
+   */
+  public static Procedure findProcedure(Schema schema, String procName) {
+      Procedure returnProc = null;
+      
+      if (schema != null && procName != null) {
+          /* Get a list of Procedure objects from the given Schema object. */
+          List dbProcList = schema.getProcedures();
+          
+          /* Try to find a match for the given proc name in the list of
+           * procedures.  The names we're comparing are in catalog format, 
+           * which means they are not delimited. Try first for a direct
+           * match on the name, respecting case. */
+          Iterator dbProcListIter = dbProcList.iterator();
+          while (dbProcListIter.hasNext() && returnProc == null) {
+              Procedure dbProc = (Procedure) dbProcListIter.next();
+              String dbProcName = dbProc.getName();           
+              if (procName.equals(dbProcName)) {
+                  returnProc = dbProc;
+              }
+          }
+          
+          /* If we didn't find a match, try again without regard to case. */
+          if (returnProc == null) {
+              dbProcListIter = dbProcList.iterator();
+              while (dbProcListIter.hasNext() && returnProc == null) {
+                  Procedure dbProc = (Procedure) dbProcListIter.next();
+                  String dbProcName = dbProc.getName();           
+                  if (procName.equalsIgnoreCase(dbProcName)) {
+                      returnProc = dbProc;
+                  }
+              }
+          }
+      }
+
+      return returnProc;
   }
   
   // RATLC0391894 bgp 06July2007 -- method adapted from wtp.rdb DatabaseHelper class

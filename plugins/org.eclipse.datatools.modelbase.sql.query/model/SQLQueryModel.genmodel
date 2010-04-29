@@ -177,6 +177,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/updateSourceExprList"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/tableFunction"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/valueExprRow"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/callStatement"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryExpressionRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/insertStatement"/>
@@ -513,6 +514,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLQueryModel.ecore#//UpdatabilityExpression/updatabilityType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdatabilityExpression/updateOfColumnList"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//UpdatabilityExpression/selectStatement"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//CallStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//CallStatement/argumentList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//CallStatement/procedureRef"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//ProcedureReference">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ProcedureReference/callStatement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ProcedureReference/procedure"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

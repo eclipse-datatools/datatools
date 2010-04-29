@@ -483,20 +483,27 @@ public class SQLXMLQuerySourceWriter extends SQLQuerySourceWriter {
      * @see com#ibm.db.models.sql.xml.query.XMLAggregateFunction#getSQL()
      */
     protected void appendSpecificSQL(XMLAggregateFunction aggFunction, StringBuffer sb) {
-        sb.append(XMLAGG);
-        sb.append(SPACE);
-        sb.append(PAREN_LEFT);
+        appendKeyword(sb, XMLAGG);
+        appendSymbol(sb, PAREN_LEFT);
         appendSQLForSQLObjectList(aggFunction.getParameterList(),sb);
+        
+        /* Add the optional ORDER BY list. */
         List sortSpecList = aggFunction.getSortSpecList();
-        if(sortSpecList != null && !sortSpecList.isEmpty()){
-            sb.append(ORDER_BY);
-            sb.append(SPACE);
+        if (sortSpecList != null && !sortSpecList.isEmpty()){
+            appendSpace(sb);
+            appendKeyword(sb, ORDER_BY);
+            appendSpace(sb);
             appendSQLForSQLObjectList(aggFunction.getSortSpecList(),sb);
         }
-        sb.append(SPACE);
+        
+        /* The RETURNING clause is also optional, so only add it when the Returning Type is something 
+         * other than NONE. */
         XMLReturningType type = aggFunction.getReturningOption();
-        appendSpecificSQL(type,sb);
-        sb.append(PAREN_RIGHT);
+        if (type != XMLReturningType.NONE_LITERAL) {
+            appendSpace(sb);
+            appendSpecificSQL(type,sb);
+        }
+        appendSymbol(sb, PAREN_RIGHT);
     }
     
     /**

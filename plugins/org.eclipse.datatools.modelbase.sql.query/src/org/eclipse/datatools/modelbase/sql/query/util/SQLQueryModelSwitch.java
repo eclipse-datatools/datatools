@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelSwitch.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
+ * $Id: SQLQueryModelSwitch.java,v 1.5 2010/02/25 01:57:25 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
@@ -21,6 +21,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
+import org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
@@ -1182,6 +1183,28 @@ public class SQLQueryModelSwitch {
                 if (result == null) result = caseSQLObject(updatabilityExpression);
                 if (result == null) result = caseENamedElement(updatabilityExpression);
                 if (result == null) result = caseEModelElement(updatabilityExpression);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SQLQueryModelPackage.CALL_STATEMENT: {
+                CallStatement callStatement = (CallStatement)theEObject;
+                Object result = caseCallStatement(callStatement);
+                if (result == null) result = caseSQLQueryObject(callStatement);
+                if (result == null) result = caseSQLControlStatement(callStatement);
+                if (result == null) result = caseSQLObject(callStatement);
+                if (result == null) result = caseSQLStatement(callStatement);
+                if (result == null) result = caseENamedElement(callStatement);
+                if (result == null) result = caseEModelElement(callStatement);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SQLQueryModelPackage.PROCEDURE_REFERENCE: {
+                ProcedureReference procedureReference = (ProcedureReference)theEObject;
+                Object result = caseProcedureReference(procedureReference);
+                if (result == null) result = caseSQLQueryObject(procedureReference);
+                if (result == null) result = caseSQLObject(procedureReference);
+                if (result == null) result = caseENamedElement(procedureReference);
+                if (result == null) result = caseEModelElement(procedureReference);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2570,6 +2593,36 @@ public class SQLQueryModelSwitch {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Call Statement</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Call Statement</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseCallStatement(CallStatement object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Procedure Reference</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Procedure Reference</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseProcedureReference(ProcedureReference object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -2705,6 +2758,21 @@ public class SQLQueryModelSwitch {
     }
 
 	/**
+     * Returns the result of interpreting the object as an instance of '<em>SQL Control Statement</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>SQL Control Statement</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseSQLControlStatement(SQLControlStatement object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;

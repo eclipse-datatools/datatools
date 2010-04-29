@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactoryImpl.java,v 1.4 2008/07/07 19:53:16 bpayton Exp $
+ * $Id: SQLQueryModelFactoryImpl.java,v 1.5 2010/02/25 01:57:24 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -134,6 +134,8 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
             case SQLQueryModelPackage.MERGE_OPERATION_SPECIFICATION: return createMergeOperationSpecification();
             case SQLQueryModelPackage.UPDATE_OF_COLUMN: return createUpdateOfColumn();
             case SQLQueryModelPackage.UPDATABILITY_EXPRESSION: return createUpdatabilityExpression();
+            case SQLQueryModelPackage.CALL_STATEMENT: return createCallStatement();
+            case SQLQueryModelPackage.PROCEDURE_REFERENCE: return createProcedureReference();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -939,6 +941,26 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
     public UpdatabilityExpression createUpdatabilityExpression() {
         UpdatabilityExpressionImpl updatabilityExpression = new UpdatabilityExpressionImpl();
         return updatabilityExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CallStatement createCallStatement() {
+        CallStatementImpl callStatement = new CallStatementImpl();
+        return callStatement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProcedureReference createProcedureReference() {
+        ProcedureReferenceImpl procedureReference = new ProcedureReferenceImpl();
+        return procedureReference;
     }
 
     /**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackage.java,v 1.5 2008/07/07 19:53:17 bpayton Exp $
+ * $Id: SQLQueryModelPackage.java,v 1.6 2010/02/25 01:57:23 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -2228,13 +2228,22 @@ public interface SQLQueryModelPackage extends EPackage {
     int QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW = SQL_QUERY_OBJECT_FEATURE_COUNT + 34;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUE_EXPRESSION__CALL_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 35;
+
+    /**
      * The number of structural features of the '<em>Query Value Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_VALUE_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 35;
+	int QUERY_VALUE_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 36;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl <em>Query Expression Root</em>}' class.
@@ -8133,6 +8142,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT = QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The number of structural features of the '<em>Value Expression Atomic</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8537,6 +8555,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_SIMPLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SIMPLE__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -8952,6 +8979,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_COLUMN__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COLUMN__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Assignment Expr Target</b></em>' reference list.
@@ -9414,6 +9450,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_VARIABLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_VARIABLE__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Query Select</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9829,6 +9874,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_SCALAR_SELECT__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SCALAR_SELECT__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Query Expr</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10242,6 +10296,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_LABELED_DURATION__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Labeled Duration Type</b></em>' attribute.
@@ -10668,6 +10731,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11081,6 +11153,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_CAST__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CAST__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
@@ -11498,6 +11579,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_NULL_VALUE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NULL_VALUE__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
+
+    /**
      * The number of structural features of the '<em>Value Expression Null Value</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11904,6 +11994,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_DEFAULT_VALUE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_DEFAULT_VALUE__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
+
+    /**
      * The number of structural features of the '<em>Value Expression Default Value</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12308,6 +12407,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_FUNCTION__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_FUNCTION__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -12759,6 +12867,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_COMBINED__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COMBINED__CALL_STATEMENT = QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Combined Operator</b></em>' attribute.
@@ -14320,6 +14437,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_CASE_SEARCH__VALUE_EXPR_ROW = VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SEARCH__CALL_STATEMENT = VALUE_EXPRESSION_CASE__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14742,6 +14868,15 @@ public interface SQLQueryModelPackage extends EPackage {
      * @ordered
      */
     int VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SIMPLE__CALL_STATEMENT = VALUE_EXPRESSION_CASE__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
@@ -16527,6 +16662,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_NESTED__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NESTED__CALL_STATEMENT = QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Nested Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18120,6 +18264,15 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_ROW__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__CALL_STATEMENT = QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Expr List</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -19019,6 +19172,224 @@ public interface SQLQueryModelPackage extends EPackage {
     int UPDATABILITY_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.CallStatementImpl <em>Call Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.CallStatementImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getCallStatement()
+     * @generated
+     */
+    int CALL_STATEMENT = 92;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Argument List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__ARGUMENT_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Procedure Ref</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT__PROCEDURE_REF = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Call Statement</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALL_STATEMENT_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ProcedureReferenceImpl <em>Procedure Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.ProcedureReferenceImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getProcedureReference()
+     * @generated
+     */
+    int PROCEDURE_REFERENCE = 93;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__EANNOTATIONS = SQL_QUERY_OBJECT__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__NAME = SQL_QUERY_OBJECT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__DEPENDENCIES = SQL_QUERY_OBJECT__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__DESCRIPTION = SQL_QUERY_OBJECT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__EXTENSIONS = SQL_QUERY_OBJECT__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__CALL_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Procedure</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE__PROCEDURE = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Procedure Reference</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROCEDURE_REFERENCE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19026,7 +19397,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupType()
      * @generated
      */
-	int SUPER_GROUP_TYPE = 92;
+	int SUPER_GROUP_TYPE = 94;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType <em>Predicate Quantified Type</em>}' enum.
@@ -19036,7 +19407,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedType()
      * @generated
      */
-	int PREDICATE_QUANTIFIED_TYPE = 93;
+	int PREDICATE_QUANTIFIED_TYPE = 95;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator <em>Predicate Comparison Operator</em>}' enum.
@@ -19046,7 +19417,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateComparisonOperator()
      * @generated
      */
-	int PREDICATE_COMPARISON_OPERATOR = 94;
+	int PREDICATE_COMPARISON_OPERATOR = 96;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator <em>Search Condition Combined Operator</em>}' enum.
@@ -19056,7 +19427,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombinedOperator()
      * @generated
      */
-	int SEARCH_CONDITION_COMBINED_OPERATOR = 95;
+	int SEARCH_CONDITION_COMBINED_OPERATOR = 97;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator <em>Table Joined Operator</em>}' enum.
@@ -19066,7 +19437,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoinedOperator()
      * @generated
      */
-	int TABLE_JOINED_OPERATOR = 96;
+	int TABLE_JOINED_OPERATOR = 98;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator <em>Query Combined Operator</em>}' enum.
@@ -19076,7 +19447,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombinedOperator()
      * @generated
      */
-	int QUERY_COMBINED_OPERATOR = 97;
+	int QUERY_COMBINED_OPERATOR = 99;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator <em>Value Expression Unary Operator</em>}' enum.
@@ -19086,7 +19457,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionUnaryOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_UNARY_OPERATOR = 98;
+	int VALUE_EXPRESSION_UNARY_OPERATOR = 100;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator <em>Value Expression Combined Operator</em>}' enum.
@@ -19096,7 +19467,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombinedOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_COMBINED_OPERATOR = 99;
+	int VALUE_EXPRESSION_COMBINED_OPERATOR = 101;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType <em>Value Expression Labeled Duration Type</em>}' enum.
@@ -19106,7 +19477,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDurationType()
      * @generated
      */
-	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 100;
+	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 102;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType <em>Null Ordering Type</em>}' enum.
@@ -19116,7 +19487,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getNullOrderingType()
      * @generated
      */
-	int NULL_ORDERING_TYPE = 101;
+	int NULL_ORDERING_TYPE = 103;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType <em>Ordering Spec Type</em>}' enum.
@@ -19126,7 +19497,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderingSpecType()
      * @generated
      */
-	int ORDERING_SPEC_TYPE = 102;
+	int ORDERING_SPEC_TYPE = 104;
 
 
 	/**
@@ -19137,7 +19508,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityType()
      * @generated
      */
-    int UPDATABILITY_TYPE = 103;
+    int UPDATABILITY_TYPE = 105;
 
 
     /**
@@ -20064,6 +20435,17 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      */
     EReference getQueryValueExpression_ValueExprRow();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getCallStatement <em>Call Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Call Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getCallStatement()
+     * @see #getQueryValueExpression()
+     * @generated
+     */
+    EReference getQueryValueExpression_CallStatement();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot <em>Query Expression Root</em>}'.
@@ -22789,6 +23171,70 @@ public interface SQLQueryModelPackage extends EPackage {
     EReference getUpdatabilityExpression_SelectStatement();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.CallStatement <em>Call Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Call Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement
+     * @generated
+     */
+    EClass getCallStatement();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.CallStatement#getArgumentList <em>Argument List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Argument List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement#getArgumentList()
+     * @see #getCallStatement()
+     * @generated
+     */
+    EReference getCallStatement_ArgumentList();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.CallStatement#getProcedureRef <em>Procedure Ref</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Procedure Ref</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement#getProcedureRef()
+     * @see #getCallStatement()
+     * @generated
+     */
+    EReference getCallStatement_ProcedureRef();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference <em>Procedure Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Procedure Reference</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ProcedureReference
+     * @generated
+     */
+    EClass getProcedureReference();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference#getCallStatement <em>Call Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Call Statement</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ProcedureReference#getCallStatement()
+     * @see #getProcedureReference()
+     * @generated
+     */
+    EReference getProcedureReference_CallStatement();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference#getProcedure <em>Procedure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Procedure</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ProcedureReference#getProcedure()
+     * @see #getProcedureReference()
+     * @generated
+     */
+    EReference getProcedureReference_Procedure();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23629,6 +24075,14 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
         EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW = eINSTANCE.getQueryValueExpression_ValueExprRow();
+
+        /**
+         * The meta object literal for the '<em><b>Call Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_VALUE_EXPRESSION__CALL_STATEMENT = eINSTANCE.getQueryValueExpression_CallStatement();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl <em>Query Expression Root</em>}' class.
@@ -25833,6 +26287,58 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
         EReference UPDATABILITY_EXPRESSION__SELECT_STATEMENT = eINSTANCE.getUpdatabilityExpression_SelectStatement();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.CallStatementImpl <em>Call Statement</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.CallStatementImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getCallStatement()
+         * @generated
+         */
+        EClass CALL_STATEMENT = eINSTANCE.getCallStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Argument List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CALL_STATEMENT__ARGUMENT_LIST = eINSTANCE.getCallStatement_ArgumentList();
+
+        /**
+         * The meta object literal for the '<em><b>Procedure Ref</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CALL_STATEMENT__PROCEDURE_REF = eINSTANCE.getCallStatement_ProcedureRef();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ProcedureReferenceImpl <em>Procedure Reference</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.ProcedureReferenceImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getProcedureReference()
+         * @generated
+         */
+        EClass PROCEDURE_REFERENCE = eINSTANCE.getProcedureReference();
+
+        /**
+         * The meta object literal for the '<em><b>Call Statement</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROCEDURE_REFERENCE__CALL_STATEMENT = eINSTANCE.getProcedureReference_CallStatement();
+
+        /**
+         * The meta object literal for the '<em><b>Procedure</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROCEDURE_REFERENCE__PROCEDURE = eINSTANCE.getProcedureReference_Procedure();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.

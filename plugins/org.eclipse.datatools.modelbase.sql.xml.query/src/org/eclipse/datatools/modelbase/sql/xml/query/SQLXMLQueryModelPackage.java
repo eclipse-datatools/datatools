@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryModelPackage.java,v 1.4 2008/07/07 19:55:15 bpayton Exp $
+ * $Id: SQLXMLQueryModelPackage.java,v 1.5 2010/02/25 02:13:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -464,6 +464,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION__VALUE_EXPR_ROW = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION__CALL_STATEMENT = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -913,6 +922,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_CONCAT__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_CONCAT__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -1729,6 +1747,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_ATTRIBUTE_DECLARATION_ITEM__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_ATTRIBUTE_DECLARATION_ITEM__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2151,6 +2178,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_ELEMENT__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_ELEMENT__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -2649,6 +2685,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3071,6 +3116,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_FOREST__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_FOREST__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -3560,6 +3614,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_COMMENT__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_COMMENT__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4029,6 +4092,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_DOCUMENT__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_DOCUMENT__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4496,6 +4568,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_PARSE__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PARSE__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -4976,6 +5057,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_PI__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PI__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5452,6 +5542,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_QUERY__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -5941,6 +6040,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_TEXT__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_TEXT__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6408,6 +6516,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_VALIDATE__VALUE_EXPR_ROW = XML_VALUE_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE__CALL_STATEMENT = XML_VALUE_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -6886,6 +7003,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_EXPRESSION_CAST__VALUE_EXPR_ROW = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_EXPRESSION_CAST__CALL_STATEMENT = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
@@ -8669,6 +8795,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_QUERY_ARGUMENT_ITEM__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Passing Mechanism</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9100,6 +9235,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_SERIALIZE_FUNCTION__VALUE_EXPR_ROW = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SERIALIZE_FUNCTION__CALL_STATEMENT = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -9598,6 +9742,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_SERIALIZE_FUNCTION_TARGET__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_SERIALIZE_FUNCTION_TARGET__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Serialize Function</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10020,6 +10173,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_AGGREGATE_FUNCTION__VALUE_EXPR_ROW = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_AGGREGATE_FUNCTION__CALL_STATEMENT = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
@@ -10491,6 +10653,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Function Concat</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10915,6 +11086,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_COMMENT_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Function Comment</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11337,6 +11517,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Function Document</b></em>' container reference.
@@ -11872,6 +12061,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Function Forest</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12296,6 +12494,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PARSE_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Function Parse</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12718,6 +12925,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_PI_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_PI_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Function PI</b></em>' container reference.
@@ -13379,6 +13595,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
     int XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
 
     /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_TEXT_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
+
+    /**
      * The feature id for the '<em><b>Value Function Text</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13801,6 +14026,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_VALUE_FUNCTION_VALIDATE_CONTENT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
@@ -15669,6 +15903,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
      * @ordered
      */
     int XML_TABLE_COLUMN_DEFINITION_DEFAULT__VALUE_EXPR_ROW = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Call Statement</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int XML_TABLE_COLUMN_DEFINITION_DEFAULT__CALL_STATEMENT = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__CALL_STATEMENT;
 
     /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.

@@ -176,6 +176,8 @@
         eType="#//TableFunction" transient="true" eOpposite="#//TableFunction/parameterList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprRow" lowerBound="1"
         eType="#//ValueExpressionRow" transient="true" eOpposite="#//ValueExpressionRow/valueExprList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callStatement" lowerBound="1"
+        eType="#//CallStatement" transient="true" eOpposite="#//CallStatement/argumentList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionRoot" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/QueryExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
@@ -783,5 +785,17 @@
         eType="#//UpdateOfColumn" containment="true" eOpposite="#//UpdateOfColumn/updatabilityExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selectStatement" eType="#//QuerySelectStatement"
         transient="true" eOpposite="#//QuerySelectStatement/updatabilityExpr"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CallStatement" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//statements/SQLControlStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="argumentList" upperBound="-1"
+        eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/callStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedureRef" lowerBound="1"
+        eType="#//ProcedureReference" containment="true" eOpposite="#//ProcedureReference/callStatement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcedureReference" eSuperTypes="#//SQLQueryObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="callStatement" lowerBound="1"
+        eType="#//CallStatement" transient="true" eOpposite="#//CallStatement/procedureRef"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure"/>
   </eClassifiers>
 </ecore:EPackage>

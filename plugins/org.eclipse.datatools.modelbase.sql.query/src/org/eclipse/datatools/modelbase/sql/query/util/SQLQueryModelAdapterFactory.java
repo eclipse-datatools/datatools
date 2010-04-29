@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelAdapterFactory.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
+ * $Id: SQLQueryModelAdapterFactory.java,v 1.5 2010/02/25 01:57:25 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
@@ -13,6 +13,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
+import org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
@@ -358,6 +359,12 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
             public Object caseUpdatabilityExpression(UpdatabilityExpression object) {
                 return createUpdatabilityExpressionAdapter();
             }
+            public Object caseCallStatement(CallStatement object) {
+                return createCallStatementAdapter();
+            }
+            public Object caseProcedureReference(ProcedureReference object) {
+                return createProcedureReferenceAdapter();
+            }
             public Object caseEModelElement(EModelElement object) {
                 return createEModelElementAdapter();
             }
@@ -384,6 +391,9 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
             }
             public Object caseQueryExpression(QueryExpression object) {
                 return createQueryExpressionAdapter();
+            }
+            public Object caseSQLControlStatement(SQLControlStatement object) {
+                return createSQLControlStatementAdapter();
             }
             public Object defaultCase(EObject object) {
                 return createEObjectAdapter();
@@ -1692,6 +1702,34 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.CallStatement <em>Call Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement
+     * @generated
+     */
+    public Adapter createCallStatementAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference <em>Procedure Reference</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.ProcedureReference
+     * @generated
+     */
+    public Adapter createProcedureReferenceAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1818,6 +1856,20 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
     }
 
 	/**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement <em>SQL Control Statement</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement
+     * @generated
+     */
+    public Adapter createSQLControlStatementAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
      * This default implementation returns null.

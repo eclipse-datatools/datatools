@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2009 IBM Corporation and others.
+ * Copyright (c) 2004, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -37,8 +37,8 @@ import org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
+import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSets;
@@ -69,6 +69,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
+import org.eclipse.datatools.modelbase.sql.query.ProcedureReference;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
@@ -135,6 +136,7 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -525,6 +527,9 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /** String constant, value: "BETWEEN" */
     protected final static String BETWEEN               = "BETWEEN";
 
+    /** String constant, value: "CALL" */
+    protected final static String CALL                 = "CALL";
+    
     /** String constant, value: "CASE" */
     protected final static String CASE                  = "CASE";
 
@@ -2241,6 +2246,23 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement#getSQL()
+     */
+    protected void appendSpecificSQL(CallStatement callStmt, StringBuffer sb)
+    {
+        appendKeyword(sb,CALL);
+        appendSpace(sb, 1);
+        ProcedureReference ref = callStmt.getProcedureRef();
+        appendSpecificSQL(ref,sb);
+       
+        appendSpace(sb,1);
+        appendSymbol(sb,PAREN_LEFT);
+        appendSQLForSQLObjectList(callStmt.getArgumentList(),sb);
+        appendSymbol(sb,PAREN_RIGHT);
+        
+    }
+    
+    /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getSQL()
      */
     protected void appendSpecificSQL(CharacterStringDataType dataType, StringBuffer sb) {
@@ -3015,6 +3037,34 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         }
     }
 
+    /**
+     * @see org.eclipse.datatools.modelbase.sql.query.procedurereference#getSQL()
+     */
+    protected void appendSpecificSQL(ProcedureReference procRef, StringBuffer sb)
+    {
+        Procedure proc = procRef.getProcedure();
+        if (proc != null) {            
+            String schemaName = null;
+            Schema schema = proc.getSchema();
+            if (schema != null) {
+                schemaName = schema.getName();
+            }
+            
+            char quoteChar = getDelimitedIdentifierQuote();
+            if (schemaName != null) {
+                String convertedSchemaName = StatementHelper.convertCatalogIdentifierToSQLFormat(schemaName, quoteChar);
+                appendString( sb,convertedSchemaName);
+                appendSymbol(sb,DOT);
+            }
+        
+            String procName = proc.getName();
+            if (procName != null) {
+                String convertedProcName = StatementHelper.convertCatalogIdentifierToSQLFormat(procName, quoteChar);
+                appendString(sb, convertedProcName);
+            }
+        }
+    }
+    
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombined#getSQL()
      */

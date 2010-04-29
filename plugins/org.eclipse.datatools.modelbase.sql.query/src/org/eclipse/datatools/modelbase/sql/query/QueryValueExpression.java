@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValueExpression.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
+ * $Id: QueryValueExpression.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -54,6 +54,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList <em>Update Source Expr List</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getTableFunction <em>Table Function</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprRow <em>Value Expr Row</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getCallStatement <em>Call Statement</em>}</li>
  * </ul>
  * </p>
  *
@@ -1040,5 +1041,33 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * @generated
      */
     void setValueExprRow(ValueExpressionRow value);
+
+    /**
+     * Returns the value of the '<em><b>Call Statement</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.CallStatement#getArgumentList <em>Argument List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Call Statement</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Call Statement</em>' container reference.
+     * @see #setCallStatement(CallStatement)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_CallStatement()
+     * @see org.eclipse.datatools.modelbase.sql.query.CallStatement#getArgumentList
+     * @model opposite="argumentList" required="true"
+     * @generated
+     */
+    CallStatement getCallStatement();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getCallStatement <em>Call Statement</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Call Statement</em>' container reference.
+     * @see #getCallStatement()
+     * @generated
+     */
+    void setCallStatement(CallStatement value);
 
 } // SQLValueExpression

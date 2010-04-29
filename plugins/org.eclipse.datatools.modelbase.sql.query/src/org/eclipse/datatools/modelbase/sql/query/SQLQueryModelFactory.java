@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactory.java,v 1.4 2008/07/07 19:53:17 bpayton Exp $
+ * $Id: SQLQueryModelFactory.java,v 1.5 2010/02/25 01:57:23 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -681,6 +681,24 @@ public interface SQLQueryModelFactory extends EFactory {
      * @generated
      */
     UpdatabilityExpression createUpdatabilityExpression();
+
+    /**
+     * Returns a new object of class '<em>Call Statement</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Call Statement</em>'.
+     * @generated
+     */
+    CallStatement createCallStatement();
+
+    /**
+     * Returns a new object of class '<em>Procedure Reference</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Procedure Reference</em>'.
+     * @generated
+     */
+    ProcedureReference createProcedureReference();
 
     /**
      * Returns the package supported by this factory.
