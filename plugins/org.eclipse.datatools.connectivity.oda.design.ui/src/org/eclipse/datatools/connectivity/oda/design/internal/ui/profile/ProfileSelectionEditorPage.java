@@ -239,6 +239,13 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         return selectedProfile.getProfileRef();        
     }
     
+    public boolean requiresExternalProfileLink()
+    {
+        if( m_pageHelper == null )
+            return false;
+        return m_pageHelper.requiresExternalProfileLink();
+    }
+    
     /**
      * Assigns the delegated task to perform collectDataSourceDesign and update the data source design.
      * @param task	the delegated task; may be null to unset the delegation

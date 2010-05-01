@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Data
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
+import org.eclipse.datatools.connectivity.oda.profile.Constants;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
@@ -446,13 +447,24 @@ class ProfileSelectionPageHelper
      */
     private void setExternalLinkOption( String odaDataSourceId )
     {         
-        // by default, if no category is specified, it is optional to maintain an external link 
-        OdaProfileCategoryInfo categoryInfo = getOdaProfileCategoryInfo( odaDataSourceId );
-        boolean isExternalLinkOptional = ( categoryInfo != null ) ?
-                                            categoryInfo.isExternalLinkOptional() : true;
+        boolean isExternalLinkOptional = isExternalLinkOptional( odaDataSourceId );
                                             
         // set the external link control accordingly
         setExternalLinkOptionControl( isExternalLinkOptional );
+    }
+    
+    private boolean isExternalLinkOptional( String odaDataSourceId )
+    {
+        // by default, if no category is specified, it is optional to maintain an external link 
+        OdaProfileCategoryInfo categoryInfo = getOdaProfileCategoryInfo( odaDataSourceId );
+        return ( categoryInfo != null ) ? categoryInfo.isExternalLinkOptional() : true;
+    }
+    
+    boolean requiresExternalProfileLink()
+    {
+        if( ! hasSelectedProfile() )
+            return false;   // no selected profile to link
+        return ! isExternalLinkOptional( m_odaDataSourceID );
     }
     
     private boolean hasSelectedProfile()
@@ -1081,12 +1093,13 @@ class ProfileSelectionPageHelper
 
         boolean isExternalLinkOptional()
         {
-            /* a profile category without an ODA parent category requires maintaining an external link 
-             * to a connection profile, cuz importing a profile's properties to a 
-             * data source design private properties (which are not encyrpted) is not supported 
-             * due to security concern
+            /* a profile category without an ODA parent category and non-Db category requires 
+             * maintaining an external link to a connection profile, 
+             * cuz importing a profile's properties to a data source design private properties 
+             * (which are not encyrpted) is not supported due to security concern
              */
-            return hasOdaParentCategory();
+            return hasOdaParentCategory() || 
+                getEffectiveCategoryId().equals( Constants.DATABASE_CATEGORY_ID );
         }
         
         /* (non-Javadoc)

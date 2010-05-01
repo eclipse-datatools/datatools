@@ -314,8 +314,8 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
             Properties propertyValuePairs ) 
         throws OdaException
     {
-        // if editing external profile reference, do not import profile properties into the design
-        if( isEditingExternalProfile() )
+        // if external profile reference is required, do not import profile properties into the design
+        if( getUpdateDesignTask().requiresExternalProfile() )
             DbProfileUtil.updateDataSourceDesignExternalProfileProvider( design, propertyValuePairs );
         else
             super.setDataSourceDesignProperties( design, propertyValuePairs );
@@ -338,51 +338,67 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
     {
         if( m_profileUpdateDesignTask == null )
         {
-            m_profileUpdateDesignTask = 
-                new ProfileSelectionEditorPage.IUpdateDesignTask()
-                {
-                    /* (non-Javadoc)
-                     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign, org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage, org.eclipse.datatools.connectivity.IConnectionProfile)
-                     */
-                    public DataSourceDesign collectDataSourceDesign( DataSourceDesign design, 
-                                                final ProfileSelectionEditorPage delegator,
-                                                final IConnectionProfile selectedConnProfile )
-                        throws OdaException
-                    {
-                        if( selectedConnProfile == null )
-                            return design;  // no info to collect for update
-                        
-                        Properties customProps = collectCustomProperties( selectedConnProfile );
-                        
-                        setDataSourceDesignProperties( design, customProps );
-  
-                        return design;
-                    }
-                    
-                    private Properties collectCustomProperties( 
-                                            IConnectionProfile selectedConnProfile )
-                    {
-                        // first get a copy of the selected profile's properties
-                        Properties customProps = selectedConnProfile.getBaseProperties();
-
-                        // add the db profile provider id to the base properties 
-                        // collected from the selected connection profile instance
-                        String dbProfileProviderId = getDbProfileProviderId( selectedConnProfile );
-                        DbProfileUtil.setDbProviderIdInProperties( customProps, dbProfileProviderId );
-
-                        return customProps;
-                    }
-                    
-                    private String getDbProfileProviderId( IConnectionProfile connProfile )
-                    {
-                        if( connProfile instanceof OdaConnectionProfile )
-                            return ((OdaConnectionProfile) connProfile ).getDirectProviderId();
-                        return null;
-                    }
-
-                };
+            m_profileUpdateDesignTask = new UpdateDesignTask();
         }
         return m_profileUpdateDesignTask;
+    }
+    
+    private UpdateDesignTask getUpdateDesignTask()
+    {
+        return (UpdateDesignTask) getProfileSelectionUpdateDesignTask();
+    }
+    
+    class UpdateDesignTask implements ProfileSelectionEditorPage.IUpdateDesignTask
+    {
+        private ProfileSelectionEditorPage m_delegator;
+        
+        /* (non-Javadoc)
+         * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign, org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage, org.eclipse.datatools.connectivity.IConnectionProfile)
+         */
+        public DataSourceDesign collectDataSourceDesign( DataSourceDesign design, 
+                                    final ProfileSelectionEditorPage delegator,
+                                    final IConnectionProfile selectedConnProfile )
+            throws OdaException
+        {
+            if( selectedConnProfile == null )
+                return design;  // no info to collect for update
+
+            m_delegator = delegator;
+            Properties customProps = collectCustomProperties( selectedConnProfile );
+            
+            setDataSourceDesignProperties( design, customProps );
+            m_delegator = null;     // done with delegated collection of properties; reset
+
+            return design;
+        }
+        
+        private Properties collectCustomProperties( 
+                                IConnectionProfile selectedConnProfile )
+        {
+            // first get a copy of the selected profile's properties
+            Properties customProps = selectedConnProfile.getBaseProperties();
+
+            // add the db profile provider id to the base properties 
+            // collected from the selected connection profile instance
+            String dbProfileProviderId = getDbProfileProviderId( selectedConnProfile );
+            DbProfileUtil.setDbProviderIdInProperties( customProps, dbProfileProviderId );
+
+            return customProps;
+        }
+        
+        private String getDbProfileProviderId( IConnectionProfile connProfile )
+        {
+            if( connProfile instanceof OdaConnectionProfile )
+                return ((OdaConnectionProfile) connProfile ).getDirectProviderId();
+            return null;
+        }        
+        
+        private boolean requiresExternalProfile()
+        {
+            if( m_delegator == null )
+                return false;    // not being delegated to collect selected profile's data source properties
+            return m_delegator.requiresExternalProfileLink();
+        }
     }
     
 }

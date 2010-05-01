@@ -18,7 +18,6 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
@@ -221,27 +220,6 @@ public class NewDbDataSourceWizardBase extends NewDataSourceWizard
             dbProfileProps = new Properties();
         DbProfileUtil.setDbProviderIdInProperties( dbProfileProps, dbProviderId );
         return dbProfileProps;
-    }
-    
-    /*
-     * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.NewDataSourceWizardBase#setDataSourceDesignProperties(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign, java.util.Properties)
-     * 
-     * Overrides base class behavior to assign relevant custom profile properties
-     * as private properties in the specified data source design.  
-     * This is intended for use by an ODA extension that serves as a wrapper of 
-     * other connection profiles, and has no pre-defined property definition 
-     * in its manifest.
-     */
-    protected void setDataSourceDesignProperties( DataSourceDesign newDesign,
-            Properties customPropertyValues ) 
-        throws OdaException
-    {
-        // if using external profile reference, do not import profile properties in the design
-        if( isCreatingFromProfile() )
-            DbProfileUtil.updateDataSourceDesignExternalProfileProvider( newDesign, customPropertyValues );
-        else
-            super.setDataSourceDesignProperties( newDesign, customPropertyValues );
     }
     
 }
