@@ -22,5 +22,5 @@ plugin@org.eclipse.datatools.sqltools.sql=v200906022302,:ext:xgu@dev.eclipse.org
 plugin@org.eclipse.datatools.sqltools.sql.ui=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.sql.ui
 plugin@org.eclipse.datatools.sqltools.tabledataeditor=v201003051930,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.tabledataeditor
 plugin@org.eclipse.datatools.sqltools.schemaobjecteditor=v200906022302,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.schemaobjecteditor
-plugin@org.eclipse.datatools.sqltools.schemaobjecteditor.ui=v201004080900,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.schemaobjecteditor.ui
+plugin@org.eclipse.datatools.sqltools.schemaobjecteditor.ui=v201005110700,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.schemaobjecteditor.ui
 plugin@org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages=v200906161452,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages
