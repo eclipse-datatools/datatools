@@ -217,9 +217,12 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -DgroupConfiguration=true -DjavacVerbose=true \
 -Dbasebuilder=/home/adb/releng.dtp/org.eclipse.releng.basebuilder  \
 -Djvm15_home=$jvm15_home  -DmapTag.properties=/home/adb/releng.dtp/org.eclipse.datatools.releng.builder/mapTag.properties \
--Dbuild.date=$builddate -Dpackage.version=1.6RC4-$timestamp \
+-Dbuild.date=$builddate -Dpackage.version=1.8.0-$timestamp \
 -DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
--DmapVersionTag=HEAD -DjavacTarget=1.4 -DjavacSource=1.4"
+-DmapVersionTag=HEAD \
+-Ddtp.url.token=@DTP.URL.TOKEN@ \
+-DjavacTarget=1.5 -DjavacSource=1.5"
+
 
 #skipPreBuild
 

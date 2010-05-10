@@ -42,6 +42,7 @@
     <property name="sign.dir" value="" />
 
     <target name="main" depends="init">
+    	<antcall target="prepareMapFile"/>
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
 		<antcall target="buildDtpIncubationAllFeature"/>
@@ -81,7 +82,40 @@
 		<property name="unzipArgs" value="-qq" />
 	</target>
 	
+	<target name="checkLocal">
+		<available property="mapsLocal" file="${buildDirectory}/maps/org.eclipse.datatools.releng" />
+	</target>
 
+	<target name="prepareMapFile" depends="checkLocal" unless="mapsLocal">
+		
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.releng" dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+		
+		<!-- this value could be overwrite by the bootstrap command -->
+		<property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
+		
+		<replace dir="${buildDirectory}/maps" value="${mapCvsRoot}" token="${dtp.url.token}">
+			<include name="**/*.map" />
+		</replace>
+		
+	</target>
+	
 	<target name="buildDtpEnablementAllFeature">
                 <ant antfile="build.xml" dir="${basedir}">
                         <property name="component" value="${eclipse.build.configs}/dtp.enablement.all" />
