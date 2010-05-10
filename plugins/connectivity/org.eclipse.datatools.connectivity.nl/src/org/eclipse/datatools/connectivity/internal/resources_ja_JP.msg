@@ -71,7 +71,7 @@ ManagedConnection_offline_not_supported_error = {0} ではオフラインで作業できませ
 drivers.error.finding.property.no.template = ドライバのテンプレートから {0} を取得しようとしたときにエラーが発生しました。
 
 JDBCConnection.technologyName = JDBC
-JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. データベースプロファイルで定義したドライバのプロパティを代わりに使用します。
 
 error.database.not.start = データベースの起動コマンドは発行されていません。 ErrorCode = {0}、SQLState = {1}
 

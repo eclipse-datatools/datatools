@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= 列名 "{0}" があいまいです。
 TableReferenceResolver.AMBIGUOUS_TABLE			= テーブル名 "{0}" があいまいです。
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= テーブルのエイリアス "{0}" があいまいです。
 
-RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
-RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
+RoutineReferenceResolver.UNRESOLVED_PROC        = プロシージャが見つかりません。
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= パラメタの数が正しくありません。
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error

@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= Le nom de la colonne "{0}" est ambig
 TableReferenceResolver.AMBIGUOUS_TABLE			= Le nom de la table "{0}" est ambigu.
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= Le pseudo de la table "{0}" est ambigu.
 
-RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
-RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
+RoutineReferenceResolver.UNRESOLVED_PROC        = Impossible de trouver la procédure.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Nombre incorrect de paramètres.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error

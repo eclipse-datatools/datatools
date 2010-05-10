@@ -71,7 +71,7 @@ ManagedConnection_offline_not_supported_error = {0}이(가) 오프라인 작업을 지원하
 drivers.error.finding.property.no.template = 드라이버 템플릿에서 {0}을(를) 검색하는 동안 문제가 발생했습니다.
 
 JDBCConnection.technologyName = JDBC
-JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. 대신 데이터베이스 프로필에 저장된 드라이버 속성을 사용합니다.
 
 error.database.not.start = 시작 데이터베이스 명령이 전달되지 않았습니다. 오류 코드 = {0}, SQL 문 = {1}.
 

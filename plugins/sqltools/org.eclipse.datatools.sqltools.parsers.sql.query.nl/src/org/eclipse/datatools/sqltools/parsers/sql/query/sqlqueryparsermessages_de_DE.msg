@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= Spaltenname "{0}" ist zweideutig.
 TableReferenceResolver.AMBIGUOUS_TABLE			= Tabellenname "{0}" ist zweideutig.
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= Tabellenalias "{0}" ist zweideutig.
 
-RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
-RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
+RoutineReferenceResolver.UNRESOLVED_PROC        = Prozedur wurde nicht gefunden.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Falsche Parameteranzahl.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error

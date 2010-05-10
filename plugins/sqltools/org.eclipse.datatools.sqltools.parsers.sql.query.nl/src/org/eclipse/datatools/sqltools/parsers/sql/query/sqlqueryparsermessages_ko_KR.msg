@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= 열 이름 "{0}"이(가) 모호합니다.
 TableReferenceResolver.AMBIGUOUS_TABLE			= 테이블 이름 "{0}"이(가) 모호합니다.
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= 테이블 별칭 "{0}"이(가) 모호합니다.
 
-RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
-RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
+RoutineReferenceResolver.UNRESOLVED_PROC        = 프로시저를 찾을 수 없습니다.
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= 매개 변수 수가 잘못되었습니다.
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error

@@ -23,8 +23,8 @@ TableReferenceResolver.AMBIGUOUS_COLUMN			= 列名“{0}”有歧义。
 TableReferenceResolver.AMBIGUOUS_TABLE			= 表名“{0}”有歧义。
 TableReferenceResolver.AMBIGUOUS_TABLE_ALIAS	= 表别名“{0}”有歧义。
 
-RoutineReferenceResolver.UNRESOLVED_PROC        = Unable to find procedure.
-RoutineReferenceResolver.INCORRECT_PARM_COUNT	= Incorrect number of parameters.
+RoutineReferenceResolver.UNRESOLVED_PROC        = 无法找到过程。
+RoutineReferenceResolver.INCORRECT_PARM_COUNT	= 参数的数量不正确。
 
 #
 # following messages to translate names of syntax rules that were violated and caused parser error

@@ -71,7 +71,7 @@ ManagedConnection_offline_not_supported_error = {0} no es compatible con el trab
 drivers.error.finding.property.no.template = Se ha producido un problema al intentar recuperar {0} de la plantilla de controlador.
 
 JDBCConnection.technologyName = JDBC
-JDBCConnection.invalidDriverDefinition = {0}\: {1}. Using the driver properties defined in database profile instead.
+JDBCConnection.invalidDriverDefinition = {0}\: {1}. Utilizar las propiedades de controlador definidas en el perfil de bases de datos en su lugar.
 
 error.database.not.start = No se ha introducido ningún comando de inicio de base de datos. ErrorCode = {0}, SQLState = {1}.
 
