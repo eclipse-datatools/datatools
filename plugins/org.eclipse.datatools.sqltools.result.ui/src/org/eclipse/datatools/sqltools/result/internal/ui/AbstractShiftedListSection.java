@@ -10,6 +10,8 @@ package org.eclipse.datatools.sqltools.result.internal.ui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -41,7 +43,7 @@ public abstract class AbstractShiftedListSection
     protected String _moveUp;
     protected String _moveDown;
 
-    static final int BUTTON_WIDTH   = 80;
+    static final int BUTTON_WIDTH   = 80; // no longer used (see computeMaxShiftButtonsWidth)
 
     public AbstractShiftedListSection(String sectionTitle, String leftTitle, String rightTitle)
     {
@@ -83,12 +85,15 @@ public abstract class AbstractShiftedListSection
         buttonsComp.setLayout(layout);
 
         setShiftButtonText();
+        GC gc = new GC(buttonsComp);
+        int maxShiftButtonsWidth = computeMaxShiftButtonsWidth(gc);
+        gc.dispose();
         
         new Label(buttonsComp, SWT.NONE);
         _left2RightButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _left2RightButton.setLayoutData(gd);
         _left2RightButton.setText(_left2Right);
         _left2RightButton.addSelectionListener(new SelectionListener()
@@ -108,7 +113,7 @@ public abstract class AbstractShiftedListSection
         _left2RightAllButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _left2RightAllButton.setLayoutData(gd);
         _left2RightAllButton.setText(_left2RightAll);
         _left2RightAllButton.addSelectionListener(new SelectionListener()
@@ -129,7 +134,7 @@ public abstract class AbstractShiftedListSection
         _right2LeftButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _right2LeftButton.setLayoutData(gd);
         _right2LeftButton.setText(_right2Left);
         _right2LeftButton.addSelectionListener(new SelectionListener()
@@ -149,7 +154,7 @@ public abstract class AbstractShiftedListSection
         _right2LeftAllButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _right2LeftAllButton.setLayoutData(gd);
         _right2LeftAllButton.setText(_right2LeftAll);
         _right2LeftAllButton.addSelectionListener(new SelectionListener()
@@ -169,7 +174,7 @@ public abstract class AbstractShiftedListSection
         _upMoveButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _upMoveButton.setLayoutData(gd);
         _upMoveButton.setText(_moveUp);
         _upMoveButton.addSelectionListener(new SelectionListener()
@@ -189,7 +194,7 @@ public abstract class AbstractShiftedListSection
         _downMoveButton = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxShiftButtonsWidth;
         _downMoveButton.setLayoutData(gd);
         _downMoveButton.setText(_moveDown);
         _downMoveButton.addSelectionListener(new SelectionListener()
@@ -287,6 +292,48 @@ public abstract class AbstractShiftedListSection
         }
     }
 
+    /**
+     * Computes the max width of the shift button label text.
+     * 
+     * @param gc a graphics context to use to compute string widths
+     * @return the width of the widest button text, in pixels
+     */
+    private int computeMaxShiftButtonsWidth(GC gc) 
+    {
+        int maxWidth = 0;
+        
+        maxWidth = getGreaterWidth(gc, this._left2Right, maxWidth);
+        maxWidth = getGreaterWidth(gc, this._left2RightAll, maxWidth);
+        maxWidth = getGreaterWidth(gc, this._right2Left, maxWidth);
+        maxWidth = getGreaterWidth(gc, this._right2LeftAll, maxWidth);
+        maxWidth = getGreaterWidth(gc, this._moveUp, maxWidth);
+        maxWidth = getGreaterWidth(gc, this._moveDown, maxWidth);
+        
+        return maxWidth;
+    }
+    
+    /**
+     * Gets the greater of either the width of the given string or the given comparison value.
+     * 
+     * @param gc a graphics context to use to compute the string width
+     * @param str the string to check
+     * @param compareWidth a width to compare against the string width
+     * @return the greater of the two values
+     */
+    private int getGreaterWidth(GC gc, String str, int compareWidth)
+    {
+        int greaterWidth = compareWidth;
+        
+        Point strExtentPoint = gc.stringExtent(str);
+        int strWidth = strExtentPoint.x;
+        if (strWidth > compareWidth)
+        {
+            greaterWidth = strWidth;
+        }
+        
+        return greaterWidth;
+    }
+    
     private void moveItem(List list, boolean upDirection)
     {
         if (list.getItemCount() == 0 || list.getSelectionCount() != 1 || (list.getSelectionIndex() == 0 && upDirection)

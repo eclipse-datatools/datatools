@@ -29,6 +29,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -67,7 +69,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
     Button           _openFileAfterSaveas;
 
     boolean          _dirty;
-    static final int BUTTON_WIDTH = 120;
+    static final int BUTTON_WIDTH = 120; // no longer used (see computeMaxAddRemoveButtonsWidth)
 
     public SchemaObjectEditorPreferencePage()
     {
@@ -166,11 +168,15 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         layout = new GridLayout();
         buttonsComp.setLayout(layout);
 
+        GC gc = new GC(buttonsComp);
+        int maxAddRemoveButtonsWidth = computeMaxAddRemoveButtonsWidth(gc);
+        gc.dispose();
+        
         new Label(buttonsComp, SWT.NONE);
         _rightOne = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _rightOne.setLayoutData(gd);
         _rightOne.setText(Messages.SchemaObjectEditorPreferencePage_remove);
         _rightOne.addSelectionListener(new SelectionListener()
@@ -231,7 +237,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         _rightAll = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _rightAll.setLayoutData(gd);
         _rightAll.setText(Messages.SchemaObjectEditorPreferencePage_remove_all);
         _rightAll.addSelectionListener(new SelectionListener()
@@ -283,7 +289,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         _leftOne = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _leftOne.setLayoutData(gd);
         _leftOne.setText(Messages.SchemaObjectEditorPreferencePage_add);
         _leftOne.addSelectionListener(new SelectionListener()
@@ -366,7 +372,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         _leftAll = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _leftAll.setLayoutData(gd);
         _leftAll.setText(Messages.SchemaObjectEditorPreferencePage_add_all);
         _leftAll.addSelectionListener(new SelectionListener()
@@ -440,7 +446,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         _upMove = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _upMove.setLayoutData(gd);
         _upMove.setText(Messages.SchemaObjectEditorPreferencePage_move_up);
         _upMove.addSelectionListener(new SelectionListener()
@@ -460,7 +466,7 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         _downMove = new Button(buttonsComp, SWT.NONE | SWT.LEFT);
         gd = new GridData();
         gd.verticalAlignment = GridData.VERTICAL_ALIGN_CENTER;
-        gd.widthHint = BUTTON_WIDTH;
+        gd.widthHint = maxAddRemoveButtonsWidth;
         _downMove.setLayoutData(gd);
         _downMove.setText(Messages.SchemaObjectEditorPreferencePage_move_down);
         _downMove.addSelectionListener(new SelectionListener()
@@ -1012,6 +1018,48 @@ public class SchemaObjectEditorPreferencePage extends PreferencePage implements 
         {
             _store.setValue(Constants.PREFERENCE_PREVIOUS_EDIOR_NAME, editor);
         }
+    }
+    
+    /**
+     * Computes the max width of the add and remove button label text.
+     * 
+     * @param gc a graphics context to use to compute string widths
+     * @return the width of the widest button text, in pixels
+     */
+    private int computeMaxAddRemoveButtonsWidth(GC gc) 
+    {
+        int maxWidth = 0;
+        
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_add, maxWidth);
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_add_all, maxWidth);
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_remove, maxWidth);
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_remove_all, maxWidth);
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_move_up, maxWidth);
+        maxWidth = getGreaterWidth(gc, Messages.SchemaObjectEditorPreferencePage_move_down, maxWidth);
+        
+        return maxWidth;
+    }
+    
+    /**
+     * Gets the greater of either the width of the given string or the given comparison value.
+     * 
+     * @param gc a graphics context to use to compute the string width
+     * @param str the string to check
+     * @param compareWidth a width to compare against the string width
+     * @return the greater of the two values
+     */
+    private int getGreaterWidth(GC gc, String str, int compareWidth)
+    {
+        int greaterWidth = compareWidth;
+        
+        Point strExtentPoint = gc.stringExtent(str);
+        int strWidth = strExtentPoint.x;
+        if (strWidth > compareWidth)
+        {
+            greaterWidth = strWidth;
+        }
+        
+        return greaterWidth;
     }
 }
 
