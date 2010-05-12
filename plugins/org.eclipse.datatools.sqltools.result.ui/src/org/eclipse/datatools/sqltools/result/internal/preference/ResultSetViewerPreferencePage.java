@@ -185,7 +185,7 @@ public class ResultSetViewerPreferencePage extends PreferencePage implements IWo
         IPreferenceStore store = getPreferenceStore();
         Composite comp = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
+        layout.numColumns = 1;
         layout.marginHeight = 0;
         layout.marginWidth = 0;
         comp.setLayout(layout);
@@ -193,7 +193,6 @@ public class ResultSetViewerPreferencePage extends PreferencePage implements IWo
         
         resultViewersGroup.setText(Messages.ResultSetViewerPage_group);
         GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-        gridData.horizontalSpan=2;
         resultViewersGroup.setLayoutData(gridData); 
         GridLayout gLayout = new GridLayout();
         gLayout.numColumns = 2;
@@ -202,13 +201,11 @@ public class ResultSetViewerPreferencePage extends PreferencePage implements IWo
         label.setText(Messages.ResultSetViewerPage_select_viewer);
         viewersCombo = new Combo(resultViewersGroup, SWT.DROP_DOWN | SWT.READ_ONLY);
         viewersCombo.setToolTipText(Messages.ResultSetViewerPage_viewer_tooltip);
-        GridData comboData = new GridData();
-        comboData.grabExcessHorizontalSpace = true;
+        GridData comboData = new GridData(GridData.FILL_HORIZONTAL);
         viewersCombo.setLayoutData(comboData);
         Group paramViewersGroup = new Group(comp, SWT.NONE);
         paramViewersGroup.setText(Messages.ParameterViewerPage_group);
         gridData = new GridData(GridData.FILL_HORIZONTAL);
-        gridData.horizontalSpan=2;
         paramViewersGroup.setLayoutData(gridData);
         paramViewersGroup.setLayout(gLayout);
         Label paramLabel = new Label(paramViewersGroup, SWT.NONE);
@@ -227,13 +224,16 @@ public class ResultSetViewerPreferencePage extends PreferencePage implements IWo
                         viewerName = paramViewersCombo.getText();
                     }
                 });
-        Label maxParameterLabel = new Label(comp, SWT.NONE);
+        Composite compMaxParameter = new Composite(comp, SWT.NONE);
+        compMaxParameter.setLayoutData(gridData); 
+        GridLayout layoutMaxParameter = new GridLayout();
+        layoutMaxParameter.numColumns = 2;
+        compMaxParameter.setLayout(layoutMaxParameter);
+        Label maxParameterLabel = new Label(compMaxParameter, SWT.NONE);
         maxParameterLabel.setText(Messages.ParameterViewer_ellipsisEnabledValue);
         maxParameterLabel.setToolTipText(Messages.ParameterViewerPreferencePage_parameterResultOptions_maxParmeterCount_tooltip);// SQLResultsViewPage_resultsetoptions_maxrowcount_tooltip
-        gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
-        maxParamCount = new Text(comp, SWT.SINGLE | SWT.BORDER);
+        maxParamCount = new Text(compMaxParameter, SWT.SINGLE | SWT.BORDER);
         maxParamCount.setToolTipText(Messages.ParameterViewerPreferencePage_parameterResultOptions_maxParmeterCount_tooltip);
-        gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
         maxParamCount.setLayoutData(gridData);
         // select max parameter count value from Store
         maxParamCount.setText(store.getString(PreferenceConstants.ELLIPSIS_ENABLED_VALUE_LENGTH));
