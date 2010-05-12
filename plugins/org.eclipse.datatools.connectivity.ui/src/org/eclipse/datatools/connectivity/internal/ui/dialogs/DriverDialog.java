@@ -58,6 +58,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
@@ -1523,4 +1524,48 @@ public class DriverDialog extends TitleAreaDialog {
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
 	}
+	
+   /**
+     * Initializes the bounds (location, size) of the dialog.  This implementation adjusts the width of
+     * the dialog so that the complete current message can be displayed.
+     * </p>
+     */
+    protected void initializeBounds() {
+        super.initializeBounds();
+        
+        Shell shell = getShell();
+        Rectangle boundsRect = shell.getBounds();
+        int dialogWidth = boundsRect.width;
+        
+        int preferredMsgAreaWidth = getPreferredMessageAreaWidth();
+        int preferredDialogWidth = preferredMsgAreaWidth + 20; // add some dialog border width
+        if (dialogWidth < preferredDialogWidth) {
+            Rectangle newBoundsRect = new Rectangle(boundsRect.x, boundsRect.y, preferredDialogWidth, boundsRect.height);
+            Rectangle constrainedBoundsRect = getConstrainedShellBounds(newBoundsRect);
+            shell.setBounds(constrainedBoundsRect);
+        }
+    }
+
+    /**
+     * Gets the preferred width for the message area.  The message area for a TitleAreaDialog is hard-coded 
+     * to show only two lines for the message, so our preferred width is the width of the current message 
+     * divided by two plus a "fudge factor" to account for the message image area and word-wrapping variances.
+     *  
+     * @return the preferred message area width
+     */
+    private int getPreferredMessageAreaWidth() {
+        int msgWidth = 0;
+        
+        Control dialogArea = getDialogArea();
+        if (dialogArea != null) {
+            GC gc = new GC(dialogArea);
+            String dialogMessage = DriverMgmtMessages.getString("DriverDialog.DialogMessage");
+            Point strExtent = gc.stringExtent(dialogMessage);
+            int strWidth = strExtent.x;
+            gc.dispose();
+            msgWidth = (strWidth / 2) + 100; // add fudge factor
+        }
+        
+        return msgWidth;
+    }
 }
