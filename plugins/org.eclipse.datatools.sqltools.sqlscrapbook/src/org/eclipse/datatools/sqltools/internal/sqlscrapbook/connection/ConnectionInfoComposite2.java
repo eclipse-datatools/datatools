@@ -171,7 +171,8 @@ Listener {
             _labelStatus.setText(getStatus());
             gridData4.grabExcessHorizontalSpace = true;
             gridData4.horizontalAlignment = org.eclipse.swt.layout.GridData.BEGINNING;
-            gridData4.widthHint = 200;
+// Don't use the widthHint, since it causes text truncation in some languages
+//            gridData4.widthHint = 200;
             _labelStatus.setLayoutData(gridData4);
             
         }
