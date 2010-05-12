@@ -233,7 +233,7 @@
       </contextType>
       <include
       		file="templates/default-templates.xml"
-      		translations="templates/default-templates.properties">
+      		translations="$nl$/templates/default-templates.properties">
       </include>
    </extension>
     
