@@ -107,6 +107,11 @@
              package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" 
              dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
 		
+		<!--compare the map files project-->
+		<antcall target="compareMapFiles" />
+		<!--tag the map files project-->
+		<antcall target="tagMapFiles" />
+			
 		<!-- this value could be overwrite by the bootstrap command -->
 		<property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
 		
@@ -116,6 +121,32 @@
 		
 	</target>
 	
+	<target name="compareMapFiles" if="compareMaps">
+		<property file="${mapTag.properties}"/>
+		<property name="cvsDiffFile" value="${buildDirectory}/cvsDiff.txt" />
+		<cvs cvsRoot="${mapCvsRoot}" dest="${buildDirectory}/maps" command="diff -w -r ${lastMapTag}" output="${cvsDiffFile}" />
+		<modifiedMaps mapDiffFile="${cvsDiffFile}" />
+	</target>
+
+	<target name="tagMapFiles" if="tagMaps">
+		<!-- Stores tag on the filesystem so map files can be compared -->
+		<echo file="${mapTag.properties}">
+		lastMapTag=r18_${buildId}
+		</echo>
+		<echo message="tagging org.eclipse.datatools.releng..."/>
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r18_${buildId}" />
+		<echo message="tagging org.eclipse.datatools.connectivity.releng..."/>
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" command="tag r18_${buildId}" />
+		<echo message="tagging org.eclipse.datatools.enablement.releng..."/>
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" command="tag r18_${buildId}" />
+		<echo message="tagging org.eclipse.datatools.modelbase.releng..."/>
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r18_${buildId}" />
+		<echo message="tagging org.eclipse.datatools.sqltools.releng..."/>
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r18_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" command="tag r18_${buildId}" />
+
+	</target>
+			
 	<target name="buildDtpEnablementAllFeature">
                 <ant antfile="build.xml" dir="${basedir}">
                         <property name="component" value="${eclipse.build.configs}/dtp.enablement.all" />
