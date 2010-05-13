@@ -699,18 +699,15 @@ public class ResultHistorySection
                         {
                             return 0;
                         }
-                        try
+                        if (e1 instanceof IResultInstance && e2 instanceof IResultInstance) 
                         {
-                            Date date1 = ResultsConstants.FORMATTER.parse(((IResultInstance) e1).getExecuteTime());
-                            Date date2 = ResultsConstants.FORMATTER.parse(((IResultInstance) e2).getExecuteTime());
+                            Date date1 = ((IResultInstance) e1).getExecuteDate();
+                            Date date2 = ((IResultInstance) e2).getExecuteDate();
                             if (DATE_ORDER == ASCENDING)
                             {
                                 return date1.before(date2) ? -1 : 1;
                             }
                             return date1.after(date2) ? -1 : 1;
-                        }
-                        catch (ParseException e)
-                        {
                         }
                         return 0;
                     }

@@ -11,7 +11,6 @@
 package org.eclipse.datatools.sqltools.result;
 
 import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.SimpleDateFormat;
 
 /**
  * The constants
@@ -25,7 +24,7 @@ public class ResultsConstants
 //    public static final String PLUGIN_RESOURCE_BUNDLE = PLUGIN_ID + ".PluginResources";
 
     // the formater to format the data time (using current default pattern)
-    public static DateFormat   FORMATTER              = new SimpleDateFormat();
+    public static DateFormat   FORMATTER              = DateFormat.getDateTimeInstance();
 
     public static final String DB_CP_CATEGORY         = "org.eclipse.datatools.connectivity.db.category";
     
