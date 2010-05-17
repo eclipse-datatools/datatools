@@ -651,6 +651,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 			layout.numColumns = 2;
 			layout.verticalSpacing = 15;
 			composite.setLayout( layout );
+			composite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
 			createCustomControls( composite );
 			
@@ -667,14 +668,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 		{
 			GridData labelGd = new GridData( );
 			labelGd.widthHint = 100;
-			labelGd.heightHint = 15;
 			Label columnName = new Label( parent, SWT.NONE );
 			columnName.setText( COLUMN_NAME + COLON );
 			columnName.setLayoutData( labelGd );
 
-			GridData textGd = new GridData( );
+			GridData textGd = new GridData( GridData.FILL_HORIZONTAL );
 			textGd.widthHint = 180;
-			textGd.heightHint = 15;
 			Text columnNameText = new Text( parent, SWT.BORDER );
 			columnNameText.setText( this.soapParameter.getName( ) );
 			columnNameText.setLayoutData( textGd );
