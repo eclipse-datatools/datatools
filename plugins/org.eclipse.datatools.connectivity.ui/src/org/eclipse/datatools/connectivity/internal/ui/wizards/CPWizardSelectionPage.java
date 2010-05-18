@@ -14,8 +14,10 @@ package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
@@ -31,6 +33,7 @@ import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.help.IContext;
 import org.eclipse.help.IContextProvider;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -115,12 +118,28 @@ public class CPWizardSelectionPage
 	class TableLabelProvider extends LabelProvider implements
 			ITableLabelProvider {
 
+		private Map<CPWizardNode, Image> cachedImages = new HashMap<CPWizardNode, Image>();
+
 		public String getColumnText(Object element, int columnIndex) {
 			return ((CPWizardNode) element).getProvider().getName();
 		}
 
 		public Image getColumnImage(Object element, int columnIndex) {
-			return ((CPWizardNode) element).getProvider().getCachedIcon();
+			Image image = this.cachedImages.get(element);
+			if (image == null) {
+				ImageDescriptor descriptor = ((CPWizardNode) element).getProvider().getIcon();
+				image = descriptor.createImage();
+				this.cachedImages.put((CPWizardNode) element, image);
+			}
+			return image;
+		}
+
+		@Override
+		public void dispose() {
+			for (Image image: this.cachedImages.values()) {
+				image.dispose();
+			}
+			super.dispose();
 		}
 	}
 
