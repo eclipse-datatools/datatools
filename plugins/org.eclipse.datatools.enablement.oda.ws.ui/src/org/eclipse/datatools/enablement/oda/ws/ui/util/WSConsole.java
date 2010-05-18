@@ -170,7 +170,23 @@ public class WSConsole
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
-			String value = dataSetDesign.getPrivateProperties( )
+			String value = dataSetDesign.getPrivateProperties().getProperty(
+					Constants.XML_FILE_URI);
+			String xmlFileURI = PropertyValueUtil.getQualifiedValueForDataSet(
+					value, Constants.XML_FILE_URI, dataSetDesign
+							.getOdaExtensionDataSetId());
+			if( xmlFileURI != null )
+				setPropertyValue(Constants.XML_FILE_URI, xmlFileURI);
+
+			value = dataSetDesign.getPrivateProperties().getProperty(
+					Constants.XSD_FILE_URI);
+			String xsdFileURI = PropertyValueUtil.getQualifiedValueForDataSet(
+					value, Constants.XSD_FILE_URI, dataSetDesign
+							.getOdaExtensionDataSetId());
+			if( xsdFileURI != null )
+				setPropertyValue(Constants.XSD_FILE_URI, xsdFileURI);
+	
+			value = dataSetDesign.getPrivateProperties( )
 					.getProperty( Constants.OPERATION_TRACE );
 			String operationTrace = PropertyValueUtil.getQualifiedValueForDataSet( value,
 					Constants.OPERATION_TRACE,
