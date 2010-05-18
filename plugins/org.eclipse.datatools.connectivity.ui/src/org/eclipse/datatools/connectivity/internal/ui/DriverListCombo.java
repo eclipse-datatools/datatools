@@ -1079,10 +1079,14 @@ public class DriverListCombo {
 	}
 
 	public void dispose() {
-		this.mDriverImage.dispose();
-		this.mDriverWithPlusImage.dispose();
-		this.mChangeImage.dispose();
-		this.mArrowImage.dispose();
+		if (this.mDriverImage != null)
+			this.mDriverImage.dispose();
+		if (this.mDriverWithPlusImage != null)
+			this.mDriverWithPlusImage.dispose();
+		if (this.mChangeImage != null)
+			this.mChangeImage.dispose();
+		if (this.mArrowImage != null)
+			this.mArrowImage.dispose();
 	}
 	
 	private void makeImages() {
