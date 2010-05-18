@@ -217,6 +217,7 @@ public class OdaConnection extends OdaObject
 		if( getAppContext() == null )     // no connection level context is set directly
 		    setAppContext( getDriverAppContext() );
  
+        OdaException propHandlerException = null;
 		try
 		{	
 			setContextClassloader();
@@ -233,9 +234,19 @@ public class OdaConnection extends OdaObject
 			if( sm_maxOpenConnections != 0 && getOpenedConnCount() >= sm_maxOpenConnections )
 				throw newOdaException( Messages.helper_maxConcurrentConnectionsReached );
 
-			Properties effectiveConnProps =
-							getEffectiveProperties( connProperties );
-			
+			Properties effectiveConnProps = null;
+            try
+            {
+                effectiveConnProps = getEffectiveProperties( connProperties );
+            }
+            catch( OdaException ex )
+            {
+                // preserve the exception and continue with the specified connProperties, 
+                // which might be sufficient for the underlying oda driver
+                propHandlerException = ex;
+                effectiveConnProps = connProperties;
+            }
+
 			getConnection().open( effectiveConnProps );
 		}
 		catch( UnsupportedOperationException uoException )
@@ -248,6 +259,8 @@ public class OdaConnection extends OdaObject
 		}
 		catch( OdaException odaException )
 		{
+		    if( propHandlerException != null )
+		        odaException.setNextException( propHandlerException );
 			handleError( odaException );
 		}
 		finally

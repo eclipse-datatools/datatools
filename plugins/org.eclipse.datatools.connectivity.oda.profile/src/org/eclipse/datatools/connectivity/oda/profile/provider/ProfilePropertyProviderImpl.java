@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 
 /**
@@ -53,8 +54,18 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         
         IConnectionProfile connProfile = 
             getConnectionProfile( candidateProperties, appContext );
-        if( connProfile == null )   // no linked profle
-            return candidateProperties;
+        if( connProfile == null )   // no linked profle found
+        {
+            // a profile is specified, just couldn't find it
+            if( hasProfileName( candidateProperties ) && hasProfileStoreFilePath( candidateProperties ) )
+            {
+                throw new OdaException( Messages.bind( Messages.propertyProvider_CANNOT_FIND_PROFILE,
+                        getProfileName( candidateProperties ), getProfileStoreFilePath( candidateProperties ) ));
+            }
+            
+            // no other effective data source properties; use the original ones
+            return candidateProperties;   
+        }
         
         // merges the 2 sets of properties; 
         // override candidate properties with those in profile instance
@@ -101,22 +112,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( profileName == null )
             return null;    // no external profile is specified in properties
         
-        // next determine which profile store file to use;
-        // a profile store mapping specified in the connPropContext map 
-        // takes precedence over the file path specified in the properties.
-        File profileStore = getProfileStoreFile( connPropContext );
-        if( profileStore == null )
-        {
-            profileStore = getProfileStoreFile( candidateProperties );
-            
-            if( profileStore != null )
-            {
-                // using a new profile storage File object, good opportunity
-                // to free up the cached profiles of previously loaded profile store File
-                if( m_refreshProfileStore )
-                    OdaProfileExplorer.getInstance().refresh();
-            }
-        }
+        // determine the profile store file to use
+        File profileStore = getProfileStoreFile( candidateProperties, connPropContext );
         
         IConnectionProfile profile = null;
         try
@@ -129,6 +126,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         {
             getLogger().warning( getStackTraceStrings( ex ) );
         }
+
         if( profile == null )
         {
             // log warning that no profile is found
@@ -145,6 +143,35 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( profileName == null || profileName.length() == 0 )
             return null;    // no profile name specified
         return profileName;
+    }
+
+    private boolean hasProfileName( Properties candidateProperties )
+    {
+        String profileName = getProfileName( candidateProperties );
+        return ( profileName != null );
+    }
+    
+    /*
+     * @since 3.2.3 (DTP 1.8)
+     */
+    private File getProfileStoreFile( Properties candidateProperties, Object connPropContext )
+    {
+        // a profile store mapping specified in the connPropContext map 
+        // takes precedence over the file path specified in the properties
+        File profileStore = getProfileStoreFile( connPropContext );
+        if( profileStore != null )
+            return profileStore;
+
+        profileStore = getProfileStoreFile( candidateProperties );
+        if( profileStore != null )
+        {
+            // using a new profile storage File object, good opportunity
+            // to free up the cached profiles of previously loaded profile store File
+            if( m_refreshProfileStore )
+                OdaProfileExplorer.getInstance().refresh();
+        }
+        
+        return profileStore;
     }
     
     protected File getProfileStoreFile( Object connPropContext )
@@ -174,22 +201,35 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      */
     protected File getProfileStoreFile( Properties candidateProperties )
     {
-        String profileStoreFilePath =
-            candidateProperties.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
-        if( profileStoreFilePath == null || profileStoreFilePath.length() == 0 )
+        if( ! hasProfileStoreFilePath( candidateProperties ) )
             return null;    // no profile file path specified
+        String profileStoreFilePath = getProfileStoreFilePath( candidateProperties );
         File profileStoreFile = getProfileStoreFile( profileStoreFilePath );
         if( profileStoreFile != null )
             return profileStoreFile;
         
         // specified file path does not exist
         getLogger().warning( "getProfileStoreFile( Properties ): " +   //$NON-NLS-1$
-                        "Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value (" + profileStoreFilePath +  //$NON-NLS-1$
-                        ") in connection properties. " +   //$NON-NLS-1$
-                        "The specified path does not exist in file system." ); //$NON-NLS-1$
+                        "The PROFILE_STORE_FILE_PATH_PROP_KEY value (" + profileStoreFilePath +  //$NON-NLS-1$
+                        ") specified in connection properties does not exist in the file system." ); //$NON-NLS-1$
         return null;
     }
 
+    private String getProfileStoreFilePath( Properties candidateProperties )
+    {
+        String profileStoreFilePath = 
+            candidateProperties.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
+        if( profileStoreFilePath == null || profileStoreFilePath.length() == 0 )
+            return null;    // no profile store path specified
+        return profileStoreFilePath;
+    }
+    
+    private boolean hasProfileStoreFilePath( Properties candidateProperties )
+    {
+        String profileStoreFilePath = getProfileStoreFilePath( candidateProperties );
+        return ( profileStoreFilePath != null );
+    }
+    
     /**
      * Converts the specified string representation of a file pathname
      * to its abstract representation.
