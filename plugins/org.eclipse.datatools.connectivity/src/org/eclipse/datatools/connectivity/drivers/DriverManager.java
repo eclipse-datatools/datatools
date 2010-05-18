@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
@@ -133,24 +134,34 @@ public class DriverManager {
 
 	private DriverInstance[] getDriverInstancesFromMapByCategoryID( String categoryid ) {
 		Iterator iter = mDriverInstanceMap.values().iterator();
-		ArrayList list = new ArrayList();
+		ArrayList<DriverInstance> list = new ArrayList<DriverInstance>();
 		while (iter.hasNext()) {
 			DriverInstance di = (DriverInstance) iter.next();
-			if (di.getTemplate().getParent().getId().equals(categoryid))
-				list.add(di);
+			// Bug 311028: It's possible for a template to be null so adding a null check to prevent an NPE
+			TemplateDescriptor template = di.getTemplate();
+			if(template != null) {
+				// Bug 311028: the call to template.getParent() may return null so adding this null check to be safe.
+				CategoryDescriptor templateParent = template.getParent();
+				if((templateParent != null) && templateParent.getId().equals(categoryid)) {
+					list.add(di);					
+				}
+			}
 		}
-		return (DriverInstance[]) list.toArray(new DriverInstance[list.size()]);
+		return list.toArray(new DriverInstance[list.size()]);
 	}
 
 	private DriverInstance[] getDriverInstancesFromMapForTemplateID( String templateid ) {
 		Iterator iter = mDriverInstanceMap.values().iterator();
-		ArrayList list = new ArrayList();
+		ArrayList<DriverInstance> list = new ArrayList<DriverInstance>();
 		while (iter.hasNext()) {
 			DriverInstance di = (DriverInstance) iter.next();
-			if (di.getTemplate().getId().equals(templateid))
+			// Bug 311028: It's possible for a template to be null so adding a null check to prevent an NPE
+			TemplateDescriptor template = di.getTemplate();
+			if((template != null) && template.getId().equals(templateid)) {
 				list.add(di);
+			}
 		}
-		return (DriverInstance[]) list.toArray(new DriverInstance[list.size()]);
+		return list.toArray(new DriverInstance[list.size()]);
 	}
 
 	/**
