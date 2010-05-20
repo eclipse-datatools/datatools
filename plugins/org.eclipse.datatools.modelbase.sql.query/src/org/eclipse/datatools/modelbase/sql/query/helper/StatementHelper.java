@@ -3201,28 +3201,34 @@ public class StatementHelper {
      * </p>
      * 
      * @param select
-     * @param orderByList List of <code>OrderBySpecification</code>s
+     * @param orderBySpecList List of <code>OrderBySpecification</code>s
      *        referring to the given <code>QuerySelect</code>
      * @return Set of <code>ValueExpressionColumn</code>s that have been
      *         removed from their <code>OrderByValueExpression</code>
      */
-    public static Set resolveOrderByColumns(QuerySelect select, List orderByList) {
+    public static Set resolveOrderByColumns(QuerySelect select, List orderBySpecList) {
         // for the ORDER BY specifications that currently are of type
         // OrderByValueExpression, check if the ValueExpression is a ColumnExpr.
         // if so resolve it with the ResultColumns of the given select and
         // change
         // the type of the OrderBySpecification from OrderByValueExpression to
         // OrderByResultColumn
-        List newOrderByResultColumnList = new ArrayList();
+        List newOrderBySpecList = new ArrayList();
 
-        // collect the remove ValueExpressionColumns for further check or
-        // processing
+        // collect the remove ValueExpressionColumns for further check or processing
         Set removedColumnExprs = new HashSet();
 
-        for (Iterator orderIt = orderByList.iterator(); orderIt.hasNext();) {
-            OrderBySpecification orderBy = (OrderBySpecification) orderIt.next();
-            if (orderBy instanceof OrderByValueExpression) {
-                OrderByValueExpression orderByVE = (OrderByValueExpression) orderBy;
+        for (Iterator orderIter = orderBySpecList.iterator(); orderIter.hasNext();) {
+            // Get the next order by spec from the old order by list and also remove it from the list.
+            // If it's an OrderByValueExpression whose value expression matches one of the
+            // Result Column value expressions, then it will be transformed into a 
+            // OrderByResultColumn and added to the new order by list.  Otherwise it will be
+            // added to the new order by list unchanged.
+            OrderBySpecification oldOrderBySpec = (OrderBySpecification) orderIter.next();
+            orderIter.remove();
+            OrderBySpecification newOrderBySpec = oldOrderBySpec;
+            if (oldOrderBySpec instanceof OrderByValueExpression) {
+                OrderByValueExpression orderByVE = (OrderByValueExpression) oldOrderBySpec;
 
                 if (orderByVE.getValueExpr() instanceof ValueExpressionColumn) {
                     ValueExpressionColumn columnExpr = (ValueExpressionColumn) orderByVE.getValueExpr();
@@ -3253,11 +3259,7 @@ public class StatementHelper {
                         newOrderByRC.setDescending(orderByVE.isDescending());
                         newOrderByRC.setNullOrderingOption(orderByVE.getNullOrderingOption());
 
-                        newOrderByResultColumnList.add(newOrderByRC);
-                        // remove the old OrderByValueExpression from
-                        // orderByList
-                        // it will be substituted by the new OrderByResultColumn
-                        orderIt.remove();
+                        
                         // remove the columnExpr from its table if it's a
                         // duplicate representative of a column existing,
                         // because
@@ -3268,18 +3270,19 @@ public class StatementHelper {
                         removedColumnExprs.add(columnExpr);
 
                         TableHelper.removeColumnExpressionFromTableIfNotReferenced(columnExpr);
+                        
+                        newOrderBySpec = newOrderByRC;
                     }
-
                 }
             }
-
-            if (orderBy instanceof OrderByResultColumn) {
-                OrderByResultColumn orderByRC = (OrderByResultColumn) orderBy;
-            }
-
+            
+            // Add the transformed order by spec (or the original one, if no transform needed)
+            // to the new list.
+            newOrderBySpecList.add(newOrderBySpec);
         }
 
-        orderByList.addAll(newOrderByResultColumnList);
+        // Copy the new order by spec list contents into the old
+        orderBySpecList.addAll(newOrderBySpecList);
 
         return removedColumnExprs;
     }
