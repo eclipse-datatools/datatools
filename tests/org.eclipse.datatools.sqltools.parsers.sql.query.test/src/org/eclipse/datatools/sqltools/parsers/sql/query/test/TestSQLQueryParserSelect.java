@@ -342,6 +342,13 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
             "(select deptno from department where deptno in (select workdept from employee order by workdept) order by deptno) intersect (select workdept from employee order by workdept) union (values ('E22') order by 1) order by 1" + NL +
             "", false);
         
+        // Test mix of column expr and ordinal sor specs
+        StatementCache stmtCache = StatementCache.getInstance();
+        
+        String sourceScript = stmtCache.getScript("SELECT", "ORDER BY");
+        String templateScript = stmtCache.getTemplateScript("SELECT", "ORDER BY");
+        parserVerifySuccess(sourceScript, templateScript);
+        
 // NULLS FIRST/LAST not supported by DB2
 //        parserVerifySuccess(
 //                "select col3 from table4 order by col2 desc, col1 asc NULLS FIRST;" + NL +  //$NON-NLS-1$
@@ -400,7 +407,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
             "", false); //$NON-NLS-1$
     }
 
-    public void testSQLDmlParser004_tableCorrelationNameList() throws Exception {
+    public void testSqlDmlParser004_tableCorrelationNameList() throws Exception {
         System.out.println("test 004_tableCorrelationNameList"); //$NON-NLS-1$
         
         parserVerifySuccess(

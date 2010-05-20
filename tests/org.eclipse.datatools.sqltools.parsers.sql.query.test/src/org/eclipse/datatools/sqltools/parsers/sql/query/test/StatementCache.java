@@ -252,6 +252,25 @@ public class StatementCache {
         String sourceText = "";
         String templateText = "";
         
+        /* SELECT statements */
+        catID = "SELECT";
+        groupID = "ORDER BY";
+        
+        itemID = "Type mix 1";
+        sourceText = "select c1, c2 from table1 order by c2, 1";
+        templateText = sourceText;
+        addStatement(catID, groupID, itemID, sourceText, templateText);
+        
+        itemID = "Type mix 2";
+        sourceText = "select c1, c2, c3 from table1 order by 1, c2, c4, 3, c1";
+        templateText = sourceText;
+        addStatement(catID, groupID, itemID, sourceText, templateText);
+        
+        itemID = "Summary 1";
+        sourceText = "select c1, avg(c2) from table1 order by avg(c2), 1";
+        templateText = sourceText;
+        addStatement(catID, groupID, itemID, sourceText, templateText);
+        
         /* MERGE statements */       
         catID = "MERGE";
         groupID = "BASIC";
