@@ -294,7 +294,7 @@ _UI_TOOLTIP_HIDE_PANE=Teilfenster ausblenden
 _UI_PREFERENCES_OMIT_SCHEMA_DESC=Standardwerte für die mit SQL-Anweisungen verknüpften Einstellungen für 'Aktuelles Schema auslassen'
 _UI_PREFERENCES_OMIT_SCHEMA_IN_SQL=Aktuelles Schema in generierten SQL-Anweisungen a&uslassen
 _UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Aktuelles Schema
-_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=&Autorisierungs-ID
+_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=A&utorisierungs-ID
 _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=&Schemaname:
 
 !dialogs/ChangeStatementTypeDialog

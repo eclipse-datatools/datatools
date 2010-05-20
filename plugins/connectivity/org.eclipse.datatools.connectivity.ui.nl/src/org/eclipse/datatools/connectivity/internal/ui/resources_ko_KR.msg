@@ -159,7 +159,7 @@ ExtensibleProfileDetailsWizardPage.description = 드롭다운에서 드라이버를 선택하�
 ExtensibleProfileDetailsWizardPage.driverCombo.label = 드라이버(&D):
 ExtensibleNewConnectionProfileWizard.title = 새 연결 프로필
 
-DriverUIContributorComposite.group = 속성(&P)
+DriverUIContributorComposite.group = 속성
 
 CommonDriverUIContributor.optionaltab = 옵션(&O)
 CommonDriverUIContributor.optionalProps.label = 추가 속성:

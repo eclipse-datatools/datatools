@@ -159,7 +159,7 @@ ExtensibleProfileDetailsWizardPage.description = Seleccione un controlador del m
 ExtensibleProfileDetailsWizardPage.driverCombo.label = Controla&dores:
 ExtensibleNewConnectionProfileWizard.title = Nuevo perfil de conexión
 
-DriverUIContributorComposite.group = &Propiedades
+DriverUIContributorComposite.group = Propiedades
 
 CommonDriverUIContributor.optionaltab = &Opcional
 CommonDriverUIContributor.optionalProps.label = Propiedades adicionales:

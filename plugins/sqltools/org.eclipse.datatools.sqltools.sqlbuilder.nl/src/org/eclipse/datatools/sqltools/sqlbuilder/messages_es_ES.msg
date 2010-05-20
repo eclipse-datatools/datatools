@@ -294,7 +294,7 @@ _UI_TOOLTIP_HIDE_PANE=Ocultar panel
 _UI_PREFERENCES_OMIT_SCHEMA_DESC=Valores predeterminados de los ajustes Omitir esquema actual asociados con sentencias SQL
 _UI_PREFERENCES_OMIT_SCHEMA_IN_SQL=&Omitir esquema actual en sentencias SQL generadas
 _UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Esquema actual
-_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID de &autorización
+_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID de a&utorización
 _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=Nombre de e&squema:
 
 !dialogs/ChangeStatementTypeDialog

@@ -159,7 +159,7 @@ ExtensibleProfileDetailsWizardPage.description = ´ÓÏÂÀ­ÁĞ±íÖĞÑ¡ÔñÇı¶¯³ÌĞò²¢Ìá¹©Á
 ExtensibleProfileDetailsWizardPage.driverCombo.label = Çı¶¯³ÌĞò(&D):
 ExtensibleNewConnectionProfileWizard.title = ĞÂÁ¬½ÓÅäÖÃÎÄ¼ş
 
-DriverUIContributorComposite.group = ÊôĞÔ(&P)
+DriverUIContributorComposite.group = ÊôĞÔ
 
 CommonDriverUIContributor.optionaltab = ¿ÉÑ¡(&O)
 CommonDriverUIContributor.optionalProps.label = ÆäËüÊôĞÔ:

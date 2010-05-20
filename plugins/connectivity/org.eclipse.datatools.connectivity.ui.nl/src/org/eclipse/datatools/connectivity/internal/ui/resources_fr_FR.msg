@@ -159,7 +159,7 @@ ExtensibleProfileDetailsWizardPage.description = Dans le menu déroulant, sélecti
 ExtensibleProfileDetailsWizardPage.driverCombo.label = &Lecteurs :
 ExtensibleNewConnectionProfileWizard.title = Nouveau profil de connexion
 
-DriverUIContributorComposite.group = &Propriétés
+DriverUIContributorComposite.group = Propriétés
 
 CommonDriverUIContributor.optionaltab = Fa&cultatif
 CommonDriverUIContributor.optionalProps.label = Propriétés supplémentaires :

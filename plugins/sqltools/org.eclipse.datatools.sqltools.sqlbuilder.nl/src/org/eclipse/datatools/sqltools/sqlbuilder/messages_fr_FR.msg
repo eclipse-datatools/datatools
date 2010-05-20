@@ -294,7 +294,7 @@ _UI_TOOLTIP_HIDE_PANE=Masquer le volet
 _UI_PREFERENCES_OMIT_SCHEMA_DESC=Valeurs par défaut des paramètres Ignorer le schéma actuel associés aux instructions SQL
 _UI_PREFERENCES_OMIT_SCHEMA_IN_SQL=Ign&orer le schéma actuel dans les instructions SQL générées
 _UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Schéma actuel
-_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID &autorisation
+_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID d'a&utorisation
 _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=Nom du &schéma :
 
 !dialogs/ChangeStatementTypeDialog
