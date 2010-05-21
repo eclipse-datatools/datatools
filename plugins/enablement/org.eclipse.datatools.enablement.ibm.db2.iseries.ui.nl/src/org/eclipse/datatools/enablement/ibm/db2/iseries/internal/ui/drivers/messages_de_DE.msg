@@ -25,6 +25,8 @@ CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host:
 CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Anschlussnummer
 CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Benutzername
 CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Kennwort speichern
+CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Default schema:
+CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Default schema
 CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Wahr
 CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Falsch
 CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
@@ -34,5 +36,6 @@ CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Geben Sie einen Hostnamen für den Datenbankserv
 CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Geben Sie die Anschlussnummer der Verbindung für den Datenbankserver ein.
 CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Geben Sie einen Benutzernamen ein.
 CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Geben Sie ein Kennwort ein.
+
 
 

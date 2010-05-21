@@ -19,6 +19,8 @@ CUI_NEWCW_CONNECTIONURL_LBL_UI_= Verbindungs-UR&L:
 CUI_NEWCW_TBCREATOR_LBL_UI = &Abrufen von Objekten, die ausschließlich von diesem Nutzer erstellt wurden
 CUI_NEWCW_USERNAME_LBL_UI_ = Benutzern&ame:
 CUI_NEWCW_PASSWORD_LBL_UI_ = Kenn&wort:
+CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Default schema:
+CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Default schema
 CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = &Kennwort speichern
 CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Speicherort
 CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host:
@@ -35,5 +37,6 @@ CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Geben Sie einen Hostnamen für den Datenbankserv
 CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Geben Sie die Anschlussnummer der Verbindung für den Datenbankserver ein.
 CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Geben Sie einen Benutzernamen ein.
 CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Geben Sie ein Kennwort ein.
+
 
 
