@@ -28,6 +28,7 @@
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
@@ -52,6 +53,7 @@
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="32704" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARCHAR</name>
@@ -274,7 +276,7 @@
 	<privilegeDefinitions name="SYSOPR"/>
 	<privilegeDefinitions name="TRACE"/>
   </privilegedElementDefinitions>
-  <SQLSyntaxDefinition>
+  <SQLSyntaxDefinition terminationCharacter=";">
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>
     <keywords>ACTION</keywords>

@@ -274,7 +274,7 @@
 	<privilegeDefinitions name="SYSOPR"/>
 	<privilegeDefinitions name="TRACE"/>
   </privilegedElementDefinitions>
-  <SQLSyntaxDefinition>
+  <SQLSyntaxDefinition terminationCharacter=";">
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>
     <keywords>ACTION</keywords>
