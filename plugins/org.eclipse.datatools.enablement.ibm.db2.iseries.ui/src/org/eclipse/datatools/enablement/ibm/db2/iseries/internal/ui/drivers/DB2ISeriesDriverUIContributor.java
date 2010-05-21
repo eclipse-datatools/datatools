@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
 import org.eclipse.datatools.enablement.ibm.internal.ui.drivers.IBMJDBCDriverTracingOptionsPane;
@@ -31,6 +32,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.datatools.connectivity.ui.wizards.OptionalPropertiesPane;
 
 import com.ibm.icu.text.MessageFormat;
 
@@ -58,6 +60,9 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_ = org.eclipse.datatools.enablement.ibm.internal.ui.drivers.Messages
 			.getString("CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_"); //$NON-NLS-1$
 
@@ -76,6 +81,9 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
@@ -110,6 +118,10 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 
 	private Text passwordText;
 
+	private Label defaultSchemaLabel;
+
+	private Text defaultSchemaText;
+	
 	private Button savePasswordButton;
 
 	private Label urlLabel;
@@ -125,6 +137,8 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 	private Properties properties;
 	
 	private boolean isReadOnly = false;
+	
+	protected OptionalPropertiesPane optionalPropsComposite;
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 
@@ -244,6 +258,21 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			gd.grabExcessHorizontalSpace = true;
 			savePasswordButton.setLayoutData(gd);
 
+			defaultSchemaLabel = new Label(driverOptionsComposite, SWT.NONE);
+			defaultSchemaLabel.setText(CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_);
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			defaultSchemaLabel.setLayoutData(gd);
+
+			defaultSchemaText = new Text(driverOptionsComposite, SWT.SINGLE
+					| SWT.BORDER | additionalStyles);
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.grabExcessHorizontalSpace = true;
+			gd.horizontalSpan = 2;
+			defaultSchemaText.setLayoutData(gd);
+			
 			urlLabel = new Label(driverOptionsComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -260,6 +289,13 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			gd.widthHint = 190;
 			gd.heightHint = 90;
 			urlText.setLayoutData(gd);
+			
+			// add optional properties tab
+	        TabItem optionalPropsTab = new TabItem( tabComposite, SWT.None );
+	        optionalPropsTab.setText( ConnectivityUIPlugin.getDefault()
+	                .getResourceString( "CommonDriverUIContributor.optionaltab" ) ); //$NON-NLS-1$
+            optionalPropsComposite = createOptionalPropertiesPane( tabComposite, SWT.NULL, isReadOnly );
+            optionalPropsTab.setControl( optionalPropsComposite );
 
 			parentComposite.setContent(tabComposite);
 			parentComposite.setMinSize(tabComposite.computeSize(SWT.DEFAULT,
@@ -281,8 +317,13 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
+		properties.setProperty(
+				IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID,
+				this.defaultSchemaText.getText().trim());
 		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
+		
+        optionalPropsComposite.setConnectionInformation();
 		this.contributorInformation.setProperties(properties);
 	}
 
@@ -302,6 +343,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
 		savePasswordButton.removeListener(SWT.Selection, this);
+		defaultSchemaText.removeListener(SWT.Modify, this);
 	}
 
 	private void addListeners() {
@@ -311,6 +353,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
 		savePasswordButton.addListener(SWT.Selection, this);
+		defaultSchemaText.addListener(SWT.Modify, this);
 	}
 
 	private void initialize() {
@@ -355,7 +398,9 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			isComplete = false;
 		} else if (!tracingOptionsComposite.validateControl(parentPage)) {
 			isComplete = false;
-		}
+		} else if (!optionalPropsComposite.validateControl(parentPage)) {
+            isComplete = false;
+        } 
 
 		if (isComplete) {
 			parentPage.setErrorMessage(null);
@@ -371,6 +416,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			IDriverUIContributorInformation contributorInformation) {
 		this.contributorInformation = contributorInformation;
 		this.properties = contributorInformation.getProperties();
+		optionalPropsComposite.setDriverUIContributorInformation( contributorInformation );
 	}
 
 	public void loadProperties() {
@@ -396,7 +442,16 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
 			savePasswordButton.setSelection(true);
 		}
+		String defaultSchema = this.properties
+				.getProperty(IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID);
+		if (defaultSchema != null) {
+			defaultSchemaText.setText(defaultSchema);
+		}
 		tracingOptionsComposite.loadProperties(url.getProperties());
+		
+		// load optional connection properties
+		optionalPropsComposite.loadProperties();
+		
 		updateURL();
 		addListeners();
 		setConnectionInformation();
@@ -418,9 +473,22 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
 						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
 								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		summaryData.add(new String[] {
+				CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_,
+				this.defaultSchemaText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 		return summaryData;
+	}
+	
+	/**
+	 * Creates an OptionalPropertiesPane.  
+	 * Extenders may override to return an extended composite.
+	 */
+	protected OptionalPropertiesPane createOptionalPropertiesPane( Composite parent, int style, 
+            boolean useReadOnlyControls )
+	{
+	    return new OptionalPropertiesPane( parent, style, useReadOnlyControls );
 	}
 
 	private class DB2JDBCURL {

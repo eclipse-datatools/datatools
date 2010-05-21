@@ -44,6 +44,9 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_");
 
@@ -53,6 +56,9 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
@@ -77,6 +83,10 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 
 	private Text passwordText;
 
+	private Label defaultSchemaLabel;
+
+	private Text defaultSchemaText;
+	
 	private Button savePasswordButton;
 
 	private Label urlLabel;
@@ -188,6 +198,21 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 			gd.grabExcessHorizontalSpace = true;
 			savePasswordButton.setLayoutData(gd);
 
+			defaultSchemaLabel = new Label(baseComposite, SWT.NONE);
+			defaultSchemaLabel.setText(CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_);
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			defaultSchemaLabel.setLayoutData(gd);
+
+			defaultSchemaText = new Text(baseComposite, SWT.SINGLE
+					| SWT.BORDER | additionalStyles);
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.grabExcessHorizontalSpace = true;
+			gd.horizontalSpan = 2;
+			defaultSchemaText.setLayoutData(gd);
+			
 			urlLabel = new Label(baseComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -229,6 +254,9 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
 						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
 								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		summaryData.add(new String[] {
+				CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_,
+				this.defaultSchemaText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 		return summaryData;
@@ -254,6 +282,11 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 		if ((savePassword != null)
 				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
 			savePasswordButton.setSelection(true);
+		}
+		String defaultSchema = this.properties
+		.getProperty(IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID);
+		if (defaultSchema != null) {
+			defaultSchemaText.setText(defaultSchema);
 		}
 		updateURL();
 		addListeners();
@@ -281,6 +314,9 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
+		properties.setProperty(
+				IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID,
+				this.defaultSchemaText.getText().trim());
 		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
 		this.contributorInformation.setProperties(properties);
@@ -307,6 +343,7 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 		passwordText.addListener(SWT.Modify, this);
 		savePasswordButton.addListener(SWT.Selection, this);
 		hostText.addListener(SWT.Modify, this);
+		defaultSchemaText.addListener(SWT.Modify, this);
 	}
 
 	private void removeListeners() {
@@ -314,6 +351,7 @@ public class DB2ISeriesToolboxDriverUIContributor implements
 		passwordText.removeListener(SWT.Modify, this);
 		savePasswordButton.removeListener(SWT.Selection, this);
 		hostText.removeListener(SWT.Modify, this);
+		defaultSchemaText.removeListener(SWT.Modify, this);
 	}
 
 	private class DB2iSeriesJDBCURL {
