@@ -25,10 +25,10 @@ V7Description = IBM DB2 UDB for z/OS and OS 390 Version 7
 V8CompatibilityDescription = IBM DB2 UDB for z/OS Version 8 (互換モード)
 V8NewFunctionDescription = IBM DB2 UDB for z/OS Version 8 (新機能モード)
 
-V9CompatibilityDescription = IBM DB2 for z/OS Version 9 (新機能モード)
+V9CompatibilityDescription = IBM DB2 for z/OS Version 9.1 in conversion mode
 V9CompatibilityProductString = DB2 for z/OS
-V9CompatibilityVersionString = V9 (互換モード)
+V9CompatibilityVersionString = V9.1 (Conversion Mode)
 
-V9NewFunctionDescription = IBM DB2 for z/OS Version 9 (新機能モード)
+V9NewFunctionDescription = IBM DB2 for z/OS Version 9.1 in new-function mode
 V9NewFunctionProductString = DB2 for z/OS
-V9NewFunctionVersionString = V9 (新機能モード)
+V9NewFunctionVersionString = V9.1 (New-Function Mode)

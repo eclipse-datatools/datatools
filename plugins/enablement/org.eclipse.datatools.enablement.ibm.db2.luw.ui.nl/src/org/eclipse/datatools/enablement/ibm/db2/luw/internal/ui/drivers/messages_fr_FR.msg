@@ -27,6 +27,8 @@ CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Numéro de port
 CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_ = Utiliser une authentification client
 CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Nom d'utilisateur
 CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Enregistrer le mot de passe
+CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Default schema:
+CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Default schema
 CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
 CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = vrai
 CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = faux
@@ -36,5 +38,6 @@ CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Entrer le nom d'hôte pour le serveur de la base
 CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Entrer le numéro de port de connexion pour le serveur de la base de données.
 CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Entrer un nom d'utilisateur.
 CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Entrer un mot de passe.
+
 
 
