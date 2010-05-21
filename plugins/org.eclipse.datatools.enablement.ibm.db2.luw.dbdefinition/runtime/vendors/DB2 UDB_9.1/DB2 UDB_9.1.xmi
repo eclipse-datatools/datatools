@@ -240,7 +240,7 @@ userSupported="true" groupSupported="true" packageSupported="true" constructedDa
   	<privilegeDefinitions name="CONTROL"/>
   	<privilegeDefinitions name="EXECUTE"/>
   </privilegedElementDefinitions>
-  <SQLSyntaxDefinition>
+  <SQLSyntaxDefinition terminationCharacter=";">
     <keywords>ABS</keywords>
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>

@@ -235,7 +235,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
   	<privilegeDefinitions name="CONTROL"/>
   	<privilegeDefinitions name="EXECUTE"/>
   </privilegedElementDefinitions>
-  <SQLSyntaxDefinition>
+  <SQLSyntaxDefinition terminationCharacter=";">
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>
     <keywords>ACTION</keywords>

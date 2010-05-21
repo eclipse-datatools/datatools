@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
+import org.eclipse.datatools.connectivity.exceptions.DBNotStartException;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -62,5 +63,16 @@ public class JDBCLUWJDBCConnection extends JDBCConnection {
 			}
 		} catch (SQLException e) {
 		}
+	}
+	
+	public Throwable getConnectException() {
+		Throwable exception = super.getConnectException();
+		if((exception != null)
+				&&(exception instanceof SQLException)
+				&&(((SQLException)exception).getErrorCode()==-4499)
+				&&(exception.getCause() instanceof java.net.ConnectException)){
+			exception = new DBNotStartException(exception);
+		}
+		return exception ;
 	}
 }
