@@ -59,9 +59,15 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
@@ -113,6 +119,10 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 
 	private Label passwordLabel;
 
+	private Label defaultSchemaLabel;
+
+	private Text defaultSchemaText;
+	
 	private Text passwordText;
 
 	private Button savePasswordButton;
@@ -292,6 +302,21 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 			gd.grabExcessHorizontalSpace = true;
 			savePasswordButton.setLayoutData(gd);
 
+			defaultSchemaLabel = new Label(baseComposite, SWT.NONE);
+			defaultSchemaLabel.setText(CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_);
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			defaultSchemaLabel.setLayoutData(gd);
+
+			defaultSchemaText = new Text(baseComposite, SWT.SINGLE
+					| SWT.BORDER | additionalStyles);
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.grabExcessHorizontalSpace = true;
+			gd.horizontalSpan = 2;
+			defaultSchemaText.setLayoutData(gd);
+			
 			urlLabel = new Label(baseComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -344,6 +369,9 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
 						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
 								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		summaryData.add(new String[] {
+				CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_,
+				this.defaultSchemaText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 
@@ -375,7 +403,11 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
 			savePasswordButton.setSelection(true);
 		}
-        
+		String defaultSchema = this.properties
+		.getProperty(IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID);
+		if (defaultSchema != null) {
+			defaultSchemaText.setText(defaultSchema);
+		}
         // load optional connection properties
         optionalPropsComposite.loadProperties();
 
@@ -426,6 +458,7 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
 		savePasswordButton.addListener(SWT.Selection, this);
+		defaultSchemaText.addListener(SWT.Modify, this);
 	}
 
 	private void removeListeners() {
@@ -436,6 +469,7 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
 		savePasswordButton.removeListener(SWT.Selection, this);
+		defaultSchemaText.removeListener(SWT.Modify, this);
 	}
 
 	private void setConnectionInformation() {
@@ -449,6 +483,9 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
+		properties.setProperty(
+				IJDBCConnectionProfileConstants.DEFAULT_SCHEMA_PROP_ID,
+				this.defaultSchemaText.getText().trim());
 		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
         optionalPropsComposite.setConnectionInformation();
@@ -595,9 +632,11 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 							.indexOf(':'));
 					remainingURL = remainingURL.substring(remainingURL
 							.indexOf(':') + 1);
-					this.server = remainingURL.substring(new String(
-							"INFORMIXSERVER=").length(), remainingURL //$NON-NLS-1$
-							.indexOf(';'));
+					if (remainingURL.indexOf("INFORMIXSERVER=") > -1){
+						this.server = remainingURL.substring(new String(
+								"INFORMIXSERVER=").length(), remainingURL //$NON-NLS-1$
+								.indexOf(';'));
+					}
 					this.urlProperties = remainingURL;
 				} else {
 					this.databaseName = remainingURL;
