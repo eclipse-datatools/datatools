@@ -155,7 +155,7 @@ public class DriverValidator {
 	/*
 	 * Validate the jar list files
 	 */
-	private boolean validateJarListFiles() {
+	protected boolean validateJarListFiles() {
 		boolean flag = true;
 
 		boolean emptyJarListIsOK = this.mTemplate.getEmptyJarListIsOKFlag();
@@ -249,5 +249,10 @@ public class DriverValidator {
 		}
 		catch (CoreException e) {
 		}
+	}
+	
+	protected boolean isEmptyJarListOK()
+	{
+		return mTemplate.getEmptyJarListIsOKFlag();
 	}
 }
