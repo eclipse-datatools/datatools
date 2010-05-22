@@ -43,6 +43,7 @@ import org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.IColumnDataAccessor;
 import org.eclipse.datatools.sqltools.data.internal.core.common.Output;
@@ -107,7 +108,25 @@ public class TableDataImpl implements ITableData2 {
         if (sqlTable instanceof BaseTable) {
             findKey((BaseTable) sqlTable);
             readonly = false;
-        } else {
+        }
+        // If the target table is a view table, determine whether it can be edited.
+        else if (sqlTable instanceof ViewTable)
+        {	
+            readonly = true;
+            try
+            {
+                if (sqlTable.isUpdatable())
+                {
+                    findViewKey((ViewTable) sqlTable);
+                    readonly = false;
+                }
+            }
+            catch(UnsupportedOperationException uoe)
+            {
+                readonly = true;
+            }
+        } 
+        else {
             readonly = true;
         }
         resultColumns = new ArrayList();
@@ -161,6 +180,22 @@ public class TableDataImpl implements ITableData2 {
         }
     }
     
+    /**
+     * Finds a "view key" for the given view table. The view key is all the columns of the table.
+     * The view key is stored in the key var as an array of column indexes.
+     * 
+     * @param viewTable the view table for which the key is needed.
+     */
+    protected void findViewKey(ViewTable viewTable)
+    {
+        EList cols = viewTable.getColumns();
+        key = new int[cols.size()];
+        for (int i=0; i<cols.size(); ++i)
+        {
+            key[i] = i;
+        } 
+    }
+
     /**
      * Constructs TableDataImpl when user opt to filter the table results being returned     
      */
