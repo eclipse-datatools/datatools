@@ -11,6 +11,8 @@
 package org.eclipse.datatools.sqltools.data.internal.core.editor;
 
 import java.sql.Connection;
+import java.util.List;
+
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 
@@ -26,4 +28,6 @@ public interface ITableData2 extends ITableData {
     public String getColumnTypeName(int col);
 
     public int[] getKeyColumns();
+    
+    public List getResultColumns();
 }

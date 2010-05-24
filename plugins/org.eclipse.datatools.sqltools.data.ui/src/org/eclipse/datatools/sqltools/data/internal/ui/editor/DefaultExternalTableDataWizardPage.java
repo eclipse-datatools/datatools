@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableData2;
 import org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -108,7 +109,13 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
         this.rowData = editor.getOrCreateRow();
         hasNullValue = isNullValue();
         try{
-            String type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            String type = null;
+            if (editor.getTableData() instanceof ITableData2) {
+        	type = ((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).getDataType().getName();
+            }
+            else {
+        	type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            }
             setTitle(Messages.getString("DefaultExternalTableDataWizardPage.Title", new Object[]{type}));  //$NON-NLS-1$
         } catch (Exception e){
             setTitle(Messages.getString("DefaultExternalTableDataWizardPage.DefaultTitle"));  //$NON-NLS-1$
@@ -200,8 +207,14 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
         // if it is new (yet null) value of a non-nullable column (i.e. non-nullable and set to null) 
 		// we force the editorarea, import, export to be enabled and the null button is set to false
 		// see further down as well
-        boolean nonNullableCheck =  (!((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue);
-		textWidget.setEditable(editable || nonNullableCheck);
+        boolean nonNullableCheck = false;
+        if (editor.getTableData() instanceof ITableData2) {
+            nonNullableCheck =  (!((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).isNullable() && hasNullValue);
+        }
+        else {
+            nonNullableCheck =  (!((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue);
+        }
+        textWidget.setEditable(editable || nonNullableCheck);
 	
         editorAreaIsSerialized = true;  // as we deal with a text field, we want it serialized
 		GridData gdtxtTextValue = new GridData(GridData.FILL_BOTH);
@@ -239,7 +252,10 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
 	            // if it is new (yet null) value of a non-nullable column (i.e. non-nullable and value set to null) 
 	    		// we force the editorarea, import, export to be enabled and the null button is set to false
 	    		// see further up and down as well	            
-	    		if ( !((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue) {
+	    		if ( editor.getTableData() instanceof ITableData2 && !((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).isNullable() && hasNullValue) {
+	    			btnImport.setEnabled(true);
+	    		}
+	    		else if (!((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue) {
 	    			btnImport.setEnabled(true);
 	    		}
 	            
@@ -259,7 +275,10 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
 	            // if it is new (yet null) value of a non-nullable column (i.e. non-nullable and value set to null) 
 	    		// we force the editorarea, import, export to be enabled and the null button is set to false
 	    		// see further up as well	            
-	    		if ( !((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue) {
+	    		if ( editor.getTableData() instanceof ITableData2 && !((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).isNullable() && hasNullValue) {
+	    			btnExport.setEnabled(true);
+	    		}
+	    		else if (!((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue) {
 	    			btnExport.setEnabled(true);
 	    		}
 	            
@@ -302,17 +321,30 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
             }
             // if it is new (yet null) value of a non-nullable column (i.e. non-nullable and value set to null) 
     		// we force the editorarea, import, export to be enabled and the null button is set to false
-    		if ( !((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue) {
-    			btnSetNull.setSelection(false);
-    			hasNullValue = false;
-    		}
+		if ( editor.getTableData() instanceof ITableData2 &&  !((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).isNullable() && hasNullValue) {
+			btnSetNull.setSelection(false);
+			hasNullValue = false;
+		}
+		else if ( !((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && hasNullValue ) {
+			btnSetNull.setSelection(false);
+			hasNullValue = false;
+		}
             
             // set Null is enabled only for nullable columns of a writeable editor
-            if ( ((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && !editor.isReadonly()){
-                btnSetNull.setEnabled(true);
-            } else{
-                btnSetNull.setEnabled(false);
-            }
+		if (editor.getTableData() instanceof ITableData2) {
+	            if ( ((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).isNullable() && !editor.isReadonly()){
+	                btnSetNull.setEnabled(true);
+	            } else{
+	                btnSetNull.setEnabled(false);
+	            }
+		}
+		else {
+			if ( ((Column)editor.getSqlTable().getColumns().get(columnIndex)).isNullable() && !editor.isReadonly()){
+	                btnSetNull.setEnabled(true);
+	            } else{
+	                btnSetNull.setEnabled(false);
+	            }
+		}
         }
     }
     
@@ -423,7 +455,13 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
     protected void handleImport(){
         String title = null;
         try{
-            String type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            String type = null;
+            if (editor.getTableData() instanceof ITableData2) {
+        	type = ((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).getDataType().getName();
+            }
+            else {
+        	type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            }
             title = Messages.getString("DefaultExternalTableDataWizardPage.Import.Title", new Object[]{type}); //$NON-NLS-1$
         } catch (Exception e){
             title = Messages.getString("DefaultExternalTableDataWizardPage.Import.DefaultTitle"); //$NON-NLS-1$
@@ -469,7 +507,13 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
     protected void handleExport(){
         String title = null;
         try{
-            String type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            String type = null;
+            if (editor.getTableData() instanceof ITableData2) {
+        	type = ((Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex)).getDataType().getName();
+            }
+            else {
+        	type = ((Column)editor.getSqlTable().getColumns().get(columnIndex)).getDataType().getName();
+            }
             title = Messages.getString("DefaultExternalTableDataWizardPage.Export.Title", new Object[]{type}); //$NON-NLS-1$
         } catch (Exception e){
             title = Messages.getString("DefaultExternalTableDataWizardPage.Export.DefaultTitle"); //$NON-NLS-1$

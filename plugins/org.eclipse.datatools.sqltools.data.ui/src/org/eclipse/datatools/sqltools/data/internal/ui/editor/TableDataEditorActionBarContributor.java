@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableData2;
 import org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -245,6 +246,11 @@ abstract class CursorAction extends EditorAction implements ISelectionChangedLis
         if (editor==null)
             return false;
         int col = editor.getCursor().getColumn();
-        return ((Column)editor.getSqlTable().getColumns().get(col)).isNullable();
+        if (editor.getTableData() instanceof ITableData2) {
+            return ((Column)((ITableData2)editor.getTableData()).getResultColumns().get(col)).isNullable();
+        }
+        else {
+            return ((Column)editor.getSqlTable().getColumns().get(col)).isNullable();
+        }
     }
 }

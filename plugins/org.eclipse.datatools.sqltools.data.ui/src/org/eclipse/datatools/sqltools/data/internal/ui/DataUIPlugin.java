@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,6 +44,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableData2;
 import org.eclipse.datatools.sqltools.data.internal.ui.editor.IExternalTableDataEditor;
 import org.eclipse.datatools.sqltools.data.internal.ui.editor.ITableDataEditor;
 import org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditorActionBarContributor;
@@ -340,7 +341,21 @@ public class DataUIPlugin extends AbstractUIPlugin
         if (columnIndex > editor.getSqlTable().getColumns().size()){
             return null;
         }
-        Column sqlCol = (Column)editor.getSqlTable().getColumns().get(columnIndex);
+
+        if (editor.getTableData() instanceof ITableData2) {
+            if (((ITableData2)editor.getTableData()).getResultColumns() == null || (columnIndex > ((ITableData2)editor.getTableData()).getResultColumns().size())) {
+        	return null;
+            }
+        }
+
+        Column sqlCol = null;
+        if (editor.getTableData() instanceof ITableData2) {
+            sqlCol = (Column)((ITableData2)editor.getTableData()).getResultColumns().get(columnIndex);
+        }
+        else {
+            sqlCol = (Column)editor.getSqlTable().getColumns().get(columnIndex);
+        }
+        
         IExternalTableDataEditor externalEditor = null;
         
         try {

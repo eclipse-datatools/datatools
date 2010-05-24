@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableData2;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.ui.IActionFilter;
 
@@ -91,10 +92,22 @@ public class TableDataCell implements IActionFilter {
 			String version = db.getVersion();
 			return value.equals(version);
 		} else if (name.equals("dataType")) {//$NON-NLS-1$
-			Column sqlCol = (Column) editor.getSqlTable().getColumns().get(col);
+			Column sqlCol = null;
+			if (editor.getTableData() instanceof ITableData2) {
+				sqlCol = (Column) ((ITableData2)editor.getTableData()).getResultColumns().get(col);
+			}
+			else {
+				sqlCol = (Column) editor.getSqlTable().getColumns().get(col);
+			}
 			return value.equals(sqlCol.getDataType().getName());
 		} else if (name.equals("nullable")) { //$NON-NLS-1$
-			Column sqlCol = (Column) editor.getSqlTable().getColumns().get(col);
+			Column sqlCol = null;
+			if (editor.getTableData() instanceof ITableData2) {
+				sqlCol = (Column) ((ITableData2)editor.getTableData()).getResultColumns().get(col);
+			}
+			else {
+				sqlCol = (Column) editor.getSqlTable().getColumns().get(col);
+			}
 			return new Boolean(value).booleanValue() == sqlCol.isNullable();
 		} else if (name.equals("insertionCell")) { //$NON-NLS-1$	
 			boolean b = row instanceof IRowData;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -86,7 +86,7 @@ public class RowDataImpl extends AbstractRowData
     	Vector cols = new Vector();
     	int index = -1;
     	for (int i=0; i<table.getColumnCount(); ++i) {
-    		Column sqlCol = (Column) table.getSQLTable().getColumns().get(i);
+    		Column sqlCol = (Column) table.getResultColumns().get(i);
     		//Do not include columns that are always generated
     		if (sqlCol.getIdentitySpecifier() == null) {
     			index++;
@@ -179,7 +179,7 @@ public class RowDataImpl extends AbstractRowData
     {
         Vector exprs = new Vector();        
         for (int col=0; col<newData.length; ++col) {        	
-        	Column sqlCol = (Column) table.getSQLTable().getColumns().get(col);
+        	Column sqlCol = (Column) table.getResultColumns().get(col);
         	if (sqlCol.getIdentitySpecifier() == null) {
         		exprs.add( table.getColumnDataAccessor(col).getValuesExpr(newData[col]) );
         	}         	
@@ -190,7 +190,7 @@ public class RowDataImpl extends AbstractRowData
     protected void setValuesClauseArguments(PreparedStatement pst, StmtLog stmtLog) throws SQLException, IOException
     {       
     	for (int col=0; col<newData.length; ++col) {
-    		Column sqlCol = (Column) table.getSQLTable().getColumns().get(col);
+		Column sqlCol = (Column) table.getResultColumns().get(col);
     		//Omit the always generted columns
     		if (sqlCol.getIdentitySpecifier() == null) {
 	            String[] args = table.getColumnDataAccessor(col).writeValuesExprArgs(pst, stmtLog.getArgsCount(),
