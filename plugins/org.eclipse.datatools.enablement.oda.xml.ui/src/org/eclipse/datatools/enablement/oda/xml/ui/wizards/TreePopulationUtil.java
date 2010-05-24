@@ -204,7 +204,7 @@ final class TreePopulationUtil
 	static Color getBackGroundColor( )
 	{
 		return Display.getDefault( )
-				.getSystemColor( SWT.COLOR_WIDGET_DARK_SHADOW );
+				.getSystemColor( SWT.COLOR_WIDGET_BACKGROUND );
 	}
 
 	/**
@@ -214,7 +214,7 @@ final class TreePopulationUtil
 	 */
 	static Color getForeGroundColor( )
 	{
-		return Display.getDefault( ).getSystemColor( SWT.COLOR_WHITE );
+		return Display.getDefault( ).getSystemColor( SWT.COLOR_WIDGET_FOREGROUND );
 	}
 
 }
