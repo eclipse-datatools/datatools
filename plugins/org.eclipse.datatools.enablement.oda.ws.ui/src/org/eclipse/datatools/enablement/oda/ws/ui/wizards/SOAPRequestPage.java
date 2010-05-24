@@ -666,11 +666,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 		 */
 		protected void createCustomControls( Composite parent )
 		{
-			GridData labelGd = new GridData( );
-			labelGd.widthHint = 100;
 			Label columnName = new Label( parent, SWT.NONE );
 			columnName.setText( COLUMN_NAME + COLON );
-			columnName.setLayoutData( labelGd );
 
 			GridData textGd = new GridData( GridData.FILL_HORIZONTAL );
 			textGd.widthHint = 180;
@@ -681,7 +678,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			Label columnType = new Label( parent, SWT.NONE );
 			columnType.setText( COLUMN_DATATYPE + COLON );
-			columnType.setLayoutData( labelGd );
 
 			Text columnTypeText = new Text( parent, SWT.BORDER );
 			columnTypeText.setText( EMPTY_STRING );
@@ -690,7 +686,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			Label defualtValue = new Label( parent, SWT.NONE );
 			defualtValue.setText( COLUMN_DEFAULTVALUE + COLON );
-			defualtValue.setLayoutData( labelGd );
 
 			defualtValueText = new Text( parent, SWT.BORDER );
 			defualtValueText.setText( this.soapParameter.getDefaultValue( ) );
@@ -703,6 +698,23 @@ public class SOAPRequestPage extends DataSetWizardPage
 				}
 
 			} );
+			
+			int maxWidth = getMaxWidth( columnName, 100 );
+			maxWidth = getMaxWidth( columnType, maxWidth );
+			maxWidth = getMaxWidth( defualtValue, maxWidth );
+			
+			GridData labelGd = new GridData( );
+			labelGd.widthHint = maxWidth;
+			columnName.setLayoutData( labelGd );
+			columnType.setLayoutData( labelGd );
+			defualtValue.setLayoutData( labelGd );
+			
+		}
+		
+		private int getMaxWidth( Control control, int size )
+		{
+			int width = control.computeSize( -1, -1 ).x;
+			return width > size ? width : size;
 		}
 
 		protected SOAPParameter getModifiedSOAPParameter( )

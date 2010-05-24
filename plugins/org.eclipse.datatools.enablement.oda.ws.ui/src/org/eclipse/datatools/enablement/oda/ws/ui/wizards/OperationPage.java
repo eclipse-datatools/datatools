@@ -210,20 +210,22 @@ public class OperationPage extends DataSetWizardPage
 
 		Label label = new Label( composite, SWT.NONE );
 		layoutData = new GridData( );
-		layoutData.widthHint = 100;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "operationPage.label.selectOpearation" ) );//$NON-NLS-1$
+		if ( label.computeSize( -1, -1 ).x < 100 )
+			layoutData.widthHint = 100;
 
 		operationName = new Label( composite, SWT.BORDER );
-		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.horizontalSpan = 2;
-		operationName.setLayoutData( layoutData );
+		GridData gd = new GridData( GridData.FILL_HORIZONTAL );
+		gd.horizontalSpan = 2;
+		operationName.setLayoutData( gd );
 
-		label = new Label( composite, SWT.NONE );
-		layoutData = new GridData( );
-		layoutData.widthHint = 100;
-		label.setLayoutData( layoutData );
-		label.setText( Messages.getString( "operationPage.label.document" ) ); //$NON-NLS-1$
+		Label label2 = new Label( composite, SWT.NONE );
+		GridData data = new GridData( );
+		label2.setLayoutData( data );
+		label2.setText( Messages.getString( "operationPage.label.document" ) ); //$NON-NLS-1$
+		if ( label2.computeSize( -1, -1 ).x < 100 )
+			data.widthHint = 100;
 
 		operationDescription = new Label( composite, SWT.BORDER
 				| SWT.V_SCROLL | SWT.H_SCROLL );

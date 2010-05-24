@@ -128,13 +128,8 @@ public class SOAPParametersPage extends DataSetWizardPage
 		Label label = new Label( btnComposite, SWT.NONE );
 		label.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 
-		GridData btnGd = new GridData( GridData.CENTER );
-		btnGd.widthHint = 100;
-		btnGd.horizontalIndent = 10;
-
 		Button selectAllBtn = new Button( btnComposite, SWT.NONE );
-		selectAllBtn.setText( Messages.getString( "soapParametersPage.button.selectAll" ) );  //$NON-NLS-1$
-		selectAllBtn.setLayoutData( btnGd );
+		selectAllBtn.setText( Messages.getString( "soapParametersPage.button.selectAll" ) ); //$NON-NLS-1$
 		selectAllBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -147,7 +142,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		Button deselectAllBtn = new Button( btnComposite, SWT.NONE );
 		deselectAllBtn.setText( Messages.getString( "soapParametersPage.button.deselectAll" ) ); //$NON-NLS-1$
-		deselectAllBtn.setLayoutData( btnGd );
 		deselectAllBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -157,8 +151,22 @@ public class SOAPParametersPage extends DataSetWizardPage
 			}
 
 		} );
+
+		GridData btnGd = new GridData( GridData.CENTER );
+		btnGd.horizontalIndent = 10;
+		btnGd.widthHint = getMaxWidth( deselectAllBtn,
+				getMaxWidth( selectAllBtn, 100 ) );
 		
-}
+		selectAllBtn.setLayoutData( btnGd );
+		deselectAllBtn.setLayoutData( btnGd );
+
+	}
+	
+	private int getMaxWidth( Button button, int size )
+	{
+		int width = button.computeSize( -1, -1 ).x;
+		return width > size ? width : size;
+	}
 
 	private void createCheckboxTable( Composite parent )
 	{

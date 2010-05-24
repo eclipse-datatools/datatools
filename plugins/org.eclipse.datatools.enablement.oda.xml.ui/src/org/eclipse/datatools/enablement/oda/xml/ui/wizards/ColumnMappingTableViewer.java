@@ -31,13 +31,14 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.10 $ $Date: 2008/04/23 07:48:46 $
+ * @version $Revision: 1.11 $ $Date: 2008/05/07 10:06:33 $
  */
 public final class ColumnMappingTableViewer
 {
@@ -84,42 +85,26 @@ public final class ColumnMappingTableViewer
 			btnLayout.verticalSpacing = 10;
 			btnComposite.setLayout( btnLayout );
 
-			GridData btnData = new GridData( );
-						
 			btnAdd = new Button( btnComposite, SWT.NONE );
 			btnAdd.setText( Messages.getString( "menu.button.add" ) ); //$NON-NLS-1$
 			btnAdd.setEnabled( true );
-			btnAdd.setLayoutData( btnData );
-			btnData.widthHint = btnAdd.getSize().x > 60 ? btnAdd.getSize().x:60;
-			
-			btnData = new GridData( GridData.CENTER );
-			btnEdit = new Button( btnComposite, SWT.NONE );
-			btnEdit.setText( Messages.getString( "menu.button.edit" ) );     //$NON-NLS-1$
-			btnEdit.setLayoutData( btnData );
-			btnEdit.setEnabled( false );
-			btnData.widthHint = btnEdit.getSize().x > 60 ? btnEdit.getSize().x:60;
-			
-			btnData = new GridData( GridData.CENTER );
-			btnRemove = new Button( btnComposite, SWT.NONE );
-			btnRemove.setText( Messages.getString( "menu.button.remove" ) );     //$NON-NLS-1$
-			btnRemove.setLayoutData( btnData );
-			btnRemove.setEnabled( false );
-			btnData.widthHint = btnRemove.getSize().x > 60 ? btnRemove.getSize().x:60;
 
-			btnData = new GridData( GridData.CENTER );
+			btnEdit = new Button( btnComposite, SWT.NONE );
+			btnEdit.setText( Messages.getString( "menu.button.edit" ) ); //$NON-NLS-1$
+			btnEdit.setEnabled( false );
+
+			btnRemove = new Button( btnComposite, SWT.NONE );
+			btnRemove.setText( Messages.getString( "menu.button.remove" ) ); //$NON-NLS-1$
+			btnRemove.setEnabled( false );
+
 			btnUp = new Button( btnComposite, SWT.NONE );
-			btnUp.setText( Messages.getString( "menu.button.up" ) );         //$NON-NLS-1$
-			btnUp.setLayoutData( btnData );
+			btnUp.setText( Messages.getString( "menu.button.up" ) ); //$NON-NLS-1$
 			btnUp.setEnabled( false );
-			btnData.widthHint = btnUp.getSize().x > 60 ? btnUp.getSize().x:60;
-			
-			btnData = new GridData( GridData.CENTER );
+
 			btnDown = new Button( btnComposite, SWT.NONE );
-			btnDown.setText( Messages.getString( "menu.button.down" ) );     //$NON-NLS-1$
-			btnDown.setLayoutData( btnData );
+			btnDown.setText( Messages.getString( "menu.button.down" ) ); //$NON-NLS-1$
 			btnDown.setEnabled( false );
-			btnData.widthHint = btnDown.getSize().x > 60 ? btnDown.getSize().x:60;
-			
+
 			btnDown.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetSelected( SelectionEvent e )
@@ -131,6 +116,21 @@ public final class ColumnMappingTableViewer
 				}
 
 			} );
+
+			int maxWidth = getMaxWidth( btnAdd, 60 );
+			maxWidth = getMaxWidth( btnEdit, maxWidth );
+			maxWidth = getMaxWidth( btnRemove, maxWidth );
+			maxWidth = getMaxWidth( btnUp, maxWidth );
+			maxWidth = getMaxWidth( btnDown, maxWidth );
+
+			GridData btnData = new GridData( );
+			btnData.widthHint = maxWidth;
+			btnAdd.setLayoutData( btnData );
+			btnEdit.setLayoutData( btnData );
+			btnRemove.setLayoutData( btnData );
+			btnUp.setLayoutData( btnData );
+			btnDown.setLayoutData( btnData );
+
 		}
 
 		if ( showMenus )
@@ -144,10 +144,10 @@ public final class ColumnMappingTableViewer
 				}
 			} );
 			itmRemove = new MenuItem( menu, SWT.NONE );
-			itmRemove.setText( Messages.getString( "menu.menuItem.remove" ) );         //$NON-NLS-1$
+			itmRemove.setText( Messages.getString( "menu.menuItem.remove" ) ); //$NON-NLS-1$
 
 			itmRemoveAll = new MenuItem( menu, SWT.NONE );
-			itmRemoveAll.setText( Messages.getString( "menu.menuItem.removeAll" ) );   //$NON-NLS-1$
+			itmRemoveAll.setText( Messages.getString( "menu.menuItem.removeAll" ) ); //$NON-NLS-1$
 
 			viewer.getTable( ).setMenu( menu );
 		}
@@ -169,6 +169,12 @@ public final class ColumnMappingTableViewer
 
 			} );
 		}
+	}
+
+	private int getMaxWidth( Control control, int size )
+	{
+		int width = control.computeSize( -1, -1 ).x;
+		return width > size ? width : size;
 	}
 
 	/**
