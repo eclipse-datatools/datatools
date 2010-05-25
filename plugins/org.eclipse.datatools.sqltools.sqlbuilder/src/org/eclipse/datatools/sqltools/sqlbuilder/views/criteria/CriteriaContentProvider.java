@@ -25,7 +25,7 @@ import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.GridContentProvider;
 
-class CriteriaContentProvider extends GridContentProvider {
+public class CriteriaContentProvider extends GridContentProvider {
 
     QuerySearchCondition searchCon;
     boolean isHaving = false;

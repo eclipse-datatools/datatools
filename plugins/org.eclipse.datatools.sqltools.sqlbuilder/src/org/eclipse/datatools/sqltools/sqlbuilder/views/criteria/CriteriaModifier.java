@@ -14,7 +14,7 @@ import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableItem;
 
-class CriteriaModifier implements ICellModifier {    
+public class CriteriaModifier implements ICellModifier {    
 
     public boolean canModify(Object element, String property) {
         // check for instance of single predicate expression
