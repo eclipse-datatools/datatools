@@ -2225,19 +2225,22 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
         								}
         							}
         						}
-                                Iterator m = this.databaseVendorDefinition.getStoredProcedureDefinition().getPredefinedDataTypeDefinitions().iterator();
-                                while (m.hasNext()) {
-                                    Object p = m.next();
-                                    if (p instanceof PredefinedDataTypeDefinition) {
-                                        PredefinedDataTypeDefinition pd = (PredefinedDataTypeDefinition)p;
-                                        Iterator k = pd.getName().iterator();
-                                        while (k.hasNext()) {
-                                            Object q = k.next();
-                                            if (q instanceof String) {
-                                                String name = (String)q;
-                                                if (this.nameToPrimitiveDataTypeDefinitionMap.get(name) == null) {
-                                                    this.nameToPrimitiveDataTypeDefinitionMap.put(name, pd);
-                                                } 
+                                StoredProcedureDefinition spdef = this.databaseVendorDefinition.getStoredProcedureDefinition();
+                                if (spdef != null) {
+                                    Iterator m = spdef.getPredefinedDataTypeDefinitions().iterator();
+                                    while (m.hasNext()) {
+                                        Object p = m.next();
+                                        if (p instanceof PredefinedDataTypeDefinition) {
+                                            PredefinedDataTypeDefinition pd = (PredefinedDataTypeDefinition)p;
+                                            Iterator k = pd.getName().iterator();
+                                            while (k.hasNext()) {
+                                                Object q = k.next();
+                                                if (q instanceof String) {
+                                                    String name = (String)q;
+                                                    if (this.nameToPrimitiveDataTypeDefinitionMap.get(name) == null) {
+                                                        this.nameToPrimitiveDataTypeDefinitionMap.put(name, pd);
+                                                    } 
+                                                }
                                             }
                                         }
                                     }
