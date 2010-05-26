@@ -582,6 +582,10 @@ public class InternalProfileManager {
         IStatus status = profile.disconnect();
         if (status == Status.CANCEL_STATUS)
             return false;
+        
+        // dispose the disconnected transient profile instance to release all its references immediately
+        if ( profile instanceof ConnectionProfile )
+            ((ConnectionProfile)profile).dispose();
 
         return mTransientProfiles.remove( profile );
 	}
