@@ -128,11 +128,12 @@ public class MultipleTabsGridSection extends MultipleTabsModeSection
     
     protected void showParameterDetail(IResultInstance instance)
     {
-        if(instance.getParameters() == null)
+	List paramList = instance.getParameters();
+        if(paramList == null || paramList.size() == 0)
         {
             return;
         }
-        Iterator iter = instance.getParameters().iterator();
+        Iterator iter = paramList.iterator();
         ArrayList newList = new ArrayList();
         while(iter.hasNext())
         {
