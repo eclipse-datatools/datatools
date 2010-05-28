@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -134,6 +134,46 @@ public class ProviderUtil
         if( appContext == null || ! ( appContext instanceof Map ) )
             return null;     // no context map to obtain value
         return ((Map) appContext).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );         
+    }
+    
+    /**
+     * Gets the context value that specifies the behavior of an IPropertyProvider, 
+     * on whether to reload the current content of an external profile store.
+     * @param connPropContext   the connection profile context specified by an 
+     *          ODA consumer application
+     * @return  the Boolean value mapped to the IPropertyProvider.ODA_RELOAD_PROFILE_STORE key
+     *      in the specified context map; may be null if none specified
+     * @since 3.2.3 (DTP 1.8)
+     * @see {@link #setReloadProfileStoreContextValue(Map, Boolean)}
+     */
+    public static Boolean getReloadProfileStoreContextValue( Object connPropContext )
+    {
+        if( connPropContext == null || ! (connPropContext instanceof Map) )
+            return null;     // no context map to obtain value
+        Object reloadStoreValue =((Map) connPropContext).get( 
+                    IPropertyProvider.ODA_RELOAD_PROFILE_STORE ); 
+        return (reloadStoreValue instanceof Boolean) ? (Boolean)reloadStoreValue : null;
+    }
+    
+    /**
+     * Sets the entry in the connection property context Map to specify the behavior of 
+     * an IPropertyProvider, on whether to reload the current content of an external profile store.
+     * @param connPropContext   the connection profile context specified by an 
+     *          ODA consumer application
+     * @param reloadStoreValue  a Boolean.TRUE value to indicate always reload and get
+     *                      the current content of an external profile store;
+     *                      a Boolean.FALSE value to reuse content previously loaded if available; 
+     *                      may be null to adopt provider's default behavior
+     * @since 3.2.3 (DTP 1.8)
+     * @see {@link #getReloadProfileStoreContextValue(Object)}
+     */
+    public static void setReloadProfileStoreContextValue( Map connPropContext, Boolean reloadStoreValue )
+    {
+        if( connPropContext == null )
+            throw new IllegalArgumentException( 
+                    "Null connPropContext argument in setReloadProfileStoreIndicator()" ); //$NON-NLS-1$
+
+        connPropContext.put( IPropertyProvider.ODA_RELOAD_PROFILE_STORE, reloadStoreValue );
     }
     
     private static void log( String context, String msg )

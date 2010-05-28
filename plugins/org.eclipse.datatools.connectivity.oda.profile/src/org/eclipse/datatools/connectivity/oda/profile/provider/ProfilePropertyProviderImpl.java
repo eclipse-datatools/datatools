@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
+import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
@@ -50,7 +51,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     public Properties getDataSourceProperties( Properties candidateProperties,
             Object appContext ) throws OdaException
     {
-        final String methodName = "getDataSourceProperties"; //$NON-NLS-1$
+        final String methodName = "getDataSourceProperties(Properties,Object)"; //$NON-NLS-1$
         
         IConnectionProfile connProfile = 
             getConnectionProfile( candidateProperties, appContext );
@@ -108,6 +109,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( candidateProperties == null || candidateProperties.isEmpty() )
             return null;
         
+        // first get the profile reference from the specified arguments
+        
         String profileName = getProfileName( candidateProperties );
         if( profileName == null )
             return null;    // no external profile is specified in properties
@@ -115,6 +118,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         // determine the profile store file to use
         File profileStore = getProfileStoreFile( candidateProperties, connPropContext );
         
+        // now get the referenced profile from the profile explorer
         IConnectionProfile profile = null;
         try
         {
@@ -156,18 +160,25 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      */
     private File getProfileStoreFile( Properties candidateProperties, Object connPropContext )
     {
-        // a profile store mapping specified in the connPropContext map 
+        // a profile store mapping specified in the connPropContext map, if exists, 
         // takes precedence over the file path specified in the properties
         File profileStore = getProfileStoreFile( connPropContext );
-        if( profileStore != null )
-            return profileStore;
+        if( profileStore == null )
+            profileStore = getProfileStoreFile( candidateProperties );
 
-        profileStore = getProfileStoreFile( candidateProperties );
         if( profileStore != null )
         {
             // using a new profile storage File object, good opportunity
             // to free up the cached profiles of previously loaded profile store File
-            if( m_refreshProfileStore )
+            Boolean refreshProfileStore = 
+                ProviderUtil.getReloadProfileStoreContextValue( connPropContext );
+            
+            // if IPropertyProvider.ODA_RELOAD_PROFILE_STORE key entry is not specified in the context,
+            // applies the value specified by #setRefreshProfileStore(boolean)
+            if( refreshProfileStore == null )   
+                refreshProfileStore = Boolean.valueOf( m_refreshProfileStore ); 
+
+            if( refreshProfileStore.booleanValue() )
                 OdaProfileExplorer.getInstance().refresh();
         }
         

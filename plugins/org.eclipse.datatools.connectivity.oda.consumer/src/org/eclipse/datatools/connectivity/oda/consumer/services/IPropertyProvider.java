@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +27,9 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public interface IPropertyProvider
 {
-	// ODA consumer extension keys to include in the application context Map
+    static final String sm_packageName = IPropertyProvider.class.getPackage().getName();
+    
+	// Pre-defined keys to be set by ODA consumer extensions in an application context Map
 	// specified in the call to IDriver.setAppContext method
 	public static final String ODA_CONSUMER_ID = "OdaConsumerId"; //$NON-NLS-1$
     public static final String ODA_CONN_PROP_CONTEXT = "OdaConnPropertyContext"; //$NON-NLS-1$
@@ -38,6 +40,17 @@ public interface IPropertyProvider
      * @since 3.2.2 (DTP 1.7.2)
      */
     public static final String APP_RUNTIME_LOCALE_KEY = "AppRuntimeLocale"; //$NON-NLS-1$
+
+    /**
+     * The pre-defined key in an application context Map to specify the profile loading 
+     * behavior of an IPropertyProvider implementation that supports it.  
+     * <br>A Boolean.TRUE value mapped to the key indicates to always reload and get
+     * the current content of an external profile store;
+     * a Boolean.FALSE value indicates to reuse the profile properties previously loaded, if available.
+     * @since 3.2.3 (DTP 1.8)
+     * @see {@link org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil#setReloadProfileStoreContextValue(Map,Boolean)}
+     */
+    public static final String ODA_RELOAD_PROFILE_STORE = sm_packageName + ".OdaReloadProfileStore"; //$NON-NLS-1$
 
     /**
      * Provides the effective property values to use at runtime to open

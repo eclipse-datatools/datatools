@@ -72,7 +72,11 @@ public class OdaProfileExplorer
     {
         synchronized( OdaProfileExplorer.class )
         {
-            sm_instance = null;
+            if( sm_instance != null )
+            {
+                sm_instance.refresh();
+                sm_instance = null;
+            }
             sm_logger = null;
         }
     }
@@ -516,26 +520,38 @@ public class OdaProfileExplorer
      * in the specified connection properties.
      * The profile store file object may be provided in the given context,
      * or its file path is specified in the connection properties.
+     * <br>This method delegates to the default property provider to get the external profile
+     * store reference from the specified properties and application context.  
+     * Clients with custom IPropertyProvider implementation should obtain own profile reference, 
+     * for use as arguments to {@link #getProfileByName(String, File)}.
      * @param dataSourceDesignProps connection properties specified in a data source design
      * @param appContext      an application context Map passed thru to a connection,
-     *                        and which contains 
-     *                        the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
-     *                        and a corresponding connection property context object as value.
+     *                        and which may contain the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
+     *                        and corresponding connection property context object as value.
+     *                        If no such nested context is found, this application context Map is used
+     *                        as the connection property context.
      *                        Optional; may be null.
      * @return  the matching profile instance, or null if not found
      * @since DTP 1.6
+     * @see #getProfileByName(String, File)
      */
     public IConnectionProfile getProfileByName( 
             Properties dataSourceDesignProps, Object appContext )
     {
+        // use the nested context for a profile store File object, if exists
         Object connPropContext = null;
         if( appContext != null && appContext instanceof Map )
-        {
-            connPropContext = ( (Map) appContext ).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );
-        }
+            connPropContext = ((Map) appContext).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );
+        if( connPropContext == null )
+            connPropContext = appContext;
         
+        // delegates to the default property provider to get the profile reference; 
+        // re-use previously loaded profiles, if exists; client may override default re-use behavior 
+        // by explicitly calling #refresh() earlier, or trigger the default property provider to refresh 
+        // by setting the IPropertyProvider.ODA_RELOAD_PROFILE_STORE key entry in the 
+        // connection property context
         ProfilePropertyProviderImpl profileProvider = new ProfilePropertyProviderImpl();
-        profileProvider.setRefreshProfileStore( false  );  // client can call refresh() directly if needed
+        profileProvider.setRefreshProfileStore( false );
         return createOdaWrapper( 
                 profileProvider.getConnectionProfile( dataSourceDesignProps, connPropContext ));       
     }
