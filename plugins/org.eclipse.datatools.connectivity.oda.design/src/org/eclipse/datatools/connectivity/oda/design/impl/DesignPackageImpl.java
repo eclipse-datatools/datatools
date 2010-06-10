@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.17 2009/10/23 20:17:26 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.18 2010/02/17 02:20:38 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomData;
 import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
@@ -141,6 +142,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass compositeFilterExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass customDataEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -885,6 +893,46 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) compositeFilterExpressionEClass
                 .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCustomData()
+    {
+        return customDataEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomData_ProviderId()
+    {
+        return (EAttribute) customDataEClass.getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomData_Value()
+    {
+        return (EAttribute) customDataEClass.getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomData_DisplayValue()
+    {
+        return (EAttribute) customDataEClass.getEStructuralFeatures().get( 2 );
     }
 
     /**
@@ -3095,6 +3143,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEReference( compositeFilterExpressionEClass,
                 COMPOSITE_FILTER_EXPRESSION__CHILDREN );
 
+        customDataEClass = createEClass( CUSTOM_DATA );
+        createEAttribute( customDataEClass, CUSTOM_DATA__PROVIDER_ID );
+        createEAttribute( customDataEClass, CUSTOM_DATA__VALUE );
+        createEAttribute( customDataEClass, CUSTOM_DATA__DISPLAY_VALUE );
+
         customFilterExpressionEClass = createEClass( CUSTOM_FILTER_EXPRESSION );
         createEReference( customFilterExpressionEClass,
                 CUSTOM_FILTER_EXPRESSION__TYPE );
@@ -3563,6 +3616,23 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getFilterExpression(),
                 null,
                 "children", null, 1, -1, CompositeFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                customDataEClass,
+                CustomData.class,
+                "CustomData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getCustomData_ProviderId(),
+                theXMLTypePackage.getString(),
+                "providerId", null, 1, 1, CustomData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getCustomData_Value(),
+                theXMLTypePackage.getAnySimpleType(),
+                "value", null, 1, 1, CustomData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getCustomData_DisplayValue(),
+                theXMLTypePackage.getString(),
+                "displayValue", null, 0, 1, CustomData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 customFilterExpressionEClass,
@@ -4638,6 +4708,25 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "children", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( customDataEClass, source, new String[]
+        { "name", "CustomData", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCustomData_ProviderId(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "providerId", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCustomData_Value(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "value", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCustomData_DisplayValue(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "displayValue", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( customFilterExpressionEClass, source, new String[]
         { "name", "CustomFilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.11 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DesignFactory.java,v 1.12 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,7 +32,7 @@ public interface DesignFactory extends EFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The singleton instance of the factory.
@@ -87,6 +87,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     CompositeFilterExpression createCompositeFilterExpression();
+
+    /**
+     * Returns a new object of class '<em>Custom Data</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Custom Data</em>'.
+     * @generated
+     */
+    CustomData createCustomData();
 
     /**
      * Returns a new object of class '<em>Custom Filter Expression</em>'.

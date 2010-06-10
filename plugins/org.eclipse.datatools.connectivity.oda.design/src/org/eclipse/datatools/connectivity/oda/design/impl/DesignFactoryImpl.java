@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.13 2009/04/30 06:04:18 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.14 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -36,7 +36,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Creates the default factory implementation.
@@ -93,6 +93,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createColumnDefinition();
         case DesignPackage.COMPOSITE_FILTER_EXPRESSION:
             return createCompositeFilterExpression();
+        case DesignPackage.CUSTOM_DATA:
+            return createCustomData();
         case DesignPackage.CUSTOM_FILTER_EXPRESSION:
             return createCustomFilterExpression();
         case DesignPackage.DATA_ACCESS_DESIGN:
@@ -404,6 +406,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         CompositeFilterExpressionImpl compositeFilterExpression = new CompositeFilterExpressionImpl();
         return compositeFilterExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CustomData createCustomData()
+    {
+        CustomDataImpl customData = new CustomDataImpl();
+        return customData;
     }
 
     /**

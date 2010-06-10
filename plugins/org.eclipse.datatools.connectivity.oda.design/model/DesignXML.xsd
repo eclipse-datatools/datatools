@@ -231,6 +231,31 @@
       <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:complexType name="CustomData">
+    <xsd:annotation>
+      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, as identified by its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="providerId" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The unique identifier or namespace of the provider of this instance.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Custom data value that is normally used only by its provider.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayValue" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The String representation of the data value, which can be displayed by a non provider.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="CustomData" type="design:CustomData">
+    <xsd:annotation>
+      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, which would be identified with its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="CustomFilterExpression">
     <xsd:annotation>
       <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
@@ -1220,7 +1245,7 @@ Applying the criteria may impact the data retrieved in a result set, in addition
   </xsd:element>
   <xsd:complexType name="StaticValues">
     <xsd:annotation>
-      <xsd:documentation>A collection of static values in any data type.</xsd:documentation>
+      <xsd:documentation>A collection of static values in any data type.  It may be in any one of the ODA defined data types, or a CustomData.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xsd:string"/>
@@ -1228,7 +1253,7 @@ Applying the criteria may impact the data retrieved in a result set, in addition
   </xsd:complexType>
   <xsd:element name="StaticValues" type="design:StaticValues">
     <xsd:annotation>
-      <xsd:documentation>A collection of static values in any data type.</xsd:documentation>
+      <xsd:documentation>A collection of static values in any data type.  It may be in any one of the ODA defined data types, or a CustomData.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="ValueFormatHints">

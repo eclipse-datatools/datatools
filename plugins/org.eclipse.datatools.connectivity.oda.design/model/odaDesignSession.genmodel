@@ -9,7 +9,7 @@
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
     generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="true" codeFormatting="true"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0">
-  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession322.xsd</foreignModel>
+  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession331.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">
     <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
@@ -119,6 +119,11 @@
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CompositeFilterExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//CompositeFilterExpression/children"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CustomData">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomData/providerId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomData/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomData/displayValue"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression/type"/>

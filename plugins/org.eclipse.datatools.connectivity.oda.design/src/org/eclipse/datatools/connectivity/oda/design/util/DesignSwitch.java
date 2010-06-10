@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.8 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.9 2009/10/23 20:17:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -42,7 +42,7 @@ public class DesignSwitch<T>
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package
@@ -152,6 +152,14 @@ public class DesignSwitch<T>
             T result = caseCompositeFilterExpression( compositeFilterExpression );
             if( result == null )
                 result = caseFilterExpression( compositeFilterExpression );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.CUSTOM_DATA:
+        {
+            CustomData customData = (CustomData) theEObject;
+            T result = caseCustomData( customData );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -631,6 +639,22 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseCompositeFilterExpression( CompositeFilterExpression object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Custom Data</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Custom Data</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCustomData( CustomData object )
     {
         return null;
     }

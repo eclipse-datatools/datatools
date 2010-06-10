@@ -183,6 +183,9 @@ where officecode like ?</design:queryText>
               <design:elementAttributes>
                 <design:defaultValues>
                   <design:values>my default value</design:values>
+                  <design:values>Tue Jun 01 00:00:00 PDT 2010</design:values>
+                  <design:values>3</design:values>
+                  <design:values>CustomData value: Tue Jun 01 00:00:00 PDT 2010, displayValue: June 1, 2010</design:values>
                 </design:defaultValues>
                 <design:optional>true</design:optional>
                 <design:masksValue>false</design:masksValue>
