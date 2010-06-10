@@ -14,21 +14,21 @@ OperationCommand_status_unknown=不明
 # Action type
 ##########################################################
 OperationCommand_unknown_action=不明
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
-OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_execute=実行
+OperationCommand_action_create=作成
+OperationCommand_action_debug=デバッグ
+OperationCommand_action_deploy=配布
+OperationCommand_action_drop=削除
+OperationCommand_action_edit=編集
+OperationCommand_action_export=エクスポート
+OperationCommand_action_extract=抽出
+OperationCommand_action_import=インポート
+OperationCommand_action_load=読み込み
+OperationCommand_action_before_run=実行前
+OperationCommand_action_after_run=実行後
+OperationCommand_action_run=実行
+OperationCommand_action_validate=検証
+OperationCommand_action_browse=参照
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} 行が影響を受けました)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=パラメタインスタンスの構築中にエラーが発生しました。パラメタが無効です。
+StatusLogger_no_bundle=ロガーにリソースバンドルが設定されていません。
+StatusLogger_possible_args=\ 使用可能な引数 : {0}、{1}、{2}、{3}
+StatusLogger_no_bundle_1=リソースがキーに関連付けられていません。
+StatusLogger_possible_args_1=\ 使用可能な引数 : {0}、{1}、{2}、{3}
 ResultSection_Status_ElapsedTime=経過時間 : {0} 時間、{1} 分、{2} 秒、{3} マイクロ秒

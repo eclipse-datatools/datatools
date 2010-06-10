@@ -14,21 +14,21 @@ OperationCommand_status_unknown=Inconnu
 # Action type
 ##########################################################
 OperationCommand_unknown_action=Inconnu
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
-OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_execute=Exécuter
+OperationCommand_action_create=Créer
+OperationCommand_action_debug=Déboguer
+OperationCommand_action_deploy=Déployer
+OperationCommand_action_drop=Supprimer
+OperationCommand_action_edit=Modifier
+OperationCommand_action_export=Exporter
+OperationCommand_action_extract=Extraire
+OperationCommand_action_import=Importer
+OperationCommand_action_load=Charger
+OperationCommand_action_before_run=Avant-exécution
+OperationCommand_action_after_run=Après-exécution
+OperationCommand_action_run=Exécuter
+OperationCommand_action_validate=Valider
+OperationCommand_action_browse=Parcourir
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} ligne affectée)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=Erreur lors de la construction de l'instance de paramètres : paramètres invalides
+StatusLogger_no_bundle=Aucune inclusion de ressources n'a été définie pour la personne connectée
+StatusLogger_possible_args=\ args possibles : {0}, {1}, {2}, {3}
+StatusLogger_no_bundle_1=Aucune ressource n'est associée avec la clef "
+StatusLogger_possible_args_1=\ args possibles : {0}, {1}, {2}, {3}
 ResultSection_Status_ElapsedTime=Temps écoulé : {0} h, {1} min, {2} s, {3} ms.

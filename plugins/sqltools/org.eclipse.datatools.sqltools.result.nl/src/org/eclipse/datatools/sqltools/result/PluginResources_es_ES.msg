@@ -14,21 +14,21 @@ OperationCommand_status_unknown=Desconocido
 # Action type
 ##########################################################
 OperationCommand_unknown_action=Desconocido
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
-OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_execute=Ejecutar
+OperationCommand_action_create=Crear
+OperationCommand_action_debug=Depurar
+OperationCommand_action_deploy=Implantar
+OperationCommand_action_drop=Suprimir
+OperationCommand_action_edit=Editar
+OperationCommand_action_export=Exportar
+OperationCommand_action_extract=Extraer
+OperationCommand_action_import=Importar
+OperationCommand_action_load=Cargar
+OperationCommand_action_before_run=Antes iniciar la ejecución
+OperationCommand_action_after_run=Después de iniciar la ejecución
+OperationCommand_action_run=Ejecutar
+OperationCommand_action_validate=Validar
+OperationCommand_action_browse=Examinar
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} fila afectada)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=Error al construir la instancia Parameter: parámetros no válidos
+StatusLogger_no_bundle=No se ha establecido un paquete de recursos para el Registrador
+StatusLogger_possible_args=\ argumentos posibles: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle_1=No hay ningún recurso asociado a la clave "
+StatusLogger_possible_args_1=\ argumentos posibles: {0}, {1}, {2}, {3}
 ResultSection_Status_ElapsedTime=Tiempo transcurrido: {0} hr., {1} min., {2} seg., {3} ms.

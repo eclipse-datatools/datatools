@@ -14,21 +14,21 @@ OperationCommand_status_unknown=未知
 # Action type
 ##########################################################
 OperationCommand_unknown_action=未知
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
-OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_execute=执行
+OperationCommand_action_create=创建
+OperationCommand_action_debug=调试
+OperationCommand_action_deploy=部署
+OperationCommand_action_drop=删除
+OperationCommand_action_edit=编辑
+OperationCommand_action_export=导出
+OperationCommand_action_extract=提取
+OperationCommand_action_import=导入
+OperationCommand_action_load=加载
+OperationCommand_action_before_run=运行前执行
+OperationCommand_action_after_run=运行后执行
+OperationCommand_action_run=运行
+OperationCommand_action_validate=验证
+OperationCommand_action_browse=浏览
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} 行受到影响)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=构造参数实例时出错: 无效参数
+StatusLogger_no_bundle=未对记录器设置资源绑定
+StatusLogger_possible_args=\ 可能的自变量: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle_1=没有与键关联的资源 "
+StatusLogger_possible_args_1=\ 可能的自变量: {0}, {1}, {2}, {3}
 ResultSection_Status_ElapsedTime=已用时间: {0} 小时 {1} 分 {2} 秒 {3} 毫秒。

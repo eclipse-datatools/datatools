@@ -14,21 +14,21 @@ OperationCommand_status_unknown=알 수 없음
 # Action type
 ##########################################################
 OperationCommand_unknown_action=알 수 없음
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
-OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_execute=실행
+OperationCommand_action_create=생성
+OperationCommand_action_debug=디버그
+OperationCommand_action_deploy=배포
+OperationCommand_action_drop=삭제
+OperationCommand_action_edit=편집
+OperationCommand_action_export=내보내기
+OperationCommand_action_extract=추출
+OperationCommand_action_import=가져오기
+OperationCommand_action_load=로드
+OperationCommand_action_before_run=실행 전 실행
+OperationCommand_action_after_run=실행 후 실행
+OperationCommand_action_run=실행
+OperationCommand_action_validate=확인
+OperationCommand_action_browse=찾아보기
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} 행 적용됨)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=매개 변수 인스턴스를 구성하는 동안 오류가 발생했습니다: 잘못된 매개 변수
+StatusLogger_no_bundle=로거용으로 설정된 리소스 번들이 없습니다.
+StatusLogger_possible_args=\ 가능한 인수: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle_1=키와 연결된 리소스가 없습니다."
+StatusLogger_possible_args_1=\ 가능한 인수: {0}, {1}, {2}, {3}
 ResultSection_Status_ElapsedTime=경과 시간: {0}시간, {1}분, {2}초, {3}밀리초입니다.

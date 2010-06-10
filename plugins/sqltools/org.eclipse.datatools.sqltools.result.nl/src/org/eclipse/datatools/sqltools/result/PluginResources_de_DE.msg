@@ -14,21 +14,21 @@ OperationCommand_status_unknown=Unbekannt
 # Action type
 ##########################################################
 OperationCommand_unknown_action=Unbekannt
-OperationCommand_action_execute=Execute
-OperationCommand_action_create=Create
+OperationCommand_action_execute=Ausführen
+OperationCommand_action_create=Erstellen
 OperationCommand_action_debug=Debug
-OperationCommand_action_deploy=Deploy
-OperationCommand_action_drop=Drop
-OperationCommand_action_edit=Edit
-OperationCommand_action_export=Export
-OperationCommand_action_extract=Extract
-OperationCommand_action_import=Import
-OperationCommand_action_load=Load
-OperationCommand_action_before_run=Before-run execution
-OperationCommand_action_after_run=After-run execution
-OperationCommand_action_run=Run
-OperationCommand_action_validate=Validate
-OperationCommand_action_browse=Browse
+OperationCommand_action_deploy=Bereitstellen
+OperationCommand_action_drop=Verwerfen
+OperationCommand_action_edit=Bearbeiten
+OperationCommand_action_export=Exportieren
+OperationCommand_action_extract=Extrahieren
+OperationCommand_action_import=Importieren
+OperationCommand_action_load=Laden
+OperationCommand_action_before_run=Ausnahme vor Ausführung
+OperationCommand_action_after_run=Ausnahme nach Ausführung
+OperationCommand_action_run=Ausführen
+OperationCommand_action_validate=Validieren
+OperationCommand_action_browse=Durchsuchen
 
 ##########################################################
 # StatusTextProvider
@@ -76,9 +76,9 @@ StatusTextProvider_update_count_single =({0} Zeile betroffen)
 ##########################################################
 # Others
 ##########################################################
-Parameter_constructor_error=Error occurs when constructing Parameter instance: invalid parameters
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
-StatusLogger_no_bundle_1=No resource is associated with key "
-StatusLogger_possible_args_1=\ possible args: {0}, {1}, {2}, {3}
+Parameter_constructor_error=Beim Konstruieren einer Parameterinstanz ist ein Fehler aufgetreten: ungültige Parameter
+StatusLogger_no_bundle=Kein Ressourcenbündel wurde für den Logger festgelegt.
+StatusLogger_possible_args=\ mögliche Argumente: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle_1=Keine Ressource mit dem Schlüssel " verknüpft
+StatusLogger_possible_args_1=\ mögliche Argumente: {0}, {1}, {2}, {3}
 ResultSection_Status_ElapsedTime=Abgelaufene Zeit: {0} Std., {1} Min., {2} Sek., {3} Millisek.
