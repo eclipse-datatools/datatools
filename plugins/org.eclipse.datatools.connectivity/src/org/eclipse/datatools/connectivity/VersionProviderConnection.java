@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc. and others.
+ * Copyright (c) 2005, 2010 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: rcernich - initial API and implementation
  * 				IBM Corporation - fix for 240236
+ *              Actuate Corporation - fix for BZ 316995
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
@@ -85,7 +86,9 @@ public abstract class VersionProviderConnection implements IConnection,
 
 		if (saveProps) {
 			mProfile.internalSetProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID, props);
-			InternalProfileManager.getInstance().saveChanges();
+			// save changes of a persistent profile in the persisted profile collection
+			if ( ! InternalProfileManager.isTransientProfile( mProfile ) )
+			    InternalProfileManager.getInstance().saveChanges();
 		}
 	}
 
