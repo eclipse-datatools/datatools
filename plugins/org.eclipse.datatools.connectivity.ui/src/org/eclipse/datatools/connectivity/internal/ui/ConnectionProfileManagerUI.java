@@ -34,6 +34,8 @@ public class ConnectionProfileManagerUI {
 
 	private Map mNewWizards = null;
 	private Map mWizardCategories = null;
+	private Map mProfileWizardMap = null;
+	private Map mSuppressedProfileMap = null;
 
 	public static ConnectionProfileManagerUI getInstance() {
 		return sInstance;
@@ -76,6 +78,10 @@ public class ConnectionProfileManagerUI {
 						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
 								.toString()}));
 		mNewWizards.put(c.getId(), c);
+		mProfileWizardMap.put(c.getProfile(), c);
+		if (c.getSuppressedProfile() != null) {
+			mSuppressedProfileMap.put(c.getProfile(), c.getSuppressedProfile());
+		}
 	}
 
 	private void processWizardCategory(IConfigurationElement element) {
@@ -90,6 +96,8 @@ public class ConnectionProfileManagerUI {
 	private void processExtensions() {
 		mNewWizards = new HashMap();
 		mWizardCategories = new HashMap();
+		mProfileWizardMap = new HashMap();
+		mSuppressedProfileMap = new HashMap();
 
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IExtensionPoint exp = registry
@@ -111,6 +119,20 @@ public class ConnectionProfileManagerUI {
 				}
 			}
 		}
+		processSuppressedProfiles();
+	}
+	
+	private void processSuppressedProfiles() {
+		Iterator it = mSuppressedProfileMap.keySet().iterator();
+		while (it.hasNext()) {
+			String profile = (String)it.next();
+			String suppressedProfile = (String)mSuppressedProfileMap.get(profile);
+			ProfileWizardProvider provider = (ProfileWizardProvider)mProfileWizardMap.get(suppressedProfile);
+			if (provider != null) {
+				mNewWizards.remove(provider.getId());
+			}
+		}
+			
 	}
 
 }

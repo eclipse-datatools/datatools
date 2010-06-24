@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.connectivity">
+<schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity" id="connectionProfile" name="Connection Profile"/>
@@ -41,6 +41,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
       <complexType>
          <sequence minOccurs="0" maxOccurs="unbounded">
             <element ref="category" minOccurs="0" maxOccurs="unbounded"/>
@@ -360,6 +365,13 @@
             <annotation>
                <documentation>
                   
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="suppressedProfile" type="string">
+            <annotation>
+               <documentation>
+                  The connection profile suppressed by this new wizard.  This should reference a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.
                </documentation>
             </annotation>
          </attribute>

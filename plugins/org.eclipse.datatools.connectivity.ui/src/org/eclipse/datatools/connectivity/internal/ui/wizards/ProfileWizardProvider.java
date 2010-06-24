@@ -43,6 +43,8 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 	public static final String ATTR_DESC = "description"; //$NON-NLS-1$
 
 	public static final String ATTR_PROFILE = "profile"; //$NON-NLS-1$
+	
+	public static final String ATTR_SUPPRESSED_PROFILE = "suppressedProfile"; //$NON-NLS-1$
 
 	public static final String ATTR_CATEGORY = "category"; //$NON-NLS-1$
 
@@ -55,6 +57,8 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 	private Image mCachedIcon;
 
 	private String mProfile;
+	
+	private String mSuppressedProfile;
 
 	private String mDescription;
 
@@ -76,6 +80,7 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 		mId = element.getAttribute(ATTR_ID);
 		mName = element.getAttribute(ATTR_NAME);
 		mProfile = element.getAttribute(ATTR_PROFILE);
+		mSuppressedProfile = element.getAttribute(ATTR_SUPPRESSED_PROFILE);
 		mDescription = element.getAttribute(ATTR_DESC);
 		mCategory = element.getAttribute(ATTR_CATEGORY);
 		if (mCategory == null)
@@ -145,6 +150,13 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 	 */
 	public String getProfile() {
 		return mProfile;
+	}
+
+	/**
+	 * @return Returns the suppressed profile.
+	 */
+	public String getSuppressedProfile() {
+		return mSuppressedProfile;
 	}
 
 	/**
