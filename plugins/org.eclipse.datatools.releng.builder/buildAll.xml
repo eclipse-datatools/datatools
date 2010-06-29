@@ -114,8 +114,9 @@
 			
 		<!-- this value could be overwrite by the bootstrap command -->
 		<property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
+		<property name="dtp.url.newvalue" value="${mapCvsRoot}"/>
 		
-		<replace dir="${buildDirectory}/maps" value="${mapCvsRoot}" token="${dtp.url.token}">
+		<replace dir="${buildDirectory}/maps" value="${dtp.url.newvalue}" token="${dtp.url.token}">
 			<include name="**/*.map" />
 		</replace>
 		
