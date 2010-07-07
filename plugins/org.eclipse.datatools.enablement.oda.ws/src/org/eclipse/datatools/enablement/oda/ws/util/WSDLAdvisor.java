@@ -12,11 +12,13 @@
 package org.eclipse.datatools.enablement.oda.ws.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.wsdl.Binding;
 import javax.wsdl.BindingInput;
@@ -44,6 +46,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.ibm.wsdl.extensions.schema.SchemaImpl;
+import com.ibm.wsdl.extensions.schema.SchemaImportImpl;
 
 /**
  * A utility class that handles all wsdl-involved operations
@@ -468,6 +471,22 @@ public class WSDLAdvisor
 				if ( extElements.get( i ) instanceof SchemaImpl )
 				{
 					elementList.add( ( (SchemaImpl) extElements.get( i ) ).getElement( ) );
+					for ( Object value : ( (SchemaImpl) extElements.get( i ) ).getImports( )
+							.values( ) )
+					{
+						if ( value instanceof Collection )
+						{
+							for ( Object o : (Collection) value )
+							{
+								if ( o instanceof SchemaImportImpl )
+								{
+									SchemaImportImpl sii = (SchemaImportImpl) o;
+									if ( sii.getReferencedSchema( ) instanceof SchemaImpl )
+										elementList.add( ( (SchemaImpl) sii.getReferencedSchema( ) ).getElement( ) );
+								}
+							}
+						}
+					}
 				}
 			}
 			String[] parentNode = {
@@ -833,7 +852,13 @@ public class WSDLAdvisor
 
 		String[] subNodeParents = generateSubNodeParents( localPart, parentNode );
 		NodeList nodes = getChildNodes( element );
-		Node XMLNode = findElementNodeByName( nodes, localPart );
+		Node XMLNode = null;
+		if ( complexTypeName != null )
+		{
+			XMLNode = findComplexTypeNodeByName( nodes, localPart );;
+		}
+		if( XMLNode == null )
+			XMLNode = findElementNodeByName( nodes, localPart );
 		if ( XMLNode != null )
 		{
 			// skip the middle node such as - <xs:sequence>, get
@@ -870,6 +895,31 @@ public class WSDLAdvisor
 					if ( name.equalsIgnoreCase( XMLNodeNodeMap.getNamedItem( NAME )
 							.getNodeValue( ) ) )
 					{
+						return XMLNode;
+					}
+
+				}
+			}
+
+		}
+		return null;
+	}
+	
+	private Node findComplexTypeNodeByName( NodeList nodes, String name )
+	{
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node XMLNode = nodes.item( i );
+
+			NamedNodeMap XMLNodeNodeMap = XMLNode.getAttributes( );
+			if ( !WSUtil.isNull( XMLNodeNodeMap ) )
+			{
+				if ( !WSUtil.isNull( XMLNodeNodeMap.getNamedItem( NAME ) ) )
+				{
+					if ( name.equalsIgnoreCase( XMLNodeNodeMap.getNamedItem( NAME )
+							.getNodeValue( ) ) )
+					{
+						if( XMLNode.getLocalName( ).equalsIgnoreCase( "complexType" ) )
 						return XMLNode;
 					}
 
