@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,10 @@ import org.eclipse.osgi.util.TextProcessor;
 
 /**
  *  Wrapper class to provide 3.3 functionality to the 
- *  platform osgi 3.2 version of org.eclipse.osgi.util.TextProcessor.
+ *  platform osgi 3.2 version of org.eclipse.osgi.util.TextProcessor, whose
+ *  {@link #deprocess(String)} method was not available till 3.3.
+ *  <br>Note: Since DTP no longer needs to be compatible with Platform 3.2.x, 
+ *  the wrapper class now simply redirects its calls to the TextProcessor. 
  */
 public class TextProcessorWrapper
 {    
@@ -47,26 +50,15 @@ public class TextProcessorWrapper
     private static boolean isSupportedPlatform = false;
     
     /**
-     * Provides compatibility to method introduced in the eclipse osgi 3.3 TextProcessor.
+     * Provides compatibility to {@link #deprocess(String)} method introduced in the eclipse osgi 3.3 TextProcessor.
      * @see org.eclipse.osgi.util.TextProcessor#deprocess(String)
      */
     public static String deprocess( String str )
     {
-        /* TODO - remove wrapper implementation when no longer need to be compatible with
-         * Platform 3.2.x
+        /* since DTP no longer needs to be compatible with Platform 3.2.x, 
+         * calls the TextProcessor method directly
          */
-    	if( str == null || str.length() == 0 )
-    		return str;		// nothing to deprocess
-    	
-        try
-        {
-            // calls platform version if method exists
-            return invokeDeprocess( str );
-        }
-        catch( Exception err )
-        {
-            return deprocessImpl( str );
-        }
+        return TextProcessor.deprocess( str );
     }
     
     /**
@@ -104,7 +96,7 @@ public class TextProcessorWrapper
     	
     	if( sm_deprocessMethod == null )	// not yet initialized
     	{
-        	Class processorClass = TextProcessor.class;
+        	Class<TextProcessor> processorClass = TextProcessor.class;
         	try 
         	{
 				sm_deprocessMethod = processorClass.getMethod( DEPROCESS_METHOD_NAME, 
