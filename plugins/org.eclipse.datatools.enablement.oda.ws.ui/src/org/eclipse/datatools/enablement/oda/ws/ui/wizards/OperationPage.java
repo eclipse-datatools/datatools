@@ -46,6 +46,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -58,7 +59,7 @@ public class OperationPage extends DataSetWizardPage
 
 	private transient Tree operationTree;
 	private transient Label operationName;
-	private transient Label operationDescription;
+	private transient Text operationDescription;
 
 	private String operationTrace = WSUtil.EMPTY_STRING;
 	private String initOperationTrace = WSUtil.EMPTY_STRING;
@@ -227,12 +228,20 @@ public class OperationPage extends DataSetWizardPage
 		if ( label2.computeSize( -1, -1 ).x < 100 )
 			data.widthHint = 100;
 
-		operationDescription = new Label( composite, SWT.BORDER
-				| SWT.V_SCROLL | SWT.H_SCROLL );
-		layoutData = new GridData( GridData.FILL_HORIZONTAL );
+		Composite container = new Composite( composite, SWT.NONE );
+		GridLayout gLayout = new GridLayout( );
+		gLayout.marginWidth = gLayout.marginHeight = 0;
+		container.setLayout( gLayout );
+		layoutData = new GridData( GridData.FILL_BOTH );
 		layoutData.horizontalSpan = 2;
-		layoutData.heightHint = 40;
-		operationDescription.setLayoutData( layoutData );
+		container.setLayoutData( layoutData );
+		
+		operationDescription = new Text( container, SWT.BORDER
+				| SWT.WRAP | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY );
+		GridData layoutData2 = new GridData( GridData.FILL_BOTH );
+		layoutData2.heightHint = 60;
+		layoutData2.widthHint = 50;
+		operationDescription.setLayoutData( layoutData2 );
 	}
 
 	/**
