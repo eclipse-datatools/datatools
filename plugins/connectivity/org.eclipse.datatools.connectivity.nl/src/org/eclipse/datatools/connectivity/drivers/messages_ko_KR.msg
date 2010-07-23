@@ -108,5 +108,5 @@ DelimitedStringList.ValidationMsg.NoCommas=매개변수 값에는 쉼표를 사용할 수 없습
 DriverDialog.AllFilter=모두
 DriverDialog.NameColumn=이름
 DriverDialog.Name.Type.Tab=이름/유형
-DriverDialog.JarList.Tab=Jar 목록
+DriverDialog.JarList.Tab=JAR 목록
 DriverDialog.Version=시스템 버전

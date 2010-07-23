@@ -108,5 +108,5 @@ DelimitedStringList.ValidationMsg.NoCommas=Comas no permitidas en valores de par
 DriverDialog.AllFilter=Todos
 DriverDialog.NameColumn=Nombre
 DriverDialog.Name.Type.Tab=Nombre/tipo
-DriverDialog.JarList.Tab=Lista de archivos Jar
+DriverDialog.JarList.Tab=Lista de archivos JAR
 DriverDialog.Version=Versión del sistema

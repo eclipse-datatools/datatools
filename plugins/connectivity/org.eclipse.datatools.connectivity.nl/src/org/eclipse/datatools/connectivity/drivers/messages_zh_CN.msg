@@ -108,5 +108,5 @@ DelimitedStringList.ValidationMsg.NoCommas=不允许在参数值中使用逗号。
 DriverDialog.AllFilter=全部
 DriverDialog.NameColumn=名称
 DriverDialog.Name.Type.Tab=名称/类型
-DriverDialog.JarList.Tab=Jar 列表
+DriverDialog.JarList.Tab=JAR 列表
 DriverDialog.Version=系统版本
