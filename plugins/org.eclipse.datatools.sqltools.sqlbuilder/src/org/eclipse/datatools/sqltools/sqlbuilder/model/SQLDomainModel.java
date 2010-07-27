@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2009 IBM Corporation and others.
+ * Copyright © 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - fix for BZ 319927
  *******************************************************************************/
 
 package org.eclipse.datatools.sqltools.sqlbuilder.model;
@@ -1107,6 +1108,20 @@ public class SQLDomainModel {
             DatabaseDefinition dbDef = this.getDatabaseDefinition();
             if (dbDef != null && dbDef.getIdentifierQuoteString() != null && dbDef.getIdentifierQuoteString().length() == 1){
             	sqlSourceFormat.setDelimitedIdentifierQuote(dbDef.getIdentifierQuoteString().charAt(0));
+            }
+
+            // Configure the AS keyword source format setting based on the connection info's database type
+            Database db = getDatabase();
+            ISQLEditorConnectionInfo connInfo = getConnectionInfo();
+            if (db == null && connInfo != null) {
+                db = connInfo.getDatabase();
+            }
+            
+            if ( db != null ) { 
+                VendorHelper vendorHelper = new VendorHelper(db);
+                if (vendorHelper.isOracle()) {
+                    sqlSourceFormat.setGenerateAsKeywordForTableCorrID( false );
+                }
             }
         }
         return (SQLQuerySourceFormat) SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(sqlSourceFormat);
