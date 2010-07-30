@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.modelbase.sql.query">
+<schema targetNamespace="org.eclipse.datatools.modelbase.sql.query" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
          <meta.schema plugin="org.eclipse.datatools.modelbase.sql.query" id="sourcewriterextension" name="SourceWriterExtension"/>
@@ -53,7 +53,7 @@
                   The Plugin.java file providing life-cycle methods for this plugin
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="com.ibm.db.models.sql.query.SQLQueryModelPlugin"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.modelbase.sql.query.util.SQLQueryModelPlugin:"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -68,7 +68,7 @@
                   The SQLQuerySourceWriter specified by fully qualified class name must implement &quot;appendSQL&quot; methods that have SQLQueryObject arguments out of the package specified in this extension-point&apos;s attribute &quot;packageName&quot;
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="com.ibm.db.models.sql.query.util.SQLQuerySourceWriter"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter:"/>
                </appInfo>
             </annotation>
          </attribute>
