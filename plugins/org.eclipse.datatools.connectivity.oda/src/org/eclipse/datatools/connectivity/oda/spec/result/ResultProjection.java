@@ -171,6 +171,18 @@ public class ResultProjection
         return m_hiddenColumns;
     }
     
+    /**
+     * Indicates whether this has an empty content.
+     * @return  true if this has an empty content; false otherwise
+     * @since 3.3.1 (DTP 1.8.1)
+     */
+    public boolean isEmpty()
+    {
+        return( getAddedResultColumns().isEmpty() && 
+                getAggregatedColumns().isEmpty() && 
+                getHiddenResultColumns().isEmpty() );
+    }
+    
     private void validateColumnIdentifier( ColumnIdentifier resultColumn ) throws OdaException
     {
         if( resultColumn == null || ! resultColumn.isValid() )

@@ -303,6 +303,17 @@ public class QuerySpecification
     }
 
     /**
+     * Indicates whether this contains a ResultSetSpecification with a non-empty content.
+     * @return  true if this contains a non-empty ResultSetSpecification; false otherwise
+     * @since 3.3.1 (DTP 1.8.1)
+     */
+    public boolean hasResultSetSpecification()
+    {
+        ResultSetSpecification resultSetSpec = getResultSetSpecification();
+        return ( resultSetSpec != null && ! resultSetSpec.isEmpty() );
+    }
+
+    /**
      * Validates this in the specified context. 
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed.  The exception thrown may be a chained OdaException, 

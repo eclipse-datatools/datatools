@@ -110,6 +110,20 @@ public class ResultSetSpecification
     }
 
     /**
+     * Indicates whether this has an empty content.
+     * @return  true if this has an empty content; false otherwise
+     * @since 3.3.1 (DTP 1.8.1)
+     */
+    public boolean isEmpty()
+    {
+        if( getFilterSpecification() != null || getSortSpecification() != null )
+            return false;
+
+        ResultProjection resultProj = getResultProjection();
+        return ( resultProj == null || resultProj.isEmpty() );
+    }
+    
+    /**
      * Validates this in the specified context. 
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed.  The exception thrown may be a chained OdaException, 
