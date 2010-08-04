@@ -41,6 +41,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
 import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
+import org.eclipse.datatools.modelbase.sql.query.CursorReference;
 import org.eclipse.datatools.modelbase.sql.query.Grouping;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSets;
@@ -144,7 +145,6 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -198,8 +198,7 @@ import org.eclipse.emf.common.util.EList;
  * formatted by another appendSQL method here
  *
  */
-public class SQLQuerySourceWriter implements SQLSourceWriter
-{
+public class SQLQuerySourceWriter implements SQLSourceWriter {
     protected static final int STANDARD_INDENT = 2;
     
     /* *************************** protected switches **************************** */
@@ -259,7 +258,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * </ul>
      * We want to align comments at the end of line that
      * would only work if we always work on the global StringBuffer but we can
-     * also have a partial one which will get indented later and global messures
+     * also have a partial one which will get indented later and global measures
      * don't work, therefore we use a Map and we only align end-of-line comments
      * within one StringBuffer.
      * @see #appendComment(SQLComment, StringBuffer)
@@ -282,23 +281,23 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * String constant, used as SQL source for empty
      * <code>QuerySelectStatement</code>, value: "SELECT * FROM"
      */
-    public static final String DEFAULT_STMT_SELECT      = "SELECT *\n  FROM";
+    public static final String DEFAULT_STMT_SELECT      = "SELECT *\n  FROM"; //$NON-NLS-1$
 
     /** String constant for the single line comment prefix, value: "--".
      *  To be overwritten by SourceWriter extension. */
-    protected static String COMMENT_PREFIX_SINGLE_LINE  = "--";
+    protected static String COMMENT_PREFIX_SINGLE_LINE  = "--";  //$NON-NLS-1$
 
     /** String constant for the multi line comment prefix, value: "/*".
      *  To be overwritten by SourceWriter extension. */
-    protected static String COMMENT_PREFIX_MULTI_LINE   = "/*";
+    protected static String COMMENT_PREFIX_MULTI_LINE   = "/*";  //$NON-NLS-1$
 
     /** String constant for the multi line comment suffix, value: "*&#047".
      *  To be overwritten by SourceWriter extension. */
-    protected static String COMMENT_SUFFIX_MULTI_LINE   = "*/";
+    protected static String COMMENT_SUFFIX_MULTI_LINE   = "*/";  //$NON-NLS-1$
 
     
     /** String constant for the name of the function count(), value: "COUNT" */
-    private static final String FUNCTION_COUNT          = "COUNT";
+    private static final String FUNCTION_COUNT          = "COUNT";  //$NON-NLS-1$
 
     
     /* ******************** enumeration constants *************************** */
@@ -307,22 +306,22 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * String constant for {@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType#ASC}
      */
-    protected static final String ORDERING_SPEC_TYPE_ASC = "ASC";
+    protected static final String ORDERING_SPEC_TYPE_ASC = "ASC";  //$NON-NLS-1$
     
     /**
      * String constant for {@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType#DESC}
      */
-    protected static final String ORDERING_SPEC_TYPE_DESC = "DESC";
+    protected static final String ORDERING_SPEC_TYPE_DESC = "DESC";  //$NON-NLS-1$
     
     /**
      * String constant for {@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType#NULLS_FIRST}
      */
-    protected static final String NULL_ORDERING_TYPE_NULLS_FIRST = "NULLS FIRST";
+    protected static final String NULL_ORDERING_TYPE_NULLS_FIRST = "NULLS FIRST";  //$NON-NLS-1$
     
     /**
      * String constant for {@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType#NULLS_LAST}
      */
-    protected static final String NULL_ORDERING_TYPE_NULLS_LAST = "NULLS LAST";
+    protected static final String NULL_ORDERING_TYPE_NULLS_LAST = "NULLS LAST";  //$NON-NLS-1$
     
 
     /* ******************** string constants ******************************** */
@@ -360,366 +359,366 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#EQUAL
      */
-    protected final static String EQUAL                 = "=";
+    protected final static String EQUAL                 = "=";  //$NON-NLS-1$
 
     /**
      * String constant, value: "<>"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#NOT_EQUAL
      */
-    protected final static String NOT_EQUAL             = "<>";
+    protected final static String NOT_EQUAL             = "<>";  //$NON-NLS-1$
 
     /**
      * String constant, value: "<"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#LESS_THAN
      */
-    protected final static String LESS_THAN             = "<";
+    protected final static String LESS_THAN             = "<";  //$NON-NLS-1$
 
     /**
      * String constant, value: ">"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#GREATER_THAN
      */
-    protected final static String GREATER_THAN          = ">";
+    protected final static String GREATER_THAN          = ">";  //$NON-NLS-1$
 
     /**
      * String constant, value: "<="
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#LESS_THAN_OR_EQUAL
      */
-    protected final static String LESS_THAN_OR_EQUAL    = "<=";
+    protected final static String LESS_THAN_OR_EQUAL    = "<=";  //$NON-NLS-1$
 
     /**
      * String constant, value: ">="
      *
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#GREATER_THAN_OR_EQUAL
      */
-    protected final static String GREATER_THAN_OR_EQUAL = ">=";
+    protected final static String GREATER_THAN_OR_EQUAL = ">=";  //$NON-NLS-1$
 
     /**
      * String constant, value: "AND"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator#AND
      */
-    protected final static String AND                   = "AND";
+    protected final static String AND                   = "AND";  //$NON-NLS-1$
 
     /**
      * String constant, value: "OR"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator#OR
      */
-    protected final static String OR                    = "OR";
+    protected final static String OR                    = "OR";  //$NON-NLS-1$
    
     /**
      * String constant, value: "+"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator#PLUS
      */
-    protected final static String PLUS                  = "+";
+    protected final static String PLUS                  = "+";  //$NON-NLS-1$
 
     /**
      * String constant, value: "-"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator#MINUS
      */
-    protected final static String MINUS                 = "-";
+    protected final static String MINUS                 = "-";  //$NON-NLS-1$
 
     /**
      * String constant, value: "+"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#ADD
      */
-    protected final static String ADD                   = "+";
+    protected final static String ADD                   = "+";  //$NON-NLS-1$
 
     /**
      * String constant, value: "-"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#SUBTRACT
      */
-    protected final static String SUBTRACT              = "-";
+    protected final static String SUBTRACT              = "-";  //$NON-NLS-1$
 
     /**
      * String constant, value: "*"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#MULTIPLY
      */
-    protected final static String MULTIPLY              = "*";
+    protected final static String MULTIPLY              = "*";  //$NON-NLS-1$
 
     /**
      * String constant, value: "/"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#DIVIDE
      */
-    protected final static String DIVIDE                = "/";
+    protected final static String DIVIDE                = "/";  //$NON-NLS-1$
 
     /**
      * String constant, value: "||"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#CONCATENATE
      */
-    protected final static String CONCATENATE           = "||";
+    protected final static String CONCATENATE           = "||";  //$NON-NLS-1$
 
     /**
      * String constant, value: "UNION"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#UNION
      */
-    protected final static String UNION                 = "UNION";
+    protected final static String UNION                 = "UNION";  //$NON-NLS-1$
 
     /**
      * String constant, value: "UNION ALL"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#UNION_ALL
      */
-    protected final static String UNION_ALL             = "UNION ALL";
+    protected final static String UNION_ALL             = "UNION ALL";  //$NON-NLS-1$
 
     /**
      * String constant, value: "INTERSECT"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#INTERSECT
      */
-    protected final static String INTERSECT             = "INTERSECT";
+    protected final static String INTERSECT             = "INTERSECT";  //$NON-NLS-1$
 
     /**
      * String constant, value: "INTERSECT ALL"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#INTERSECT_ALL
      */
-    protected final static String INTERSECT_ALL         = "INTERSECT ALL";
+    protected final static String INTERSECT_ALL         = "INTERSECT ALL";  //$NON-NLS-1$
 
     /**
      * String constant, value: "EXCEPT"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#EXCEPT
      */
-    protected final static String EXCEPT                = "EXCEPT";
+    protected final static String EXCEPT                = "EXCEPT";  //$NON-NLS-1$
 
     /**
      * String constant, value: "EXCEPT ALL"
      *
      * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator#EXCEPT_ALL
      */
-    protected final static String EXCEPT_ALL            = "EXCEPT ALL";
+    protected final static String EXCEPT_ALL            = "EXCEPT ALL";  //$NON-NLS-1$
 
     /** String constant, value: ":" */
-    protected final static String COLON                 = ":";
+    protected final static String COLON                 = ":";  //$NON-NLS-1$
 
     /** String constant, value: "?" */
-    protected final static String QUESTIONMARK          = "?"; 
+    protected final static String QUESTIONMARK          = "?";   //$NON-NLS-1$
     
     /** String constant, value: "ARRAY" */
-    protected final static String ARRAY                 = "ARRAY";
+    protected final static String ARRAY                 = "ARRAY";  //$NON-NLS-1$
 
     /** String constant, value: "AS" */
-    protected final static String AS                    = "AS";
+    protected final static String AS                    = "AS";  //$NON-NLS-1$
 
     /** String constant, value: "ALL" */
-    protected final static String ALL                   = "ALL";
+    protected final static String ALL                   = "ALL";  //$NON-NLS-1$
 
     /** String constant, value: "ANY" */
-    protected final static String ANY                   = "ANY";
+    protected final static String ANY                   = "ANY";  //$NON-NLS-1$
 
     /** String constant, value: "ASC" */
-    protected final static String ASC                   = "ASC";
+    protected final static String ASC                   = "ASC";  //$NON-NLS-1$
     
     /** String constant, value: "*" */
-    protected final static String ASTERISK              = "*";
+    protected final static String ASTERISK              = "*";  //$NON-NLS-1$
 
     /** String constant, value: "BETWEEN" */
-    protected final static String BETWEEN               = "BETWEEN";
+    protected final static String BETWEEN               = "BETWEEN";  //$NON-NLS-1$
 
     /** String constant, value: "CALL" */
-    protected final static String CALL                 = "CALL";
+    protected final static String CALL                 = "CALL";  //$NON-NLS-1$
     
     /** String constant, value: "CASE" */
-    protected final static String CASE                  = "CASE";
+    protected final static String CASE                  = "CASE";  //$NON-NLS-1$
 
     /** String constant, value: "CAST" */
-    protected final static String CAST                  = "CAST";
+    protected final static String CAST                  = "CAST";  //$NON-NLS-1$
 
     /** String constant, value: "CUBE" */
-    protected final static String CUBE                  = "CUBE";
+    protected final static String CUBE                  = "CUBE";  //$NON-NLS-1$
 
     /** String constant, value: "DAYS" */
-    protected final static String DAYS                  = "DAYS";
+    protected final static String DAYS                  = "DAYS";  //$NON-NLS-1$
 
     /** String constant, value: "DEFAULT" */
-    protected final static String DEFAULT               = "DEFAULT";
+    protected final static String DEFAULT               = "DEFAULT";  //$NON-NLS-1$
 
     /** String constant, value: "DELETE" */
-    protected final static String DELETE                = "DELETE";
+    protected final static String DELETE                = "DELETE";  //$NON-NLS-1$
 
     /** String constant, value: "DESC" */
-    protected final static String DESC                  = "DESC";
+    protected final static String DESC                  = "DESC";  //$NON-NLS-1$
 
     /** String constant, value: "DISTINCT" */
-    protected final static String DISTINCT              = "DISTINCT";
+    protected final static String DISTINCT              = "DISTINCT";  //$NON-NLS-1$
 
     /** String constant, value: "ELSE" */
-    protected final static String ELSE                  = "ELSE";
+    protected final static String ELSE                  = "ELSE";  //$NON-NLS-1$
 
     /** String constant, value: "END" */
-    protected final static String END                   = "END";
+    protected final static String END                   = "END";  //$NON-NLS-1$
 
     /** String constant, value: "ESCAPE" */
-    protected final static String ESCAPE                = "ESCAPE";
+    protected final static String ESCAPE                = "ESCAPE";  //$NON-NLS-1$
 
     /** String constant, value: "EXISTS" */
-    protected final static String EXISTS                = "EXISTS";
+    protected final static String EXISTS                = "EXISTS";  //$NON-NLS-1$
 
     /** String constant, value: "FETCH" */
-    protected final static String FETCH                 = "FETCH";
+    protected final static String FETCH                 = "FETCH";  //$NON-NLS-1$
     
     /** String constant, value: "FIRST" */
-    protected final static String FIRST                 = "FIRST";
+    protected final static String FIRST                 = "FIRST";  //$NON-NLS-1$
 
     /** String constant, value: "FOR" */
-    protected final static String FOR                   = "FOR";
+    protected final static String FOR                   = "FOR";  //$NON-NLS-1$
 
     /** String constant, value: "FROM" */
-    protected final static String FROM                  = "FROM";
+    protected final static String FROM                  = "FROM";  //$NON-NLS-1$
 
     /** String constant, value: "FULL" */
-    protected final static String FULL                  = "FULL";
+    protected final static String FULL                  = "FULL";  //$NON-NLS-1$
     
     /** String constant, value: "GRANDTOTAL" */
-    protected final static String GRANDTOTAL            = "GRANDTOTAL";
+    protected final static String GRANDTOTAL            = "GRANDTOTAL";  //$NON-NLS-1$
     
     /** String constant, value: "GROUP BY" */
-    protected final static String GROUP_BY              = "GROUP BY";
+    protected final static String GROUP_BY              = "GROUP BY";  //$NON-NLS-1$
     
     /** String constant, value: "GROUPING SETS" */
-    protected final static String GROUPING_SETS         = "GROUPING SETS";
+    protected final static String GROUPING_SETS         = "GROUPING SETS";  //$NON-NLS-1$
     
     /** String constant, value: "HAVING" */
-    protected final static String HAVING                = "HAVING";
+    protected final static String HAVING                = "HAVING";  //$NON-NLS-1$
 
     /** String constant, value: "HOURS" */
-    protected final static String HOURS                 = "HOURS";
+    protected final static String HOURS                 = "HOURS";  //$NON-NLS-1$
 
     /** String constant, value: "IN" */
-    protected final static String IN                    = "IN";
+    protected final static String IN                    = "IN";  //$NON-NLS-1$
 
     /** String constant, value: "INSERT" */
-    protected final static String INSERT                = "INSERT";
+    protected final static String INSERT                = "INSERT";  //$NON-NLS-1$
 
     /** String constant, value: "INNER" */
-    protected final static String INNER                 = "INNER";
+    protected final static String INNER                 = "INNER";  //$NON-NLS-1$
 
     /** String constant, value: "INTO" */
-    protected final static String INTO                  = "INTO";
+    protected final static String INTO                  = "INTO";  //$NON-NLS-1$
 
     /** String constant, value: "IS" */
-    protected final static String IS                    = "IS";
+    protected final static String IS                    = "IS";  //$NON-NLS-1$
 
     /** String constant, value: "JOIN" */
-    protected final static String JOIN                  = "JOIN";
+    protected final static String JOIN                  = "JOIN";  //$NON-NLS-1$
     
     /** String constant, value: "LIKE" */
-    protected final static String LIKE                  = "LIKE";
+    protected final static String LIKE                  = "LIKE";  //$NON-NLS-1$
 
     /** String constant, value: "LEFT" */
-    protected final static String LEFT                  = "LEFT";
+    protected final static String LEFT                  = "LEFT";  //$NON-NLS-1$
 
     /** String constant, value: "MATCHED" */
-    protected final static String MATCHED               = "MATCHED";
+    protected final static String MATCHED               = "MATCHED";  //$NON-NLS-1$
     
     /** String constant, value: "MERGE" */
-    protected final static String MERGE                 = "MERGE";
+    protected final static String MERGE                 = "MERGE";  //$NON-NLS-1$
 
     /** String constant, value: "MICROSECONDS" */
-    protected final static String MICROSECONDS          = "MICROSECONDS";
+    protected final static String MICROSECONDS          = "MICROSECONDS";  //$NON-NLS-1$
 
     /** String constant, value: "MINUTES" */
-    protected final static String MINUTES               = "MINUTES";
+    protected final static String MINUTES               = "MINUTES";  //$NON-NLS-1$
 
     /** String constant, value: "MONTHS" */
-    protected final static String MONTHS                = "MONTHS";
+    protected final static String MONTHS                = "MONTHS";  //$NON-NLS-1$
     
     /** String constant, value: "MULTISET" */
-    protected final static String MULTISET              = "MULTISET";
+    protected final static String MULTISET              = "MULTISET";  //$NON-NLS-1$
    
     /** String constant, value: "NOT" */
-    protected final static String NOT                   = "NOT";
+    protected final static String NOT                   = "NOT";  //$NON-NLS-1$
 
     /** String constant, value: "NULL" */
-    protected final static String NULL                  = "NULL";
+    protected final static String NULL                  = "NULL";  //$NON-NLS-1$
 
     /** String constant, value: "OF" */
-    protected final static String OF                    = "OF";
+    protected final static String OF                    = "OF";  //$NON-NLS-1$
     
     /** String constant, value: "ON" */
-    protected final static String ON                    = "ON";
+    protected final static String ON                    = "ON";  //$NON-NLS-1$
 
     /** String constant, value: "ONLY" */
-    protected final static String ONLY                  = "ONLY";
+    protected final static String ONLY                  = "ONLY";  //$NON-NLS-1$
 
     /** String constant, value: "ORDER BY" */
-    protected final static String ORDER_BY              = "ORDER BY";
+    protected final static String ORDER_BY              = "ORDER BY";  //$NON-NLS-1$
 
     /** String constant, value: "OUTER" */
-    protected final static String OUTER                 = "OUTER";
+    protected final static String OUTER                 = "OUTER";  //$NON-NLS-1$
 
     /** String constant, value: "READ" */
-    protected final static String READ                  = "READ";
+    protected final static String READ                  = "READ";  //$NON-NLS-1$
 
     /** String constant, value: "RIGHT" */
-    protected final static String RIGHT                 = "RIGHT";
+    protected final static String RIGHT                 = "RIGHT";  //$NON-NLS-1$
 
     /** String constant, value: "ROLLUP" */
-    protected final static String ROLLUP                = "ROLLUP";
+    protected final static String ROLLUP                = "ROLLUP";  //$NON-NLS-1$
 
     /** String constant, value: "ROW" */
-    protected final static String ROW                   = "ROW";
+    protected final static String ROW                   = "ROW";  //$NON-NLS-1$
 
     /** String constant, value: "ROWS" */
-    protected final static String ROWS                  = "ROWS";
+    protected final static String ROWS                  = "ROWS";  //$NON-NLS-1$
 
     /** String constant, value: "SECONDS" */
-    protected final static String SECONDS               = "SECONDS";
+    protected final static String SECONDS               = "SECONDS";  //$NON-NLS-1$
 
     /** String constant, value: "SELECT" */
-    protected final static String SELECT                = "SELECT";
+    protected final static String SELECT                = "SELECT";  //$NON-NLS-1$
 
     /** String constant, value: "SELECTIVITY" */
-    protected final static String SELECTIVITY           = "SELECTIVITY";
+    protected final static String SELECTIVITY           = "SELECTIVITY";  //$NON-NLS-1$
 
     /** String constant, value: "SET" */
-    protected final static String SET                   = "SET";
+    protected final static String SET                   = "SET";  //$NON-NLS-1$
 
     /** String constant, value: {@link #ASTERISK} */
     protected final static String STAR                  = ASTERISK;
 
     /** String constant, value: "SOME" */
-    protected final static String SOME                  = "SOME";
+    protected final static String SOME                  = "SOME";  //$NON-NLS-1$
 
     /** String constant, value: "TABLE" */
-    protected final static String TABLE                 = "TABLE";
+    protected final static String TABLE                 = "TABLE";  //$NON-NLS-1$
 
     /** String constant, value: "THEN" */
-    protected final static String THEN                  = "THEN";
+    protected final static String THEN                  = "THEN";  //$NON-NLS-1$
 
     /** String constant, value: "UPDATE" */
-    protected final static String UPDATE                = "UPDATE";
+    protected final static String UPDATE                = "UPDATE";  //$NON-NLS-1$
 
     /** String constant, value: "USING" */
-    protected final static String USING                 = "USING";
+    protected final static String USING                 = "USING";  //$NON-NLS-1$
 
     /** String constant, value: "VALUES" */
-    protected final static String VALUES                = "VALUES";
+    protected final static String VALUES                = "VALUES";  //$NON-NLS-1$
 
     /** String constant, value: "WITH" */
-    protected final static String WITH                  = "WITH";
+    protected final static String WITH                  = "WITH";  //$NON-NLS-1$
 
     /** String constant, value: "WHEN" */
-    protected final static String WHEN                  = "WHEN";
+    protected final static String WHEN                  = "WHEN";  //$NON-NLS-1$
 
     /** String constant, value: "WHERE" */
-    protected final static String WHERE                 = "WHERE";
+    protected final static String WHERE                 = "WHERE";  //$NON-NLS-1$
 
     /** String constant, value: "YEARS" */
-    protected final static String YEARS                 = "YEARS";
+    protected final static String YEARS                 = "YEARS";  //$NON-NLS-1$
 
     /**
      * This reference is used in
@@ -737,38 +736,40 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     
     
     /**
-     * @param queryObject
-     * @return
+     * Gets the interface class name for the given SQL model implementation class.
+     * 
+     * @param sqlObjectClass the SQL model implementation  class for which the interface class 
+     * name is needed
+     * @return the interface class name
      */
-    static String getInterfaceName(Class sqlObjectClass)
-    {
-        if (sqlObjectClass == null) { return null; }
+    static String getInterfaceName(Class sqlObjectClass) {
+        if (sqlObjectClass == null) { 
+            return null; 
+        }
 
         StringBuffer className = null;
         String interfaceName = null;
         
-        className = new StringBuffer(sqlObjectClass
-                        .getName());
+        className = new StringBuffer(sqlObjectClass.getName());
         
         // get the interface type of the given SQLQueryObject
-        if (sqlObjectClass.getPackage().getName().endsWith("impl"))
-        {
-            int implStart = className.lastIndexOf(".impl.") + 1;
+        if (sqlObjectClass.getPackage().getName().endsWith("impl")) {  //$NON-NLS-1$
+            int implStart = className.lastIndexOf(".impl.") + 1;  //$NON-NLS-1$
             int implEnd = implStart + 5;
             className.delete(implStart, implEnd);
         }
         // we are only working with interfaces
-        if (sqlObjectClass.getName().endsWith("Impl"))
-        {
+        if (sqlObjectClass.getName().endsWith("Impl")) {  //$NON-NLS-1$
             className.delete(className.length() - 4, className.length());
         }
 
         interfaceName = className.toString();
+        
         return interfaceName;
     }
 
     /**
-     * returns the <code>Method</code> 
+     * Gets the <code>Method</code> 
      * <code>appendSQL(SQLObject,StringBuffer)</code> for the argument of the
      * same runtime type as the given <code>sqlObjectClass</code>  
      * @param sourceWriterClass the <code>SQLQuerySourceWriter</code> class on
@@ -781,25 +782,21 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @throws NoSuchMethodException
      */
     static Method getSpecificAppendSQLMethod(Class sourceWriterClass,
-                                             Class queryObjectInterfaceClass) throws NoSuchMethodException
-    {
-        if (queryObjectInterfaceClass == null || sourceWriterClass == null)
-        { 
+                                             Class queryObjectInterfaceClass) throws NoSuchMethodException {
+        if (queryObjectInterfaceClass == null || sourceWriterClass == null) { 
             return null;
         }
 
         Method appendSQL = null;
 
-        try
-        {
+        try  {
             Class stringBufferClass = StringBuffer.class;
             Class[] methodArgTypes = new Class[] { queryObjectInterfaceClass,
                             stringBufferClass };
             appendSQL = sourceWriterClass.getDeclaredMethod("appendSpecificSQL", //$NON-NLS-1$
                             methodArgTypes);
         }
-        catch (NoSuchMethodException nsme)
-        {
+        catch (NoSuchMethodException nsme) {
             //StatementHelper.logError(NEW_LINE + sourceWriterClass.getName()
             //                + ": getSQL(" + interfaceName
             //                + ") not implemented. Given argument type: "
@@ -810,21 +807,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             // walk up the inheritance hierarchy
             Class superClass = sourceWriterClass.getSuperclass();
             if (superClass != null &&
-                            SQLQuerySourceWriter.class.isAssignableFrom(superClass)) 
-            {
-                appendSQL =
-                    getSpecificAppendSQLMethod(superClass, queryObjectInterfaceClass);
+                            SQLQuerySourceWriter.class.isAssignableFrom(superClass)) {
+                appendSQL = getSpecificAppendSQLMethod(superClass, queryObjectInterfaceClass);
             } 
-            else 
-            {
+            else {
                 throw nsme;
             }
         }
-        catch (IllegalArgumentException iae)
-        {
+        catch (IllegalArgumentException iae) {
             // TODO: handle exception properly
             iae.printStackTrace();
         }
+        
         return appendSQL;
     }
     
@@ -837,36 +831,30 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param queryObject
      * @return
      */
-    public String getSQL(SQLQueryObject queryObject)
-    {
+    public String getSQL(SQLQueryObject queryObject) {
         String sql = null;
         
-        if (queryObject != null)
-        {
+        if (queryObject != null) {
             // register the sourceWriter as we assume that this SourceWriter is
             // only called under the covers and therefore correct by implementation
             // or is being called purposely on a subclass the base SourceWriter
-            try
-            {
-                if (getSpecificAppendSQLMethod(queryObject) != null)
-                {
+            try {
+                if (getSpecificAppendSQLMethod(queryObject) != null) {
                     SQLQuerySourceWriterProvider.getInstance().registerSourceWriter(this.getClass(),
                                     queryObject.getClass().getPackage().getName());
                 }
             }
-            catch (NoSuchMethodException e)
-            {
+            catch (NoSuchMethodException e) {
                 // don't register sourceWriter then here!
             }
 
-            SQLQuerySourceFormat sourceFormat =
-                queryObject.getSourceInfo().getSqlFormat();
+            SQLQuerySourceFormat sourceFormat = queryObject.getSourceInfo().getSqlFormat();
             
             preserveComments =
                 sourceFormat.isPreserveComments()
-                && (queryObject instanceof QueryStatement 
-                        || !sourceFormat.isGenerateCommentsForStatementOnly());
-            
+             && (queryObject instanceof QueryStatement 
+              || !sourceFormat.isGenerateCommentsForStatementOnly()
+                );
             
             delimitedIdentifierQuote = sourceFormat.getDelimitedIdentifierQuote();
 
@@ -878,6 +866,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
             this.lastSLCommentIndentMap = null;  // for reuse of this SourceWriter
         }
+        
         return sql;
     }
 
@@ -889,115 +878,104 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param comment
      * @param sb
      */
-    protected void appendComment(SQLComment comment, StringBuffer sb)
-    {
-        if (comment == null)  {  return; }
+    protected void appendComment(SQLComment comment, StringBuffer sb) {
+        if (comment == null)  {  
+            return; 
+        }
         
-        if ((comment.getRelativePosition() == SQLComment.COMMENT_POSITION_NEXT_LINE
-                        || comment.getRelativePosition() == SQLComment.COMMENT_POSITION_PREV_LINE)
-                        && !isLastLineEmpty(sb))
-        {
+        if ( (  comment.getRelativePosition() == SQLComment.COMMENT_POSITION_NEXT_LINE
+             || comment.getRelativePosition() == SQLComment.COMMENT_POSITION_PREV_LINE
+             )
+          && !isLastLineEmpty(sb)
+           ) {
             int lastLineIndent = getLastLineIndent(sb);
-            sb.append(NEW_LINE);
-            appendSpace(sb, lastLineIndent); // check if that also applies for multiline comments
+            appendNewLine(sb);
+            appendSpace(sb, lastLineIndent); // check if that also applies for multi-line comments
         }
 
-        if (comment.isMultiLineComment())
-        {
+        if (comment.isMultiLineComment()) {
             String text = comment.getText();
             String trimText = text.trim();
             StringBuffer sbComment = new StringBuffer();
-            if (trimText.startsWith(COMMENT_PREFIX_MULTI_LINE) == false) {
-                sbComment.append(COMMENT_PREFIX_MULTI_LINE);
-            }
-            sbComment.append(text);
-            if (trimText.endsWith(COMMENT_SUFFIX_MULTI_LINE) == false) {
-                sbComment.append(COMMENT_SUFFIX_MULTI_LINE);
-            }
-            // indentSQLToLastLineLengthOfContainer(sbComment, sb);
-            sb.append(sbComment);
             
-            // multiline comment is delimited, doesn't need a line break
+            if (trimText.startsWith(COMMENT_PREFIX_MULTI_LINE) == false) {
+                appendString(sbComment, COMMENT_PREFIX_MULTI_LINE);
+            }
+            
+            appendString(sbComment, text);
+            
+            if (trimText.endsWith(COMMENT_SUFFIX_MULTI_LINE) == false) {
+                appendString(sbComment, COMMENT_SUFFIX_MULTI_LINE);
+            }
+            
+            appendStringBuffer(sb, sbComment);
+            
+            // multi-line comment is delimited, doesn't need a line break
             if (getLastLineLength(sbComment) > 40
-                            && !text.endsWith(NEW_LINE_STRING))
-            {
-                sb.append(NEW_LINE);
+             && !text.endsWith(NEW_LINE_STRING)
+                ) {
+                appendNewLine(sb);
             }
         }
-        else
-        {
+        else {
             String text = comment.getText();
             
-            if (!isLastLineEmpty(sb))
-            {
-                sb.append(SPACE);
+            if (!isLastLineEmpty(sb)) {
+                appendSpace(sb);
             }
 
             // for pretty printing we want to align comments at the end of line
             // that would only work if we always work on the global StringBuffer
             // but we can also have a partial one which will get indented later
-            // and global messures don't work, therefore we use a Map and we
+            // and global measures don't work, therefore we use a Map and we
             // only align end-of-line comments within one StringBuffer
-            if (comment.getRelativePosition()
-                            == SQLComment.COMMENT_POSITION_LINE_END)
-            {
+            if (comment.getRelativePosition() == SQLComment.COMMENT_POSITION_LINE_END) {
                 int currentIndent = getLastLineLength(sb);
                 
-                if (lastSLCommentIndentMap == null)
-                {
+                if (lastSLCommentIndentMap == null) {
                     lastSLCommentIndentMap = new HashMap();
                 }
                 
-                if (lastSLCommentIndentMap.containsKey(sb))
-                {
-                    int lastSingleLineCommentStart =
-                        ((Integer) lastSLCommentIndentMap.get(sb)).intValue();
-                    if (lastSingleLineCommentStart > currentIndent)
-                    {
+                if (lastSLCommentIndentMap.containsKey(sb)) {
+                    int lastSingleLineCommentStart = ((Integer) lastSLCommentIndentMap.get(sb)).intValue();
+                    if (lastSingleLineCommentStart > currentIndent) {
                         appendSpace(sb, lastSingleLineCommentStart - currentIndent);
                     }
-                    else
-                    {
+                    else {
                         lastSLCommentIndentMap.put(sb, new Integer(currentIndent));
                     }
                 }
-                else
-                {
+                else {
                     lastSLCommentIndentMap.put(sb, new Integer(currentIndent));
                 }
             }
             
-            if (!text.startsWith(COMMENT_PREFIX_SINGLE_LINE))
-            {
-                sb.append(COMMENT_PREFIX_SINGLE_LINE);
+            if (!text.startsWith(COMMENT_PREFIX_SINGLE_LINE)) {
+                appendString(sb, COMMENT_PREFIX_SINGLE_LINE);
             }
-            sb.append(text);
+            appendString(sb, text);
             
-            if (!text.endsWith(NEW_LINE_STRING))
-            {
-                sb.append(NEW_LINE);
+            if (!text.endsWith(NEW_LINE_STRING)) {
+                appendNewLine(sb);
             }
         }
-        
     }
 
     /**
-     * @param queryObject
-     * @param sb
+     * Appends "preceding" comments associated with the given query object to the given
+     * string buffer.
+     * 
+     * @param queryObject the query object for which comments should be written out
+     * @param sb the string buffer to append to
      */
-    protected void appendCommentsPreceeding(SQLQueryObject queryObject, StringBuffer sb)
-    {
+    protected void appendCommentsPreceeding(SQLQueryObject queryObject, StringBuffer sb) {
         List comments = queryObject.getSourceInfo().getComments();
         
-        if (comments != null)
-        {
-            for (Iterator it = comments.iterator(); it.hasNext();)
-            {
+        if (comments != null) {
+            for (Iterator it = comments.iterator(); it.hasNext();) {
                 SQLComment comment = (SQLComment) it.next();
                 
-                if (comment.getRelativePosition()
-                                == SQLComment.COMMENT_POSITION_PREV_LINE)
-                {
+                if (comment.getRelativePosition() == SQLComment.COMMENT_POSITION_PREV_LINE) {
                     appendComment(comment, sb);
                 }
             }
@@ -1005,22 +983,20 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @param queryObject
-     * @param sb
+     * Appends "following" comments associated with the given query object to the given
+     * string buffer.
+     * 
+     * @param queryObject the query object for which comments should be written out
+     * @param sb the string buffer to append to
      */
-    protected void appendCommentsSucceeding(SQLQueryObject queryObject, StringBuffer sb)
-    {
+    protected void appendCommentsSucceeding(SQLQueryObject queryObject, StringBuffer sb) {
         List comments = queryObject.getSourceInfo().getComments();
         
-        if (comments != null)
-        {
-            for (Iterator it = comments.iterator(); it.hasNext();)
-            {
+        if (comments != null) {
+            for (Iterator it = comments.iterator(); it.hasNext();) {
                 SQLComment comment = (SQLComment) it.next();
                 
-                if (comment.getRelativePosition()
-                                != SQLComment.COMMENT_POSITION_PREV_LINE)
-                {
+                if (comment.getRelativePosition() != SQLComment.COMMENT_POSITION_PREV_LINE) {
                     appendComment(comment, sb);
                 }
             }
@@ -1052,12 +1028,10 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      *      was found to generate the SQL source for the given
      *      <code>queryObject</code>
      */
-    protected boolean appendExternalSQL(SQLQueryObject queryObject, StringBuffer sb)
-    {
+    protected boolean appendExternalSQL(SQLQueryObject queryObject, StringBuffer sb) {
         boolean foundExternalSourceWriter = false;
         // avoid the endless loop by keeping the reference to queryObject
-        if (lastExternalyProcessed != queryObject)
-        {
+        if (lastExternalyProcessed != queryObject) {
             // avoid the endless loop by keeping the reference lastExternalyProcessed
             // to the given queryObject,
             // getSQL() invokation could cause the endless loop, if getSQL()
@@ -1070,14 +1044,12 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             Class swClass = SQLQuerySourceWriterProvider.getInstance().getQuerySourceWriterClass(queryObject.getClass());
             SQLQuerySourceWriter sw = null;
             if (swClass != null) {
-                try
-                {
+                try  {
                     sw = (SQLQuerySourceWriter) swClass.newInstance();
                     
                     externalSQL = sw.getSQL(queryObject);
                     
-                    if (externalSQL != null && externalSQL.length() > 0)
-                    {
+                    if (externalSQL != null && externalSQL.length() > 0) {
                         SQLQuerySourceWriterProvider.getInstance().registerSourceWriter(swClass, queryObject.getClass().getPackage().getName());
                         
                         StringBuffer externalSQLSB = new StringBuffer(externalSQL);
@@ -1088,21 +1060,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                         
                         foundExternalSourceWriter = true;
                         lastExternalyProcessed = null;
-                    }
-        
+                    }   
                 }
-                catch (InstantiationException e)
-                {
+                catch (InstantiationException e) {
                     e.printStackTrace();
                 }
-                catch (IllegalAccessException e)
-                {
+                catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
         }
-        return foundExternalSourceWriter;
         
+        return foundExternalSourceWriter;
     }
 
     /**
@@ -1261,43 +1230,38 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * TODO: refactor this so where ever its invoked now to invoke a similar
      *  implementation in PlugIn org.eclipse.datatools.modelbase.sql
      */
-    protected void appendSQL(SQLObject sqlObject, StringBuffer sb)
-    {
-        if (sqlObject == null) { return; }
+    protected void appendSQL(SQLObject sqlObject, StringBuffer sb) {
+        if (sqlObject == null) { 
+            return; 
+        }
 
         // this method gets mistakenly called for SQLQueryObjects, redirect
-        if (sqlObject instanceof SQLQueryObject)
-        {
+        if (sqlObject instanceof SQLQueryObject) {
             appendSQL((SQLQueryObject)sqlObject, sb);
             return;
         }
         
-        try
-        {
-            Method getSQL = getSpecificAppendSQLMethod(sqlObject);
+        try {
+            Method specificAppendSQLMethod = getSpecificAppendSQLMethod(sqlObject);
 
             //StringBuffer localSpanSQL = new StringBuffer();
             Object[] invokationArgs = new Object[] { sqlObject, sb };
-            getSQL.setAccessible(true);
-            getSQL.invoke(this, invokationArgs);
+            specificAppendSQLMethod.setAccessible(true);
+            specificAppendSQLMethod.invoke(this, invokationArgs);
             //sb.append(localSpanSQL);
         }
-        catch (NoSuchMethodException nsme)
-        {
+        catch (NoSuchMethodException nsme) {
             // already been stacktraced
         }
-        catch (IllegalAccessException iae)
-        {
+        catch (IllegalAccessException iae) {
             // check if  getSQL.setAccessible(true); did work 10 lines above
             iae.printStackTrace();
         }
-        catch (InvocationTargetException ite)
-        {
+        catch (InvocationTargetException ite) {
             // TODO: handle exception properly
             ite.printStackTrace();
             ite.getTargetException().printStackTrace();
         }
-
     }
 
     /**
@@ -1307,56 +1271,38 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param queryObject
      * @param sb
      */
-    protected void appendSQL(SQLQueryObject queryObject, StringBuffer sb)
-    {
-        if (queryObject == null) { return; }
+    protected void appendSQL(SQLQueryObject queryObject, StringBuffer sb) {
+        if (queryObject == null) { 
+            return; 
+        }
 
-        try
-        {
-            Method getSQL = getSpecificAppendSQLMethod(queryObject);
+        try {
+            Method specificAppendSQLMethod = getSpecificAppendSQLMethod(queryObject);
 
-            if (getSQL != null)
-            {
+            if (specificAppendSQLMethod != null) {
                 Object[] invokationArgs = new Object[] { queryObject, sb };
-                getSQL.setAccessible(true);
+                specificAppendSQLMethod.setAccessible(true);
 
-                if (preserveComments) appendCommentsPreceeding(queryObject, sb);
+                if (preserveComments == true) { 
+                    appendCommentsPreceeding(queryObject, sb);
+                }
 
-                //int startIndex = sb.length();
+                specificAppendSQLMethod.invoke(this, invokationArgs);
 
-                getSQL.invoke(this, invokationArgs);
-
-//                // check if the given queryObject has a name in catalog format, that
-//                // means the identifier is supposed to be delimited
-//                String catalogName = queryObject.getName();
-//                if (catalogName != null && catalogName.length() > 0)
-//                {
-//                    char idDelimiterQt = queryObject.getSourceInfo().getSqlFormat().getDelimitedIdentifierQuote();
-//                    String sqlName = convertCatalogIdentifierToSQLFormat(catalogName, idDelimiterQt);
-//                    if (!catalogName.equals(sqlName))
-//                    {
-//                        int i = sb.indexOf(catalogName, startIndex);
-//                        while (i > -1) {
-//                            sb.replace(i, i + catalogName.length(), sqlName);
-//                            i = sb.indexOf(catalogName, i + catalogName.length());
-//                        }
-//                    }
-//                }
-
-                if (preserveComments) appendCommentsSucceeding(queryObject, sb);
+                if (preserveComments == true) { 
+                    appendCommentsSucceeding(queryObject, sb);
+                }
             }
-            else
+            else {
                 throw new NoSuchMethodException(
                                 "appendSQL(" +
                                 "\""+queryObject.getClass().getName()+"\")" +
                                 " not found in "+this.getClass().getName());
-
+            }
         }
-        catch (NoSuchMethodException nsme)
-        {
-            // already been stacktraced
-            boolean isSqlGenerated = 
-                appendExternalSQL(queryObject, sb);
+        catch (NoSuchMethodException nsme) {
+            // already been stack-traced
+            boolean isSqlGenerated = appendExternalSQL(queryObject, sb);
 
             if (!isSqlGenerated) {
 //                String interfaceName = getInterfaceName(queryObject.getClass());
@@ -1368,24 +1314,20 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                 //nsme.printStackTrace();
             }
         }
-        catch (IllegalAccessException iae)
-        {
+        catch (IllegalAccessException iae) {
             // TODO: handle exception properly
             // check if  getSQL.setAccessible(true); 10 lines above was succesful
             iae.printStackTrace();
         }
-        catch (IllegalArgumentException iae)
-        {
+        catch (IllegalArgumentException iae) {
             // TODO: handle exception properly
             iae.printStackTrace();
         }
-        catch (InvocationTargetException ite)
-        {
+        catch (InvocationTargetException ite) {
             // TODO: handle exception properly
             ite.printStackTrace();
             ite.getTargetException().printStackTrace();
         }
- 
     }
 
     /**
@@ -1450,20 +1392,22 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @param orderByClause
-     * @param sb
+     * Appends SQL for the given order by clause list to the given string buffer.
+     * 
+     * @param orderByClauseList the clause to append
+     * @param sb the string buffer to which to append the SQL
      */
-    protected void appendSQLForOrderByClause(List orderByClause, StringBuffer sb) {
-        sb.append(ORDER_BY);
-        sb.append(SPACE);
+    protected void appendSQLForOrderByClause(List orderByClauseList, StringBuffer sb) {
+        appendKeyword(sb, ORDER_BY);
+        appendSpace(sb);
 
-        for (Iterator it = orderByClause.iterator(); it.hasNext();) {
+        for (Iterator it = orderByClauseList.iterator(); it.hasNext();) {
             OrderBySpecification orderBySpec = (OrderBySpecification) it.next();
             if (StatementHelper.isOrderBySpecificationValid(orderBySpec)) {
                 appendSQL(orderBySpec, sb);
                 if (it.hasNext()) {
-                    sb.append(COMMA);
-                    sb.append(SPACE);
+                    appendSymbol(sb, COMMA);
+                    appendSpace(sb);
                 }
             }
         }
@@ -1477,32 +1421,24 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param sqlObjectList the List of <code>SQLObject</code>s
      * @param sb the <code>StringBuffer</code> to fill in
      */
-    protected void appendSQLForSQLObjectList(List sqlObjectList, StringBuffer sb)
-    {
-        //int indent = getLastLineLength(sb);
-        int indent = getLastLineIndent(sb) + STANDARD_INDENT;
+    protected void appendSQLForSQLObjectList(List sqlObjectList, StringBuffer sb) {
+        if (sqlObjectList != null) {
+            int indent = getLastLineIndent(sb) + STANDARD_INDENT;
 
-        if (sqlObjectList != null)
-        {
-            for (Iterator it = sqlObjectList.iterator(); it.hasNext();)
-            {
+            for (Iterator it = sqlObjectList.iterator(); it.hasNext();) {
                 SQLObject sqlObject = (SQLObject) it.next();
-                if (sqlObject != null)
-                {
+                if (sqlObject != null) {
                     appendSQL(sqlObject, sb);
 
-                    if (it.hasNext())
-                    {
-                        sb.append(COMMA);
+                    if (it.hasNext()) {
+                        appendSymbol(sb, COMMA);
 
-                        if (getLastLineLength(sb) > displayWidth - 20)
-                        {
-                            sb.append(NEW_LINE);
+                        if (getLastLineLength(sb) > displayWidth - 20) {
+                            appendNewLine(sb);
                             appendSpace(sb, indent);
                         }
-                        else
-                        {
-                            sb.append(SPACE);
+                        else  {
+                            appendSpace(sb);
                         }
                     }
                 }
@@ -1685,8 +1621,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param sql
      * @return filtered String <code>sql</code>
      */
-    protected String filterOutEmptyLines(String sql)
-    {
+    protected String filterOutEmptyLines(String sql) {
         // filter out empty lines and lines with only whitespaces "\s"
         // TODO: don't remove new lines within String literals
         // TODO: better approach make sure there is no empty lines generated
@@ -1739,17 +1674,16 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @return the number of white space characters in the last line of the
      *         given StringBuffer sb
      */
-    protected int getLastLineIndent(StringBuffer sb)
-    {
+    protected int getLastLineIndent(StringBuffer sb) {
         int lastIndexOfLineBreak = sb.lastIndexOf(NEW_LINE_STRING);
         int i = 0; // last line indent
 
-        for (i = 0; i < sb.length()-lastIndexOfLineBreak-1; i++)
-        {
+        for (i = 0; i < sb.length()-lastIndexOfLineBreak-1; i++) {
             if (sb.charAt(lastIndexOfLineBreak+i+1) != SPACE) {
                 break;
             }
         }
+        
         return i;
     }
     
@@ -1835,8 +1769,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @param sb a StringBuffer
      * @return the length of the last line in the given StringBuffer
      */
-    protected int getLastLineLength(StringBuffer sb)
-    {
+    protected int getLastLineLength(StringBuffer sb) {
         // TODO: that should not consider line length including comments on end of line or separate line!!! 
         
         int lastIndexOfLineBreak = sb.lastIndexOf(NEW_LINE_STRING);
@@ -1861,10 +1794,10 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @return the <code>Method appendSQL</code> for the runtime type of the
      *            given <code>sqlObject</code>
      */
-    protected Method getSpecificAppendSQLMethod(Class sourceWriterClass,
-                                                SQLObject sqlObject) throws NoSuchMethodException
-    {
-        if (sqlObject == null) { return null; }
+    protected Method getSpecificAppendSQLMethod(Class sourceWriterClass, SQLObject sqlObject) throws NoSuchMethodException {
+        if (sqlObject == null) { 
+            return null; 
+        }
 
         String interfaceName = null;
         Method appendSQL = null;
@@ -1872,8 +1805,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         Class sqlObjectClass = sqlObject.getClass();
         Class sqlObjectInterfaceClass = sqlObjectClass;
         
-        if (sqlObjectClass.getName().endsWith("Impl"))
-        {
+        if (sqlObjectClass.getName().endsWith("Impl")) {
             // if we have an impl we need to find its interface as all
             // appendSQL methods have the interface as argument
             // Class.forName doesn't help us in the eclipse runtime as
@@ -1882,18 +1814,15 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             interfaceName = getInterfaceName(sqlObject.getClass());
             Class[] sqlObjectInterfaces = sqlObjectClass.getInterfaces();
             
-            for (int i = 0; i < sqlObjectInterfaces.length; i++)
-            {
+            for (int i = 0; i < sqlObjectInterfaces.length; i++) {
                 Class interfaceClass = sqlObjectClass.getInterfaces()[i];
-                if (interfaceClass.getName().equals(interfaceName))
-                {
+                if (interfaceClass.getName().equals(interfaceName)) {
                     sqlObjectInterfaceClass = interfaceClass;
                     break;
                 }
             }
         }
-        appendSQL = getSpecificAppendSQLMethod(sourceWriterClass, 
-                            sqlObjectInterfaceClass);
+        appendSQL = getSpecificAppendSQLMethod(sourceWriterClass, sqlObjectInterfaceClass);
 
         return appendSQL;
     }
@@ -1906,8 +1835,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @return the <code>Method appendSQL</code> for the runtime type of the
      *            given <code>sqlObject</code>
      */
-    protected Method getSpecificAppendSQLMethod(SQLObject sqlObject) throws NoSuchMethodException
-    {
+    protected Method getSpecificAppendSQLMethod(SQLObject sqlObject) throws NoSuchMethodException {
         return getSpecificAppendSQLMethod(this.getClass(), sqlObject);
     }
 
@@ -1935,7 +1863,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             }
         }
         else {
-            sb.append(NEW_LINE);
+            appendNewLine(sb);
             appendSpace(sb, indent);
         }
     }
@@ -1980,8 +1908,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         appendSpace(indent, indentLength);
 
         int i = subcomponentToIndent.indexOf(newLine, 0);
-        while (i > 0)
-        {
+        while (i > 0) {
             subcomponentToIndent.insert(i+1, indent);
             i = subcomponentToIndent.indexOf(newLine, i+1);
         }
@@ -1999,14 +1926,12 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @return the number of white space characters in the last line of the
      *         given StringBuffer sb
      */
-    protected boolean isLastLineEmpty(StringBuffer sb)
-    {
+    protected boolean isLastLineEmpty(StringBuffer sb) {
         boolean isLastLineEmpty = true;
         
         int lastIndexOfLineBreak = sb.lastIndexOf(NEW_LINE_STRING);
         
-        for (int i = lastIndexOfLineBreak + 1; i < sb.length(); i++)
-        {
+        for (int i = lastIndexOfLineBreak + 1; i < sb.length(); i++)  {
             if (sb.charAt(i) != SPACE) {
                 isLastLineEmpty = false;
                 break;
@@ -2016,7 +1941,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * Determins if the given <code>column</code> should be qualified according to the current configuration 
+     * Determines if the given <code>column</code> should be qualified according to the current configuration 
      * parameters specified or if it is ambiguous.
      * <p>
      * Referenced configuration parameters:
@@ -2114,7 +2039,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
     
     /**
-     * Removes multiple occurences of white space characters {@link #NEW_LINE}
+     * Removes multiple occurrences of white space characters {@link #NEW_LINE}
      * and {@link #SPACE} in the given StringBuffer.
      *
      * @param toBeTrimmed
@@ -2122,8 +2047,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     protected void trimWhiteSpace(StringBuffer toBeTrimmed) {
         StringBuffer trimmed = new StringBuffer();
         char lastChar = SPACE;
-        for (int i = 0; i < toBeTrimmed.length(); i++)
-        {
+        for (int i = 0; i < toBeTrimmed.length(); i++) {
             char currentChar = toBeTrimmed.charAt(i);
 
             if (currentChar == NEW_LINE) {
@@ -2223,21 +2147,23 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType#getSQL()
      */
-    protected void appendSpecificSQL(ApproximateNumericDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
-        }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
-        }
+    protected void appendSpecificSQL(ApproximateNumericDataType approxNumericDataType, StringBuffer sb) {
+        if (approxNumericDataType != null) {
+            String typeName = approxNumericDataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
+            }
+            else {
+                PrimitiveType primitiveType = approxNumericDataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
+            }
 
-        if (dataType.getPrecision() != 0) {
-            appendSpace(sb);
-            appendSymbol(sb, PAREN_LEFT);
-            appendInt(sb, dataType.getPrecision());
-            appendSymbol(sb, PAREN_RIGHT);
+            if (approxNumericDataType.getPrecision() != 0) {
+                appendSpace(sb);
+                appendSymbol(sb, PAREN_LEFT);
+                appendInt(sb, approxNumericDataType.getPrecision());
+                appendSymbol(sb, PAREN_RIGHT);
+            }
         }
     }
 
@@ -2245,71 +2171,75 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType#getSQL()
      */
     protected void appendSpecificSQL(ArrayDataType arrayDataType, StringBuffer sb) {
-        ElementType elementType = arrayDataType.getElementType();
-        if (elementType != null) {
-            DataType dataType = elementType.getDataType();
-            if (dataType != null) {
-                appendSQL(dataType, sb);
+        if (arrayDataType != null) {
+            ElementType elementType = arrayDataType.getElementType();
+            if (elementType != null) {
+                DataType dataType = elementType.getDataType();
+                if (dataType != null) {
+                    appendSQL(dataType, sb);
+                }
             }
-        }
 
-        appendSpace(sb);
-        appendKeyword(sb, ARRAY);
-        
-        if (arrayDataType.getMaxCardinality() != 0) {
-            appendSymbol(sb, BRACKET_LEFT);
-            appendInt(sb, arrayDataType.getMaxCardinality());
-            appendSymbol(sb, BRACKET_RIGHT);
+            appendSpace(sb);
+            appendKeyword(sb, ARRAY);
+
+            if (arrayDataType.getMaxCardinality() != 0) {
+                appendSymbol(sb, BRACKET_LEFT);
+                appendInt(sb, arrayDataType.getMaxCardinality());
+                appendSymbol(sb, BRACKET_RIGHT);
+            }
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType#getSQL()
      */
-    protected void appendSpecificSQL(BinaryStringDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        
-        /* DB2 supports the "FOR BIT DATA" suffix on CHARACTER data types, which transforms
-         * them into binary string datatypes.  When generating SQL, need to substitute the length 
-         * back into the name, which looks like this:  CHARACTER () FOR BIT DATA 
-         * Note: this would be better handled by creating a DB2-specific datatype class so
-         * we can generate the SQL in the DB2-specific source writer. */
-        int parenLoc = typeName.indexOf('(');
-        if (parenLoc > 0) {
-            StringBuffer lengthSB = new StringBuffer();
+    protected void appendSpecificSQL(BinaryStringDataType binaryDataType, StringBuffer sb) {
+        if (binaryDataType != null) {
+            String typeName = binaryDataType.getName();
 
-            if (dataType.getLength() > 0)  {
-                if (dataType.getPrimitiveType() == PrimitiveType.BINARY_LARGE_OBJECT_LITERAL) {
-                    appendSQLForLargeObjectSize(dataType.getLength(), lengthSB);
+            /* DB2 supports the "FOR BIT DATA" suffix on CHARACTER data types, which transforms
+             * them into binary string datatypes.  When generating SQL, need to substitute the length 
+             * back into the name, which looks like this:  CHARACTER () FOR BIT DATA 
+             * Note: this would be better handled by creating a DB2-specific datatype class so
+             * we can generate the SQL in the DB2-specific source writer. */
+            int parenLoc = typeName.indexOf('(');
+            if (parenLoc > 0) {
+                StringBuffer lengthSB = new StringBuffer();
+
+                if (binaryDataType.getLength() > 0)  {
+                    if (binaryDataType.getPrimitiveType() == PrimitiveType.BINARY_LARGE_OBJECT_LITERAL) {
+                        appendSQLForLargeObjectSize(binaryDataType.getLength(), lengthSB);
+                    }
+                    else {
+                        appendInt(lengthSB, binaryDataType.getLength());
+                    }
                 }
-                else {
-                    appendInt(lengthSB, dataType.getLength());
-                }
-            }
-            String dataTypeLen = lengthSB.toString();
-            typeName = typeName.substring(0, parenLoc + 1) + dataTypeLen + typeName.substring(parenLoc + 1);
-            appendKeyword(sb, typeName);
-        }
-        else {
-            if (typeName != null && typeName.length() > 0) {
+                String dataTypeLen = lengthSB.toString();
+                typeName = typeName.substring(0, parenLoc + 1) + dataTypeLen + typeName.substring(parenLoc + 1);
                 appendKeyword(sb, typeName);
             }
             else {
-                PrimitiveType primitiveType = dataType.getPrimitiveType();
-                appendSpecificSQL(primitiveType, sb);
-            }
-
-            int dataTypeLen = dataType.getLength();
-            if (dataTypeLen > 0) {
-                appendSymbol(sb, PAREN_LEFT);
-
-                if (dataType.getPrimitiveType() == PrimitiveType.BINARY_LARGE_OBJECT_LITERAL) {
-                    appendSQLForLargeObjectSize(dataTypeLen, sb);
+                if (typeName != null && typeName.length() > 0) {
+                    appendKeyword(sb, typeName);
                 }
                 else {
-                    appendInt(sb, dataTypeLen);
+                    PrimitiveType primitiveType = binaryDataType.getPrimitiveType();
+                    appendSpecificSQL(primitiveType, sb);
                 }
-                appendSymbol(sb, PAREN_RIGHT);
+
+                int dataTypeLen = binaryDataType.getLength();
+                if (dataTypeLen > 0) {
+                    appendSymbol(sb, PAREN_LEFT);
+
+                    if (binaryDataType.getPrimitiveType() == PrimitiveType.BINARY_LARGE_OBJECT_LITERAL) {
+                        appendSQLForLargeObjectSize(dataTypeLen, sb);
+                    }
+                    else {
+                        appendInt(sb, dataTypeLen);
+                    }
+                    appendSymbol(sb, PAREN_RIGHT);
+                }
             }
         }
     }
@@ -2318,52 +2248,56 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.query.CallStatement#getSQL()
      */
     protected void appendSpecificSQL(CallStatement callStmt, StringBuffer sb) {
-        appendKeyword(sb, CALL);
-        appendSpace(sb);
-        ProcedureReference ref = callStmt.getProcedureRef();
-        appendSpecificSQL(ref, sb);
-       
-        appendSpace(sb);
-        appendSymbol(sb, PAREN_LEFT);
-        List argList = callStmt.getArgumentList();
-        appendSQLForSQLObjectList(argList, sb);
-        appendSymbol(sb, PAREN_RIGHT);
+        if (callStmt != null) {
+            appendKeyword(sb, CALL);
+            appendSpace(sb);
+            ProcedureReference ref = callStmt.getProcedureRef();
+            appendSpecificSQL(ref, sb);
+
+            appendSpace(sb);
+            appendSymbol(sb, PAREN_LEFT);
+            List argList = callStmt.getArgumentList();
+            appendSQLForSQLObjectList(argList, sb);
+            appendSymbol(sb, PAREN_RIGHT);
+        }
     }
     
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getSQL()
      */
-    protected void appendSpecificSQL(CharacterStringDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
-        }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
-        }
-
-        if (dataType.getLength() > 0) {
-            appendSpace(sb);
-            appendSymbol(sb, PAREN_LEFT);
-
-            if (dataType.getPrimitiveType() == PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL
-                            || dataType.getPrimitiveType() == PrimitiveType.NATIONAL_CHARACTER_LARGE_OBJECT_LITERAL) {
-                appendSQLForLargeObjectSize(dataType.getLength(), sb);
+    protected void appendSpecificSQL(CharacterStringDataType charDataType, StringBuffer sb) {
+        if (charDataType != null) {
+            String typeName = charDataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
             }
             else {
-                appendInt(sb, dataType.getLength());
+                PrimitiveType primitiveType = charDataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
             }
-            appendSymbol(sb, PAREN_RIGHT);
+
+            if (charDataType.getLength() > 0) {
+                appendSpace(sb);
+                appendSymbol(sb, PAREN_LEFT);
+
+                if (charDataType.getPrimitiveType() == PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL
+                        || charDataType.getPrimitiveType() == PrimitiveType.NATIONAL_CHARACTER_LARGE_OBJECT_LITERAL) {
+                    appendSQLForLargeObjectSize(charDataType.getLength(), sb);
+                }
+                else {
+                    appendInt(sb, charDataType.getLength());
+                }
+                appendSymbol(sb, PAREN_RIGHT);
+            }
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ColumnName#getSQL()
      */
-    protected void appendSpecificSQL(ColumnName columnName, StringBuffer sb) {
-        if (columnName != null) {
-            String colNameStr = columnName.getName();
+    protected void appendSpecificSQL(ColumnName colName, StringBuffer sb) {
+        if (colName != null) {
+            String colNameStr = colName.getName();
             String sqlFormatName = convertCatalogIdentifierToSQLFormat(colNameStr, getDelimitedIdentifierQuote());
             appendIdentifier(sb, sqlFormatName);
         }
@@ -2372,14 +2306,14 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.DateDataType#getSQL()
      */
-    protected void appendSpecificSQL(DateDataType dataType, StringBuffer sb) {
-        if (dataType != null) {
-            String typeName = dataType.getName();
+    protected void appendSpecificSQL(DateDataType dateDataType, StringBuffer sb) {
+        if (dateDataType != null) {
+            String typeName = dateDataType.getName();
             if (typeName != null && typeName.length() > 0) {
                 appendDataTypeName(sb, typeName);
             }
             else {
-                PrimitiveType primitiveType = dataType.getPrimitiveType();
+                PrimitiveType primitiveType = dateDataType.getPrimitiveType();
                 appendSpecificSQL(primitiveType, sb);
             }
         }
@@ -2388,10 +2322,10 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see DistinctUserDefinedType#getSQL()
      */
-    protected void appendSpecificSQL(DistinctUserDefinedType type, StringBuffer sb) {
-        if (type != null) {
+    protected void appendSpecificSQL(DistinctUserDefinedType distinctType, StringBuffer sb) {
+        if (distinctType != null) {
             char delimChar = getDelimitedIdentifierQuote();
-            Schema schema = type.getSchema();
+            Schema schema = distinctType.getSchema();
             if (schema != null && schema.getName() != null && schema.getName().length() > 0) {
                 String schemaName = schema.getName();
                 String sqlFormatSchemaName = convertCatalogIdentifierToSQLFormat(schemaName, delimChar);
@@ -2399,7 +2333,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                 appendSymbol(sb, DOT);           
             }
 
-            String typeName = type.getName();
+            String typeName = distinctType.getName();
             String sqlFormatTypeName = convertCatalogIdentifierToSQLFormat(typeName, delimChar);
             appendDataTypeName(sb, sqlFormatTypeName);
         }
@@ -2408,27 +2342,29 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType#getSQL()
      */
-    protected void appendSpecificSQL(FixedPrecisionDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
-        }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
-        }
-
-        if (dataType.getPrecision() != 0) {
-            appendSpace(sb);
-            appendSymbol(sb, PAREN_LEFT);
-            appendInt(sb, dataType.getPrecision());
-
-            if (dataType.getScale() != 0) {
-                appendSymbol(sb, COMMA);
-                appendInt(sb, dataType.getScale());
+    protected void appendSpecificSQL(FixedPrecisionDataType fixedPrecDataType, StringBuffer sb) {
+        if (fixedPrecDataType != null) {
+            String typeName = fixedPrecDataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
+            }
+            else {
+                PrimitiveType primitiveType = fixedPrecDataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
             }
 
-            appendSymbol(sb, PAREN_RIGHT);
+            if (fixedPrecDataType.getPrecision() != 0) {
+                appendSpace(sb);
+                appendSymbol(sb, PAREN_LEFT);
+                appendInt(sb, fixedPrecDataType.getPrecision());
+
+                if (fixedPrecDataType.getScale() != 0) {
+                    appendSymbol(sb, COMMA);
+                    appendInt(sb, fixedPrecDataType.getScale());
+                }
+
+                appendSymbol(sb, PAREN_RIGHT);
+            }
         }
     }
 
@@ -2483,96 +2419,108 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType#getSQL()
      */
-    protected void appendSpecificSQL(IntegerDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
-        }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
+    protected void appendSpecificSQL(IntegerDataType intDataType, StringBuffer sb) {
+        if (intDataType != null) {
+            String typeName = intDataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
+            }
+            else {
+                PrimitiveType primitiveType = intDataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
+            }
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification#getSQL()
      */
-    protected void appendSpecificSQL(MergeInsertSpecification insertSpec, StringBuffer sb) {
-        appendKeyword(sb, WHEN);
-        appendSpace(sb);
-        appendKeyword(sb, NOT);
-        appendSpace(sb);
-        appendKeyword(sb, MATCHED);
-        appendSpace(sb);
-        appendKeyword(sb, THEN);
-        appendNewLine(sb);
-        appendIndent(sb);
-        appendKeyword(sb, INSERT);
-        appendSpace(sb);
-        appendSymbol(sb, PAREN_LEFT);
-        List targetColList = insertSpec.getTargetColumnList();
-        appendSQLForSQLObjectList(targetColList, sb);
-        appendSymbol(sb, PAREN_RIGHT);
-        appendNewLine(sb);
-        appendIndent(sb);
-        appendKeyword(sb, VALUES);
-        appendSpace(sb);
-        ValuesRow sourceValuesRow = insertSpec.getSourceValuesRow();
-        appendSQL(sourceValuesRow, sb);
+    protected void appendSpecificSQL(MergeInsertSpecification mergeInsertSpec, StringBuffer sb) {
+        if (mergeInsertSpec != null) {
+            appendKeyword(sb, WHEN);
+            appendSpace(sb);
+            appendKeyword(sb, NOT);
+            appendSpace(sb);
+            appendKeyword(sb, MATCHED);
+            appendSpace(sb);
+            appendKeyword(sb, THEN);
+            appendNewLine(sb);
+            appendIndent(sb);
+            appendKeyword(sb, INSERT);
+            appendSpace(sb);
+            appendSymbol(sb, PAREN_LEFT);
+            List targetColList = mergeInsertSpec.getTargetColumnList();
+            appendSQLForSQLObjectList(targetColList, sb);
+            appendSymbol(sb, PAREN_RIGHT);
+            appendNewLine(sb);
+            appendIndent(sb);
+            appendKeyword(sb, VALUES);
+            appendSpace(sb);
+            ValuesRow sourceValuesRow = mergeInsertSpec.getSourceValuesRow();
+            appendSQL(sourceValuesRow, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.MergeOnCondition#getSQL()
      */
-    protected void appendSpecificSQL(MergeOnCondition onCondition, StringBuffer sb) {
-        QuerySearchCondition searchCond = onCondition.getSearchCondition();
-        appendSQL(searchCond, sb);
+    protected void appendSpecificSQL(MergeOnCondition mergeOnCondition, StringBuffer sb) {
+        if (mergeOnCondition != null) {
+            QuerySearchCondition searchCond = mergeOnCondition.getSearchCondition();
+            appendSQL(searchCond, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.MergeSourceTable#getSQL()
      */
-    protected void appendSpecificSQL(MergeSourceTable sourceTable, StringBuffer sb) {
-        TableReference tableRef = sourceTable.getTableRef();
-        if (tableRef instanceof QueryExpressionBody) {
-            appendNewLine(sb);
-            appendIndent(sb);
+    protected void appendSpecificSQL(MergeSourceTable mergeSourceTable, StringBuffer sb) {
+        if (mergeSourceTable != null) {
+            TableReference tableRef = mergeSourceTable.getTableRef();
+            if (tableRef instanceof QueryExpressionBody) {
+                appendNewLine(sb);
+                appendIndent(sb);
+            }
+            appendSQLForTableExpression(tableRef, sb);
         }
-        appendSQLForTableExpression(tableRef, sb);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.MergeTargetTable#getSQL()
      */
-    protected void appendSpecificSQL(MergeTargetTable targetTable, StringBuffer sb) {
-        TableExpression tableExpr = targetTable.getTableExpr();
-        appendSQL(tableExpr, sb); 
+    protected void appendSpecificSQL(MergeTargetTable mergeTargetTable, StringBuffer sb) {
+        if (mergeTargetTable != null) {
+            TableExpression tableExpr = mergeTargetTable.getTableExpr();
+            appendSQL(tableExpr, sb); 
+        }
     }
     
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification#getSQL()
      */
-    protected void appendSpecificSQL(MergeUpdateSpecification updateSpec, StringBuffer sb) {
-        appendKeyword(sb, WHEN);
-        appendSpace(sb);
-        appendKeyword(sb, MATCHED);
-        appendSpace(sb);
-        appendKeyword(sb, THEN);
-        appendNewLine(sb);
-        appendIndent(sb);
-        appendKeyword(sb, UPDATE);
-        appendSpace(sb);
-        appendKeyword(sb, SET);
-        List assignExprList = updateSpec.getAssignementExprList();
-        Iterator assignExprListIter = assignExprList.iterator();
-        while (assignExprListIter.hasNext()) {
-            UpdateAssignmentExpression assignExpr = (UpdateAssignmentExpression) assignExprListIter.next();
+    protected void appendSpecificSQL(MergeUpdateSpecification mergeUpdateSpec, StringBuffer sb) {
+        if (mergeUpdateSpec != null) {
+            appendKeyword(sb, WHEN);
+            appendSpace(sb);
+            appendKeyword(sb, MATCHED);
+            appendSpace(sb);
+            appendKeyword(sb, THEN);
             appendNewLine(sb);
-            appendIndent(sb, 2);
-            appendSQL(assignExpr, sb);
-            
-            if (assignExprListIter.hasNext()) {
-                appendSymbol(sb, COMMA);
+            appendIndent(sb);
+            appendKeyword(sb, UPDATE);
+            appendSpace(sb);
+            appendKeyword(sb, SET);
+            List assignExprList = mergeUpdateSpec.getAssignementExprList();
+            Iterator assignExprListIter = assignExprList.iterator();
+            while (assignExprListIter.hasNext()) {
+                UpdateAssignmentExpression assignExpr = (UpdateAssignmentExpression) assignExprListIter.next();
+                appendNewLine(sb);
+                appendIndent(sb, 2);
+                appendSQL(assignExpr, sb);
+
+                if (assignExprListIter.hasNext()) {
+                    appendSymbol(sb, COMMA);
+                }
             }
         }
     }
@@ -2581,16 +2529,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType#getSQL()
      */
     protected void appendSpecificSQL(MultisetDataType multisetDataType, StringBuffer sb) {
-        ElementType elementType = multisetDataType.getElementType();
-        if (elementType != null) {
-            DataType dataType = elementType.getDataType();
-            if (dataType != null) {
-                appendSQL(dataType,sb);
+        if (multisetDataType != null) {
+            ElementType elementType = multisetDataType.getElementType();
+            if (elementType != null) {
+                DataType dataType = elementType.getDataType();
+                if (dataType != null) {
+                    appendSQL(dataType,sb);
+                }
             }
-        }
 
-        appendSpace(sb);
-        appendKeyword(sb, MULTISET);
+            appendSpace(sb);
+            appendKeyword(sb, MULTISET);
+        }
     }
 
     /**
@@ -2685,39 +2635,39 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateBasic#getSQL()
      */
-    protected void appendSpecificSQL(PredicateBasic pred, StringBuffer sb) {
-        if (pred != null) {
+    protected void appendSpecificSQL(PredicateBasic predBasic, StringBuffer sb) {
+        if (predBasic != null) {
             StringBuffer sbPred = new StringBuffer();
 
-            QueryValueExpression leftValExpr = pred.getLeftValueExpr();
+            QueryValueExpression leftValExpr = predBasic.getLeftValueExpr();
             if (leftValExpr != null) {
                 appendSQL(leftValExpr, sbPred);
             }
 
             appendSpace(sbPred);
 
-            PredicateComparisonOperator predCompOp = pred.getComparisonOperator();
+            PredicateComparisonOperator predCompOp = predBasic.getComparisonOperator();
             if (predCompOp != null) {
                 appendSpecificSQL(predCompOp, sbPred);
             }
 
             appendSpace(sbPred);
 
-            QueryValueExpression rightValExpr = pred.getRightValueExpr();
+            QueryValueExpression rightValExpr = predBasic.getRightValueExpr();
             if (rightValExpr != null) {
                 appendSQL(rightValExpr, sbPred);
             }
 
-            if (pred.isHasSelectivity()) {
+            if (predBasic.isHasSelectivity()) {
                 appendSpace(sbPred);
                 appendKeyword(sbPred, SELECTIVITY);
                 appendSpace(sbPred);
-                Integer predSelVal = pred.getSelectivityValue();
+                Integer predSelVal = predBasic.getSelectivityValue();
                 int predSelValInt = predSelVal.intValue();
                 appendInt(sbPred, predSelValInt);
             }
 
-            wrapSQL((Predicate) pred, sbPred);
+            wrapSQL((Predicate) predBasic, sbPred);
             appendStringBuffer(sb, sbPred);
         }
     }
@@ -2759,11 +2709,11 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator#getSQL()
      */
-    protected void appendSpecificSQL(PredicateComparisonOperator op, StringBuffer sb) {
-        if (op != null) {
-            int opVal = op.getValue();
+    protected void appendSpecificSQL(PredicateComparisonOperator compOp, StringBuffer sb) {
+        if (compOp != null) {
+            int compOpVal = compOp.getValue();
 
-            switch (opVal) {
+            switch (compOpVal) {
                 case PredicateComparisonOperator.EQUAL:
                     appendOperator(sb, EQUAL);
                     break;
@@ -2811,192 +2761,168 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueList#getSQL()
      */
-    protected void appendSpecificSQL(PredicateInValueList predInValueList, StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateInValueList predInValueList, StringBuffer sb) {
+        if (predInValueList != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        appendSQL(predInValueList.getValueExpr(), sbPred);
-        sbPred.append(SPACE);
+            QueryValueExpression valExpr = predInValueList.getValueExpr();
+            appendSQL(valExpr, sbPred);
+            appendSpace(sbPred);
 
-        if (predInValueList.isNotIn())
-        {
-            sbPred.append(NOT);
-            sbPred.append(SPACE);
-        }
-
-        sbPred.append(IN);
-        sbPred.append(SPACE);
-
-        if (predInValueList.getValueExprList() != null)
-        {
-            sbPred.append(PAREN_LEFT);
-
-/*            for (Iterator valIt = predInValueList.getValueExprList().iterator(); valIt
-                            .hasNext();)
-            {
-                QueryValueExpression valueExpr = (QueryValueExpression) valIt
-                                .next();
-                appendSQL(valueExpr, sbPred);
-                sbPred.append(COMMA);
-                sbPred.append(SPACE);
+            if (predInValueList.isNotIn()) {
+                appendKeyword(sbPred, NOT);
+                appendSpace(sbPred);
             }
-            sbPred.delete(sbPred.length() - 2, sbPred.length());
-*/
-            appendSQLForSQLObjectList(predInValueList.getValueExprList(), sbPred);
-            sbPred.append(PAREN_RIGHT);
 
+            appendKeyword(sbPred, IN);
+            appendSpace(sbPred);
+
+            List valExprList = predInValueList.getValueExprList();
+            if (valExprList != null) {
+                appendSymbol(sbPred, PAREN_LEFT);
+                appendSQLForSQLObjectList(valExprList, sbPred);
+                appendSymbol(sbPred, PAREN_RIGHT);
+            }
+
+            wrapSQL((Predicate) predInValueList, sbPred);
+            appendStringBuffer(sb, sbPred);
         }
-
-        wrapSQL((Predicate) predInValueList, sbPred);
-        sb.append(sbPred);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect#getSQL()
      */
-    protected void appendSpecificSQL(PredicateInValueRowSelect predInRowSelect,
-                           StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateInValueRowSelect predInValRowSelect, StringBuffer sb) {
+        if (predInValRowSelect != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        if (predInRowSelect.getValueExprList() != null)
-        {
-            sbPred.append(PAREN_LEFT);
-
-/*            for (Iterator valIt = predInRowSelect.getValueExprList().iterator(); valIt
-                            .hasNext();)
-            {
-                QueryValueExpression valueExpr = (QueryValueExpression) valIt
-                                .next();
-                appendSQL(valueExpr, sbPred);
-                sbPred.append(COMMA);
-                sbPred.append(SPACE);
+            List valExprList = predInValRowSelect.getValueExprList();
+            if (valExprList != null) {
+                appendSymbol(sbPred, PAREN_LEFT);
+                appendSQLForSQLObjectList(valExprList, sbPred);
+                appendSymbol(sbPred, PAREN_RIGHT);
             }
-            sbPred.delete(sbPred.length() - 2, sbPred.length());
-*/
-            appendSQLForSQLObjectList(predInRowSelect.getValueExprList(), sbPred);
-            sbPred.append(PAREN_RIGHT);
 
+            appendSpace(sbPred);
+            if (predInValRowSelect.isNotIn()) {
+                appendKeyword(sbPred, NOT);
+                appendSpace(sbPred, SPACE);
+            }
+
+            appendKeyword(sbPred, IN);
+            appendSpace(sbPred, SPACE);
+
+            QueryExpressionRoot queryExpr = predInValRowSelect.getQueryExpr();
+            if (queryExpr != null) {
+                appendSymbol(sbPred, PAREN_LEFT);
+                appendSQL(queryExpr, sbPred);
+                appendSymbol(sbPred, PAREN_RIGHT);
+            }
+
+            wrapSQL((Predicate) predInValRowSelect, sbPred);
+            indentSQLToLastLineLengthOfContainer(sbPred, sb);
+            appendStringBuffer(sb, sbPred);
         }
-
-        sbPred.append(SPACE);
-
-        if (predInRowSelect.isNotIn())
-        {
-            sbPred.append(NOT);
-            sbPred.append(SPACE);
-        }
-
-        sbPred.append(IN);
-        sbPred.append(SPACE);
-
-        if (predInRowSelect.getQueryExpr() != null)
-        {
-            sbPred.append(PAREN_LEFT);
-            appendSQL(predInRowSelect.getQueryExpr(), sbPred);
-            sbPred.append(PAREN_RIGHT);
-        }
-
-        wrapSQL((Predicate) predInRowSelect, sbPred);
-        indentSQLToLastLineLengthOfContainer(sbPred,sb);
-        sb.append(sbPred);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect#getSQL()
      */
-    protected void appendSpecificSQL(PredicateInValueSelect predInSelect, StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateInValueSelect predInValSelect, StringBuffer sb) {
+        if (predInValSelect != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        appendSQL(predInSelect.getValueExpr(), sbPred);
-        sbPred.append(SPACE);
+            QueryValueExpression valExpr = predInValSelect.getValueExpr();
+            appendSQL(valExpr, sbPred);
+            appendSpace(sbPred);
 
-        if (predInSelect.isNotIn())
-        {
-            sbPred.append(NOT);
-            sbPred.append(SPACE);
+            if (predInValSelect.isNotIn()) {
+                appendKeyword(sbPred, NOT);
+                appendSpace(sbPred);
+            }
+
+            appendKeyword(sbPred, IN);
+            appendSpace(sbPred);
+
+            QueryExpressionRoot queryExpr = predInValSelect.getQueryExpr();
+            if (queryExpr != null) {
+                appendSymbol(sbPred, PAREN_LEFT);
+                appendSQL(queryExpr, sbPred);
+                appendSymbol(sbPred, PAREN_RIGHT);
+            }
+
+            wrapSQL((Predicate) predInValSelect, sbPred);
+            indentSQLToLastLineLengthOfContainer(sbPred, sb);
+            appendStringBuffer(sb, sbPred);
         }
-
-        sbPred.append(IN);
-        sbPred.append(SPACE);
-
-        if (predInSelect.getQueryExpr() != null)
-        {
-            sbPred.append(PAREN_LEFT);
-            appendSQL(predInSelect.getQueryExpr(), sbPred);
-            sbPred.append(PAREN_RIGHT);
-        }
-
-        wrapSQL((Predicate) predInSelect, sbPred);
-        indentSQLToLastLineLengthOfContainer(sbPred,sb);
-        sb.append(sbPred);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateIsNull#getSQL()
      */
-    protected void appendSpecificSQL(PredicateIsNull predNull, StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateIsNull predNull, StringBuffer sb) {
+        if (predNull != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        appendSQL(predNull.getValueExpr(), sbPred);
-        sbPred.append(SPACE);
-        sbPred.append(IS);
-        sbPred.append(SPACE);
+            QueryValueExpression valExpr = predNull.getValueExpr();
+            appendSQL(valExpr, sbPred);
+            appendSpace(sbPred);
+            appendKeyword(sbPred, IS);
+            appendSpace(sbPred);
 
-        if (predNull.isNotNull())
-        {
-            sbPred.append(NOT);
-            sbPred.append(SPACE);
+            if (predNull.isNotNull()) {
+                appendKeyword(sbPred, NOT);
+                appendSpace(sbPred);
+            }
+            appendKeyword(sbPred, NULL);
+
+            wrapSQL((Predicate) predNull, sbPred);
+            appendStringBuffer(sb, sbPred);
         }
-        sbPred.append(NULL);
-
-        wrapSQL((Predicate) predNull, sbPred);
-        sb.append(sbPred);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateLike#getSQL()
      */
-    protected void appendSpecificSQL(PredicateLike like, StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateLike predLike, StringBuffer sb) {
+        if (predLike != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        appendSQL(like.getMatchingValueExpr(), sbPred);
-        sbPred.append(SPACE);
-        if (like.isNotLike())
-        {
-            sbPred.append(NOT);
-            sbPred.append(SPACE);
+            QueryValueExpression matchingValExpr = predLike.getMatchingValueExpr();
+            appendSQL(matchingValExpr, sbPred);
+            appendSpace(sbPred);
+            if (predLike.isNotLike() == true) {
+                appendKeyword(sbPred, NOT);
+                appendSpace(sbPred);
+            }
+            appendKeyword(sbPred, LIKE);
+            appendSpace(sbPred);
+            QueryValueExpression patternValExpr = predLike.getPatternValueExpr();
+            appendSQL(patternValExpr, sbPred);
+
+            QueryValueExpression escapeValExpr = predLike.getEscapeValueExpr();
+            if (escapeValExpr != null) {
+                appendSpace(sbPred);
+                appendKeyword(sbPred, ESCAPE);
+                appendSpace(sbPred);
+                appendSQL(escapeValExpr, sbPred);
+            }
+
+            wrapSQL((Predicate) predLike, sbPred);
+            appendStringBuffer(sb, sbPred);
         }
-        sbPred.append(LIKE);
-        sbPred.append(SPACE);
-        appendSQL(like.getPatternValueExpr(), sbPred);
-
-        if (like.getEscapeValueExpr() != null)
-        {
-            sbPred.append(SPACE);
-            sbPred.append(ESCAPE);
-            sbPred.append(SPACE);
-            appendSQL(like.getEscapeValueExpr(), sbPred);
-        }
-
-        wrapSQL((Predicate) like, sbPred);
-        sb.append(sbPred);
-
     }
 
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect#getSQL()
      */
-    protected void appendSpecificSQL(PredicateQuantifiedRowSelect predQuantified, StringBuffer sb) {
-        if (predQuantified != null) {
+    protected void appendSpecificSQL(PredicateQuantifiedRowSelect predQuantifiedRowSelect, StringBuffer sb) {
+        if (predQuantifiedRowSelect != null) {
             StringBuffer sbPred = new StringBuffer();
 
             appendSymbol(sbPred, PAREN_LEFT);
-            List valExprList = predQuantified.getValueExprList();
+            List valExprList = predQuantifiedRowSelect.getValueExprList();
             appendSQLForSQLObjectList(valExprList, sbPred);
             appendSymbol(sbPred, PAREN_RIGHT);
             appendSpace(sbPred);
@@ -3004,18 +2930,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             appendOperator(sbPred, EQUAL);
             appendSpace(sbPred);
 
-            PredicateQuantifiedType predQuantType = predQuantified.getQuantifiedType();
+            PredicateQuantifiedType predQuantType = predQuantifiedRowSelect.getQuantifiedType();
             appendSpecificSQL(predQuantType, sbPred);
             appendSpace(sbPred);
 
-            QueryExpressionRoot queryExpr = predQuantified.getQueryExpr();
+            QueryExpressionRoot queryExpr = predQuantifiedRowSelect.getQueryExpr();
             if (queryExpr != null) {
                 appendSymbol(sbPred, PAREN_LEFT);
                 appendSQL(queryExpr, sbPred);
                 appendSymbol(sbPred, PAREN_RIGHT);
             }
 
-            wrapSQL((Predicate) predQuantified, sbPred);
+            wrapSQL((Predicate) predQuantifiedRowSelect, sbPred);
             indentSQLToLastLineLengthOfContainer(sbPred, sb);
             appendStringBuffer(sb, sbPred);
         }
@@ -3024,57 +2950,56 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType#getSQL()
      */
-    protected void appendSpecificSQL(PredicateQuantifiedType quantifier, StringBuffer sb)
-    {
-
-        int operator = quantifier.getValue();
-
-        switch (operator)
-        {
-            case PredicateQuantifiedType.ALL:
-                sb.append(ALL);
-                break;
-
-            case PredicateQuantifiedType.ANY:
-                sb.append(ANY);
-                break;
-
-            case PredicateQuantifiedType.SOME:
-                sb.append(SOME);
-                break;
-
-            default:
-                break;
+    protected void appendSpecificSQL(PredicateQuantifiedType predQuantifiedType, StringBuffer sb) {
+        if (predQuantifiedType != null) {
+            int quantifiedTypeVal = predQuantifiedType.getValue();
+    
+            switch (quantifiedTypeVal) {
+                case PredicateQuantifiedType.ALL:
+                    appendKeyword(sb, ALL);
+                    break;
+                case PredicateQuantifiedType.ANY:
+                    appendKeyword(sb, ANY);
+                    break;
+                case PredicateQuantifiedType.SOME:
+                    appendKeyword(sb, SOME);
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect#getSQL()
      */
-    protected void appendSpecificSQL(PredicateQuantifiedValueSelect predQuantified, StringBuffer sb)
-    {
-        StringBuffer sbPred = new StringBuffer();
+    protected void appendSpecificSQL(PredicateQuantifiedValueSelect predQuantifiedValSelect, StringBuffer sb) {
+        if (predQuantifiedValSelect != null) {
+            StringBuffer sbPred = new StringBuffer();
 
-        appendSQL(predQuantified.getValueExpr(), sbPred);
-        sbPred.append(SPACE);
+            QueryValueExpression valExpr = predQuantifiedValSelect.getValueExpr();
+            appendSQL(valExpr, sbPred);
+            appendSpace(sbPred);
 
-        appendSpecificSQL(predQuantified.getComparisonOperator(), sbPred);
-        sbPred.append(SPACE);
+            PredicateComparisonOperator compOp = predQuantifiedValSelect.getComparisonOperator();
+            appendSpecificSQL(compOp, sbPred);
+            appendSpace(sbPred);
 
-        appendSpecificSQL(predQuantified.getQuantifiedType(), sbPred);
-        sbPred.append(SPACE);
+            PredicateQuantifiedType quantType = predQuantifiedValSelect.getQuantifiedType();
+            appendSpecificSQL(quantType, sbPred);
+            appendSpace(sbPred);
 
-        if (predQuantified.getQueryExpr() != null)
-        {
-            sbPred.append(PAREN_LEFT);
-            appendSQL(predQuantified.getQueryExpr(), sbPred);
-            sbPred.append(PAREN_RIGHT);
+            QueryExpressionRoot queryExpr = predQuantifiedValSelect.getQueryExpr();
+            if (queryExpr != null) {
+                appendSymbol(sbPred, PAREN_LEFT);
+                appendSQL(queryExpr, sbPred);
+                appendSymbol(sbPred, PAREN_RIGHT);
+            }
+
+            wrapSQL((Predicate) predQuantifiedValSelect, sbPred);
+            indentSQLToLastLineLengthOfContainer(sbPred, sb);
+            appendStringBuffer(sb, sbPred);
         }
-
-        wrapSQL((Predicate) predQuantified, sbPred);
-        indentSQLToLastLineLengthOfContainer(sbPred, sb);
-        sb.append(sbPred);
     }
 
     /**
@@ -3093,25 +3018,27 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.query.procedurereference#getSQL()
      */
     protected void appendSpecificSQL(ProcedureReference procRef, StringBuffer sb) {
-        if (procRef != null && procRef.getProcedure() != null) {   
-            Procedure proc = procRef.getProcedure();        
-            String schemaName = null;
-            Schema schema = proc.getSchema();
-            if (schema != null) {
-                schemaName = schema.getName();
-            }
-            
-            char quoteChar = getDelimitedIdentifierQuote();
-            if (schemaName != null) {
-                String convertedSchemaName = convertCatalogIdentifierToSQLFormat(schemaName, quoteChar);
-                appendString(sb, convertedSchemaName);
-                appendSymbol(sb, DOT);
-            }
-        
-            String procName = proc.getName();
-            if (procName != null) {
-                String convertedProcName = convertCatalogIdentifierToSQLFormat(procName, quoteChar);
-                appendString(sb, convertedProcName);
+        if (procRef != null) {   
+            Procedure proc = procRef.getProcedure();
+            if (proc != null) {
+                String schemaName = null;
+                Schema schema = proc.getSchema();
+                if (schema != null) {
+                    schemaName = schema.getName();
+                }
+
+                char quoteChar = getDelimitedIdentifierQuote();
+                if (schemaName != null) {
+                    String convertedSchemaName = convertCatalogIdentifierToSQLFormat(schemaName, quoteChar);
+                    appendIdentifier(sb, convertedSchemaName);
+                    appendSymbol(sb, DOT);
+                }
+
+                String procName = proc.getName();
+                if (procName != null) {
+                    String convertedProcName = convertCatalogIdentifierToSQLFormat(procName, quoteChar);
+                    appendIdentifier(sb, convertedProcName);
+                }
             }
         }
     }
@@ -3198,452 +3125,409 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement#getSQL()
      */
-    protected void appendSpecificSQL(QueryDeleteStatement deleteStmt, StringBuffer sb)
-    {
+    protected void appendSpecificSQL(QueryDeleteStatement deleteStmt, StringBuffer sb) {
+        if (deleteStmt != null) {
+            appendKeyword(sb, DELETE);
+            appendSpace(sb);
+            appendKeyword(sb, FROM);
+            appendSpace(sb);
+            TableInDatabase targetTable = deleteStmt.getTargetTable();
+            appendSQL(targetTable, sb);
+            appendNewLine(sb);
 
-        sb.append(DELETE);
-        appendSpace(sb, 1);
-        sb.append(FROM);
-        appendSpace(sb, 1);
-        appendSQL(deleteStmt.getTargetTable(), sb);
-        appendNewLine(sb);
+            QuerySearchCondition whereClause = deleteStmt.getWhereClause();
+            if (whereClause != null) {
+                appendSpace(sb);
+                appendKeyword(sb, WHERE);
+                appendSpace(sb);
+                appendSQL(whereClause, sb);
+            }
 
-        if (deleteStmt.getWhereClause() != null)
-        {
-            appendSpace(sb, 1);
-            sb.append(WHERE);
-            appendSpace(sb, 1);
-            appendSQL(deleteStmt.getWhereClause(), sb);
+            CursorReference cursorRef = deleteStmt.getWhereCurrentOfClause();
+            if (cursorRef != null) {
+                // TODO: handle WHERE CURRENT OF <cursor> clause
+            }
         }
-
-        if (deleteStmt.getWhereCurrentOfClause() != null)
-        {
-            sb.append("  CURSOR REFERENCE TO BE getSQL()ed IN "
-                            + deleteStmt.getClass() + "! ");
-        }
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getSQL()
      */
-    protected void appendSpecificSQL(QueryExpressionRoot qryExprRoot, StringBuffer sb)
-    {
-        int withTableIndent = STANDARD_INDENT;
-
+    protected void appendSpecificSQL(QueryExpressionRoot qryExprRoot, StringBuffer sb)  {
         if (qryExprRoot != null) {
+            int withTableIndent = STANDARD_INDENT;
+
             List withTableSpecList = qryExprRoot.getWithClause();
+            if (withTableSpecList != null && withTableSpecList.size() > 0) {
+                appendKeyword(sb, WITH);
+                appendNewLine(sb);
+                appendSpace(sb, withTableIndent);
 
-            if (withTableSpecList != null && !withTableSpecList.isEmpty()) {
-
-                sb.append(WITH);
-                sb.append(NEW_LINE);
-                appendSpace(sb,withTableIndent);
-
-                for (Iterator withIt = withTableSpecList.iterator(); withIt
-                                .hasNext();)
-                {
-                    WithTableSpecification tableWith =
-                        (WithTableSpecification) withIt.next();
+                for (Iterator withIt = withTableSpecList.iterator(); withIt.hasNext();) {
+                    WithTableSpecification tableWith = (WithTableSpecification) withIt.next();
 
                     appendSQL(tableWith, sb);
 
                     if (withIt.hasNext()) {
-                        sb.append(COMMA);
-                        sb.append(NEW_LINE);
+                        appendSymbol(sb, COMMA);
+                        appendNewLine(sb);
                         appendSpace(sb, withTableIndent);
                     }
                 }
 
                 appendNewLine(sb);
             }
-            appendSQL(qryExprRoot.getQuery(), sb);
+            QueryExpressionBody queryExpr = qryExprRoot.getQuery();
+            appendSQL(queryExpr, sb);
         }
     }
-
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getSQL()
      */
-    protected void appendSpecificSQL(QueryInsertStatement insertStmt, StringBuffer sb)
-    {
-
-        sb.append(INSERT);
-        appendSpace(sb, 1);
-        sb.append(INTO);
-        appendSpace(sb, 1);
-        if (insertStmt.getTargetTable() != null)
-        {
-            appendSQL(insertStmt.getTargetTable(), sb);
-        }
-
-        if (!insertStmt.getTargetColumnList().isEmpty())
-        {
-            appendSpace(sb, 1);
-
-            List targetColumnList = insertStmt.getTargetColumnList();
-
-            sb.append(PAREN_LEFT);
-
-/*          for (Iterator it = insertStmt.getTargetColumnList().iterator(); it
-                            .hasNext();)
-            {
-                ValueExpressionColumn column = (ValueExpressionColumn) it
-                                .next();
-                appendSQL(column, sb);
-                sb.append(COMMA);
-                sb.append(SPACE);
+    protected void appendSpecificSQL(QueryInsertStatement insertStmt, StringBuffer sb) {
+        if (insertStmt != null) {
+            appendKeyword(sb, INSERT);
+            appendSpace(sb);
+            appendKeyword(sb, INTO);
+            appendSpace(sb);
+            TableInDatabase targetTable = insertStmt.getTargetTable();
+            if (targetTable != null) {
+                appendSQL(targetTable, sb);
             }
-            //delete the last comma and space
-            sb.delete(sb.length() - 2, sb.length());
-*/
-            appendSQLForSQLObjectList(targetColumnList, sb);
-            sb.append(PAREN_RIGHT);
-        }
 
-        if (insertStmt.getSourceQuery() != null)
-        {
-            appendNewLine(sb);
-            appendSpace(sb, STANDARD_INDENT);
-            appendSQL(insertStmt.getSourceQuery(),sb);
-        }
-        else {
-            appendNewLine(sb);
-            appendSpace(sb, STANDARD_INDENT);
-            sb.append(VALUES);
-            appendSpace(sb, 1);
-            if (!insertStmt.getSourceValuesRowList().isEmpty())  {
-                for (Iterator it = insertStmt.getSourceValuesRowList().iterator(); it.hasNext();){
-                    ValuesRow row = (ValuesRow) it.next();
-                    //sb.append(PAREN_LEFT);
-                    appendSQL(row, sb);
-                    //sb.append(PAREN_RIGHT);
-                    if (it.hasNext())
-                    {
-                        sb.append(COMMA);
-                        sb.append(NEW_LINE);
-                        appendSpace(sb, 9);
+            List targetColList = insertStmt.getTargetColumnList();
+            if (targetColList != null && targetColList.size() > 0) {
+                appendSpace(sb);
+                appendSymbol(sb, PAREN_LEFT);
+                appendSQLForSQLObjectList(targetColList, sb);
+                appendSymbol(sb, PAREN_RIGHT);
+            }
+
+            QueryExpressionRoot sourceQuery = insertStmt.getSourceQuery();
+            if (sourceQuery != null) {
+                appendNewLine(sb);
+                appendSpace(sb, STANDARD_INDENT);
+                appendSQL(sourceQuery, sb);
+            }
+            else {
+                appendNewLine(sb);
+                appendSpace(sb, STANDARD_INDENT);
+                appendKeyword(sb, VALUES);
+                appendSpace(sb);
+                List sourceValRowList = insertStmt.getSourceValuesRowList();
+                if (sourceValRowList != null && sourceValRowList.size() > 0)  {
+                    for (Iterator it = sourceValRowList.iterator(); it.hasNext();){
+                        ValuesRow row = (ValuesRow) it.next();
+                        //sb.append(PAREN_LEFT);
+                        appendSQL(row, sb);
+                        //sb.append(PAREN_RIGHT);
+                        if (it.hasNext()) {
+                            appendSymbol(sb, COMMA);
+                            appendNewLine(sb);
+                            appendSpace(sb, 9);
+                        }
                     }
                 }
             }
         }
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement#getSQL()
      */
     protected void appendSpecificSQL(QueryMergeStatement mergeStmt, StringBuffer sb) {
-        appendKeyword(sb, MERGE);
-        appendSpace(sb);
-        appendKeyword(sb, INTO);
-        appendSpace(sb);   
-        MergeTargetTable targetTable = mergeStmt.getTargetTable();
-        appendSQL(targetTable, sb);
-        
-        appendNewLine(sb);
-        appendKeyword(sb, USING);
-        appendSpace(sb);
-        MergeSourceTable sourceTable = mergeStmt.getSourceTable();
-        appendNewLine(sb);
-        appendIndent(sb);
-        appendSQL(sourceTable, sb);
-        
-        appendNewLine(sb);
-        appendKeyword(sb, ON);
-        appendSpace(sb);
-        MergeOnCondition onCondition = mergeStmt.getOnCondition();
-        appendSQL(onCondition, sb);
-        
-        List specOperList = mergeStmt.getOperationSpecList();
-        Iterator specOperListIter = specOperList.iterator();
-        while (specOperListIter.hasNext()) {
-            MergeOperationSpecification operSpec = (MergeOperationSpecification) specOperListIter.next();
-            if (operSpec instanceof MergeUpdateSpecification) {
-                appendNewLine(sb);
-                MergeUpdateSpecification updateSpec = (MergeUpdateSpecification) operSpec;
-                appendSQL(updateSpec, sb);
-            }
-            else if (operSpec instanceof MergeInsertSpecification) {
-                appendNewLine(sb);
-                MergeInsertSpecification insertSpec = (MergeInsertSpecification) operSpec;
-                appendSQL(insertSpec, sb);
+        if (mergeStmt != null) {
+            appendKeyword(sb, MERGE);
+            appendSpace(sb);
+            appendKeyword(sb, INTO);
+            appendSpace(sb);   
+            MergeTargetTable targetTable = mergeStmt.getTargetTable();
+            appendSQL(targetTable, sb);
+
+            appendNewLine(sb);
+            appendKeyword(sb, USING);
+            appendSpace(sb);
+            MergeSourceTable sourceTable = mergeStmt.getSourceTable();
+            appendNewLine(sb);
+            appendIndent(sb);
+            appendSQL(sourceTable, sb);
+
+            appendNewLine(sb);
+            appendKeyword(sb, ON);
+            appendSpace(sb);
+            MergeOnCondition onCondition = mergeStmt.getOnCondition();
+            appendSQL(onCondition, sb);
+
+            List specOperList = mergeStmt.getOperationSpecList();
+            Iterator specOperListIter = specOperList.iterator();
+            while (specOperListIter.hasNext()) {
+                MergeOperationSpecification operSpec = (MergeOperationSpecification) specOperListIter.next();
+                if (operSpec instanceof MergeUpdateSpecification) {
+                    appendNewLine(sb);
+                    MergeUpdateSpecification updateSpec = (MergeUpdateSpecification) operSpec;
+                    appendSQL(updateSpec, sb);
+                }
+                else if (operSpec instanceof MergeInsertSpecification) {
+                    appendNewLine(sb);
+                    MergeInsertSpecification insertSpec = (MergeInsertSpecification) operSpec;
+                    appendSQL(insertSpec, sb);
+                }
             }
         }
-        
     }
 
     /**
      * @see com.ibm.db.models.sql.query.QueryNested#getSQL()
      */
     protected void appendSpecificSQL(QueryNested qryNest, StringBuffer sb) {
-        sb.append(PAREN_LEFT);
-        appendSQL(qryNest.getNestedQuery(),sb);
-        sb.append(PAREN_RIGHT);
-        
-        List sortSpecList = qryNest.getSortSpecList();
-        if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
-            appendNewLine(sb);
-            appendSpace(sb, STANDARD_INDENT);
-            appendSQLForOrderByClause(sortSpecList, sb);
-        }
-        
-        int rowFetchLimit = qryNest.getRowFetchLimit();
-        if (rowFetchLimit > 0) {
-            appendSpace(sb);
-            appendSQLForFetchFirstClause(rowFetchLimit, sb);
+        if (qryNest != null) {
+            appendSymbol(sb, PAREN_LEFT);
+            QueryExpressionBody nestedQuery = qryNest.getNestedQuery();
+            appendSQL(nestedQuery, sb);
+            appendSymbol(sb, PAREN_RIGHT);
+
+            List sortSpecList = qryNest.getSortSpecList();
+            if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
+                appendNewLine(sb);
+                appendSpace(sb, STANDARD_INDENT);
+                appendSQLForOrderByClause(sortSpecList, sb);
+            }
+
+            int rowFetchLimit = qryNest.getRowFetchLimit();
+            if (rowFetchLimit > 0) {
+                appendSpace(sb);
+                appendSQLForFetchFirstClause(rowFetchLimit, sb);
+            }
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getSQL()
      */
-    protected void appendSpecificSQL(QuerySelect select, StringBuffer sb)
-    {
-        StringBuffer sbSelect = new StringBuffer();
-
-        //if this select is not a subquery, break lines between clauses
-        StringBuffer clauseIndent = new StringBuffer();
-        int selectStartOffset = getLastLineLength(sb);
-        String spacer4 = "    ";
-
-        // if this is a subselect, don't start it after column 30
-        if (selectStartOffset > 20) {
-            selectStartOffset = getLastLineIndent(sb)+4;
-            sbSelect.append(NEW_LINE);
-            appendSpace(sbSelect,selectStartOffset);
-        }
-        //clauseSeparator.append(NEW_LINE);
-        appendSpace(clauseIndent,selectStartOffset+STANDARD_INDENT);
-
-
-        // select-clause begin
-        sbSelect.append(SELECT);
-        sbSelect.append(SPACE);
-
-        if (select.isDistinct())
-        {
-            sbSelect.append(DISTINCT);
-            sbSelect.append(SPACE);
-        }
-
-        if (select.getSelectClause() != null
-                        && !select.getSelectClause().isEmpty())
-        {
-            appendSQLForSQLObjectList(select.getSelectClause(), sbSelect);
-        }
-        else
-        {
-            sbSelect.append(ASTERISK);
-        }
-        // select-clause end
-
-        // from-clause begin
-        appendNewLine(sbSelect);
-        sbSelect.append(clauseIndent);
-
-        sbSelect.append(FROM);
-        sbSelect.append(SPACE);
-
-        if (select.getFromClause() != null && !select.getFromClause().isEmpty())
-        {
-            int lastTableStartIndex = sbSelect.length();
-            for (Iterator fromIt = select.getFromClause().iterator(); fromIt.hasNext();)
-            {
-                TableReference tableRef = (TableReference) fromIt.next();
-
-                appendSQLForTableExpression(tableRef, sbSelect);
-
-                if (fromIt.hasNext()) {
-                    sbSelect.append(COMMA);
-                    sbSelect.append(SPACE);
-                }
-                
-                if (getLastLineLength(sbSelect) > displayWidth) {
-                    sbSelect.insert(lastTableStartIndex-1,spacer4);
-                    sbSelect.insert(lastTableStartIndex-1,clauseIndent.toString());
-                    sbSelect.insert(lastTableStartIndex-1,NEW_LINE);
-                }
-
-                lastTableStartIndex = sbSelect.length();
+    protected void appendSpecificSQL(QuerySelect select, StringBuffer sb) {
+        if (select != null) {
+            StringBuffer sbSelect = new StringBuffer();
+    
+            /* If this select is not a sub-query, break lines between clauses. */
+            StringBuffer sbClauseIndent = new StringBuffer();
+            int selectStartOffset = getLastLineLength(sb);
+            String spacer4 = "    ";
+    
+            /* If this is a sub-select, don't start it after column 30. */
+            if (selectStartOffset > 20) {
+                selectStartOffset = getLastLineIndent(sb)+4;
+                appendNewLine(sbSelect);
+                appendSpace(sbSelect, selectStartOffset);
             }
-        }
-        // from-clause end
-
-        // where-clause begin
-        if (select.getWhereClause() != null)
-        {
-            appendNewLine(sbSelect);
-            sbSelect.append(clauseIndent);
-
-            sbSelect.append(WHERE);
-            sbSelect.append(SPACE);
-
-            appendSQL(select.getWhereClause(), sbSelect);
-        }
-        // where-clause end
-
-        // group-by-clause begin
-        if (select.getGroupByClause() != null && !select.getGroupByClause().isEmpty())
-        {
-            appendNewLine(sbSelect);
-            sbSelect.append(clauseIndent);
-
-            sbSelect.append(GROUP_BY);
-            sbSelect.append(SPACE);
-
-/*            for (Iterator groupIt = select.getGroupByClause().iterator(); groupIt.hasNext();)
-            {
-                GroupingSpecification groupSpec = (GroupingSpecification) groupIt.next();
-                appendSQL(groupSpec,sbSelect);
-                sbSelect.append(COMMA);
-                sbSelect.append(SPACE);
+    
+            appendSpace(sbClauseIndent, selectStartOffset+STANDARD_INDENT);
+    
+            // select-clause begin
+            appendKeyword(sbSelect, SELECT);
+            appendSpace(sbSelect);
+    
+            if (select.isDistinct()) {
+                appendKeyword(sbSelect, DISTINCT);
+                appendSpace(sbSelect);
             }
-            // delete the last comma and the trailing space
-            sbSelect.delete(sbSelect.length() - 2, sbSelect.length());
-*/
-            appendSQLForSQLObjectList(select.getGroupByClause(),sbSelect);
-        }
-        // group-by-clause end
-
-        // having-clause begin
-        if (select.getHavingClause() != null)
-        {
+    
+            List selectClauseList = select.getSelectClause();
+            if (selectClauseList != null && selectClauseList.size() > 0) {
+                appendSQLForSQLObjectList(selectClauseList, sbSelect);
+            }
+            else {
+                appendString(sbSelect, ASTERISK);
+            }
+            // select-clause end
+    
+            // from-clause begin
             appendNewLine(sbSelect);
-            sbSelect.append(clauseIndent);
-
-            sbSelect.append(HAVING);
-            sbSelect.append(SPACE);
-
-            appendSQL(select.getHavingClause(), sbSelect);
+            appendStringBuffer(sbSelect, sbClauseIndent);
+    
+            appendKeyword(sbSelect, FROM);
+            appendSpace(sbSelect, SPACE);
+    
+            List fromClauseList = select.getFromClause();
+            if (fromClauseList != null && fromClauseList.size() > 0) {
+                int lastTableStartIndex = sbSelect.length();
+                for (Iterator fromIt = select.getFromClause().iterator(); fromIt.hasNext();) {
+                    TableReference tableRef = (TableReference) fromIt.next();
+    
+                    appendSQLForTableExpression(tableRef, sbSelect);
+    
+                    if (fromIt.hasNext()) {
+                        appendSymbol(sbSelect, COMMA);
+                        appendSpace(sbSelect, SPACE);
+                    }
+                    
+                    if (getLastLineLength(sbSelect) > displayWidth) {
+                        sbSelect.insert(lastTableStartIndex-1,spacer4);
+                        sbSelect.insert(lastTableStartIndex-1,sbClauseIndent.toString());
+                        sbSelect.insert(lastTableStartIndex-1,NEW_LINE);
+                    }
+    
+                    lastTableStartIndex = sbSelect.length();
+                }
+            }
+            // from-clause end
+    
+            // where-clause begin
+            QuerySearchCondition whereClause = select.getWhereClause();
+            if (whereClause != null) {
+                appendNewLine(sbSelect);
+                appendStringBuffer(sbSelect, sbClauseIndent);
+    
+                appendKeyword(sbSelect, WHERE);
+                appendSpace(sbSelect);
+                appendSQL(whereClause, sbSelect);
+            }
+            // where-clause end
+    
+            // group-by-clause begin
+            List groupByClauseList = select.getGroupByClause();
+            if (groupByClauseList != null && groupByClauseList.size() > 0) {
+                appendNewLine(sbSelect);
+                appendStringBuffer(sbSelect, sbClauseIndent);
+    
+                appendKeyword(sbSelect, GROUP_BY);
+                appendSpace(sbSelect);
+    
+                appendSQLForSQLObjectList(groupByClauseList, sbSelect);
+            }
+            // group-by-clause end
+    
+            // having-clause begin
+            QuerySearchCondition havingClause = select.getHavingClause();
+            if (havingClause != null) {
+                appendNewLine(sbSelect);
+                appendStringBuffer(sbSelect, sbClauseIndent);
+    
+                appendKeyword(sbSelect, HAVING);
+                appendSpace(sbSelect);
+    
+                appendSQL(havingClause, sbSelect);
+            }
+            // having-clause end
+    
+            // ORDER BY clause
+            List sortSpecList = select.getSortSpecList();
+            if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
+                appendNewLine(sbSelect);
+                appendStringBuffer(sbSelect, sbClauseIndent);
+                appendSQLForOrderByClause(sortSpecList, sbSelect);
+            }
+            
+            // FETCH FIRST n ROWS ONLY clause
+            int rowFetchLimit = select.getRowFetchLimit();
+            if (rowFetchLimit > 0) {
+                appendNewLine(sbSelect);
+                appendStringBuffer(sbSelect, sbClauseIndent);
+                appendSQLForFetchFirstClause(rowFetchLimit, sbSelect);
+            }
+            
+            //TODO: complete with into expression variable
+            List intoClauseList = select.getIntoClause();
+            if (intoClauseList != null && intoClauseList.size() > 0) {
+    //            String msg = "#appendSQL(QuerySelect) not implemented" +
+    //                    " for IntoClause!";
+    //            throw new UnsupportedOperationException(
+    //                            this.getClass().getName() + msg);
+            }
+    
+    
+            // if select is nested select (not the top select stmt)
+            // and its source is very short we don't break lines
+            if ( !(  select.eContainer() instanceof QueryExpressionRoot 
+                  && select.eContainer().eContainer() instanceof QuerySelectStatement
+                   )
+                && sbSelect.length() < 0
+                ) {
+                trimWhiteSpace(sbSelect);
+            }
+            
+            appendStringBuffer(sb, sbSelect);
         }
-        // having-clause end
-
-        // ORDER BY clause
-        List sortSpecList = select.getSortSpecList();
-        if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
-            appendNewLine(sbSelect);
-            appendStringBuffer(sbSelect, clauseIndent);
-            appendSQLForOrderByClause(sortSpecList, sbSelect);
-        }
-        
-        // FETCH FIRST n ROWS ONLY clause
-        int rowFetchLimit = select.getRowFetchLimit();
-        if (rowFetchLimit > 0)
-        {
-            appendNewLine(sbSelect);
-            appendStringBuffer(sbSelect, clauseIndent);
-            appendSQLForFetchFirstClause(rowFetchLimit, sbSelect);
-        }
-        
-        //TODO: complete with into expression variable
-        if (select.getIntoClause() != null && !select.getIntoClause().isEmpty())
-        {
-            String msg = "#appendSQL(QuerySelect) not implemented" +
-                    " for IntoClause!";
-            throw new UnsupportedOperationException(
-                            this.getClass().getName() + msg);
-
-        }
-
-
-        // if select is nested select (not the top select stmt)
-        // and its source is very short we don't break lines
-        if (!(select.eContainer() instanceof QueryExpressionRoot && select
-                        .eContainer().eContainer() instanceof QuerySelectStatement)
-                        && sbSelect.length() < 0)
-        {
-            trimWhiteSpace(sbSelect);
-        }
-
-        sb.append(sbSelect);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement#getSQL()
      */
     protected void appendSpecificSQL(QuerySelectStatement selectStmt, StringBuffer sb) {
-        if (selectStmt.getQueryExpr() != null) {
-            appendSQL(selectStmt.getQueryExpr(), sb);
-            
-            /* Add the ORDER BY clause, if any. */
-            List orderByClause = selectStmt.getOrderByClause();
-            if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(orderByClause)) {
-                appendNewLine(sb);
-                appendSpace(sb, STANDARD_INDENT);
-                appendSQLForOrderByClause(orderByClause, sb);
+        if (selectStmt != null) {
+            QueryExpressionRoot queryExpr = selectStmt.getQueryExpr();
+            if (queryExpr != null) {
+                appendSQL(queryExpr, sb);
+
+                /* Add the ORDER BY clause, if any. */
+                List orderByClause = selectStmt.getOrderByClause();
+                if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(orderByClause)) {
+                    appendNewLine(sb);
+                    appendSpace(sb, STANDARD_INDENT);
+                    appendSQLForOrderByClause(orderByClause, sb);
+                }
+
+                /* Add the "updateability" hint clause, if any */
+                UpdatabilityExpression updatabilityExpr = selectStmt.getUpdatabilityExpr();
+                if (updatabilityExpr != null) {
+                    appendNewLine(sb);
+                    appendSpace(sb, STANDARD_INDENT);
+                    appendSQL(updatabilityExpr, sb);
+                }
+            } 
+            else {
+                appendString(sb, DEFAULT_STMT_SELECT);
             }
-            
-            /* Add the "updateability" hint clause, if any */
-            UpdatabilityExpression updatabilityExpr = selectStmt.getUpdatabilityExpr();
-            if (updatabilityExpr != null) {
-                appendNewLine(sb);
-                appendSpace(sb, STANDARD_INDENT);
-                appendSQL(updatabilityExpr, sb);
-            }
-        } 
-        else {
-            sb.append(DEFAULT_STMT_SELECT);
+            appendNewLine(sb);
         }
-        appendNewLine(sb);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getSQL()
      */
-    protected void appendSpecificSQL(QueryUpdateStatement updateStmt, StringBuffer sb)
-    {
-        int clauseIndent = STANDARD_INDENT;
-        sb.append(UPDATE);
-        appendSpace(sb, 1);
-        appendSQL(updateStmt.getTargetTable(), sb);
-        appendNewLine(sb);
-        appendSpace(sb, clauseIndent);
+    protected void appendSpecificSQL(QueryUpdateStatement updateStmt, StringBuffer sb) {
+        if (updateStmt != null) {
+            int clauseIndent = STANDARD_INDENT;
+            appendKeyword(sb, UPDATE);
+            appendSpace(sb);
+            TableInDatabase targTable = updateStmt.getTargetTable();
+            appendSQL(targTable, sb);
+            appendNewLine(sb);
+            appendSpace(sb, clauseIndent);
 
-        if (!updateStmt.getAssignmentClause().isEmpty())
-        {
-            sb.append(SET);
-            sb.append(SPACE);
-            
-            for (Iterator it = updateStmt.getAssignmentClause().iterator(); it
-                            .hasNext();)
-            {
-                UpdateAssignmentExpression assign = (UpdateAssignmentExpression) it
-                                .next();
-                appendSQL(assign, sb);
-                
-                if (it.hasNext()) 
-                {
-                    sb.append(COMMA);
-                    
-                    if (getLastLineLength(sb) > 60) 
-                    {
-                        sb.append(NEW_LINE);
-                        appendSpace(sb, clauseIndent + 4);
-                    }
-                    else 
-                    {
-                        sb.append(SPACE);
+            if (!updateStmt.getAssignmentClause().isEmpty()) {
+                appendKeyword(sb, SET);
+                appendSpace(sb);
+
+                for (Iterator it = updateStmt.getAssignmentClause().iterator(); it.hasNext();) {
+                    UpdateAssignmentExpression assignExpr = (UpdateAssignmentExpression) it.next();
+                    appendSQL(assignExpr, sb);
+                    if (it.hasNext()) {
+                        appendSymbol(sb, COMMA);
+                        if (getLastLineLength(sb) > 60) {
+                            appendNewLine(sb);
+                            appendSpace(sb, clauseIndent + 4);
+                        }
+                        else {
+                            appendSpace(sb);
+                        }
                     }
                 }
             }
-        }
 
-        if (updateStmt.getWhereClause() != null)
-        {
-            appendNewLine(sb);
-            appendSpace(sb, clauseIndent);
-            sb.append(WHERE);
-            appendSpace(sb, 1);
-            appendSQL(updateStmt.getWhereClause(), sb);
-        }
+            if (updateStmt.getWhereClause() != null) {
+                appendNewLine(sb);
+                appendSpace(sb, clauseIndent);
+                appendKeyword(sb, WHERE);
+                appendSpace(sb);
+                QuerySearchCondition whereClause = updateStmt.getWhereClause();
+                appendSQL(whereClause, sb);
+            }
 
-        if (updateStmt.getWhereCurrentOfClause() != null)
-        {
-            sb.append("  CURSOR REFERENCE TO BE getSQL()ed IN "
-                            + updateStmt.getClass() + "! ");
+            if (updateStmt.getWhereCurrentOfClause() != null) {
+                // TODO: handle cursor reference
+            }
         }
-
     }
 
 
@@ -3651,51 +3535,49 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.QueryValues#getSQL()
      */
-    protected void appendSpecificSQL(QueryValues queryValues, StringBuffer sb)
-    {
-        StringBuffer sbValues = new StringBuffer();
+    protected void appendSpecificSQL(QueryValues queryValues, StringBuffer sb) {
+        if (queryValues != null) {
+            StringBuffer sbValues = new StringBuffer();
 
-        int valuesStartOffset = getLastLineLength(sb);
+            int valuesStartOffset = getLastLineLength(sb);
 
-        // if this is a subselect, don't start it after column 30
-        if (valuesStartOffset > 20) {
-            valuesStartOffset = getLastLineIndent(sb)+4;
-            sbValues.append(NEW_LINE);
-            appendSpace(sbValues,valuesStartOffset);
-        }
+            // if this is a subselect, don't start it after column 30
+            if (valuesStartOffset > 20) {
+                valuesStartOffset = getLastLineIndent(sb)+4;
+                appendNewLine(sbValues);
+                appendSpace(sbValues, valuesStartOffset);
+            }
 
-        // Values-clause begin
-        sbValues.append(VALUES);
-        sbValues.append(SPACE);
-        
-        List valuesRowList = queryValues.getValuesRowList();
-        appendSQLForSQLObjectList(valuesRowList, sbValues);
- 
-        // Append the ORDER BY clause, if a sort spec list is present.
-        List sortSpecList = queryValues.getSortSpecList();
-        if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
+            // Values-clause begin
+            appendKeyword(sbValues, VALUES);
             appendSpace(sbValues);
-            appendSQLForOrderByClause(sortSpecList, sbValues);
-        }
-        
-        // append the FETCH FIRST clause, if present.
-        int rowFetchLimit = queryValues.getRowFetchLimit();
-        if (rowFetchLimit > 0)
-        {
-//            appendNewLine(sbValues);
-//            appendSpace(sbValues, valuesStartOffset);
-            appendSpace(sbValues);
-            appendSQLForFetchFirstClause(rowFetchLimit, sbValues);
-        }
-        
-        // if select is subselect (sb is empty) and is very short don't break lines
-        if (sb.length() > 0 &&  sbValues.length() < displayWidth) 
-        {
-            trimWhiteSpace(sbValues);
-        }
 
-        sb.append(sbValues);
-        
+            List valuesRowList = queryValues.getValuesRowList();
+            appendSQLForSQLObjectList(valuesRowList, sbValues);
+
+            // Append the ORDER BY clause, if a sort spec list is present.
+            List sortSpecList = queryValues.getSortSpecList();
+            if (StatementHelper.isOrderByClauseContainsValidOrderBySpecification(sortSpecList)) {
+                appendSpace(sbValues);
+                appendSQLForOrderByClause(sortSpecList, sbValues);
+            }
+
+            // append the FETCH FIRST clause, if present.
+            int rowFetchLimit = queryValues.getRowFetchLimit();
+            if (rowFetchLimit > 0) {
+                //            appendNewLine(sbValues);
+                //            appendSpace(sbValues, valuesStartOffset);
+                appendSpace(sbValues);
+                appendSQLForFetchFirstClause(rowFetchLimit, sbValues);
+            }
+
+            // if select is subselect (sb is empty) and is very short don't break lines
+            if (sb.length() > 0 &&  sbValues.length() < displayWidth) {
+                trimWhiteSpace(sbValues);
+            }
+
+            appendStringBuffer(sb, sbValues);
+        }
     }
 
     /**
@@ -3775,36 +3657,40 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined#getSQL()
      */
-    protected void appendSpecificSQL(SearchConditionCombined condCombined, StringBuffer sb)
-    {
-        StringBuffer sbCond = new StringBuffer();
-        StringBuffer sbRightCond = new StringBuffer();
+    protected void appendSpecificSQL(SearchConditionCombined condCombined, StringBuffer sb) {
+        if (condCombined != null) {
+            StringBuffer sbCond = new StringBuffer();
+            StringBuffer sbRightCond = new StringBuffer();
 
-        if (condCombined.getLeftCondition() != null)
-        {
-            appendSQL(condCombined.getLeftCondition(), sbCond);
-        }
-        if (condCombined.getRightCondition() != null)
-        {
-            appendSQL(condCombined.getRightCondition(), sbRightCond);
-        }
-        // break line would be longer than 80 chars and is not still "blank"
-        int currentLineLength = sbCond.length() - sbCond.lastIndexOf(NEW_LINE_STRING);
-        int prospectiveNewLineLength = currentLineLength + sbRightCond.length();
-        if (currentLineLength > displayWidth || prospectiveNewLineLength > displayWidth)
-        {
-            sbCond.append(NEW_LINE);
-            appendSpace(sbCond, 4);
-        } else {
-            appendSpace(sbCond, 1);
-        }
-        appendSpecificSQL(condCombined.getCombinedOperator(), sbCond);
-        appendSpace(sbCond, 1);
+            QuerySearchCondition leftCond = condCombined.getLeftCondition();
+            if (leftCond != null) {
+                appendSQL(leftCond, sbCond);
+            }
+            
+            QuerySearchCondition rightCond = condCombined.getRightCondition();
+            if (rightCond != null) {
+                appendSQL(rightCond, sbRightCond);
+            }
+            
+            // break line would be longer than 80 chars and is not still "blank"
+            int currentLineLength = sbCond.length() - sbCond.lastIndexOf(NEW_LINE_STRING);
+            int prospectiveNewLineLength = currentLineLength + sbRightCond.length();
+            if (currentLineLength > displayWidth || prospectiveNewLineLength > displayWidth) {
+                appendNewLine(sbCond);
+                appendSpace(sbCond, 4);
+            } else {
+                appendSpace(sbCond);
+            }
+            
+            SearchConditionCombinedOperator combinedOp = condCombined.getCombinedOperator();
+            appendSpecificSQL(combinedOp, sbCond);
+            appendSpace(sbCond);
 
-        sbCond.append(sbRightCond);
+            appendStringBuffer(sbCond, sbRightCond);
 
-        wrapSQL((QuerySearchCondition) condCombined, sbCond);
-        sb.append(sbCond);
+            wrapSQL((QuerySearchCondition) condCombined, sbCond);
+            appendStringBuffer(sb, sbCond);
+        }
     }
 
     /**
@@ -3850,7 +3736,9 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see SQLQueryArrayDataType
      */
     protected void appendSpecificSQL(SQLQueryArrayDataType type, StringBuffer sb) {
-        appendSpecificSQL((ArrayDataType) type, sb);
+        if (type != null) {
+            appendSpecificSQL((ArrayDataType) type, sb);
+        }
     }
     
     /**
@@ -3875,90 +3763,58 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSQL()
      */
-    protected void appendSpecificSQL(SuperGroup superGroup, StringBuffer sb)
-    {
-        appendSpecificSQL(superGroup.getSuperGroupType(),sb);
-
-        sb.append(PAREN_LEFT);
-
-        List superGroupElementList = superGroup.getSuperGroupElementList();
-
-/*      for (Iterator it = superGroupElementList.iterator(); it.hasNext();)
-        {
-            SuperGroupElement superGroupElement = (SuperGroupElement) it.next();
-            appendSQL(superGroupElement,sb);
-
-            if (it.hasNext()) {
-                sb.append(COMMA);
-                sb.append(SPACE);
-            }
-
+    protected void appendSpecificSQL(SuperGroup superGroup, StringBuffer sb) {
+        if (superGroup != null) {
+            SuperGroupType superGroupType = superGroup.getSuperGroupType();
+            appendSpecificSQL(superGroupType, sb);
+            appendSymbol(sb, PAREN_LEFT);
+            List superGroupElementList = superGroup.getSuperGroupElementList();
+            appendSQLForSQLObjectList(superGroupElementList, sb);
+            appendSymbol(sb, PAREN_RIGHT);
         }
-*/
-        appendSQLForSQLObjectList(superGroupElementList, sb);
-        sb.append(PAREN_RIGHT);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression#getSQL()
      */
-    protected void appendSpecificSQL(SuperGroupElementExpression superGroupElementExpr, StringBuffer sb)
-    {
-        appendSQL(superGroupElementExpr.getGroupingExpr(),sb);
-
+    protected void appendSpecificSQL(SuperGroupElementExpression superGroupElementExpr, StringBuffer sb) {
+        if (superGroupElementExpr != null) {
+            GroupingExpression groupingExpr = superGroupElementExpr.getGroupingExpr();
+            appendSQL(groupingExpr, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist#getSQL()
      */
-    protected void appendSpecificSQL(SuperGroupElementSublist superGroupSublist, StringBuffer sb)
-    {
-        sb.append(PAREN_LEFT);
-
-        List superGroupElementExprList = superGroupSublist.getSuperGroupElementExprList();
-
-/*      for (Iterator it = superGroupElementExprList.iterator(); it.hasNext();)
-        {
-            SuperGroupElementExpression superGroupElementExpr =
-                (SuperGroupElementExpression) it.next();
-            appendSQL(superGroupElementExpr,sb);
-
-            if (it.hasNext()) {
-                sb.append(COMMA);
-                sb.append(SPACE);
-            }
-
+    protected void appendSpecificSQL(SuperGroupElementSublist superGroupSublist, StringBuffer sb) {
+        if (superGroupSublist != null) {
+            appendSymbol(sb, PAREN_LEFT);
+            List superGroupElementExprList = superGroupSublist.getSuperGroupElementExprList();
+            appendSQLForSQLObjectList(superGroupElementExprList, sb);
+            appendSymbol(sb, PAREN_RIGHT);
         }
-*/
-        appendSQLForSQLObjectList(superGroupElementExprList, sb);
-        sb.append(PAREN_RIGHT);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupType#getSQL()
      */
-    protected void appendSpecificSQL(SuperGroupType type, StringBuffer sb)
-    {
-
-        int grouping = type.getValue();
-
-        switch (grouping)
-        {
-            case SuperGroupType.CUBE:
-                sb.append(CUBE);
-                break;
-
-            case SuperGroupType.ROLLUP:
-                sb.append(ROLLUP);
-                break;
-
-            case SuperGroupType.GRANDTOTAL:
-                break;
-
-            default:
-                break;
+    protected void appendSpecificSQL(SuperGroupType groupType, StringBuffer sb) {
+        if (groupType != null) {
+            int groupTypeVal = groupType.getValue();
+            switch (groupTypeVal) {
+                case SuperGroupType.CUBE:
+                    appendKeyword(sb, CUBE);
+                    break;
+                case SuperGroupType.ROLLUP:
+                    appendKeyword(sb, ROLLUP);
+                    break;
+                case SuperGroupType.GRANDTOTAL:
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
     /**
@@ -4030,154 +3886,151 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.query.TableInDatabase#getSQL()
      */
     protected void appendSpecificSQL(TableInDatabase tableInDB, StringBuffer sb) {
-        appendSQLForTableInDatabase(tableInDB, sb);
+        if (tableInDB != null) {
+            appendSQLForTableInDatabase(tableInDB, sb);
 
-        TableCorrelation tableCorr = tableInDB.getTableCorrelation();
-        if (tableCorr != null ) {
-            SQLQuerySourceInfo sourceInfo = tableInDB.getSourceInfo();
-            SQLQuerySourceFormat sourceFormat = sourceInfo.getSqlFormat();
-            if (sourceFormat.getGenerateAsKeywordForTableCorrID() == true) {
+            TableCorrelation tableCorr = tableInDB.getTableCorrelation();
+            if (tableCorr != null ) {
+                SQLQuerySourceInfo sourceInfo = tableInDB.getSourceInfo();
+                SQLQuerySourceFormat sourceFormat = sourceInfo.getSqlFormat();
+                if (sourceFormat.getGenerateAsKeywordForTableCorrID() == true) {
+                    appendSpace(sb);
+                    appendKeyword(sb, AS);
+                }
                 appendSpace(sb);
-                appendKeyword(sb, AS);
+                appendSQL(tableCorr, sb);
             }
-            appendSpace(sb);
-            appendSQL(tableCorr, sb);
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.TableJoined#getSQL()
      */
-    protected void appendSpecificSQL(TableJoined tableJoined, StringBuffer sb)
-    {
+    protected void appendSpecificSQL(TableJoined tableJoined, StringBuffer sb) {
         // <table_ref> <opt_join_type> JOIN <table_ref> ON <condition>
+        if (tableJoined != null) {
+            TableReference leftTableRef = tableJoined.getTableRefLeft();
+            appendSQLForTableExpression(leftTableRef, sb);
 
+            if (tableJoined.getJoinOperator() != TableJoinedOperator.DEFAULT_INNER_LITERAL) {
+                appendSpace(sb);
+                TableJoinedOperator joinOp = tableJoined.getJoinOperator();
+                appendSpecificSQL(joinOp, sb);
+            }
 
-        appendSQLForTableExpression(tableJoined.getTableRefLeft(), sb);
+            appendSpace(sb);
+            appendKeyword(sb, JOIN);
+            appendSpace(sb);
 
-        if (tableJoined.getJoinOperator() != TableJoinedOperator.DEFAULT_INNER_LITERAL) {
-            sb.append(SPACE);
-            appendSpecificSQL(tableJoined.getJoinOperator(),sb);
+            TableReference rightTableRef = tableJoined.getTableRefRight();
+            appendSQLForTableExpression(rightTableRef, sb);
+
+            appendSpace(sb);
+            appendKeyword(sb, ON);
+            appendSpace(sb);
+
+            QuerySearchCondition joinCond = tableJoined.getJoinCondition();
+            appendSQL(joinCond, sb);
         }
-
-        sb.append(SPACE);
-        sb.append(JOIN);
-        sb.append(SPACE);
-
-        appendSQLForTableExpression(tableJoined.getTableRefRight(), sb);
-
-        sb.append(SPACE);
-        sb.append(ON);
-        sb.append(SPACE);
-
-        appendSQL(tableJoined.getJoinCondition(),sb);
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator#getSQL()
      */
-    protected void appendSpecificSQL(TableJoinedOperator op, StringBuffer sb)
-    {
+    protected void appendSpecificSQL(TableJoinedOperator op, StringBuffer sb) {
+        if (op != null) {
+            int opVal = op.getValue();
 
-        int operator = op.getValue();
-
-        switch (operator)
-        {
-            case TableJoinedOperator.DEFAULT_INNER:
-                break;
-
-            case TableJoinedOperator.EXPLICIT_INNER:
-                sb.append(INNER);
-                break;
-
-            case TableJoinedOperator.FULL_OUTER:
-                sb.append(FULL);
-                sb.append(SPACE);
-                sb.append(OUTER);
-                break;
-
-            case TableJoinedOperator.LEFT_OUTER:
-                sb.append(LEFT);
-                sb.append(SPACE);
-                sb.append(OUTER);
-                break;
-
-            case TableJoinedOperator.RIGHT_OUTER:
-                sb.append(RIGHT);
-                sb.append(SPACE);
-                sb.append(OUTER);
-                break;
-
-            default:
-                break;
+            switch (opVal) {
+                case TableJoinedOperator.DEFAULT_INNER:
+                    break;
+                case TableJoinedOperator.EXPLICIT_INNER:
+                    appendKeyword(sb, INNER);
+                    break;
+                case TableJoinedOperator.FULL_OUTER:
+                    appendKeyword(sb, FULL);
+                    appendSpace(sb);
+                    appendKeyword(sb, OUTER);
+                    break;
+                case TableJoinedOperator.LEFT_OUTER:
+                    appendKeyword(sb, LEFT);
+                    appendSpace(sb);
+                    appendKeyword(sb, OUTER);
+                    break;
+                case TableJoinedOperator.RIGHT_OUTER:
+                    appendKeyword(sb, RIGHT);
+                    appendSpace(sb);
+                    appendKeyword(sb, OUTER);
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.TableNested#getSQL()
      */
-    protected void appendSpecificSQL(TableNested tableNested, StringBuffer sb)
-    {
-        TableReference tableRef = null;
-
-        tableRef = tableNested.getNestedTableRef();
-
-        sb.append(PAREN_LEFT);
-
-        appendSQLForTableExpression(tableRef, sb);
-
-        sb.append(PAREN_RIGHT);
+    protected void appendSpecificSQL(TableNested tableNested, StringBuffer sb) {
+        if (tableNested != null) {
+            TableReference tableRef = tableNested.getNestedTableRef();
+            appendSymbol(sb, PAREN_LEFT);
+            appendSQLForTableExpression(tableRef, sb);
+            appendSymbol(sb, PAREN_RIGHT);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType#getSQL()
      */
-    protected void appendSpecificSQL(TimeDataType dataType, StringBuffer sb)
-    {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
+    protected void appendSpecificSQL(TimeDataType dataType, StringBuffer sb) {
+        if (dataType != null) {
+            String typeName = dataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
+            }
+            else {
+                PrimitiveType primitiveType = dataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
+            }
         }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
-        }
-        // TODO: TimeDataType what to do with the timezone and fractional precision?
+        // For the TimeDataType, what to do with the timezone and fractional precision?
     }
 
     protected void appendSpecificSQL(UpdatabilityExpression updatabilityExpr, StringBuffer sb) {
-        UpdatabilityType updateType = updatabilityExpr.getUpdatabilityType();
-        appendSpecificSQL(updateType, sb);
-        List updateOfColList = updatabilityExpr.getUpdateOfColumnList();
-        if (updateOfColList != null && updateOfColList.size() > 0) {
-            appendSpace(sb);
-            appendKeyword(sb, OF);
-            appendSpace(sb);
-            appendSQLForSQLObjectList(updateOfColList, sb);
+        if (updatabilityExpr != null) {
+            UpdatabilityType updateType = updatabilityExpr.getUpdatabilityType();
+            appendSpecificSQL(updateType, sb);
+            List updateOfColList = updatabilityExpr.getUpdateOfColumnList();
+            if (updateOfColList != null && updateOfColList.size() > 0) {
+                appendSpace(sb);
+                appendKeyword(sb, OF);
+                appendSpace(sb);
+                appendSQLForSQLObjectList(updateOfColList, sb);
+            }
         }
-        
     }
     
     protected void appendSpecificSQL(UpdatabilityType updatabilityType, StringBuffer sb) {
-        int updateType = updatabilityType.getValue();
-        
-        switch (updateType) {
-            case UpdatabilityType.READ_ONLY:
-                appendKeyword(sb, FOR);
-                appendSpace(sb);
-                appendKeyword(sb, READ);
-                appendSpace(sb);
-                appendKeyword(sb, ONLY);
-                break;
-            case UpdatabilityType.UPDATE:
-                appendKeyword(sb, FOR);
-                appendSpace(sb);
-                appendKeyword(sb, UPDATE);
-                break;
-            default:
-                break;
+        if (updatabilityType != null) {
+            int typeVal = updatabilityType.getValue();
+
+            switch (typeVal) {
+                case UpdatabilityType.READ_ONLY:
+                    appendKeyword(sb, FOR);
+                    appendSpace(sb);
+                    appendKeyword(sb, READ);
+                    appendSpace(sb);
+                    appendKeyword(sb, ONLY);
+                    break;
+                case UpdatabilityType.UPDATE:
+                    appendKeyword(sb, FOR);
+                    appendSpace(sb);
+                    appendKeyword(sb, UPDATE);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     
@@ -4225,34 +4078,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList#getSQL()
      */
     protected void appendSpecificSQL(UpdateSourceExprList sourceExprList, StringBuffer sb) {
-        EList values = sourceExprList.getValueExprList();
-
-        if (values != null)
-        {
-            if (values.size() == 1)
-            {
-                QueryValueExpression expr = (QueryValueExpression) values
-                                .get(0);
-                appendSQL(expr, sb);
-            }
-            else
-            {
-                sb.append(PAREN_LEFT);
-/*              for (Iterator it = values.iterator(); it.hasNext();)
-                {
-                    QueryValueExpression expr = (QueryValueExpression) it
-                                    .next();
-                    appendSQL(expr, sb);
-                    sb.append(COMMA);
-                    sb.append(SPACE);
-
+        if (sourceExprList != null) {
+            List valExprList = sourceExprList.getValueExprList();
+            if (valExprList != null) {
+                if (valExprList.size() == 1) {
+                    QueryValueExpression valExpr = (QueryValueExpression) valExprList.get(0);
+                    appendSQL(valExpr, sb);
                 }
-                //sb.setCharAt(sb.length()-1,')'); //delete the last comma
-                sb.replace(sb.length() - 2, sb.length(), ")"); //delete the
-                // last comma
-*/
-                appendSQLForSQLObjectList(values, sb);
-                sb.append(PAREN_RIGHT);
+                else {
+                    appendSymbol(sb, PAREN_LEFT);
+                    appendSQLForSQLObjectList(valExprList, sb);
+                    appendSymbol(sb, PAREN_RIGHT);
+                }
             }
         }
     }
@@ -4261,17 +4098,18 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery#getSQL()
      */
     protected void appendSpecificSQL(UpdateSourceQuery sourceQuery, StringBuffer sb) {
-
-        sb.append(PAREN_LEFT);
-        appendSQL(sourceQuery.getQueryExpr(), sb);
-        sb.append(PAREN_RIGHT);
+        if (sourceQuery != null) {
+            appendSymbol(sb, PAREN_LEFT);
+            QueryExpressionBody queryExpr = sourceQuery.getQueryExpr();
+            appendSQL(queryExpr, sb);
+            appendSymbol(sb, PAREN_RIGHT);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionAtomic#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionAtomic atomicExpr, StringBuffer sb)
-    {
+    protected void appendSpecificSQL(ValueExpressionAtomic atomicExpr, StringBuffer sb) {
         // a ValueExpressionAtomic is actually not expected
         // what would its SQL be??? so we append nothing
     }
@@ -4279,198 +4117,202 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCaseElse caseElse, StringBuffer sbCase)
-    {
-        sbCase.append(ELSE);
-        sbCase.append(SPACE);
+    protected void appendSpecificSQL(ValueExpressionCaseElse caseElse, StringBuffer sb) {
+        if (caseElse != null) {
+            appendKeyword(sb, ELSE);
+            appendSpace(sb);
 
-        appendSQL(caseElse.getValueExpr(),sbCase);
-
+            QueryValueExpression valExpr = caseElse.getValueExpr();
+            appendSQL(valExpr, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCaseSearch caseExpr, StringBuffer sb)
-    {
-        StringBuffer sbCase = new StringBuffer();
-        boolean multipleCases = (caseExpr.getSearchContentList() != null) && (caseExpr.getSearchContentList().size() > 1);
+    protected void appendSpecificSQL(ValueExpressionCaseSearch caseExpr, StringBuffer sb) {
+        if (caseExpr != null) {
+            StringBuffer sbCase = new StringBuffer();
+            boolean multipleCases = (caseExpr.getSearchContentList() != null) && (caseExpr.getSearchContentList().size() > 1);
 
-        int startOffset = getLastLineLength(sb);
-        if (startOffset > 30) {
-            startOffset = getLastLineIndent(sb)+4;
-            if (multipleCases) {
-                sbCase.append(NEW_LINE);
-                appendSpace(sbCase, startOffset);
-            }
-        }
-
-        sbCase.append(CASE);
-
-        if (caseExpr.getSearchContentList() != null) {
-            for (Iterator caseIt = caseExpr.getSearchContentList().iterator(); caseIt.hasNext();)
-            {
-                ValueExpressionCaseSearchContent oneCase = (ValueExpressionCaseSearchContent) caseIt.next();
-
+            int startOffset = getLastLineLength(sb);
+            if (startOffset > 30) {
+                startOffset = getLastLineIndent(sb)+4;
                 if (multipleCases) {
-                    sbCase.append(NEW_LINE);
+                    appendNewLine(sbCase);
+                    appendSpace(sbCase, startOffset);
+                }
+            }
+
+            appendKeyword(sbCase, CASE);
+
+            List contentList = caseExpr.getSearchContentList();
+            if (contentList != null) {
+                for (Iterator caseIt = contentList.iterator(); caseIt.hasNext();) {
+                    ValueExpressionCaseSearchContent oneCase = (ValueExpressionCaseSearchContent) caseIt.next();
+
+                    if (multipleCases) {
+                        appendNewLine(sbCase);
+                        appendSpace(sbCase, startOffset+STANDARD_INDENT);
+                    } else {
+                        appendSpace(sbCase);
+                    }
+
+                    appendSQL(oneCase, sbCase);
+                }
+            }
+
+            ValueExpressionCaseElse caseElse = caseExpr.getCaseElse();
+            if (caseElse != null) {
+                if (multipleCases) {
+                    appendNewLine(sbCase);
                     appendSpace(sbCase, startOffset+STANDARD_INDENT);
                 } else {
-                    sbCase.append(SPACE);
+                    appendSpace(sbCase);
                 }
 
-                appendSQL(oneCase,sbCase);
+                appendSQL(caseElse, sbCase);
             }
-        }
-
-        if (caseExpr.getCaseElse() != null) {
 
             if (multipleCases) {
-                sbCase.append(NEW_LINE);
-                appendSpace(sbCase, startOffset+STANDARD_INDENT);
+                appendNewLine(sbCase);
+                appendSpace(sbCase, startOffset);
             } else {
-                sbCase.append(SPACE);
+                appendSpace(sbCase);
             }
 
-            appendSQL(caseExpr.getCaseElse(),sbCase);
+            appendKeyword(sbCase, END);
 
+            wrapSQL(caseExpr, sbCase);
+            appendStringBuffer(sb, sbCase);
         }
-
-        if (multipleCases) {
-            sbCase.append(NEW_LINE);
-            appendSpace(sbCase, startOffset);
-        } else {
-            sbCase.append(SPACE);
-        }
-
-        sbCase.append(END);
-
-        wrapSQL(caseExpr, sbCase);
-        sb.append(sbCase);
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCaseSearchContent caseSearchContent, StringBuffer sbCase)
-    {
-        sbCase.append(WHEN);
-        sbCase.append(SPACE);
+    protected void appendSpecificSQL(ValueExpressionCaseSearchContent caseSearchContent, StringBuffer sb) {
+        if (caseSearchContent != null) {
+            appendKeyword(sb, WHEN);
+            appendSpace(sb);
 
-        appendSQL(caseSearchContent.getSearchCondition(),sbCase);
+            QuerySearchCondition searchCond = caseSearchContent.getSearchCondition();
+            appendSQL(searchCond, sb);
 
-        sbCase.append(SPACE);
-        sbCase.append(THEN);
-        sbCase.append(SPACE);
+            appendSpace(sb);
+            appendKeyword(sb, THEN);
+            appendSpace(sb);
 
-        appendSQL(caseSearchContent.getValueExpr(),sbCase);
+            QueryValueExpression valExpr = caseSearchContent.getValueExpr();
+            appendSQL(valExpr, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCaseSimple caseExpr, StringBuffer sb)
-    {
-        StringBuffer sbCase = new StringBuffer();
-        boolean multipleCases = (caseExpr.getContentList() != null) && (caseExpr.getContentList().size() > 1);
+    protected void appendSpecificSQL(ValueExpressionCaseSimple caseExpr, StringBuffer sb) {
+        if (caseExpr != null) {
+            StringBuffer sbCase = new StringBuffer();
+            boolean multipleCases = (caseExpr.getContentList() != null) && (caseExpr.getContentList().size() > 1);
 
-        int startOffset = getLastLineLength(sb);
-        if (startOffset > 30) {
-            startOffset = getLastLineIndent(sb)+4;
-            if (multipleCases) {
-                sbCase.append(NEW_LINE);
-                appendSpace(sbCase, startOffset);
-            }
-        }
-
-        sbCase.append(CASE);
-
-        sbCase.append(SPACE);
-        appendSQL(caseExpr.getValueExpr(),sbCase);
-
-        if (caseExpr.getContentList() != null) {
-            for (Iterator caseIt = caseExpr.getContentList().iterator(); caseIt.hasNext();)
-            {
-                ValueExpressionCaseSimpleContent oneCase = (ValueExpressionCaseSimpleContent) caseIt.next();
-
+            int startOffset = getLastLineLength(sb);
+            if (startOffset > 30) {
+                startOffset = getLastLineIndent(sb)+4;
                 if (multipleCases) {
-                    sbCase.append(NEW_LINE);
+                    appendNewLine(sbCase);
+                    appendSpace(sbCase, startOffset);
+                }
+            }
+
+            appendKeyword(sbCase, CASE);
+            appendSpace(sbCase);
+            QueryValueExpression caseValExpr = caseExpr.getValueExpr();
+            appendSQL(caseValExpr, sbCase);
+
+            List contentList = caseExpr.getContentList();
+            if (contentList != null) {
+                for (Iterator caseIt = contentList.iterator(); caseIt.hasNext();) {
+                    ValueExpressionCaseSimpleContent oneCase = (ValueExpressionCaseSimpleContent) caseIt.next();
+                    if (multipleCases) {
+                        appendNewLine(sbCase);
+                        appendSpace(sbCase, startOffset+STANDARD_INDENT);
+                    } else {
+                        appendSpace(sbCase);
+                    }
+
+                    appendSQL(oneCase, sbCase);
+                }
+            }
+
+            ValueExpressionCaseElse caseElse = caseExpr.getCaseElse();
+            if (caseElse != null) {
+                if (multipleCases) {
+                    appendNewLine(sbCase);
                     appendSpace(sbCase, startOffset+STANDARD_INDENT);
                 } else {
-                    sbCase.append(SPACE);
+                    appendSpace(sbCase);
                 }
 
-                appendSQL(oneCase,sbCase);
-
+                appendSQL(caseElse, sbCase);
             }
-        }
-
-        if (caseExpr.getCaseElse() != null) {
 
             if (multipleCases) {
-                sbCase.append(NEW_LINE);
-                appendSpace(sbCase, startOffset+STANDARD_INDENT);
+                appendNewLine(sbCase);
+                appendSpace(sbCase, startOffset);
             } else {
-                sbCase.append(SPACE);
+                appendSpace(sbCase);
             }
 
-            appendSQL(caseExpr.getCaseElse(),sbCase);
+            appendKeyword(sbCase, END);
 
+            wrapSQL(caseExpr, sbCase);
+            appendStringBuffer(sb, sbCase);
         }
-
-        if (multipleCases) {
-            sbCase.append(NEW_LINE);
-            appendSpace(sbCase, startOffset);
-        } else {
-            sbCase.append(SPACE);
-        }
-
-        sbCase.append(END);
-
-        wrapSQL(caseExpr, sbCase);
-        sb.append(sbCase);
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCaseSimpleContent caseSimpleContent, StringBuffer sbCase)
-    {
-        sbCase.append(WHEN);
-        sbCase.append(SPACE);
+    protected void appendSpecificSQL(ValueExpressionCaseSimpleContent caseSimpleContent, StringBuffer sb) {
+        if (caseSimpleContent != null) {
+            appendKeyword(sb, WHEN);
+            appendSpace(sb);
 
-        appendSQL(caseSimpleContent.getWhenValueExpr(),sbCase);
+            QueryValueExpression whenValExpr = caseSimpleContent.getWhenValueExpr();
+            appendSQL(whenValExpr, sb);
 
-        sbCase.append(SPACE);
-        sbCase.append(THEN);
-        sbCase.append(SPACE);
-
-        appendSQL(caseSimpleContent.getResultValueExpr(),sbCase);
+            appendSpace(sb);
+            appendKeyword(sb, THEN);
+            appendSpace(sb);
+            
+            QueryValueExpression resultValExpr = caseSimpleContent.getResultValueExpr();
+            appendSQL(resultValExpr, sb);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCast castExpr, StringBuffer sb)
-    {
-        StringBuffer sbCast = new StringBuffer();
+    protected void appendSpecificSQL(ValueExpressionCast castExpr, StringBuffer sb)  {
+        if (castExpr != null) {
+            StringBuffer sbCast = new StringBuffer();
 
-        sbCast.append(CAST);
-        sbCast.append(SPACE);
-        sbCast.append(PAREN_LEFT);
-        appendSQL(castExpr.getValueExpr(),sbCast);
-        sbCast.append(SPACE);
-        sbCast.append(AS);
-        sbCast.append(SPACE);
-        appendSQL(castExpr.getDataType(),sbCast);
+            appendKeyword(sbCast, CAST);
+            appendSpace(sbCast);
+            appendSymbol(sbCast, PAREN_LEFT);
+            QueryValueExpression valExpr = castExpr.getValueExpr();
+            appendSQL(valExpr, sbCast);
+            appendSpace(sbCast);
+            appendKeyword(sbCast, AS);
+            appendSpace(sbCast);
+            DataType datatype = castExpr.getDataType();
+            appendSQL(datatype, sbCast);
+            appendSymbol(sbCast, PAREN_RIGHT);
 
-        sbCast.append(PAREN_RIGHT);
-
-        wrapSQL(castExpr, sbCast);
-        sb.append(sbCast);
-
+            wrapSQL(castExpr, sbCast);
+            appendStringBuffer(sb, sbCast);
+        }
     }
 
     /**
@@ -4538,67 +4380,60 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCombined exprCombined, StringBuffer sb)
-    {
-
-        if (exprCombined.getLeftValueExpr() != null) {
-            appendSQL(exprCombined.getLeftValueExpr(), sb);
+    protected void appendSpecificSQL(ValueExpressionCombined exprCombined, StringBuffer sb) {
+        if (exprCombined != null) {
+            if (exprCombined.getLeftValueExpr() != null) {
+                QueryValueExpression leftValExpr = exprCombined.getLeftValueExpr();
+                appendSQL(leftValExpr, sb);
+            }
+            
+            appendSpace(sb);
+            ValueExpressionCombinedOperator op = exprCombined.getCombinedOperator();
+            appendSpecificSQL(op, sb);
+            appendSpace(sb);
+            
+            if (exprCombined.getRightValueExpr() != null) { 
+                QueryValueExpression rightValExpr = exprCombined.getRightValueExpr();
+                appendSQL(rightValExpr, sb);
+            }
         }
-        sb.append(SPACE);
-        appendSpecificSQL(exprCombined.getCombinedOperator(), sb);
-        sb.append(SPACE);
-        if (exprCombined.getRightValueExpr() != null) { 
-            appendSQL(exprCombined.getRightValueExpr(), sb);
-        }
-
     }
 
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionCombinedOperator op, StringBuffer sb)
-    {
-
-        int operator = op.getValue();
-
-        switch (operator)
-        {
-            case ValueExpressionCombinedOperator.ADD:
-                sb.append(ADD);
-                break;
-
-            case ValueExpressionCombinedOperator.SUBTRACT:
-                sb.append(SUBTRACT);
-                break;
-
-            case ValueExpressionCombinedOperator.MULTIPLY:
-                sb.append(MULTIPLY);
-                break;
-
-            case ValueExpressionCombinedOperator.DIVIDE:
-                sb.append(DIVIDE);
-                break;
-
-            case ValueExpressionCombinedOperator.CONCATENATE:
-                sb.append(CONCATENATE);
-                break;
-
-            default:
-                break;
+    protected void appendSpecificSQL(ValueExpressionCombinedOperator op, StringBuffer sb) {
+        if (op != null) {
+            int operator = op.getValue();
+            
+            switch (operator) {
+                case ValueExpressionCombinedOperator.ADD:
+                    appendOperator(sb, ADD);
+                    break;
+                case ValueExpressionCombinedOperator.SUBTRACT:
+                    appendOperator(sb, SUBTRACT);
+                    break;
+                case ValueExpressionCombinedOperator.MULTIPLY:
+                    appendOperator(sb, MULTIPLY);
+                    break;
+                case ValueExpressionCombinedOperator.DIVIDE:
+                    appendOperator(sb, DIVIDE);
+                    break;
+                case ValueExpressionCombinedOperator.CONCATENATE:
+                    appendOperator(sb, CONCATENATE);
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionDefaultValue exprDefault,
-                           StringBuffer sb)
-    {
-
-        sb.append(DEFAULT);
-
+    protected void appendSpecificSQL(ValueExpressionDefaultValue exprDefault, StringBuffer sb) {
+        appendKeyword(sb, DEFAULT);
     }
 
     /**
@@ -4685,122 +4520,120 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionLabeledDuration duration, StringBuffer sb)
-    {
-        StringBuffer sbDuration = new StringBuffer();
-        
-        appendSQL(duration.getValueExpr(), sbDuration);
-        sbDuration.append(SPACE);
-        appendSpecificSQL(duration.getLabeledDurationType(), sbDuration);
-        
-        wrapSQL(duration, sbDuration);
-        sb.append(sbDuration);
+    protected void appendSpecificSQL(ValueExpressionLabeledDuration duration, StringBuffer sb) {
+        if (duration != null) {
+            StringBuffer sbDuration = new StringBuffer();
+            
+            QueryValueExpression valExpr = duration.getValueExpr();
+            appendSQL(valExpr, sbDuration);
+            appendSpace(sbDuration);
+            ValueExpressionLabeledDurationType labeledDurType = duration.getLabeledDurationType();
+            appendSpecificSQL(labeledDurType, sbDuration);
+
+            wrapSQL(duration, sbDuration);
+            appendStringBuffer(sb, sbDuration);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionLabeledDurationType duration, StringBuffer sb)
-    {
-        int type = duration.getValue();
+    protected void appendSpecificSQL(ValueExpressionLabeledDurationType durationType, StringBuffer sb) {
+        if (durationType != null) {
+            int typeVal = durationType.getValue();
 
-        switch (type)
-        {
-            case ValueExpressionLabeledDurationType.YEARS:
-                sb.append(YEARS);
-                break;
-
-            case ValueExpressionLabeledDurationType.MONTHS:
-                sb.append(MONTHS);
-                break;
-
-            case ValueExpressionLabeledDurationType.DAYS:
-                sb.append(DAYS);
-                break;
-
-            case ValueExpressionLabeledDurationType.HOURS:
-                sb.append(HOURS);
-                break;
-
-            case ValueExpressionLabeledDurationType.MINUTES:
-                sb.append(MINUTES);
-                break;
-
-            case ValueExpressionLabeledDurationType.SECONDS:
-                sb.append(SECONDS);
-                break;
-
-            case ValueExpressionLabeledDurationType.MICROSECONDS:
-                sb.append(MICROSECONDS);
-                break;
-
-            default:
-                break;
+            switch (typeVal) {
+                case ValueExpressionLabeledDurationType.YEARS:
+                    appendKeyword(sb, YEARS);
+                    break;
+                case ValueExpressionLabeledDurationType.MONTHS:
+                    appendKeyword(sb, MONTHS);
+                    break;
+                case ValueExpressionLabeledDurationType.DAYS:
+                    appendKeyword(sb, DAYS);
+                    break;
+                case ValueExpressionLabeledDurationType.HOURS:
+                    appendKeyword(sb, HOURS);
+                    break;
+                case ValueExpressionLabeledDurationType.MINUTES:
+                    appendKeyword(sb, MINUTES);
+                    break;
+                case ValueExpressionLabeledDurationType.SECONDS:
+                    appendKeyword(sb, SECONDS);
+                    break;
+                case ValueExpressionLabeledDurationType.MICROSECONDS:
+                    appendKeyword(sb, MICROSECONDS);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionNested exprNest, StringBuffer sb)
-    {
-        StringBuffer sbExprNest = new StringBuffer();
-        sbExprNest.append(PAREN_LEFT);
-        appendSQL(exprNest.getNestedValueExpr(), sbExprNest);
-        sbExprNest.append(PAREN_RIGHT);
+    protected void appendSpecificSQL(ValueExpressionNested exprNest, StringBuffer sb) {
+        if (exprNest != null) {
+            StringBuffer sbExprNest = new StringBuffer();
+            appendSymbol(sbExprNest, PAREN_LEFT);
+            QueryValueExpression nestedValExpr = exprNest.getNestedValueExpr();
+            appendSQL(nestedValExpr, sbExprNest);
+            appendSymbol(sbExprNest, PAREN_RIGHT);
 
-        wrapSQL(exprNest, sbExprNest);
-        sb.append(sbExprNest);
-
+            wrapSQL(exprNest, sbExprNest);
+            appendStringBuffer(sb, sbExprNest);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionNullValue exprNull, StringBuffer sb)
-    {
-
-        sb.append(NULL);
-
+    protected void appendSpecificSQL(ValueExpressionNullValue exprNull, StringBuffer sb) {
+        appendKeyword(sb, NULL);
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionRow valExprRow, StringBuffer sb) 
-    {
-        sb.append(PAREN_LEFT);
-        appendSQLForSQLObjectList(valExprRow.getValueExprList(), sb);  
-        sb.append(PAREN_RIGHT);
+    protected void appendSpecificSQL(ValueExpressionRow valExprRow, StringBuffer sb) {
+        if (valExprRow != null) {
+            appendSymbol(sb, PAREN_LEFT);
+            List valExprList = valExprRow.getValueExprList();
+            appendSQLForSQLObjectList(valExprList, sb);  
+            appendSymbol(sb, PAREN_RIGHT);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionScalarSelect exprSelect, StringBuffer sb)
-    {
-        StringBuffer sbExpr = new StringBuffer();
-        sbExpr.append(PAREN_LEFT);
-        appendSQL(exprSelect.getQueryExpr(),sbExpr);
-        sbExpr.append(PAREN_RIGHT);
+    protected void appendSpecificSQL(ValueExpressionScalarSelect exprSelect, StringBuffer sb) {
+        if (exprSelect != null) {
+            StringBuffer sbExpr = new StringBuffer();
+            appendSymbol(sbExpr, PAREN_LEFT);
+            QueryExpressionRoot queryExprRoot = exprSelect.getQueryExpr();
+            appendSQL(queryExprRoot, sbExpr);
+            appendSymbol(sbExpr, PAREN_RIGHT);
 
-        wrapSQL(exprSelect, sbExpr);
-        indentSQLToLastLineLengthOfContainer(sbExpr, sb);
-        sb.append(sbExpr);
-
+            wrapSQL(exprSelect, sbExpr);
+            indentSQLToLastLineLengthOfContainer(sbExpr, sb);
+            appendStringBuffer(sb, sbExpr);
+        }
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionSimple exprSimple, StringBuffer sb)
-    {
-        StringBuffer sbExpr = new StringBuffer();
-        sbExpr.append(exprSimple.getValue());
+    protected void appendSpecificSQL(ValueExpressionSimple exprSimple, StringBuffer sb) {
+        if (exprSimple != null) {
+            StringBuffer sbExpr = new StringBuffer();
+            String exprValStr = exprSimple.getValue();
+            appendString(sbExpr, exprValStr);
 
-        wrapSQL(exprSimple, sbExpr);
-        sb.append(sbExpr);
-
+            wrapSQL(exprSimple, sbExpr);
+            appendStringBuffer(sb, sbExpr);
+        }
     }
 
     /**
@@ -4828,51 +4661,48 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable#getSQL()
      */
-    protected void appendSpecificSQL(ValueExpressionVariable variable, StringBuffer sb)
-    {
-        StringBuffer sbExpr = new StringBuffer();
+    protected void appendSpecificSQL(ValueExpressionVariable var, StringBuffer sb) {
+        if (var != null) {
+            StringBuffer sbExpr = new StringBuffer();
 
-        String hostVarPrefix = COLON;
-        String paramMarker = QUESTIONMARK;
+            String hostVarPrefix = COLON;
+            String paramMarker = QUESTIONMARK;
 
-        if (variable.getSourceInfo() != null && variable.getSourceInfo().getSqlFormat() != null) 
-        {
-            SQLQuerySourceFormat sf = variable.getSourceInfo().getSqlFormat();
-            hostVarPrefix = String.valueOf(sf.getHostVariablePrefix());
-            paramMarker = String.valueOf(sf.getParameterMarker());
+            if (var.getSourceInfo() != null && var.getSourceInfo().getSqlFormat() != null) {
+                SQLQuerySourceFormat sf = var.getSourceInfo().getSqlFormat();
+                hostVarPrefix = String.valueOf(sf.getHostVariablePrefix());
+                paramMarker = String.valueOf(sf.getParameterMarker());
+            }
+
+            /* We generate a variable as hostVar if it has a name or as parameter marker if it has no name. */
+            String varName = var.getName();
+            if (varName != null) {
+                appendString(sbExpr, hostVarPrefix);
+                appendString(sbExpr, varName); // [bug 221028]
+            }
+            else {
+                appendString(sbExpr, paramMarker);
+            }
+
+            wrapSQL(var, sbExpr);
+            appendStringBuffer(sb, sbExpr);
         }
-
-        
-        // we use variable as hostVar (if it has a name) or as parameter marker (if it has no name) 
-        if (variable.getName() != null) 
-        {
-            sbExpr.append(hostVarPrefix);
-            sbExpr.append(variable.getName()); // [bug 221028]
-        }
-        else
-        {
-            sbExpr.append(paramMarker);
-        }
-
-        wrapSQL(variable, sbExpr);
-        sb.append(sbExpr);
-
     }
 
     /**
      * @see org.eclipse.datatools.modelbase.sql.query.ValuesRow#getSQL()
      */
-    protected void appendSpecificSQL(ValuesRow valuesRow, StringBuffer sb)
-    {
-        if (valuesRow.getExprList().size() == 1)
-        {
-            appendSQLForSQLObjectList(valuesRow.getExprList(), sb);  
-        }
-        else if (valuesRow.getExprList().size() > 1)
-        {
-            sb.append(PAREN_LEFT);
-            appendSQLForSQLObjectList(valuesRow.getExprList(), sb);  
-            sb.append(PAREN_RIGHT);
+    protected void appendSpecificSQL(ValuesRow valuesRow, StringBuffer sb) {
+        if (valuesRow != null) {
+            List rowExprList = valuesRow.getExprList();
+            if (rowExprList.size() == 1) {
+                appendSQLForSQLObjectList(rowExprList, sb);  
+            }
+            else if (rowExprList.size() > 1) {
+                appendSymbol(sb, PAREN_LEFT);
+                appendSQLForSQLObjectList(rowExprList, sb);  
+                appendSymbol(sb, PAREN_RIGHT);
+            }
         }
     }
 
@@ -4933,13 +4763,15 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
      * @see org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType#getSQL()
      */
     protected void appendSpecificSQL(XMLDataType dataType, StringBuffer sb) {
-        String typeName = dataType.getName();
-        if (typeName != null && typeName.length() > 0) {
-            appendKeyword(sb, typeName);
-        }
-        else {
-            PrimitiveType primitiveType = dataType.getPrimitiveType();
-            appendSpecificSQL(primitiveType, sb);
+        if (dataType != null) {
+            String typeName = dataType.getName();
+            if (typeName != null && typeName.length() > 0) {
+                appendKeyword(sb, typeName);
+            }
+            else {
+                PrimitiveType primitiveType = dataType.getPrimitiveType();
+                appendSpecificSQL(primitiveType, sb);
+            }
         }
     }
     
