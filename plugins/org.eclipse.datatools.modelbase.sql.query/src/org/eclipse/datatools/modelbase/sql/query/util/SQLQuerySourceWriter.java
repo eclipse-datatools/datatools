@@ -2806,11 +2806,11 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
             appendSpace(sbPred);
             if (predInValRowSelect.isNotIn()) {
                 appendKeyword(sbPred, NOT);
-                appendSpace(sbPred, SPACE);
+                appendSpace(sbPred);
             }
 
             appendKeyword(sbPred, IN);
-            appendSpace(sbPred, SPACE);
+            appendSpace(sbPred);
 
             QueryExpressionRoot queryExpr = predInValRowSelect.getQueryExpr();
             if (queryExpr != null) {
@@ -3346,7 +3346,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
             appendStringBuffer(sbSelect, sbClauseIndent);
     
             appendKeyword(sbSelect, FROM);
-            appendSpace(sbSelect, SPACE);
+            appendSpace(sbSelect);
     
             List fromClauseList = select.getFromClause();
             if (fromClauseList != null && fromClauseList.size() > 0) {
@@ -3358,7 +3358,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
     
                     if (fromIt.hasNext()) {
                         appendSymbol(sbSelect, COMMA);
-                        appendSpace(sbSelect, SPACE);
+                        appendSpace(sbSelect);
                     }
                     
                     if (getLastLineLength(sbSelect) > displayWidth) {
