@@ -1562,11 +1562,11 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
                 if (qualify) {
                     String schemaName = schema.getName();
                     sqlFormatName = convertCatalogIdentifierToSQLFormat(schemaName, delimQuoteChar);
-                    sqlFormatName = sqlFormatName + DOT;
+                    appendIdentifier(sb, sqlFormatName);
+                    appendSymbol(sb, DOT);
                 }
                 String sqlFormatTableName = convertCatalogIdentifierToSQLFormat(tableName, getDelimitedIdentifierQuote());
-                sqlFormatName = sqlFormatName + sqlFormatTableName;
-                appendIdentifier(sb, sqlFormatName);
+                appendIdentifier(sb, sqlFormatTableName);
             }
         }
     }
@@ -2583,17 +2583,17 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
             StringBuffer localSB = new StringBuffer();
             ResultColumn resultColumn = orderByExpr.getResultCol();
             
-            String sqlFormatResultCol = "";
             String resultColName = resultColumn.getName();
             if (resultColName != null) {
-                sqlFormatResultCol = convertCatalogIdentifierToSQLFormat(resultColName, getDelimitedIdentifierQuote());
+                String sqlFormatResultColName = convertCatalogIdentifierToSQLFormat(resultColName, getDelimitedIdentifierQuote());
+                appendIdentifier(localSB, sqlFormatResultColName);
             }
             else {
                 QueryValueExpression resultColValExpr = resultColumn.getValueExpr();
-                sqlFormatResultCol = getSQL(resultColValExpr);
+                String sqlFormatResultColExpr = getSQL(resultColValExpr);
+                appendString(localSB, sqlFormatResultColExpr);
             }
 
-            appendString(localSB, sqlFormatResultCol);
             wrapSQL((OrderBySpecification) orderByExpr, localSB);
             
             appendStringBuffer(sb, localSB);
