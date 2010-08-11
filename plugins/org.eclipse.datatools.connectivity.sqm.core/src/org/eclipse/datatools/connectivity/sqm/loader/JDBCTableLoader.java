@@ -146,7 +146,8 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	public JDBCTableLoader(ICatalogObject catalogObject,
 							IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Schema);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Schema);
 
 		mTableFactories = new HashMap(5);
 		registerTableFactory(TYPE_TABLE, new TableFactory());

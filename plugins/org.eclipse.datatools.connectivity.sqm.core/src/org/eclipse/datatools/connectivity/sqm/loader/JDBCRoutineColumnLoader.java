@@ -137,7 +137,8 @@ public class JDBCRoutineColumnLoader extends JDBCBaseLoader {
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Routine);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Routine);
 	}
 
 	/**

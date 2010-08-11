@@ -52,7 +52,8 @@ public class JDBCUDFColumnLoader extends JDBCRoutineColumnLoader {
 								ICatalogObject catalogObject,
 								IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof UserDefinedFunction);
+		if (catalogObject != null)
+			assert (catalogObject instanceof UserDefinedFunction);
 	}
 
 	/**

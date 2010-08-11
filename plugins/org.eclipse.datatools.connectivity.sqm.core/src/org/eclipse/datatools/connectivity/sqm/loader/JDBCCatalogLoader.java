@@ -57,7 +57,8 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 								ICatalogObject catalogObject,
 								IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Database);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Database);
 	}
 
 	/**

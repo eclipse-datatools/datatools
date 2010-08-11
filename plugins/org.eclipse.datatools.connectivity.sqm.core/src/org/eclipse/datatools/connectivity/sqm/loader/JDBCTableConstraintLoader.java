@@ -153,7 +153,8 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Table);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Table);
 	}
 
 	/**

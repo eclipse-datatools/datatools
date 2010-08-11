@@ -51,7 +51,8 @@ public class JDBCProcedureColumnLoader extends JDBCRoutineColumnLoader {
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Procedure);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Procedure);
 	}
 
 	/**

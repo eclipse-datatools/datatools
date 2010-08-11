@@ -69,7 +69,8 @@ public class JDBCUDTSuperTypeLoader extends JDBCBaseLoader {
 									ICatalogObject catalogObject,
 									IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof UserDefinedType);
+		if (catalogObject != null)
+			assert (catalogObject instanceof UserDefinedType);
 	}
 
 	/**

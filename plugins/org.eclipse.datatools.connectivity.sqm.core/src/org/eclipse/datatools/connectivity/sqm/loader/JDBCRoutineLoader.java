@@ -102,7 +102,8 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 								IRoutineFactory udfFactory,
 								IRoutineFactory spFactory) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Schema);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Schema);
 
 		mUserDefinedFunctionFactory = udfFactory;
 		mProcedureFactory = spFactory;

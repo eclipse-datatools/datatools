@@ -67,7 +67,8 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	public JDBCSchemaLoader(ICatalogObject catalogObject,
 							IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Catalog);
+		if (catalogObject != null)
+			assert (catalogObject instanceof Catalog);
 	}
 
 	/**
