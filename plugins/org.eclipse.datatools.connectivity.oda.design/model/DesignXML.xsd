@@ -39,6 +39,7 @@
       <xsd:enumeration value="Left"/>
       <xsd:enumeration value="Center"/>
       <xsd:enumeration value="Right"/>
+      <xsd:enumeration value="LeftAndRight"/>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="InputPromptControlStyle">
@@ -253,7 +254,7 @@
   </xsd:complexType>
   <xsd:element name="CustomData" type="design:CustomData">
     <xsd:annotation>
-      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, which would be identified with its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
+      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, as identified by its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="CustomFilterExpression">

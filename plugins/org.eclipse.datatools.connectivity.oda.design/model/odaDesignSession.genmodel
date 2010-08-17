@@ -35,6 +35,7 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment/Left"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment/Center"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment/Right"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment/LeftAndRight"/>
     </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyle">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyle/TextField"/>

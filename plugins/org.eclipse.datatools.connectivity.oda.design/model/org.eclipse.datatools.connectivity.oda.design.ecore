@@ -1083,6 +1083,7 @@
     <eLiterals name="Left" value="1"/>
     <eLiterals name="Center" value="2"/>
     <eLiterals name="Right" value="3"/>
+    <eLiterals name="LeftAndRight" value="4" literal="Left and Right"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="HorizontalAlignmentObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

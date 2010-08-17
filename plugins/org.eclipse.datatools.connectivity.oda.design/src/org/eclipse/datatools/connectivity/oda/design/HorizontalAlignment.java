@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: HorizontalAlignment.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
+ * $Id: HorizontalAlignment.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -69,13 +69,21 @@ public enum HorizontalAlignment implements Enumerator {
      * @generated
      * @ordered
      */
-    RIGHT_LITERAL(3, "Right", "Right"); //$NON-NLS-1$ //$NON-NLS-2$
+    RIGHT_LITERAL(3, "Right", "Right"), /**
+                                         * The '<em><b>Left And Right</b></em>' literal object.
+                                         * <!-- begin-user-doc -->
+                                         * <!-- end-user-doc -->
+                                         * @see #LEFT_AND_RIGHT
+                                         * @generated
+                                         * @ordered
+                                         */
+    LEFT_AND_RIGHT_LITERAL(4, "LeftAndRight", "Left and Right"); //$NON-NLS-1$ //$NON-NLS-2$
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Automatic</b></em>' literal value.
@@ -122,13 +130,30 @@ public enum HorizontalAlignment implements Enumerator {
     public static final int RIGHT = 3;
 
     /**
+     * The '<em><b>Left And Right</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Left And Right</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #LEFT_AND_RIGHT_LITERAL
+     * @model name="LeftAndRight" literal="Left and Right"
+     * @generated
+     * @ordered
+     * @since 3.3.1 (DTP 1.8.1)
+     */
+    public static final int LEFT_AND_RIGHT = 4;
+
+    /**
      * An array of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     private static final HorizontalAlignment[] VALUES_ARRAY = new HorizontalAlignment[]
-    { AUTOMATIC_LITERAL, LEFT_LITERAL, CENTER_LITERAL, RIGHT_LITERAL, };
+    { AUTOMATIC_LITERAL, LEFT_LITERAL, CENTER_LITERAL, RIGHT_LITERAL,
+            LEFT_AND_RIGHT_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Horizontal Alignment</b></em>' enumerators.
@@ -195,6 +220,8 @@ public enum HorizontalAlignment implements Enumerator {
             return CENTER_LITERAL;
         case RIGHT:
             return RIGHT_LITERAL;
+        case LEFT_AND_RIGHT:
+            return LEFT_AND_RIGHT_LITERAL;
         }
         return null;
     }

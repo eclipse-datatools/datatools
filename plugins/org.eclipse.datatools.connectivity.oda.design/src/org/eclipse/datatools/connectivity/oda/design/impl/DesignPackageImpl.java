@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.18 2010/02/17 02:20:38 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.19 2010/06/10 23:40:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -4488,6 +4488,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 HorizontalAlignment.CENTER_LITERAL );
         addEEnumLiteral( horizontalAlignmentEEnum,
                 HorizontalAlignment.RIGHT_LITERAL );
+        addEEnumLiteral( horizontalAlignmentEEnum,
+                HorizontalAlignment.LEFT_AND_RIGHT_LITERAL );
 
         initEEnum( inputPromptControlStyleEEnum, InputPromptControlStyle.class,
                 "InputPromptControlStyle" ); //$NON-NLS-1$
