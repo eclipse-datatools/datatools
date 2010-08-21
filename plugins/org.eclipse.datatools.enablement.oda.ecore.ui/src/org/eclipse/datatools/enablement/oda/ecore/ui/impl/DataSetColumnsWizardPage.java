@@ -1,7 +1,5 @@
 /*******************************************************************************
- * <copyright>
- *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007, 2010 SolutionsIQ, Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +7,18 @@
  *
  * Contributors:
  *   SolutionsIQ, Inc. - Initial API and implementation
+ *   julien.repond - support for multiple EPackages (BZ 132958#c24)
  *
- * </copyright>
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
@@ -32,11 +32,13 @@ import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil;
 import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
+import org.eclipse.datatools.enablement.oda.ecore.util.EPackageUtil;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -63,21 +65,21 @@ import org.eclipse.swt.widgets.Composite;
 
 public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
-	private EPackage ePackage;
+	private Set<EPackage> ePackages;
 	private CheckboxTreeViewer viewer;
 	private Properties dataSourceProperties;
 
 	public DataSetColumnsWizardPage(final String pageName) {
 		super(pageName);
 		setTitle(pageName);
-		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
+		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default")); //$NON-NLS-1$
 		setPageComplete(false);
 	}
 
 	public DataSetColumnsWizardPage(final String pageName, final String title, final ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
 		setTitle(pageName);
-		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
+		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default")); //$NON-NLS-1$
 		setPageComplete(false);
 	}
 
@@ -119,7 +121,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
 
 		try {
-			ePackage = EcoreUtil.getPackageForModel(dataSourceProperties);
+			ePackages = EPackageUtil.getPackagesForModel(dataSourceProperties);
 			setViewerInputBasedOnInvariant(dataSetDesign);
 		} catch (final WrappedException e) {
 			final Throwable cause = e.getCause();
@@ -136,14 +138,23 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	private void setViewerInputBasedOnInvariant(final DataSetDesign dataSetDesign) {
 		if (dataSetDesign.getPrivateProperties() != null) {
 			final String invariant = dataSetDesign.getPrivateProperties().getProperty(Constants.OCL_ECORE_INVARIANT);
-			if (invariant == null || invariant.length() == 0 || !(ePackage.getEClassifier(invariant) instanceof EClass)) {
+			if (invariant == null || invariant.length() == 0) {
 				showAllEstructuralFeatures();
 			} else {
 				final Collection<EClass> eClassHierarchy = new ArrayList<EClass>();
-				final EClass invariantEClass = (EClass) ePackage.getEClassifier(invariant);
-				eClassHierarchy.add(invariantEClass);
-				eClassHierarchy.addAll(invariantEClass.getEAllSuperTypes());
-				viewer.setInput(new TreeViewerBuilder(eClassHierarchy).buildTree());
+				for (EPackage ePackage : ePackages) {
+					if ((ePackage.getEClassifier(invariant) instanceof EClass)) {
+						
+						final EClass invariantEClass = (EClass) ePackage.getEClassifier(invariant);
+						eClassHierarchy.add(invariantEClass);
+						eClassHierarchy.addAll(invariantEClass.getEAllSuperTypes());
+					}
+				}
+				if (eClassHierarchy.isEmpty()) {
+					showAllEstructuralFeatures();
+				} else {
+					viewer.setInput(new TreeViewerBuilder(eClassHierarchy).buildTree());
+				}
 			}
 		} else {
 			showAllEstructuralFeatures();
@@ -168,10 +179,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		}
 		final List<TreePath> treePaths = new ArrayList<TreePath>();
 		final ResultSetColumns resultSetColumns = primaryResultSet.getResultSetColumns();
-		@SuppressWarnings("unchecked")
 		final List<ColumnDefinition> columnDefinitions = resultSetColumns.getResultColumnDefinitions();
 		for (final ColumnDefinition columnDefinition : columnDefinitions) {
-			final ENamedElement[] featurePath = ColumnDefinitionUtil.getFeaturePath(columnDefinition, ePackage);
+			final ENamedElement[] featurePath = ColumnDefinitionUtil.getFeaturePath(columnDefinition, ePackages);
 			final List<TreeNode> nodePath = new ArrayList<TreeNode>();
 			TreeNode currentNode = (TreeNode) viewer.getInput();
 			for (int i = 0; i < featurePath.length; i++) {
@@ -195,8 +205,12 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	}
 
 	private void showAllEstructuralFeatures() {
-		viewer.setInput(new TreeViewerBuilder(org.eclipse.emf.ecore.util.EcoreUtil.<EClass> getObjectsByType(ePackage
-				.getEClassifiers(), EcorePackage.Literals.ECLASS)).buildTree());
+		Set<EClassifier> eClassifiers = new HashSet<EClassifier>();
+		for (EPackage ePackage : ePackages) {
+			eClassifiers.addAll(ePackage.getEClassifiers());
+		}
+		viewer.setInput(new TreeViewerBuilder(org.eclipse.emf.ecore.util.EcoreUtil.<EClass> getObjectsByType(eClassifiers, 
+				EcorePackage.Literals.ECLASS)).buildTree());
 	}
 
 	/**
@@ -205,7 +219,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	private void validateData() {
 		final boolean aValidColumnIsSelected = aValidColumnIsSelected();
 		if (aValidColumnIsSelected) {
-			setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
+			setMessage(Messages.getString("DataSetColumnsWizardPage.message.default")); //$NON-NLS-1$
 		} else {
 			setMessage(Messages.getString("DataSetColumnsWizardPage.message.noColumnSelected"), ERROR); //$NON-NLS-1$
 		}
@@ -255,7 +269,6 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		return isPageComplete();
 	}
 
-	@SuppressWarnings("unchecked")
 	private void savePage(final DataSetDesign dataSetDesign) {
 		if (!aValidColumnIsSelected()) {
 			dataSetDesign.setResultSets(null);

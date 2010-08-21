@@ -1,7 +1,5 @@
 /*******************************************************************************
- * <copyright>
- *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007, 2010 SolutionsIQ, Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,18 +7,20 @@
  *
  * Contributors:
  *   SolutionsIQ, Inc. - Initial API and implementation
- *
- * </copyright>
+ *   julien.repond - support for multiple EPackages (BZ 132958#c24)
+ *   
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.enablement.oda.ecore.util.EPackageUtil;
 import org.eclipse.datatools.enablement.oda.ecore.util.StringUtil;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ColumnDefinitionUtil {
 
-	private static String COLUMN_NAME_DELIMITER = "::";
+	private static String COLUMN_NAME_DELIMITER = "::"; //$NON-NLS-1$
 
 	/**
 	 * FIXME: the native data type code should be determined from the EAttributeType or the EReference
@@ -89,19 +89,22 @@ public class ColumnDefinitionUtil {
 		return StringUtil.join(names.toArray(new String[names.size()]), COLUMN_NAME_DELIMITER);
 	}
 
-	public static ENamedElement[] getFeaturePath(final ColumnDefinition columnDefinition, final EPackage ePackage) {
+	public static ENamedElement[] getFeaturePath(final ColumnDefinition columnDefinition, final Set<EPackage> ePackages) {
 		final List<ENamedElement> path = new ArrayList<ENamedElement>();
 		final String columnName = columnDefinition.getAttributes().getName();
 		final String[] namePath = columnName.split(COLUMN_NAME_DELIMITER);
-		final EClass rootEClass = (EClass) ePackage.getEClassifier(namePath[0]);
-		path.add(rootEClass);
-		EStructuralFeature nextFeature = rootEClass.getEStructuralFeature(namePath[1]);
-		path.add(rootEClass.getEStructuralFeature(namePath[1]));
-		for (int i = 2; i < namePath.length; i++) {
-			final String next = namePath[i];
-			final EStructuralFeature nextStructuralFeature = ((EClass) nextFeature.getEType()).getEStructuralFeature(next);
-			path.add(nextStructuralFeature);
-			nextFeature = nextStructuralFeature;
+		EPackage ePackage = EPackageUtil.getPackageForClassifier(namePath[0], ePackages);
+		if (ePackage != null) {
+			final EClass rootEClass = (EClass) ePackage.getEClassifier(namePath[0]);
+			path.add(rootEClass);
+			EStructuralFeature nextFeature = rootEClass.getEStructuralFeature(namePath[1]);
+			path.add(rootEClass.getEStructuralFeature(namePath[1]));
+			for (int i = 2; i < namePath.length; i++) {
+				final String next = namePath[i];
+				final EStructuralFeature nextStructuralFeature = ((EClass) nextFeature.getEType()).getEStructuralFeature(next);
+				path.add(nextStructuralFeature);
+				nextFeature = nextStructuralFeature;
+			}
 		}
 		return path.toArray(new ENamedElement[path.size()]);
 	}

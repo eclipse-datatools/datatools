@@ -1,7 +1,5 @@
 /*******************************************************************************
- * <copyright>
- *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007, 2010 SolutionsIQ, Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,17 +7,15 @@
  *
  * Contributors:
  *   SolutionsIQ, Inc. - Initial API and implementation
+ *   Actuate Corporation - moved implementation to runtime bundle
  *
- * </copyright>
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
-import java.util.Collection;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.ecore.impl.Connection;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.datatools.enablement.oda.ecore.util.EPackageUtil;
 import org.eclipse.emf.ecore.EPackage;
 
 public final class EcoreUtil {
@@ -28,13 +24,11 @@ public final class EcoreUtil {
 		// Can't instantiate util class
 	}
 
+	/**
+	 * @deprecated as of 1.0.1; moved to org.eclipse.datatools.enablement.oda.ecore.util.EPackageUtil
+	 */
 	public static EPackage getPackageForModel(final Properties dataSourceProperties) throws OdaException {
-		final Collection<EObject> model = Connection.getModel(dataSourceProperties);
-		if (model.isEmpty()) {
-			return null;
-		}
-		// TODO: Making an assumption here that there is only one root EObject
-		// in Resource, which holds for deserializing from XML
-		return model.iterator().next().eClass().getEPackage();
+		return EPackageUtil.getPackageForModel( dataSourceProperties );
 	}
+	
 }

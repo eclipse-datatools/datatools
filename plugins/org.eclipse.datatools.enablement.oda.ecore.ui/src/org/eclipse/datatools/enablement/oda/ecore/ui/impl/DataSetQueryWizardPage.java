@@ -1,7 +1,5 @@
 /*******************************************************************************
- * <copyright>
- *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007, 2010 SolutionsIQ, Inc. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,8 +7,8 @@
  *
  * Contributors:
  *   SolutionsIQ, Inc. - Initial API and implementation
+ *   julien.repond - support for multiple EPackages (BZ 132958#c24)
  *
- * </copyright>
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
@@ -18,6 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -42,6 +41,7 @@ import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.DefaultSourceViewer;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.IOCLSourceViewer;
 import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
+import org.eclipse.datatools.enablement.oda.ecore.util.EPackageUtil;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -82,14 +82,14 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	public DataSetQueryWizardPage(final String pageName) {
 		super(pageName);
 		setTitle(pageName);
-		setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
+		setMessage(Messages.getString("DataSetQueryWizardPage.message.default")); //$NON-NLS-1$
 		setPageComplete(false);
 	}
 
 	public DataSetQueryWizardPage(final String pageName, final String title, final ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
 		setTitle(pageName);
-		setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
+		setMessage(Messages.getString("DataSetQueryWizardPage.message.default")); //$NON-NLS-1$
 		setPageComplete(false);
 	}
 
@@ -134,12 +134,12 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	private IOCLSourceViewer createSyntaxViewer(final Composite composite) {
 		IOCLSourceViewer sourceViewer = null;
 		final IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer");
+				"org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer"); //$NON-NLS-1$
 		for (int i = 0; i < configurationElements.length; i++) {
 			final IConfigurationElement element = configurationElements[i];
-			if (element.getName().equalsIgnoreCase("oclSourceViewer")) {
+			if (element.getName().equalsIgnoreCase("oclSourceViewer")) { //$NON-NLS-1$
 				try {
-					sourceViewer = (IOCLSourceViewer) element.createExecutableExtension("class");
+					sourceViewer = (IOCLSourceViewer) element.createExecutableExtension("class"); //$NON-NLS-1$
 				} catch (final CoreException e) {
 					throw new RuntimeException("Unable to create the extension", e);
 				}
@@ -156,9 +156,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		final DataSetDesign dataSetDesign = getInitializationDesign();
 		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
 		try {
-			final EPackage ePackage = EcoreUtil.getPackageForModel(dataSourceProperties);
-			if (ePackage != null) {
-				fillContextCombo(dataSetDesign, ePackage);
+			Set<EPackage> ePackages = EPackageUtil.getPackagesForModel(dataSourceProperties);
+			if (!ePackages.isEmpty()) {
+				fillContextCombo(dataSetDesign, ePackages);
 				syntaxViewer.setExpression(dataSetDesign.getQueryText());
 			}
 			validateData();
@@ -174,7 +174,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		}
 	}
 
-	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
+	private void fillContextCombo(final DataSetDesign dataSetDesign, final Set<EPackage> ePackages) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
 		contextCombo.setLabelProvider(new LabelProvider() {
 
@@ -191,7 +191,10 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			}
 		});
 
-		final List<EClassifier> classes = new LinkedList<EClassifier>(ePackage.getEClassifiers());
+		final List<EClassifier> classes = new LinkedList<EClassifier>();
+		for (EPackage ePackage : ePackages) {
+			classes.addAll(ePackage.getEClassifiers());
+		}
 		for (final Iterator<EClassifier> iter = classes.iterator(); iter.hasNext();) {
 			if (!(iter.next() instanceof EClass)) {
 				iter.remove();
@@ -201,17 +204,19 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		dummy.setName(""); //$NON-NLS-1$
 		classes.add(dummy);
 		contextCombo.setInput(classes);
-		initializeContextCombo(getEditingDesign(), ePackage);
+		initializeContextCombo(getEditingDesign(), ePackages);
 	}
 
-	private void initializeContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
+	private void initializeContextCombo(final DataSetDesign dataSetDesign, final Set<EPackage> ePackages) {
 		if (dataSetDesign.getPrivateProperties() != null) {
 			final String invariant = dataSetDesign.getPrivateProperties().getProperty(Constants.OCL_ECORE_INVARIANT);
-			if (invariant == null || invariant.length() == 0 || ePackage.getEClassifier(invariant) == null) {
-				return;
-			} else {
-				final EClassifier invariantEClass = ePackage.getEClassifier(invariant);
-				contextCombo.setSelection(new StructuredSelection(invariantEClass));
+			if (invariant != null && invariant.length() > 0) {
+				for (EPackage ePackage : ePackages) {
+					if (ePackage.getEClassifier(invariant) != null) {
+						final EClassifier invariantEClass = ePackage.getEClassifier(invariant);
+						contextCombo.setSelection(new StructuredSelection(invariantEClass));
+					}
+				}
 			}
 		}
 	}
@@ -329,7 +334,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	private void validateData() {
 		final boolean isValid = syntaxViewer.getExpression() != null && syntaxViewer.getExpression().trim().length() > 0;
 		if (isValid) {
-			setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
+			setMessage(Messages.getString("DataSetQueryWizardPage.message.default")); //$NON-NLS-1$
 		} else {
 			setMessage(Messages.getString("DataSetQueryWizardPage.message.expressionRequired"), ERROR); //$NON-NLS-1$
 		}

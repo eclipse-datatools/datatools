@@ -2,13 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ecore.ui;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.oda.ecore.ui.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="[3.0.6,4.0.0)",
- org.eclipse.datatools.enablement.oda.ecore;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.enablement.oda.ecore;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.emf.common.ui;bundle-version="[2.3.0,3.0.0)",
  org.eclipse.jface.text;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.emf.edit.ui;bundle-version="[2.3.0,3.0.0)",
@@ -16,4 +16,4 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.3.0,4.0.0)",
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %providerName
