@@ -36,6 +36,7 @@ public class ComboBoxCellEditor extends CellEditor {
     private CCombo combo;
     private String fSelection;
     private Control focusControl = null;
+    private ITextProvider fTextProvider;
     protected LabelValuePair[] fItems;
     protected Object fValue;
 
@@ -109,7 +110,7 @@ public class ComboBoxCellEditor extends CellEditor {
             public void widgetSelected(SelectionEvent event) {
                 //If an item has been selected, process 
                 // otherwise skip.
-                // This event doesn't close the edtior, since the
+                // This event doesn't close the editor, since the
                 // selection may be the result of the arrow buttons
                 // being used to navigate through the selections,
                 // instead of the selection being made by a mouse
@@ -215,8 +216,20 @@ public class ComboBoxCellEditor extends CellEditor {
             for (int i = 0; i < labels.length; i++) {
                 LabelValuePair item = fItems[i];
                 labels[i] = item.fLabel;
-                if (fSelection == null && fValue != null && fValue.equals(item.fValue)) {
-                    fSelection = item.fLabel;
+                /* If the current value matches one of the array items, then keep it as the selection. */
+                if (fSelection == null && fValue != null) {
+                    if (fValue.equals(item.fValue)) {
+                        fSelection = item.fLabel;
+                    }
+                }
+            }
+            
+            /* If there is a text provider, use that to get the text for the combo box text field. */
+            ITextProvider textProvider = getTextProvider();
+            if (textProvider != null) {
+                String text = textProvider.getText(fValue);
+                if (text != null) {
+                    fSelection = text; 
                 }
             }
 
@@ -242,8 +255,26 @@ public class ComboBoxCellEditor extends CellEditor {
         return fSelection;
     }
     
+    /**
+     * Gets the current text provider.
+     * 
+     * @return the text provider or null if none was set
+     */
+    public ITextProvider getTextProvider() {
+        return fTextProvider;
+    }
+    
     public void setSelection( String selection ) {
         fSelection = selection;
+    }
+    
+    /**
+     * Sets the text provider to the given object.
+     * 
+     * @param textProvider the text provider to set
+     */
+    public void setTextProvider(ITextProvider textProvider) {
+        fTextProvider = textProvider;
     }
     
     public void deactivate() {

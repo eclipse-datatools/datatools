@@ -481,6 +481,9 @@ public class CaseSimplePage extends WizardPage implements SelectionListener {
         }
 
         caseClauseComboHelper.setItems(expressionsArray);
+        if (expr != null) {
+            caseClauseCombo.select(0);
+        }
     }
 
     public boolean currentPage() {

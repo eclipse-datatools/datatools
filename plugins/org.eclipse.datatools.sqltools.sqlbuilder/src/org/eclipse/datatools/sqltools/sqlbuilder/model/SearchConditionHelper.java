@@ -422,6 +422,12 @@ public class SearchConditionHelper {
             if (exprBody != null) {
                 retVal = exprBody.getSQL();
             }
+            /* The generated SQL includes newlines, which look ugly in the Criteria grid.  
+             * So remove them. */
+            retVal = retVal.replaceAll("\n", "");
+            /* The SQL subquery needs parens around it in order to be parseable again in the
+             * Criteria grid context.  So add them. */
+            retVal = "(" + retVal + ")";
         }
         else if (pred instanceof XMLPredicateExists) {
             retVal = ((XMLPredicateExists) pred).getXqueryExpr().getXqueryExprContent();          

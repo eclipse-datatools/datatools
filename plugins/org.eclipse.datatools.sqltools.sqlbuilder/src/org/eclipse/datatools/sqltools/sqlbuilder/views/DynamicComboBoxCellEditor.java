@@ -33,6 +33,8 @@ public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
 
     TableViewer tableViewer = null;
     TableTreeViewer tableTreeViewer = null;
+    private ITextProvider fTextProvider;
+
 
     public DynamicComboBoxCellEditor(Composite parent, LabelValuePair[] items, Object viewer) {
         super(parent, items, true);
@@ -58,6 +60,24 @@ public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
         fItems = fItemsNew;
     }
 
+    /**
+     * Gets the current text provider.
+     * 
+     * @return the text provider or null if none was set
+     */
+    public ITextProvider getTextProvider() {
+        return fTextProvider;
+    }
+
+    /**
+     * Sets the text provider to the given object.
+     * 
+     * @param textProvider the text provider to set
+     */
+    public void setTextProvider(ITextProvider textProvider) {
+        fTextProvider = textProvider;
+    }
+
 	/* Handle a set focus by setting the combo value to the current
 	 * cell value.  If we can't reasonably determine the cell value,
 	 * set it to blank. */
@@ -65,8 +85,16 @@ public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
 		String valStr = "";
 	    Object valObj = getValue();
 	    if (valObj instanceof CriteriaElement) {
-	    	//CriteriaElement critElem = (CriteriaElement) valObj;
-	    	// TODO: figure out how to get the value from the appropriate column of the CriteriaElement
+            /* If this combo box cell editor is being used in the Criteria (WHERE clause) grid, 
+             * then get the combo text from the appropriate part of the current value using the 
+             * text provider. */
+            ITextProvider textProvider = getTextProvider();
+            if (textProvider != null) {
+                String text = textProvider.getText(valObj);
+                if (text != null) {
+                    valStr = text; 
+                }
+            }
 	    }
 	    if (valObj instanceof ExpressionElement) {
 	    	/* Get the SQL model expression object from the ExpressionElement.

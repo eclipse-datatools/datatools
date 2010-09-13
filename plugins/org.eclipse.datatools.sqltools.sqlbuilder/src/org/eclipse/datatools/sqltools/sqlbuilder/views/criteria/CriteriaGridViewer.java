@@ -22,7 +22,10 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.VendorHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.LabelValuePair;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.BuilderUtility;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.ComboBoxCellEditor;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.EditComboBoxCellEditor;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.ITextProvider;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.NavigableTableViewer;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -65,10 +68,10 @@ public class CriteriaGridViewer extends NavigableTableViewer implements IMenuLis
     String[] columnProperties;
     boolean isHaving;
 
-    org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor columnEditor;
-    org.eclipse.datatools.sqltools.sqlbuilder.views.ComboBoxCellEditor operatorEditor;
-    org.eclipse.datatools.sqltools.sqlbuilder.views.ComboBoxCellEditor andOrEditor;
-    org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor rightPredicateValueEditor;
+    DynamicComboBoxCellEditor columnEditor;
+    ComboBoxCellEditor operatorEditor;
+    DynamicComboBoxCellEditor rightPredicateValueEditor;
+    ComboBoxCellEditor andOrEditor;
 
     Table table;
     SQLQueryObject currentSQLStatement;
@@ -86,11 +89,38 @@ public class CriteriaGridViewer extends NavigableTableViewer implements IMenuLis
 
         WorkbenchHelp.setHelp(table, SQLBuilderContextIds.SQSS_SHARED_SEL_UP_DEL_GRID);
 
-        columnEditor = new org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor(table, null, this);
+        columnEditor = new DynamicComboBoxCellEditor(table, null, this);
+        ITextProvider columnTextProvider = new ITextProvider() {
+            public String getText(Object value) {
+                String text = null;
+                if (value instanceof CriteriaElement) {
+                    CriteriaElement critElem = (CriteriaElement) value;
+                    QueryValueExpression valExpr = critElem.getColumn();
+                    if (valExpr != null) {
+                        text = valExpr.getSQL();
+                    } 
+                }
+                return text;
+            }
+        };
+        columnEditor.setTextProvider(columnTextProvider);
+
         c1 = new TableColumn(table, SWT.NULL);
         c1.setText(Messages._UI_COLUMN_COLUMN);
 
-        operatorEditor = new org.eclipse.datatools.sqltools.sqlbuilder.views.ComboBoxCellEditor(table, null);
+        operatorEditor = new ComboBoxCellEditor(table, null);
+        ITextProvider operatorTextProvider = new ITextProvider() {       
+            public String getText(Object value) {
+                String text = null;
+                if (value instanceof CriteriaElement) {
+                    CriteriaElement critElem = (CriteriaElement) value;
+                    text = critElem.getOperator();
+                }
+                return text;
+            }
+        };
+        operatorEditor.setTextProvider(operatorTextProvider);
+
         c2 = new TableColumn(table, SWT.NULL);
         c2.setText(Messages._UI_COLUMN_CRITERIA_OPERATOR);
 
@@ -102,11 +132,35 @@ public class CriteriaGridViewer extends NavigableTableViewer implements IMenuLis
             fillOperatorComboBox(operators);
         }
 
-        rightPredicateValueEditor = new org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor(table, null, this);
+        rightPredicateValueEditor = new DynamicComboBoxCellEditor(table, null, this);
+        ITextProvider rightPredTextProvider = new ITextProvider() {
+            public String getText(Object value) {
+                String text = null;
+                if (value instanceof CriteriaElement) {
+                    CriteriaElement critElem = (CriteriaElement) value;
+                    text = critElem.getValue();
+                }
+                return text;
+            }
+        };
+        rightPredicateValueEditor.setTextProvider(rightPredTextProvider);
+
         c3 = new TableColumn(table, SWT.NULL);
         c3.setText(Messages._UI_COLUMN_CRITERIA_VALUE);
 
-        andOrEditor = new org.eclipse.datatools.sqltools.sqlbuilder.views.ComboBoxCellEditor(table, null);
+        andOrEditor = new ComboBoxCellEditor(table, null);
+        ITextProvider andOrTextProvider = new ITextProvider() {       
+            public String getText(Object value) {
+                String text = null;
+                if (value instanceof CriteriaElement) {
+                    CriteriaElement critElem = (CriteriaElement) value;
+                    text = critElem.getAndOr();
+                }
+                return text;
+            }
+        };
+        andOrEditor.setTextProvider(andOrTextProvider);
+
         c4 = new TableColumn(table, SWT.NULL);
         c4.setText(Messages._UI_COLUMN_CRTIERIA_AND_OR);
         fillAndOrComboBox();
