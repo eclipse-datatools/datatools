@@ -319,7 +319,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         try
         {
             IDocument document = _editor.getSV().getDocument();
-            if (ex.currentToken.beginLine < 1)
+            if (ex.currentToken.beginLine < 1 && (errorToken.image == null || "".equals(errorToken.image)))
             {
                 return;
             }
