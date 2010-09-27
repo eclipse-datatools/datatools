@@ -14,7 +14,10 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.preference.PreferenceDialog;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
@@ -28,7 +31,7 @@ import org.eclipse.ui.navigator.INavigatorContentService;
 
 public class SQLModelContentActionProvider extends CommonActionProvider {
 	
-	private PropertyDialogAction mPropertiesAction;
+	private TitleChangedPropertyDialogAction mPropertiesAction;
 	private ICommonViewerSite mViewSite;
 	private StructuredViewer mStructViewer;
 
@@ -39,10 +42,10 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 	public void init(String anExtensionId, IViewPart aViewPart,
 			INavigatorContentService aContentService,
 			StructuredViewer aStructuredViewer) {
-		mPropertiesAction = new PropertyDialogAction(
+		mPropertiesAction = new TitleChangedPropertyDialogAction(
 				mStructViewer.getControl().getShell(), 
 				mViewSite.getSelectionProvider());
-		mPropertiesAction.setText("&Properties");
+		mPropertiesAction.setText(ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES")); //$NON-NLS-1$
 	}
 
 	public void dispose() {
@@ -71,11 +74,35 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 		this.mViewSite = aConfig.getViewSite();
 		this.mStructViewer = aConfig.getStructuredViewer();
 
-		mPropertiesAction = new PropertyDialogAction(
+		mPropertiesAction = new TitleChangedPropertyDialogAction(
 				mStructViewer.getControl().getShell(), 
 				mViewSite.getSelectionProvider());
 		mPropertiesAction.setText(ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES")); //$NON-NLS-1$
 		mPropertiesAction.setActionDefinitionId("org.eclipse.ui.file.properties"); //$NON-NLS-1$
+	}
+	
+	class TitleChangedPropertyDialogAction extends PropertyDialogAction {
+	
+		/**
+		 * fix for BZ 319449 to change the Properties dialog label from "Properties for"
+		 * @param shell
+		 * @param provider
+		 * @return
+		 */
+		public TitleChangedPropertyDialogAction(Shell shell,
+				ISelectionProvider provider) {
+			super(shell, provider);
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.ui.dialogs.PropertyDialogAction#createDialog()
+		 */
+		public PreferenceDialog createDialog() {
+			PreferenceDialog dialog = super.createDialog();
+			dialog.getShell().setText(ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.PROPERTIES_DIALOG_TITLE"));//$NON-NLS-1$
+			return dialog;
+		}
+		
 	}
 
 }
