@@ -861,7 +861,7 @@ Have a nice day!
 		<echo message="${error.plugin.list}"/>
 
 		<echo message="${postingDirectory}/${buildId}/compilelogs/plugins"/>
-		<mail mailport="${mail.port}" subject="Compile errors found in Today's Datatools 1.8.1 Build (BuildId: ${buildId} ) " tolist="${COMPILE.ERROR.RECIPIENTS.LOCAL}">
+		<mail mailport="${mail.port}" subject="Compile errors found in Today's Datatools 1.8.2 Build (BuildId: ${buildId} ) " tolist="${COMPILE.ERROR.RECIPIENTS.LOCAL}">
                     <from address="${mail.from}"/>
                     <replyto address="${replyto.address}"/>
                     <message>
