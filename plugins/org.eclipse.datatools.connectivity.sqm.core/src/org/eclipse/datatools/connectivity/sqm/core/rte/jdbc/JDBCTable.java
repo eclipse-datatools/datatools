@@ -343,7 +343,7 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
 					SQLTablesPackage.eINSTANCE.getTable().getInstanceClassName());
 		
-		if (loader != null) {
+		if ((loader != null) && (loader instanceof JDBCTableSuperTableLoader)) { 
 			JDBCTableSuperTableLoader tableSuperTableLoader = (JDBCTableSuperTableLoader) loader;
 			tableSuperTableLoader.setCatalogObject(this);
 			return tableSuperTableLoader;
