@@ -1,2 +1,2 @@
-plugin@org.eclipse.datatools.enablement.oda.ecore=v201008210922,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.incubator/plugins/org.eclipse.datatools.enablement.oda.ecore
+plugin@org.eclipse.datatools.enablement.oda.ecore=v201010090840,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.incubator/plugins/org.eclipse.datatools.enablement.oda.ecore
 plugin@org.eclipse.datatools.enablement.oda.ecore.ui=v201008210922,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.incubator/plugins/org.eclipse.datatools.enablement.oda.ecore.ui
