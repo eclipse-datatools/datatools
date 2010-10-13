@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: SybaseAuthorizationIdentifierImpl.java,v 1.1 2008/04/28 17:10:56 bfitzpatrick Exp $
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
@@ -42,7 +42,7 @@ public class SybaseAuthorizationIdentifierImpl extends AuthorizationIdentifierIm
 	 * @generated
 	 * @ordered
 	 */
-	protected SQLObject sqlContainer = null;
+	protected SQLObject sqlContainer;
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelPackage.java,v 1.8 2007/06/05 14:41:04 hcao Exp $
+ * $Id: SybaseasasqlmodelPackage.java,v 1.4 2008/03/27 07:35:07 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -125,6 +125,15 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	int SYBASE_ASA_DATABASE__COMMENTS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_DATABASE__EXTENSIONS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -405,6 +414,15 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	int SYBASE_ASA_TABLE__COMMENTS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_TABLE__EXTENSIONS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -613,6 +631,15 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	int SYBASE_ASA_FOREIGN_KEY__COMMENTS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FOREIGN_KEY__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_FOREIGN_KEY__EXTENSIONS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_FOREIGN_KEY__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -839,6 +866,15 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	int SYBASE_ASA_INDEX__COMMENTS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_INDEX__EXTENSIONS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_INDEX__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1020,6 +1056,15 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	int SYBASE_ASA_TEMP_TABLE__COMMENTS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_TEMP_TABLE__EXTENSIONS = SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelPackageImpl.java,v 1.8 2007/06/05 14:41:03 hcao Exp $
+ * $Id: SybaseasasqlmodelPackageImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -131,17 +131,7 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-		SQLSchemaPackage.eINSTANCE.eClass();
-		SQLConstraintsPackage.eINSTANCE.eClass();
-		SQLDataTypesPackage.eINSTANCE.eClass();
-		SQLExpressionsPackage.eINSTANCE.eClass();
-		SQLRoutinesPackage.eINSTANCE.eClass();
-		SQLStatementsPackage.eINSTANCE.eClass();
-		SQLTablesPackage.eINSTANCE.eClass();
-		SQLAccessControlPackage.eINSTANCE.eClass();
 		SybaseasabasesqlmodelPackage.eINSTANCE.eClass();
-		SybasesqlmodelPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theSybaseasasqlmodelPackage.createPackageContents();

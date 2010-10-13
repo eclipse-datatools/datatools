@@ -192,6 +192,7 @@
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable/remoteObjectLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable/existing"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumnCheckConstraint">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseColumnCheckConstraint/column"/>

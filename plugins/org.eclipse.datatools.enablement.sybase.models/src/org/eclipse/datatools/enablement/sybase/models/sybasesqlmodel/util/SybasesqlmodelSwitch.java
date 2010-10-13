@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: SybasesqlmodelSwitch.java,v 1.1 2008/04/28 17:10:56 bfitzpatrick Exp $
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.util;
 
@@ -196,13 +196,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Parameter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Parameter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Parameter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -211,13 +211,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Routine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Routine</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Routine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Routine</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -226,13 +226,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Base Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Base Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Base Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Base Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -241,13 +241,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase View Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase View Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase View Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase View Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -256,13 +256,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Authorization Identifier</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Authorization Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Authorization Identifier</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Authorization Identifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -271,13 +271,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Index Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Index Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Index Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Index Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -286,13 +286,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Authorized Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Authorized Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Authorized Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Authorized Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -301,13 +301,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Sybase Privilege</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sybase Privilege</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Sybase Privilege</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sybase Privilege</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -316,13 +316,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -331,13 +331,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -346,13 +346,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>SQL Object</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>SQL Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -361,13 +361,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Typed Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Typed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Typed Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Typed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -376,13 +376,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Parameter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Parameter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -391,13 +391,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Routine</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Routine</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Routine</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Routine</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -406,13 +406,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -421,13 +421,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Base Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Base Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Base Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Base Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -436,13 +436,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Derived Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Derived Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Derived Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Derived Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -451,13 +451,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>View Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>View Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>View Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>View Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -466,13 +466,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Authorization Identifier</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Authorization Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Authorization Identifier</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Authorization Identifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -481,13 +481,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Index Member</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Index Member</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Index Member</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Index Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -496,13 +496,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Privilege</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Privilege</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Privilege</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Privilege</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -511,13 +511,13 @@ public class SybasesqlmodelSwitch {
 	}
 
 	/**
-	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

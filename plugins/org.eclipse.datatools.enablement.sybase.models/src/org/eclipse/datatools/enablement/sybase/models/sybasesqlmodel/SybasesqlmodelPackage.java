@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: SybasesqlmodelPackage.java,v 1.1 2008/04/28 17:10:56 bfitzpatrick Exp $
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel;
 
@@ -133,6 +133,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYBASE_PARAMETER__COMMENTS = SQLRoutinesPackage.PARAMETER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_PARAMETER__EXTENSIONS = SQLRoutinesPackage.PARAMETER__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -296,6 +305,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYBASE_ROUTINE__COMMENTS = SQLRoutinesPackage.ROUTINE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ROUTINE__EXTENSIONS = SQLRoutinesPackage.ROUTINE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -497,6 +515,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	int SYBASE_BASE_TABLE__COMMENTS = SQLTablesPackage.BASE_TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_BASE_TABLE__EXTENSIONS = SQLTablesPackage.BASE_TABLE__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -685,6 +712,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYBASE_VIEW_TABLE__COMMENTS = SQLTablesPackage.VIEW_TABLE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_VIEW_TABLE__EXTENSIONS = SQLTablesPackage.VIEW_TABLE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -877,6 +913,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	int SYBASE_AUTHORIZATION_IDENTIFIER__COMMENTS = SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_AUTHORIZATION_IDENTIFIER__EXTENSIONS = SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1022,6 +1067,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	int SYBASE_INDEX_MEMBER__COMMENTS = SQLConstraintsPackage.INDEX_MEMBER__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_INDEX_MEMBER__EXTENSIONS = SQLConstraintsPackage.INDEX_MEMBER__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1131,6 +1185,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	int SYBASE_AUTHORIZED_OBJECT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_AUTHORIZED_OBJECT__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1211,6 +1274,15 @@ public interface SybasesqlmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYBASE_PRIVILEGE__COMMENTS = SQLAccessControlPackage.PRIVILEGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_PRIVILEGE__EXTENSIONS = SQLAccessControlPackage.PRIVILEGE__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.

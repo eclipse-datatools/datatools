@@ -36,9 +36,9 @@
       <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//ProxyTableExternalType/DIRECTORY"/>
     </genEnums>
     <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//AccessRuleType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/DEF"/>
       <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/AND"/>
       <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/OR"/>
-      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/DEF"/>
     </genEnums>
     <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//SybaseASECatalogType">
       <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//SybaseASECatalogType/PROXYCATALOG"/>
@@ -65,6 +65,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDatabase/webServices"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/webserviceApplicable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/sdsServer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/tempDBName"/>
       <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isComputedColApplicable"/>
       <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isPartitionsApplicable"/>
       <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isFunctionalBasedIndexMemApplicable"/>

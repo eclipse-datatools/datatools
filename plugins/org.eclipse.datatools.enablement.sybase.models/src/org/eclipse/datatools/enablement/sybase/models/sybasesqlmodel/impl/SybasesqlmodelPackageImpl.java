@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: SybasesqlmodelPackageImpl.java,v 1.1 2008/04/28 17:10:56 bfitzpatrick Exp $
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
@@ -170,7 +170,6 @@ public class SybasesqlmodelPackageImpl extends EPackageImpl implements Sybasesql
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 		SQLSchemaPackage.eINSTANCE.eClass();
 		SQLConstraintsPackage.eINSTANCE.eClass();
 		SQLDataTypesPackage.eINSTANCE.eClass();

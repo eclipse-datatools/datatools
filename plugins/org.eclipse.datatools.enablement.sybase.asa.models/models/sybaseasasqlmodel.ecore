@@ -23,7 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="virtual" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASATempTable" eSuperTypes="sybaseasabasesqlmodel.ecore#//SybaseASABaseTempTable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pctfree" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pctfree" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="-1"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -20,8 +20,8 @@
         eType="#//SybaseASEEncryptionKey" eOpposite="#//SybaseASEEncryptionKey/schema"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEDatabase" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Database ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
-    <eOperations name="isComputedColApplicable" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eOperations name="isPartitionsApplicable" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="isComputedColApplicable" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="isPartitionsApplicable" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eOperations name="isFunctionalBasedIndexMemApplicable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" upperBound="-1"
         eType="#//SybaseASEPredefinedDataType" eOpposite="#//SybaseASEPredefinedDataType/database"/>
@@ -37,7 +37,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sdsServer" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tempDBName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tempDBName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEWebService" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
@@ -45,7 +45,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="auth_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secure_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url_path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user_name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user_name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="statement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remarks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -63,10 +63,10 @@
         eType="#//DeviceItem"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="logDevices" upperBound="-1"
         eType="#//DeviceItem"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="override" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="override" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forLoad" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forProxyUpdate" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forLoad" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forProxyUpdate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="logIOSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="recoveryOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -111,7 +111,7 @@
         <details key="documentation" value="SQL scripts of creation statement of this Rule"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessRule" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessRule" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessType" eType="#//AccessRuleType"
         defaultValueLiteral="DEF"/>
   </eClassifiers>
@@ -165,11 +165,11 @@
         eOpposite="#//SybaseASEColumnCheckConstraint/column"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefault" eType="#//SybaseASEDefault"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundRule" eType="#//SybaseASERule"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialized" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialized" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="encryptionKey" eType="#//SybaseASEEncryptionKey"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindDefaultInFutureOnly"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hidden" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
@@ -186,41 +186,41 @@
         <details key="documentation" value="SybaseASEUniqueConstraint wrap SybaseASEIndex as reference to provide isClustered, segment, marrowsize, members and other index related info."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemGenedName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemGenedName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPrimaryKey" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/PrimaryKey">
     <eStructuralFeatures xsi:type="ecore:EReference" name="aseUniqueConstraint" lowerBound="1"
         eType="#//SybaseASEUniqueConstraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SegmentThreshold" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="procedureName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="procedureName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="freeSpace" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CacheInfo" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheStrategy" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheStrategy" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//SybaseASECache"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUserDefinedType" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DistinctUserDefinedType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefault" eType="#//SybaseASEDefault"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundRule" eType="#//SybaseASERule"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindDefaultInFutureOnly"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowNulls" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identity" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowNulls" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identity" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEEncryptionKey" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#//SybaseASESchema"
         eOpposite="#//SybaseASESchema/encryptionKeys"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LockPromotionInfo" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowLockPromotion" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowLockPromotion" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="LWM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="HWM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PCT" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -268,9 +268,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEWebServiceTable" eSuperTypes="#//SybaseASEProxyTable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="WSDLURI" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="WSDLURI" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASEBaseTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
     <eAnnotations source="GenModel">
@@ -285,7 +285,7 @@
         defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reservePageGap" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="-1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityGap" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityGap" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="segment" lowerBound="1"
         eType="#//SybaseASESegment"/>
@@ -299,7 +299,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lockPromotion" upperBound="-1"
         eType="#//LockPromotionInfo" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitions" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitions" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
         defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="textImageSegment" eType="#//SybaseASESegment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

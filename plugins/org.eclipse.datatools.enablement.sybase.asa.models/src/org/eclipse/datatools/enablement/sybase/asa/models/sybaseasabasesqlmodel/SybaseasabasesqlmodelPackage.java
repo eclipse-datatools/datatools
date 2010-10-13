@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasabasesqlmodelPackage.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
+ * $Id: SybaseasabasesqlmodelPackage.java,v 1.5 2009/04/24 07:03:26 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -134,6 +134,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_EVENT__COMMENTS = SQLSchemaPackage.EVENT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_EVENT__EXTENSIONS = SQLSchemaPackage.EVENT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,6 +315,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_DATABASE__COMMENTS = SQLSchemaPackage.DATABASE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_DATABASE__EXTENSIONS = SQLSchemaPackage.DATABASE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -747,6 +765,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_WEB_SERVICE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_WEB_SERVICE__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -936,6 +963,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_USER_DEFINED_TYPE__COMMENTS = SQLDataTypesPackage.DOMAIN__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_USER_DEFINED_TYPE__EXTENSIONS = SQLDataTypesPackage.DOMAIN__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1071,6 +1107,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__COMMENTS = SQLDataTypesPackage.PREDEFINED_DATA_TYPE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PREDEFINED_DATA_TYPE__EXTENSIONS = SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1161,6 +1206,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_TABLE__COMMENTS = SQLTablesPackage.PERSISTENT_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_TABLE__EXTENSIONS = SQLTablesPackage.PERSISTENT_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1350,6 +1404,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_COLUMN__COMMENTS = SQLTablesPackage.COLUMN__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_COLUMN__EXTENSIONS = SQLTablesPackage.COLUMN__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1548,6 +1611,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__COMMENTS = SQLConstraintsPackage.UNIQUE_CONSTRAINT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__EXTENSIONS = SQLConstraintsPackage.UNIQUE_CONSTRAINT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1692,6 +1764,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PRIMARY_KEY__COMMENTS = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PRIMARY_KEY__EXTENSIONS = SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1836,6 +1917,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_FOREIGN_KEY__COMMENTS = SQLConstraintsPackage.FOREIGN_KEY__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_FOREIGN_KEY__EXTENSIONS = SQLConstraintsPackage.FOREIGN_KEY__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2034,6 +2124,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_INDEX__COMMENTS = SQLConstraintsPackage.INDEX__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_INDEX__EXTENSIONS = SQLConstraintsPackage.INDEX__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2196,6 +2295,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_DB_SPACE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_DB_SPACE__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2286,6 +2394,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_VIEW_TABLE__COMMENTS = SybasesqlmodelPackage.SYBASE_VIEW_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_VIEW_TABLE__EXTENSIONS = SybasesqlmodelPackage.SYBASE_VIEW_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2484,6 +2601,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_FUNCTION__COMMENTS = SQLRoutinesPackage.USER_DEFINED_FUNCTION__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_FUNCTION__EXTENSIONS = SQLRoutinesPackage.USER_DEFINED_FUNCTION__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2754,6 +2880,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PROCEDURE__COMMENTS = SQLRoutinesPackage.PROCEDURE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PROCEDURE__EXTENSIONS = SQLRoutinesPackage.PROCEDURE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2979,6 +3114,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_TEMP_TABLE__COMMENTS = SQLTablesPackage.TEMPORARY_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_TEMP_TABLE__EXTENSIONS = SQLTablesPackage.TEMPORARY_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3186,6 +3330,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_TRIGGER__COMMENTS = SQLTablesPackage.TRIGGER__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_TRIGGER__EXTENSIONS = SQLTablesPackage.TRIGGER__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3429,6 +3582,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PROXY_TABLE__COMMENTS = SYBASE_ASA_BASE_TABLE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PROXY_TABLE__EXTENSIONS = SYBASE_ASA_BASE_TABLE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3636,6 +3798,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COMMENTS = SQLConstraintsPackage.CHECK_CONSTRAINT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__EXTENSIONS = SQLConstraintsPackage.CHECK_CONSTRAINT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3772,6 +3943,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SCHEDULE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEDULE__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3935,6 +4115,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_REMOTE_PROCEDURE__COMMENTS = SYBASE_ASA_BASE_PROCEDURE__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_REMOTE_PROCEDURE__EXTENSIONS = SYBASE_ASA_BASE_PROCEDURE__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4179,6 +4368,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_PARAMETER__COMMENTS = SQLRoutinesPackage.PARAMETER__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_PARAMETER__EXTENSIONS = SQLRoutinesPackage.PARAMETER__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4351,6 +4549,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	int SYBASE_ASA_BASE_GROUP__COMMENTS = SQLAccessControlPackage.USER__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_GROUP__EXTENSIONS = SQLAccessControlPackage.USER__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4524,6 +4731,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
     int SYBASE_ASA_BASE_USER__COMMENTS = SQLAccessControlPackage.USER__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_USER__EXTENSIONS = SQLAccessControlPackage.USER__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4666,6 +4882,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
 	 * @ordered
 	 */
     int SYBASE_ASA_BASE_SCHEMA__COMMENTS = SQLSchemaPackage.SCHEMA__COMMENTS;
+
+				/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYBASE_ASA_BASE_SCHEMA__EXTENSIONS = SQLSchemaPackage.SCHEMA__EXTENSIONS;
 
 				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
@@ -4904,6 +5129,15 @@ public interface SybaseasabasesqlmodelPackage extends EPackage
     int EVENT_CONDITION__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
     /**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_CONDITION__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+				/**
 	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

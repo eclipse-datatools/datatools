@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelAdapterFactory.java,v 1.6 2007/06/05 14:41:04 hcao Exp $
+ * $Id: SybaseasasqlmodelAdapterFactory.java,v 1.3 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.util;
 
@@ -89,7 +89,7 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	}
 
     /**
-	 * The switch the delegates to the <code>createXXX</code> methods.
+	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

@@ -53,6 +53,6 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybasePrivilege" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Privilege">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revoked" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="revoked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>
