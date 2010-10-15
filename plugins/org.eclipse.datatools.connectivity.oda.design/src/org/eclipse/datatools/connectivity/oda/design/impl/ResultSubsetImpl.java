@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSubsetImpl.java,v 1.1 2010/10/15 05:41:37 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -269,6 +269,28 @@ public class ResultSubsetImpl extends EObjectImpl implements ResultSubset
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.RESULT_SUBSET__COLUMN_IDENTIFIERS,
                     newColumnIdentifiers, newColumnIdentifiers ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSubset#addColumnIdentifier(java.lang.String)
+     * @generated NOT
+     */
+    public void addColumnIdentifier( String columnName )
+    {
+        addColumnIdentifier( columnName, 0 );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSubset#addColumnIdentifier(java.lang.String, int)
+     * @generated NOT
+     */
+    public void addColumnIdentifier( String columnName, int columnPosition )
+    {
+        DataElementIdentifier columnIdentifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+        columnIdentifier.setName( columnName );
+        if( columnPosition > 0 )
+            columnIdentifier.setPosition( columnPosition );
+        addColumnIdentifier( columnIdentifier );
     }
 
     /* (non-Javadoc)

@@ -28,6 +28,9 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
+import org.eclipse.datatools.connectivity.oda.design.AxisType;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.CustomData;
 import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -44,6 +47,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.oda.design.ResultSubset;
 import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
 import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
@@ -283,6 +287,29 @@ public class DesignUtilLoadSaveTest extends TestCase
         // test saving updated design session with the filter expression
         File tempOut = getTempOutFile();
         saveDesignSession( design, tempOut );
+    }
+    
+    public void testCreateAxisAttributesDesign()
+    {
+        File goldenFile = new File( getSampleDbTestFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
+        ColumnDefinition columnDefn =
+            dataSetDesign.getPrimaryResultSet().getResultSetColumns()
+                .getResultColumnDefinitions().get( 0 );
+        assertNotNull( columnDefn );
+        
+        AxisAttributes axisAttrs = DesignFactory.eINSTANCE.createAxisAttributes();
+        columnDefn.setMultiDimensionAttributes( axisAttrs );
+        axisAttrs.setAxisType( AxisType.DIMENSION_MEMBER_LITERAL );
+        axisAttrs.setRelatedColumns( DesignFactory.eINSTANCE.createResultSubset() );
+        ResultSubset relatedResultColumns = axisAttrs.getRelatedColumns();
+        relatedResultColumns.addColumnIdentifier( "column1" );
+        relatedResultColumns.addColumnIdentifier( null, 2 );
+        
+        assertEquals( 2, relatedResultColumns.getColumnIdentifiers().getIdentifiers().size() );
+        // check that null column name is automatically converted to empty string
+        assertEquals( "", relatedResultColumns.getColumnIdentifiers().getIdentifiers().get( 1 ).getName() ); //$NON-NLS-1$
     }
     
     public void testInputElementMigrateDefaultValues()

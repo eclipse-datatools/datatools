@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSubset.java,v 1.1 2010/10/15 05:41:37 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -128,9 +128,27 @@ public interface ResultSubset extends EObject
     void setColumnIdentifiers( DataElementIdentifiers value );
 
     /**
+     * Appends the specified column, identified by name only, to the end
+     * of the '<em><b>Column Identifiers</b></em>' containment reference list.
+     * @param columnName the name of column identifier to be appended
+     * @generated NOT
+     */
+    void addColumnIdentifier( String columnName );
+
+    /**
+     * Appends the specified column, identified by name and position, to the end
+     * of the '<em><b>Column Identifiers</b></em>' containment reference list.
+     * @param columnName the name of column identifier to be appended;
+     *          the name may be empty if the column can only be identified by position
+     * @param columnPosition the 1-based position of the column within a result set
+     * @generated NOT
+     */
+    void addColumnIdentifier( String columnName, int columnPosition );
+
+    /**
      * Appends the specified column identifier to the end
      * of the '<em><b>Column Identifiers</b></em>' containment reference list.
-     * @param columnIdentifier the column identifier to be inserted
+     * @param columnIdentifier the column identifier to be appended
      * @generated NOT
      */
     void addColumnIdentifier( DataElementIdentifier columnIdentifier );
