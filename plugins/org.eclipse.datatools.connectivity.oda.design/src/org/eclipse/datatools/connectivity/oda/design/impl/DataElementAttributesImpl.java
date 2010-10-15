@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.9 2007/05/09 10:15:19 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.10 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl#getNativeDataTypeCode <em>Native Data Type Code</em>}</li>
@@ -55,7 +57,18 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getIdentifier()
+     * @generated
+     * @ordered
+     * @since 3.3.2
+     */
+    protected DataElementIdentifier m_identifier;
 
     /**
      * @generated NOT
@@ -79,6 +92,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @see #getName()
      * @generated
      * @ordered
+     * @deprecated  since 3.3.2; replaced by m_identifier
      */
     protected String m_name = NAME_EDEFAULT;
 
@@ -99,6 +113,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @see #getPosition()
      * @generated
      * @ordered
+     * @deprecated  since 3.3.2; replaced by m_identifier
      */
     protected int m_position = POSITION_EDEFAULT;
 
@@ -258,6 +273,74 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         return DesignPackage.Literals.DATA_ELEMENT_ATTRIBUTES;
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DataElementIdentifier getIdentifier()
+    {
+        return m_identifier;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetIdentifier(
+            DataElementIdentifier newIdentifier, NotificationChain msgs )
+    {
+        DataElementIdentifier oldIdentifier = m_identifier;
+        m_identifier = newIdentifier;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER,
+                    oldIdentifier, newIdentifier );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setIdentifier( DataElementIdentifier newIdentifier )
+    {
+        if( newIdentifier != m_identifier )
+        {
+            NotificationChain msgs = null;
+            if( m_identifier != null )
+                msgs = ((InternalEObject) m_identifier)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER,
+                                null, msgs );
+            if( newIdentifier != null )
+                msgs = ((InternalEObject) newIdentifier)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER,
+                                null, msgs );
+            msgs = basicSetIdentifier( newIdentifier, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER,
+                    newIdentifier, newIdentifier ) );
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicablePrecision(int, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
      * @generated NOT
@@ -359,14 +442,43 @@ public class DataElementAttributesImpl extends EObjectImpl implements
             setUiHints( uiHints );
     }
 
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getName()
+     * @generated NOT
+     */
+    public String getName()
+    {
+        // the name attribute should now be stored in the associated identifier;
+        // for backward compatibility of previously persisted object,
+        // use the one in deprecated member variable, if exists
+        String elementName = getNameGen();
+        if( elementName != NAME_EDEFAULT )
+            return elementName;
+        return getNameInIdentifier();
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getName()
+    protected String getNameGen()
     {
         return m_name;
+    }
+
+    /**
+     * Returns the element name stored in the associated identifier.
+     * @generated NOT
+     */
+    protected String getNameInIdentifier()
+    {
+        DataElementIdentifier identifier = getIdentifier();
+        if( identifier == null )
+            return NAME_EDEFAULT;
+
+        return identifier.getName();
     }
 
     /*
@@ -376,9 +488,11 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      */
     public void setName( String newName )
     {
-        if( newName == null )
-            newName = EMPTY_STR; // cannot be null per design definition
-        setNameGen( newName );
+        // the name attribute should now be stored in the associated identifier;
+        // clear any existing value in the deprecated member variable
+        if( getNameGen() != NAME_EDEFAULT )
+            setNameGen( NAME_EDEFAULT );
+        setNameInIdentifier( newName );
     }
 
     /**
@@ -395,15 +509,59 @@ public class DataElementAttributesImpl extends EObjectImpl implements
                     DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME, oldName,
                     m_name ) );
     }
+    
+    /**
+     * Set the element name in the associated identifier.
+     * @generated NOT
+     */
+    protected void setNameInIdentifier( String newName )
+    {
+        DataElementIdentifier identifier = getIdentifier();
+        if( identifier == null )
+        {
+            identifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+            setIdentifier( identifier );
+        }
 
+        identifier.setName( newName );
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getPosition()
+     * @generated NOT
+     */
+    public int getPosition()
+    {
+        // the position attribute should now be stored in the associated identifier;
+        // for backward compatibility of previously persisted object,
+        // use the one in deprecated member variable, if exists
+        if( isSetPosition() )
+            return getPositionGen();
+        return getPositionInIdentifier();
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getPosition()
+    protected int getPositionGen()
     {
         return m_position;
+    }
+    
+    /**
+     * Returns the element position stored in the associated identifier.
+     * @generated NOT
+     */
+    protected int getPositionInIdentifier()
+    {
+        DataElementIdentifier identifier = getIdentifier();
+        if( identifier == null )
+            return POSITION_EDEFAULT;
+
+        return identifier.getPosition();
     }
 
     /* (non-Javadoc)
@@ -411,15 +569,12 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated NOT
      */
     public void setPosition( int newPosition )
-    {
-        setPositionGen( newPosition );
-
-        /* If a data element can only be identified by position, 
-         * its name may be empty.
-         * Set required name field to empty by default.
-         */
-        if( getName() == null ) // not yet set
-            setName( EMPTY_STR );
+    {   
+        // the position attribute should now be stored in the associated identifier;
+        // clear any existing value in the deprecated member variable
+        if( isSetPosition() )
+            unsetPosition();
+        setPositionInIdentifier( newPosition );
     }
 
     /**
@@ -437,6 +592,23 @@ public class DataElementAttributesImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION,
                     oldPosition, m_position, !oldPositionESet ) );
+    }
+    
+    /**
+     * Sets the element position in the associated identifier.
+     * @param newPosition
+     * @generated NOT
+     */
+    protected void setPositionInIdentifier( int newPosition )
+    {
+        DataElementIdentifier identifier = getIdentifier();
+        if( identifier == null )
+        {
+            identifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+            setIdentifier( identifier );
+        }
+
+        identifier.setPosition( newPosition );
     }
 
     /**
@@ -768,6 +940,8 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER:
+            return basicSetIdentifier( null, msgs );
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
             return basicSetUiHints( null, msgs );
         }
@@ -784,6 +958,8 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER:
+            return getIdentifier();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             return getName();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
@@ -812,6 +988,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER:
+            setIdentifier( (DataElementIdentifier) newValue );
+            return;
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             setName( (String) newValue );
             return;
@@ -847,6 +1026,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER:
+            setIdentifier( (DataElementIdentifier) null );
+            return;
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             setName( NAME_EDEFAULT );
             return;
@@ -882,6 +1064,8 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         switch( featureID )
         {
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__IDENTIFIER:
+            return m_identifier != null;
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
                     .equals( m_name );

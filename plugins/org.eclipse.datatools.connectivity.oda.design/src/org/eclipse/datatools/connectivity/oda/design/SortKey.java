@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: SortKey.java,v 1.3 2009/04/30 06:04:18 lchan Exp $
+ * $Id: SortKey.java,v 1.4 2010/03/17 00:34:13 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnIdentifier <em>Column Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getSortDirection <em>Sort Direction</em>}</li>
@@ -49,7 +50,35 @@ public interface SortKey extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2009, 2010 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Returns the value of the '<em><b>Column Identifier</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Uniquely identifies a result set column by name and/or position.  It must reference one of the columns associated with the same ResultSetDefinition.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Column Identifier</em>' containment reference.
+     * @see #setColumnIdentifier(DataElementIdentifier)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getSortKey_ColumnIdentifier()
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='columnIdentifier' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.3.2
+     */
+    DataElementIdentifier getColumnIdentifier();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnIdentifier <em>Column Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Column Identifier</em>' containment reference.
+     * @see #getColumnIdentifier()
+     * @generated
+     * @since 3.3.2
+     */
+    void setColumnIdentifier( DataElementIdentifier value );
 
     /**
      * Returns the value of the '<em><b>Column Name</b></em>' attribute.

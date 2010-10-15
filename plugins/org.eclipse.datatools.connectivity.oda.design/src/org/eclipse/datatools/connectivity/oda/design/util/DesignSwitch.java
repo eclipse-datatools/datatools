@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.9 2009/10/23 20:17:26 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.10 2010/06/10 23:40:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -186,6 +186,22 @@ public class DesignSwitch<T>
         {
             DataElementAttributes dataElementAttributes = (DataElementAttributes) theEObject;
             T result = caseDataElementAttributes( dataElementAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_ELEMENT_IDENTIFIER:
+        {
+            DataElementIdentifier dataElementIdentifier = (DataElementIdentifier) theEObject;
+            T result = caseDataElementIdentifier( dataElementIdentifier );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_ELEMENT_IDENTIFIERS:
+        {
+            DataElementIdentifiers dataElementIdentifiers = (DataElementIdentifiers) theEObject;
+            T result = caseDataElementIdentifiers( dataElementIdentifiers );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -510,6 +526,14 @@ public class DesignSwitch<T>
                 result = defaultCase( theEObject );
             return result;
         }
+        case DesignPackage.RESULT_SUBSET:
+        {
+            ResultSubset resultSubset = (ResultSubset) theEObject;
+            T result = caseResultSubset( resultSubset );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
         case DesignPackage.SCALAR_VALUE_CHOICES:
         {
             ScalarValueChoices scalarValueChoices = (ScalarValueChoices) theEObject;
@@ -703,6 +727,38 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseDataElementAttributes( DataElementAttributes object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Data Element Identifier</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Data Element Identifier</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDataElementIdentifier( DataElementIdentifier object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Data Element Identifiers</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Data Element Identifiers</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDataElementIdentifiers( DataElementIdentifiers object )
     {
         return null;
     }
@@ -1328,6 +1384,22 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseResultSets( ResultSets object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Subset</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Subset</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultSubset( ResultSubset object )
     {
         return null;
     }

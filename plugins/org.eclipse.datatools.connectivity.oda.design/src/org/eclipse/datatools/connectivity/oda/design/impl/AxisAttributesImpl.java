@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,15 +11,18 @@
  *  
  *************************************************************************
  *
- * $Id: AxisAttributesImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
+ * $Id: AxisAttributesImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.ResultSubset;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -32,6 +35,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl#getAxisType <em>Axis Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl#isOnColumnLayout <em>On Column Layout</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl#getRelatedColumns <em>Related Columns</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +48,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getAxisType() <em>Axis Type</em>}' attribute.
@@ -103,6 +107,17 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * @ordered
      */
     protected boolean m_onColumnLayoutESet;
+
+    /**
+     * The cached value of the '{@link #getRelatedColumns() <em>Related Columns</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getRelatedColumns()
+     * @generated
+     * @ordered
+     * @since 3.3.2
+     */
+    protected ResultSubset m_relatedColumns;
 
     /**
      * <!-- begin-user-doc -->
@@ -239,6 +254,91 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
+    public ResultSubset getRelatedColumns()
+    {
+        return m_relatedColumns;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetRelatedColumns(
+            ResultSubset newRelatedColumns, NotificationChain msgs )
+    {
+        ResultSubset oldRelatedColumns = m_relatedColumns;
+        m_relatedColumns = newRelatedColumns;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS,
+                    oldRelatedColumns, newRelatedColumns );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setRelatedColumns( ResultSubset newRelatedColumns )
+    {
+        if( newRelatedColumns != m_relatedColumns )
+        {
+            NotificationChain msgs = null;
+            if( m_relatedColumns != null )
+                msgs = ((InternalEObject) m_relatedColumns)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS,
+                                null, msgs );
+            if( newRelatedColumns != null )
+                msgs = ((InternalEObject) newRelatedColumns)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS,
+                                null, msgs );
+            msgs = basicSetRelatedColumns( newRelatedColumns, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS,
+                    newRelatedColumns, newRelatedColumns ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS:
+            return basicSetRelatedColumns( null, msgs );
+        }
+        return super.eInverseRemove( otherEnd, featureID, msgs );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
@@ -248,6 +348,8 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
             return getAxisType();
         case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
             return isOnColumnLayout() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS:
+            return getRelatedColumns();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -267,6 +369,9 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
             return;
         case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
             setOnColumnLayout( ((Boolean) newValue).booleanValue() );
+            return;
+        case DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS:
+            setRelatedColumns( (ResultSubset) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -288,6 +393,9 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
         case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
             unsetOnColumnLayout();
             return;
+        case DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS:
+            setRelatedColumns( (ResultSubset) null );
+            return;
         }
         super.eUnset( featureID );
     }
@@ -306,6 +414,8 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
             return isSetAxisType();
         case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
             return isSetOnColumnLayout();
+        case DesignPackage.AXIS_ATTRIBUTES__RELATED_COLUMNS:
+            return m_relatedColumns != null;
         }
         return super.eIsSet( featureID );
     }

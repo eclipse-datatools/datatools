@@ -299,8 +299,9 @@ public class DesignUtilLoadSaveTest extends TestCase
             String existingDefaultValue = aParamDefn.getDefaultScalarValue();
             assertEquals( existingDefaultValue, inputElementAttrs.getDefaultScalarValue() );
             
-            assertEquals( 1, aParamDefn.getDefaultValueCount() );
-            assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
+            int initialDefaultValueCount = 4;
+            assertEquals( initialDefaultValueCount, aParamDefn.getDefaultValueCount() );
+            assertEquals( initialDefaultValueCount, inputElementAttrs.getDefaultValueCount() );
             
             // test default value accessors in ParameterDefinition
             Date defaultDateValue = null;
@@ -313,7 +314,7 @@ public class DesignUtilLoadSaveTest extends TestCase
                 fail();
             }
             aParamDefn.addDefaultValue( defaultDateValue );
-            int defaultValuePos = 2;
+            int defaultValuePos = initialDefaultValueCount + 1;
             assertEquals( defaultValuePos, aParamDefn.getDefaultValueCount() );
             assertEquals( defaultDateValue, aParamDefn.getDefaultValues().getValues().get( defaultValuePos-1 ));
             
@@ -353,7 +354,7 @@ public class DesignUtilLoadSaveTest extends TestCase
         {
             InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
             
-            assertEquals( 4, inputElementAttrs.getDefaultValueCount() );
+            assertEquals( 7, inputElementAttrs.getDefaultValueCount() );
             
             String newDefaultValue = "new default value";
             inputElementAttrs.setDefaultScalarValue( newDefaultValue );

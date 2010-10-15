@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.8 2009/10/23 20:17:26 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.9 2010/06/10 23:40:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -147,6 +147,18 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         public Adapter caseDataElementAttributes( DataElementAttributes object )
         {
             return createDataElementAttributesAdapter();
+        }
+
+        @Override
+        public Adapter caseDataElementIdentifier( DataElementIdentifier object )
+        {
+            return createDataElementIdentifierAdapter();
+        }
+
+        @Override
+        public Adapter caseDataElementIdentifiers( DataElementIdentifiers object )
+        {
+            return createDataElementIdentifiersAdapter();
         }
 
         @Override
@@ -389,6 +401,12 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         }
 
         @Override
+        public Adapter caseResultSubset( ResultSubset object )
+        {
+            return createResultSubsetAdapter();
+        }
+
+        @Override
         public Adapter caseScalarValueChoices( ScalarValueChoices object )
         {
             return createScalarValueChoicesAdapter();
@@ -576,6 +594,36 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createDataElementAttributesAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier <em>Data Element Identifier</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier
+     * @generated
+     */
+    public Adapter createDataElementIdentifierAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DataElementIdentifiers <em>Data Element Identifiers</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementIdentifiers
+     * @generated
+     */
+    public Adapter createDataElementIdentifiersAdapter()
     {
         return null;
     }
@@ -1161,6 +1209,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createResultSetsAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSubset <em>Result Subset</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSubset
+     * @generated
+     */
+    public Adapter createResultSubsetAdapter()
     {
         return null;
     }

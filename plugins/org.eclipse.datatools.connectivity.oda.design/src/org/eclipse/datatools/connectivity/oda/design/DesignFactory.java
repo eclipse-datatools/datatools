@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.12 2009/10/23 20:17:26 lchan Exp $
+ * $Id: DesignFactory.java,v 1.13 2010/06/10 23:40:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -123,6 +123,24 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     DataElementAttributes createDataElementAttributes();
+
+    /**
+     * Returns a new object of class '<em>Data Element Identifier</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Data Element Identifier</em>'.
+     * @generated
+     */
+    DataElementIdentifier createDataElementIdentifier();
+
+    /**
+     * Returns a new object of class '<em>Data Element Identifiers</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Data Element Identifiers</em>'.
+     * @generated
+     */
+    DataElementIdentifiers createDataElementIdentifiers();
 
     /**
      * Returns a new object of class '<em>Data Element UI Hints</em>'.
@@ -465,6 +483,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     ResultSets createResultSets();
+
+    /**
+     * Returns a new object of class '<em>Result Subset</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Result Subset</em>'.
+     * @generated
+     */
+    ResultSubset createResultSubset();
 
     /**
      * Returns a new object of class '<em>Scalar Value Choices</em>'.

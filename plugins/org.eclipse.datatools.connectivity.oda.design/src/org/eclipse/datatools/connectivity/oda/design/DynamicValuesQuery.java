@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DynamicValuesQuery.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DynamicValuesQuery.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getDataSetDesign <em>Data Set Design</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getValueColumnIdentifier <em>Value Column Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getValueColumn <em>Value Column</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getDisplayNameColumn <em>Display Name Column</em>}</li>
  * </ul>
@@ -46,7 +47,7 @@ public interface DynamicValuesQuery extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Data Set Design</b></em>' containment reference.
@@ -87,7 +88,7 @@ public interface DynamicValuesQuery extends EObject
      * @see #unsetEnabled()
      * @see #setEnabled(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDynamicValuesQuery_Enabled()
-     * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='enabled' namespace='##targetNamespace'"
      * @generated
      */
@@ -129,6 +130,34 @@ public interface DynamicValuesQuery extends EObject
     boolean isSetEnabled();
 
     /**
+     * Returns the value of the '<em><b>Value Column Identifier</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Uniquely identifies the result set column whose values are retrieved as the value choices.  It must be one of the columns defined in the data set design's primary result set.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Value Column Identifier</em>' containment reference.
+     * @see #setValueColumnIdentifier(DataElementIdentifier)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDynamicValuesQuery_ValueColumnIdentifier()
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='valueColumnIdentifier' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.3.2
+     */
+    DataElementIdentifier getValueColumnIdentifier();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getValueColumnIdentifier <em>Value Column Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value Column Identifier</em>' containment reference.
+     * @see #getValueColumnIdentifier()
+     * @generated
+     * @since 3.3.2
+     */
+    void setValueColumnIdentifier( DataElementIdentifier value );
+
+    /**
      * Returns the value of the '<em><b>Value Column</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -138,7 +167,7 @@ public interface DynamicValuesQuery extends EObject
      * @return the value of the '<em>Value Column</em>' attribute.
      * @see #setValueColumn(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDynamicValuesQuery_ValueColumn()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='valueColumn' namespace='##targetNamespace'"
      * @generated
      */
@@ -164,7 +193,7 @@ public interface DynamicValuesQuery extends EObject
      * @return the value of the '<em>Display Name Column</em>' attribute.
      * @see #setDisplayNameColumn(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDynamicValuesQuery_DisplayNameColumn()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='displayNameColumn' namespace='##targetNamespace'"
      * @generated
      */

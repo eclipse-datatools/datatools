@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,11 +11,13 @@
  *  
  *************************************************************************
  *
- * $Id: DynamicValuesQueryImpl.java,v 1.2 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DynamicValuesQueryImpl.java,v 1.3 2009/04/24 03:20:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.emf.common.notify.Notification;
@@ -34,6 +36,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl#getDataSetDesign <em>Data Set Design</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl#isEnabled <em>Enabled</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl#getValueColumnIdentifier <em>Value Column Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl#getValueColumn <em>Value Column</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl#getDisplayNameColumn <em>Display Name Column</em>}</li>
  * </ul>
@@ -49,7 +52,7 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getDataSetDesign() <em>Data Set Design</em>}' containment reference.
@@ -91,6 +94,17 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
     protected boolean m_enabledESet;
 
     /**
+     * The cached value of the '{@link #getValueColumnIdentifier() <em>Value Column Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getValueColumnIdentifier()
+     * @generated
+     * @ordered
+     * @since 3.3.2
+     */
+    protected DataElementIdentifier m_valueColumnIdentifier;
+
+    /**
      * The default value of the '{@link #getValueColumn() <em>Value Column</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -107,6 +121,7 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
      * @see #getValueColumn()
      * @generated
      * @ordered
+     * @deprecated  since 3.3.2; replaced by m_valueColumnIdentifier
      */
     protected String m_valueColumn = VALUE_COLUMN_EDEFAULT;
 
@@ -278,9 +293,9 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getValueColumn()
+    public DataElementIdentifier getValueColumnIdentifier()
     {
-        return m_valueColumn;
+        return m_valueColumnIdentifier;
     }
 
     /**
@@ -288,7 +303,124 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public NotificationChain basicSetValueColumnIdentifier(
+            DataElementIdentifier newValueColumnIdentifier,
+            NotificationChain msgs )
+    {
+        DataElementIdentifier oldValueColumnIdentifier = m_valueColumnIdentifier;
+        m_valueColumnIdentifier = newValueColumnIdentifier;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER,
+                    oldValueColumnIdentifier, newValueColumnIdentifier );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setValueColumnIdentifier(
+            DataElementIdentifier newValueColumnIdentifier )
+    {
+        if( newValueColumnIdentifier != m_valueColumnIdentifier )
+        {
+            NotificationChain msgs = null;
+            if( m_valueColumnIdentifier != null )
+                msgs = ((InternalEObject) m_valueColumnIdentifier)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER,
+                                null, msgs );
+            if( newValueColumnIdentifier != null )
+                msgs = ((InternalEObject) newValueColumnIdentifier)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER,
+                                null, msgs );
+            msgs = basicSetValueColumnIdentifier( newValueColumnIdentifier,
+                    msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER,
+                    newValueColumnIdentifier, newValueColumnIdentifier ) );
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#getValueColumn()
+     * @generated NOT
+     */
+    public String getValueColumn()
+    {
+        // the name attribute should now be stored in the associated identifier;
+        // for backward compatibility of previously persisted object,
+        // use the one in deprecated member variable, if exists
+        String elementName = getValueColumnGen();
+        if( elementName != VALUE_COLUMN_EDEFAULT )
+            return elementName;
+        return getValueColumnNameInIdentifier();
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected String getValueColumnGen()
+    {
+        return m_valueColumn;
+    }
+
+    /**
+     * Returns the value column name stored in the associated identifier.
+     * @generated NOT
+     */
+    protected String getValueColumnNameInIdentifier()
+    {
+        DataElementIdentifier identifier = getValueColumnIdentifier();
+        if( identifier == null )
+            return VALUE_COLUMN_EDEFAULT;
+
+        return identifier.getName();
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery#setValueColumn(java.lang.String)
+     * @generated NOT
+     */
     public void setValueColumn( String newValueColumn )
+    {
+        // the name attribute should now be stored in the associated identifier;
+        // clear any existing value in the deprecated member variable
+        if( getValueColumnGen() != VALUE_COLUMN_EDEFAULT )
+            setValueColumnGen( VALUE_COLUMN_EDEFAULT );
+        setValueColumnNameInIdentifier( newValueColumn );
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void setValueColumnGen( String newValueColumn )
     {
         String oldValueColumn = m_valueColumn;
         m_valueColumn = newValueColumn;
@@ -296,6 +428,22 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN,
                     oldValueColumn, m_valueColumn ) );
+    }
+    
+    /**
+     * Set the value column name in the associated identifier.
+     * @generated NOT
+     */
+    protected void setValueColumnNameInIdentifier( String newValueColumn )
+    {
+        DataElementIdentifier identifier = getValueColumnIdentifier();
+        if( identifier == null )
+        {
+            identifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+            setValueColumnIdentifier( identifier );
+        }
+
+        identifier.setName( newValueColumn );
     }
 
     /**
@@ -336,6 +484,8 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
         {
         case DesignPackage.DYNAMIC_VALUES_QUERY__DATA_SET_DESIGN:
             return basicSetDataSetDesign( null, msgs );
+        case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER:
+            return basicSetValueColumnIdentifier( null, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -354,6 +504,8 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
             return getDataSetDesign();
         case DesignPackage.DYNAMIC_VALUES_QUERY__ENABLED:
             return isEnabled() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER:
+            return getValueColumnIdentifier();
         case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN:
             return getValueColumn();
         case DesignPackage.DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN:
@@ -377,6 +529,9 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
             return;
         case DesignPackage.DYNAMIC_VALUES_QUERY__ENABLED:
             setEnabled( ((Boolean) newValue).booleanValue() );
+            return;
+        case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER:
+            setValueColumnIdentifier( (DataElementIdentifier) newValue );
             return;
         case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN:
             setValueColumn( (String) newValue );
@@ -404,6 +559,9 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
         case DesignPackage.DYNAMIC_VALUES_QUERY__ENABLED:
             unsetEnabled();
             return;
+        case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER:
+            setValueColumnIdentifier( (DataElementIdentifier) null );
+            return;
         case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN:
             setValueColumn( VALUE_COLUMN_EDEFAULT );
             return;
@@ -428,6 +586,8 @@ public class DynamicValuesQueryImpl extends EObjectImpl implements
             return m_dataSetDesign != null;
         case DesignPackage.DYNAMIC_VALUES_QUERY__ENABLED:
             return isSetEnabled();
+        case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER:
+            return m_valueColumnIdentifier != null;
         case DesignPackage.DYNAMIC_VALUES_QUERY__VALUE_COLUMN:
             return VALUE_COLUMN_EDEFAULT == null ? m_valueColumn != null
                     : !VALUE_COLUMN_EDEFAULT.equals( m_valueColumn );

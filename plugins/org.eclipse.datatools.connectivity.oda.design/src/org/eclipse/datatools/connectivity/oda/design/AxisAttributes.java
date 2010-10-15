@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2009 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: AxisAttributes.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
+ * $Id: AxisAttributes.java,v 1.3 2009/07/23 21:43:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes#getAxisType <em>Axis Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes#isOnColumnLayout <em>On Column Layout</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes#getRelatedColumns <em>Related Columns</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,7 +45,7 @@ public interface AxisAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Axis Type</b></em>' attribute.
@@ -156,5 +157,33 @@ public interface AxisAttributes extends EObject
      * @generated
      */
     boolean isSetOnColumnLayout();
+
+    /**
+     * Returns the value of the '<em><b>Related Columns</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The result set column(s) that are related to this data element.  For example, for a dimension member AxisType element, its related column(s) are those modeled to be its attribute. Multiple related columns may be combined to be a compounded attribute of a dimension.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Related Columns</em>' containment reference.
+     * @see #setRelatedColumns(ResultSubset)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes_RelatedColumns()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='relatedColumns' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.3.2
+     */
+    ResultSubset getRelatedColumns();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes#getRelatedColumns <em>Related Columns</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Related Columns</em>' containment reference.
+     * @see #getRelatedColumns()
+     * @generated
+     * @since 3.3.2
+     */
+    void setRelatedColumns( ResultSubset value );
 
 } // AxisAttributes

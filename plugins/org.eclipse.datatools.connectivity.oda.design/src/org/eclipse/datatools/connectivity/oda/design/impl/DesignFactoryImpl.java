@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.14 2009/10/23 20:17:26 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.15 2010/06/10 23:40:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -101,6 +101,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createDataAccessDesign();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
             return createDataElementAttributes();
+        case DesignPackage.DATA_ELEMENT_IDENTIFIER:
+            return createDataElementIdentifier();
+        case DesignPackage.DATA_ELEMENT_IDENTIFIERS:
+            return createDataElementIdentifiers();
         case DesignPackage.DATA_ELEMENT_UI_HINTS:
             return createDataElementUIHints();
         case DesignPackage.DATA_SET_DESIGN:
@@ -177,6 +181,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createResultSetDefinition();
         case DesignPackage.RESULT_SETS:
             return createResultSets();
+        case DesignPackage.RESULT_SUBSET:
+            return createResultSubset();
         case DesignPackage.SCALAR_VALUE_CHOICES:
             return createScalarValueChoices();
         case DesignPackage.SCALAR_VALUE_DEFINITION:
@@ -450,6 +456,28 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         DataElementAttributesImpl dataElementAttributes = new DataElementAttributesImpl();
         return dataElementAttributes;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DataElementIdentifier createDataElementIdentifier()
+    {
+        DataElementIdentifierImpl dataElementIdentifier = new DataElementIdentifierImpl();
+        return dataElementIdentifier;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DataElementIdentifiers createDataElementIdentifiers()
+    {
+        DataElementIdentifiersImpl dataElementIdentifiers = new DataElementIdentifiersImpl();
+        return dataElementIdentifiers;
     }
 
     /**
@@ -868,6 +896,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         ResultSetsImpl resultSets = new ResultSetsImpl();
         return resultSets;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResultSubset createResultSubset()
+    {
+        ResultSubsetImpl resultSubset = new ResultSubsetImpl();
+        return resultSubset;
     }
 
     /**

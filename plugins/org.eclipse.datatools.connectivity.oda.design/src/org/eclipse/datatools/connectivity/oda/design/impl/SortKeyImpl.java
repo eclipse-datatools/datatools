@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,16 +11,20 @@
  *  
  *************************************************************************
  *
- * $Id: SortKeyImpl.java,v 1.3 2009/04/30 06:04:18 lchan Exp $
+ * $Id: SortKeyImpl.java,v 1.4 2010/03/17 00:34:13 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.NullOrderingType;
 import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
 import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -31,6 +35,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnIdentifier <em>Column Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnName <em>Column Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getColumnPosition <em>Column Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl#getSortDirection <em>Sort Direction</em>}</li>
@@ -49,7 +54,18 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2009, 2010 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * The cached value of the '{@link #getColumnIdentifier() <em>Column Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getColumnIdentifier()
+     * @generated
+     * @ordered
+     * @since 3.3.2
+     */
+    protected DataElementIdentifier m_columnIdentifier;
 
     /**
      * @generated NOT
@@ -73,6 +89,7 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * @see #getColumnName()
      * @generated
      * @ordered
+     * @deprecated  since 3.3.2; replaced by m_columnIdentifier
      */
     protected String m_columnName = COLUMN_NAME_EDEFAULT;
 
@@ -93,6 +110,7 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * @see #getColumnPosition()
      * @generated
      * @ordered
+     * @deprecated  since 3.3.2; replaced by m_columnIdentifier
      */
     protected int m_columnPosition = COLUMN_POSITION_EDEFAULT;
 
@@ -218,9 +236,102 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * <!-- end-user-doc -->
      * @generated
      */
+    public DataElementIdentifier getColumnIdentifier()
+    {
+        return m_columnIdentifier;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetColumnIdentifier(
+            DataElementIdentifier newColumnIdentifier, NotificationChain msgs )
+    {
+        DataElementIdentifier oldColumnIdentifier = m_columnIdentifier;
+        m_columnIdentifier = newColumnIdentifier;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.SORT_KEY__COLUMN_IDENTIFIER,
+                    oldColumnIdentifier, newColumnIdentifier );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setColumnIdentifier( DataElementIdentifier newColumnIdentifier )
+    {
+        if( newColumnIdentifier != m_columnIdentifier )
+        {
+            NotificationChain msgs = null;
+            if( m_columnIdentifier != null )
+                msgs = ((InternalEObject) m_columnIdentifier).eInverseRemove(
+                        this, EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.SORT_KEY__COLUMN_IDENTIFIER,
+                        null, msgs );
+            if( newColumnIdentifier != null )
+                msgs = ((InternalEObject) newColumnIdentifier).eInverseAdd(
+                        this, EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.SORT_KEY__COLUMN_IDENTIFIER,
+                        null, msgs );
+            msgs = basicSetColumnIdentifier( newColumnIdentifier, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.SORT_KEY__COLUMN_IDENTIFIER,
+                    newColumnIdentifier, newColumnIdentifier ) );
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName()
+     * @generated NOT
+     */
     public String getColumnName()
     {
+        // the name attribute should now be stored in the associated identifier;
+        // for backward compatibility of previously persisted object,
+        // use the one in deprecated member variable, if exists
+        String elementName = getColumnNameGen();
+        if( elementName != COLUMN_NAME_EDEFAULT )
+            return elementName;
+        return getColumnNameInIdentifier();
+    }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected String getColumnNameGen()
+    {
         return m_columnName;
+    }
+
+    /**
+     * Returns the column name stored in the associated identifier.
+     * @generated NOT
+     */
+    protected String getColumnNameInIdentifier()
+    {
+        DataElementIdentifier identifier = getColumnIdentifier();
+        if( identifier == null )
+            return COLUMN_NAME_EDEFAULT;
+
+        return identifier.getName();
     }
 
     /**
@@ -244,9 +355,42 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      */
     public void setColumnName( String newColumnName )
     {
-        if( newColumnName == null )
-            newColumnName = EMPTY_STR; // cannot be null per design definition
-        setColumnNameGen( newColumnName );
+        // the name attribute should now be stored in the associated identifier;
+        // clear any existing value in the deprecated member variable
+        if( getColumnNameGen() != COLUMN_NAME_EDEFAULT )
+            setColumnNameGen( COLUMN_NAME_EDEFAULT );
+        setColumnNameInIdentifier( newColumnName );
+    }
+    
+    /**
+     * Set the column name in the associated identifier.
+     * @generated NOT
+     */
+    protected void setColumnNameInIdentifier( String newName )
+    {
+        DataElementIdentifier identifier = getColumnIdentifier();
+        if( identifier == null )
+        {
+            identifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+            setColumnIdentifier( identifier );
+        }
+
+        identifier.setName( newName );
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition()
+     * @generated NOT
+     */
+    public int getColumnPosition()
+    {
+        // the position attribute should now be stored in the associated identifier;
+        // for backward compatibility of previously persisted object,
+        // use the one in deprecated member variable, if exists
+        if( isSetColumnPosition() )
+            return getColumnPositionGen();
+        return getColumnPositionInIdentifier();
     }
 
     /**
@@ -254,9 +398,22 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getColumnPosition()
+    protected int getColumnPositionGen()
     {
         return m_columnPosition;
+    }
+    
+    /**
+     * Returns the column position stored in the associated identifier.
+     * @generated NOT
+     */
+    protected int getColumnPositionInIdentifier()
+    {
+        DataElementIdentifier identifier = getColumnIdentifier();
+        if( identifier == null )
+            return COLUMN_POSITION_EDEFAULT;
+
+        return identifier.getPosition();
     }
 
     /**
@@ -282,14 +439,28 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      */
     public void setColumnPosition( int newColumnPosition )
     {
-        setColumnPositionGen( newColumnPosition );
+        // the position attribute should now be stored in the associated identifier;
+        // clear any existing value in the deprecated member variable
+        if( isSetColumnPosition() )
+            unsetColumnPosition();
+        setColumnPositionInIdentifier( newColumnPosition );
+    }
+    
+    /**
+     * Sets the column position in the associated identifier.
+     * @param newPosition
+     * @generated NOT
+     */
+    protected void setColumnPositionInIdentifier( int newPosition )
+    {
+        DataElementIdentifier identifier = getColumnIdentifier();
+        if( identifier == null )
+        {
+            identifier = DesignFactory.eINSTANCE.createDataElementIdentifier();
+            setColumnIdentifier( identifier );
+        }
 
-        /* If a column can only be identified by position, 
-         * its name may be empty.
-         * Set required name field to empty by default.
-         */
-        if( getColumnName() == null ) // not yet set
-            setColumnName( EMPTY_STR );
+        identifier.setPosition( newPosition );
     }
 
     /**
@@ -491,10 +662,29 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
      * @generated
      */
     @Override
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.SORT_KEY__COLUMN_IDENTIFIER:
+            return basicSetColumnIdentifier( null, msgs );
+        }
+        return super.eInverseRemove( otherEnd, featureID, msgs );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
         {
+        case DesignPackage.SORT_KEY__COLUMN_IDENTIFIER:
+            return getColumnIdentifier();
         case DesignPackage.SORT_KEY__COLUMN_NAME:
             return getColumnName();
         case DesignPackage.SORT_KEY__COLUMN_POSITION:
@@ -519,6 +709,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
     {
         switch( featureID )
         {
+        case DesignPackage.SORT_KEY__COLUMN_IDENTIFIER:
+            setColumnIdentifier( (DataElementIdentifier) newValue );
+            return;
         case DesignPackage.SORT_KEY__COLUMN_NAME:
             setColumnName( (String) newValue );
             return;
@@ -548,6 +741,9 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
     {
         switch( featureID )
         {
+        case DesignPackage.SORT_KEY__COLUMN_IDENTIFIER:
+            setColumnIdentifier( (DataElementIdentifier) null );
+            return;
         case DesignPackage.SORT_KEY__COLUMN_NAME:
             setColumnName( COLUMN_NAME_EDEFAULT );
             return;
@@ -577,6 +773,8 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
     {
         switch( featureID )
         {
+        case DesignPackage.SORT_KEY__COLUMN_IDENTIFIER:
+            return m_columnIdentifier != null;
         case DesignPackage.SORT_KEY__COLUMN_NAME:
             return COLUMN_NAME_EDEFAULT == null ? m_columnName != null
                     : !COLUMN_NAME_EDEFAULT.equals( m_columnName );

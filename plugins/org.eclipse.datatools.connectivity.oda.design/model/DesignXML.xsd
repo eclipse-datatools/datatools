@@ -180,6 +180,13 @@
     <xsd:annotation>
       <xsd:documentation>Multi-dimensional attributes of a data element, such as a result set column.</xsd:documentation>
     </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="relatedColumns" type="design:ResultSubset">
+        <xsd:annotation>
+          <xsd:documentation>The result set column(s) that are related to this data element.  For example, for a dimension member AxisType element, its related column(s) are those modeled to be its attribute. Multiple related columns may be combined to be a compounded attribute of a dimension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
     <xsd:attribute default="Measure" name="axisType" type="design:AxisType">
       <xsd:annotation>
         <xsd:documentation>The axis type of the data element.  It provides design hints to a consumer application on how the column data should be analyzed, or applied in a multi-dimensional view.</xsd:documentation>
@@ -293,16 +300,21 @@
       <xsd:documentation>Common attributes for a data element.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="identifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies this data element by name and/or position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element maxOccurs="1" minOccurs="0" name="uiHints" type="design:DataElementUIHints"/>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
       <xsd:annotation>
-        <xsd:documentation>A name that uniquely identifies this data element.  If a data element can only be identified by position, this name may be empty.</xsd:documentation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "identifier".  A name that uniquely identifies this data element.  If a data element can only be identified by position, this name may be empty.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="position" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "identifier". The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute default="0" name="nativeDataTypeCode" type="xsd:string">
@@ -325,6 +337,39 @@
   <xsd:element name="DataElementAttributes" type="design:DataElementAttributes">
     <xsd:annotation>
       <xsd:documentation>Common attributes for a data element.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementIdentifier">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a data element by name and/or position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>A name that uniquely identifies a data element.  If a data element can only be identified by position, this name may be empty.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="position" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataElementIdentifier" type="design:DataElementIdentifier">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a data element by name and/or position.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>A collection of data element identifiers.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="identifiers" type="design:DataElementIdentifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DataElementIdentifiers" type="design:DataElementIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>A collection of data element identifiers.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="DataElementUIHints">
@@ -623,6 +668,11 @@
           <xsd:documentation>A nested instance of dataSetDesign to use for retrieving the set of selectable user values.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="valueColumnIdentifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies the result set column whose values are retrieved as the value choices.  It must be one of the columns defined in the data set design's primary result set.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
     <xsd:attribute default="true" name="enabled" type="xsd:string">
       <xsd:annotation>
@@ -631,7 +681,7 @@
     </xsd:attribute>
     <xsd:attribute name="valueColumn" type="xsd:string" use="required">
       <xsd:annotation>
-        <xsd:documentation>The result set column name whose values are retrieved as the value choices.  This attribute must be one of the column names defined in the data set design's primary result set.</xsd:documentation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "valueColumnIdentifier".  The result set column name whose values are retrieved as the value choices.  This attribute must be one of the column names defined in the data set design's primary result set.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="displayNameColumn" type="xsd:string">
@@ -1167,6 +1217,33 @@ Applying the criteria may impact the data retrieved in a result set, in addition
       <xsd:documentation>A collection of result sets' definition and metadata. If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:complexType name="ResultSubset">
+    <xsd:annotation>
+      <xsd:documentation>Defines a subset of columns in a data set design's result set.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dataSetDesign" type="design:DataSetDesign">
+        <xsd:annotation>
+          <xsd:documentation>A nested instance of dataSetDesign to use for retrieving the referenced data set column.  If not specified, the same data set design that contains this design element would apply by default.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="columnIdentifiers" type="design:DataElementIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies one or more columns in the specified result set.  Multiple columns are combined in the specified sequence, such as for a compounded attribute.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="resultSetName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identifies the result set of the data set design if more than one result sets are available, and can be identified by name.  If no results set is explicitly specified here, the primary result set would apply by default.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResultSubset" type="design:ResultSubset">
+    <xsd:annotation>
+      <xsd:documentation>Defines a subset of columns in a data set design's result set.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="ScalarValueChoices">
     <xsd:annotation>
       <xsd:documentation>A collection of scalar values defined for user selection.</xsd:documentation>
@@ -1200,14 +1277,21 @@ Applying the criteria may impact the data retrieved in a result set, in addition
     <xsd:annotation>
       <xsd:documentation>A dynamic sort key specified in a SortCriteria.</xsd:documentation>
     </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="columnIdentifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies a result set column by name and/or position.  It must reference one of the columns associated with the same ResultSetDefinition.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
     <xsd:attribute name="columnName" type="xsd:string" use="required">
       <xsd:annotation>
-        <xsd:documentation>The unique name of a result set column. It must reference one of the columns associated with the same ResultSetDefinition.  If a column can only be identified by position, this name may be empty.</xsd:documentation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "columnIdentifier".  The unique name of a result set column. It must reference one of the columns associated with the same ResultSetDefinition.  If a column can only be identified by position, this name may be empty.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="columnPosition" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>The 1-based index position (left-to-right order) of a result set column. </xsd:documentation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "columnIdentifier".  The 1-based index position (left-to-right order) of a result set column. </xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute default="Ascending" name="sortDirection" type="design:SortDirectionType">

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.19 2010/06/10 23:40:04 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.20 2010/08/17 03:57:02 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -25,6 +25,8 @@ import org.eclipse.datatools.connectivity.oda.design.CustomData;
 import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.DataElementIdentifier;
+import org.eclipse.datatools.connectivity.oda.design.DataElementIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
@@ -74,6 +76,7 @@ import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
+import org.eclipse.datatools.connectivity.oda.design.ResultSubset;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
@@ -170,6 +173,20 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass dataElementAttributesEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass dataElementIdentifierEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass dataElementIdentifiersEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -443,6 +460,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass resultSetsEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass resultSubsetEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -836,6 +860,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getAxisAttributes_RelatedColumns()
+    {
+        return (EReference) axisAttributesEClass.getEStructuralFeatures().get(
+                2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getColumnDefinition()
     {
         return columnDefinitionEClass;
@@ -1003,9 +1038,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_Name()
+    public EReference getDataElementAttributes_Identifier()
     {
-        return (EAttribute) dataElementAttributesEClass
+        return (EReference) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 0 );
     }
 
@@ -1014,7 +1049,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_Position()
+    public EAttribute getDataElementAttributes_Name()
     {
         return (EAttribute) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 1 );
@@ -1025,7 +1060,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_NativeDataTypeCode()
+    public EAttribute getDataElementAttributes_Position()
     {
         return (EAttribute) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 2 );
@@ -1036,7 +1071,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_Precision()
+    public EAttribute getDataElementAttributes_NativeDataTypeCode()
     {
         return (EAttribute) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 3 );
@@ -1047,7 +1082,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_Scale()
+    public EAttribute getDataElementAttributes_Precision()
     {
         return (EAttribute) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 4 );
@@ -1058,7 +1093,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataElementAttributes_Nullability()
+    public EAttribute getDataElementAttributes_Scale()
     {
         return (EAttribute) dataElementAttributesEClass
                 .getEStructuralFeatures().get( 5 );
@@ -1069,10 +1104,74 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getDataElementAttributes_Nullability()
+    {
+        return (EAttribute) dataElementAttributesEClass
+                .getEStructuralFeatures().get( 6 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getDataElementAttributes_UiHints()
     {
         return (EReference) dataElementAttributesEClass
-                .getEStructuralFeatures().get( 6 );
+                .getEStructuralFeatures().get( 7 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDataElementIdentifier()
+    {
+        return dataElementIdentifierEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDataElementIdentifier_Name()
+    {
+        return (EAttribute) dataElementIdentifierEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDataElementIdentifier_Position()
+    {
+        return (EAttribute) dataElementIdentifierEClass
+                .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDataElementIdentifiers()
+    {
+        return dataElementIdentifiersEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDataElementIdentifiers_Identifiers()
+    {
+        return (EReference) dataElementIdentifiersEClass
+                .getEStructuralFeatures().get( 0 );
     }
 
     /**
@@ -1679,10 +1778,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDynamicValuesQuery_ValueColumnIdentifier()
+    {
+        return (EReference) dynamicValuesQueryEClass.getEStructuralFeatures()
+                .get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getDynamicValuesQuery_ValueColumn()
     {
         return (EAttribute) dynamicValuesQueryEClass.getEStructuralFeatures()
-                .get( 2 );
+                .get( 3 );
     }
 
     /**
@@ -1693,7 +1803,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EAttribute getDynamicValuesQuery_DisplayNameColumn()
     {
         return (EAttribute) dynamicValuesQueryEClass.getEStructuralFeatures()
-                .get( 3 );
+                .get( 4 );
     }
 
     /**
@@ -2612,6 +2722,46 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getResultSubset()
+    {
+        return resultSubsetEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResultSubset_DataSetDesign()
+    {
+        return (EReference) resultSubsetEClass.getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getResultSubset_ResultSetName()
+    {
+        return (EAttribute) resultSubsetEClass.getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResultSubset_ColumnIdentifiers()
+    {
+        return (EReference) resultSubsetEClass.getEStructuralFeatures().get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getScalarValueChoices()
     {
         return scalarValueChoicesEClass;
@@ -2675,9 +2825,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_ColumnName()
+    public EReference getSortKey_ColumnIdentifier()
     {
-        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 0 );
+        return (EReference) sortKeyEClass.getEStructuralFeatures().get( 0 );
     }
 
     /**
@@ -2685,7 +2835,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_ColumnPosition()
+    public EAttribute getSortKey_ColumnName()
     {
         return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 1 );
     }
@@ -2695,7 +2845,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_SortDirection()
+    public EAttribute getSortKey_ColumnPosition()
     {
         return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 2 );
     }
@@ -2705,7 +2855,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_NullValueOrdering()
+    public EAttribute getSortKey_SortDirection()
     {
         return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 3 );
     }
@@ -2715,9 +2865,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getSortKey_Optional()
+    public EAttribute getSortKey_NullValueOrdering()
     {
         return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 4 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSortKey_Optional()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 5 );
     }
 
     /**
@@ -3131,6 +3291,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( axisAttributesEClass, AXIS_ATTRIBUTES__AXIS_TYPE );
         createEAttribute( axisAttributesEClass,
                 AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT );
+        createEReference( axisAttributesEClass,
+                AXIS_ATTRIBUTES__RELATED_COLUMNS );
 
         columnDefinitionEClass = createEClass( COLUMN_DEFINITION );
         createEReference( columnDefinitionEClass, COLUMN_DEFINITION__ATTRIBUTES );
@@ -3159,6 +3321,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DATA_ACCESS_DESIGN__DATA_SET_DESIGN );
 
         dataElementAttributesEClass = createEClass( DATA_ELEMENT_ATTRIBUTES );
+        createEReference( dataElementAttributesEClass,
+                DATA_ELEMENT_ATTRIBUTES__IDENTIFIER );
         createEAttribute( dataElementAttributesEClass,
                 DATA_ELEMENT_ATTRIBUTES__NAME );
         createEAttribute( dataElementAttributesEClass,
@@ -3173,6 +3337,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DATA_ELEMENT_ATTRIBUTES__NULLABILITY );
         createEReference( dataElementAttributesEClass,
                 DATA_ELEMENT_ATTRIBUTES__UI_HINTS );
+
+        dataElementIdentifierEClass = createEClass( DATA_ELEMENT_IDENTIFIER );
+        createEAttribute( dataElementIdentifierEClass,
+                DATA_ELEMENT_IDENTIFIER__NAME );
+        createEAttribute( dataElementIdentifierEClass,
+                DATA_ELEMENT_IDENTIFIER__POSITION );
+
+        dataElementIdentifiersEClass = createEClass( DATA_ELEMENT_IDENTIFIERS );
+        createEReference( dataElementIdentifiersEClass,
+                DATA_ELEMENT_IDENTIFIERS__IDENTIFIERS );
 
         dataElementUIHintsEClass = createEClass( DATA_ELEMENT_UI_HINTS );
         createEAttribute( dataElementUIHintsEClass,
@@ -3273,6 +3447,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DYNAMIC_VALUES_QUERY__DATA_SET_DESIGN );
         createEAttribute( dynamicValuesQueryEClass,
                 DYNAMIC_VALUES_QUERY__ENABLED );
+        createEReference( dynamicValuesQueryEClass,
+                DYNAMIC_VALUES_QUERY__VALUE_COLUMN_IDENTIFIER );
         createEAttribute( dynamicValuesQueryEClass,
                 DYNAMIC_VALUES_QUERY__VALUE_COLUMN );
         createEAttribute( dynamicValuesQueryEClass,
@@ -3436,6 +3612,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEReference( resultSetsEClass, RESULT_SETS__RESULT_SET_DEFINITIONS );
         createEAttribute( resultSetsEClass, RESULT_SETS__DERIVED_META_DATA );
 
+        resultSubsetEClass = createEClass( RESULT_SUBSET );
+        createEReference( resultSubsetEClass, RESULT_SUBSET__DATA_SET_DESIGN );
+        createEAttribute( resultSubsetEClass, RESULT_SUBSET__RESULT_SET_NAME );
+        createEReference( resultSubsetEClass, RESULT_SUBSET__COLUMN_IDENTIFIERS );
+
         scalarValueChoicesEClass = createEClass( SCALAR_VALUE_CHOICES );
         createEReference( scalarValueChoicesEClass,
                 SCALAR_VALUE_CHOICES__SCALAR_VALUES );
@@ -3447,6 +3628,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 SCALAR_VALUE_DEFINITION__DISPLAY_NAME );
 
         sortKeyEClass = createEClass( SORT_KEY );
+        createEReference( sortKeyEClass, SORT_KEY__COLUMN_IDENTIFIER );
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_NAME );
         createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_POSITION );
         createEAttribute( sortKeyEClass, SORT_KEY__SORT_DIRECTION );
@@ -3586,6 +3768,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getAxisAttributes_OnColumnLayout(),
                 theXMLTypePackage.getBoolean(),
                 "onColumnLayout", "true", 0, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEReference(
+                getAxisAttributes_RelatedColumns(),
+                this.getResultSubset(),
+                null,
+                "relatedColumns", null, 0, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 columnDefinitionEClass,
@@ -3663,6 +3850,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 dataElementAttributesEClass,
                 DataElementAttributes.class,
                 "DataElementAttributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getDataElementAttributes_Identifier(),
+                this.getDataElementIdentifier(),
+                null,
+                "identifier", null, 1, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementAttributes_Name(),
                 theXMLTypePackage.getString(),
@@ -3692,6 +3884,29 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getDataElementUIHints(),
                 null,
                 "uiHints", null, 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                dataElementIdentifierEClass,
+                DataElementIdentifier.class,
+                "DataElementIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getDataElementIdentifier_Name(),
+                theXMLTypePackage.getString(),
+                "name", null, 1, 1, DataElementIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getDataElementIdentifier_Position(),
+                theXMLTypePackage.getUnsignedShort(),
+                "position", null, 0, 1, DataElementIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                dataElementIdentifiersEClass,
+                DataElementIdentifiers.class,
+                "DataElementIdentifiers", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getDataElementIdentifiers_Identifiers(),
+                this.getDataElementIdentifier(),
+                null,
+                "identifiers", null, 1, -1, DataElementIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataElementUIHintsEClass,
@@ -3950,6 +4165,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getDynamicValuesQuery_Enabled(),
                 theXMLTypePackage.getBoolean(),
                 "enabled", "true", 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEReference(
+                getDynamicValuesQuery_ValueColumnIdentifier(),
+                this.getDataElementIdentifier(),
+                null,
+                "valueColumnIdentifier", null, 1, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDynamicValuesQuery_ValueColumn(),
                 theXMLTypePackage.getString(),
@@ -4363,6 +4583,25 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "derivedMetaData", "true", 0, 1, ResultSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
+                resultSubsetEClass,
+                ResultSubset.class,
+                "ResultSubset", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getResultSubset_DataSetDesign(),
+                this.getDataSetDesign(),
+                null,
+                "dataSetDesign", null, 0, 1, ResultSubset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getResultSubset_ResultSetName(),
+                theXMLTypePackage.getString(),
+                "resultSetName", null, 0, 1, ResultSubset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getResultSubset_ColumnIdentifiers(),
+                this.getDataElementIdentifiers(),
+                null,
+                "columnIdentifiers", null, 1, 1, ResultSubset.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
                 scalarValueChoicesEClass,
                 ScalarValueChoices.class,
                 "ScalarValueChoices", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -4389,6 +4628,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 sortKeyEClass,
                 SortKey.class,
                 "SortKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getSortKey_ColumnIdentifier(),
+                this.getDataElementIdentifier(),
+                null,
+                "columnIdentifier", null, 1, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getSortKey_ColumnName(),
                 theXMLTypePackage.getString(),
@@ -4673,6 +4917,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "onColumnLayout", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( getAxisAttributes_RelatedColumns(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "relatedColumns", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( axisTypeEEnum, source, new String[]
         { "name", "AxisType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -4758,6 +5007,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "name", "DataElementAttributes", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( getDataElementAttributes_Identifier(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "identifier", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( getDataElementAttributes_Name(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "name", //$NON-NLS-1$ //$NON-NLS-2$
@@ -4797,6 +5052,31 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "uiHints", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( dataElementIdentifierEClass, source, new String[]
+        { "name", "DataElementIdentifier", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getDataElementIdentifier_Name(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "name", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getDataElementIdentifier_Position(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "position", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( dataElementIdentifiersEClass, source, new String[]
+        { "name", "DataElementIdentifiers", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getDataElementIdentifiers_Identifiers(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "identifiers", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( dataElementUIHintsEClass, source, new String[]
         { "name", "DataElementUIHints", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -5089,6 +5369,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "enabled", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( getDynamicValuesQuery_ValueColumnIdentifier(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "valueColumnIdentifier", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( getDynamicValuesQuery_ValueColumn(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
@@ -5600,6 +5886,26 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "kind", "attribute", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "derivedMetaData" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( resultSubsetEClass, source, new String[]
+        { "name", "ResultSubset", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getResultSubset_DataSetDesign(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "dataSetDesign", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getResultSubset_ResultSetName(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "resultSetName", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getResultSubset_ColumnIdentifiers(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "columnIdentifiers", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( scalarValueChoicesEClass, source, new String[]
         { "name", "ScalarValueChoices", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -5642,6 +5948,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( sortKeyEClass, source, new String[]
         { "name", "SortKey", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_ColumnIdentifier(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "columnIdentifier", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( getSortKey_ColumnName(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$

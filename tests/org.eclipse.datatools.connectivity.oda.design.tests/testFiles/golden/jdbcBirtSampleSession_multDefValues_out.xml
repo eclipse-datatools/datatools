@@ -59,8 +59,10 @@ where officecode like ?</design:queryText>
             <design:resultSetColumns>
               <design:resultColumnDefinitions>
                 <design:attributes>
-                  <design:name>CITY</design:name>
-                  <design:position>1</design:position>
+                  <design:identifier>
+                    <design:name>CITY</design:name>
+                    <design:position>1</design:position>
+                  </design:identifier>
                   <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
                   <design:uiHints>
                     <design:displayName>CITY</design:displayName>
@@ -74,8 +76,10 @@ where officecode like ?</design:queryText>
           <design:parameterDefinitions>
             <design:inOutMode>In</design:inOutMode>
             <design:attributes>
-              <design:name></design:name>
-              <design:position>1</design:position>
+              <design:identifier>
+                <design:name></design:name>
+                <design:position>1</design:position>
+              </design:identifier>
               <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
               <design:nullability>Nullable</design:nullability>
               <design:uiHints/>
@@ -158,8 +162,10 @@ where officecode like ?</design:queryText>
             <design:resultSetColumns>
               <design:resultColumnDefinitions>
                 <design:attributes>
-                  <design:name>CITY</design:name>
-                  <design:position>1</design:position>
+                  <design:identifier>
+                    <design:name>CITY</design:name>
+                    <design:position>1</design:position>
+                  </design:identifier>
                   <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
                   <design:uiHints>
                     <design:displayName>CITY</design:displayName>
@@ -173,8 +179,10 @@ where officecode like ?</design:queryText>
           <design:parameterDefinitions>
             <design:inOutMode>In</design:inOutMode>
             <design:attributes>
-              <design:name></design:name>
-              <design:position>1</design:position>
+              <design:identifier>
+                <design:name></design:name>
+                <design:position>1</design:position>
+              </design:identifier>
               <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
               <design:nullability>Nullable</design:nullability>
               <design:uiHints/>
@@ -183,6 +191,9 @@ where officecode like ?</design:queryText>
               <design:elementAttributes>
                 <design:defaultValues>
                   <design:values>my default value</design:values>
+                  <design:values>Tue Jun 01 00:00:00 PDT 2010</design:values>
+                  <design:values>3</design:values>
+                  <design:values>CustomData value: Tue Jun 01 00:00:00 PDT 2010, displayValue: June 1, 2010</design:values>
                   <design:values>Tue Jun 01 00:00:00 PDT 2010</design:values>
                   <design:values>3</design:values>
                   <design:values>CustomData value: Tue Jun 01 00:00:00 PDT 2010, displayValue: June 1, 2010</design:values>

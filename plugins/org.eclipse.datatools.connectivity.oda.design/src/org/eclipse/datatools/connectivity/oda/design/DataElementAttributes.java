@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributes.java,v 1.7 2006/03/24 03:13:31 lchan Exp $
+ * $Id: DataElementAttributes.java,v 1.8 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getPosition <em>Position</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getNativeDataTypeCode <em>Native Data Type Code</em>}</li>
@@ -49,7 +50,35 @@ public interface DataElementAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Returns the value of the '<em><b>Identifier</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Uniquely identifies this data element by name and/or position.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Identifier</em>' containment reference.
+     * @see #setIdentifier(DataElementIdentifier)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Identifier()
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='identifier' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.3.2
+     */
+    DataElementIdentifier getIdentifier();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getIdentifier <em>Identifier</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Identifier</em>' containment reference.
+     * @see #getIdentifier()
+     * @generated
+     * @since 3.3.2
+     */
+    void setIdentifier( DataElementIdentifier value );
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getPrecision <em>Precision</em>}' attribute
@@ -103,7 +132,7 @@ public interface DataElementAttributes extends EObject
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Name()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
      *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
@@ -131,7 +160,7 @@ public interface DataElementAttributes extends EObject
      * @see #unsetPosition()
      * @see #setPosition(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Position()
-     * @model unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.UnsignedShort"
+     * @model unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.UnsignedShort"
      *        extendedMetaData="kind='element' name='position' namespace='##targetNamespace'"
      * @generated
      */
@@ -185,7 +214,7 @@ public interface DataElementAttributes extends EObject
      * @see #unsetNativeDataTypeCode()
      * @see #setNativeDataTypeCode(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_NativeDataTypeCode()
-     * @model default="0" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="0" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='nativeDataTypeCode' namespace='##targetNamespace'"
      * @generated
      */
@@ -240,7 +269,7 @@ public interface DataElementAttributes extends EObject
      * @see #unsetPrecision()
      * @see #setPrecision(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Precision()
-     * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='precision' namespace='##targetNamespace'"
      * @generated
      */
@@ -294,7 +323,7 @@ public interface DataElementAttributes extends EObject
      * @see #unsetScale()
      * @see #setScale(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Scale()
-     * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     * @model default="-1" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      *        extendedMetaData="kind='element' name='scale' namespace='##targetNamespace'"
      * @generated
      */
@@ -347,7 +376,7 @@ public interface DataElementAttributes extends EObject
      * @see #unsetNullability()
      * @see #setNullability(ElementNullability)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Nullability()
-     * @model default="Unknown" unique="false" unsettable="true"
+     * @model default="Unknown" unsettable="true"
      *        extendedMetaData="kind='element' name='nullability' namespace='##targetNamespace'"
      * @generated
      */
