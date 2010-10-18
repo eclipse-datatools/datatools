@@ -16,7 +16,7 @@
 <feature
       id="org.eclipse.datatools.common.doc.user"
       label="%featureName"
-      version="1.8.1.qualifier"
+      version="1.9.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.common.doc.user"
       image="eclipse_update_120.jpg">
