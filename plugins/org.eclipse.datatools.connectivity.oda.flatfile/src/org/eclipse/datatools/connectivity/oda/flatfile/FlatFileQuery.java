@@ -1307,49 +1307,40 @@ public class FlatFileQuery implements IQuery
 		
 		private void moveToEndQuotation( StringBuffer column ) throws IOException, OdaException
 		{
-			char curChar = getChar( );
-			if ( curChar == '"' )
+			do 
 			{
-				if ( next( ) )
+				char curChar = getChar( );
+				if ( curChar == '"' )
 				{
-					curChar = getChar( );
-					if ( curChar == '"' )
+					if ( next( ) )
 					{
-						//transfer '""' to '"'
-						column.append( '"' );
-						if ( next( ) )
+						curChar = getChar( );
+						if ( curChar == '"' )
 						{
-							moveToEndQuotation( column );
-							return;
+							//transfer '""' to '"'
+							column.append( '"' );
 						} 
 						else
 						{
-							//Failed to find out the end quotation after scanning the whole file
-							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+							back( );
+							column.append('"');
+							return;
 						}
-					} 
+					}
 					else
 					{
-						back( );
+						column.append('"');
+						return;
 					}
-				}
-				//assume this '"' is this end quotation
-				column.append( '"' );
-				return;
-			}
-			else
-			{
-				column.append( curChar );
-				if ( next( ) )
-				{
-					moveToEndQuotation( column );
+						
 				}
 				else
 				{
-					//Failed to find out the end quotation after scanning the whole file
-					throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+					column.append( curChar );
 				}
-			}
+			} while (next( )); 
+			//no end quotation is detected
+			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 		}
 		
 		private boolean next( ) throws IOException
