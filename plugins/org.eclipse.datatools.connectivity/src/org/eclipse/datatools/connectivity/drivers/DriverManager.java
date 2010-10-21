@@ -1073,6 +1073,7 @@ public class DriverManager {
 				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index);
 				if (index > 0) {
 					index++;
+					index = jarList.indexOf("[", index); //$NON-NLS-1$
 				}
 			}
 		} else {
