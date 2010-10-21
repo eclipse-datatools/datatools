@@ -272,7 +272,7 @@ public class ColumnMappingDialog extends TrayDialog
 		customLabel.setLayoutData( labelData );
 		GridData textData = new GridData( GridData.FILL_HORIZONTAL );
 		textData.widthHint = 320;
-		xmlPathText = new StyledText( parent, SWT.BORDER );
+		xmlPathText = new StyledText( parent, SWT.BORDER | SWT.SINGLE );
 		xmlPathText.setText( TextProcessor.process( xpath, "//" ) ); //$NON-NLS-1$
 		xmlPathText.setLayoutData( textData );
 
