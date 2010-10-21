@@ -83,7 +83,7 @@ public class DateFormatISO8601
 //			return s.substring( 0, zoneIndex ).trim( );
 //		}
 		int zoneIndex = s.indexOf( 'Z' );
-		if ( zoneIndex == s.length( ) - 1 )
+		if ( zoneIndex >= 0 && zoneIndex == s.length( ) - 1 )
 		{
 			return s.substring( 0, zoneIndex ).trim( );
 		}
