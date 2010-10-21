@@ -54,6 +54,8 @@ import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ProfileRule;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 
 /**
@@ -566,6 +568,7 @@ public class ConnectionProfile extends PlatformObject implements
 		catch (InterruptedException e) {
 		}
 
+		clearPasswordIfNotCached();
 		return disconnectJob.getResult();
 	}
 
@@ -577,8 +580,23 @@ public class ConnectionProfile extends PlatformObject implements
 		}
 
 		disconnectJob.schedule();
+		clearPasswordIfNotCached();
 	}
 
+	/*
+	 * The password will be cleared when a user disconnects. If the save password option is checked,
+	 * the password will not be cleared.
+	 */
+	public void clearPasswordIfNotCached() 
+	{
+		Properties properties = getBaseProperties();
+		String savePassword = properties.getProperty(IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+		if ( Boolean.valueOf(savePassword) == Boolean.FALSE) {
+			properties.remove(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID);
+			setBaseProperties(properties);
+		}
+	}
+	
 	public boolean canWorkOffline() {
 		boolean retVal = false;
 		for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); !retVal

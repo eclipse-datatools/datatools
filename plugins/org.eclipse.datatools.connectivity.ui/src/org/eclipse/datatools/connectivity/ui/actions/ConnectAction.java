@@ -15,7 +15,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
@@ -129,7 +132,8 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 							return;
 						}
 					}
-					profile.connect(null);
+					ConnectActionStatusListener listener = new ConnectActionStatusListener(profile);
+					profile.connect(listener);
 				}
 			}
 		}
@@ -202,4 +206,21 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 		return null;
 	}
 
+}
+
+class ConnectActionStatusListener extends JobChangeAdapter
+{	
+	private IConnectionProfile profile;
+	
+	public ConnectActionStatusListener(IConnectionProfile profile)
+	{
+		this.profile = profile;
+	}
+	
+	public void done(IJobChangeEvent event) {
+		IStatus result = event.getResult();
+		if (result.getSeverity() == IStatus.ERROR && profile instanceof ConnectionProfile) {
+			((ConnectionProfile)profile).clearPasswordIfNotCached();
+		}
+	}
 }
