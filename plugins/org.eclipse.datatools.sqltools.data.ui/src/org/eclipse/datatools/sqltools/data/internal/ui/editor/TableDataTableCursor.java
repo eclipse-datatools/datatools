@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorListener;
+import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
@@ -24,6 +25,7 @@ import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 public class TableDataTableCursor extends TableCursor {
@@ -111,10 +113,17 @@ public class TableDataTableCursor extends TableCursor {
 	}
 	
 	public void edit() {
-	    Object o = getRow().getData();
-		((TableDataCellModifier)tableViewer.getCellModifier()).setCanModify(true);
-		tableViewer.editElement(o, getColumn());
-		((TableDataCellModifier)tableViewer.getCellModifier()).setCanModify(false);
+	    TableItem row = getRow();
+	    if (row != null) {
+	        Object obj = row.getData();
+	        ICellModifier cellModifier = tableViewer.getCellModifier();
+	        if (cellModifier instanceof TableDataCellModifier) {
+	            TableDataCellModifier tableCellModifier = (TableDataCellModifier) cellModifier;
+	            tableCellModifier.setCanModify(true);
+	            tableViewer.editElement(obj, getColumn());
+	            tableCellModifier.setCanModify(false);
+	        }
+	    }
 	}
 	
 	protected void handleTraverse(TraverseEvent event)

@@ -252,11 +252,17 @@ public class TableDataEditor extends EditorPart implements ITableDataEditor
     
     public IRowData getRow()
     {
-        Object row = cursor.getRow().getData();
-        if (row instanceof IRowData)
-            return (IRowData)row;
-        else
-            return null;
+        IRowData rowData = null;
+        
+        TableItem row = cursor.getRow();
+        if (row != null) {
+            Object obj = row.getData();
+            if (obj instanceof IRowData) {
+                rowData = (IRowData) obj;
+            }
+        }
+        
+        return rowData;
     }
     
     public IRowData getOrCreateRow()
