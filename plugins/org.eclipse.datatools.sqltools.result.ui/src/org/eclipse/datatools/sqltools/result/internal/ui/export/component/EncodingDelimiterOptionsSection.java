@@ -123,13 +123,7 @@ public class EncodingDelimiterOptionsSection
         data = new GridData(SWT.FILL, SWT.CENTER, true, false);
         _encodingCombo.setLayoutData(data);
 
-        ArrayList encodings = getEncodings();
-
-        for (int i = 0; i < encodings.size(); i++)
-        {
-            _encodingCombo.add(encodings.get(i).toString());
-        }
-        _encodingCombo.select(0);
+        loadEncodings();
 
         _outputFormat = new Label(_exportFormatGroup, SWT.NONE);
         _outputFormat.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
@@ -154,7 +148,10 @@ public class EncodingDelimiterOptionsSection
         _delimiterText.setLayoutData(griddata1);
     }
 
-    private ArrayList getEncodings()
+    /**
+     * Loads available encodings into the encodings combobox and sets the default encoding selection.
+     */
+    private void loadEncodings()
     {
         ArrayList encodings = new ArrayList();
         int n = 0;
@@ -174,15 +171,9 @@ public class EncodingDelimiterOptionsSection
                 encodings.add(enc);
             }
         }
-        String defaultEnc = System.getProperty("file.encoding", "UTF-8");
-		try {
-			// get encoding definition from preferences of plugin org.eclipse.wst.xml.core
-			IEclipsePreferences pluginRoot = (IEclipsePreferences) PreferencesService.getDefault().getRootNode().node(InstanceScope.SCOPE);
-			EclipsePreferences wtpprefs = (EclipsePreferences) pluginRoot.node("org.eclipse.wst.xml.core"); //$NON-NLS-1$
-			defaultEnc = wtpprefs.get("outputCodeset", defaultEnc); //$NON-NLS-1$
-		} catch (Throwable ex) {
-			// do nothing, keep using system property value
-		}
+        
+        String defaultEnc = "UTF-8"; //$NON-NLS-1$
+        
 		if (!encodings.contains(defaultEnc))
 		{
 			encodings.add(defaultEnc);
@@ -196,8 +187,12 @@ public class EncodingDelimiterOptionsSection
             encodings.add(enc);
         }
         Collections.sort(encodings);
-
-        return encodings;
+        
+        for (int i = 0; i < encodings.size(); i++)
+        {
+            _encodingCombo.add((String) encodings.get(i));
+        }
+        _encodingCombo.setText(isDefault ? defaultEnc : enc);
     }
 
     private void updateDelimter()
