@@ -408,6 +408,7 @@ public class ExportFormatPreferencePage extends PreferencePage implements IWorkb
     {
         boolean enabled = _defaultEncoding.getSelection();
         _fileEncoding.setEnabled(!enabled);
+        updateValidState();
     }
 
     private void updateEncodingState(boolean useDefault)
@@ -415,6 +416,7 @@ public class ExportFormatPreferencePage extends PreferencePage implements IWorkb
         _defaultEncoding.setSelection(useDefault);
         _otherEncoding.setSelection(!useDefault);
         _fileEncoding.setEnabled(!useDefault);
+        updateValidState();
         if (useDefault)
         {
             String xmlHeaderFormat = Messages.ExportFormatPage_xmlexportformat_xmlheader_text; 
