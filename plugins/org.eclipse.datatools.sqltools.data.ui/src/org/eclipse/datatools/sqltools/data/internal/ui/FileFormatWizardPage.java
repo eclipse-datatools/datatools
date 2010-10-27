@@ -90,7 +90,7 @@ public class FileFormatWizardPage extends WizardPage
         else 
             l.setText(Messages.getString("FileFormatWizardPage.InputFile")); //$NON-NLS-1$
         
-        fileText = new StyledText(c, SWT.BORDER);
+        fileText = new StyledText(c, SWT.SINGLE | SWT.BORDER);
         fileText.addBidiSegmentListener(new BidiSegmentListener() {
         	public void lineGetSegments(BidiSegmentEvent evt) {
         		String separator = System.getProperty("file.separator"); //$NON-NLS-1$
