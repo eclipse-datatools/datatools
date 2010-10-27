@@ -150,6 +150,9 @@ public class TableDataEditor extends EditorPart implements ITableDataEditor
     		{    			
     			return;
     		}
+	        else {
+    			askConfirmation = false;
+    		}
     	}
     	
     	OperationCommand item = initDbOutputItem();
