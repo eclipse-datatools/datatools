@@ -129,15 +129,15 @@ public class SOAPRequest
 		if ( parameters == null )
 			return template[template.length - 1];
 
-		String soapRequest = WSUtil.EMPTY_STRING;
+		StringBuffer soapRequest = new StringBuffer();
 		for ( int i = 0; i < parameters.length; i++ )
 		{
-			soapRequest += template[i];
-			soapRequest += parameters[i].getDefaultValue( );
+			soapRequest.append( template[i] );
+			soapRequest.append( parameters[i].getDefaultValue( ) );
 		}
-		soapRequest += template[template.length - 1];
+		soapRequest.append( template[template.length - 1] );
 
-		return soapRequest;
+		return soapRequest.toString( );
 	}
 
 }
