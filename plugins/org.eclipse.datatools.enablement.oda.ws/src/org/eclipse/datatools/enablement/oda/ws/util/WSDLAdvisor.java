@@ -435,7 +435,7 @@ public class WSDLAdvisor
 								3,
 								inOrOutput );
 
-						if ( inOrOutput == "in" )//$NON-NLS-1$
+						if ( inOrOutput.equals( "in" ) )//$NON-NLS-1$
 						{
 							result += enter( )
 									+ tab( 2 )
@@ -669,9 +669,7 @@ public class WSDLAdvisor
 					elementList.add( ( (SchemaImpl) extElements.get( i ) ).getElement( ) );
 				}
 			}
-			String[] parentNode = {
-				EMPTY_STRING
-			};
+			
 			NodeList nodes = getChildNodes( elementList.toArray( new Element[0] ) );
 			Node XMLNode = findElementNodeByName( nodes, typeName );
 			if ( XMLNode != null )
@@ -1490,7 +1488,7 @@ public class WSDLAdvisor
 				}
 				else
 				{
-					if ( inOrOutput == "in" ) //$NON-NLS-1$
+					if ( inOrOutput.equals( "in" ) )//$NON-NLS-1$
 					{
 						result += compositeSimpleInputParameter( part.getName( ),
 								part.getTypeName( ).getLocalPart( ) );
@@ -1742,7 +1740,7 @@ public class WSDLAdvisor
 			}
 			else
 			{
-				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				if ( inOrOutput.equals( "in" ) ) //$NON-NLS-1$
 				{
 					result += enter( )
 							+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
@@ -1788,7 +1786,7 @@ public class WSDLAdvisor
 			{
 				WSNonLeafNode nonLeafnode = (WSNonLeafNode) subNode.get( i );
 
-				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				if ( inOrOutput.equals( "in" ) )  //$NON-NLS-1$
 				{
 					result += enter( )
 							+ tab( tabCount )
@@ -1851,7 +1849,7 @@ public class WSDLAdvisor
 		}
 		else
 		{
-			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			if ( inOrOutput.equals( "in" ) ) //$NON-NLS-1$
 			{
 				result += enter( )
 						+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$ 
