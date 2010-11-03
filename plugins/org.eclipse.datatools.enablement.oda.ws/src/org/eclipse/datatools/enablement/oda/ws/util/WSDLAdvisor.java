@@ -214,9 +214,9 @@ public class WSDLAdvisor
 	 */
 	public static String retrieveDocument( Operation operation )
 	{
-		String result = EMPTY_STRING;
+		StringBuffer result = new StringBuffer( );
 		if ( WSUtil.isNull( operation ) )
-			return result;
+			return result.toString( );
 
 		Element element = operation.getDocumentationElement( );
 		if ( !WSUtil.isNull( element ) )
@@ -228,11 +228,11 @@ public class WSDLAdvisor
 				if ( node.getNodeType( ) != Node.TEXT_NODE )
 					continue;
 
-				result += node.getNodeValue( );
+				result.append( node.getNodeValue( ) );
 			}
 		}
 
-		return result;
+		return result.toString( );
 	}
 
 	private static BindingOperation getBindingOperation( String wsdlURI,
@@ -333,11 +333,11 @@ public class WSDLAdvisor
 
 	private static String tab( int num )
 	{
-		String tabs = ""; //$NON-NLS-1$
+		StringBuffer tabs = new StringBuffer(); //$NON-NLS-1$
 		for ( int i = 0; i < num; i++ )
-			tabs += "\t"; //$NON-NLS-1$
+			tabs.append( "\t" ); //$NON-NLS-1$
 
-		return tabs;
+		return tabs.toString( );
 	}
 
 	private static String buildNamespaceDeclarations( )
@@ -349,17 +349,17 @@ public class WSDLAdvisor
 		checkNamespace( namespaceURIs, NS_KEY_XSI, NS_XSI );
 		checkNamespace( namespaceURIs, NS_KEY_XSD, NS_XSD );
 
-		String result = EMPTY_STRING;
+		StringBuffer result = new StringBuffer();
 		Set uris = namespaceURIs.keySet( );
 		Iterator iterator = uris.iterator( );
 		while ( iterator.hasNext( ) )
 		{
 			String uri = (String) iterator.next( );
 			String prefix = (String) namespaceURIs.get( uri );
-			result += enter( ) + "xmlns:" + prefix + "=\"" + uri + "\"";//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+			result.append( enter( ) + "xmlns:" + prefix + "=\"" + uri + "\"" );//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		}
 
-		return result + ">"; //$NON-NLS-1$
+		return result.toString( ) + ">"; //$NON-NLS-1$
 	}
 
 	private static void checkNamespace( Map namespaceURIs, String namespace,
@@ -1217,25 +1217,25 @@ public class WSDLAdvisor
 
 	private String builderResponseParameters( WSNonLeafNode newNode )
 	{
-		String result = EMPTY_STRING;
+		StringBuffer result = new StringBuffer();
 		List nodeList = newNode.getNodeList( );
 		for ( int i = 0; i < nodeList.size( ); i++ )
 		{
 			if ( nodeList.get( i ) instanceof WSLeafNode )
 			{
 				WSLeafNode leafnode = (WSLeafNode) nodeList.get( i );
-				result += enter( ) + "<" + leafnode.getName( ) + ">" //$NON-NLS-1$ //$NON-NLS-2$
-						+ "</" + leafnode.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$		
+				result.append( enter( ) + "<" + leafnode.getName( ) + ">" //$NON-NLS-1$ //$NON-NLS-2$
+						+ "</" + leafnode.getName( ) + ">" ); //$NON-NLS-1$ //$NON-NLS-2$		
 			}
 			else if ( nodeList.get( i ) instanceof WSNonLeafNode )
 			{
 				WSNonLeafNode nonLeafnode = (WSNonLeafNode) nodeList.get( i );
-				result += enter( ) + "<" + nonLeafnode.getName( ) + ">";//$NON-NLS-1$ //$NON-NLS-2$
-				result += builderResponseParameters( nonLeafnode );
-				result += enter( ) + "</" + nonLeafnode.getName( ) + ">";//$NON-NLS-1$ //$NON-NLS-2$
+				result.append( enter( ) + "<" + nonLeafnode.getName( ) + ">" );//$NON-NLS-1$ //$NON-NLS-2$
+				result.append( builderResponseParameters( nonLeafnode ) );
+				result.append( enter( ) + "</" + nonLeafnode.getName( ) + ">" );//$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
-		return result;
+		return result.toString( );
 	}
 
 	/**

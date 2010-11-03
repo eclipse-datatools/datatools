@@ -760,34 +760,34 @@ public class WSConsole
 		if ( WSUtil.isNull( template ) || WSUtil.isNull( parameters ) )
 			return getTemplate( );
 
-		String wsQueryText = WSUtil.EMPTY_STRING;
+		StringBuffer wsQueryText = new StringBuffer( );
 		// retrieve whole queryText with defaultValue if applicable
 		for ( int i = 0; i < parameters.length; i++ )
 		{
-			wsQueryText += template[i];
-			wsQueryText += buildParameter( parameters[i].getName( ) );
+			wsQueryText.append( template[i] );
+			wsQueryText.append( buildParameter( parameters[i].getName( ) ) );
 		}
-		wsQueryText += template[template.length - 1];
+		wsQueryText.append( template[template.length - 1] );
 		
 		// eliminate unused parameters
-		StringBuffer buffer = new StringBuffer( wsQueryText );
+		StringBuffer buffer = new StringBuffer( wsQueryText.toString( ) );
 
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			if ( !parameters[i].isUsed( ) )
 			{
-				int offset = getOffset( wsQueryText, parameters[i].getName( ) );
-				int start = getFirstIndex( wsQueryText, offset, BACKWARD, '<' );
-				start = getFirstIndex( wsQueryText, start, BACKWARD, '\n' );
-				int end = getFirstIndex( wsQueryText, offset, FORWARD, '>' );
-				end = getFirstIndex( wsQueryText, end, FORWARD, '\n' );
+				int offset = getOffset( wsQueryText.toString( ), parameters[i].getName( ) );
+				int start = getFirstIndex( wsQueryText.toString( ), offset, BACKWARD, '<' );
+				start = getFirstIndex( wsQueryText.toString( ), start, BACKWARD, '\n' );
+				int end = getFirstIndex( wsQueryText.toString( ), offset, FORWARD, '>' );
+				end = getFirstIndex( wsQueryText.toString( ), end, FORWARD, '\n' );
 
 				buffer.delete( start, end );
-				wsQueryText = buffer.toString( );
+				wsQueryText = buffer;
 			}
 		}
 
-		return wsQueryText;
+		return wsQueryText.toString( );
 	}
 
 	private String buildParameter( String paramName )

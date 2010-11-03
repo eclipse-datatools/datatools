@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class WebServiceSelectionPage extends DataSourceWizardPage
 {
-	final private String HTTPHEAD = "http://"; //$NON-NLS-1$
+	private static final String HTTPHEAD = "http://"; //$NON-NLS-1$
 	private WebServiceSelectionPageHelper pageHelper;
 	private Properties wsProperties;
 
