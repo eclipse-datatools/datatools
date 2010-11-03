@@ -114,7 +114,7 @@ public class FlatFileDataReader
 		for (int i = 0; i < originalColumnNames.length; i++)
 		{
 			originalColumnNameIndexMap.put( originalColumnNames[i].trim( ).toUpperCase( ), 
-					new Integer( i ) );
+					Integer.valueOf( i ) );
 		}
 		selectColumIndexes = new int[rsmd.getColumnCount( )];
 
