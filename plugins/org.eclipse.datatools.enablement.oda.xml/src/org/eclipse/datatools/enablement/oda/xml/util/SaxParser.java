@@ -382,7 +382,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 * This class wrapps a RuntimeException. It is used to stop the execution of
 	 * current thread.
 	 */
-	private class ThreadStopException extends RuntimeException
+	private static class ThreadStopException extends RuntimeException
 	{
 		/**
 		 * 
