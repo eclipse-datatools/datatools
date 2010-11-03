@@ -50,7 +50,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 		
 		for (int i = 0; i < columnNames.length; i++)
 		{
-			columnNameIndexMap.put( columnNames[i].toUpperCase( ), new Integer( i + 1 ) );
+			columnNameIndexMap.put( columnNames[i].toUpperCase( ), Integer.valueOf( i + 1 ) );
 		}
 	}
 

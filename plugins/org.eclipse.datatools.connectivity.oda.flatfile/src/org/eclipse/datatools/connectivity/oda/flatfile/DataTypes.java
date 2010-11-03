@@ -48,7 +48,7 @@ public final class DataTypes
               
         String preparedTypeName = typeName.trim().toUpperCase();
         
-        if( preparedTypeName == NULL_LITERAL )
+        if( preparedTypeName.equals( NULL_LITERAL ))
             return NULL;
         
         // get the data type definition from my plugin manifest for all other types
@@ -71,7 +71,7 @@ public final class DataTypes
     {
         String preparedTypeName = typeName.trim().toUpperCase();
         
-        if( preparedTypeName == NULL_LITERAL )
+        if( preparedTypeName.equals( NULL_LITERAL ))
             return true;
         
         // check the data type definition in my plugin manifest for all other types

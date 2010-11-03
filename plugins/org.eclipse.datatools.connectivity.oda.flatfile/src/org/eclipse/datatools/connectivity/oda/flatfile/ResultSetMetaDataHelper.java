@@ -74,7 +74,7 @@ public class ResultSetMetaDataHelper
 	{
 		for ( int i = 0; i < columnNames.length; i++ )
 		{
-			columnNameIndexMap.put( columnNames[i], new Integer( i ) );
+			columnNameIndexMap.put( columnNames[i], Integer.valueOf( i ) );
 		}
 	}
 	
