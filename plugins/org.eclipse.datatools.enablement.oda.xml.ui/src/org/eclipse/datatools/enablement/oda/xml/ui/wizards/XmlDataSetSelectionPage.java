@@ -64,9 +64,9 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	
 	private String fileLocation;
 	
-	private final int UNUSED_ROW_CACHE = -1;
-	private final int INVALID_ROW_NUMBER = -2;
-	private final int NEGATIVE_ROW_NUMBER = -4;
+	private static final int UNUSED_ROW_CACHE = -1;
+	private static final int INVALID_ROW_NUMBER = -2;
+	private static final int NEGATIVE_ROW_NUMBER = -4;
 
 	private int maxRow = UNUSED_ROW_CACHE;
 	

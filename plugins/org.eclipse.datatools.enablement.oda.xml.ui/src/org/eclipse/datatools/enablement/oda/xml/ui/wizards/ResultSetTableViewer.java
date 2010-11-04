@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.TableItem;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.10 $ $Date: 2008/04/23 08:13:05 $
+ * @version $Revision: 1.11 $ $Date: 2009/04/14 09:18:14 $
  */
 public final class ResultSetTableViewer
 {
@@ -48,7 +48,7 @@ public final class ResultSetTableViewer
 	private Composite mainControl;
 	private String[][] resultSet;
 	private TableColumn column;
-	private final int MAX_ROW = 500;
+	private static final int MAX_ROW = 500;
 
     private static final String EMPTY_STRING = "";  //$NON-NLS-1$
 

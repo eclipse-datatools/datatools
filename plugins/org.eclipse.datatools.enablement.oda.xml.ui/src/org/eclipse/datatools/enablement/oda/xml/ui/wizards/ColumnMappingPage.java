@@ -679,7 +679,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 				else if ( selectedMultiItems.length == 1 )
 				{
 					TreeItem selectedItem = selectedMultiItems[0];
-					selectedMultiItems = null;
 					if ( selectedItem.getGrayed( ) )
 					{
 						availableXmlTree.getTree( ).setRedraw( false );
@@ -1262,9 +1261,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 	{
 		String tablePath = LEFT_SQUARE_BRACKET
 				+ selectedTreeItemText + RIGHT_SQUARE_BRACKET;
-		String queryString = tableName
+		StringBuffer queryString = new StringBuffer( tableName
 				+ Constants.CONST_TABLE_COLUMN_DELIMITER + tablePath
-				+ Constants.CONST_TABLE_COLUMN_DELIMITER;
+				+ Constants.CONST_TABLE_COLUMN_DELIMITER);
 		String rowStr = EMPTY_STRING;
 		Iterator rowObj = this.columnMappingList.iterator( );
 		while ( rowObj.hasNext( ) )
@@ -1276,13 +1275,12 @@ public class ColumnMappingPage extends DataSetWizardPage
 					+ element.getXPath( ) + RIGHT_CURLY_BRACKET;
 			if ( rowObj.hasNext( ) )
 				rowStr = rowStr + COMMA;
-			queryString = queryString + rowStr;
+			queryString.append( rowStr );
 		}
 		if ( getNamespace( ).length( ) == 0 )
-			return queryString;
+			return queryString.toString( );
 		else
-			return queryString
-					+ Constants.CONST_TABLE_COLUMN_DELIMITER + this.nameSpace;
+			return queryString.append( Constants.CONST_TABLE_COLUMN_DELIMITER + this.nameSpace ).toString( );
 
 	}
 
