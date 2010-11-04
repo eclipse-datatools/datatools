@@ -234,7 +234,7 @@ public class MappedTables
 			cs.toArray( columns );
 			for ( int i=0; i<columns.length; i++ )
 			{
-				columnNameIndexMap.put( columns[i].name, new Integer(i+1) );
+				columnNameIndexMap.put( columns[i].name, Integer.valueOf(i+1) );
 			}
 		}
 		

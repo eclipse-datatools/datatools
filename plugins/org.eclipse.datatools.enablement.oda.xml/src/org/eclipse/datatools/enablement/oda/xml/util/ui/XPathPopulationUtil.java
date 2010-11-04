@@ -93,14 +93,15 @@ final public class XPathPopulationUtil
 	 */
 	private static String addXPathFragsToAString( String[] xPathFrags, int i, String s )
 	{
+		StringBuffer buf = new StringBuffer( s );
 		for( int j = i; j < xPathFrags.length;j++)
 		{
 			if( j < xPathFrags.length - 1 )
-				s += xPathFrags[j] + UtilConstants.XPATH_SLASH;
+				buf.append( xPathFrags[j] + UtilConstants.XPATH_SLASH );
 			else
-				s += xPathFrags[j];
+				buf.append( xPathFrags[j] );
 		}
-		return s;
+		return buf.toString( );
 	}
 	
 	/**
@@ -123,12 +124,12 @@ final public class XPathPopulationUtil
 				return null;
 			else
 			{
-				String result = EMPTY_STRING;
+				StringBuffer result = new StringBuffer();
 				for(int i = 2; i < temp.length; i++)
 				{
-					result+= FORWARD_SLASH+temp[i];
+					result.append( FORWARD_SLASH+temp[i] );
 				}
-				return result;
+				return result.toString( );
 			}
 		}
 			
@@ -287,14 +288,18 @@ final public class XPathPopulationUtil
 	 */
 	private static String populateXpathExpression( String columnPath, String[] rootPathFrags, int startingIndex, int endingIndex )
 	{
-		String result = EMPTY_STRING;
+		StringBuffer result = new StringBuffer();
 		
 		int fetchBackLevel = rootPathFrags.length - 3 - (endingIndex - startingIndex);
 		for( int i = 0; i < fetchBackLevel; i ++)
 		{
-			result += "../"; //$NON-NLS-1$
+			result.append("../"); //$NON-NLS-1$
 		}
 		
-		return addXPathFragsToAString( columnPath.replaceAll(XPATH_ATTR_HEADER_WITH_SQUARE_PATTERN,XPATH_ATTR_HEADER_WITH_SLASH).split(UtilConstants.XPATH_SLASH), endingIndex+1, result);
+		return addXPathFragsToAString( columnPath.replaceAll( XPATH_ATTR_HEADER_WITH_SQUARE_PATTERN,
+				XPATH_ATTR_HEADER_WITH_SLASH )
+				.split( UtilConstants.XPATH_SLASH ),
+				endingIndex + 1,
+				result.toString( ) );
 	}
 }

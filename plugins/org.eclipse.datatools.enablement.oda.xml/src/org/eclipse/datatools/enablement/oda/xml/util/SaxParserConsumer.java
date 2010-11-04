@@ -91,7 +91,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		nameIndexMap = new HashMap( );
 		for ( int i = 0; i < namesOfColumns.length; i++ )
 		{
-			nameIndexMap.put( namesOfColumns[i], new Integer( i ) );
+			nameIndexMap.put( namesOfColumns[i], Integer.valueOf( i ) );
 		}
 
 		mappingPathElementTree = relationInfo.getTableMappingPathElementTree( tableName );

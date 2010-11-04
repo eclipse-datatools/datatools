@@ -462,7 +462,7 @@ class XMLPathHolder
 				index = ((Integer)childCounts.get( elementName )).intValue( );
 			}
 			index++;
-			childCounts.put( elementName, new Integer(index) );
+			childCounts.put( elementName, Integer.valueOf(index) );
 			return new XMLElement( elementName, index );
 		}
 		

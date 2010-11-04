@@ -97,7 +97,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 	{
 		if (mappingPathElementTree != null)
 		{
-			Set pathValues = (Set)(indexPathValuesMap.get( new Integer(index )));
+			Set pathValues = (Set)(indexPathValuesMap.get( Integer.valueOf( index )));
 			if (pathValues == null)
 			{
 				return null;
@@ -118,7 +118,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 							Object filterColumnName = it.next( );
 							Object value = filters.get( filterColumnName );
 							int filterColumnIndex = consumer.getColumnIndex( filterColumnName.toString( ) );
-							Set filterPathValues = (Set)(indexPathValuesMap.get( new Integer( filterColumnIndex )));
+							Set filterPathValues = (Set)(indexPathValuesMap.get( Integer.valueOf( filterColumnIndex )));
 							if ( filterPathValues != null )
 							{
 								Iterator iter = filterPathValues.iterator( );
@@ -147,12 +147,12 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 	private void addPathValue(int index, XMLPath path, String value)
 	{
 		NestedColumnPathValue pathValue = new NestedColumnPathValue(path, value);
-		Set pathValues = (Set)indexPathValuesMap.get( new Integer(index) );
+		Set pathValues = (Set)indexPathValuesMap.get( Integer.valueOf(index) );
 		if (pathValues == null)
 		{
 			//A sorted set
 			pathValues = new TreeSet();
-			indexPathValuesMap.put( new Integer(index), pathValues );
+			indexPathValuesMap.put( Integer.valueOf(index), pathValues );
 		}
 		pathValues.add( pathValue );
 	}

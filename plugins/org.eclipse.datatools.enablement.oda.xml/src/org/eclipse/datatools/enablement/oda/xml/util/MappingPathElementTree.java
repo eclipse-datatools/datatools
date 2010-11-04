@@ -100,7 +100,7 @@ public class MappingPathElementTree
 				// remove all the prefix ../..
 				String path = relativePath.replaceFirst( "\\Q..\\E(\\Q/..\\E)*", //$NON-NLS-1$
 						"" );
-				indexNestedColumnMap.put( new Integer( i ),
+				indexNestedColumnMap.put( Integer.valueOf( i ),
 						new NestedColumn( doubleDotCount, path ) );
 
 				Iterator itr = ancestors.iterator( );
@@ -352,7 +352,7 @@ public class MappingPathElementTree
 	 */
 	public boolean isNestedColumn( int index )
 	{
-		return indexNestedColumnMap.containsKey( new Integer( index ) );
+		return indexNestedColumnMap.containsKey( Integer.valueOf( index ) );
 	}
 	
 	/** 
@@ -383,7 +383,7 @@ public class MappingPathElementTree
 	public boolean isValidNestedColumn( int index, XMLPath row,
 			XMLPath column )
 	{
-		NestedColumn nc = (NestedColumn) ( indexNestedColumnMap.get( new Integer( index ) ) );
+		NestedColumn nc = (NestedColumn) ( indexNestedColumnMap.get( Integer.valueOf( index ) ) );
 		if ( nc == null )
 		{
 			return false;
@@ -635,7 +635,7 @@ abstract class TreeNode
 	public void addColumnIndex( int index )
 	{
 		assert index >= 0;
-		columnIndexes.add( new Integer( index ) );
+		columnIndexes.add( Integer.valueOf( index ) );
 	}
 
 	protected Set getColumnIndexes( )

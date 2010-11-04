@@ -271,6 +271,8 @@ class PatternKey
 	 */
 	public boolean equals( Object key )
 	{
+		if( key == null )
+			return false;
 		PatternKey patterKey = (PatternKey) key;
 		return patterKey.colonNumber == this.colonNumber
 				|| patterKey.blankNumber == this.blankNumber
