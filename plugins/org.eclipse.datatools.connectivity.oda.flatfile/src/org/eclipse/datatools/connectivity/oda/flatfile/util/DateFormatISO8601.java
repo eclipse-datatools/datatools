@@ -14,6 +14,7 @@ package org.eclipse.datatools.connectivity.oda.flatfile.util;
 import java.text.ParseException;
 import com.ibm.icu.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.osgi.util.NLS;
@@ -27,7 +28,9 @@ import org.eclipse.osgi.util.NLS;
 
 public class DateFormatISO8601
 {
-
+	
+	private static Pattern T_PATTERN = Pattern.compile( "T" );
+	
 	/**
 	 * Parse a date/time string.
 	 * @param source
@@ -70,7 +73,7 @@ public class DateFormatISO8601
 		s = s.trim( );
 		if ( s.indexOf( 'T' ) < 12 )
 		{
-			s = s.replaceFirst( "T", " " );//$NON-NLS-1$ //$NON-NLS-2$
+			s =  T_PATTERN.matcher( s ).replaceFirst( " " );//$NON-NLS-1$ //$NON-NLS-2$
 		}
 		
 //		int zoneIndex = s.indexOf( "GMT" ); //$NON-NLS-1$

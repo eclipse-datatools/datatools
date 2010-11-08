@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
@@ -54,6 +55,8 @@ public class ResultSet implements IResultSet
     
     private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
     
+    private static Pattern pattern1 = Pattern.compile( "\\QT\\E" ); //$NON-NLS-3$
+    private static Pattern pattern2 = Pattern.compile( "\\QZ\\E" ); //$NON-NLS-3$
     
     /**
      * Constructor
@@ -505,37 +508,33 @@ public class ResultSet implements IResultSet
      * Transform a String value to a Timestamp value
      * @param stringValue String value
      * @return Corresponding Timestamp value
+     * @throws OdaException 
      */
-    private Timestamp stringToTimestamp( String stringValue )
+    private Timestamp stringToTimestamp( String stringValue ) throws OdaException
     {
     	if( stringValue != null )
         {
             try
             {
-            	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0]; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            	stringValue = pattern1.matcher( stringValue).replaceAll(" "); //$NON-NLS-1$ //$NON-NLS-2$
+            	stringValue = pattern2.split( stringValue )[0];
             	return Timestamp.valueOf( stringValue );
-            }
-            catch( IllegalArgumentException e )
-            {
-            	try{
-            		long timeMills = new Long(stringValue).longValue();
-            		return new Timestamp( timeMills );
-            	}catch ( NumberFormatException e1)
-            	{
-            		try
-					{
-						java.util.Date date = DateUtil.toDate( stringValue );
-						Timestamp timeStamp = new Timestamp( date.getTime( ) );
-
-						return timeStamp;
-					}
-					catch ( OdaException oe )
-					{
-					}
-            	}
-            	
-            }
-        }
+			}
+			catch ( IllegalArgumentException e )
+			{
+				try
+				{
+					long timeMills = Long.valueOf( stringValue ).longValue( );
+					return new Timestamp( timeMills );
+				}
+				catch ( NumberFormatException e1 )
+				{
+					java.util.Date date = DateUtil.toDate( stringValue );
+					Timestamp timeStamp = new Timestamp( date.getTime( ) );
+					return timeStamp;
+				}
+			}
+		}
     	this.wasNull = true;
         return null;
     }

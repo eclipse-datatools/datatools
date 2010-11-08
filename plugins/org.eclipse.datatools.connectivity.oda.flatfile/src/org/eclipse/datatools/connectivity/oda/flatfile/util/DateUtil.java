@@ -16,6 +16,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
@@ -42,9 +43,12 @@ public final class DateUtil
 
 	// Default Date/Time Style 
 	private static int DEFAULT_DATE_STYLE = DateFormat.MEDIUM;
-
-	public static long count = 0;
-
+	
+	private static Pattern p1 = Pattern.compile( ".*[0-9]+:[0-9]+:[0-9]+.*" );//$NON-NLS-1$
+	private static Pattern p2 = Pattern.compile( ".*[0-9]+:[0-9]+.*" );//$NON-NLS-1$
+	
+	private static DateFormat cachedDateFormat = null;
+	
 	/**
 	 * Number -> Date
 	 * 		new Date((long)Number)
@@ -69,7 +73,7 @@ public final class DateUtil
 		}
 		else
 		{
-			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
 		}
 	}
     
@@ -314,17 +318,33 @@ public final class DateUtil
 		DateFormat dateFormat = null;
 		Date resultDate = null;
 		
-		boolean existTime = source.matches( ".*[0-9]+:[0-9]+:[0-9]+.*" ) //$NON-NLS-1$
-				|| source.matches( ".*[0-9]+:[0-9]+.*" ); //$NON-NLS-1$
+		boolean existTime = p1.matcher( source ).matches( )
+				|| p2.matcher( source ).matches( );
+		
+		if ( cachedDateFormat != null )
+		{
+			try
+			{
+				resultDate = cachedDateFormat.parse( source );
+				return resultDate;
+			}
+			catch ( ParseException e1 )
+			{
+				cachedDateFormat = null;
+			}
+		}
 
 		for ( int i = DEFAULT_DATE_STYLE; i <= DateFormat.SHORT; i++ )
 		{
 			for ( int j = DEFAULT_DATE_STYLE; j <= DateFormat.SHORT; j++ )
 			{
-				dateFormat = DateFormatFactory.getDateTimeInstance( i, j, locale );
+				dateFormat = DateFormatFactory.getDateTimeInstance( i,
+						j,
+						locale );
 				try
 				{
 					resultDate = dateFormat.parse( source );
+					cachedDateFormat = dateFormat;
 					return resultDate;
 				}
 				catch ( ParseException e1 )
@@ -332,7 +352,7 @@ public final class DateUtil
 				}
 			}
 
-			// only Date, no Time 
+			// only Date, no Time
 			if ( !existTime )
 			{
 				dateFormat = DateFormatFactory.getDateInstance( i, locale );
@@ -346,15 +366,7 @@ public final class DateUtil
 				}
 			}
 		}
-
-		// for the String can not be parsed, throws a OdaException
-		if ( resultDate == null )
-		{
-			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
-		}
-
-		// never access here
-		return resultDate;
+		throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
 	}
 
 	/**
