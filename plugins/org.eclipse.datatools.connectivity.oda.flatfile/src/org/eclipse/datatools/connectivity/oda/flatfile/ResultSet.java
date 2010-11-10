@@ -516,9 +516,9 @@ public class ResultSet implements IResultSet
         {
             try
             {
-            	stringValue = pattern1.matcher( stringValue).replaceAll(" "); //$NON-NLS-1$ //$NON-NLS-2$
-            	stringValue = pattern2.split( stringValue )[0];
-            	return Timestamp.valueOf( stringValue );
+            	String value = pattern1.matcher( stringValue).replaceAll(" "); //$NON-NLS-1$ //$NON-NLS-2$
+            	value = pattern2.split( value )[0];
+            	return Timestamp.valueOf( value );
 			}
 			catch ( IllegalArgumentException e )
 			{
@@ -529,9 +529,16 @@ public class ResultSet implements IResultSet
 				}
 				catch ( NumberFormatException e1 )
 				{
-					java.util.Date date = DateUtil.toDate( stringValue );
-					Timestamp timeStamp = new Timestamp( date.getTime( ) );
-					return timeStamp;
+					try
+					{
+						java.util.Date date = DateUtil.toDate( stringValue );
+						Timestamp timeStamp = new Timestamp( date.getTime( ) );
+						return timeStamp;
+					}
+					catch ( OdaException ex )
+					{
+						//ignore
+					}
 				}
 			}
 		}
