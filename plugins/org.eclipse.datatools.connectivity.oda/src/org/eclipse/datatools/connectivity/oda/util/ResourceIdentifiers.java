@@ -14,8 +14,10 @@
 
 package org.eclipse.datatools.connectivity.oda.util;
 
+import java.io.File;
 import java.net.URI;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  Represents the resource identifiers of an ODA consumer application.
@@ -35,9 +37,27 @@ public class ResourceIdentifiers
     
     private static final String APPL_RESOURCE_TYPE = "ApplResourceType"; //$NON-NLS-1$
     private static final String DESIGN_RESOURCE_TYPE = "DesignResourceType"; //$NON-NLS-1$
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     
     private HashMap<String, URILocator> m_uriLocators;
 
+    /**
+     * A convenience method to obtain the ResourceIdentifiers instance stored in 
+     * the specified application context Map with the pre-defined key.
+     * @param appContext    an application context Map
+     * @return  a ResourceIdentifiers instance, normally set by an ODA consumer application;
+     *          may be null if none is available
+     * @since 3.3.2 (DTP 1.9)
+     */
+    public static ResourceIdentifiers get( Object appContext )
+    {
+        if( !(appContext instanceof Map) )
+            return null;
+        Object mapValue = ((Map<?,?>)appContext).get( ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS );
+        return ( mapValue instanceof ResourceIdentifiers ) ? 
+                (ResourceIdentifiers)mapValue : null;
+    }
+    
     public ResourceIdentifiers()
     {
         m_uriLocators = new HashMap<String, URILocator>(2);
@@ -212,6 +232,48 @@ public class ResourceIdentifiers
     }
     
     /**
+     * <strong>EXPERIMENTAL</strong>
+     * Converts and resolves the specified resource location path to a URI, based on the 
+     * registered resource URILocator and its base URI.  
+     * This will first attempt to use the application resources URILocator, if exists;
+     * otherwise, its design resources URILocator is used.
+     * @param resourcePath  the path to be encoded and resolved to a URI;
+     *              may be an absolute or relative path
+     * @return  resolved URI; may be null if not able to resolve
+     * @since 3.3.2 (DTP 1.9)
+     */
+    public URI resolveResourceLocation( String resourcePath )
+    {
+        // use the application resource locator, if available, to resolve runtime location;
+        // otherwise, use the design resource locator if available
+        URILocator locator = getApplResourceURILocator();
+        if( locator == null )
+            locator = getDesignResourceURILocator();
+        return locator != null ?
+                    locator.resolve( resourcePath ) : 
+                    null;     // not able to resolve    
+    }
+    
+    private static URI encode( String location )
+    {
+        //  encode non-US-ASCII characters in specified path into an URI
+        try
+        {
+            // use URI encoding implementation; 
+            // strip out the root path added by the file conversion
+            String encodedLocation = new File( location ).toURI( ).toASCIIString( );
+            String target =  new File( EMPTY_STRING ).toURI( ).toASCIIString( );
+            encodedLocation = encodedLocation.replace( target, EMPTY_STRING );
+            return new URI( encodedLocation );
+        }
+        catch( Exception ex )
+        {
+            // ignore
+        }
+        return null;
+    }
+
+    /**
      * The default locator of a resource URI relative to a specified base URI.
      * An ODA consumer application may extend to customize how it proposes to
 	 * resolve a relative URI reference against its resource base URI.
@@ -238,9 +300,21 @@ public class ResourceIdentifiers
             return resolveImpl( uri );
         }
         
+        /** 
+         * Resolves the specified string to a URI.
+         * @param str   the string to be encoded and parsed into a URI
+         * @return  resolved URI; may be null if not able to resolve
+         * @since 3.3.2 (DTP 1.9)
+         */
+        public URI resolve( String str )
+        {
+            URI uri = encode( str );
+            return resolve( uri );
+        }
+        
         protected URI resolveImpl( URI uri )
         {
-            if( m_baseURI == null )
+            if( m_baseURI == null || uri == null )
                 return uri;
             return m_baseURI.resolve( uri );
         }

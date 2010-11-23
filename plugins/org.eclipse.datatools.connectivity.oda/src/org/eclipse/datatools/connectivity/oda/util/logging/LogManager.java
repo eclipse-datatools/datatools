@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * Copyright (c) 2004, 2009 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -389,7 +389,10 @@ public class LogManager
         
         // the specified logDirectory is relative, 
         // set its parent to be the oda plugin's default log folder 
-        logParent = getPluginLogPath().append( logDirectory ).toFile(); 
+        IPath pluginLogPath = getPluginLogPath();
+        logParent = pluginLogPath != null ?
+                pluginLogPath.append( logDirectory ).toFile() :
+                null; 
         return logParent;
     }
     
@@ -404,8 +407,10 @@ public class LogManager
     {
         // try to use oda plugin's default state location's log folder as its parent
         OdaPlugin odaPlugin = OdaPlugin.getDefault();
-        if( odaPlugin == null )
-            throw new IllegalStateException( "OdaPlugin.getDefault()" ); //$NON-NLS-1$
+        if( odaPlugin == null )     // not on OSGi platform
+        {
+            return null;            // unable to obtain plugin path
+        }
 
         return odaPlugin.getStateLocation()
                         .append( LOG_SUBFOLDER_NAME ); 	
@@ -417,7 +422,7 @@ public class LogManager
     	if( formatterClassName == null || formatterClassName.length() == 0 )
     		return null;
     		
-    	Class formatterClass = Class.forName( formatterClassName );
+    	Class<?> formatterClass = Class.forName( formatterClassName );
     	return (LogFormatter) formatterClass.newInstance();
     }
 
@@ -426,4 +431,5 @@ public class LogManager
     {
 		return ( logLevel > Level.SEVERE );
     }
+
 }

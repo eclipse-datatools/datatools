@@ -50,6 +50,7 @@ public class Messages extends NLS
 	public static String manifest_INVALID_LOG_LEVEL_VALUE;
     public static String manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST;
 	public static String manifest_NO_LOG_FILENAME_PREFIX_DEFINED;
+    public static String manifest_UNKNOWN_BUNDLE_LOCATION;
 
     public static String profileProperty_GROUP_PROPERTIES;
     public static String profileProperty_PROFILE_NAME;

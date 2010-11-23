@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2009 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogPathHelp
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.DriverExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
+import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.JavaRuntimeInterface;
@@ -45,7 +46,8 @@ public class OdaDriver extends OdaObject
 
     private String m_logDirectory;
 	private Object m_appContext;
-
+	private Object m_initAppContext;
+	
     /** 
      * Instantiates an ODA consumer's driver helper 
      * to manage the specified ODA driver.
@@ -91,6 +93,29 @@ public class OdaDriver extends OdaObject
 		throws OdaException
     {
         init( driverConfig );
+    }
+
+	/**
+     * <strong>EXPERIMENTAL</strong>
+     * Instantiates an ODA consumer's driver helper to manage the specified ODA driver,
+     * in either OSGi or non-OSGi platform.  
+     * The OSGi bundle, if available, is used to locate and load the specified ODA driver. 
+     * If not running on OSGi platform, the bundle is loaded from the class path,
+     * and the specified application context should contain a {@link ResourceIdentifiers} 
+     * to help resolve the bundle location path.
+	 * @param driverConfig the driver configuration info of an ODA data source extension,
+     *              whose driver is to be loaded and managed by this helper
+	 * @param appContext   an application context Map, normally set by an ODA consumer application
+	 * @throws OdaException
+     * @since 3.2.4 (DTP 1.9)
+	 */
+	public OdaDriver( ExtensionManifest driverConfig, Object appContext )
+       throws OdaException
+    {
+        // set the appContext, which if exists is used to initialize the bundle location path
+	    m_initAppContext = appContext;
+	    init( driverConfig );
+	    m_initAppContext = null;   // reset after #init is done
     }
 
     /**
@@ -204,8 +229,14 @@ public class OdaDriver extends OdaObject
         IDriver loadedDriver = null;
 		try
 		{
-			Bundle bundle = Platform.getBundle( driverConfig.getNamespace() );
-			Class driverClass = bundle.loadClass( initEntryPoint );
+			Bundle bundle = Platform.getBundle( driverConfig.getNamespace( ) );
+			Class driverClass = ( bundle != null ) ? 
+                    bundle.loadClass( initEntryPoint ) :
+			        Class.forName( initEntryPoint );
+                
+            // if on non-OSGi platform, need to pass the driver location to extension manifest info
+            if( bundle == null )
+                javaRuntime.setLoadedClassLocation( driverClass, m_initAppContext );
 
             if( honorClassLoaderSwitch )
             {
@@ -516,7 +547,8 @@ public class OdaDriver extends OdaObject
             {
                 // ensure that either user-defined or default log directory
                 // has an absolute path
-                m_logDirectory = LogPathHelper.getAbsoluteLogDirName( m_logDirectory );
+                ResourceIdentifiers resourceIdentifiers = ResourceIdentifiers.get( m_initAppContext );
+                m_logDirectory = LogPathHelper.getAbsoluteLogDirName( m_logDirectory, resourceIdentifiers );
 
                 // configure the odaconsumer logger, and cache it for use by the local thread
                 setLogger( LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
