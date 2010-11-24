@@ -31,6 +31,7 @@ manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=ODA のドライバー plugin.xml は、<dat
 manifest_INVALID_LOG_LEVEL_VALUE=ODA のドライバー plugin.xml は、データ・ソース拡張 ({1}) 内に無効な logLevel 値 ({0}) を持っています。
 manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=拡張子 ({0}) 内で要素 {1} が見つかりません。
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=ODA ドライバー plugin.xml に、データ・ソース拡張 ({0}) の <traceLogging> 内の logFileNamePrefix 属性がありません。
+manifest_UNKNOWN_BUNDLE_LOCATION=Unable to locate the installation path of the ODA extension ({0}).  The ODA consumer application must specify a ResourceIdentifiers in the appContext to resolve the path.
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=無効なソートのモードが指定されました\: {0}。
 sortSpec_NULL_COLUMN_NAME_SPECIFIED=NULL が列の名前に指定されました。

@@ -31,6 +31,7 @@ manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=在 ODA 驱动程序 plugin.xml 中，<data
 manifest_INVALID_LOG_LEVEL_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 logLevel 值（{0}）。
 manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=扩展({0})缺少 {1} 元素。
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{0}）的 <traceLogging> 缺少 logFileNamePrefix 属性。
+manifest_UNKNOWN_BUNDLE_LOCATION=Unable to locate the installation path of the ODA extension ({0}).  The ODA consumer application must specify a ResourceIdentifiers in the appContext to resolve the path.
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=指定了无效的排序方式：{0}。
 sortSpec_NULL_COLUMN_NAME_SPECIFIED=指定了空列名。

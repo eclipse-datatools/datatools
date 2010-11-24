@@ -31,6 +31,7 @@ manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=ODA 드라이버 plugin.xml의 <dataTypeM
 manifest_INVALID_LOG_LEVEL_VALUE=ODA 드라이버 plugin.xml의 데이터 소스 확장({1})에 올바르지 않은 logLevel 값({0})이 있습니다.
 manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=확장({0})에 {1} 요소가 없습니다.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=ODA 드라이버 plugin.xml에서, 데이터 소스 확장({0})의 <traceLogging>에 logFileNamePrefix 속성이 누락되었습니다.
+manifest_UNKNOWN_BUNDLE_LOCATION=Unable to locate the installation path of the ODA extension ({0}).  The ODA consumer application must specify a ResourceIdentifiers in the appContext to resolve the path.
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=올바르지 않은 정렬 모드 지정\: {0}.
 sortSpec_NULL_COLUMN_NAME_SPECIFIED=널(null) 열 이름이 지정되었습니다.
