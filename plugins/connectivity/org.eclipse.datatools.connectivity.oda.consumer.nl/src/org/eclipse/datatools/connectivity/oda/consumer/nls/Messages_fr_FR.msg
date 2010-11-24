@@ -16,3 +16,4 @@ helper_cannotGetResultSetMdBeforePrepare=Impossible d'extraire les métadonnées d
 helper_cannotExecuteBeforePrepare=Impossible d'exécuter l'instruction avant la préparation de l'instruction.
 helper_missingDriverInfo=ID ou manifeste d'extension de source de données ODA manquant.
 helper_extension_mustImplementInterface=Implémentation ({0}) de classe incorrecte.  L''interface Java ({1}) doit être implémentée.
+helper_unknownPluginLogPath=Unable to resolve the log directory.  ResourceIdentifiers found in appContext: {0}

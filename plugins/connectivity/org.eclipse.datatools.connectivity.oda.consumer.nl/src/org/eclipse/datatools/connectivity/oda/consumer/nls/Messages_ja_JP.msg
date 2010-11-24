@@ -16,3 +16,4 @@ helper_cannotGetResultSetMdBeforePrepare=ƒXƒe[ƒgƒƒ“ƒg‚Ì€”õ‘O‚ÉŒ‹‰ÊƒZƒbƒgEƒƒ
 helper_cannotExecuteBeforePrepare=ƒXƒe[ƒgƒƒ“ƒg‚Ì€”õ‘O‚ÉƒXƒe[ƒgƒƒ“ƒg‚ğÀs‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
 helper_missingDriverInfo=ODA ƒf[ƒ^Eƒ\[ƒX ID ‚Ü‚½‚ÍŠg’£ƒ}ƒjƒtƒFƒXƒg‚ª‚ ‚è‚Ü‚¹‚ñB
 helper_extension_mustImplementInterface=–³Œø‚ÈƒNƒ‰ƒX ({0}) ‚ÌÀ‘•B Java ƒCƒ“ƒ^[ƒtƒF[ƒX({1}) ‚ğÀ‘•‚µ‚Ä‚¢‚é•K—v‚ª‚ ‚è‚Ü‚·B
+helper_unknownPluginLogPath=Unable to resolve the log directory.  ResourceIdentifiers found in appContext: {0}

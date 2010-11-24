@@ -16,3 +16,4 @@ helper_cannotGetResultSetMdBeforePrepare=명령문이 준비되기 전에 결과 세트 메타데
 helper_cannotExecuteBeforePrepare=명령문이 준비되기 전에 명령문을 실행할 수 없습니다.
 helper_missingDriverInfo=ODA 데이터 소스 ID 또는 확장 Manifest가 누락되었습니다.
 helper_extension_mustImplementInterface=올바르지 않은 클래스({0}) 구현입니다. Java 인터페이스({1})를 구현해야 합니다.
+helper_unknownPluginLogPath=Unable to resolve the log directory.  ResourceIdentifiers found in appContext: {0}
