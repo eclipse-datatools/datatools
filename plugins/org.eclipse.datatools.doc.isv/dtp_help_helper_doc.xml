@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+	<toc label="Data Tools Platform Help-Helper Documentation"
+     topic="projects/dtp/dtp/en/source/c_overview_of_dtp_help_helper_plugin.html">
+   <topic label="Overview of DTP Help-Helper Plug-in"
+          href="projects/dtp/dtp/en/source/c_overview_of_dtp_help_helper_plugin.html"/>
+   <topic label="Introduction to Context-Sensitive Help"
+          href="projects/dtp/dtp/en/source/c_introduction_to_csh.html">
+      <topic label="Static vs. Dynamic Help Contexts"
+             href="projects/dtp/dtp/en/source/c_static_vs_dynamic_help_contexts.html"/>
+      <topic label="Dynamic Context-Sensitive Help"
+             href="projects/dtp/dtp/en/source/c_dynamic_csh.html"/>
+      <topic label="Help Context Abstraction"
+             href="projects/dtp/dtp/en/source/c_help_context_abstraction.html"/>
+   </topic>
+   <topic label="DTP Help-Helper"
+          href="projects/dtp/dtp/en/source/c_dtp_help_helper.html">
+      <topic label="Help Keys" href="projects/dtp/dtp/en/source/c_help_keys.html"/>
+      <topic label="Context Provider Delegate"
+             href="projects/dtp/dtp/en/source/c_context_provider_delegate.html"/>
+   </topic>
+   <topic label="Context-Sensitive Help UI Implementation"
+          href="projects/dtp/dtp/en/source/c_csh_ui_implementation.html">
+      <topic label="View Implementation Example"
+             href="projects/dtp/dtp/en/source/c_view_implementation_example.html"/>
+      <topic label="Dialog Implementation Example"
+             href="projects/dtp/dtp/en/source/c_dialog_implementation_example.html"/>
+      <topic label="helpKey Constants Interface Class"
+             href="projects/dtp/dtp/en/source/c_helpkey_constants_interface_class.html"/>
+   </topic>
+   <topic label="helpKey Properties Files"
+          href="projects/dtp/dtp/en/source/c_helpkey_properties_files.html">
+      <topic label="helpKey Properties File Names"
+             href="projects/dtp/dtp/en/source/c_helpkey_properties_file_names.html"/>
+   </topic>
+   <topic label="Context-Sensitive Help UA Plug-ins"
+          href="projects/dtp/dtp/en/source/c_csh_ua_plugins.html">
+      <topic label="Eclipse Context XML Files Extension"
+             href="projects/dtp/dtp/en/source/c_eclipse_context_xml_files_extension.html"/>
+      <topic label="helpKey Properties Files Extension"
+             href="projects/dtp/dtp/en/source/c_helpkey_properties_files_extension.html"/>
+      <topic label="Context-Sensitive Help Plug-in IDs"
+             href="projects/dtp/dtp/en/source/c_csh_plugin_ids.html"/>
+   </topic>
+   <topic label="Team Responsibilities and Collaboration"
+          href="projects/dtp/dtp/en/source/c_team_responsibilities_and_collaboration.html">
+      <topic label="Development Team Responsibilities"
+             href="projects/dtp/dtp/en/source/c_development_team_responsibilities.html"/>
+      <topic label="Documentation Team Responsibilities"
+             href="projects/dtp/dtp/en/source/c_documentation_team_responsibilities.html"/>
+   </topic>
+   <topic label="Documentation Team Workflow"
+          href="projects/dtp/dtp/en/source/c_documentation_team_workflow.html">
+      <topic label="Help Context IDs"
+             href="projects/dtp/dtp/en/source/c_help_context_ids.html"/>
+      <topic label="Help Search Expressions"
+             href="projects/dtp/dtp/en/source/c_help_search_expressions.html"/>
+      <topic label="Context-Sensitive Help Plug-ins with DITA"
+             href="projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html">
+         <topic label="UI Plug-ins Associated with Help Contexts"
+                href="projects/dtp/dtp/en/source/c_ui_plugins_associated_with_help_contexts.html"/>
+         <topic label="Related Topics Associated with Help Contexts"
+                href="projects/dtp/dtp/en/source/c_related_topics_associated_with_help_contexts.html"/>
+         <topic label="Context-Specific Help Content"
+                href="projects/dtp/dtp/en/source/c_context_specific_help_content.html"/>
+      </topic>
+   </topic>
+   <topic label="Test Dynamic Context-Sensitive Help"
+          href="projects/dtp/dtp/en/source/c_test_dynamic_context-sensitive_help.html">
+      <topic label="Test Objectives"
+             href="projects/dtp/dtp/en/source/c_test_objectives.html"/>
+      <topic label="Test Procedures"
+             href="projects/dtp/dtp/en/source/c_test_procedures.html"/>
+      <topic label="Plug-in Spy" href="projects/dtp/dtp/en/source/c_plugin_spy.html"/>
+      <topic label="Debug Mode" href="projects/dtp/dtp/en/source/c_debug_mode.html"/>
+   </topic>
+</toc>
