@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>SQL Editor Text Hover</title>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>SQL Editor Text Hover</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.sqltools.sqleditor.texthover<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>This extension point provides support for text hover in SQL editor. Extensions register a <code>org.eclipse.datatools.sqltools.sqleditor.sql.AbstractSQLEditorTextHover</code> class which will provide text hover information.</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.hover">hover</a>+)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.hover">hover</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST hover</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>class&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - </li>
+<li><b>class</b> - subclass of org.eclipse.datatools.sqltools.sqleditor.sql.AbstractSQLEditorTextHover. When there're multiple texthover contributions, sql editor will use the first one that can give hover information at the current position.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><p><pre>
+<p class=code id=tag>&lt;extension point=<p class=code id=cstring>&quot;org.eclipse.datatools.sqltools.sqleditor.texthover&quot;</p><p class=code id=tag>&gt;</p>
+       <p class=code id=tag>&lt;hover class=<p class=code id=cstring>&quot;com.sybase.stf.dmp.editorextension.SQLDebugHover&quot;</p><p class=code id=tag> id=<p class=code id=cstring>&quot;com.sybase.stf.dmp.editor.hover&quot;</p><p class=code id=tag>/&gt;</p>
+<p class=code id=tag>&lt;/extension&gt;</p>
+</pre></p>
+Contribute a text hover that will give variable value when the current position is on a variable name.
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>the class must implement <code>org.eclipse.datatools.sqltools.sqleditor.sql.AbstractSQLEditorTextHover</code>
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+Copyright (c) 2005 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+<p></p>
+
+</p>
+</BODY>
+</HTML>

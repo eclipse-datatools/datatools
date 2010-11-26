@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>labelService</title>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>labelService</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.sqm.core.ui.labelService<p></p>
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>This extension point will provide plugins a way to supply their own Icons as well as a displayType for SQLObject element.</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.contributor">contributor</a>)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This extension point will provide plugins a way to supply their own Icons as well as a displayType for SQLObject element.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.contributor">contributor</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST contributor</p>
+<p class=code id=dtdAttlist>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>iconLocation&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>displayType&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>selector&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>type</b> - The EMF type contributed by your provider of the LabelService</li>
+<li><b>iconLocation</b> - This is the Icon location so that the core.ui plugin can load your icon</li>
+<li><b>displayType</b> - This is the type to display in UI such as the property browser. By default the type to display will be the metaclass name eClass().getName()</li>
+<li><b>selector</b> - The name of a class that implements the org.eclipse.datatools.connectivity.sqm.core.internal.ui.LabelSelector interface.  If provided, this class will be used in
+                  addition to the type to determine if the label information should be passed back for the given object.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><extension point = "com.ibm.datatools.core.ui.labelService">
+  <contributor
+   type = "com.ibm.db.models.sql.schema.Database"
+   iconLocation = "/icons/database.gif"
+   displayType = "%database">
+  </contributor>
+    </extension>
+<p></p>
+
+<br>
+<p class=note id=copyright>
+</p>
+</BODY>
+</HTML>
