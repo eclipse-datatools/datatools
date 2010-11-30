@@ -542,6 +542,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 				ParameterEditDialog dialog = new ParameterEditDialog( soapParameter );
 				if ( dialog.open( ) == Window.OK )
 				{
+					soapParameter = dialog.getModifiedSOAPParameter( );
 					viewer.refresh( );
 				}
 			}
