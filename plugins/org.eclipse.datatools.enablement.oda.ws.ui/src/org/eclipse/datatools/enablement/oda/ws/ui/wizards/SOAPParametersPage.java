@@ -323,7 +323,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 	{
 		initWSConsole( );
 		initFromModel( );
-		initViewer( );
+		initViewer( true );
 	}
 
 	private void initWSConsole( )
@@ -338,17 +338,23 @@ public class SOAPParametersPage extends DataSetWizardPage
 				.getPropertyValue( Constants.WS_QUERYTEXT );
 	}
 
-	private void initViewer( )
+	private void initViewer( boolean refreshParameters )
 	{
 		if ( WSUtil.isNull( wsQueryText ) )
 			return;
 
 		soapRequest = new SOAPRequest( wsQueryText );
 		SOAPParameter[] soapParameters = null;
-		if ( WSConsole.getInstance( ).getParameters( ) != null )
-			soapParameters = WSConsole.getInstance( ).getParameters( );
-		else
+		
+		if( refreshParameters || WSConsole.getInstance( ).getParameters( ) == null )
+		{
 			soapParameters = soapRequest.getParameters( );
+		}
+		else
+		{
+			soapParameters = WSConsole.getInstance( ).getParameters( );
+		}
+			
 		if ( !WSUtil.isNull( soapParameters ) )
 		{
 			viewer.setInput( soapParameters );
@@ -448,10 +454,10 @@ public class SOAPParametersPage extends DataSetWizardPage
 		WSConsole.getInstance( ).terminateSession( );
 	}
 
-	void refresh( )
+	void refresh( boolean refreshParameters )
 	{
 		wsQueryText = WSConsole.getInstance( ).getTemplate( );
-		initViewer( );
+		initViewer( refreshParameters );
 	}
 	
 	private static class ParametersViewerSorter extends ViewerSorter

@@ -70,6 +70,8 @@ public class OperationPage extends DataSetWizardPage
 	private Image serviceImage;
 	private Image portImage;
 	private Image operationImage;
+	
+	private boolean selectionChanged = false;
 
 	private static String DEFAULT_MESSAGE = Messages.getString( "operationPage.message.default" );//$NON-NLS-1$
 
@@ -158,11 +160,6 @@ public class OperationPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent event )
 			{
-				handle( );
-			}
-
-			private void handle( )
-			{
 				TreeItem item = operationTree.getSelection( )[0];
 
 				if ( item.getData( ) instanceof Operation )
@@ -180,8 +177,10 @@ public class OperationPage extends DataSetWizardPage
 					operationDescription.setText( WSUtil.EMPTY_STRING );
 					setPageComplete( false );
 				}
+				
+				selectionChanged = true;
 			}
-
+			
 		} );
 	}
 
@@ -467,8 +466,9 @@ public class OperationPage extends DataSetWizardPage
 
 		IWizardPage page = super.getNextPage( );
 		if ( page instanceof SOAPParametersPage )
-			( (SOAPParametersPage) page ).refresh( );
+			( (SOAPParametersPage) page ).refresh( selectionChanged );
 
+		selectionChanged = false;		
 		return page;
 	}
 
