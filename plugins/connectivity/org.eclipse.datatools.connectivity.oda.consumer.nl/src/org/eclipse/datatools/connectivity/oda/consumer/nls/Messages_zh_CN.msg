@@ -16,4 +16,4 @@ helper_cannotGetResultSetMdBeforePrepare=在编译语句之前不能获取结果集元数据。
 helper_cannotExecuteBeforePrepare=在编译语句之前不能执行该语句。
 helper_missingDriverInfo=缺少 ODA 数据源标识或扩展清单。
 helper_extension_mustImplementInterface=无效类（{0}）实现。必须实现 Java 接口（{1}）。
-helper_unknownPluginLogPath=Unable to resolve the log directory.  ResourceIdentifiers found in appContext: {0}
+helper_unknownPluginLogPath=无法解析日志目录。  appContext 中找到 ResourceIdentifiers: {0}

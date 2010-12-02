@@ -31,7 +31,7 @@ manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=Le fichier plugin.xml du pilote ODA 
 manifest_INVALID_LOG_LEVEL_VALUE=Le fichier plugin.xml du pilote ODA contient une valeur logLevel incorrecte ({0}) dans l''extension de la source de données ({1}).
 manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=Un élément {1} manque pour l'extension ({0}).
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=Le fichier plugin.xml du pilote ODA ne contient pas d''attribut logFileNamePrefix dans l''élément <traceLogging> de l''extension de la source de données ({0}).
-manifest_UNKNOWN_BUNDLE_LOCATION=Unable to locate the installation path of the ODA extension ({0}).  The ODA consumer application must specify a ResourceIdentifiers in the appContext to resolve the path.
+manifest_UNKNOWN_BUNDLE_LOCATION=Impossible de localiser le chemin d'installation de l'extension ODA ({0}).  L'application consommateur ODA doit spécifier un ID de ressource dans l'appContext pour résoudre le chemin.
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=Mode de tri spécifié incorrect \: {0}.
 sortSpec_NULL_COLUMN_NAME_SPECIFIED=Nom de colonne null spécifié.

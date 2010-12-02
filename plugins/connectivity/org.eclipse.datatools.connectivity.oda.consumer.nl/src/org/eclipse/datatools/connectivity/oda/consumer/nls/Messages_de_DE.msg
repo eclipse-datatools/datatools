@@ -16,4 +16,4 @@ helper_cannotGetResultSetMdBeforePrepare=Die Metadaten der Ergebnismenge können 
 helper_cannotExecuteBeforePrepare=Die Anweisung kann vor der Vorbereitung der Anweisung nicht ausgeführt werden.
 helper_missingDriverInfo=Die ID oder das Erweiterungsmanifest der ODA-Datenquelle fehlt.
 helper_extension_mustImplementInterface=Die Implementierung der Klasse ({0}) ist ungültig.  Die Java-Schnittstelle ({1}) muss implementiert werden.
-helper_unknownPluginLogPath=Unable to resolve the log directory.  ResourceIdentifiers found in appContext: {0}
+helper_unknownPluginLogPath=Protokollverzeichnis kann nicht gelöst werden.  In AppContext gefundene ResourceIdentifiers: {0}
