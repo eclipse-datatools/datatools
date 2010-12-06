@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Help Search Expressions"/>
+<meta name="abstract" content="Each help context should be associated with a context-specific help search expression, which the Eclipse help system will use to provide Dynamic Help search results in the Help view."/>
+<meta name="description" content="Each help context should be associated with a context-specific help search expression, which the Eclipse help system will use to provide Dynamic Help search results in the Help view."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_documentation_team_workflow.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Help Search Expressions</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8"><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Help Search Expressions</h1>
+
+    
+    <div><p>Each help context should be associated with a context-specific help search
+           expression, which the Eclipse help system will use to provide Dynamic Help
+           search results in the Help view.
+        </p>
+
+        
+        <p>Documentation teams are responsible for defining the context-specific help
+           search expressions for each help context.
+        </p>
+
+        <div class="p">Additional considerations:
+            <br/><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_3B7BE7BE77E24C458C2FEE727150D6AE"><!-- --></a><ul id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_3B7BE7BE77E24C458C2FEE727150D6AE">
+                <li id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_DDEECC7821A14B6BAE0749783B846D9E"><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_DDEECC7821A14B6BAE0749783B846D9E"><!-- --></a>Each help search expression can be associated with multiple help context IDs,
+                    but
+                    <br/><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_76D792A15ED8400CAD54F896B3EDA0D9"><!-- --></a><ul id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_76D792A15ED8400CAD54F896B3EDA0D9">
+                        <li id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_2FAF1158AA4A4EBE87C0BBB7627B2CBC"><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_2FAF1158AA4A4EBE87C0BBB7627B2CBC"><!-- --></a>Each helpKey constant must be associated with exactly one help search
+                            expression.</li>
+
+                    </ul>
+</li>
+
+                <li id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_97E3A6D1C277410AA07DE0388214386F"><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_97E3A6D1C277410AA07DE0388214386F"><!-- --></a>Each help context within a UI component (for example, a UI plug-in) can be associated
+                    with a unique help search expression, however
+                    <br/><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_32DD265178BD41DDA452E75B39340992"><!-- --></a><ul id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__ul_32DD265178BD41DDA452E75B39340992">
+                        <li id="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_E9C2E0DDEEB5441696329C0EF4A3D6F7"><a name="concept_B3C38B3C7AA14BB68FD301C5A8AA3CC8__li_E9C2E0DDEEB5441696329C0EF4A3D6F7"><!-- --></a>It may be more practical to define a “generic” help search expression for each
+                            UI component, which would limit search results to product-specific content,
+                            rather than including all of the help content contributed by any doc plug-in.</li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+
+        <p>For each helpKey constant, the help context should be 
+           defined before the
+           help search expression is defined. If the Documentation team chooses to combine
+           multiple helpKey constants in a single help context, all of the helpKey
+           constants associated with that help context should be associated with the same
+           search expression.
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_documentation_team_workflow.html" title="Documentation teams should refer to the product’s architectural specifications to define an appropriate architecture (that is, granularity, content partitioning, plug-in naming, and so on) for online documentation plug-ins. With that information, Documentation teams can begin the process to create context-sensitive help plug-ins.">Documentation Team Workflow</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

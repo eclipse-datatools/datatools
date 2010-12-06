@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="helpKey Properties Files"/>
+<meta name="abstract" content="A helpKey properties file defines the mapping of helpKey constants (property keys), either to actual help context IDs, or to context-specific help search expressions."/>
+<meta name="description" content="A helpKey properties file defines the mapping of helpKey constants (property keys), either to actual help context IDs, or to context-specific help search expressions."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_helpkey_properties_file_names.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_D622F5DE619B4EF2A5148E21E39698DE"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>helpKey Properties Files</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_D622F5DE619B4EF2A5148E21E39698DE"><a name="concept_D622F5DE619B4EF2A5148E21E39698DE"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">helpKey Properties Files</h1>
+
+    
+    <div><p>A helpKey properties file defines the mapping of helpKey constants (property
+           keys), either to actual help context IDs, or to context-specific help search
+           expressions. </p>
+
+        <p>helpKey properties files are usually contributed in pairs, one for
+           context IDs and one for search expressions.</p>
+
+
+        <p>The help context ID strings defined in a helpKey properties file cannot be
+           fully-qualified context IDs. They must not include any blank space or period (.)
+           characters. The DTP help-helper handles unqualified help context IDs defined in
+           properties files to fully-qualify them, before it returns them to the UI control
+           through the ContextProviderDelegate.
+        </p>
+
+        <p>The following excerpt is from a helpKey properties file, which is contributed by
+           the org.eclipse.datatools.doc.user.contexts plug-in to define concrete help
+           context ID strings.
+        </p>
+
+        <pre class="codeblock">
+    ...
+    #	CONTEXT_ID_CP_PROPERTY_PAGE =
+    #	Basic profile name/description/auto-connect property page
+    CONTEXT_ID_CP_PROPERTY_PAGE = CONNECTION_PROFILE_COMMON_PROPERTY_PAGE
+    
+    #	CONTEXT_ID_CP_WIZARD_PAGE =
+    #	wizard selection page in New Connection Profile wizard
+    CONTEXT_ID_CP_WIZARD_PAGE = NEW_CONNECTION_PROFILE_WIZARD
+    
+    #	CONTEXT_ID_INTRO_WIZARD_PAGE =
+    #	Basic intro page for new connection profile wizard
+    CONTEXT_ID_INTRO_WIZARD_PAGE = NEW_CONNECTION_PROFILE_WIZARD
+    ...
+</pre>
+
+        <p>Notice that two abstract help contexts (represented by the helpKey constants
+           <samp class="codeph">CONTEXT_ID_CP_WIZARD_PAGE</samp> and 
+           <samp class="codeph">CONTEXT_ID_INTRO_WIZARD_PAGE</samp>) are mapped to one
+           concrete help context ID (<samp class="codeph">NEW_CONNECTION_PROFILE_WIZARD</samp>). 
+           This is an example of
+           the flexibility afforded by abstract help contexts, allowing the UA component to
+           combine multiple abstract help contexts in a single, concrete help context ID,
+           which is independent of the help context implementation in the UI component.
+        </p>
+
+        <p>The following example shows the mapping of a helpKey constant to a
+           context-specific help search expression in a helpKey properties file.
+        </p>
+
+        <pre class="codeblock">
+    ...
+    #	 * CONTEXT_ID_CP_PROPERTY_PAGE =
+    #	 * Basic profile name/description/auto-connect property page
+    CONTEXT_ID_CP_PROPERTY_PAGE = "connection profile" AND "properties"
+    ...
+</pre>
+
+        <p>Search expression strings must conform to the rules for Apache Lucene query
+           parser syntax: 
+            <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html" target="_blank">http://lucene.apache.org/java/docs/queryparsersyntax.html</a>
+        </p>
+
+
+        <div class="note"><span class="notetitle">Note:</span> The terms (keywords) in a search expression are not case sensitive, but
+           the Boolean operators (for example, AND, NOT, OR) must be all upper case.
+        </div>
+
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_helpkey_properties_file_names.html">helpKey Properties File Names</a></strong><br/>
+Names of helpKey properties files are arbitrary (as long as they end with .properties). However, a context-sensitive help plug-in could contribute pairs of helpKey properties files for several UI plug-ins, and the files would need to have unique names, if they were located in the same directory.</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

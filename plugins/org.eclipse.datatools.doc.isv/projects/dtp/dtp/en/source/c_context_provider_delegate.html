@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Context Provider Delegate"/>
+<meta name="abstract" content="The ContextProviderDelegate allows a UI control to provide the actual help context ID and help search expression to the methods of IContextProvider, while handling references to those strings as an abstract help key (helpKey constant)."/>
+<meta name="description" content="The ContextProviderDelegate allows a UI control to provide the actual help context ID and help search expression to the methods of IContextProvider, while handling references to those strings as an abstract help key (helpKey constant)."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_dtp_help_helper.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Context Provider Delegate</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1"><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Context Provider Delegate</h1>
+
+    
+    <div><p>The ContextProviderDelegate allows a UI control to provide the actual help
+           context ID and help search expression to the methods of IContextProvider, while
+           handling references to those strings as an abstract help key (helpKey constant).
+        </p>
+
+        
+        <div class="p">To support the abstraction from help context ID to helpKey constant, a UI
+           control must:
+            <br/><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__ul_AF6E7F4929514F6A99A3C75F3B24D0BD"><!-- --></a><ul id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__ul_AF6E7F4929514F6A99A3C75F3B24D0BD">
+                <li id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_E939CD1D126340EC85E3658BA8884C71"><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_E939CD1D126340EC85E3658BA8884C71"><!-- --></a>Adapt to the IContextProvider.class object as a key</li>
+
+                <li id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_AAD33F3AB2F2484AA55A9A6AE916A98F"><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_AAD33F3AB2F2484AA55A9A6AE916A98F"><!-- --></a>Create an instance of the ContextProviderDelegate, passing in the symbolic
+                    name of the plug-in associated with the help context</li>
+
+                <li id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_BD0DE9B2BBAA4CE7B7235E0A1D04186B"><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_BD0DE9B2BBAA4CE7B7235E0A1D04186B"><!-- --></a>Implement static methods of IContextProvider (getContext,
+                    getContextChangeMask, and getSearchExpression), each of which returns a
+                    corresponding method of the ContextProviderDelegate instance</li>
+
+                <li id="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_CCE56B6741AC4EFB9DF8CC5DEA7EB4EB"><a name="concept_AC2737026FCA4BBFB2804C8B0B1E2BE1__li_CCE56B6741AC4EFB9DF8CC5DEA7EB4EB"><!-- --></a>Define the help context using IWorkbench.setHelp (for example, in the
+                    createPartControl method), by passing the abstract helpKey constant string</li>
+
+            </ul>
+
+        </div>
+
+        <p>The ContextProviderDelegate methods return the actual help context ID, change
+           mask, or help search expression to the IContextProvider methods.
+        </p>
+
+
+        <div class="note"><span class="notetitle">Note:</span> The DTP help-helper handles unqualified help context IDs defined in
+           properties files to fully-qualify them, before it returns them through
+           ContextProviderDelegate methods.
+        </div>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_dtp_help_helper.html" title="The DTP help-helper plug-in (org.eclipse.datatools.help) provides a “help key” extension point (org.eclipse.datatools.help.helpKeyProperties), and supplies a context provider delegate implementation (org.eclipse.datatools.help.ContextProviderDelegate).">DTP Help-Helper</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

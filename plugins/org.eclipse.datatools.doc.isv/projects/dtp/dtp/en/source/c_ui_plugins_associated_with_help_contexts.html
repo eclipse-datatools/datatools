@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="UI Plug-ins Associated with Help Contexts"/>
+<meta name="abstract" content="DITA maps for context-sensitive help plug-ins must contain a &lt;topicmeta&gt; element as the first child of the &lt;map&gt; element, and for each UI plug-in whose help context IDs are identified in the map, that &lt;topicmeta&gt; element must contain one &lt;othermeta&gt; element that identifies the UI plug-in."/>
+<meta name="description" content="DITA maps for context-sensitive help plug-ins must contain a &lt;topicmeta&gt; element as the first child of the &lt;map&gt; element, and for each UI plug-in whose help context IDs are identified in the map, that &lt;topicmeta&gt; element must contain one &lt;othermeta&gt; element that identifies the UI plug-in."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_6245D50571D94B8E8D2B63620A5D9043"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>UI Plug-ins Associated with Help Contexts</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_6245D50571D94B8E8D2B63620A5D9043"><a name="concept_6245D50571D94B8E8D2B63620A5D9043"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">UI Plug-ins Associated with Help Contexts</h1>
+
+    
+    <div><p>DITA maps for context-sensitive help plug-ins must contain a 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element
+           as the first child of the 
+           <samp class="codeph">&lt;map&gt;</samp> element, and for each UI plug-in 
+           whose help context IDs are identified in the map, that 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element must contain one
+           <samp class="codeph">&lt;othermeta&gt;</samp> element that identifies the 
+           UI plug-in.
+        </p>
+
+        
+
+        <div class="note"><span class="notetitle">Note:</span> The <samp class="codeph">&lt;othermeta&gt;</samp> elements that identify 
+           UI plug-ins should be the last child element in the 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element. The 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element may contain any other valid child elements 
+           (preceding the 
+           <samp class="codeph">&lt;othermeta&gt;</samp> elements that identify UI plug-ins).
+        </div>
+
+        <div class="p">The <samp class="codeph">&lt;othermeta&gt;</samp> element’s name 
+           and content attribute values will be used to
+           identify UI plug-ins in the org.eclipse.help.contexts extension, which is
+           declared in the plug-in manifest (plugin.xml file) of the context-sensitive help
+           plug-in. For example:
+           <pre class="codeblock">
+    &lt;map id="org.eclipse.datatools.ui.doc"&gt;
+        &lt;topicmeta&gt;
+            ...
+            &lt;othermeta name="ui-plugin"
+                content="org.eclipse.datatools.connectivity.ui"/&gt;
+            &lt;othermeta name="ui-plugin"
+                content="org.eclipse.datatools.connectivity.ui.dse"/&gt;
+        &lt;/topicmeta&gt;
+        ...
+    &lt;/map&gt;
+</pre>
+
+        </div>
+
+        <p>The name attribute value "ui-plugin" is a fixed, literal string. The content
+           attribute value is the Eclipse plug-in ID of a UI plug-in.
+        </p>
+
+
+        <p>Nested maps that contribute context-related help topics must include the
+           same markup to identify each UI plug-in whose context IDs are identified in that
+           map.
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html" title="Any DITA map document that defines an online documentation (doc) plug-in can be modified to also define a corresponding context-sensitive help plug-in by inserting the appropriate context-related markup.">Context-Sensitive Help Plug-ins with DITA</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

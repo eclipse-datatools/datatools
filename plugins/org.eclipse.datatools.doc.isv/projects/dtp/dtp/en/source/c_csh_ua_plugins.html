@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Context-Sensitive Help UA Plug-ins"/>
+<meta name="abstract" content="Context-sensitive help UA plug-ins handle the mapping of help contexts to context-specific help content and related online documentation topics."/>
+<meta name="description" content="Context-sensitive help UA plug-ins handle the mapping of help contexts to context-specific help content and related online documentation topics."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_eclipse_context_xml_files_extension.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_helpkey_properties_files_extension.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_plugin_ids.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_CA8D4C4D4DCB48C4B02B8556197A640B"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Context-Sensitive Help UA Plug-ins</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_CA8D4C4D4DCB48C4B02B8556197A640B"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Context-Sensitive Help UA Plug-ins</h1>
+
+    
+    <div><p>Context-sensitive help UA plug-ins handle the mapping of help contexts to
+           context-specific help content and related online documentation topics.
+        </p>
+
+        
+        <div class="p">For projects that use the DTP help-helper, context-sensitive help plug-ins
+           contribute:
+            <br/><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_D60802A9E95B4E728ED3BBB917E6EA06"><!-- --></a><ul id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_D60802A9E95B4E728ED3BBB917E6EA06">
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_0265CD145B494797AFEB4AA66E7EFE89"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_0265CD145B494797AFEB4AA66E7EFE89"><!-- --></a>Eclipse context XML files, which supply the context-specific help content for
+                    each help context, and point to other help topic contributions related to the
+                    help context</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_39066DE080F14A8DA42E24413C458339"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_39066DE080F14A8DA42E24413C458339"><!-- --></a>Java properties files, which define the property key-value pairs that map
+                    abstract helpKey constants to concrete help context IDs and context-specific
+                    help search expressions</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="tip"><span class="tiptitle">Tip:</span> The helpKey properties files are usually contributed in pairs, one each
+           for help context IDs and help search expressions.
+        </div>
+
+        <p>The following diagram shows how a dedicated context-sensitive help plug-in
+           interacts with the DTP help-helper and the Eclipse help system at runtime, to
+           provide dynamic context-sensitive help for a UI plug-in.
+        </p>
+
+        <br/><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__image_91AC6C14E1944A8DA1378596459891F2"><!-- --></a><div class="imagecenter"><img id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__image_91AC6C14E1944A8DA1378596459891F2" src="../images/dtp_csh_runtime_interaction.jpg" alt="Image shows runtime interactions between the context-sensitive help UA plug-in, the UI plug-in, and the Eclipse Help system."/></div><br/>
+        <div class="p">During workbench startup:
+            <br/><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_F5BBE7E6521448D88B3A9C967A4743EA"><!-- --></a><ul id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_F5BBE7E6521448D88B3A9C967A4743EA">
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_2348E67775ED4CDEB68457B3E1885A29"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_2348E67775ED4CDEB68457B3E1885A29"><!-- --></a>The DTP help-helper registers helpKey properties file contributions, declared
+                    by context-sensitive help plug-ins</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_3E6551997D3F48039727DB25F4B3ACC4"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_3E6551997D3F48039727DB25F4B3ACC4"><!-- --></a>The Eclipse help system registers:
+                    <br/><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_67F52F4BF4AE47FF9927CF54E561F6E1"><!-- --></a><ul id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ul_67F52F4BF4AE47FF9927CF54E561F6E1">
+                        <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_3647D37866A74D5F896091008D117C3F"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_3647D37866A74D5F896091008D117C3F"><!-- --></a>IContext content contributions, declared by context-sensitive help plug-ins</li>
+
+                        <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_64C30B62F3A64592A8CECA9280615BCA"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_64C30B62F3A64592A8CECA9280615BCA"><!-- --></a>Online help (TOC and topics) contributions, declared by documentation plug-ins</li>
+
+                    </ul>
+</li>
+
+            </ul>
+
+        </div>
+
+        <p>After the workbench is initialized, the GUI is presented, with workbench parts
+           and controls contributed by UI plug-ins. Context-sensitive help requests are
+           usually handled by a UI plug-in (or its delegated help event listener), for the
+           workbench parts and UI controls that it contributes.
+        </p>
+
+        <div class="p">When the user requests context-sensitive help (for example, by pressing F1, or clicking
+           a help icon), the following sequence occurs:
+            <br/><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ol_A63B9717B1A74241AE5B89553EA0D592"><!-- --></a><ol id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__ol_A63B9717B1A74241AE5B89553EA0D592">
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_A96ED5F003B14C69BCA00D7CB9F7D1F2"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_A96ED5F003B14C69BCA00D7CB9F7D1F2"><!-- --></a>The UI plug-in requests a concrete help context ID from the DTP help-helper,
+                    by passing an abstract helpKey.</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_B8AAD5E4A943439588D38B3B6B6A1F46"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_B8AAD5E4A943439588D38B3B6B6A1F46"><!-- --></a>The DTP help-helper looks up the help context ID by its associated helpKey,
+                    in the helpKey properties file that was registered for the UI plug-in.</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_888E2D9BA8E04B059864536E5DA83F4C"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_888E2D9BA8E04B059864536E5DA83F4C"><!-- --></a>The DTP help-helper returns the help context ID to the UI plug-in.</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_CE6C78704DE04F19A27F1D55046800FD"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_CE6C78704DE04F19A27F1D55046800FD"><!-- --></a>The UI plug-in sets the concrete help context ID on its associated workbench
+                    part or UI control, and then passes that help context ID to the Eclipse help
+                    system to request the display of context-sensitive help.</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_B6D1E499916544D99BDC50BD75F2A79B"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_B6D1E499916544D99BDC50BD75F2A79B"><!-- --></a>The Eclipse help system looks up the context-specific content and related
+                    topics by help context ID, retrieves them from the context XML file that was
+                    registered for the UI plug-in, and then displays them in the Help view.</li>
+
+                <li id="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_2DC6444276F64D94B1C483BC06BF701B"><a name="concept_CA8D4C4D4DCB48C4B02B8556197A640B__li_2DC6444276F64D94B1C483BC06BF701B"><!-- --></a>Upon user request (by clicking a related topic link), the Eclipse help system
+                    retrieves the help topic content contributed by a documentation plug-in and
+                    displays it in the Help view.</li>
+
+            </ol>
+
+        </div>
+
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_eclipse_context_xml_files_extension.html">Eclipse Context XML Files Extension</a></strong><br/>
+Each plug-in that contributes an Eclipse context XML file must declare an extension to org.eclipse.help.contexts in its plug-in manifest (plugin.xml file).</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_helpkey_properties_files_extension.html">helpKey Properties Files Extension</a></strong><br/>
+Each plug-in that contributes helpKey properties files must declare an extension to org.eclipse.datatools.help.helpKeyProperties in its plug-in manifest (plugin.xml file).</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_csh_plugin_ids.html">Context-Sensitive Help Plug-in IDs</a></strong><br/>
+Context-sensitive help plug-ins can be supplied as dedicated plug-ins, which point to related help topics that are contributed by other, online documentation plug-ins, but do not contribute any help topics themselves.</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

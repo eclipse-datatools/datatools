@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Help Context Abstraction"/>
+<meta name="abstract" content="Help context abstraction is a technique to simplify the handling of help context IDs and help search expressions in the UI code, by abstracting them to “help keys.”"/>
+<meta name="description" content="Help context abstraction is a technique to simplify the handling of help context IDs and help search expressions in the UI code, by abstracting them to “help keys.”"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_9B577F7CD24240E2925D439CC1E2F313"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Help Context Abstraction</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_9B577F7CD24240E2925D439CC1E2F313"><a name="concept_9B577F7CD24240E2925D439CC1E2F313"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Help Context Abstraction</h1>
+
+    
+    <div><p>Help context abstraction is a technique to simplify the handling of help context
+           IDs and help search expressions in the UI code, by abstracting them to “help
+           keys.”
+        </p>
+
+        
+        <div class="p">Help context abstraction provides the following benefits:
+            <br/><a name="concept_9B577F7CD24240E2925D439CC1E2F313__ul_CF8AC6CB65F14CA49EB983B85C178D6E"><!-- --></a><ul id="concept_9B577F7CD24240E2925D439CC1E2F313__ul_CF8AC6CB65F14CA49EB983B85C178D6E">
+                <li id="concept_9B577F7CD24240E2925D439CC1E2F313__li_D2FEF367CBE3485CB93AE96C198F1CD8"><a name="concept_9B577F7CD24240E2925D439CC1E2F313__li_D2FEF367CBE3485CB93AE96C198F1CD8"><!-- --></a>Development teams are free to associate new help contexts with UI controls,
+                    without necessitating that corresponding help context IDs or help search
+                    expressions exist.</li>
+
+                <li id="concept_9B577F7CD24240E2925D439CC1E2F313__li_6EE7CDE942A94065862D4A53F6F02DEA"><a name="concept_9B577F7CD24240E2925D439CC1E2F313__li_6EE7CDE942A94065862D4A53F6F02DEA"><!-- --></a>Documentation teams are free to define UA help contexts, modify help context
+                    IDs, and control the mapping from abstract help contexts to concrete help
+                    context IDs, without necessitating any change in the UI code.</li>
+
+                <li id="concept_9B577F7CD24240E2925D439CC1E2F313__li_26AB981095A643A9A1061E85A07E89FC"><a name="concept_9B577F7CD24240E2925D439CC1E2F313__li_26AB981095A643A9A1061E85A07E89FC"><!-- --></a>Documentation teams are free to define and modify context-specific help search
+                    expressions, and the mapping from abstract help contexts to help search
+                    expressions, without necessitating any change in the UI code.</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="tip"><span class="tiptitle">Tip:</span> Help search expressions include human-readable text, so they must be
+           externalized for localization.
+        </div>
+
+        <p>This separation of responsibilities enables the project team to provide higher
+           quality, and more precisely targeted, dynamic context-sensitive help.
+        </p>
+
+        <p>Together, the DTP help-helper and a context-sensitive help UA plug-in provide an
+           abstraction layer, which enables dynamic context-sensitive help, with a
+           practical and easily maintained implementation in the UI code.
+        </p>
+
+        <br/><a name="concept_9B577F7CD24240E2925D439CC1E2F313__image_C9359815603B4120B909F47EC022EC44"><!-- --></a><div class="imagecenter"><img id="concept_9B577F7CD24240E2925D439CC1E2F313__image_C9359815603B4120B909F47EC022EC44" src="../images/dtp_csh_abstraction_layer.jpg" alt="Image shows abstraction layer between the UI plug-in and the Eclipse Help system."/></div><br/>
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html" title="Context-sensitive help is focused user assistance content, specific to the current application context (that is, the help context), and presented on demand when a platform-specific trigger is activated (for example, F1 on Windows).">Introduction to Context-Sensitive Help</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

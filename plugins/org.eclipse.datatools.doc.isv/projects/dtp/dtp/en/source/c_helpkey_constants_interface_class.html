@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="helpKey Constants Interface Class"/>
+<meta name="abstract" content="To reference the externalized help context IDs, which are defined in a ResourceBundle properties file, UI components must implement an interface class to declare the abstract helpKey constants."/>
+<meta name="description" content="To reference the externalized help context IDs, which are defined in a ResourceBundle properties file, UI components must implement an interface class to declare the abstract helpKey constants."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_EA01CE3135D245F7BB30A94E130A08C7"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>helpKey Constants Interface Class</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_EA01CE3135D245F7BB30A94E130A08C7"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">helpKey Constants Interface Class</h1>
+
+    
+    <div><p>To reference the externalized help context IDs, which are defined in a
+           ResourceBundle properties file, UI components must implement an interface class
+           to declare the abstract helpKey constants.
+        </p>
+
+        
+        <p>The following example is from the org.eclipse.datatools.connectivity.ui 
+           source code.
+        </p>
+
+        <pre class="codeblock">
+    package org.eclipse.datatools.connectivity.internal.ui;
+
+    /**
+      * helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.ui
+      */
+
+    public interface IHelpConstants {
+
+        /*
+         * CONTEXT_ID_CP_PROPERTY_PAGE =
+         * Basic profile name/description/auto-connect property page
+         */
+        public static final String CONTEXT_ID_CP_PROPERTY_PAGE =
+            "CONTEXT_ID_CP_PROPERTY_PAGE"; //$NON-NLS-1$
+    
+        /*
+         * CONTEXT_ID_CP_WIZARD_PAGE =
+         * wizard selection page in New Connection Profile wizard
+         */
+        public static final String CONTEXT_ID_CP_WIZARD_PAGE =
+            "CONTEXT_ID_CP_WIZARD_PAGE"; //$NON-NLS-1$
+    
+        /*
+         * CONTEXT_ID_INTRO_WIZARD_PAGE =
+         * Basic intro page for new connection profile wizard
+         */
+        public static final String CONTEXT_ID_INTRO_WIZARD_PAGE =
+            "CONTEXT_ID_INTRO_WIZARD_PAGE"; //$NON-NLS-1$
+
+    ...
+    }
+</pre>
+
+        <div class="p">Notice the following features of the helpKey constants interface class:
+            <br/><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__ul_4480078CAC86431AA55EEBF7FBED5262"><!-- --></a><ul id="concept_EA01CE3135D245F7BB30A94E130A08C7__ul_4480078CAC86431AA55EEBF7FBED5262">
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_0D0D7394CD174C5A9324EEA4FAF0F158"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_0D0D7394CD174C5A9324EEA4FAF0F158"><!-- --></a>A Javadoc comment block appears between the package and class declarations.
+                    The comment identifies every UI plug-in that will use this class to pass an
+                    abstract helpKey constant to the ContextProviderDelegate.</li>
+
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_AABDA2686CB5490797AF580BE4D46795"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_AABDA2686CB5490797AF580BE4D46795"><!-- --></a>The class declares only helpKey constants; no other constants are declared in
+                    this class.</li>
+
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_584E2E0307674FE8A9543844B2389923"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_584E2E0307674FE8A9543844B2389923"><!-- --></a>The class declares all of the helpKey constants for at least one UI plug-in.
+
+                <div class="note"><span class="notetitle">Note:</span> The class can declare helpKey constants for more than one 
+                   UI plug-in, but
+                   all of the helpKey constants for any one UI plug-in must be declared in only one
+                   helpKey constants interface class.
+                </div>
+</li>
+
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_47160C7E02E0419795BAF17EA45AB057"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_47160C7E02E0419795BAF17EA45AB057"><!-- --></a>Each helpKey constant declaration should be preceded by a comment, which must
+                    provide sufficient information for the Documentation team to determine the
+                    location and purpose of the associated UI control.</li>
+
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_EDF5980A1F9048409BC48F3787CEAEF3"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_EDF5980A1F9048409BC48F3787CEAEF3"><!-- --></a>Each helpKey constant is declared as public static final String, in the form:
+                    <pre class="codeblock">
+    public static final String MY_HELP_KEY = "MY_HELP_KEY";
+</pre>
+
+                    where <span class="cmdname">MY_HELP_KEY</span> is the literal character string used as the helpKey constant
+                    in a UI control.
+
+                    <div class="note"><span class="notetitle">Note:</span> The helpKey constants should be declared as literal 
+                       string values only.
+                       Indirect declarations (such as 
+                       <samp class="codeph">HELP_KEY = PREFIX + "HELP_KEY_STRING"</samp> ) 
+                       should be avoided.
+                    </div>
+</li>
+
+                <li id="concept_EA01CE3135D245F7BB30A94E130A08C7__li_E38BA334BD054F33A29E6F7A1C408E9D"><a name="concept_EA01CE3135D245F7BB30A94E130A08C7__li_E38BA334BD054F33A29E6F7A1C408E9D"><!-- --></a>The only characters allowed in a helpKey constant string are: upper case and
+                    lower case letters (a-z, A-Z), numbers (0-9), and the underscore (_).
+
+                    <div class="note"><span class="notetitle">Note:</span> A helpKey constant string must not appear in the format of a
+                       fully-qualified help context ID. Any period (.) or blank space character will
+                       cause problems, if the helpKey constant is mapped to itself (as an unqualified
+                       help context ID) in the helpKey properties file.
+                    </div>
+</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html" title="Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 source code.">Context-Sensitive Help UI Implementation</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

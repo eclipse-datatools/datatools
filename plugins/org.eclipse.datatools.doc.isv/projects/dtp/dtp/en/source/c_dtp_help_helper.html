@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="DTP Help-Helper"/>
+<meta name="abstract" content="The DTP help-helper plug-in (org.eclipse.datatools.help) provides a “help key” extension point (org.eclipse.datatools.help.helpKeyProperties), and supplies a context provider delegate implementation (org.eclipse.datatools.help.ContextProviderDelegate)."/>
+<meta name="description" content="The DTP help-helper plug-in (org.eclipse.datatools.help) provides a “help key” extension point (org.eclipse.datatools.help.helpKeyProperties), and supplies a context provider delegate implementation (org.eclipse.datatools.help.ContextProviderDelegate)."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_help_keys.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_context_provider_delegate.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_AF938275D5E14495A93FD25CBC4B73D0"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>DTP Help-Helper</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_AF938275D5E14495A93FD25CBC4B73D0"><a name="concept_AF938275D5E14495A93FD25CBC4B73D0"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">DTP Help-Helper</h1>
+
+    
+    <div><p>The DTP help-helper plug-in (org.eclipse.datatools.help) provides a “help key”
+           extension point (org.eclipse.datatools.help.helpKeyProperties), and supplies a
+           context provider delegate implementation (org.eclipse.datatools.help.ContextProviderDelegate).
+        </p>
+
+        
+        <p>The helpKeyProperties extension point allows any plug-in to contribute
+           ResourceBundle properties files that define the mapping of abstract help keys to
+           concrete help context IDs and help search expressions.
+        </p>
+
+        <p>The ContextProviderDelegate, along with abstract help keys, enables help context
+           abstraction for any UI control that implements methods of IContextProvider.
+        </p>
+
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_help_keys.html">Help Keys</a></strong><br/>
+Rather than declaring help context IDs directly, UI controls use help keys (that is, helpKey constants). Though meaningless to the Eclipse help system, helpKey constants provide an abstraction in the Java code from the actual help context IDs and help search expressions.</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_context_provider_delegate.html">Context Provider Delegate</a></strong><br/>
+The ContextProviderDelegate allows a UI control to provide the actual help context ID and help search expression to the methods of IContextProvider, while handling references to those strings as an abstract help key (helpKey constant).</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

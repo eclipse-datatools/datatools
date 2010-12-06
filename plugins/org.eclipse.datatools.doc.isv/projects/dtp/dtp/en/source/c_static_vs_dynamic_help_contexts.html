@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Static vs. Dynamic Help Contexts"/>
+<meta name="abstract" content="UI components can define the associations between UI controls and help contexts, either statically or dynamically."/>
+<meta name="description" content="UI components can define the associations between UI controls and help contexts, either statically or dynamically."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_D55B323F193F44B19BAC2A5048871468"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Static vs. Dynamic Help Contexts</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_D55B323F193F44B19BAC2A5048871468"><a name="concept_D55B323F193F44B19BAC2A5048871468"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Static vs. Dynamic Help Contexts</h1>
+
+    
+    <div><p>UI components can define the associations between UI controls and help contexts,
+           either statically or dynamically.
+            </p>
+
+        <div class="p"><br/><a name="concept_D55B323F193F44B19BAC2A5048871468__ul_C6BAC7CE78E346249DCBFBB13EF0B831"><!-- --></a><ul id="concept_D55B323F193F44B19BAC2A5048871468__ul_C6BAC7CE78E346249DCBFBB13EF0B831">
+                <li id="concept_D55B323F193F44B19BAC2A5048871468__li_232E17A3083E45ECB65FAF6EEB326C45"><a name="concept_D55B323F193F44B19BAC2A5048871468__li_232E17A3083E45ECB65FAF6EEB326C45"><!-- --></a>When defined statically, the effective help context changes only when the user
+                    explicitly requests context-sensitive help, that is, when the context-sensitive
+                    help trigger is activated.</li>
+
+                <li id="concept_D55B323F193F44B19BAC2A5048871468__li_2CBCD85735BC4F6981A1C305B5539708"><a name="concept_D55B323F193F44B19BAC2A5048871468__li_2CBCD85735BC4F6981A1C305B5539708"><!-- --></a>When defined dynamically, the effective help context changes whenever the user
+                    activates any UI control with a dynamic context association, for example, selecting a
+                    menu option, moving from one page to another in a dialog, and so on.</li>
+
+            </ul>
+
+        </div>
+
+        <div class="p">That distinction is significant when the Help view is visible.
+            <br/><a name="concept_D55B323F193F44B19BAC2A5048871468__ul_1EEB65AA3E4F47D3AE6F2D243F1C00DC"><!-- --></a><ul id="concept_D55B323F193F44B19BAC2A5048871468__ul_1EEB65AA3E4F47D3AE6F2D243F1C00DC">
+                <li id="concept_D55B323F193F44B19BAC2A5048871468__li_899559FF86174CB5A89559AB8707BC0E"><a name="concept_D55B323F193F44B19BAC2A5048871468__li_899559FF86174CB5A89559AB8707BC0E"><!-- --></a>When the context association is defined statically, context-specific content
+                    shown in the Help view remains unchanged, regardless of the user’s action,
+                    unless the user explicitly requests context-sensitive help, for example, by pressing
+                    F1.</li>
+
+                <li id="concept_D55B323F193F44B19BAC2A5048871468__li_EFDCBE4DBBA2476DB261A770EC5A6CA0"><a name="concept_D55B323F193F44B19BAC2A5048871468__li_EFDCBE4DBBA2476DB261A770EC5A6CA0"><!-- --></a>When the context association is defined dynamically, context-specific content
+                    shown in the Help view is updated automatically, whenever the user activates a
+                    UI control.</li>
+
+            </ul>
+
+        </div>
+
+        <p>All help contexts are defined and subsequently identified by a help context ID.
+           The Eclipse help system uses help context IDs to locate matching
+           org.eclipse.help.IContext objects, which represent the context-specific help
+           content.
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html" title="Context-sensitive help is focused user assistance content, specific to the current application context (that is, the help context), and presented on demand when a platform-specific trigger is activated (for example, F1 on Windows).">Introduction to Context-Sensitive Help</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

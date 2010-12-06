@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="View Implementation Example"/>
+<meta name="abstract" content="The DataSourceExplorerView (in org.eclipse.datatools.connectivity.ui.dse) first implements the org.eclipse.help.IContextProvider interface, and then it creates an instance of the org.eclipse.datatools.help.ContextProviderDelegate."/>
+<meta name="description" content="The DataSourceExplorerView (in org.eclipse.datatools.connectivity.ui.dse) first implements the org.eclipse.help.IContextProvider interface, and then it creates an instance of the org.eclipse.datatools.help.ContextProviderDelegate."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_8CFF272833D84A6BAC9D1D162A9E86E7"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>View Implementation Example</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_8CFF272833D84A6BAC9D1D162A9E86E7"><a name="concept_8CFF272833D84A6BAC9D1D162A9E86E7"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">View Implementation Example</h1>
+
+    
+    <div><p>The DataSourceExplorerView (in org.eclipse.datatools.connectivity.ui.dse) first
+           implements the org.eclipse.help.IContextProvider interface, and then it creates
+           an instance of the org.eclipse.datatools.help.ContextProviderDelegate.</p>
+
+        
+        <pre class="codeblock">
+    private ContextProviderDelegate contextProviderDelegate = new
+        ContextProviderDelegate(DSEPlugin.getDefault().getBundle().getSymbolicName())
+    ;
+</pre>
+
+        <p>The symbolic name is usually the plug-in ID. Providing the symbolic name as
+           shown above will avoid broken code, if the plug-in’s ID changes.
+        </p>
+
+
+        <p>The plug-in ID passed to the ContextProviderDelegate must indicate which
+           plug-in the help context is actually associated with. In the example above, the
+           help context is associated with the DSEPlugin, that is, the plug-in that
+           contributes the DataSourceExplorerView UI component. However, the help context
+           could be associated with a separate plug-in, for example, if the plug-in “owner”
+           of the UI component is not the same as the plug-in that contributes the UI
+           component.
+        </p>
+
+        <p>Implementation of the IContextProvider methods looks like this:
+        </p>
+
+        <pre class="codeblock">
+    public IContext getContext(Object target) {
+        return contextProviderDelegate.getContext(target);
+    }
+
+    public int getContextChangeMask() {
+        return contextProviderDelegate.getContextChangeMask();
+    }
+
+    public String getSearchExpression(Object target) {
+        return contextProviderDelegate.getSearchExpression(target);
+    }
+</pre>
+
+        <p>After implementing the IContextProvider methods, the view must set the help
+           context for the control in the createPartControl method:
+        </p>
+
+        <pre class="codeblock">
+    public void createPartControl(Composite parent) {
+        super.createPartControl(parent);
+        PlatformUI.getWorkbench().getHelpSystem()
+            .setHelp(getCommonViewer().getTree(),
+                IHelpContextsConnectivityUIDSE.CONTEXT_ID_CONNECTIVITY_DSE_VIEW);
+    }
+</pre>
+
+
+        <p>The string passed to the setHelp method is actually an abstract helpKey
+           constant, whose property key is mapped to a concrete help context ID string by
+           the ContextProviderDelegate.
+        </p>
+
+        <p>All helpKey constant strings must be declared in an interface class. 
+
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html" title="Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 source code.">Context-Sensitive Help UI Implementation</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

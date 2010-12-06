@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Test Dynamic Context-Sensitive Help"/>
+<meta name="abstract" content="Dynamic context-sensitive help in Eclipse involves complex interactions between several components, so testing it requires a properly configured runtime platform, with both user interface (UI) components and user assistance (UA) components installed."/>
+<meta name="description" content="Dynamic context-sensitive help in Eclipse involves complex interactions between several components, so testing it requires a properly configured runtime platform, with both user interface (UI) components and user assistance (UA) components installed."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_test_objectives.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_test_procedures.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_plugin_spy.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_debug_mode.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_6C4F9C48A3604355B05FA9F1AF439C39"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Test Dynamic Context-Sensitive Help</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_6C4F9C48A3604355B05FA9F1AF439C39"><a name="concept_6C4F9C48A3604355B05FA9F1AF439C39"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Test Dynamic Context-Sensitive Help</h1>
+
+    
+    
+    <div><p>Dynamic context-sensitive help in Eclipse involves complex
+        interactions between several components, so testing it requires a
+        properly configured runtime platform, with both user interface (UI)
+        components and user assistance (UA) components installed.
+    </p>
+
+        <p>Like any other functionality, dynamic context-sensitive help
+            should be tested to assess its quality.
+        </p>
+
+        <div class="note"><span class="notetitle">Note:</span> This document deals with testing the functionality
+            of dynamic context-sensitive help, not the quality (or usefulness)
+            of the help content.
+        </div>
+
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_test_objectives.html">Test Objectives</a></strong><br/>
+For projects that use the DTP help-helper, there are two primary objectives in testing dynamic context-sensitive help:</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_test_procedures.html">Test Procedures</a></strong><br/>
+For each UI control associated with a help context, test procedures should verify the following:</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_plugin_spy.html">Plug-in Spy</a></strong><br/>
+The Plug-in Spy tool (provided in org.eclipse.pde.runtime, since Eclipse 3.4) shows various information about the workbench, including help context IDs associated with the current (in focus) UI control.</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_debug_mode.html">Debug Mode</a></strong><br/>
+The Eclipse platform debug mode can be useful for testing and troubleshooting dynamic context-sensitive help.</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

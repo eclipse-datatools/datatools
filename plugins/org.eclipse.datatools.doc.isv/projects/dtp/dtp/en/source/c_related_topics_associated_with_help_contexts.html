@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Related Topics Associated with Help Contexts"/>
+<meta name="abstract" content="DITA maps for context-sensitive help plug-ins contain &lt;resourceid&gt; elements, each of which identifies a concrete help context ID associated with a DITA topic."/>
+<meta name="description" content="DITA maps for context-sensitive help plug-ins contain &lt;resourceid&gt; elements, each of which identifies a concrete help context ID associated with a DITA topic."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_40EFB517689D4F1E8A95C4B69C633A2B"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Related Topics Associated with Help Contexts</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_40EFB517689D4F1E8A95C4B69C633A2B"><a name="concept_40EFB517689D4F1E8A95C4B69C633A2B"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Related Topics Associated with Help Contexts</h1>
+
+    
+    <div><p>DITA maps for context-sensitive help plug-ins contain 
+           <samp class="codeph">&lt;resourceid&gt;</samp> elements,
+           each of which identifies a concrete help context ID associated with a DITA
+           topic.</p>
+
+        
+        <div class="p">The <samp class="codeph">&lt;resourceid&gt;</samp> element is a child of a 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element. For example:
+            <pre class="codeblock">
+    &lt;topicmeta&gt;
+        &lt;resourceid id="help_context_ID_string"/&gt;
+    &lt;/topicmeta&gt;
+</pre>
+
+        </div>
+
+        <div class="p">For each DITA topic associated with a help context ID, the 
+           <samp class="codeph">&lt;topicref&gt;</samp> element
+           that points to that topic contains a 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element (with a 
+           <samp class="codeph">&lt;resourceid&gt;</samp> child element). 
+           This defines the association of a help context ID with that
+           topic. For example:
+            <pre class="codeblock">
+    &lt;topicref navtitle="label attribute in contexts.xml topic element"
+        href="path/to/topic.xml"&gt;
+        &lt;topicmeta&gt;
+            &lt;resourceid id="help_context_ID_string"/&gt;
+        &lt;/topicmeta&gt;
+    &lt;/topicref&gt;
+</pre>
+
+        </div>
+
+        <div class="p">Any DITA topic can be mapped to multiple help context IDs by inserting as many
+           <samp class="codeph">&lt;resourceid&gt;</samp> child elements as necessary in the 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element. For example:
+            <pre class="codeblock">
+    &lt;topicref navtitle="label attribute in contexts.xml topic element"
+        href="path/to/topic.xml"&gt;
+        &lt;topicmeta&gt;
+            &lt;resourceid id="help_context_ID_1"/&gt;
+            &lt;resourceid id="help_context_ID_2"/&gt;
+            &lt;resourceid id="help_context_ID_3"/&gt;
+        &lt;/topicmeta&gt;
+    &lt;/topicref&gt;
+</pre>
+
+        </div>
+
+
+        <p>It may be preferable to combine help contexts in the helpKey properties
+           file, instead of defining mapping for multiple help contexts to a single topic
+           in the DITA map. This is a judgment call for the Documentation team responsible
+           for maintaining the DITA map. For more information, see Defining Help Context
+           IDs.
+        </p>
+
+        <div class="p">Other considerations for DITA maps that define context-sensitive help plug-ins:
+            <br/><a name="concept_40EFB517689D4F1E8A95C4B69C633A2B__ul_848CD11CE75B458B92C454E3A16493E5"><!-- --></a><ul id="concept_40EFB517689D4F1E8A95C4B69C633A2B__ul_848CD11CE75B458B92C454E3A16493E5">
+                <li id="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_16ABFAF429864AB3814617F8583EBD93"><a name="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_16ABFAF429864AB3814617F8583EBD93"><!-- --></a>Markup for context-to-topic mapping is needed only for the DITA topics that
+                    will be context-sensitive help targets, that is, Related Topics shown in the Help
+                view.</li>
+
+                <li id="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_6670D36692374A92AE4B908CBA33EBFB"><a name="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_6670D36692374A92AE4B908CBA33EBFB"><!-- --></a>When a single DITA topic appears more than once in a map, only the first
+                    instance of a <samp class="codeph">&lt;topicref&gt;</samp> that points to that topic needs the 
+                    context-sensitive help markup.</li>
+
+                <li id="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_C12742C0413147B6BF84EA290B923253"><a name="concept_40EFB517689D4F1E8A95C4B69C633A2B__li_C12742C0413147B6BF84EA290B923253"><!-- --></a>Nested maps that contribute DITA topics related to help contexts must include
+                    the same context-sensitive help markup.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html" title="Any DITA map document that defines an online documentation (doc) plug-in can be modified to also define a corresponding context-sensitive help plug-in by inserting the appropriate context-related markup.">Context-Sensitive Help Plug-ins with DITA</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>
