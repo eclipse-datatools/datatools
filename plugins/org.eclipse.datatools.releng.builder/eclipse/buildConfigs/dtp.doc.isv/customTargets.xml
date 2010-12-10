@@ -156,19 +156,36 @@
 	<!-- Steps to do before running the build.xmls for the elements being built. -->
 	<!-- ===================================================================== -->
 	<target name="preProcess">
-		<replace dir="${buildDirectory}/plugins" value="${buildId}" token="@Replace_By_Date@">
-			<include name="**/about.mappings" />
-		</replace>
 	</target>
 
 	<!-- ===================================================================== -->
 	<!-- Steps to do after running the build.xmls for the elements being built. -->
 	<!-- ===================================================================== -->
 	<target name="postProcess">
-		<condition property="logsAvailable">
-			<istrue value="${javacVerbose}"/> 
-		</condition>
-		<antcall target="gatherLogs" />
+        <property file="${buildDirectory}/finalPluginsVersions.properties"/>
+        <property name="module.name" value="org.eclipse.datatools.doc.isv"/>
+        <property name="work.dir" value="${buildDirectory}/plugins/${module.name}"/>
+        <property name="output.dir" value="${buildDirectory}"/>
+		<property name="manifest" value="META-INF/MANIFEST.MF"/>
+	
+		<replace dir="${work.dir}" value="${org.eclipse.datatools.doc.isv}" token="1.9.0.qualifier">
+			<include name="META-INF/MANIFEST.MF" />
+		</replace>
+		
+		<echo message="output jar name:${output.dir}/${module.name}_${org.eclipse.datatools.doc.isv}.jar"/>
+        <jar destfile="${output.dir}/${module.name}_${org.eclipse.datatools.doc.isv}.jar"  manifest="${work.dir}/${manifest}">
+                <fileset dir="${work.dir}">
+                        <include name="${manifest}"/>
+                        <include name="*.*"/>
+                        <include name="html/**"/>
+                        <include name="projects/**"/>
+                		<exclude name="build.*"/>
+                		<exclude name="Build*"/>
+                		<exclude name=".classpath"/>
+                		<exclude name=".project"/>
+                		<exclude name="customBuildCallbacks.xml"/>
+                </fileset>
+        </jar>
 	</target>
 
 	<target name="prePackage" />
@@ -185,10 +202,6 @@
 	<!-- Helper targets -->
 	<!-- ===================================================================== -->
 	<target name="gatherLogs" if="logsAvailable">
-		<mkdir dir="${postingDirectory}/${buildLabel}/compilelogs" />
-		<antcall target="allElements">
-			<param name="target" value="gatherLogs" />
-		</antcall>
 	</target>
 	
 	<target name="clean" unless="noclean">
