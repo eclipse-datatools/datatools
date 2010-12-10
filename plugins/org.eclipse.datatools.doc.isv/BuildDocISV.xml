@@ -6,6 +6,7 @@
 	<property name="bundle-name" value="org.eclipse.datatools.doc.isv"/>
 	<property name="src.dir" value="${buildDirectory}/plugins" />
 	<property name="bin.dir" value="@dot"/>
+	<property name="output.dir" value="./html/reference/api/"/>
 	
 	<property file="build.properties"/>
 
@@ -244,15 +245,20 @@
 	</path>
 	
     <!-- org.eclipse.datatools.* -->
-	<target name="Javadoc">
+	<target name="Javadoc" depends="Clean">
 		<echo message="src dir: ${src.dir}"/>
 		<echo message="eclipse.home: ${eclipse.home}"/>
-        <javadoc sourcepathref="path.fileset" access="public" author="true" destdir="./html/reference/api/" defaultexcludes="yes"
+        <javadoc sourcepathref="path.fileset" access="public" author="true" destdir="${output.dir}" defaultexcludes="yes"
 		nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" 
 		notree="false" source="1.5" splitindex="false" use="true" version="true" useexternalfile="true" 
 		packagenames="${include.package.names}" excludepackagenames="${exclude.package.names}" >
 			<classpath refid="classpath"/>
 		</javadoc>
     </target>
+	
+	<target name="Clean">
+		<delete dir="${output.dir}" failonerror="false"/>
+	</target>
+	
 </project>
 
