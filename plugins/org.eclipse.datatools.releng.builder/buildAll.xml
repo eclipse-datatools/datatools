@@ -42,9 +42,10 @@
     <property name="sign.dir" value="" />
 
     <target name="main" depends="init">
-    	<antcall target="prepareMapFile"/>
+		<antcall target="prepareMapFile"/>
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
+    	<antcall target="buildDtpDocISV"/>
 		<antcall target="buildDtpIncubationAllFeature"/>
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
@@ -159,7 +160,19 @@
                         <property name="component" value="${eclipse.build.configs}/dtp.incubation.all" />
                 </ant>
 	</target>
+	
+	<!-- build doc.isv plugin -->
+	<target name="buildDtpDocISV">
 
+        <ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="generate">
+                <property name="builder" value="${eclipse.build.configs}/dtp.doc.isv" />
+        </ant>
+        <ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="process">
+                <property name="builder" value="${eclipse.build.configs}/dtp.doc.isv" />
+        </ant>
+		
+	</target>
+	
 	<target name="buildDtpSdkAllFeature">
 
 		<!-- build dtp sdk feature -->
@@ -189,6 +202,11 @@
 		<unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${buildDirectory}/tmpsite"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-incubation-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
+		<copy todir="${buildDirectory}/tmpsite/eclipse/plugins" overwrite="true">
+			<fileset dir="${buildDirectory}">
+				<include name="org.eclipse.datatools.doc.isv_*.jar"/>
+			</fileset>
+		</copy>
 		
 		<!-- TODO: 
 		    1. zip features/ plugins/ pack.properties under ${buildDirectory}/tmpsite/eclipse as dtp-all-unsign.zip 
