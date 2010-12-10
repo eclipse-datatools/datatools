@@ -90,6 +90,7 @@ public class ColumnMappingDialog extends TrayDialog
 			boolean isMappingMode, boolean supportsXMLParameter )
 	{
 		super( parent );
+		setShellStyle( SWT.RESIZE );
 		initializeDialogInfos( title,
 				selectedItem,
 				xpath,
@@ -97,6 +98,7 @@ public class ColumnMappingDialog extends TrayDialog
 				isMappingMode,
 				supportsXMLParameter );
 	}
+	
 
 	private void initializeDialogInfos( String title, String selectedItem,
 			String xpath, int dataType, boolean isMappingMode,
@@ -151,7 +153,7 @@ public class ColumnMappingDialog extends TrayDialog
 		label.setLayoutData( labelGd );
 
 		Composite composite = new Composite( panel, SWT.NONE );
-		GridData gd = new GridData( );
+		GridData gd = new GridData( GridData.FILL_BOTH );
 		composite.setLayoutData( gd );
 
 		GridLayout layout = new GridLayout( );
@@ -187,7 +189,7 @@ public class ColumnMappingDialog extends TrayDialog
 	 */
 	private void setupTopComposite( Composite topComposite )
 	{
-		GridData comboData = new GridData( );
+		GridData comboData = new GridData( GridData.FILL_HORIZONTAL );
 		comboData.widthHint = 320;
 
 		GridData labelData = new GridData( );
@@ -392,11 +394,13 @@ public class ColumnMappingDialog extends TrayDialog
 		wrapLayout.marginLeft = 10;
 		wrapLayout.marginRight = 15;
 		wrap.setLayout( wrapLayout );
+		wrap.setLayoutData(new GridData( GridData.FILL_BOTH ) );
 
 		Group exprBtnGroup = new Group( wrap, SWT.NONE );
 		exprBtnGroup.setText( Messages.getString( "ColumnMappingDialog.group.message" ) );
 
-		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
+		GridData gridData = new GridData( GridData.FILL_BOTH );
+		gridData.heightHint = 200;
 		exprBtnGroup.setLayoutData( gridData );
 
 		GridLayout layout = new GridLayout( );
@@ -450,10 +454,8 @@ public class ColumnMappingDialog extends TrayDialog
 
 		setBtnTextValues( exprBtnGroup );
 
-		GridData customData = new GridData( GridData.FILL_HORIZONTAL | SWT.WRAP );
-		customData.horizontalSpan = 2;
 		customButton = new Button( exprBtnGroup, SWT.RADIO | SWT.WRAP );
-		customButton.setLayoutData( customData );
+		customButton.setLayoutData( buttonGd );
 		customButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) ); //$NON-NLS-1$
 		customButton.addSelectionListener( new SelectionAdapter( ) {
 
@@ -472,7 +474,7 @@ public class ColumnMappingDialog extends TrayDialog
 		blankButton.setData( blankButtonData );
 		blankButton.setVisible( false );
 
-		GridData txtGridData = new GridData( );
+		GridData txtGridData = new GridData( GridData.FILL_HORIZONTAL );
 		txtGridData.horizontalSpan = 1;
 		txtGridData.widthHint = 420;
 		xmlPathCombo = new StyledCCombo( exprBtnGroup, SWT.DROP_DOWN | SWT.BORDER );
