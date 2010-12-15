@@ -21,8 +21,8 @@ import java.text.ParseException;
 import java.util.Hashtable;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.datatools.connectivity.oda.internal.OdaPlugin;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.util.OdaPlugin;
 
 import com.ibm.icu.text.SimpleDateFormat;
 

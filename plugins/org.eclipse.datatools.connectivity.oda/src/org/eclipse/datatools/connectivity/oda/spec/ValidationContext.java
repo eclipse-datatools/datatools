@@ -149,7 +149,6 @@ public class ValidationContext
      * A client may optimize performance by re-using its properties for opening a related connection 
      * to prepare and execute a query.     
      * @return  the connection context for online validation; may be null if none is specified
-     * @since 3.2.2 (DTP 1.7.2)
      */
     public Connection getConnection()
     {
@@ -162,7 +161,6 @@ public class ValidationContext
      * The connection context, if exists, may be used by an {@link IValidator} implementation
      * to open a connection to perform online validation.
      * @param props connection properties for opening a connection for online validation 
-     * @since 3.2.2 (DTP 1.7.2)
      */
     public void setConnection( Connection validationConn )
     {
@@ -178,7 +176,6 @@ public class ValidationContext
      * An {@link IValidator} implementation may add its own name-value pairs to its properties, 
      * such as a connection handle, for optimizing its performance.  
      * The client is responsible to close the connection context when it is no longer needed.
-     * @since 3.2.2 (DTP 1.7.2)
      */
     public class Connection
     {
