@@ -90,7 +90,6 @@ public class ColumnMappingDialog extends TrayDialog
 			boolean isMappingMode, boolean supportsXMLParameter )
 	{
 		super( parent );
-		setShellStyle( SWT.RESIZE );
 		initializeDialogInfos( title,
 				selectedItem,
 				xpath,
