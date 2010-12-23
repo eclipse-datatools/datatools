@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2009 Actuate Corporation.
+ * Copyright (c) 2004, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -405,7 +405,9 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		if( ! isPreparedSuccessfully() )
 			throw newOdaException( Messages.helper_cannotGetResultSetMdBeforePrepare );	
 		
+		m_isExecuting = true;   // set the state in case #cancel is called during #getMetaData
 		IResultSetMetaData resultSetMetaData = getQuery().getMetaData();
+		m_isExecuting = false;  // reset state after #getMetaData is done
 		
 		OdaResultSetMetaData ret =
 			( resultSetMetaData == null ) ? null :
