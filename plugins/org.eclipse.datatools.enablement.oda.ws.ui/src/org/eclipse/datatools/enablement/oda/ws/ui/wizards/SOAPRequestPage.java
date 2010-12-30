@@ -199,6 +199,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 	private void regenerateTemplate( )
 	{
 		queryText.setText( WSConsole.getInstance( ).getTemplate( ) );
+		parameters = WSConsole.getInstance( ).getParameters( );
+		saved = false;
 	}
 
 	/**
