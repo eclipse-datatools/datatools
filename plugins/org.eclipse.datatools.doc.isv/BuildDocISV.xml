@@ -248,10 +248,17 @@
 	<target name="Javadoc" depends="Clean">
 		<echo message="src dir: ${src.dir}"/>
 		<echo message="eclipse.home: ${eclipse.home}"/>
-        <javadoc sourcepathref="path.fileset" access="public" author="true" destdir="${output.dir}" defaultexcludes="yes"
+		
+		<property file="connectivity.package.properties"/>
+		<property file="enablement.package.properties"/>
+		<property file="modelbase.package.properties"/>
+		<property file="sqltools.package.properties"/>
+		
+        <javadoc sourcepathref="path.fileset" access="public" author="true" destdir="./html/reference/api/" defaultexcludes="yes"
 		nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" 
 		notree="false" source="1.5" splitindex="false" use="true" version="true" useexternalfile="true" 
-		packagenames="${include.package.names}" excludepackagenames="${exclude.package.names}" >
+		packagenames="${enablement.include.package.names},${connectivity.include.package.names},${modelbase.include.package.names},${sqltools.include.package.names}" 
+        excludepackagenames="${enablement.exclude.package.names},${connectivity.exclude.package.names},${modelbase.exclude.package.names},${sqltools.exclude.package.names}" >
 			<classpath refid="classpath"/>
 		</javadoc>
     </target>
