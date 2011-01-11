@@ -50,7 +50,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONG</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" maximumPrecision="38" maximumScale="127" minimumScale="-84" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="false" maximumPrecision="38" maximumScale="127" minimumScale="-84" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMBER</name>
   </predefinedDataTypeDefinitions>
@@ -84,7 +84,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>UROWID</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" maximumPrecision="126" defaultPrecision="126" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" identitySupported="false" maximumPrecision="126" defaultPrecision="126" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
   </predefinedDataTypeDefinitions>
@@ -105,11 +105,11 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SMALLINT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="false" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_2" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_2" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="false" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
   </predefinedDataTypeDefinitions>
