@@ -4,3 +4,4 @@ plugin@org.apache.xml.serializer,2.7.1=GET,http://qa-build/BIRTOutput/platform/o
 plugin@javax.xml,1.3.4=GET,http://qa-build/BIRTOutput/platform/orbit-S20101204061544-Indigo/bundles/javax.xml_1.3.4.v201005080400.jar
 plugin@net.sourceforge.lpg.lpgjavaruntime,1.1.0=GET,http://qa-build/BIRTOutput/platform/orbit-S20101204061544-Indigo/bundles/net.sourceforge.lpg.lpgjavaruntime_1.1.0.v201004271650.jar
 plugin@javax.wsdl,1.5.1=GET,http://qa-build/BIRTOutput/platform/orbit-S20101204061544-Indigo/bundles/javax.wsdl_1.5.1.v201012040544.jar
+plugin@org.apache.lucene,1.9.1=GET,http://qa-build/BIRTOutput/platform/orbit-S20101204061544-Indigo/bundles/org.apache.lucene_1.9.1.v20100518-1140.jar

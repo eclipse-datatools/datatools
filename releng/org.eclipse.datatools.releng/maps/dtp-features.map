@@ -35,7 +35,7 @@ feature@org.eclipse.datatools.sqldevtools.data.feature=v201010181130,:ext:xgu@de
 feature@org.eclipse.datatools.sqldevtools.ddl.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddl.feature
 feature@org.eclipse.datatools.sqldevtools.ddlgen.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.ddlgen.feature
 feature@org.eclipse.datatools.sqldevtools.parsers.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.parsers.feature
-feature@org.eclipse.datatools.sqldevtools.results.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.results.feature
+feature@org.eclipse.datatools.sqldevtools.results.feature=v201101201115,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.results.feature
 feature@org.eclipse.datatools.sqldevtools.sqlbuilder.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.sqlbuilder.feature
 feature@org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature=v201010181130,:ext:xgu@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.build/R1.6_Feature_Projects/org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature
 
