@@ -1060,7 +1060,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private String[] getFileColumnNames( File file )
 	{
-		java.util.List propList = getQueryColumnsInfo( "select * from " + file.getName( ), file ); //$NON-NLS-1$
+		java.util.List propList = getQueryColumnsInfo( "select * from " + QueryTextUtil.getQuotedName( file.getName( ) ), file ); //$NON-NLS-1$
 
 		String[] result;
 		if ( propList != null )
@@ -1345,6 +1345,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		if ( tableName != null )
 		{
+			tableName = QueryTextUtil.getQuotedName( tableName );
 			if ( availableList.getItemCount( ) == 0 )
 			{
 				buf.append( "select * from " ).append( tableName ); //$NON-NLS-1$
@@ -1395,29 +1396,25 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private void updateValuesFromQuery( String queryText )
 	{
+		if ( queryText.length( ) == 0 )
+			return;
+		
 		try
 		{
-			String query = (new QueryTextUtil( queryText )).getQuery( );
-			String[] splitQuery = stripFromClause( query );
-			// If the length is equal to 2 then we have a valid query
-			if ( splitQuery.length == 2 )
+			String query = ( new QueryTextUtil( queryText ) ).getQuery( );
+			String[] metadata = QueryTextUtil.getQueryMetaData( query );
+
+			// The query must have a table name and columns.
+			if ( metadata != null && metadata[0] != null && metadata[2] != null )
 			{
-				String table = splitQuery[1];
-				String columns = stripSelect( splitQuery[0] );
-				// If both are not null then we can assume we have a valid query
-				if ( table != null && columns != null )
+				// Now select the table in the list. If it doesn't exists, no
+				// need to process the columns.
+				File f = selectTableFromQuery( metadata[2] );
+				if ( f != null )
 				{
-					// Now we need to select the table in the list
-					// If it doesn't exists then we do not need to process the
-					// columns
-					File f = selectTableFromQuery( table );
-					if ( f != null )
-					{
-						updateColumnsFromQuery( queryText, f );
-					}
+					updateColumnsFromQuery( queryText, f );
 				}
 			}
-
 		}
 		catch ( OdaException e )
 		{
