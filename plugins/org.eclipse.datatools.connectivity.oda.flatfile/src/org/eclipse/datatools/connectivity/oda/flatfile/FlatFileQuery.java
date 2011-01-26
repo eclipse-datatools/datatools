@@ -580,72 +580,8 @@ public class FlatFileQuery implements IQuery
 	private String[] parsePreparedQueryText( String formattedQuery )
 			throws OdaException
 	{
-		String queryWithoutSELECTKeyword = stripSELECTKeyword( formattedQuery );
 
-		/*
-		 * This returned array stores two values: the fragment immediately after
-		 * "SELECT" and before "FROM", and the fragment immediate after the
-		 * "FROM" keyword.
-		 */
-		String[] querySelectAndFromFragments = stripFROMKeyword( queryWithoutSELECTKeyword );
-
-		return stripASKeyword( querySelectAndFromFragments );
-	}
-
-	/**
-	 * Split the column name from alias, stripping the "AS" keyword, from given
-	 * query fragments.
-	 * 
-	 * @param querySelectAndFromFragments
-	 * @return a String array with three elements: first element contains column
-	 *         names separated by comma, second element contains column
-	 *         aliases(labels) separated by comma, third element contains the
-	 *         table name(s) in FROM clause
-	 */
-	private String[] stripASKeyword( String[] querySelectAndFromFragments )
-	{
-		String[] result = new String[3];
-		// store the table name in given last element as the third element
-		result[2] = querySelectAndFromFragments[1];
-
-		// split the columns specified in the SELECT clause
-		String selectedColumns = querySelectAndFromFragments[0];
-		if ( !isWildCard( selectedColumns ) )
-		{
-			String[] columns = FlatFileDataReader.getStringArrayFromList( getQueryColumnNamesVector( selectedColumns ) );
-
-			for ( int i = 0; i < columns.length; i++ )
-			{
-				String[] columnNameAlias = columns[i].split( CommonConstants.DELIMITER_SPACE
-						+ CommonConstants.KEYWORD_AS
-						+ CommonConstants.DELIMITER_SPACE );
-				if ( columnNameAlias != null )
-				{
-					// append column name to comma-separated column names in
-					// result[0]
-					result[0] = ( i == 0 ? columnNameAlias[0] : result[0]
-							+ CommonConstants.DELIMITER_COMMA_VALUE
-							+ columnNameAlias[0].trim( ) );
-
-					// append column alias, if exists, or null to
-					// comma-separated column aliases in result[1]
-					if ( columnNameAlias.length == 2 )
-						result[1] = ( i == 0 ? columnNameAlias[1] : result[1]
-								+ CommonConstants.DELIMITER_COMMA_VALUE
-								+ columnNameAlias[1].trim( ) );
-					else
-						result[1] = ( i == 0 ? null : result[1]
-								+ CommonConstants.DELIMITER_COMMA_VALUE + null );
-				}
-			}
-		}
-		else
-		{
-			result[0] = CommonConstants.KEYWORD_ASTERISK;
-			result[1] = null;
-		}
-
-		return result;
+		return QueryTextUtil.getQueryMetaData( formattedQuery );
 	}
 
 	/**
@@ -681,7 +617,7 @@ public class FlatFileQuery implements IQuery
 				if ( inQuote )
 					continue;
 				else
-					indiceList.add( Integer.valueOf( i ) );
+					indiceList.add( new Integer( i ) );
 			}
 		}
 
@@ -758,47 +694,6 @@ public class FlatFileQuery implements IQuery
 		return columnNames;
 	}
 	
-	/**
-	 * Split the given query fragments before and after the FROM keyword
-	 * 
-	 * @param queryWithoutSELECTKeyword
-	 * @return A String array with two elements: column names (may include alias
-	 *         with the AS keyword), and table names after the FROM clause.
-	 * @throws OdaException
-	 */
-	private String[] stripFROMKeyword( String queryWithoutSELECTKeyword )
-			throws OdaException
-	{
-		String[] result = queryWithoutSELECTKeyword.split( CommonConstants.DELIMITER_SPACE
-				+ CommonConstants.KEYWORD_FROM
-				+ CommonConstants.DELIMITER_SPACE );
-		if ( result == null || result.length != 2 )
-			throw new OdaException( Messages.getString( "query_COMMAND_NOT_VALID" ) ); //$NON-NLS-1$
-		return result;
-	}
-
-	/**
-	 * @param formattedQuery
-	 *            a trimed query text; cannot be null.
-	 * @return the given text stripped the SELECT keyword
-	 * @throws OdaException
-	 */
-	private String stripSELECTKeyword( String formattedQuery )
-			throws OdaException
-	{
-		// This array stores two values: "SELECT" keyword and other part of a
-		// command
-		String[] array = formattedQuery.split( CommonConstants.DELIMITER_SPACE,
-				2 );
-		if ( array == null
-				|| array.length != 2
-				|| !array[0].trim( )
-						.equalsIgnoreCase( CommonConstants.KEYWORD_SELECT ) )
-			throw new OdaException( Messages.getString( "query_COMMAND_NOT_VALID" ) ); //$NON-NLS-1$
-
-		return array[1];
-	}
-
 	/**
 	 * 
 	 * @param columnCount
