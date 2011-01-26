@@ -47,6 +47,21 @@ public class TestUtil
 	
 	public static int HUGE_TABLE_ROW_COUNT = 2 * FlatFileDataReader.MAX_ROWS_PER_FETCH + 5;
 
+	public static String[] COMPLICATE_TAB_NAMES = {
+			"table_complicateColName1",
+			"table_complicate Col Name2",
+			"table_complicate Col Name3 from name2",
+			"table_complicate Col Name4 from",
+			"from table_complicate Col Name5 from from name4"
+	};
+
+	public static String[] COMPLICATE_TAB_COLNAMES = {
+			"INT COL from Integer",
+			"Double coL from from double",
+			"from int to int from from int",
+			"from int to int from from int from"
+	};
+
 	/**
 	 * 
 	 * @param delimiter
@@ -79,6 +94,7 @@ public class TestUtil
 		createTestFile_test12( path, delimiter );
 		createTestFile_test13( path, delimiter );
 		createTestFile_hugeRows( path, delimiter );
+		createTestFile_compliateColName( path, delimiter );
 	}
 	
 	
@@ -893,6 +909,60 @@ public class TestUtil
 			for ( int i = 0; i < HUGE_TABLE_ROW_COUNT; i++ )
 			{
 				osw.write( i+1 + "" );
+				osw.write( endOfLine );
+			}
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
+	private static void createTestFile_compliateColName( String path,
+			String delimiter ) throws OdaException
+	{
+		for (String name: COMPLICATE_TAB_NAMES)
+		{
+			generateComplicateNameData(path, name, delimiter);
+		}
+		System.out.println();
+	}
+	
+	private static void generateComplicateNameData( String path, String name,
+			String delimiter ) throws OdaException
+	{
+		File file = new File( path
+				+ File.separator + name + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			Random r = new Random( );
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+			String header = "INT COL from Integer"
+					+ delimiter + "Double coL from from double" + delimiter
+					+ "from int to int from from int" + delimiter
+					+ "from int to int from from int from" + "\n";
+			osw.write( header );
+			for ( int i = 0; i < 10; i++ )
+			{
+				osw.write( Integer.toString( i + 1 ));
+				osw.write( delimiter );
+				osw.write( Double.toString( r.nextDouble( ) ) );
+				osw.write( delimiter );
+				osw.write( Integer.toString( r.nextInt( ) ) );
+				osw.write( delimiter );
+				osw.write( Integer.toString( r.nextInt( ) ) );
 				osw.write( endOfLine );
 			}
 			osw.close( );

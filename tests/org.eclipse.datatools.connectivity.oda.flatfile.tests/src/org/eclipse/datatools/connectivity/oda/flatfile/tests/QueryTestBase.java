@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileQuery;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
 
 import junit.framework.TestCase;
 
@@ -68,24 +69,34 @@ public abstract class QueryTestBase extends TestCase
 	 * @param includeTypeLine
 	 * @throws OdaException
 	 */
-	public void executeQueryTest( IResultSet resultSet, boolean includeTypeLine )
+	public void executeQueryTest( IResultSet resultSet, boolean includeTypeLine, boolean validateCols )
 			throws OdaException
 	{
-		assertEquals( 3, resultSet.getMetaData( ).getColumnCount( ) );
-		assertEquals( includeTypeLine ? "INT" : "STRING",
-				resultSet.getMetaData( ).getColumnTypeName( 1 ).toUpperCase( ) );
-		assertEquals( includeTypeLine ? "TIMESTAMP" : "STRING",
-				resultSet.getMetaData( ).getColumnTypeName( 2 ).toUpperCase( ) );
-		assertEquals( includeTypeLine ? "STRING" : "STRING",
-				resultSet.getMetaData( )
-						.getColumnTypeName( 3 )
-						.toUpperCase( )
-						.toUpperCase( ) );
+		if (validateCols)
+		{
+			assertEquals( 3, resultSet.getMetaData( ).getColumnCount( ) );
+			assertEquals( includeTypeLine ? "INT" : "STRING",
+					resultSet.getMetaData( ).getColumnTypeName( 1 ).toUpperCase( ) );
+			assertEquals( includeTypeLine ? "TIMESTAMP" : "STRING",
+					resultSet.getMetaData( ).getColumnTypeName( 2 ).toUpperCase( ) );
+			assertEquals( includeTypeLine ? "STRING" : "STRING",
+					resultSet.getMetaData( )
+							.getColumnTypeName( 3 )
+							.toUpperCase( )
+							.toUpperCase( ) );
+		}
+		
 		int id = 1;
 		while ( resultSet.next( ) )
 		{
 			assertEquals( resultSet.getRow( ), id++ );
 		}
+	}
+	
+	public void executeQueryTest( IResultSet resultSet, boolean includeTypeLine )
+			throws OdaException
+	{
+		executeQueryTest( resultSet, includeTypeLine, true );
 	}
 
 	/**
@@ -427,7 +438,7 @@ public abstract class QueryTestBase extends TestCase
 	protected abstract String getDelimiter( );
 
 	protected abstract String getDelimiterName( );
-
+	
 	/**
 	 * 
 	 * @return
@@ -435,4 +446,64 @@ public abstract class QueryTestBase extends TestCase
 	protected abstract String getSuffix( );
 
 	protected abstract String getExtension( );
+	
+	/**
+	 * Test query parsing logic.
+	 */
+	public void testCompliateNames( )
+	{
+		try
+		{
+			setUpwithColunmNameSpecified();
+		}
+		catch ( OdaException ex )
+		{
+			ex.printStackTrace( );
+			fail( ex.getMessage( ) );
+		}
+		
+		for (String tab : TestUtil.COMPLICATE_TAB_NAMES)
+		{
+			try
+			{
+				String query = "select "
+					+ "\"" + TestUtil.COMPLICATE_TAB_COLNAMES[0] + "\",\""
+					+ TestUtil.COMPLICATE_TAB_COLNAMES[1] + "\",\""
+					+ TestUtil.COMPLICATE_TAB_COLNAMES[2] + "\",\""
+					+ TestUtil.COMPLICATE_TAB_COLNAMES[3] + "\" from "
+					+ "\"" + tab + getSuffix( ) + getExtension( ) + "\"";
+				
+				String[] queryMetaData = QueryTextUtil.getQueryMetaData( query );
+				
+				assertTrue( tab.equalsIgnoreCase( queryMetaData[2].substring( 0,
+						tab.length( ) ) ) );
+				
+				String[] cols = queryMetaData[0].split( "," );
+				for ( int i = 0; i < cols.length; i++ )
+				{
+					assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[i].equalsIgnoreCase( QueryTextUtil.getUnQuotedName( cols[i] ) ) );
+				}
+				
+				statement.prepare( query );
+				IResultSet resultSet = statement.executeQuery( );
+				
+				assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
+				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )
+						.getColumnName( 1 ) ) );
+				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[1].equalsIgnoreCase( resultSet.getMetaData( )
+						.getColumnName( 2 ) ) );
+				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[2].equalsIgnoreCase( resultSet.getMetaData( )
+						.getColumnName( 3 ) ) );
+				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[3].equalsIgnoreCase( resultSet.getMetaData( )
+						.getColumnName( 4 ) ) );
+				
+				executeQueryTest( resultSet, false, false );
+			}
+			catch ( OdaException ex )
+			{
+				ex.printStackTrace( );
+				fail( ex.getMessage( ) );
+			}
+		}
+	}
 }
