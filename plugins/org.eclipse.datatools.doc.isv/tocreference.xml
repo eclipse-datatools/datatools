@@ -2,7 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 <toc label="Reference" link_to="toc.xml#reference">
 	<topic label="API Reference">
-		<topic label="" href="html/reference/api/org/eclipse/datatools/"/>
+		<topic label="org.eclipse.datatools" href="html/reference/api/org/eclipse/datatools/"/>
 		
 		<topic label="org.eclipse.datatools.connectivity" href="html/reference/api/org/eclipse/datatools/connectivity/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.apache.derby.ui.explorer.providers.virtual" href="html/reference/api/org/eclipse/datatools/connectivity/apache/derby/ui/explorer/providers/virtual/package-summary.html"/>
