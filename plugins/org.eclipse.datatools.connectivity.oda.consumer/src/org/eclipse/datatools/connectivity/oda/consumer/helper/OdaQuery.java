@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2010 Actuate Corporation.
+ * Copyright (c) 2004, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -275,11 +275,6 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 			setContextClassloader();
 			
 			getQuery().close();
-			
-			resetStatementStates();
-			m_dataSetType = null;
-			
-			logMethodExit( context );
 		}
 		catch( UnsupportedOperationException uoException )
 		{
@@ -296,7 +291,15 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		}
 		finally
 		{
-			resetContextClassloader();
+		    // a consumer application may ignore #close exception;
+            // reset the state of this instance even if underlying ODA driver 
+		    // has thrown an exception at #close
+            resetStatementStates();
+            m_dataSetType = null;
+            
+            resetContextClassloader();
+
+            logMethodExit( context );
 		}
 	}
 

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -372,12 +372,12 @@ class OdaObject
 	protected void handleUnsupportedOp( UnsupportedOperationException exception,
 										String context )
 	{
-		// want to log the old exception because our new exception will have
+		// want to log the original exception because our new exception will have
 		// a different stack trace than the old one and the user will want 
 		// to see the old stack trace in the logs.
 		Logger logger = getLogger();
 		if( logger != null )
-			logger.severe( exception );
+			logger.warning( exception );
 		
 		// we'll have to reconstruct a new exception object if the 
 		// existing exception doesn't have a message because the 

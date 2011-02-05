@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -70,6 +70,15 @@ public class Logger
     public void severe( String message )
     {
     	log( Level.SEVERE_LEVEL, message );
+    }
+    
+    /**
+     * Log a WARNING exception.
+     * @param thrown    the throwable being thrown.
+     */
+    public void warning( Throwable thrown )
+    {
+        log( Level.WARNING_LEVEL, thrown );
     }
 
     /**
