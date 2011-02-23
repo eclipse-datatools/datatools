@@ -98,7 +98,15 @@ public class XMLSourceFromInputStream implements IXMLSource
 			assert in != null;
 			try
 			{
-				memSize = in.read( cacheMem );
+				// Read data from InputStream until cache size limit or EOF.
+				while ( memSize < cacheMem.length )
+				{
+					int n = in.read( cacheMem, memSize, cacheMem.length - memSize );
+					if ( n < 0 )
+						break; // EOF
+					memSize += n;
+				}
+				
 				if ( memSize == MAX_MEMORY_CACHE_SIZE )
 				{
 					//still more data from <code>in</code>, cache that part of data in a temp file
