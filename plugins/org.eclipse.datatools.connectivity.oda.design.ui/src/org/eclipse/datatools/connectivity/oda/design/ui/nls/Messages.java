@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2010 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,6 +48,7 @@ public class Messages extends NLS
     public static String profilePage_checkboxLabel_maintainLink;
     public static String profilePage_checkboxLabel_useDefaultName;
     public static String profilePage_checkboxTooltip_maintainLink;
+    public static String profilePage_deprecatedProfileDisplayName;
     public static String profilePage_error_emptyName;
     public static String profilePage_error_invalidName;
     public static String profilePage_error_invalidProfileStorePath;

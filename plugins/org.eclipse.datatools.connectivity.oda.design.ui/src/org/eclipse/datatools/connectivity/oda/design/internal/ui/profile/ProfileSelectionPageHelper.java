@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2010 Actuate Corporation.
+ * Copyright (c) 2007, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,9 +14,11 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
-import java.util.Iterator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.Properties;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -30,6 +32,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer.Filter;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -85,6 +88,8 @@ class ProfileSelectionPageHelper
     private transient String m_treeFilter;
     private transient SortedSet<OdaProfileCategoryInfo> m_dataSourceIDs = null;
     private transient IDesignNameValidatorBase m_designNameValidator;
+	private transient HashMap<String, String> m_deprecatedDataSourceMap = 
+	    new HashMap<String, String>(); // key= deprecated odaDataSourceId; value= replacing odaDataSourceId
     
     private String m_dataSourceDesignName = EMPTY_STRING;
 
@@ -147,7 +152,7 @@ class ProfileSelectionPageHelper
                             profileItem.getText().equals( 
                                 selectedProfile.getDataSourceDesignName() ) );
                     m_profileID = profileItem.getData().toString();
-                    m_odaDataSourceID = profileItem.getParentItem().getData().toString();
+                    m_odaDataSourceID = getProfileItemDataSourceId( profileItem );
                     setExternalLinkOption( m_odaDataSourceID );
                     setPageComplete( true );
                 }
@@ -422,7 +427,7 @@ class ProfileSelectionPageHelper
         else
         {
             m_profileID = item.getData().toString();
-            m_odaDataSourceID = item.getParentItem().getData().toString();
+            m_odaDataSourceID = getProfileItemDataSourceId( item );
             setSelectedDataSourceName( item.getText() );
             setExternalLinkOption( m_odaDataSourceID );
 
@@ -431,6 +436,11 @@ class ProfileSelectionPageHelper
         }
     }
 
+    private String getProfileItemDataSourceId( TreeItem item )
+    {
+        return getActiveDataSourceId( item.getParentItem().getData().toString() );
+    }
+    
     private void setSelectedDataSourceName( String name )
     {
         if( m_dataSourceDesignNameControl == null )
@@ -571,11 +581,37 @@ class ProfileSelectionPageHelper
         if( profileId == null )
             return null;
         
-        TreeItem dsCategory = findOdaCategoryInTree( odaDataSourceId );
+        TreeItem dsCategory = findOdaCategoryInTree( odaDataSourceId );        
+        TreeItem profileItem = findProfileInCategoryItem( dsCategory, profileId );
+        if( profileItem != null )
+            return profileItem;
+
+        // not found in own category;
+        // try to find under the deprecated odaDataSourceId(s) replaced by this odaDataSourceId 
+        Set<String> deprecatedIds = getDeprecatedDataSourceIds( odaDataSourceId );
+        for( String deprecatedId : deprecatedIds )
+        {
+            dsCategory = findOdaCategoryInTree( deprecatedId );
+            profileItem = findProfileInCategoryItem( dsCategory, profileId );
+            if( profileItem != null )
+                return profileItem;
+        }
+
+        // no match is found
+        return null;
+    }
+    
+    /**
+     * Find by profileId within the specified odaDataSourceId category
+     * @param dsCategory
+     * @param profileId
+     * @return
+     */
+    private TreeItem findProfileInCategoryItem( TreeItem dsCategory, String profileId )
+    {
         if( dsCategory == null )
             return null;    // specified oda data source category not in tree
-        
-        // found the specified odaDataSourceId category
+
         TreeItem[] profileItems = dsCategory.getItems();
         for( int i = 0; i < profileItems.length; i++ )
         {
@@ -583,7 +619,6 @@ class ProfileSelectionPageHelper
             if( profileItem.getData().toString().equals( profileId ) )
                 return profileItem;
         }
-
         // no match is found
         return null;
     }
@@ -664,31 +699,61 @@ class ProfileSelectionPageHelper
      * on ODA data source extensions found in the extensions registry,
      * sorted by their category display names.
      */
+    @SuppressWarnings("deprecation")
     private SortedSet<OdaProfileCategoryInfo> createOdaProfileCategoryInfoSet()
     {
         Filter profileTypeFilter = ManifestExplorer.createFilter();
         profileTypeFilter.setMissingDataSetTypesFilter( true );
-        profileTypeFilter.setDeprecatedFilter( true );
+        profileTypeFilter.setDeprecatedFilter( false );
         profileTypeFilter.setHideWrapper( false );
         
-        Properties dsIdentifiers = ManifestExplorer.getInstance()
-                .getDataSourceIdentifiers( profileTypeFilter );
-        
+        ExtensionManifest[] odaManifests = ManifestExplorer.getInstance()
+                .getExtensionManifests( profileTypeFilter );
+
+        m_deprecatedDataSourceMap.clear();
         TreeSet<OdaProfileCategoryInfo> sortedSet = new TreeSet<OdaProfileCategoryInfo>();
-        Iterator<Object> keyIter = dsIdentifiers.keySet().iterator();
-        while( keyIter.hasNext() )
+        for( ExtensionManifest manifest : odaManifests )
         {
-            String odaDataSourceId = keyIter.next().toString();
-            if( m_treeFilter != null && ! m_treeFilter.equals( odaDataSourceId ) )
-                continue;   // skip oda data source type not in filter
+            String odaDataSourceId = manifest.getDataSourceElementID( );
+            String relatedDataSourceId = manifest.getRelatedDataSourceId();
+            if( manifest.isDeprecated() )
+            {
+            	m_deprecatedDataSourceMap.put( odaDataSourceId, relatedDataSourceId );
+            }
+
+			if( m_treeFilter != null &&
+				! m_treeFilter.equals( odaDataSourceId ) &&
+				! m_treeFilter.equals( relatedDataSourceId ) )
+				continue; // skip oda data source type not in filter
                     
             // sort the identifiers by their category display name
            sortedSet.add( 
-                    new OdaProfileCategoryInfo( odaDataSourceId,
-                            dsIdentifiers.getProperty( odaDataSourceId ) ));
+                    new OdaProfileCategoryInfo( odaDataSourceId, manifest ) );
         }
 
         return sortedSet;
+    }
+    
+    private String getActiveDataSourceId( String odaDataSourceId )
+    {
+        return m_deprecatedDataSourceMap.containsKey( odaDataSourceId ) ? 
+                m_deprecatedDataSourceMap.get( odaDataSourceId ) :  // corresponding replacing odaDataSourceId
+                odaDataSourceId;
+    }
+    
+    private Set<String> getDeprecatedDataSourceIds( String odaDataSourceId )
+    {
+        if( ! m_deprecatedDataSourceMap.containsValue( odaDataSourceId ) )
+            return Collections.emptySet();
+
+        Set<String> deprecatedIds = new HashSet<String>();
+        for( Map.Entry<String,String> deprecatedEntry : m_deprecatedDataSourceMap.entrySet() )
+        {
+            if( deprecatedEntry.getValue().equals( odaDataSourceId ) )
+                deprecatedIds.add( deprecatedEntry.getKey() );
+            // TODO - handle nested deprecated extension ids
+        }
+        return deprecatedIds;
     }
     
     private OdaProfileCategoryInfo getOdaProfileCategoryInfo( String odaDataSourceId )
@@ -1020,7 +1085,7 @@ class ProfileSelectionPageHelper
         private String m_categoryDisplayName;
         private String m_effectiveCategoryId;
         
-        OdaProfileCategoryInfo( String id, String profileDisplayName )
+        OdaProfileCategoryInfo( String id, ExtensionManifest manifest )
         {
             m_odaDataSourceId = id;
 
@@ -1030,13 +1095,23 @@ class ProfileSelectionPageHelper
             // if parent category is not ODA type, use the parent category info
             boolean useParentCategory = ! m_hasOdaParentCategory;
             m_categoryDisplayName = 
-                getEffectiveDisplayName( profileCategory, useParentCategory,
-                        profileDisplayName );  
+                getEffectiveDisplayName( profileCategory, useParentCategory, manifest );  
             m_effectiveCategoryId = 
                 getEffectiveCategoryId( profileCategory, useParentCategory );
         }
 
         private String getEffectiveDisplayName( ICategory profileCategory,
+                boolean useParentCategory, ExtensionManifest manifest )
+        {
+            String categoryDisplayName = 
+                getCategoryDisplayName( profileCategory, useParentCategory, 
+                        manifest.getDataSourceDisplayName() );
+            return useParentCategory ? 
+                        categoryDisplayName : 
+                        refineDisplayName( categoryDisplayName, manifest );
+        }
+        
+        private String getCategoryDisplayName( ICategory profileCategory,
                     boolean useParentCategory, String defaultDisplayName )
         {
             if( profileCategory == null )
@@ -1054,6 +1129,28 @@ class ProfileSelectionPageHelper
             return displayName;
         }
         
+        @SuppressWarnings("deprecation")
+        private String refineDisplayName( String categoryDisplayName, ExtensionManifest manifest )
+        {
+            if( ! manifest.isDeprecated() )
+                return categoryDisplayName; // no need to refine the display name
+
+            String replacingDataSourceId = manifest.getRelatedDataSourceId();
+            try
+            {
+                String newDisplayName = 
+                    ManifestExplorer.getInstance().getExtensionManifest( replacingDataSourceId )
+                        .getDataSourceDisplayName();
+                categoryDisplayName = Messages.bind( 
+                        Messages.profilePage_deprecatedProfileDisplayName, categoryDisplayName, newDisplayName );
+            }
+            catch( OdaException ex )
+            {
+                // ignore
+            }
+            return categoryDisplayName;
+        }
+
         private String getEffectiveCategoryId( ICategory profileCategory,
                     boolean useParentCategory )
         {
