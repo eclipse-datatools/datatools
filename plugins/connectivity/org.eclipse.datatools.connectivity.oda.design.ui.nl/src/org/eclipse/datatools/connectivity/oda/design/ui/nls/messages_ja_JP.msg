@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2010 Actuate Corporation.
+# Copyright (c) 2006, 2011 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=ƒf[ƒ^ƒ\[ƒX‚É‚ÍAí‚ÉÚ‘±ƒvƒƒtƒ@ƒCƒ‹ƒ
 profilePage_checkboxLabel_maintainLink=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚ÌŠO•”‰»‚µ‚½ƒvƒƒpƒeƒB’l‚ğg—p‚·‚é(&E)
 profilePage_error_invalidName=ƒf[ƒ^ƒ\[ƒX–¼‚ª–³Œø‚Å‚·B
 profilePage_error_invalidProfileStorePath=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚ÌƒpƒX‚ª–³Œø‚Å‚·B
+profilePage_deprecatedProfileDisplayName={0} (replaced by {1})
 profileStoreCreationDialog_button_new=V‹Kì¬(&W)...
 profileStoreCreationDialog_title=Ú‘±ƒvƒƒtƒ@ƒCƒ‹ƒXƒgƒA‚Ìì¬
 profileStoreCreationDialog_grouptext=ƒXƒgƒA‚ÉŠÜ‚ß‚éÚ‘±ƒvƒƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢(&P) :
