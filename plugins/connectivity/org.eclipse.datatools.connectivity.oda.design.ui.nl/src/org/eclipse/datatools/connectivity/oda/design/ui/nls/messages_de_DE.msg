@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2010 Actuate Corporation.
+# Copyright (c) 2006, 2011 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Verwenden Sie stets die externalisierte
 profilePage_checkboxLabel_maintainLink=&Externalisierte Eigenschaften im Speicher für Verbindungsprofile verwenden
 profilePage_error_invalidName=Datenquellname ist ungültig.
 profilePage_error_invalidProfileStorePath=Ungültiger Pfad für Verbindungsprofilspeicher
+profilePage_deprecatedProfileDisplayName={0} (replaced by {1})
 profileStoreCreationDialog_button_new=N&eu...
 profileStoreCreationDialog_title=Speicher für Verbindungsprofile erstellen
 profileStoreCreationDialog_grouptext=Verbindungs&profile wählen, die der Speicher enthalten soll:

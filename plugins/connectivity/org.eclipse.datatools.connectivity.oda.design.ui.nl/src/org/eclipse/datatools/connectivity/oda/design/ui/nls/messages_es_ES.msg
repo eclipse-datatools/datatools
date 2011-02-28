@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2010 Actuate Corporation.
+# Copyright (c) 2006, 2011 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -55,6 +55,7 @@ profilePage_checkboxTooltip_maintainLink=Utilice siempre los valores de propieda
 profilePage_checkboxLabel_maintainLink=Utilizar propiedades &externalizadas en el almacenamiento de perfil de conexión
 profilePage_error_invalidName=El nombre de la fuente de datos no es válido.
 profilePage_error_invalidProfileStorePath=Ruta no válida para almacenamiento de perfil de conexión
+profilePage_deprecatedProfileDisplayName={0} (replaced by {1})
 profileStoreCreationDialog_button_new=&Nuevo...
 profileStoreCreationDialog_title=Crear almacenamiento de perfil de conexión
 profileStoreCreationDialog_grouptext=Seleccione los &perfiles de conexión que se incluirán en el almacenamiento:
