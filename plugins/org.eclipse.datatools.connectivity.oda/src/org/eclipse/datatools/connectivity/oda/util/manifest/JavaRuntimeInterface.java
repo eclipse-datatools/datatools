@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2010 Actuate Corporation.
+ * Copyright (c) 2004, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,9 +15,11 @@
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.security.ProtectionDomain;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -39,9 +41,12 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	private String m_namespace;
 	private IPath m_loadedBundlePath;
 	
-	private static final String ROOT_ENTRY = "/"; //$NON-NLS-1$
     private static final String sm_className = JavaRuntimeInterface.class.getName();
-	
+    private static final String PLUGIN_ROOT_PATH = "/"; //$NON-NLS-1$
+    private static final String PLUGIN_VERSION_SEPARATOR = "_"; //$NON-NLS-1$
+    private static final String BUNDLE_MANIFEST_RELATIVE_PATH = "META-INF/MANIFEST.MF"; //$NON-NLS-1$
+    private static final String UPPER_RELATIVE_PATH = ".."; //$NON-NLS-1$
+
 	JavaRuntimeInterface( String driverClass,
 						  boolean needSetThreadContextClassLoader,
 						  String namespace )
@@ -84,7 +89,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	 */
 	public URL getLibraryLocation() throws IOException
 	{
-		return getLocation( ROOT_ENTRY );
+		return getLocation( PLUGIN_ROOT_PATH );
 	}
 	
 	/**
@@ -110,7 +115,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 		    throw new IOException( Messages.bind( Messages.manifest_UNKNOWN_BUNDLE_LOCATION,
 		            m_namespace ) );
 
-	    IPath entryPath = entry.equals( ROOT_ENTRY ) ?
+	    IPath entryPath = entry.equals( PLUGIN_ROOT_PATH ) ?
 	                        m_loadedBundlePath :
 	                        m_loadedBundlePath.append( entry );
 	    return entryPath.toFile().toURI().toURL();
@@ -150,9 +155,13 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	        }
 	    }
 	    
-	    // not able to get from appContext, try to get from the loaded class domain
+	    // not able to get from appContext, try to get from the driver class loader
 	    if( m_loadedBundlePath == null )
-	        m_loadedBundlePath = getDomainBundlePath( driverClass, m_namespace );
+	        m_loadedBundlePath = getLoadedBundlePath( m_namespace, driverClass );
+	    
+	    // next try to get from the loaded class domain
+	    if( m_loadedBundlePath == null )
+            m_loadedBundlePath = getDomainBundlePath( m_namespace, driverClass );
 	}
 	
 	private static IPath convertToExistingFilePath( URI pathUri )
@@ -178,7 +187,53 @@ public class JavaRuntimeInterface extends RuntimeInterface
         return null;
 	}
 	
-	private static IPath getDomainBundlePath( Class<?> clazz, String bundleName )
+	private static IPath getLoadedBundlePath( String bundleName, Class<?> clazz )
+	{
+        final String methodName = "getLoadedBundlePath(String,Class<?>)"; //$NON-NLS-1$
+        
+        Enumeration<URL> foundURLs;
+        try
+        {
+            // search for the plugin manifest file, which should always exist 
+            // at one level below the plugin path
+            foundURLs = clazz.getClassLoader().getResources( BUNDLE_MANIFEST_RELATIVE_PATH );
+        }
+        catch( IOException ex )
+        {
+            // log and ignore
+            ManifestExplorer.getLogger().logp( Level.FINE, sm_className, methodName, 
+                    Messages.bind( "Unable to locate the installation path of the specified bundle ({0}).", bundleName ),  //$NON-NLS-1$
+                    ex );
+            return null;
+        }
+        
+        String pluginNameFragment = bundleName + PLUGIN_VERSION_SEPARATOR;
+        while( foundURLs.hasMoreElements() )
+        {
+            URL manifestURL = foundURLs.nextElement();
+            if( ! manifestURL.getPath().contains( pluginNameFragment ) )
+                continue;
+
+            try
+            {
+                URL pluginLocURL = new URL( manifestURL, UPPER_RELATIVE_PATH );
+                return new Path( pluginLocURL.getPath() );
+            }
+            catch( MalformedURLException ex )
+            {
+                // log and ignore
+                ManifestExplorer.getLogger().logp( Level.FINE, sm_className, methodName, 
+                        Messages.bind( "Unable to resolve the installation path ({0}/{1}) of the specified bundle ({2}).",  //$NON-NLS-1$
+                                new Object[]{manifestURL, UPPER_RELATIVE_PATH, bundleName} ), 
+                        ex );
+                return null;
+            }
+        }
+
+        return null;       
+	}
+	
+	private static IPath getDomainBundlePath( String bundleName, Class<?> clazz )
 	{
 	    final String methodName = "getDomainBundlePath(Class,String)"; //$NON-NLS-1$
 	    
