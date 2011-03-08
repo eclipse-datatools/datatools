@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006, 2010 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.19 2010/02/17 02:20:41 lchan Exp $
+ * $Id: DesignUtil.java,v 1.20 2010/03/04 01:27:57 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -223,6 +223,9 @@ public class DesignUtil
      */
     public static java.util.Properties convertDataSourceProperties( DataSourceDesign dataSourceDesign )
     {
+        if( dataSourceDesign == null )
+            return new java.util.Properties();
+
         java.util.Properties publicProps = convertDesignProperties( 
                 dataSourceDesign.getPublicProperties() );
         java.util.Properties propCollection = convertDesignProperties( 

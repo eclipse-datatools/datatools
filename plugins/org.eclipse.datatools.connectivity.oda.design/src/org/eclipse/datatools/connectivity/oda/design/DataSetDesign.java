@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.7 2009/03/13 05:19:46 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.8 2010/02/17 02:20:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -52,7 +52,7 @@ public interface DataSetDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2011 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the ODA data source element ID of the
@@ -126,7 +126,7 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Data Source Design</em>' containment reference.
      * @see #setDataSourceDesign(DataSourceDesign)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_DataSourceDesign()
-     * @model containment="true" required="true"
+     * @model containment="true"
      *        extendedMetaData="kind='element' name='dataSourceDesign' namespace='##targetNamespace'"
      * @generated
      */
@@ -225,7 +225,7 @@ public interface DataSetDesign extends EObject
      * @since 3.2.3
      */
     String getDisplayNameKey();
-    
+
     /**
      * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getDisplayName <em>Display Name</em>}' attribute.
      * @param value  the new resource key of the '<em>Display Name</em>' attribute;

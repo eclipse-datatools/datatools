@@ -121,8 +121,9 @@ public class DesignSessionUtilBase
         throws OdaException
     {
         java.util.Properties candidateProps = DesignUtil.convertDataSourceProperties( dataSourceDesign );
-        IPropertyProvider propProvider = 
-            getPropertyProvider( dataSourceDesign.getOdaExtensionDataSourceId() );
+        IPropertyProvider propProvider = null;
+        if( dataSourceDesign != null )
+            propProvider = getPropertyProvider( dataSourceDesign.getOdaExtensionDataSourceId() );
         if( propProvider == null )   // oda data source does not have own provider, use the system default
             propProvider = getPropertyProvider( DEFAULT_PROPERTY_PROVIDER_ID );
         

@@ -397,7 +397,7 @@
       <xsd:documentation>A design-time data set definition.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element maxOccurs="1" minOccurs="1" name="dataSourceDesign" type="design:DataSourceDesign">
+      <xsd:element maxOccurs="1" minOccurs="0" name="dataSourceDesign" type="design:DataSourceDesign">
         <xsd:annotation>
           <xsd:documentation>The instance of dataSourceDesign that supports this type of data set.  Could be null, if nested within another dataSetDesign, to share the container's dataSourceDesign.</xsd:documentation>
         </xsd:annotation>

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,12 +40,17 @@ class DesignValidator extends EObjectValidator
     protected boolean validate_MultiplicityConforms( EObject eObject, 
                                     EStructuralFeature eFeature, 
                                     DiagnosticChain diagnostics, 
-                                    Map context )
+                                    Map<Object, Object> context )
     {        
         // use extended validator method for selected ODA Design classes
         if( isDataSetQueryObject( eObject ) )
         {
             return validate_DataSetQuery_MultiplicityConforms( eObject, eFeature, 
+                    diagnostics, context );
+        }
+        else if( isDataSetDesignObject( eObject ) )
+        {
+            return validate_DataSetDesign_MultiplicityConforms( eObject, eFeature, 
                     diagnostics, context );
         }
         
@@ -63,12 +68,20 @@ class DesignValidator extends EObjectValidator
     }
     
     /**
+     * Determines whether the specific EObject is a DataSetDesign type.
+     */
+    private boolean isDataSetDesignObject( EObject eObject )
+    {
+        return ( eObject.eClass() == DesignPackage.Literals.DATA_SET_DESIGN );
+    }
+   
+    /**
      * Specialized validator for the DataSetQuery EObject.
      */
     protected boolean validate_DataSetQuery_MultiplicityConforms( EObject eObject, 
                                     EStructuralFeature eFeature, 
                                     DiagnosticChain diagnostics, 
-                                    Map context )
+                                    Map<Object, Object> context )
     {
         if( isDataSetQueryObject( eObject ) &&
             eFeature.isRequired() )
@@ -80,14 +93,7 @@ class DesignValidator extends EObjectValidator
             if( diagnostics != null )
             {
                 diagnostics.add(
-                    new BasicDiagnostic( Diagnostic.WARNING,
-                            DIAGNOSTIC_SOURCE,
-                            EOBJECT__EVERY_MULTIPCITY_CONFORMS,
-                            getEcoreResourceLocator().getString(
-                                "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
-                                new Object[] { getFeatureLabel( eFeature, context), 
-                                                getObjectLabel( eObject, context ) } ),
-                            new Object[] { eObject, eFeature } ));
+                    newRequiredFeatureDiagnostic( Diagnostic.WARNING, eObject, eFeature, context ));
             }
             return true;    // ok to continue with validation
         }
@@ -95,6 +101,53 @@ class DesignValidator extends EObjectValidator
         // use default validator implementation
         return super.validate_MultiplicityConforms( eObject, eFeature, 
                                         diagnostics, context );
+    }
+    
+    /**
+     * Specialized validator for the DataSetDesign EObject.
+     */
+    protected boolean validate_DataSetDesign_MultiplicityConforms( EObject eObject, 
+                                    EStructuralFeature eFeature, 
+                                    DiagnosticChain diagnostics, 
+                                    Map<Object, Object> context )
+    {
+        // validating the DataSourceDesign attribute in a DataSetDesign object
+        if( isDataSetDesignObject( eObject ) && 
+            eFeature.getFeatureID() == DesignPackage.DATA_SET_DESIGN__DATA_SOURCE_DESIGN )
+        {
+            if( eObject.eIsSet( eFeature ) )
+                return true;    // is valid; optional attribute is set
+            
+            // a DataSourceDesign is optional only when its containing DataSetDesign 
+            // is contained by a DynamicValuesQuery
+            if( eObject.eContainer().eClass() == DesignPackage.Literals.DYNAMIC_VALUES_QUERY )
+                return true;
+
+            // required attribute is not set
+            if( diagnostics != null )
+            {
+                diagnostics.add(
+                    newRequiredFeatureDiagnostic( Diagnostic.ERROR, eObject, eFeature, context ));
+            }
+            return false;   
+        }
+        
+        // use default validator implementation for other attributes/features
+        return super.validate_MultiplicityConforms( eObject, eFeature, 
+                                        diagnostics, context );        
+    }
+    
+    private BasicDiagnostic newRequiredFeatureDiagnostic( int severity, 
+                EObject eObject, EStructuralFeature eFeature, Map<Object, Object> context)
+    {
+        return new BasicDiagnostic( severity,
+                    DIAGNOSTIC_SOURCE,
+                    EOBJECT__EVERY_MULTIPCITY_CONFORMS,
+                    getEcoreResourceLocator().getString(
+                        "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
+                        new Object[]{ getFeatureLabel( eFeature, context), 
+                                        getObjectLabel( eObject, context )} ),
+                    new Object[] { eObject, eFeature } );        
     }
     
 }

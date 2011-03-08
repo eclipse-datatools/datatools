@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2010 Actuate Corporation.
+ * Copyright (c) 2007, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,7 +37,9 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
@@ -243,7 +245,7 @@ public class DesignUtilLoadSaveTest extends TestCase
 
         ExpressionArguments exprArgs2 = DesignFactory.eINSTANCE.createExpressionArguments();
         newStaticParamDefn = exprArgs2.addStaticParameter( "static value 1" ); //$NON-NLS-1$
-        newStaticParamDefn.addStaticValue( "static value 2 " );        
+        newStaticParamDefn.addStaticValue( "static value 2 " );         //$NON-NLS-1$
         customExpr2.setContextArguments( exprArgs2 );
 
         assertTrue( newStaticParamDefn.hasEffectiveStaticValues() );
@@ -259,7 +261,7 @@ public class DesignUtilLoadSaveTest extends TestCase
         dynamicFilterExpr.setIsOptional( false );
         FilterExpressionType defaultType = DesignFactory.eINSTANCE.createFilterExpressionType();
         defaultType.setDeclaringExtensionId( filterExprExtId );
-        defaultType.setId( "10005" );
+        defaultType.setId( "10005" ); //$NON-NLS-1$
         dynamicFilterExpr.setDefaultType( defaultType );
         assertEquals( defaultType, dynamicFilterExpr.getDefaultType() );
         
@@ -472,8 +474,7 @@ public class DesignUtilLoadSaveTest extends TestCase
         }
         assertTrue( hasException );
     }
-
-    
+   
     public void testAddResourceFileName()
     {
         File goldenFile = new File( getSampleDbTestFilePath() );
@@ -497,6 +498,55 @@ public class DesignUtilLoadSaveTest extends TestCase
         assertTrue( hasException );        
     }
     
+    public void testNullDataSourceDesignRef()
+    {
+        File goldenFile = new File( getSampleDbTestFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
+
+        dataSetDesign.setDataSourceDesign( null );
+        
+        // test invalid null DataSourceDesign reference
+        DesignSessionResponse designResponse = design.getResponse();
+        boolean hasException = false;
+        try
+        {
+            DesignUtil.validateObject( designResponse );
+        }
+        catch( IllegalStateException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );
+        
+        // test valid null DataSourceDesign reference in DynamicValuesQuery
+        design = loadOdaDesignSession( goldenFile );    // reload original content
+        dataSetDesign = design.getResponseDataSetDesign();
+        DataSetParameters dataSetParams = dataSetDesign.getParameters();
+        for( ParameterDefinition aParamDefn : dataSetParams.getParameterDefinitions() )
+        {           
+            DataSetDesign nestedDataSetDesign = (DataSetDesign) EcoreUtil.copy( dataSetDesign );
+            nestedDataSetDesign.setDataSourceDesign( null );    // set nested data set to reference a null data source
+
+            DynamicValuesQuery dynamicQuery = DesignFactory.eINSTANCE.createDynamicValuesQuery();
+            dynamicQuery.setDataSetDesign( nestedDataSetDesign );
+            dynamicQuery.setValueColumn( "1" ); //$NON-NLS-1$
+
+            InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
+            inputElementAttrs.setDynamicValueChoices( dynamicQuery );           
+        }
+        // test the null reference in this case is valid 
+        designResponse = design.getResponse();
+        try
+        {
+            DesignUtil.validateObject( designResponse );
+        }
+        catch( IllegalStateException ex )
+        {
+            fail();     // not expecting a validation error
+        }  
+    }
+   
     private void saveDesignSession( OdaDesignSession design, File tempOut )
     {
         try

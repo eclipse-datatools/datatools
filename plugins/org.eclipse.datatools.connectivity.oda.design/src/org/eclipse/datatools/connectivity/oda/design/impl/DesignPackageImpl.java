@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.20 2010/08/17 03:57:02 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.21 2010/10/15 05:41:37 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -109,7 +109,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2011 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc -->
@@ -3937,7 +3937,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getDataSetDesign_DataSourceDesign(),
                 this.getDataSourceDesign(),
                 null,
-                "dataSourceDesign", null, 1, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "dataSourceDesign", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSetDesign_Query(),
                 this.getDataSetQuery(),
