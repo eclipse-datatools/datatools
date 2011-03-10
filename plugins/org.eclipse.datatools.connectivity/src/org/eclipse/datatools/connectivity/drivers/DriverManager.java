@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2010 Sybase, Inc. and others.
+ * Copyright (c) 2004-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -9,6 +9,7 @@
  * Contributors: brianf - initial API and implementation
  *               IBM Corporation - fix for 243829
  *               Actuate Corporation - Bugzilla 300464
+ *               Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
@@ -17,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,15 +25,14 @@ import java.util.Properties;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -516,14 +515,14 @@ public class DriverManager {
 	 */
 	private boolean wereDefaultDriversCreated() {
 		IPath metadataPath = 
-			ConnectivityPlugin.getDefault().getStateLocation();
+			ConnectivityPlugin.getDefaultStateLocation();
 		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
 		File file = metadataPath.toFile();
 		if (file.exists()){
 			FileInputStream fis = null;
 			try {
 				fis = new FileInputStream(file);
-				ConnectivityPlugin.getDefault().getPluginPreferences().load(fis);
+				ConnectivityPlugin.getDefault().loadPreferences( fis );
 			} catch (FileNotFoundException e) {
 				ConnectivityPlugin.getDefault().log(e);
 			} catch (IOException e) {
@@ -548,7 +547,7 @@ public class DriverManager {
 	 */
 	private boolean createDefaultDriversMarker() {
 		IPath metadataPath = 
-			ConnectivityPlugin.getDefault().getStateLocation();
+			ConnectivityPlugin.getDefaultStateLocation();
 		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
 		File file = metadataPath.toFile();
 		if (!file.exists()){
@@ -562,7 +561,7 @@ public class DriverManager {
 	}
 	
 	private boolean wasDefaultCreatedBefore(TemplateDescriptor td) {
-		return ConnectivityPlugin.getDefault().getPluginPreferences().getBoolean(td.getId());
+		return ConnectivityPlugin.getDefault().getPreferenceBooleanValue( td.getId() );
 	}
 	
 	/**
@@ -666,10 +665,10 @@ public class DriverManager {
 	private void setDefaultCreated( String driverTemplateId, boolean isDefaultCreated )
 	{
         ConnectivityPlugin.getDefault().
-            getPluginPreferences().setValue( driverTemplateId, isDefaultCreated );
+            setPreferenceValue( driverTemplateId, isDefaultCreated );
         
         IPath metadataPath = 
-            ConnectivityPlugin.getDefault().getStateLocation();
+            ConnectivityPlugin.getDefaultStateLocation();
         metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
         File file = metadataPath.toFile();
         if (!file.exists()){
@@ -682,7 +681,7 @@ public class DriverManager {
         try {
             fos = new FileOutputStream(file);
             ConnectivityPlugin.getDefault().
-                getPluginPreferences().store(fos, 
+                storePreferences( fos, 
                         "DriverManager.Preferences"); //$NON-NLS-1$
         } catch (FileNotFoundException e) {
             ConnectivityPlugin.getDefault().log(e);
@@ -1004,54 +1003,24 @@ public class DriverManager {
 							jarList.indexOf("]", index) + 1, jarList.length()); //$NON-NLS-1$
 				}
 
-				if (Platform.getBundle(pluginId) != null) {
-					String entry = File.separator + restOfPath + File.separator;
-					URL url = null;
+				if( Platform.getBundle(pluginId) != null || 
+				        ! ConnectivityPlugin.isRunningOSGiPlatform() ) {
+					IPath path = null;
 					if (restOfPath == null || restOfPath.trim().length() == 0) {
-						try {
-							String path2 = FileLocator.resolve(Platform.getBundle(pluginId).getEntry("/")).getPath();//$NON-NLS-1$
-							if (path2.endsWith("!/"))//$NON-NLS-1$
-								path2 = path2.substring(0, path2.length() - 2);
-							url = new URL(path2);
-						} catch (IOException e) {
-							String[] strs = new String[] { pluginId
-									+ restOfPath};
-							System.err.println(DriverMgmtMessages.format(
-									"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
-							ConnectivityPlugin
-									.getDefault()
-									.log(
-											DriverMgmtMessages
-													.format(
-															"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
-						}
+					    path = PluginResourceLocator.getPluginRootPath( pluginId );
 					}
 					else {
-						url = Platform.getBundle(pluginId).getEntry(entry);
+	                    String entry = File.separator + restOfPath + File.separator;
+	                    path = PluginResourceLocator.getPluginEntryPath( pluginId, entry );
 					}
-					if (url != null) {
-						try {
-							url = FileLocator.toFileURL(url);
-							IPath path = new Path(url.getFile());
-							int totalLength = toReplace.length()
+
+					if (path != null) {
+					    int totalLength = toReplace.length()
 									+ restOfPath.length();
-							jarList = jarList.substring(0, index)
+					    jarList = jarList.substring(0, index)
 									+ path.toOSString()
 									+ jarList.substring(index + totalLength,
 											jarList.length());
-						}
-						catch (IOException e) {
-							String[] strs = new String[] { pluginId
-									+ restOfPath};
-							System.err.println(DriverMgmtMessages.format(
-									"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
-							ConnectivityPlugin
-									.getDefault()
-									.log(
-											DriverMgmtMessages
-													.format(
-															"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
-						}
 					}
 					else {
 						String[] strs = new String[] { pluginId + restOfPath};

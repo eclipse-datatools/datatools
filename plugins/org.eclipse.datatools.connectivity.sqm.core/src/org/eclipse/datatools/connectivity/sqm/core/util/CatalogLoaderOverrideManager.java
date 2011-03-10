@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Sybase, Inc.
+ * Copyright (c) 2007, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -87,7 +87,7 @@ public final class CatalogLoaderOverrideManager {
 							}
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "An error was detected when creating the override catalog loader (" + providerClassName + ") for " //$NON-NLS-1$ //$NON-NLS-2$
 						            + eclassName + " for database " //$NON-NLS-1
 						            + product + " " + version, e); //$NON-NLS-1$

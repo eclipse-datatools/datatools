@@ -1,28 +1,40 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2010 Sybase, Inc. and others
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: Sybase, Inc. - initial API and implementation
+ * Contributors: 
+ *      Sybase, Inc. - initial API and implementation
+ *      Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Preferences;
 import org.eclipse.core.runtime.Status;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 import com.ibm.icu.text.MessageFormat;
 
 /**
- * The main plugin class to be used in the desktop.
+ * The main plugin class.
  */
+@SuppressWarnings("deprecation")
 public class ConnectivityPlugin extends Plugin {
 
 	public static final int INTERNAL_ERROR = 10001;
@@ -32,9 +44,11 @@ public class ConnectivityPlugin extends Plugin {
 
 	// The shared instance.
 	private static ConnectivityPlugin plugin;
+    private static IPath defaultWorkspace;
 
 	private ResourceBundle resourceBundle;
-
+    private Preferences localPreferences;
+	
 	/**
 	 * The constructor.
 	 */
@@ -47,6 +61,14 @@ public class ConnectivityPlugin extends Plugin {
 	 * Returns the shared instance.
 	 */
 	public static ConnectivityPlugin getDefault() {
+	    if( plugin == null )
+	    {
+	        synchronized( ConnectivityPlugin.class )
+	        {
+	            if( plugin == null )
+	                new ConnectivityPlugin();
+	        }
+	    }
 		return plugin;
 	}
 
@@ -104,6 +126,142 @@ public class ConnectivityPlugin extends Plugin {
 		return f.format(arguments);
 	}
 
+	public static String getSymbolicName() {
+	    Bundle theBundle = getDefault().getBundle();
+	    return theBundle != null ? 
+	            theBundle.getSymbolicName() : 
+	            PLUGIN_ID;
+	}
+	
+	/**
+	 * Returns the default workspace location of this plug-in.
+	 * @return the path of this plug-in's default workspace location.
+	 */
+	public static IPath getDefaultStateLocation()
+	{
+        if( defaultWorkspace == null )
+        {
+            IPath wsPath = PluginResourceLocator.getPluginStateLocation( PLUGIN_ID );
+            if( wsPath == null )
+                return null;
+            
+            synchronized( ConnectivityPlugin.class )
+            {
+                if( defaultWorkspace == null )
+                    defaultWorkspace = wsPath;
+            }
+        }
+        return defaultWorkspace;
+	}
+
+	/**
+	 * Returns the default storage location for persisted files that are 
+	 * configured and consumed by this plug-in, 
+	 * such as those of connection profiles and driver definitions.
+	 * The storage location is created, if it did not exist prior to this call. 
+	 * @return the location path of the default storage area for this plugin
+	 */
+    public static IPath getStorageLocation() 
+    {
+        IPath defaultLocation = getDefaultStateLocation();
+        
+        // create default folder if none exists
+        File file = defaultLocation.toFile();
+        if( ! file.exists() )
+        {
+            try
+            {
+                file.mkdir();
+            }
+            catch( Exception e )
+            {
+                // log warning
+                getDefault().logWarning( e.getMessage() );
+                return null;
+            }
+        }
+        return defaultLocation;
+    }
+    
+    /**
+     * Returns a URL to the entry at the specified path in this plug-in.
+     * @param path  the path name of the entry
+     * @return
+     */
+	public static URL getEntry( String path )
+	{
+	    return PluginResourceLocator.getPluginEntry( PLUGIN_ID, path );
+	}
+
+	/** Indicates whether this plug-in is running on the OSGi platform.
+	 * @return true if running on the OSGi platform; false otherwise
+	 */
+	public static boolean isRunningOSGiPlatform()
+	{
+	    return Platform.getBundle( PLUGIN_ID ) != null;
+	}
+	
+	/**
+	 * Sets the current value of the boolean-valued property with the
+     * specified name. 
+	 * @param name  the name of the property; must not be <code>null</code>
+	 * @param value     the new current value of the property
+	 */
+	public void setPreferenceValue( String name, boolean value ) 
+	{
+        getPreferences().setValue( name, value );
+	}
+
+	/**
+	 * Returns the current value of the boolean-valued property with the
+     * specified name.
+	 * @param name  the name of the property; must not be <code>null</code>
+	 * @return the boolean-valued property; or the default value (<code>false</code>) 
+     *      if there is no property with the given name, or if the current value 
+     *      cannot be treated as a boolean
+	 */
+	public boolean getPreferenceBooleanValue( String name ) 
+	{
+        return getPreferences().getBoolean( name );
+	}
+	
+	/**
+	 * Saves the non-default-valued preference properties  
+     * to the specified output stream.
+	 * @param out   the output stream 
+     * @param header a comment to be included in the output, or 
+     *    <code>null</code> if none
+     * @exception IOException if there is a problem saving the preference properties
+	 */
+	public void storePreferences( OutputStream out, String header ) 
+	    throws IOException
+	{
+        getPreferences().store( out, header );
+	}
+
+	/**
+	 * Loads the non-default-valued preference properties from the
+     * specified input stream. Default property values are not affected.
+     * @param in the input stream
+     * @exception IOException if there is a problem loading the preference properties
+	 */
+	public void loadPreferences( InputStream in ) 
+	    throws IOException 
+	{
+	    getPreferences().load( in );
+	}
+    
+    private Preferences getPreferences()
+    {
+        if( isRunningOSGiPlatform() ) 
+            return getPluginPreferences();
+
+        // running on non-OSGi platform, use local Preferences instance instead
+       if( localPreferences == null ) 
+           localPreferences = new Preferences();
+       return localPreferences;
+    }
+	
 	/**
 	 * Logs runtime status.
 	 * 
@@ -140,6 +298,10 @@ public class ConnectivityPlugin extends Plugin {
         log( createStatus( IStatus.INFO, message) );
     }
 
+    public void logWarning( String message ) {
+        log( createStatus( IStatus.WARNING, message ) );
+    }
+    
 	/**
 	 * Logs and exception.
 	 * 
@@ -154,7 +316,7 @@ public class ConnectivityPlugin extends Plugin {
 	}
 	
 	private IStatus createStatus(int severity, String message) {
-		return new Status(severity, getBundle().getSymbolicName(),
+		return new Status(severity, getSymbolicName(),
 				INTERNAL_ERROR, message, null);
 	}
 
@@ -166,7 +328,7 @@ public class ConnectivityPlugin extends Plugin {
 		else {
 			message = e.getMessage();
 		}
-		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+		return new Status(IStatus.ERROR, getSymbolicName(),
 				INTERNAL_ERROR, message, e);
 	}
 }

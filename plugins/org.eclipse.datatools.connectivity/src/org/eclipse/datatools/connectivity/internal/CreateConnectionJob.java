@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2007 Sybase, Inc.
+ * Copyright (c) 2006-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -58,8 +58,7 @@ public class CreateConnectionJob extends Job {
 			if (connection.getConnectException() != null) {
 				// when setting the status as warning the user gets an
 				// error message dialog that is more "user friendly"
-				status = new Status(IStatus.WARNING, ConnectivityPlugin
-						.getDefault().getBundle().getSymbolicName(), -1,
+				status = new Status(IStatus.WARNING, ConnectivityPlugin.getSymbolicName(), -1,
 						ConnectivityPlugin.getDefault().getResourceString(
 								"CreateConnectionJob.error", //$NON-NLS-1$
 								new Object[] {
@@ -75,9 +74,8 @@ public class CreateConnectionJob extends Job {
 			status = e.getStatus();
 		}
 		catch (Exception e) {
-			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
-					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
-					.getDefault().getResourceString(
+			status = new Status(IStatus.ERROR, ConnectivityPlugin.getSymbolicName(), -1, 
+					    ConnectivityPlugin.getDefault().getResourceString(
 							"CreateConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									getConnectionFactoryProvider().getName(),

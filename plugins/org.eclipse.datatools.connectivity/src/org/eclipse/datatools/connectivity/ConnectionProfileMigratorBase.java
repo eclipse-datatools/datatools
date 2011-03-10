@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Sybase, Inc.
+ * Copyright (c) 2007, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -134,8 +134,7 @@ public class ConnectionProfileMigratorBase implements
 						.getAttribute(ProfileExtensionProvider.ATTR_ID);
 			}
 			else {
-				Status status = new Status(Status.ERROR, ConnectivityPlugin
-						.getDefault().getBundle().getSymbolicName(), -1,
+				Status status = new Status(Status.ERROR, ConnectivityPlugin.getSymbolicName(), -1,
 						ConnectivityPlugin.getDefault().getResourceString(
 								"migration.error.unknownParentElement", //$NON-NLS-1$
 								new Object[] { parentElement.getName()}), null);
@@ -144,8 +143,7 @@ public class ConnectionProfileMigratorBase implements
 		}
 		else if (!ConnectionProfileManager.getInstance().getProviders()
 				.containsKey(mNewProviderID)) {
-			Status status = new Status(Status.ERROR, ConnectivityPlugin
-					.getDefault().getBundle().getSymbolicName(), -1,
+			Status status = new Status(Status.ERROR, ConnectivityPlugin.getSymbolicName(), -1,
 					ConnectivityPlugin.getDefault().getResourceString(
 							"migration.error.providerDoesNotExist", //$NON-NLS-1$
 							new Object[] { mNewProviderID}), null);
@@ -172,8 +170,7 @@ public class ConnectionProfileMigratorBase implements
 				if (newPropertyKey == null || newPropertyKey.length() == 0) {
 					Status status = new Status(
 							Status.ERROR,
-							ConnectivityPlugin.getDefault().getBundle()
-									.getSymbolicName(),
+							ConnectivityPlugin.getSymbolicName(),
 							-1,
 							ConnectivityPlugin
 									.getDefault()

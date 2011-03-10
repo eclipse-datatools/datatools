@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2010 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.definition.IDatabaseRecognizer;
@@ -126,7 +127,7 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 				if(def != null) return def;
 			}
 			catch(Exception e) {
-			    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+			    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 			            "An exception was thrown from database recognizer " + recognizer.getClass().getName(), e); //$NON-NLS-1$
 				RDBCorePlugin.getDefault().getLog().log(status);
 				it.remove();
@@ -156,19 +157,17 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 						try {
 							modelURL = new URL(modelURI.toString());
 						} catch (MalformedURLException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the model url for " + modelLocation + " in "+ product + " " +version, //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						            e);
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
 					}
 					else {
-						modelURL = modelLocation == null ? null : Platform
-								.getBundle(
-										configElements[j].getContributor()
-											.getName()).getEntry(modelLocation);
+					    modelURL = modelLocation == null ? 
+							    null : 
+							    PluginResourceLocator.getPluginEntry( configElements[j], modelLocation );
 					}
-					
 					
 					DatabaseDefinitionImpl definition = new DatabaseDefinitionImpl(product, version, desc, productDisplayString, versionDisplayString, modelURL);
 					
@@ -216,7 +215,7 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 						break;     // expects only 1 recognizer element
 					}
 					catch(CoreException e) {
-					    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+					    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 					            "The error was detected when creating the database recognizer " + className, e); //$NON-NLS-1$
 						RDBCorePlugin.getDefault().getLog().log(status);
 					}					
@@ -233,7 +232,7 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 			        this.recognizers.add( defaultRecognizer );
             }
             catch( CoreException ex ) {
-                IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+                IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
                         "The error was detected when creating default database recognizer.", ex); //$NON-NLS-1$
                 RDBCorePlugin.getDefault().getLog().log(status);
             }

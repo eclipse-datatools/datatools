@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
@@ -529,7 +528,7 @@ public class ConnectionProfile extends PlatformObject implements
 		 * we want to make sure any RefreshProfileJobs are cancelled to prevent
 		 * deadlock in the UI thread.
 		 */
-		Platform.getJobManager().cancel(this);
+		Job.getJobManager().cancel(this);
 
 		Job connectJob = new ConnectJob();
 		connectJob.schedule();
@@ -558,7 +557,7 @@ public class ConnectionProfile extends PlatformObject implements
 		 * we want to make sure any RefreshProfileJobs are cancelled to prevent
 		 * deadlock in the UI thread.
 		 */
-		Platform.getJobManager().cancel(this);
+		Job.getJobManager().cancel(this);
 
 		Job disconnectJob = new DisconnectJob();
 		disconnectJob.schedule();
@@ -621,7 +620,7 @@ public class ConnectionProfile extends PlatformObject implements
 		 * we want to make sure any RefreshProfileJobs are cancelled to prevent
 		 * deadlock in the UI thread.
 		 */
-		Platform.getJobManager().cancel(this);
+		Job.getJobManager().cancel(this);
 
 		Job workOfflineJob = new WorkOfflineJob();
 		workOfflineJob.schedule();
@@ -783,6 +782,10 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	private void addFailureMarker(IStatus result) {
+        // maintenance of problem markers is only applicable on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return;
+        
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		Map map = new HashMap(3);
 		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
@@ -801,6 +804,10 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	private void removeOldFailureMarkers() {
+        // maintenance of problem markers is only applicable on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return;
+        
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		try {
 			IMarker[] markers = resource.findMarkers(
@@ -847,7 +854,7 @@ public class ConnectionProfile extends PlatformObject implements
 					+ mFactoryIDToManagedConnection.size() + 1);
 
 			// Create a group monitor
-			IProgressMonitor group = Platform.getJobManager()
+			IProgressMonitor group = Job.getJobManager()
 					.createProgressGroup();
 			group.beginTask(getName(), IProgressMonitor.UNKNOWN);
 
@@ -878,7 +885,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 			// Wait for everyone to connect
 			try {
-				Platform.getJobManager().join(this, null);
+				Job.getJobManager().join(this, null);
 			}
 			catch (OperationCanceledException e) {
 				// TODO: RJC: Cleanup any connections that got created
@@ -1051,7 +1058,7 @@ public class ConnectionProfile extends PlatformObject implements
 			}
 
 			// Create a group monitor
-			IProgressMonitor group = Platform.getJobManager()
+			IProgressMonitor group = Job.getJobManager()
 					.createProgressGroup();
 			group.beginTask(getName(), IProgressMonitor.UNKNOWN);
 
@@ -1085,7 +1092,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 			// Wait for everyone to connect
 			try {
-				Platform.getJobManager().join(this, null);
+				Job.getJobManager().join(this, null);
 			}
 			catch (OperationCanceledException e) {
 				// TODO: RJC: This puts us in a weird state, should we recreate
@@ -1187,9 +1194,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 		public ConnectMultiStatus(int severity, IStatus[] newChildren,
 									String message) {
-			super(
-					ConnectivityPlugin.getDefault().getBundle()
-							.getSymbolicName(), -1, newChildren, message, null);
+			super( ConnectivityPlugin.getSymbolicName(), -1, newChildren, message, null);
 			setSeverity(severity);
 		}
 	}
@@ -1348,8 +1353,7 @@ public class ConnectionProfile extends PlatformObject implements
 		}
 
 		protected IStatus run(IProgressMonitor monitor) {
-			MultiStatus status = new MultiStatus(ConnectivityPlugin
-					.getDefault().getBundle().getSymbolicName(),
+			MultiStatus status = new MultiStatus(ConnectivityPlugin.getSymbolicName(),
 					MultiStatus.OK,
 					ConnectivityPlugin.getDefault().getResourceString(
 							"SaveWorkOfflineDataJob.status"), null); //$NON-NLS-1$

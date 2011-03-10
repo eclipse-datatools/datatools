@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -280,8 +280,7 @@ public class ProfileConnectionManager {
 					}
 					else {
 						throw new CoreException(new Status(IStatus.ERROR,
-								ConnectivityPlugin.getDefault().getBundle()
-										.getSymbolicName(),
+								ConnectivityPlugin.getSymbolicName(),
 								ConnectivityPlugin.INTERNAL_ERROR,
 								ConnectivityPlugin.getDefault()
 										.getResourceString(

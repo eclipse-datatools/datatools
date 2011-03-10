@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -54,10 +54,7 @@ public class DefaultCipherProvider implements ICipherProvider {
 	private Key loadKey() throws GeneralSecurityException {
 		ObjectInputStream ois = null;
 		try {
-			URL url = ConnectivityPlugin
-					.getDefault()
-					.getBundle()
-					.getResource(
+			URL url = ConnectivityPlugin.getEntry( 
 							"org/eclipse/datatools/connectivity/internal/security/cpkey"); //$NON-NLS-1$
 
 			ois = new ObjectInputStream(url.openStream());

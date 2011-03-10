@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -146,7 +146,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 							this.factory = (DataModelElementFactory) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the element factory for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
@@ -187,7 +187,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 							this.catalogProvider = (ICatalogProvider) configElements[j].createExecutableExtension("provider"); //$NON-NLS-1$
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the catalog provider for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
@@ -274,7 +274,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 							this.ddlGenerator = (DDLGenerator) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the DDL generator for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
@@ -320,7 +320,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 							this.deltaDdlGenerator = (DeltaDDLGenerator) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the DDL generator for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
@@ -2167,7 +2167,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 							this.metaDataExtension = (AbstractMetaDataExtension) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
 						catch(CoreException e) {
-						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 						            "The error was detected when creating the meta data extension for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}

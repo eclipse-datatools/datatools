@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -12,6 +12,7 @@
  *     Actuate Corporation - fix for bug #247587
  *     brianf - added Transient profile functionality for bug 253606
  *     Actuate Corporation - enhanced transient profile handling (bug #298357)
+ *     Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
  *     
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
@@ -39,11 +40,11 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.Platform;
@@ -881,6 +882,10 @@ public class InternalProfileManager {
 	 * @param oldProfileName
 	 */
 	private void removeOldFailureMarkers(String oldProfileName) {
+        // maintenance of problem markers is only applicable on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return;
+        
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		try {
 			IMarker[] markers = resource.findMarkers(
@@ -1045,15 +1050,14 @@ public class InternalProfileManager {
 		{
 			return;
 		}
-		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
+		File serverFile = ConnectivityPlugin.getDefaultStateLocation()
 				.append(ConnectionProfileMgmt.FILENAME).toFile();
 		File defaultFile = null;
 
 		try {
-			URL url = ConnectivityPlugin.getDefault().getBundle().getEntry(
-					ConnectionProfileMgmt.DEFAULTCP_FILENAME);
+			URL url = ConnectivityPlugin.getEntry( ConnectionProfileMgmt.DEFAULTCP_FILENAME );
 			if (url != null) {
-				defaultFile = new File(FileLocator.toFileURL(url).getFile());
+				defaultFile = new File( PluginResourceLocator.toFileURL(url).getFile() );
 			}
 		}
 		catch (IOException e) {
@@ -1147,7 +1151,7 @@ public class InternalProfileManager {
 	
 	private void backupProfilesData ( File ioFile ) {
 		if (ioFile != null && ioFile.exists()) {
-			File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
+			File backupFile = ConnectivityPlugin.getDefaultStateLocation()
 				.append(ConnectionProfileMgmt.BACKUP_FILENAME).toFile();
 			try {
 				copy(ioFile, backupFile);
@@ -1156,7 +1160,7 @@ public class InternalProfileManager {
 			}
 		}
 		else {
-			File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
+			File serverFile = ConnectivityPlugin.getDefaultStateLocation()
 				.append(ConnectionProfileMgmt.FILENAME).toFile();
 			backupProfilesData(serverFile);
 		}
@@ -1177,7 +1181,7 @@ public class InternalProfileManager {
     }
 
 	private void restoreFromBackupProfilesData() {
-		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
+		File serverFile = ConnectivityPlugin.getDefaultStateLocation()
 			.append(ConnectionProfileMgmt.FILENAME).toFile();
 		if (!serverFile.exists()) {
 			File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
@@ -1191,7 +1195,7 @@ public class InternalProfileManager {
 	}
 	
 	private boolean backupFileExists() {
-		File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
+		File backupFile = ConnectivityPlugin.getDefaultStateLocation()
 			.append(ConnectionProfileMgmt.BACKUP_FILENAME).toFile();
 		return backupFile.exists();
 	}
@@ -1394,7 +1398,9 @@ public class InternalProfileManager {
 			String driverDefName, String driverTemplateID)
 	{
 		
-		    if ((configElements.length == 0) || (isBundleActivated (configElements[0]))) {
+		    if( configElements.length == 0 || 
+	            isBundleActivated( configElements[0] ) || 
+	            ! ConnectivityPlugin.isRunningOSGiPlatform() ) {
 			 
 				DriverInstance driverInstance = getDriverInstance(driverDefName, driverTemplateID, jarList);
 
@@ -1446,16 +1452,31 @@ public class InternalProfileManager {
         return false;
 	}
 	
-	
-	private String substituteLocationDirectory (String logicalPath, IConfigurationElement element)
+	private String substituteLocationDirectory(String logicalPath, IConfigurationElement element)
 	{
-		String pluginID = element.getContributor().getName();
-	    String stateLocation = Platform.getStateLocation(Platform.getBundle(pluginID)).toOSString();
-		int index = logicalPath.indexOf(PLUGIN_STATE_LOCATION);
-		if (index != -1)
+        int index = logicalPath.indexOf(PLUGIN_STATE_LOCATION);
+        if( index < 0 )             // no keyword found
+            return logicalPath;     // no need to substitute
+        
+		String pluginId = element.getContributor().getName();
+		IPath pluginPath = PluginResourceLocator.getPluginStateLocation( pluginId );
+
+		if( pluginPath == null )  // not found
 		{
-		    logicalPath = logicalPath.substring(0, index) + stateLocation + logicalPath.substring(index + PLUGIN_STATE_LOCATION.length());
+		    // try get the plugin installation path instead
+		    pluginPath = PluginResourceLocator.getPluginRootPath( element );		    
+		    if( pluginPath == null )
+		    {
+    		    ConnectivityPlugin.getDefault().logWarning( 
+    		            "#substituteLocationDirectory: Unable to locate the path to substitute the 'Plugin_State_Location' path."  );
+    		    return logicalPath;   // unknown plugin path; unable to substitute, return as is
+		    }
 		}
+		
+	    String stateLocation = pluginPath.toOSString();
+		logicalPath = logicalPath.substring(0, index) + 
+		                stateLocation + 
+		                logicalPath.substring(index + PLUGIN_STATE_LOCATION.length());
 		return logicalPath;
 	}
 	

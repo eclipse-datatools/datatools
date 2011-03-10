@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2010 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -1033,7 +1033,7 @@ public class ConnectionProfileMgmt {
 	 */
 	public static IPath getStorageLocation() {
 		if (storageLocation == null) {
-			return ConnectivityPlugin.getDefault().getStateLocation();
+			return ConnectivityPlugin.getStorageLocation();
 		}
 		return storageLocation;
 	}
@@ -1084,6 +1084,10 @@ public class ConnectionProfileMgmt {
 	}
 
 	private static void addDriverProblemMarker(String name, String message) {
+        // maintenance of problem markers is only applicable on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return;
+        
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		Map map = new HashMap(3);
 		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
@@ -1102,6 +1106,10 @@ public class ConnectionProfileMgmt {
 	}
 
 	private static void removeOldDriverProblemMarkers(String name) {
+        // maintenance of problem markers is only applicable on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return;
+        
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		try {
 			IMarker[] markers = resource.findMarkers(

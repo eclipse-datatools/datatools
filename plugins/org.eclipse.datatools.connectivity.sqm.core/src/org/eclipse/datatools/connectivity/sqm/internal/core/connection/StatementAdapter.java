@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -75,7 +75,7 @@ public class StatementAdapter implements Statement {
 		}
 		catch(SQLException e) {
 	        notifySQLExceptionHandler(e);
-		    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+		    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
 		            e.getClass().getName(),
 		            e);
 			RDBCorePlugin.getDefault().getLog().log(status);
@@ -192,8 +192,8 @@ public class StatementAdapter implements Statement {
 	                    SQLExceptionHandler handler = (SQLExceptionHandler) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 	                    handers.add(handler);
 	                } catch(CoreException e) {
-	                    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
-	                            "The error was detected when creating the exception handler ", e); //$NON-NLS-2$
+	                    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getSymbolicName(), IStatus.ERROR,
+	                            "The error was detected when creating the exception handler ", e); //$NON-NLS-1$
 	                    RDBCorePlugin.getDefault().getLog().log(status);
 	                }
 	            }            

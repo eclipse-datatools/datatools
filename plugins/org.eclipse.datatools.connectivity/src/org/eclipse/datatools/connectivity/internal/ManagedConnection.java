@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2007 Sybase, Inc.
+ * Copyright (c) 2006-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -181,8 +181,8 @@ public class ManagedConnection implements IManagedConnection {
 	/* package */void workOffline(IProgressMonitor monitor)
 			throws CoreException {
 		if (!supportsWorkOfflineMode()) {
-			Status status = new Status(Status.ERROR, ConnectivityPlugin
-					.getDefault().getBundle().getSymbolicName(), -1,
+			Status status = new Status(Status.ERROR, 
+			        ConnectivityPlugin.getSymbolicName(), -1,
 					ConnectivityPlugin.getDefault().getResourceString(
 							"ManagedConnection_offline_not_supported_error", //$NON-NLS-1$
 							new Object[] { getConnectionFactoryProvider()
@@ -232,8 +232,8 @@ public class ManagedConnection implements IManagedConnection {
 	
 	/* package */void save(IProgressMonitor monitor) throws CoreException {
 		if (!supportsWorkOfflineMode()) {
-			Status status = new Status(Status.ERROR, ConnectivityPlugin
-					.getDefault().getBundle().getSymbolicName(), -1,
+			Status status = new Status(Status.ERROR, 
+			        ConnectivityPlugin.getSymbolicName(), -1,
 					ConnectivityPlugin.getDefault().getResourceString(
 							"ManagedConnection_offline_not_supported_error", //$NON-NLS-1$
 							new Object[] { getConnectionFactoryProvider()
@@ -244,12 +244,8 @@ public class ManagedConnection implements IManagedConnection {
 		if (!isConnected()) {
 			Status status = new Status(
 					Status.ERROR,
-					ConnectivityPlugin.getDefault().getBundle()
-							.getSymbolicName(),
-					-1,
-					ConnectivityPlugin
-							.getDefault()
-							.getResourceString(
+					ConnectivityPlugin.getSymbolicName(), -1,
+					ConnectivityPlugin.getDefault().getResourceString(
 									"ManagedConnection_save_not_connected_error"), //$NON-NLS-1$
 					null);
 			throw new CoreException(status);
@@ -418,8 +414,8 @@ public class ManagedConnection implements IManagedConnection {
 							.createConnection(getConnectionProfile());
 				}
 				if (mConnection.getConnectException() != null) {
-					status = new Status(IStatus.ERROR, ConnectivityPlugin
-							.getDefault().getBundle().getSymbolicName(), -1,
+					status = new Status(IStatus.ERROR, 
+					        ConnectivityPlugin.getSymbolicName(), -1,
 							ConnectivityPlugin.getDefault().getResourceString(
 									"CreateConnectionJob.error", //$NON-NLS-1$
 									new Object[] {
@@ -432,8 +428,8 @@ public class ManagedConnection implements IManagedConnection {
 				}
 			}
 			catch (Exception e) {
-				status = new Status(IStatus.ERROR, ConnectivityPlugin
-						.getDefault().getBundle().getSymbolicName(), -1,
+                status = new Status(IStatus.ERROR, 
+				        ConnectivityPlugin.getSymbolicName(), -1,
 						ConnectivityPlugin.getDefault().getResourceString(
 								"CreateConnectionJob.error", //$NON-NLS-1$
 								new Object[] {

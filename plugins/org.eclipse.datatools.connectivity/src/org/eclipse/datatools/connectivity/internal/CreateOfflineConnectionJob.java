@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Sybase, Inc.
+ * Copyright (c) 2007, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -63,9 +63,8 @@ public class CreateOfflineConnectionJob extends Job {
 			status = e.getStatus();
 		}
 		catch (Exception e) {
-			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
-					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
-					.getDefault().getResourceString(
+			status = new Status(IStatus.ERROR, ConnectivityPlugin.getSymbolicName(), -1, 
+					ConnectivityPlugin.getDefault().getResourceString(
 							"CreateOfflineConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									getConnectionFactoryProvider().getName(),

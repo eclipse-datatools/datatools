@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Copyright (c) 2005, 2011 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
 import java.io.ByteArrayInputStream;
@@ -14,6 +25,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 /**
  * @author ljulien
@@ -49,6 +61,10 @@ public class SaveDDLUtility
 	 */
 	private IFile shouldSaveAsResource (String filename)
 	{
+        // maintenance of ddl file resource is only supported on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return null;
+        
 		if (filename != null)
 		{
 			Path thePath = new Path(filename);
@@ -62,6 +78,10 @@ public class SaveDDLUtility
 	}
 	
 	public IFile saveDDLFileAsResource(StringWriter out, String filename){
+        // maintenance of ddl file resource is only supported on OSGi platform
+        if( ! ConnectivityPlugin.isRunningOSGiPlatform() )
+            return null;
+        
 	    IPath thePath = new Path(filename);
 	    if ((thePath.getFileExtension() == null)  || (!(thePath.getFileExtension().equalsIgnoreCase(DDL_FILE_EXTENSION) || thePath.getFileExtension().equalsIgnoreCase(ALTERNATE_DDL_FILE_EXTENSION)))){
 	        thePath = thePath.addFileExtension(DDL_FILE_EXTENSION);

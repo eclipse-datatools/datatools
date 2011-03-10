@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2008 Sybase, Inc.
+ * Copyright (c) 2004-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ConnectionProfileMigratorBase;
 import org.eclipse.datatools.connectivity.ICategory;
@@ -348,8 +347,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 					// Do nothing
 				}
 			} else {
-				mIconURL = Platform.getBundle(mElement.getContributor().getName())
-						.getEntry(iconAttr);
+			    mIconURL = PluginResourceLocator.getPluginEntry( mElement, iconAttr );
 			}
 		}
 	}

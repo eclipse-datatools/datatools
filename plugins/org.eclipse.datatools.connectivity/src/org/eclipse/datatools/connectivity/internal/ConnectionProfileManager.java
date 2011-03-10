@@ -191,7 +191,8 @@ public class ConnectionProfileManager {
 		}
 		
 		registerConnectionFactoryAdapters();
-		
+	
+		// Bugzilla 173721
 		mProviders.keySet().removeAll(mDisabledProviders);
 		
 		initializeRepositoriesEnabledProperty();

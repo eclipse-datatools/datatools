@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Sybase, Inc. and Others
+ * Copyright (c) 2009, 2011 Sybase, Inc. and Others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -69,8 +69,7 @@ public class ProviderIDtoDriverCategoryIDDescriptor implements Comparable<Object
 		if (fgMappingDescriptors == null) {
 			IExtensionRegistry registry = Platform.getExtensionRegistry();
 			IConfigurationElement[] elements = registry
-					.getConfigurationElementsFor(RDBCorePlugin
-							.getDefault().getBundle().getSymbolicName(),
+					.getConfigurationElementsFor(RDBCorePlugin.getSymbolicName(),
 							EXTENSION_POINT_NAME);
 			fgMappingDescriptors = createProviderIDtoDriverCategoryIDDescriptors(elements);
 		}

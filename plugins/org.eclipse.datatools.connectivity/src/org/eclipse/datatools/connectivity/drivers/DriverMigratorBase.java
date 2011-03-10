@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 Sybase, Inc.
+ * Copyright (c) 2007, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -136,8 +136,7 @@ public class DriverMigratorBase implements
 		mNewDriverTemplateID = config.getAttribute(ATTR_NEW_DRIVER_TEMPLATE_ID);
 		if (TemplateDescriptor.getDriverTemplateDescriptor(
 				mNewDriverTemplateID) == null) {
-			Status status = new Status(Status.ERROR, ConnectivityPlugin
-					.getDefault().getBundle().getSymbolicName(), -1,
+			Status status = new Status(Status.ERROR, ConnectivityPlugin.getSymbolicName(), -1,
 					"migration.error.templateDoesNotExist", null); //$NON-NLS-1$
 			throw new CoreException(status);
 		}
@@ -167,8 +166,7 @@ public class DriverMigratorBase implements
 				if (newPropertyKey == null || newPropertyKey.length() == 0) {
 					Status status = new Status(
 							Status.ERROR,
-							ConnectivityPlugin.getDefault().getBundle()
-									.getSymbolicName(),
+							ConnectivityPlugin.getSymbolicName(),
 							-1,
 							ConnectivityPlugin
 									.getDefault()

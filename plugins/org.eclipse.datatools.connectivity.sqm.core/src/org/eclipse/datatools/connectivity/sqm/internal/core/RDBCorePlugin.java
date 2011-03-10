@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +9,19 @@
  *     IBM Corporation - initial API and implementation
  *     Actuate Corporation - added use of default DatabaseRecognizer (BZ 253523),
  *              plus OSGi stop and restart usage support
+ *     Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 
@@ -36,14 +40,25 @@ public class RDBCorePlugin extends Plugin {
 	public static String ONE_TO_MANY = "1..*"; //$NON-NLS-1$
 	public static String MANY = "*"; //$NON-NLS-1$
 	
+    public static final String PLUGIN_ID = "org.eclipse.datatools.connectivity.sqm.core";   //$NON-NLS-1$
 	private static RDBCorePlugin plugin;
+    private static IPath defaultWorkspace;
 
 	public RDBCorePlugin() {
 		plugin = this;
 	}
 	
 	public static RDBCorePlugin getDefault() {
-		return plugin;
+        if( plugin == null )
+        {
+            synchronized( RDBCorePlugin.class )
+            {
+                if( plugin == null )
+                    new RDBCorePlugin();
+            }
+        }
+        return plugin;
+
 	}
 
 	/* (non-Javadoc)
@@ -74,4 +89,32 @@ public class RDBCorePlugin extends Plugin {
 	    getPluginPreferences().setDefault(RDBCorePluginConstants.MAX_ROW_RETRIEVED, 50);
 	    getPluginPreferences().setDefault(RDBCorePluginConstants.MAX_LOB_LENGTH, 100);  
 	}
+
+    public static String getSymbolicName() {
+        Bundle theBundle = getDefault().getBundle();
+        return theBundle != null ? 
+                theBundle.getSymbolicName() : 
+                PLUGIN_ID;
+    }
+    
+    /**
+     * Returns the default workspace location of this plug-in.
+     * @return the path of this plug-in's default workspace location.
+     */
+    public static IPath getDefaultStateLocation() {
+        if( defaultWorkspace == null )
+        {
+            IPath wsPath = PluginResourceLocator.getPluginStateLocation( PLUGIN_ID );
+            if( wsPath == null )
+                return null;
+            
+            synchronized( RDBCorePlugin.class )
+            {
+                if( defaultWorkspace == null )
+                    defaultWorkspace = wsPath;
+            }
+        }
+        return defaultWorkspace;
+    }
+
 }

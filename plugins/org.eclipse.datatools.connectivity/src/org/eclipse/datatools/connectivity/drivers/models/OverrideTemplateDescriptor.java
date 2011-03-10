@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2009 Sybase, Inc.
+ * Copyright (c) 2004-2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -11,7 +11,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.models;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,7 +20,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
@@ -98,8 +96,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 		if (fgDriverTemplateDescriptors == null) {
 			IExtensionRegistry registry = Platform.getExtensionRegistry();
 			IConfigurationElement[] elements = registry
-					.getConfigurationElementsFor(ConnectivityPlugin
-							.getDefault().getBundle().getSymbolicName(),
+					.getConfigurationElementsFor(ConnectivityPlugin.getSymbolicName(),
 							EXTENSION_POINT_NAME);
 			createDriverTemplateDescriptors(elements);
 		}
@@ -141,8 +138,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 		if (fgDriverTemplateDescriptors == null) {
 			IExtensionRegistry registry = Platform.getExtensionRegistry();
 			IConfigurationElement[] elements = registry
-					.getConfigurationElementsFor(ConnectivityPlugin
-							.getDefault().getBundle().getSymbolicName(),
+					.getConfigurationElementsFor(ConnectivityPlugin.getSymbolicName(),
 							EXTENSION_POINT_NAME);
 			createDriverTemplateDescriptors(elements);
 		}
@@ -188,26 +184,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 
 		String jarList = this.fElement.getAttribute(JARLIST_ATTRIBUTE);
 		
-		if (jarList == null) {
-			jarList = new String();
-		}
-		
-		if (!jarList.matches(".*" + PLUGIN_LOC + ".*")) //$NON-NLS-1$ //$NON-NLS-2$
-			return jarList;
-		try {
-			String pluginID = this.fElement.getContributor().getName();
-			String pluginLoc = FileLocator.resolve(
-					Platform.getBundle(pluginID).getEntry("")).getFile(); //$NON-NLS-1$
-			if (pluginLoc.charAt(0) == '/')
-				pluginLoc = pluginLoc.substring(1);
-			if (pluginLoc.charAt(pluginLoc.length() - 1) == '/')
-				pluginLoc = pluginLoc.substring(0, pluginLoc.length() - 1);
-			jarList = jarList.replaceAll(PLUGIN_LOC, pluginLoc);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		return jarList;
+        return TemplateDescriptor.substitutePluginPath( jarList, this.fElement );
 	}
 
 	/**

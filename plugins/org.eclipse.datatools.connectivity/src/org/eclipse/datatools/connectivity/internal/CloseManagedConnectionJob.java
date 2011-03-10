@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -42,9 +42,9 @@ public class CloseManagedConnectionJob extends Job {
 			mConnection.close();
 		}
 		catch (Exception e) {
-			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
-					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
-					.getDefault().getResourceString(
+			status = new Status(IStatus.ERROR, 
+			        ConnectivityPlugin.getSymbolicName(), -1, 
+			        ConnectivityPlugin.getDefault().getResourceString(
 							"CloseManagedConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									mConnection.getConnectionProfile()

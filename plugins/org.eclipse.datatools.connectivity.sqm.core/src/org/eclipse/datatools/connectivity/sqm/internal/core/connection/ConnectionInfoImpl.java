@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -101,7 +101,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
 	
 	/* package */static IPath getConnectionDirectory(String name) {
-		IPath path = RDBCorePlugin.getDefault().getStateLocation();
+		IPath path = RDBCorePlugin.getDefaultStateLocation();
 		path = path.append(ConnectionInfo.CONNECTION);
 		if(name != null) path = path.append(name + "/"); //$NON-NLS-1$
 		return path;
@@ -717,9 +717,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			}
 			catch (Throwable e) {
 				RDBCorePlugin.getDefault().getLog().log(
-						new Status(Status.ERROR, RDBCorePlugin.getDefault()
-								.getBundle().getSymbolicName(), -1, e
-								.getLocalizedMessage() == null ? new String()
+						new Status(Status.ERROR, RDBCorePlugin.getSymbolicName(), -1, 
+								e.getLocalizedMessage() == null ? new String()
 								: e.getLocalizedMessage(), e));
 			}
 		}
@@ -736,9 +735,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			}
 			catch (Throwable e) {
 				RDBCorePlugin.getDefault().getLog().log(
-						new Status(Status.ERROR, RDBCorePlugin.getDefault()
-								.getBundle().getSymbolicName(), -1, e
-								.getLocalizedMessage() == null ? new String()
+						new Status(Status.ERROR, RDBCorePlugin.getSymbolicName(), -1, 
+								e.getLocalizedMessage() == null ? new String()
 								: e.getLocalizedMessage(), e));
 			}
 		}
@@ -755,9 +753,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			}
 			catch (Throwable e) {
 				RDBCorePlugin.getDefault().getLog().log(
-						new Status(Status.ERROR, RDBCorePlugin.getDefault()
-								.getBundle().getSymbolicName(), -1, e
-								.getLocalizedMessage() == null ? new String()
+						new Status(Status.ERROR, RDBCorePlugin.getSymbolicName(), -1, 
+								e.getLocalizedMessage() == null ? new String()
 								: e.getLocalizedMessage(), e));
 			}
 		}
@@ -873,8 +870,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 				cacheDatabase(sharedDatabase);
 			}
 			catch (IOException e) {
-				Status status = new Status(Status.ERROR, RDBCorePlugin
-						.getDefault().getBundle().getSymbolicName(), -1,
+				Status status = new Status(Status.ERROR, RDBCorePlugin.getSymbolicName(), -1,
 						"Error saving offline SQL Model for {0}.", e);
 				throw new CoreException(status);
 			}
