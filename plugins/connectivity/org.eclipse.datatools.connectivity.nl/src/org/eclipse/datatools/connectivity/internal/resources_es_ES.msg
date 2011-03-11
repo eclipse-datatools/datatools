@@ -1,4 +1,4 @@
-## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## Copyright (c) 2005, 2011 Sybase, Inc. and others.
 ## All rights reserved. This program and the accompanying materials
 ## are made available under the terms of the Eclipse Public License v1.0
 ## which accompanies this distribution, and is available at
@@ -74,4 +74,5 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. Utilizar las propiedades de controlador definidas en el perfil de bases de datos en su lugar.
 
 error.database.not.start = No se ha introducido ningún comando de inicio de base de datos. ErrorCode = {0}, SQLState = {1}.
+PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
 

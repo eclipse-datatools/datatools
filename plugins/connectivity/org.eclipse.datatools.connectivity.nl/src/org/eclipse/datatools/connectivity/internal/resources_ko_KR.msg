@@ -1,4 +1,4 @@
-## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## Copyright (c) 2005, 2011 Sybase, Inc. and others.
 ## All rights reserved. This program and the accompanying materials
 ## are made available under the terms of the Eclipse Public License v1.0
 ## which accompanies this distribution, and is available at
@@ -74,4 +74,5 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. 대신 데이터베이스 프로필에 저장된 드라이버 속성을 사용합니다.
 
 error.database.not.start = 시작 데이터베이스 명령이 전달되지 않았습니다. 오류 코드 = {0}, SQL 문 = {1}.
+PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
 

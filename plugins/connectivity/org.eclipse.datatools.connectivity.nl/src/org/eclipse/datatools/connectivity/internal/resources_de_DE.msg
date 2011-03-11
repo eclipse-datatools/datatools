@@ -1,4 +1,4 @@
-## Copyright (c) 2005, 2010 Sybase, Inc. and others.
+## Copyright (c) 2005, 2011 Sybase, Inc. and others.
 ## All rights reserved. This program and the accompanying materials
 ## are made available under the terms of the Eclipse Public License v1.0
 ## which accompanies this distribution, and is available at
@@ -74,5 +74,6 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. Stattdessen werden die Treibereigenschaften verwendet, die für das Datenbankprofil definiert sind.
 
 error.database.not.start = Es wurde kein Befehl zum Start der Datenbank ausgegeben. ErrorCode = {0}, SQL-Status = {1}.
+PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
 
 
