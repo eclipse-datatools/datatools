@@ -74,6 +74,6 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. Stattdessen werden die Treibereigenschaften verwendet, die für das Datenbankprofil definiert sind.
 
 error.database.not.start = Es wurde kein Befehl zum Start der Datenbank ausgegeben. ErrorCode = {0}, SQL-Status = {1}.
-PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
+PluginResourceLocator.invalidURL = Ungültige URL {0} (Fehler\: {1})
 
 

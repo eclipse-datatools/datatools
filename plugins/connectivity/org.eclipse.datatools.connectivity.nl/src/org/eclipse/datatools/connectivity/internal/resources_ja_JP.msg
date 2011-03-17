@@ -74,5 +74,5 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. データベースプロファイルで定義したドライバのプロパティを代わりに使用します。
 
 error.database.not.start = データベースの起動コマンドは発行されていません。 ErrorCode = {0}、SQLState = {1}
-PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
+PluginResourceLocator.invalidURL = URL {0} が無効です (エラー \: {1})
 

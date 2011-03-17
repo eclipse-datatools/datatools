@@ -74,5 +74,5 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. 使用数据库配置文件中定义的驱动程序属性。
 
 error.database.not.start = 未发出启动数据库命令。 ErrorCode = {0}，SQLState = {1}。
-PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
+PluginResourceLocator.invalidURL = 无效 URL {0} (错误\: {1})
 

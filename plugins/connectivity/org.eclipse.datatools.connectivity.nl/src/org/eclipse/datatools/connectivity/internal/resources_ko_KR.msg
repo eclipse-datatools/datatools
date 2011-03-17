@@ -74,5 +74,5 @@ JDBCConnection.technologyName = JDBC
 JDBCConnection.invalidDriverDefinition = {0}\: {1}. 대신 데이터베이스 프로필에 저장된 드라이버 속성을 사용합니다.
 
 error.database.not.start = 시작 데이터베이스 명령이 전달되지 않았습니다. 오류 코드 = {0}, SQL 문 = {1}.
-PluginResourceLocator.invalidURL = Invalid URL {0} (Error\: {1})
+PluginResourceLocator.invalidURL = 잘못된 URL {0} (오류\: {1})
 
