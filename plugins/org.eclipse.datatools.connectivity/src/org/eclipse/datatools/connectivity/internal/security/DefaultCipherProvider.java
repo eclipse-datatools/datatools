@@ -39,6 +39,8 @@ public class DefaultCipherProvider implements ICipherProvider {
 
 	public Cipher createEncryptionCipher() throws GeneralSecurityException {
 		Key k = loadKey();
+		if (k == null)
+		    return null;
 		Cipher c = Cipher.getInstance(k.getAlgorithm());
 		c.init(Cipher.ENCRYPT_MODE, k);
 		return c;
@@ -54,9 +56,10 @@ public class DefaultCipherProvider implements ICipherProvider {
 	private Key loadKey() throws GeneralSecurityException {
 		ObjectInputStream ois = null;
 		try {
-			URL url = ConnectivityPlugin.getEntry( 
+			URL url = ConnectivityPlugin.getResource( 
 							"org/eclipse/datatools/connectivity/internal/security/cpkey"); //$NON-NLS-1$
-
+			if (url == null)
+			    return null;     // key is not available
 			ois = new ObjectInputStream(url.openStream());
 
 			SecretKeySpec spec = (SecretKeySpec) ois.readObject();

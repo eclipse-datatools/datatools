@@ -186,13 +186,26 @@ public class ConnectivityPlugin extends Plugin {
     /**
      * Returns a URL to the entry at the specified path in this plug-in.
      * @param path  the path name of the entry
-     * @return
+     * @return  A URL to the entry, or null if no entry could be found 
      */
 	public static URL getEntry( String path )
 	{
-	    return PluginResourceLocator.getPluginEntry( PLUGIN_ID, path );
+	    return PluginResourceLocator.getPluginEntry( PLUGIN_ID, path, 
+	            ConnectivityPlugin.class.getClassLoader() );
 	}
 
+	/**
+	 * Find the specified resource from this plugin's class loader. 
+	 * @param name The name of the resource. See {@link ClassLoader#getResource(String)} 
+     *              for a description of the format of a resource name.
+	 * @return A URL to the named resource, or null if the resource could not be found 
+	 */
+	public static URL getResource( String name )
+	{
+	    return PluginResourceLocator.getPluginResource( PLUGIN_ID, name, 
+	            ConnectivityPlugin.class.getClassLoader() );
+	}
+	
 	/** Indicates whether this plug-in is running on the OSGi platform.
 	 * @return true if running on the OSGi platform; false otherwise
 	 */

@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.xml.parsers.DocumentBuilder;
@@ -199,9 +200,11 @@ public class ConnectionProfileMgmt {
 			
 			try {
 				if (isp != null) {
-					out = new CipherOutputStream(outs, isp.createEncryptionCipher());
+				    Cipher aCipher = isp.createEncryptionCipher();
+				    if (aCipher != null)
+				        out = new CipherOutputStream(outs, aCipher);
 				}
-				else {
+                if (out == null) {
 					out = outs;
 				}
 				OutputStreamWriter outw = new OutputStreamWriter(out, "UTF-8"); //$NON-NLS-1$
