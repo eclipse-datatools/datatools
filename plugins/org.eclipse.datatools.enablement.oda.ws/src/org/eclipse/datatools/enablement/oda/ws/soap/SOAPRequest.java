@@ -23,7 +23,7 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 public class SOAPRequest
 {
 
-	private static final String RE_PARAMETER = "\\Q&?\\E.*\\Q?&\\E";//$NON-NLS-1$
+	private static final String RE_PARAMETER = "\\Q&?\\E\\w+\\Q?&\\E";//$NON-NLS-1$
 
 	// template could be considered as the subset of queryText with non
 	// parameters involved, queryText is defined by users
