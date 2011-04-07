@@ -693,7 +693,7 @@ class ColumnInfo
 		this.originalPath = originalPath;
 		
 		//the result of removing attribution filters
-		String purePath = originalPath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", EMPTY_STRING )//$NON-NLS-1$
+		String purePath = originalPath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*?\\Q]\\E", EMPTY_STRING )//$NON-NLS-1$
 								   .replaceAll( "\\Q[@\\E.*\\Q]\\E", EMPTY_STRING ).trim( );//$NON-NLS-1$
 		
 		this.path = SaxParserUtil.removeRedundantParentAxis(  purePath );
