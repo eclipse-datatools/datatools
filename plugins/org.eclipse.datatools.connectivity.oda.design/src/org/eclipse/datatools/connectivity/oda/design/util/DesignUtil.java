@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.20 2010/03/04 01:27:57 lchan Exp $
+ * $Id: DesignUtil.java,v 1.21 2011/03/08 22:59:10 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
@@ -58,6 +59,7 @@ public class DesignUtil
     private static final String RESOURCE_KEY_DOUBLE_PREFIX = "%%"; //$NON-NLS-1$ 
     private static final char RESOURCE_KEY_SEPARATOR = ' ';
     private static Diagnostician sm_diagnostician;
+    static final String PLUGIN_ID = "org.eclipse.datatools.connectivity.oda.design"; //$NON-NLS-1$
     
     // trace logging variables
     private static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.design.util"; //$NON-NLS-1$
@@ -359,8 +361,10 @@ public class DesignUtil
         // next try to parse the filePath argument as an url on web
         try
         {
-            URL url = new URL( filePath );
-            return new File( FileLocator.toFileURL( url ).getPath( ) );
+            URL url = new URL( filePath );           
+            if( isRunningOSGiPlatform() )
+                url = FileLocator.toFileURL( url ); // available only on OSGi platform
+            return new File( url.getPath( ) );
         }
         catch( MalformedURLException e )
         {
@@ -372,7 +376,17 @@ public class DesignUtil
         }
         return null;
     }
-    
+
+    /** 
+     * Indicates whether this plug-in is running on the OSGi platform.
+     * @return true if running on the OSGi platform; false otherwise
+     * @since 1.9
+     */
+    static boolean isRunningOSGiPlatform()
+    {
+        return Platform.getBundle( PLUGIN_ID ) != null;
+    }
+
     /**
      * Converts the specified file to a string representation
      * that can be persisted in an oda design model.

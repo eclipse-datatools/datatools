@@ -31,7 +31,7 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
+import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
 
 import com.ibm.icu.text.Collator;
 

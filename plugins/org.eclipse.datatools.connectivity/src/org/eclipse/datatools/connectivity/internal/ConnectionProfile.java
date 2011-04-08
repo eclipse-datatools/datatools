@@ -585,12 +585,16 @@ public class ConnectionProfile extends PlatformObject implements
 	/*
 	 * The password will be cleared when a user disconnects. If the save password option is checked,
 	 * the password will not be cleared.
+	 * Clearing password is applicable only if this profile instance is persisted in the workspace'
+	 * connection profile store.
 	 */
 	public void clearPasswordIfNotCached() 
 	{
 		Properties properties = getBaseProperties();
 		String savePassword = properties.getProperty(IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
-		if ( Boolean.valueOf(savePassword) == Boolean.FALSE) {
+		if ( Boolean.valueOf(savePassword) == Boolean.FALSE &&
+		        !InternalProfileManager.isTransientProfile(this) &&
+		        InternalProfileManager.getInstance().getProfileByName( getName(), false ) != null ) {
 			properties.remove(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID);
 			setBaseProperties(properties);
 		}

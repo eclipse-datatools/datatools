@@ -63,6 +63,7 @@ import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.eclipse.datatools.connectivity.internal.services.PluginResourceLocatorImpl;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
 
@@ -1057,7 +1058,7 @@ public class InternalProfileManager {
 		try {
 			URL url = ConnectivityPlugin.getEntry( ConnectionProfileMgmt.DEFAULTCP_FILENAME );
 			if (url != null) {
-				defaultFile = new File( PluginResourceLocator.toFileURL(url).getFile() );
+				defaultFile = new File( PluginResourceLocatorImpl.toFileURL(url).getFile() );
 			}
 		}
 		catch (IOException e) {
@@ -1459,12 +1460,12 @@ public class InternalProfileManager {
             return logicalPath;     // no need to substitute
         
 		String pluginId = element.getContributor().getName();
-		IPath pluginPath = PluginResourceLocator.getPluginStateLocation( pluginId );
+		IPath pluginPath = PluginResourceLocatorImpl.getPluginStateLocation( pluginId );
 
 		if( pluginPath == null )  // not found
 		{
 		    // try get the plugin installation path instead
-		    pluginPath = PluginResourceLocator.getPluginRootPath( element );		    
+		    pluginPath = PluginResourceLocatorImpl.getPluginRootPath( element );		    
 		    if( pluginPath == null )
 		    {
     		    ConnectivityPlugin.getDefault().logWarning( 

@@ -24,13 +24,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
+import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
 
 /**
  *  Provider of externalized properties defined in a linked connection profile.

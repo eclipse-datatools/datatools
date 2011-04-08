@@ -31,6 +31,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfileMigrator;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
 import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.internal.services.PluginResourceLocatorImpl;
 
 /**
  * @author rcernich
@@ -347,7 +348,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 					// Do nothing
 				}
 			} else {
-			    mIconURL = PluginResourceLocator.getPluginEntry( mElement, iconAttr );
+			    mIconURL = PluginResourceLocatorImpl.getPluginEntry( mElement, iconAttr );
 			}
 		}
 	}

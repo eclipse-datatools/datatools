@@ -15,7 +15,7 @@ package org.eclipse.datatools.connectivity.sqm.internal.core;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
+import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;

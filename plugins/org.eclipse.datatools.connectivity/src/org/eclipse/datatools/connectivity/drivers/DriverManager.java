@@ -32,7 +32,7 @@ import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.datatools.connectivity.internal.PluginResourceLocator;
+import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
 
 import com.ibm.icu.util.StringTokenizer;
 

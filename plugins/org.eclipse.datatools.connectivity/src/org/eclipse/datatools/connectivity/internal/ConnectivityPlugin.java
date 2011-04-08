@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.internal.services.PluginResourceLocatorImpl;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
@@ -141,7 +142,7 @@ public class ConnectivityPlugin extends Plugin {
 	{
         if( defaultWorkspace == null )
         {
-            IPath wsPath = PluginResourceLocator.getPluginStateLocation( PLUGIN_ID );
+            IPath wsPath = PluginResourceLocatorImpl.getPluginStateLocation( PLUGIN_ID );
             if( wsPath == null )
                 return null;
             
@@ -190,7 +191,7 @@ public class ConnectivityPlugin extends Plugin {
      */
 	public static URL getEntry( String path )
 	{
-	    return PluginResourceLocator.getPluginEntry( PLUGIN_ID, path, 
+	    return PluginResourceLocatorImpl.getPluginEntry( PLUGIN_ID, path, 
 	            ConnectivityPlugin.class.getClassLoader() );
 	}
 
@@ -202,11 +203,12 @@ public class ConnectivityPlugin extends Plugin {
 	 */
 	public static URL getResource( String name )
 	{
-	    return PluginResourceLocator.getPluginResource( PLUGIN_ID, name, 
+	    return PluginResourceLocatorImpl.getPluginResource( PLUGIN_ID, name, 
 	            ConnectivityPlugin.class.getClassLoader() );
 	}
 	
-	/** Indicates whether this plug-in is running on the OSGi platform.
+	/** 
+	 * Indicates whether this plug-in is running on the OSGi platform.
 	 * @return true if running on the OSGi platform; false otherwise
 	 */
 	public static boolean isRunningOSGiPlatform()
