@@ -67,7 +67,7 @@ public class XMLSourceFromPath implements IXMLSource
 		}
 		catch ( MalformedURLException e )
 		{
-			throw new OdaException( e );
+			throw new OdaException( Messages.getString( "Connection.InvalidSource" ) );
 		}
 		catch ( IOException e )
 		{
