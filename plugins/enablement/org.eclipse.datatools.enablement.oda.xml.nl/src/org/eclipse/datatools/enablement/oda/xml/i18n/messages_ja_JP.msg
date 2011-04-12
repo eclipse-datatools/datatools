@@ -1,5 +1,6 @@
 Connection.PropertiesMissing=いくつかの接続プロパティがありません。
 Connection.InvalidAppContext=AppContext が無効です。
+Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
 Constants.DriverName=ODA XML ドライバ
 ResultSet.ResultSetClosed=結果セットを閉じました。
 Query.QueryHasNotBeenPrepared=クエリがまだ記述されていません。
@@ -14,3 +15,4 @@ dateFormatISO8601.inconvertibleValueError=次の値を変換できません。
 exception.invalidArgument=引数の型が無効です。
 exception.nullDataSourceContent=データソースのコンテンツが null です。
 ui.invalidXSDFile=指定された XSD ファイルが無効です。
+

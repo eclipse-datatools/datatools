@@ -1,5 +1,6 @@
 Connection.PropertiesMissing=Einige Verbindungseigenschaften sind nicht vorhanden.
 Connection.InvalidAppContext=Ungültiges AppContext.
+Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
 Constants.DriverName=ODA-XML-Treiber
 ResultSet.ResultSetClosed=Ergebnis ist geschlossen.
 Query.QueryHasNotBeenPrepared=Die Abfrage wurde noch nicht vorbereitet.
@@ -14,3 +15,4 @@ dateFormatISO8601.inconvertibleValueError=Wert kann nicht umgewandelt werden:
 exception.invalidArgument=Ungültiger Argumenttyp.
 exception.nullDataSourceContent=Datenquelleninhalt ist Null.
 ui.invalidXSDFile=Die angegebene XSD-Datei ist ungültig.
+

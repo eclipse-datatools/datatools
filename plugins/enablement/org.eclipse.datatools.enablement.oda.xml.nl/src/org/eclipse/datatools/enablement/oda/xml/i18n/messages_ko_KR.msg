@@ -1,5 +1,6 @@
 Connection.PropertiesMissing=일부 연결 속성이 누락되었습니다.
 Connection.InvalidAppContext=잘못된 AppContext입니다.
+Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
 Constants.DriverName=ODA XML 드라이버
 ResultSet.ResultSetClosed=결과 집합이 닫혔습니다.
 Query.QueryHasNotBeenPrepared=쿼리가 아직 준비되지 않았습니다.
@@ -14,3 +15,4 @@ dateFormatISO8601.inconvertibleValueError=다음 값을 변환할 수 없습니다.
 exception.invalidArgument=잘못된 인수 형식
 exception.nullDataSourceContent=데이터 원본 내용이 널(null)입니다.
 ui.invalidXSDFile=제공된 XSD 파일이 잘못되었습니다.
+

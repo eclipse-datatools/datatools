@@ -1,5 +1,6 @@
 Connection.PropertiesMissing=缺少某些连接属性。
 Connection.InvalidAppContext=无效的 AppContext。
+Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
 Constants.DriverName=ODA XML 驱动程序
 ResultSet.ResultSetClosed=ResultSet 关闭。
 Query.QueryHasNotBeenPrepared=查询尚未准备。
@@ -14,3 +15,4 @@ dateFormatISO8601.inconvertibleValueError=无法转换值
 exception.invalidArgument=无效参数类型。
 exception.nullDataSourceContent=数据源内容为空。
 ui.invalidXSDFile=提供的 xsd 文件无效。
+
