@@ -123,8 +123,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private HashMap dataTypeValueMape = new HashMap( );
 
-	private static final int DEFAULT_WIDTH = 200;
-	private static final int DEFAULT_HEIGHT = 200;
+	private final int DEFAULT_WIDTH = 200;
+	private final int DEFAULT_HEIGHT = 200;
 
 	private transient ComboViewer fileViewer = null;
 	private transient ComboViewer fileFilter = null;
@@ -198,21 +198,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createColumnTypeMap( )
 	{
-		dataTypeDisplayNameMap.put( Integer.valueOf(4), 
+		dataTypeDisplayNameMap.put( new Integer(4), 
 				Messages.getString( "datatypes.integer" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(8), 
+		dataTypeDisplayNameMap.put( new Integer(8), 
 				Messages.getString( "datatypes.float" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(12),
+		dataTypeDisplayNameMap.put( new Integer(12),
 				Messages.getString( "datatypes.string" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(91),
+		dataTypeDisplayNameMap.put( new Integer(91),
 				Messages.getString( "datatypes.date" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(92),
+		dataTypeDisplayNameMap.put( new Integer(92),
 				Messages.getString( "datatypes.time" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(93),
+		dataTypeDisplayNameMap.put( new Integer(93),
 				Messages.getString( "datatypes.dateTime" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(2), 
+		dataTypeDisplayNameMap.put( new Integer(2), 
 				Messages.getString( "datatypes.decimal" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( Integer.valueOf(16), 
+		dataTypeDisplayNameMap.put( new Integer(16), 
 				Messages.getString( "datatypes.boolean" ) ); //$NON-NLS-1$
 
 		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -535,7 +535,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						if ( count == 1 )
 						{
 							btnRemove.setEnabled( true );
-							if ( index == 0 )
+							if( selectedColumnsViewer.getTable( ).getItemCount( ) == 1 )
+							{
+								btnMoveUp.setEnabled( false );
+								btnMoveDown.setEnabled( false );
+							}
+							else if ( index == 0 )
 							{
 								btnMoveUp.setEnabled( false );
 								btnMoveDown.setEnabled( true );
@@ -759,7 +764,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					String temp = ( (String[]) element )[2];
 					if ( temp == null )
 					{
-						value = Integer.valueOf( 0 );//Integer.valueOf( 0 );
+						value = new Integer( 0 );
 					}
 					else
 					{
@@ -767,7 +772,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						{
 							if ( temp.equals( dataTypeDisplayNames[i] ) )
 							{
-								value = Integer.valueOf( i );//Integer.valueOf( i );
+								value = new Integer( i );
 								break;
 							}
 						}
@@ -1107,7 +1112,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						savedSelectedColumnsInfoString,
 						metadata );
 
-				result[2] = getDataTypeDisplayName( Integer.valueOf( metadata.getColumnType( i + 1 ) ) );
+				result[2] = getDataTypeDisplayName( new Integer ( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
 			return columnList;
@@ -1911,7 +1916,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		dataSetDesign.getResultSets( ).setDerivedMetaData( true );
 	}
 
-	static class CSVFileFilter implements FilenameFilter
+	class CSVFileFilter implements FilenameFilter
 	{
 
 		private String extension = null;
