@@ -66,7 +66,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	private transient Text queryText;
 	// parameters for page, different from soapParameters
 	private SOAPParameter[] parameters;
-	private static String DEFAULT_MESSAGE = Messages.getString( "soapRequestPage.message.default" );//$NON-NLS-1$
+	private static String DEFAULT_MESSAGE = Messages.getString( "soapRequestPage.message.defaultTitle" );//$NON-NLS-1$
 	private boolean saved = false;
 	
 	protected final String COLUMN_NAME = Messages.getString( "parameterInputDialog.column.name" );//$NON-NLS-1$ 
@@ -105,6 +105,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 				| GridData.VERTICAL_ALIGN_FILL );
 		composite.setLayoutData( layoutData );
 
+		Label prompt = new Label( composite, SWT.NONE );
+		prompt.setText( Messages.getString( "soapRequestPage.label.prompt" ) ); //$NON-NLS-1$
+		GridData labelGd = new GridData( );
+		labelGd.horizontalSpan = 2;
+		prompt.setLayoutData( labelGd );
+		
 		setupQueryTextComposite( composite );
 		setupButtonComposite( composite );
 
