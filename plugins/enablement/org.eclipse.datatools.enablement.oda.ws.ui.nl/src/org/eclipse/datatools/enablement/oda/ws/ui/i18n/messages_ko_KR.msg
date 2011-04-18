@@ -46,8 +46,9 @@ soapParametersPage.column.paramName=이름(&A)
 soapParametersPage.column.dataType=데이터 형식(&T):
 
 # SoapRequestPage
-soapRequestPage.message.default=이 데이터 집합의 SOAP 요청 템플릿을 편집합니다. 사용자 지정 연결 클래스에 쿼리 텍스트가 필요하지 않을 경우 입력란을 비워두셔도 됩니다.
+soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
 soapRequestPage.message.regenerateTemplate=선택한 SOAP 작업에 근거한 쿼리 텍스트 템플릿이 다시 생성될 것입니다. 이전에 해당 텍스트에 기록한 변경 사항이 모두 사라질 것입니다.\n\n계속하시겠습니까?
+soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
 soapRequestPage.title.regenerateTemplate=템플릿 다시 생성
 soapRequestPage.button.regenerateTemplate=템플릿 다시 생성(&R)
 soapRequestPage.button.insertParameter=매개 변수 편집(&E)...

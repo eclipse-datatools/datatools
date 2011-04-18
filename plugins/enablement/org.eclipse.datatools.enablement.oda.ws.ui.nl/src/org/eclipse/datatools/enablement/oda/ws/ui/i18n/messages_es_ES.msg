@@ -46,8 +46,9 @@ soapParametersPage.column.paramName=N&ombre
 soapParametersPage.column.dataType=&Tipo de datos
 
 # SoapRequestPage
-soapRequestPage.message.default=Edite la plantilla de solicitud SOAP de este conjunto de datos. Puede dejar el texto vacío si la clase de conexión personalizada no necesita texto de consulta.
+soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
 soapRequestPage.message.regenerateTemplate=Esto volverá a generar la plantilla del texto de consulta según la operación SOAP que ha seleccionado. Esta acción eliminará cualquier modificación que haya introducido en el texto.\n\n¿Está seguro?
+soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
 soapRequestPage.title.regenerateTemplate=Volver a generar la plantilla
 soapRequestPage.button.regenerateTemplate=&Volver a generar la plantilla
 soapRequestPage.button.insertParameter=&Editar parámetro...
