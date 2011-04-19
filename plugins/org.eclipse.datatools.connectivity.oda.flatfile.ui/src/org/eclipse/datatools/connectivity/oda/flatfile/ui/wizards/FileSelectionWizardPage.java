@@ -142,6 +142,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private String flatfileDelimiterType;
 	private String inclTypeLine;
 	private String savedSelectedColumnsInfoString;
+	private String trailNullCols;
 
 	/** store latest selected file */
 	private String selectedFileFilter;
@@ -990,6 +991,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		flatfileDelimiterType = dataSourceProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
 		inclColumnNameLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		inclTypeLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
+		trailNullCols = dataSourceProps.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
 
 	}
 
@@ -1278,6 +1280,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if( inclTypeLine != null )		
 		{
 			prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, inclTypeLine );
+		}
+		if( trailNullCols != null )		
+		{
+			prop.put( CommonConstants.CONN_TRAILNULLCOLS_PROP, trailNullCols );
 		}
 
 		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
