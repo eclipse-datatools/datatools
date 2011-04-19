@@ -93,6 +93,7 @@ public class TestUtil
 		createTestFile_test11( path, delimiter );
 		createTestFile_test12( path, delimiter );
 		createTestFile_test13( path, delimiter );
+		createTestFile_test14( path, delimiter );
 		createTestFile_hugeRows( path, delimiter );
 		createTestFile_compliateColName( path, delimiter );
 	}
@@ -860,6 +861,86 @@ public class TestUtil
 			osw.write( contant );
 			osw.write( endOfLine );
 
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
+	private static void createTestFile_test14( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table14" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+			String header = "INT0_COL"
+					+ delimiter + "STRING0_COL" + delimiter + "DOUBLE0_COL"
+					+ delimiter + "DATE0_COL" + delimiter + "STRING1\n";
+			String type = "INT"
+					+ delimiter + "STRING" + delimiter + "DOUBLE" + delimiter
+					+ "DATE" + delimiter + "STRING\n";
+			osw.write( header );
+			osw.write( type );
+
+			for ( int i = 1; i <= 100; i++ )
+			{
+				if ( i == 1 )
+				{
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( "3.1415926" );
+					osw.write( delimiter );
+					osw.write( "2011-12-01" );
+				}
+				else if ( i == 11 )
+				{
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( "3.1415926" );
+				}
+				else if ( i == 22 )
+				{
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( Integer.toString( i ) );
+				}
+				else if ( i == 33 )
+				{
+					osw.write( Integer.toString( i ) );
+				}
+				else
+				{
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( Integer.toString( i ) );
+					osw.write( delimiter );
+					osw.write( "3.1415926" );
+					osw.write( delimiter );
+					osw.write( "2011-12-01" );
+					osw.write( delimiter );
+					osw.write( "default" );
+				}
+				osw.write( endOfLine );
+			}
 			osw.close( );
 		}
 		catch ( Exception e )

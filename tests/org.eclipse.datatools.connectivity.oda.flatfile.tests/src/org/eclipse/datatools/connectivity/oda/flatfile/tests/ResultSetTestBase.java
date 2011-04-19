@@ -45,6 +45,7 @@ public abstract class ResultSetTestBase extends TestCase
 		prop.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
 		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
+		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP, CommonConstants.TRAIL_NULL_COLS_YES);
 		connection.open( prop );
 		statement = connection.newQuery( "FLATFILE" );
 
@@ -490,6 +491,61 @@ public abstract class ResultSetTestBase extends TestCase
 			assertEquals( counter, rs.getInt( 1 ));
 		}
 		assertEquals( counter, TestUtil.HUGE_TABLE_ROW_COUNT );
+		assertFalse( rs.next( ) );
+	}
+	
+	public void testTrailNullCols( ) throws OdaException
+	{
+		statement.prepare( "select * from table14"
+				+ getSuffix( ) + getExtension( ) );
+		IResultSet rs = statement.executeQuery( );
+		int counter = 0;
+		while ( rs.next( ) )
+		{
+			counter++;
+			if ( counter == 1 )
+			{
+				assertEquals( counter, rs.getInt( 1 ) );
+				assertEquals( String.valueOf( counter ), rs.getString( 2 ) );
+				assertEquals( Double.valueOf( 3.1415926 ), rs.getDouble( 3 ) );
+				assertEquals( java.sql.Date.valueOf( "2011-12-01" ),
+						rs.getDate( 4 ) );
+				assertEquals( null, rs.getString( 5 ) );
+			}
+			else if ( counter == 11 )
+			{
+				assertEquals( counter, rs.getInt( 1 ) );
+				assertEquals( String.valueOf( counter ), rs.getString( 2 ) );
+				assertEquals( Double.valueOf( 3.1415926 ), rs.getDouble( 3 ) );
+				assertEquals( null, rs.getDate( 4 ) );
+				assertEquals( null, rs.getString( 5 ) );
+			}
+			else if ( counter == 22 )
+			{
+				assertEquals( counter, rs.getInt( 1 ) );
+				assertEquals( String.valueOf( counter ), rs.getString( 2 ) );
+				assertEquals( Double.valueOf( 0 ), rs.getDouble( 3 ) );
+				assertEquals( null, rs.getDate( 4 ) );
+				assertEquals( null, rs.getString( 5 ) );
+			}
+			else if ( counter == 33 )
+			{
+				assertEquals( counter, rs.getInt( 1 ) );
+				assertEquals( null, rs.getString( 2 ) );
+				assertEquals( Double.valueOf( 0 ), rs.getDouble( 3 ) );
+				assertEquals( null, rs.getDate( 4 ) );
+				assertEquals( null, rs.getString( 5 ) );
+			}
+			else
+			{
+				assertEquals( counter, rs.getInt( 1 ) );
+				assertEquals( String.valueOf( counter ), rs.getString( 2 ) );
+				assertEquals( Double.valueOf( 3.1415926 ), rs.getDouble( 3 ) );
+				assertEquals( java.sql.Date.valueOf( "2011-12-01" ),
+						rs.getDate( 4 ) );
+				assertEquals( "default", rs.getString( 5 ) );
+			}
+		}
 		assertFalse( rs.next( ) );
 	}
 	

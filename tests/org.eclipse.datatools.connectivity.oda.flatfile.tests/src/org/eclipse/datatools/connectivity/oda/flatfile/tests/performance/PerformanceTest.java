@@ -61,6 +61,7 @@ public class PerformanceTest extends TestCase
 				CommonConstants.DELIMITER_COMMA );
 		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP, CommonConstants.INC_COLUMN_NAME_YES );
 		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, CommonConstants.INC_TYPE_LINE_NO );
+		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP, CommonConstants.TRAIL_NULL_COLS_YES );
 		connection.open( prop );
 		query = connection.newQuery( "FLATFILE" );
 	}
