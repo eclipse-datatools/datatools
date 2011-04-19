@@ -13,6 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+label.trailNull=Use trailing null columns.
 
 button.selectFolder.browse=Du&rchsuchen...
 button.moveUp=Nach &oben
@@ -44,6 +45,7 @@ tooltip.button.add=Alle ausgewählten Spalten aus der Tabelle links zum Datensatz
 tooltip.button.up=Ausgewähltes Element nach oben verschieben
 tooltip.button.down=Ausgewähltes Element nach unten verschieben
 tooltip.button.delete=Ausgewähltes Objekt löschen
+tooltip.trailNull=Trail null columns when reading lines of data. 
 error.selectFolder=Bitte wählen Sie einen gültigen Ordner.
 error.selectColumns=Bitte wählen Sie für diesen Datensatz mindestens eine Spalte aus.
 error.emptyPath=Geben Sie einen Pfad ein.

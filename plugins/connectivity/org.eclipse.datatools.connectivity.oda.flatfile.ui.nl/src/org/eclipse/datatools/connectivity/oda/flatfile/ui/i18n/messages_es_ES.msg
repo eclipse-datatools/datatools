@@ -13,6 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+label.trailNull=Use trailing null columns.
 
 button.selectFolder.browse=&Examinar...
 button.moveUp=A&rriba
@@ -44,6 +45,7 @@ tooltip.button.add=Agregue todas las columnas seleccionadas de la tabla izquierd
 tooltip.button.up=Mueva hacia arriba el elemento seleccionado.
 tooltip.button.down=Mueva hacia abajo el elemento seleccionado.
 tooltip.button.delete=Elimine el elemento seleccionado.
+tooltip.trailNull=Trail null columns when reading lines of data. 
 error.selectFolder=Seleccione una carpeta válida.
 error.selectColumns=Seleccione una columna como mínimo para este conjunto de datos.
 error.emptyPath=Especifique una vía de acceso.

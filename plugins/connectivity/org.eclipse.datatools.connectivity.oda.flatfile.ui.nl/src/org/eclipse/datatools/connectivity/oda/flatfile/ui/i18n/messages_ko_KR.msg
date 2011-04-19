@@ -13,6 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+label.trailNull=Use trailing null columns.
 
 button.selectFolder.browse=찾아보기(&R)...
 button.moveUp=위로(&U)
@@ -44,6 +45,7 @@ tooltip.button.add=왼쪽 테이블에서 선택한 열을 모두 플랫 파일 데이터 집합에 추가
 tooltip.button.up=선택한 항목 위로 이동합니다.
 tooltip.button.down=선택한 항목 아래로 이동합니다.
 tooltip.button.delete=선택한 항목을 삭제합니다.
+tooltip.trailNull=Trail null columns when reading lines of data. 
 error.selectFolder=올바른 폴더를 선택하십시오.
 error.selectColumns=이 데이터 세트에 대해 최소 하나의 열을 선택하십시오.
 error.emptyPath=경로를 입력하십시오.
