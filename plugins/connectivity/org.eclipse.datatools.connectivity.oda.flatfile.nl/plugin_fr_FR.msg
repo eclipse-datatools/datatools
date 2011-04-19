@@ -1,4 +1,7 @@
 ###############################################################################
+#
+#
+###############################################################################
 # Plug-in Profile Configuration
 #
 oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
@@ -18,6 +21,7 @@ datasource.property.csvdelimitertype=&Type CSV
 datasource.property.charset=Jeu de &caractères
 datasource.property.incltypeline=Utilisez la deuxième ligne comme indicateur du type de &données
 datasource.property.inclcolumnnameline=Utiliser la première ligne en tant qu'indicateur de &nom de colonne
+datasource.property.trailnullcols=Use trail null columns
 
 dataset.property.savedcolumnsinfo=Informations sur chaque colonne
 

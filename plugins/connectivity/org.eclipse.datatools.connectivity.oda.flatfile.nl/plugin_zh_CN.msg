@@ -1,4 +1,7 @@
 ###############################################################################
+#
+#
+###############################################################################
 # Plug-in Profile Configuration
 #
 oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
@@ -18,8 +21,10 @@ datasource.property.csvdelimitertype=CSV 类型(&T)
 datasource.property.charset=字符集(&C)
 datasource.property.incltypeline=将第二行用作数据类型指示器(&D)
 datasource.property.inclcolumnnameline=使用第一行作为列名称指示器(&N)
+datasource.property.trailnullcols=Use trail null columns
 
 dataset.property.savedcolumnsinfo=关于每列的信息
+
 property.value.yes=是
 property.value.no=否
 property.value.comma=逗号
