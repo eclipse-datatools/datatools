@@ -26,6 +26,7 @@ public final class CommonConstants
 	public static final String CONN_INCLTYPELINE_PROP = "INCLTYPELINE"; //$NON-NLS-1$
 	public static final String CONN_DEFAULT_CHARSET = "UTF-8"; //$NON-NLS-1$
 	public static final String CONN_DELIMITER_TYPE = "DELIMTYPE"; //$NON-NLS-1$
+	public static final String CONN_TRAILNULLCOLS_PROP = "TRAILNULLCOLS"; //$NON-NLS-1$
 
 	public static final String DELIMITER_COMMA = "COMMA"; //$NON-NLS-1$
 	public static final String DELIMITER_COMMA_VALUE = ","; //$NON-NLS-1$
@@ -49,6 +50,8 @@ public final class CommonConstants
 	public static final String INC_COLUMN_NAME_NO = "NO"; //$NON-NLS-1$
 	public static final String INC_TYPE_LINE_YES = "YES"; //$NON-NLS-1$
 	public static final String INC_TYPE_LINE_NO = "NO"; //$NON-NLS-1$
+	public static final String TRAIL_NULL_COLS_YES = "YES";
+	public static final String TRAIL_NULL_COLS_NO = "NO";
 
 	public static final int MaxConnections = 0;
 	public static final int MaxStatements = 0;

@@ -52,6 +52,7 @@ public class ResultSet implements IResultSet
     private int fetchAccumulator = 0;
    
     private boolean overFlow = false;
+    private boolean trailNullCols = false;
     
     private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
     
@@ -69,6 +70,7 @@ public class ResultSet implements IResultSet
     	this.flatFileDataReader = ffr;
     	this.resultSetMetaData = rsmd;
     	this.maxRows = this.flatFileDataReader.getMaxRowsToRead( this.maxRows );
+    	this.trailNullCols = this.flatFileDataReader.getTrailNullColumns( );
     }
 
     /*
@@ -157,7 +159,7 @@ public class ResultSet implements IResultSet
     {
         validateCursorState();
         String result = sourceData[cursor][index - 1];
-        if( result.length() == 0 )
+		if ( ( trailNullCols && result == null ) || result.length( ) == 0 )
             result = null;
         this.wasNull = result == null ? true : false;
         return result;
