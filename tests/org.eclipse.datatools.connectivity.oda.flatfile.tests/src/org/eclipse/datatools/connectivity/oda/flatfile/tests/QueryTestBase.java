@@ -380,6 +380,7 @@ public abstract class QueryTestBase extends TestCase
 		defaltProp.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
 		defaltProp.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
+		defaltProp.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP, CommonConstants.TRAIL_NULL_COLS_NO );
 		connection.open( defaltProp );
 		statement = connection.newQuery( "FLATFILE" );
 		
@@ -390,6 +391,7 @@ public abstract class QueryTestBase extends TestCase
 		propWithNoTypeLine.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
 		propWithNoTypeLine.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
+		propWithNoTypeLine.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP, CommonConstants.TRAIL_NULL_COLS_NO );
 		connection_noTypeLine.open( propWithNoTypeLine );
 
 		statement_noTypeLine = connection_noTypeLine.newQuery( "FLATFILE" );

@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.14 2007/11/09 06:12:47 lzhu Exp $
+ * $Id: plugin.xml,v 1.15 2008/07/01 07:59:43 lzhu Exp $
  */
 -->
 
@@ -80,6 +80,21 @@
                   defaultDisplayName="%datasource.property.incltypeline"
                   defaultValue="YES"
                   name="INCLTYPELINE"
+                  canInherit="true"
+                  type="choice">
+               <choice
+                     defaultDisplayName="%property.value.yes"
+                     name="YES"
+                     value="YES"/>
+               <choice
+                     defaultDisplayName="%property.value.no"
+                     name="NO"
+                     value="NO"/>
+            </property>   
+            <property
+                  defaultDisplayName="%datasource.property.trailnullcols"
+                  defaultValue="NO"
+                  name="TRAILNULLCOLS"
                   canInherit="true"
                   type="choice">
                <choice

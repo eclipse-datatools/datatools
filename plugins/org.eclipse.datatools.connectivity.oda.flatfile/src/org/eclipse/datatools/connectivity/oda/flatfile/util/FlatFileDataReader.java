@@ -41,6 +41,7 @@ public class FlatFileDataReader
 	private char delimiter;
 	private boolean hasColumnNames = true;
 	private boolean hasTypeLine = true;
+	private boolean trailNullColumns = false;
 	private String charSet;
 	private FlatFileBufferedReader flatFileBufferedReader=null;
 	private IResultSetMetaData rsmd;
@@ -82,6 +83,7 @@ public class FlatFileDataReader
 		populateCharSet( properties );
 		populateHasColumnNames( properties );
 		populateHasTypeLine( properties );
+		populateTrailNullColumns( properties );
 	}
 	
 	/**
@@ -103,6 +105,8 @@ public class FlatFileDataReader
 				connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP ) );
 		copyConnProperites.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
 				connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP ) );
+		copyConnProperites.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+				connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP ) );
 
 		return copyConnProperites;
 	}
@@ -183,6 +187,18 @@ public class FlatFileDataReader
 		.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) 
 		? false
 		: true;
+	}
+	
+	private void populateTrailNullColumns( Properties connProperties )
+	{
+		this.trailNullColumns = connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP )
+				.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_NO ) ? false
+				: true;
+	}
+	
+	public boolean getTrailNullColumns()
+	{
+		return this.trailNullColumns;
 	}
 
 	/**
@@ -504,6 +520,10 @@ public class FlatFileDataReader
 			{
 				if ( temp[j] != null )
 					rowSet[i][j] = temp[j].trim( );
+				else if ( trailNullColumns )
+				{
+					continue;	
+				}
 				else
 				{
 					throw new OdaException( Messages.getString( "data_read_error" ) ); //$NON-NLS-1$
@@ -549,8 +569,16 @@ public class FlatFileDataReader
 			if ( location != -1 )
 			{
 				if ( location >= aRow.size( ) )
-					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
-				sArray[i] = aRow.get( location ).toString( );
+				{
+					if ( trailNullColumns )
+						sArray[i] = null;
+					else
+						throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
+				}
+				else
+				{
+					sArray[i] = aRow.get( location ).toString( );
+				}
 			}
 		}
 		return sArray;

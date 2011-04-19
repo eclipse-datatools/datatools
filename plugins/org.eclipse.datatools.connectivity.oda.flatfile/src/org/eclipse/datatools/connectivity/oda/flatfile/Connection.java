@@ -51,6 +51,8 @@ public class Connection implements IConnection
 		populateInclColumnNames( connProperties );
 
 		populateInclTypeLine( connProperties );
+		
+		populateTrailNullCols( connProperties );
 
 	}
 
@@ -131,6 +133,19 @@ public class Connection implements IConnection
 		connProperties.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
 					includeTypeLine ? CommonConstants.INC_TYPE_LINE_YES
 							: CommonConstants.INC_TYPE_LINE_NO );
+	}
+	
+	private void populateTrailNullCols( Properties connProperties )
+	{
+		boolean trailNullCols = true;
+		String trailNullColsProp = connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
+		if ( trailNullColsProp != null && trailNullColsProp.trim( ).length( ) > 0 )
+			trailNullCols = trailNullColsProp.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_NO )
+					? false : true;
+		
+		connProperties.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+					trailNullCols ? CommonConstants.TRAIL_NULL_COLS_YES
+							: CommonConstants.TRAIL_NULL_COLS_NO );
 	}
 
 	/*

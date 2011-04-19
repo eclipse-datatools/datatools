@@ -54,6 +54,7 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		prop.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
 		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
+		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP, CommonConstants.TRAIL_NULL_COLS_NO );
 		connection.open( prop );
 		statement = connection.newQuery( "FLATFILE" );
 	}
