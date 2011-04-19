@@ -10,9 +10,8 @@ query_ARGUMENT_ERROR=引数は「NAME」または「TYPE」にする必要があります。
 query_IO_EXCEPTION=ファイルの読み取り中に入出力例外が発生しました。
 query_SOURCE_DATA_ERROR=ソース・データに重複する列名が見つかりました。
 query_COLUMN_NAME_ERROR=列名のエラー
-query_INVALID_FLAT_FILE=フラットファイルのデータソースは無効です。
+query_INVALID_FLAT_FILE=The flatfile data source is not valid. Please use trail null columns to disable columns number validation.
 query_text_error=クエリテキストの書式エラー
-
 resultSet_COLUMN_NOT_FOUND=列が見つかりません\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=カーソルがまだ初期化されていません。
 
@@ -40,4 +39,3 @@ query_invalidTableName=無効なテーブル名\:
 
 dateUtil.ConvertFails=日付に変換できません。 ソース :
 dateFormatISO_cannotConvert={0} の値を変換できません。
-

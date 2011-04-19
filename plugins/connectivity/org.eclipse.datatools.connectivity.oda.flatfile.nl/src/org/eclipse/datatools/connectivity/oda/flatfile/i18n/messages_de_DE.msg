@@ -10,9 +10,8 @@ query_ARGUMENT_ERROR=Das Argument muss 'NAME' oder 'TYPE' sein.
 query_IO_EXCEPTION=Beim Lesen der Datei ist eine E/A-Ausnahmebedingung aufgetreten.
 query_SOURCE_DATA_ERROR=Doppelte Spaltennamen in Quellendaten gefunden.
 query_COLUMN_NAME_ERROR=Fehler bei Spaltennamen
-query_INVALID_FLAT_FILE=Die Flatfile-Datenquelle ist ungültig.
+query_INVALID_FLAT_FILE=The flatfile data source is not valid. Please use trail null columns to disable columns number validation.
 query_text_error=Formatfehler in Abfragetext
-
 resultSet_COLUMN_NOT_FOUND=Spalte nicht gefunden\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=Der Cursor wurde noch nicht initialisiert.
 

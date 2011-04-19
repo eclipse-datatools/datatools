@@ -10,9 +10,8 @@ query_ARGUMENT_ERROR=El argumento debe ser 'NAME' o 'TYPE'.
 query_IO_EXCEPTION=Se ha producido una excepción de E/S al leer el archivo.
 query_SOURCE_DATA_ERROR=Se han encontrado nombres de columna duplicados en los datos fuente.
 query_COLUMN_NAME_ERROR=Error de nombre de columna
-query_INVALID_FLAT_FILE=La fuente de datos de archivo sin formato no es válida.
+query_INVALID_FLAT_FILE=The flatfile data source is not valid. Please use trail null columns to disable columns number validation.
 query_text_error=Error de formato de texto de consulta
-
 resultSet_COLUMN_NOT_FOUND=No se ha encontrado la columna\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=El cursor todavía no se ha inicializado.
 
