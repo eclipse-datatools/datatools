@@ -54,6 +54,7 @@ public class FolderSelectionPageHelper
 	private transient Combo charSetSelectionCombo = null;
 	private transient Button columnNameLineCheckBox = null;
 	private transient Combo flatFileStyleCombo = null;
+	private transient Button trailNullColsCheckBox = null;
 
 	private static final String[] flatFileStyles= new String[]{
 		Messages.getString( "label.flatfileComma" ), //$NON-NLS-1$
@@ -102,6 +103,8 @@ public class FolderSelectionPageHelper
 
 		setupTypeLineCheckBox( content );
 		
+		setupTrailNullsCheckBox( content );
+		
 		Utility.setSystemHelp( getControl(),
 				IHelpConstants.CONEXT_ID_DATASOURCE_FLATFILE );
 	}
@@ -143,6 +146,15 @@ public class FolderSelectionPageHelper
 				? CommonConstants.INC_TYPE_LINE_YES
 				: CommonConstants.INC_TYPE_LINE_NO;
 	}
+	
+	String getWhetherUseTrailNulls( )
+	{
+		if ( trailNullColsCheckBox == null )
+			return EMPTY_STRING;
+		return trailNullColsCheckBox.getSelection( )
+				? CommonConstants.TRAIL_NULL_COLS_YES
+				: CommonConstants.TRAIL_NULL_COLS_NO;
+	}
 
 	/**
 	 * 
@@ -175,6 +187,8 @@ public class FolderSelectionPageHelper
 		props.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
 				getWhetherUseSecondLineAsTypeLine( ) );
 		props.setProperty( CommonConstants.CONN_CHARSET_PROP, getCharSet( ) );
+		props.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+				getWhetherUseTrailNulls( ) );
 		return props;
 	}
 
@@ -214,6 +228,18 @@ public class FolderSelectionPageHelper
 			columnNameLineCheckBox.setSelection( false );
 			typeLineCheckBox.setSelection( false );
 			typeLineCheckBox.setEnabled( false );
+		}
+		
+		String trailNullCols = profileProps.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
+		if ( trailNullCols == null )
+			trailNullCols = CommonConstants.TRAIL_NULL_COLS_NO;
+		if ( trailNullCols.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_YES ) )
+		{
+			trailNullColsCheckBox.setSelection( true );
+		}
+		else
+		{
+			trailNullColsCheckBox.setSelection( false );
 		}
 
 		String charSet = profileProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
@@ -481,6 +507,18 @@ public class FolderSelectionPageHelper
 			typeLineCheckBox.setSelection( false );
 			typeLineCheckBox.setEnabled( false );
 		}
+	}
+	
+	private void setupTrailNullsCheckBox( Composite composite )
+	{
+		trailNullColsCheckBox = new Button( composite, SWT.CHECK );
+		trailNullColsCheckBox.setToolTipText( Messages.getString( "tooltip.trailNull" ) ); //$NON-NLS-1$
+		GridData data = new GridData( );
+		data.horizontalSpan = 3;
+		trailNullColsCheckBox.setLayoutData( data );
+		trailNullColsCheckBox.setText( Messages.getString( "label.trailNull" ) ); //$NON-NLS-1$
+		trailNullColsCheckBox.setSelection( false );
+		trailNullColsCheckBox.setEnabled( true );
 	}
 
 	/**
