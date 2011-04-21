@@ -422,8 +422,8 @@ public class OperationPage extends DataSetWizardPage
 	{
 		if ( !WSUtil.isNull( initOperationTrace )
 				&& !initOperationTrace.equals( operationTrace ) )
-			if ( MessageDialog.openConfirm( null,
-					Messages.getString( "operationPage.title.operationChanged" ), Messages.getString( "operationPage.message.operationChanged" ) ) )//$NON-NLS-1$ //$NON-NLS-2$
+			if ( MessageDialog.openQuestion( null,
+					Messages.getString( "operationPage.title.operationChanged" ), Messages.getString( "operationPage.message.regenerate.SOAPRequest" ) ) )//$NON-NLS-1$ //$NON-NLS-2$
 			{
 				regenerateTemplate( );
 				try
