@@ -23,6 +23,8 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -43,7 +45,7 @@ class XMLTreeViewer
 	private TreeViewer treeViewer;
 	private Composite btnComposite;
 	
-	private String xPathExpression = "";
+	private String xPathExpression = ""; //$NON-NLS-1$
 	private boolean includeAttr;
 	
 
@@ -74,15 +76,14 @@ class XMLTreeViewer
 					| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL );
 		}
 
-		data = new FormData( );
-		data.left = new FormAttachment( treeGroup, 5 );
-		data.bottom = new FormAttachment( 50 );
-		data.width = 28;
+		FormData data2 = new FormData( );
+		data2.left = new FormAttachment( treeGroup, 5 );
+		data2.bottom = new FormAttachment( 50 );
 
 		btnComposite = new Composite( parent, SWT.NONE );
-		btnComposite.setLayoutData( data );
-		FillLayout btnLayout = new FillLayout( SWT.VERTICAL );
-		btnLayout.spacing = 5;
+		btnComposite.setLayoutData( data2 );
+		GridLayout btnLayout = new GridLayout( );
+		btnLayout.verticalSpacing = 25;
 		btnComposite.setLayout( btnLayout );
 
 		btnSingleAdd = new Button( btnComposite, SWT.NONE );
@@ -93,6 +94,16 @@ class XMLTreeViewer
 		btnMultiAdd.setText( ">>" ); //$NON-NLS-1$
 		btnMultiAdd.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) ); //$NON-NLS-1$
 		btnMultiAdd.setEnabled( true );
+		
+		int width = Math.max( 45, btnMultiAdd.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x );
+		GridData btnGd = new GridData( );
+		btnGd.widthHint = width;
+		
+		btnSingleAdd.setLayoutData( btnGd );
+		
+		GridData btnGd2 = new GridData( );
+		btnGd2.widthHint = width;
+		btnMultiAdd.setLayoutData( btnGd2 );
 		
 		if( !supportMultiSelection )
 		{
