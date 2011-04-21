@@ -1,6 +1,6 @@
 Connection.PropertiesMissing=Faltan algunas propiedades de conexión.
 Connection.InvalidAppContext=AppContext no válido.
-Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
+Connection.InvalidSource=No se puede encontrar el archivo fuente XML o la URL es incorrecta
 Constants.DriverName=Controlador XML ODA
 ResultSet.ResultSetClosed=ResultSet está cerrado.
 Query.QueryHasNotBeenPrepared=La consulta todavía no se ha preparado.

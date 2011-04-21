@@ -1,6 +1,6 @@
 Connection.PropertiesMissing=缺少某些连接属性。
 Connection.InvalidAppContext=无效的 AppContext。
-Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
+Connection.InvalidSource=找不到 xml 源文件，或者 URL 格式错误。
 Constants.DriverName=ODA XML 驱动程序
 ResultSet.ResultSetClosed=ResultSet 关闭。
 Query.QueryHasNotBeenPrepared=查询尚未准备。

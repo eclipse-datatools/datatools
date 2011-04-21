@@ -1,6 +1,6 @@
 Connection.PropertiesMissing=いくつかの接続プロパティがありません。
 Connection.InvalidAppContext=AppContext が無効です。
-Connection.InvalidSource=The xml source file cannot be found or the URL is malformed.
+Connection.InvalidSource=XML ソースファイルが見つからないか、URL が間違っています。
 Constants.DriverName=ODA XML ドライバ
 ResultSet.ResultSetClosed=結果セットを閉じました。
 Query.QueryHasNotBeenPrepared=クエリがまだ記述されていません。
