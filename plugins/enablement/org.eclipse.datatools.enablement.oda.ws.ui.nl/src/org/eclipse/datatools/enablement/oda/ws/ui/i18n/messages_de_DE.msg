@@ -33,7 +33,7 @@ webServiceSelectionPage.button.browse=Du&rchsuchen...
 
 # OperationPage
 operationPage.message.default=Wählen Sie einen im WSDL-Deskriptor der Datenquelle definierten Vorgang aus.
-operationPage.message.operationChanged=Bestätigen Sie zum Neuerzeugen der SOAP-Anforderung und zum Neuverbinden des Endpunkts.
+operationPage.message.regenerate.SOAPRequest=Erstellen Sie die SOAP-Anforderung neu, und verbinden Sie den Endpunkt neu gemäß dem geänderten Vorgang.
 operationPage.title.operationChanged=Vorgang geändert
 operationPage.label.selectOpearation=Au&sgewählter Vorgang
 operationPage.label.document=&Dokumentation
@@ -46,9 +46,9 @@ soapParametersPage.column.paramName=N&ame
 soapParametersPage.column.dataType=Daten&typ
 
 # SoapRequestPage
-soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
+soapRequestPage.message.defaultTitle=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. 
 soapRequestPage.message.regenerateTemplate=Die Abfragetext-Vorlage wird auf Grundlage des gewählten SOAP-Vorgangs neu erstellt. Alle am Text vorgenommenen Änderungen gehen verloren.\n\nMöchten Sie wirklich fortfahren?
-soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
+soapRequestPage.label.prompt=Wenn für die benutzerdefinierte Verbindungsklasse kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.
 soapRequestPage.title.regenerateTemplate=Vorlage neu erstellen
 soapRequestPage.button.regenerateTemplate=Vorlage &neu erstellen
 soapRequestPage.button.insertParameter=Parameter b&earbeiten...

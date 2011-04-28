@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=Use trailing null columns.
+label.trailNull=Utilisez les colonnes avec valeurs nulles à la fin.
 
 button.selectFolder.browse=Pa&rcourir...
 button.moveUp=Vers le ha&ut
@@ -45,7 +45,7 @@ tooltip.button.add=Ajouter toutes les colonnes sélectionnées de la table de gauc
 tooltip.button.up=Déplacer l'élément sélectionné vers le haut.
 tooltip.button.down=Déplacer l'élément sélectionné vers le bas.
 tooltip.button.delete=Supprimer l'élément sélectionné.
-tooltip.trailNull=Trail null columns when reading lines of data. 
+tooltip.trailNull=Colonnes avec valeurs nulles à la fin lors de la lecture des lignes de données. 
 error.selectFolder=Sélectionnez un dossier correct.
 error.selectColumns=Sélectionnez au moins une colonne pour ce fichier.
 error.emptyPath=Entrez un chemin d'accès.

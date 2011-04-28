@@ -33,7 +33,7 @@ webServiceSelectionPage.button.browse=参照(&R)...
 
 # OperationPage
 operationPage.message.default=データソースの WSDL 記述子で定義されている処理を選択してください。
-operationPage.message.operationChanged=SOAP リクエストの生成とエンドポイントへの接続をやり直しますか ?
+operationPage.message.regenerate.SOAPRequest=変更された操作に従って、SOAP リクエストの再生成とエンドポイントへの再接続を行います。
 operationPage.title.operationChanged=操作の変更
 operationPage.label.selectOpearation=選択済みの処理(&S)
 operationPage.label.document=文書(&D)
@@ -46,9 +46,9 @@ soapParametersPage.column.paramName=名前(&A)
 soapParametersPage.column.dataType=データ型(&T)
 
 # SoapRequestPage
-soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
+soapRequestPage.message.defaultTitle=このデータセットの SOAP リクエストテンプレートを編集してください。 
 soapRequestPage.message.regenerateTemplate=指定した SOAP 操作に基づいたクエリテキストのテンプレートが再生成されるため、テキストへの変更はすべて上書きされます。\n\n続行しますか ?
-soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
+soapRequestPage.label.prompt=カスタム接続クラスにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
 soapRequestPage.title.regenerateTemplate=テンプレートの再生成
 soapRequestPage.button.regenerateTemplate=テンプレートの再生成(&R)
 soapRequestPage.button.insertParameter=パラメタの編集(&E)...

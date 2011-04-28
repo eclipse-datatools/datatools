@@ -33,7 +33,7 @@ webServiceSelectionPage.button.browse=浏览(&R)...
 
 # OperationPage
 operationPage.message.default=选择在数据源的 WSDL 描述符中定义的操作。
-operationPage.message.operationChanged=确认以重新生成 SOAP 请求并重新连接终结点。
+operationPage.message.regenerate.SOAPRequest=重新生成 SOAP 请求并根据更改的操作重新连接终结点。
 operationPage.title.operationChanged=操作已更改
 operationPage.label.selectOpearation=选定的操作(&S)
 operationPage.label.document=文档(&D)
@@ -46,9 +46,9 @@ soapParametersPage.column.paramName=名称(&A)
 soapParametersPage.column.dataType=数据类型(&T)
 
 # SoapRequestPage
-soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
+soapRequestPage.message.defaultTitle=编辑此数据集的 SOAP 请求模板。 
 soapRequestPage.message.regenerateTemplate=这将根据您选择的 SOAP 操作重新生成查询文本模板。它将删除您对文本所做的任何修改。\n\n是否确定?
-soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
+soapRequestPage.label.prompt=如果您的自定义连接类不需要查询文本，您可以将文本留空。
 soapRequestPage.title.regenerateTemplate=重新生成模板
 soapRequestPage.button.regenerateTemplate=重新生成模板(&R)
 soapRequestPage.button.insertParameter=编辑参数(&E)...

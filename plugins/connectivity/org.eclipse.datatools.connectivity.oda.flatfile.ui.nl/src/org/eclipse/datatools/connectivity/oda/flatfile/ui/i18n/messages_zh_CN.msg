@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=Use trailing null columns.
+label.trailNull=使用空后缀列
 
 button.selectFolder.browse=浏览(&R)...
 button.moveUp=上移(&U)
@@ -45,7 +45,7 @@ tooltip.button.add=将左表中所有选择的列添加到平面文件数据集。
 tooltip.button.up=上移选定项目。
 tooltip.button.down=下移选定项目。
 tooltip.button.delete=删除选定项目。
-tooltip.trailNull=Trail null columns when reading lines of data. 
+tooltip.trailNull=读取数据行时出现空后缀列。 
 error.selectFolder=请选择有效文件夹。
 error.selectColumns=请至少为此数据集选择一列。
 error.emptyPath=请输入路径。

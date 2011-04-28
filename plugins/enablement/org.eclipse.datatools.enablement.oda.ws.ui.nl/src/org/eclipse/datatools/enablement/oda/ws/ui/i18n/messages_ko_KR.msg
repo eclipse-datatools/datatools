@@ -33,7 +33,7 @@ webServiceSelectionPage.button.browse=찾아보기(&R)...
 
 # OperationPage
 operationPage.message.default=데이터 원본의 WSDL 설명자에 정의된 작업을 선택합니다.
-operationPage.message.operationChanged=SOAP 요청을 다시 생성하고 끝점에 다시 연결할 것인지 확인합니다.
+operationPage.message.regenerate.SOAPRequest=SOAP 요청을 다시 생성하고 변경된 작업에 따라 끝점에 다시 연결합니다.
 operationPage.title.operationChanged=작업이 변경됨
 operationPage.label.selectOpearation=선택된 작업(&S)
 operationPage.label.document=설명서(&D)
@@ -46,9 +46,9 @@ soapParametersPage.column.paramName=이름(&A)
 soapParametersPage.column.dataType=데이터 형식(&T):
 
 # SoapRequestPage
-soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
+soapRequestPage.message.defaultTitle=이 데이터 집합의 SOAP 요청 템플릿을 편집합니다. 
 soapRequestPage.message.regenerateTemplate=선택한 SOAP 작업에 근거한 쿼리 텍스트 템플릿이 다시 생성될 것입니다. 이전에 해당 텍스트에 기록한 변경 사항이 모두 사라질 것입니다.\n\n계속하시겠습니까?
-soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
+soapRequestPage.label.prompt=사용자 지정 연결 클래스에 쿼리 텍스트가 필요하지 않을 경우 입력란을 비워두셔도 됩니다.
 soapRequestPage.title.regenerateTemplate=템플릿 다시 생성
 soapRequestPage.button.regenerateTemplate=템플릿 다시 생성(&R)
 soapRequestPage.button.insertParameter=매개 변수 편집(&E)...

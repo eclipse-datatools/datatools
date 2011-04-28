@@ -33,7 +33,7 @@ webServiceSelectionPage.button.browse=&Examinar...
 
 # OperationPage
 operationPage.message.default=Seleccione una operación definida en el descriptor WSDL de la fuente de datos.
-operationPage.message.operationChanged=Confirme para volver a generar la solicitud de SOAP y volver a conectar el punto final.
+operationPage.message.regenerate.SOAPRequest=Vuelva a generar la solicitud de SOAP y vuelva a conectar el punto final de acuerdo con la operación cambiada.
 operationPage.title.operationChanged=Operación cambiada
 operationPage.label.selectOpearation=&Operación seleccionada
 operationPage.label.document=&Documentación
@@ -46,9 +46,9 @@ soapParametersPage.column.paramName=N&ombre
 soapParametersPage.column.dataType=&Tipo de datos
 
 # SoapRequestPage
-soapRequestPage.message.defaultTitle=Edit the SOAP request template of this data set. 
+soapRequestPage.message.defaultTitle=Edite la plantilla de solicitud SOAP de este conjunto de datos. 
 soapRequestPage.message.regenerateTemplate=Esto volverá a generar la plantilla del texto de consulta según la operación SOAP que ha seleccionado. Esta acción eliminará cualquier modificación que haya introducido en el texto.\n\n¿Está seguro?
-soapRequestPage.label.prompt=You may leave the text empty if your custom connection class does not require a query text.
+soapRequestPage.label.prompt=Puede dejar el texto vacío si la clase de conexión personalizada no necesita texto de consulta.
 soapRequestPage.title.regenerateTemplate=Volver a generar la plantilla
 soapRequestPage.button.regenerateTemplate=&Volver a generar la plantilla
 soapRequestPage.button.insertParameter=&Editar parámetro...

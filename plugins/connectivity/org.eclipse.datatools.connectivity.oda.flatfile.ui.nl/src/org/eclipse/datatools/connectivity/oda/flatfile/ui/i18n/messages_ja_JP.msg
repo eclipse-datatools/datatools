@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=Use trailing null columns.
+label.trailNull=––”ö NULL —ñ‚ğg—p‚µ‚Ü‚·B
 
 button.selectFolder.browse=QÆ(&R)...
 button.moveUp=ã‚Ö(&U)
@@ -45,7 +45,7 @@ tooltip.button.add=‘I‘ğ‚µ‚½‚·‚×‚Ä‚Ì—ñ‚ğA¶‚Ìƒe[ƒuƒ‹‚©‚çƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Ìƒf[ƒ
 tooltip.button.up=‘I‘ğ‚µ‚½€–Ú‚ğã‚ÖˆÚ“®‚µ‚Ü‚·B
 tooltip.button.down=‘I‘ğ‚µ‚½€–Ú‚ğ‰º‚ÖˆÚ“®‚µ‚Ü‚·B
 tooltip.button.delete=‘I‘ğ‚µ‚½€–Ú‚ğíœ‚µ‚Ü‚·B
-tooltip.trailNull=Trail null columns when reading lines of data. 
+tooltip.trailNull=ƒf[ƒ^s‚ğ“Ç‚Ş‚Æ‚«‚É––”ö NULL —ñ‚ğg—p‚µ‚Ü‚·B 
 error.selectFolder=—LŒø‚ÈƒtƒHƒ‹ƒ_[‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B
 error.selectColumns=‚±‚Ìƒf[ƒ^EƒZƒbƒg‚É‘Î‚µ‚ÄA1 ‚ÂˆÈã‚Ì—ñ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B
 error.emptyPath=ƒpƒX‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
