@@ -21,7 +21,7 @@ datasource.property.csvdelimitertype=CSV-&Typ
 datasource.property.charset=&Zeichensatz
 datasource.property.incltypeline=Zweite Zeile als &Datentypindikator verwenden
 datasource.property.inclcolumnnameline=Erste Zeile als Spalten&namenindikator verwenden
-datasource.property.trailnullcols=Use trail null columns
+datasource.property.trailnullcols=Spalten mit Nullen in Endposition verwenden
 
 dataset.property.savedcolumnsinfo=Informationen zu den einzelnen Spalten
 

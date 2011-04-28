@@ -21,7 +21,7 @@ datasource.property.csvdelimitertype=CSV 형식(&T)
 datasource.property.charset=문자 집합(&C)
 datasource.property.incltypeline=데이터 형식 표시기로 두 번째 줄 사용(&D)
 datasource.property.inclcolumnnameline=열 이름 표시기로 첫 번째 줄 사용(&N)
-datasource.property.trailnullcols=Use trail null columns
+datasource.property.trailnullcols=널(null) 열 추적 사용
 
 dataset.property.savedcolumnsinfo=각 열에 관한 정보
 

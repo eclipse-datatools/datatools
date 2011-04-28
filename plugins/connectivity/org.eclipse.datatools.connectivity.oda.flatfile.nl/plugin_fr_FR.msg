@@ -21,7 +21,7 @@ datasource.property.csvdelimitertype=&Type CSV
 datasource.property.charset=Jeu de &caractères
 datasource.property.incltypeline=Utilisez la deuxième ligne comme indicateur du type de &données
 datasource.property.inclcolumnnameline=Utiliser la première ligne en tant qu'indicateur de &nom de colonne
-datasource.property.trailnullcols=Use trail null columns
+datasource.property.trailnullcols=Utiliser les colonnes avec valeurs nulles à la fin
 
 dataset.property.savedcolumnsinfo=Informations sur chaque colonne
 
