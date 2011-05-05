@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=널(null) 열 추적
+label.trailNull=후행 널 열 사용(&N)
 
 button.selectFolder.browse=찾아보기(&R)...
 button.moveUp=위로(&U)

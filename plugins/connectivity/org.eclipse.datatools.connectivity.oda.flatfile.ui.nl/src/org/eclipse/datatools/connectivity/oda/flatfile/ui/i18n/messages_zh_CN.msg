@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=使用空后缀列
+label.trailNull=使用空后缀列(&N)。
 
 button.selectFolder.browse=浏览(&R)...
 button.moveUp=上移(&U)

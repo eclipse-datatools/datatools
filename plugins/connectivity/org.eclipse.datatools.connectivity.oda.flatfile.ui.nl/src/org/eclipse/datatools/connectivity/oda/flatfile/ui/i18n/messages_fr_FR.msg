@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=Utilisez les colonnes avec valeurs nulles à la fin.
+label.trailNull=Utilisez les colonnes &nulles de fin.
 
 button.selectFolder.browse=Pa&rcourir...
 button.moveUp=Vers le ha&ut

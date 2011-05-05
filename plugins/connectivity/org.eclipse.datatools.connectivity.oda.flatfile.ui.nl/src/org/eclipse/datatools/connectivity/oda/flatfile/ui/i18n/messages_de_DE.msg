@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=Spalten mit Nullen in Endposition verwenden.
+label.trailNull=Spalten mit &Nullen in Endposition verwenden.
 
 button.selectFolder.browse=Du&rchsuchen...
 button.moveUp=Nach &oben
