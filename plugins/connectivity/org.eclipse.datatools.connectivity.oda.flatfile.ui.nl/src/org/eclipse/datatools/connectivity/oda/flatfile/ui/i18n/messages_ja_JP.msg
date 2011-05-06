@@ -13,7 +13,7 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
-label.trailNull=末尾 NULL 列を使用します。
+label.trailNull=末尾 NULL 列を使用する(&N)
 
 button.selectFolder.browse=参照(&R)...
 button.moveUp=上へ(&U)
