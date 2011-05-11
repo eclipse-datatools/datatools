@@ -696,7 +696,11 @@ public class SOAPRequestPage extends DataSetWizardPage
 			defualtValue.setText( COLUMN_DEFAULTVALUE + COLON );
 
 			defualtValueText = new Text( parent, SWT.BORDER );
-			defualtValueText.setText( this.soapParameter.getDefaultValue( ) );
+			if ( defaultValue != null )
+			{
+				defualtValueText.setText( defaultValue );
+			}
+			
 			defualtValueText.setLayoutData( textGd );
 			defualtValueText.addModifyListener( new ModifyListener( ) {
 
