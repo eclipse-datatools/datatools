@@ -227,9 +227,15 @@ class ClassLoaderResourceLocator extends ResourceLocatorDelegate
     {
         URL pluginLoc = getLoadedPluginLoc( pluginId, cl );
         if( pluginLoc == null ) // could not find specified plugin
-            return null;        // no jar entry available
+        {
+            // try find the jarFilePath resource entry directly
+            pluginLoc = findLoadedResources( pluginId, jarFilePath, cl );
+            if( pluginLoc == null )
+                return null;    // no jar entry available
+        }
 
-        // check if the plugin URL is the jarFilePath entry itself
+        // check if the plugin URL is the jarFilePath entry itself, 
+        // which contains an embedded manifest.mf file
         IPath pluginPath = PluginResourceLocatorImpl.adaptToPath( pluginLoc );
         if( pluginPath.lastSegment().equalsIgnoreCase( jarFilePath ))
             return pluginLoc;
