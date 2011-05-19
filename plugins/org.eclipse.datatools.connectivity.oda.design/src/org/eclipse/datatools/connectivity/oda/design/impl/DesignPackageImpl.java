@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.21 2010/10/15 05:41:37 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.22 2011/03/08 22:59:10 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -1415,7 +1415,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataSourceDesign_OdaExtensionDataSourceId()
+    public EAttribute getDataSourceDesign_EffectiveOdaExtensionId()
     {
         return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 2 );
@@ -1426,7 +1426,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataSourceDesign_DisplayName()
+    public EAttribute getDataSourceDesign_OdaExtensionDataSourceId()
     {
         return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 3 );
@@ -1437,9 +1437,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDataSourceDesign_PublicProperties()
+    public EAttribute getDataSourceDesign_DisplayName()
     {
-        return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
+        return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 4 );
     }
 
@@ -1448,7 +1448,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDataSourceDesign_PrivateProperties()
+    public EReference getDataSourceDesign_PublicProperties()
     {
         return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 5 );
@@ -1459,9 +1459,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataSourceDesign_LinkedProfileName()
+    public EReference getDataSourceDesign_PrivateProperties()
     {
-        return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
+        return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 6 );
     }
 
@@ -1470,7 +1470,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDataSourceDesign_LinkedProfileStoreFilePath()
+    public EAttribute getDataSourceDesign_LinkedProfileName()
     {
         return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 7 );
@@ -1481,10 +1481,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getDataSourceDesign_LinkedProfileStoreFilePath()
+    {
+        return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
+                .get( 8 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getDataSourceDesign_HostResourceIdentifiers()
     {
         return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
-                .get( 8 );
+                .get( 9 );
     }
 
     /**
@@ -1495,7 +1506,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EAttribute getDataSourceDesign_ResourceFile()
     {
         return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
-                .get( 9 );
+                .get( 10 );
     }
 
     /**
@@ -3385,6 +3396,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( dataSourceDesignEClass,
                 DATA_SOURCE_DESIGN__ODA_EXTENSION_ID );
         createEAttribute( dataSourceDesignEClass,
+                DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID );
+        createEAttribute( dataSourceDesignEClass,
                 DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID );
         createEAttribute( dataSourceDesignEClass,
                 DATA_SOURCE_DESIGN__DISPLAY_NAME );
@@ -4007,6 +4020,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getDataSourceDesign_OdaExtensionId(),
                 theXMLTypePackage.getString(),
                 "odaExtensionId", null, 1, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getDataSourceDesign_EffectiveOdaExtensionId(),
+                theXMLTypePackage.getString(),
+                "effectiveOdaExtensionId", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSourceDesign_OdaExtensionDataSourceId(),
                 theXMLTypePackage.getString(),
@@ -5189,6 +5206,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                         "name", "odaExtensionId", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getDataSourceDesign_EffectiveOdaExtensionId(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "effectiveOdaExtensionId", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( getDataSourceDesign_OdaExtensionDataSourceId(), source,

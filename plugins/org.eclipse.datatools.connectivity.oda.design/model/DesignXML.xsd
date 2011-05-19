@@ -506,6 +506,11 @@
         <xsd:documentation>The extension ID defined in an ODA extension plugin manifest.  It identifies the supporting ODA driver's extension plug-in that implements the ODA run-time extension point.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
+    <xsd:attribute name="effectiveOdaExtensionId" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The ID of the effective oda.datasource extension, which will be consumed by the ODA consumer framework at runtime.  This could be another extension that overrides this ODA extension at runtime.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
     <xsd:attribute name="odaExtensionDataSourceId" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>The data source element ID defined in an ODA extension plugin manifest.  Optional, defaults to be same as the ODA extension id if only one dataSource element is defined in the manifest.</xsd:documentation>

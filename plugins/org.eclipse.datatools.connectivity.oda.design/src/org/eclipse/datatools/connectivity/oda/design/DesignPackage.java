@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.14 2010/06/10 23:40:04 lchan Exp $
+ * $Id: DesignPackage.java,v 1.15 2010/10/15 05:41:37 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2011 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The package name.
@@ -835,13 +835,22 @@ public interface DesignPackage extends EPackage
     int DATA_SOURCE_DESIGN__ODA_EXTENSION_ID = 1;
 
     /**
+     * The feature id for the '<em><b>Effective Oda Extension Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID = 2;
+
+    /**
      * The feature id for the '<em><b>Oda Extension Data Source Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID = 2;
+    int DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID = 3;
 
     /**
      * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -850,7 +859,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__DISPLAY_NAME = 3;
+    int DATA_SOURCE_DESIGN__DISPLAY_NAME = 4;
 
     /**
      * The feature id for the '<em><b>Public Properties</b></em>' containment reference.
@@ -859,7 +868,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES = 4;
+    int DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES = 5;
 
     /**
      * The feature id for the '<em><b>Private Properties</b></em>' containment reference.
@@ -868,7 +877,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES = 5;
+    int DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES = 6;
 
     /**
      * The feature id for the '<em><b>Linked Profile Name</b></em>' attribute.
@@ -877,7 +886,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME = 6;
+    int DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME = 7;
 
     /**
      * The feature id for the '<em><b>Linked Profile Store File Path</b></em>' attribute.
@@ -886,7 +895,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = 7;
+    int DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = 8;
 
     /**
      * The feature id for the '<em><b>Host Resource Identifiers</b></em>' containment reference.
@@ -895,7 +904,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = 8;
+    int DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = 9;
 
     /**
      * The feature id for the '<em><b>Resource File</b></em>' attribute.
@@ -904,7 +913,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN__RESOURCE_FILE = 9;
+    int DATA_SOURCE_DESIGN__RESOURCE_FILE = 10;
 
     /**
      * The number of structural features of the '<em>Data Source Design</em>' class.
@@ -913,7 +922,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 10;
+    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 11;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
@@ -3507,6 +3516,17 @@ public interface DesignPackage extends EPackage
     EAttribute getDataSourceDesign_OdaExtensionId();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getEffectiveOdaExtensionId <em>Effective Oda Extension Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Effective Oda Extension Id</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getEffectiveOdaExtensionId()
+     * @see #getDataSourceDesign()
+     * @generated
+     */
+    EAttribute getDataSourceDesign_EffectiveOdaExtensionId();
+
+    /**
      * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getOdaExtensionDataSourceId <em>Oda Extension Data Source Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5967,6 +5987,15 @@ public interface DesignPackage extends EPackage
          */
         EAttribute DATA_SOURCE_DESIGN__ODA_EXTENSION_ID = eINSTANCE
                 .getDataSourceDesign_OdaExtensionId();
+
+        /**
+         * The meta object literal for the '<em><b>Effective Oda Extension Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID = eINSTANCE
+                .getDataSourceDesign_EffectiveOdaExtensionId();
 
         /**
          * The meta object literal for the '<em><b>Oda Extension Data Source Id</b></em>' attribute feature.

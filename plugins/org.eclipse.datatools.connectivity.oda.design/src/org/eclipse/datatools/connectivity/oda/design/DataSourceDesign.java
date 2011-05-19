@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesign.java,v 1.4 2008/07/23 04:12:27 lchan Exp $
+ * $Id: DataSourceDesign.java,v 1.5 2010/02/17 02:20:39 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getOdaExtensionId <em>Oda Extension Id</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getEffectiveOdaExtensionId <em>Effective Oda Extension Id</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getOdaExtensionDataSourceId <em>Oda Extension Data Source Id</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getPublicProperties <em>Public Properties</em>}</li>
@@ -54,7 +55,7 @@ public interface DataSourceDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2011 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -107,6 +108,34 @@ public interface DataSourceDesign extends EObject
      * @generated
      */
     void setOdaExtensionId( String value );
+
+    /**
+     * Returns the value of the '<em><b>Effective Oda Extension Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The ID of the effective oda.datasource extension, which will be consumed by the ODA consumer framework at runtime.  This could be another extension that overrides this ODA extension at runtime.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Effective Oda Extension Id</em>' attribute.
+     * @see #setEffectiveOdaExtensionId(String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_EffectiveOdaExtensionId()
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='effectiveOdaExtensionId' namespace='##targetNamespace'"
+     * @generated
+     * @since 3.3.3
+     */
+    String getEffectiveOdaExtensionId();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getEffectiveOdaExtensionId <em>Effective Oda Extension Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Effective Oda Extension Id</em>' attribute.
+     * @see #getEffectiveOdaExtensionId()
+     * @generated
+     * @since 3.3.3
+     */
+    void setEffectiveOdaExtensionId( String value );
 
     /**
      * Returns the value of the '<em><b>Oda Extension Data Source Id</b></em>' attribute.
@@ -172,7 +201,7 @@ public interface DataSourceDesign extends EObject
      * @since 3.2.3
      */
     String getDisplayNameKey();
-    
+
     /**
      * Sets the resource key of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName <em>Display Name</em>}' attribute.
      * @param value  the new resource key of the '<em>Display Name</em>' attribute;
@@ -184,7 +213,7 @@ public interface DataSourceDesign extends EObject
      * @since 3.2.3
      */
     void setDisplayNameKey( String value );
-    
+
     /**
      * Returns the value of the '<em><b>Public Properties</b></em>' containment reference.
      * <!-- begin-user-doc -->

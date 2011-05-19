@@ -9,7 +9,7 @@
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
     generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="true" codeFormatting="true"
     importerID="org.eclipse.xsd.ecore.importer" complianceLevel="5.0">
-  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession332.xsd</foreignModel>
+  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession333.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">
     <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
@@ -177,6 +177,7 @@
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/odaExtensionId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/effectiveOdaExtensionId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/odaExtensionDataSourceId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/publicProperties"/>

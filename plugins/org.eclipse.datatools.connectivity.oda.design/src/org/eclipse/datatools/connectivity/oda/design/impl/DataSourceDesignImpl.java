@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.15 2010/02/17 02:20:38 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.16 2010/03/13 02:00:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getOdaExtensionId <em>Oda Extension Id</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getEffectiveOdaExtensionId <em>Effective Oda Extension Id</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getOdaExtensionDataSourceId <em>Oda Extension Data Source Id</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getPublicProperties <em>Public Properties</em>}</li>
@@ -65,13 +66,13 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2010 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2011 Actuate Corporation"; //$NON-NLS-1$
 
     /*
      * @generated NOT
      */
     private static final String RESOURCE_FILE_SUFFIX = ".properties"; //$NON-NLS-1$
-    
+
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -111,6 +112,26 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * @ordered
      */
     protected String m_odaExtensionId = ODA_EXTENSION_ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getEffectiveOdaExtensionId() <em>Effective Oda Extension Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEffectiveOdaExtensionId()
+     * @generated
+     * @ordered
+     */
+    protected static final String EFFECTIVE_ODA_EXTENSION_ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getEffectiveOdaExtensionId() <em>Effective Oda Extension Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEffectiveOdaExtensionId()
+     * @generated
+     * @ordered
+     */
+    protected String m_effectiveOdaExtensionId = EFFECTIVE_ODA_EXTENSION_ID_EDEFAULT;
 
     /**
      * The default value of the '{@link #getOdaExtensionDataSourceId() <em>Oda Extension Data Source Id</em>}' attribute.
@@ -340,8 +361,51 @@ public class DataSourceDesignImpl extends EObjectImpl implements
                     oldOdaExtensionId, m_odaExtensionId ) );
     }
 
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getEffectiveOdaExtensionId()
+     * @generated NOT
+     */
+    public String getEffectiveOdaExtensionId()
+    {
+        String assignedValue = getEffectiveOdaExtensionIdGen();
+        if( assignedValue != null )
+            return assignedValue;
+
+        // null, default to be the same as the ODA extension id 
+        return getOdaExtensionId();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected String getEffectiveOdaExtensionIdGen()
+    {
+        return m_effectiveOdaExtensionId;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEffectiveOdaExtensionId( String newEffectiveOdaExtensionId )
+    {
+        String oldEffectiveOdaExtensionId = m_effectiveOdaExtensionId;
+        m_effectiveOdaExtensionId = newEffectiveOdaExtensionId;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID,
+                    oldEffectiveOdaExtensionId, m_effectiveOdaExtensionId ) );
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getOdaExtensionDataSourceId()
+     * @generated NOT
      */
     public String getOdaExtensionDataSourceId()
     {
@@ -379,7 +443,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
                     DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID,
                     oldOdaExtensionDataSourceId, m_odaExtensionDataSourceId ) );
     }
-    
+
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName()
@@ -399,7 +463,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     {
         return m_displayName;
     }
-    
+
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setDisplayName(java.lang.String)
@@ -858,7 +922,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         }
         setResourceFileGen( newResourceFile );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -909,6 +973,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return getName();
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
             return getOdaExtensionId();
+        case DesignPackage.DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID:
+            return getEffectiveOdaExtensionId();
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
             return getOdaExtensionDataSourceId();
         case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
@@ -944,6 +1010,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
             setOdaExtensionId( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID:
+            setEffectiveOdaExtensionId( (String) newValue );
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
             setOdaExtensionDataSourceId( (String) newValue );
@@ -989,6 +1058,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
             setOdaExtensionId( ODA_EXTENSION_ID_EDEFAULT );
             return;
+        case DesignPackage.DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID:
+            setEffectiveOdaExtensionId( EFFECTIVE_ODA_EXTENSION_ID_EDEFAULT );
+            return;
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
             setOdaExtensionDataSourceId( ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT );
             return;
@@ -1033,6 +1105,10 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
             return ODA_EXTENSION_ID_EDEFAULT == null ? m_odaExtensionId != null
                     : !ODA_EXTENSION_ID_EDEFAULT.equals( m_odaExtensionId );
+        case DesignPackage.DATA_SOURCE_DESIGN__EFFECTIVE_ODA_EXTENSION_ID:
+            return EFFECTIVE_ODA_EXTENSION_ID_EDEFAULT == null ? m_effectiveOdaExtensionId != null
+                    : !EFFECTIVE_ODA_EXTENSION_ID_EDEFAULT
+                            .equals( m_effectiveOdaExtensionId );
         case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
             return ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT == null ? m_odaExtensionDataSourceId != null
                     : !ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT
@@ -1125,6 +1201,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         result.append( m_name );
         result.append( ", odaExtensionId: " ); //$NON-NLS-1$
         result.append( m_odaExtensionId );
+        result.append( ", effectiveOdaExtensionId: " ); //$NON-NLS-1$
+        result.append( m_effectiveOdaExtensionId );
         result.append( ", odaExtensionDataSourceId: " ); //$NON-NLS-1$
         result.append( m_odaExtensionDataSourceId );
         result.append( ", displayName: " ); //$NON-NLS-1$

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2010 Actuate Corporation.
+ * Copyright (c) 2004, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,15 +25,11 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogConfigHelper;
 import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogPathHelper;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.DriverExtensionManifest;
-import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.JavaRuntimeInterface;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
-import org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface;
-import org.osgi.framework.Bundle;
 
 /**
  * OdaDriver is an ODA consumer helper that wraps and
@@ -220,22 +216,15 @@ public class OdaDriver extends OdaObject
                                 boolean appliesBridgeExtension ) 
         throws OdaException
     {
-        RuntimeInterface runtime = driverConfig.getRuntimeInterface();
-		assert( runtime instanceof JavaRuntimeInterface );
-		JavaRuntimeInterface javaRuntime = (JavaRuntimeInterface) runtime;
-		
-		String initEntryPoint = javaRuntime.getDriverClass();
+        JavaRuntimeInterface javaRuntime = DriverExtensionHelper.getRuntimeInterface( driverConfig );
 				
         IDriver loadedDriver = null;
 		try
 		{
-			Bundle bundle = Platform.getBundle( driverConfig.getNamespace( ) );
-			Class driverClass = ( bundle != null ) ? 
-                    bundle.loadClass( initEntryPoint ) :
-			        Class.forName( initEntryPoint );
-                
+			Class driverClass = DriverExtensionHelper.loadDriverClass( driverConfig );
+
             // if on non-OSGi platform, need to pass the driver location to extension manifest info
-            if( bundle == null )
+            if( Platform.getBundle( driverConfig.getNamespace() ) == null )
                 javaRuntime.setLoadedClassLocation( driverClass, m_initAppContext );
 
             if( honorClassLoaderSwitch )
@@ -260,7 +249,7 @@ public class OdaDriver extends OdaObject
 			// append the caught classloader-related exception's string to the new OdaException
 			OdaException odaEx = 
 				new OdaHelperException( Messages.helper_cannotConstructConnectionFactory, 
-										 initEntryPoint );
+				                        javaRuntime.getDriverClass() );
 			odaEx.initCause( ex );
 			handleError( odaEx );
 		}
@@ -269,7 +258,7 @@ public class OdaDriver extends OdaObject
             if( honorClassLoaderSwitch )
                 resetContextClassloader();
 		}
-        
+
         return loadedDriver;
     }
 	
@@ -362,46 +351,7 @@ public class OdaDriver extends OdaObject
      */
     private String getDriverBridgeId( Object driver )
     {
-        assert( driver != null );
-        
-        // first look up bridge extension for driver class
-        String bridgeId = getDriverBridgeId( driver.getClass().getName() );        
-        if( bridgeId != null )
-            return bridgeId;    // found
-        
-        // next look up bridge extension for driver's interface(s)
-        Class[] driverTypes = driver.getClass().getInterfaces();
-        for( int i = 0; i < driverTypes.length; i++ )
-        {
-            bridgeId = getDriverBridgeId( driverTypes[i].getName() );
-            if( bridgeId != null )
-                return bridgeId;    // found
-        }
-        
-        return null;    // no bridge extension found
-    }
-    
-    private String getDriverBridgeId( String driverType )
-    {
-        final String context = "OdaDriver.getDriverBridgeId( String )"; //$NON-NLS-1$
-
-        // look for bridge extension for given driver type
-        DriverExtensionManifest manifest = null;
-        try
-        {
-            manifest = ExtensionExplorer.getInstance()
-                        .getDriverExtensionManifest( driverType );
-        }
-        catch( OdaException e )
-        {
-            logWarning( context, e.toString() );
-        }
-        
-        // no valid driver bridge extension manifest is found
-        if( manifest == null )
-             return null;
-        
-        return manifest.getBridgeDataSourceId();
+        return DriverExtensionHelper.getDriverBridgeId( driver.getClass() );
     }
     
     /**
