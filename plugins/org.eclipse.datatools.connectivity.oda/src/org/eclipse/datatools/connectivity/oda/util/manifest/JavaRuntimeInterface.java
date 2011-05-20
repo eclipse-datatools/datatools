@@ -157,7 +157,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	    
 	    // not able to get from appContext, try to get from the driver class loader
 	    if( m_loadedBundlePath == null )
-	        m_loadedBundlePath = getLoadedBundlePath( m_namespace, driverClass );
+	        m_loadedBundlePath = getLoadedBundlePath( m_namespace, driverClass.getClassLoader() );
 	    
 	    // next try to get from the loaded class domain
 	    if( m_loadedBundlePath == null )
@@ -187,16 +187,16 @@ public class JavaRuntimeInterface extends RuntimeInterface
         return null;
 	}
 	
-	private static IPath getLoadedBundlePath( String bundleName, Class<?> clazz )
+	private static IPath getLoadedBundlePath( String bundleName, ClassLoader cl )
 	{
-        final String methodName = "getLoadedBundlePath(String,Class<?>)"; //$NON-NLS-1$
+        final String methodName = "getLoadedBundlePath(String,ClassLoader)"; //$NON-NLS-1$
         
         Enumeration<URL> foundURLs;
         try
         {
             // search for the plugin manifest file, which should always exist 
             // at one level below the plugin path
-            foundURLs = clazz.getClassLoader().getResources( BUNDLE_MANIFEST_RELATIVE_PATH );
+            foundURLs = cl.getResources( BUNDLE_MANIFEST_RELATIVE_PATH );
         }
         catch( IOException ex )
         {
@@ -214,6 +214,8 @@ public class JavaRuntimeInterface extends RuntimeInterface
             if( ! manifestURL.getPath().contains( pluginNameFragment ) )
                 continue;
 
+            // found the first plugin in classpath that has matching bundleName 
+            // TODO - handle multiple matching entries
             try
             {
                 URL pluginLocURL = new URL( manifestURL, UPPER_RELATIVE_PATH );
