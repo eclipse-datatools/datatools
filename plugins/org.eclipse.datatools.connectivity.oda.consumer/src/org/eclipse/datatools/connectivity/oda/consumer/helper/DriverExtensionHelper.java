@@ -48,8 +48,16 @@ public class DriverExtensionHelper
         if( odaDataSourceId == null )
             return null;
         
-        ExtensionManifest odaDataSourceManifest = 
-            ManifestExplorer.getInstance().getExtensionManifest( odaDataSourceId );
+        ExtensionManifest odaDataSourceManifest;
+        try
+        {
+            odaDataSourceManifest = ManifestExplorer.getInstance().getExtensionManifest( odaDataSourceId );
+        }
+        catch( IllegalArgumentException ex )
+        {
+            throw new OdaException( ex );    // invalid odaDataSourceId 
+        }
+
         Class driverClass = loadDriverClass( odaDataSourceManifest );
 
         String bridgeDataSourceId = getDriverBridgeId( driverClass );
@@ -129,6 +137,9 @@ public class DriverExtensionHelper
     
     static JavaRuntimeInterface getRuntimeInterface( ExtensionManifest driverConfig )
     {
+        if( driverConfig == null )
+            throw new IllegalArgumentException();
+
         RuntimeInterface runtime = driverConfig.getRuntimeInterface();
         assert( runtime instanceof JavaRuntimeInterface );
         return (JavaRuntimeInterface) runtime;       
