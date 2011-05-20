@@ -24,5 +24,23 @@
             consumerApplicationId="org.eclipse.datatools.connectivity.oda.consumer.tests"
             providerClass="org.eclipse.datatools.connectivity.oda.consumer.tests.ExternalizedPropertyProvider"/>
    </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.consumer.driverBridge">
+      <bridge
+            bridgeId="org.eclipse.datatools.connectivity.oda.consumer.tests"
+            driverType="org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestDriverImpl">
+      </bridge>
+   </extension>
+   <extension
+         id="org.eclipse.datatools.connectivity.oda.consumer.tests"
+         point="org.eclipse.datatools.connectivity.oda.dataSource">
+      <dataSource
+            driverClass="org.eclipse.datatools.connectivity.oda.consumer.test.impl.DummyDriver"
+            id="org.eclipse.datatools.connectivity.oda.consumer.tests"
+            odaVersion="3.0"
+            overrideExplorerFiltering="false"
+            setThreadContextClassLoader="false">
+      </dataSource>
+   </extension>
 
 </plugin>
