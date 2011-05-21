@@ -24,8 +24,8 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestUtil;
 
 /**
  * The Extension Explorer is the entry point to explore and access
- * the manifest of all the ODA consumer helper extensions that implement the 
- * <code>org.eclipse.datatools.connectivity.oda.consumer.driverBridge</code> extension point.
+ * the manifest of all the ODA consumer helper extensions that implement 
+ * any of its extension points.
  * The <code>ExtensionExplorer</code> singleton instance is retrieved 
  * using the <code>getInstance()</code> method.
  */
@@ -169,7 +169,7 @@ public class ExtensionExplorer
         {
             IExtension extension = extensions[i];
             
-             // Find an driverBridge extension 
+             // Find the specified element in the extension 
             IConfigurationElement foundElement =
                 getNamedElement( extension, elementName, attributeName );
             if( foundElement == null )
@@ -178,7 +178,7 @@ public class ExtensionExplorer
             String value = foundElement.getAttribute( attributeName );
             
             /* The first extension found with matching driverType 
-             * in its bridgeFactory element is considered a match.
+             * in its element is considered a match.
              */
             if( value != null &&
                 value.equalsIgnoreCase( attributeValue ) )
