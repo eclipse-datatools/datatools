@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -105,7 +105,7 @@ public class DesignSessionUtilBase
     }
     
     /**
-     * Obtains the effective property names and values to use at runtime to open
+     * Obtains the effective property names and values for use during a design session to open
      * a connection to a data source.
      * @param dataSourceDesign  a data source design definition that contains
      *              static connection properties info. 
@@ -121,9 +121,22 @@ public class DesignSessionUtilBase
         throws OdaException
     {
         java.util.Properties candidateProps = DesignUtil.convertDataSourceProperties( dataSourceDesign );
+
         IPropertyProvider propProvider = null;
         if( dataSourceDesign != null )
-            propProvider = getPropertyProvider( dataSourceDesign.getOdaExtensionDataSourceId() );
+        {
+            String effectiveDataSourceId = dataSourceDesign.getEffectiveOdaExtensionId();
+            propProvider = getPropertyProvider( effectiveDataSourceId );
+
+            // if the effective data source does not have own provider, 
+            // try with the oda data source type being extended
+            if( propProvider == null )
+            {
+                String baseDataSourceId = dataSourceDesign.getOdaExtensionDataSourceId();
+                if( ! effectiveDataSourceId.equalsIgnoreCase( baseDataSourceId ) )
+                    propProvider = getPropertyProvider( baseDataSourceId );
+            }
+        }
         if( propProvider == null )   // oda data source does not have own provider, use the system default
             propProvider = getPropertyProvider( DEFAULT_PROPERTY_PROVIDER_ID );
         
