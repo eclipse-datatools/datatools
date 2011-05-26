@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import org.eclipse.datatools.enablement.ingres.internal.ui.plan.IngresExplainSQLActionDelegate;
 import org.eclipse.datatools.sqltools.core.DBHelper;
+import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
@@ -67,13 +68,27 @@ public class IngresDBConfiguration extends SQLDevToolsConfiguration {
 	public boolean recognize(String product, String version) {
 		// TODO extract version from supplied string
 		// example product="INGRES" and version="0.1.0.w32/115)"
+
+		// BTF - per bug 347164, the code comparison being done on "II" was conflicting with another
+		// enablement project (at JBoss) called Teiid - so there needs to be a better way to handle that
 		if (product != null) {
-			String formattedProduct = format(product);
+			DatabaseVendorDefinitionId targetid = new DatabaseVendorDefinitionId(
+					product, version);
 			for (int i = 0; i < PRODUCTS.length; i++) {
-				if (formattedProduct.indexOf(format(PRODUCTS[i])) > -1) {
+				DatabaseVendorDefinitionId id = new DatabaseVendorDefinitionId(
+						PRODUCTS[i], getDatabaseVendorDefinitionId()
+								.getVersion());
+				if (id.equals(targetid)) {
 					return true;
 				}
 			}
+			return false;
+//			String formattedProduct = format(product);
+//			for (int i = 0; i < PRODUCTS.length; i++) {
+//				if (formattedProduct.indexOf(format(PRODUCTS[i])) > -1) {
+//					return true;
+//				}
+//			}
 		}
 		return false;
 	}
