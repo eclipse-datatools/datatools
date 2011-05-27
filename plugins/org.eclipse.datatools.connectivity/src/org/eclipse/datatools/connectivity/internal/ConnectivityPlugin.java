@@ -19,6 +19,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
@@ -46,6 +48,7 @@ public class ConnectivityPlugin extends Plugin {
 	// The shared instance.
 	private static ConnectivityPlugin plugin;
     private static IPath defaultWorkspace;
+    private static Logger jdkLogger;
 
 	private ResourceBundle resourceBundle;
     private Preferences localPreferences;
@@ -283,7 +286,11 @@ public class ConnectivityPlugin extends Plugin {
 	 * @param status Runtime status.
 	 */
 	public void log(IStatus status) {
-		getLog().log(status);
+        if ( isRunningOSGiPlatform() )
+            getLog().log(status);
+        
+        // not running OSGi platform, use JDK logger instead
+        getJdkLogger().log( getLogLevel( status ), status.getMessage() );
 	}
 
 	/**
@@ -346,4 +353,32 @@ public class ConnectivityPlugin extends Plugin {
 		return new Status(IStatus.ERROR, getSymbolicName(),
 				INTERNAL_ERROR, message, e);
 	}
+	
+    private static Logger getJdkLogger()
+    {
+        if( jdkLogger == null )
+        {
+            synchronized( ConnectivityPlugin.class )
+            {
+                if( jdkLogger == null )
+                    jdkLogger = Logger.getLogger( PLUGIN_ID );
+            }
+        }
+        return jdkLogger;
+    }
+	
+    private static Level getLogLevel( IStatus status )
+    {
+        int severity = status.getSeverity();
+        switch( severity )
+        {
+            case IStatus.CANCEL:    return Level.INFO;
+            case IStatus.ERROR:     return Level.SEVERE;
+            case IStatus.INFO:      return Level.INFO;
+            case IStatus.OK:        return Level.FINE;
+            case IStatus.WARNING:   return Level.WARNING;
+        }
+        return Level.WARNING;
+    }
+    
 }
