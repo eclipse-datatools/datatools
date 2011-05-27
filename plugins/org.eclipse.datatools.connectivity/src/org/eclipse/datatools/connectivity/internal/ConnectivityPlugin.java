@@ -288,9 +288,8 @@ public class ConnectivityPlugin extends Plugin {
 	public void log(IStatus status) {
         if ( isRunningOSGiPlatform() )
             getLog().log(status);
-        
-        // not running OSGi platform, use JDK logger instead
-        getJdkLogger().log( getLogLevel( status ), status.getMessage() );
+        else    // not running OSGi platform, use JDK logger instead
+            getJdkLogger().log( getLogLevel( status ), status.getMessage() );
 	}
 
 	/**
