@@ -12,6 +12,10 @@
    </description>
 
    <copyright>
+      %featureCopyright
+   </copyright>
+
+   <copyright>
       %copyright
    </copyright>
 

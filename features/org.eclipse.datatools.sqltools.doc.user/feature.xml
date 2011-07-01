@@ -29,6 +29,10 @@
       %featureCopyright
    </copyright>
 
+   <copyright>
+      %featureCopyright
+   </copyright>
+
    <license url="%featureLicenseURL">
       %license
    </license>
