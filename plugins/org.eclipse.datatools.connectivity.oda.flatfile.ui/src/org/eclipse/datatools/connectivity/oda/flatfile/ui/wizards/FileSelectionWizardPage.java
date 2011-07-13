@@ -922,16 +922,31 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		File file = (File) ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
 
+		boolean columnsSaved = false;
+
 		if ( file.equals( selectedFile ) )
 			return;
+		else if ( selectedFile != null )
+		{
+			if ( MessageDialog.openConfirm( getShell( ),
+					Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
+					Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
+			{
+				columnsSaved = true;
+			}
+			else
+			{
+				selectedColumnsViewer.getTable( ).removeAll( );
+				savedSelectedColumnsInfoList.clear( );
+			}
+
+		}
+
 		selectedFile = file;
 		setPageComplete( false );
-		selectedColumnsViewer.getTable( ).removeAll( );
-
-		savedSelectedColumnsInfoList.clear( );
 
 		availableList.removeAll( );
-		
+
 		nameOfFileWithErrorInLastAccess = null;
 
 		// String fileName = m_fileViewer.getCombo().getText().toLowerCase();
@@ -956,6 +971,41 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 			else
 				setMessage( DEFAULT_MESSAGE );
+		}
+
+		if ( columnsSaved )
+		{
+			validateSelectedColumns( );
+		}
+	}
+
+	private void validateSelectedColumns( )
+	{
+		boolean pageComplete = true;
+		String[] columnNames = availableList.getItems( );
+		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
+		{
+			String columnName = ( (String[]) savedSelectedColumnsInfoList.get( i ) )[0];
+			boolean columnExists = false;
+			for ( int k = 0; k < columnNames.length; k++ )
+			{
+				if ( columnName != null && columnName.equals( columnNames[k] ) )
+				{
+					columnExists = true;
+					break;
+				}
+			}
+			if ( !columnExists )
+			{
+				setMessage( Messages.getFormattedString( "warning.columnNotExist", new Object[]{columnName} ), //$NON-NLS-1$
+						ERROR );
+				pageComplete = false;
+			}
+		}
+		if ( pageComplete )
+		{
+			setMessage( DEFAULT_MESSAGE );
+			setPageComplete( true );
 		}
 	}
 
@@ -1767,6 +1817,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			}
 		}
+		
+		validateSelectedColumns( );
 	}
 
 	/**
