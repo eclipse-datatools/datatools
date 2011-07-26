@@ -65,3 +65,8 @@ title.warning=경고
 warning.fileExtensionInvalid=선택된 파일은 유효한 플랫 파일이 아닐 수 있습니다.
 confirm.reselectFileFilterTitle=다른 파일 필터 선택 확인
 confirm.reselectFileFilterMessage=다른 파일 필터를 선택하면 저장되지 않은 이전 작업이 손실됩니다.\n\n계속하시겠습니까?
+
+confirm.reselectFileNameTitle=Confirm to select a different flat file.
+confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
+warning.columnNotExist=The selected column "{0}" does not exist!
+

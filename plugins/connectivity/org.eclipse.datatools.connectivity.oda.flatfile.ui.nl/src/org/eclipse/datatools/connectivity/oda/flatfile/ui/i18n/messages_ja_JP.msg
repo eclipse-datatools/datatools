@@ -65,3 +65,8 @@ title.warning=警告
 warning.fileExtensionInvalid=選択したファイルは、有効なフラットファイルではない可能性があります。
 confirm.reselectFileFilterTitle=異なるファイル・フィルターを選択することを確認してください。
 confirm.reselectFileFilterMessage=別のファイルフィルタを選択すると、これまでの作業が保存されずに破棄されます。\n\nこのフィルタを選択しますか ?
+
+confirm.reselectFileNameTitle=Confirm to select a different flat file.
+confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
+warning.columnNotExist=The selected column "{0}" does not exist!
+
