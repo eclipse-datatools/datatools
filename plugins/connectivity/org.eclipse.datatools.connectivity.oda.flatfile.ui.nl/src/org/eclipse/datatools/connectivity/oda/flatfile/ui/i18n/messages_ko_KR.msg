@@ -69,4 +69,5 @@ confirm.reselectFileFilterMessage=다른 파일 필터를 선택하면 저장되지 않은 이전 �
 confirm.reselectFileNameTitle=Confirm to select a different flat file.
 confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
 warning.columnNotExist=The selected column "{0}" does not exist!
+warning.dummy=Test warining
 
