@@ -66,7 +66,7 @@ warning.fileExtensionInvalid=选择的文件可能不是有效的平面文件。
 confirm.reselectFileFilterTitle=确认选择另一文件过滤器。
 confirm.reselectFileFilterMessage=选择另一文件筛选器将不保存以上操作。\n\n您确定吗？
 
-confirm.reselectFileNameTitle=Confirm to select a different flat file.
-confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
-warning.columnNotExist=The selected column "{0}" does not exist!
-warning.dummy=Test warining Updated
+confirm.reselectFileNameTitle=确认选择另一个平面文件。
+confirm.reselectFileNameMessage=是否要保持列选择与当前定义相同?
+warning.columnNotExist=选择的列“{0}”不存在!
+

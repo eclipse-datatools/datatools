@@ -66,7 +66,7 @@ warning.fileExtensionInvalid=El archivo seleccionado podría ser un archivo sin f
 confirm.reselectFileFilterTitle=Confirme para seleccionar un filtro de archivo distinto.
 confirm.reselectFileFilterMessage=Si selecciona un filtro de archivo diferente no se guardarán las operaciones anteriores.\n\n¿Seguro que desea seleccionar un filtro diferente?
 
-confirm.reselectFileNameTitle=Confirm to select a different flat file.
-confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
-warning.columnNotExist=The selected column "{0}" does not exist!
-warning.dummy=Test warining Updated
+confirm.reselectFileNameTitle=Confirme para seleccionar un archivo sin formato diferente.
+confirm.reselectFileNameMessage=¿Desea mantener la selección de columnas igual que la definición actual?
+warning.columnNotExist=La columna seleccionada "{0}" no existe.
+

@@ -66,7 +66,7 @@ warning.fileExtensionInvalid=‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚ÍA—LŒø‚Èƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Å‚Í‚È‚¢‰
 confirm.reselectFileFilterTitle=ˆÙ‚È‚éƒtƒ@ƒCƒ‹EƒtƒBƒ‹ƒ^[‚ğ‘I‘ğ‚·‚é‚±‚Æ‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢B
 confirm.reselectFileFilterMessage=•Ê‚Ìƒtƒ@ƒCƒ‹ƒtƒBƒ‹ƒ^‚ğ‘I‘ğ‚·‚é‚ÆA‚±‚ê‚Ü‚Å‚Ìì‹Æ‚ª•Û‘¶‚³‚ê‚¸‚É”jŠü‚³‚ê‚Ü‚·B\n\n‚±‚ÌƒtƒBƒ‹ƒ^‚ğ‘I‘ğ‚µ‚Ü‚·‚© ?
 
-confirm.reselectFileNameTitle=Confirm to select a different flat file.
-confirm.reselectFileNameMessage=Do you want to preserve the columns selection the same as the current definition?
-warning.columnNotExist=The selected column "{0}" does not exist!
-warning.dummy=Test warining Updated
+confirm.reselectFileNameTitle=•Ê‚Ìƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Ì‘I‘ğ‚ÌŠm”F
+confirm.reselectFileNameMessage=Œ»İ‚Ì’è‹`‚Æ“¯‚¶—ñ‘I‘ğ‚ğˆÛ‚µ‚Ü‚·‚© ?
+warning.columnNotExist=‘I‘ğ‚µ‚½—ñ "{0}" ‚ª‘¶İ‚µ‚Ü‚¹‚ñB
+
