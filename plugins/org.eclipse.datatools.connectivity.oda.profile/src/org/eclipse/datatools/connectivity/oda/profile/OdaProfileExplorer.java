@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -284,6 +284,9 @@ public class OdaProfileExplorer
         {
             getLogger().fine( "A null storageFile argument is specified. Using default profile storage location instead." ); //$NON-NLS-1$
             storageFile = defaultProfileStoreFile();
+            
+            // triggers initialization of the default profile store, if not already done
+            ProfileManager.getInstance().getProfiles( false );
         }
         
         // first check if specified storage file is already loaded and cached in collection
