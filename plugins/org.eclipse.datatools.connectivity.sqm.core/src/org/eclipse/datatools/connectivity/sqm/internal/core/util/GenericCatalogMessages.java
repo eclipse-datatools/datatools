@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2009 IBM Corporation and others.
+ * Copyright (c) 2001, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,7 +7,7 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
- *     Actuate Corporation - added DEFN_MISSING_ATTRIBUTE_VALUES message
+ *     Actuate Corporation - added messages
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
@@ -27,6 +27,7 @@ public class GenericCatalogMessages extends NLS {
 	public static String FE_REFERENCE_CONSTAINT_HAS_NO_KEY;
 	public static String FE_INDEX_HAS_NO_MEMBER;
 	public static String FE_ELEMENT_HAS_NO_TYPE;
+    public static String RDBCorePlugin_NO_DEFAULT_WORKSPACE;
 	
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, GenericCatalogMessages.class);

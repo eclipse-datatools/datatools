@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.GenericCatalogMessages;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -106,7 +107,10 @@ public class RDBCorePlugin extends Plugin {
         {
             IPath wsPath = PluginResourceLocator.getPluginStateLocation( PLUGIN_ID );
             if( wsPath == null )
-                return null;
+            {
+                String errorMsg = GenericCatalogMessages.RDBCorePlugin_NO_DEFAULT_WORKSPACE;
+                throw new IllegalStateException( errorMsg );
+            }
             
             synchronized( RDBCorePlugin.class )
             {

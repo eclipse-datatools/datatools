@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2010 Sybase, Inc. and others
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -73,16 +73,17 @@ public class JDBCConnection extends DriverConnectionBase {
 				super.open();
 			}
 		} catch (Exception e) {
-		    String exceptionCause = e.getCause().getMessage();
-			if (exceptionCause.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotSpecified" ) || //$NON-NLS-1$
-			    exceptionCause.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotFound" )) //$NON-NLS-1$
+            String exceptionCauseMsg = e.getCause() != null ? e.getCause().getMessage() : null;
+            if (exceptionCauseMsg != null &&
+                   (exceptionCauseMsg.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotSpecified" ) || //$NON-NLS-1$
+                    exceptionCauseMsg.equalsIgnoreCase( "DriverConnectionBase.error.driverDefinitionNotFound" ) )) //$NON-NLS-1$
 			{
 				if (profileHasDriverDetails()) {
 					mHasDriverDefn = false;
                     ConnectivityPlugin.getDefault().logInfo( 
                             ConnectivityPlugin.getDefault().getResourceString(
                                     "JDBCConnection.invalidDriverDefinition", //$NON-NLS-1$
-                                    new Object[] { exceptionCause, getDriverDefinitionId() } ));
+                                    new Object[] { exceptionCauseMsg, getDriverDefinitionId() } ));
 				}
 				else {
 					e.printStackTrace();

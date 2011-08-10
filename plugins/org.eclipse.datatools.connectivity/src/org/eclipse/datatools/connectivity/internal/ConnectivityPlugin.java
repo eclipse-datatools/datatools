@@ -147,7 +147,12 @@ public class ConnectivityPlugin extends Plugin {
         {
             IPath wsPath = PluginResourceLocatorImpl.getPluginStateLocation( PLUGIN_ID );
             if( wsPath == null )
-                return null;
+            {
+                String messageId = "ConnectivityPlugin.error.noDefaultWorkspace"; //$NON-NLS-1$
+                String errorMsg = getDefault().getResourceString( messageId );
+                getDefault().logError( errorMsg );
+                throw new IllegalStateException( errorMsg );
+            }
             
             synchronized( ConnectivityPlugin.class )
             {
