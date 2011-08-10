@@ -1,7 +1,7 @@
 # NLS_MESSAGEFORMAT_VAR          needed to handle quotes correctly
 #
 #/*******************************************************************************
-# * Copyright (c) 2007, 2009 IBM Corporation and others.
+# * Copyright (c) 2007, 2011 IBM Corporation and others.
 # * All rights reserved. This program and the accompanying materials
 # * are made available under the terms of the Eclipse Public License v1.0
 # * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
 # * 
 # * Contributors:
 # *     IBM Corporation - initial API and implementation
-# *		Actuate Corporation - added DEFN_MISSING_ATTRIBUTE_VALUES message
+# *     Actuate Corporation - added messages
 # *******************************************************************************/
 
 #FE
@@ -21,4 +21,5 @@ FE_INDEX_HAS_NO_MEMBER = 索引 ({0}) 没有任何成员
 FE_ELEMENT_HAS_NO_TYPE = 类型化元素 ({0}) 没有任何类型
 #DEFN
 DEFN_MISSING_ATTRIBUTE_VALUES={0} 配置元素的必需属性缺少值。
-
+# RDBCorePlugin
+RDBCorePlugin_NO_DEFAULT_WORKSPACE=Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
