@@ -11,7 +11,6 @@
 ################################################################################ 
 plugin.internal_error=내부 오류 - org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=알 수 없음
-dialog.title.error.loadconnectionfactory="{0}"에서 연결 팩토리 로드 중 오류 발생.
 ConnectJob.name={0}에 대한 연결 작성 중.
 ConnectJob.status.info=하나 이상의 확장자에 대해 {0}에 대한 연결을 작성할 수 없습니다.
 ConnectJob.status.error={0}에 연결할 수 없습니다.
@@ -24,28 +23,17 @@ OpenConnectionEventJob.name={0}에 대한 연결 열기 이벤트 처리 중.
 CloseManagedConnectionJob.name={1}에 대한 {0} 연결을 닫고 있습니다.
 CloseManagedConnectionJob.error={1}에 대한 {0} 연결을 닫는 도중 오류가 발생했습니다(오류\: {2}).
 CloseConnectionEventJob.name={0}에 대한 연결 닫기 이벤트 처리 중.
-assert.invalid.profile=구문 분석 오류\: 올바르지 않은 속성({0})
 assert.invalid.profile.duplicateFactory = 구문 분석 오류\: 중복된 팩토리 ID 및 중복된 우선 순위({0})
 assert.invalid.profile.nullFactory = 구문 분석 오류\: 널(Null) 팩토리 또는 팩토리 ID({0}/{1})
-dialog.title.error.loadwizard="{0}"에서 새로 작성 마법사 로드 중 오류 발생.
-operation.new.connectionprofile=프로파일 작성 중\: "{0}"
-error.connect="{0}" 프로파일에 연결하는 중에 문제가 발생했습니다. 세부사항은 로그 파일을 참조하십시오.
-marker.error={0} 프로파일에 연결 중 문제 발생  (오류\: {1}).
 drivermarker.error = 드라이버 "{0}"에 문제가 발생했습니다(오류\: {1}).
 drivermarker.import.error = 프로필 "{0}"을(를) 가져오는 도중 생성된 드라이버 정의의 jar 목록이 누락되었습니다.
 profile.duplicate =연결 프로파일 이름 "{0}" 중복.
-profile.notexist="{0}" 연결 프로파일이 없습니다\!
-duplicate.profile.name={0}의 사본({1})
 DriverConnectionBase.error.unknown=지정되지 않은 오류로 연결에 실패했습니다.
 DriverConnectionBase.error.driverDefinitionNotSpecified=드라이버 정의가 지정되지 않았습니다.
 DriverConnectionBase.error.driverDefinitionNotFound=드라이버 정의를 찾을 수 없습니다.
-error.loadprofilesxml=연결 프로파일 데이터 로드 중에 오류가 발생했습니다.
-error.saveprofilesxml=연결 프로파일 데이터 저장 중에 오류가 발생했습니다.
 error.loaddriversxml = 드라이버 정의 데이터 로드 중 오류 발생
 error.savedriversxml = 드라이버 정의 데이터 저장 중 오류 발생
-trace.error.propertiesPersistenceHook=기본값(프로파일 유형\={0}, 확장\={1})을 사용하는 propertiesPersistenceHook를 로드할 수 없습니다.
-trace.error.propertiesPersistenceHookSaveError=특성 지속 후크 호출 중에 오류 발생; 모든 특성 지속(프로파일\={0}, 확장\={1})
-trace.error.propertiesPersistenceHookLoadError=특성 지속 후크 호출 중에 오류 발생; 임시 특성이 설정되지 않음(프로파일\={0}, 확장\={1})
+
 trace.error.migration = 연결 프로필 공급자에 대한 마이그레이션 요소를 로딩하는 중 오류 발생(ID={0}, 마이그레이션 클래스={1})
 trace.error.drivermigration = 프로필의 드라이버 인스턴스 생성 도중 오류가 발생했습니다(ID={0}, 드라이버 ID={1}).
 
@@ -54,6 +42,7 @@ migration.error.invalidPropertyMigrationElement = 마이그레이션 요소를 로딩하는 �
 migration.error.unknownParentElement = 마이그레이션 요소를 로딩하는 중 오류 발생: 알 수 없는 상위 요소(상위 요소 이름={0})
 
 DriverUtil.taskName = {0}의 클래스 처리 중
+
 Category.Name.Unknown=지원 안 함
 
 WorkOfflineJob.name = {0}을(를) 오프라인 작업 모드로 변경하고 있습니다.
@@ -75,4 +64,5 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. 대신 데이터베이스 프로필에 �
 
 error.database.not.start = 시작 데이터베이스 명령이 전달되지 않았습니다. 오류 코드 = {0}, SQL 문 = {1}.
 PluginResourceLocator.invalidURL = 잘못된 URL {0} (오류\: {1})
+ConnectivityPlugin.error.noDefaultWorkspace = Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
 
