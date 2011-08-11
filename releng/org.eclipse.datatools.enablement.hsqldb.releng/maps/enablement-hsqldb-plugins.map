@@ -1,3 +1,3 @@
 plugin@org.eclipse.datatools.enablement.hsqldb.dbdefinition=GIT,tag=v200906161800,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.hsqldb.git,path=plugins/org.eclipse.datatools.enablement.hsqldb.dbdefinition
-plugin@org.eclipse.datatools.enablement.hsqldb.ui=GIT,tag=v200906020900,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.hsqldb.git,path=plugins/org.eclipse.datatools.enablement.hsqldb.ui
+plugin@org.eclipse.datatools.enablement.hsqldb.ui=GIT,tag=v201108120600,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.hsqldb.git,path=plugins/org.eclipse.datatools.enablement.hsqldb.ui
 plugin@org.eclipse.datatools.enablement.hsqldb=GIT,tag=v200906020900,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.hsqldb.git,path=plugins/org.eclipse.datatools.enablement.hsqldb
