@@ -44,6 +44,7 @@
     <target name="main" depends="init">
 		<antcall target="prepareMapFile"/>
 		<antcall target="buildDtpSdkAllFeature"/>
+		<antcall target="compareMapFiles" />
 		<antcall target="buildDtpEnablementAllFeature"/>
     	<antcall target="buildDtpDocISV"/>
 		<antcall target="buildDtpIncubationAllFeature"/>
@@ -58,7 +59,7 @@
 		<ant antfile="build.xml" target="init" />
 		<property file="${buildDirectory}/label.properties" />
 		
-		<condition property="fetchTag" value="HEAD">
+		<condition property="fetchTag" value="CVS=HEAD,GIT=master">
 			<equals arg1="${buildType}" arg2="N" />
 		</condition>
 		<condition property="forceContextQualifier" value="${buildId}">
@@ -84,50 +85,118 @@
 	</target>
 	
 	<target name="checkLocal">
-		<available property="mapsLocal" file="${buildDirectory}/maps/org.eclipse.datatools.releng" />
+		<available property="mapsLocal" file="${buildDirectory}/maps/releng" />
 	</target>
-
+	
 	<target name="prepareMapFile" depends="checkLocal" unless="mapsLocal">
 		
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.releng" dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" 
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" 
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" 
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" 
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}" 
-             package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" 
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
 		
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.build.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.incubator.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.modelbase.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.sqltools.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.doc.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.general.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.hsqldb.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ibm.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ingres.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.msft.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.mysql.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oda.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oracle.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.postgresql.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sap.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sqlite.git"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sybase.git"/>
+		</antcall>
+				
 		<!--compare the map files project-->
-		<antcall target="compareMapFiles" />
+		<!--antcall target="compareMapFiles" /-->
+
 		<!--tag the map files project-->
 		<antcall target="tagMapFiles" />
 			
 		<!-- this value could be overwrite by the bootstrap command -->
-		<property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
+		<!--property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
 		<property name="dtp.url.newvalue" value="${mapCvsRoot}"/>
 		
 		<replace dir="${buildDirectory}/maps" value="${dtp.url.newvalue}" token="${dtp.url.token}">
 			<include name="**/*.map" />
-		</replace>
+		</replace-->
+		
+		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
 		
 	</target>
 	
+	<target name="GetMapFiles">
+		<!--echo message="git clone ${mapGitRoot}/${gitRepo.name}.git ${buildDirectory}/TempRepo/${gitRepo.name}"/>
+		<exec executable="git">
+			<arg line="clone ${mapGitRoot}/${gitRepo.name}.git ${buildDirectory}/TempRepo/${gitRepo.name}"/>
+		</exec>
+		<exec executable="git" dir="${buildDirectory}/TempRepo/${gitRepo.name}">
+			<arg line="checkout ${mapVersionTag}"/>
+		</exec>
+		<copy todir="${buildDirectory}/maps">
+			<fileset dir="${buildDirectory}/TempRepo/${gitRepo.name}/releng" includes="${gitRepo.name}.releng/**"/>
+		</copy-->
+		<echo message="git archive -o ${buildDirectory}/maps/${gitRepo.name}.maps.tar --remote=${mapGitRoot}/${gitRepo.name} ${mapVersionTag} releng"/>
+		<exec executable="git" dir="${buildDirectory}/maps" output="${buildDirectory}/maps/${gitRepo.name}.maps.tar">
+                        <arg line="archive --format=tar" />
+                        <arg line="--remote=${mapGitRoot}/${gitRepo.name}" />
+                        <arg line="${mapVersionTag} releng" />
+                </exec>
+                <untar src="${buildDirectory}/maps/${gitRepo.name}.maps.tar" dest="${buildDirectory}/maps" />
+	</target>
+	
 	<target name="compareMapFiles" if="compareMaps">
-		<property file="${mapTag.properties}"/>
+		<!--property file="${mapTag.properties}"/>
 		<property name="cvsDiffFile" value="${buildDirectory}/cvsDiff.txt" />
 		<cvs cvsRoot="${mapCvsRoot}" dest="${buildDirectory}/maps" command="diff -w -r ${lastMapTag}" output="${cvsDiffFile}" />
-		<modifiedMaps mapDiffFile="${cvsDiffFile}" />
+		<modifiedMaps mapDiffFile="${cvsDiffFile}" /-->
+
+		<condition property="NoMapChange">
+			<filesmatch file1="${buildDirectory}/directory.txt" file2="last_directory.txt"/>	
+		</condition>
+		<ant antfile="${eclipse.build.configs}/../helper.xml" target="InformCancelBuild" />
+		<fail message="No change in map files, canceled build" if="NoMapChange"/>
+		
 	</target>
 
 	<target name="tagMapFiles" if="tagMaps">
