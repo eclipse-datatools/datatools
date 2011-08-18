@@ -64,5 +64,5 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. データベースプロファイルで定
 
 error.database.not.start = データベースの起動コマンドは発行されていません。 ErrorCode = {0}、SQLState = {1}
 PluginResourceLocator.invalidURL = URL {0} が無効です (エラー \: {1})
-ConnectivityPlugin.error.noDefaultWorkspace = Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+ConnectivityPlugin.error.noDefaultWorkspace = デフォルトのワークスペースの場所を特定できません。  プラグインまたはデータツールのワークスペースパスの OSGi レスプラットフォームの設定を確認してください。
 

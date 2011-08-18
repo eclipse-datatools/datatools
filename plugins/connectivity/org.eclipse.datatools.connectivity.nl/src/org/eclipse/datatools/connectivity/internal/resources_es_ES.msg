@@ -64,5 +64,5 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. Utilizar las propiedades de 
 
 error.database.not.start = No se ha introducido ningún comando de inicio de base de datos. ErrorCode = {0}, SQLState = {1}.
 PluginResourceLocator.invalidURL = URL no válida {0} (Error\: {1})
-ConnectivityPlugin.error.noDefaultWorkspace = Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+ConnectivityPlugin.error.noDefaultWorkspace = No es posible determinar la ubicación predeterminada del área de trabajo.  Compruebe la configuración de la plataforma sin OSGi de la ruta del área de trabajo de las herramientas de datos o el complemento.
 

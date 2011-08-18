@@ -64,5 +64,5 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. 대신 데이터베이스 프로필에 �
 
 error.database.not.start = 시작 데이터베이스 명령이 전달되지 않았습니다. 오류 코드 = {0}, SQL 문 = {1}.
 PluginResourceLocator.invalidURL = 잘못된 URL {0} (오류\: {1})
-ConnectivityPlugin.error.noDefaultWorkspace = Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+ConnectivityPlugin.error.noDefaultWorkspace = 기본 작업 영역 위치를 확인할 수 없습니다.  OSGi-less 플랫폼 구성 플러그인 또는 datatools 작업 영역 경로를 확인하십시오.
 
