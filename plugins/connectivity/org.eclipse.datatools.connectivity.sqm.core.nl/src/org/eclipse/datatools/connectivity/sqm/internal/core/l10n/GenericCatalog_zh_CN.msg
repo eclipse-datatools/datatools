@@ -22,4 +22,4 @@ FE_ELEMENT_HAS_NO_TYPE = 类型化元素 ({0}) 没有任何类型
 #DEFN
 DEFN_MISSING_ATTRIBUTE_VALUES={0} 配置元素的必需属性缺少值。
 # RDBCorePlugin
-RDBCorePlugin_NO_DEFAULT_WORKSPACE=Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+RDBCorePlugin_NO_DEFAULT_WORKSPACE=无法确定默认工作区位置。  检查插件的无 OSGi 平台配置或数据工具工作区路径。

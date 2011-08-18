@@ -22,4 +22,4 @@ FE_ELEMENT_HAS_NO_TYPE = 入力した要素 {0} に型がありません。
 #DEFN
 DEFN_MISSING_ATTRIBUTE_VALUES={0} 設定項目に必要な属性に値が指定されていません。
 # RDBCorePlugin
-RDBCorePlugin_NO_DEFAULT_WORKSPACE=Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+RDBCorePlugin_NO_DEFAULT_WORKSPACE=デフォルトのワークスペースの場所を特定できません。  プラグインまたはデータツールのワークスペースパスの OSGi レスプラットフォームの設定を確認してください。

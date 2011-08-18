@@ -22,4 +22,4 @@ FE_ELEMENT_HAS_NO_TYPE = 입력한 요소 {0}에 형식이 없습니다.
 #DEFN
 DEFN_MISSING_ATTRIBUTE_VALUES=구성 요소 {0}의 필수 특성 값이 없습니다.
 # RDBCorePlugin
-RDBCorePlugin_NO_DEFAULT_WORKSPACE=Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+RDBCorePlugin_NO_DEFAULT_WORKSPACE=기본 작업 영역 위치를 확인할 수 없습니다.  OSGi-less 플랫폼 구성 플러그인 또는 datatools 작업 영역 경로를 확인하십시오.

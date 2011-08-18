@@ -22,4 +22,4 @@ FE_ELEMENT_HAS_NO_TYPE = L'élément saisi {0} n'a aucun type
 #DEFN
 DEFN_MISSING_ATTRIBUTE_VALUES=Valeur manquante pour les attributs requis de l'élément de configuration {0}.
 # RDBCorePlugin
-RDBCorePlugin_NO_DEFAULT_WORKSPACE=Unable to determine the default workspace location.  Check your OSGi-less platform configuration of the plugin or datatools workspace path.
+RDBCorePlugin_NO_DEFAULT_WORKSPACE=Impossible de déterminer l'emplacement de l'espace de travail par défaut.  Vérifiez la configuration de la plate-forme sans OSGI du plugin ou des outils de données du chemin de l'espace de travail.
