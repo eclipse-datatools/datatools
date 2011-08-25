@@ -31,7 +31,7 @@ public class ResultSetMetaDataHelper
 	String[] originalColumnNames;
 	String[] columnLabels;
 	
-	private HashMap columnNameIndexMap = new HashMap( );
+	private HashMap<String, Integer> columnNameIndexMap = new HashMap<String, Integer>( );
 	
 	/**
 	 * Constructor
@@ -142,7 +142,7 @@ public class ResultSetMetaDataHelper
 	{
 		String originName = null;
 		
-		Integer index = (Integer)columnNameIndexMap.get( columnName );
+		Integer index = columnNameIndexMap.get( columnName );
 		
 		if ( index != null )
 		{

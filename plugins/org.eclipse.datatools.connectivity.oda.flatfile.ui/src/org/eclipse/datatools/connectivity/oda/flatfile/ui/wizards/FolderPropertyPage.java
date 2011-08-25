@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -55,6 +56,7 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		if ( pageHelper == null )
 			pageHelper = new FolderSelectionPageHelper( this );
 
+		pageHelper.setResourceIdentifiers( getHostResourceIdentifiers( ) );
 		pageHelper.createCustomControl( parent );
 
 		/* 
@@ -82,6 +84,17 @@ public class FolderPropertyPage extends DataSourceEditorPage
         
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
+        
+        if ( pageHelper != null && isSessionEditable() )
+        	pageHelper.restUIStatus( );
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+     */
+    protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
+    {
+    	return pageHelper.createTestConnectionRunnable( profile );
     }
 
 }
