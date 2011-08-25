@@ -7,5 +7,5 @@ Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.tests.plugin.A
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.oda.flatfile;bundle-version="[3.0.3,4.0.0)",
  org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.2,4.0.0)",
- org.junit;bundle-version="[3.8.1,4.0.0)"
+ org.junit;bundle-version="[3.8.1,5.0.0)"
 Eclipse-LazyStart: true
