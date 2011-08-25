@@ -17,7 +17,9 @@ package org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
@@ -37,6 +39,7 @@ import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
+import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -119,9 +122,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			Messages.getString( "datatypes.boolean" ) //$NON-NLS-1$
 	};
 
-	private HashMap dataTypeDisplayNameMap = new HashMap( );
+	private HashMap<Integer, String> dataTypeDisplayNameMap = new HashMap<Integer, String>( );
 
-	private HashMap dataTypeValueMape = new HashMap( );
+	private HashMap<String, String> dataTypeValueMape = new HashMap<String, String>( );
 
 	private final int DEFAULT_WIDTH = 200;
 	private final int DEFAULT_HEIGHT = 200;
@@ -137,6 +140,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private boolean initialized = true;
 
 	private String odaHome;
+	private String fileURI;
 	private String charSet = null;
 	private String inclColumnNameLine;
 	private String flatfileDelimiterType;
@@ -148,12 +152,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private String selectedFileFilter;
 
 	/** store latest selected file */
-	private File selectedFile;
+	private Object selectedFile;
 
 	private String nameOfFileWithErrorInLastAccess = null;
 	
-	private java.util.List originalFileColumnsInfoList = new ArrayList( );
-	private java.util.List savedSelectedColumnsInfoList = new ArrayList( );
+	private java.util.List<String[]> originalFileColumnsInfoList = new ArrayList<String[]>( );
+	private java.util.List<String[]> savedSelectedColumnsInfoList = new ArrayList<String[]>( );
 
 	/**
 	 * @param pageName
@@ -345,7 +349,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			public String getText( Object element )
 			{
-				return ( (File) element ).getName( );
+				if ( element instanceof File )
+					return ( (File) element ).getName( );
+				if ( element instanceof String )
+					return (String) element;
+				return element.toString( );
 			}
 		} );
 
@@ -457,7 +465,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				| GridData.FILL_HORIZONTAL );
 		gridData.heightHint = 25;
 		btnAdd.setLayoutData( gridData );
-		btnAdd.setToolTipText( Messages.getString( "tooltip.button.add" ) );
+		btnAdd.setToolTipText( Messages.getString( "tooltip.button.add" ) ); //$NON-NLS-1$
 
 		if ( btnAdd.getStyle( ) ==( btnAdd.getStyle( )|SWT.LEFT_TO_RIGHT))
 		{
@@ -602,8 +610,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		btnComposite.setLayout( layout );
 
 		btnMoveUp = new Button( btnComposite, SWT.NONE );
-		btnMoveUp.setText( Messages.getString( "button.moveUp" ) );
-		btnMoveUp.setToolTipText( Messages.getString( "tooltip.button.up" ) );
+		btnMoveUp.setText( Messages.getString( "button.moveUp" ) ); //$NON-NLS-1$
+		btnMoveUp.setToolTipText( Messages.getString( "tooltip.button.up" ) ); //$NON-NLS-1$
 		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -613,8 +621,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		} );
 
 		btnRemove = new Button( btnComposite, SWT.NONE );
-		btnRemove.setText( Messages.getString( "button.delete" ) );
-		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) );
+		btnRemove.setText( Messages.getString( "button.delete" ) ); //$NON-NLS-1$
+		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) ); //$NON-NLS-1$
 		btnRemove.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -624,8 +632,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		} );
 
 		btnMoveDown = new Button( btnComposite, SWT.NONE );
-		btnMoveDown.setText( Messages.getString( "button.moveDown" ) );
-		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) );
+		btnMoveDown.setText( Messages.getString( "button.moveDown" ) ); //$NON-NLS-1$
+		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) ); //$NON-NLS-1$
 		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -701,6 +709,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		selectedColumnsViewer.setContentProvider( new IStructuredContentProvider( ) {
 
+			@SuppressWarnings("rawtypes")
 			public Object[] getElements( Object inputElement )
 			{
 				if ( inputElement instanceof java.util.List )
@@ -863,7 +872,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private int getExistenceCount( String columnName )
 	{
 		int count = 0;
-		java.util.List existedColumns = new ArrayList( );
+		java.util.List<String[]> existedColumns = new ArrayList<String[]>( );
 		
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
 		{
@@ -920,7 +929,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	public void selectionChanged( SelectionChangedEvent event )
 	{
-		File file = (File) ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
+		Object file = ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
 
 		boolean columnsSaved = false;
 
@@ -950,8 +959,16 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		nameOfFileWithErrorInLastAccess = null;
 
 		// String fileName = m_fileViewer.getCombo().getText().toLowerCase();
-		String fileName = file.getName( );
-		String[] columnNames = getFileColumnNames( file );
+		String fileName = null;
+		if ( file instanceof File )
+		{
+			fileName = ((File) file).getName( );
+		}
+		else
+		{
+			fileName = (String) file;
+		}
+		String[] columnNames = getFileColumnNames( fileName );
 
 		if ( columnNames != null && columnNames.length != 0 )
 		{
@@ -1037,6 +1054,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		
 		odaHome = dataSourceProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
+		fileURI = dataSourceProps.getProperty( CommonConstants.CONN_FILE_URI_PROP );
 		charSet = dataSourceProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
 		flatfileDelimiterType = dataSourceProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
 		inclColumnNameLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
@@ -1052,37 +1070,36 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		if ( fileViewer != null && !fileViewer.getControl( ).isDisposed( ) )
 		{
-			if ( odaHome == null )
+			if ( odaHome == null && fileURI == null )
 			{
 				disableAll( );
 				return;
 			}
 
-			File folder = new File( odaHome );
-			if ( folder.isDirectory( ) && folder.exists( ) )
+			ArrayList<Object> allFiles = new ArrayList<Object>( );
+			if ( odaHome != null )
 			{
-				File[] files = folder.getAbsoluteFile( )
-						.listFiles( new CSVFileFilter( fileFilter.getCombo( )
-								.getText( ) ) );
-
-				if ( files != null )
+				File folder = new File( odaHome );
+				if ( folder.isDirectory( ) && folder.exists( ) )
 				{
-					fileViewer.setInput( files );
-				}
-				else
-				{
-					fileViewer.setInput( new File[]{} );
+					File[] files = folder.getAbsoluteFile( )
+					.listFiles( new CSVFileFilter( fileFilter.getCombo( )
+							.getText( ) ) );
+					
+					allFiles.addAll( Arrays.asList( files ) );
 				}
 			}
-			else
+			else if ( fileURI != null )
 			{
-				fileViewer.setInput( new File[]{} );
+				allFiles.add( fileURI );
 			}
-			File[] files = (File[]) fileViewer.getInput( );
+			fileViewer.setInput( allFiles.toArray( ) );
+			
+			Object[] files = (Object[]) fileViewer.getInput( );
 			if ( files.length > 0 )
 			{
 				enableListAndViewer( );
-				File toSelectFile = null;
+				Object toSelectFile = null;
 				if ( selectedFile != null )
 					for ( int i = 0; i < files.length; i++ )
 					{
@@ -1103,7 +1120,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 			else
 			{
-				setMessage( Messages.getFormattedString( "error.noCSVFiles", new Object[]{folder.getAbsolutePath( )} ) ); //$NON-NLS-1$
+				// Home folder does not contain specified file.
+				setMessage( Messages.getFormattedString( "error.noCSVFiles", //$NON-NLS-1$
+						new Object[]{
+							new File( odaHome ).getAbsolutePath( )
+						} ) );
 				disableAll( );
 			}
 		}
@@ -1115,17 +1136,17 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param file
 	 * @return
 	 */
-	private String[] getFileColumnNames( File file )
+	private String[] getFileColumnNames( String file )
 	{
-		java.util.List propList = getQueryColumnsInfo( "select * from " + QueryTextUtil.getQuotedName( file.getName( ) ), file ); //$NON-NLS-1$
+		java.util.List<String[]> propList = getQueryColumnsInfo( "select * from " + QueryTextUtil.getQuotedName( file ) ); //$NON-NLS-1$
 
 		String[] result;
 		if ( propList != null )
 		{
-			originalFileColumnsInfoList = new ArrayList( propList );
+			originalFileColumnsInfoList = new ArrayList<String[]>( propList );
 			result = new String[propList.size( )];
 			for ( int i = 0; i < propList.size( ); i++ )
-				result[i] = ( (String[]) propList.get( i ) )[1];
+				result[i] = propList.get( i )[1];
 		}
 		else
 			result = new String[0];
@@ -1139,21 +1160,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param file
 	 * @return
 	 */
-	private java.util.List getQueryColumnsInfo( String queryText, File file )
+	private java.util.List<String[]> getQueryColumnsInfo( String queryText )
 	{
 		IDriver ffDriver = new FlatFileDriver( );
 		IConnection conn = null;
-		java.util.List columnList = new ArrayList( );
+		java.util.List<String[]> columnList = new ArrayList<String[]>( );
 		try
 		{
 			conn = ffDriver.getConnection( null );
 			IResultSetMetaData metadata = getResultSetMetaData( queryText,
-					file,
 					conn );
 
 			int columnCount = metadata.getColumnCount( );
 			if ( columnCount == 0 )
-				return new ArrayList( );
+				return new ArrayList<String[]>( );
 
 			for ( int i = 0; i < columnCount; i++ )
 			{
@@ -1173,7 +1193,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			setMessage( e.getLocalizedMessage( ), ERROR );
 			updateExceptionInfo( );
-			return new ArrayList( );
+			return new ArrayList<String[]>( );
 		}
 		finally
 		{
@@ -1303,17 +1323,18 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @return
 	 * @throws OdaException
 	 */
+	@SuppressWarnings("unchecked")
 	private IResultSetMetaData getResultSetMetaData( String queryText,
-			File file, IConnection conn ) throws OdaException
+			IConnection conn ) throws OdaException
 	{
 		java.util.Properties prop = new java.util.Properties( );
-		if ( file != null )
+		if( odaHome != null )
 		{
-			if( file.getParent( ) == null )
-			{
-				throw new OdaException( Messages.getString( "error.unexpectedError" ) ); //$NON-NLS-1$
-			}
-			prop.put( CommonConstants.CONN_HOME_DIR_PROP, file.getParent( ) );
+			prop.put( CommonConstants.CONN_HOME_DIR_PROP, odaHome );
+		}
+		if( fileURI != null )
+		{
+			prop.put( CommonConstants.CONN_FILE_URI_PROP, fileURI );
 		}
 		if( flatfileDelimiterType != null )		
 		{
@@ -1338,6 +1359,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
 
+		@SuppressWarnings("rawtypes")
+		Map appContext = new HashMap();
+		appContext.put( org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS, getResourceIdentifiers( ) );
+		conn.setAppContext( appContext );
 		conn.open( prop );
 
 		IQuery query = conn.newQuery( null );
@@ -1346,6 +1371,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		query.executeQuery( );
 
 		return query.getMetaData( );
+	}
+	
+	private ResourceIdentifiers getResourceIdentifiers( )
+	{
+		ResourceIdentifiers ri = new ResourceIdentifiers();
+		ri.setApplResourceBaseURI( getHostResourceIdentifiers( ).getApplResourceBaseURI( ) );
+		ri.setDesignResourceBaseURI( getHostResourceIdentifiers( ).getDesignResourceBaseURI( ) );
+		return ri;
 	}
 
 	/**
@@ -1379,7 +1412,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param tViewer
 	 *            the table viewer
 	 */
-	private void setDisplayContent( java.util.List list, TableViewer tViewer )
+	private void setDisplayContent( java.util.List<String[]> list, TableViewer tViewer )
 	{
 		tViewer.getTable( ).removeAll( );
 		tViewer.setInput( list );
@@ -1399,10 +1432,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		
 		String tableName = null;
 		StringBuffer buf = new StringBuffer( );
-		File file = (File) ( (StructuredSelection) fileViewer.getSelection( ) ).getFirstElement( );
+		Object file = ( (StructuredSelection) fileViewer.getSelection( ) ).getFirstElement( );
 		if ( file != null )
 		{
-			tableName = file.getName( );
+			if ( file instanceof File )
+				tableName = ((File)file).getName( );
+			else if ( file instanceof String )
+				tableName = (String) file;
 		}
 		if ( tableName != null )
 		{
@@ -1470,7 +1506,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				// Now select the table in the list. If it doesn't exists, no
 				// need to process the columns.
-				File f = selectTableFromQuery( metadata[2] );
+				String f = selectTableFromQuery( metadata[2] );
 				if ( f != null )
 				{
 					updateColumnsFromQuery( queryText, f );
@@ -1494,14 +1530,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param queryText
 	 * @param file
 	 */
-	private void updateColumnsFromQuery( String queryText, File file )
+	private void updateColumnsFromQuery( String queryText, String file )
 	{
 		availableList.setItems( getFileColumnNames( file ) );
 		selectedColumnsViewer.getTable( ).removeAll( );
 
 		savedSelectedColumnsInfoList.clear( );
 
-		savedSelectedColumnsInfoList = getQueryColumnsInfo( queryText, file );
+		savedSelectedColumnsInfoList = getQueryColumnsInfo( queryText );
 
 		setDisplayContent( savedSelectedColumnsInfoList, selectedColumnsViewer );
 
@@ -1517,69 +1553,61 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	}
 
 	/**
-	 * Split Select clause of query text
-	 * 
-	 * @param selectedColumns
-	 * @return
-	 */
-	private String stripSelect( String selectedColumns )
-	{
-		String[] result = selectedColumns.split( "SELECT " ); //$NON-NLS-1$
-		if ( result.length == 2 )
-		{
-			return result[1];
-		}
-
-		return null;
-	}
-
-	/**
-	 * Split From clause of query text
-	 * 
-	 * @param selectedColumns
-	 * @return
-	 */
-	private static String[] stripFromClause( String query )
-	{
-		query = query.toUpperCase( );
-		return query.split( " FROM " ); //$NON-NLS-1$
-	}
-
-	/**
 	 * @param tableName
 	 * @return File
 	 */
-	private File selectTableFromQuery( String tableName )
+	private String selectTableFromQuery( String tableName )
 	{
 		// for page refresh
 		resetInitialized( );
 		fileFilter.setSelection( new StructuredSelection( MATCH_ALL_FILES ) );
-		File[] files = (File[]) fileViewer.getInput( );
+		Object[] files = (Object[]) fileViewer.getInput( );
 		if ( files != null )
 		{
 			for ( int n = 0; n < files.length; n++ )
 			{
-				if ( files[n].getName( ).equalsIgnoreCase( tableName ) )
+				if ( files[n] instanceof File )
 				{
-					resetInitialized( );
-					if ( tableName.toLowerCase( ).endsWith( CSV_EXTENSION ) )
-						fileFilter.setSelection( new StructuredSelection( ALL_CSV_EXTENSION ) );
-					else if ( tableName.toLowerCase( ).endsWith( TXT_EXTENSION ) )
-						fileFilter.setSelection( new StructuredSelection( ALL_TXT_EXTENSION ) );
-					else if ( tableName.toLowerCase( ).endsWith( SSV_EXTENSION ) )
-						fileFilter.setSelection( new StructuredSelection( ALL_SSV_EXTENSION ) );
-					else if ( tableName.toLowerCase( ).endsWith( TSV_EXTENSION ) )
-						fileFilter.setSelection( new StructuredSelection( ALL_TSV_EXTENSION ) );
-					else if ( tableName.toLowerCase( ).endsWith( PSV_EXTENSION ) )
-						fileFilter.setSelection( new StructuredSelection( ALL_PSV_EXTENSION ) );
-
-					fileViewer.setSelection( new StructuredSelection( files[n] ) );
-
-					return files[n];
+					File f = (File) files[n];
+					if ( f.getName( ).equalsIgnoreCase( tableName ) )
+					{
+						resetInitialized( );
+						setFileFilter( tableName );
+						fileViewer.setSelection( new StructuredSelection( files[n] ) );
+						return f.getName( );
+					}
 				}
+				else if ( files[n] instanceof String )
+				{
+					String uri = (String) files[n];
+					if ( uri.equals( tableName ))
+					{
+						resetInitialized( );
+						setFileFilter( tableName );
+						return uri;
+					}
+				}
+				
 			}
 		}
 		return null;
+	}
+	
+	private void setFileFilter( String table )
+	{
+		String tableName = table.toLowerCase( );
+		if ( tableName.endsWith( CSV_EXTENSION ) )
+			fileFilter.setSelection( new StructuredSelection( ALL_CSV_EXTENSION ) );
+		else if ( tableName.endsWith( TXT_EXTENSION ) )
+			fileFilter.setSelection( new StructuredSelection( ALL_TXT_EXTENSION ) );
+		else if ( tableName.endsWith( SSV_EXTENSION ) )
+			fileFilter.setSelection( new StructuredSelection( ALL_SSV_EXTENSION ) );
+		else if ( tableName.endsWith( TSV_EXTENSION ) )
+			fileFilter.setSelection( new StructuredSelection( ALL_TSV_EXTENSION ) );
+		else if ( tableName.endsWith( PSV_EXTENSION ) )
+			fileFilter.setSelection( new StructuredSelection( ALL_PSV_EXTENSION ) );
+		else
+			fileFilter.setSelection( new StructuredSelection( ALL_PSV_EXTENSION ) );
 	}
 
 	private void resetInitialized( )
@@ -1636,10 +1664,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			if ( !btnMoveDown.isEnabled( ) )
 				btnMoveDown.setEnabled( true );
 
-			Object obj = savedSelectedColumnsInfoList.get( index );
+			String[] columnInfo = savedSelectedColumnsInfoList.get( index );
 			savedSelectedColumnsInfoList.set( index,
 					savedSelectedColumnsInfoList.get( index - 1 ) );
-			savedSelectedColumnsInfoList.set( index - 1, obj );
+			savedSelectedColumnsInfoList.set( index - 1, columnInfo );
 			selectedColumnsViewer.refresh( );
 			selectedColumnsViewer.getTable( ).setSelection( index - 1 );
 		}
@@ -1658,10 +1686,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			if ( !btnMoveUp.isEnabled( ) )
 				btnMoveUp.setEnabled( true );
 
-			Object obj = savedSelectedColumnsInfoList.get( index );
+			String[] columnInfo = savedSelectedColumnsInfoList.get( index );
 			savedSelectedColumnsInfoList.set( index,
 					savedSelectedColumnsInfoList.get( index + 1 ) );
-			savedSelectedColumnsInfoList.set( index + 1, obj );
+			savedSelectedColumnsInfoList.set( index + 1, columnInfo );
 			selectedColumnsViewer.refresh( );
 			selectedColumnsViewer.getTable( ).setSelection( index + 1 );
 		}
@@ -1676,7 +1704,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private void addColumns( )
 	{
-		java.util.List addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
+		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
 		
 		for ( int i = 0; i < addedItems.size( ); i++ )
 		{
@@ -1712,9 +1740,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param addedColumnNames
 	 * @return
 	 */
-	private java.util.List createAddedColumnsInfo( String[] addedColumnNames )
+	private java.util.List<String[]> createAddedColumnsInfo( String[] addedColumnNames )
 	{
-		java.util.List addedColumnsInfo = new ArrayList( );
+		java.util.List<String[]> addedColumnsInfo = new ArrayList<String[]>( );
 		int count = 0;
 
 		for ( int i = 0; i < addedColumnNames.length; i++ )
@@ -1760,7 +1788,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		int index = selectedColumnsViewer.getTable( ).getSelectionIndex( );
 		String[] removedColumnInfo = null;
 
-		java.util.List removedItems = new ArrayList( );
+		java.util.List<String[]> removedItems = new ArrayList<String[]>( );
 		for ( int i = 0; i < tis.length; i++ )
 		{
 			removedColumnInfo = new String[3];
@@ -1801,7 +1829,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 *            list that contains the given elements that are going to be
 	 *            removed
 	 */
-	private void removeItemsFromSelectedOnes( java.util.List removedItemsList )
+	private void removeItemsFromSelectedOnes( java.util.List<String[]> removedItemsList )
 	{
 		for ( int i = 0; i < removedItemsList.size( ); i++ )
 		{
@@ -1842,7 +1870,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			IDriver ffDriver = new FlatFileDriver( );
 			conn = ffDriver.getConnection( null );
 			IResultSetMetaData metadata = getResultSetMetaData( queryText,
-					selectedFile,
 					conn );
 			setResultSetMetaData( dataSetDesign, metadata );
 		}

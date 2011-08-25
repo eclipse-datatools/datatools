@@ -15,15 +15,22 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.SortedMap;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
+import org.eclipse.datatools.connectivity.oda.flatfile.InvalidResourceException;
+import org.eclipse.datatools.connectivity.oda.flatfile.ResourceLocator;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
+import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -32,6 +39,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -39,6 +47,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -47,14 +56,20 @@ public class FolderSelectionPageHelper
 
 	private WizardPage wizardPage;
 	private PreferencePage propertyPage;
+	private ResourceIdentifiers ri;
 
 	private transient Text folderLocation = null;
+	private transient Text fileURI = null;
+	private transient Button browseLocalFileButton = null;
 	private transient Button typeLineCheckBox = null;
 	private transient Button browseFolderButton = null;
 	private transient Combo charSetSelectionCombo = null;
 	private transient Button columnNameLineCheckBox = null;
 	private transient Combo flatFileStyleCombo = null;
 	private transient Button trailNullColsCheckBox = null;
+	private transient Composite parent = null;
+	private transient Button homeFolderChoice = null;
+	private transient Button fileURIChoice = null;
 
 	private static final String[] flatFileStyles= new String[]{
 		Messages.getString( "label.flatfileComma" ), //$NON-NLS-1$
@@ -63,13 +78,13 @@ public class FolderSelectionPageHelper
 		Messages.getString( "label.flatfileTab" ),//$NON-NLS-1$
 	};
 
-	private SortedMap charSetMap;
+	private SortedMap<String, Charset> charSetMap;
 
 	static final String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
 
-	private static final int CORRECT_FOLDER = 0;
-	private static final int ERROR_FOLDER = 1;
-	private static final int ERROR_EMPTY_PATH = 2;
+	private static final int CORRECT_FOLDER = InvalidResourceException.CORRECT_RESOURCE;
+	private static final int ERROR_INVALID_PATH = InvalidResourceException.ERROR_INVALID_RESOURCE;
+	private static final int ERROR_EMPTY_PATH = InvalidResourceException.ERROR_EMPTY_RESOURCE;
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	FolderSelectionPageHelper( WizardPage page )
@@ -88,13 +103,16 @@ public class FolderSelectionPageHelper
 	 */
 	void createCustomControl( Composite parent )
 	{
+		this.parent = parent;
 		Composite content = new Composite( parent, SWT.NULL );
 		GridLayout layout = new GridLayout( 3, false );
 		content.setLayout( layout );
 
 		// GridData data;
 		setupFolderLocation( content );
-
+		
+		setupFileURI( content );
+		
 		setupCharset( content );
 
 		setupFlatfileStyleList( content );
@@ -118,6 +136,13 @@ public class FolderSelectionPageHelper
 		if ( folderLocation == null )
 			return EMPTY_STRING;
 		return getFolderLocationString( );
+	}
+	
+	String getFileURI( )
+	{
+		if ( fileURI == null)
+			return EMPTY_STRING;
+		return getFileURIString( );
 	}
 
 	/**
@@ -178,8 +203,18 @@ public class FolderSelectionPageHelper
 			props = new Properties( );
 
 		// set custom driver specific properties
-		props.setProperty( CommonConstants.CONN_HOME_DIR_PROP,
-				getFolderLocation( ).trim( ) );
+		if ( homeFolderChoice.getSelection( ) )
+		{
+			props.setProperty( CommonConstants.CONN_HOME_DIR_PROP,
+					getFolderLocation( ).trim( ) );
+			props.remove( CommonConstants.CONN_FILE_URI_PROP );
+		}
+		if ( fileURIChoice.getSelection( ) )
+		{
+			props.setProperty( CommonConstants.CONN_FILE_URI_PROP, getFileURI( ) );
+			props.remove( CommonConstants.CONN_HOME_DIR_PROP );
+		}
+		
 		props.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getFlatfileStyle( ) );
 		props.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
@@ -189,6 +224,7 @@ public class FolderSelectionPageHelper
 		props.setProperty( CommonConstants.CONN_CHARSET_PROP, getCharSet( ) );
 		props.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
 				getWhetherUseTrailNulls( ) );
+		
 		return props;
 	}
 
@@ -199,14 +235,23 @@ public class FolderSelectionPageHelper
 	void initCustomControl( Properties profileProps )
 	{
 		if ( profileProps == null
-				|| profileProps.isEmpty( ) || folderLocation == null )
+				|| profileProps.isEmpty( ) || folderLocation == null || fileURI == null )
 			return; // nothing to initialize
 
 		String folderPath = profileProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		if ( folderPath == null )
-			folderPath = EMPTY_STRING;
-		setFolderLocationString( folderPath );
-
+		if ( folderPath != null && !folderPath.isEmpty( ) )
+		{
+			setFolderLocationString( folderPath );
+			switchFileSelectionMode( true );
+		}
+				
+		String fileURI = profileProps.getProperty( CommonConstants.CONN_FILE_URI_PROP );
+		if ( fileURI != null && !fileURI.isEmpty( ) )
+		{
+			setFileURIString( fileURI );
+			switchFileSelectionMode( false );
+		}
+		
 		String delimiterType = profileProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
 		initFlatfileSytleSelection( delimiterType );
 
@@ -287,6 +332,11 @@ public class FolderSelectionPageHelper
 		folderLocation.setText( TextProcessorWrapper.process( folderPath ) );
 	}
 	
+	private void setFileURIString( String file )
+	{
+		fileURI.setText( TextProcessorWrapper.process( file ) );
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -294,6 +344,11 @@ public class FolderSelectionPageHelper
 	private String getFolderLocationString( )
 	{
 		return TextProcessorWrapper.deprocess( folderLocation.getText( ) );
+	}
+	
+	private String getFileURIString( )
+	{
+		return TextProcessorWrapper.deprocess( fileURI.getText( ) );
 	}
 
 	/**
@@ -326,11 +381,23 @@ public class FolderSelectionPageHelper
 	 */
 	private void setupFolderLocation( Composite composite )
 	{
-		Label label = new Label( composite, SWT.NONE );
-		label.setText( Messages.getString( "label.selectFolder" ) ); //$NON-NLS-1$
+		homeFolderChoice = new Button( composite, SWT.RADIO );
+		homeFolderChoice.addSelectionListener( new SelectionListener(){
 
+			public void widgetSelected( SelectionEvent e )
+			{
+				switchFileSelectionMode( true );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent e )
+			{
+				switchFileSelectionMode( true );
+			}
+			
+		});
+		homeFolderChoice.setText( Messages.getString( "label.selectFolder" ) ); //$NON-NLS-1$
+		
 		GridData data = new GridData( GridData.FILL_HORIZONTAL );
-
 		folderLocation = new Text( composite, SWT.BORDER );
 		folderLocation.setLayoutData( data );
 		setPageComplete( false );
@@ -369,47 +436,137 @@ public class FolderSelectionPageHelper
 			}
 		} );
 	}
+	
+	private void setupFileURI( Composite composite )
+	{
+		fileURIChoice = new Button( composite, SWT.RADIO );
+		fileURIChoice.addSelectionListener( new SelectionListener(){
 
+			public void widgetSelected( SelectionEvent e )
+			{
+				switchFileSelectionMode( false );
+			}
+
+			public void widgetDefaultSelected( SelectionEvent e )
+			{
+				switchFileSelectionMode( false );
+			}
+			
+		});
+		fileURIChoice.setText( Messages.getString( "label.fileURI" ) ); //$NON-NLS-1$
+		
+		GridData data = new GridData( GridData.FILL_HORIZONTAL );
+		fileURI = new Text( composite, SWT.BORDER );
+		fileURI.setLayoutData( data );
+		setPageComplete( false );
+		fileURI.addModifyListener( new ModifyListener(){
+			public void modifyText( ModifyEvent e )
+			{
+				verifyFileLocation( );
+			}
+		});
+		fileURI.setToolTipText( Messages.getString( "lable.fileURI.tooltip" ) ); //$NON-NLS-1$
+		
+		browseLocalFileButton = new Button( composite, SWT.NONE );
+		browseLocalFileButton.setText( Messages.getString( "button.selectFileURI.browse" ) ); //$NON-NLS-1$
+		browseLocalFileButton.setToolTipText( Messages.getString( "button.selectFileURI.browse.tooltips" ) ); //$NON-NLS-1$
+		browseLocalFileButton.addSelectionListener( new SelectionAdapter(){
+			public void widgetSelected( SelectionEvent e )
+			{
+				FileDialog dialog = new FileDialog( fileURI.getShell( ) ); 
+				String path = getFileURIString( );
+				if( path != null && path.trim( ).length( ) > 0 )
+				{
+					dialog.setFilterPath( path );
+				}
+				String filePath = dialog.open( );
+				if( filePath != null )
+				{
+					try
+					{
+						setFileURIString( new File( filePath ).toURI( ).toURL( ).toExternalForm( ) );
+					}
+					catch ( MalformedURLException e1 )
+					{
+					}
+				}
+			}
+		});
+	}
+	
+	private void switchFileSelectionMode( boolean homeFolder )
+	{
+		folderLocation.setEnabled( homeFolder );
+		browseFolderButton.setEnabled( homeFolder );
+		homeFolderChoice.setSelection( homeFolder );
+		
+		fileURI.setEnabled( !homeFolder );
+		browseLocalFileButton.setEnabled( !homeFolder );
+		fileURIChoice.setSelection( !homeFolder );
+	}
+	
 	/**
 	 * 
 	 * @return
 	 */
 	private int verifyFileLocation( )
 	{
-		int result = CORRECT_FOLDER;
-		String folderLocationValue = getFolderLocationString( );
-		if ( folderLocationValue.trim( ).length( ) > 0 )
+		try
 		{
-			File f = new File( folderLocationValue.trim( ) );
-			if ( f.exists( ) )
+			return verifyFileLocation( true );
+		}
+		catch ( InvalidResourceException e )
+		{
+			return ERROR_INVALID_PATH;
+		}
+	}
+	
+	private void verfiyFileLocation( ) throws InvalidResourceException
+	{
+		verifyFileLocation( false );
+	}
+	
+	private int verifyFileLocation( boolean supressException ) throws InvalidResourceException
+	{
+		String folderLocationValue = getFolderLocationString( ).trim( );
+		String fileURIValue = getFileURIString( ).trim( );
+		folderLocationValue = folderLocationValue.length( ) > 0 ? folderLocationValue
+				: null;
+		fileURIValue = fileURIValue.length( ) > 0 ? fileURIValue : null;
+		
+		try
+		{
+			if ( fileURIChoice.getSelection( ) )
+				ResourceLocator.validateFileURI( fileURIValue, ri );
+			else if ( homeFolderChoice.getSelection( ) )
+				ResourceLocator.validateHomeFolder( folderLocationValue );
+		}
+		catch ( InvalidResourceException ex )
+		{
+			setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
+			if( wizardPage == null ) // Otherwise, show error.
 			{
-				setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				setPageComplete( true );
+				if ( !supressException )
+				{
+					throw ex;
+				}
+			}
+			if ( supressException )
+			{
+				return ERROR_INVALID_PATH;
 			}
 			else
 			{
-				setMessage( Messages.getString( "error.selectFolder" ), IMessageProvider.ERROR ); //$NON-NLS-1$
-				setPageComplete( false );
-				result = ERROR_FOLDER;
+				throw ex;
 			}
 		}
-		else
-		{
-			setMessage( Messages.getString( "error.emptyPath" ), IMessageProvider.ERROR ); //$NON-NLS-1$
-			setPageComplete( false );
-			result = ERROR_EMPTY_PATH;
-		}
-		if( result == CORRECT_FOLDER )
-			return result;
 		
-		if( wizardPage == null )
-		{
-			setPageComplete( true );
-			setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$
-		}
-		return result;
+		setPageComplete( true );
+		setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+		return CORRECT_FOLDER;
 	}
-
+	
 	/**
 	 * @param composite
 	 */
@@ -428,7 +585,7 @@ public class FolderSelectionPageHelper
 		Object[] charSetsArray = charSetMap.keySet( ).toArray( );
 		for ( int i = 0; i < charSetsArray.length; i++ )
 		{
-			String charSetName = ( (Charset) charSetMap.get( charSetsArray[i] ) ).name( );
+			String charSetName = charSetMap.get( charSetsArray[i] ).name( );
 			charSetSelectionCombo.add( charSetName );
 			if ( CommonConstants.CONN_DEFAULT_CHARSET.equalsIgnoreCase( charSetName ) )
 				charSetSelectionCombo.select( i );
@@ -556,6 +713,65 @@ public class FolderSelectionPageHelper
        return null;
     }
 
+	public Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+	{
+		return new Runnable() 
+        {
+			public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                
+                if ( exception == null ) //succeed in creating connection
+                {
+					exception = testConnection( );
+                }
+                
+                PingJob.PingUIJob.showTestConnectionMessage( parent.getShell( ), exception );
+                if( conn != null )
+                {
+                    conn.close();
+                }
+            }
+
+			private Throwable testConnection(  )
+			{
+				Throwable exception = null;
+				try
+				{
+					verfiyFileLocation( );
+				}
+				catch ( InvalidResourceException ex )
+				{
+					exception = ex;
+				}
+				return exception;
+			}
+		};
+	}
+
+	public void setResourceIdentifiers( org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers resourceIdentifiers )
+	{
+		if ( resourceIdentifiers != null )
+		{
+			this.ri = new ResourceIdentifiers();
+			ri.setApplResourceBaseURI( resourceIdentifiers.getApplResourceBaseURI( ) );
+			ri.setDesignResourceBaseURI( resourceIdentifiers.getDesignResourceBaseURI( ) );
+		}
+	}
+
+	public void restUIStatus( )
+	{
+		if ( getFileURI().length( ) > 0 )
+		{
+			switchFileSelectionMode( false );
+		}
+		else
+		{
+			switchFileSelectionMode( true );
+		}
+	}
 }
 
 

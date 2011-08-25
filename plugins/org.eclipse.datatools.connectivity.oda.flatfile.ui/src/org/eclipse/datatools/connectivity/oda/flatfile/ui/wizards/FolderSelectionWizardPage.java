@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -28,7 +29,7 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
 	public FolderSelectionWizardPage( String pageName )
 	{
 		super( pageName );
-		setMessage( FolderSelectionPageHelper.DEFAULT_MESSAGE );
+		setMessage( FolderSelectionPageHelper.DEFAULT_MESSAGE ); 
 		// page title is specified in extension manifest
 	}
 
@@ -39,6 +40,7 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
 	{
 		if ( pageHelper == null )
 			pageHelper = new FolderSelectionPageHelper( this );
+		pageHelper.setResourceIdentifiers( getHostResourceIdentifiers( ) );
 		pageHelper.createCustomControl( parent );
 		pageHelper.initCustomControl( folderProperties ); // in case init was called before create 
 
@@ -67,6 +69,9 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
     {
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
+        
+        if ( pageHelper != null && isSessionEditable() )
+        	pageHelper.restUIStatus( );
     }
 
 	/* (non-Javadoc)
@@ -95,6 +100,14 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
 	{
 		super.setVisible( visible );
 		getControl( ).setFocus( );
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
+	{
+		return pageHelper.createTestConnectionRunnable( profile );
 	}
 
 }
