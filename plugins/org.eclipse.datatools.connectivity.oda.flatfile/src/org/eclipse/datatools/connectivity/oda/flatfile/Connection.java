@@ -75,11 +75,11 @@ public class Connection implements IConnection
 			throws OdaException
 	{
 		homeFolder = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		if ( homeFolder != null && homeFolder.trim( ).isEmpty( ) )
+		if ( homeFolder != null && homeFolder.trim( ).length() == 0 )
 			homeFolder = null;
 		
 		fileURI = connProperties.getProperty( CommonConstants.CONN_FILE_URI_PROP );
-		if ( fileURI != null && fileURI.trim( ).isEmpty( ) )
+		if ( fileURI != null && fileURI.trim( ).length() == 0 )
 			fileURI = null;
 		
 		if ( homeFolder == null && fileURI == null )

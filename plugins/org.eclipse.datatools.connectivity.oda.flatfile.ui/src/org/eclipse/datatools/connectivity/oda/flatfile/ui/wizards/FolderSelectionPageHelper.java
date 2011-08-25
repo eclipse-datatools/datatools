@@ -239,14 +239,14 @@ public class FolderSelectionPageHelper
 			return; // nothing to initialize
 
 		String folderPath = profileProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		if ( folderPath != null && !folderPath.isEmpty( ) )
+		if ( folderPath != null && folderPath.length() != 0 )
 		{
 			setFolderLocationString( folderPath );
 			switchFileSelectionMode( true );
 		}
 				
 		String fileURI = profileProps.getProperty( CommonConstants.CONN_FILE_URI_PROP );
-		if ( fileURI != null && !fileURI.isEmpty( ) )
+		if ( fileURI != null && fileURI.length() != 0 )
 		{
 			setFileURIString( fileURI );
 			switchFileSelectionMode( false );
