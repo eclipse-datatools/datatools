@@ -31,7 +31,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	private String[] columnTypeNames = null;
 	private String[] columnLabels = null;
 	
-	private HashMap columnNameIndexMap = new HashMap(); 
+	private HashMap<String, Integer> columnNameIndexMap = new HashMap<String, Integer>(); 
 
 	/**
 	 * Constructor
@@ -156,7 +156,7 @@ public class ResultSetMetaData implements IResultSetMetaData
     public int findColumn( String columnName ) throws OdaException
     {
         String trimmedColumnName = columnName.trim();
-        Integer index = (Integer)(columnNameIndexMap.get( trimmedColumnName.toUpperCase( ) ));
+        Integer index = columnNameIndexMap.get( trimmedColumnName.toUpperCase( ) );
         if (index == null)
         {
         	throw new OdaException( Messages

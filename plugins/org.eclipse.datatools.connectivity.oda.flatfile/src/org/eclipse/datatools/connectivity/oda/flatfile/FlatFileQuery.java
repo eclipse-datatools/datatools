@@ -23,7 +23,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IConnection;
@@ -55,9 +54,6 @@ public class FlatFileQuery implements IQuery
 	// Whether to use 2nd line as Type line
 	private boolean hasTypeLine ;
 
-	//the properties of the connection
-	private Properties connProperties;
-
 	// The table that the query operates on
 	private String currentTableName = null;
 
@@ -65,7 +61,7 @@ public class FlatFileQuery implements IQuery
 	private int maxRows = 0;
 
 	// The Connection instance associated with the Query.
-	private IConnection connection = null;
+	private Connection connection = null;
 
 	// The meta data of the query's result set.
 	// It is available only after a query is prepared.
@@ -80,14 +76,12 @@ public class FlatFileQuery implements IQuery
 	 * @param host
 	 * @throws OdaException 
 	 */
-	public FlatFileQuery(Properties connProperties, IConnection host ) throws OdaException
+	public FlatFileQuery(IConnection host ) throws OdaException
 	{
-		if ( connProperties == null
-				|| connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP ) == null
-				|| host == null )
+		if ( host == null
+				|| ( ((Connection) host).getHomeFolder( ) == null && ((Connection) host).getFileURI( ) == null ) )
 			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
-		this.connProperties = connProperties;
-		this.connection = host;
+		this.connection = (Connection) host;
 		extractsHasColumnNamesInfo( );
 		extractsHasColumnTypeLineInfo( );
 	}
@@ -98,10 +92,7 @@ public class FlatFileQuery implements IQuery
 	 */
 	private void extractsHasColumnNamesInfo( )
 	{
-		this.hasColumnNames = connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP )
-				.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO ) 
-				? false
-				: true;
+		this.hasColumnNames = connection.hasColumnNames( );
 	}
 	
 	/**
@@ -110,36 +101,8 @@ public class FlatFileQuery implements IQuery
 	 */
 	private void extractsHasColumnTypeLineInfo( )
 	{
-		this.hasTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP )
-				.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) 
-				? false
-				: true;
+		this.hasTypeLine = connection.hasTypeLine( );
 	}
-
-	
-	/**
-	 * 
-	 * @param homeDir
-	 * @param host
-	 * @param charSet
-	 * @param delimiter
-	 * @param inclColumnNames
-	 * @param inclTypeLine
-	 * @throws OdaException
-	 */
-/*	public FlatFileQuery( String homeDir, IConnection host, String charSet,
-			String delimiter, boolean inclColumnNames, boolean inclTypeLine )
-			throws OdaException
-	{
-		if ( homeDir == null || host == null )
-			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
-		this.homeDirectory = homeDir;
-		this.connection = host;
-		this.charSet = charSet;
-		this.delimiter = delimiter.charAt( 0 );
-		this.hasColumnNames = inclColumnNames;
-		this.hasTypeLine = inclTypeLine;
-	}*/
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#prepare(java.lang.String)
@@ -216,7 +179,7 @@ public class FlatFileQuery implements IQuery
 	 */
 	public IResultSet executeQuery( ) throws OdaException
 	{
-		return new ResultSet( new FlatFileDataReader( this.connProperties,
+		return new ResultSet( new FlatFileDataReader( this.connection,
 				this.currentTableName,
 				this.maxRows,
 				this.resultSetMetaData,
@@ -459,7 +422,6 @@ public class FlatFileQuery implements IQuery
     public void setSpecification( QuerySpecification querySpec )
             throws OdaException, UnsupportedOperationException
     {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException( );
     }
 
@@ -468,7 +430,6 @@ public class FlatFileQuery implements IQuery
      */
     public QuerySpecification getSpecification()
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -477,7 +438,6 @@ public class FlatFileQuery implements IQuery
      */
     public String getEffectiveQueryText()
     {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException();
     }
 
@@ -589,11 +549,11 @@ public class FlatFileQuery implements IQuery
 	 * @param queryColumnNames
 	 * @return
 	 */
-	private Vector getQueryColumnNamesVector( String queryColumnNames )
+	private Vector<String> getQueryColumnNamesVector( String queryColumnNames )
 	{
-		Vector result = new Vector( );
+		Vector<String> result = new Vector<String>( );
 		char[] chars = queryColumnNames.toCharArray( );
-		List indiceList = new ArrayList( );
+		List<Integer> indiceList = new ArrayList<Integer>( );
 		boolean inQuote = false;
 		boolean isEscaped = false;
 		int beginIndex = 0;
@@ -650,9 +610,9 @@ public class FlatFileQuery implements IQuery
 	 * @param queryColumnNames
 	 * @return
 	 */
-	private Vector stripFormatInfoFromQueryColumnNames( Vector queryColumnNames)
+	private Vector<String> stripFormatInfoFromQueryColumnNames( Vector<String> queryColumnNames )
 	{
-		Vector columnNames = new Vector( );
+		Vector<String> columnNames = new Vector<String>( );
 		
 		boolean isEscaped = false;
 		
@@ -740,7 +700,7 @@ public class FlatFileQuery implements IQuery
 	private String[] discoverActualColumnMetaData( String tableName,
 			String metaDataType ) throws OdaException
 	{
-		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connProperties,
+		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connection,
 				tableName,
 				0,
 				null,
@@ -760,7 +720,7 @@ public class FlatFileQuery implements IQuery
 					continue;
 			}
 			// Skip all the empty lines until reach the first line
-			List columnNameLine;
+			List<String> columnNameLine;
 			while ( FlatFileDataReader.isEmptyRow( columnNameLine = ffdsr.readLine( ) ) )
 				continue;
 
@@ -774,11 +734,6 @@ public class FlatFileQuery implements IQuery
 
 			return trimStringArray( result );
 
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
-					+ ffdsr.findDataFileAbsolutePath( ) );
 		}
 		finally 
 		{
@@ -908,7 +863,7 @@ public class FlatFileQuery implements IQuery
 		// the name of table against which the query will be executed
 		String tableName = getPreparedTableNames( queryFragments );
 
-		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connProperties , tableName, 0, null, null );
+		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connection , tableName, 0, null, null );
 		
 		// the array that contains the actual column names read from data file
 		String[] allColumnNames = this.hasColumnNames
@@ -1112,7 +1067,7 @@ public class FlatFileQuery implements IQuery
 		 * @throws OdaException
 		 * @throws IOException
 		 */
-		public List readLine( ) throws OdaException, IOException
+		public List<String> readLine( ) throws OdaException
 		{
 			int newLineStartIndex = currentIndex + 1;
 			StringBuffer column = new StringBuffer( ); //current parsing column in the line
@@ -1122,7 +1077,7 @@ public class FlatFileQuery implements IQuery
 				//do not exist more char for read
 				return null;
 			}
-			List result = new ArrayList( );
+			List<String> result = new ArrayList<String>( );
 			do 
 			{
 				char curChar = getChar( ); 
@@ -1178,7 +1133,7 @@ public class FlatFileQuery implements IQuery
 			return result;
 		}
 		
-		private void moveToEndOfColumn( ) throws IOException, OdaException
+		private void moveToEndOfColumn( ) throws OdaException
 		{
 			if ( next( ) )
 			{
@@ -1200,7 +1155,7 @@ public class FlatFileQuery implements IQuery
 			}
 		}
 		
-		private void moveToEndQuotation( StringBuffer column ) throws IOException, OdaException
+		private void moveToEndQuotation( StringBuffer column ) throws OdaException
 		{
 			do 
 			{
@@ -1238,7 +1193,7 @@ public class FlatFileQuery implements IQuery
 			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 		}
 		
-		private boolean next( ) throws IOException
+		private boolean next( ) throws OdaException
 		{
 			if ( currentIndex < endIndex )
 			{
@@ -1247,16 +1202,24 @@ public class FlatFileQuery implements IQuery
 			}
 			else
 			{
-				int len = reader.read( charBuffer );
-				if ( len <= 0 )
+				int len;
+				try
 				{
-					return false; //eof
+					len = reader.read( charBuffer );
+					if ( len <= 0 )
+					{
+						return false; //eof
+					}
+					else
+					{
+						currentIndex = 0;
+						endIndex = len - 1;
+						return true;
+					}
 				}
-				else
+				catch ( IOException e )
 				{
-					currentIndex = 0;
-					endIndex = len - 1;
-					return true;
+					throw new OdaException( e );
 				}
 			}
 		}

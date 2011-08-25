@@ -21,12 +21,14 @@ public final class CommonConstants
 {
 
 	public static final String CONN_HOME_DIR_PROP = "HOME"; //$NON-NLS-1$
+	public static final String CONN_FILE_URI_PROP = "URI"; //$NON-NLS-1$
 	public static final String CONN_CHARSET_PROP = "CHARSET"; //$NON-NLS-1$
 	public static final String CONN_INCLCOLUMNNAME_PROP = "INCLCOLUMNNAME"; //$NON-NLS-1$
 	public static final String CONN_INCLTYPELINE_PROP = "INCLTYPELINE"; //$NON-NLS-1$
 	public static final String CONN_DEFAULT_CHARSET = "UTF-8"; //$NON-NLS-1$
 	public static final String CONN_DELIMITER_TYPE = "DELIMTYPE"; //$NON-NLS-1$
 	public static final String CONN_TRAILNULLCOLS_PROP = "TRAILNULLCOLS"; //$NON-NLS-1$
+	public static final String CONN_RESOURCE_IDENTIFIER = "RESOURCE_IDENTIFIER"; //$NON-NLS-1$
 
 	public static final String DELIMITER_COMMA = "COMMA"; //$NON-NLS-1$
 	public static final String DELIMITER_COMMA_VALUE = ","; //$NON-NLS-1$
