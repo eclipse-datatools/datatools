@@ -2,6 +2,10 @@
 
 connection_CONNECTION_PROPERTIES_MISSING=缺少连接属性。
 connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=打不开以下目录下的平面文件数据库：
+connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
+connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
+connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
+connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
 
 query_COMMAND_IS_EMPTY=查询命令是空的。
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=不支持交叉表查询。

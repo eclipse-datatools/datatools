@@ -2,6 +2,10 @@
 
 connection_CONNECTION_PROPERTIES_MISSING=Les propriétés de connexion sont manquantes.
 connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=Impossible d'ouvrir la base de données du fichier à plat sous le répertoire \: 
+connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
+connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
+connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
+connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
 
 query_COMMAND_IS_EMPTY=La commande de requête est vide.
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=La requête multi-table n'est pas prise en charge.

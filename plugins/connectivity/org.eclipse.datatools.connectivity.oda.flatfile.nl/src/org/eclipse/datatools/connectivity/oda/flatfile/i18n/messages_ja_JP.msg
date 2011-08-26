@@ -2,6 +2,10 @@
 
 connection_CONNECTION_PROPERTIES_MISSING=接続プロパティーが欠落しています。
 connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=ディレクトリー下のフラット・ファイル・データベースを開くことができません。 
+connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
+connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
+connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
+connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
 
 query_COMMAND_IS_EMPTY=QUERY コマンドが空です。
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=クロス・テーブル・クエリーはサポートされていません。

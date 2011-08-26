@@ -22,6 +22,7 @@ datasource.property.charset=Conjunto de &caracteres
 datasource.property.incltypeline=Utilizar la segunda línea como indicador de tipo de &datos
 datasource.property.inclcolumnnameline=Utilizar la primera línea como indicador de &nombre de columna
 datasource.property.trailnullcols=Usar columnas nulas finales
+datasource.property.uri=File &URI
 
 dataset.property.savedcolumnsinfo=La información sobre cada columna
 

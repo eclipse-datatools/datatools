@@ -2,6 +2,10 @@
 
 connection_CONNECTION_PROPERTIES_MISSING=Verbindungseigenschaften fehlen.
 connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=Die Flachdateidatenbank unterhalb des folgenden Verzeichnisses kann nicht geöffnet werden\: 
+connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
+connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
+connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
+connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
 
 query_COMMAND_IS_EMPTY=Der Abfragebefehl ist leer.
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=Tabellenübergreifende Abfragen werden nicht unterstützt.

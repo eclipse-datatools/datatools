@@ -22,6 +22,7 @@ datasource.property.charset=字符集(&C)
 datasource.property.incltypeline=将第二行用作数据类型指示器(&D)
 datasource.property.inclcolumnnameline=使用第一行作为列名称指示器(&N)
 datasource.property.trailnullcols=使用空后缀列
+datasource.property.uri=File &URI
 
 dataset.property.savedcolumnsinfo=关于每列的信息
 
