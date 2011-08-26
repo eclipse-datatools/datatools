@@ -2,7 +2,9 @@ wizard.title.selectColumns=Seleccionar columnas
 wizard.defaultMessage.selectFolder=Seleccione la carpeta que contiene los archivos sin formato.
 wizard.defaultMessage.selectFile=Seleccione el archivo y las columnas del conjunto de datos.
 
-label.selectFolder=S&eleccionar carpeta: 
+label.selectFolder=S&elect home folder: 
+label.fileURI=Enter file &URI:
+lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
 label.selectFile=Seleccionar &archivo:
 label.fileFilter=&Filtro de archivo:
 label.includeTypeLine=Utilice la segunda línea como indicador de tipo de &datos.
@@ -16,6 +18,8 @@ label.flatfileTab=TSV
 label.trailNull=Use columnas &nulas finales.
 
 button.selectFolder.browse=&Examinar...
+button.selectFileURI.browse=&Local File
+button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=A&rriba
 button.moveDown=A&bajo
 button.delete=Elimi&nar
@@ -60,6 +64,8 @@ error.duplicatedNameValueOrEmpty=Valor de nombre duplicado o vacío
 error.invalidSavedColumnsInfo = Información de columnas guardada no válida
 error.invalidColumnName=Nombre de columna no válido
 error.invalidQureyText=Texto de consulta no válido
+error.invalidURIPath=The URI entered is invalid.
+error.URIConnectionFailure=Cannot open connection to the URI resource.
 
 title.warning=Aviso
 warning.fileExtensionInvalid=El archivo seleccionado podría ser un archivo sin formato no válido.

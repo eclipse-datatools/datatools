@@ -2,7 +2,9 @@ wizard.title.selectColumns=열 선택
 wizard.defaultMessage.selectFolder=플랫 파일이 들어 있는 폴더 선택합니다.
 wizard.defaultMessage.selectFile=데이터 집합에 대한 파일 및 열 선택을 선택합니다.
 
-label.selectFolder=폴더 선택(&E): 
+label.selectFolder=S&elect home folder: 
+label.fileURI=Enter file &URI:
+lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
 label.selectFile=파일 선택(&I):
 label.fileFilter=파일 필터(&R):
 label.includeTypeLine=데이터 형식 표시기로 두 번째 줄을 사용(&D)
@@ -16,6 +18,8 @@ label.flatfileTab=TSV
 label.trailNull=후행 널 열 사용(&N)
 
 button.selectFolder.browse=찾아보기(&R)...
+button.selectFileURI.browse=&Local File
+button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=위로(&U)
 button.moveDown=아래로(&W)
 button.delete=삭제(&E)
@@ -60,6 +64,8 @@ error.duplicatedNameValueOrEmpty=중복된 이름 값 또는 비어 있음
 error.invalidSavedColumnsInfo = 잘못 저장된 열 정보
 error.invalidColumnName=잘못된 열 이름
 error.invalidQureyText=잘못된 쿼리 텍스트
+error.invalidURIPath=The URI entered is invalid.
+error.URIConnectionFailure=Cannot open connection to the URI resource.
 
 title.warning=경고
 warning.fileExtensionInvalid=선택된 파일은 유효한 플랫 파일이 아닐 수 있습니다.

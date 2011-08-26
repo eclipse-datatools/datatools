@@ -2,7 +2,9 @@ wizard.title.selectColumns=Spalten auswählen
 wizard.defaultMessage.selectFolder=Ordner mit den unstrukturierten Dateien auswählen.
 wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
 
-label.selectFolder=Ordner aus&wählen: 
+label.selectFolder=S&elect home folder: 
+label.fileURI=Enter file &URI:
+lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
 label.selectFile=Date&i auswählen:
 label.fileFilter=Dateifilte&r:
 label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden.
@@ -16,6 +18,8 @@ label.flatfileTab=TSV
 label.trailNull=Spalten mit &Nullen in Endposition verwenden.
 
 button.selectFolder.browse=Du&rchsuchen...
+button.selectFileURI.browse=&Local File
+button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=Nach &oben
 button.moveDown=Nach &unten
 button.delete=Lösch&en
@@ -60,6 +64,8 @@ error.duplicatedNameValueOrEmpty=Doppelter Namenswert oder leer
 error.invalidSavedColumnsInfo = Ungültige gespeicherte Spalteninformationen
 error.invalidColumnName=Ungültiger Spaltenname
 error.invalidQureyText=Ungültiger Abfragetext
+error.invalidURIPath=The URI entered is invalid.
+error.URIConnectionFailure=Cannot open connection to the URI resource.
 
 title.warning=Warnung
 warning.fileExtensionInvalid=Bei der ausgewählten Datei handelt es sich möglicherweise nicht um eine gültige Flatfile.
