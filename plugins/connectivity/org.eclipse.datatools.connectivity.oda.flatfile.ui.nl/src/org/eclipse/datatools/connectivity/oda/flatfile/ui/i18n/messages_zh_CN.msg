@@ -18,7 +18,9 @@ label.flatfileTab=TSV
 label.trailNull=使用空后缀列(&N)。
 
 button.selectFolder.browse=浏览(&R)...
-button.selectFileURI.browse=&Local File
+button.selectFileURI.browse=&Browse...
+button.selectFileURI.menuItem.relativePath=Relative path
+button.selectFileURI.menuItem.absolutePath=Absolute path
 button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=上移(&U)
 button.moveDown=下移(&W)
@@ -76,3 +78,9 @@ confirm.reselectFileNameTitle=确认选择另一个平面文件。
 confirm.reselectFileNameMessage=是否要保持列选择与当前定义相同?
 warning.columnNotExist=选择的列“{0}”不存在!
 
+fileURIChanged.warning.reselectColumnsTitle=File URI in the data source is changed.
+fileURIChanged.warning.reselectColumnsMessage=File URI in the data source is changed!\nPlease select columns again.
+Connection.warning.untested=Connection has not been tested. Please test connection before saving this data source profile.
+Connection.error.invalidPath=No valid flat file locations found.
+Connection.error.invalidHomeFolder=Invalid flat file home folder <{0}>.
+Connection.error.invalidFileURI=Invalid flat file URI path <{0}>.

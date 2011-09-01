@@ -18,7 +18,9 @@ label.flatfileTab=TSV
 label.trailNull=Utilisez les colonnes &nulles de fin.
 
 button.selectFolder.browse=Pa&rcourir...
-button.selectFileURI.browse=&Local File
+button.selectFileURI.browse=&Browse...
+button.selectFileURI.menuItem.relativePath=Relative path
+button.selectFileURI.menuItem.absolutePath=Absolute path
 button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=Vers le ha&ut
 button.moveDown=&Vers le bas
@@ -76,3 +78,9 @@ confirm.reselectFileNameTitle=Confirmez pour sélectionner un autre fichier plat.
 confirm.reselectFileNameMessage=Souhaitez-vous conserver la sélection de colonnes telle que définie actuellement ?
 warning.columnNotExist=La colonne sélectionnée "{0}" n'existe pas !
 
+fileURIChanged.warning.reselectColumnsTitle=File URI in the data source is changed.
+fileURIChanged.warning.reselectColumnsMessage=File URI in the data source is changed!\nPlease select columns again.
+Connection.warning.untested=Connection has not been tested. Please test connection before saving this data source profile.
+Connection.error.invalidPath=No valid flat file locations found.
+Connection.error.invalidHomeFolder=Invalid flat file home folder <{0}>.
+Connection.error.invalidFileURI=Invalid flat file URI path <{0}>.

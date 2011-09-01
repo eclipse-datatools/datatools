@@ -18,7 +18,9 @@ label.flatfileTab=TSV
 label.trailNull=후행 널 열 사용(&N)
 
 button.selectFolder.browse=찾아보기(&R)...
-button.selectFileURI.browse=&Local File
+button.selectFileURI.browse=&Browse...
+button.selectFileURI.menuItem.relativePath=Relative path
+button.selectFileURI.menuItem.absolutePath=Absolute path
 button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=위로(&U)
 button.moveDown=아래로(&W)
@@ -76,3 +78,9 @@ confirm.reselectFileNameTitle=다른 플랫 파일 선택을 확인하십시오.
 confirm.reselectFileNameMessage=열 선택을 현재 정의된 것과 동일하게 유지하시겠습니까?
 warning.columnNotExist=선택한 열 "{0}"이(가) 없습니다!
 
+fileURIChanged.warning.reselectColumnsTitle=File URI in the data source is changed.
+fileURIChanged.warning.reselectColumnsMessage=File URI in the data source is changed!\nPlease select columns again.
+Connection.warning.untested=Connection has not been tested. Please test connection before saving this data source profile.
+Connection.error.invalidPath=No valid flat file locations found.
+Connection.error.invalidHomeFolder=Invalid flat file home folder <{0}>.
+Connection.error.invalidFileURI=Invalid flat file URI path <{0}>.

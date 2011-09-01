@@ -18,7 +18,9 @@ label.flatfileTab=TSV
 label.trailNull=末尾 NULL 列を使用する(&N)
 
 button.selectFolder.browse=参照(&R)...
-button.selectFileURI.browse=&Local File
+button.selectFileURI.browse=&Browse...
+button.selectFileURI.menuItem.relativePath=Relative path
+button.selectFileURI.menuItem.absolutePath=Absolute path
 button.selectFileURI.browse.tooltips=Select a local file URI.
 button.moveUp=上へ(&U)
 button.moveDown=下へ(&W)
@@ -76,3 +78,9 @@ confirm.reselectFileNameTitle=別のフラットファイルの選択の確認
 confirm.reselectFileNameMessage=現在の定義と同じ列選択を維持しますか ?
 warning.columnNotExist=選択した列 "{0}" が存在しません。
 
+fileURIChanged.warning.reselectColumnsTitle=File URI in the data source is changed.
+fileURIChanged.warning.reselectColumnsMessage=File URI in the data source is changed!\nPlease select columns again.
+Connection.warning.untested=Connection has not been tested. Please test connection before saving this data source profile.
+Connection.error.invalidPath=No valid flat file locations found.
+Connection.error.invalidHomeFolder=Invalid flat file home folder <{0}>.
+Connection.error.invalidFileURI=Invalid flat file URI path <{0}>.
