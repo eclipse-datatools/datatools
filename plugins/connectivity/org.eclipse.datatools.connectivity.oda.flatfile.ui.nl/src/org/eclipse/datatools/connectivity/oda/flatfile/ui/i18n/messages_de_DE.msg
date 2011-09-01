@@ -1,10 +1,10 @@
 wizard.title.selectColumns=Spalten auswählen
-wizard.defaultMessage.selectFolder=Ordner mit den unstrukturierten Dateien auswählen.
+wizard.defaultMessage.selectFolder=Wählen Sie einen Ordner mit unstrukturierten Dateien aus, oder geben Sie einen URI für die unstrukturierte Datei ein.
 wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
 
-label.selectFolder=S&elect home folder: 
-label.fileURI=Enter file &URI:
-lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
+label.selectFolder=Stammordner auswähl&en 
+label.fileURI=Datei-&URI eingeben:
+lable.fileURI.tooltip=Geben Sie einen URI für die Datei ein, oder wählen Sie eine lokale Datei aus. 
 label.selectFile=Date&i auswählen:
 label.fileFilter=Dateifilte&r:
 label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden.
@@ -18,10 +18,10 @@ label.flatfileTab=TSV
 label.trailNull=Spalten mit &Nullen in Endposition verwenden.
 
 button.selectFolder.browse=Du&rchsuchen...
-button.selectFileURI.browse=&Browse...
+button.selectFileURI.browse=&Lokale Datei
 button.selectFileURI.menuItem.relativePath=Relative path
 button.selectFileURI.menuItem.absolutePath=Absolute path
-button.selectFileURI.browse.tooltips=Select a local file URI.
+button.selectFileURI.browse.tooltips=Wählen Sie den URI einer lokalen Datei aus.
 button.moveUp=Nach &oben
 button.moveDown=Nach &unten
 button.delete=Lösch&en
@@ -66,8 +66,8 @@ error.duplicatedNameValueOrEmpty=Doppelter Namenswert oder leer
 error.invalidSavedColumnsInfo = Ungültige gespeicherte Spalteninformationen
 error.invalidColumnName=Ungültiger Spaltenname
 error.invalidQureyText=Ungültiger Abfragetext
-error.invalidURIPath=The URI entered is invalid.
-error.URIConnectionFailure=Cannot open connection to the URI resource.
+error.invalidURIPath=Der eingegebene URI ist ungültig.
+error.URIConnectionFailure=Verbindung zur URI-Ressource kann nicht geöffnet werden.
 
 title.warning=Warnung
 warning.fileExtensionInvalid=Bei der ausgewählten Datei handelt es sich möglicherweise nicht um eine gültige Flatfile.

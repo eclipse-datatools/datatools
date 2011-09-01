@@ -1,10 +1,10 @@
 wizard.title.selectColumns=选择列
-wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹。
+wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹或输入平面文件的 URI。
 wizard.defaultMessage.selectFile=为数据集选择文件和列。
 
-label.selectFolder=S&elect home folder: 
-label.fileURI=Enter file &URI:
-lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
+label.selectFolder=选择主文件夹(&E): 
+label.fileURI=输入文件 URI(&U):
+lable.fileURI.tooltip=输入文件的 URI 或选择本地文件。 
 label.selectFile=选择文件(&I):
 label.fileFilter=文件筛选(&R):
 label.includeTypeLine=将第二行用作数据类型指示器(&D)。
@@ -18,10 +18,10 @@ label.flatfileTab=TSV
 label.trailNull=使用空后缀列(&N)。
 
 button.selectFolder.browse=浏览(&R)...
-button.selectFileURI.browse=&Browse...
+button.selectFileURI.browse=本地文件(&L)
 button.selectFileURI.menuItem.relativePath=Relative path
 button.selectFileURI.menuItem.absolutePath=Absolute path
-button.selectFileURI.browse.tooltips=Select a local file URI.
+button.selectFileURI.browse.tooltips=选择本地文件 URI。
 button.moveUp=上移(&U)
 button.moveDown=下移(&W)
 button.delete=删除(&E)
@@ -66,8 +66,8 @@ error.duplicatedNameValueOrEmpty=名称值重复或为空
 error.invalidSavedColumnsInfo = 无效的保存列信息
 error.invalidColumnName=无效列名称
 error.invalidQureyText=无效查询文本
-error.invalidURIPath=The URI entered is invalid.
-error.URIConnectionFailure=Cannot open connection to the URI resource.
+error.invalidURIPath=输入的 URI 无效。
+error.URIConnectionFailure=无法打开通往 URI 资源的连接。
 
 title.warning=警告
 warning.fileExtensionInvalid=选择的文件可能不是有效的平面文件。

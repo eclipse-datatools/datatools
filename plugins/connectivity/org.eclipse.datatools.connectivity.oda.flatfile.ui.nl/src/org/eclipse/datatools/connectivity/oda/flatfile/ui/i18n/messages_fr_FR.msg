@@ -1,10 +1,10 @@
 wizard.title.selectColumns=Sélection des colonnes
-wizard.defaultMessage.selectFolder=Sélectionnez le dossier qui contient les fichiers plats.
+wizard.defaultMessage.selectFolder=Sélectionnez un dossier contenant les fichiers plats ou saisissez un URI pour le fichier plat.
 wizard.defaultMessage.selectFile=Sélectionnez le fichier et les colonnes pour le jeu de données.
 
-label.selectFolder=S&elect home folder: 
-label.fileURI=Enter file &URI:
-lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
+label.selectFolder=Sél&ectionnez un dossier racine : 
+label.fileURI=Saisissez l'&URI de fichier :
+lable.fileURI.tooltip=Saisissez un URI pour le fichier ou sélectionnez un fichier local. 
 label.selectFile=Sélectionnez un f&ichier :
 label.fileFilter=Filt&re de fichier :
 label.includeTypeLine=Utilisez la deuxième ligne comme indicateur du type de &données.
@@ -18,10 +18,10 @@ label.flatfileTab=TSV
 label.trailNull=Utilisez les colonnes &nulles de fin.
 
 button.selectFolder.browse=Pa&rcourir...
-button.selectFileURI.browse=&Browse...
+button.selectFileURI.browse=Fichier &local
 button.selectFileURI.menuItem.relativePath=Relative path
 button.selectFileURI.menuItem.absolutePath=Absolute path
-button.selectFileURI.browse.tooltips=Select a local file URI.
+button.selectFileURI.browse.tooltips=Sélectionnez un URI de fichier local.
 button.moveUp=Vers le ha&ut
 button.moveDown=&Vers le bas
 button.delete=&Supprimer
@@ -66,8 +66,8 @@ error.duplicatedNameValueOrEmpty=Valeur de nom dupliquée ou vide
 error.invalidSavedColumnsInfo = Informations de colonnes enregistrées incorrectes
 error.invalidColumnName=Nom de colonne incorrect
 error.invalidQureyText=Texte de la requête incorrect
-error.invalidURIPath=The URI entered is invalid.
-error.URIConnectionFailure=Cannot open connection to the URI resource.
+error.invalidURIPath=L'URI saisi n'est pas valide.
+error.URIConnectionFailure=Impossible d'établir la connexion avec la ressource URI.
 
 title.warning=Avertissement
 warning.fileExtensionInvalid=Le fichier sélectionné n'est peut-être pas un fichier plat correct.

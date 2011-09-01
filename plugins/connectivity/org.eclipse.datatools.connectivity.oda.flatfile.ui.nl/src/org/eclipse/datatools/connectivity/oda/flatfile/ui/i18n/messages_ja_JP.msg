@@ -1,10 +1,10 @@
 wizard.title.selectColumns=列の選択
-wizard.defaultMessage.selectFolder=フラットファイルが入っているフォルダを選択してください。
+wizard.defaultMessage.selectFolder=フラットファイルが入っているフォルダを選択するか、フラットファイルの URI を入力してください。
 wizard.defaultMessage.selectFile=データセットのファイルと列を選択してください。
 
-label.selectFolder=S&elect home folder: 
-label.fileURI=Enter file &URI:
-lable.fileURI.tooltip=Enter a URI for the file or select a local file. 
+label.selectFolder=ホームフォルダの選択(&E): 
+label.fileURI=ファイルの URI の入力(&U):
+lable.fileURI.tooltip=ファイルの URI を入力するか、ローカルファイルを選択してください。 
 label.selectFile=ファイルの選択(&I) :
 label.fileFilter=ファイルフィルタ(&R) :
 label.includeTypeLine=2 行目をデータ型のインジケータとして使用する(&D)
@@ -18,10 +18,10 @@ label.flatfileTab=TSV
 label.trailNull=末尾 NULL 列を使用する(&N)
 
 button.selectFolder.browse=参照(&R)...
-button.selectFileURI.browse=&Browse...
+button.selectFileURI.browse=ローカルファイル(&L):
 button.selectFileURI.menuItem.relativePath=Relative path
 button.selectFileURI.menuItem.absolutePath=Absolute path
-button.selectFileURI.browse.tooltips=Select a local file URI.
+button.selectFileURI.browse.tooltips=ローカルファイルの URI を選択してください。
 button.moveUp=上へ(&U)
 button.moveDown=下へ(&W)
 button.delete=削除(&E)
@@ -66,8 +66,8 @@ error.duplicatedNameValueOrEmpty=名前の値が重複しているか、空白です。
 error.invalidSavedColumnsInfo = 保存された列情報が無効です。
 error.invalidColumnName=列名が無効です。
 error.invalidQureyText=クエリテキストが無効です。
-error.invalidURIPath=The URI entered is invalid.
-error.URIConnectionFailure=Cannot open connection to the URI resource.
+error.invalidURIPath=無効な URI が入力されました。
+error.URIConnectionFailure=URI リソースへの接続を開けません。
 
 title.warning=警告
 warning.fileExtensionInvalid=選択したファイルは、有効なフラットファイルではない可能性があります。
