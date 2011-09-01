@@ -34,6 +34,8 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver;
+import org.eclipse.datatools.connectivity.oda.flatfile.InvalidResourceException;
+import org.eclipse.datatools.connectivity.oda.flatfile.ResourceLocator;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
@@ -374,6 +376,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			public void selectionChanged( SelectionChangedEvent event )
 			{
+				if ( fileURI != null && fileURI.length( ) > 0 )
+					return;
+				
 				String currSelectFilter = fileFilter.getCombo( ).getText( );
 				if ( currSelectFilter.equalsIgnoreCase( selectedFileFilter ) )
 					return;
@@ -931,43 +936,51 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		Object file = ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
 
-		boolean columnsSaved = false;
+		// File URI mode
+		if ( fileURI != null && fileURI.length( ) > 0 )
+		{
+			if ( file != null ) // Update column info.
+			{
+				updateAvailableColumnsInfo( (String) file );
+				validateSelectedColumns( );
+			}
+			return;
+		}
 
+		// Home folder mode
 		if ( file.equals( selectedFile ) )
 			return;
-		else if ( selectedFile != null )
-		{
-			if ( MessageDialog.openConfirm( getShell( ),
-					Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
-					Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
-			{
-				columnsSaved = true;
-			}
-			else
-			{
-				selectedColumnsViewer.getTable( ).removeAll( );
-				savedSelectedColumnsInfoList.clear( );
-			}
-
-		}
-
-		selectedFile = file;
-		setPageComplete( false );
-
-		availableList.removeAll( );
-
-		nameOfFileWithErrorInLastAccess = null;
-
-		// String fileName = m_fileViewer.getCombo().getText().toLowerCase();
-		String fileName = null;
-		if ( file instanceof File )
-		{
-			fileName = ((File) file).getName( );
-		}
 		else
 		{
-			fileName = (String) file;
+			// Not initialized or file selection changed.
+			setPageComplete( false );
+			availableList.removeAll( );
+			nameOfFileWithErrorInLastAccess = null;
+			updateAvailableColumnsInfo( ((File) file).getName( ) );
+			
+			if ( selectedFile != null ) // File selection changed.
+			{
+				if ( savedSelectedColumnsInfoList.size( ) > 0  )
+				{
+					if ( MessageDialog.openConfirm( getShell( ),
+							Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
+							Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
+					{
+						validateSelectedColumns( );
+					}
+					else
+					{
+						selectedColumnsViewer.getTable( ).removeAll( );
+						savedSelectedColumnsInfoList.clear( );
+					}
+				}
+			}
+			selectedFile = file;
 		}
+	}
+	
+	private void updateAvailableColumnsInfo( String fileName )
+	{
 		String[] columnNames = getFileColumnNames( fileName );
 
 		if ( columnNames != null && columnNames.length != 0 )
@@ -989,13 +1002,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			else
 				setMessage( DEFAULT_MESSAGE );
 		}
-
-		if ( columnsSaved )
-		{
-			validateSelectedColumns( );
-		}
 	}
-
+	
 	private void validateSelectedColumns( )
 	{
 		boolean pageComplete = true;
@@ -1019,6 +1027,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				pageComplete = false;
 			}
 		}
+		if ( savedSelectedColumnsInfoList.size( ) <= 0)
+			pageComplete = false;
+		
 		if ( pageComplete )
 		{
 			setMessage( DEFAULT_MESSAGE );
@@ -1060,9 +1071,54 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		inclColumnNameLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		inclTypeLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
 		trailNullCols = dataSourceProps.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
-
+		
+		verifyFileLocation( );
 	}
-
+	
+	private void verifyFileLocation( )
+	{
+		if ( fileURI != null && fileURI.length( ) > 0 )
+		{
+			try
+			{
+				ResourceLocator.validateFileURI( fileURI,
+						this.getResourceIdentifiers( ) );
+			}
+			catch ( InvalidResourceException ex )
+			{
+				this.setMessage( Messages.getFormattedString( "Connection.error.invalidFileURI", //$NON-NLS-1$
+						new Object[]{
+							fileURI
+						} ),
+						ERROR );
+				fileURI = null;
+			}
+		}
+		else if ( odaHome != null && odaHome.length( ) > 0 )
+		{
+			try
+			{
+				ResourceLocator.validateHomeFolder( odaHome );
+			}
+			catch ( InvalidResourceException e )
+			{
+				this.setMessage( Messages.getFormattedString( "Connection.error.invalidHomeFolder", //$NON-NLS-1$
+						new Object[]{
+							odaHome
+						} ),
+						ERROR );
+				odaHome = null;
+			}
+		}
+		else
+		{
+			this.setMessage( Messages.getString( "Connection.error.invalidPath" //$NON-NLS-1$
+			), ERROR );
+			fileURI = null;
+			odaHome = null;
+		}
+	}
+	
 	/**
 	 * Update file list in combo viewer
 	 */
@@ -1095,38 +1151,53 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 			fileViewer.setInput( allFiles.toArray( ) );
 			
-			Object[] files = (Object[]) fileViewer.getInput( );
-			if ( files.length > 0 )
+			if ( allFiles.size( ) <= 0 )
 			{
-				enableListAndViewer( );
-				Object toSelectFile = null;
-				if ( selectedFile != null )
-					for ( int i = 0; i < files.length; i++ )
-					{
-						if ( files[i].equals( selectedFile ) )
-						{
-							toSelectFile = selectedFile;
-							break;
-						}
-					}
-				if ( toSelectFile == null )
-					toSelectFile = files[0];
-
-				fileViewer.setSelection( new StructuredSelection( toSelectFile ) );
-				if (!( nameOfFileWithErrorInLastAccess != null
-						&& nameOfFileWithErrorInLastAccess.equals( fileViewer.getCombo( )
-								.getText( ) ) ))
-					setMessage( DEFAULT_MESSAGE );
-			}
-			else
-			{
-				// Home folder does not contain specified file.
 				setMessage( Messages.getFormattedString( "error.noCSVFiles", //$NON-NLS-1$
 						new Object[]{
 							new File( odaHome ).getAbsolutePath( )
 						} ) );
 				disableAll( );
 			}
+			else 
+			{
+				updateFileSelection( );
+			}
+		}
+	}
+	
+	private void updateFileSelection( )
+	{
+		Object[] files = (Object[]) fileViewer.getInput( );
+		if ( files.length > 0 )
+		{
+			enableListAndViewer( );
+			Object toSelectFile = null;
+			if ( selectedFile != null )
+				for ( int i = 0; i < files.length; i++ )
+				{
+					if ( files[i].equals( selectedFile ) )
+					{
+						toSelectFile = selectedFile;
+						break;
+					}
+				}
+			if ( toSelectFile == null )
+				toSelectFile = files[0];
+
+			fileViewer.setSelection( new StructuredSelection( toSelectFile ) );
+			if (!( nameOfFileWithErrorInLastAccess != null
+					&& nameOfFileWithErrorInLastAccess.equals( fileViewer.getCombo( )
+							.getText( ) ) ))
+				setMessage( DEFAULT_MESSAGE );
+		}
+		else
+		{
+			setMessage( Messages.getFormattedString( "error.noCSVFiles", //$NON-NLS-1$
+					new Object[]{
+						new File( odaHome ).getAbsolutePath( )
+					} ) );
+			disableAll( );
 		}
 	}
 
@@ -1500,7 +1571,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			String query = ( new QueryTextUtil( queryText ) ).getQuery( );
 			String[] metadata = QueryTextUtil.getQueryMetaData( query );
-
+			
 			// The query must have a table name and columns.
 			if ( metadata != null && metadata[0] != null && metadata[2] != null )
 			{
@@ -1558,39 +1629,50 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private String selectTableFromQuery( String tableName )
 	{
-		// for page refresh
-		resetInitialized( );
-		fileFilter.setSelection( new StructuredSelection( MATCH_ALL_FILES ) );
-		Object[] files = (Object[]) fileViewer.getInput( );
-		if ( files != null )
+		String selected = null;
+		if ( fileURI != null && fileURI.length( ) > 0 )
 		{
-			for ( int n = 0; n < files.length; n++ )
+			if ( !fileURI.equals( tableName ) )
 			{
-				if ( files[n] instanceof File )
+				availableList.removeAll( );
+				nameOfFileWithErrorInLastAccess = null;
+				MessageDialog.openWarning( getShell( ),
+						Messages.getString( "fileURIChanged.warning.reselectColumnsTitle" ), //$NON-NLS-1$
+						Messages.getString( "fileURIChanged.warning.reselectColumnsMessage" ) ); //$NON-NLS-1$
+				
+				updateAvailableColumnsInfo( fileURI );
+				selectedColumnsViewer.getTable( ).removeAll( );
+				savedSelectedColumnsInfoList.clear( );
+				fileViewer.setSelection( new StructuredSelection( fileURI ) );
+				setPageComplete( false );
+				setMessage( Messages.getString( "error.selectColumns" ), ERROR ); //$NON-NLS-1$
+			}
+			else
+				selected = tableName;
+		}
+		else
+		{
+			resetInitialized( );
+			fileFilter.setSelection( new StructuredSelection( MATCH_ALL_FILES ) );
+			Object[] files = (Object[]) fileViewer.getInput( );
+			if ( files != null )
+			{
+				for ( int n = 0; n < files.length; n++ )
 				{
 					File f = (File) files[n];
 					if ( f.getName( ).equalsIgnoreCase( tableName ) )
 					{
+						selectedFile = f;
 						resetInitialized( );
 						setFileFilter( tableName );
 						fileViewer.setSelection( new StructuredSelection( files[n] ) );
-						return f.getName( );
+						selected = f.getName( );
+						break;
 					}
 				}
-				else if ( files[n] instanceof String )
-				{
-					String uri = (String) files[n];
-					if ( uri.equals( tableName ))
-					{
-						resetInitialized( );
-						setFileFilter( tableName );
-						return uri;
-					}
-				}
-				
 			}
 		}
-		return null;
+		return selected;
 	}
 	
 	private void setFileFilter( String table )
@@ -1848,7 +1930,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		
 		validateSelectedColumns( );
 	}
-
+	
 	/**
 	 * Updates the given dataSetDesign with the query and its metadata defined
 	 * in this page.
