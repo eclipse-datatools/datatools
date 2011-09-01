@@ -1,11 +1,11 @@
 # Exception messages for the Oda Flat File Driver
 
 connection_CONNECTION_PROPERTIES_MISSING=Faltan las propiedades de conexión.
-connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=No se puede abrir la base de datos del archivo plano bajo el directorio\: 
-connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
-connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
-connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
-connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
+connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=No se puede abrir la carpeta inicial del archivo sin formato: 
+connection_CANNOT_OPEN_FLAT_FILE_URI=No se puede abrir el archivo sin formato desde el URI <{0}>, porque: <{1}>.
+connection_MISSING_FILELOCATION=Faltan propiedades de conexión necesarias: carpeta inicial del archivo sin formato local y URI para archivo sin formato remoto. 
+connection_MISSING_HOMEFOLDER=Faltan propiedades de conexión necesarias: carpeta inicial para archivos sin formato locales. 
+connection_MISSING_FILEURI=Faltan propiedades de conexión necesarias: URI de archivo para archivo sin formato remoto. 
 
 query_COMMAND_IS_EMPTY=El mandato de consulta está vacío.
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=La consulta de tabla cruzada no está soportada.

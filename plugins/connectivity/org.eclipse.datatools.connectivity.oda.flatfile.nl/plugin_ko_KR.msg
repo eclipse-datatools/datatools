@@ -22,7 +22,7 @@ datasource.property.charset=문자 집합(&C)
 datasource.property.incltypeline=데이터 형식 표시기로 두 번째 줄 사용(&D)
 datasource.property.inclcolumnnameline=열 이름 표시기로 첫 번째 줄 사용(&N)
 datasource.property.trailnullcols=널(null) 열 추적 사용
-datasource.property.uri=File &URI
+datasource.property.uri=파일 URI(&U)
 
 dataset.property.savedcolumnsinfo=각 열에 관한 정보
 

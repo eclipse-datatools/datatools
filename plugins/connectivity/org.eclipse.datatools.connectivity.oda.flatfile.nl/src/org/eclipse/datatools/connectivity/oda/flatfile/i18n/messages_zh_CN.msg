@@ -1,11 +1,11 @@
 # Exception messages for the Oda Flat File Driver
 
 connection_CONNECTION_PROPERTIES_MISSING=缺少连接属性。
-connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=打不开以下目录下的平面文件数据库：
-connection_CANNOT_OPEN_FLAT_FILE_URI=Cannot open flat file from URI <{0}>, because: <{1}>.
-connection_MISSING_FILELOCATION=Missing required connection properties: home folder for local flat file and URI for remote flat file. 
-connection_MISSING_HOMEFOLDER=Missing required connection properties: Home folder for local flat files 
-connection_MISSING_FILEURI=Missing required connection properties: File URI for remote flat file. 
+connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=无法打开平面文件主文件夹: 
+connection_CANNOT_OPEN_FLAT_FILE_URI=无法从 URI <{0}> 打开平面文件，原因: <{1}>。
+connection_MISSING_FILELOCATION=缺少必需的连接属性: 本地平面文件的主文件夹以及远程平面文件的 URI。 
+connection_MISSING_HOMEFOLDER=缺少必需的连接属性: 本地平面文件的主文件夹 
+connection_MISSING_FILEURI=缺少必需的连接属性: 远程平面文件的文件 URI。 
 
 query_COMMAND_IS_EMPTY=查询命令是空的。
 query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=不支持交叉表查询。

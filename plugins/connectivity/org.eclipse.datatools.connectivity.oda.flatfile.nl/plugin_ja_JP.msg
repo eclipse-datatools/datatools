@@ -22,7 +22,7 @@ datasource.property.charset=文字セット(&C)
 datasource.property.incltypeline=2 行目をデータ型のインジケータとして使用する(&D)
 datasource.property.inclcolumnnameline=1 行目を列名のインジケータとして使用する(&N)
 datasource.property.trailnullcols=末尾 NULL 列を使用します。
-datasource.property.uri=File &URI
+datasource.property.uri=ファイルの URI(&U)
 
 dataset.property.savedcolumnsinfo=各列の情報
 

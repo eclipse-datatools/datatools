@@ -22,7 +22,7 @@ datasource.property.charset=&Zeichensatz
 datasource.property.incltypeline=Zweite Zeile als &Datentypindikator verwenden
 datasource.property.inclcolumnnameline=Erste Zeile als Spalten&namenindikator verwenden
 datasource.property.trailnullcols=Spalten mit Nullen in Endposition verwenden
-datasource.property.uri=File &URI
+datasource.property.uri=Datei-&URI
 
 dataset.property.savedcolumnsinfo=Informationen zu den einzelnen Spalten
 
