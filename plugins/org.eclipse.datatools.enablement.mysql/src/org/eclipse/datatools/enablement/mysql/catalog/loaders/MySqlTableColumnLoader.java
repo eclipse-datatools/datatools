@@ -16,7 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCColumn;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableColumnLoader;
 import org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogColumn;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
@@ -41,7 +40,7 @@ public class MySqlTableColumnLoader extends JDBCTableColumnLoader {
 	}
 
 	protected Column processRow(ResultSet rs) throws SQLException {
-		Column column = new JDBCColumn();
+		Column column = new MySqlCatalogColumn();
 
 		final String columnName = rs.getString(4);
 		column.setName(columnName);

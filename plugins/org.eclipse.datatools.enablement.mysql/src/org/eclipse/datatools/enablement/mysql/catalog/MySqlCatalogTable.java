@@ -85,4 +85,8 @@ public class MySqlCatalogTable extends JDBCTable {
 	public Database getCatalogDatabase() {
 		return this.getSchema().getDatabase();		
 	}
+
+	protected void loadSupertable() {
+		supertableLoaded = Boolean.FALSE;
+	}
 }
