@@ -12,21 +12,19 @@
 
 package org.eclipse.datatools.connectivity.oda.flatfile.util;
 
-//import java.io.File;
-//import java.io.FileInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
-import org.eclipse.datatools.connectivity.oda.flatfile.ResultSetMetaDataHelper;
+import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
+import org.eclipse.datatools.connectivity.oda.flatfile.ResourceInputStream;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileQuery.FlatFileBufferedReader;
+import org.eclipse.datatools.connectivity.oda.flatfile.ResultSetMetaDataHelper;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
 /**
@@ -36,12 +34,7 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 public class FlatFileDataReader
 {
 
-	private String homeDir;
 	private String currentTableName;
-	private char delimiter;
-	private boolean hasColumnNames = true;
-	private boolean hasTypeLine = true;
-	private boolean trailNullColumns = false;
 	private String charSet;
 	private FlatFileBufferedReader flatFileBufferedReader=null;
 	private IResultSetMetaData rsmd;
@@ -54,8 +47,9 @@ public class FlatFileDataReader
 	private boolean isFirstTimeToCallReadLine = true;
 	private int fetchCounter = 0;
 	private int[] selectColumIndexes; 
+	private Connection conn;
 	
-	private List nextDataLine;
+	private List<String> nextDataLine;
 
 	//Max number of rows fetched each time from data source
 	public static final int MAX_ROWS_PER_FETCH = 20000;
@@ -70,51 +64,22 @@ public class FlatFileDataReader
 	 * @param rsmdHelper	ResultSet meta-data helper
 	 * @throws OdaException
 	 */
-	public  FlatFileDataReader( Properties connProperties,String currentTableName,int statementMaxRows,
+	public  FlatFileDataReader( Connection connection,String currentTableName,int statementMaxRows,
 			IResultSetMetaData rsmd, ResultSetMetaDataHelper rsmdHelper ) throws OdaException
 	{
 		this.rsmd = rsmd;
 		this.rsmdHelper = rsmdHelper;
 		this.statementMaxRows = statementMaxRows;
 		this.currentTableName = currentTableName;
-		Properties properties = getCopyOfConnectionProperties( connProperties );
-		populateHomeDir( properties );
-		populateDelimiter( properties );
-		populateCharSet( properties );
-		populateHasColumnNames( properties );
-		populateHasTypeLine( properties );
-		populateTrailNullColumns( properties );
-	}
-	
-	/**
-	 * 
-	 * @param connProperties
-	 * @return
-	 */
-	private Properties getCopyOfConnectionProperties( Properties connProperties )
-	{
-		Properties copyConnProperites = new Properties( );
-
-		copyConnProperites.setProperty( CommonConstants.CONN_CHARSET_PROP,
-				connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP ) );
-		copyConnProperites.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
-				connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE ) );
-		copyConnProperites.setProperty( CommonConstants.CONN_HOME_DIR_PROP,
-				connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP ) );
-		copyConnProperites.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
-				connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP ) );
-		copyConnProperites.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
-				connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP ) );
-		copyConnProperites.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
-				connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP ) );
-
-		return copyConnProperites;
+		this.conn = connection;
+		
+		this.charSet = conn.getCharSet( );
 	}
 	
 	private void initNameIndexMap( ) throws OdaException
 	{
 		assert originalColumnNames != null;
-		HashMap originalColumnNameIndexMap = new HashMap( ); 
+		HashMap<String, Integer> originalColumnNameIndexMap = new HashMap<String, Integer>( ); 
 		for (int i = 0; i < originalColumnNames.length; i++)
 		{
 			originalColumnNameIndexMap.put( originalColumnNames[i].trim( ).toUpperCase( ), 
@@ -128,77 +93,9 @@ public class FlatFileDataReader
 		}
 	}
 	
-	/**
-	 * 
-	 * @param connProperties
-	 * @throws OdaException
-	 */
-	private void populateDelimiter( Properties connProperties )
-			throws OdaException
-	{
-		this.delimiter = CommonConstants.getDelimiterValue( ( connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE ) != null
-				? connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE )
-				: CommonConstants.DELIMITER_COMMA ) ).charAt( 0 );
-	}
-	
-	/**
-	 * 
-	 * @param connProperties
-	 * @throws OdaException
-	 */
-	private void populateHomeDir( Properties connProperties )
-			throws OdaException
-	{
-		this.homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		File file = new File( this.homeDir );
-		if ( !file.exists( ) )
-			throw new OdaException( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_DB_DIR" ) //$NON-NLS-1$
-					+ this.homeDir );
-	}
-
-	/**
-	 * 
-	 * @param connProperties
-	 */
-	private void populateCharSet( Properties connProperties )
-	{
-		this.charSet = connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP );
-	}
-
-	/**
-	 * 
-	 * @param connProperties
-	 */
-	private void populateHasColumnNames( Properties connProperties )
-	{
-		this.hasColumnNames = connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP )
-		.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO ) 
-		? false
-		: true;
-	}
-
-	/**
-	 * 
-	 * @param connProperties
-	 */
-	private void populateHasTypeLine( Properties connProperties )
-	{
-		this.hasTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP )
-		.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) 
-		? false
-		: true;
-	}
-	
-	private void populateTrailNullColumns( Properties connProperties )
-	{
-		this.trailNullColumns = connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP )
-				.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_NO ) ? false
-				: true;
-	}
-	
 	public boolean getTrailNullColumns()
 	{
-		return this.trailNullColumns;
+		return conn.trailNullColumns( );
 	}
 
 	/**
@@ -209,7 +106,7 @@ public class FlatFileDataReader
 	public String[][] getSourceData( ) throws OdaException
 	{
 		createBufferedReader( );
-		List v = fetchQueriedDataFromFileToList( );
+		List<String[]> v = fetchQueriedDataFromFileToList( );
 		return copyDataFromListToTwoDimensionArray( v );
 	}
 	
@@ -219,7 +116,7 @@ public class FlatFileDataReader
 	 * @throws OdaException
 	 * @throws IOException
 	 */
-	public List readLine( ) throws OdaException, IOException
+	public List<String> readLine( ) throws OdaException
 	{
 		if ( isFirstTimeToCallReadLine )
 		{
@@ -240,12 +137,10 @@ public class FlatFileDataReader
 		{
 			if( this.flatFileBufferedReader == null )
 			{
-				String dataFilePath = findDataFileAbsolutePath( );
-				if ( charSet == null || charSet.trim( ).length( ) == 0 )
-					examCharset( dataFilePath );
+				examCharset( getInputStream( ) );
 	
-				this.flatFileBufferedReader = new FlatFileBufferedReader( new FileInputStream( dataFilePath ),
-						this.charSet, this.delimiter);
+				this.flatFileBufferedReader = new FlatFileBufferedReader( getInputStream( ),
+						this.charSet, conn.getDelimeter( ));
 			}
 
 		}
@@ -299,11 +194,10 @@ public class FlatFileDataReader
 	 * file is encoded with "UTF-16LE" or "UTF-16BE". If neither, then treat
 	 * file as using default "UTF-8"
 	 */
-	private void examCharset( String filepath ) throws OdaException, IOException
+	private void examCharset( InputStream fis ) throws OdaException, IOException
 	{
 		if ( this.charSet != null && this.charSet.length( ) > 0 )
 			return;
-		FileInputStream fis = new FileInputStream( filepath );
 		byte[] byteMarker = new byte[2];
 		fis.read( byteMarker );
 		// file encoded using UTF-16LE sometimes have two bytes prefix
@@ -328,16 +222,15 @@ public class FlatFileDataReader
 	 */
 	public int getColumnCount( ) throws OdaException
 	{
-		//this.currentTableName = tableName;
-
 		int count;
+		ResourceInputStream fis = null;
 		try
 		{
-			String dataFilePath = findDataFileAbsolutePath( );
-			examCharset( dataFilePath );
-			FileInputStream fis = new FileInputStream( dataFilePath );
-			FlatFileBufferedReader br = new FlatFileBufferedReader( fis, this.charSet, this.delimiter);
-			List columnLine;
+			fis = getInputStream( );
+			examCharset( fis );
+			fis = getInputStream( );
+			FlatFileBufferedReader br = new FlatFileBufferedReader( fis, this.charSet, conn.getDelimeter( ));
+			List<String> columnLine;
 			while ( isEmptyRow( columnLine = br.readLine( ) ) )
 			{
 				continue;
@@ -349,32 +242,15 @@ public class FlatFileDataReader
 		catch ( IOException e )
 		{
 			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
-					+ findDataFileAbsolutePath( ) );
+					+ fis.getLocation( ) );
 		}
 
 		return count;
 	}
 
-	/**
-	 * Find the absolute path of the file in which a specific table resides.
-	 * 
-	 * @param tableName
-	 *            the name of table
-	 * @return the String which contains the absolute path of that table
-	 * @throws OdaException
-	 *             if the table name cannot be found
-	 */
-	public String findDataFileAbsolutePath( )
-			throws OdaException
+	public ResourceInputStream getInputStream( ) throws OdaException
 	{
-		File file = new File( this.homeDir
-				+ File.separator + this.currentTableName.trim( ) );
-		if ( !file.exists( ) )
-			throw new OdaException( Messages.getString( "query_invalidTableName" )
-					+ this.homeDir
-					+ File.separator
-					+ this.currentTableName ); //$NON-NLS-1$
-		return file.getAbsolutePath( );
+		return conn.getInputStream( this.currentTableName );
 	}
 
 	/**
@@ -383,7 +259,7 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException
 	 */
-	public static boolean isEmptyRow( List line ) throws OdaException
+	public static boolean isEmptyRow( List<String> line ) throws OdaException
 	{
 		if ( line == null )
 			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
@@ -396,76 +272,67 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException
 	 */
-	private List fetchQueriedDataFromFileToList( ) throws OdaException
+	private List<String[]> fetchQueriedDataFromFileToList( ) throws OdaException
 	{
-		List result = new ArrayList( );
-		try
+		List<String[]> result = new ArrayList<String[]>( );
+		if ( isFirstTimeToReadSourceData )
 		{
-			if ( isFirstTimeToReadSourceData )
+			// make a copy of column names if there are
+			if ( conn.hasColumnNames( ) )
 			{
-				// make a copy of column names if there are
-				if ( this.hasColumnNames )
+				List<String> columeNameLine;
+				while ( isEmptyRow( columeNameLine = flatFileBufferedReader.readLine( ) ) )
 				{
-					List columeNameLine;
-					while ( isEmptyRow( columeNameLine = flatFileBufferedReader.readLine( ) ) )
-					{
-						continue;
-					}
-					this.originalColumnNames = getColumnNameArray( columeNameLine );
-					initNameIndexMap( );
+					continue;
 				}
-					
-
-				// skip Type information. The type information is in the second
-				// line
-				// of file
-				if ( this.hasTypeLine )
-				{
-					while ( isEmptyRow( flatFileBufferedReader.readLine( ) ) )
-						continue;
-				}
-				
-				if ( !this.hasColumnNames )
-				{
-					while ( isEmptyRow( nextDataLine = flatFileBufferedReader.readLine( ) ))
-					{
-						continue;
-					}
-					this.originalColumnNames = createTempColumnNames( nextDataLine );
-					initNameIndexMap( );
-				}
-				else
-				{
-					nextDataLine = flatFileBufferedReader.readLine( );
-				}
-				isFirstTimeToReadSourceData = false;
+				this.originalColumnNames = getColumnNameArray( columeNameLine );
+				initNameIndexMap( );
 			}
 
-			// temporary variable which is used to store the data of a row
-			// fetched from a flat file
-			
-			
-			int counterLimitPerFetch = fetchCounter + MAX_ROWS_PER_FETCH;
-
-			while ( ( this.maxRowsToRead <= 0 ? true
-					: this.fetchCounter < this.maxRowsToRead )
-					&& this.fetchCounter < counterLimitPerFetch 
-					&& nextDataLine != null )
+			// skip Type information. The type information is in the second
+			// line
+			// of file
+			if ( conn.hasTypeLine( ) )
 			{
-				if ( !isEmptyRow( nextDataLine ) )
+				while ( isEmptyRow( flatFileBufferedReader.readLine( ) ) )
+					continue;
+			}
+
+			if ( !conn.hasColumnNames( ) )
+			{
+				while ( isEmptyRow( nextDataLine = flatFileBufferedReader.readLine( ) ) )
 				{
-					fetchCounter++;
-					result.add( fetchQueriedDataFromRow( nextDataLine) );
+					continue;
 				}
+				this.originalColumnNames = createTempColumnNames( nextDataLine );
+				initNameIndexMap( );
+			}
+			else
+			{
 				nextDataLine = flatFileBufferedReader.readLine( );
 			}
+			isFirstTimeToReadSourceData = false;
+		}
 
-			return result;
-		}
-		catch ( IOException e )
+		// temporary variable which is used to store the data of a row
+		// fetched from a flat file
+
+		int counterLimitPerFetch = fetchCounter + MAX_ROWS_PER_FETCH;
+
+		while ( ( this.maxRowsToRead <= 0 ? true
+				: this.fetchCounter < this.maxRowsToRead )
+				&& this.fetchCounter < counterLimitPerFetch
+				&& nextDataLine != null )
 		{
-			throw new OdaException( e.getMessage( ) );
+			if ( !isEmptyRow( nextDataLine ) )
+			{
+				fetchCounter++;
+				result.add( fetchQueriedDataFromRow( nextDataLine ) );
+			}
+			nextDataLine = flatFileBufferedReader.readLine( );
 		}
+
+		return result;
 	}
 
 	/**
@@ -475,7 +342,7 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException
 	 */
-	public String[] getColumnNameArray( List line )
+	public String[] getColumnNameArray( List<String> line )
 			throws OdaException
 	{
 		if ( line == null )
@@ -488,7 +355,7 @@ public class FlatFileDataReader
 	 * @param list
 	 * @return
 	 */
-	public static String[] getStringArrayFromList( List list )
+	public static String[] getStringArrayFromList( List<String> list )
 	{
 		String[] array = null;
 		if ( list != null )
@@ -509,7 +376,7 @@ public class FlatFileDataReader
 	 *         a row
 	 * @throws OdaException
 	 */
-	private String[][] copyDataFromListToTwoDimensionArray( List v )
+	private String[][] copyDataFromListToTwoDimensionArray( List<String[]> v )
 			throws OdaException
 	{
 		String[][] rowSet = new String[v.size( )][this.rsmd.getColumnCount( )];
@@ -520,7 +387,7 @@ public class FlatFileDataReader
 			{
 				if ( temp[j] != null )
 					rowSet[i][j] = temp[j].trim( );
-				else if ( trailNullColumns )
+				else if ( conn.trailNullColumns( ) )
 				{
 					continue;	
 				}
@@ -539,7 +406,7 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException 
 	 */
-	private String[] createTempColumnNames( List aRow ) throws OdaException
+	private String[] createTempColumnNames( List<String> aRow ) throws OdaException
 	{
 		String[] tempColumnNames = new String[aRow.size()];
 
@@ -560,7 +427,7 @@ public class FlatFileDataReader
 	 *         row. The "specified column names" are obtained from meta data
 	 * @throws OdaException
 	 */
-	private String[] fetchQueriedDataFromRow( List aRow ) throws OdaException
+	private String[] fetchQueriedDataFromRow( List<String> aRow ) throws OdaException
 	{
 		String[] sArray = new String[rsmd.getColumnCount( )];
 		for ( int i = 0; i < sArray.length; i++ )
@@ -570,7 +437,7 @@ public class FlatFileDataReader
 			{
 				if ( location >= aRow.size( ) )
 				{
-					if ( trailNullColumns )
+					if ( conn.trailNullColumns( ) )
 						sArray[i] = null;
 					else
 						throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
@@ -591,9 +458,9 @@ public class FlatFileDataReader
 	 * @param array
 	 * @return
 	 */
-	private int findIndex( String value, HashMap  originalColumnNameIndexMap)
+	private int findIndex( String value, HashMap<String, Integer>  originalColumnNameIndexMap)
 	{
-		Integer index = (Integer)(originalColumnNameIndexMap.get( value.trim( ).toUpperCase( ) ));
+		Integer index = originalColumnNameIndexMap.get( value.trim( ).toUpperCase( ) );
 		if (index == null)
 		{
 			return -1;
@@ -603,5 +470,4 @@ public class FlatFileDataReader
 			return index.intValue( );
 		}
 	}
-
 }

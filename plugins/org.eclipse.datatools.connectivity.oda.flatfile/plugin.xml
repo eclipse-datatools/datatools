@@ -33,6 +33,14 @@
                   defaultDisplayName="%datasource.property.home"
                   canInherit="true"
                   name="HOME"/>
+            <property
+                  allowsEmptyValueAsNull="true"
+                  canInherit="true"
+                  defaultDisplayName="%datasource.property.uri"
+                  isEncryptable="false"
+                  name="URI"
+                  type="string">
+            </property>
          	<property
                   defaultDisplayName="%datasource.property.csvdelimitertype"
                   defaultValue="COMMA"

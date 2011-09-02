@@ -107,7 +107,7 @@ public abstract class QueryTestBase extends TestCase
 	{
 		try
 		{
-			new FlatFileQuery( null, null );
+			new FlatFileQuery( null );
 
 			fail( "Should not arrive here" );
 		}
@@ -486,8 +486,8 @@ public abstract class QueryTestBase extends TestCase
 					assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[i].equalsIgnoreCase( QueryTextUtil.getUnQuotedName( cols[i] ) ) );
 				}
 				
-				statement.prepare( query );
-				IResultSet resultSet = statement.executeQuery( );
+				statement_noTypeLine.prepare( query );
+				IResultSet resultSet = statement_noTypeLine.executeQuery( );
 				
 				assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
 				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )

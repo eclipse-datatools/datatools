@@ -56,8 +56,8 @@ public class ResultSet implements IResultSet
     
     private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
     
-    private static Pattern pattern1 = Pattern.compile( "\\QT\\E" ); //$NON-NLS-3$
-    private static Pattern pattern2 = Pattern.compile( "\\QZ\\E" ); //$NON-NLS-3$
+    private static Pattern pattern1 = Pattern.compile( "\\QT\\E" ); //$NON-NLS-1$
+    private static Pattern pattern2 = Pattern.compile( "\\QZ\\E" ); //$NON-NLS-1$
     
     /**
      * Constructor
@@ -324,7 +324,6 @@ public class ResultSet implements IResultSet
      */
     public Object getObject( int index ) throws OdaException
     {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException();
     }
 
@@ -333,7 +332,6 @@ public class ResultSet implements IResultSet
      */
     public Object getObject( String columnName ) throws OdaException
     {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException();
     }
 
@@ -518,7 +516,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-            	String value = pattern1.matcher( stringValue).replaceAll(" "); //$NON-NLS-1$ //$NON-NLS-2$
+            	String value = pattern1.matcher( stringValue).replaceAll(" "); //$NON-NLS-1$
             	value = pattern2.split( value )[0];
             	return Timestamp.valueOf( value );
 			}
