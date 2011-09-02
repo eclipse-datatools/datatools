@@ -358,7 +358,7 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 		return (JDBCTableSuperTableLoader) supertableLoaderRef.get();
 	}
 
-	private void loadSupertable() {
+	protected void loadSupertable() { 
 		try {
 			setSupertable(getSupertableLoader().loadSuperTable());
 			supertableLoaded = Boolean.TRUE;
@@ -425,7 +425,7 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 	private SoftReference constraintLoaderRef;
 	private Boolean indexesLoaded = Boolean.FALSE;
 	private SoftReference indexLoaderRef;
-	private Boolean supertableLoaded = Boolean.FALSE;
+	protected Boolean supertableLoaded = Boolean.FALSE; 
 	private SoftReference supertableLoaderRef;
 	private Boolean subTablesLoaded = Boolean.FALSE;
 
