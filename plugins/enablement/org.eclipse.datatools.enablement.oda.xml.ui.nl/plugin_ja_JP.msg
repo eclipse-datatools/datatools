@@ -25,5 +25,7 @@ newwizard.name=DTP XML ファイルのデータソース
 newwizard.description=DTP XML ファイルの接続プロファイルを作成します。
 wizard.window.title=DTP XML ファイルのデータソースのプロファイル
 wizard.data.source.page.title=XML データソースの定義
+wizard.data.set.window.title=New XML Data Set
 profile.propertypage.name=DTP XML ファイルのデータソースの接続プロパティ
 preference.datasetpreview=XML データセット
+providerName=Eclipse Data Tools Platform

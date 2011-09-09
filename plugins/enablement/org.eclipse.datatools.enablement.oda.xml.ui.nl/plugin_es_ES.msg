@@ -24,5 +24,7 @@ plugin.name=DTP XML File Designernewwizard.name=Fuente de datos de archivo XML D
 newwizard.description=Crear un perfil de conexión del archivo XML DTP
 wizard.window.title=Nuevo perfil de fuente de datos del archivo XML
 wizard.data.source.page.title=Definir fuente de datos XML
+wizard.data.set.window.title=New XML Data Set
 profile.propertypage.name=Propiedades de conexión de fuente de datos de archivo XML DTP
 preference.datasetpreview=Conjunto de datos XML
+providerName=Eclipse Data Tools Platform
