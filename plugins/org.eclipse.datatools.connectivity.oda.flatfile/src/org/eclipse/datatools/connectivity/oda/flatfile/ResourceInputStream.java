@@ -35,6 +35,31 @@ public class ResourceInputStream extends InputStream
 	{
 		return in.read( );
 	}
+	
+	public int read( byte[] b ) throws IOException
+	{
+		return in.read( b );
+	}
+
+	public int read( byte[] b, int off, int len ) throws IOException
+	{
+		return in.read( b, off, len );
+	}
+	
+	public long skip( long n ) throws IOException
+	{
+		return in.skip( n );
+	}
+
+	public int available( ) throws IOException
+	{
+		return in.available( );
+	}
+
+	public void close( ) throws IOException
+	{
+		in.close( );
+	}
 
 	public String getLocation( )
 	{
