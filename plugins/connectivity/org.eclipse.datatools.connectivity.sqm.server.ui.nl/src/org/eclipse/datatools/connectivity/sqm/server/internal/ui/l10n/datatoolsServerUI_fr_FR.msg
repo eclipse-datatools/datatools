@@ -74,6 +74,7 @@ _UI_DIALOG_CONNECTION_TITLE  = Nouvelle connexion
 #
 DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = Exception de connexion invalide
 #Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Connection failed
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = Notification d'exception SQL
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = Reconnecter
 DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = Déconnecter
@@ -126,6 +127,7 @@ DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Travailler hors ligne
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Le contenu hors ligne n'a pas été trouvé dans votre espace de travail.\nExécuter "Save Offline" une fois que vous êtes connecté.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Echec de connexion
 #Removed for bug 285485
+#DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Connection has failed. The following error was reported:\n"{0}"\n\nDo you want to work offline?
 
 #
 ## Bookmark
