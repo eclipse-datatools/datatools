@@ -11,6 +11,7 @@
 ################################################################################ 
 plugin.internal_error=内部错误 － org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=未知
+dialog.title.error.loadconnectionfactory = Error loading connection factory in "{0}"!
 ConnectJob.name=正在创建与 {0} 的连接。
 ConnectJob.status.info=未能为一个或多个扩展创建与 {0} 的连接。
 ConnectJob.status.error=未能连接到 {0}。
@@ -23,17 +24,29 @@ OpenConnectionEventJob.name=正在处理 {0} 的打开连接事件。
 CloseManagedConnectionJob.name=正在关闭到 {1} 的 {0} 连接。
 CloseManagedConnectionJob.error=关闭到 {1} 的 {0} 连接时出错。(错误\: {2})
 CloseConnectionEventJob.name=正在处理 {0} 的关闭连接事件。
+assert.invalid.profile = Parsing error\: invalid attribute ({0})
 assert.invalid.profile.duplicateFactory = 分析错误\: 具有重复优先级({0})的重复工厂 ID
 assert.invalid.profile.nullFactory = 分析错误\: 工厂或工厂 id 为空 ({0}/{1})
+dialog.title.error.loadwizard = Error loading new wizard in "{0}"!
+operation.new.connectionprofile = Creating profile\: "{0}"
+error.connect = Problem connecting to profile "{0}."  See log file for more details.
+marker.error = Problem connecting to profile {0}.  (Error\: {1})
 drivermarker.error = 驱动程序“{0}”出现问题。(错误\: {1})
 drivermarker.import.error = 导入配置文件“{0}”过程中创建的驱动程序定义缺少 Jar 列表。
 profile.duplicate =连接概要文件名“{0}”重复！
+profile.notexist = Connection profile "{0}" does not exist!
+duplicate.profile.name = Copy of {0}({1})
 DriverConnectionBase.error.unknown=发生了未指定的错误，连接失败。
 DriverConnectionBase.error.driverDefinitionNotSpecified=未指定驱动程序定义。
 DriverConnectionBase.error.driverDefinitionNotFound=找不到驱动程序定义。
+error.loadprofilesxml = Error loading connection profile data.
+error.saveprofilesxml = Error saving connection profile data.
 error.loaddriversxml = 加载驱动程序定义数据时出错。
 error.savedriversxml = 保存驱动程序定义数据时出错。
 
+trace.error.propertiesPersistenceHook = Could not load propertiesPersistenceHook, using default (profile type={0}, extension={1})
+trace.error.propertiesPersistenceHookSaveError = Error invoking properties persistent hook; persisting all properties (profile={0}, extension={1})
+trace.error.propertiesPersistenceHookLoadError = Error invoking properties persistent hook; transient properties not set (profile={0}, extension={1})
 trace.error.migration = 为连接配置文件提供程序加载迁移元素时出错(id={0}，迁移类={1})
 trace.error.drivermigration = 创建配置文件(id={0}，驱动程序 id={1})的驱动程序实例时出错
 

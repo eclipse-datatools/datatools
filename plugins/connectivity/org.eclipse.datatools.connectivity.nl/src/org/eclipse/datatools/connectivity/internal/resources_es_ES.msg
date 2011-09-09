@@ -11,6 +11,7 @@
 ################################################################################ 
 plugin.internal_error=Error interno\: org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=desconocida
+dialog.title.error.loadconnectionfactory = Error loading connection factory in "{0}"!
 ConnectJob.name=Creando conexiones a {0}.
 ConnectJob.status.info=No se han podido crear conexiones a {0} para una o varias extensiones.
 ConnectJob.status.error=No se ha podido conectar a {0}.
@@ -23,17 +24,29 @@ OpenConnectionEventJob.name=Procesando evento de apertura de conexión para {0}.
 CloseManagedConnectionJob.name=Cerrando la conexión {0} de {1}.
 CloseManagedConnectionJob.error=Ha ocurrido un error al cerrar la conexión {0} de {1} (Error\: {2}).
 CloseConnectionEventJob.name=Procesando evento de cierre de conexión para {0}.
+assert.invalid.profile = Parsing error\: invalid attribute ({0})
 assert.invalid.profile.duplicateFactory = Error al analizar\: id de fábrica duplicado y prioridad duplicada ({0})
 assert.invalid.profile.nullFactory = Error al analizar\: fábrica o id de fábrica nulos ({0}/{1})
+dialog.title.error.loadwizard = Error loading new wizard in "{0}"!
+operation.new.connectionprofile = Creating profile\: "{0}"
+error.connect = Problem connecting to profile "{0}."  See log file for more details.
+marker.error = Problem connecting to profile {0}.  (Error\: {1})
 drivermarker.error = Existe un problema con el controlador "{0}." (Error\: {1})
 drivermarker.import.error = Falta la lista jar para la definición de controlador creada durante la importación de perfil "{0}."
 profile.duplicate =Nombre de perfil de conexión duplicado "{0}"\!
+profile.notexist = Connection profile "{0}" does not exist!
+duplicate.profile.name = Copy of {0}({1})
 DriverConnectionBase.error.unknown=La conexión ha fallado con un error no especificado.
 DriverConnectionBase.error.driverDefinitionNotSpecified=No se ha especificado la definición de controlador.
 DriverConnectionBase.error.driverDefinitionNotFound=No se ha encontrado la definición de controlador.
+error.loadprofilesxml = Error loading connection profile data.
+error.saveprofilesxml = Error saving connection profile data.
 error.loaddriversxml = Error al cargar los datos de definición de controlador.
 error.savedriversxml = Error al guardar los datos de definición de controlador.
 
+trace.error.propertiesPersistenceHook = Could not load propertiesPersistenceHook, using default (profile type={0}, extension={1})
+trace.error.propertiesPersistenceHookSaveError = Error invoking properties persistent hook; persisting all properties (profile={0}, extension={1})
+trace.error.propertiesPersistenceHookLoadError = Error invoking properties persistent hook; transient properties not set (profile={0}, extension={1})
 trace.error.migration = Error al cargar el elemento de migración para el proveedor de perfil de conexión (id={0}, clase de migración={1})
 trace.error.drivermigration = Error al crear la instancia de perfil de controlador (id={0}, id de controlador={1})
 
