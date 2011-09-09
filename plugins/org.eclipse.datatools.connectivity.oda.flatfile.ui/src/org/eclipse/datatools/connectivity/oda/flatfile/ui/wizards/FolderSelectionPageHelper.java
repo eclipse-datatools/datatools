@@ -543,10 +543,14 @@ public class FolderSelectionPageHelper
 		item.setData( SELECT_ABSOLUTE_PATH );
 		item.addSelectionListener( action );
 
-		item = new MenuItem( menu, SWT.PUSH );
-		item.setText( Messages.getString("button.selectFileURI.menuItem.relativePath") ); //$NON-NLS-1$
-		item.setData( SELECT_RELATIVE_PATH );
-		item.addSelectionListener( action );
+		// Add relative path selection support while having resource identifier
+		if ( ri != null )
+		{
+			item = new MenuItem( menu, SWT.PUSH );
+			item.setText( Messages.getString( "button.selectFileURI.menuItem.relativePath" ) ); //$NON-NLS-1$
+			item.setData( SELECT_RELATIVE_PATH );
+			item.addSelectionListener( action );
+		}
 		
 		browseLocalFileButton.setDropDownMenu( menu  );
 		browseLocalFileButton.addSelectionListener( action );
