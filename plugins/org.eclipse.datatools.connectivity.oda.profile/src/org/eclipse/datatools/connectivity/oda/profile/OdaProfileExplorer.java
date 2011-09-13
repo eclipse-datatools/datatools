@@ -25,7 +25,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
+import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaProfileFactory;
 import org.eclipse.datatools.connectivity.oda.profile.provider.ProfilePropertyProviderImpl;
@@ -542,9 +542,7 @@ public class OdaProfileExplorer
             Properties dataSourceDesignProps, Object appContext )
     {
         // use the nested context for a profile store File object, if exists
-        Object connPropContext = null;
-        if( appContext != null && appContext instanceof Map )
-            connPropContext = ((Map) appContext).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );
+        Object connPropContext = ProviderUtil.getConnectionPropertyContext( appContext );
         if( connPropContext == null )
             connPropContext = appContext;
         
