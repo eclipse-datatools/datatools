@@ -720,6 +720,16 @@
 		</ant>
 	</target>
 	
+	<target name="InformCancelBuild" if="NoMapChange">
+	    <property file="${eclipse.build.configs}/../../config.properties" />
+	    <mail mailport="${mail.port}" subject="${BranchVersion} Nightly build (${buildId}) is canceled, no change in map files" tolist="${DTP.members}" from="${mail.from}" replyto="${replyto.address}">
+	          <message>
+No change detected in map file project.
+${BranchVersion} Nightly Build (${buildId}) is canceled.
+	          </message>
+	     </mail>
+	</target>
+	
 	<target name="InformQA" unless="nomail">
         <property file="${eclipse.build.configs}/../../config.properties" />
         <mail mailport="${mail.port}" tolist="${QA.members}" from="${mail.from}" replyto="${replyto.address}" subject="${BranchVersion} Build Is Ready (BuildId: ${buildId})" >
