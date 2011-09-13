@@ -19,6 +19,7 @@ package org.eclipse.datatools.connectivity.oda.design.util;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map.Entry;
 import java.util.logging.Level;
@@ -37,6 +38,7 @@ import org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.datatools.connectivity.oda.design.nls.Messages;
@@ -345,10 +347,28 @@ public class DesignUtil
      * @return  the abstract representation of a file pathname,
      *          or null if the specified argument is null, invalid or
      *          the file does not exist
-     * @see #convertFileToPath(File)
      * @since 3.0.4
+     * @see #convertPathToResourceFile(String, ResourceIdentifiers)
+     * @see #convertFileToPath(File)
      */
     public static File convertPathToFile( String filePath )
+    {
+        return convertPathToResourceFile( filePath, null );
+    }
+    
+    /**
+     * Converts the specified string representation of a file pathname,
+     * persisted in an oda design model, to its abstract absolute representation.
+     * @param filePath  the string representation of a file, 
+     *          may be an absolute file path, or relative path based on the specified designResourceIds
+     * @param designResourceIds   a design resource identifier instance
+     *          defined by the host application
+     * @return  the abstract representation of an absolute file pathname,
+     *          or null if the specified filePath argument is null, invalid or
+     *          the file does not exist
+     * @since 3.3.4 (DTP 1.9.2)
+     */
+    public static File convertPathToResourceFile( String filePath, ResourceIdentifiers designResourceIds )
     {
         if( filePath == null || filePath.length() == 0 )
             return null;
@@ -358,15 +378,31 @@ public class DesignUtil
         if( file.exists() )
             return file;
 
+        // try to resolve a relative file path based on design resource identifiers, if defined
+        if( designResourceIds != null )
+        {
+            String resolvedStoreFilePath = resolveToApplResourcePath( filePath, designResourceIds );
+            if( ! filePath.equals( resolvedStoreFilePath ) )    // got a resolved file path
+            {
+                File resolvedStoreFile = new File( resolvedStoreFilePath );
+                if( resolvedStoreFile.exists() )
+                    return resolvedStoreFile;
+            }
+        }
+
         // next try to parse the filePath argument as an url on web
         try
         {
             URL url = new URL( filePath );           
             if( isRunningOSGiPlatform() )
                 url = FileLocator.toFileURL( url ); // available only on OSGi platform
-            return new File( url.getPath( ) );
+            return new File( url.toURI() );
         }
         catch( MalformedURLException e )
+        {
+            getLogger().fine( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        catch( URISyntaxException e )
         {
             getLogger().fine( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -393,14 +429,106 @@ public class DesignUtil
      * @param aFile the abstract representation of a file pathname
      * @return  the string representation of the specified file,
      *          or null if the specified argument is null
-     * @see #convertPathToFile(String)
      * @since 3.0.4
+     * @see #convertFileToResourcePath(File, ResourceIdentifiers, boolean)
+     * @see #convertPathToFile(String)
      */
     public static String convertFileToPath( File aFile )
     {
         if( aFile == null )
             return null;
         return aFile.getPath();
+    }
+
+    /**
+     * Converts the specified file to a string representation
+     * that can be persisted in an oda design model.
+     * @param aFile the abstract representation of an absolute file pathname
+     * @param designResourceIds   a design resource identifier instance
+     *          defined by the host application
+     * @param convertToRelativePath true indicates whether to convert the specified file
+     *          to a relative path based on the host-defined design resource; 
+     *          false to convert to the absolute path of the specified file
+     * @return  the relative path of the specified filePath, if specified by 
+     *          the convertToRelativePath argument;
+     *          otherwise, returns the absolute path of the specified filePath
+     * @since 3.3.4 (DTP 1.9.2)
+     */
+    public static String convertFileToResourcePath( File aFile, ResourceIdentifiers designResourceIds,
+            boolean convertToRelativePath )
+    {
+        File normalizedFile = getNormalizedFile( aFile );
+        String filePath = convertFileToPath( normalizedFile );
+        assert( normalizedFile.isAbsolute() );
+        if( ! normalizedFile.isAbsolute() || ! convertToRelativePath )
+            return filePath;
+        
+        // strip the base path specified by hostResourceIdentifiers to get the relative path
+        if( convertToRelativePath && designResourceIds != null )
+        {
+            String applResourceBase = designResourceIds.getApplResourceBaseURIString();
+            if( applResourceBase != null )
+            {
+                File applResourceBaseFile = getNormalizedFile( convertPathToFile( applResourceBase ) );
+                if( applResourceBaseFile != null )
+                {
+                    File fileParent = normalizedFile.getParentFile();
+                    while( fileParent != null )
+                    {
+                        if( fileParent.equals( applResourceBaseFile ) )
+                        {
+                            // strip the parent path and following separator from the specified file's absolute path
+                            filePath = filePath.substring( DesignUtil.convertFileToPath( fileParent ).length()+1 );
+                            // replace with Unix-compatible directory separator, so to be portable
+                            filePath = filePath.replace( File.separator, "/" ); //$NON-NLS-1$
+                            break;
+                        }
+                        fileParent = fileParent.getParentFile();
+                    }
+                }
+            }
+        }
+        return filePath;
+    }
+    
+    private static File getNormalizedFile( File aFile )
+    {
+        if( aFile == null )
+            return null;
+
+        try
+        {
+            return aFile.getCanonicalFile();
+        }
+        catch( Exception e )
+        {
+            return aFile.getAbsoluteFile();
+        }
+    }
+
+    /**
+     * Returns the absolute path of the specified filePath based on 
+     * the specified host application resource identifiers.
+     * @param filePath  the path to resolve; may be a relative or absolute path
+     * @param designResourceIds   a design resource identifier instance
+     *                  defined by the host application
+     * @return  the absolute path of the specified filePath
+     * @since 3.3.4 (DTP 1.9.2)
+     */
+    public static String resolveToApplResourcePath( String filePath, ResourceIdentifiers designResourceIds )
+    {
+        // if no application resource base path for a relative filePath, 
+        // use as is
+        if( designResourceIds == null ||
+            designResourceIds.getApplResourceBaseURIString() == null )   // not available
+            return filePath;
+        
+        File resolvedFile = new File( filePath );
+        if( resolvedFile.isAbsolute() )
+            return filePath;    // specified filePath is already absolute
+
+        resolvedFile = new File( designResourceIds.getApplResourceBaseURIString(), filePath );
+        return resolvedFile.getPath();
     }
     
     /**

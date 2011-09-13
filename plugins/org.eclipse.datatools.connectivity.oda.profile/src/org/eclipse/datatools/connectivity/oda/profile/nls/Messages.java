@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2010 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,4 +32,5 @@ public class Messages extends NLS
 
     public static String constants_componentName;
     public static String propertyProvider_CANNOT_FIND_PROFILE;
+    public static String propertyProvider_UNABLE_TO_RESOLVE_PATH;
 }
