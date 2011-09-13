@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2011 Actuate Corporation.
+ * Copyright (c) 2007, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.services.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -22,7 +21,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.PropertyProviderManifest;
-import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
 
@@ -128,32 +126,14 @@ public class ProviderUtil
      * in the specified application context.
      * @param appContext    the application context provided by an ODA consumer application
      * @return  the value mapped to the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
-     *      in the specified application context map; 
-     *      may return null if the specified application context is not a {@link java.util.Map},
-     *      or the original specified application context map if no nested context exists
+     *      in the specified application context map; may be null
      * @since 3.2.2 (DTP 1.7.2)
      */
     public static Object getConnectionPropertyContext( Object appContext )
     {
         if( appContext == null || ! ( appContext instanceof Map ) )
             return null;     // no context map to obtain value
-
-        Object connPropContext = ((Map) appContext).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );         
-        if( connPropContext == null )
-            return appContext;
-        if( ! ( connPropContext instanceof Map ) )
-            return connPropContext;
-        
-        String resourceIdKey = ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS;
-        if( ((Map)connPropContext).containsKey( resourceIdKey ) ||
-            ! ((Map) appContext).containsKey( resourceIdKey ) )
-            return connPropContext;
-    
-        // since no ResourceIdentifiers is specified in the nested connection profile context,
-        // copy the ResourceIdentifiers instance specified in the appContext
-        Map enhancedConnPropContext = new HashMap( (Map)connPropContext );
-        enhancedConnPropContext.put( resourceIdKey, ((Map) appContext).get( resourceIdKey ) );
-        return enhancedConnPropContext;
+        return ((Map) appContext).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );         
     }
     
     /**

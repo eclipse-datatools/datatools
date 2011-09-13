@@ -1164,7 +1164,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     public File getLinkedProfileStoreFile()
     {
         String storeFilePath = getLinkedProfileStoreFilePath();
-        return DesignUtil.convertPathToResourceFile( storeFilePath, getHostResourceIdentifiers() );
+        return DesignUtil.convertPathToFile( storeFilePath );
     }
 
     /* (non-Javadoc)

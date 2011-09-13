@@ -17,8 +17,6 @@ package org.eclipse.datatools.connectivity.oda.profile.provider;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
@@ -31,7 +29,6 @@ import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvide
 import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
 
@@ -167,7 +164,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         // takes precedence over the file path specified in the properties
         File profileStore = getProfileStoreFile( connPropContext );
         if( profileStore == null )
-            profileStore = getProfileStoreFileFromProperties( candidateProperties, connPropContext );
+            profileStore = getProfileStoreFile( candidateProperties );
 
         if( profileStore != null )
         {
@@ -194,7 +191,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return null;
         
         Object propValue = 
-            ( (Map<?,?>) connPropContext ).get( ConnectionProfileProperty.PROFILE_STORE_FILE_PROP_KEY );
+            ( (Map) connPropContext ).get( ConnectionProfileProperty.PROFILE_STORE_FILE_PROP_KEY );
         if( propValue == null )
             return null;    // no non-null mapping for profile store file
         
@@ -212,24 +209,18 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      * Ensures the file path exists at runtime; otherwise returns null.
      * @param candidateProperties
      * @return
-     * @deprecated
      */
     protected File getProfileStoreFile( Properties candidateProperties )
-    {
-        return getProfileStoreFileFromProperties( candidateProperties, null );
-    }
-    
-    private File getProfileStoreFileFromProperties( Properties candidateProperties, Object connPropContext )
     {
         if( ! hasProfileStoreFilePath( candidateProperties ) )
             return null;    // no profile file path specified
         String profileStoreFilePath = getProfileStoreFilePath( candidateProperties );
-        File profileStoreFile = getAbsoluteProfileStoreFile( profileStoreFilePath, connPropContext );
+        File profileStoreFile = getProfileStoreFile( profileStoreFilePath );
         if( profileStoreFile != null )
             return profileStoreFile;
         
         // specified file path does not exist
-        getLogger().warning( "getProfileStoreFileFromProperties(Properties,Object): " +   //$NON-NLS-1$
+        getLogger().warning( "getProfileStoreFile( Properties ): " +   //$NON-NLS-1$
                         "The PROFILE_STORE_FILE_PATH_PROP_KEY value (" + profileStoreFilePath +  //$NON-NLS-1$
                         ") specified in connection properties does not exist in the file system." ); //$NON-NLS-1$
         return null;
@@ -257,14 +248,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      * @return  the abstract representation of a file pathname,
      *          or null if the specified argument is null, invalid or
      *          the file does not exist
-     * @deprecated
      */
     protected File getProfileStoreFile( String filePath )
-    {
-        return getAbsoluteProfileStoreFile( filePath, null );
-    }
-    
-    private File getAbsoluteProfileStoreFile( String filePath, Object connPropContext )
     {
         if( filePath == null || filePath.length() == 0 )
             return null;
@@ -274,54 +259,21 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( file.exists() )
             return file;
 
-        // try to resolve a relative file path, if defined
-        File resolvedStoreFile = resolveRelativePath( filePath, connPropContext );
-        if( resolvedStoreFile != null && resolvedStoreFile.exists() )
-            return resolvedStoreFile;
-
         // next try to parse the filePath argument as an url on web
         try
         {
             URL url = new URL( filePath );
-            return new File( PluginResourceLocator.toFileURL( url ).toURI() );
+            return new File( PluginResourceLocator.toFileURL( url ).getPath() );
         }
         catch( MalformedURLException ex )
         {
-            getLogger().fine( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
-        }
-        catch( URISyntaxException ex )
-        {
-            getLogger().fine( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
+            getLogger().warning( "getProfileStoreFile( String ): " + ex.toString() );  //$NON-NLS-1$
         }
         catch( IOException ex )
         {
-            getLogger().warning( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
+            getLogger().warning( "getProfileStoreFile( String ): " + ex.toString() );  //$NON-NLS-1$
         }
         return null;        
-    }
-
-    private File resolveRelativePath( String filePath, Object connPropContext )
-    {
-        if( connPropContext == null || ! ( connPropContext instanceof Map ) )
-            return null;
-        
-        Object resourceIdentifiersObj = 
-            ( (Map<?,?>) connPropContext ).get( ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS );
-        if( resourceIdentifiersObj == null )   // not available
-            return null;    // no resource URI locator to resolve relative filePath
-        
-        URI fileURI = ResourceIdentifiers.encodeToURI( filePath );
-        URI resolvedFilePathURI = 
-            ResourceIdentifiers.resolveApplResource( resourceIdentifiersObj, fileURI );
-        if( resolvedFilePathURI != null && 
-            ! resolvedFilePathURI.equals( fileURI ) )
-        {
-            return new File( resolvedFilePathURI );
-        }
-        
-        getLogger().warning( Messages.bind( Messages.propertyProvider_UNABLE_TO_RESOLVE_PATH,
-                resourceIdentifiersObj.getClass().getName(), fileURI ) );   
-        return null;
     }
 
     /**

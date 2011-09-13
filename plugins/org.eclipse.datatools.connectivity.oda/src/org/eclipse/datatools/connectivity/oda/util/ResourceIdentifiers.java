@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008, 2011 Actuate Corporation.
+ * Copyright (c) 2008, 2010 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,14 +15,9 @@
 package org.eclipse.datatools.connectivity.oda.util;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
-
-import org.eclipse.datatools.connectivity.oda.OdaException;
 
 /**
  *  Represents the resource identifiers of an ODA consumer application.
@@ -43,9 +38,6 @@ public class ResourceIdentifiers
     private static final String APPL_RESOURCE_TYPE = "ApplResourceType"; //$NON-NLS-1$
     private static final String DESIGN_RESOURCE_TYPE = "DesignResourceType"; //$NON-NLS-1$
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-
-    private static String sm_loggerName = ResourceIdentifiers.class.getName();
-    private static Logger sm_logger = Logger.getLogger( sm_loggerName );
     
     private HashMap<String, URILocator> m_uriLocators;
 
@@ -69,31 +61,6 @@ public class ResourceIdentifiers
     public ResourceIdentifiers()
     {
         m_uriLocators = new HashMap<String, URILocator>(2);
-    }
-
-    /**
-     * A convenience method for a client to invoke the method {@link #resolveApplResource(URI)}
-     * on the specified instance.  
-     * This supports the use case where the specified ResourceIdentifiers instance is not accessible 
-     * by this class loader(s).
-     * @param instance  an instance of {@link ResourceIdentifiers}
-     * @param uri   the URI to be resolved against the application resource base URI
-     * @return      the resulting URI
-     * @since 3.3.3 (DTP 1.9.2)
-     * @see #resolveApplResource(URI)
-     */
-    public static URI resolveApplResource( Object instance, URI uri )
-    {
-        if( instance == null )   // not available
-            return null;    // unable to resolve the specified URI
-        
-        final String instMethodName = "resolveApplResource"; //$NON-NLS-1$
-        URI resolvedFilePathURI = (instance instanceof ResourceIdentifiers) ?
-                ((ResourceIdentifiers)instance).resolveApplResource( uri ) :
-                    // use reflection to invoke the method
-                ReflectionHelper.invokeResolveMethod( instance, instMethodName, uri );
-        
-        return resolvedFilePathURI;
     }
 
     /**
@@ -157,31 +124,6 @@ public class ResourceIdentifiers
     public void registerApplResourceURILocator( URILocator uriLocator )
     {
         registerResourceURILocator( APPL_RESOURCE_TYPE, uriLocator );
-    }
-
-    /**
-     * A convenience method for a client to invoke the method {@link #resolveDesignResource(URI)}
-     * on the specified instance.  
-     * This supports the use case where the specified ResourceIdentifiers instance is not accessible 
-     * by this class loader(s).
-     * @param instance  an instance of {@link ResourceIdentifiers}
-     * @param uri   the URI to be resolved against the design resource base URI
-     * @return      the resulting URI
-     * @since 3.3.3 (DTP 1.9.2)
-     * @see #resolveDesignResource(URI)
-     */
-    public static URI resolveDesignResource( Object instance, URI uri )
-    {
-        if( instance == null )   // not available
-            return null;    // unable to resolve the specified URI
-        
-        final String instMethodName = "resolveDesignResource"; //$NON-NLS-1$
-        URI resolvedFilePathURI = (instance instanceof ResourceIdentifiers) ?
-                ((ResourceIdentifiers)instance).resolveDesignResource( uri ) :
-                    // use reflection to invoke method
-                 ReflectionHelper.invokeResolveMethod( instance, instMethodName, uri );
-        
-        return resolvedFilePathURI;
     }
 
     /**
@@ -270,7 +212,7 @@ public class ResourceIdentifiers
 
     private URILocator getResourceURILocator( String resourceType )
     {
-        return m_uriLocators.get( resourceType );
+        return (URILocator) m_uriLocators.get( resourceType );
     }
 
     private void registerResourceURILocator( String resourceType, URILocator uriLocator )
@@ -311,28 +253,22 @@ public class ResourceIdentifiers
                     locator.resolve( resourcePath ) : 
                     null;     // not able to resolve    
     }
-
-    /**
-     * Encode non-US-ASCII characters in specified file path into an URI.
-     * @param filePath  the string representation of a file, 
-     * @return  the encoded URI, or null if unable to encode
-     * @since 3.3.3 (DTP 1.9.2)
-     */
-    public static URI encodeToURI( String filePath )
+    
+    private static URI encode( String location )
     {
+        //  encode non-US-ASCII characters in specified path into an URI
         try
         {
-            // use URI encoding implementation;
-            String encodedLocation = new File( filePath ).toURI( ).toASCIIString( );
+            // use URI encoding implementation; 
+            // strip out the root path added by the file conversion
+            String encodedLocation = new File( location ).toURI( ).toASCIIString( );
             String target =  new File( EMPTY_STRING ).toURI( ).toASCIIString( );
-            // strip out the interim root path added by the file conversion
             encodedLocation = encodedLocation.replace( target, EMPTY_STRING );
             return new URI( encodedLocation );
         }
         catch( Exception ex )
         {
-            // log and ignore
-            sm_logger.info( "encodeToURI(String): " + ex.toString() );  //$NON-NLS-1$
+            // ignore
         }
         return null;
     }
@@ -372,7 +308,7 @@ public class ResourceIdentifiers
          */
         public URI resolve( String str )
         {
-            URI uri = encodeToURI( str );
+            URI uri = encode( str );
             return resolve( uri );
         }
         
@@ -381,79 +317,6 @@ public class ResourceIdentifiers
             if( m_baseURI == null || uri == null )
                 return uri;
             return m_baseURI.resolve( uri );
-        }
-    }
-    
-    /*
-     * Internal helper to invoke method(s) by reflection.
-     */
-    private static class ReflectionHelper
-    {
-        private static URI invokeResolveMethod( Object instance, String methodName, URI argValue ) 
-        {
-            Method resolveMethod = getMethod( instance, methodName, URI.class );
-            if( resolveMethod != null )
-            {
-                Object returnValue = null;
-                try
-                {
-                    returnValue = invokeMethod( instance, resolveMethod, argValue );
-                    if( returnValue instanceof URI )
-                        return (URI)returnValue;
-                }
-                catch( OdaException ex )
-                {
-                    sm_logger.fine( "Unable to invoke method (" + methodName +  //$NON-NLS-1$
-                            ") on the specified ResourceIdentifiers instance: " + ex.getMessage() );   //$NON-NLS-1$
-                }
-            }
-            return null;  
-        }
-        
-        private static Method getMethod( Object instance, String methodName, Class<?> argClazz )
-        {
-            if( instance == null )
-                return null;
-            
-            try
-            {
-                return instance.getClass().getMethod( methodName, argClazz );
-            }
-            catch( SecurityException ex )
-            {
-                sm_logger.fine( "Unable to get method (" + methodName +  //$NON-NLS-1$
-                        ") from the specified ResourceIdentifiers instance: " + ex.getMessage() );   //$NON-NLS-1$
-            }
-            catch( NoSuchMethodException ex )
-            {
-                sm_logger.fine( "Unable to get method (" + methodName +  //$NON-NLS-1$
-                        ") from the specified ResourceIdentifiers instance: " + ex.getMessage() );   //$NON-NLS-1$
-            }            
-            return null;
-        }
-        
-        private static Object invokeMethod( Object instance, Method method, Object argValue )
-            throws OdaException
-        {
-            if( instance == null || method == null )
-                throw new OdaException( new IllegalArgumentException( "Null" ) ); //$NON-NLS-1$
-
-            try
-            {
-                return method.invoke( instance, argValue );
-            }
-            catch ( IllegalArgumentException ex )
-            {
-                throw new OdaException( ex );
-            }
-            catch ( IllegalAccessException ex )
-            {
-                throw new OdaException( ex );
-            }
-            catch ( InvocationTargetException ex )
-            {
-                throw new OdaException( ex );
-            }
         }
     }
     
