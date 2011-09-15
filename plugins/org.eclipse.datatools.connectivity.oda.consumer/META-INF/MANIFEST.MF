@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer;singleton:=
 Bundle-Version: 3.2.5.qualifier
 Bundle-Vendor: Eclipse Data Tools Platform
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity.oda;bundle-version="[3.3.2,4.0.0)";visibility:=reexport
+ org.eclipse.datatools.connectivity.oda;bundle-version="[3.3.3,4.0.0)";visibility:=reexport
 Export-Package: org.eclipse.datatools.connectivity.oda.consumer.helper,
  org.eclipse.datatools.connectivity.oda.consumer.nls;x-friends:="org.eclipse.datatools.connectivity.oda.consumer.tests",
  org.eclipse.datatools.connectivity.oda.consumer.services,
