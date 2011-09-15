@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.CreateProfileStoreAction;
@@ -64,6 +65,7 @@ public class DataSourceDesignSessionBase
     private boolean m_useProfileSelectionPage = USE_PROFILE_PAGE_DEFAULT_SETTING;
     private ProfileSelectionWizard m_profileSelectionWizard;
     private ProfileSelectionEditorPage m_profileEditorPage;
+    private ResourceIdentifiers m_profileResourceIds;   // temporary placeholder
 
     // logging variable
     private static final String sm_className = DataSourceDesignSessionBase.class.getName();
@@ -454,10 +456,24 @@ public class DataSourceDesignSessionBase
     private ProfileSelectionWizard getProfileSelectionWizard()
     {
         if( m_profileSelectionWizard == null )
-            m_profileSelectionWizard = new ProfileSelectionWizard( this );
+        {
+            m_profileSelectionWizard = new ProfileSelectionWizard( this, getProfileResourceIdentifiers() );
+            // reset placeholder after having passed instance to the profile wizard
+            setProfileResourceIdentifiers( null ); 
+        }
         return m_profileSelectionWizard;
     }
     
+    private ResourceIdentifiers getProfileResourceIdentifiers()
+    {
+        return m_profileResourceIds;
+    }
+
+    protected void setProfileResourceIdentifiers( ResourceIdentifiers profileResourceIds )
+    {
+        m_profileResourceIds = profileResourceIds;
+    }
+
     /**
      * For use by internal packages only.
      */
@@ -752,6 +768,7 @@ public class DataSourceDesignSessionBase
         
         // if the prompt indicator is set with a parent shell, open create profile store dialog 
         File linkedProfileStoreFile = null;
+        boolean convertToRelativePath = false;  // keeps absolute path by default
         if( promptCreateProfileStore && parentShell != null )
         {
             CreateProfileStoreAction createAction = new CreateProfileStoreAction( parentShell );
@@ -767,7 +784,11 @@ public class DataSourceDesignSessionBase
                 // copy the newly created profile store file path
                 ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
                 if( dlg != null )
-                    linkedProfileStoreFile = dlg.getFile();                            
+                {
+                    linkedProfileStoreFile = dlg.getFile(); 
+                    // TODO pending new method
+                    // convertToRelativePath = true; // dlg.isProfileFilePathRelative();
+                }
             }
         }
 
@@ -782,7 +803,10 @@ public class DataSourceDesignSessionBase
     
             // link the exported profile in data source design
             editDataSourceDesign.setLinkedProfileName( exportedProfile.getName() );
-            editDataSourceDesign.setLinkedProfileStoreFile( linkedProfileStoreFile );
+            editDataSourceDesign.setLinkedProfileStoreFilePath( 
+                    DesignUtil.convertFileToResourcePath( linkedProfileStoreFile, 
+                                 editDataSourceDesign.getHostResourceIdentifiers(), 
+                                 convertToRelativePath ) );   
         }
         
         return setDesignSessionResponse( m_designSession, editDataSourceDesign, null );        
@@ -924,7 +948,7 @@ public class DataSourceDesignSessionBase
         private String m_instanceName;
         private File m_storageFile; 
         private boolean m_maintainLink;
-        private String m_initStorageFilePath;
+        private String m_storageFilePathPropValue;
         
         private OdaConnectionProfile m_profileInstance;
         
@@ -943,21 +967,29 @@ public class DataSourceDesignSessionBase
          *              specified in the profile instance; any future
          *              changes to the profile instance is not applied to
          *              the data source design.
+         * @param storageFilePathPropertyValue   the file pathname of a profile store file,
+         *              to be saved as a data source design property;
+         *              may be in absolute path or relative based on a host-defined 
+         *              design resource identifiers
          */
         public ProfileReferenceBase( String profileInstanceId,
                                 File storageFile, 
-                                boolean maintainExternalLink )
+                                boolean maintainExternalLink,
+                                String storageFilePathPropertyValue )
         {
             m_instanceId = profileInstanceId;
             m_storageFile = storageFile;
             m_maintainLink = maintainExternalLink;
+            m_storageFilePathPropValue = storageFilePathPropertyValue;
         }
 
         /**
          * Constructor.
          * @param profileInstanceName   the name of a profile instance that
          *              uniquely identifies a profile within a profile storage file
-         * @param storageFilePath   the file pathname of a profile storage file
+         * @param storageFilePathPropertyValue   the file pathname of a profile store file,
+         *              as saved in a data source design property;
+         *              may be in absolute path or relative based on the specified designResourceIds
          * @param maintainExternalLink  "true" indicates to maintain a link to the 
          *              given profile instance name and storageFilePath, and applies its 
          *              latest properties values at run-time.
@@ -965,14 +997,17 @@ public class DataSourceDesignSessionBase
          *              specified in the profile instance; any future
          *              changes to the profile instance is not applied to
          *              the data source design.
+         * @param designResourceIds   a design resource identifier instance
+         *              defined by the host application
          */
         public ProfileReferenceBase( String profileInstanceName,
-                String storageFilePath, 
-                boolean maintainExternalLink )
+                String storageFilePathPropertyValue, 
+                boolean maintainExternalLink,
+                ResourceIdentifiers designResourceIds )
         {
             m_instanceName = profileInstanceName;
-            m_initStorageFilePath = storageFilePath;
-            m_storageFile = DesignUtil.convertPathToFile( storageFilePath );
+            m_storageFilePathPropValue = storageFilePathPropertyValue;
+            m_storageFile = DesignUtil.convertPathToResourceFile( storageFilePathPropertyValue, designResourceIds );
             m_maintainLink = maintainExternalLink;
         }
 
@@ -1016,14 +1051,19 @@ public class DataSourceDesignSessionBase
         {
         	// derive from actual File, if exists
             String actualFilePath = DesignUtil.convertFileToPath( getStorageFile() );
-            return ( actualFilePath != null ) ? actualFilePath : m_initStorageFilePath;
+            return ( actualFilePath != null ) ? actualFilePath : getStorageFilePathPropertyValue();
+        }
+        
+        public String getStorageFilePathPropertyValue()
+        {
+            return m_storageFilePathPropValue;
         }
         
         public boolean maintainExternalLink()
         {
             return m_maintainLink;
         }
-        
+
         public IConnectionProfile getProfileInstance()
         {
             return getOdaProfileInstance();

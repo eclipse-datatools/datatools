@@ -210,7 +210,12 @@ class ProfileSelectionPageHelper
                 m_dataSourceDesignName,
                 new ProfileReferenceBase( m_profileID,
                         new Path( getConnProfilePathControlText() ).toFile( ),
-                        m_linkRefCheckBox.getSelection() ) );
+                        m_linkRefCheckBox.getSelection(),
+                        getConnProfilePathControlText() ) );
+        // TODO replace last argument with
+//        DesignUtil.convertFileToResourcePath( new Path( getConnProfilePathControlText() ).toFile( ), 
+//                getHostResourceIdentifiers(), 
+//                convertToRelativePath ) );   
      }
     
     private boolean isPageComplete()

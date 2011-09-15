@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
@@ -104,14 +105,32 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      */
     public static DataSourceDesignSession startNewDesignFromProfile()
     {
-        // no specific ODA data source type is specified yet
         return startNewDesignFromProfile( null );
     }
- 
-    // TODO - Expose as API method for client to specify a request
-    private static DataSourceDesignSession startNewDesignFromProfile( DesignSessionRequest sessionRequest )
+
+    /**
+     * Starts a design session to create a new data source design instance,
+     * whose properties and their values are copied from,
+     * or referenced to, the given profile instance reference.
+     * <br>This method should be used when an ODA host designer
+     * wants to use the DTP ODA Profile Selection UI page for
+     * an user to select a connection profile instance, which is persisted
+     * in a profile store file located relative to an application
+     * resource URI defined by the host.
+     * @param profileResourceIdentifiers    the design {@link ResourceIdentifiers}
+     *          for the profile store file path
+     * @return  a started design session, ready to create a new data source design
+     * @since 3.2.6 (DTP 1.9.2)
+     */
+    public static DataSourceDesignSession startNewDesignFromProfile( 
+            ResourceIdentifiers profileResourceIdentifiers )
     {
-        return new DataSourceDesignSession( sessionRequest );
+        // no specific ODA data source type is specified yet, set null DesignSessionRequest
+        DataSourceDesignSession newSession =
+            new DataSourceDesignSession( (DesignSessionRequest)null );
+        if( profileResourceIdentifiers != null )
+            newSession.setProfileResourceIdentifiers( profileResourceIdentifiers );
+        return newSession;
     }
 
     /**
@@ -473,7 +492,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
                                 File storageFile, 
                                 boolean maintainExternalLink )
         {
-            super( profileInstanceId, storageFile, maintainExternalLink );
+            super( profileInstanceId, storageFile, maintainExternalLink, storageFile.getPath() );
         }
 
     }

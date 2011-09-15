@@ -382,7 +382,8 @@ public class DesignUtil
         if( designResourceIds != null )
         {
             String resolvedStoreFilePath = resolveToApplResourcePath( filePath, designResourceIds );
-            if( ! filePath.equals( resolvedStoreFilePath ) )    // got a resolved file path
+            if( resolvedStoreFilePath != null &&
+                ! resolvedStoreFilePath.equals( filePath ) )    // got a resolved file path
             {
                 File resolvedStoreFile = new File( resolvedStoreFilePath );
                 if( resolvedStoreFile.exists() )
@@ -400,15 +401,15 @@ public class DesignUtil
         }
         catch( MalformedURLException e )
         {
-            getLogger().fine( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+            getLogger().fine( getExceptionMessage(e) + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         catch( URISyntaxException e )
         {
-            getLogger().fine( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+            getLogger().fine( getExceptionMessage(e) + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         catch( IOException e )
         {
-            getLogger().warning( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+            getLogger().info( getExceptionMessage(e) + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return null;
     }
@@ -517,17 +518,24 @@ public class DesignUtil
      */
     public static String resolveToApplResourcePath( String filePath, ResourceIdentifiers designResourceIds )
     {
-        // if no application resource base path for a relative filePath, 
-        // use as is
+        // if no application resource base to resolve a relative filePath, use it as is
         if( designResourceIds == null ||
-            designResourceIds.getApplResourceBaseURIString() == null )   // not available
+            designResourceIds.getApplResourceBaseURI() == null )   // not available
             return filePath;
         
-        File resolvedFile = new File( filePath );
-        if( resolvedFile.isAbsolute() )
+        if( new File( filePath ).isAbsolute() )
             return filePath;    // specified filePath is already absolute
 
-        resolvedFile = new File( designResourceIds.getApplResourceBaseURIString(), filePath );
+        File resolvedFile;
+        try
+        {
+            resolvedFile = new File( designResourceIds.getApplResourceBaseURI().resolve( filePath ) );
+        }
+        catch( Exception ex )
+        {
+            getLogger().info( getExceptionMessage(ex) + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
+            return null;
+        }
         return resolvedFile.getPath();
     }
     
@@ -831,6 +839,13 @@ public class DesignUtil
             }
         }
         return sm_logger;
+    }
+
+    private static String getExceptionMessage( Exception ex )
+    {
+        if( ex == null )
+            return null;
+        return ex.getCause() != null ? ex.getCause().getLocalizedMessage() : ex.toString();
     }
 
 }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,8 +31,8 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
-import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
@@ -322,10 +322,9 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             getCustomWizardPage().setInitialProperties( m_profileProps );
     }
 
-    public void setLinkedProfile( String profileName, File storageFile )
+    public void setLinkedProfile( ProfileReferenceBase profileRef )
     {
-        m_linkedProfile = 
-            new LinkedProfile( profileName, storageFile );
+        m_linkedProfile = new LinkedProfile( profileRef );
     }
 
     public void unsetLinkedProfile()
@@ -444,8 +443,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         unsetLinkedProfile();
         
         if( newProfileRef != null && newProfileRef.maintainExternalLink() )
-            setLinkedProfile( newProfileRef.getName(), 
-                              newProfileRef.getStorageFile() );        
+            setLinkedProfile( newProfileRef );        
     }
     
     /**
@@ -595,7 +593,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         {
             assert( m_linkedProfile != null );
             newDesign.setLinkedProfileName( m_linkedProfile.getProfileName() );
-            newDesign.setLinkedProfileStoreFile( m_linkedProfile.getStorageFile() );
+            newDesign.setLinkedProfileStoreFilePath( m_linkedProfile.getStorageFilePathPropertyValue() );
         }
         
         if( getCustomWizardPage() == null )
@@ -661,11 +659,13 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     {
         private String m_profileName;
         private File m_storageFile;
-        
-        public LinkedProfile( String profileName, File storageFile )
+        private String m_storageFilePathPropValue;
+
+        public LinkedProfile( ProfileReferenceBase profileRef )
         {
-            m_profileName = profileName;
-            m_storageFile = storageFile;
+            m_profileName = profileRef.getName();
+            m_storageFile = profileRef.getStorageFile();
+            m_storageFilePathPropValue = profileRef.getStorageFilePathPropertyValue();
         }
 
         /**
@@ -679,22 +679,21 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
                      m_profileName.length() > 0 );
         }
         
-        /**
-         * @return Returns the m_profileName.
-         */
         public String getProfileName()
         {
             return m_profileName;
         }
 
-        /**
-         * @return Returns the m_storageFile.
-         */
         public File getStorageFile()
         {
             return m_storageFile;
         }                
         
+        public String getStorageFilePathPropertyValue()
+        {
+            return m_storageFilePathPropValue;
+        }
+
         private IConnectionProfile getProfileInstance()
         {
             if( ! hasLinkAttributes() )

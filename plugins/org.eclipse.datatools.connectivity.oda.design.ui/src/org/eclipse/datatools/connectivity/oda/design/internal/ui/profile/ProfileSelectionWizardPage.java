@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -101,5 +102,13 @@ public class ProfileSelectionWizardPage extends WizardPage
     {
         getPageHelper().setDesignNameValidator( validator );
     }
-    
+
+    /* 
+     * @since 3.2.6 (DTP 1.9.2)
+     */
+    ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        return getMyWizard().getHostResourceIdentifiers();
+    }
+
 }
