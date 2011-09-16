@@ -11,7 +11,7 @@
 ################################################################################ 
 plugin.internal_error=Interner Fehler - org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=Unbekannt
-dialog.title.error.loadconnectionfactory = Error loading connection factory in "{0}"!
+dialog.title.error.loadconnectionfactory = Fehler beim Laden der Verbindungs-Factory in "{0}"!
 ConnectJob.name=Verbindungen zu {0} werden erstellt.
 ConnectJob.status.info=Für eine oder mehrere Erweiterungen konnten keine Verbindungen zu {0} erstellt werden.
 ConnectJob.status.error=Die Verbindung zu {0} konnte nicht hergestellt werden.
@@ -24,29 +24,29 @@ OpenConnectionEventJob.name=Das Ereignis zum Öffnen der Verbindung für {0} wird 
 CloseManagedConnectionJob.name=Verbindung {0} zu {1} wird geschlossen.
 CloseManagedConnectionJob.error=Fehler beim Schließen der Verbindung {0} zu {1}. (Fehler\: {2})
 CloseConnectionEventJob.name=Das Ereignis zum Schließen der Verbindung für {0} wird verarbeitet.
-assert.invalid.profile = Parsing error\: invalid attribute ({0})
+assert.invalid.profile = Analysefehler\: ungültiges Attribut ({0})
 assert.invalid.profile.duplicateFactory = Analysefehler\: Doppelte Factory-ID mit doppelter Priorität ({0})
 assert.invalid.profile.nullFactory = Analysefehler\: Factory oder Factory-ID ({0}/{1}) ist gleich null.
-dialog.title.error.loadwizard = Error loading new wizard in "{0}"!
-operation.new.connectionprofile = Creating profile\: "{0}"
-error.connect = Problem connecting to profile "{0}."  See log file for more details.
-marker.error = Problem connecting to profile {0}.  (Error\: {1})
+dialog.title.error.loadwizard = Fehler beim Laden des neuen Assistenten in "{0}"!
+operation.new.connectionprofile = Profil wird erstellt\: "{0}"
+error.connect = Fehler bei der Verbindung zu Profil "{0}."  Wenn Sie weitere Angaben benötigen, lesen Sie die Protokolldatei.
+marker.error = Fehler bei der Verbindung zu Profil {0}. (Fehler\: {1})
 drivermarker.error = Problem mit Treiber "{0}". (Fehler\: {1})
 drivermarker.import.error = Fehlende JAR-Liste für Treiberdefinition bei Import von Profil "{0}" erstellt.
 profile.duplicate =Der Verbindungsprofilname "{0}" ist doppelt vorhanden\!
-profile.notexist = Connection profile "{0}" does not exist!
-duplicate.profile.name = Copy of {0}({1})
+profile.notexist = Verbindungsprofil "{0}" existiert nicht!
+duplicate.profile.name = Kopie von {0}({1})
 DriverConnectionBase.error.unknown=Die Verbindung ist mit einem nicht angegebenen Fehler fehlgeschlagen.
 DriverConnectionBase.error.driverDefinitionNotSpecified=Die Treiberdefinition war nicht angegeben.
 DriverConnectionBase.error.driverDefinitionNotFound=Die Treiberdefinition wurde nicht gefunden.
-error.loadprofilesxml = Error loading connection profile data.
-error.saveprofilesxml = Error saving connection profile data.
+error.loadprofilesxml = Fehler beim Laden der Verbindungsprofil-Daten.
+error.saveprofilesxml = Fehler beim Speichern der Verbindungsprofil-Daten.
 error.loaddriversxml = Fehler beim Laden der Treiberdefinitionsdaten.
 error.savedriversxml = Fehler beim Speichern der Treiberdefinitionsdaten.
 
-trace.error.propertiesPersistenceHook = Could not load propertiesPersistenceHook, using default (profile type={0}, extension={1})
-trace.error.propertiesPersistenceHookSaveError = Error invoking properties persistent hook; persisting all properties (profile={0}, extension={1})
-trace.error.propertiesPersistenceHookLoadError = Error invoking properties persistent hook; transient properties not set (profile={0}, extension={1})
+trace.error.propertiesPersistenceHook = propertiesPersistenceHook konnte nicht geladen werden, Standard wird verwendet (Profiltyp={0}, Erweiterung={1})
+trace.error.propertiesPersistenceHookSaveError = Fehler beim Aufrufen der Eigenschaften des persistenten Hooks; alle Eigenschaften werden beibehalten (Profil={0}, Erweiterung={1})
+trace.error.propertiesPersistenceHookLoadError = Fehler beim Aufrufen der Eigenschaften des persistenten Hooks; temporäre Eigenschaften nicht festgelegt (Profil={0}, Erweiterung={1})
 trace.error.migration = Fehler beim Laden des Migrationselements für Verbindungsprofil-Anbieter (id={0}, migration class={1})
 trace.error.drivermigration = Fehler beim Erstellen der Treiberinstanz des Profils (ID={0}, Treiber-ID={1})
 

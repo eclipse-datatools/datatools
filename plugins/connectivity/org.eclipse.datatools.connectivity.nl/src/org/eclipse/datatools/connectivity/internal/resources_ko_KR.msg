@@ -11,7 +11,7 @@
 ################################################################################ 
 plugin.internal_error=내부 오류 - org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=알 수 없음
-dialog.title.error.loadconnectionfactory = Error loading connection factory in "{0}"!
+dialog.title.error.loadconnectionfactory = "{0}" 연결 팩토리 로드 중 오류가 발생했습니다!
 ConnectJob.name={0}에 대한 연결 작성 중.
 ConnectJob.status.info=하나 이상의 확장자에 대해 {0}에 대한 연결을 작성할 수 없습니다.
 ConnectJob.status.error={0}에 연결할 수 없습니다.
@@ -24,29 +24,29 @@ OpenConnectionEventJob.name={0}에 대한 연결 열기 이벤트 처리 중.
 CloseManagedConnectionJob.name={1}에 대한 {0} 연결을 닫고 있습니다.
 CloseManagedConnectionJob.error={1}에 대한 {0} 연결을 닫는 도중 오류가 발생했습니다(오류\: {2}).
 CloseConnectionEventJob.name={0}에 대한 연결 닫기 이벤트 처리 중.
-assert.invalid.profile = Parsing error\: invalid attribute ({0})
+assert.invalid.profile = 구문 분석 오류\: 잘못된 특성({0})
 assert.invalid.profile.duplicateFactory = 구문 분석 오류\: 중복된 팩토리 ID 및 중복된 우선 순위({0})
 assert.invalid.profile.nullFactory = 구문 분석 오류\: 널(Null) 팩토리 또는 팩토리 ID({0}/{1})
-dialog.title.error.loadwizard = Error loading new wizard in "{0}"!
-operation.new.connectionprofile = Creating profile\: "{0}"
-error.connect = Problem connecting to profile "{0}."  See log file for more details.
-marker.error = Problem connecting to profile {0}.  (Error\: {1})
+dialog.title.error.loadwizard = "{0}"의 새로운 마법사 로드 중 오류가 발생했습니다!
+operation.new.connectionprofile = 프로필 생성\: "{0}"
+error.connect = 프로필 "{0}" 연결에 문제가 있습니다.  자세한 내용은 로그 파일을 참조하십시오.
+marker.error = 프로필 "{0}" 연결에 문제가 있습니다.  (오류\: {1})
 drivermarker.error = 드라이버 "{0}"에 문제가 발생했습니다(오류\: {1}).
 drivermarker.import.error = 프로필 "{0}"을(를) 가져오는 도중 생성된 드라이버 정의의 jar 목록이 누락되었습니다.
 profile.duplicate =연결 프로파일 이름 "{0}" 중복.
-profile.notexist = Connection profile "{0}" does not exist!
-duplicate.profile.name = Copy of {0}({1})
+profile.notexist = 프로필 "{0}" 연결이 없습니다!
+duplicate.profile.name = {0}({1})의 복사본
 DriverConnectionBase.error.unknown=지정되지 않은 오류로 연결에 실패했습니다.
 DriverConnectionBase.error.driverDefinitionNotSpecified=드라이버 정의가 지정되지 않았습니다.
 DriverConnectionBase.error.driverDefinitionNotFound=드라이버 정의를 찾을 수 없습니다.
-error.loadprofilesxml = Error loading connection profile data.
-error.saveprofilesxml = Error saving connection profile data.
+error.loadprofilesxml = 프로필 연결 데이터 로드 중 오류가 발생했습니다.
+error.saveprofilesxml = 프로필 연결 데이터 저장 중 오류가 발생했습니다.
 error.loaddriversxml = 드라이버 정의 데이터 로드 중 오류 발생
 error.savedriversxml = 드라이버 정의 데이터 저장 중 오류 발생
 
-trace.error.propertiesPersistenceHook = Could not load propertiesPersistenceHook, using default (profile type={0}, extension={1})
-trace.error.propertiesPersistenceHookSaveError = Error invoking properties persistent hook; persisting all properties (profile={0}, extension={1})
-trace.error.propertiesPersistenceHookLoadError = Error invoking properties persistent hook; transient properties not set (profile={0}, extension={1})
+trace.error.propertiesPersistenceHook = 기본값(profile type={0}, extension={1})을 사용하는 propertiesPersistenceHook을 로드할 수 없습니다.
+trace.error.propertiesPersistenceHookSaveError = 영구 후크 속성을 호출하는 동안 오류가 발생했습니다. 모든 속성(profile={0}, extension={1})이 유지됩니다.
+trace.error.propertiesPersistenceHookLoadError = 영구 후크 속성을 호출하는 동안 오류가 발생했습니다. 임시 속성(profile={0}, extension={1})이 설정되지 않습니다.
 trace.error.migration = 연결 프로필 공급자에 대한 마이그레이션 요소를 로딩하는 중 오류 발생(ID={0}, 마이그레이션 클래스={1})
 trace.error.drivermigration = 프로필의 드라이버 인스턴스 생성 도중 오류가 발생했습니다(ID={0}, 드라이버 ID={1}).
 
