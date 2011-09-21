@@ -148,7 +148,13 @@ public class ExtractData
 					fw.write(colDelim);
 			    String s = getVal(rs, i);
 			    if (s!=null)
+			    {
 			        fw.write(s);
+			    }
+			    else
+			    {
+			    	fw.write("NULL"); //$NON-NLS-1$
+			    }
 			}
 			rowsExtracted++;
 			fw.write(ENDL);			
