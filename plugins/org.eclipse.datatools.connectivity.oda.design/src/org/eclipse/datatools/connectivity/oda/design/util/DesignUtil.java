@@ -519,7 +519,7 @@ public class DesignUtil
     public static String resolveToApplResourcePath( String filePath, ResourceIdentifiers designResourceIds )
     {
         // if no application resource base to resolve a relative filePath, use it as is
-        if( designResourceIds == null ||
+        if( filePath == null || designResourceIds == null ||
             designResourceIds.getApplResourceBaseURI() == null )   // not available
             return filePath;
         
@@ -529,6 +529,8 @@ public class DesignUtil
         File resolvedFile;
         try
         {
+            // replace with directory separator syntax required by URI#resolve
+            filePath = filePath.replace( File.separator, "/" ); //$NON-NLS-1$
             resolvedFile = new File( designResourceIds.getApplResourceBaseURI().resolve( filePath ) );
         }
         catch( Exception ex )
