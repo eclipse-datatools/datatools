@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,10 +26,16 @@ import java.util.TreeSet;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.IBrowseButtonHost;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.IMenuButtonProvider;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.MenuButtonProvider;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.ProfileStoreBrowseButton;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
@@ -49,7 +56,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -64,7 +70,7 @@ import org.eclipse.ui.dialogs.PropertyPage;
  * a connection profile instance.
  * @since   3.0.4
  */
-class ProfileSelectionPageHelper
+class ProfileSelectionPageHelper implements IBrowseButtonHost
 {
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     private static final String CONTEXT_ID_CONNECTIONPROFILE = 
@@ -84,6 +90,7 @@ class ProfileSelectionPageHelper
     private transient String m_profileID;
     private transient String m_odaDataSourceID;
     private transient Button m_useDefaultDSNameCheckBox = null;
+    private transient ProfileStoreBrowseButton m_browseButton = null;
     private transient Tree m_odaDataSourceTree = null;
     private transient String m_treeFilter;
     private transient SortedSet<OdaProfileCategoryInfo> m_dataSourceIDs = null;
@@ -92,6 +99,7 @@ class ProfileSelectionPageHelper
 	    new HashMap<String, String>(); // key= deprecated odaDataSourceId; value= replacing odaDataSourceId
     
     private String m_dataSourceDesignName = EMPTY_STRING;
+    private ResourceIdentifiers m_hostResourceIdentifiers = null;
 
     ProfileSelectionPageHelper( WizardPage page )
     {
@@ -133,7 +141,7 @@ class ProfileSelectionPageHelper
         ProfileReferenceBase profileRef = selectedProfile.getProfileRef();
         if( profileRef != null )
         {       
-            String profileStorePath = profileRef.getStorageFilePath();
+            String profileStorePath = profileRef.getStorageFilePathPropertyValue();
             if( profileStorePath != null )
             {
                 // triggers tree population; disable auto item selection
@@ -204,18 +212,25 @@ class ProfileSelectionPageHelper
     {
         if( ! hasSelectedProfile() || ! isPageComplete() )
             return null;
-            
+
+        String profileStorePathText = getConnProfilePathControlText();
+        String resolvedProfileStorePath = resolveProfileStorePath( profileStorePathText );
+        boolean isProfileStorePathRelative = false;     // default behavior
+        if( resolvedProfileStorePath != null &&
+            ! resolvedProfileStorePath.equals( profileStorePathText ) ) // was resolved from relative path
+            isProfileStorePathRelative = true;
+        
+        File profileStoreFile = new Path( resolvedProfileStorePath ).toFile( );
+
         return new ProfileSelection(
                 m_odaDataSourceID,
                 m_dataSourceDesignName,
                 new ProfileReferenceBase( m_profileID,
-                        new Path( getConnProfilePathControlText() ).toFile( ),
+                        profileStoreFile,
                         m_linkRefCheckBox.getSelection(),
-                        getConnProfilePathControlText() ) );
-        // TODO replace last argument with
-//        DesignUtil.convertFileToResourcePath( new Path( getConnProfilePathControlText() ).toFile( ), 
-//                getHostResourceIdentifiers(), 
-//                convertToRelativePath ) );   
+                        DesignUtil.convertFileToResourcePath( profileStoreFile, 
+                                m_hostResourceIdentifiers, 
+                                isProfileStorePathRelative ) )) ;      
      }
     
     private boolean isPageComplete()
@@ -259,7 +274,7 @@ class ProfileSelectionPageHelper
         else if( m_propertyPage != null )
         {
             // use default title instead of leaving the message area empty
-            if( newMessage == EMPTY_STRING && newType == IMessageProvider.NONE )
+            if( newMessage.length() == 0 && newType == IMessageProvider.NONE )
                 newMessage = Messages.profilePage_pageTitle;    
             m_propertyPage.setMessage( newMessage, newType );
         }
@@ -315,7 +330,7 @@ class ProfileSelectionPageHelper
                        setSelectedDataSourceName( EMPTY_STRING );
                        setDefaultMessageAsError( hasConnectionProfilePath() );
 
-                       if( hasConnectionProfilePath() && ! new Path( getConnProfilePathControlText() ).toFile().exists() )
+                       if( hasConnectionProfilePath() && ! new Path( getResolvedConnProfilePathControlText() ).toFile().exists() )
                            setMessage( Messages.profilePage_error_invalidProfileStorePath, IMessageProvider.ERROR );
 
                        // check if profile tree has only one profile item, 
@@ -336,23 +351,31 @@ class ProfileSelectionPageHelper
         } );
 
         // Browse... button
-        Button browseButton = new Button( composite, SWT.PUSH );
-        browseButton.setText( Messages.profilePage_button_browse );
+        IMenuButtonProvider provider = new MenuButtonProvider( );
+        m_browseButton = new ProfileStoreBrowseButton( composite,
+                SWT.PUSH,
+                provider,
+                this );
+        GridData data = new GridData();
+        data.widthHint = m_browseButton.computeButtonWidth( );
+        m_browseButton.setLayoutData(data);
+
+        if( m_wizardPage != null && m_wizardPage instanceof ProfileSelectionWizardPage )
         {
-            GridData data = new GridData();
-	        data.widthHint = computeButtonWidth( browseButton );
-            browseButton.setLayoutData( data );
+            m_hostResourceIdentifiers = ((ProfileSelectionWizardPage)m_wizardPage).getHostResourceIdentifiers();            
         }
-        browseButton.addSelectionListener( new SelectionAdapter() 
+        if( m_propertyPage != null && m_propertyPage instanceof ProfileSelectionEditorPage )
         {
-            public void widgetSelected( SelectionEvent e )
-            {
-				FileDialog dialog = new FileDialog( getShell() );
-				String text = dialog.open();
-				if( text != null )
-				    setConnProfilePathControlText( text, false );
-			}
-        } );
+            m_hostResourceIdentifiers = ((ProfileSelectionEditorPage)m_propertyPage).getHostResourceIdentifiers();
+        }
+        if( m_hostResourceIdentifiers != null )
+        {
+            File resourceBase = new File(m_hostResourceIdentifiers.getApplResourceBaseURI( ));
+            m_browseButton.getMenuButtonProvider( ).setProperty( RESOURCE_FILE_DIR, resourceBase );
+        }
+        m_browseButton.getMenuButtonProvider( ).setProperty( IS_CREATE_PROFILE, Boolean.FALSE );
+
+        m_browseButton.refreshMenuItems( );
         
         // New... button
         createNewProfileStoreButton( composite );
@@ -380,14 +403,20 @@ class ProfileSelectionPageHelper
             private void handleNewProfileStore()
             {
                 CreateProfileStoreAction createAction = 
-                    new CreateProfileStoreAction( getShell() );
+                    new CreateProfileStoreAction( getShell(), m_hostResourceIdentifiers );
                 createAction.run();
                 if( createAction.isCompleted() )
                 {
                     // copy the newly created profile store file path
                     ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
                     if( dlg != null && dlg.getFile() != null )
-                        setConnProfilePathControlText( dlg.getFile().getPath(), false );                            
+                    {
+                        String profileStoreTextPath =
+                            DesignUtil.convertFileToResourcePath( dlg.getFile(), 
+                                m_hostResourceIdentifiers, 
+                                dlg.isProfileStorePathRelative() );   
+                        setConnProfilePathControlText( profileStoreTextPath, false );
+                    }                            
                 }
             }
         } );
@@ -782,7 +811,7 @@ class ProfileSelectionPageHelper
         {
             return OdaProfileExplorer.getInstance().getProfileIdsAndNamesByCategory( 
                     categoryId, 
-                    new Path( getConnProfilePathControlText() ).toFile( ) );
+                    new Path( getResolvedConnProfilePathControlText() ).toFile( ) );
         }
         catch ( OdaException ex )
         {
@@ -1055,12 +1084,53 @@ class ProfileSelectionPageHelper
     /**
      * Return a de-processed text value in the connection profile store file path 
      * UI text control.
-     * @return
+     * @return  the user-specified text in the profile store path control;
+     *          may be in relative or absolute format; and may point to a non-existing file
      */
     private String getConnProfilePathControlText()
     {
         String localizedText = m_connectionProfilePath.getText();
         return TextProcessorWrapper.deprocess( localizedText );
+    }
+    
+    private String getResolvedConnProfilePathControlText()
+    {
+        return resolveProfileStorePath( getConnProfilePathControlText() );
+    }
+    
+    private String resolveProfileStorePath( String filePathText )
+    {
+        if( filePathText == null || filePathText.trim().length() == 0 || 
+            m_hostResourceIdentifiers == null )
+            return filePathText;    // nothing to resolve with
+
+        String resolvedFilePathText =
+            DesignUtil.resolveToApplResourcePath( filePathText, m_hostResourceIdentifiers );
+        return ( resolvedFilePathText != null ) ?
+                resolvedFilePathText :
+                filePathText; // unable to resolve invalid filePathText, return original value
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.IBrowseButtonParent#setConnProfilePath(java.lang.String, boolean)
+     */
+    public void setProfileStorePath( String path, boolean isRelative ) 
+    {   
+        if( path == null ) 
+            path = EMPTY_STRING;
+        setConnProfilePathControlText( path, false );
+    }     
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.IBrowseButtonHost#browseSelected()
+     */
+    public void browseSelected()
+    {
+        m_browseButton.getMenuButtonProvider().setProperty(
+                IBrowseButtonHost.STORED_PATH,
+                getResolvedConnProfilePathControlText() );
     }
 
     /**

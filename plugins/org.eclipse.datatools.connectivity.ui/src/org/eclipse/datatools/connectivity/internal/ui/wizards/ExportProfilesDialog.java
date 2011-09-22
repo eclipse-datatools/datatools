@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2008 Sybase, Inc.
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -270,7 +271,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			public void widgetSelected(SelectionEvent e) {
 				String filePath = new FileDialog(getShell()).open();
 				if( filePath != null )
-					txtFile.setText(filePath);
+				    setFilePathText(filePath);
 			}
 		});
 		button.setLayoutData( layoutData );
@@ -344,7 +345,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			return;
 		}
 
-		if (txtFile.getText().length() == 0) {
+		if (getFilePathText().length() == 0) {
 			MessageDialog.openError(getShell(), ConnectivityUIPlugin
 					.getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
 					ConnectivityUIPlugin.getDefault().getResourceString(
@@ -357,7 +358,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		}
 		mProfiles = (IConnectionProfile[]) vec
 				.toArray(new IConnectionProfile[0]);
-		mFile = new File(txtFile.getText());
+		mFile = new File(getFilePathText());
 		
 		/* validate that the file name has a valid directory as parent */
 		String fileParent = mFile.getParent();
@@ -379,6 +380,24 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		mNeedEncryption = btnEncryption.getSelection();
 		super.okPressed();
 	}
+    
+	/*
+	 * @since DTP 1.9.2
+	 */
+    protected String getFilePathText()
+    {
+        String localizedText = txtFile.getText();
+        return TextProcessor.deprocess( localizedText );
+    }
+    
+    /*
+     * @since DTP 1.9.2
+     */
+    protected void setFilePathText( String text )
+    {
+        String localizedText = TextProcessor.process( text );
+        txtFile.setText( localizedText );
+    }
 
 	public IContext getContext(Object target) {
 		return contextProviderDelegate.getContext(target);

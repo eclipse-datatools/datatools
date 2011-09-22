@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction;
 import org.eclipse.swt.widgets.Shell;
 
@@ -27,10 +28,12 @@ public class CreateProfileStoreAction extends ExportProfileViewAction
 {
     private ProfileStoreCreationDialog m_dialog;
     private IConnectionProfile m_preSelectProfile;
+    private ResourceIdentifiers m_resourceIdentifiers;
     
-    public CreateProfileStoreAction( Shell dialogShell )
+    public CreateProfileStoreAction( Shell dialogShell, ResourceIdentifiers resourceIdentifiers )
     {
         super();
+        m_resourceIdentifiers = resourceIdentifiers;
         init( dialogShell );
     }
 
@@ -43,6 +46,7 @@ public class CreateProfileStoreAction extends ExportProfileViewAction
         m_dialog = new ProfileStoreCreationDialog( parentShell );
         m_dialog.setPreSelectedProfile( m_preSelectProfile );
         m_dialog.setBlockOnOpen( true );
+        m_dialog.setHostResourceIdentifiers( m_resourceIdentifiers );
         return m_dialog;
     }
     

@@ -43,7 +43,11 @@ public class Messages extends NLS
     public static String extension_mustInheritFromODAWizard;
     public static String extension_missingManifestElement;
     public static String extension_missingPropertyPage;
+    public static String profilePage_browse_noselection_error;
     public static String profilePage_button_browse;
+    public static String profilePage_button_browse_tooltip;
+    public static String profilePage_button_relativepath;
+    public static String profilePage_button_absolutepath;
     public static String profilePage_button_new;
     public static String profilePage_checkboxLabel_maintainLink;
     public static String profilePage_checkboxLabel_useDefaultName;
@@ -57,6 +61,7 @@ public class Messages extends NLS
     public static String profilePage_odaTreeName;
     public static String profilePage_pageLabel;
     public static String profilePage_pageTitle;
+    public static String profilePage_resourcebaseuri_failure;        
     public static String profilePage_selectProfileDefaultMessage;
     public static String wizard_dataSource_defaultTitle;
     public static String wizard_missingDataSourceId;

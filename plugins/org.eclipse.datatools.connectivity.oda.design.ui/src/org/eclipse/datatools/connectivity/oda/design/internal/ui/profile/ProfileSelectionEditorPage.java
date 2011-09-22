@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
@@ -195,7 +196,7 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         if( profileRef != null && profileRef.maintainExternalLink() )
         {
             design.setLinkedProfileName( profileRef.getName() );
-            design.setLinkedProfileStoreFile( profileRef.getStorageFile() );
+            design.setLinkedProfileStoreFilePath( profileRef.getStorageFilePathPropertyValue() );
         }
         else
         {
@@ -246,6 +247,16 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
             return false;
         return m_pageHelper.requiresExternalProfileLink();
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#getHostResourceIdentifiers()
+     */
+    protected ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        // exposes visibility to the page helper
+        return super.getHostResourceIdentifiers();        
+    }     
     
     /**
      * Assigns the delegated task to perform collectDataSourceDesign and update the data source design.

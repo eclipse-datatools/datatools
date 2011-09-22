@@ -771,7 +771,8 @@ public class DataSourceDesignSessionBase
         boolean convertToRelativePath = false;  // keeps absolute path by default
         if( promptCreateProfileStore && parentShell != null )
         {
-            CreateProfileStoreAction createAction = new CreateProfileStoreAction( parentShell );
+            CreateProfileStoreAction createAction = new CreateProfileStoreAction( parentShell, 
+                    editDataSourceDesign.getHostResourceIdentifiers() );
             
             // pre-select the exported profile to be included in the new profile store
             IConnectionProfile profileElement = ( exportedProfile instanceof OdaConnectionProfile ) ?
@@ -785,9 +786,8 @@ public class DataSourceDesignSessionBase
                 ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
                 if( dlg != null )
                 {
-                    linkedProfileStoreFile = dlg.getFile(); 
-                    // TODO pending new method
-                    // convertToRelativePath = true; // dlg.isProfileFilePathRelative();
+                    linkedProfileStoreFile = dlg.getFile();
+                    convertToRelativePath = dlg.isProfileStorePathRelative();
                 }
             }
         }
