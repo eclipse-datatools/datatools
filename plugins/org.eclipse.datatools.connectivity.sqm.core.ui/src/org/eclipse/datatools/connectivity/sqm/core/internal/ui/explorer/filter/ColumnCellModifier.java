@@ -11,6 +11,8 @@
 
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 
+import java.text.Collator;
+
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Predicate;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.swt.widgets.TableItem;
@@ -33,7 +35,9 @@ public class ColumnCellModifier implements ICellModifier {
 	public Object getValue(Object element, String property) {
 		predicate = (Predicate) element;
 
-		if (property.equalsIgnoreCase("predicate"))
+		Collator collator =Collator.getInstance(); 
+		collator.setStrength(Collator.PRIMARY);
+		if (collator.compare(property,m_columnTable.getFirstColumnName()) == 0)
 			return new Integer(predicate.getOperator() - 1);
 		else
 			return predicate.getValue();
@@ -43,7 +47,9 @@ public class ColumnCellModifier implements ICellModifier {
 		item = (TableItem) element;
 		predicate = (Predicate) item.getData();
 
-		if (property.equalsIgnoreCase("predicate")) {
+		Collator collator =Collator.getInstance(); 
+		collator.setStrength(Collator.PRIMARY);
+		if (collator.compare(property,m_columnTable.getFirstColumnName()) == 0){
 			index = ((Integer) value).intValue();
 			predicate.setOperator(index + 1);
 		} else {

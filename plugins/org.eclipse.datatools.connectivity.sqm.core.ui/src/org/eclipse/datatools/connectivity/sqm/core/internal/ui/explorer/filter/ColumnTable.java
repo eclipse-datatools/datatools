@@ -122,6 +122,9 @@ public class ColumnTable {
 	
 	private CommonTableCursor cursor;
 	
+	//Used for Translated Column Name String
+	private String firstColumnName;
+	
 	public ColumnTable(Composite composite,
 			ConnectionFilterPropertyPage filterWizardPage,
 			ConnectionFilter connectionFilter) {
@@ -260,6 +263,7 @@ public class ColumnTable {
 		tableColumn = new TableColumn(m_columnTable, SWT.LEFT);
 		tableColumn.setText(resource.queryString("_UI_COMBO_PREDICATE"));
 		columnNames.add(resource.queryString("_UI_COMBO_PREDICATE"));
+		setFirstColumnName(resource.queryString("_UI_COMBO_PREDICATE"));
 		tableColumn.setWidth(200);
 		tableColumn.setResizable(true);
 
@@ -302,6 +306,16 @@ public class ColumnTable {
 	// Gets the value of the first row (for migration purpose only)
 	protected String getValue() {
 		return getValues()[0];
+	}
+	
+	//Use for Translated Column Name String
+	public String getFirstColumnName() {
+		return firstColumnName;
+	}
+
+	//Use for Translated Column Name String
+	public void setFirstColumnName(String firstColumnName) {
+		this.firstColumnName = firstColumnName;
 	}
 
 	protected boolean hasEmptyExpression() {
