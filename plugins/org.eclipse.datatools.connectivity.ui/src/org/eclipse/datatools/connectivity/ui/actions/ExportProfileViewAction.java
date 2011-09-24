@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2008 Sybase, Inc.
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,8 +8,9 @@
  * 
  * Contributors: 
  *  shongxum - initial API and implementation
- *  Actuate Corporation - refactored to improve extensibility
+ *  Actuate Corporation - refactored to improve extendability
  * 	brianf - added command handler code
+ *  Actuate Corporation - added the cipherProvider extension point [BZ 358686]
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
@@ -20,11 +21,11 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
-import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
+import org.eclipse.datatools.connectivity.security.ICipherProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -175,7 +176,7 @@ public class ExportProfileViewAction extends Action
         			ICipherProvider isp = null;
         			if (dlg.needEncryption()) {
         				isp = SecurityManager.getInstance()
-        						.getDefaultCipherProvider();
+                                .getCipherProvider( dlg.getFile() );
         			}
         			ConnectionProfileMgmt.saveCPs(
         					dlg.getSelectedProfiles(), dlg.getFile(), isp);

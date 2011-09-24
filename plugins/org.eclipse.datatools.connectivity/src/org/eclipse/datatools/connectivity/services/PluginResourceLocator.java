@@ -84,6 +84,19 @@ public class PluginResourceLocator
     {
         return PluginResourceLocatorImpl.getPluginEntry( pluginId, path, null );
     }
+
+    /**
+     * Returns a URL to the specified resource in the specified plug-in. 
+     * @param pluginId    unique identifier of a plug-in or bundle
+     * @param name The name of the resource. See {@link ClassLoader#getResource(String)} 
+     *              for a description of the format of a resource name.
+     * @return A URL to the named resource, or null if the resource could not be found
+     * @since 1.2.4 (DTP 1.9.2)
+     */
+    public static URL getResource( String pluginId, String name )
+    {
+        return PluginResourceLocatorImpl.getPluginResource( pluginId, name, null );
+    }
     
     /**
      * Returns the location in the local file system of the plug-in state area 

@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="cipherProvider" name="Connectivity Profile Store Cipher Provider"/>
+      </appInfo>
+      <documentation>
+         This cipherProvider extension point allows a client to extend the connection profile store encryption framework with  a custom provider of &lt;i&gt;javax.crypto.Cipher&lt;/i&gt; instances.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="cipherProvider" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cipherProvider">
+      <annotation>
+         <documentation>
+            Defines the file extension and its corresponding provider of &lt;i&gt;javax.crypto.Cipher&lt;/i&gt; instances for the encryption of connection profile store files.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="fileExtension" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The file extension of connection profile store files that shall be encrypted and decrypted using the cipher provider class specified in the  &lt;i&gt;class&lt;/i&gt; attribute.  
+&lt;br&gt;This attribute value may include an optional dot before the file extension (e.g. &quot;profiles&quot; or &quot;.profiles&quot;).  The keyword &quot;default&quot; may be specified as the attribute value to match files with no file extension.
+&lt;br&gt;The default connection profile store files that persists in the workspace use the &quot;.dat&quot; and &quot;.bak&quot; file extensions.  Adopters may need to handle potential conflict with the default encryption implementation, if implementing a cipherProvider extension for files with these file extensions.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The concrete class that implements the &lt;code&gt;org.eclipse.datatools.connectivity.security.ICipherProvider&lt;/code&gt; interface to provide the &lt;i&gt;javax.crypto.Cipher&lt;/i&gt; instances for the encryption and decryption of connection profile store files.
+&lt;br&gt;A custom class may optionally extend the &lt;code&gt;org.eclipse.datatools.connectivity.security.CipherProviderBase&lt;/code&gt; base class implementation, which reads a secret (symmetric) key specification from a bundled resource.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.security.ICipherProvider"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         DTP 1.9.2
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;code&gt;&lt;pre&gt;
+     &lt;extension
+           id=&quot;org.company.connectivity.security.cipherProvider&quot;
+           point=&quot;org.eclipse.datatools.connectivity.cipherProvider&quot;&gt;
+        &lt;cipherProvider
+              fileExtension=&quot;profile&quot;
+              class=&quot;org.company.connectivity.security.ProfileStoreCipherProvider&quot;&gt;
+        &lt;/cipherProvider&gt;
+        &lt;cipherProvider
+              fileExtension=&quot;default&quot;
+              class=&quot;org.company.connectivity.security.ProfileStoreCipherProvider&quot;&gt;
+        &lt;/cipherProvider&gt;
+     &lt;/extension&gt;
+&lt;/pre&gt;&lt;/code&gt;
+This example registers org.company.connectivity.security.ProfileStoreCipherProvider as the provider for files with the extension &quot;.profile&quot; and for those with no file extension. 
+&lt;br&gt;&lt;br&gt;
+Sample class implementation of the org.eclipse.datatools.connectivity.security.ICipherProvider interface:
+&lt;code&gt;&lt;pre&gt;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.security.CipherProviderBase;
+import org.eclipse.datatools.connectivity.security.ICipherProvider;
+import org.osgi.framework.Bundle;
+
+public class ProfileStoreCipherProvider extends CipherProviderBase 
+ implements ICipherProvider
+{
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.security.CipherProviderBase#getKeyResource()
+     */
+    @Override
+    protected URL getKeyResource()
+    {
+        Bundle bundle = Platform.getBundle( &quot;org.company.connectivity.security&quot; );
+        return bundle != null ? 
+                bundle.getResource( &quot;cpkey&quot; ) :  //$NON-NLS-1$
+                super.getKeyResource();
+    }
+}
+&lt;/pre&gt;&lt;/code&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Provisional] An extension must implement the ICipherProvider interface defined in the &lt;code&gt;org.eclipse.datatools.connectivity.security&lt;/code&gt; package. See the package&apos;s JavaDoc documentation for more information.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         &lt;code&gt;org.eclipse.datatools.connectivity.security.CipherProviderBase&lt;/code&gt; is the base class implementation of the &lt;code&gt;org.eclipse.datatools.connectivity.security.ICipherProvider&lt;/code&gt; interface.  It uses a default bundled encryption key as its &lt;i&gt;javax.crypto.spec.SecretKeySpec&lt;/i&gt;.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2011 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html .
+      </documentation>
+   </annotation>
+
+</schema>

@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *    Actuate Corporation - added the cipherProvider extension point [BZ 358686]
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -57,8 +58,8 @@ import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
-import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
+import org.eclipse.datatools.connectivity.security.ICipherProvider;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -165,7 +166,8 @@ public class ConnectionProfileMgmt {
 	public static void saveCPs(IConnectionProfile[] cps) 
 		throws CoreException 
 	{
-		saveCPs(cps, getStorageLocation().append(FILENAME).toFile(), SecurityManager.getInstance().getDefaultCipherProvider());
+        File outputFile = getStorageLocation().append(FILENAME).toFile();
+        saveCPs( cps, outputFile, SecurityManager.getInstance().getCipherProvider( outputFile ) );
 	}
 
 	/**
@@ -493,7 +495,7 @@ public class ConnectionProfileMgmt {
 			}
 			else {
 				// encrypted
-				return loadCPs(file, SecurityManager.getInstance().getDefaultCipherProvider());
+                return loadCPs(file, SecurityManager.getInstance().getCipherProvider( file ));
 			}
 		} catch (FileNotFoundException e) {
 			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 

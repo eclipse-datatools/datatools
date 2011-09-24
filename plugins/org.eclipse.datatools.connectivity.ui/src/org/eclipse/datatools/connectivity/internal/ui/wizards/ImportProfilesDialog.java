@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2010 Sybase, Inc. and others
+ * Copyright (c) 2005, 2011 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *      Actuate Corporation - added the cipherProvider extension point [BZ 358686]
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -289,8 +290,10 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 			}
 			else {
 				// encrypted
-				mProfiles = ConnectionProfileMgmt.importCPs(new File(txtFile
-						.getText()), SecurityManager.getInstance().getDefaultCipherProvider(), mOverwrite);
+                File importFile = new File(txtFile.getText());
+                mProfiles = ConnectionProfileMgmt.importCPs( importFile, 
+                                SecurityManager.getInstance().getCipherProvider( importFile ), 
+                                mOverwrite );
 			}
 		}
 		catch (Exception e) {
