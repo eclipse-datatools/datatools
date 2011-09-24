@@ -15,6 +15,9 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.designsession;
 
 import java.net.URI;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
@@ -142,7 +145,8 @@ public class DesignSessionUtilBase
         
         if( propProvider != null )
         {
-            candidateProps = propProvider.getDataSourceProperties( candidateProps, null );
+            candidateProps = propProvider.getDataSourceProperties( candidateProps, 
+                                createResourceIdentifiersAppContext( dataSourceDesign.getHostResourceIdentifiers() ));
         }
     
         return candidateProps;
@@ -168,6 +172,33 @@ public class DesignSessionUtilBase
         }
     
         return propProvider;
+    }
+
+    /**
+     * Create an appContext Map with an entry for the runtime ResourceIdentifiers,
+     * based on the resource base URIs defined in the specified designResourceIdentifiers.
+     * @param designResourceIdentifiers
+     * @return
+     */
+    private static Map<String,Object> createResourceIdentifiersAppContext( ResourceIdentifiers designResourceIdentifiers )
+    {
+        if( designResourceIdentifiers == null ||
+            ( designResourceIdentifiers.getApplResourceBaseURI() == null &&
+              designResourceIdentifiers.getDesignResourceBaseURI() == null ) )
+            return Collections.emptyMap();  // no resource base info to create from
+        
+        // create a runtime ResourceIdentifies from the appl resource base specified in the design version
+        org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers runtimeResourceIds =
+            new org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers();
+        runtimeResourceIds.setApplResourceBaseURI( designResourceIdentifiers.getApplResourceBaseURI() );
+        runtimeResourceIds.setDesignResourceBaseURI( designResourceIdentifiers.getDesignResourceBaseURI() );
+        
+        // store the runtime ResourceIdentifies in an appContext Map to return
+        Map<String,Object> designSessionAppContext = new HashMap<String,Object>(1);
+        String resourceIdKey = 
+            org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS;
+        designSessionAppContext.put( resourceIdKey, runtimeResourceIds );
+        return designSessionAppContext;
     }
 
     /**
