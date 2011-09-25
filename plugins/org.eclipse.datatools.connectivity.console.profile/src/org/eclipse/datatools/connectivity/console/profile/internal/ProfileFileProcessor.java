@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,11 +28,11 @@ import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.internal.CategoryProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
-import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
+import org.eclipse.datatools.connectivity.security.ICipherProvider;
 
 /**
  *  Responsible for processing a connection profile storage file,
@@ -46,7 +46,6 @@ public class ProfileFileProcessor
     
     private SystemIOUtil m_ioUtil;
     private IConnectionProfile[] m_profiles;
-    private ICipherProvider m_cipherProvider = null;
     private boolean m_wasInputFileEncrypted;
     private PropertyEditor m_propEditor = new PropertyEditor();
 
@@ -72,7 +71,7 @@ public class ProfileFileProcessor
         {
             m_wasInputFileEncrypted = ConnectionProfileMgmt.isEncrypted( inFile );
             ICipherProvider cipherProvider = m_wasInputFileEncrypted ?
-                            getCipherProvider() :
+                            getCipherProvider( inFile ) :
                             null;
             m_profiles = ConnectionProfileMgmt.loadCPs( inFile, cipherProvider );
         }
@@ -89,11 +88,9 @@ public class ProfileFileProcessor
         return ( m_profiles == null ) ? 0 : m_profiles.length;
     }
     
-    private ICipherProvider getCipherProvider()
+    private static ICipherProvider getCipherProvider( File profileStoreFile )
     {
-        if( m_cipherProvider == null )
-            m_cipherProvider = SecurityManager.getInstance().getDefaultCipherProvider();
-        return m_cipherProvider;
+        return SecurityManager.getInstance().getCipherProvider( profileStoreFile );
     }
     
     /**
@@ -108,12 +105,12 @@ public class ProfileFileProcessor
     {
         ICipherProvider cipherProvider = null;
         if( m_wasInputFileEncrypted )    // input file was encrypted
-            cipherProvider = getCipherProvider();   // must save in encrypted format
+            cipherProvider = getCipherProvider( outFile );   // must save in encrypted format
         else
         {
             // give user a choice to save in encrypted format
             if( m_ioUtil.promptYesNoResponse( Messages.profileFile_askEncryptOutput ) )
-                cipherProvider = getCipherProvider();
+                cipherProvider = getCipherProvider( outFile );
         }
         
         // proceed to save

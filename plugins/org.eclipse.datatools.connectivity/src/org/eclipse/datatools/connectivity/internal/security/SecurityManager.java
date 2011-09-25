@@ -13,8 +13,6 @@ package org.eclipse.datatools.connectivity.internal.security;
 
 import java.io.File;
 
-import org.eclipse.datatools.connectivity.security.ICipherProvider;
-
 /**
  * This class is intended manage security extensions used by the connection
  * profile framework.
@@ -30,7 +28,8 @@ public class SecurityManager {
 
 	private static SecurityManager sInstance;
 
-	private ICipherProvider mDefaultCipherProvider;
+	@SuppressWarnings("deprecation")
+    private ICipherProvider mDefaultCipherProvider;
 
 	public static SecurityManager getInstance() {
 		if (sInstance == null) {
@@ -44,7 +43,8 @@ public class SecurityManager {
 		mDefaultCipherProvider = new DefaultCipherProvider();
 	}
 
-	public ICipherProvider getDefaultCipherProvider() {
+	@SuppressWarnings("deprecation")
+    public ICipherProvider getDefaultCipherProvider() {
 		return mDefaultCipherProvider;
 	}
     
@@ -54,11 +54,13 @@ public class SecurityManager {
 	 * The default cipher provider is returned if no custom cipher provider is registered 
 	 * for the file extension.
 	 * @param profileStoreFile     the abstract representation of a connection profile store file
-	 * @return the cipher provider of the specified file
+     * @return  an instance of {@link org.eclipse.datatools.connectivity.security.ICipherProvider}  
+     *          that provides cipher instances for the specified file's type
 	 * @since 1.2.4 (DTP 1.9.2)
 	 */
-    public ICipherProvider getCipherProvider( File profileStoreFile ) {
-        ICipherProvider provider = CipherProviderExtensions.getCipherProviderForFile( profileStoreFile );
+    public org.eclipse.datatools.connectivity.security.ICipherProvider getCipherProvider( File profileStoreFile ) {
+        org.eclipse.datatools.connectivity.security.ICipherProvider provider = 
+                CipherProviderExtensions.getCipherProviderForFile( profileStoreFile );
         if( provider == null )
             provider = getDefaultCipherProvider();
         return provider;

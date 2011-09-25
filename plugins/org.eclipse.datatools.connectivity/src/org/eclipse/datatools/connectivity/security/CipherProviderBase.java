@@ -27,7 +27,7 @@ import org.eclipse.datatools.connectivity.internal.security.DefaultCipherProvide
  * from a bundled resource.
  * A custom ICipherProvider class implementation may optionally extend from this, 
  * to provide own instance of KeySpec.  
- * @since DTP 1.9.2
+ * @since 1.2.4 (DTP 1.9.2)
  */
 public class CipherProviderBase extends DefaultCipherProvider implements
         ICipherProvider

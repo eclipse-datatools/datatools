@@ -28,13 +28,13 @@ import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.datatools.connectivity.security.ICipherProvider;
 
 /**
  * Default cipher provider using a statically defined symmetric key.
  * 
  * @author rcernich
  */
+@SuppressWarnings("deprecation")
 public class DefaultCipherProvider implements ICipherProvider {
 
     private static final String SECRET_KEY_ALGORITHM_DESEDE = "DESede"; //$NON-NLS-1$

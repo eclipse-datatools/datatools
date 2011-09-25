@@ -24,7 +24,7 @@ import javax.crypto.Cipher;
  * 
  * @author rcernich
  *
- * @since DTP 1.9.2
+ * @since 1.2.4 (DTP 1.9.2)
  */
 public interface ICipherProvider {
     
