@@ -15,8 +15,8 @@ plugin@org.eclipse.datatools.sqltools.parsers.sql.lexer=GIT,tag=v200906030654,re
 plugin@org.eclipse.datatools.sqltools.parsers.sql.query=GIT,tag=v201004291415,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql.query
 plugin@org.eclipse.datatools.sqltools.parsers.sql.xml.query=GIT,tag=v200906022302,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql.xml.query
 plugin@org.eclipse.datatools.sqltools.plan=GIT,tag=v200906022302,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.plan
-plugin@org.eclipse.datatools.sqltools.result=GIT,tag=v201101210500,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result
-plugin@org.eclipse.datatools.sqltools.result.ui=GIT,tag=v201109260450,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result.ui
+plugin@org.eclipse.datatools.sqltools.result=GIT,tag=v201109280100,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result
+plugin@org.eclipse.datatools.sqltools.result.ui=GIT,tag=v201109280100,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result.ui
 plugin@org.eclipse.datatools.sqltools.routineeditor=GIT,tag=v201003161000,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.routineeditor
 plugin@org.eclipse.datatools.sqltools.routineeditor.ui=GIT,tag=v201004060545,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.routineeditor.ui
 plugin@org.eclipse.datatools.sqltools.sqlbuilder=GIT,tag=v201009131745,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sqlbuilder
