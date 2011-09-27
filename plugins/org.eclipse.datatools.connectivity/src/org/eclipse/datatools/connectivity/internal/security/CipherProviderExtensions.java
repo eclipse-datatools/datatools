@@ -35,6 +35,7 @@ import org.eclipse.datatools.connectivity.security.ICipherProvider;
  */
 public class CipherProviderExtensions
 {
+    private static final String CIPHER_PROVIDER_EXT_POINT = "org.eclipse.datatools.connectivity.cipherProvider"; //$NON-NLS-1$
     private static final String CIPHER_PROVIDER_ELEMENT_NAME = "cipherProvider"; //$NON-NLS-1$
     private static final String CIPHER_PROVIDER_FILE_EXT_ATTR_NAME = "fileExtension"; //$NON-NLS-1$
     private static final String CIPHER_PROVIDER_CLASS_ATTR_NAME = "class"; //$NON-NLS-1$
@@ -111,7 +112,7 @@ public class CipherProviderExtensions
     private static Map<String,ICipherProvider> loadRegisteredCipherProviders()
     {
         IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.cipherProvider"); //$NON-NLS-1$
+        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint( CIPHER_PROVIDER_EXT_POINT );
         IExtension[] extensions = extensionPoint.getExtensions();
         if( extensions.length == 0 )
             return Collections.emptyMap();
@@ -141,7 +142,9 @@ public class CipherProviderExtensions
                     ConnectivityPlugin.getDefault().logInfo(  
                             ConnectivityPlugin.getDefault().getResourceString( 
                                     "CipherProviderExtensions.missingRequiredAttrValue",  //$NON-NLS-1$
-                                    new Object[]{ CIPHER_PROVIDER_ELEMENT_NAME, extensions[i].getUniqueIdentifier(),
+                                    new Object[]{ CIPHER_PROVIDER_ELEMENT_NAME, 
+                                            CIPHER_PROVIDER_EXT_POINT,
+                                            extensions[i].getContributor().getName(),
                                             CIPHER_PROVIDER_FILE_EXT_ATTR_NAME, fileExtension,
                                             CIPHER_PROVIDER_CLASS_ATTR_NAME, providerClassName } ));
                     continue;   // skip element with missing required attribute value(s)
@@ -157,7 +160,8 @@ public class CipherProviderExtensions
                         ConnectivityPlugin.getDefault().logInfo(  
                                 ConnectivityPlugin.getDefault().getResourceString( 
                                         "CipherProviderExtensions.invalidClassAttrValue",  //$NON-NLS-1$
-                                        new Object[]{ providerClassName, extensions[i].getUniqueIdentifier(),
+                                        new Object[]{ providerClassName, CIPHER_PROVIDER_EXT_POINT,
+                                                extensions[i].getContributor().getName(),
                                                 ICipherProvider.class.getName() } ));
                         continue;   // skip invalid element
                     }
@@ -170,7 +174,7 @@ public class CipherProviderExtensions
                     if( overriddenProvider != null )
                     {
                         // log warning that the provider is being overridden by another extension element
-                        ConnectivityPlugin.getDefault().logError(  
+                        ConnectivityPlugin.getDefault().logWarning(
                             ConnectivityPlugin.getDefault().getResourceString( 
                                 "CipherProviderExtensions.conflictingExtensions", //$NON-NLS-1$
                                 new Object[]{ overriddenProvider, cipherProviderInstance, 
