@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.result.internal.ui.actions;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.utils.Images;
+import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultSetViewerRegistryReader;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.ui.IHelpConstants;
 import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIPlugin;
@@ -60,6 +61,7 @@ public class RemoveAllVisibleFinishedResultAction extends BaseSelectionListenerA
     public void run()
     {
         ResultsViewUIPlugin.getResultManager().removeResultInstances(_instances);
+        ResultSetViewerRegistryReader.getInstance().removeViewerProviderContents();
     }
 
     public void setInstances(IResultInstance[] _instances)

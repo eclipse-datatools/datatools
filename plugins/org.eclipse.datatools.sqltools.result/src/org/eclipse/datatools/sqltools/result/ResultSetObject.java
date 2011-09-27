@@ -469,6 +469,7 @@ public class ResultSetObject implements IResultSetObject
         {
             _backupFile.delete();
         }
+        _rows.clear();
     }
 
     /**
