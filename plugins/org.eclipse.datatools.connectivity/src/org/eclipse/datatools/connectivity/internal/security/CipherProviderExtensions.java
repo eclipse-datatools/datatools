@@ -174,7 +174,7 @@ public class CipherProviderExtensions
                             ConnectivityPlugin.getDefault().getResourceString( 
                                 "CipherProviderExtensions.conflictingExtensions", //$NON-NLS-1$
                                 new Object[]{ overriddenProvider, cipherProviderInstance, 
-                                        extensions[i].getUniqueIdentifier(), fileExtension } ));
+                                        extensions[i].getContributor().getName(), fileExtension } ));
                     }
                 }
                 catch( CoreException e )

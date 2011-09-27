@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.connectivity" id="cipherProvider" name="Connectivity Profile Store Cipher Provider"/>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="cipherProvider" name="Connection Profiles Store Cipher Provider"/>
       </appInfo>
       <documentation>
          This cipherProvider extension point allows a client to extend the connection profile store encryption framework with  a custom provider of &lt;i&gt;javax.crypto.Cipher&lt;/i&gt; instances.
@@ -82,7 +82,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         DTP 1.9.2
+         1.2.4 (DTP 1.9.2)
       </documentation>
    </annotation>
 
