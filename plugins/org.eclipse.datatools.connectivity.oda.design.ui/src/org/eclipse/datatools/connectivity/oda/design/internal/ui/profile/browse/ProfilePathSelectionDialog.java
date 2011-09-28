@@ -26,12 +26,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.profile.ProfileFileExtension;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -60,6 +64,9 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 	static final String PLUGIN_ID = "org.eclipse.datatools.connectivity.oda.design.ui"; //$NON-NLS-1$
 	static final String TITLE = Messages.profilePage_pageTitle;
 	static final String TITLE_CREATE = Messages.profileStoreCreationDialog_title;
+    static final String FILTER_ALLOW_ALL = ".*"; //$NON-NLS-1$
+
+    private static final String EXT_SEPERATOR = ProfileFileExtension.FILE_EXT_SEPARATOR;
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
 	private final static Image IMG_FOLDER = PlatformUI.getWorkbench( )
@@ -72,11 +79,15 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 	
 	private File topDir;
 	private boolean isProfileStoreCreation = false;
+    private Text txtFilter;
 	private Text txtFile;
 	private String txtFileContent = null;
-	String storedPath = null;
+    private String storedPath = null;
+    private String defaultExtension;
+    private TreeViewerFilter treeViewerFilter = new TreeViewerFilter();
 
-	public ProfilePathSelectionDialog( Shell parent, File topDir, boolean isProfileCreation, String storedPath )
+    public ProfilePathSelectionDialog( Shell parent, File topDir, boolean isProfileCreation, 
+            String storedPath, String defaultExtension )
 	{
 		super( parent, new LabelProvider( ), new ContentProvider( isProfileCreation ) );
 		
@@ -91,6 +102,7 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 		else
 			this.setTitle( TITLE );
 		this.storedPath = storedPath;
+        this.defaultExtension = defaultExtension;
 	}
 
 	/* (non-Javadoc)
@@ -99,41 +111,24 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 	@Override
 	protected Control createDialogArea( Composite parent )
 	{
+        createFilterControl(parent);        
+        
+        if( ProfileFileExtension.exists( defaultExtension ) )
+            txtFilter.setText(EXT_SEPERATOR + defaultExtension); 
+        
+        txtFilter.addModifyListener( new ModifyListener( ) {
+
+            public void modifyText(ModifyEvent arg0) 
+            {
+                getTreeViewer().refresh();
+            }
+        } );
+        
 		Control c = super.createDialogArea( parent );
 
 		if( isProfileStoreCreation )
 		{
-			Composite composite = new Composite( parent, SWT.NONE );
-			{
-				GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-				gridData.horizontalSpan = 3;
-				gridData.grabExcessHorizontalSpace = true;
-				gridData.minimumWidth = 360;
-				gridData.horizontalIndent = 10;
-				composite.setLayoutData( gridData );
-			}
-			
-		    FormLayout layout = new FormLayout( );
-			composite.setLayout( layout );
-			
-	        final Label label = new Label(composite, SWT.NONE);
-	        label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-	                "ExportProfilesDialog.label.text")); //$NON-NLS-1$
-	        {
-				FormData data = new FormData( );
-				data.top = new FormAttachment( 0, 5 );
-				data.left = new FormAttachment( 0, 5 );
-				label.setLayoutData( data );
-	        }
-	        
-	        txtFile = new Text(composite, SWT.BORDER);
-	        {
-				FormData data = new FormData( );
-				data.top = new FormAttachment( 0, 5 );
-				data.left = new FormAttachment( label, 5, 5 );
-				data.right = new FormAttachment( 100, -10 );
-				txtFile.setLayoutData(data);
-	        }	        
+            createFileControl(parent);          
 		}
 		
 		if( storedPath != null && storedPath.trim().length() > 0 )
@@ -146,7 +141,7 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
                 txtFile.setText(newFileName);
             }
             int level = 1;
-            File parentFile = f.getParentFile();
+            File parentFile = (f != null) ? f.getParentFile() : null;
             while( parentFile != null && 
                     !parentFile.getAbsolutePath().equals( topDir.getAbsolutePath() ) )
             {
@@ -164,8 +159,88 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 		else
             getTreeViewer( ).expandToLevel(2);		
 		
+        getTreeViewer().addFilter( treeViewerFilter );
 		return c;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.ui.dialogs.SelectionDialog#createMessageArea(org.eclipse.swt.widgets.Composite)
+     */
+    @Override
+    protected Label createMessageArea( Composite composite )
+    {
+        // A message area is not required, therefore do not create the empty message label
+        return null;
+    }
+
+    private void createFilterControl(Composite parent) 
+    {
+        Composite compositeFilter = new Composite( parent, SWT.NONE );
+        {
+            GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+            gridData.horizontalSpan = 3;
+            gridData.grabExcessHorizontalSpace = true;
+            gridData.minimumWidth = 360;
+            gridData.horizontalIndent = 10;
+            compositeFilter.setLayoutData( gridData );
+            FormLayout layout = new FormLayout( );
+            compositeFilter.setLayout( layout );
+        }
+        
+        final Label filterLabel = new Label(compositeFilter, SWT.NONE);
+        filterLabel.setText(Messages.profilePage_button_browse_filter);
+        {
+            FormData data = new FormData( );
+            data.top = new FormAttachment( 0, 18 );
+            data.left = new FormAttachment( 0, 5 );
+            filterLabel.setLayoutData( data );
+        }
+        filterLabel.setToolTipText(Messages.profilePage_button_browse_filter_tooltiptext);
+        
+        txtFilter = new Text(compositeFilter, SWT.BORDER);
+        {
+            FormData data = new FormData( );
+            data.top = new FormAttachment( 0, 15 );
+            data.left = new FormAttachment( filterLabel, 5, 5 );
+            data.right = new FormAttachment( 100, -10 );
+            txtFilter.setLayoutData(data);
+        }
+        txtFilter.setToolTipText(Messages.profilePage_button_browse_filter_tooltiptext);
+    }
+    
+    private void createFileControl(Composite parent) 
+    {
+        Composite composite = new Composite( parent, SWT.NONE );
+        {
+            GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+            gridData.horizontalSpan = 3;
+            gridData.grabExcessHorizontalSpace = true;
+            gridData.minimumWidth = 360;
+            gridData.horizontalIndent = 10;
+            composite.setLayoutData( gridData );
+            FormLayout layout = new FormLayout( );
+            composite.setLayout( layout );
+        }
+        
+        final Label fileLabel = new Label(composite, SWT.NONE);
+        fileLabel.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+                "ExportProfilesDialog.label.text")); //$NON-NLS-1$
+        {
+            FormData data = new FormData( );
+            data.top = new FormAttachment( 0, 8 );
+            data.left = new FormAttachment( 0, 5 );
+            fileLabel.setLayoutData( data );
+        }
+        
+        txtFile = new Text(composite, SWT.BORDER);
+        {
+            FormData data = new FormData( );
+            data.top = new FormAttachment( 0, 5 );
+            data.left = new FormAttachment( fileLabel, 5, 5 );
+            data.right = new FormAttachment( 100, -10 );
+            txtFile.setLayoutData(data);
+        }
+    }
 	
 	protected void okPressed() 
 	{
@@ -207,11 +282,8 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 
 		public boolean hasChildren( Object arg )
 		{
-			if ( arg instanceof File )
-			{
-				return ProfilePathSelectionDialog.getChildren( (File)arg, isProfileCreation ).length > 0;
-			}
-			return false;
+            Object[] children = getChildren( arg );
+            return children != null ? children.length > 0 : false;
 		}
 
 		public Object[] getElements( Object arg )
@@ -336,8 +408,8 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 				{
 					public boolean accept( File child )
 					{
-						//A profile store does not have an associated extension therefore 
-						//show all files and folders.
+                        //Return true so that the content provider provides all files
+                        //Files are filtered out based on the ViewerFilter
 						return true; 
 					}	
 				});
@@ -358,13 +430,18 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 			if ( isProfileStoreCreation )
 			{
                 String path = EMPTY_STRING; 
-                if( !f.getName().equals(txtFileContent) )
+                
+                //If a file does not have an extension provided by the user
+                //apply the default extension.
+                if( txtFileContent != null && txtFileContent.length() > 0 &&
+                        ! txtFileContent.contains(EXT_SEPERATOR) &&
+                        ProfileFileExtension.exists( defaultExtension ) )
+                    txtFileContent += EXT_SEPERATOR + defaultExtension; 
+                
+                if( f.isFile( ) )
                     path = f.getParentFile().toURI().toString() + txtFileContent;
                 else
-                    path = f.toURI( ).toString();
-
-                if( !f.isFile( ) )
-                    path = f.toURI( ).toString() + txtFileContent;
+                    path = f.toURI( ).toString() + txtFileContent;              
 				URI filePath = URI.create(path);
 				URI relative = topDir.toURI( ).relativize( filePath );
 				result.add( relative.getPath( ) );
@@ -378,7 +455,12 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 		return result.toArray( new String[0] );
 	}
 	
-	public static class FileComparator implements Comparator<File>, Serializable
+    /**
+     * Helps compare two files so that directories are all displayed before
+     * the files. In addition the files and directories are sorted
+     * in their groups.
+     */
+    private static class FileComparator implements Comparator<File>, Serializable
 	{
 		private static final long serialVersionUID = 1L;
 
@@ -403,5 +485,75 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 			}
 		}	
 	}	
+    
+    /**
+     * A TreeViewer Filter class that decides which files should be visible in the
+     * tree viewer.
+     * It gets the filter to use from the ProfilePathSelectionDialog's txtFilter 
+     * Text control.
+     */
+    private class TreeViewerFilter extends ViewerFilter
+    {
+        private static final String FILTER_SEPARATOR = ","; //$NON-NLS-1$       
+        
+        /*
+         * (non-Javadoc)
+         * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+         */
+        public boolean select(Viewer arg0, Object arg1, Object arg2) 
+        {
+            if( arg2 instanceof File )
+            {
+                File file = ((File)arg2);
+                if( file.isDirectory() ) //Don't filter out any directories
+                    return true;
+                else
+                {
+                    String txtFilterContent = txtFilter.getText();
+                    if( txtFilterContent.contains(FILTER_SEPARATOR)) //list of filters separated 
+                    {
+                        String[] filters = txtFilterContent.split(FILTER_SEPARATOR);
+                        for( String filter : filters )
+                        {
+                            if( showFile(file, filter) )
+                                return true;
+                        }                       
+                    }
+                    else //single filter
+                    {       
+                        return showFile(file, txtFilterContent);
+                    }
+                }
+            }
+            return false;
+        }
+
+        /**
+         * Decides whether the file should be displayed in the TreeViewer or not based on the filter
+         * @param file  
+         * @param filter
+         * @return true if file should be shown false if it should be hidden
+         */
+        private boolean showFile( File file, String filter ) 
+        {
+            if( !filter.contains( EXT_SEPERATOR ) ) //Not valid filter format, so don't filter anything
+                return true;
+
+            filter = filter.trim();
+            if( filter.endsWith( FILTER_ALLOW_ALL ) ) //Allow everything
+                return true;                                            
+            
+            String filterExt = filter.substring( filter.lastIndexOf(EXT_SEPERATOR)+1 );
+
+            String fileName = file.getName();
+            if( fileName.contains( EXT_SEPERATOR ) )
+            {
+                String fileExt = fileName.substring( fileName.lastIndexOf(EXT_SEPERATOR)+1 );
+                if( fileExt.equals( filterExt ) )
+                    return true;
+            }
+            return false;
+        }       
+    }
 
 }

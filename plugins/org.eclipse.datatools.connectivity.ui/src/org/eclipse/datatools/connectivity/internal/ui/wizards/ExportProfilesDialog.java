@@ -8,7 +8,7 @@
  * 
  * Contributors:
  *  shongxum - initial API and implementation
- *  Actuate Corporation - refactored to improve extensibility
+ *  Actuate Corporation - refactored to improve extendability
 ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -345,13 +345,8 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			return;
 		}
 
-		if (getFilePathText().length() == 0) {
-			MessageDialog.openError(getShell(), ConnectivityUIPlugin
-					.getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
-					ConnectivityUIPlugin.getDefault().getResourceString(
-							"actions.export.nofile")); //$NON-NLS-1$
-			return;
-		}
+        if ( !validateFilePath() )
+            return;
 		
 		for (int i = 0; i < elements.length; i++) {
 			vec.add(elements[i]);
@@ -397,6 +392,22 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
     {
         String localizedText = TextProcessor.process( text );
         txtFile.setText( localizedText );
+    }
+
+    /*
+     * @since DTP 1.9.2
+     */
+    protected boolean validateFilePath() 
+    {
+        if ( getFilePathText().trim().length() == 0 ) 
+        {
+            MessageDialog.openError(getShell(), ConnectivityUIPlugin
+                    .getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
+                    ConnectivityUIPlugin.getDefault().getResourceString(
+                            "actions.export.nofile")); //$NON-NLS-1$
+            return false;
+        }
+        return true;
     }
 
 	public IContext getContext(Object target) {

@@ -26,6 +26,9 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse.
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.filter.NewProfileAction;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
+import org.eclipse.datatools.connectivity.oda.profile.ProfileFileExtension;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -41,6 +44,8 @@ import org.eclipse.swt.widgets.Shell;
 public class ProfileStoreCreationDialog extends ExportProfilesDialog 
     implements IBrowseButtonHost
 {
+    private static final String EXT_SEPARATOR = ProfileFileExtension.FILE_EXT_SEPARATOR;
+
     private CheckboxTableViewer m_profilesViewer;
     private ProfileStoreBrowseButton m_browseButton;
     private IConnectionProfile m_preSelectProfile;
@@ -223,8 +228,61 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
         // override base class method to resolve profile store file path, 
         // if a relative path is specified;
         // also reset flag based on latest value found in text control 
-        m_isProfileStorePathRelative = ! new File( profileStorePath ).isAbsolute();
-        return DesignUtil.resolveToApplResourcePath( profileStorePath, m_resourceIdentifiers );     
+        String trimmedPath = profileStorePath.trim();
+        m_isProfileStorePathRelative = ! new File( trimmedPath ).isAbsolute();
+        String resolvedProfilePath = DesignUtil.resolveToApplResourcePath( trimmedPath, m_resourceIdentifiers );
+        return resolvedProfilePath != null && ! resolvedProfilePath.equals( trimmedPath ) ?
+                    resolvedProfilePath : // got resolved to absolute value
+                    profileStorePath;     // unable to resolve profileStorePath, return original file path text
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog#validateFilePath()
+     */
+    protected boolean validateFilePath() 
+    {
+        if( ! super.validateFilePath() )
+            return false;
+
+        // Overrides to further validate the file extension, if a default extension is defined
+        String defaultExtension = ProfileFileExtension.getDefault();        
+        if( ! ProfileFileExtension.exists( defaultExtension ) )
+            return true;    // no default file extension is defined, no need to validate further
+
+        File file = new File( getFilePathText() );
+        String fileName = file.getName();
+        
+        int lastIndex = fileName.lastIndexOf( EXT_SEPARATOR );
+        if( lastIndex >= 0 && fileName.length() > lastIndex+1 )     // file has file extension
+            return true;
+        
+        // raise error dialog about missing file extension in the file name
+        String[] dialogLabels = new String[] { 
+                IDialogConstants.OK_LABEL,
+                IDialogConstants.CANCEL_LABEL };            
+        MessageDialog dialog = new MessageDialog( getShell(),
+                Messages.ui_errorLabel,
+                null,
+                Messages.bind( Messages.profileStoreCreationDialog_fileext_error, defaultExtension ),
+                MessageDialog.ERROR,
+                dialogLabels,
+                0);
+        
+        int response = dialog.open();            
+        if( response != 0 ) // user presses Cancel
+            return false;
+        
+        // user presses Ok,
+        // append the default extension to the user-input file path
+        String userFilePathText = super.getFilePathText();
+        StringBuilder revisedFilePathText = new StringBuilder( userFilePathText );
+        if( ! userFilePathText.endsWith( EXT_SEPARATOR ) )
+            revisedFilePathText.append( EXT_SEPARATOR );
+        revisedFilePathText.append( defaultExtension );
+
+        super.setFilePathText( revisedFilePathText.toString() );
+        return false;   // requires user to verify the filePath and press Ok to continue
     }
 
     /*

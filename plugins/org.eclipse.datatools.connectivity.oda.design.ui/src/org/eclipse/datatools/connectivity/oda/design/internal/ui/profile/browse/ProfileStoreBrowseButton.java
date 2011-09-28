@@ -45,14 +45,13 @@ public class ProfileStoreBrowseButton
 		public void widgetSelected( SelectionEvent e )
 		{
 			Widget widget = e.widget;
+            host.browseSelected();
 			if ( widget instanceof MenuItem )
 			{
-				host.browseSelected();
 				provider.handleSelectionEvent( (String) widget.getData( ) );
 			}
-			if ( widget instanceof MenuButton )
+			else if ( widget instanceof MenuButton )
 			{
-				host.browseSelected();
 				provider.handleSelectionEvent( ( (MenuButtonProvider) provider ).getDefaultOptionType( ) );
 			}
 		}

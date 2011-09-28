@@ -30,6 +30,7 @@ public class Messages extends NLS
         NLS.initializeMessages( BUNDLE_NAME, Messages.class );
     }
 
+    public static String adaptableDataSourceProfile_unableAccessProfile;
     public static String common_notInDesignSession;
     public static String common_nullArgument;
     public static String common_missingDataSourceDesign;
@@ -46,6 +47,8 @@ public class Messages extends NLS
     public static String profilePage_browse_noselection_error;
     public static String profilePage_button_browse;
     public static String profilePage_button_browse_tooltip;
+    public static String profilePage_button_browse_filter;
+    public static String profilePage_button_browse_filter_tooltiptext;
     public static String profilePage_button_relativepath;
     public static String profilePage_button_absolutepath;
     public static String profilePage_button_new;
@@ -89,5 +92,6 @@ public class Messages extends NLS
     public static String profileStoreCreationDialog_title;
     public static String profileStoreCreationDialog_grouptext;
     public static String profileStoreCreationDialog_newbutton_tooltiptext;
+    public static String profileStoreCreationDialog_fileext_error;
     public static String preferencesPage_openDataAccessDescription;
 }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -27,6 +28,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
@@ -45,7 +47,9 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
     
     private DataSourceDesign m_dataSourceDesign;
     private String m_instanceID;
-        
+
+    private static final String sm_className = AdaptableDataSourceProfile.class.getName();
+
     /**
      * Internal constructor.
      * @param design
@@ -62,7 +66,10 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
         }
         catch( OdaException ex )
         {
-            // ignore; proceed without having a wrapped profile
+            // log, and proceed without having a wrapped profile
+            Logger.getLogger( sm_className ).warning( 
+                    Messages.bind( Messages.adaptableDataSourceProfile_unableAccessProfile,
+                            design.getLinkedProfileStoreFilePath(), ex.toString() ));
         }
         if( linkedProfile != null )
             setWrappedProfile( linkedProfile ); // cache the profile referenced in the design

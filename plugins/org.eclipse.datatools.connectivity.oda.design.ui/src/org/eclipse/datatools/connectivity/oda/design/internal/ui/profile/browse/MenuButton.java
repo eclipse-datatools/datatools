@@ -258,12 +258,32 @@ public class MenuButton extends Composite
 				if ( listeners == null )
 					return;
 
-				e.widget = MenuButton.this;
+                // separate the mouse click from the key press event on the button
+                boolean keyPress = false;
+                if( e.widget instanceof Button )
+                {
+                    if( ((Button)e.widget).getParent() instanceof MenuButton )
+                    {
+                        if ( menu != null )
+                        {
+                            keyPress = true;
+                            Rectangle size = button.getBounds( );
+                            menu.setLocation( button.toDisplay( new Point( 0,
+                                    size.height - 1 ) ) );
+                            menu.setVisible( true );
+                        }
+                    }
+                }
+                
+                if( !keyPress )
+                {
+                    e.widget = MenuButton.this;
 
-				for ( int i = 0; i < listeners.size( ); i++ )
-				{
-					( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
-				}
+                    for ( int i = 0; i < listeners.size( ); i++ )
+                    {
+                        ( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
+                    }
+                }
 			}
 
 		} );

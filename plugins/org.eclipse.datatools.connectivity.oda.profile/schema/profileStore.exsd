@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda.profile" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda.profile" id="profileStore" name="ODA Connection Profiles Store"/>
+      </appInfo>
+      <documentation>
+         The profileStore extension point allows a client to define a default file extension for any connection profiles store that has no file extension.  If no extensions of this extension point are registered, an user may specify a profile stores file with no extension.  If multiple default fileExtension elements are registered, only one will be applied.  Adopters should ensure that its client application installs only one extension of this extension point.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="fileExtension"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="fileExtension">
+      <annotation>
+         <documentation>
+            Defines the file extension to be associated with a connection profile store.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="default" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Defines the default file extension to be automatically associated with a connection profile store that has no user-defined file extension.
+This attribute value may include an optional dot before the file extension (e.g. &quot;profiles&quot; or &quot;.profiles&quot;).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         3.2.7 (DTP 1.9.2)
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;code&gt;&lt;pre&gt;
+     &lt;extension
+           point=&quot;org.eclipse.datatools.connectivity.oda.profile.profileStore&quot;&gt;
+        &lt;fileExtension
+              default=&quot;profiles&quot;&gt;
+        &lt;/fileExtension&gt;
+     &lt;/extension&gt;
+&lt;/pre&gt;&lt;/code&gt;
+   
+This extension example specifies the default file extension &quot;profiles&quot; to be automatically associated with a connection profile store that has no user-defined file extension.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         No API implementation is applicable.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         N/A
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2011 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html.
+      </documentation>
+   </annotation>
+
+</schema>

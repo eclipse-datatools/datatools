@@ -17,6 +17,7 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.browse
 import java.io.File;
 
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.profile.ProfileFileExtension;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -34,8 +35,11 @@ public class MenuButtonProvider implements IMenuButtonProvider
 	private static String ABSOLUTE_PATH_MENU = Messages.profilePage_button_absolutepath;
     private static String BUTTON_BROWSE_TOOLTIP_TEXT = Messages.profilePage_button_browse_tooltip;
 
-    private static String RELATIVE_PATH_TYPE = "RelativePath"; //$NON-NLS-1$
-	private static String ABSOLUTE_PATH_TYPE = "AbsolutePath"; //$NON-NLS-1$
+    private static final String RELATIVE_PATH_TYPE = "RelativePath"; //$NON-NLS-1$
+    private static final String ABSOLUTE_PATH_TYPE = "AbsolutePath"; //$NON-NLS-1$
+    private static final String EXT_SEPARATOR = ProfileFileExtension.FILE_EXT_SEPARATOR;
+    private static final String FILE_DIALOG_FILTER_PREFIX = "*"; //$NON-NLS-1$
+    private static final String FILE_DIALOG_FILTER_ALLOW_ALL = FILE_DIALOG_FILTER_PREFIX + ProfilePathSelectionDialog.FILTER_ALLOW_ALL;
 
 	private ProfileStoreBrowseButton button;
 	private String[] optionTypes;
@@ -83,8 +87,11 @@ public class MenuButtonProvider implements IMenuButtonProvider
 		Object value = getProperty( IBrowseButtonHost.RESOURCE_FILE_DIR );
 		Object cpvalue = getProperty( IBrowseButtonHost.IS_CREATE_PROFILE );
 		Object spvalue = getProperty( IBrowseButtonHost.STORED_PATH );
-		String[] fileNames = null;
+
 		boolean isRelative = RELATIVE_PATH_TYPE.equals( type );
+        String defaultExtension = ProfileFileExtension.getDefault();        
+        
+        String[] fileNames = null;
 		if ( isRelative )
 		{
 			if ( value != null && value instanceof File &&
@@ -94,7 +101,8 @@ public class MenuButtonProvider implements IMenuButtonProvider
 						.getShell( ),
 						(File) value,
 						((Boolean) cpvalue).booleanValue(),
-						(String)spvalue);
+						(String)spvalue,
+                        defaultExtension );
 				if ( dialog.open( ) == Window.OK )
 				{
 					fileNames = dialog.getSelectedItems( );
@@ -111,10 +119,25 @@ public class MenuButtonProvider implements IMenuButtonProvider
 		else
 		{
 			FileDialog dialog = new FileDialog( button.getControl( ).getShell( ) );
+            if( ProfileFileExtension.exists( defaultExtension ) )
+            {
+                String[] filterExt = new String[2];
+                filterExt[0] = FILE_DIALOG_FILTER_PREFIX + EXT_SEPARATOR + defaultExtension; 
+                filterExt[1] = FILE_DIALOG_FILTER_ALLOW_ALL; 
+                dialog.setFilterExtensions(filterExt);
+            }
 			if( spvalue instanceof String )
 			    dialog.setFileName( (String)spvalue );
 			fileNames = new String[1];
 			fileNames[0] = dialog.open();
+            
+            // If a file does not have an extension provided by the user,
+            // apply the default extension
+            String fileExtension = fileNames[0];
+            if( fileExtension != null && fileExtension.trim().length() > 0 &&
+                    ! fileExtension.contains( EXT_SEPARATOR ) &&
+                    ProfileFileExtension.exists( defaultExtension ) )
+                fileNames[0] = fileExtension.trim() + EXT_SEPARATOR + defaultExtension; 
 		}
 		
 		if ( fileNames != null && fileNames[0] != null)
