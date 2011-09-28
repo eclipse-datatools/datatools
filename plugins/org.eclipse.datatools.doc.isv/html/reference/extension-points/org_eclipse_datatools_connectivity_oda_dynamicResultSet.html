@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ODA Dynamic Result Set</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">ODA Dynamic Result Set</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.oda.dynamicResultSet<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>3.3 (DTP 1.8)
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>[API] This extension point is for declaring support of dynamic operations, such as filtering, row ordering and projection, on a result set of an ODA data source extension.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.contributor">contributor</a> , <a href="#e.filterExpressionTypes">filterExpressionTypes</a>? , <a href="#e.aggregateExpressionTypes">aggregateExpressionTypes</a>? , <a href="#e.valueExpressionTypes">valueExpressionTypes</a>?)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.contributor">contributor</a> (<a href="#e.supportedDataSetType">supportedDataSetType</a>+ , <a href="#e.supportsRowOrdering">supportsRowOrdering</a>?)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST contributor</p>
+<p class="code SchemaDtdAttlist">validatorClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">specificationFactoryClass&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines the scope and capabilities of this extension's contributor.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>validatorClass</b> - The fully qualified name of a Java concrete class that implements the runtime validator to validate all its contributed expressions and any dynamic result set specification that may be set by an ODA consumer application. The class must be public and implement the <i>org.eclipse.datatools.connectivity.oda.spec.IValidator</i> interface with a public 0-argument constructor.</li>
+<li><b>specificationFactoryClass</b> - The fully qualified name of a Java concrete factory class that creates extended specification classes for use in an ODA extension's dynamic query specification. The class must be public and extends the <i>org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationFactory</i> base class with a public 0-argument constructor.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.filterExpressionTypes">filterExpressionTypes</a> (<a href="#e.supportedOdaFilterExpression">supportedOdaFilterExpression</a>* , <a href="#e.filterType">filterType</a>+)&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A grouping of supportedOdaFilterExpression and filterType elements, defining the types of filter expression supported or contributed by this extension for all its supported data set types.</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.filterType">filterType</a> (<a href="#e.variableRestriction">variableRestriction</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST filterType</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">displayName&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">minArguments&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">maxArguments&nbsp;CDATA "*"</p><p class="code SchemaDtdAttlist">isNegatable&nbsp;&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">isOptionable&nbsp;(true | false) "false"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines a type of filter expression contributed by this extension.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id that uniquely identifies this type of filter expression within the extension.</li>
+<li><b>displayName</b> - A translatable name that will be used to refer to this particular expression type in dialogs presented to the user. Default to the expression id if no name is specified.  The name should be unique within the extension.</li>
+<li><b>description</b> - A brief translatable description of this type of filter expression type.  It may be used to describe this particular expression in dialogs presented to the user.</li>
+<li><b>class</b> - The fully qualified name of a concrete implementation class of this custom filter expression. 
+<br>Must extend from the  <i>org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression</i> base class.  The extended class must be public with a public 0-argument constructor.</li>
+<li><b>minArguments</b> - The minimum number of arguments required by this expression type.  The value must be zero or higher integer value.</li>
+<li><b>maxArguments</b> - The maximum number of arguments required by this expression type.  It must be an integer value greater or equal to the <i>minArgments</i> value, or "*" for unbounded, i.e. no upper limit on the maximum.  The default value is  "*" for unbounded.</li>
+<li><b>isNegatable</b> - Indicates whether the expression type can be negated, i.e. applied with a NotExpression. The default value is false.</li>
+<li><b>isOptionable</b> - Indicates whether the custom expression type can be optional and skipped in a filter specification if none of its expected argument values are provided.  The default value is false.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.aggregateExpressionTypes">aggregateExpressionTypes</a> (<a href="#e.aggregateType">aggregateType</a>+)&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A grouping of one or more aggregateType elements, defining the types of aggregate expression contributed by this extension for all its supported data set types.</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.aggregateType">aggregateType</a> (<a href="#e.variableRestriction">variableRestriction</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST aggregateType</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">displayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">minInputVariables&nbsp;&nbsp;&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">maxInputVariables&nbsp;&nbsp;&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">canIgnoreDuplicates&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">canIgnoreNull&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines a type of aggregate expression contributed by this extension.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id that uniquely identifies this aggregate type within the extension.</li>
+<li><b>displayName</b> - A translatable name that will be used to refer to this particular aggregate expression type in dialogs presented to the user. Default to the expression id if no name is specified.  The name should be unique within the extension.</li>
+<li><b>description</b> - A brief translatable description of this type of aggregate.  It may be used to describe this particular aggregate type in dialogs presented to the user.</li>
+<li><b>class</b> - The fully qualified name of a concrete implementation class of this custom aggregate type 
+<br>Must extend from the  <i>org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate</i> base class.  The extended class must be public with a public 0-argument constructor.</li>
+<li><b>minInputVariables</b> - The minimum number of input source variables required by this aggregate expression type.  The value must be zero or higher integer value.  The default value is  "1".</li>
+<li><b>maxInputVariables</b> - The maximum number of input source variables required by this aggregate expression type.  It must be an integer value greater or equal to the <i>minInputVariables</i> value, or "*" for unbounded, i.e. no upper limit on the maximum.  The default value is  "1".</li>
+<li><b>canIgnoreDuplicates</b> - Indicates whether the aggregate type is capable of ignoring duplicate values of its input source variable. The default value is false.</li>
+<li><b>canIgnoreNull</b> - Indicates whether the aggregate type is capable of ignoring null values of its input source variable. The default value is false.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.variableRestriction">variableRestriction</a> ((<a href="#e.variableOdaDataTypeRestriction">variableOdaDataTypeRestriction</a> | <a href="#e.variableClassRestriction">variableClassRestriction</a>))*&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST variableRestriction</p>
+<p class="code SchemaDtdAttlist">variableType&nbsp;(ResultSetColumn|InstanceOf|QueryExpression) "ResultSetColumn"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Restriction on the type of variables that can be applied with the expression.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>variableType</b> - The type of variables that can be applied with the associated expression.  The ResultSetColumn variable type is applied as the default restriction, if none is specified.  A QueryExpression variable type is a superset that covers any value expression types including a ResultSetColumn reference.
+Further restriction on a type of variable, such as the data types, may be defined by its type-specific variable restriction element. No further restrictions exist if none is specified.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.variableOdaDataTypeRestriction">variableOdaDataTypeRestriction</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST variableOdaDataTypeRestriction</p>
+<p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;(String|Integer|Double|Decimal|Date|Time|Timestamp|Boolean|Blob|Clob|JavaObject) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The restriction on the ODA data types of a variable that can be applied with this expression.  For example, a string pattern matching expression would restrict its use with a string-typed variable.
+An expression has no data type restriction if none is specified.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>odaScalarDataType</b> - A compatible data type of the target variable.  It is used to restrict the data type of variables that can be applied with this expression type.   For example, a pattern matching expression may only be applicable to a variable of the String data type.
+It must be an ODA scalar data type supported by the ODA data source provider, as defined in its datasource extension's dataSet.dataTypeMapping.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.variableClassRestriction">variableClassRestriction</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST variableClassRestriction</p>
+<p class="code SchemaDtdAttlist">class&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The restriction on the type of instance variables that can be applied with this expression.  
+An expression has no restriction on the type of instance variable if none is specified.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>class</b> - The concrete class name of an instance variable.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.supportedDataSetType">supportedDataSetType</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST supportedDataSetType</p>
+<p class="code SchemaDtdAttlist">odaDataSourceId&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">odaDataSetId&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The ODA data set type to which this extension contributes filtering support.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>odaDataSourceId</b> - A fully qualified id that uniquely identifies the ODA data source type to which this extension contributes filtering support.  
+Its value must match the <i>dataSource.id</i> attribute value defined in the  <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension of the supported ODA runtime driver.</li>
+<li><b>odaDataSetId</b> - An id that uniquely identifies the ODA data set type within the supported data source type, whose id is specified in the odaDataSourceId attribute.  
+Its value must match the <i>dataSet.id</i> attribute value defined within the <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension of the supported ODA runtime driver.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.supportedOdaFilterExpression">supportedOdaFilterExpression</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST supportedOdaFilterExpression</p>
+<p class="code SchemaDtdAttlist">name&nbsp;(AndExpression|OrExpression|NotExpression) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The type of ODA composite filter expression supported by the extension for all its supported data set types.  It must be one of the built-in concrete filter expressions pre-defined by the ODA filter framework.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>name</b> - </li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.supportsRowOrdering">supportsRowOrdering</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST supportsRowOrdering</p>
+<p class="code SchemaDtdAttlist">nullValueOrdering&nbsp;(true | false) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Indicates this extension contributes dynamic row ordering of its result sets for all its supported data set types.  Absence of this element indicates no support.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>nullValueOrdering</b> - Indicates whether this row ordering support can also handle ordering of null vs. non-null values in the row order. The default value is false for no control over null value ordering.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.valueExpressionTypes">valueExpressionTypes</a> (<a href="#e.combinedOperatorTypes">combinedOperatorTypes</a>? , <a href="#e.functionExpressionType">functionExpressionType</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST valueExpressionTypes</p>
+<p class="code SchemaDtdAttlist">supportsNestedExpressions&nbsp;(true | false) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A grouping of value expression type elements, defining the types of value expression supported and contributed by this extension for all its supported data set types.  An extension must implement support of the simple and column value expression types. Support of complex expression types is optional and declared in this element.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>supportsNestedExpressions</b> - Indicates whether this extension supports handling of nested value expression type.  The default value is false for no support.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.combinedOperatorTypes">combinedOperatorTypes</a> (<a href="#e.supportedOdaCombinedOperator">supportedOdaCombinedOperator</a>* , <a href="#e.combinedOperatorType">combinedOperatorType</a>*)&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A grouping of supportedOdaCombinedOperator and combinedOperatorType elements, defining the types of expression combined operator supported or contributed by this extension for all its supported data set types.</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.supportedOdaCombinedOperator">supportedOdaCombinedOperator</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST supportedOdaCombinedOperator</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;(Add|Subtract|Multiply|Divide|Concatenate) </p><p class="code SchemaDtdAttlist">class&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The type of ODA value expression combined operator supported by the extension for all its supported data set types.  It must be one of the built-in CombinedValueExpressionOperator types pre-defined by the ODA framework.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of an ODA built-in combined operator for combining 2 value expressions.</li>
+<li><b>class</b> - The fully qualified name of a concrete implementation class that extends this built-in combined operator.
+<br>The class must extend the  <i>org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator</i> base class.  The extended class must be public with a public 0-argument constructor.  Defaults to the built-in operator class.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.combinedOperatorType">combinedOperatorType</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST combinedOperatorType</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">displayName&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">literal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines a type of custom combined operator contributed by this extension.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id that uniquely identifies this type of combined operator within the extension.</li>
+<li><b>displayName</b> - A translatable name that will be used to refer to this particular combined operator type in dialogs presented to the user. Default to the operator id if no name is specified.  The display name should be unique within the extension.</li>
+<li><b>literal</b> - The default literal representation of this custom combined operator.</li>
+<li><b>class</b> - The fully qualified name of a concrete implementation class of this custom combined operator. 
+<br>Must extend from the  <i>org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator</i> base class.  The extended class must be public with a public 0-argument constructor.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.functionExpressionType">functionExpressionType</a> (<a href="#e.variableRestriction">variableRestriction</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST functionExpressionType</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">displayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">minArguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">maxArguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">canIgnoreDuplicates&nbsp;(true | false) "false"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines a type of custom function value expression contributed by this extension.  
+Its variableRestriction sub-element defines the type of expression variable that can be associated with this function type.  The precise data types of the function argument(s) and return value are implementation-specific.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id that uniquely identifies this type of function value expression within the extension.</li>
+<li><b>name</b> - The expression name of this function type.  Default to the function id if no name is specified.  
+The name should be unique within the extension.</li>
+<li><b>displayName</b> - A translatable name that will be used to refer to this particular function expression type in dialogs presented to the user. Default to the function name if no display name is specified.  The display name should be unique within the extension.</li>
+<li><b>description</b> - A brief translatable description of this type of function expression.  It may be used to describe this particular function type in dialogs presented to the user.</li>
+<li><b>class</b> - The fully qualified name of a concrete implementation class of this custom function type.
+<br>Must extend from the  <i>org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction</i> base class.  The extended class must be public with a public 0-argument constructor.</li>
+<li><b>minArguments</b> - The minimum number of arguments required by this function type.  The value must be zero or higher integer value.  The default value is  "1".</li>
+<li><b>maxArguments</b> - The maximum number of arguments required by this function type.  It must be an integer value greater or equal to the <i>minArgments</i> value, or "*" for unbounded, i.e. no upper limit on the maximum. The default value is  "1".</li>
+<li><b>canIgnoreDuplicates</b> - Indicates whether this function type is capable of ignoring duplicate values of its input variable. The default value is false.</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec package and its sub-packages.
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>A sample implementation of this extension point can be found in the
+<i>org.eclipse.datatools.connectivity.oda.consumer.testdriver</i> project 
+in DTP CVS under the org.eclipse.datatools.connectivity/tests/ folder.
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2009, 2010 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+
+</p>
+</BODY>
+</HTML>

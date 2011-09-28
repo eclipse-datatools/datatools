@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ODA Connection Profiles Store</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">ODA Connection Profiles Store</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.oda.profile.profileStore<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>3.2.7 (DTP 1.9.2)
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>The profileStore extension point allows a client to define a default file extension for any connection profiles store that has no file extension.  If no extensions of this extension point are registered, an user may specify a profile stores file with no extension.  If multiple default fileExtension elements are registered, only one will be applied.  Adopters should ensure that its client application installs only one extension of this extension point.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.fileExtension">fileExtension</a>)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.fileExtension">fileExtension</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST fileExtension</p>
+<p class="code SchemaDtdAttlist">default&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Defines the file extension to be associated with a connection profile store.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>default</b> - Defines the default file extension to be automatically associated with a connection profile store that has no user-defined file extension.
+This attribute value may include an optional dot before the file extension (e.g. "profiles" or ".profiles").</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6><code><pre class="Example"><span class="code SchemaTag">
+     &lt;extension
+           point=</span><span class="code SchemaCstring">&quot;org.eclipse.datatools.connectivity.oda.profile.profileStore&quot;</span><span class="code SchemaTag">&gt;
+        &lt;fileExtension
+              default=</span><span class="code SchemaCstring">&quot;profiles&quot;</span><span class="code SchemaTag">&gt;
+        &lt;/fileExtension&gt;
+     &lt;/extension&gt;
+</span></pre></code>
+   
+This extension example specifies the default file extension "profiles" to be automatically associated with a connection profile store that has no user-defined file extension.
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>No API implementation is applicable.
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>N/A
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2011 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html.
+
+</p>
+</BODY>
+</HTML>
