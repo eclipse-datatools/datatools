@@ -194,11 +194,6 @@ public class FEWizard extends Wizard implements IGenerateDDL, IContextProvider {
 	}
 
 	public StringWriter generateDDL() {
-	    if ((databaseDefinition.getProduct().equals("Oracle"))
-	           || (databaseDefinition.getProduct().equals("DB2 UDB"))
-	           || (databaseDefinition.getProduct().equals("DB2 UDB zSeries"))){
-	           LINE_RETURN = "\n";
-	       }
 		try {
 			getContainer().run(false, false, new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor)
