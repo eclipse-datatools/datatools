@@ -143,8 +143,10 @@ public class ResultSetViewerRegistryReader
 	   {
 	       ResultSetViewerDescriptor desc = (ResultSetViewerDescriptor) viewerList.get(i);
 	       ExternalResultSetViewerProvider provider = desc.getViewerProvider();
-	       provider.setResult(null);
-	       provider.setResultInstance(null);
+	       if (provider != null) {
+	           provider.setResult(null);
+	           provider.setResultInstance(null);
+	       }
 	   }
 	}
 	
