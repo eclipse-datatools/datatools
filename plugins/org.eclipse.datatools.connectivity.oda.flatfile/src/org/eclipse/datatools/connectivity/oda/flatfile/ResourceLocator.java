@@ -117,8 +117,7 @@ public final class ResourceLocator
 				URI uri = new URI( convertURI(fileURI) );
 				if ( uri.getScheme( ) == null && resourceIdentifiers != null) // Having a relative path
 				{
-					URI uriResolved = (URI) resourceIdentifiers.getClass( )
-							.getMethod( "resolveApplResource", URI.class ).invoke( resourceIdentifiers, uri ); //$NON-NLS-1$
+                    URI uriResolved = ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
 					uri = uriResolved == null ? uri : uriResolved;
 				}
 				stream = new ResourceInputStream( uri.toURL( ).openStream( ), fileURI );
