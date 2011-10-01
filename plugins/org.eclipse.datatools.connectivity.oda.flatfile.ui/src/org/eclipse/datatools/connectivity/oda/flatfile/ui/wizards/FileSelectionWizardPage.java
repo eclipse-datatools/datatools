@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,11 +27,13 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver;
 import org.eclipse.datatools.connectivity.oda.flatfile.InvalidResourceException;
@@ -1042,10 +1044,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void loadProperties( )
 	{
+        DataSourceDesign dataSourceDesign = getInitializationDesign( ).getDataSourceDesign( );
 		java.util.Properties dataSourceProps = null;
 		try
 		{
-			dataSourceProps = DesignSessionUtil.getEffectiveDataSourceProperties( getInitializationDesign( ).getDataSourceDesign( ) );
+            dataSourceProps = DesignSessionUtil.getEffectiveDataSourceProperties( dataSourceDesign );
 		}
 		catch ( OdaException e )
 		{
@@ -1056,10 +1059,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		String sourcePath = dataSourceProps.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
 		if ( sourcePath != null )
 		{
-			File cpFile = new File( sourcePath );
-			if ( !cpFile.exists( ) )
+            File cpFile = DesignUtil.convertPathToResourceFile( sourcePath, dataSourceDesign.getHostResourceIdentifiers() );
+            if ( cpFile == null )
 			{
-				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{ cpFile.getPath( ) } ), ERROR ); //$NON-NLS-1$
+				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{ sourcePath } ), ERROR ); //$NON-NLS-1$
 				return;
 			}
 		}
@@ -1394,7 +1397,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @return
 	 * @throws OdaException
 	 */
-	@SuppressWarnings("unchecked")
 	private IResultSetMetaData getResultSetMetaData( String queryText,
 			IConnection conn ) throws OdaException
 	{
@@ -1430,9 +1432,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
 
-		@SuppressWarnings("rawtypes")
-		Map appContext = new HashMap();
-		appContext.put( org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS, getResourceIdentifiers( ) );
+        Map<String, Object> appContext = 
+                DesignSessionUtil.createResourceIdentifiersContext( getHostResourceIdentifiers() );
 		conn.setAppContext( appContext );
 		conn.open( prop );
 
@@ -1446,10 +1447,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	
 	private ResourceIdentifiers getResourceIdentifiers( )
 	{
-		ResourceIdentifiers ri = new ResourceIdentifiers();
-		ri.setApplResourceBaseURI( getHostResourceIdentifiers( ).getApplResourceBaseURI( ) );
-		ri.setDesignResourceBaseURI( getHostResourceIdentifiers( ).getDesignResourceBaseURI( ) );
-		return ri;
+        return DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers() );
 	}
 
 	/**
