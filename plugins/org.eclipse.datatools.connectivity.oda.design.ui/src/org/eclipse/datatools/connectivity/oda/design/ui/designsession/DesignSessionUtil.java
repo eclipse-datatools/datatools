@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2009 Actuate Corporation.
+ * Copyright (c) 2006, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,6 +37,7 @@ import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignSessionUtilBase;
@@ -54,7 +55,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *  an ODA driver's customized designer to manipulate
  *  ODA Design API objects during an ODA design session.
  */
-@SuppressWarnings("restriction")
 public class DesignSessionUtil extends DesignSessionUtilBase
 {
     // logging variable
@@ -289,6 +289,36 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             DataSourceDesign dataSourceDesign, URI applResourceBaseURI, URI designResourceBaseURI )
     {    
         DesignSessionUtilBase.setDataSourceResourceIdentifiers( dataSourceDesign, applResourceBaseURI, designResourceBaseURI );
+    }
+
+    /**
+     * Create a runtime ResourceIdentifiers,
+     * based on the resource URIs defined by the specified designResourceIdentifiers.
+     * @param designResourceIdentifiers  a design resource identifier instance
+     *          defined by the host application
+     * @return  a new runtime ResourceIdentifiers that was converted from
+     *          the specified designResourceIdentifiers
+    * @since 3.2.6 (DTP 1.9.2)
+     */
+    public static org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers createRuntimeResourceIdentifiers( 
+            ResourceIdentifiers designResourceIdentifiers )
+    {
+        return DesignSessionUtilBase.createRuntimeResourceIdentifiers( designResourceIdentifiers );
+    }
+
+    /**
+     * A convenience method to create an application context Map with the entry of 
+     * a runtime ResourceIdentifiers,
+     * based on the resource URIs defined by the specified designResourceIdentifiers.
+     * @param designResourceIdentifiers  a design resource identifier instance
+     *          defined by the host application
+     * @return  a new design session appContext Map with the entry of a runtime ResourceIdentifiers
+     *          that was converted from the specified designResourceIdentifiers
+    * @since 3.2.6 (DTP 1.9.2)
+    **/
+    public static Map<String,Object> createResourceIdentifiersContext( ResourceIdentifiers designResourceIdentifiers )
+    {
+        return DesignSessionUtilBase.createResourceIdentifiersContext( designResourceIdentifiers );
     }
     
     /**

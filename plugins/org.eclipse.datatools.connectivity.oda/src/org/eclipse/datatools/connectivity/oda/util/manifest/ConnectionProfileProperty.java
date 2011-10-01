@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2009 Actuate Corporation.
+ * Copyright (c) 2007, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,11 +25,16 @@ public class ConnectionProfileProperty
 {
     
     // property names for connection profile info
-    //      for use as the key in connection properties collection
+    //      for use as a key in connection properties collection
     public static final String PROFILE_NAME_PROP_KEY = "OdaConnProfileName"; //$NON-NLS-1$
     public static final String PROFILE_STORE_FILE_PATH_PROP_KEY = "OdaConnProfileStorePath"; //$NON-NLS-1$
 
-    //      for use as the key in oda.consumer.IPropertyProvider's 
+    // @since 3.3.3 (DTP 1.9.2)
+    //      for use as a key in a transient collection of connection properties 
+    public static final String TRANSIENT_PROFILE_STORE_RESOLVED_PATH_PROP_KEY = 
+                "org.eclipse.datatools.connectivity.oda_transient.profileStorePath"; //$NON-NLS-1$
+
+    //      for use as a key in oda.consumer.IPropertyProvider's 
     //      connection property context map
     public static final String PROFILE_STORE_FILE_PROP_KEY = "OdaConnProfileStore"; //$NON-NLS-1$
 

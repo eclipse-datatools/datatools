@@ -58,7 +58,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         
         IConnectionProfile connProfile = 
             getConnectionProfile( candidateProperties, appContext );
-        if( connProfile == null )   // no linked profle found
+        if( connProfile == null )   // no linked profile found
         {
             // a profile is specified, just couldn't find it
             if( hasProfileName( candidateProperties ) && hasProfileStoreFilePath( candidateProperties ) )
@@ -80,6 +80,17 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         Properties profileProps = connProfile.getBaseProperties();
         if( profileProps != null )
             mergedProps.putAll( profileProps );
+
+        // add a data source property entry for the resolved file path of the connection profile store 
+        // used to get the profile instance
+        File profileStore = getProfileStoreFile( candidateProperties, appContext );
+        if( profileStore != null && profileStore.exists() )
+        {
+            String profileStoreResolvedPath = profileStore.getPath();
+            if( ! profileStoreResolvedPath.equals( getProfileStoreFilePath( candidateProperties ) ))
+                    mergedProps.setProperty( ConnectionProfileProperty.TRANSIENT_PROFILE_STORE_RESOLVED_PATH_PROP_KEY, 
+                                            profileStoreResolvedPath );
+        }
         
         // log count of merged properties
         if( getLogger().isLoggable( Level.FINER ) )

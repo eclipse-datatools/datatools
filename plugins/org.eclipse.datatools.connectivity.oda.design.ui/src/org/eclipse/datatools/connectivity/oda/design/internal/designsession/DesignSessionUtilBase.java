@@ -146,7 +146,7 @@ public class DesignSessionUtilBase
         if( propProvider != null )
         {
             candidateProps = propProvider.getDataSourceProperties( candidateProps, 
-                                createResourceIdentifiersAppContext( dataSourceDesign.getHostResourceIdentifiers() ));
+                                createResourceIdentifiersContext( dataSourceDesign.getHostResourceIdentifiers() ));
         }
     
         return candidateProps;
@@ -175,23 +175,43 @@ public class DesignSessionUtilBase
     }
 
     /**
-     * Create an appContext Map with an entry for the runtime ResourceIdentifiers,
-     * based on the resource base URIs defined in the specified designResourceIdentifiers.
+     * Create a runtime ResourceIdentifiers,
+     * based on the resource URIs defined by the specified designResourceIdentifiers.
      * @param designResourceIdentifiers
      * @return
+     * @since 3.2.6 (DTP 1.9.2)
      */
-    private static Map<String,Object> createResourceIdentifiersAppContext( ResourceIdentifiers designResourceIdentifiers )
+    protected static org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers createRuntimeResourceIdentifiers( 
+            ResourceIdentifiers designResourceIdentifiers )
     {
         if( designResourceIdentifiers == null ||
             ( designResourceIdentifiers.getApplResourceBaseURI() == null &&
               designResourceIdentifiers.getDesignResourceBaseURI() == null ) )
-            return Collections.emptyMap();  // no resource base info to create from
+            return null;  // no resource base info to create from
         
         // create a runtime ResourceIdentifies from the appl resource base specified in the design version
         org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers runtimeResourceIds =
             new org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers();
         runtimeResourceIds.setApplResourceBaseURI( designResourceIdentifiers.getApplResourceBaseURI() );
         runtimeResourceIds.setDesignResourceBaseURI( designResourceIdentifiers.getDesignResourceBaseURI() );
+        return runtimeResourceIds;
+    }
+
+    /**
+    * Create an application context Map with the entry of a runtime ResourceIdentifiers,
+    * based on the resource URIs defined by the specified designResourceIdentifiers.
+    * @param designResourceIdentifiers  a design resource identifier instance
+     *          defined by the host application
+    * @return  a new design session appContext Map with the entry of a runtime ResourceIdentifiers
+    *          that was converted from the specified designResourceIdentifiers
+    * @since 3.2.6 (DTP 1.9.2)
+     */
+    protected static Map<String,Object> createResourceIdentifiersContext( ResourceIdentifiers designResourceIdentifiers )
+    {
+        org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers runtimeResourceIds = 
+                createRuntimeResourceIdentifiers( designResourceIdentifiers );
+        if( runtimeResourceIds == null )
+            return Collections.emptyMap();  // nothing to put into the context map
         
         // store the runtime ResourceIdentifies in an appContext Map to return
         Map<String,Object> designSessionAppContext = new HashMap<String,Object>(1);
