@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import java.util.SortedMap;
 
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.InvalidResourceException;
@@ -878,9 +879,7 @@ public class FolderSelectionPageHelper
 	{
 		if ( resourceIdentifiers != null )
 		{
-			this.ri = new ResourceIdentifiers();
-			ri.setApplResourceBaseURI( resourceIdentifiers.getApplResourceBaseURI( ) );
-			ri.setDesignResourceBaseURI( resourceIdentifiers.getDesignResourceBaseURI( ) );
+            this.ri = DesignSessionUtil.createRuntimeResourceIdentifiers( resourceIdentifiers );
 		}
 	}
 
