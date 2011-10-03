@@ -5,7 +5,8 @@
    <extension-point id="driverUIContributor" name="Driver UI Contributor" schema="schema/driverUIContributor.exsd"/>
    <extension-point id="connectionProfileImage" name="Connection Profile Image" schema="schema/connectionProfileImage.exsd"/>
    <extension-point id="addConnectListener" name="%extension-point.name.addConnectListener" schema="schema/addConnectListener.exsd"/>   
-   
+   <extension-point id="connectionExceptionHandler" name="Connection Exception Handler" schema="schema/connectionExceptionHandler.exsd"/>
+    
    <extension point="org.eclipse.ui.preferencePages">
    	<page name="%datatools.preference.page.name" class="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
    	id = "org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"

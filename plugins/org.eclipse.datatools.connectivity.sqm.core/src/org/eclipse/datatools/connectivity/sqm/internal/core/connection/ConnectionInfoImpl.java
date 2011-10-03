@@ -243,6 +243,52 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			}			
 		}
 	}
+	
+	public IConnection getJDBCConnectionWrapper()
+	{
+		return jdbcConnection;
+	}
+	
+	/**
+	 * Same effect as calling removeSharedConnection(), 
+	 * followed by setSharedConnection()
+	 * but this does not throw an IllegalStateException
+	 * 
+	 * Its effect is to simply switch out the underlying
+	 * Connection object and notify any listeners
+	 * 	
+	 * @param connection, the Connection object to be replaced
+	 */
+	public void replaceSharedConnection(Connection connection)
+	{
+		Connection existingSharedConnection = sharedConnection;
+		Collection c = new LinkedList();
+		c.addAll(listeners);
+		Iterator removingIterator = c.iterator();
+		while(removingIterator.hasNext()) {
+			ConnectionSharingListener l = (ConnectionSharingListener) removingIterator.next();
+			try {
+				l.sharedConnectionRemove(this, existingSharedConnection);
+			}
+			catch(Throwable o) {
+				this.removeConnectionSharingListener(l);
+			}
+		}
+		
+		sharedConnection = connection;
+			
+		Iterator addingIterator = c.iterator();
+		while(addingIterator.hasNext()) {
+			ConnectionSharingListener l = (ConnectionSharingListener) addingIterator.next();
+			try {
+				l.sharedConnectionAdded(this, connection);
+			}
+			catch(Throwable o) {
+				this.removeConnectionSharingListener(l);
+			}
+		}
+	}
+	
 
 	public Connection getSharedConnection() {
 		return this.sharedConnection;

@@ -32,4 +32,5 @@ Export-Package: org.eclipse.datatools.connectivity.internal.ui,
  org.eclipse.datatools.connectivity.ui.actions,
  org.eclipse.datatools.connectivity.ui.navigator,
  org.eclipse.datatools.connectivity.ui.navigator.actions,
+ org.eclipse.datatools.connectivity.ui.status,
  org.eclipse.datatools.connectivity.ui.wizards
