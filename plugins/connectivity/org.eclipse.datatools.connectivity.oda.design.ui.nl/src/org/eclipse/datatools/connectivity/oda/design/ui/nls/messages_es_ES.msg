@@ -11,6 +11,7 @@
 #  
 #************************************************************************
 #
+adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
 common_notInDesignSession=Actualmente no está en una sesión de diseño.
 common_nullArgument=El argumento no debe ser nulo.
 common_missingDataSourceDesign=Falta el diseño de origen de datos en el argumento OdaDesignSession.
@@ -46,7 +47,14 @@ profilePage_pageLabel=Perfil de conexión
 profilePage_selectProfileDefaultMessage=Seleccionar el perfil de conexión desde el que crear una fuente de datos
 profilePage_label_profileStore=Almacenamiento de perfil de &conexión:
 profilePage_button_browse=&Examinar...
+profilePage_button_relativepath=&Relative Path
+profilePage_button_absolutepath=&Absolute Path
+profilePage_button_browse_filter=File &extension(s) to display:
+profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
 profilePage_button_new=&Nuevo...
+profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
+profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
+profilePage_browse_noselection_error=Please specify a connection profile store file name 
 profilePage_odaTreeName=Fuentes de datos ODA
 profilePage_checkboxLabel_useDefaultName=&Utilizar el nombre de fuente de datos predeterminado
 profilePage_label_dataSourceName=&Nombre de fuente de datos:
@@ -60,6 +68,7 @@ profileStoreCreationDialog_button_new=&Nuevo...
 profileStoreCreationDialog_title=Crear almacenamiento de perfil de conexión
 profileStoreCreationDialog_grouptext=Seleccione los &perfiles de conexión que se incluirán en el almacenamiento:
 profileStoreCreationDialog_newbutton_tooltiptext=Crear un nuevo perfil de conexión
+profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
 dbProfilePage_defaultPageMessage=Verifique el controlador JDBC y los detalles de conexión
 dbProfilePage_editPageMessage=Editar el controlador JDBC y los detalles de conexión
 dbProfilePage_invalidDataSource=Fuente de datos no válida.  Actualice la referencia del perfil de conexión o cree una nueva fuente de datos.

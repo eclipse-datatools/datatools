@@ -11,6 +11,7 @@
 #  
 #************************************************************************
 #
+adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
 common_notInDesignSession=현재 디자인 세션에 없습니다.
 common_nullArgument=인수는 널(null)일 수 없습니다.
 common_missingDataSourceDesign=OdaDesignSession 인수에서 데이터 소스 디자인이 누락되었습니다.
@@ -46,7 +47,14 @@ profilePage_pageLabel=연결 프로필
 profilePage_selectProfileDefaultMessage=데이터 원본을 생성할 연결 프로필 선택
 profilePage_label_profileStore=연결 프로필 저장(&S):
 profilePage_button_browse=찾아보기(&R)...
+profilePage_button_relativepath=&Relative Path
+profilePage_button_absolutepath=&Absolute Path
+profilePage_button_browse_filter=File &extension(s) to display:
+profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
 profilePage_button_new=새로 만들기(&W)...
+profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
+profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
+profilePage_browse_noselection_error=Please specify a connection profile store file name 
 profilePage_odaTreeName=ODA 데이터 원본
 profilePage_checkboxLabel_useDefaultName=기본 데이터 원본 이름 사용(&U)
 profilePage_label_dataSourceName=데이터 원본 이름(&D):
@@ -60,6 +68,7 @@ profileStoreCreationDialog_button_new=새로 만들기(&W)...
 profileStoreCreationDialog_title=연결 프로필 저장소 생성
 profileStoreCreationDialog_grouptext=저장소에 포함할 연결 프로필 선택(&P):
 profileStoreCreationDialog_newbutton_tooltiptext=새 연결 프로필을 생성합니다.
+profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
 dbProfilePage_defaultPageMessage=JDBC 드라이버 및 연결 상세 정보 확인
 dbProfilePage_editPageMessage=JDBC 드라이버 및 연결 상세 정보 편집
 dbProfilePage_invalidDataSource=데이터 원본이 잘못되었습니다.  연결 프로필 참조를 업데이트하거나 새 데이터 원본을 생성하십시오.
