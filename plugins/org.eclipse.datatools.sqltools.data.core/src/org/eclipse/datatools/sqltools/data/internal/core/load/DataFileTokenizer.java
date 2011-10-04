@@ -42,21 +42,26 @@ public class DataFileTokenizer
      * Before loading the file, a check is made if BOM are introduced in the UTF-8 encoded file. 
      * If the first three bytes are 0xEF, 0xBB, 0xBF the first character is skipped as it is BOM.
      */
-    public boolean bomEncoding() throws IOException
-    {
-    	FileInputStream fis=new FileInputStream(filePath);
-    	boolean isBOM=false;
-    	int byteOne = fis.read();
-		int byteTwo = fis.read();
-		int byteThree = fis.read();
-		
-		//Check the BOM for UTF-8 encoding
-		if (byteOne == 0xEF && byteTwo == 0xBB && byteThree == 0xBF)
-		{
-			// UTF-8
-			isBOM=true;
-		}
-		return isBOM;
+    public boolean bomEncoding() throws IOException {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(filePath);
+            boolean isBOM = false;
+            int byteOne = fis.read();
+            int byteTwo = fis.read();
+            int byteThree = fis.read();
+
+            // Check for BOM that indicates UTF-8 encoding
+            if (byteOne == 0xEF && byteTwo == 0xBB && byteThree == 0xBF) {
+                // UTF-8 BOM is present
+                isBOM = true;
+            }
+            return isBOM;
+        } finally {
+            if (fis != null) {
+                fis.close();
+            }
+        }
     }
     
     /**

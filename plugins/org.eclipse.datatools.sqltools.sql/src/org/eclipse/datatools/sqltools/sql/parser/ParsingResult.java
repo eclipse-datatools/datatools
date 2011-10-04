@@ -725,7 +725,7 @@ public abstract class ParsingResult
     public String[] getEntries(String type)
     {
         String[] items = null;
-        List objects = objects = (ArrayList) fEntries.get(type);
+        List objects = (ArrayList) fEntries.get(type);
         
         if (objects == null)
         {

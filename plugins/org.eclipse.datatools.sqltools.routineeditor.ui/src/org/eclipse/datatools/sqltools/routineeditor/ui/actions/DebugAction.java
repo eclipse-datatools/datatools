@@ -19,8 +19,8 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.datatools.sqltools.routineeditor.ui.ProcEditorInput;
 import org.eclipse.datatools.sqltools.routineeditor.ui.RoutineEditor;
-import org.eclipse.datatools.sqltools.routineeditor.ui.RoutineEditorUIActivator;
 import org.eclipse.datatools.sqltools.routineeditor.ui.RoutineEditorImages;
+import org.eclipse.datatools.sqltools.routineeditor.ui.RoutineEditorUIActivator;
 import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchingJob;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -160,6 +160,6 @@ public class DebugAction extends RoutineAction
     }
 
 	public void run(IAction action) {
-		run(null);
+		run();
 	}
 }
