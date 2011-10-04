@@ -8,6 +8,7 @@
 ##    Sybase, Inc. - initial API and implementation
 ##    IBM Corporation - migrated to new wizard framework
 ##    IBM Corporation - fix for defect 222818
+##    Actuate Corporation - added the cipherProvider extension point [BZ 358686]
 ################################################################################ 
 plugin.internal_error=内部错误 － org.eclipse.datatools.connectivity
 ConnectionProfileConstants.unknownVersion=未知
@@ -78,4 +79,8 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. 使用数据库配置文件中定义的驱
 error.database.not.start = 未发出启动数据库命令。 ErrorCode = {0}，SQLState = {1}。
 PluginResourceLocator.invalidURL = 无效 URL {0} (错误\: {1})
 ConnectivityPlugin.error.noDefaultWorkspace = 无法确定默认工作区位置。  检查插件的无 OSGi 平台配置或数据工具工作区路径。
+CipherProviderExtensions.missingRequiredAttrValue = The {0} element in the {1} extension contributed by {2} is missing a value in one or more of its required attributes: {3}={4}, {5}={6}
+CipherProviderExtensions.invalidClassAttrValue = Invalid class type ({0}) in the {1} extension contributed by {2}.  It must implement the {3} Java interface.
+CipherProviderExtensions.conflictingExtensions = The registered ICipherProvider ({0}) has been replaced by the ICipherProvider ({1}) contributed by another extension in {2} for the same file extension ({3}).
+
 
