@@ -4,7 +4,7 @@
 	xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore"
 	vendor="postgres" version="8.x" maximumIdentifierLength="64"
 	joinSupported="true" tablespacesSupported="false" maximumCommentLength="60"
-	schemaSupported="true" aliasSupported="true" SQLStatementSupported="true">
+	schemaSupported="true" aliasSupported="true" sequenceSupported="true" SQLStatementSupported="true">
 	
 	<!-- Label for unresolved data types -->
 	<predefinedDataTypeDefinitions xmi:id="UNRESOLVED_DATA_TYPE"
