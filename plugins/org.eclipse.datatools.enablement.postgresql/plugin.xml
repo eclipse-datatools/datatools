@@ -88,5 +88,36 @@
           providerID="org.eclipse.datatools.enablement.postgresql.connectionProfile">
     </providerIDtoDriverCategoryID>
  </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+    <catalog
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.PostgresCatalogProvider"
+          version="8.x">
+    </catalog>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+    <overrideLoader
+          eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.loaders.PostgresAuthorizationIdentifierLoader"
+          version="8.x">
+    </overrideLoader>
+    <overrideLoader
+          eclass="org.eclipse.datatools.modelbase.sql.schema.Schema"
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.loaders.PostgresSchemaLoader"
+          version="8.x">
+    </overrideLoader>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+    <containment
+          class="User"
+          package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+          provider="org.eclipse.datatools.enablement.postgresql.containment.PostgresAuthorizationIdContainmentProvider">
+    </containment>
+ </extension>
 
 </plugin>
