@@ -11,7 +11,7 @@
 #  
 #************************************************************************
 #
-adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
+adaptableDataSourceProfile_unableAccessProfile=无法访问({0})中的链接配置文件；使用数据源设计中的本地属性。\n 由异常引起: {1}
 common_notInDesignSession=当前不在设计会话中。
 common_nullArgument=参数不能为空。
 common_missingDataSourceDesign=在 OdaDesignSession 参数中缺少数据源设计。
@@ -47,14 +47,14 @@ profilePage_pageLabel=连接配置文件
 profilePage_selectProfileDefaultMessage=选择用于创建数据源的连接配置文件
 profilePage_label_profileStore=连接配置文件存储(&S):
 profilePage_button_browse=浏览(&R)...
-profilePage_button_relativepath=&Relative Path
-profilePage_button_absolutepath=&Absolute Path
-profilePage_button_browse_filter=File &extension(s) to display:
-profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
+profilePage_button_relativepath=相对路径(&R)
+profilePage_button_absolutepath=绝对路径(&A)
+profilePage_button_browse_filter=要显示的文件扩展名(&E):
+profilePage_button_browse_filter_tooltiptext=指定用于筛选下面显示的文件的一个或多个以逗号分隔的文件扩展名。\n例如: .txt、.profiles
 profilePage_button_new=新建(&W)...
-profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
-profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
-profilePage_browse_noselection_error=Please specify a connection profile store file name 
+profilePage_button_browse_tooltip=浏览连接配置文件存储文件。\n相对路径: 基于主机资源的相对路径。\n绝对路径: 文件系统的绝对路径。
+profilePage_resourcebaseuri_failure=无法获得应用程序资源基本 URI！
+profilePage_browse_noselection_error=请指定连接配置文件存储文件名 
 profilePage_odaTreeName=ODA 数据源
 profilePage_checkboxLabel_useDefaultName=使用默认数据源名称(&U)
 profilePage_label_dataSourceName=数据源名称(&D):
@@ -68,7 +68,7 @@ profileStoreCreationDialog_button_new=新建(&W)...
 profileStoreCreationDialog_title=创建连接配置文件存储
 profileStoreCreationDialog_grouptext=选择要包括在存储中的连接配置文件(&P):
 profileStoreCreationDialog_newbutton_tooltiptext=创建新的连接配置文件
-profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
+profileStoreCreationDialog_fileext_error=连接配置文件存储文件必须具有文件扩展名。\n按“确定”将默认文件扩展名 ".{0}" 添加到文件名。
 dbProfilePage_defaultPageMessage=验证 JDBC 驱动程序和连接详细信息
 dbProfilePage_editPageMessage=编辑 JDBC 驱动程序和连接详细信息
 dbProfilePage_invalidDataSource=无效数据源。  更新连接配置文件引用，或者创建新的数据源。

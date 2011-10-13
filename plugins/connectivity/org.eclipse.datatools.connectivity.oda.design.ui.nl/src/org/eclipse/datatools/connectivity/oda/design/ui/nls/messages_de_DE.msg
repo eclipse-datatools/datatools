@@ -11,7 +11,7 @@
 #  
 #************************************************************************
 #
-adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
+adaptableDataSourceProfile_unableAccessProfile=Zugriff auf das verknüpfte Profil in ({0}) nicht möglich; stattdessen werden die lokalen Eigenschaften des Datenquellen-Designs verwendet.\n Verursacht von Ausnahme: {1}
 common_notInDesignSession=Gegenwärtig besteht keine Entwurfssitzung.
 common_nullArgument=Das Argument darf nicht Null sein.
 common_missingDataSourceDesign=Im Argument 'OdaDesignSession' fehlt der Datenquellenentwurf.
@@ -47,14 +47,14 @@ profilePage_pageLabel=Verbindungsprofil
 profilePage_selectProfileDefaultMessage=Wählen Sie das Verbindungsprofil, aus dem eine Datenquelle erstellt werden soll.
 profilePage_label_profileStore=&Speicher für Verbindungsprofile:
 profilePage_button_browse=Du&rchsuchen...
-profilePage_button_relativepath=&Relative Path
-profilePage_button_absolutepath=&Absolute Path
-profilePage_button_browse_filter=File &extension(s) to display:
-profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
+profilePage_button_relativepath=&Relativer Pfad
+profilePage_button_absolutepath=&Absoluter Pfad
+profilePage_button_browse_filter=Anzuzeigende Datei&erweiterung(en):
+profilePage_button_browse_filter_tooltiptext=Geben Sie eine oder mehrere kommagetrennte Dateierweiterungen an, um die unten angezeigten Dateien zu filtern.\nBeispiel: .txt, .profiles
 profilePage_button_new=N&eu...
-profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
-profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
-profilePage_browse_noselection_error=Please specify a connection profile store file name 
+profilePage_button_browse_tooltip=Suchen Sie nach einer Verbindungsprofilspeicherdatei.\nRelativer Pfad: der relative Pfad abhängig von den Host-Ressourcen.\nAbsoluter Pfad: der absolute Pfad des Dateisystems.
+profilePage_resourcebaseuri_failure=Basis-URI von Anwendungsressource konnte nicht abgerufen werden.
+profilePage_browse_noselection_error=Geben Sie einen Namen für die Verbindungsprofilspeicherdatei an. 
 profilePage_odaTreeName=ODA-Datenquellen
 profilePage_checkboxLabel_useDefaultName=&Standard-Datenquellnamen verwenden
 profilePage_label_dataSourceName=&Datenquellname:
@@ -68,7 +68,7 @@ profileStoreCreationDialog_button_new=N&eu...
 profileStoreCreationDialog_title=Speicher für Verbindungsprofile erstellen
 profileStoreCreationDialog_grouptext=Verbindungs&profile wählen, die der Speicher enthalten soll:
 profileStoreCreationDialog_newbutton_tooltiptext=Neues Verbindungsprofil erstellen
-profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
+profileStoreCreationDialog_fileext_error=Eine Verbindungsprofilspeicherdatei muss über eine Dateierweiterung verfügen.\nKlicken Sie auf 'OK', um die Standard-Dateierweiterung '.{0}' zum Dateinamen hinzuzufügen.
 dbProfilePage_defaultPageMessage=JDBC-Treiber- und Verbindungsdetails prüfen
 dbProfilePage_editPageMessage=JDBC-Treiber- und Verbindungsdetails bearbeiten
 dbProfilePage_invalidDataSource=Ungültige Datenquelle.  Aktualisieren Sie die Verbindungsprofilreferenz, oder erstellen Sie eine neue Datenquelle.

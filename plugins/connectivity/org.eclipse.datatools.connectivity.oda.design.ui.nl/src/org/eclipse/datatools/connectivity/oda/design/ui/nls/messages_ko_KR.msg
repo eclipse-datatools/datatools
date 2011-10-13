@@ -11,7 +11,7 @@
 #  
 #************************************************************************
 #
-adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
+adaptableDataSourceProfile_unableAccessProfile=({0})의 연결 프로필에 액세스할 수 없습니다. 데이터 원본 디자인의 로컬 속성을 대신 사용하십시오.\n 예외 발생: {1}
 common_notInDesignSession=현재 디자인 세션에 없습니다.
 common_nullArgument=인수는 널(null)일 수 없습니다.
 common_missingDataSourceDesign=OdaDesignSession 인수에서 데이터 소스 디자인이 누락되었습니다.
@@ -47,14 +47,14 @@ profilePage_pageLabel=연결 프로필
 profilePage_selectProfileDefaultMessage=데이터 원본을 생성할 연결 프로필 선택
 profilePage_label_profileStore=연결 프로필 저장(&S):
 profilePage_button_browse=찾아보기(&R)...
-profilePage_button_relativepath=&Relative Path
-profilePage_button_absolutepath=&Absolute Path
-profilePage_button_browse_filter=File &extension(s) to display:
-profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
+profilePage_button_relativepath=상대 경로(&R)
+profilePage_button_absolutepath=절대 경로(&A)
+profilePage_button_browse_filter=표시되는 파일 확장명(&E):
+profilePage_button_browse_filter_tooltiptext=쉼표로 구분된 파일 확장명을 하나 이상 지정하여 아래 표시된 파일을 필터링하십시오.\n예: txt, 프로필 등
 profilePage_button_new=새로 만들기(&W)...
-profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
-profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
-profilePage_browse_noselection_error=Please specify a connection profile store file name 
+profilePage_button_browse_tooltip=연결 프로필 저장소 파일을 찾아봅니다.\n 상대 경로: 호스트 리소스를 기반으로 한 상대 경로 \n절대 경로: 파일 시스템의 절대 경로
+profilePage_resourcebaseuri_failure=응용 프로그램 리소스 기본 URI를 가져오지 못했습니다!
+profilePage_browse_noselection_error=연결 프로필 저장소 파일 이름을 지정하십시오. 
 profilePage_odaTreeName=ODA 데이터 원본
 profilePage_checkboxLabel_useDefaultName=기본 데이터 원본 이름 사용(&U)
 profilePage_label_dataSourceName=데이터 원본 이름(&D):
@@ -68,7 +68,7 @@ profileStoreCreationDialog_button_new=새로 만들기(&W)...
 profileStoreCreationDialog_title=연결 프로필 저장소 생성
 profileStoreCreationDialog_grouptext=저장소에 포함할 연결 프로필 선택(&P):
 profileStoreCreationDialog_newbutton_tooltiptext=새 연결 프로필을 생성합니다.
-profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
+profileStoreCreationDialog_fileext_error=연결 프로필 저장소 파일은 파일 확장명이 있어야 합니다.\n"확인"을 눌러 기본 파일 확장명 ".{0}"를 파일 이름에 추가하십시오.
 dbProfilePage_defaultPageMessage=JDBC 드라이버 및 연결 상세 정보 확인
 dbProfilePage_editPageMessage=JDBC 드라이버 및 연결 상세 정보 편집
 dbProfilePage_invalidDataSource=데이터 원본이 잘못되었습니다.  연결 프로필 참조를 업데이트하거나 새 데이터 원본을 생성하십시오.

@@ -11,7 +11,7 @@
 #  
 #************************************************************************
 #
-adaptableDataSourceProfile_unableAccessProfile=Unable to access the linked profile in ({0}); using the local properties in the data source design instead.\n Caused by exception: {1}
+adaptableDataSourceProfile_unableAccessProfile=({0}) 内のリンクされたプロファイルにアクセスできません。データソースデザイン内のローカルプロパティを代わりに使用します。\n {1} で例外が発生しました。
 common_notInDesignSession=現在デザイン・セッション中ではありません。
 common_nullArgument=引数は null にできません。
 common_missingDataSourceDesign=OdaDesignSession 引数のデータ・ソース・デザインがありません。
@@ -47,14 +47,14 @@ profilePage_pageLabel=接続プロファイル
 profilePage_selectProfileDefaultMessage=データソースの作成元とする接続プロファイルを選択してください。
 profilePage_label_profileStore=接続プロファイルストア(&S)
 profilePage_button_browse=参照(&R)...
-profilePage_button_relativepath=&Relative Path
-profilePage_button_absolutepath=&Absolute Path
-profilePage_button_browse_filter=File &extension(s) to display:
-profilePage_button_browse_filter_tooltiptext=Specify one or more comma-separated file extensions to filter the files displayed below.\nFor example: .txt, .profiles
+profilePage_button_relativepath=相対パス(&R)
+profilePage_button_absolutepath=絶対パス(&A)
+profilePage_button_browse_filter=表示するファイル拡張子(&E):
+profilePage_button_browse_filter_tooltiptext=下に表示されるファイルにフィルタを適用する 1 つまたは複数のコンマ区切りファイルの拡張子を指定してください。\n例 : .txt、.profiles
 profilePage_button_new=新規作成(&W)...
-profilePage_button_browse_tooltip=Browse for a connection profile store file.\nRelative path: the relative path based on the host resources.\nAbsolute path: the absolute path of the file system.
-profilePage_resourcebaseuri_failure=Failed to get the application resource base URI!
-profilePage_browse_noselection_error=Please specify a connection profile store file name 
+profilePage_button_browse_tooltip=接続プロファイルストアファイルを参照します。\n相対パス : ホストリソースを基準とした相対パスです。\n絶対パス : ファイルシステムの絶対パスです。
+profilePage_resourcebaseuri_failure=アプリケーションリソースのベース URI を取得できません。
+profilePage_browse_noselection_error=接続プロファイルストアファイル名を指定してください。 
 profilePage_odaTreeName=ODA データソース
 profilePage_checkboxLabel_useDefaultName=デフォルトのデータソース名を使用する(&U)
 profilePage_label_dataSourceName=データソース名(&D) :
@@ -68,7 +68,7 @@ profileStoreCreationDialog_button_new=新規作成(&W)...
 profileStoreCreationDialog_title=接続プロファイルストアの作成
 profileStoreCreationDialog_grouptext=ストアに含める接続プロファイルを選択してください(&P) :
 profileStoreCreationDialog_newbutton_tooltiptext=新しい接続プロファイルの作成
-profileStoreCreationDialog_fileext_error=A connection profile store file must have a file extension.\nPress OK to add the default file extension ".{0}" to the file name.
+profileStoreCreationDialog_fileext_error=接続プロファイルストアファイルにはファイル拡張子を付ける必要があります。\nファイル名にデフォルトのファイル拡張子 ".{0}" を付けるには、[OK] を選択します。
 dbProfilePage_defaultPageMessage=JDBC ドライバと接続の詳細を確認してください。
 dbProfilePage_editPageMessage=JDBC ドライバと接続の詳細を編集してください。
 dbProfilePage_invalidDataSource=データソースが無効です。  接続プロファイルの参照を更新するか、代わりに新しいデータソースを作成してください。
