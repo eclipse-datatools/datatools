@@ -73,9 +73,9 @@ public class ResourceIdentifiers
 
     /**
      * A convenience method for a client to invoke the method {@link #resolveApplResource(URI)}
-     * on the specified instance.  
-     * This supports the use case where the specified ResourceIdentifiers instance is not accessible 
-     * by this class loader(s).
+     * on the specified ResourceIdentifiers instance.  
+     * This supports the use case where the class of the specified instance 
+     * is not accessible by this class loader(s).
      * @param instance  an instance of {@link ResourceIdentifiers}
      * @param uri   the URI to be resolved against the application resource base URI
      * @return      the resulting URI
@@ -94,6 +94,30 @@ public class ResourceIdentifiers
                 ReflectionHelper.invokeResolveMethod( instance, instMethodName, uri );
         
         return resolvedFilePathURI;
+    }
+
+    /**
+     * A convenience method for a client to invoke the method {@link #getApplResourceBaseURI()}
+     * on the specified ResourceIdentifiers instance.  
+     * This supports the use case where the class of the specified instance 
+     * is not accessible by this class loader(s).
+     * @param instance  an instance of {@link ResourceIdentifiers}
+     * @return      the resulting URI
+     * @since 3.3.3 (DTP 1.9.2)
+     * @see {@link #getApplResourceBaseURI()}
+     */
+    public static URI getApplResourceBaseURI( Object instance )
+    {
+        if( instance == null )   // not available
+            return null;    // unable to resolve the specified URI
+        
+        final String instMethodName = "getApplResourceBaseURI"; //$NON-NLS-1$
+        URI resourceBaseURI = (instance instanceof ResourceIdentifiers) ?
+                ((ResourceIdentifiers)instance).getApplResourceBaseURI() :
+                    // use reflection to invoke method
+                 ReflectionHelper.invokeGetURIMethod( instance, instMethodName );
+        
+        return resourceBaseURI;
     }
 
     /**
@@ -161,9 +185,9 @@ public class ResourceIdentifiers
 
     /**
      * A convenience method for a client to invoke the method {@link #resolveDesignResource(URI)}
-     * on the specified instance.  
-     * This supports the use case where the specified ResourceIdentifiers instance is not accessible 
-     * by this class loader(s).
+     * on the specified ResourceIdentifiers instance.  
+     * This supports the use case where the class of the specified instance 
+     * is not accessible by this class loader(s).
      * @param instance  an instance of {@link ResourceIdentifiers}
      * @param uri   the URI to be resolved against the design resource base URI
      * @return      the resulting URI
@@ -182,6 +206,30 @@ public class ResourceIdentifiers
                  ReflectionHelper.invokeResolveMethod( instance, instMethodName, uri );
         
         return resolvedFilePathURI;
+    }
+
+    /**
+     * A convenience method for a client to invoke the method {@link #getDesignResourceBaseURI()}
+     * on the specified ResourceIdentifiers instance.  
+     * This supports the use case where the class of the specified instance 
+     * is not accessible by this class loader(s).
+     * @param instance  an instance of {@link ResourceIdentifiers}
+     * @return      the resulting URI
+     * @since 3.3.3 (DTP 1.9.2)
+     * @see {@link #getDesignResourceBaseURI()}
+     */
+    public static URI getDesignResourceBaseURI( Object instance )
+    {
+        if( instance == null )   // not available
+            return null;    // unable to resolve the specified URI
+        
+        final String instMethodName = "getDesignResourceBaseURI"; //$NON-NLS-1$
+        URI resourceBaseURI = (instance instanceof ResourceIdentifiers) ?
+                ((ResourceIdentifiers)instance).getDesignResourceBaseURI() :
+                    // use reflection to invoke method
+                 ReflectionHelper.invokeGetURIMethod( instance, instMethodName );
+        
+        return resourceBaseURI;
     }
 
     /**
@@ -409,7 +457,28 @@ public class ResourceIdentifiers
             }
             return null;  
         }
-        
+
+        private static URI invokeGetURIMethod( Object instance, String methodName ) 
+        {
+            Method resolveMethod = getMethod( instance, methodName, null );
+            if( resolveMethod != null )
+            {
+                Object returnValue = null;
+                try
+                {
+                    returnValue = invokeMethod( instance, resolveMethod, null );
+                    if( returnValue instanceof URI )
+                        return (URI)returnValue;
+                }
+                catch( OdaException ex )
+                {
+                    sm_logger.fine( "Unable to invoke method (" + methodName +  //$NON-NLS-1$
+                            ") on the specified ResourceIdentifiers instance: " + ex.getMessage() );   //$NON-NLS-1$
+                }
+            }
+            return null;  
+        }
+                        
         private static Method getMethod( Object instance, String methodName, Class<?> argClazz )
         {
             if( instance == null )
@@ -417,7 +486,10 @@ public class ResourceIdentifiers
             
             try
             {
-                return instance.getClass().getMethod( methodName, argClazz );
+                if( argClazz == null )
+                    return instance.getClass().getMethod( methodName );
+                else
+                    return instance.getClass().getMethod( methodName, argClazz );
             }
             catch( SecurityException ex )
             {
@@ -440,7 +512,10 @@ public class ResourceIdentifiers
 
             try
             {
-                return method.invoke( instance, argValue );
+                if( argValue == null )
+                    return method.invoke( instance );
+                else
+                    return method.invoke( instance, argValue );
             }
             catch ( IllegalArgumentException ex )
             {

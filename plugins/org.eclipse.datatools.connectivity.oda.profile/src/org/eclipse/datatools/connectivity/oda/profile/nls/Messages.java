@@ -34,5 +34,6 @@ public class Messages extends NLS
     public static String profileFileExtension_APPLIED_DEFAULT_FILE_EXT;
     public static String profileFileExtension_MULTIPLE_EXTENSIONS_FOUND;
     public static String propertyProvider_CANNOT_FIND_PROFILE;
+    public static String propertyProvider_NO_RESOURCE_IDENTIFIERS;
     public static String propertyProvider_UNABLE_TO_RESOLVE_PATH;
 }

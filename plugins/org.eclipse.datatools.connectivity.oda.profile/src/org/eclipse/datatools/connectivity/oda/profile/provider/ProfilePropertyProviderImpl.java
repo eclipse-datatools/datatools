@@ -319,8 +319,12 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         Object resourceIdentifiersObj = 
             ( (Map<?,?>) connPropContext ).get( ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS );
         if( resourceIdentifiersObj == null )   // not available
+        {
+            getLogger().warning( Messages.bind( Messages.propertyProvider_NO_RESOURCE_IDENTIFIERS,
+                    filePath ) );
             return null;    // no resource URI locator to resolve relative filePath
-        
+        }
+
         URI fileURI = ResourceIdentifiers.encodeToURI( filePath );
         URI resolvedFilePathURI = 
             ResourceIdentifiers.resolveApplResource( resourceIdentifiersObj, fileURI );
@@ -331,7 +335,10 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         }
         
         getLogger().warning( Messages.bind( Messages.propertyProvider_UNABLE_TO_RESOLVE_PATH,
-                resourceIdentifiersObj.getClass().getName(), fileURI ) );   
+                new Object[]{
+                resourceIdentifiersObj.getClass().getName(), 
+                fileURI,
+                ResourceIdentifiers.getApplResourceBaseURI( resourceIdentifiersObj ) } ));   
         return null;
     }
 
