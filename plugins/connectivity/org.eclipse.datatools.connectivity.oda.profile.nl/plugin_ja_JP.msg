@@ -13,5 +13,5 @@
 ###############################################################################
 #
 plugin.name=DTP ODA Connection Profile Framework Plug-in
-extension-point.name.profileStore = ODA Connection Profiles Store
+extension-point.name.profileStore = ODA 接続プロファイルストア
 
