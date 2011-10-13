@@ -13,7 +13,7 @@
 Plugin.Name = Data Tools Platform Connectivity Plug-in
 Plugin.ProviderName = Eclipse Data Tools Platform
 
-extension-point.name.cipherProvider = Connection Profiles Store Cipher Provider
+extension-point.name.cipherProvider = Proveedor para el cifrado del almacenamiento del perfil de conexión
 extension-point.name.connectionProfile=Extensión de perfil de conexión
 extension-point.name.driverExtension=driverExtension
 extension-point.name.ProfileManagerInitializationProvider =  ProfileManagerInitializationProvider

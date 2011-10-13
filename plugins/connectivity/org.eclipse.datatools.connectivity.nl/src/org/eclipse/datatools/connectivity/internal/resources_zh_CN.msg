@@ -79,8 +79,8 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. 使用数据库配置文件中定义的驱
 error.database.not.start = 未发出启动数据库命令。 ErrorCode = {0}，SQLState = {1}。
 PluginResourceLocator.invalidURL = 无效 URL {0} (错误\: {1})
 ConnectivityPlugin.error.noDefaultWorkspace = 无法确定默认工作区位置。  检查插件的无 OSGi 平台配置或数据工具工作区路径。
-CipherProviderExtensions.missingRequiredAttrValue = The {0} element in the {1} extension contributed by {2} is missing a value in one or more of its required attributes: {3}={4}, {5}={6}
-CipherProviderExtensions.invalidClassAttrValue = Invalid class type ({0}) in the {1} extension contributed by {2}.  It must implement the {3} Java interface.
-CipherProviderExtensions.conflictingExtensions = The registered ICipherProvider ({0}) has been replaced by the ICipherProvider ({1}) contributed by another extension in {2} for the same file extension ({3}).
+CipherProviderExtensions.missingRequiredAttrValue = {2} 提供的 {1} 扩展中的 {0} 元素缺少一个或多个必需属性值: {3}={4}, {5}={6}
+CipherProviderExtensions.invalidClassAttrValue = {2} 提供的 {1} 扩展中的类类型 {0} 无效。  它必须实现 {3} Java 接口。
+CipherProviderExtensions.conflictingExtensions = 注册的 ICipherProvider ({0})已替换为 {2} 中的另一个扩展为相同文件扩展名({3})提供的 ICipherProvider ({1})。
 
 

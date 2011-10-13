@@ -79,8 +79,8 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. データベースプロファイルで定
 error.database.not.start = データベースの起動コマンドは発行されていません。 ErrorCode = {0}、SQLState = {1}
 PluginResourceLocator.invalidURL = URL {0} が無効です (エラー \: {1})
 ConnectivityPlugin.error.noDefaultWorkspace = デフォルトのワークスペースの場所を特定できません。  プラグインまたはデータツールのワークスペースパスの OSGi レスプラットフォームの設定を確認してください。
-CipherProviderExtensions.missingRequiredAttrValue = The {0} element in the {1} extension contributed by {2} is missing a value in one or more of its required attributes: {3}={4}, {5}={6}
-CipherProviderExtensions.invalidClassAttrValue = Invalid class type ({0}) in the {1} extension contributed by {2}.  It must implement the {3} Java interface.
-CipherProviderExtensions.conflictingExtensions = The registered ICipherProvider ({0}) has been replaced by the ICipherProvider ({1}) contributed by another extension in {2} for the same file extension ({3}).
+CipherProviderExtensions.missingRequiredAttrValue = {2} によって提供された {1} 拡張内の {0} 要素の 1 つまたは複数の必要な属性 {3} に値がありません。={4}, {5}={6}
+CipherProviderExtensions.invalidClassAttrValue = {2} によって提供された {1} 拡張内のクラス型 ({0}) が無効です。  {3} Java インターフェースを実装する必要があります。
+CipherProviderExtensions.conflictingExtensions = 登録された ICipherProvider ({0}) が、同じファイル拡張子 ({3}) の {2} 内の別の拡張によって提供された ICipherProvider ({1}) に置き換えられました。
 
 

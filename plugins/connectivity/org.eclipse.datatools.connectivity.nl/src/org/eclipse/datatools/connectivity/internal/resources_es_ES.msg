@@ -79,7 +79,7 @@ JDBCConnection.invalidDriverDefinition = {0}\: {1}. Utilizar las propiedades de 
 error.database.not.start = No se ha introducido ningún comando de inicio de base de datos. ErrorCode = {0}, SQLState = {1}.
 PluginResourceLocator.invalidURL = URL no válida {0} (Error\: {1})
 ConnectivityPlugin.error.noDefaultWorkspace = No es posible determinar la ubicación predeterminada del área de trabajo.  Compruebe la configuración de la plataforma sin OSGi de la ruta del área de trabajo de las herramientas de datos o el complemento.
-CipherProviderExtensions.missingRequiredAttrValue = The {0} element in the {1} extension contributed by {2} is missing a value in one or more of its required attributes: {3}={4}, {5}={6}
-CipherProviderExtensions.invalidClassAttrValue = Invalid class type ({0}) in the {1} extension contributed by {2}.  It must implement the {3} Java interface.
-CipherProviderExtensions.conflictingExtensions = The registered ICipherProvider ({0}) has been replaced by the ICipherProvider ({1}) contributed by another extension in {2} for the same file extension ({3}).
+CipherProviderExtensions.missingRequiredAttrValue = El elemento {0} de la extensión {1} proporcionada por {2} carece de un valor en uno o varios de los atributos necesarios: {3}={4}, {5}={6}
+CipherProviderExtensions.invalidClassAttrValue = Tipo de clase no válido ({0}) en la extensión {1} proporcionada por {2}.  Debe implementar la interfaz {3} de Java.
+CipherProviderExtensions.conflictingExtensions = El ICipherProvider ({0}) registrado ha sido sustituido por el ICipherProvider ({1}) proporcionado por otra extensión en {2} para la misma extensión de archivo ({3}).
 
