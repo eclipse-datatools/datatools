@@ -488,6 +488,22 @@ public class ConnectionProfileMgmt {
 	 * @throws CoreException
 	 */
 	public static IConnectionProfile[] loadCPs(File file) throws CoreException {
+        return loadCPsUsingFileExtension( file, null );
+    }
+    
+    /**
+     * Loads the connection profile(s) stored in the specified file,
+     * using the cipher provider registered for the specified file extension.
+     * @param file     a connection profile store file
+     * @param encryptedFileExtension   the file extension for which a cipher provider is registered.
+     *         It may be different from that of the specified file.
+     *         If null value, the extension of the specified file will be used by default.
+     * @return an array of loaded connection profile instances
+     * @throws CoreException
+     * @since 1.2.4 (DTP 1.9.2)
+     */
+    public static IConnectionProfile[] loadCPsUsingFileExtension( File file, String encryptedFileExtension ) 
+        throws CoreException {
 		try {
 			if ( !isEncrypted( file ) ) {
 				// not encrpyted
@@ -495,7 +511,10 @@ public class ConnectionProfileMgmt {
 			}
 			else {
 				// encrypted
-                return loadCPs(file, SecurityManager.getInstance().getCipherProvider( file ));
+                ICipherProvider cipherProvider = encryptedFileExtension == null ?
+                        SecurityManager.getInstance().getCipherProvider( file ) :    
+                        SecurityManager.getInstance().getCipherProviderForFileExtension( encryptedFileExtension );
+                return loadCPs( file, cipherProvider );
 			}
 		} catch (FileNotFoundException e) {
 			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 

@@ -66,4 +66,22 @@ public class SecurityManager {
         return provider;
     }
 
+    /**
+     * Returns the cipher provider instance registered for the specified file extension. 
+     * The default cipher provider is returned if no custom cipher provider is registered 
+     * for the file extension.
+     * @param fileExtension    the file extension for which a cipher provider is registered
+     * @return  an instance of {@link org.eclipse.datatools.connectivity.security.ICipherProvider}  
+     *          that provides cipher instances for the specified file extension
+     * @since 1.2.4 (DTP 1.9.2)
+     */
+    public org.eclipse.datatools.connectivity.security.ICipherProvider getCipherProviderForFileExtension( 
+            String fileExtension ) {
+        org.eclipse.datatools.connectivity.security.ICipherProvider provider = 
+                CipherProviderExtensions.getCipherProviderForFileExtension( fileExtension );
+        if( provider == null )
+            provider = getDefaultCipherProvider();
+        return provider;
+    }
+
 }

@@ -41,12 +41,16 @@ import org.eclipse.datatools.connectivity.services.PluginResourceLocator;
  */
 public class ProfilePropertyProviderImpl implements IPropertyProvider
 {
+    private static final String FILE_EXT_SEPARATOR = "."; //$NON-NLS-1$
+    private static final String PROFILE_STORE_FILE_ORIGINAL_EXT = 
+        "org.eclipse.datatools.connectivity.oda.profile_provider.storeFileOrigExt"; //$NON-NLS-1$
     
     // logging variables
     private static final String sm_className = ProfilePropertyProviderImpl.class.getName();
     private static Logger sm_logger;
     
     private boolean m_refreshProfileStore = true;
+    private String m_profileStoreFileExt = null;    // placeholder for original file extension
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider#getDataSourceProperties(java.util.Properties, java.lang.Object)
@@ -56,6 +60,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     {
         final String methodName = "getDataSourceProperties(Properties,Object)"; //$NON-NLS-1$
         
+        // TODO - improve error handling, i.e. catch exception in getting profile instance, 
+        // so to set the cause of the exception that gets thrown below
         IConnectionProfile connProfile = 
             getConnectionProfile( candidateProperties, appContext );
         if( connProfile == null )   // no linked profile found
@@ -83,13 +89,19 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
 
         // add a data source property entry for the resolved file path of the connection profile store 
         // used to get the profile instance
+        m_profileStoreFileExt = null;   // reset placeholder
         File profileStore = getProfileStoreFile( candidateProperties, appContext );
         if( profileStore != null && profileStore.exists() )
         {
             String profileStoreResolvedPath = profileStore.getPath();
             if( ! profileStoreResolvedPath.equals( getProfileStoreFilePath( candidateProperties ) ))
+            {
                     mergedProps.setProperty( ConnectionProfileProperty.TRANSIENT_PROFILE_STORE_RESOLVED_PATH_PROP_KEY, 
                                             profileStoreResolvedPath );
+                    // saves the original file extension
+                    if( m_profileStoreFileExt != null )
+                        mergedProps.setProperty( PROFILE_STORE_FILE_ORIGINAL_EXT, m_profileStoreFileExt );
+            }
         }
         
         // log count of merged properties
@@ -130,6 +142,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return null;    // no external profile is specified in properties
         
         // determine the profile store file to use
+        m_profileStoreFileExt = null;   // reset placeholder
         File profileStore = getProfileStoreFile( candidateProperties, connPropContext );
         
         // now get the referenced profile from the profile explorer
@@ -138,7 +151,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         {
             // if null profile store file is specified, the default profile store path is used
             profile = OdaProfileExplorer.getInstance()
-                        .getProfileByName( profileName, profileStore );
+                        .getProfileByName( profileName, profileStore, 
+                            getProfileStoreFileOriginalExt( candidateProperties ) );
         }
         catch( OdaException ex )
         {
@@ -154,6 +168,13 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         return profile;
     }
     
+    private String getProfileStoreFileOriginalExt( Properties connectionProps )
+    {
+        if( m_profileStoreFileExt != null )
+            return m_profileStoreFileExt;
+        return connectionProps.getProperty( PROFILE_STORE_FILE_ORIGINAL_EXT );
+    }
+
     protected String getProfileName( Properties candidateProperties )
     {
         String profileName =
@@ -288,7 +309,14 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         // try to resolve a relative file path, if defined
         File resolvedStoreFile = resolveRelativePath( filePath, connPropContext );
         if( resolvedStoreFile != null && resolvedStoreFile.exists() )
+        {
+            // cache the file extension of the original relative file path, if an extension exists and
+            // different from that of the resolved file
+            String relativeFileExt = getFileExtension( filePath );
+            if( relativeFileExt != null && ! relativeFileExt.equals( getFileExtension( resolvedStoreFile.getPath() ) ))
+                m_profileStoreFileExt = relativeFileExt;
             return resolvedStoreFile;
+        }
 
         // next try to parse the filePath argument as an url on web
         try
@@ -340,6 +368,20 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
                 fileURI,
                 ResourceIdentifiers.getApplResourceBaseURI( resourceIdentifiersObj ) } ));   
         return null;
+    }
+
+    private static String getFileExtension( String filename )
+    {
+        int fileExtSeparatorIndex = filename.lastIndexOf( FILE_EXT_SEPARATOR );
+
+        String fileExtension = null;
+        // if file has extension
+        if( fileExtSeparatorIndex >= 0 && 
+            filename.length() > fileExtSeparatorIndex+1 )
+        {
+            fileExtension = filename.substring( fileExtSeparatorIndex+1 );
+        }
+        return fileExtension;
     }
 
     /**

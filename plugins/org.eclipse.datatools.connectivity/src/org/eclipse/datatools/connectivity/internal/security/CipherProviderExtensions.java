@@ -67,8 +67,7 @@ public class CipherProviderExtensions
         String profileStoreFilePath = profileStoreFile.getPath();
         int fileExtSeparatorIndex = profileStoreFilePath.lastIndexOf( FILE_EXT_SEPARATOR );
 
-        // if filename has no file extension, use the default fileExtension provider, if exists
-        String fileExtension = NULL_FILE_EXT_ATTR_VALUE;
+        String fileExtension = null;
         // if file has extension
         if( fileExtSeparatorIndex >= 0 && 
             profileStoreFilePath.length() > fileExtSeparatorIndex+1 )
@@ -76,8 +75,7 @@ public class CipherProviderExtensions
             fileExtension = profileStoreFilePath.substring( fileExtSeparatorIndex+1 );
         }
                           
-        String fileExtKey = getFileExtMapKey( fileExtension );
-        return getCipherProviderForFileExtension( fileExtKey ); 
+        return getCipherProviderForFileExtension( fileExtension ); 
     }
 
     /**
@@ -93,7 +91,11 @@ public class CipherProviderExtensions
      */
     static ICipherProvider getCipherProviderForFileExtension( String fileExtension )
     {
-        return getRegisteredCipherProviders().get( fileExtension );
+        // if no file extension, use the default fileExtension provider, if exists
+        if( fileExtension == null )
+            fileExtension = NULL_FILE_EXT_ATTR_VALUE;
+        String fileExtKey = getFileExtMapKey( fileExtension );
+        return getRegisteredCipherProviders().get( fileExtKey );
     }
     
     private static Map<String,ICipherProvider> getRegisteredCipherProviders()
@@ -201,7 +203,7 @@ public class CipherProviderExtensions
         if( fileExtension.startsWith( FILE_EXT_SEPARATOR ) )
             fileExtension = fileExtension.substring( FILE_EXT_SEPARATOR.length() );
 
-        // if it is the special character for null file extension, use the pre-defined key
+        // if it is the special keyword for null file extension, use the pre-defined key
         if( fileExtension.equals( NULL_FILE_EXT_ATTR_VALUE ) )
             fileExtension = NULL_FILE_EXT_CIPHER_PROVIDER_KEY;
         

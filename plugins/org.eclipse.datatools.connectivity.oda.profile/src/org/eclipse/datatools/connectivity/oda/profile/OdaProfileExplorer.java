@@ -280,10 +280,17 @@ public class OdaProfileExplorer
     private IConnectionProfile[] loadProfiles( File storageFile ) 
         throws OdaException
     {
+        return loadProfiles( storageFile, null );
+    }
+    
+    private IConnectionProfile[] loadProfiles( File storageFile, String encryptedFileExtension ) 
+        throws OdaException
+    {
         if( storageFile == null )
         {
             getLogger().fine( "A null storageFile argument is specified. Using default profile storage location instead." ); //$NON-NLS-1$
             storageFile = defaultProfileStoreFile();
+            encryptedFileExtension = null;     // disable; use default storage file's own extension instead
             
             // triggers initialization of the default profile store, if not already done
             ProfileManager.getInstance().getProfiles( false );
@@ -297,7 +304,7 @@ public class OdaProfileExplorer
         // no cached profiles for storage file; load the storage file
         try
         {
-            profilesInFile = ConnectionProfileMgmt.loadCPs( storageFile );
+            profilesInFile = ConnectionProfileMgmt.loadCPsUsingFileExtension( storageFile, encryptedFileExtension );
         }
         catch( Exception ex )
         {
@@ -492,18 +499,42 @@ public class OdaProfileExplorer
     /**
      * Finds and returns the profile instance in given storage file
      * that matches the given profile instance name.
-     * @param profileName   The unique name of a connection profile instance.
+     * @param profileName   the unique name of a connection profile instance.
      * @param storageFile   a file that stores profile instances; 
      *                      may be null, which would use the default store 
      *                      of the Connectivity plugin
      * @return  the matching profile instance, or null if not found
+     * @throws OdaException
      */
     public IConnectionProfile getProfileByName( String profileName,
                                                 File storageFile )
         throws OdaException
     {
+        return getProfileByName( profileName, storageFile, null );
+    }
+
+    /**
+     * Finds and returns the profile instance in given profile store file
+     * that matches the given profile instance name.
+     * If the specified file is encrypted, use the cipher provider registered 
+     * for the specified file extension.
+     * @param profileName   the unique name of a connection profile instance.
+     * @param profileStoreFile  a file that stores profile instances; 
+     *                      may be null, which would use the default store 
+     *                      of the Connectivity plugin
+     * @param encryptedFileExtension   the file extension for which a cipher provider is registered.
+     *         It may be different from that of the specified file.
+     *         If null value, the extension of the specified file will be used by default.
+     * @return  the matching profile instance, or null if not found
+     * @throws OdaException
+     * @since 3.2.7 (DTP 1.9.2)
+     */
+    public IConnectionProfile getProfileByName( String profileName, File profileStoreFile, 
+            String encryptedFileExtension )
+        throws OdaException
+    {
         // first load all profiles found in given storage file, if necessary
-        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
+        IConnectionProfile[] profilesInFile = loadProfiles( profileStoreFile, encryptedFileExtension );
 
         for( int i = 0; i < profilesInFile.length; i++ ) 
         {
