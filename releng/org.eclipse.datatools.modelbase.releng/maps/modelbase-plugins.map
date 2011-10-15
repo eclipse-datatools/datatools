@@ -3,5 +3,5 @@ plugin@org.eclipse.datatools.modelbase.sql.edit=GIT,tag=v201002161452,repo=git:/
 plugin@org.eclipse.datatools.modelbase.sql.query.edit=GIT,tag=v201110151245,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.sql.query.edit
 plugin@org.eclipse.datatools.modelbase.sql.query=GIT,tag=v201110151315,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.sql.query
 plugin@org.eclipse.datatools.modelbase.sql.xml.query=GIT,tag=v201110151245,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.sql.xml.query
-plugin@org.eclipse.datatools.modelbase.sql=GIT,tag=v201110151245,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.sql
+plugin@org.eclipse.datatools.modelbase.sql=GIT,tag=v201110151330,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.sql
 plugin@org.eclipse.datatools.modelbase.derby=GIT,tag=v201002161452,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.modelbase.git,path=plugins/org.eclipse.datatools.modelbase.derby
