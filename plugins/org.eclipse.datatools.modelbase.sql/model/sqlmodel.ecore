@@ -273,6 +273,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints, 5WD-02-Foundation-2002-12 11.7 &lt;unique contraint definition>&#xD;&#xA;"/>
       </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="clustered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ForeignKey" upperBound="-1"
           eType="#//constraints/ForeignKey" eOpposite="#//constraints/ForeignKey/uniqueConstraint"/>
     </eClassifiers>

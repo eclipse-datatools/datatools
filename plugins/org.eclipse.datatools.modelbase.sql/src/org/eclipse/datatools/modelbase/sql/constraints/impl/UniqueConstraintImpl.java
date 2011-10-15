@@ -15,6 +15,7 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -22,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl#getForeignKey <em>Foreign Key</em>}</li>
  * </ul>
  * </p>
@@ -40,6 +43,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class UniqueConstraintImpl extends ReferenceConstraintImpl implements UniqueConstraint {
 	/**
+	 * The default value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @see #isClustered()
+	 * @generated
+	 * @ordered
+	 */
+    protected static final boolean CLUSTERED_EDEFAULT = true;
+    /**
+	 * The cached value of the '{@link #isClustered() <em>Clustered</em>}' attribute.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @see #isClustered()
+	 * @generated
+	 * @ordered
+	 */
+    protected boolean clustered = CLUSTERED_EDEFAULT;
+    /**
 	 * The cached value of the '{@link #getForeignKey() <em>Foreign Key</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,6 +89,27 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 */
+    public boolean isClustered() {
+		return clustered;
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 */
+    public void setClustered(boolean newClustered) {
+		boolean oldClustered = clustered;
+		clustered = newClustered;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED, oldClustered, clustered));
+	}
+
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,6 +154,8 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
+				return isClustered() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
 				return getForeignKey();
 		}
@@ -125,6 +169,9 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
+				setClustered(((Boolean)newValue).booleanValue());
+				return;
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
 				getForeignKey().clear();
 				getForeignKey().addAll((Collection)newValue);
@@ -140,6 +187,9 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
+				setClustered(CLUSTERED_EDEFAULT);
+				return;
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
 				getForeignKey().clear();
 				return;
@@ -154,10 +204,27 @@ public class UniqueConstraintImpl extends ReferenceConstraintImpl implements Uni
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
+				return clustered != CLUSTERED_EDEFAULT;
 			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY:
 				return foreignKey != null && !foreignKey.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 */
+    public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (clustered: "); //$NON-NLS-1$
+		result.append(clustered);
+		result.append(')');
+		return result.toString();
 	}
 
 } //UniqueConstraintImpl

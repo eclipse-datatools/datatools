@@ -166,20 +166,10 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link SQLConstraintsPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -191,7 +181,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		if (isInited) return (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new SQLConstraintsPackageImpl());
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SQLConstraintsPackageImpl());
 
 		isInited = true;
 
@@ -230,6 +220,9 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		// Mark meta-data to indicate it can't be changed
 		theSQLConstraintsPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(SQLConstraintsPackage.eNS_URI, theSQLConstraintsPackage);
 		return theSQLConstraintsPackage;
 	}
 
@@ -442,11 +435,20 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 
 	/**
 	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 */
+    public EAttribute getUniqueConstraint_Clustered() {
+		return (EAttribute)uniqueConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+    /**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getUniqueConstraint_ForeignKey() {
-		return (EReference)uniqueConstraintEClass.getEStructuralFeatures().get(0);
+		return (EReference)uniqueConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -650,6 +652,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		createEReference(foreignKeyEClass, FOREIGN_KEY__REFERENCED_TABLE);
 
 		uniqueConstraintEClass = createEClass(UNIQUE_CONSTRAINT);
+		createEAttribute(uniqueConstraintEClass, UNIQUE_CONSTRAINT__CLUSTERED);
 		createEReference(uniqueConstraintEClass, UNIQUE_CONSTRAINT__FOREIGN_KEY);
 
 		primaryKeyEClass = createEClass(PRIMARY_KEY);
@@ -744,6 +747,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		initEReference(getForeignKey_ReferencedTable(), theSQLTablesPackage.getBaseTable(), theSQLTablesPackage.getBaseTable_ReferencingForeignKeys(), "referencedTable", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(uniqueConstraintEClass, UniqueConstraint.class, "UniqueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getUniqueConstraint_Clustered(), ecorePackage.getEBoolean(), "clustered", "true", 0, 1, UniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getUniqueConstraint_ForeignKey(), this.getForeignKey(), this.getForeignKey_UniqueConstraint(), "ForeignKey", null, 0, -1, UniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(primaryKeyEClass, PrimaryKey.class, "PrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

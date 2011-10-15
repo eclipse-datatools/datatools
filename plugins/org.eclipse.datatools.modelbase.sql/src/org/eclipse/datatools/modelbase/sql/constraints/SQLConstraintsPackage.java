@@ -1054,13 +1054,22 @@ public interface SQLConstraintsPackage extends EPackage {
 	int UNIQUE_CONSTRAINT__MEMBERS = REFERENCE_CONSTRAINT__MEMBERS;
 
 	/**
+	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+    int UNIQUE_CONSTRAINT__CLUSTERED = REFERENCE_CONSTRAINT_FEATURE_COUNT + 0;
+
+    /**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_CONSTRAINT__FOREIGN_KEY = REFERENCE_CONSTRAINT_FEATURE_COUNT + 0;
+	int UNIQUE_CONSTRAINT__FOREIGN_KEY = REFERENCE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Unique Constraint</em>' class.
@@ -1069,7 +1078,7 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIQUE_CONSTRAINT_FEATURE_COUNT = REFERENCE_CONSTRAINT_FEATURE_COUNT + 1;
+	int UNIQUE_CONSTRAINT_FEATURE_COUNT = REFERENCE_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.PrimaryKeyImpl <em>Primary Key</em>}' class.
@@ -1199,6 +1208,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int PRIMARY_KEY__MEMBERS = UNIQUE_CONSTRAINT__MEMBERS;
 
 	/**
+	 * The feature id for the '<em><b>Clustered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+    int PRIMARY_KEY__CLUSTERED = UNIQUE_CONSTRAINT__CLUSTERED;
+
+    /**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1765,6 +1783,17 @@ public interface SQLConstraintsPackage extends EPackage {
 	EClass getUniqueConstraint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint#isClustered <em>Clustered</em>}'.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clustered</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint#isClustered()
+	 * @see #getUniqueConstraint()
+	 * @generated
+	 */
+    EAttribute getUniqueConstraint_Clustered();
+
+    /**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint#getForeignKey <em>Foreign Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2167,6 +2196,14 @@ public interface SQLConstraintsPackage extends EPackage {
 		EClass UNIQUE_CONSTRAINT = eINSTANCE.getUniqueConstraint();
 
 		/**
+		 * The meta object literal for the '<em><b>Clustered</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+		 * @generated
+		 */
+        EAttribute UNIQUE_CONSTRAINT__CLUSTERED = eINSTANCE.getUniqueConstraint_Clustered();
+
+        /**
 		 * The meta object literal for the '<em><b>Foreign Key</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
