@@ -2400,15 +2400,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT = SQL_QUERY_OBJECT_FEATURE_COUNT + 7;
 
 	/**
-     * The feature id for the '<em><b>Value Expr Scalar Selects</b></em>' reference list.
+     * The feature id for the '<em><b>Val Expr Scalar Select</b></em>' container reference.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS = SQL_QUERY_OBJECT_FEATURE_COUNT + 8;
+    int QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT = SQL_QUERY_OBJECT_FEATURE_COUNT + 8;
 
-	/**
+    /**
      * The number of structural features of the '<em>Query Expression Root</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9883,7 +9883,7 @@ public interface SQLQueryModelPackage extends EPackage {
     int VALUE_EXPRESSION_SCALAR_SELECT__CALL_STATEMENT = VALUE_EXPRESSION_ATOMIC__CALL_STATEMENT;
 
     /**
-     * The feature id for the '<em><b>Query Expr</b></em>' reference.
+     * The feature id for the '<em><b>Query Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -19390,6 +19390,196 @@ public interface SQLQueryModelPackage extends EPackage {
     int PROCEDURE_REFERENCE_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableQueryLateralImpl <em>Table Query Lateral</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.TableQueryLateralImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableQueryLateral()
+     * @generated
+     */
+    int TABLE_QUERY_LATERAL = 94;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__EANNOTATIONS = TABLE_EXPRESSION__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__NAME = TABLE_EXPRESSION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__DEPENDENCIES = TABLE_EXPRESSION__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__DESCRIPTION = TABLE_EXPRESSION__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__LABEL = TABLE_EXPRESSION__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__COMMENTS = TABLE_EXPRESSION__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__EXTENSIONS = TABLE_EXPRESSION__EXTENSIONS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__PRIVILEGES = TABLE_EXPRESSION__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__TABLE_JOINED_RIGHT = TABLE_EXPRESSION__TABLE_JOINED_RIGHT;
+
+    /**
+     * The feature id for the '<em><b>Table Joined Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__TABLE_JOINED_LEFT = TABLE_EXPRESSION__TABLE_JOINED_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Query Select</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__QUERY_SELECT = TABLE_EXPRESSION__QUERY_SELECT;
+
+    /**
+     * The feature id for the '<em><b>Nest</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__NEST = TABLE_EXPRESSION__NEST;
+
+    /**
+     * The feature id for the '<em><b>Merge Source Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__MERGE_SOURCE_TABLE = TABLE_EXPRESSION__MERGE_SOURCE_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Column List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__COLUMN_LIST = TABLE_EXPRESSION__COLUMN_LIST;
+
+    /**
+     * The feature id for the '<em><b>Table Correlation</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__TABLE_CORRELATION = TABLE_EXPRESSION__TABLE_CORRELATION;
+
+    /**
+     * The feature id for the '<em><b>Result Table All Columns</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__RESULT_TABLE_ALL_COLUMNS = TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Columns</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
+
+    /**
+     * The feature id for the '<em><b>Merge Target Table</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__MERGE_TARGET_TABLE = TABLE_EXPRESSION__MERGE_TARGET_TABLE;
+
+    /**
+     * The feature id for the '<em><b>Query</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL__QUERY = TABLE_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Table Query Lateral</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_QUERY_LATERAL_FEATURE_COUNT = TABLE_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19397,7 +19587,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupType()
      * @generated
      */
-	int SUPER_GROUP_TYPE = 94;
+	int SUPER_GROUP_TYPE = 95;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType <em>Predicate Quantified Type</em>}' enum.
@@ -19407,7 +19597,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedType()
      * @generated
      */
-	int PREDICATE_QUANTIFIED_TYPE = 95;
+	int PREDICATE_QUANTIFIED_TYPE = 96;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator <em>Predicate Comparison Operator</em>}' enum.
@@ -19417,7 +19607,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateComparisonOperator()
      * @generated
      */
-	int PREDICATE_COMPARISON_OPERATOR = 96;
+	int PREDICATE_COMPARISON_OPERATOR = 97;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator <em>Search Condition Combined Operator</em>}' enum.
@@ -19427,7 +19617,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombinedOperator()
      * @generated
      */
-	int SEARCH_CONDITION_COMBINED_OPERATOR = 97;
+	int SEARCH_CONDITION_COMBINED_OPERATOR = 98;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator <em>Table Joined Operator</em>}' enum.
@@ -19437,7 +19627,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoinedOperator()
      * @generated
      */
-	int TABLE_JOINED_OPERATOR = 98;
+	int TABLE_JOINED_OPERATOR = 99;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator <em>Query Combined Operator</em>}' enum.
@@ -19447,7 +19637,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombinedOperator()
      * @generated
      */
-	int QUERY_COMBINED_OPERATOR = 99;
+	int QUERY_COMBINED_OPERATOR = 100;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator <em>Value Expression Unary Operator</em>}' enum.
@@ -19457,7 +19647,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionUnaryOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_UNARY_OPERATOR = 100;
+	int VALUE_EXPRESSION_UNARY_OPERATOR = 101;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator <em>Value Expression Combined Operator</em>}' enum.
@@ -19467,7 +19657,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombinedOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_COMBINED_OPERATOR = 101;
+	int VALUE_EXPRESSION_COMBINED_OPERATOR = 102;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType <em>Value Expression Labeled Duration Type</em>}' enum.
@@ -19477,7 +19667,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDurationType()
      * @generated
      */
-	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 102;
+	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 103;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType <em>Null Ordering Type</em>}' enum.
@@ -19487,7 +19677,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getNullOrderingType()
      * @generated
      */
-	int NULL_ORDERING_TYPE = 103;
+	int NULL_ORDERING_TYPE = 104;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType <em>Ordering Spec Type</em>}' enum.
@@ -19497,7 +19687,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderingSpecType()
      * @generated
      */
-	int ORDERING_SPEC_TYPE = 104;
+	int ORDERING_SPEC_TYPE = 105;
 
 
 	/**
@@ -19508,7 +19698,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdatabilityType()
      * @generated
      */
-    int UPDATABILITY_TYPE = 105;
+    int UPDATABILITY_TYPE = 106;
 
 
     /**
@@ -20546,17 +20736,17 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getQueryExpressionRoot_QuantifiedValueSelectRight();
 
 	/**
-     * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValueExprScalarSelects <em>Value Expr Scalar Selects</em>}'.
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect <em>Val Expr Scalar Select</em>}'.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Value Expr Scalar Selects</em>'.
-     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValueExprScalarSelects()
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Val Expr Scalar Select</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect()
      * @see #getQueryExpressionRoot()
      * @generated
      */
-	EReference getQueryExpressionRoot_ValueExprScalarSelects();
+    EReference getQueryExpressionRoot_ValExprScalarSelect();
 
-	/**
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.ValuesRow <em>Values Row</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21747,10 +21937,10 @@ public interface SQLQueryModelPackage extends EPackage {
 	EClass getValueExpressionScalarSelect();
 
 	/**
-     * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Query Expr</em>'.
+     * @return the meta object for the containment reference '<em>Query Expr</em>'.
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr()
      * @see #getValueExpressionScalarSelect()
      * @generated
@@ -23235,6 +23425,27 @@ public interface SQLQueryModelPackage extends EPackage {
     EReference getProcedureReference_Procedure();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral <em>Table Query Lateral</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Table Query Lateral</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableQueryLateral
+     * @generated
+     */
+    EClass getTableQueryLateral();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral#getQuery <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Query</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableQueryLateral#getQuery()
+     * @see #getTableQueryLateral()
+     * @generated
+     */
+    EReference getTableQueryLateral_Query();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24159,14 +24370,14 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT = eINSTANCE.getQueryExpressionRoot_QuantifiedValueSelectRight();
 
 		/**
-         * The meta object literal for the '<em><b>Value Expr Scalar Selects</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Val Expr Scalar Select</b></em>' container reference feature.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		EReference QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS = eINSTANCE.getQueryExpressionRoot_ValueExprScalarSelects();
+        EReference QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT = eINSTANCE.getQueryExpressionRoot_ValExprScalarSelect();
 
-		/**
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValuesRowImpl <em>Values Row</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -25117,7 +25328,7 @@ public interface SQLQueryModelPackage extends EPackage {
 		EClass VALUE_EXPRESSION_SCALAR_SELECT = eINSTANCE.getValueExpressionScalarSelect();
 
 		/**
-         * The meta object literal for the '<em><b>Query Expr</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          * @generated
@@ -26339,6 +26550,24 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
         EReference PROCEDURE_REFERENCE__PROCEDURE = eINSTANCE.getProcedureReference_Procedure();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableQueryLateralImpl <em>Table Query Lateral</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.TableQueryLateralImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableQueryLateral()
+         * @generated
+         */
+        EClass TABLE_QUERY_LATERAL = eINSTANCE.getTableQueryLateral();
+
+        /**
+         * The meta object literal for the '<em><b>Query</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TABLE_QUERY_LATERAL__QUERY = eINSTANCE.getTableQueryLateral_Query();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.

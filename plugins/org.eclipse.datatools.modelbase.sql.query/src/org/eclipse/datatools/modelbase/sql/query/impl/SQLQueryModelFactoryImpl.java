@@ -136,6 +136,7 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
             case SQLQueryModelPackage.UPDATABILITY_EXPRESSION: return createUpdatabilityExpression();
             case SQLQueryModelPackage.CALL_STATEMENT: return createCallStatement();
             case SQLQueryModelPackage.PROCEDURE_REFERENCE: return createProcedureReference();
+            case SQLQueryModelPackage.TABLE_QUERY_LATERAL: return createTableQueryLateral();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -961,6 +962,16 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
     public ProcedureReference createProcedureReference() {
         ProcedureReferenceImpl procedureReference = new ProcedureReferenceImpl();
         return procedureReference;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TableQueryLateral createTableQueryLateral() {
+        TableQueryLateralImpl tableQueryLateral = new TableQueryLateralImpl();
+        return tableQueryLateral;
     }
 
     /**

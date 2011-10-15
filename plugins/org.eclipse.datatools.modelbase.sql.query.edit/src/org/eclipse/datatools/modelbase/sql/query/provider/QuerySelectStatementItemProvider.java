@@ -157,20 +157,11 @@ public class QuerySelectStatementItemProvider
         switch (notification.getFeatureID(QuerySelectStatement.class)) {
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__QUERY_EXPR:
             case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE:
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT__UPDATABILITY_EXPR:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public ResourceLocator getResourceLocator() {
-        return SQLQueryEditPlugin.INSTANCE;
     }
 
 }

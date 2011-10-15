@@ -64,12 +64,14 @@ import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
+import org.eclipse.datatools.modelbase.sql.query.TableQueryLateral;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable;
 import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
@@ -2097,27 +2099,37 @@ public class StatementHelper {
             List fromClause = querySelect.getFromClause();
             tableExprList.addAll(TableHelper.getTableExpressionsInTableReferenceList(fromClause));
 
-            // if the QuerySelect is a nested query/table select
-            // then no higher level query's tables are visible/usable
-            // "select firstnme from (select e.firstnme from employee e
-            // where EMP.firstnme = 'JOHN') as e2, employee EMP"
-            // SQL0206N "EMP.FIRSTNME" is not valid in the context where it is
-            // used.
-            // SQLSTATE=42703
-            // or:
-            // "select deptno
-            // from department DEPT
-            // where deptno in (select workdept from (select e.workdept from
-            // employee e
-            // where e.firstnme = 'JOHN' and e.workdept = DEPT.deptno) as emp)"
-            // SQL0204N "DEPT.DEPTNO" is an undefined name. SQLSTATE=42704
-            //
-            // that means if the given select is part of the tables in
-            // the super query's FROM-clause we don't add add the superior
-            // queries' tables as they are not visible/allowed
-            if (!isQuerySelectNestedQuery(querySelect)) {
-                // check if the QuerySelect is contained in a superior
-                // QuerySelect
+            /* If the QuerySelect is a nested table query then the other tables in the FROM clause of 
+             * the query select that contains the nested table query are not visible in the nested table query.
+             * Here's an example:
+             *   select firstnme from (select e.firstnme from employee e
+             *   where EMP.firstnme = 'JOHN') as e2, employee EMP
+             *   SQL0206N "EMP.FIRSTNME" is not valid in the context where it is used. SQLSTATE=42703
+             * And another:
+             *   select deptno from department DEPT
+             *   where deptno in (select workdept from (select e.workdept from employee e
+             *     where e.firstnme = 'JOHN' and e.workdept = DEPT.deptno) as emp)
+             *   SQL0204N "DEPT.DEPTNO" is an undefined name. SQLSTATE=42704
+             *
+             * That means that if the given select is part of the tables in the super
+             * query's FROM-clause, we don't add add the superior queries' tables as they 
+             * are not visible/allowed
+             *
+             * However that's not true for a "lateral" table query (TableQueryLateral). In a
+             * lateral table query, table references that are to the left of the table query in 
+             * the same FROM clause or in a superior query ARE visible to the table query.
+             * A lateral table query is indicated by the keyword LATERAL or TABLE ahead of the
+             * table query definition.  So the second example above will work if modified to 
+             * look like this:
+             *   select deptno from department DEPT
+             *   where deptno in (select workdept from table (select e.workdept from employee e
+             *     where e.firstnme = 'JOHN' and e.workdept = DEPT.deptno) as emp)
+             * Note: the first example above would fail even with the TABLE keyword added because 
+             * the table reference EMP is to the right of the table query.  
+             */ 
+            if (!isQuerySelectNestedQuery(querySelect) || isQuerySelectLateral(querySelect)) {
+                /* Check if the QuerySelect is contained in a superior QuerySelect.  If it is, get the
+                 * tables visible in that query. */
                 EObject eContainer = querySelect.eContainer();
                 while (eContainer instanceof SQLQueryObject) {
                     if (eContainer instanceof QuerySelect) {
@@ -2125,6 +2137,33 @@ public class StatementHelper {
                         List superTables = getTableExpressionsVisibleInQuerySelect(superSelect);
                         tableExprList.addAll(superTables);
                         break;
+                    }
+                    /* If the container is a lateral query table, that changes the visibility rules. */
+                    if (eContainer instanceof TableQueryLateral) {
+                        TableQueryLateral queryLateral = (TableQueryLateral) eContainer;
+                        /* Get the QuerySelect that encloses this lateral table query. */
+                        SQLQueryObject containerQuery = getEContainerRecursively(queryLateral, QuerySelect.class);
+                        if (containerQuery instanceof QuerySelect) {
+                            List visibleTableExprList = getTableExpressionsVisibleLaterally(queryLateral, (QuerySelect) containerQuery);
+                            tableExprList.addAll(visibleTableExprList);
+                        }
+                        /* Bypass the container query and continue searching up the containment hierarchy. */
+                        eContainer = containerQuery;
+                    }
+                    /* If the container is a QueryExpressionRoot, we need to check to see if it is attached to
+                     * a ValueExpressionScalarSelect.  This can occur when we have a QuerySelect in an
+                     * IN clause, for example. In this case, we need to work our way up that chain rather than
+                     * going to the container, since the container is null. (This is a model design bug.) */
+                    else if (eContainer instanceof QueryExpressionRoot) {
+                        QueryExpressionRoot queryRoot = (QueryExpressionRoot) eContainer;
+                        List scalarSelectList = queryRoot.getValueExprScalarSelects();
+                        if (scalarSelectList != null && scalarSelectList.size() > 0) {
+                            Object listObj = scalarSelectList.get(0);
+                            if (listObj instanceof ValueExpressionScalarSelect) {
+                                ValueExpressionScalarSelect scalarSelect = (ValueExpressionScalarSelect) listObj;
+                                eContainer = scalarSelect;
+                            }
+                        }
                     }
                     else if (eContainer instanceof QueryUpdateStatement) {
                         QueryUpdateStatement updateStmt = (QueryUpdateStatement) eContainer;
@@ -2146,6 +2185,36 @@ public class StatementHelper {
 
         }
         return tableExprList;
+    }
+
+    /**
+     * Gets a list of table expressions that are "lateral" (that is, to the left)
+     * of the given lateral table query object in the same FROM clause that contains
+     * the lateral table query.  
+     * 
+     * @param queryLateral the table query for which lateral table expressions are needed
+     * @param containerQuery the query select object that contains  the lateral table query
+     * @return a list of table expressions that are visible laterally
+     */
+    public static List getTableExpressionsVisibleLaterally(TableQueryLateral queryLateral, QuerySelect containerQuery) {
+        List visibleTableExprList = new ArrayList();
+        
+        if (queryLateral != null && containerQuery != null) {
+            /* Get a list of table expressions fromr the FROM clause of the containing query. */
+            List fromClause = containerQuery.getFromClause();
+            List tableExprList = TableHelper.getTableExpressionsInTableReferenceList(fromClause);
+            /* Build a list of all of the table expressions ahead (to the left) of the lateral query table object. */
+            if (tableExprList != null && tableExprList.size() > 0) {
+                Object tableExprListObj = null;
+                Iterator tableExprListIter = tableExprList.iterator();
+                while (tableExprListObj != queryLateral && tableExprListIter.hasNext() ) {
+                    tableExprListObj = tableExprListIter.next();
+                    visibleTableExprList.add(tableExprListObj);
+                }                 
+            }
+        }
+        
+        return visibleTableExprList;
     }
 
     /**
@@ -2454,6 +2523,34 @@ public class StatementHelper {
         }
 
         return isOrderBySpecValid;
+    }
+
+    /**
+     * Determines whether or not the given query select object is (or is part of)
+     * the query expression contained in a "lateral" query table object.
+     * A "lateral" query select is a nested query introduced by the TABLE or
+     * LATERAL keyword.  Here's an example:
+     * 
+     * SELECT d.deptname, e2.lastname 
+     * FROM department d, TABLE (SELECT lastname FROM employee e where e.workdept = d.deptno) e2 
+     * 
+     * @param querySelect the query select object to check
+     * @return true when the query select is lateral, otherwise false
+     */
+    private static boolean isQuerySelectLateral(QuerySelect querySelect) {
+        boolean isLateral = false;
+        if (querySelect != null) {
+            EObject eContainer = querySelect.eContainer();
+            
+            while (eContainer instanceof TableReference && isLateral == false) {
+                if (eContainer instanceof TableQueryLateral) {
+                    isLateral = true;
+                }
+                eContainer = eContainer.eContainer();
+            }
+        }
+        
+        return isLateral;
     }
 
     /**

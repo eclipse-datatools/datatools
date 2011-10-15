@@ -701,6 +701,15 @@ public interface SQLQueryModelFactory extends EFactory {
     ProcedureReference createProcedureReference();
 
     /**
+     * Returns a new object of class '<em>Table Query Lateral</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Table Query Lateral</em>'.
+     * @generated
+     */
+    TableQueryLateral createTableQueryLateral();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

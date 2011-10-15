@@ -103,42 +103,42 @@
 	(object Class_Category "Schema"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Schema.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Schema.cat"
 	    quid       	"3F27D66B01AB")
 	(object Class_Category "Constraints"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Constraints.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Constraints.cat"
 	    quid       	"3F27D6500062")
 	(object Class_Category "DataTypes"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-DataTypes.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-DataTypes.cat"
 	    quid       	"3F27D65902FA")
 	(object Class_Category "Expressions"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Expressions.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Expressions.cat"
 	    quid       	"3F27D6790133")
 	(object Class_Category "Routines"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Routines.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Routines.cat"
 	    quid       	"3F4E81D80011")
 	(object Class_Category "Statements"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Statements.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Statements.cat"
 	    quid       	"4047743B009B")
 	(object Class_Category "Tables"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Tables.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Tables.cat"
 	    quid       	"4071D00F009F")
 	(object Class_Category "AccessControl"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-AccessControl.cat"
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-AccessControl.cat"
 	    quid       	"407D7B39011B"))
     logical_presentations 	(list unit_reference_list
 	(object ClassDiagram "Main"

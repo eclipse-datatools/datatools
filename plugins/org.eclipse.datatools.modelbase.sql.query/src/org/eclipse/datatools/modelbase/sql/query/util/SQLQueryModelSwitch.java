@@ -1208,6 +1208,18 @@ public class SQLQueryModelSwitch {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case SQLQueryModelPackage.TABLE_QUERY_LATERAL: {
+                TableQueryLateral tableQueryLateral = (TableQueryLateral)theEObject;
+                Object result = caseTableQueryLateral(tableQueryLateral);
+                if (result == null) result = caseTableExpression(tableQueryLateral);
+                if (result == null) result = caseTableReference(tableQueryLateral);
+                if (result == null) result = caseSQLQueryObject(tableQueryLateral);
+                if (result == null) result = caseSQLObject(tableQueryLateral);
+                if (result == null) result = caseENamedElement(tableQueryLateral);
+                if (result == null) result = caseEModelElement(tableQueryLateral);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -2619,6 +2631,21 @@ public class SQLQueryModelSwitch {
      * @generated
      */
     public Object caseProcedureReference(ProcedureReference object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Table Query Lateral</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Table Query Lateral</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseTableQueryLateral(TableQueryLateral object) {
         return null;
     }
 

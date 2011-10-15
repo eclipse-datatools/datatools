@@ -60,6 +60,7 @@ public class ValueExpressionColumnItemProvider
             addInsertStatementPropertyDescriptor(object);
             addTableExprPropertyDescriptor(object);
             addTableInDatabasePropertyDescriptor(object);
+            addMergeInsertSpecPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -131,6 +132,28 @@ public class ValueExpressionColumnItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Merge Insert Spec feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addMergeInsertSpecPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ValueExpressionColumn_mergeInsertSpec_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionColumn_mergeInsertSpec_feature", "_UI_ValueExpressionColumn_type"),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_COLUMN__MERGE_INSERT_SPEC,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
      * This adds a property descriptor for the Insert Statement feature.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -175,16 +198,6 @@ public class ValueExpressionColumnItemProvider
   public void notifyChanged(Notification notification) {
         updateChildren(notification);
         super.notifyChanged(notification);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public ResourceLocator getResourceLocator() {
-        return SQLQueryEditPlugin.INSTANCE;
     }
 
 }

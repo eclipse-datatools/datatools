@@ -1481,6 +1481,270 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ValueExpressionRowItemProvider valueExpressionRowItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createValueExpressionRowAdapter() {
+        if (valueExpressionRowItemProvider == null) {
+            valueExpressionRowItemProvider = new ValueExpressionRowItemProvider(this);
+        }
+
+        return valueExpressionRowItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeTargetTableItemProvider mergeTargetTableItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeTargetTable}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeTargetTableAdapter() {
+        if (mergeTargetTableItemProvider == null) {
+            mergeTargetTableItemProvider = new MergeTargetTableItemProvider(this);
+        }
+
+        return mergeTargetTableItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeSourceTableItemProvider mergeSourceTableItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeSourceTable}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeSourceTableAdapter() {
+        if (mergeSourceTableItemProvider == null) {
+            mergeSourceTableItemProvider = new MergeSourceTableItemProvider(this);
+        }
+
+        return mergeSourceTableItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeOnConditionItemProvider mergeOnConditionItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOnCondition}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeOnConditionAdapter() {
+        if (mergeOnConditionItemProvider == null) {
+            mergeOnConditionItemProvider = new MergeOnConditionItemProvider(this);
+        }
+
+        return mergeOnConditionItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeUpdateSpecificationItemProvider mergeUpdateSpecificationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeUpdateSpecification}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeUpdateSpecificationAdapter() {
+        if (mergeUpdateSpecificationItemProvider == null) {
+            mergeUpdateSpecificationItemProvider = new MergeUpdateSpecificationItemProvider(this);
+        }
+
+        return mergeUpdateSpecificationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeInsertSpecificationItemProvider mergeInsertSpecificationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeInsertSpecification}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeInsertSpecificationAdapter() {
+        if (mergeInsertSpecificationItemProvider == null) {
+            mergeInsertSpecificationItemProvider = new MergeInsertSpecificationItemProvider(this);
+        }
+
+        return mergeInsertSpecificationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MergeOperationSpecificationItemProvider mergeOperationSpecificationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createMergeOperationSpecificationAdapter() {
+        if (mergeOperationSpecificationItemProvider == null) {
+            mergeOperationSpecificationItemProvider = new MergeOperationSpecificationItemProvider(this);
+        }
+
+        return mergeOperationSpecificationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected UpdateOfColumnItemProvider updateOfColumnItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateOfColumn}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createUpdateOfColumnAdapter() {
+        if (updateOfColumnItemProvider == null) {
+            updateOfColumnItemProvider = new UpdateOfColumnItemProvider(this);
+        }
+
+        return updateOfColumnItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected UpdatabilityExpressionItemProvider updatabilityExpressionItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createUpdatabilityExpressionAdapter() {
+        if (updatabilityExpressionItemProvider == null) {
+            updatabilityExpressionItemProvider = new UpdatabilityExpressionItemProvider(this);
+        }
+
+        return updatabilityExpressionItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CallStatement} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CallStatementItemProvider callStatementItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CallStatement}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createCallStatementAdapter() {
+        if (callStatementItemProvider == null) {
+            callStatementItemProvider = new CallStatementItemProvider(this);
+        }
+
+        return callStatementItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ProcedureReferenceItemProvider procedureReferenceItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ProcedureReference}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createProcedureReferenceAdapter() {
+        if (procedureReferenceItemProvider == null) {
+            procedureReferenceItemProvider = new ProcedureReferenceItemProvider(this);
+        }
+
+        return procedureReferenceItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TableQueryLateralItemProvider tableQueryLateralItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createTableQueryLateralAdapter() {
+        if (tableQueryLateralItemProvider == null) {
+            tableQueryLateralItemProvider = new TableQueryLateralItemProvider(this);
+        }
+
+        return tableQueryLateralItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

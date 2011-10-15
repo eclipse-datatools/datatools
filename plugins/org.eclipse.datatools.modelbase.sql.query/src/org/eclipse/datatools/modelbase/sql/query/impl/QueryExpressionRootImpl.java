@@ -21,13 +21,12 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -47,7 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl#getInValueSelectRight <em>In Value Select Right</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl#getQuantifiedRowSelectRight <em>Quantified Row Select Right</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl#getQuantifiedValueSelectRight <em>Quantified Value Select Right</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl#getValueExprScalarSelects <em>Value Expr Scalar Selects</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl#getValExprScalarSelect <em>Val Expr Scalar Select</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,16 +72,6 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * @ordered
      */
     protected QueryExpressionBody query;
-
-	/**
-     * The cached value of the '{@link #getValueExprScalarSelects() <em>Value Expr Scalar Selects</em>}' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getValueExprScalarSelects()
-     * @generated
-     * @ordered
-     */
-    protected EList valueExprScalarSelects;
 
 	/**
      * <!-- begin-user-doc -->
@@ -408,14 +397,60 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList getValueExprScalarSelects() {
-        if (valueExprScalarSelects == null) {
-            valueExprScalarSelects = new EObjectWithInverseResolvingEList(ValueExpressionScalarSelect.class, this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS, SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR);
-        }
-        return valueExprScalarSelects;
+    public ValueExpressionScalarSelect getValExprScalarSelect() {
+        if (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT) return null;
+        return (ValueExpressionScalarSelect)eContainer();
     }
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetValExprScalarSelect(ValueExpressionScalarSelect newValExprScalarSelect, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject)newValExprScalarSelect, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT, msgs);
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setValExprScalarSelect(ValueExpressionScalarSelect newValExprScalarSelect) {
+        if (newValExprScalarSelect != eInternalContainer() || (eContainerFeatureID() != SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT && newValExprScalarSelect != null)) {
+            if (EcoreUtil.isAncestor(this, newValExprScalarSelect))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newValExprScalarSelect != null)
+                msgs = ((InternalEObject)newValExprScalarSelect).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR, ValueExpressionScalarSelect.class, msgs);
+            msgs = basicSetValExprScalarSelect(newValExprScalarSelect, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT, newValExprScalarSelect, newValExprScalarSelect));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     * @deprecated the ValueExprScalarSelect object is now associated with QueryExpressionBody
+     */
+    public EList getValueExprScalarSelects() {
+//        if (valueExprScalarSelects == null) {
+//            valueExprScalarSelects = new EObjectWithInverseResolvingEList(ValueExpressionScalarSelect.class, this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS, SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR);
+//        }
+//        return valueExprScalarSelects;
+        EList scalarSelectList = new BasicEList();
+        ValueExpressionScalarSelect scalarSelect = getValExprScalarSelect();
+        scalarSelectList.add(scalarSelect);
+        return scalarSelectList;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -452,8 +487,10 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
                 if (eInternalContainer() != null)
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetQuantifiedValueSelectRight((PredicateQuantifiedValueSelect)otherEnd, msgs);
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                return ((InternalEList)getValueExprScalarSelects()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetValExprScalarSelect((ValueExpressionScalarSelect)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -481,8 +518,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
                 return basicSetQuantifiedRowSelectRight(null, msgs);
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 return basicSetQuantifiedValueSelectRight(null, msgs);
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                return ((InternalEList)getValueExprScalarSelects()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                return basicSetValExprScalarSelect(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -506,6 +543,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT__QUERY_EXPR, PredicateQuantifiedRowSelect.class, msgs);
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__QUERY_EXPR, PredicateQuantifiedValueSelect.class, msgs);
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR, ValueExpressionScalarSelect.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -533,8 +572,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
                 return getQuantifiedRowSelectRight();
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 return getQuantifiedValueSelectRight();
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                return getValueExprScalarSelects();
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                return getValExprScalarSelect();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -571,9 +610,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 setQuantifiedValueSelectRight((PredicateQuantifiedValueSelect)newValue);
                 return;
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                getValueExprScalarSelects().clear();
-                getValueExprScalarSelects().addAll((Collection)newValue);
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                setValExprScalarSelect((ValueExpressionScalarSelect)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -610,8 +648,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 setQuantifiedValueSelectRight((PredicateQuantifiedValueSelect)null);
                 return;
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                getValueExprScalarSelects().clear();
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                setValExprScalarSelect((ValueExpressionScalarSelect)null);
                 return;
         }
         super.eUnset(featureID);
@@ -640,8 +678,8 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
                 return getQuantifiedRowSelectRight() != null;
             case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT:
                 return getQuantifiedValueSelectRight() != null;
-            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS:
-                return valueExprScalarSelects != null && !valueExprScalarSelects.isEmpty();
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT:
+                return getValExprScalarSelect() != null;
         }
         return super.eIsSet(featureID);
     }

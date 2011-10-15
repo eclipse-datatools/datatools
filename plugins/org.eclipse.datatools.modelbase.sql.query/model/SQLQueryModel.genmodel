@@ -8,8 +8,10 @@
     editorPluginClass="org.eclipse.datatools.modelbase.sql.query.presentation.SQLQueryEditorPlugin"
     importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>SQLQueryModel.mdl</foreignModel>
-  <foreignModel>CDM_EXTRACT_PATH</foreignModel>
+  <foreignModel>ECORE_MODEL_PLUGIN_PATH</foreignModel>
   <foreignModel>../..</foreignModel>
+  <foreignModel>CDM_EXTRACT_PATH</foreignModel>
+  <foreignModel>SQL_MODEL_PLUGIN_PATH</foreignModel>
   <genPackages prefix="SQLQueryModel" basePackage="org.eclipse.datatools.modelbase.sql"
       ecorePackage="SQLQueryModel.ecore#/">
     <genEnums ecoreEnum="SQLQueryModel.ecore#//SuperGroupType">
@@ -188,7 +190,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/inValueSelectRight"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/quantifiedRowSelectRight"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/quantifiedValueSelectRight"/>
-      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/valueExprScalarSelects"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/valExprScalarSelect"/>
     </genClasses>
     <genClasses ecoreClass="SQLQueryModel.ecore#//ValuesRow">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValuesRow/insertStatement"/>
@@ -522,6 +524,9 @@
     <genClasses ecoreClass="SQLQueryModel.ecore#//ProcedureReference">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ProcedureReference/callStatement"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ProcedureReference/procedure"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//TableQueryLateral">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableQueryLateral/query"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

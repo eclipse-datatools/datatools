@@ -25,28 +25,28 @@ package org.eclipse.datatools.modelbase.sql.query;
  */
 public interface ValueExpressionScalarSelect extends ValueExpressionAtomic{
 	/**
-     * Returns the value of the '<em><b>Query Expr</b></em>' reference.
-     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValueExprScalarSelects <em>Value Expr Scalar Selects</em>}'.
+     * Returns the value of the '<em><b>Query Expr</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect <em>Val Expr Scalar Select</em>}'.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Query Expr</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Query Expr</em>' reference.
+     * @return the value of the '<em>Query Expr</em>' containment reference.
      * @see #setQueryExpr(QueryExpressionRoot)
      * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionScalarSelect_QueryExpr()
-     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValueExprScalarSelects
-     * @model opposite="valueExprScalarSelects" required="true"
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect
+     * @model opposite="valExprScalarSelect" containment="true" required="true"
      * @generated
      */
     QueryExpressionRoot getQueryExpr();
 
 	/**
-     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}' containment reference.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Query Expr</em>' reference.
+     * @param value the new value of the '<em>Query Expr</em>' containment reference.
      * @see #getQueryExpr()
      * @generated
      */

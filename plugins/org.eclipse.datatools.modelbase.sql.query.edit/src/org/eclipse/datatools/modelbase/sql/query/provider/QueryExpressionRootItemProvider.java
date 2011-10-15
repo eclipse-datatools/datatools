@@ -59,31 +59,8 @@ public class QueryExpressionRootItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addValueExprScalarSelectsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Value Expr Scalar Selects feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addValueExprScalarSelectsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_QueryExpressionRoot_valueExprScalarSelects_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_QueryExpressionRoot_valueExprScalarSelects_feature", "_UI_QueryExpressionRoot_type"),
-                 SQLQueryModelPackage.Literals.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS,
-                 true,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
     }
 
     /**
@@ -145,16 +122,6 @@ public class QueryExpressionRootItemProvider
                 return;
         }
         super.notifyChanged(notification);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public ResourceLocator getResourceLocator() {
-        return SQLQueryEditPlugin.INSTANCE;
     }
 
 }

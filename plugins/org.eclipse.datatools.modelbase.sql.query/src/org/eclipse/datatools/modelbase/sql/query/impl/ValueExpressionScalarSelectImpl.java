@@ -60,7 +60,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ValueExpressionScalarSelectImpl extends ValueExpressionAtomicImpl implements ValueExpressionScalarSelect {
 	/**
-     * The cached value of the '{@link #getQueryExpr() <em>Query Expr</em>}' reference.
+     * The cached value of the '{@link #getQueryExpr() <em>Query Expr</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getQueryExpr()
@@ -93,23 +93,6 @@ public class ValueExpressionScalarSelectImpl extends ValueExpressionAtomicImpl i
      * @generated
      */
     public QueryExpressionRoot getQueryExpr() {
-        if (queryExpr != null && queryExpr.eIsProxy()) {
-            InternalEObject oldQueryExpr = (InternalEObject)queryExpr;
-            queryExpr = (QueryExpressionRoot)eResolveProxy(oldQueryExpr);
-            if (queryExpr != oldQueryExpr) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR, oldQueryExpr, queryExpr));
-            }
-        }
-        return queryExpr;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public QueryExpressionRoot basicGetQueryExpr() {
         return queryExpr;
     }
 
@@ -137,9 +120,9 @@ public class ValueExpressionScalarSelectImpl extends ValueExpressionAtomicImpl i
         if (newQueryExpr != queryExpr) {
             NotificationChain msgs = null;
             if (queryExpr != null)
-                msgs = ((InternalEObject)queryExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS, QueryExpressionRoot.class, msgs);
+                msgs = ((InternalEObject)queryExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT, QueryExpressionRoot.class, msgs);
             if (newQueryExpr != null)
-                msgs = ((InternalEObject)newQueryExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS, QueryExpressionRoot.class, msgs);
+                msgs = ((InternalEObject)newQueryExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VAL_EXPR_SCALAR_SELECT, QueryExpressionRoot.class, msgs);
             msgs = basicSetQueryExpr(newQueryExpr, msgs);
             if (msgs != null) msgs.dispatch();
         }
@@ -156,7 +139,7 @@ public class ValueExpressionScalarSelectImpl extends ValueExpressionAtomicImpl i
         switch (featureID) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR:
                 if (queryExpr != null)
-                    msgs = ((InternalEObject)queryExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS, QueryExpressionRoot.class, msgs);
+                    msgs = ((InternalEObject)queryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR, null, msgs);
                 return basicSetQueryExpr((QueryExpressionRoot)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -183,8 +166,7 @@ public class ValueExpressionScalarSelectImpl extends ValueExpressionAtomicImpl i
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR:
-                if (resolve) return getQueryExpr();
-                return basicGetQueryExpr();
+                return getQueryExpr();
         }
         return super.eGet(featureID, resolve, coreType);
     }

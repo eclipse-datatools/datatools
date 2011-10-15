@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getInValueSelectRight <em>In Value Select Right</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuantifiedRowSelectRight <em>Quantified Row Select Right</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuantifiedValueSelectRight <em>Quantified Value Select Right</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValueExprScalarSelects <em>Value Expr Scalar Selects</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect <em>Val Expr Scalar Select</em>}</li>
  * </ul>
  * </p>
  *
@@ -250,6 +250,34 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
     void setQuantifiedValueSelectRight(PredicateQuantifiedValueSelect value);
 
 	/**
+     * Returns the value of the '<em><b>Val Expr Scalar Select</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Val Expr Scalar Select</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Val Expr Scalar Select</em>' container reference.
+     * @see #setValExprScalarSelect(ValueExpressionScalarSelect)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_ValExprScalarSelect()
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr
+     * @model opposite="queryExpr"
+     * @generated
+     */
+    ValueExpressionScalarSelect getValExprScalarSelect();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getValExprScalarSelect <em>Val Expr Scalar Select</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Val Expr Scalar Select</em>' container reference.
+     * @see #getValExprScalarSelect()
+     * @generated
+     */
+    void setValExprScalarSelect(ValueExpressionScalarSelect value);
+
+    /**
      * Returns the value of the '<em><b>Value Expr Scalar Selects</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect}.
      * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr <em>Query Expr</em>}'.
@@ -263,8 +291,8 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_ValueExprScalarSelects()
      * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr
      * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect" opposite="queryExpr"
-     * @generated
+     * @generated NOT
+     * @deprecated Use getValExprScalarSelect instead, which returns a single element instead of a list
      */
     EList getValueExprScalarSelects();
-
 } // SQLQueryExpression

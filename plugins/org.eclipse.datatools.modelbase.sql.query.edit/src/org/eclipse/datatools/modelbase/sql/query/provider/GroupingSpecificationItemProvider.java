@@ -82,14 +82,4 @@ public class GroupingSpecificationItemProvider
         super.notifyChanged(notification);
     }
 
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public ResourceLocator getResourceLocator() {
-        return SQLQueryEditPlugin.INSTANCE;
-    }
-
 }

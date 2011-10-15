@@ -573,14 +573,53 @@ public static Column resolveColumnFromValueExpression( ValueExpressionColumn aVa
  * Tries to determine the datatype that can contain values of both given 
  * <code>DataType</code>s <code>aDataType</code> and
  * <code>anotherDataType</code>, useful for example for the result columns
- * of a {@link com.ibm.db.models.sql.query.QueryCombined}
+ * of a {@link com.ibm.db.models.sql.query.QueryCombined} or a CASE stmt
  * @param aDataType one <code>DataType</code>
  * @param anotherDataType another <code>DataType</code>
  * @return the inclusive <code>DataType</code>
+ * 
+ * Note:  complex rules for combining data types are documented in the DB2 SQL
+ * Reference under "Rules for Result Data Types"
+ * http://publib.boulder.ibm.com/infocenter/db2luw/v9r7/index.jsp?topic=/com.ibm.db2.luw.sql.ref.doc/doc/r0008480.html
+ * 
+ * To date we've only implemented the rules for combining character strings
  */
 public static DataType resolveCombinedDataType( DataType aDataType,
                                             DataType anotherDataType) {
-    if (aDataType != null)
+    /*
+     * If we have two character strings to combine
+     */
+    if (aDataType != null && anotherDataType != null &&
+        aDataType       instanceof CharacterStringDataType &&
+        anotherDataType instanceof CharacterStringDataType)
+    {
+        CharacterStringDataType resolvedDataType = (CharacterStringDataType) copyDataType(aDataType);
+        /*
+         * set length to maximum 
+         */
+        resolvedDataType.setLength(
+                Math.max( ((CharacterStringDataType) aDataType).getLength(), 
+                          ((CharacterStringDataType) anotherDataType).getLength() )
+                                  );
+        PrimitiveType aPrimType = ((PredefinedDataType) aDataType).getPrimitiveType();
+        PrimitiveType anotherPrimType = ((PredefinedDataType) anotherDataType).getPrimitiveType();
+        if ( aPrimType == PrimitiveType.CHARACTER_LITERAL &&
+             anotherPrimType == PrimitiveType.CHARACTER_VARYING_LITERAL             
+           )
+        {
+            resolvedDataType.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL); 
+        }
+        else if ( (aPrimType == PrimitiveType.CHARACTER_LITERAL || 
+                   aPrimType == PrimitiveType.CHARACTER_VARYING_LITERAL)
+                   &&
+                   anotherPrimType == PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL )
+        {
+            resolvedDataType.setPrimitiveType(PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL);
+        }
+                
+        return resolvedDataType;
+    }    
+    else if (aDataType != null)
     {
         return aDataType;
     }
@@ -589,7 +628,6 @@ public static DataType resolveCombinedDataType( DataType aDataType,
         return anotherDataType;
     }
 }
-
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Substitutes the tables in the given table list into the given
  * Value Expression in place of the one it currently has.
@@ -652,45 +690,82 @@ public static void resolveTablesInValueExpression(QueryValueExpression valExpr,
  * @param aDBVersion an object containing database version information
  */
 public static void resolveValueExpressionCaseDatatype( ValueExpressionCase aValExpr) {
-  // We'll set the datatype for this value expression to the datatype
-  // of the first "result expression" that isn't NULL and that has a
-  // datatype.  The model structure of the "searched case" and
-  // "simple case" are slightly different, so we handle them separately.
-  List contentList = null;
-  Iterator contentListIter = null;
-  DataType contentDatatype = null;
-
-  if (aValExpr instanceof ValueExpressionCaseSearch) {
-    contentList = ((ValueExpressionCaseSearch) aValExpr).getSearchContentList();
-    contentListIter = contentList.iterator();
-    ValueExpressionCaseSearchContent content;
-    QueryValueExpression contentValExpr;
-    while (contentListIter.hasNext() && contentDatatype == null) {
-      content = (ValueExpressionCaseSearchContent) contentListIter.next();
-      contentValExpr = content.getValueExpr();
-      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
-        contentDatatype = contentValExpr.getDataType();
-      }
+/*
+ * We'll set the datatype for this value expression to the datatype
+ * of the combined "result expression" that is not NULL and that has a
+ * datatype.
+ */
+    List contentList = null;
+    Iterator contentListIter = null;
+    DataType contentDatatype = null;
+    /* 
+     * The model structure of the "searched case" and
+     * "simple case" are slightly different, so we handle them separately.
+     */
+    if (aValExpr instanceof ValueExpressionCaseSearch) {
+        contentList = ((ValueExpressionCaseSearch) aValExpr).getSearchContentList();
+        contentListIter = contentList.iterator();
+        ValueExpressionCaseSearchContent content;
+        QueryValueExpression contentValExpr;
+        while ( contentListIter.hasNext() ) {
+            content = (ValueExpressionCaseSearchContent) contentListIter.next();
+            contentValExpr = content.getValueExpr();
+            if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+                contentDatatype = copyDataType(
+                        resolveCombinedDataType( contentDatatype, contentValExpr.getDataType() )
+                      );
+            }
+        }
+        /*
+         * Process the "ELSE" value expression of the ELSE y clause, if any
+         */
+        ValueExpressionCaseElse elseContent = ((ValueExpressionCaseSearch) aValExpr).getCaseElse();
+        if (elseContent != null) {
+            contentValExpr = elseContent.getValueExpr();
+            if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+                contentDatatype = copyDataType(
+                        resolveCombinedDataType( contentDatatype, contentValExpr.getDataType() )
+                        );
+            }
+        }
     }
-  }
-  // otherwise must be ValueExpressionCaseSimple
-  else {
-    contentList = ((ValueExpressionCaseSimple) aValExpr).getContentList();
-    contentListIter = contentList.iterator();
-    ValueExpressionCaseSimpleContent content;
-    QueryValueExpression contentValExpr;
-    while (contentListIter.hasNext() && contentDatatype == null) {
-      content = (ValueExpressionCaseSimpleContent) contentListIter.next();
-      contentValExpr = content.getResultValueExpr();
-      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
-        contentDatatype = contentValExpr.getDataType();
-      }
+    /*
+     * otherwise must be ValueExpressionCaseSimple
+     */
+    else {
+    /*
+     * Step through all the "THEN" value expressions of the WHEN x THEN y clauses
+     */
+        contentList = ((ValueExpressionCaseSimple) aValExpr).getContentList();
+        contentListIter = contentList.iterator();
+        ValueExpressionCaseSimpleContent content;
+        QueryValueExpression contentValExpr;
+        while ( contentListIter.hasNext() ) {
+            content = (ValueExpressionCaseSimpleContent) contentListIter.next();
+            contentValExpr = content.getResultValueExpr();
+            if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+                contentDatatype = copyDataType(
+                        resolveCombinedDataType( contentDatatype, contentValExpr.getDataType() )
+                      );
+            }
+        }
+        /*
+         * Process the "ELSE" value expression of the ELSE y clause, if any
+         */
+        ValueExpressionCaseElse elseContent = ((ValueExpressionCaseSimple) aValExpr).getCaseElse();
+        if (elseContent != null) {
+            contentValExpr = elseContent.getValueExpr();
+            if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+                contentDatatype = copyDataType(
+                        resolveCombinedDataType( contentDatatype, contentValExpr.getDataType() )
+                        );
+            }
+        }
     }
-  }
 
-  if (contentDatatype != null) {
-      aValExpr.setDataType(copyDataType(contentDatatype));
-  }
+    if (contentDatatype != null) {
+        aValExpr.setDataType(contentDatatype);
+    }
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!

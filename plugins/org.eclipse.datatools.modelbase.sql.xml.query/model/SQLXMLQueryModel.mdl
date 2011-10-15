@@ -56,22 +56,22 @@
 	    (object Class_Category "ecore"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.emf.ecore\\model\\org.eclipse.emf.Ecore.cat"
+		file_name  	"$ECORE_MODEL_PLUGIN_PATH\\org.eclipse.emf.ecore\\model\\org.eclipse.emf.Ecore.cat"
 		quid       	"39A5ED04004E")
 	    (object Class_Category "SQLModel"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel.cat"
+		file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel.cat"
 		quid       	"3E9B1F8201C1")
 	    (object Class_Category "SQLQueryModel"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql.query\\model\\SQLQueryModel.cat"
+		file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql.query\\model\\SQLQueryModel.cat"
 		quid       	"40467E9F03A6")
 	    (object Class_Category "SQLXMLQueryModel"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql.xml.query\\model\\SQLXMLQueryModel.cat"
+		file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql.xml.query\\model\\SQLXMLQueryModel.cat"
 		quid       	"4314C5120235"))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"

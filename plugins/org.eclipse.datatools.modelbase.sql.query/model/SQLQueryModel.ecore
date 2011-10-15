@@ -196,8 +196,8 @@
         eType="#//PredicateQuantifiedRowSelect" transient="true" eOpposite="#//PredicateQuantifiedRowSelect/queryExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="quantifiedValueSelectRight"
         eType="#//PredicateQuantifiedValueSelect" transient="true" eOpposite="#//PredicateQuantifiedValueSelect/queryExpr"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprScalarSelects"
-        upperBound="-1" eType="#//ValueExpressionScalarSelect" eOpposite="#//ValueExpressionScalarSelect/queryExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valExprScalarSelect" eType="#//ValueExpressionScalarSelect"
+        transient="true" eOpposite="#//ValueExpressionScalarSelect/queryExpr"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValuesRow" eSuperTypes="#//SQLQueryObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
@@ -418,7 +418,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionScalarSelect" eSuperTypes="#//ValueExpressionAtomic">
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryExpr" lowerBound="1"
-        eType="#//QueryExpressionRoot" eOpposite="#//QueryExpressionRoot/valueExprScalarSelects"/>
+        eType="#//QueryExpressionRoot" containment="true" eOpposite="#//QueryExpressionRoot/valExprScalarSelect"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionLabeledDuration" eSuperTypes="#//ValueExpressionAtomic">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="labeledDurationType" eType="#//ValueExpressionLabeledDurationType"/>
@@ -797,5 +797,12 @@
         eType="#//CallStatement" transient="true" eOpposite="#//CallStatement/procedureRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableQueryLateral" eSuperTypes="#//TableExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A &quot;lateral&quot; table query is a query that appears in the FROM clause.  However it is semantically different from a regular FROM clause query in that the lateral table query can itself contain references to other tables defined before (that is, to the left of it) in the same FROM clause.  Regular FROM clause queries can only refer to tables defined at a higher level in the statement.  In ISO SQL a lateral table query expression is prefixed by the keyword LATERAL.  (The DB2 SQL dialects prefix the lateral query table with the keyword TABLE.)&#xD;&#xA;&#xD;&#xA;For example, here is a statement containing a lateral table query expression:&#xD;&#xA;&#xD;&#xA;SELECT d.dept_name, e.emp_name&#xD;&#xA;  FROM dept d, LATERAL( &#xD;&#xA;    SELECT emp_id, emp_name&#xD;&#xA;    FROM emp&#xD;&#xA;    WHERE emp_dept = d.dept_id ) as e&#xD;&#xA;&#xD;&#xA;The reference to d.dept_id is legal in a lateral table query, but would not be legal in a regular table query expression."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="query" lowerBound="1" eType="#//QueryExpressionBody"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

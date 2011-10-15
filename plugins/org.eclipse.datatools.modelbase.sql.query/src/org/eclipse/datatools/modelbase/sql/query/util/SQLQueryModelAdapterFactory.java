@@ -365,6 +365,9 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
             public Object caseProcedureReference(ProcedureReference object) {
                 return createProcedureReferenceAdapter();
             }
+            public Object caseTableQueryLateral(TableQueryLateral object) {
+                return createTableQueryLateralAdapter();
+            }
             public Object caseEModelElement(EModelElement object) {
                 return createEModelElementAdapter();
             }
@@ -1726,6 +1729,20 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createProcedureReferenceAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.TableQueryLateral <em>Table Query Lateral</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableQueryLateral
+     * @generated
+     */
+    public Adapter createTableQueryLateralAdapter() {
         return null;
     }
 

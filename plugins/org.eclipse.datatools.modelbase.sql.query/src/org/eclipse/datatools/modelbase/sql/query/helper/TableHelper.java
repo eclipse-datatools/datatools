@@ -72,6 +72,7 @@ import org.eclipse.datatools.modelbase.sql.query.TableFunction;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
+import org.eclipse.datatools.modelbase.sql.query.TableQueryLateral;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
@@ -109,6 +110,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * Provides utility functions related to tables and columns.
  *
  */
+@SuppressWarnings("unchecked")
 public class TableHelper {
      
     /** This is the default quote character to use for delimited identifiers like "Col1".  
@@ -227,44 +229,42 @@ public class TableHelper {
     }
 
     /**
-     * Adds a <code>ValueExpressionColumn</code> to the given
-     * <code>nestedQuery</code> for each of its <code>QuerySelect</code>'s
-     * <code>ResultColumn</code>s that
-     * have either a <code>name</code> or reference a
-     * <code>ValueExpressionColumn</code> that has a <code>name</code>. That is
-     * useful in case the given <code>QueryExpressionBody</code> is used as a
-     * nested query - as a <code>TableReference</code> - within another
-     * <code>QuerySelect</code>, so that nested full-select can be treated like
-     * any other <code>TableReference</code> with its <code>columnList</code>.
+     * Adds <code>ValueExpressionColumn</code> objects to the column list of 
+     * the given <code>QueryExpressionBody</code> for each named result column of 
+     * the query.  This is useful in case the given <code>QueryExpressionBody</code> 
+     * is used as a nested query, that is, as a table reference within another
+     * <code>QuerySelect</code>, so that nested query can be treated like
+     * any other table reference with a column list.
      * 
-     * @param nestedQuery the query whose columns should be exposed
+     * @param qryExprBody the query whose columns should be exposed
      * @return a list of already or newly exposed <code>ValueExpressionColumn</code>s
      */
-    public static List exposeEffectiveResultColumns(QueryExpressionBody nestedQuery)
-    {
+    public static List exposeEffectiveResultColumns(QueryExpressionBody qryExprBody) {
         List exposedColumns = new ArrayList();
         
-        if (nestedQuery instanceof QuerySelect)
-        {
-            QuerySelect select = (QuerySelect) nestedQuery;
+        if (qryExprBody instanceof QuerySelect) {
+            QuerySelect select = (QuerySelect) qryExprBody;
             exposedColumns = exposeResultColumnsOfQuerySelect(select);
         }
-        else if (nestedQuery instanceof QueryCombined)
-        {
-            QueryCombined combined = (QueryCombined) nestedQuery;
+        else if (qryExprBody instanceof QueryCombined) {
+            QueryCombined combined = (QueryCombined) qryExprBody;
             exposedColumns = exposeResultColumnsOfQueryCombined(combined);
         }
-        else if (nestedQuery instanceof QueryNested)
-        {
-            // Note: a QueryNested is not the same thing as the var nestedQuery
-            // A QueryNested is a type of query expression that is a query
-            // expression with parens around it.
-            QueryNested qryNested = (QueryNested) nestedQuery;
-            exposedColumns = exposeEffectiveResultColumns(qryNested.getNestedQuery());
+        else if (qryExprBody instanceof QueryNested) {
+            /* A QueryNested is a type of query expression that is a query
+             * expression with parens around it. */
+            QueryNested qryNested = (QueryNested) qryExprBody;
+            /* Get the exposed columns of the inner (nested) query. */
+            QueryExpressionBody nestedQuery = qryNested.getNestedQuery();
+            exposedColumns = exposeEffectiveResultColumns(nestedQuery);
+            /* Copy the exposed columns from the inner (nested) query to the outer
+             * (nesting) query. */
+            List qryNestedColList = qryNested.getColumnList();
+            qryNestedColList.clear();
+            qryNestedColList.addAll(exposedColumns);
         }
-        else if (nestedQuery instanceof QueryValues)
-        {
-            QueryValues values = (QueryValues) nestedQuery;
+        else if (qryExprBody instanceof QueryValues) {
+            QueryValues values = (QueryValues) qryExprBody;
             exposedColumns = exposeResultColumnsOfQueryValues(values);
         }
         
@@ -311,6 +311,13 @@ public class TableHelper {
             WithTableReference withTableRef = (WithTableReference) tableExpr;
             resultColExprList = exposeEffectiveResultColumns(withTableRef);
         }
+        else if (tableExpr instanceof TableQueryLateral) 
+        {
+            TableQueryLateral queryLateral = (TableQueryLateral) tableExpr;
+            QueryExpressionBody nestedQuery = queryLateral.getQuery();
+            resultColExprList = exposeEffectiveResultColumns(nestedQuery);
+            queryLateral.getColumnList().addAll(resultColExprList);
+        }
         else if (tableExpr instanceof TableFunction) 
         {
 //            StatementHelper.logError(TableHelper.class.getName()+
@@ -329,7 +336,7 @@ public class TableHelper {
         TableCorrelation tableCorr = tableExpr.getTableCorrelation();
         if (tableCorr != null) {
             List corrColNameList = tableCorr.getColumnNameList();
-            if (corrColNameList.size() <= resultColExprList.size()) {
+            if (corrColNameList.size() > 0 && corrColNameList.size() <= resultColExprList.size()) {
                 List corrColList = new ArrayList();
                 for (int i=0; i<corrColNameList.size(); i++) {
                     Object obj1 = corrColNameList.get(i);
@@ -932,9 +939,20 @@ public static Set findColumnReferencesInQueryResultSpecificationList(List queryR
           if (tableRef instanceof TableInDatabase) {
               // do nothing; doesn't contain query column references
           }
-          // A table ref as a nested query definition, ie: TABLE (query expr)
+          // A QueryExpressionBody as a table ref as a nested query definition in the FROM clause, ie:
+          //   SELECT * FROM table1, (SELECT foo, bar FROM table2)
           else if (tableRef instanceof QueryExpressionBody) {
               QueryExpressionBody queryExprBody = (QueryExpressionBody) tableRef;
+              columnSet.addAll(findColumnReferencesInQueryExpressionBody(queryExprBody));
+          }
+          // A "lateral" table query is like the nested query definition in the FROM clause
+          // as above, but the sub-query has the LATERAL (or TABLE) keyword in front of it, ie:
+          //   SELECT * FROM table1, TABLE (SELECT foo, bar FROM table2)
+          // In a lateral table query, the tables ahead of it in the FROM clause, (ie, table1) are
+          // visible within the sub-query.
+          else if (tableRef instanceof TableQueryLateral) {
+              TableQueryLateral tableQueryLateral = (TableQueryLateral) tableRef;
+              QueryExpressionBody queryExprBody = tableQueryLateral.getQuery();
               columnSet.addAll(findColumnReferencesInQueryExpressionBody(queryExprBody));
           }
           else if (tableRef instanceof TableFunction) {
@@ -2514,7 +2532,9 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
      */
     public static void resolveColumnTableReferences( Collection unresolvedColumns, List aTableRefList ) {
 
-        if (unresolvedColumns == null) { return; }
+        if (unresolvedColumns == null || unresolvedColumns.isEmpty() == true) { 
+            return; 
+        }
         
         // expand joined tables
         List tableExprList = getTableExpressionsInTableReferenceList(aTableRefList);
@@ -2826,6 +2846,8 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     ValueExpressionHelper.resolveCombinedDataType(
                                     resultColExprLeft.getDataType(),
                                     resultColExprRight.getDataType());
+                
+                exposedColumn.setDataType(exposedColumnDataType);
                 
                 // there is likely to be no common derived tableInDB for the 
                 // here exposed column, but check if both exposed columns of

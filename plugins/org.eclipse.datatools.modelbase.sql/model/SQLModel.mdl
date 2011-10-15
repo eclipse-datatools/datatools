@@ -1,7 +1,7 @@
 
 (object Petal
-    version    	47
-    _written   	"Rose 8.0.0303.1400"
+    version    	50
+    _written   	"Rose 2006.0.0.060314"
     charSet    	0)
 
 (object Design "Logical View"
@@ -49,6 +49,7 @@
 	    name       	"UserDefineTagApply3"
 	    value      	""))
     quid       	"3F26AE4D02FF"
+    enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
 	rightMargin 	0.250000
 	leftMargin 	0.250000
@@ -97,12 +98,12 @@
 	    (object Class_Category "SQLModel"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel.cat"
+		file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel.cat"
 		quid       	"3E9B1F8201C1")
 	    (object Class_Category "ecore"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.emf.ecore\\model\\org.eclipse.emf.Ecore.cat"
+		file_name  	"$ECORE_MODEL_PLUGIN_PATH\\org.eclipse.emf.ecore\\model\\org.eclipse.emf.Ecore.cat"
 		quid       	"39A5ED04004E"))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
@@ -156,6 +157,7 @@
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	315
+			    justify    	1
 			    label      	"Concrete Class")
 			line_color 	3342489
 			fill_color 	13434879
@@ -178,6 +180,7 @@
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	322
+			    justify    	1
 			    label      	"Abstract Class")
 			line_color 	3342489
 			fill_color 	13828055
@@ -200,6 +203,7 @@
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	240
+			    justify    	1
 			    label      	"Enumeration")
 			line_color 	3342489
 			fill_color 	15329769
@@ -222,6 +226,7 @@
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	390
+			    justify    	1
 			    label      	"Constraints in OCL or predefined in UML")
 			line_color 	3342489
 			fill_color 	8453888
@@ -244,6 +249,7 @@
 			    fill_color 	13434879
 			    nlines     	2
 			    max_width  	240
+			    justify    	1
 			    label      	"Comment")
 			line_color 	3342489
 			fill_color 	16777088
@@ -262,6 +268,7 @@
 			    default_color 	TRUE)
 			nlines     	1
 			max_width  	781
+			justify    	1
 			label      	"Color legend (except for ecore):")))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"3F26AE4D0302"
@@ -275,7 +282,9 @@
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
-		items      	(list diagram_item_list))))
+		items      	(list diagram_item_list)))
+	category   	"Logical View"
+	quidu      	"4E977A4B0178")
     process_structure 	(object Processes
 	quid       	"3F26AE4D0303"
 	ProcsNDevs 	(list
@@ -1861,7 +1870,7 @@
 		    (object Attribute
 			tool       	"Ada95"
 			name       	"TypeEqualityName"
-			value      	(value Text
+			value      	(value Text 
 |"="
 			))
 		    (object Attribute
@@ -5323,7 +5332,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlInterfaceAttributes"
-			value      	(value Text
+			value      	(value Text 
 |endpoint("")
 |local
 |object
@@ -5340,7 +5349,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlCoClassAttributes"
-			value      	(value Text
+			value      	(value Text 
 |uuid("")
 |helpstring("")
 |helpcontext("")
@@ -5353,14 +5362,14 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlCoClassInterfaceAttributes"
-			value      	(value Text
+			value      	(value Text 
 |default
 |source
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlParameterAttributes"
-			value      	(value Text
+			value      	(value Text 
 |in
 |out
 |retval
@@ -5368,7 +5377,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlMethodAttributes"
-			value      	(value Text
+			value      	(value Text 
 |id(1)
 |helpstring("")
 |call_as("")
@@ -5383,7 +5392,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlPropertyAttributes"
-			value      	(value Text
+			value      	(value Text 
 |id()
 |helpstring("")
 |call_as("")
@@ -5444,7 +5453,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"AttributeTypes"
-			value      	(value Text
+			value      	(value Text 
 |attr1=bool
 |attr2=short
 |attr3=int
@@ -5680,7 +5689,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Containers"
-			value      	(value Text
+			value      	(value Text 
 |cont1=CArray<$TYPE, $TYPE&>
 |cont2=CByteArray
 |cont3=CDWordArray
@@ -5712,7 +5721,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ClassMethods"
-			value      	(value Text
+			value      	(value Text 
 |*_body=// ToDo: Add your specialized code here and/or call the base class
 |cm1=$NAME()
 |cm2=$NAME(orig:const $NAME&)
@@ -5739,7 +5748,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Accessors"
-			value      	(value Text
+			value      	(value Text 
 |agf=<<const>> get_$BASICNAME():const $TYPE
 |agf_body=return $NAME;
 |asf=set_$BASICNAME(value:$TYPE):void
@@ -5764,7 +5773,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Conditionals"
-			value      	(value Text
+			value      	(value Text 
 |*_decl=#ifdef _DEBUG
 |*_base=CObject
 |cond1=<<virtual, const>> AssertValid():void
@@ -5775,7 +5784,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Patterns"
-			value      	(value Text
+			value      	(value Text 
 |patrn1=cm1,cm3,cond1,cond2
 |Patrn1_name=Default
 			))
@@ -5822,21 +5831,21 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"InternalMap"
-			value      	(value Text
+			value      	(value Text 
 |*:AUTO:AUTO
 |
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ExportMap"
-			value      	(value Text
+			value      	(value Text 
 |*:AUTO:AUTO
 |
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"InitialSourceIncludes"
-			value      	(value Text
+			value      	(value Text 
 |"stdafx.h"
 			))
 		    (object Attribute
@@ -5874,7 +5883,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"BodyExtensions"
-			value      	(value Text
+			value      	(value Text 
 |.cpp
 |.cxx
 |.inl
@@ -5882,7 +5891,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"HeaderExtensions"
-			value      	(value Text
+			value      	(value Text 
 |.h
 |.hpp
 |.hxx
@@ -5891,7 +5900,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ProjectFolders"
-			value      	(value Text
+			value      	(value Text 
 |Source Files
 |Header Files
 			))
