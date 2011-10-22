@@ -15,10 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.profile.provider;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
@@ -60,17 +57,30 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     {
         final String methodName = "getDataSourceProperties(Properties,Object)"; //$NON-NLS-1$
         
-        // TODO - improve error handling, i.e. catch exception in getting profile instance, 
-        // so to set the cause of the exception that gets thrown below
-        IConnectionProfile connProfile = 
-            getConnectionProfile( candidateProperties, appContext );
+        IConnectionProfile connProfile = null;
+        OdaException causeEx = null;
+        try
+        {
+            connProfile = getConnectionProfileImpl( candidateProperties, appContext );
+        }
+        catch( OdaException ex )
+        {
+            // improve error handling, i.e. catch exception in getting profile instance, 
+            // so to set the cause of the exception that gets thrown below
+            causeEx = ex;
+        }
+
         if( connProfile == null )   // no linked profile found
         {
             // a profile is specified, just couldn't find it
             if( hasProfileName( candidateProperties ) && hasProfileStoreFilePath( candidateProperties ) )
             {
-                throw new OdaException( Messages.bind( Messages.propertyProvider_CANNOT_FIND_PROFILE,
+                OdaException throwEx =
+                    new OdaException( Messages.bind( Messages.propertyProvider_CANNOT_FIND_PROFILE,
                         getProfileName( candidateProperties ), getProfileStoreFilePath( candidateProperties ) ));
+                if( causeEx != null )
+                    throwEx.initCause( causeEx );
+                throw throwEx;
             }
             
             // no other effective data source properties; use the original ones
@@ -127,10 +137,33 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      *                        the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
      *                        in an application context passed thru to a connection
      * @return  the connection profile instance if found; may be null 
-     * @throws OdaException
      */
     public IConnectionProfile getConnectionProfile( Properties candidateProperties,
             Object connPropContext ) 
+    {
+        IConnectionProfile profile = null;
+        try
+        {
+            profile = getConnectionProfileImpl( candidateProperties, connPropContext );
+        }
+        catch( OdaException ex )
+        {
+            getLogger().warning( getStackTraceStrings( ex ) );
+        }
+
+        if( profile == null )
+        {
+            // log warning that no profile is found
+            getLogger().warning( "No connection profile is found by its specified name: " +  //$NON-NLS-1$
+                                getProfileName( candidateProperties ) );
+        }
+
+        return profile;
+    }
+    
+    private IConnectionProfile getConnectionProfileImpl( Properties candidateProperties,
+            Object connPropContext )
+        throws OdaException
     {
         if( candidateProperties == null || candidateProperties.isEmpty() )
             return null;
@@ -145,26 +178,11 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         m_profileStoreFileExt = null;   // reset placeholder
         File profileStore = getProfileStoreFile( candidateProperties, connPropContext );
         
-        // now get the referenced profile from the profile explorer
-        IConnectionProfile profile = null;
-        try
-        {
-            // if null profile store file is specified, the default profile store path is used
-            profile = OdaProfileExplorer.getInstance()
+        // now get the referenced profile from the profile explorer;
+        // if null profile store file is specified, the default profile store path is used
+        IConnectionProfile profile = OdaProfileExplorer.getInstance()
                         .getProfileByName( profileName, profileStore, 
-                            getProfileStoreFileOriginalExt( candidateProperties ) );
-        }
-        catch( OdaException ex )
-        {
-            getLogger().warning( getStackTraceStrings( ex ) );
-        }
-
-        if( profile == null )
-        {
-            // log warning that no profile is found
-            getLogger().warning( "No connection profile is found by its specified name: " + profileName ); //$NON-NLS-1$
-        }
-        
+                            getProfileStoreFileOriginalExt( candidateProperties ) );       
         return profile;
     }
     
@@ -194,6 +212,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      * @since 3.2.3 (DTP 1.8)
      */
     private File getProfileStoreFile( Properties candidateProperties, Object connPropContext )
+        throws OdaException
     {
         // a profile store mapping specified in the connPropContext map, if exists, 
         // takes precedence over the file path specified in the properties
@@ -248,10 +267,19 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      */
     protected File getProfileStoreFile( Properties candidateProperties )
     {
-        return getProfileStoreFileFromProperties( candidateProperties, null );
+        try
+        {
+            return getProfileStoreFileFromProperties( candidateProperties, null );
+        }
+        catch( OdaException ex )
+        {
+            // for backward compatibility; ignore and continue
+        }
+        return null;
     }
     
     private File getProfileStoreFileFromProperties( Properties candidateProperties, Object connPropContext )
+            throws OdaException
     {
         if( ! hasProfileStoreFilePath( candidateProperties ) )
             return null;    // no profile file path specified
@@ -293,10 +321,19 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      */
     protected File getProfileStoreFile( String filePath )
     {
-        return getAbsoluteProfileStoreFile( filePath, null );
+        try
+        {
+            return getAbsoluteProfileStoreFile( filePath, null );
+        }
+        catch( OdaException ex )
+        {
+            // for backward compatibility; ignore and continue
+        }
+        return null;
     }
     
     private File getAbsoluteProfileStoreFile( String filePath, Object connPropContext )
+            throws OdaException
     {
         if( filePath == null || filePath.length() == 0 )
             return null;
@@ -307,7 +344,19 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return file;
 
         // try to resolve a relative file path, if defined
-        File resolvedStoreFile = resolveRelativePath( filePath, connPropContext );
+        File resolvedStoreFile = null;
+        OdaException relativePathEx = null;
+        try
+        {
+            resolvedStoreFile = resolveRelativePath( filePath, connPropContext );
+        }
+        catch( OdaException ex )
+        {
+            // catch exception in resolving the filePath as a relative path, 
+            // so to throw the correct exception if unable to resolve it as an URL below
+            relativePathEx = ex;
+        }
+        
         if( resolvedStoreFile != null && resolvedStoreFile.exists() )
         {
             // cache the file extension of the original relative file path, if an extension exists and
@@ -315,31 +364,38 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             String relativeFileExt = getFileExtension( filePath );
             if( relativeFileExt != null && ! relativeFileExt.equals( getFileExtension( resolvedStoreFile.getPath() ) ))
                 m_profileStoreFileExt = relativeFileExt;
+
             return resolvedStoreFile;
         }
 
-        // next try to parse the filePath argument as an url on web
+        // problem with resolving the relative path to an existing File;
+        // next try to parse the filePath argument as an URL
+        OdaException invalidUrlEx = null;
         try
         {
             URL url = new URL( filePath );
             return new File( PluginResourceLocator.toFileURL( url ).toURI() );
         }
-        catch( MalformedURLException ex )
+        catch( Exception ex )
         {
             getLogger().fine( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
+            invalidUrlEx = new OdaException( ex );
         }
-        catch( URISyntaxException ex )
+
+        // problem with treating the filePath argument as an url;
+        // the main issue was due to the specified filePath is a relative path but failed to resolve,
+        // thus, throw the relative path exception previously caught instead
+        if( relativePathEx != null )
         {
-            getLogger().fine( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
+            relativePathEx.setNextException( invalidUrlEx );
+            throw relativePathEx;
         }
-        catch( IOException ex )
-        {
-            getLogger().warning( "getAbsoluteProfileStoreFile(String,Object): " + ex.toString() );  //$NON-NLS-1$
-        }
-        return null;        
+        
+        throw invalidUrlEx;
     }
 
     private File resolveRelativePath( String filePath, Object connPropContext )
+            throws OdaException
     {
         if( connPropContext == null || ! ( connPropContext instanceof Map ) )
             return null;
@@ -362,12 +418,12 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return new File( resolvedFilePathURI );
         }
         
-        getLogger().warning( Messages.bind( Messages.propertyProvider_UNABLE_TO_RESOLVE_PATH,
+        // unable to resolve the relative path
+        throw new OdaException( Messages.bind( Messages.propertyProvider_UNABLE_TO_RESOLVE_PATH,
                 new Object[]{
                 resourceIdentifiersObj.getClass().getName(), 
                 fileURI,
                 ResourceIdentifiers.getApplResourceBaseURI( resourceIdentifiersObj ) } ));   
-        return null;
     }
 
     private static String getFileExtension( String filename )
