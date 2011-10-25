@@ -1,6 +1,8 @@
 wizard.title.selectColumns=Ñ¡ÔñÁĞ
-wizard.defaultMessage.selectFolder=Ñ¡Ôñ°üº¬Æ½ÃæÎÄ¼şµÄÎÄ¼ş¼Ğ»òÊäÈëÆ½ÃæÎÄ¼şµÄ URI¡£
 wizard.defaultMessage.selectFile=ÎªÊı¾İ¼¯Ñ¡ÔñÎÄ¼şºÍÁĞ¡£
+wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+
+FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
 
 label.selectFolder=Ñ¡ÔñÖ÷ÎÄ¼ş¼Ğ(&E): 
 label.fileURI=ÊäÈëÎÄ¼ş URI(&U):
@@ -84,3 +86,5 @@ Connection.warning.untested=ÉĞÎ´²âÊÔÁ¬½Ó¡£ ÔÚ±£´æ´ËÊı¾İÔ´ÅäÖÃÎÄ¼şÖ®Ç°Çë²âÊÔÁ¬½Ó¡
 Connection.error.invalidPath=Î´ÕÒµ½ÓĞĞ§µÄÆ½ÃæÎÄ¼ş¡£
 Connection.error.invalidHomeFolder=ÎŞĞ§Æ½ÃæÎÄ¼şÖ÷ÎÄ¼ş¼Ğ <{0}>¡£
 Connection.error.invalidFileURI=ÎŞĞ§Æ½ÃæÎÄ¼ş URI Â·¾¶ <{0}>¡£
+
+RelativeFileSelectionDialog.Title.SelectFile=Select File

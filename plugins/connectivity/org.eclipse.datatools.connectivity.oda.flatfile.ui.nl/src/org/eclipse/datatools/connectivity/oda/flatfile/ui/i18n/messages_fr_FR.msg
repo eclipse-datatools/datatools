@@ -1,6 +1,8 @@
 wizard.title.selectColumns=Sélection des colonnes
-wizard.defaultMessage.selectFolder=Sélectionnez un dossier contenant les fichiers plats ou saisissez un URI pour le fichier plat.
 wizard.defaultMessage.selectFile=Sélectionnez le fichier et les colonnes pour le jeu de données.
+wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+
+FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
 
 label.selectFolder=Sél&ectionnez un dossier racine : 
 label.fileURI=Saisissez l'&URI de fichier :
@@ -84,3 +86,5 @@ Connection.warning.untested=Connexion non testée. Veuillez tester la connexion a
 Connection.error.invalidPath=Impossible de trouver un emplacement valide pour les fichiers plats.
 Connection.error.invalidHomeFolder=Dossier racine <{0}> du fichier plat non valide.
 Connection.error.invalidFileURI=Chemin URI <{0}> du fichier plat non valide.
+
+RelativeFileSelectionDialog.Title.SelectFile=Select File

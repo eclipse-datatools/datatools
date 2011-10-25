@@ -1,6 +1,8 @@
 wizard.title.selectColumns=—ñ‚Ì‘I‘ğ
-wizard.defaultMessage.selectFolder=ƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚ª“ü‚Á‚Ä‚¢‚éƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚·‚é‚©Aƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Ì URI ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 wizard.defaultMessage.selectFile=ƒf[ƒ^ƒZƒbƒg‚Ìƒtƒ@ƒCƒ‹‚Æ—ñ‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B
+wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+
+FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
 
 label.selectFolder=ƒz[ƒ€ƒtƒHƒ‹ƒ_‚Ì‘I‘ğ(&E): 
 label.fileURI=ƒtƒ@ƒCƒ‹‚Ì URI ‚Ì“ü—Í(&U):
@@ -84,3 +86,5 @@ Connection.warning.untested=Ú‘±‚ªƒeƒXƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB ‚±‚Ìƒf[ƒ^ƒ\[ƒXƒvƒƒtƒ
 Connection.error.invalidPath=—LŒø‚Èƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚ÌêŠ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 Connection.error.invalidHomeFolder=ƒtƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Ìƒz[ƒ€ƒtƒHƒ‹ƒ_ <{0}> ‚ª–³Œø‚Å‚·B
 Connection.error.invalidFileURI=ƒvƒ‰ƒbƒgƒtƒ@ƒCƒ‹‚Ì URI ƒpƒX <{0}> ‚ª–³Œø‚Å‚·B
+
+RelativeFileSelectionDialog.Title.SelectFile=Select File
