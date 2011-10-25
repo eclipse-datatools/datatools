@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -60,7 +61,7 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 
 		this.setValidator( new SelectionValidator( ) );
 		this.setInput( rootFolder.getAbsolutePath( ) );
-		this.setTitle( "SelectFile.Title" ); //$NON-NLS-1$
+		this.setTitle( Messages.getString( "RelativeFileSelectionDialog.Title.SelectFile" ) ); //$NON-NLS-1$
 		this.rootFolder = rootFolder;
 	}
 
