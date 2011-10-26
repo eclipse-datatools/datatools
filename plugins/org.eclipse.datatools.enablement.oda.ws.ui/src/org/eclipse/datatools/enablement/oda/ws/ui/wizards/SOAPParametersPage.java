@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
@@ -407,7 +408,14 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		IWizardPage page = super.getNextPage( );
 		if ( page instanceof SOAPRequestPage )
-			( (SOAPRequestPage) page ).refresh( );
+			try
+			{
+				( (SOAPRequestPage) page ).refresh( );
+			}
+			catch ( OdaException e )
+			{
+				this.setErrorMessage( e.getMessage( ) );
+			}
 
 		return page;
 	}
@@ -458,7 +466,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 		WSConsole.getInstance( ).terminateSession( );
 	}
 
-	void refresh( boolean refreshParameters )
+	void refresh( boolean refreshParameters ) throws OdaException
 	{
 		wsQueryText = WSConsole.getInstance( ).getTemplate( );
 		initViewer( refreshParameters );

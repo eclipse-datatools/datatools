@@ -413,12 +413,19 @@ public class OperationPage extends DataSetWizardPage
 	protected boolean canLeave( )
 	{
 		saveToModle( );
-		testDirty( );
+		try
+		{
+			testDirty( );
+		}
+		catch ( OdaException e )
+		{
+			this.setErrorMessage( e.getMessage( ) );
+		}
 
 		return super.canLeave( );
 	}
 
-	private void testDirty( )
+	private void testDirty( ) throws OdaException
 	{
 		if ( !WSUtil.isNull( initOperationTrace )
 				&& !initOperationTrace.equals( operationTrace ) )
@@ -437,7 +444,7 @@ public class OperationPage extends DataSetWizardPage
 			}
 	}
 
-	private void regenerateTemplate( )
+	private void regenerateTemplate( ) throws OdaException
 	{
 		wsQuery = WSConsole.getInstance( ).getTemplate( );
 		if ( !WSUtil.isNull( wsQuery ) )
@@ -466,7 +473,14 @@ public class OperationPage extends DataSetWizardPage
 
 		IWizardPage page = super.getNextPage( );
 		if ( page instanceof SOAPParametersPage )
-			( (SOAPParametersPage) page ).refresh( selectionChanged );
+			try
+			{
+				( (SOAPParametersPage) page ).refresh( selectionChanged );
+			}
+			catch ( OdaException e )
+			{
+				this.setErrorMessage( e.getMessage( ) );
+			}
 
 		selectionChanged = false;		
 		return page;

@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.oda.ws.ui.wizards;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
@@ -142,8 +143,15 @@ public class SOAPRequestPage extends DataSetWizardPage
 			{
 				if ( MessageDialog.openConfirm( null,
 						Messages.getString( "soapRequestPage.title.regenerateTemplate" ), //$NON-NLS-1$
-						Messages.getString( "soapRequestPage.message.regenerateTemplate" ) ) ) //$NON-NLS-1$
-					regenerateTemplate( );
+						Messages.getString( "soapRequestPage.message.regenerateTemplate" ) ) )
+					try
+					{
+						regenerateTemplate( );
+					}
+					catch ( OdaException e1 )
+					{
+						setErrorMessage( e1.getMessage( ) );
+					}
 			}
 
 		} );
@@ -202,7 +210,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		return length > width ? length : width;
 	}
 
-	private void regenerateTemplate( )
+	private void regenerateTemplate( ) throws OdaException
 	{
 		queryText.setText( WSConsole.getInstance( ).getTemplate( ) );
 		parameters = WSConsole.getInstance( ).getParameters( );
@@ -276,7 +284,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		initFromModel( );
 	}
 
-	void refresh( )
+	void refresh( ) throws OdaException
 	{
 		String value = WSConsole.getInstance( ).manipulateTemplate( );
 		if ( value != null )

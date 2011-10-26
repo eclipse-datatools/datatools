@@ -371,10 +371,11 @@ public class WSConsole
 	/**
 	 * 
 	 * @return
+	 * @throws OdaException 
 	 */
-	public String getTemplate( )
+	public String getTemplate( ) throws OdaException
 	{
-		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		WSDLAdvisor wsdlAdvisor = new WSDLAdvisor( );
 		return wsdlAdvisor.getSOAPRequestTemplate( getPropertyValue( Constants.WSDL_URI ),
 				getPropertyValue( Constants.OPERATION_TRACE ) );
 	}
@@ -751,8 +752,9 @@ public class WSConsole
 	 * @param queryText
 	 * @param params
 	 * @return
+	 * @throws OdaException
 	 */
-	public String manipulateTemplate( )
+	public String manipulateTemplate( ) throws OdaException
 	{
 		SOAPRequest soapRequest = new SOAPRequest( getPropertyValue( Constants.WS_QUERYTEXT ) );
 		String[] template = soapRequest.getTemplate( );

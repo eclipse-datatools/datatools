@@ -18,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Vector;
 
 import javax.wsdl.Binding;
 import javax.wsdl.BindingInput;
@@ -40,6 +39,8 @@ import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLReader;
 import javax.xml.namespace.QName;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.ws.i18n.Messages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -270,8 +271,10 @@ public class WSDLAdvisor
 	 * @param wsdlURI
 	 * @param operationTrace
 	 * @return
+	 * @throws OdaException 
 	 */
 	public String getSOAPRequestTemplate( String wsdlURI, String operationTrace )
+			throws OdaException
 	{
 		String template = EMPTY_STRING;
 		if ( !checkOperationTrace( operationTrace ) )
@@ -289,15 +292,16 @@ public class WSDLAdvisor
 	}
 
 	/**
-	 * Generates the Response template when the system can not get the response from
-	 * the target wsdlURI,will use the sample data to generate the template    
+	 * Generates the Response template when the system can not get the response
+	 * from the target wsdlURI,will use the sample data to generate the template
 	 * 
 	 * @param wsdlURI
 	 * @param operationTrace
 	 * @return
+	 * @throws OdaException
 	 */
 	public String getLocalSOAPResponseTemplate( String wsdlURI,
-			String operationTrace )
+			String operationTrace ) throws OdaException
 	{
 		String template = EMPTY_STRING;
 		if ( !checkOperationTrace( operationTrace ) )
@@ -1284,9 +1288,10 @@ public class WSDLAdvisor
 	 * @param operationTrace
 	 * @param inOrOutput(value
 	 *            is "in" or "out")
+	 * @throws OdaException 
 	 */
 	private String buildBody( String wsdlURI, String operationTrace,
-			String inOrOutput )
+			String inOrOutput ) throws OdaException
 	{
 		String result = enter( ) + tab( 1 ) + SOAP_BODY_START;
 
@@ -1303,6 +1308,7 @@ public class WSDLAdvisor
 	}
 
 	private static boolean isRPC( String wsdlURI, String operationTrace )
+			throws OdaException
 	{
 		boolean isRPC = false;
 
@@ -1310,7 +1316,15 @@ public class WSDLAdvisor
 		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
 		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
 				opSplit[0] ) );// service
+		if ( service == null )
+		{
+			throw new OdaException( Messages.getString( "service.notexist" ) );
+		}
 		Port port = service.getPort( opSplit[1] );// port
+		if ( port == null )
+		{
+			throw new OdaException( Messages.getString( "port.notexist" ) );
+		}
 		Binding binding = port.getBinding( );
 		List extElements = binding.getExtensibilityElements( );
 
