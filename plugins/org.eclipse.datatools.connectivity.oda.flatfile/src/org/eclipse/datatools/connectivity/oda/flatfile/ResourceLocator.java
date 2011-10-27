@@ -19,6 +19,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
@@ -114,11 +115,37 @@ public final class ResourceLocator
 		{
 			try
 			{
-				URI uri = new URI( convertURI(fileURI) );
-				if ( uri.getScheme( ) == null && resourceIdentifiers != null) // Having a relative path
+				URI uri = null;
+				File file = new File(fileURI);
+				if ( file.isAbsolute( ) )
 				{
-                    URI uriResolved = ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
-					uri = uriResolved == null ? uri : uriResolved;
+					if ( !file.exists( ) )
+					{
+						throw new InvalidResourceException( InvalidResourceException.ERROR_INVALID_RESOURCE,
+								MessageFormat.format( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_URI" ), //$NON-NLS-1$
+										new Object[]{
+												fileURI,
+												new FileNotFoundException( )
+										} ) );
+					}
+					uri = file.toURI( );
+				}
+				else
+				{
+					try
+					{
+						uri = new URI( fileURI );
+					}
+					catch ( URISyntaxException ex )
+					{
+						uri = new URI( null, null, convertURI( fileURI ), null );
+					}
+					
+					if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
+					{
+						URI uriResolved = ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
+						uri = uriResolved == null ? uri : uriResolved;
+					}
 				}
 				stream = new ResourceInputStream( uri.toURL( ).openStream( ), fileURI );
 			}
