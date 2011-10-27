@@ -34,7 +34,7 @@ public class RemoteFileTest extends TestCase
 	{
 		super.setUp( );
 		connection = new Connection( );
-		TestUtil.createTestFile( CommonConstants.DELIMITER_COMMA );
+		TestUtil.createTestFile( CommonConstants.DELIMITER_COMMA_VALUE );
 	}
 
 	protected void tearDown( ) throws Exception
@@ -120,6 +120,62 @@ public class RemoteFileTest extends TestCase
 		resultSet.close( );
 		statement.close( );
 	}
+	
+	public void testRelativeURI2( ) throws Exception
+	{
+		String tab = TestUtil.COMPLICATE_TAB_NAMES[1] + TestUtil.SUFFIX_COMMA + TestUtil.CSV_EXTENSION;
+		Properties prop = new Properties( );
+		prop.setProperty( CommonConstants.CONN_FILE_URI_PROP, tab );
+		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+				CommonConstants.INC_COLUMN_NAME_YES );
+		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
+				CommonConstants.INC_TYPE_LINE_NO );
+		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+				CommonConstants.DELIMITER_COMMA );
+		prop.setProperty( CommonConstants.CONN_CHARSET_PROP,
+				CommonConstants.CONN_DEFAULT_CHARSET );
+		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+				CommonConstants.TRAIL_NULL_COLS_NO );
+
+		ResourceIdentifiers ri = new ResourceIdentifiers( );
+		ri.setApplResourceBaseURI( new File( TestUtil.getHomeDir( ) ).toURI( ) );
+		HashMap<String, ResourceIdentifiers> appContext = new HashMap<String, ResourceIdentifiers>( );
+		appContext.put( ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS,
+				ri );
+		connection.setAppContext( appContext );
+
+		connection.open( prop );
+		statement = connection.newQuery( "FLATFILE" ); //$NON-NLS-1$
+		String query = "select " //$NON-NLS-1$
+				+ "\"" + TestUtil.COMPLICATE_TAB_COLNAMES[0] + "\",\""  //$NON-NLS-1$//$NON-NLS-2$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[1] + "\",\"" //$NON-NLS-1$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[2] + "\",\"" //$NON-NLS-1$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[3] + "\" from " //$NON-NLS-1$
+				+ "\"" + tab + "\"";  //$NON-NLS-1$//$NON-NLS-2$
+		
+		statement.prepare( query ); 
+		IResultSet resultSet = statement.executeQuery( );
+		
+		assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 1 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[1].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 2 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[2].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 3 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[3].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 4 ) ) );
+
+		int id = 0;
+		while ( resultSet.next( ) )
+		{
+			assertEquals( resultSet.getRow( ), ++id );
+		}
+		assertEquals( 10, id );
+
+		resultSet.close( );
+		statement.close( );
+	}
 
 	public void testLocalAbsoluteURI( ) throws Exception
 	{
@@ -149,6 +205,55 @@ public class RemoteFileTest extends TestCase
 			assertEquals( resultSet.getRow( ), ++id );
 		}
 		assertEquals( 1234, id );
+
+		resultSet.close( );
+		statement.close( );
+	}
+	
+	public void testLocalAbsoluteURI2( ) throws Exception
+	{
+		String tab = TestUtil.getHomeDir( ) + "/" + TestUtil.COMPLICATE_TAB_NAMES[1] + TestUtil.SUFFIX_COMMA + TestUtil.CSV_EXTENSION; //$NON-NLS-1$
+		Properties prop = new Properties( );
+		prop.setProperty( CommonConstants.CONN_FILE_URI_PROP, tab );
+		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+				CommonConstants.INC_COLUMN_NAME_YES );
+		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
+				CommonConstants.INC_TYPE_LINE_NO );
+		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+				CommonConstants.DELIMITER_COMMA );
+		prop.setProperty( CommonConstants.CONN_CHARSET_PROP,
+				CommonConstants.CONN_DEFAULT_CHARSET );
+		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+				CommonConstants.TRAIL_NULL_COLS_NO );
+
+		connection.open( prop );
+		statement = connection.newQuery( "FLATFILE" ); //$NON-NLS-1$
+		String query = "select " //$NON-NLS-1$
+				+ "\"" + TestUtil.COMPLICATE_TAB_COLNAMES[0] + "\",\""  //$NON-NLS-1$//$NON-NLS-2$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[1] + "\",\"" //$NON-NLS-1$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[2] + "\",\"" //$NON-NLS-1$
+				+ TestUtil.COMPLICATE_TAB_COLNAMES[3] + "\" from " //$NON-NLS-1$
+				+ "\"" + tab + "\"";  //$NON-NLS-1$//$NON-NLS-2$
+		
+		statement.prepare( query ); 
+		IResultSet resultSet = statement.executeQuery( );
+		
+		assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 1 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[1].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 2 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[2].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 3 ) ) );
+		assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[3].equalsIgnoreCase( resultSet.getMetaData( )
+				.getColumnName( 4 ) ) );
+
+		int id = 0;
+		while ( resultSet.next( ) )
+		{
+			assertEquals( resultSet.getRow( ), ++id );
+		}
+		assertEquals( 10, id );
 
 		resultSet.close( );
 		statement.close( );
