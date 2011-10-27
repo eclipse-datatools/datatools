@@ -303,8 +303,6 @@ public class FolderSelectionPageHelper
 			charSetSelectionCombo.select( 0 );
 		else
 			charSetSelectionCombo.select( charSetSelectionCombo.indexOf( charSet ) );
-
-		verifyFileLocation( );
 	}
 
 	/**
@@ -354,21 +352,21 @@ public class FolderSelectionPageHelper
 		String path = file;
 		if ( file != null && file.length( ) > 0 )
 		{
-			try
+			File f = new File( file );
+			if ( f.isAbsolute( ) )
 			{
-				new URI( file );
+				path = file.replace( '\\', '/' );
 			}
-			catch ( URISyntaxException e )
+			else
 			{
-				// Contains back slash or invalid.
 				try
 				{
-					URI uri = new URI( file.replace( '\\', '/' ) );
-					if ( !uri.isAbsolute( ) )
-						path = uri.toString( );
+					new URI( file );
 				}
-				catch ( URISyntaxException e1 )
+				catch ( URISyntaxException e )
 				{
+					// Contains back slash or invalid.
+					path = file.replace( '\\', '/' );
 				}
 			}
 		}
