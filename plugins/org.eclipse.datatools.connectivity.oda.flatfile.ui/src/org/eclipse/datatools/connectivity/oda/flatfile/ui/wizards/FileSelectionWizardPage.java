@@ -950,7 +950,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 
 		// Home folder mode
-		if ( file.equals( selectedFile ) )
+		if ( file.equals( selectedFile ) || selectedFile == null )
 			return;
 		else
 		{
@@ -1027,6 +1027,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				setMessage( Messages.getFormattedString( "warning.columnNotExist", new Object[]{columnName} ), //$NON-NLS-1$
 						ERROR );
 				pageComplete = false;
+				break;
 			}
 		}
 		if ( savedSelectedColumnsInfoList.size( ) <= 0)
@@ -1044,11 +1045,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void loadProperties( )
 	{
-        DataSourceDesign dataSourceDesign = getInitializationDesign( ).getDataSourceDesign( );
+	    DataSourceDesign dataSourceDesign = getInitializationDesign( ).getDataSourceDesign( );
 		java.util.Properties dataSourceProps = null;
 		try
 		{
-            dataSourceProps = DesignSessionUtil.getEffectiveDataSourceProperties( dataSourceDesign );
+			dataSourceProps = DesignSessionUtil.getEffectiveDataSourceProperties( dataSourceDesign );
 		}
 		catch ( OdaException e )
 		{
@@ -1059,8 +1060,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		String sourcePath = dataSourceProps.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
 		if ( sourcePath != null )
 		{
-            File cpFile = DesignUtil.convertPathToResourceFile( sourcePath, dataSourceDesign.getHostResourceIdentifiers() );
-            if ( cpFile == null )
+			File cpFile = DesignUtil.convertPathToResourceFile( sourcePath, dataSourceDesign.getHostResourceIdentifiers() );
+			if ( cpFile == null )
 			{
 				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{ sourcePath } ), ERROR ); //$NON-NLS-1$
 				return;
@@ -1432,8 +1433,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
 
-        Map<String, Object> appContext = 
-                DesignSessionUtil.createResourceIdentifiersContext( getHostResourceIdentifiers() );
+		Map<String, Object> appContext = 
+		    DesignSessionUtil.createResourceIdentifiersContext( getHostResourceIdentifiers() );
 		conn.setAppContext( appContext );
 		conn.open( prop );
 
@@ -1447,7 +1448,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	
 	private ResourceIdentifiers getResourceIdentifiers( )
 	{
-        return DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers() );
+	    return DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers() );
 	}
 
 	/**
