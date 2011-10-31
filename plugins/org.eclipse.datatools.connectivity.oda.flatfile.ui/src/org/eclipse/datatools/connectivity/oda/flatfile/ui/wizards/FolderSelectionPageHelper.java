@@ -88,15 +88,14 @@ public class FolderSelectionPageHelper
 
 	private SortedMap<String, Charset> charSetMap;
 
-	static final String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
+	static final String DEFAULT_MESSAGE = Messages.getString( "FolderSelectionPageHelper.SelectFolderDialog.Title" ); //$NON-NLS-1$
 
 	private static final int CORRECT_FOLDER = InvalidResourceException.CORRECT_RESOURCE;
 	private static final int ERROR_INVALID_PATH = InvalidResourceException.ERROR_INVALID_RESOURCE;
-	private static final int ERROR_EMPTY_PATH = InvalidResourceException.ERROR_EMPTY_RESOURCE;
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
-	private static final Integer SELECT_ABSOLUTE_PATH = 1;
-	private static final Integer SELECT_RELATIVE_PATH = 2;
+	private static final Integer SELECT_RELATIVE_PATH = 1;
+	private static final Integer SELECT_ABSOLUTE_PATH = 2;
 
 	FolderSelectionPageHelper( WizardPage page )
 	{
@@ -303,6 +302,8 @@ public class FolderSelectionPageHelper
 			charSetSelectionCombo.select( 0 );
 		else
 			charSetSelectionCombo.select( charSetSelectionCombo.indexOf( charSet ) );
+
+		verifyFileLocation( );
 	}
 
 	/**
@@ -352,21 +353,21 @@ public class FolderSelectionPageHelper
 		String path = file;
 		if ( file != null && file.length( ) > 0 )
 		{
-			File f = new File( file );
-			if ( f.isAbsolute( ) )
+			try
 			{
-				path = file.replace( '\\', '/' );
+				new URI( file );
 			}
-			else
+			catch ( URISyntaxException e )
 			{
+				// Contains back slash or invalid.
 				try
 				{
-					new URI( file );
+					URI uri = new URI( file.replace( '\\', '/' ) );
+					if ( !uri.isAbsolute( ) )
+						path = uri.toString( );
 				}
-				catch ( URISyntaxException e )
+				catch ( URISyntaxException e1 )
 				{
-					// Contains back slash or invalid.
-					path = file.replace( '\\', '/' );
 				}
 			}
 		}
@@ -537,20 +538,21 @@ public class FolderSelectionPageHelper
 				}
 			}
 		};
-		MenuItem item = new MenuItem( menu, SWT.PUSH );
-		item.setText( Messages.getString("button.selectFileURI.menuItem.absolutePath") ); //$NON-NLS-1$
-		item.setData( SELECT_ABSOLUTE_PATH );
-		item.addSelectionListener( action );
 
-		// Add relative path selection support while having resource identifier
+		MenuItem item = new MenuItem( menu, SWT.PUSH );
 		if ( ri != null )
 		{
-			item = new MenuItem( menu, SWT.PUSH );
 			item.setText( Messages.getString( "button.selectFileURI.menuItem.relativePath" ) ); //$NON-NLS-1$
 			item.setData( SELECT_RELATIVE_PATH );
 			item.addSelectionListener( action );
 		}
 		
+		item = new MenuItem( menu, SWT.PUSH );
+		item.setText( Messages.getString("button.selectFileURI.menuItem.absolutePath") ); //$NON-NLS-1$
+		item.setData( SELECT_ABSOLUTE_PATH );
+		item.addSelectionListener( action );
+
+		// Add relative path selection support while having resource identifier
 		browseLocalFileButton.setDropDownMenu( menu  );
 		browseLocalFileButton.addSelectionListener( action );
 	}
