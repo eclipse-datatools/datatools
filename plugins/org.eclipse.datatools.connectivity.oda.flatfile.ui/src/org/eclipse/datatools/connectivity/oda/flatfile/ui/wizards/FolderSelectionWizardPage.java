@@ -18,6 +18,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.swt.widgets.Composite;
 
 public class FolderSelectionWizardPage extends DataSourceWizardPage
@@ -29,8 +30,7 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
 	public FolderSelectionWizardPage( String pageName )
 	{
 		super( pageName );
-		setMessage( FolderSelectionPageHelper.DEFAULT_MESSAGE ); 
-		// page title is specified in extension manifest
+		setMessage( Messages.getString( "wizard.WizardTitle.DEFAULT_MESSAGE" ) );  //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
