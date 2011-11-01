@@ -168,7 +168,7 @@
         <property name="output.dir" value="${buildDirectory}"/>
 		<property name="manifest" value="META-INF/MANIFEST.MF"/>
 	
-		<replace dir="${work.dir}" value="${org.eclipse.datatools.doc.isv}" token="1.9.0.qualifier">
+		<replace dir="${work.dir}" value="${org.eclipse.datatools.doc.isv}" token="1.9.2.qualifier">
 			<include name="META-INF/MANIFEST.MF" />
 		</replace>
 		
