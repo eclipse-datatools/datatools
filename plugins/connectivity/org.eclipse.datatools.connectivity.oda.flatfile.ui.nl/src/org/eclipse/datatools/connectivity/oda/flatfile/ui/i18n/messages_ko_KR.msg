@@ -1,8 +1,8 @@
 wizard.title.selectColumns=열 선택
 wizard.defaultMessage.selectFile=데이터 집합에 대한 파일 및 열 선택을 선택합니다.
-wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+wizard.WizardTitle.DEFAULT_MESSAGE=플랫 파일을 포함하는 폴더를 선택하거나 또는 플랫 파일 URI를 입력하십시오.
 
-FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
+FolderSelectionPageHelper.SelectFolderDialog.Title=플랫 파일이 들어 있는 폴더 선택합니다.
 
 label.selectFolder=홈 폴더 선택(&E): 
 label.fileURI=파일 URI 입력(&U)
@@ -87,4 +87,4 @@ Connection.error.invalidPath=유효한 플랫 파일 위치를 찾을 수 없습니다.
 Connection.error.invalidHomeFolder=잘못된 플랫 파일 홈 폴더 <{0}>입니다.
 Connection.error.invalidFileURI=잘못된 플랫 파일 URI 경로 <{0}>입니다.
 
-RelativeFileSelectionDialog.Title.SelectFile=Select File
+RelativeFileSelectionDialog.Title.SelectFile=파일 선택

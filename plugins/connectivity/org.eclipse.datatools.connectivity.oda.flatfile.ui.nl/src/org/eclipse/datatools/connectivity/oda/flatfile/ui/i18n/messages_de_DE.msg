@@ -1,8 +1,8 @@
 wizard.title.selectColumns=Spalten auswählen
 wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
-wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+wizard.WizardTitle.DEFAULT_MESSAGE=Wählen Sie einen Ordner mit unstrukturierten Dateien aus, oder geben Sie einen URI für die unstrukturierte Datei ein.
 
-FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
+FolderSelectionPageHelper.SelectFolderDialog.Title=Ordner mit den unstrukturierten Dateien auswählen.
 
 label.selectFolder=Stammordner auswähl&en 
 label.fileURI=Datei-&URI eingeben:
@@ -87,4 +87,4 @@ Connection.error.invalidPath=Es wurden keine gültigen Speicherorte für unstruktu
 Connection.error.invalidHomeFolder=Ungültiger Stammordner <{0}> für unstrukturierte Dateien.
 Connection.error.invalidFileURI=Ungültiger URI-Pfad <{0}> für unstrukturierte Dateien.
 
-RelativeFileSelectionDialog.Title.SelectFile=Select File
+RelativeFileSelectionDialog.Title.SelectFile=Datei auswählen

@@ -1,8 +1,8 @@
 wizard.title.selectColumns=选择列
 wizard.defaultMessage.selectFile=为数据集选择文件和列。
-wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+wizard.WizardTitle.DEFAULT_MESSAGE=选择包含平面文件的文件夹或输入平面文件的 URI。
 
-FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
+FolderSelectionPageHelper.SelectFolderDialog.Title=选择一个包含平面文件的文件夹。
 
 label.selectFolder=选择主文件夹(&E): 
 label.fileURI=输入文件 URI(&U):
@@ -87,4 +87,4 @@ Connection.error.invalidPath=未找到有效的平面文件。
 Connection.error.invalidHomeFolder=无效平面文件主文件夹 <{0}>。
 Connection.error.invalidFileURI=无效平面文件 URI 路径 <{0}>。
 
-RelativeFileSelectionDialog.Title.SelectFile=Select File
+RelativeFileSelectionDialog.Title.SelectFile=选择文件

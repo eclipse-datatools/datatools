@@ -1,8 +1,8 @@
 wizard.title.selectColumns=列の選択
 wizard.defaultMessage.selectFile=データセットのファイルと列を選択してください。
-wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+wizard.WizardTitle.DEFAULT_MESSAGE=フラットファイルが入っているフォルダを選択するか、フラットファイルの URI を入力してください。
 
-FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
+FolderSelectionPageHelper.SelectFolderDialog.Title=フラットファイルが入っているフォルダを選択してください。
 
 label.selectFolder=ホームフォルダの選択(&E): 
 label.fileURI=ファイルの URI の入力(&U):
@@ -87,4 +87,4 @@ Connection.error.invalidPath=有効なフラットファイルの場所が見つかりません。
 Connection.error.invalidHomeFolder=フラットファイルのホームフォルダ <{0}> が無効です。
 Connection.error.invalidFileURI=プラットファイルの URI パス <{0}> が無効です。
 
-RelativeFileSelectionDialog.Title.SelectFile=Select File
+RelativeFileSelectionDialog.Title.SelectFile=ファイルの選択

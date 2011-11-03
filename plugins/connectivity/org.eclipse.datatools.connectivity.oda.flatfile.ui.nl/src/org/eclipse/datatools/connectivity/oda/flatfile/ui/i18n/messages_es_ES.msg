@@ -1,8 +1,8 @@
 wizard.title.selectColumns=Seleccionar columnas
 wizard.defaultMessage.selectFile=Seleccione el archivo y las columnas del conjunto de datos.
-wizard.WizardTitle.DEFAULT_MESSAGE=Select a folder that contains the flat files or enter an URI for the flat file.
+wizard.WizardTitle.DEFAULT_MESSAGE=Seleccione una carpeta que contenga los archivos sin formato o introduzca un URI para el archivo sin formato.
 
-FolderSelectionPageHelper.SelectFolderDialog.Title=Select a folder that contains the flat files.
+FolderSelectionPageHelper.SelectFolderDialog.Title=Seleccione una carpeta que contenga los archivos sin formato.
 
 label.selectFolder=S&eleccionar carpeta inicial: 
 label.fileURI=Introducir &URI de archivo:
@@ -87,4 +87,4 @@ Connection.error.invalidPath=No se han encontrado ubicaciones de archivo sin for
 Connection.error.invalidHomeFolder=Carpeta inicial de archivo sin formato no válida <{0}>.
 Connection.error.invalidFileURI=Ruta de URI de archivo sin formato no válida <{0}>.
 
-RelativeFileSelectionDialog.Title.SelectFile=Select File
+RelativeFileSelectionDialog.Title.SelectFile=Seleccionar archivo
