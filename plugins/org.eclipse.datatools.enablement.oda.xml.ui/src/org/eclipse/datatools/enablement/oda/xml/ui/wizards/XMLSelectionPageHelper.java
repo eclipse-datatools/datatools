@@ -15,33 +15,39 @@
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Properties;
 
-
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
+import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
+import org.eclipse.datatools.enablement.oda.xml.ui.control.FileSelectionButton;
+import org.eclipse.datatools.enablement.oda.xml.ui.control.IMenuActionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.ResourceLocatorUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * xml selection page helper class
@@ -56,8 +62,10 @@ public class XMLSelectionPageHelper
     private transient Text m_folderLocation = null;
     private transient Text m_schemaLocation = null;
 
-	private transient Button browseFolderButton = null;
+	private transient FileSelectionButton browseFolderButton = null;
 	private transient Combo encodingCombo = null;
+	private transient Composite parent = null;
+	private transient org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers ri = null;
 
     static final String DEFAULT_MESSAGE = 
         Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
@@ -78,6 +86,7 @@ public class XMLSelectionPageHelper
 
     void createCustomControl( Composite parent )
     {
+    	this.parent = parent;
     	this.setMessage( DEFAULT_MESSAGE );
 		Composite composite = new Composite( parent, SWT.NONE );
 		GridLayout layout = new GridLayout( );
@@ -161,7 +170,7 @@ public class XMLSelectionPageHelper
         String folderPath = profileProps.getProperty( Constants.CONST_PROP_FILELIST );
         if( folderPath == null )
             folderPath = EMPTY_STRING;
-        m_folderLocation.setText( folderPath );
+        setFolderLocation( folderPath );
         
         String encoding = profileProps.getProperty( Constants.CONST_PROP_ENCODINGLIST );
         if ( encoding == null )
@@ -172,8 +181,7 @@ public class XMLSelectionPageHelper
 		{
 			encodingCombo.select( getIndex( encoding ) );
 		}
-        
-        setFolderLocation( folderPath );
+       
         String schemaPath = profileProps.getProperty( Constants.CONST_PROP_SCHEMA_FILELIST );
         if( schemaPath == null )
         	schemaPath = EMPTY_STRING;
@@ -213,36 +221,44 @@ public class XMLSelectionPageHelper
 		m_folderLocation = new Text( composite, SWT.BORDER );
 		m_folderLocation.setLayoutData( data );
 
-    	browseFolderButton = new Button( composite, SWT.NONE );
+		browseFolderButton = new FileSelectionButton( composite, SWT.NONE );
 		browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
-		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
+		browseFolderButton.setActionHandler( new IMenuActionHandler( ){
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-			 */
-			public void widgetSelected( SelectionEvent e )
+			public String getBaseFolder( )
 			{
-				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
-
-				.getDisplay( ).getActiveShell( ), SWT.OPEN );
-				dialog.setFilterExtensions( XML_FILTER );
-                String folderLocationValue = getFolderLocationString( );
-				if ( folderLocationValue != null
-						&& folderLocationValue.trim( ).length( ) > 0 )
-				{
-					dialog.setFilterPath( folderLocationValue );
-				}
-
-				String selectedLocation = dialog.open( );
-				if ( selectedLocation != null )
-				{
-					setFolderLocation( selectedLocation );
-				}
+				return getResourceFolder( );
 			}
 
-		} );
+			public String[] getExtensionsFilter( )
+			{
+				return XML_FILTER;
+			}
+
+			public void setPath( String path )
+			{
+				m_folderLocation.setText( path );
+			}
+
+			public String getFilePath( )
+			{
+				return getFolderLocation( );
+			}
+			
+		});
+		
+	}
+	
+	private String getResourceFolder( )
+	{
+		if ( ri != null )
+		{
+			if ( ri.getApplResourceBaseURI( ) != null )
+			{
+				return new File(ri.getApplResourceBaseURI( )).getAbsolutePath( );
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -256,37 +272,31 @@ public class XMLSelectionPageHelper
 		m_schemaLocation = new Text( composite, SWT.BORDER );
 		m_schemaLocation.setLayoutData( data );
 
-		browseFolderButton = new Button( composite, SWT.NONE );
+		browseFolderButton = new FileSelectionButton( composite, SWT.NONE );
 		browseFolderButton.setText( Messages.getString( "schema.choose" ) ); //$NON-NLS-1$
-		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
+		browseFolderButton.setActionHandler( new IMenuActionHandler( ){
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-			 */
-			public void widgetSelected( SelectionEvent e )
+			public String getBaseFolder( )
 			{
-				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
-						.getDisplay( )
-						.getActiveShell( ), SWT.OPEN );
-				dialog.setFilterExtensions( XSD_FILTER );
-
-                String schemaLocationValue = getSchemaLocationString( );
-				if ( schemaLocationValue != null
-						&& schemaLocationValue.trim( ).length( ) > 0 )
-				{
-					dialog.setFilterPath( schemaLocationValue );
-				}
-
-				String selectedLocation = dialog.open( );
-				if ( selectedLocation != null )
-				{
-					setSchemaLocation( selectedLocation );
-				}
+				return getResourceFolder( );
 			}
 
-		} );
+			public String[] getExtensionsFilter( )
+			{
+				return XSD_FILTER;
+			}
+
+			public void setPath( String path )
+			{
+				m_schemaLocation.setText( path );
+			}
+
+			public String getFilePath( )
+			{
+				return getSchemaFileLocation( );
+			}
+			
+		});
 	}
 	
 	/**
@@ -295,7 +305,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setFolderLocation( String text )
 	{
-		m_folderLocation.setText( TextProcessorWrapper.process( text ) );
+		m_folderLocation.setText( ResourceLocatorUtil.processPath( TextProcessorWrapper.process( text ) ) );
 	}
 	
 	/**
@@ -304,7 +314,7 @@ public class XMLSelectionPageHelper
 	 */
 	private String getFolderLocationString( )
 	{
-        return TextProcessorWrapper.deprocess( m_folderLocation.getText( ) );
+        return TextProcessorWrapper.deprocess( ResourceLocatorUtil.processPath( m_folderLocation.getText( ) ) );
 	}
 	
 	/**
@@ -313,7 +323,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setSchemaLocation( String text )
 	{
-		m_schemaLocation.setText( TextProcessorWrapper.process( text ) );
+		m_schemaLocation.setText( ResourceLocatorUtil.processPath( TextProcessorWrapper.process( text ) ) );
 	}
 	
 	/**
@@ -322,7 +332,7 @@ public class XMLSelectionPageHelper
 	 */
 	private String getSchemaLocationString( )
 	{
-        return TextProcessorWrapper.deprocess( m_schemaLocation.getText( ) );
+        return TextProcessorWrapper.deprocess( ResourceLocatorUtil.processPath( m_schemaLocation.getText( ) ) );
 	}
 	
 	/**
@@ -344,5 +354,75 @@ public class XMLSelectionPageHelper
         assert( m_propertyPage != null );
         return m_propertyPage.getControl();
     }
+
+	public Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+	{
+		return new Runnable() 
+        {
+			public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                
+                if ( exception == null ) //succeed in creating connection
+                {
+					try
+					{
+						testConnection( );
+					}
+					catch( Exception ex )
+					{
+						exception = ex;
+					}
+                }
+                
+                PingJob.PingUIJob.showTestConnectionMessage( parent.getShell( ), exception );
+                if( conn != null )
+                {
+                    conn.close();
+                }
+            }
+		};
+	}
+	
+	private void testConnection(  ) throws Exception
+	{
+		String schema = getSchemaFileLocation();
+		String encoding = getEncoding( );
+		if ( schema != null && schema.length( ) > 0 )
+		{
+			//if XML schema is provided, check whether it's valid
+			InputStream is = new XMLSourceFromPath( schema, encoding, ri ).openInputStream( );
+			try
+			{
+				is.close( );
+			}
+			catch ( IOException e )
+			{
+			}
+			//schemaFile provided is valid, this connection at least can be used to fetch meta data 
+		}
+		
+		String xmlFile = getFolderLocation( );
+		if ( xmlFile == null || xmlFile.length( ) <= 0)
+			throw new OdaException( Messages.getString( "error.invalidSource" )); //$NON-NLS-1$
+		
+		InputStream is = new XMLSourceFromPath( xmlFile, encoding, ri ).openInputStream( );
+		try
+		{
+			is.close( );
+		}
+		catch ( IOException e )
+		{
+		}
+	}
  
+	protected void setResourceIdentifiers( ResourceIdentifiers ri )
+	{
+		if ( ri == null )
+			return;
+		
+		this.ri = ResourceIdentifiersUtil.getResourceIdentifiers( ri );
+	}
 }

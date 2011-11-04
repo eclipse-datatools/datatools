@@ -23,6 +23,7 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
@@ -1347,6 +1348,57 @@ public class SaxParserTest extends BaseTest
 		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST28_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST28_GOLDEN_XML ) ) );
+	}
+	
+	/**
+	 * Test relative file
+	 * 
+	 * @throws Exception
+	 */
+	public void test29( ) throws Exception
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST29_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		mt = new MappedTables( testString );
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE_RELATIVE );
+		HashMap appContext = new HashMap();
+		ResourceIdentifiers ri = new ResourceIdentifiers();
+		ri.setApplResourceBaseURI( new File(TestConstants.SMALL_XML_RESOURCE).toURI( ) );
+		appContext.put( ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS, ri );
+		conn.setAppContext( appContext );
+		conn.open( p );
+		rs = new ResultSet( conn,
+				mt,
+				"simple",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+		rs.close( );
+		conn.close( );
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST29_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST29_GOLDEN_XML ) ) );
 	}
 	
 	

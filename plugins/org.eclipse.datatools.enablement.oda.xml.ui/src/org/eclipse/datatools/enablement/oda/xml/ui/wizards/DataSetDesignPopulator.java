@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Driver;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
@@ -59,6 +60,10 @@ public class DataSetDesignPopulator
 			String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 			properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
 					xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
+			
+			conn.setAppContext( ResourceIdentifiersUtil.getAppContext( dataSetDesign.getDataSourceDesign( )
+					.getHostResourceIdentifiers( ) ) );
+			
 			conn.open( properties );
 
 			IQuery query = conn.newQuery( null );

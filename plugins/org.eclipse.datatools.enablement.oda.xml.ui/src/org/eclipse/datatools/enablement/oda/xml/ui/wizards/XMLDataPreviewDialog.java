@@ -28,6 +28,7 @@ public class XMLDataPreviewDialog extends TrayDialog
 {
 
 	private ResultSetTableViewer previewViewer;
+	private Object ri;
 
 	/**
 	 * The constructor of XMLDataPreviewDialog
@@ -38,6 +39,12 @@ public class XMLDataPreviewDialog extends TrayDialog
 	{
 		super( shell );
 	}
+	
+	public XMLDataPreviewDialog( Shell shell, Object resourceIdentifiers )
+	{
+		this( shell );
+		this.ri = resourceIdentifiers;
+	}
 
 	/**
 	 * Create table viewer composite
@@ -46,7 +53,7 @@ public class XMLDataPreviewDialog extends TrayDialog
 	 */
 	public void createTableViewer( Composite parent )
 	{
-		previewViewer = new ResultSetTableViewer( parent, true, true, true );
+		previewViewer = new ResultSetTableViewer( parent, true, true, true, ri );
 		previewViewer.getViewer( ).setHeaderVisible( true );
 		previewViewer.getControl( )
 				.setLayoutData( new GridData( GridData.FILL_BOTH ) );

@@ -21,6 +21,7 @@ import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
@@ -423,7 +424,8 @@ public class XPathChoosePage extends DataSetWizardPage
 			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
 					xmlFileName,
 					xmlEncoding,
-					numberOfElement );
+					numberOfElement,
+					ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers()));
 			if ( treeNode == null
 					|| treeNode.getChildren( ) == null
 					|| treeNode.getChildren( ).length == 0 )

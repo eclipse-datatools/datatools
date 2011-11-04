@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.wsdl.Definition;
 import javax.wsdl.Service;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.ws.BaseTest;
 import org.eclipse.datatools.enablement.oda.ws.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.ws.util.TestUtil;
@@ -79,8 +80,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * rpc|simple|value
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate1( ) throws IOException
+	public void testTemplate1( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_CALCULATOR,
@@ -95,8 +97,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * rpc|complex|value
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate2( ) throws IOException
+	public void testTemplate2( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_ADDRESS,
@@ -120,8 +123,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * doc|complex|value
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate4( ) throws IOException
+	public void testTemplate4( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_STOCKQUOTES,
@@ -136,8 +140,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * doc|complex|reference
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate5( ) throws IOException
+	public void testTemplate5( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_DNBPATRIOTACT,
@@ -152,8 +157,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * with|complex|value
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate6( ) throws IOException
+	public void testTemplate6( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_XGLOBALHISTORICAL,
@@ -168,8 +174,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * with|complex|reference
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testTemplate7( ) throws IOException
+	public void testTemplate7( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_FOREIGNEXCHANGERATE,
@@ -184,8 +191,9 @@ public class WSDLAdvisorTest extends BaseTest
 	 * with|complex|reference
 	 * 
 	 * @throws IOException
+	 * @throws OdaException 
 	 */
-	public void testGetLocalSOAPResponseTemplate( ) throws IOException
+	public void testGetLocalSOAPResponseTemplate( ) throws IOException, OdaException
 	{
 		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
 		String template = wsdlAdvisor.getLocalSOAPResponseTemplate( TestConstants.WSDL_FILE_AWSECOMMERCESERVICE,

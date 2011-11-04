@@ -10,14 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.util;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
@@ -27,54 +20,29 @@ public class XMLSourceFromPath implements IXMLSource
 {
 	private String path;
 	private String encoding;
+	private Object ri;
 	
-	public XMLSourceFromPath( String path ) throws OdaException
+	public XMLSourceFromPath( String path, Object resourceIdentifiers ) throws OdaException
 	{	
-		if ( path == null || path.equals( "" ))
+		if ( path == null || path.equals( "" ) ) //$NON-NLS-1$
 		{
-			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
+			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
 		}
 		this.path = path;
+		this.ri = resourceIdentifiers;
 	}
 	
-	public XMLSourceFromPath( String path, String encoding ) throws OdaException
+	public XMLSourceFromPath( String path, String encoding, Object resourceIdentifiers ) throws OdaException
 	{
-		this( path );
+		this( path, resourceIdentifiers );
 		this.encoding = encoding;
 	}
 
 	public InputStream openInputStream( ) throws OdaException
 	{
-		//try treat <code>path</code> as a local file first
-		try
-		{
-			File f = new File( path );
-			if( f.exists( ) )
-			{
-				return new BufferedInputStream( new FileInputStream( f ) );
-			}
-		}
-		catch ( FileNotFoundException e )
-		{
-			throw new OdaException( e );
-		}
-		
-		//not a local file path, then treat <code>path</code> as a url
-		try
-		{
-			URL url = new URL( path );
-			return new BufferedInputStream( url.openStream( ) );
-		}
-		catch ( MalformedURLException e )
-		{
-			throw new OdaException( Messages.getString( "Connection.InvalidSource" ) );
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( e );
-		}
+		return ResourceLocatorUtil.getInputStream( ri, path );
 	}
-
+	
 	public void release( ) throws OdaException
 	{
 	}

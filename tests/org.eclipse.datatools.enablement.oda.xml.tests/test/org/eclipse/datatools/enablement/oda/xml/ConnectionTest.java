@@ -48,36 +48,6 @@ public class ConnectionTest extends BaseTest
 		conn.open( prop );
 		assertTrue( conn.isOpen());
 		conn.close();
-		
-		//Schema provided but not valid
-		prop.put( Constants.CONST_PROP_SCHEMA_FILELIST, "NotValid" );
-		try {
-			conn.open( prop );
-			assertTrue( false );
-		}catch (OdaException e)
-		{
-			assertFalse( conn.isOpen());
-		}
-		
-		prop.remove( Constants.CONST_PROP_SCHEMA_FILELIST );
-		prop.remove(Constants.CONST_PROP_FILELIST);
-		try {
-			conn.open( prop );
-			assertTrue( false );
-		}catch (OdaException e)
-		{
-			assertFalse( conn.isOpen());
-		}
-		
-		prop.remove( Constants.CONST_PROP_SCHEMA_FILELIST );
-		prop.put(Constants.CONST_PROP_FILELIST, "NotValid");
-		try {
-			conn.open( prop );
-			assertTrue( false );
-		}catch (OdaException e)
-		{
-			assertFalse( conn.isOpen());
-		}
 	}
 
 	/*

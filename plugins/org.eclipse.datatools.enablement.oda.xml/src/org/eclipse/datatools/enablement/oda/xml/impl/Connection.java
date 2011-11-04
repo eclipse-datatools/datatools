@@ -10,7 +10,6 @@
  *******************************************************************************/
 
 package org.eclipse.datatools.enablement.oda.xml.impl;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
@@ -19,6 +18,7 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
@@ -39,9 +39,11 @@ public class Connection implements IConnection
 	//The boolean indicate whether the connection is open.
 	private boolean isOpen;
 	
-	private Map appContext;
+	private Map<String, Object> appContext;
 	
 	Properties connProperties;
+	
+	private Object ri;
 
 	/*
 	 *if a valid XML schema URL provided
@@ -61,39 +63,7 @@ public class Connection implements IConnection
 			return;
 		}
 		this.connProperties = connProperties;
-		String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-		String schemaFile = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_SCHEMA_FILELIST );
-		if ( schemaFile != null && schemaFile.length( ) > 0 ) 
-		{
-			//if XML schema is provided, check whether it's valid
-			InputStream is = new XMLSourceFromPath( schemaFile, encoding ).openInputStream( );
-			try
-			{
-				is.close( );
-			}
-			catch ( IOException e )
-			{
-			}
-			//schemaFile provided is valid, this connection at least can be used to fetch meta data 
-		}
-		else
-		{
-			//if XML schema is not provided, check InputStream or XML file
-			if ( appContext == null
-					|| !( appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream ))
-			{
-				//InputStream not provided, check XML file
-				String xmlFile = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
-				InputStream is = new XMLSourceFromPath( xmlFile, encoding ).openInputStream( );
-				try
-				{
-					is.close( );
-				}
-				catch ( IOException e )
-				{
-				}
-			}
-		}
+		
 		isOpen = true;
 	}
 
@@ -156,6 +126,8 @@ public class Connection implements IConnection
 			this.appContext.remove( legacyCloseInputStreamKey );
 		}
 		/////////////////////////////////////////////////////////////////////
+		
+		ri = appContext.get( ResourceIdentifiers.ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS );
 	}
 
 	/*
@@ -248,7 +220,7 @@ public class Connection implements IConnection
 		}
 		else
 		{
-			xmlSource = new XMLSourceFromPath( file, encoding );
+			xmlSource = new XMLSourceFromPath( file, encoding, ri );
 		}
 	}
 }

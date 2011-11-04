@@ -33,6 +33,7 @@ import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
@@ -423,7 +424,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ) );
+				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ), ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers() ) );
 				if ( previewDialog.open( ) == IDialogConstants.CLOSE_ID )
 				{
 					previewDialog.close( );
@@ -1175,7 +1176,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
 					xmlFileName,
 					xmlEncoding,
-					numberOfElement );
+					numberOfElement,
+					ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true, true );
 
 
@@ -1489,10 +1491,12 @@ public class ColumnMappingPage extends DataSetWizardPage
 		if ( this.xsdFileName != null
 					&& this.xsdFileName.trim( ).length( ) > 0 )
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xsdFileName,
-						xmlEncoding );
+						xmlEncoding,
+						ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			else
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xmlFileName,
-						xmlEncoding );
+						xmlEncoding,
+						ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 		}
 		catch ( OdaException ex )
 		{
@@ -1687,5 +1691,4 @@ public class ColumnMappingPage extends DataSetWizardPage
 		}
 		return false;
 	}
-	
 }
