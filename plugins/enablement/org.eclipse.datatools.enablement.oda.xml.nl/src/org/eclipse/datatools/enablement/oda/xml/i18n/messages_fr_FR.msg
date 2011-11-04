@@ -1,6 +1,9 @@
 Connection.PropertiesMissing=Certaines propriétés de connexion sont manquantes.
 Connection.InvalidAppContext=AppContext incorrect.
 Connection.InvalidSource=Le fichier source xml est introuvable ou l'URL est incorrecte.
+Connection.NoEncoding=Connection property <Encoding> is missing.
+Connection.ResolveRelativePathError=Could not resolve relative path, because: 
+Connection.InvalidResourceIdentifiers=Invalid resource identifiers: 
 Constants.DriverName=Pilote XML ODA
 ResultSet.ResultSetClosed=Jeu de résultats fermé
 Query.QueryHasNotBeenPrepared=La requête n'a pas encore été préparée.
@@ -15,4 +18,4 @@ dateFormatISO8601.inconvertibleValueError=Impossible de convertir la valeur de
 exception.invalidArgument=Type d'argument non valide.
 exception.nullDataSourceContent=La source de données est nulle.
 ui.invalidXSDFile=Le fichier xsd fourni est incorrect.
-
+ui.xsdFileNotFound=Could not found xsd file: 

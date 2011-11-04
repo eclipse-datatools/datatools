@@ -1,6 +1,9 @@
 Connection.PropertiesMissing=缺少某些连接属性。
 Connection.InvalidAppContext=无效的 AppContext。
 Connection.InvalidSource=找不到 xml 源文件，或者 URL 格式错误。
+Connection.NoEncoding=Connection property <Encoding> is missing.
+Connection.ResolveRelativePathError=Could not resolve relative path, because: 
+Connection.InvalidResourceIdentifiers=Invalid resource identifiers: 
 Constants.DriverName=ODA XML 驱动程序
 ResultSet.ResultSetClosed=ResultSet 关闭。
 Query.QueryHasNotBeenPrepared=查询尚未准备。
@@ -15,4 +18,4 @@ dateFormatISO8601.inconvertibleValueError=无法转换值
 exception.invalidArgument=无效参数类型。
 exception.nullDataSourceContent=数据源内容为空。
 ui.invalidXSDFile=提供的 xsd 文件无效。
-
+ui.xsdFileNotFound=Could not found xsd file: 

@@ -1,6 +1,9 @@
 Connection.PropertiesMissing=いくつかの接続プロパティがありません。
 Connection.InvalidAppContext=AppContext が無効です。
 Connection.InvalidSource=XML ソースファイルが見つからないか、URL が間違っています。
+Connection.NoEncoding=Connection property <Encoding> is missing.
+Connection.ResolveRelativePathError=Could not resolve relative path, because: 
+Connection.InvalidResourceIdentifiers=Invalid resource identifiers: 
 Constants.DriverName=ODA XML ドライバ
 ResultSet.ResultSetClosed=結果セットを閉じました。
 Query.QueryHasNotBeenPrepared=クエリがまだ記述されていません。
@@ -15,4 +18,4 @@ dateFormatISO8601.inconvertibleValueError=次の値を変換できません。
 exception.invalidArgument=引数の型が無効です。
 exception.nullDataSourceContent=データソースのコンテンツが null です。
 ui.invalidXSDFile=指定された XSD ファイルが無効です。
-
+ui.xsdFileNotFound=Could not found xsd file: 

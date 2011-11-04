@@ -1,6 +1,9 @@
 Connection.PropertiesMissing=Einige Verbindungseigenschaften sind nicht vorhanden.
 Connection.InvalidAppContext=Ungültiges AppContext.
 Connection.InvalidSource=Die XML-Quelldatei kann nicht gefunden werden, oder die URL ist falsch geformt.
+Connection.NoEncoding=Connection property <Encoding> is missing.
+Connection.ResolveRelativePathError=Could not resolve relative path, because: 
+Connection.InvalidResourceIdentifiers=Invalid resource identifiers: 
 Constants.DriverName=ODA-XML-Treiber
 ResultSet.ResultSetClosed=Ergebnis ist geschlossen.
 Query.QueryHasNotBeenPrepared=Die Abfrage wurde noch nicht vorbereitet.
@@ -15,4 +18,4 @@ dateFormatISO8601.inconvertibleValueError=Wert kann nicht umgewandelt werden:
 exception.invalidArgument=Ungültiger Argumenttyp.
 exception.nullDataSourceContent=Datenquelleninhalt ist Null.
 ui.invalidXSDFile=Die angegebene XSD-Datei ist ungültig.
-
+ui.xsdFileNotFound=Could not found xsd file: 
