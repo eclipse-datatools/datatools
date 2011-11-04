@@ -950,7 +950,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 
 		// Home folder mode
-		if ( file.equals( selectedFile ) || selectedFile == null )
+		if ( file.equals( selectedFile ) )
 			return;
 		else
 		{
