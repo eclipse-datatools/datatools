@@ -102,6 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=Es gibt keinen XPath für die Tabel
 error.file.null=Keiner der URLs enthält Daten. Sie haben foglich keine Datenquelle ausgewählt. Soll diese Auswahl beibehalten werden?
 error.columnMapping.sameColumnName=Der Spaltenname [{0}] ist bereits vorhanden. Wählen Sie einen anderen Namen.
 error.invalidXpath=Der XPath-Ausdruck "{0}" ist ungültig.
+error.invalidSource=The xml source file cannot be found.
 
 #data types for column mapping
 datatypes.dateTime=Datum/Uhrzeit
@@ -122,6 +123,9 @@ dataset.new=Neuer Datensatz
 file.choose=&Durchsuchen ...
 schema.choose=Durch&suchen...
 title.warning=Warnung
+FileSelectionButton.menuItem.absolutePath=Absolute Path
+FileSelectionButton.menuItem.relativePath=Relative Path
+SelectRelativeFileDialog.Title=Select a file
 
 datasource.propertyPage.tooltip=XML-Datenquelle
 wizard.autoEncoding=Automatisch

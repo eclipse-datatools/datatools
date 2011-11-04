@@ -102,6 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=表映射 XPath 不存在。
 error.file.null=所有 URL 均为空，这意味着您尚未选择任何数据源。是否确定要保持这样？
 error.columnMapping.sameColumnName=列名称 [{0}] 已经存在。请使用另一个名称。
 error.invalidXpath=XPath 表达式“{0}”无效。
+error.invalidSource=The xml source file cannot be found.
 
 #data types for column mapping
 datatypes.dateTime=日期时间
@@ -122,6 +123,9 @@ dataset.new=新数据集
 file.choose=浏览(&O)...
 schema.choose=浏览(&S)...
 title.warning=警告
+FileSelectionButton.menuItem.absolutePath=Absolute Path
+FileSelectionButton.menuItem.relativePath=Relative Path
+SelectRelativeFileDialog.Title=Select a file
 
 datasource.propertyPage.tooltip=XML 数据源
 wizard.autoEncoding=自动

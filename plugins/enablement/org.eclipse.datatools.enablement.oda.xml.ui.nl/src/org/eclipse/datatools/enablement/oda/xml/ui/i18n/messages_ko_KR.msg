@@ -102,6 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=테이블 매핑 XPath가 없습니다.
 error.file.null=URL이 모두 비어 있습니다. 데이터 원본을 선택하지 않은 것입니다. 계속하시겠습니까?
 error.columnMapping.sameColumnName=열 이름 [{0}]이(가) 이미 있습니다. 다른 이름을 사용하십시오.
 error.invalidXpath=XPath 식"{0}"이(가) 잘못되었습니다.
+error.invalidSource=The xml source file cannot be found.
 
 #data types for column mapping
 datatypes.dateTime=날짜 시간
@@ -122,6 +123,9 @@ dataset.new=새 데이터 집합
 file.choose=찾아보기(&O)...
 schema.choose=찾아보기(&S)...
 title.warning=경고
+FileSelectionButton.menuItem.absolutePath=Absolute Path
+FileSelectionButton.menuItem.relativePath=Relative Path
+SelectRelativeFileDialog.Title=Select a file
 
 datasource.propertyPage.tooltip=XML 데이터 원본
 wizard.autoEncoding=자동
