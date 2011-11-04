@@ -539,9 +539,10 @@ public class FolderSelectionPageHelper
 			}
 		};
 
-		MenuItem item = new MenuItem( menu, SWT.PUSH );
+		MenuItem item;
 		if ( ri != null )
 		{
+			item = new MenuItem( menu, SWT.PUSH );
 			item.setText( Messages.getString( "button.selectFileURI.menuItem.relativePath" ) ); //$NON-NLS-1$
 			item.setData( SELECT_RELATIVE_PATH );
 			item.addSelectionListener( action );
