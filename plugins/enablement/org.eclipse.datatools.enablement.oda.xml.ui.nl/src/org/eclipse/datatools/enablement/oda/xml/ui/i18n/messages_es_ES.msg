@@ -102,7 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=La asignación de tablas XPath no e
 error.file.null=Todas las URL están vacías, lo que significa que no ha seleccionado ninguna fuente de datos. ¿Seguro que desea conservarlo?
 error.columnMapping.sameColumnName=El nombre de la columna [{0}] ya existe. Utilice otro nombre.
 error.invalidXpath=La expresión XPath  "{0}" no es válida.
-error.invalidSource=The xml source file cannot be found.
+error.invalidSource=No se puede encontrar el archivo fuente .xml.
 
 #data types for column mapping
 datatypes.dateTime=Fecha Hora
@@ -123,9 +123,9 @@ dataset.new=Nuevo conjunto de datos
 file.choose=&Examinar...
 schema.choose=E&xaminar...
 title.warning=Advertencia
-FileSelectionButton.menuItem.absolutePath=Absolute Path
-FileSelectionButton.menuItem.relativePath=Relative Path
-SelectRelativeFileDialog.Title=Select a file
+FileSelectionButton.menuItem.absolutePath=Ruta absoluta
+FileSelectionButton.menuItem.relativePath=Ruta relativa
+SelectRelativeFileDialog.Title=Seleccionar un archivo
 
 datasource.propertyPage.tooltip=Fuente de datos XML
 wizard.autoEncoding=Automático

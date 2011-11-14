@@ -102,7 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=L'expression XPath de mise en corr
 error.file.null=Toutes les URL sont vides. Vous n'avez donc pas sélectionné de source de données. Souhaitez-vous continuer ?
 error.columnMapping.sameColumnName=Le nom de colonne [{0}] existe déjà. Utilisez un autre nom.
 error.invalidXpath=L'expression XPath "{0}" n'est pas valide.
-error.invalidSource=The xml source file cannot be found.
+error.invalidSource=Fichier source xml introuvable.
 
 #data types for column mapping
 datatypes.dateTime=Date Heure
@@ -123,9 +123,9 @@ dataset.new=Nouveau jeu de données
 file.choose=Parc&ourir...
 schema.choose=&Parcourir...
 title.warning=Avertissement
-FileSelectionButton.menuItem.absolutePath=Absolute Path
-FileSelectionButton.menuItem.relativePath=Relative Path
-SelectRelativeFileDialog.Title=Select a file
+FileSelectionButton.menuItem.absolutePath=Chemin d'accès absolu
+FileSelectionButton.menuItem.relativePath=Chemin d'accès relatif
+SelectRelativeFileDialog.Title=Sélectionner un fichier
 
 datasource.propertyPage.tooltip=Source de données XML
 wizard.autoEncoding=Auto

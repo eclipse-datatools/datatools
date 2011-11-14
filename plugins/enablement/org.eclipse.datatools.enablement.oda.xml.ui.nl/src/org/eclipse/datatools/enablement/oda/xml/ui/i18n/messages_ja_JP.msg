@@ -102,7 +102,7 @@ error.columnMapping.tableMappingXPathNotExist=テーブルをマッピングするための XPa
 error.file.null=データソースが選択されていないため、URL がすべて空白になっています。このまま続行しますか ?
 error.columnMapping.sameColumnName=列名 [{0}] はすでに使用されています。別の名前を使用してください。
 error.invalidXpath=XPath 式 "{0}" が無効です。
-error.invalidSource=The xml source file cannot be found.
+error.invalidSource=xml ソースファイルが見つかりません。
 
 #data types for column mapping
 datatypes.dateTime=Date Time
@@ -123,9 +123,9 @@ dataset.new=新規データセット
 file.choose=参照(&O)...
 schema.choose=参照(&S)...
 title.warning=警告
-FileSelectionButton.menuItem.absolutePath=Absolute Path
-FileSelectionButton.menuItem.relativePath=Relative Path
-SelectRelativeFileDialog.Title=Select a file
+FileSelectionButton.menuItem.absolutePath=絶対パス
+FileSelectionButton.menuItem.relativePath=相対パス
+SelectRelativeFileDialog.Title=ファイルの選択
 
 datasource.propertyPage.tooltip=XML データソース
 wizard.autoEncoding=自動
