@@ -1,1 +1,1 @@
-plugin@org.eclipse.datatools.enablement.jdt.classpath=GIT,tag=v201004070709,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.general.git,path=plugins/org.eclipse.datatools.enablement.jdt.classpath
+plugin@org.eclipse.datatools.enablement.jdt.classpath=GIT,tag=v201107221501,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.general.git,path=plugins/org.eclipse.datatools.enablement.jdt.classpath
