@@ -20,6 +20,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
@@ -28,9 +30,16 @@ import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 
 public class ResourceLocatorUtil
 {
+	private static Logger logger = Logger.getLogger(ResourceLocatorUtil.class.getName( ));
+	
 	public static InputStream getInputStream( Object resourceIdentifiers, String path ) throws OdaException
 	{
+		logger.entering( ResourceLocatorUtil.class.getName(), "resolvePath",
+				new Object[] { resourceIdentifiers, path } );
+		
 		URI uri = resolvePath( resourceIdentifiers, path );
+		
+		logger.exiting( ResourceLocatorUtil.class.getName(), "resolvePath" );
 		
 		if ( uri == null )
 			throw new OdaException( Messages.getString( "Connection.InvalidSource" ) ); //$NON-NLS-1$
@@ -51,15 +60,18 @@ public class ResourceLocatorUtil
 	
 	public static URI resolvePath( Object resourceIdentifiers, String path ) throws OdaException
 	{
+		URI uri = null;
 		File f = new File( path );
-		if( f.isAbsolute( ) && f.exists( ) )
+		if( f.exists( ) )
 		{
-			return f.toURI( );
+			uri = f.toURI();
+			logger.log( Level.FINER, "XML source file exists on local file system. Using path: " + uri );
+			return uri;
 		}
 		
+		logger.log( Level.FINER, "Try resolving URI and relative path: " + path );
 		try
 		{
-			URI uri = null;
 			try
 			{
 				uri = new URI( path );
@@ -69,12 +81,21 @@ public class ResourceLocatorUtil
 				uri = new URI( null, null, path, null );
 			}
 			
+			logger.log( Level.FINER, "Resolved xml source URI: " + uri );
+			
 			if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
 			{
-				return ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
+				uri = ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
+				logger.log( Level.FINER, "Relative URI resolved as the absolute path: " + uri ); 
+				return uri;
 			}
-			
-			return uri;
+			else
+			{
+				logger.log( Level.SEVERE,
+						Messages.getString("Connection.InvalidRelativePath")
+								+ uri );
+				throw new OdaException( Messages.getString( "Connection.InvalidSource" ) );
+			}
 		}
 		catch ( URISyntaxException e1 )
 		{
