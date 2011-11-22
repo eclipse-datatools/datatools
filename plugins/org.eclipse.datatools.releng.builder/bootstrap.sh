@@ -14,9 +14,17 @@ CVS_RSH=ssh
 ulimit -c unlimited
 export CVSROOT CVS_RSH USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
 
-#cvs update -r HEAD -C -d buildAll.xml build.xml eclipse extras
-#dos2unix extras/updateFeatureTag.sh extras/checkCompareDone.sh
-#chmod -R +x build.xml buildAll.xml eclipse extras
+
+export GitRepo=ssh://xgu@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
+export BranchName=master
+rm -rf plugins
+git archive --format=tar --remote=$GitRepo $BranchName plugins/org.eclipse.datatools.releng.builder | tar -xf -
+cp -f plugins/org.eclipse.datatools.releng.builder/buildAll.xml ./
+cp -f plugins/org.eclipse.datatools.releng.builder/build.xml ./
+cp -f plugins/org.eclipse.datatools.releng.builder/git-map.sh ./
+cp -f plugins/org.eclipse.datatools.releng.builder/git-submission.sh ./
+cp -rf plugins/org.eclipse.datatools.releng.builder/eclipse ./
+cp -rf plugins/org.eclipse.datatools.releng.builder/extras ./
 
 if [ "x"$ANT_HOME = "x" ]; then export ANT_HOME=/usr/local/apache-ant-1.7.0; fi
 if [ "x"$JAVA_HOME = "x" ]; then export JAVA_HOME=/usr/local/j2sdk1.4.2_13; fi
@@ -26,7 +34,6 @@ proc=$$
 
 #notification list
 recipients=yjiang@actuate.com,xgu@actuate.com
-sender=qa-build@actuate.com
 
 #sets skip.performance.tests Ant property
 skipPerf=""
@@ -64,13 +71,13 @@ buildLabel=""
 mapVersionTag=HEAD
 
 # directory in which to export builder projects
-builderDir=/home/adb/releng.dtp.191/org.eclipse.datatools.releng.builder/
+builderDir=$HOME/releng.dtp.192/org.eclipse.datatools.releng.builder
 
 # buildtype determines whether map file tags are used as entered or are replaced with HEAD
 buildType=I
 
 # directory where to copy build
-postingDirectory=/home/adb/releng/BIRTOutput/dtp.output/1.9.1
+postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.9.2
 
 # flag to indicate if test build
 testBuild=""
@@ -87,9 +94,9 @@ buildinfounivDate=`date +%c%z`
 
 timestamp=$builddate$buildtime
 
-echo "======[builddate]: $builddate " > adb.log
-echo "======[buildtime]: $buildtime " >> adb.log
-echo "======[timestamp]: $timestamp " >> adb.log
+echo "======[builddate]: $builddate " > $USER.log
+echo "======[buildtime]: $buildtime " >> $USER.log
+echo "======[timestamp]: $timestamp " >> $USER.log
 
 # process command line arguments
 usage="usage: $0 [-notify emailaddresses][-test][-buildDirectory directory][-buildId name][-buildLabel directory name][-tagMapFiles][-mapVersionTag tag][-builderTag tag][-bootclasspath path][-compareMaps][-skipPerf] [-skipTest][-updateSite site][-sign] M|N|I|S|R"
@@ -106,6 +113,8 @@ do
 		 		 -buildId) buildId="$2"; shift;;
 		 		 -buildLabel) buildLabel="$2"; shift;;
 		 		 -mapVersionTag) mapVersionTag="$2"; shift;;
+				 -noAutoTag) noAutoTag=true;;
+				 -ForceAutoTag) ForceAutoTag=true;;
 		 		 -tagMapFiles) tagMaps="-DtagMaps=true";;
 		 		 -noSign) noSign="-DnoSign=true";;
 		 		 -skipPerf) skipPerf="-Dskip.performance.tests=true";;
@@ -128,7 +137,7 @@ done
 
 # After the above the build type is left in $1.
 buildType=$1
-echo "======[buildType]: $buildType " >> adb.log
+echo "======[buildType]: $buildType " >> $USER.log
 
 # Set default buildId and buildLabel if none explicitly set
 if [ "$buildId" = "" ]
@@ -141,7 +150,7 @@ if [ "$buildLabel" = "" ]
 then
 		 buildLabel=$buildId
 fi
-echo "======[buildId]: $buildId " >> adb.log
+echo "======[buildId]: $buildId " >> $USER.log
 
 #Set the tag to HEAD for Nightly builds
 if [ "$buildType" = "N" ]
@@ -150,20 +159,20 @@ then
         versionQualifier="-DforceContextQualifier=$buildId"
 fi
 
-echo "======[tag]: $tag" >> adb.log
-echo "======[versionQualifier]: $versionQualifier" >> adb.log
+echo "======[tag]: $tag" >> $USER.log
+echo "======[versionQualifier]: $versionQualifier" >> $USER.log
 
 # tag for eclipseInternalBuildTools on ottcvs1
 internalToolsTag=$buildProjectTags
-echo "======[internalToolsTag]: $internalToolsTag" >> adb.log
+echo "======[internalToolsTag]: $internalToolsTag" >> $USER.log
 
 # tag for exporting org.eclipse.releng.basebuilder
 baseBuilderTag=$buildProjectTags
-echo "======[baseBuilderTag]: $baseBuilderTag" >> adb.log
+echo "======[baseBuilderTag]: $baseBuilderTag" >> $USER.log
 
 # tag for exporting the custom builder
 customBuilderTag=$buildProjectTags
-echo "======[customBuilderTag]: $customBuilderTag" >> adb.log
+echo "======[customBuilderTag]: $customBuilderTag" >> $USER.log
 
 #if [ -e $builderDir ]
 #then
@@ -171,14 +180,85 @@ echo "======[customBuilderTag]: $customBuilderTag" >> adb.log
 #fi
 
 # directory where features and plugins will be compiled
-buildDirectory=/home/adb/releng.dtp.191/BIRT_Build_Dir
+buildDirectory=$HOME/releng.dtp.192/src
 
-echo "======[buildDirectory]: $buildDirectory" >> adb.log
+echo "======[buildDirectory]: $buildDirectory" >> $USER.log
 
-mkdir $builderDir
+mkdir -p $builderDir
 cd $builderDir
 
+#Pull or clone a branch from a repository
+#Usage: pull repositoryURL  branch
+pull() {
+	mkdir -p $builderDir/gitClones
+        pushd $builderDir/gitClones
+        directory=$(basename $1 .git)
+        if [ ! -d $directory ]; then
+                echo git clone $1
+                git clone $1
+        fi
+        popd
+        pushd $builderDir/gitClones/$directory
+        echo git checkout $2
+        git checkout $2
+	echo git pull
+        git pull
+        popd
+}
 
+if [ "$buildType" == "N" -o "$noAutoTag" ]; then
+	echo "Skipping auto plugins tagging for nightly build or -noAutoTag build"
+else
+	pushd $builderDir
+
+	#remove comments
+	rm -f repos-clean.txt clones.txt
+	GitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools
+	echo "$GitRoot/org.eclipse.datatools.build.git $BranchName" > repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.connectivity.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.doc.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.general.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.hsqldb.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.ibm.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.ingres.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.msft.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.mysql.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.oda.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.oracle.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.postgresql.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.sap.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.sqlite.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.enablement.sybase.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.incubator.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.modelbase.git $BranchName" >> repos-clean.txt
+	echo "$GitRoot/org.eclipse.datatools.sqltools.git $BranchName" >> repos-clean.txt
+	
+	#clone or pull each repository and checkout the appropriate branch
+	while read line; do
+        	#each line is of the form <repository> <branch>
+        	set -- $line
+        	pull $1 $2
+        	echo $1 | sed 's/ssh:.*@git.eclipse.org/git:\/\/git.eclipse.org/g' >> clones.txt
+	done < repos-clean.txt
+	
+	cat clones.txt| xargs /bin/bash git-map.sh $builderDir/gitClones \
+        $builderDir/gitClones > maps.txt
+		
+	#Trim out lines that don't require execution
+	grep -v ^OK maps.txt | grep -v ^Executed >run.txt
+	if ( cat run.txt | grep sed ); then
+		/bin/bash run.txt
+                mkdir -p $builderDir/report
+                cp report.txt $builderDir/report/report$buildId.txt
+	elif [ "$ForceAutoTag" == "true" ]; then
+		echo "Continue to build even if no bundles changed for -ForceAutoTag build"
+	else
+		echo "No change detected. 1.9.2 Nightly Build ($buildId) is canceled"
+                exit
+	fi
+	
+	popd
+fi
 
 mkdir -p $postingDirectory/$buildLabel
 chmod -R 755 $builderDir
@@ -190,7 +270,7 @@ bootclasspath_15="/usr/local/jdk1.5.0_02/jre/lib/rt.jar:/usr/local/jdk1.5.0_02/j
 bootclasspath_16="/usr/local/jdk1.6.0/jre/lib/rt.jar:/usr/local/jdk1.6.0/jre/lib/jsse.jar"
 jvm15_home="/usr/local/jdk1.5.0_02"
 
-cd /home/adb/releng.dtp.191/org.eclipse.datatools.releng.builder
+cd $HOME/releng.dtp.192/org.eclipse.datatools.releng.builder
 
 echo buildId=$buildId >> monitor.properties 
 echo timestamp=$timestamp >> monitor.properties 
@@ -204,41 +284,33 @@ echo log=$postingDirectory/$buildLabel/index.php >> monitor.properties
 antRunner="/usr/local/jdk1.5.0_09/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
 #antRunner="/usr/local/j2sdk1.4.2_13/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
 
-echo "==========[antRunner]: $antRunner" >> adb.log
+echo "==========[antRunner]: $antRunner" >> $USER.log
 
-
-#/home/adb/releng.dtp.191/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
+#$HOME/releng.dtp.192/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
 
 #clean drop directories
 
 #full command with args
 #buildId=v20110808-1451
-echo $tagMaps >> adb.log
-echo $compareMaps >> adb.log
+echo $tagMaps >> $USER.log
+echo $compareMaps >> $USER.log
 
-
-#cp /home/adb/releng.dtp.191/dtpURLmonitor.properties /home/adb/releng.260/src/
-
-#cp /home/adb/releng.dtp.191/org.eclipse.datatools.releng.builder/customTargets.xml /home/adb/releng.dtp.191/org.eclipse.datatools.releng.builder/eclipse/buildConfigs/dtp.sdk.all/
+#cp $HOME/releng.dtp.192/dtpURLmonitor.properties $HOME/releng.260/src/
 
 buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMaps \
 -DmapVersionTag=$mapVersionTag -DpostingDirectory=$postingDirectory \
 -Dbootclasspath=$bootclasspath_15 -DbuildType=$buildType -D$buildType=true \
 -DbuildId=$buildId -Dbuildid=$buildId -DbuildLabel=$buildId -Dtimestamp=$timestamp $skipPerf $skipTest $tagMaps $noSign \
 -DJ2SE-1.5=$bootclasspath_15 -DJavaSE-1.6=$bootclasspath_16 -DlogExtension=.xml $javadoc $updateSite $sign \
--Djava15-home=$bootclasspath_15 -DbuildDirectory=/home/adb/releng.dtp.191/src \
--DbaseLocation=/home/adb/releng.dtp.191/baseLocation -Dwtp.home=/home/adb/releng.dtp.191/baseLocation \
+-Djava15-home=$bootclasspath_15 -DbuildDirectory=$HOME/releng.dtp.192/src \
+-DbaseLocation=$HOME/releng.dtp.192/baseLocation -Dwtp.home=$HOME/releng.dtp.192/baseLocation \
 -DgroupConfiguration=true -DjavacVerbose=true -DjavacFailOnError=false \
--Dbasebuilder=/home/adb/releng.dtp.191/org.eclipse.releng.basebuilder  \
--Djvm15_home=$jvm15_home  -DmapTag.properties=/home/adb/releng.dtp.191/org.eclipse.datatools.releng.builder/mapTag.properties \
--Dbuild.date=$builddate -Dpackage.version=1.9.1RC1-$timestamp \
+-Dbasebuilder=$HOME/releng.dtp.192/org.eclipse.releng.basebuilder  \
+-Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.192/org.eclipse.datatools.releng.builder/mapTag.properties \
+-Dbuild.date=$builddate -Dpackage.version=1.9.2RC1-$timestamp \
 -DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
--DmapVersionTag=master -DBranchVersion=1.9.1 -DjavacTarget=1.5 -DjavacSource=1.5 \
--Dusername.sign=slee -Dpassword.sign= -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
-
-#-DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
-#-Ddtp.url.token=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
-#-Ddtp.url.newvalue=:ext:xgu@192.168.218.218:/cvsroot/datatools"
+-DmapVersionTag=$BranchName -DBranchVersion=1.9.2 -DjavacTarget=1.5 -DjavacSource=1.5 \
+-Dusername.sign=slee -Dpassword.sign=Actuate# -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
 
 #skipPreBuild
 
@@ -246,7 +318,7 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 echo $buildCommand>command.txt
 
 #run the build
-$buildCommand >> adb.log
+$buildCommand >> $USER.log
 #retCode=$?
 #
 #if [ $retCode != 0 ]
@@ -257,5 +329,6 @@ $buildCommand >> adb.log
 
 #clean up
 #rm -rf $builderDir
-rm -rf /home/adb/releng.dtp.191/src/$buildId
-cp -f /home/adb/releng.dtp.191/src/directory.txt last_directory.txt
+rm -rf $HOME/releng.dtp.192/src/$buildId
+#cp -f $HOME/releng.dtp.192/src/directory.txt last_directory.txt
+
