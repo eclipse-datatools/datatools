@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2005, 2011 Sybase, Inc. and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -221,4 +222,42 @@ public class ParameterTableDialog extends TitleAreaDialog
         }
     }
     ;
+
+    /**
+     * Deals with pressing the OK button. The main reason for overriding this
+     * method is to make sure that any editors that are still active and haven't
+     * committed their changes now save their values.
+     * 
+     * @see org.eclipse.jface.dialogs.Dialog#okPressed()
+     */
+    protected void okPressed()
+    {
+        CellEditor[] cellEditors = _parameterTable.getCellEditors();
+        for (CellEditor ed : cellEditors) {
+            if (ed != null && ed.isActivated())
+            {
+                /*
+                 * Fixing BZ 311067.
+                 * 
+                 * It seems that on the Mac, if a user is editing a field and
+                 * presses the OK button without having that field first lose focus,
+                 * its value is not committed. The following syncExec is forcing
+                 * the OK button to receive focus, thus making the cell editor
+                 * to lose focus. That makes the cell editor commit its value.
+                 * 
+                 * (This is probably just a workaround for a bug in the Mac SWT
+                 * but it seems to work)
+                 */
+                getContents().getDisplay().syncExec(new Runnable() {
+                    public void run()
+                    {
+                        // force the active editor to lose focus.
+                        getButton(IDialogConstants.OK_ID).setFocus();
+                    }
+                });
+            }
+        }
+        super.okPressed();
+    }
+
 }
