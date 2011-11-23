@@ -83,7 +83,12 @@ public class ResourceLocatorUtil
 			
 			logger.log( Level.FINER, "Resolved xml source URI: " + uri );
 			
-			if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
+			if ( uri.isAbsolute() )
+			{
+				logger.log( Level.FINER, "XML source file URI is resolved as the absolute path: " + uri ); 
+				return uri;
+			}
+			else if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
 			{
 				uri = ResourceIdentifiers.resolveApplResource( resourceIdentifiers, uri );
 				logger.log( Level.FINER, "Relative URI resolved as the absolute path: " + uri ); 
