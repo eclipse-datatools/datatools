@@ -127,6 +127,7 @@ do
 		 		 -updateSite) updateSite="-DupdateSite=$2";shift;;
 		 		 -sign) sign="-Dsign=true";shift;;
                                  -upload) upload=true;;
+				 -CheckPluginVersion) CheckPluginVersion=true;;
 		 		 -*)
 		 		 		 echo >&2 $usage
 		 		 		 exit 1;;
@@ -295,6 +296,9 @@ echo "==========[antRunner]: $antRunner" >> $USER.log
 echo $tagMaps >> $USER.log
 echo $compareMaps >> $USER.log
 
+PackageVersion=1.9.2RC1-$timestamp
+echo "======[PackageVersion]: $PackageVersion" >> $USER.log
+
 #cp $HOME/releng.dtp.192/dtpURLmonitor.properties $HOME/releng.260/src/
 
 buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMaps \
@@ -307,7 +311,7 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -DgroupConfiguration=true -DjavacVerbose=true -DjavacFailOnError=false \
 -Dbasebuilder=$HOME/releng.dtp.192/org.eclipse.releng.basebuilder  \
 -Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.192/org.eclipse.datatools.releng.builder/mapTag.properties \
--Dbuild.date=$builddate -Dpackage.version=1.9.2RC1-$timestamp \
+-Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
 -DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
 -DmapVersionTag=$BranchName -DBranchVersion=1.9.2 -DjavacTarget=1.5 -DjavacSource=1.5 \
 -Dusername.sign=slee -Dpassword.sign=Actuate# -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
