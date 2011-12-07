@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
@@ -33,7 +34,6 @@ import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
-import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
@@ -424,7 +424,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ), ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers() ) );
+				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ), getHostResourceIdentifiers( ) );
 				if ( previewDialog.open( ) == IDialogConstants.CLOSE_ID )
 				{
 					previewDialog.close( );
@@ -1177,7 +1177,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					xmlFileName,
 					xmlEncoding,
 					numberOfElement,
-					ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
+					DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true, true );
 
 
@@ -1492,11 +1492,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 					&& this.xsdFileName.trim( ).length( ) > 0 )
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xsdFileName,
 						xmlEncoding,
-						ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
+						DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			else
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xmlFileName,
 						xmlEncoding,
-						ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers( ) ) );
+						DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 		}
 		catch ( OdaException ex )
 		{

@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
@@ -34,7 +35,6 @@ import org.eclipse.datatools.enablement.oda.xml.ui.control.FileSelectionButton;
 import org.eclipse.datatools.enablement.oda.xml.ui.control.IMenuActionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
-import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ResourceLocatorUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
@@ -423,6 +423,6 @@ public class XMLSelectionPageHelper
 		if ( ri == null )
 			return;
 		
-		this.ri = ResourceIdentifiersUtil.getResourceIdentifiers( ri );
+		this.ri = DesignSessionUtil.createRuntimeResourceIdentifiers( ri );
 	}
 }

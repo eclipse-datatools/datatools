@@ -14,6 +14,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
@@ -21,7 +22,6 @@ import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
-import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
@@ -425,7 +425,7 @@ public class XPathChoosePage extends DataSetWizardPage
 					xmlFileName,
 					xmlEncoding,
 					numberOfElement,
-					ResourceIdentifiersUtil.getResourceIdentifiers( getHostResourceIdentifiers()));
+					DesignSessionUtil.createRuntimeResourceIdentifiers(getHostResourceIdentifiers()));
 			if ( treeNode == null
 					|| treeNode.getChildren( ) == null
 					|| treeNode.getChildren( ).length == 0 )

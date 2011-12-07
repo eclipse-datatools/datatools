@@ -22,9 +22,10 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
-import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -50,7 +51,7 @@ public final class ResultSetTableViewer
 	private String[][] resultSet;
 	private TableColumn column;
 	private final int MAX_ROW = 500;
-	private Object ri;
+	private Object ri; // Design time resource identifiers
     private static final String EMPTY_STRING = "";  //$NON-NLS-1$
 
 	/**
@@ -116,7 +117,7 @@ public final class ResultSetTableViewer
 		
 		try
 		{
-			conn.setAppContext( ResourceIdentifiersUtil.getAppContext( ri ) );
+			conn.setAppContext( DesignSessionUtil.createResourceIdentifiersContext( (ResourceIdentifiers) ri ) );
 			conn.open( properties );
 
 			IQuery query = conn.newQuery( null );

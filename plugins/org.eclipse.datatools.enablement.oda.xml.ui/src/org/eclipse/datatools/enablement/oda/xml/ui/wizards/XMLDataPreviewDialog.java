@@ -28,7 +28,7 @@ public class XMLDataPreviewDialog extends TrayDialog
 {
 
 	private ResultSetTableViewer previewViewer;
-	private Object ri;
+	private Object ri; // Design time resource identifiers
 
 	/**
 	 * The constructor of XMLDataPreviewDialog

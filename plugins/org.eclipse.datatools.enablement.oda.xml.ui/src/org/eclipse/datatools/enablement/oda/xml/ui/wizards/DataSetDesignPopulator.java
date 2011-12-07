@@ -61,7 +61,7 @@ public class DataSetDesignPopulator
 			properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
 					xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
 			
-			conn.setAppContext( ResourceIdentifiersUtil.getAppContext( dataSetDesign.getDataSourceDesign( )
+			conn.setAppContext( DesignSessionUtil.createResourceIdentifiersContext( dataSetDesign.getDataSourceDesign( )
 					.getHostResourceIdentifiers( ) ) );
 			
 			conn.open( properties );
