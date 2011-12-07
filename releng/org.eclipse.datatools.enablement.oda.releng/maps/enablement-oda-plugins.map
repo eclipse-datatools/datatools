@@ -1,4 +1,4 @@
 plugin@org.eclipse.datatools.enablement.oda.ws.ui=GIT,tag=v201112061438,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oda.git,path=plugins/org.eclipse.datatools.enablement.oda.ws.ui
 plugin@org.eclipse.datatools.enablement.oda.ws=GIT,tag=v201112061438,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oda.git,path=plugins/org.eclipse.datatools.enablement.oda.ws
-plugin@org.eclipse.datatools.enablement.oda.xml.ui=GIT,tag=v201112061438,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oda.git,path=plugins/org.eclipse.datatools.enablement.oda.xml.ui
+plugin@org.eclipse.datatools.enablement.oda.xml.ui=GIT,tag=v201112071047,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oda.git,path=plugins/org.eclipse.datatools.enablement.oda.xml.ui
 plugin@org.eclipse.datatools.enablement.oda.xml=GIT,tag=v201112061438,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oda.git,path=plugins/org.eclipse.datatools.enablement.oda.xml
