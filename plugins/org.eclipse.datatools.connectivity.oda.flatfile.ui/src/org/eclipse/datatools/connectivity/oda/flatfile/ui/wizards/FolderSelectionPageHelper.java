@@ -302,8 +302,6 @@ public class FolderSelectionPageHelper
 			charSetSelectionCombo.select( 0 );
 		else
 			charSetSelectionCombo.select( charSetSelectionCombo.indexOf( charSet ) );
-
-		verifyFileLocation( );
 	}
 
 	/**
