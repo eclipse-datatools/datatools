@@ -366,7 +366,23 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      */
     public void setUseProfileSelectionPage( boolean use )
     {
+        this.setUseProfileSelectionPage( use, null );
+    }
+
+    /**
+     * Specifies whether the design session should provide a connection profile selection UI page,
+     * and a host resource identifiers for use by the profile selection page.
+     * @param use   true to enable a connection profile selection UI page; false otherwise
+     * @param profileResourceIds    a ResourceIdentifiers instance of an ODA consumer application for use by 
+     *              the enabled profile selection UI page; optional, may be null
+     * @since 3.2.6 (DTP 1.9.2)
+     */
+    public void setUseProfileSelectionPage( boolean use, ResourceIdentifiers profileResourceIds )
+    {
         super.setUseProfileSelectionPage( use );
+
+        if( use && profileResourceIds != null )
+            super.setProfileResourceIdentifiers( profileResourceIds );
     }
 
     /* (non-Javadoc)

@@ -43,12 +43,14 @@ public class MenuButtonProvider implements IMenuButtonProvider
 
 	private ProfileStoreBrowseButton button;
 	private String[] optionTypes;
+	private boolean autoAppendSuffix;
 
-	public MenuButtonProvider( )
+	public MenuButtonProvider( boolean autoAppendSuffix )
 	{
 		optionTypes = new String[]{
 			ABSOLUTE_PATH_TYPE
 		};
+		this.autoAppendSuffix = autoAppendSuffix;
 	}
 
 	public String getDefaultOptionType( )
@@ -134,10 +136,13 @@ public class MenuButtonProvider implements IMenuButtonProvider
             // If a file does not have an extension provided by the user,
             // apply the default extension
             String fileExtension = fileNames[0];
-            if( fileExtension != null && fileExtension.trim().length() > 0 &&
+            if( autoAppendSuffix )
+            {
+                if( fileExtension != null && fileExtension.trim().length() > 0 &&
                     ! fileExtension.contains( EXT_SEPARATOR ) &&
                     ProfileFileExtension.exists( defaultExtension ) )
-                fileNames[0] = fileExtension.trim() + EXT_SEPARATOR + defaultExtension; 
+                    fileNames[0] = fileExtension.trim() + EXT_SEPARATOR + defaultExtension; 
+            }
 		}
 		
 		if ( fileNames != null && fileNames[0] != null)

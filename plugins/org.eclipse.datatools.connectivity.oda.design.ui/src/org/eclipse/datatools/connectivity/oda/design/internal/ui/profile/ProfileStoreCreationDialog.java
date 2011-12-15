@@ -159,7 +159,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 
         // Browse... button
         {
-            IMenuButtonProvider provider = new MenuButtonProvider( );
+            IMenuButtonProvider provider = new MenuButtonProvider( true );
             m_browseButton = new ProfileStoreBrowseButton( composite,
                     SWT.PUSH,
                     provider,

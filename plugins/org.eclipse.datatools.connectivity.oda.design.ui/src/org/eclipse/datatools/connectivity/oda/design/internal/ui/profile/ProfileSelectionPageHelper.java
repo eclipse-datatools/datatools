@@ -351,7 +351,7 @@ class ProfileSelectionPageHelper implements IBrowseButtonHost
         } );
 
         // Browse... button
-        IMenuButtonProvider provider = new MenuButtonProvider( );
+        IMenuButtonProvider provider = new MenuButtonProvider( false );
         m_browseButton = new ProfileStoreBrowseButton( composite,
                 SWT.PUSH,
                 provider,
