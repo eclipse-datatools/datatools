@@ -75,6 +75,43 @@ public class DBHelper {
 	 * 
 	 * @param databaseIdentifier
 	 * @param dbObjectName
+	 * @param dbSpecificName
+	 * @param dbObjectType @see <code>ProcIdentifier</code>
+	 * @param tableName
+	 * @param ownerName
+	 * @return a ProcIdentifer object
+	 * 
+	 */
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, String dbObjectName,
+			String dbSpecificName, int dbObjectType, String tableName, String ownerName) {
+		/*
+		 * This method was added to support overloaded routines whose specificName
+		 * distinguishes routines with the same name.
+		 * See BZ 171718.
+		 */
+		ProcIdentifier procIdentifier = getProcIdentifier(databaseIdentifier, dbObjectName,
+				 dbObjectType, tableName, ownerName);
+		
+		if (dbSpecificName != null && procIdentifier instanceof ProcIdentifierImpl)
+		{
+			/*
+			 * The specific name was specified and the proc identifier is one that is
+			 * prepared to hold the specific name so store it.
+			 */
+			ProcIdentifierImpl procIDImpl = (ProcIdentifierImpl) procIdentifier;
+			procIDImpl.propertyMap.put(ProcIdentifier2.PROP_SPECIFIC_NAME, dbSpecificName);
+		}
+		
+		return procIdentifier;
+	}
+
+	/**
+	 * Returns a ProcIdentifer based on the profilename and object name & type
+	 * @see {@link #getProcIdentifier(DatabaseIdentifier, String, int, String, String, String)}
+	 * 
+	 * @param databaseIdentifier
+	 * @param dbObjectName
 	 * @param dbObjectType @see <code>ProcIdentifier</code>
 	 * @return a ProcIdentifer object
 	 * 
@@ -130,6 +167,40 @@ public class DBHelper {
 		}
 		
 		return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
+	}
+	
+	/**
+	 * Returns a ProcIdentifer based on the profilename and object name & type. 
+	 * Compared with the ealier version, it has an additional parameter specifying
+	 * the table owner name. This is necessary when the database server supports
+	 * creating triggers under another owner other than the subject table's owner. 
+	 * 
+	 * @param databaseIdentifier
+	 * @param dbObjectName
+	 * @param dbSpecificName
+	 * @param dbObjectType @see <code>ProcIdentifier</code>
+	 * @param tableOwnerName the subject table's owner
+	 * @return a ProcIdentifer object
+	 */
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, String dbObjectName, String dbSpecificName,
+			int dbObjectType, String tableName, String ownerName, String tableOwnerName)
+	{
+		/*
+		 * This method was added to support overloaded routines whose specificName
+		 * distinguishes routines with the same name.
+		 * See BZ 171718.
+		 */
+		ProcIdentifier procIdentifier = getProcIdentifier(databaseIdentifier, dbObjectName,
+				 dbObjectType, tableName, ownerName, tableOwnerName);
+		
+		if (dbSpecificName != null && procIdentifier instanceof ProcIdentifierImpl)
+		{
+			ProcIdentifierImpl procIDImpl = (ProcIdentifierImpl) procIdentifier;
+			procIDImpl.propertyMap.put(ProcIdentifier2.PROP_SPECIFIC_NAME, dbSpecificName);
+		}
+		
+		return procIdentifier;
 	}
 	
 	/**

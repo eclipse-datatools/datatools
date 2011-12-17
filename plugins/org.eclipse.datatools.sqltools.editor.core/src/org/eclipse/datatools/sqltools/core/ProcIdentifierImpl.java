@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2005, 2011 Sybase, Inc. and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *     Sybase, Inc. - initial API and implementation
+ *     Teradata Corporation - implementation of ProcIdentifier2 interface
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core;
 
@@ -32,7 +33,7 @@ import com.ibm.icu.util.StringTokenizer;
  * 
  * @author Yang Liu
  */
-public class ProcIdentifierImpl implements ProcIdentifier
+public class ProcIdentifierImpl implements ProcIdentifier2
 {
     private DatabaseIdentifier _database;
     private int			   	   _type;
@@ -71,6 +72,20 @@ public class ProcIdentifierImpl implements ProcIdentifier
     }
 
     /**
+     * get the procedure or trigger or event handler's specific name
+     * 
+     * @return
+     */
+	public String getProcSpecificName() {
+		/*
+		 * This method was added to support overloaded routines whose specificName
+		 * distinguishes routines with the same name.
+		 * See BZ 171718.
+		 */
+		return (String) propertyMap.get(PROP_SPECIFIC_NAME);
+	}
+
+	/**
      * get owner name of the database object.
      * @return
      */

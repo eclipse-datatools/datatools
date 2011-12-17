@@ -39,6 +39,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
+import org.eclipse.datatools.sqltools.core.ProcIdentifier2;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
@@ -687,10 +688,26 @@ public class ModelUtil {
                     for (Iterator iter = routines.iterator(); iter.hasNext();)
                     {
                         Routine routine = (Routine) iter.next();
-                        if (equals(routine.getName(), proc.getProcName(), caseSensitive))
+                        if (proc instanceof ProcIdentifier2)
                         {
-                            object = routine;
-                            return object;
+                            /*
+                             * This cheeck deals with overloaded routines whose specificName
+                             * distinguishes routines with the same name.
+                             * See BZ 171718.
+                             */
+                            if (equals(routine.getName(), proc.getProcName(), caseSensitive) &&
+                                    equalsIgnoreNull(routine.getSpecificName(), ((ProcIdentifier2) proc).getProcSpecificName(), caseSensitive)) {
+                                object = routine;
+                                return object;
+                            }
+                        }
+                        else 
+                        {
+	                        if (equals(routine.getName(), proc.getProcName(), caseSensitive))
+	                        {
+	                            object = routine;
+	                            return object;
+	                        }
                         }
                     }
                 }
@@ -701,6 +718,39 @@ public class ModelUtil {
     
     public static boolean equals(String object1, String object2, boolean caseSensitive)
     {
+        if (caseSensitive)
+        {
+            return object1.equals(object2);
+        }
+        else
+        {
+            return object1.equalsIgnoreCase(object2);
+        }
+    }
+    
+    /**
+     * Compares the two strings for equality. If either is <code>null</code>
+     * the result is <code>true</code>.
+     * 
+     * @param object1 Thing 1
+     * @param object2 Thing 2
+     * @param caseSensitive Specifies whether the comparison is case sensitive.
+     * @return <code>true</code> if the strings are equal or if either is
+     * <code>null</code>, <code>false</code> otherwise.
+     */
+    public static boolean equalsIgnoreNull(String object1, String object2, boolean caseSensitive)
+    {
+        if (object1 == null || object2 == null)
+        {
+            /*
+             * null means that the specific name wasn't set. Either routine's specific
+             * wasn't set for the routine or it wasn't encoded in the proc id. In order
+             * not to break existing code, null for either value is treated as equal
+             * to any value. The pre-change code wasn't sensitive to specific names so
+             * this results in original behavior.
+             */
+            return true;
+        }
         if (caseSensitive)
         {
             return object1.equals(object2);

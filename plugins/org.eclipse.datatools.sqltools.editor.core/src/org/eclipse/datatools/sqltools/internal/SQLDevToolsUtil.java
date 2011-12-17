@@ -98,14 +98,19 @@ public class SQLDevToolsUtil {
 		ProcIdentifier proc = null;
 		if (routine instanceof Routine) {
 			Schema schema = ((Routine) routine).getSchema();
+			/*
+			 * This method gets ProcIdentifiers that support overloaded routines
+			 * whose specificName distinguishes routines with the same name.
+			 * See BZ 171718.
+			 */
 			if (routine instanceof Procedure) {
 				proc = h.getProcIdentifier(databaseIdentifier, routine
-						.getName(), ProcIdentifier.TYPE_SP, null, schema
-						.getName());
+						.getName(), ((Procedure) routine).getSpecificName(),
+						ProcIdentifier.TYPE_SP, null, schema.getName());
 			} else if (routine instanceof Function) {
 				proc = h.getProcIdentifier(databaseIdentifier, routine
-						.getName(), ProcIdentifier.TYPE_UDF, null, schema
-						.getName());
+						.getName(), ((Function) routine).getSpecificName(),
+						ProcIdentifier.TYPE_UDF, null, schema.getName());
 			}
 		} else if (routine instanceof Trigger) {
 			Schema schema = ((Trigger) routine).getSchema();
