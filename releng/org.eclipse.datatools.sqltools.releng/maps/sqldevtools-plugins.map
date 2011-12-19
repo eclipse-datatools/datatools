@@ -8,7 +8,7 @@ plugin@org.eclipse.datatools.sqltools.db.derby=GIT,tag=v201107221520,repo=git://
 plugin@org.eclipse.datatools.sqltools.db.derby.ui=GIT,tag=v200906020900,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.db.derby.ui
 plugin@org.eclipse.datatools.sqltools.db.generic=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.db.generic
 plugin@org.eclipse.datatools.sqltools.db.generic.ui=GIT,tag=v200906020900,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.db.generic.ui
-plugin@org.eclipse.datatools.sqltools.editor.core=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.editor.core
+plugin@org.eclipse.datatools.sqltools.editor.core=GIT,tag=v201112170805,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.editor.core
 plugin@org.eclipse.datatools.sqltools.editor.core.ui=GIT,tag=v201001150815,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.editor.core.ui
 plugin@org.eclipse.datatools.sqltools.parsers.sql=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql
 plugin@org.eclipse.datatools.sqltools.parsers.sql.lexer=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql.lexer
