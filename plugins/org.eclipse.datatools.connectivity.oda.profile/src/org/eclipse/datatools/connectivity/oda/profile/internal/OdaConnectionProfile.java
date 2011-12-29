@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2010 Actuate Corporation.
+ * Copyright (c) 2007, 2011 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,9 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.PlatformObject;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectListener;
@@ -30,6 +32,7 @@ import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile.DisconnectJob;
 
 /**
  * An ODA wrapper of a Connectivity connection profile instance.
@@ -236,6 +239,26 @@ public class OdaConnectionProfile extends PlatformObject
         return false;
     }
     
+    /**
+     * For internal use only.
+     * Connect through scheduling a synchronized job. 
+     * This method would wait till any pending disconnect operation(s) on this profile instance 
+     * are finished, before scheduling its connect operation.
+     * It handles the case of re-connecting via a profile instance, whose disconnect jobs 
+     * have been scheduled but did not wait to finish for optimizing response time.
+     */
+    public IStatus connectSynchronously()
+    {
+        // first wait till all pending DisconnectJob that belong to 
+        // this (lowest wrapped) profile have finished
+        waitForDisconnectingJobs( getLeafWrappedProfile() );
+
+        if( isConnected() )
+            return Status.OK_STATUS;
+
+        return this.connect();        
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#connect()
      */
@@ -258,6 +281,32 @@ public class OdaConnectionProfile extends PlatformObject
     public void connect( IJobChangeListener listener )
     {
         m_wrappedProfile.connect( listener );
+    }
+
+    private void waitForDisconnectingJobs( IConnectionProfile disconnectingProfile )
+    {
+        Job[] profileJobs = Job.getJobManager().find( disconnectingProfile );
+        if( profileJobs.length == 0 )
+            return;   // no jobs found on the specified profile instance
+
+        // iterate thru each pending DisconnectJob, and wait for it to finish
+        for( int index = 0; index < profileJobs.length; index++ )
+        {
+            if( ! (profileJobs[index] instanceof DisconnectJob) )
+                continue;     // not a DisconnectJob, skip
+
+            Job disconnectProfileJob = profileJobs[index];
+            if( disconnectProfileJob.getState() == Job.NONE ) 
+                continue;     // DisconnectJob is not in a pending state, skip
+
+            try
+            {
+                // wait for the pending DisconnectJob to finish
+                disconnectProfileJob.join();
+            }
+            catch( InterruptedException ex )
+            {}
+        }
     }
 
     /* (non-Javadoc)
@@ -447,7 +496,7 @@ public class OdaConnectionProfile extends PlatformObject
     public boolean isConnected()
     {
         if( hasWrappedProfile() )
-            return getWrappedProfile().getConnectionState() == IConnectionProfile.CONNECTED_STATE;
+            return getWrappedProfile().isConnected();
         return false;
     }
 
