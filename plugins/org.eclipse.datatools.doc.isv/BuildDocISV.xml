@@ -7,6 +7,7 @@
 	<property name="src.dir" value="${buildDirectory}/plugins" />
 	<property name="bin.dir" value="@dot"/>
 	<property name="output.dir" value="./html/reference/api/"/>
+	<property name="schema.out.dir" value="./html/reference/extension-points/"/>
 	
 	<property file="build.properties"/>
 
@@ -244,8 +245,46 @@
 
 	</path>
 	
-    <!-- org.eclipse.datatools.* -->
-	<target name="Javadoc" depends="Clean">
+	<target name="CreateSchemaReference">
+		
+		<property name="dest" value="html/reference/extension-points" />	
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.result/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.profile/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.tabledataeditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.routineeditor.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.query/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sqlscrapbook/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.data.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.consumer/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.core.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.help/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.design.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sql.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.modelbase.sql/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.editor.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.result.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sqleditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.routineeditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.sybase/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.sybase.ase/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.editor.core.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.plan/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.debugger.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.modelbase.sql.query/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.server.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.data.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.oda.ecore.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.common.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages/plugin.xml" destination="${dest}" />
+	</target>
+
+	<!-- org.eclipse.datatools.* -->
+	<target name="Javadoc" depends="Clean,CreateSchemaReference">
 		<echo message="src dir: ${src.dir}"/>
 		<echo message="eclipse.home: ${eclipse.home}"/>
 		
@@ -265,6 +304,7 @@
 	
 	<target name="Clean">
 		<delete dir="${output.dir}" failonerror="false"/>
+		<delele dir="${schema.out.dir}" failonerror="false"/>
 	</target>
 	
 </project>
