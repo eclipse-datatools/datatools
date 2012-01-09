@@ -304,7 +304,7 @@
 	
 	<target name="Clean">
 		<delete dir="${output.dir}" failonerror="false"/>
-		<delele dir="${schema.out.dir}" failonerror="false"/>
+		<delete dir="${schema.out.dir}" failonerror="false"/>
 	</target>
 	
 </project>
