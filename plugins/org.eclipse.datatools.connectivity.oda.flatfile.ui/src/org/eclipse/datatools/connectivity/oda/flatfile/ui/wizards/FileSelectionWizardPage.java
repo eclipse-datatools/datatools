@@ -1013,10 +1013,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
 		{
 			String columnName = ( (String[]) savedSelectedColumnsInfoList.get( i ) )[0];
+			String originalName = ( (String[]) savedSelectedColumnsInfoList.get( i ) )[1];
 			boolean columnExists = false;
 			for ( int k = 0; k < columnNames.length; k++ )
 			{
-				if ( columnName != null && columnName.equals( columnNames[k] ) )
+				if ( ( columnName != null && columnName.equals( columnNames[k] ) )
+						|| ( originalName != null && originalName.equals( columnNames[k] ) ) )
 				{
 					columnExists = true;
 					break;
