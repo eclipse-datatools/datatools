@@ -71,13 +71,13 @@ buildLabel=""
 mapVersionTag=HEAD
 
 # directory in which to export builder projects
-builderDir=$HOME/releng.dtp.192/org.eclipse.datatools.releng.builder
+builderDir=$HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder
 
 # buildtype determines whether map file tags are used as entered or are replaced with HEAD
 buildType=I
 
 # directory where to copy build
-postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.9.2
+postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.10.0
 
 # flag to indicate if test build
 testBuild=""
@@ -181,7 +181,7 @@ echo "======[customBuilderTag]: $customBuilderTag" >> $USER.log
 #fi
 
 # directory where features and plugins will be compiled
-buildDirectory=$HOME/releng.dtp.192/src
+buildDirectory=$HOME/releng.dtp.1100/src
 
 echo "======[buildDirectory]: $buildDirectory" >> $USER.log
 
@@ -254,7 +254,7 @@ else
 	elif [ "$ForceAutoTag" == "true" ]; then
 		echo "Continue to build even if no bundles changed for -ForceAutoTag build"
 	else
-		echo "No change detected. 1.9.2 Nightly Build ($buildId) is canceled"
+		echo "No change detected. 1.10.0 Nightly Build ($buildId) is canceled"
                 exit
 	fi
 	
@@ -271,7 +271,7 @@ bootclasspath_15="/usr/local/jdk1.5.0_02/jre/lib/rt.jar:/usr/local/jdk1.5.0_02/j
 bootclasspath_16="/usr/local/jdk1.6.0/jre/lib/rt.jar:/usr/local/jdk1.6.0/jre/lib/jsse.jar"
 jvm15_home="/usr/local/jdk1.5.0_02"
 
-cd $HOME/releng.dtp.192/org.eclipse.datatools.releng.builder
+cd $HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder
 
 echo buildId=$buildId >> monitor.properties 
 echo timestamp=$timestamp >> monitor.properties 
@@ -287,7 +287,7 @@ antRunner="/usr/local/jdk1.5.0_09/bin/java -Xmx500m -jar ../org.eclipse.releng.b
 
 echo "==========[antRunner]: $antRunner" >> $USER.log
 
-#$HOME/releng.dtp.192/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
+#$HOME/releng.dtp.1100/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
 
 #clean drop directories
 
@@ -296,24 +296,24 @@ echo "==========[antRunner]: $antRunner" >> $USER.log
 echo $tagMaps >> $USER.log
 echo $compareMaps >> $USER.log
 
-PackageVersion=1.9.2RC1-$timestamp
+PackageVersion=1.10.0M5-$timestamp
 echo "======[PackageVersion]: $PackageVersion" >> $USER.log
 
-#cp $HOME/releng.dtp.192/dtpURLmonitor.properties $HOME/releng.260/src/
+#cp $HOME/releng.dtp.1100/dtpURLmonitor.properties $HOME/releng.260/src/
 
 buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMaps \
 -DmapVersionTag=$mapVersionTag -DpostingDirectory=$postingDirectory \
 -Dbootclasspath=$bootclasspath_15 -DbuildType=$buildType -D$buildType=true \
 -DbuildId=$buildId -Dbuildid=$buildId -DbuildLabel=$buildId -Dtimestamp=$timestamp $skipPerf $skipTest $tagMaps $noSign \
 -DJ2SE-1.5=$bootclasspath_15 -DJavaSE-1.6=$bootclasspath_16 -DlogExtension=.xml $javadoc $updateSite $sign \
--Djava15-home=$bootclasspath_15 -DbuildDirectory=$HOME/releng.dtp.192/src \
--DbaseLocation=$HOME/releng.dtp.192/baseLocation -Dwtp.home=$HOME/releng.dtp.192/baseLocation \
+-Djava15-home=$bootclasspath_15 -DbuildDirectory=$HOME/releng.dtp.1100/src \
+-DbaseLocation=$HOME/releng.dtp.1100/baseLocation -Dwtp.home=$HOME/releng.dtp.1100/baseLocation \
 -DgroupConfiguration=true -DjavacVerbose=true -DjavacFailOnError=false \
--Dbasebuilder=$HOME/releng.dtp.192/org.eclipse.releng.basebuilder  \
--Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.192/org.eclipse.datatools.releng.builder/mapTag.properties \
+-Dbasebuilder=$HOME/releng.dtp.1100/org.eclipse.releng.basebuilder  \
+-Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder/mapTag.properties \
 -Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
 -DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
--DmapVersionTag=$BranchName -DBranchVersion=1.9.2 -DjavacTarget=1.5 -DjavacSource=1.5 \
+-DmapVersionTag=$BranchName -DBranchVersion=1.10.0 \
 -Dusername.sign=slee -Dpassword.sign=Actuate# -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
 
 #skipPreBuild
@@ -333,6 +333,6 @@ $buildCommand >> $USER.log
 
 #clean up
 #rm -rf $builderDir
-rm -rf $HOME/releng.dtp.192/src/$buildId
-#cp -f $HOME/releng.dtp.192/src/directory.txt last_directory.txt
+rm -rf $HOME/releng.dtp.1100/src/$buildId
+#cp -f $HOME/releng.dtp.1100/src/directory.txt last_directory.txt
 
