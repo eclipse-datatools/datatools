@@ -51,9 +51,9 @@ while read LINE; do
 		echo "$PluginName: no change since last release"
 		echo "$PluginName" >> nochange.txt
 	elif [ "$MajorVersion" = "$MajorVersion2" ]; then
-		#Exclude current bundle version timestamp of v20110722 in list of plugins with potential version issue
+		#Exclude current bundle version timestamp of v20110722 and v201109022331 in list of plugins with potential version issue
 		#This seems to be the changes made to "rename .cvsignore to .gitignore" on 7/22 when we first migrated to Git
-		if ( echo "$TimeStamp2" | grep v20110722 >/dev/null ); then
+		if ( echo "$TimeStamp2" | grep v20110722 >/dev/null ) || ( echo "$TimeStamp2" | grep v201109022331 >/dev/null ); then
 			echo "$PluginName: Exclude in list of plugins with potential version issue"
                         echo "$PluginName" >> excludechange.txt
                         echo "Last_Release_Version: $MajorVersion.$TimeStamp" >> excludechange.txt
