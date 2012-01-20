@@ -16,7 +16,7 @@ export CVSROOT CVS_RSH USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
 
 
 export GitRepo=ssh://xgu@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
-export BranchName=master
+export BranchName=DTP_1_9_2_Branch
 rm -rf plugins
 git archive --format=tar --remote=$GitRepo $BranchName plugins/org.eclipse.datatools.releng.builder | tar -xf -
 cp -f plugins/org.eclipse.datatools.releng.builder/buildAll.xml ./
