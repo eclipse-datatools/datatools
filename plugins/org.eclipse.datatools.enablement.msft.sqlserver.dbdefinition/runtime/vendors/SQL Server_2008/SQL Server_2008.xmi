@@ -43,7 +43,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="-10" javaClassName="java.sql.Clob">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="-1" javaClassName="java.sql.Clob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NTEXT</name>
   </predefinedDataTypeDefinitions>
