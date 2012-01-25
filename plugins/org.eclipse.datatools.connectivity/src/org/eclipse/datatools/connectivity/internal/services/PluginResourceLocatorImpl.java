@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2011 Actuate Corporation.
+ * Copyright (c) 2011, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -227,10 +227,11 @@ public class PluginResourceLocatorImpl
     private static URL encode( String location )
     {
         //  encode non-US-ASCII characters in specified path into an URI
+        String encodedLocation = null;
         try
         {
             // use URI encoding implementation
-            String encodedLocation = new File( location ).toURI( ).toASCIIString( );
+            encodedLocation = new File( location ).toURI( ).toASCIIString( );
             String target =  new File( EMPTY_STRING ).toURI( ).toASCIIString( );
             // strip out the interim root path added by the file conversion
             encodedLocation = encodedLocation.replace( target, EMPTY_STRING );
@@ -238,7 +239,22 @@ public class PluginResourceLocatorImpl
         }
         catch( Exception ex )
         {
-            ConnectivityPlugin.getDefault().logWarning( ex.getMessage() );
+            ConnectivityPlugin.getDefault().logWarning( 
+                    "PluginResourceLocatorImpl#encode(String): Unable to encode workspace location (" + location +  //$NON-NLS-1$
+                    "); invalid encodedLocation (" + encodedLocation +  //$NON-NLS-1$
+                    ");\n Exception message: " + ex.getMessage() ); //$NON-NLS-1$
+        }
+
+        // interim workaround for BZ 363422 - falls back to original location value
+        try
+        {
+            return new File( location ).toURI().toURL();
+        }
+        catch( Exception ex )
+        {
+            ConnectivityPlugin.getDefault().logWarning( 
+                    "PluginResourceLocatorImpl#encode(String): Unable to convert workspace location (" + location +  //$NON-NLS-1$
+                    ") to URL;\n Exception message: " + ex.getMessage() ); //$NON-NLS-1$
         }
         return null;
     }
