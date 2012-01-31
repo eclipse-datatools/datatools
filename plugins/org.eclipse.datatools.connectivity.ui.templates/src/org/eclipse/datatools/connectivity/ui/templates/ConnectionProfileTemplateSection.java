@@ -130,7 +130,7 @@ public class ConnectionProfileTemplateSection extends AbstractConnectivityTempla
 		}
 
 		String icon = getStringOption(KEY_ICON);
-		if (icon != null || icon.trim().length() > 0) {
+		if (icon != null && icon.trim().length() > 0) {
 			element.setAttribute("icon", icon); //$NON-NLS-1$
 		}
 

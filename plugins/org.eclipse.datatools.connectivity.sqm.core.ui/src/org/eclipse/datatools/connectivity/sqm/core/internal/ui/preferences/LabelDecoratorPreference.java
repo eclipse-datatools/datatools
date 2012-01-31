@@ -124,7 +124,7 @@ public class LabelDecoratorPreference
     
     private String getColumnString (String columnString, String dataType, boolean nullable, boolean pk, boolean fk)
     {
-        if (columnString != null || !columnString.equals(BLANK))
+        if (columnString != null && !columnString.equals(BLANK))
         {
 	        try
 	        {

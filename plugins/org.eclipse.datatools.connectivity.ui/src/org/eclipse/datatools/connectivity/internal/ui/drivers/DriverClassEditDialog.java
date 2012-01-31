@@ -348,7 +348,7 @@ public class DriverClassEditDialog extends SelectionDialog {
 			String name = (String)obj;
 			if (name!=null)
 				return name;
-			return obj.toString();
+			return (name != null) ? name : "";
 		}
 		public Image getImage(Object obj) {
 			return null;

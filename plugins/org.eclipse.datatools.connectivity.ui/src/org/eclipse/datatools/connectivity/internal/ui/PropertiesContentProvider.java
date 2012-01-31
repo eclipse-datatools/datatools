@@ -75,7 +75,7 @@ public class PropertiesContentProvider implements IStructuredContentProvider {
 				if (otds != null && otds.length > 0) {
 					String temp =
 						otds[0].getPropertyVisibleFromId(id);
-					if (temp != null || temp.length() > 0)
+					if (temp != null && temp.length() > 0)
 						visible = temp;
 				}
 				boolean propvisible = true;
