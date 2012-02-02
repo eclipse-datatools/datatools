@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="org.eclipse.datatools.connectivity.sample.contribution1">
+         <menu
+               label="Connectivity Sample"
+               path="additions"
+               id="org.eclipse.datatools.connectivity.sample.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Launch Sample"
+               class="org.eclipse.datatools.connectivity.sample.popup.actions.LaunchSample"
+               menubarPath="org.eclipse.datatools.connectivity.sample.menu1/group1"
+               enablesFor="*"
+               id="org.eclipse.datatools.connectivity.sample.LaunchSample">
+         </action>
+         <action
+               label="Create Connection"
+               class="org.eclipse.datatools.connectivity.sample.popup.actions.CreateConnection"
+               menubarPath="org.eclipse.datatools.connectivity.sample.menu1/group1"
+               enablesFor="*"
+               id="org.eclipse.datatools.connectivity.sample.CreateConnection">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
