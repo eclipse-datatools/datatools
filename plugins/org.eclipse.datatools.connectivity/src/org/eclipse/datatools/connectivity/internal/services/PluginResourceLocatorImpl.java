@@ -16,7 +16,6 @@ package org.eclipse.datatools.connectivity.internal.services;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -37,7 +36,6 @@ public class PluginResourceLocatorImpl
 {
     static final String PLUGIN_ROOT_PATH = "/"; //$NON-NLS-1$
     private static final String WORKSPACE_PATH_SUFFIX = "_workspacepath"; //$NON-NLS-1$
-    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     private static final String DATATOOLS_NAMESPACE = "org.eclipse.datatools"; //$NON-NLS-1$
     
     private static ResourceLocatorDelegate sm_delegate;
@@ -202,14 +200,26 @@ public class PluginResourceLocatorImpl
             {
                 if( pluginId.equals( DATATOOLS_NAMESPACE ) )
                     return null;
+
                 // try get the shared parent workspace location
-                URL commonWsLoc = getConfigurableWorkspaceLocation( DATATOOLS_NAMESPACE );
-                if( commonWsLoc == null )
+                URL parentWsLoc = getConfigurableWorkspaceLocation( DATATOOLS_NAMESPACE );
+                if( parentWsLoc == null )
                     return null;    // no workspace path defined for specified pluginId
 
+                // verify the parent workspace location is an existing folder
+                if( ! isExistingFolder( parentWsLoc ) )
+                {
+                    ConnectivityPlugin.getDefault().logWarning( 
+                            "PluginResourceLocatorImpl#getConfigurableWorkspaceLocation(String): Invalid parent workspace path (" +   //$NON-NLS-1$
+                            parentWsLoc.getPath() +
+                            "); must specify an existing directory for the " +  //$NON-NLS-1$
+                            DATATOOLS_NAMESPACE + " workspace path." ); //$NON-NLS-1$
+                    return null;
+                }
+
                 // append specified pluginId to the parent workspace location
-                IPath commonWsPath = new Path( commonWsLoc.getPath() );
-                value = commonWsPath.append( pluginId ).toString();
+                IPath parentWsPath = new Path( parentWsLoc.getPath() );
+                value = parentWsPath.append( pluginId ).toString();
             }
         }
         
@@ -221,44 +231,50 @@ public class PluginResourceLocatorImpl
                 value = pluginLoc.append( value ).toString();
         }
 
-        return encode( value );
+        return convertToURL( value );
     }
-    
-    private static URL encode( String location )
+
+    private static URL convertToURL( String absoluteDirPath )
     {
-        //  encode non-US-ASCII characters in specified path into an URI
-        String encodedLocation = null;
-        try
-        {
-            // use URI encoding implementation
-            encodedLocation = new File( location ).toURI( ).toASCIIString( );
-            String target =  new File( EMPTY_STRING ).toURI( ).toASCIIString( );
-            // strip out the interim root path added by the file conversion
-            encodedLocation = encodedLocation.replace( target, EMPTY_STRING );
-            return new URI( encodedLocation ).toURL();
-        }
-        catch( Exception ex )
+        File workspaceFolder = new File( absoluteDirPath );
+        if( ! workspaceFolder.isAbsolute() ) // ok if directory does not already exist
         {
             ConnectivityPlugin.getDefault().logWarning( 
-                    "PluginResourceLocatorImpl#encode(String): Unable to encode workspace location (" + location +  //$NON-NLS-1$
-                    "); invalid encodedLocation (" + encodedLocation +  //$NON-NLS-1$
-                    ");\n Exception message: " + ex.getMessage() ); //$NON-NLS-1$
+                    "PluginResourceLocatorImpl#convertToURL(String): Unable to use the workspace location (" +   //$NON-NLS-1$
+                    absoluteDirPath +
+                    "); must specify an absolute path for the workspace." ); //$NON-NLS-1$
+            return null;
         }
 
-        // interim workaround for BZ 363422 - falls back to original location value
+        // BZ 363422 - use File#toURI() to encode any special characters, such as a space, 
+        // embedded in a workspace folder name
         try
         {
-            return new File( location ).toURI().toURL();
+            return workspaceFolder.toURI().toURL();
         }
         catch( Exception ex )
         {
             ConnectivityPlugin.getDefault().logWarning( 
-                    "PluginResourceLocatorImpl#encode(String): Unable to convert workspace location (" + location +  //$NON-NLS-1$
-                    ") to URL;\n Exception message: " + ex.getMessage() ); //$NON-NLS-1$
+                    "PluginResourceLocatorImpl#convertToURL(String): Unable to encode and convert workspace location (" +   //$NON-NLS-1$
+                    absoluteDirPath +
+                    ") to an URL;\n Exception message: " + ex.getMessage() ); //$NON-NLS-1$
         }
-        return null;
+        return null;        
     }
     
+    private static boolean isExistingFolder( URL workspaceLoc )
+    {
+        try
+        {
+            File wsFolder = new File( workspaceLoc.toURI() );
+            return wsFolder.isDirectory();        
+        }
+        catch( Exception ex )
+        {
+        }
+        return false;
+    }
+
     /**
      * Implementation of
      * {@link org.eclipse.datatools.connectivity.services.PluginResourceLocator#getResourceString(String, String)}.
