@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.ibm.informix.ui.drivers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
@@ -138,6 +139,7 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
     protected OptionalPropertiesPane optionalPropsComposite;
 
     private Properties properties;
+	private String urlOptionalParameters=""; //$NON-NLS-1$
 	
     protected boolean isReadOnly = false;
 
@@ -447,7 +449,8 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
         String url = getURLHandle(hostText.getText().trim(), portText.getText().trim(), 
                                 databaseText.getText().trim(), serverText.getText().trim())
                             .formatURL();
-		urlText.setText(url);
+        url += getURLOptionalParameters();
+        urlText.setText(url);
 	}
 
 	private void addListeners() {
@@ -614,6 +617,7 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
          */
 		protected void parseURL(String url) {
 			try {
+				setURLOptionalParameters(""); //$NON-NLS-1$
 				String remainingURL = url.substring(url.indexOf(':') + 1);
 				this.subprotocol = remainingURL.substring(0, remainingURL
 						.indexOf(':'));
@@ -632,17 +636,56 @@ public class InformixDriverUIContributorBase implements IDriverUIContributor,
 							.indexOf(':'));
 					remainingURL = remainingURL.substring(remainingURL
 							.indexOf(':') + 1);
-					if (remainingURL.indexOf("INFORMIXSERVER=") > -1){
+					if (remainingURL.indexOf("INFORMIXSERVER=") > -1){ //$NON-NLS-1$
+						
+						if(remainingURL.contains(";")){ //$NON-NLS-1$
 						this.server = remainingURL.substring(new String(
-								"INFORMIXSERVER=").length(), remainingURL //$NON-NLS-1$
-								.indexOf(';'));
-					}
+									"INFORMIXSERVER=").length(), remainingURL //$NON-NLS-1$
+									.indexOf(';'));
+						}else
+							
+							this.server = remainingURL.substring(remainingURL.indexOf('=')+1);
+						
+						}
+				
 					this.urlProperties = remainingURL;
 				} else {
 					this.databaseName = remainingURL;
 				}
+				String userOptionalParameters=""; //$NON-NLS-1$
+				String userParameter = ""; //$NON-NLS-1$
+				if(remainingURL!=null && remainingURL.length()>0)
+				{
+					StringTokenizer st = new StringTokenizer(remainingURL, ";"); //$NON-NLS-1$
+					int tokenLength = st.countTokens();
+					for(int i=0; i< tokenLength; i++)
+					{
+						userParameter = st.nextToken();
+						if(userParameter!=null && userParameter.length()>0){
+							if((!userParameter.startsWith("INFORMIXSERVER")) && (!userParameter.startsWith("DELIMIDENT"))) //$NON-NLS-1$ //$NON-NLS-2$
+								userOptionalParameters +=	userParameter+";"; //$NON-NLS-1$
+						}
+					}
+
+					setURLOptionalParameters(userOptionalParameters);
+				}
 			} catch (Exception e) {
 			}
 		}
+	}
+	/**
+	 *  Sets the URL optional properties.
+	 */
+	public void setURLOptionalParameters(String connProp)
+	{
+		this.urlOptionalParameters = connProp;
+	}
+	
+	/**
+	 * @return Returns the URL optional properties.
+	 */
+	public String getURLOptionalParameters()
+	{
+		return this.urlOptionalParameters;
 	}
 }

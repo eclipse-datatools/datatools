@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.ui.drivers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
@@ -152,6 +153,7 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 	private IDriverUIContributorInformation contributorInformation;
 
     private Properties properties;
+    private String urlOptionalParameters=""; //$NON-NLS-1$
 
 	protected boolean isReadOnly = false;
 	
@@ -406,7 +408,8 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
                                 clientAuthenticationCheckbox.getSelection(), 
                                 tracingProperties)
                             .formatURL();
-		urlText.setText(url);
+    	url += getURLOptionalParameters();
+        urlText.setText(url);
 	}
 
 	private void removeListeners() {
@@ -717,6 +720,7 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
          */
 		protected void parseURL(String url) {
 			try {
+				setURLOptionalParameters(""); //$NON-NLS-1$
 				String remainingURL = url.substring(url.indexOf(':') + 1);
 				this.subprotocol = remainingURL.substring(0, remainingURL
 						.indexOf(':'));
@@ -730,18 +734,64 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 				}
 				remainingURL = remainingURL
 						.substring(remainingURL.indexOf('/') + 1);
-				if (remainingURL.indexOf(':') > -1) {
-					this.databaseName = remainingURL.substring(0, remainingURL
-							.indexOf(':'));
-					remainingURL = remainingURL.substring(remainingURL
-							.indexOf(':') + 1);
+				if (remainingURL.indexOf(';') > -1) {
+					
+					String urlString = remainingURL.substring(0, remainingURL
+							.indexOf(';'));
+						if(urlString.contains("retrieveMessagesFromServerOnGetMessage=true")){ //$NON-NLS-1$
+							this.databaseName = remainingURL.substring(0, remainingURL
+									.indexOf(':'));
+							remainingURL = remainingURL.substring(remainingURL
+									.indexOf(':') + 1);
+						}else{
+					      this.databaseName = remainingURL.substring(0, remainingURL
+							.indexOf(';'));
+					      remainingURL = remainingURL.substring(remainingURL
+									.indexOf(';') + 1);
+						}
+					
 					this.urlProperties = remainingURL;
 					this.useClientAuthentication = (this.urlProperties.indexOf(CLIENT_AUTHETICATION_TEXT) > -1 );
+					String userOptionalParameters=""; //$NON-NLS-1$
+					String userParameter = ""; //$NON-NLS-1$
+					if(remainingURL!=null && remainingURL.length()>0)
+					{
+						StringTokenizer st = new StringTokenizer(remainingURL, ";"); //$NON-NLS-1$
+						int tokenLength = st.countTokens();
+						for(int i=0; i< tokenLength; i++)
+						{
+							userParameter = st.nextToken();
+							if(userParameter!=null && userParameter.length()>0){
+								if(!(userParameter.startsWith("retrieveMessagesFromServerOnGetMessage=true"))) //$NON-NLS-1$
+									userOptionalParameters +=	userParameter+";"; //$NON-NLS-1$
+							}
+						}
+
+						setURLOptionalParameters(userOptionalParameters);
+					}
+				
 				} else {
 					this.databaseName = remainingURL;
 				}
+				
+			
 			} catch (Exception e) {
 			}
 		}
+	}
+	/**
+	 *  Sets the URL optional properties.
+	 */
+	public void setURLOptionalParameters(String connProp)
+	{
+		this.urlOptionalParameters = connProp;
+	}
+	
+	/**
+	 * @return Returns the URL optional properties.
+	 */
+	public String getURLOptionalParameters()
+	{
+		return this.urlOptionalParameters;
 	}
 }

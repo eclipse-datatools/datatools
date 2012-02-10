@@ -11,6 +11,7 @@ package org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
@@ -147,6 +148,7 @@ public class DB2ZSeriesDriverUIContributor implements IDriverUIContributor,
 	protected String DEFAULT_PORT_TEXT = "446"; //$NON-NLS-1$
 
 	private Properties properties;
+	private String urlOptionalParameters=""; //$NON-NLS-1$
 	
 	private boolean isReadOnly = false;
 	
@@ -490,6 +492,7 @@ public class DB2ZSeriesDriverUIContributor implements IDriverUIContributor,
 				+ "/" + databaseText.getText().trim() //$NON-NLS-1$
 				+ ":retrieveMessagesFromServerOnGetMessage=true;emulateParameterMetaDataForZCalls=1;" //$NON-NLS-1$
 				+ tracingOptionsComposite.getTracingURLProperties();
+		url += getURLOptionalParameters();
 		urlText.setText(url);
 	}
 
@@ -579,6 +582,7 @@ public class DB2ZSeriesDriverUIContributor implements IDriverUIContributor,
 
 		private void parseURL(String url) {
 			try {
+				setURLOptionalParameters(""); //$NON-NLS-1$
 				String remainingURL = url.substring(url.indexOf(':') + 1);
 				this.subprotocol = remainingURL.substring(0, remainingURL
 						.indexOf(':'));
@@ -601,6 +605,25 @@ public class DB2ZSeriesDriverUIContributor implements IDriverUIContributor,
 				} else {
 					this.databaseName = remainingURL;
 				}
+				String userOptionalParameters=""; //$NON-NLS-1$
+				String userParameter = ""; //$NON-NLS-1$
+				if(remainingURL!=null && remainingURL.length()>0)
+				{
+					StringTokenizer st = new StringTokenizer(remainingURL, ";"); //$NON-NLS-1$
+					int tokenLength = st.countTokens();
+					for(int i=0; i< tokenLength; i++)
+					{
+						userParameter = st.nextToken();
+						if(userParameter!=null && userParameter.length()>0){
+							if((!userParameter.startsWith("retrieveMessagesFromServerOnGetMessage"))&&(!userParameter.startsWith("emulateParameterMetaDataForZCalls"))) //$NON-NLS-1$ //$NON-NLS-2$
+								userOptionalParameters +=	userParameter+";"; //$NON-NLS-1$
+																			
+						}
+					
+				}
+
+					setURLOptionalParameters(userOptionalParameters);
+				}
 			} catch (Exception e) {
 			}
 		}
@@ -618,5 +641,20 @@ public class DB2ZSeriesDriverUIContributor implements IDriverUIContributor,
 		public String getProperties() {
 			return properties;
 		}
+	}
+	/**
+	 *  Sets the URL optional properties.
+	 */
+	public void setURLOptionalParameters(String connProp)
+	{
+		this.urlOptionalParameters = connProp;
+	}
+	
+	/**
+	 * @return Returns the URL optional properties.
+	 */
+	public String getURLOptionalParameters()
+	{
+		return this.urlOptionalParameters;
 	}
 }
