@@ -385,6 +385,12 @@
              provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlRoutineLoader"
              version="5.1">
        </overrideLoader>
+       <overrideLoader
+             eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+             product="MySql"
+             provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlAuthorizationIdentifierLoader"
+             version="5.1">
+       </overrideLoader>
     </extension>
     <extension
           point="org.eclipse.datatools.connectivity.sqm.core.catalog">
@@ -418,6 +424,12 @@
              provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlRoutineLoader"
              version="5.0">
        </overrideLoader>
+       <overrideLoader
+             eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+             product="MySql"
+             provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlAuthorizationIdentifierLoader"
+             version="5.0">
+       </overrideLoader>
     </extension>
     <extension
           point="org.eclipse.datatools.connectivity.sqm.core.catalog">
@@ -451,6 +463,12 @@
              provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlRoutineLoader"
              version="4.1">
        </overrideLoader>
+       <overrideLoader
+             eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+             product="MySql"
+             provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlAuthorizationIdentifierLoader"
+             version="4.1">
+       </overrideLoader>
     </extension>
     <extension
           point="org.eclipse.datatools.connectivity.sqm.core.catalog">
@@ -482,6 +500,12 @@
              eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
              product="MySql"
              provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlRoutineLoader"
+             version="4.0">
+       </overrideLoader>
+       <overrideLoader
+             eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+             product="MySql"
+             provider="org.eclipse.datatools.enablement.mysql.catalog.loaders.MySqlAuthorizationIdentifierLoader"
              version="4.0">
        </overrideLoader>
     </extension>
