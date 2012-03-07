@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -849,6 +849,15 @@ public class DefaultDataSourcePageHelper
    			if ( choices[ j ].getName().equals( propVal ) )
    				return new Integer( j );
    		}
+        
+    	// the match by choice names is done first for backward compatibility;
+        // if no match to any choice name, then compare to the manifest choice value
+        for( int j = 0; j < choices.length; j++ )
+        {
+            // Compare the manifest choice name with the prop value.
+            if ( choices[ j ].getValue().equals( propVal ) )
+                return new Integer( j );
+        }
 
     	return new Integer( -1 );    	
     }
