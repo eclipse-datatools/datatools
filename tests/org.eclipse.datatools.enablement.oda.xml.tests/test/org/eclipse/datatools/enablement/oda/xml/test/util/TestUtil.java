@@ -10,12 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.test.util;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
+import java.io.InputStreamReader;
 
 /**
  * 
@@ -35,32 +34,58 @@ public class TestUtil
 	public static boolean compareTextFile( File goldenFile, File outputFile )
 			throws IOException
 	{
-		if(goldenFile.length( ) != outputFile.length( ))
-		{
-			return false;
-		}
 		
-		BufferedInputStream bfA = new BufferedInputStream( new DataInputStream(new FileInputStream(goldenFile)));
-		BufferedInputStream bfB = new BufferedInputStream( new DataInputStream(new FileInputStream(outputFile)));
-		
-		long currentIdx = 0;
-		long fileLength = goldenFile.length( );
-		byte[] bf1 = new byte[2048];
-		byte[] bf2 = new byte[2048];
-		boolean isSame = true;
-		while( currentIdx < fileLength )
+		boolean same = false;
+		int line = 1;
+
+		FileInputStream golden = new FileInputStream(goldenFile);
+		FileInputStream output = new FileInputStream(outputFile);
+		try
 		{
-			bfA.read( bf1 );
-			bfB.read( bf2 );
-			if(!Arrays.equals( bf1, bf2 ))
+			InputStreamReader readerA = new InputStreamReader( golden );
+			InputStreamReader readerB = new InputStreamReader( output );
+			BufferedReader lineReaderA = new BufferedReader( readerA );
+			BufferedReader lineReaderB = new BufferedReader( readerB );
+
+			String strA = lineReaderA.readLine( ).trim( );
+			String strB = lineReaderB.readLine( ).trim( );
+			while ( strA != null && strB != null )
 			{
-				isSame = false;
-				break;
+				same = strA.trim( ).equals( strB.trim( ) );
+				if ( !same )
+				{
+					break;
+				}
+
+				line++;
+				strA = lineReaderA.readLine( );
+				strB = lineReaderB.readLine( );
 			}
-			currentIdx += 2048;
-		}		
-		bfA.close( );
-		bfB.close( );
-		return isSame;
+			same = strA == null && strB == null;
+			
+			readerA.close( );
+			readerB.close( );
+			lineReaderA.close( );
+			lineReaderB.close( );
+			
+			if ( !same )
+				throw new IOException( "Not equal with the golden file at line# <"+ line + ">." ); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		finally
+		{
+			try
+			{
+				golden.close( );
+			}
+			catch (IOException ignore){}
+			
+			try
+			{
+				output.close( );
+			}
+			catch (IOException ignore){}
+		}
+
+		return same;
 	}
 }

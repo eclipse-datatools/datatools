@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 import java.util.Properties;
 
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 
 import org.eclipse.swt.widgets.Composite;
@@ -38,6 +39,8 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
 	{
 		if ( m_pageHelper == null )
 			m_pageHelper = new XMLSelectionPageHelper( this );
+		
+		m_pageHelper.setResourceIdentifiers( this.getHostResourceIdentifiers( ) );
 		m_pageHelper.createCustomControl( parent );
 		m_pageHelper.initCustomControl( m_folderProperties ); // in case init was called before create 
 
@@ -80,4 +83,14 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
     }
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
+	{
+		return m_pageHelper.createTestConnectionRunnable( profile );
+	}
+    
+    
 }

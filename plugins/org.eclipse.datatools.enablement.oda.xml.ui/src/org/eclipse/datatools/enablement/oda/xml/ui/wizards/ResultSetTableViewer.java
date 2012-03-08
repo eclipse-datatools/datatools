@@ -22,6 +22,8 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -48,16 +50,17 @@ public final class ResultSetTableViewer
 	private Composite mainControl;
 	private String[][] resultSet;
 	private TableColumn column;
-	private static final int MAX_ROW = 500;
-
+	private final int MAX_ROW = 500;
+	private Object ri; // Design time resource identifiers
     private static final String EMPTY_STRING = "";  //$NON-NLS-1$
 
 	/**
 	 * result set table viewer
 	 */
 	public ResultSetTableViewer( Composite parent, boolean showMenus,
-			boolean showButtons, boolean enableKeyStrokes )
+			boolean showButtons, boolean enableKeyStrokes, Object resourceIdentifiers )
 	{
+		ri = resourceIdentifiers;
 		mainControl = new Composite( parent, SWT.NONE );
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 2;
@@ -111,8 +114,10 @@ public final class ResultSetTableViewer
 		String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 		properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
 				xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
+		
 		try
 		{
+			conn.setAppContext( DesignSessionUtil.createResourceIdentifiersContext( (ResourceIdentifiers) ri ) );
 			conn.open( properties );
 
 			IQuery query = conn.newQuery( null );

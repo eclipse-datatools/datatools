@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
@@ -423,7 +424,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ) );
+				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ), getHostResourceIdentifiers( ) );
 				if ( previewDialog.open( ) == IDialogConstants.CLOSE_ID )
 				{
 					previewDialog.close( );
@@ -1175,7 +1176,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
 					xmlFileName,
 					xmlEncoding,
-					numberOfElement );
+					numberOfElement,
+					DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true, true );
 
 
@@ -1489,10 +1491,12 @@ public class ColumnMappingPage extends DataSetWizardPage
 		if ( this.xsdFileName != null
 					&& this.xsdFileName.trim( ).length( ) > 0 )
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xsdFileName,
-						xmlEncoding );
+						xmlEncoding,
+						DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 			else
 				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xmlFileName,
-						xmlEncoding );
+						xmlEncoding,
+						DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) ) );
 		}
 		catch ( OdaException ex )
 		{
@@ -1687,5 +1691,4 @@ public class ColumnMappingPage extends DataSetWizardPage
 		}
 		return false;
 	}
-	
 }

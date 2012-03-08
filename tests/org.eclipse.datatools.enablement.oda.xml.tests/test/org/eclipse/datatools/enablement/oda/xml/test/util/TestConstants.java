@@ -24,6 +24,9 @@ public class TestConstants
 		home = home==""?home:home+"/";
 	}
 	public static final String SMALL_XML_FILE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/small.xml";
+	public static final String SMALL_XSD_FILE_RELATIVE = "small.xsd";
+	public static final String SMALL_XML_FILE_RELATIVE = "small.xml";
+	public static final String SMALL_XML_RESOURCE = home + "test/org/eclipse/datatools/enablement/oda/xml/input/";
 	public static final String RECURSIVE_XML_FILE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/recursive.xml";
 	public static final String CRITICAL_XML_FILE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/critical.xml";
 	public static final String UTF8BOM = home+"test/org/eclipse/datatools/enablement/oda/xml/input/utf8bom.xml";
@@ -130,6 +133,8 @@ public class TestConstants
 	public static final String SAX_PARSER_TEST27_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test27.txt";
 	public static final String SAX_PARSER_TEST28_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test28.txt";
 	public static final String SAX_PARSER_TEST28_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test28.txt";
+	public static final String SAX_PARSER_TEST29_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test29.txt";
+	public static final String SAX_PARSER_TEST29_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test29.txt";
 	public static final String SAX_PARSER_TEST_PARAM_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.testParam.txt";
 	public static final String SAX_PARSER_TEST_PARAM_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.testParam.txt";
 	
