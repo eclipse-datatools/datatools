@@ -532,7 +532,7 @@ public class FolderSelectionPageHelper
 				}
 				else if ( e.widget instanceof MenuButton )
 				{
-					handleFileSelection( SELECT_ABSOLUTE_PATH );
+					handleFileSelection( SELECT_RELATIVE_PATH );
 				}
 			}
 		};
