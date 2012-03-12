@@ -213,6 +213,7 @@ public class WSUIUtil
 			// metadata
 			dataSetDesign.setParameters( null );
 		}
+		query.close( );
 
 		/*
 		 * See DesignSessionUtil for more convenience methods to define a data

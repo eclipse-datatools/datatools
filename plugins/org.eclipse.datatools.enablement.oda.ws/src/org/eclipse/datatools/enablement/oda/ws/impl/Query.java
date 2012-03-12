@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -48,7 +47,7 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
  */
 public class Query implements IQuery
 {
-
+	private static final IDriver xmlDriver = new org.eclipse.datatools.enablement.oda.xml.impl.Driver( );
 	private SOAPRequest soapRequest;
 	private RawMessageSender rawMessageSender;
 	private Java2SOAPManager java2SOAPManager;
@@ -104,7 +103,16 @@ public class Query implements IQuery
 	 */
 	public void close( ) throws OdaException
 	{
-		// TODO Auto-generated method stub
+		if ( metadataQuery != null )
+		{
+			metadataQuery.close( );
+			metadataQuery = null;
+		}
+		if ( dataQuery != null )
+		{
+			dataQuery.close( );
+			dataQuery = null;
+		}
 	}
 
 	/*
@@ -113,7 +121,9 @@ public class Query implements IQuery
 	public IResultSetMetaData getMetaData( ) throws OdaException
 	{
 		if ( metadataQuery == null )
+		{
 			metadataQuery = initXMLQuery( true );
+		}
 		
 		return metadataQuery.getMetaData( );
 	}
@@ -133,24 +143,10 @@ public class Query implements IQuery
 
 	private IQuery initXMLQuery( boolean fromWsdl ) throws OdaException
 	{
-		InputStream inputStream = getInputStream( fromWsdl );
-		if ( WSUtil.isNull( inputStream ) )
-			throw new OdaException( );
-
-		IDriver xmlDriver = new org.eclipse.datatools.enablement.oda.xml.impl.Driver( );
-		IConnection conn = xmlDriver.getConnection( null );
-
-		Map map = new HashMap( );
-		map.put( Constants.INPUTSTREAM_XML, inputStream );
-
-		conn.setAppContext( map );
-		conn.open( new Properties( ) );
-
-		IQuery query = conn.newQuery( null );
-		query.setMaxRows( getMaxRows( ) );
-		query.prepare( xmlQueryText );
-
-		return query;
+		return new InternalXMLQuery( getInputStream( fromWsdl ),
+				xmlDriver,
+				this.xmlQueryText,
+				getMaxRows( ) );
 	}
 
 	private InputStream getInputStream( boolean fromWsdl ) throws OdaException
