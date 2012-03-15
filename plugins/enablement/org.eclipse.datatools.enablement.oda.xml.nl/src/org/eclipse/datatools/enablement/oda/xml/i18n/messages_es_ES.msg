@@ -1,6 +1,7 @@
 Connection.PropertiesMissing=Faltan algunas propiedades de conexión.
 Connection.InvalidAppContext=AppContext no válido.
 Connection.InvalidSource=No se puede encontrar el archivo fuente XML o la URL es incorrecta
+Connection.InvalidRelativePath=Failed resolving XML source file, because it is not an absolute path and no resource identifier provided.  
 Connection.NoEncoding=No se encuentra la propiedad de conexión <Encoding>.
 Connection.ResolveRelativePathError=No es posible resolver la ruta relativa, porque: 
 Connection.InvalidResourceIdentifiers=Identificadores de recursos no válidos: 

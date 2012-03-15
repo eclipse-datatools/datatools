@@ -1,6 +1,7 @@
 Connection.PropertiesMissing=缺少某些连接属性。
 Connection.InvalidAppContext=无效的 AppContext。
 Connection.InvalidSource=找不到 xml 源文件，或者 URL 格式错误。
+Connection.InvalidRelativePath=Failed resolving XML source file, because it is not an absolute path and no resource identifier provided.  
 Connection.NoEncoding=连接属性 <Encoding> 丢失。
 Connection.ResolveRelativePathError=无法解析相对路径，因为: 
 Connection.InvalidResourceIdentifiers=资源标识符无效: 

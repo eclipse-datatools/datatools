@@ -1,6 +1,7 @@
 Connection.PropertiesMissing=일부 연결 속성이 누락되었습니다.
 Connection.InvalidAppContext=잘못된 AppContext입니다.
 Connection.InvalidSource=XML 원본 파일을 찾을 수 없거나 URL이 잘못되었습니다.
+Connection.InvalidRelativePath=Failed resolving XML source file, because it is not an absolute path and no resource identifier provided.  
 Connection.NoEncoding=연결 속성 <인코딩>이 누락되었습니다.
 Connection.ResolveRelativePathError=아래의 이유 때문에 상대 경로를 해결할 수 없었습니다. 
 Connection.InvalidResourceIdentifiers=무효 리소스 식별자: 

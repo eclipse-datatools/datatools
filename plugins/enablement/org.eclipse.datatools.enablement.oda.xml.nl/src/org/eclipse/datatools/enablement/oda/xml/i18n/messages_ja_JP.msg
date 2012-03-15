@@ -1,6 +1,7 @@
 Connection.PropertiesMissing=いくつかの接続プロパティがありません。
 Connection.InvalidAppContext=AppContext が無効です。
 Connection.InvalidSource=XML ソースファイルが見つからないか、URL が間違っています。
+Connection.InvalidRelativePath=Failed resolving XML source file, because it is not an absolute path and no resource identifier provided.  
 Connection.NoEncoding=接続のプロパティの <エンコード> がありません。
 Connection.ResolveRelativePathError=相対パスを解決できませんでした。理由 : 
 Connection.InvalidResourceIdentifiers=リソース ID が無効です : 
