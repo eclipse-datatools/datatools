@@ -21,6 +21,7 @@ oda.xml.tablemapping=Asignación de tablas
 oda.xml.columnmapping=Asignación de columnas
 #
 plugin.name=DTP XML File Designernewwizard.name=Fuente de datos de archivo XML DTP
+newwizard.name=XML Data Source
 newwizard.description=Crear un perfil de conexión del archivo XML DTP
 wizard.window.title=Nuevo perfil de fuente de datos del archivo XML
 wizard.data.source.page.title=Definir fuente de datos XML
