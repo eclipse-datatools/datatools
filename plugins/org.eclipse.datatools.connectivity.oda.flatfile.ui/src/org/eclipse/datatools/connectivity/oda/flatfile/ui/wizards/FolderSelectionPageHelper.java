@@ -554,6 +554,10 @@ public class FolderSelectionPageHelper
 		// Add relative path selection support while having resource identifier
 		browseLocalFileButton.setDropDownMenu( menu  );
 		browseLocalFileButton.addSelectionListener( action );
+		
+		GridData btnData = new GridData( ); 
+		btnData.widthHint = browseLocalFileButton.computeSize( -1, -1 ).x;
+		browseLocalFileButton.setLayoutData( btnData );
 	}
 	
 	private void handleFileSelection( int selectionType )
