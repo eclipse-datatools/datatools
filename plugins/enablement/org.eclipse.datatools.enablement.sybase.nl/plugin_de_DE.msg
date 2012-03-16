@@ -4,6 +4,7 @@ Plugin.providerName = Eclipse Data Tools Platform
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Treiber für Sybase-Produkte
 # ====================================================================
+
 pluginName = Sybasesqlmodel Model
 providerName = Eclipse Data Tools Platform
 temptable.name = Temporäre Tabelle
