@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -46,12 +48,12 @@ import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryT
 import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -61,14 +63,19 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -82,6 +89,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
@@ -324,8 +332,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		Composite btnComposite = createAddBtnComposite( composite );
 
 		createRightComposite( composite, btnComposite );
-
-		setupEditors( );
 
 		loadProperties( );
 		populateFileFilter( );
@@ -587,23 +593,57 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						}
 					}
 				} );
+		
+		selectedColumnsViewer.addDoubleClickListener( new IDoubleClickListener( ) {
+
+			public void doubleClick( DoubleClickEvent event )
+			{
+				doEdit( );
+			}
+			
+		} );
+
 
 		setColumnsViewerContent( );
 
 		setColumnsViewerLabels( );
-
-		selectedColumnsViewer.getTable( )
-				.addMouseListener( new MouseAdapter( ) {
-
-					public void mouseDoubleClick( MouseEvent e )
-					{
-						removeColumns( );
-					}
-				} );
-		
+	
 		createEditBtnGroup( rightComposite );
 	}
 	
+	protected void doEdit( )
+	{
+		if ( selectedColumnsViewer.getTable( ).getSelection( ).length > 0 )
+		{
+			ColumnEditDialog editDialog = new ColumnEditDialog( PlatformUI.getWorkbench( )
+					.getDisplay( )
+					.getActiveShell( ) );
+
+			TableItem item = selectedColumnsViewer.getTable( ).getSelection( )[0];
+			editDialog.setInput( item.getText( 0 ),
+					item.getText( 1 ),
+					item.getText( 2 ) );
+
+			if ( editDialog.open( ) == Window.OK )
+			{
+				int index = selectedColumnsViewer.getTable( )
+						.getSelectionIndex( );
+
+				savedSelectedColumnsInfoList.set( index,
+						new String[]{
+								editDialog.getColumnName( ),
+								editDialog.getOriginalName( ),
+								editDialog.getDataType( )
+						} );
+				
+				selectedColumnsViewer.refresh( );
+
+			}
+
+		}
+
+	}
+
 	/**
 	 * Create the right button group that displays the UP,DOWN and REMOVE buttons
 	 * 
@@ -739,133 +779,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 
 		} );
-	}
-
-	/**
-	 * setup the editors in the table viewer
-	 * 
-	 */
-	private void setupEditors( )
-	{
-		CellEditor[] editors = new CellEditor[3];
-		editors[0] = new TextCellEditor( selectedColumnsViewer.getTable( ),
-				SWT.NONE );
-		editors[2] = new ComboBoxCellEditor( selectedColumnsViewer.getTable( ),
-				dataTypeDisplayNames,
-				SWT.READ_ONLY );
-
-		selectedColumnsViewer.setColumnProperties( new String[]{
-				name, originalName, dataType
-		} );
-		selectedColumnsViewer.setCellEditors( editors );
-		selectedColumnsViewer.setCellModifier( new ICellModifier( ) {
-
-			public boolean canModify( Object element, String property )
-			{
-				return true;
-			}
-
-			public Object getValue( Object element, String property )
-			{
-				Object value = null;
-				if ( name.equals( property ) )
-				{
-					value = ( (String[]) element )[0];
-				}
-				else if ( originalName.equals( property ) )
-				{
-					value = ( (String[]) element )[1];
-				}
-				else if ( dataType.equals( property ) )
-				{
-					String temp = ( (String[]) element )[2];
-					if ( temp == null )
-					{
-						value = new Integer( 0 );
-					}
-					else
-					{
-						for ( int i = 0; i < dataTypeDisplayNames.length; i++ )
-						{
-							if ( temp.equals( dataTypeDisplayNames[i] ) )
-							{
-								value = new Integer( i );
-								break;
-							}
-						}
-					}
-				}
-				return value;
-			}
-
-			public void modify( Object element, String property, Object value )
-			{
-				String[] actualElement = (String[]) ( (TableItem) element ).getData( );
-				if ( value != null )
-				{
-					if ( name.equals( property ) )
-					{
-						if ( isUnique( actualElement, (String) value )
-								&& !isEmpty( (String) value ) )
-						{
-							replace( actualElement, property, (String) value );
-
-							selectedColumnsViewer.refresh( );
-							setMessage( DEFAULT_MESSAGE );
-						}
-						else
-						{
-							setMessage( Messages.getString( "error.duplicatedNameValueOrEmpty" ), //$NON-NLS-1$
-									WARNING );
-						}
-					}
-					else if ( dataType.equals( property ) )
-					{
-						int index = ( (Integer) value ).intValue( );
-						if ( !( dataTypeDisplayNames[index] ).equals( actualElement[2] ) )
-						{
-							replace( actualElement,
-									property,
-									dataTypeDisplayNames[index] );
-							selectedColumnsViewer.refresh( );
-						}
-					}
-					return;
-
-				}
-				else
-					return;
-
-			}
-
-		} );
-	}
-
-	/**
-	 * see if the value in the selected element of the saved selected columns
-	 * information is unique or not
-	 * 
-	 * @param element
-	 *            the selected element
-	 * @param value
-	 *            the value
-	 * @return
-	 */
-	private boolean isUnique( String[] element, String value )
-	{
-		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
-		{
-			if ( i != savedSelectedColumnsInfoList.indexOf( element )
-					&& value.equalsIgnoreCase( ( (String[]) savedSelectedColumnsInfoList.get( i ) )[0] ) )
-				return false;
-		}
-		return true;
-	}
-
-	private boolean isEmpty( String value )
-	{
-		return ( value.trim( ).equals( "" ) ); //$NON-NLS-1$
-	}
+	}	
+	
 
 	/**
 	 * get the count of hte existence of the given column name in the already
@@ -2129,6 +2044,193 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		super.setVisible( visible );
 		getControl( ).setFocus( );
+	}
+	
+	private class ColumnEditDialog extends StatusDialog
+	{
+		String columnName, columnOriginalName, columnDataType;
+		
+		public ColumnEditDialog( Shell parent )
+		{
+			super( parent );
+
+		}
+		
+		public void setInput( String columnName, String columnOriginalName, String columnDataType )
+		{
+			this.columnName = columnName;
+			this.columnOriginalName = columnOriginalName;
+			this.columnDataType = columnDataType;
+		}
+		
+		protected boolean isResizable( )
+		{
+			return true;
+		}
+
+		public void create( )
+		{
+			super.create( );
+
+			Point pt = getShell( ).computeSize( -1, -1 );
+			pt.x = Math.max( pt.x, 400 );
+			pt.y = Math.max( pt.y, 250 );
+			getShell( ).setSize( pt );
+			getShell( ).setText( getTitle( ) );
+		}
+
+		protected Control createDialogArea( Composite parent )
+		{
+			Composite composite = new Composite( parent, SWT.None );
+
+			GridLayout layout = new GridLayout( );
+			layout.marginLeft = layout.marginTop = layout.marginRight = 20;
+			layout.marginBottom = 5;
+			layout.numColumns = 2;
+			composite.setLayout( layout );
+			GridData data = new GridData( GridData.FILL_BOTH );
+			composite.setLayoutData( data );
+			
+			GridData lableData = new GridData( );
+			lableData.widthHint = 100;
+			
+			Label columnNameLabel = new Label( composite, SWT.BOLD );
+			columnNameLabel.setLayoutData( lableData );
+			columnNameLabel.setText( Messages.getString( "FileSelectionWizardPage.label.columnName" ) );
+			int width = columnNameLabel.computeSize( -1, -1 ).x;
+			if( width > lableData.widthHint )
+			{
+				lableData.widthHint = width;
+			}
+			columnNameLabel.setLayoutData( lableData );
+			
+			final Text columnNameText = new Text( composite, SWT.BORDER );
+			columnNameText.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+			columnNameText.setText( this.columnName );
+			columnNameText.addModifyListener( new ModifyListener( ){
+
+				public void modifyText( ModifyEvent arg0 )
+				{
+					columnName = columnNameText.getText( ).trim( );
+					validate( );
+				}
+				
+			});
+			
+
+			Label originalNameLabel = new Label( composite, SWT.BOLD );
+			originalNameLabel.setText(  Messages.getString( "FileSelectionWizardPage.label.originalName" ) );
+			width = originalNameLabel.computeSize( -1, -1 ).x;
+			if( width > lableData.widthHint )
+			{
+				lableData.widthHint = width;
+			}
+			originalNameLabel.setLayoutData( lableData );
+			
+			Text originalNameText = new Text( composite, SWT.BORDER | SWT.READ_ONLY );
+			originalNameText.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+			originalNameText.setText( this.columnOriginalName );
+			
+		
+			Label typeLabel = new Label( composite, SWT.BOLD );
+			typeLabel.setLayoutData( lableData );
+			typeLabel.setText(  Messages.getString( "FileSelectionWizardPage.label.dataType" ) );
+			
+			final CCombo combo = new CCombo( composite, SWT.READ_ONLY | SWT.BORDER );
+			combo.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+			combo.setItems( dataTypeDisplayNames );
+			combo.setText( columnDataType );
+			combo.addSelectionListener( new SelectionListener( ){
+
+				public void widgetDefaultSelected( SelectionEvent arg0 )
+				{
+					
+				}
+
+				public void widgetSelected( SelectionEvent arg0 )
+				{
+					columnDataType = combo.getText( );
+				}
+				
+			});
+
+			return parent;
+		}
+		
+		private boolean isDuplicatedName( )
+		{
+			for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
+			{
+				if ( this.columnOriginalName != null
+						&& this.columnOriginalName.equals( savedSelectedColumnsInfoList.get( i )[1] ) )
+				{
+					continue;
+				}
+
+				if ( this.columnName.equals( savedSelectedColumnsInfoList.get( i )[0] ) )
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/**
+		 * Validate the page status
+		 * 
+		 */
+		private void validate( )
+		{
+			Status status;
+			if ( this.columnName.trim( ).length( ) == 0 )
+			{
+				status = getMiscStatus( IStatus.ERROR,
+						Messages.getString( "FileSelectionWizardPage.error.selectColumn.EmptyName" ) );
+			}
+			else if ( isDuplicatedName( ) )
+			{
+				status = getMiscStatus( IStatus.ERROR,
+						Messages.getString( "FileSelectionWizardPage.error.selectColumn.duplicatedFileName" ) );
+			}
+			else
+			{
+				status = getOKStatus( );
+			}
+			updateStatus( status );
+		}
+
+		protected Status getOKStatus( )
+		{
+			return getMiscStatus( IStatus.OK, "" ); //$NON-NLS-1$
+		}
+
+		/**
+		 * 
+		 * @param severity
+		 * @param message
+		 * @return
+		 */
+		protected Status getMiscStatus( int severity, String message )
+		{
+			return new Status( severity, PlatformUI.PLUGIN_ID, severity, message, null );
+		}
+
+		public String getColumnName( )
+		{
+			return this.columnName;
+		}
+		
+		public String getOriginalName( )
+		{
+			return this.columnOriginalName;
+		}
+		
+		public String getDataType( )
+		{
+			return this.columnDataType;
+		}
+		
+
 	}
 
 }
