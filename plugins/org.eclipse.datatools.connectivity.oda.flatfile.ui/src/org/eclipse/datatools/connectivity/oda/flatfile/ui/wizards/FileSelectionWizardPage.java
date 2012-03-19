@@ -67,6 +67,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.MenuAdapter;
+import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -86,6 +88,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -541,12 +545,47 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		column = new TableColumn( selectedColumnsViewer.getTable( ), SWT.NONE );
 		column.setText( Messages.getString( "editor.title.type" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
+		
+		Menu menu = new Menu( selectedColumnsViewer.getTable( ) );
+		menu.addMenuListener( new MenuAdapter( ) {
+
+			public void menuShown( MenuEvent e )
+			{
+				selectedColumnsViewer.cancelEditing( );
+			}
+		} );
+
+		final MenuItem menuRemove = new MenuItem( menu, SWT.NONE );
+		menuRemove.setText( Messages.getString( "FileSelectionWizardPage.MenuItem.remove" ) ); //$NON-NLS-1$
+		menuRemove.setEnabled( selectedColumnsViewer.getTable( ).getSelectionCount( ) > 0 );
+		menuRemove.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				removeColumns( );
+			}
+
+		} );
+		MenuItem menuRemoveAll = new MenuItem( menu, SWT.NONE );
+		menuRemoveAll.setText( Messages.getString( "FileSelectionWizardPage.MenuItem.removeAll" ) ); //$NON-NLS-1$
+		menuRemoveAll.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				removeAllColumns( );
+			}
+		} );
+
+		selectedColumnsViewer.getTable( ).setMenu( menu );
 
 		selectedColumnsViewer.getTable( )
 				.addSelectionListener( new SelectionAdapter( ) {
 
 					public void widgetSelected( SelectionEvent e )
 					{
+						menuRemove.setEnabled( selectedColumnsViewer.getTable( )
+								.getSelectionCount( ) > 0 );
+
 						btnAdd.setEnabled( false );
 						availableList.deselectAll( );
 
@@ -1818,6 +1857,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			setPageComplete( false );
 		}
+	}
+	
+	private void removeAllColumns( )
+	{
+		selectedColumnsViewer.getTable( ).removeAll( );
+		savedSelectedColumnsInfoList.clear( );
+
+		selectedColumnsViewer.refresh( );
+
+		btnRemove.setEnabled( false );
+
+		btnMoveDown.setEnabled( false );
+		btnMoveUp.setEnabled( false );
+		
+		setPageComplete( false );
 	}
 
 	/**
