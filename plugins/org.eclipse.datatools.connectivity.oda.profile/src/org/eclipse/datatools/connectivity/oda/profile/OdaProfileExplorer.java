@@ -48,6 +48,8 @@ public class OdaProfileExplorer
     private Map<FileKey, IConnectionProfile[]> m_loadedProfilesByFile;
     private File m_defaultProfileStoreFile;
     
+    private static final String SAMPELDB_DATA_SOURCE_ID = "org.eclipse.birt.report.data.oda.sampledb"; //$NON-NLS-1$
+	private static final String JDBC_DATA_SOURCE_ID = "org.eclipse.birt.report.data.oda.jdbc"; //$NON-NLS-1$
     /**
      * Static method to return the singleton instance.
      * @return
@@ -248,10 +250,26 @@ public class OdaProfileExplorer
 
             // check that the profile is under the specified category
             if( categoryId != null )
-            {
-                if( ! aProfile.getCategory().getId().equals( categoryId ) )
-                    continue;   // not a match
-            }
+			{
+				if ( !aProfile.getCategory( ).getId( ).equals( categoryId ) )
+				{
+					// sample db provider ID is different from categoryId
+					if ( aProfile.getCategory( )
+							.getId( )
+							.equals( SAMPELDB_DATA_SOURCE_ID ) )
+					{
+						if ( !categoryId.equals( JDBC_DATA_SOURCE_ID ) )
+						{
+							continue;
+						}
+					}
+					else
+					{
+						continue; // not a match
+					}
+
+				}
+			}
             else if( odaDataSourceId != null )  // find a match by odaDataSourceId instead
             {
                 // ODA profiles use the odaDataSourceId as its profile identifier
