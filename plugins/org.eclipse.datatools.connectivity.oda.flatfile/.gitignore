@@ -1,9 +1,0 @@
-bin
-*.jar
-*.zip
-testdatabase
-utestreports
-vss*.scc
-plugin_*.properties
-download
-build*.xml

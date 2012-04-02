@@ -1,7 +1,0 @@
-bin
-download
-*.jar
-*.zip
-plugin_*.properties
-vss*.scc
-build*.xml
