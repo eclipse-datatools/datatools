@@ -314,7 +314,7 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
 -DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
 -DmapVersionTag=$BranchName -DBranchVersion=1.10.0 \
--Dusername.sign=slee -Dpassword.sign=Actuate# -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
+-Dusername.sign=slee -Dpassword.sign=x -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
 
 #skipPreBuild
 

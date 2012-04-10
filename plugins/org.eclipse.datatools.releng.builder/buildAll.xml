@@ -155,9 +155,16 @@
 			
 		<!-- this value could be overwrite by the bootstrap command -->
 		<!--property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
-		<property name="dtp.url.newvalue" value="${mapCvsRoot}"/>
+		<property name="dtp.url.newvalue" value="${mapCvsRoot}"/-->
+		<property name="orbit.url.token" value="@ORBIT.URL.TOKEN@"/>
+		<property name="orbit.url.newvalue" value="@ORBIT.URL.NEWVALUE@"/>
 		
-		<replace dir="${buildDirectory}/maps" value="${dtp.url.newvalue}" token="${dtp.url.token}">
+		<!-- replace orbit url to local server -->
+		<replace dir="${buildDirectory}/maps" value="${orbit.url.newvalue}" token="${orbit.url.token}">
+			<include name="**/orbit-bundles.map" />
+		</replace>
+		
+		<!--replace dir="${buildDirectory}/maps" value="${dtp.url.newvalue}" token="${dtp.url.token}">
 			<include name="**/*.map" />
 		</replace-->
 		
