@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006, 2011 Actuate Corporation.
+ * Copyright (c) 2006, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -529,10 +529,11 @@ public class DesignUtil
         File resolvedFile;
         try
         {
-            // replace with directory separator syntax required by URI#resolve
-            filePath = filePath.replace( File.separator, "/" ); //$NON-NLS-1$
-            resolvedFile = new File( designResourceIds.getApplResourceBaseURI().resolve( filePath ) );
-        }
+			// as URI requires specific syntax, use URI constructor to 
+            // encode the filePath string into valid URI syntax
+            java.net.URI filePathURI = new java.net.URI( null, null, filePath, null );
+			resolvedFile = new File( designResourceIds.getApplResourceBaseURI().resolve( filePathURI ) );
+  }
         catch( Exception ex )
         {
             getLogger().info( getExceptionMessage(ex) + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$

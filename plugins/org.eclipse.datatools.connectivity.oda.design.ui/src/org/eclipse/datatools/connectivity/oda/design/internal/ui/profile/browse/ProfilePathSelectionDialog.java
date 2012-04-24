@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2011 Actuate Corporation.
+ * Copyright (c) 2011, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.Serializable;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -442,9 +443,20 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
                     path = f.getParentFile().toURI().toString() + txtFileContent;
                 else
                     path = f.toURI( ).toString() + txtFileContent;              
-				URI filePath = URI.create(path);
-				URI relative = topDir.toURI( ).relativize( filePath );
-				result.add( relative.getPath( ) );
+
+                String relativePath;
+                try
+                {
+                    URI filePath = new URI( null, null, path, null );
+                    URI relative = topDir.toURI( ).relativize( filePath );
+                    relativePath = relative.getPath( );
+                }
+                catch( URISyntaxException ex )
+                {
+                    // ignore, use the full path of the selected item instead
+                    relativePath = path;
+                }
+				result.add( relativePath );
 			}
 			else if ( !isProfileStoreCreation && f.isFile( ) )
 			{
