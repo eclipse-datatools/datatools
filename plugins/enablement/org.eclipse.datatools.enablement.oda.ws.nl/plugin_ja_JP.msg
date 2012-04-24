@@ -17,10 +17,10 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.ws
 # NLS String
 #
 plugin.name=Eclipse Data Tools Platform Web Services ODA Runtime Driver
-data.source.name=Web サービスのデータソース
+data.source.name=Web サービスデータソース
 data.set.name=Web サービスのデータセット
 
-connection.profile.name=Web サービスのデータソースの接続プロファイル
+connection.profile.name=Web サービスデータソースの接続プロファイル
 
 datasource.property.soapEndPoint=SOAP エンドポイント(&S)
 datasource.property.connectionClass=接続クラス(&C)
