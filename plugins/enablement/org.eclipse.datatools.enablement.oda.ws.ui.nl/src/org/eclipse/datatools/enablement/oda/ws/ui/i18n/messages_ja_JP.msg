@@ -18,7 +18,7 @@
 # Common
 
 # WebServiceSelectionPage
-webServiceSelectionPage.message.default=Web サービスのデータソース
+webServiceSelectionPage.message.default=Web サービスデータソース
 webServiceSelectionPage.message.error=SOAP エンドポイントの URL を指定するか、WSDL 記述子を選択してください。
 webServiceSelectionPage.group.wsdl=WSDL 記述子
 webServiceSelectionPage.group.endPoint=SOAP エンドポイント(&S)

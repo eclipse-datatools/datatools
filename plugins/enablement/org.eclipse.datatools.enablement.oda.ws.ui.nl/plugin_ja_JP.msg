@@ -17,13 +17,13 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.ws
 # NLS strings
 #
 plugin.name=Eclipse Data Tools Platform Web Services ODA Designer
-data.source.name=Web サービスのデータソース
-connection.profile.name=Web サービスのデータソースの接続プロファイル
-newwizard.name=Web サービスのデータソース
-newwizard.description=Web サービスのデータソースの接続プロファイルを作成します。
+data.source.name=Web サービスデータソース
+connection.profile.name=Web サービスデータソースの接続プロファイル
+newwizard.name=Web サービスデータソース
+newwizard.description=Web サービスデータソースの接続プロファイルを作成します。
 wizard.window.title=Web サービスデータソースプロファイルの新規作成
-wizard.data.source.page.title=Web サービスのデータソース
-profile.propertypage.name=Web サービスのデータソースの接続プロパティ
+wizard.data.source.page.title=Web サービスデータソース
+profile.propertypage.name=Web サービスデータソースの接続プロパティ
 wizard.data.set.window.title=Web サービスのデータセットの新規作成
 wizard.data.set.page.title=クエリ
 
