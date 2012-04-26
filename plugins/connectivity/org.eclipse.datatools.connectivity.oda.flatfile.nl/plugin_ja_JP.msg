@@ -11,7 +11,7 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 # NLS String
 ###############################################################################
 plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
-datasource.name=フラットファイル データソース
+datasource.name=フラットファイルデータソース
 dataset.name=フラットファイル データセット
 oda.data.source.category.name=フラットファイルデータソース
 connection.profile.name=ODA フラットファイルデータソースの接続プロファイル
