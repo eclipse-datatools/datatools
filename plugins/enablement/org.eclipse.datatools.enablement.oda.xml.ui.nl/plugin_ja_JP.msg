@@ -15,7 +15,7 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 #
 ###############################################################################
 #
-oda.xml.datasource=DTP XML データソース
+oda.xml.datasource=DTP XMLデータソース
 oda.xml.dataset=DTP XML データセット
 oda.xml.tablemapping=テーブルのマッピング
 oda.xml.columnmapping=列のマッピング
@@ -24,7 +24,7 @@ plugin.name=DTP XML File Designer
 newwizard.name=DTP XML ファイルデータソース
 newwizard.description=DTP XML ファイルの接続プロファイルを作成します。
 wizard.window.title=DTP XML ファイルデータソースのプロファイル
-wizard.data.source.page.title=XML データソースの定義
+wizard.data.source.page.title=XMLデータソースの定義
 wizard.data.set.window.title=新規 XML データセット
 profile.propertypage.name=DTP XML ファイルデータソースの接続プロパティ
 preference.datasetpreview=XML データセット
