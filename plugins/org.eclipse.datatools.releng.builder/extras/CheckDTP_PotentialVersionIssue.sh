@@ -51,9 +51,9 @@ while read LINE; do
 		echo "$PluginName: no change since last release"
 		echo "$PluginName" >> nochange.txt
 	elif [ "$MajorVersion" = "$MajorVersion2" ]; then
-		#Exclude current bundle version timestamp of v20110722 in list of plugins with potential version issue
-		#This seems to be the changes made to "rename .cvsignore to .gitignore" on 7/22 when we first migrated to Git
-		if ( echo "$TimeStamp2" | grep v20110722 >/dev/null ); then
+		#Exclude current bundle version timestamp of v201203291105 in list of plugins with potential version issue
+		#Someone checked in an incorrect change in Head (for 1.10) for oe.d.c.oda.profile, but has since been reverted, so we should not increment the version number
+		if ( echo "$TimeStamp2" | grep v201203291105 >/dev/null ); then
 			echo "$PluginName: Exclude in list of plugins with potential version issue"
                         echo "$PluginName" >> excludechange.txt
                         echo "Last_Release_Version: $MajorVersion.$TimeStamp" >> excludechange.txt
