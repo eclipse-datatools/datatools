@@ -13,18 +13,18 @@
 ###############################################################################
 #
 plugin.name=DTP ODA プラグインテンプレートの新規作成ウィザード
-template.runtimeDriver.name=ODAデータソースの実行時ドライバ
+template.runtimeDriver.name=ODA データソースの実行時ドライバ
 template.runtimeDriver.desc=\
 このウィザードでは、オープンデータアクセス (ODA) のデータソース実行時ドライバのプラグインを作成します。\
 <p>ODA 実行時ドライバのプラグインは、UI には<b>反映されません</b>。\
 前ページのプラグインオプションで、[UI に反映させる] チェックボックスを選択していないことを確認してください。</p>\
 <p><b>使用する拡張ポイント</b></p>\
 <li>org.eclipse.datatools.connectivity.oda.dataSource</li>
-template.designer.name=ODAデータソースデザイナ
+template.designer.name=ODA データソースデザイナ
 template.designer.desc=\
 このウィザードでは、オープンデータアクセス (ODA) のデータソースデザイナを作成します。\
 <p>このウィザードを使って ODA デザイナのプラグインを作成するには、\
-<b>ODAデータソース実行時ドライバ</b>のテンプレートで、実行時プラグインを\
+<b>ODA データソース実行時ドライバ</b>のテンプレートで、実行時プラグインを\
 作成しておく必要があります。</p>\
 <p><b>使用する拡張ポイント</b></p>\
 <li>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</li>\

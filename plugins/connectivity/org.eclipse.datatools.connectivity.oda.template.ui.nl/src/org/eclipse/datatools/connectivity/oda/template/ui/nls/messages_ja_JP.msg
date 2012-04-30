@@ -26,12 +26,12 @@ designSection_optLabel_driverClass=ODA 実行時ドライバのクラス(&D)
 designSection_optLabel_driverPluginId=ODA 実行時ドライバのプラグイン ID(&P)
 designSection_optLabel_odaDataSetId=ODA 実行時データセットの要素 ID(&D)
 designSection_optLabel_odaDataSourceId=ODA 実行時データソースの要素 ID(&I)
-designSection_wizardPageTitle=ODAデータソースデザイナ
+designSection_wizardPageTitle=ODA データソースデザイナ
 #
 runtimeSection_optLabel_numSetProps=データセットのプロパティ数(&R)
 runtimeSection_optLabel_numSourceProps=データソースのプロパティ数(&P)
-runtimeSection_optLabel_odaDataSourceId=ODAデータソースの要素 ID(&I)
-runtimeSection_wizardPageTitle=ODAデータソースの実行時ドライバ
+runtimeSection_optLabel_odaDataSourceId=ODA データソースの要素 ID(&I)
+runtimeSection_wizardPageTitle=ODA データソースの実行時ドライバ
 #
 modeler_odaConnectionFactory=ODA 接続ファクトリ
 modeler_propertyDisplayNamePrefix=プロパティ
