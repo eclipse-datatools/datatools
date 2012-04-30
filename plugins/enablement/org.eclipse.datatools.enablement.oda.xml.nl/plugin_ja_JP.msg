@@ -20,14 +20,14 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
 oda.data.source.category.name=XMLデータソース
 
-datasource.name=XMLデータソース
+datasource.name=XML データソース
 dataset.name=XML データセット
 
-datasource.property.xmlFile=XMLデータソースファイル(&X)
-datasource.property.xmlEncoding=XMLデータソースエンコード(&E)
+datasource.property.xmlFile=XML データソースファイル(&X)
+datasource.property.xmlEncoding=XML データソースエンコード(&E)
 datasource.property.schemaFile=XML スキーマファイル(&S)
-oda.data.source.name=XMLデータソース
-connection.profile.name=XMLデータソース接続プロファイル
+oda.data.source.name=XML データソース
+connection.profile.name=XML データソース接続プロファイル
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #
