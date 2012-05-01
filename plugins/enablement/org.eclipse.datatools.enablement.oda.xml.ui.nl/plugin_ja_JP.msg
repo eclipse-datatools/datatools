@@ -15,7 +15,7 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 #
 ###############################################################################
 #
-oda.xml.datasource=DTP XMLデータソース
+oda.xml.datasource=DTP XML データソース
 oda.xml.dataset=DTP XML データセット
 oda.xml.tablemapping=テーブルのマッピング
 oda.xml.columnmapping=列のマッピング

@@ -18,7 +18,7 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 # NLS String
 ###############################################################################
 plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
-oda.data.source.category.name=XMLデータソース
+oda.data.source.category.name=XML データソース
 
 datasource.name=XML データソース
 dataset.name=XML データセット
