@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.Serializable;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -430,8 +429,6 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
 			File f = (File)o;
 			if ( isProfileStoreCreation )
 			{
-                String path = EMPTY_STRING; 
-                
                 //If a file does not have an extension provided by the user
                 //apply the default extension.
                 if( txtFileContent != null && txtFileContent.length() > 0 &&
@@ -439,24 +436,22 @@ public class ProfilePathSelectionDialog extends ElementTreeSelectionDialog
                         ProfileFileExtension.exists( defaultExtension ) )
                     txtFileContent += EXT_SEPERATOR + defaultExtension; 
                 
-                if( f.isFile( ) )
-                    path = f.getParentFile().toURI().toString() + txtFileContent;
-                else
-                    path = f.toURI( ).toString() + txtFileContent;              
-
-                String relativePath;
+                File selectedFileParent = f.isFile() ?
+                                            f.getParentFile() : f;
+                File selectedFile = new File( selectedFileParent, txtFileContent );
+                String relativeFilePath;
                 try
                 {
-                    URI filePath = new URI( null, null, path, null );
+                    URI filePath = selectedFile.toURI();
                     URI relative = topDir.toURI( ).relativize( filePath );
-                    relativePath = relative.getPath( );
+                    relativeFilePath = relative.getPath( );
                 }
-                catch( URISyntaxException ex )
+                catch( Exception ex )
                 {
                     // ignore, use the full path of the selected item instead
-                    relativePath = path;
+                    relativeFilePath = selectedFile.getPath();
                 }
-				result.add( relativePath );
+				result.add( relativeFilePath );
 			}
 			else if ( !isProfileStoreCreation && f.isFile( ) )
 			{
