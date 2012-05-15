@@ -211,6 +211,7 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 
 			selectionTable = new Table(selectionGroup, SWT.CHECK | SWT.BORDER);
 			gd = new GridData(GridData.FILL_BOTH);
+			gd.heightHint = 140;
 			selectionTable.setLayoutData(gd);
 
 			Composite buttonComposite = new Composite(selectionGroup, SWT.NONE);
@@ -348,6 +349,7 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 
 			selectionTable = new Table(selectionGroup, SWT.CHECK | SWT.BORDER);
 			gd = new GridData(GridData.FILL_BOTH);
+			gd.heightHint = 140;
 			selectionTable.setLayoutData(gd);
 
 			Composite buttonComposite = new Composite(selectionGroup, SWT.NONE);
