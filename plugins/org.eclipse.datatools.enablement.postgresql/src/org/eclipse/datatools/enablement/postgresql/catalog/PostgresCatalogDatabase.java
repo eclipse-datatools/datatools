@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCDatabase;
 import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -49,7 +48,7 @@ public class PostgresCatalogDatabase extends JDBCDatabase {
 			}
 		}
 
-		RefreshManager.getInstance().referesh(this);
+		super.refresh();
 	}
 
 	@Override
