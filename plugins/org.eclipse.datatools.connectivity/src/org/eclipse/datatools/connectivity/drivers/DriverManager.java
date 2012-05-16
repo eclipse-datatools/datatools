@@ -13,10 +13,14 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,6 +111,9 @@ public class DriverManager {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
 			XMLFileManager.saveNamedPropertySet(psets);
+			syncDriverValuesChangesToPreferenceStore();
+			mDriverInstanceMap = new HashMap();
+			loadAllInstances();
 		}
 		catch (CoreException e) {
 			ConnectivityPlugin.getDefault().log(e);
@@ -118,6 +125,7 @@ public class DriverManager {
 	}
 
 	private DriverInstance getDriverInstanceFromMapByName( String name ) {
+		updatemDriverInstanceMap();
         Iterator iter = mDriverInstanceMap.values().iterator();
         while (iter.hasNext()) {
             DriverInstance di = (DriverInstance) iter.next();
@@ -128,10 +136,12 @@ public class DriverManager {
 	}
 	
 	private DriverInstance getDriverInstanceFromMapByID( String id ) {
+		updatemDriverInstanceMap();
         return (DriverInstance) mDriverInstanceMap.get(id);
 	}
 
 	private DriverInstance[] getDriverInstancesFromMapByCategoryID( String categoryid ) {
+		updatemDriverInstanceMap();
 		Iterator iter = mDriverInstanceMap.values().iterator();
 		ArrayList<DriverInstance> list = new ArrayList<DriverInstance>();
 		while (iter.hasNext()) {
@@ -150,6 +160,7 @@ public class DriverManager {
 	}
 
 	private DriverInstance[] getDriverInstancesFromMapForTemplateID( String templateid ) {
+		updatemDriverInstanceMap();
 		Iterator iter = mDriverInstanceMap.values().iterator();
 		ArrayList<DriverInstance> list = new ArrayList<DriverInstance>();
 		while (iter.hasNext()) {
@@ -236,6 +247,7 @@ public class DriverManager {
         Vector driverInstanceCollection = new Vector();
             XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
             try {
+        		updatemDriverInstanceMap();
                 IPropertySet[] psets = XMLFileManager.loadPropertySets();
                 if (psets.length > 0) {
                     for (int i = 0; i < psets.length; i++) {
@@ -261,6 +273,7 @@ public class DriverManager {
 	 * @return String
 	 */
 	public String getFullJarList() {
+		updatemDriverInstanceMap();
 		Object[] drivers = mDriverInstanceMap.values().toArray();
 		String fullList = ""; //$NON-NLS-1$
 		for (int x = 0; x < drivers.length; x++) {
@@ -328,6 +341,7 @@ public class DriverManager {
 	 */
 	public DriverInstance[] getValidDriverInstances() {
 		DriverInstance[] array = new DriverInstance[0];
+		updatemDriverInstanceMap();
 		Iterator iter = mDriverInstanceMap.values().iterator();
 		ArrayList list = new ArrayList();
 		while (iter.hasNext()) {
@@ -349,12 +363,14 @@ public class DriverManager {
 	 * @return DriverInstance[]
 	 */
 	public DriverInstance[] getAllDriverInstances() {
+		updatemDriverInstanceMap();
 		return (DriverInstance[]) 
 			mDriverInstanceMap.values().toArray(
 					new DriverInstance[mDriverInstanceMap.values().size()]);
 	}
 
 	private IPropertySet[] getPropertySetsFromMap() {
+		updatemDriverInstanceMap();
 		Iterator iter = mDriverInstanceMap.values().iterator();
 		ArrayList list = new ArrayList();
 		while (iter.hasNext()) {
@@ -457,6 +473,7 @@ public class DriverManager {
 					}
 					if (rtnFlag == true) {
 						XMLFileManager.saveNamedPropertySet(newPsets);
+						syncDriverValuesChangesToPreferenceStore();
 						mDriverInstanceMap = new HashMap();
 						loadAllInstances();
 					}
@@ -470,12 +487,13 @@ public class DriverManager {
 	}
 
 	public void addDriverInstance ( DriverInstance di ) {
+		updatemDriverInstanceMap();
 		mDriverInstanceMap.put(di.getId(), di);
 		IPropertySet[] psets = getPropertySetsFromMap();
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
 			XMLFileManager.saveNamedPropertySet(psets);
-			
+			syncDriverValuesChangesToPreferenceStore();
 			mDriverInstanceMap = new HashMap();
 			loadAllInstances();
 		}
@@ -562,6 +580,219 @@ public class DriverManager {
 	
 	private boolean wasDefaultCreatedBefore(TemplateDescriptor td) {
 		return ConnectivityPlugin.getDefault().getPreferenceBooleanValue( td.getId() );
+	}
+	
+	/**
+	 * persists any changes in driver definitions preferences to its preference store 
+	 * @return true in case both are not equal
+	 */
+	public static boolean syncDriverValuesChangesToPreferenceStore(){
+		boolean changed = syncDriverChangesToPreferenceStore();
+		if (changed){
+			syncPreferenceStoreAndDriverManagerXML();
+		}
+		return changed;		
+	}
+
+	/**
+	 * persists any Driver definitions preference store changes due to import to Driver definitions 
+	 * @return true in case both are not equal
+	 */
+	public static boolean syncPreferenceStoreChangesToDriverValues(){
+		boolean changed = syncPreferenceStoreChangesToDriver();
+		if(changed){
+			syncPreferenceStoreAndDriverManagerXML();	
+		}
+
+		return changed;
+	}
+
+	private static boolean syncDriverChangesToPreferenceStore() {
+		String driverValues = "";
+		String driverValuesTemp = "";
+		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
+		metadataPath = metadataPath.append(IDriverMgmtConstants.DRIVER_FILE);
+		File file = metadataPath.toFile();
+		if (file.exists()){
+			FileReader fr = null;
+			BufferedReader br = null;
+			try {				
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
+
+				if((driverValuesTemp = br.readLine())!=null){
+					driverValues = driverValuesTemp;
+				}
+				String preferenceStoreDriverValues = ConnectivityPlugin.getDefault().getPluginPreferences().getString(IDriverMgmtConstants.DRIVER_VALUES);
+
+				if(!(driverValues.equals(preferenceStoreDriverValues))){
+					// setting key value preference pair in preference store
+					ConnectivityPlugin.getDefault().getPluginPreferences().setValue(IDriverMgmtConstants.DRIVER_VALUES, driverValues);
+					return true;
+				}
+			} catch (FileNotFoundException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			} catch (IOException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}finally{
+				if(br!=null){
+					try {
+						br.close();
+					} catch (IOException e) {
+						ConnectivityPlugin.getDefault().log(e);
+					}
+					if(fr!=null){
+						try {
+							fr.close();
+						} catch (IOException e) {
+							ConnectivityPlugin.getDefault().log(e);
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static void syncPreferenceStoreAndDriverManagerXML(){
+		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
+		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+		File file = metadataPath.toFile();
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(file);
+			ConnectivityPlugin.getDefault().getPluginPreferences().store(fos, "DriverManager.Preferences"); //$NON-NLS-1$
+		} catch (FileNotFoundException e) {
+			ConnectivityPlugin.getDefault().log(e);
+		} catch (IOException e) {
+			ConnectivityPlugin.getDefault().log(e);
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					ConnectivityPlugin.getDefault().log(e);
+				}
+			}
+		}
+	}
+
+	private static boolean syncPreferenceStoreChangesToDriver(){
+		String driverValues = "";
+		String driverValuesTemp = "";
+		String preferenceStoreDriverValues = ConnectivityPlugin.getDefault().getPluginPreferences().getString(IDriverMgmtConstants.DRIVER_VALUES);
+		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
+		metadataPath = metadataPath.append(IDriverMgmtConstants.DRIVER_FILE);
+		File file = metadataPath.toFile();
+		if (file.exists()){
+			FileReader fr = null;
+			BufferedReader br = null;
+			try {
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
+
+				if((driverValuesTemp = br.readLine())!=null){
+					driverValues = driverValuesTemp;
+				}
+
+			} catch (FileNotFoundException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			} catch (IOException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			} finally{
+				if(br!=null){
+					try {
+						br.close();
+					} catch (IOException e) {
+						ConnectivityPlugin.getDefault().log(e);
+					}
+					if(fr!=null){
+						try {
+							fr.close();
+						} catch (IOException e) {
+							ConnectivityPlugin.getDefault().log(e);
+						}
+					}
+				}
+			}
+
+			if(!(driverValues.equals(preferenceStoreDriverValues))){
+				FileWriter fw = null;
+				BufferedWriter bw = null;
+				try{
+					fw = new FileWriter(file);
+					bw = new BufferedWriter(fw);
+					bw.write(preferenceStoreDriverValues);
+
+					return true;
+				}catch (FileNotFoundException e) {
+					ConnectivityPlugin.getDefault().log(e);
+				} catch (IOException e) {
+					ConnectivityPlugin.getDefault().log(e);
+				} finally{
+					if(bw!=null){
+						try {
+							bw.close();
+						} catch (IOException e) {
+							ConnectivityPlugin.getDefault().log(e);
+						}
+						if(fw!=null){
+							try {
+								fw.close();
+							} catch (IOException e) {
+								ConnectivityPlugin.getDefault().log(e);
+							}
+						}
+					}
+				}
+			}
+		}
+		//To take care of the case when Driver Definitions are not initialized but preference store has been set due to import 
+		else if((!(file.exists()))&&(!(preferenceStoreDriverValues.equals(""))))
+		{
+			FileWriter fw = null;
+			BufferedWriter bw = null;
+			try{
+				fw = new FileWriter(file);
+				bw = new BufferedWriter(fw);
+				bw.write(preferenceStoreDriverValues);
+
+				return true;
+			}catch (FileNotFoundException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			} catch (IOException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			} finally{
+				if(bw!=null){
+					try {
+						bw.close();
+					} catch (IOException e) {
+						ConnectivityPlugin.getDefault().log(e);
+					}
+					if(fw!=null){
+						try {
+							fw.close();
+						} catch (IOException e) {
+							ConnectivityPlugin.getDefault().log(e);
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * mDriverInstanceMap containing driver definition objects has to be updated in case there is a change in driver definition preferences 
+	 * @return true in case update has happened
+	 */
+	private boolean updatemDriverInstanceMap(){
+		if(syncPreferenceStoreChangesToDriverValues()){
+			mDriverInstanceMap = new HashMap();
+			loadAllInstances();
+			return true;
+		}
+		return false;
 	}
 	
 	/**

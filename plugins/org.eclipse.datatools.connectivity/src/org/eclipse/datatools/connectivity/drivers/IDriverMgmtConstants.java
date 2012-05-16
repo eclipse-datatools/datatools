@@ -36,4 +36,5 @@ public interface IDriverMgmtConstants {
 	public static final String PROP_DEFN_CLASS = PROP_PREFIX
 			+ "defnDriverClass"; //$NON-NLS-1$
 	public static final String PROP_DEFN_TYPE = PROP_PREFIX + "defnType"; //$NON-NLS-1$
+	public static final String DRIVER_VALUES = "DRIVER_VALUES";
 }
