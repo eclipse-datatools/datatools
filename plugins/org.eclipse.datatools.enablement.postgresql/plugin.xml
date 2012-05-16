@@ -40,12 +40,12 @@
 				<property generated="false"
 					id="org.eclipse.datatools.connectivity.db.databaseName"
 					name="%DATABASE_NAME_PROPERTY_NAME" 
-					value="postgres" required="true"
+					value="database" required="true"
 					visible="true"/>
 				<property generated="false"
 					id="org.eclipse.datatools.connectivity.db.URL"
 					name="%CONNECTION_URL_PROPERTY_NAME" 
-					value="jdbc:postgresql:postgres"
+					value="jdbc:postgresql://localhost:5432/database"
 					required="true" 
 					visible="true"/>
 				<property generated="false"
