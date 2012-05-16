@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -676,17 +677,36 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 
 	}
 
-	private boolean isDetach (EStructuralFeature f,Object obj, Object container) {
-	    if (!(obj instanceof EObject) || !(container instanceof EObject)) return false;
-	    if (f instanceof EReference){
-	        List oldValues = (List) this.getOldValue(((EReference)f).getEOpposite(), (EObject) container);
-	        List currentValues =  (List) ((EObject) container).eGet(((EReference)f).getEOpposite());
-	        if (oldValues != null && oldValues.contains(obj)
-	            && currentValues != null && !currentValues.contains(obj))
-	            return true;
-	    }
-	    return false;
-	}
+    private boolean isDetach (EStructuralFeature f,Object obj, Object container) {
+        if (!(obj instanceof EObject) || !(container instanceof EObject)) return false;
+        if (f instanceof EReference){ 
+            Object oldValue = this.getOldValue(((EReference)f).getEOpposite(), (EObject) container);
+            if (oldValue != null) {
+                List oldValueList;
+                if (oldValue instanceof List) {
+                    oldValueList = (List) oldValue;
+                }
+                else {
+                    oldValueList = new ArrayList();
+                    oldValueList.add(oldValue);
+                }
+                
+                List currentValueList;
+                Object currentValue = ((EObject) container).eGet(((EReference)f).getEOpposite());
+                if (currentValue instanceof List) {
+                    currentValueList = (List) currentValue;
+                }
+                else {
+                    currentValueList = new ArrayList();
+                    currentValueList.add(currentValue);
+                }
+                
+                if (oldValueList.contains(obj) && !currentValueList.contains(obj))
+                    return true;
+            }
+        }
+        return false;
+    }
 	
 	private void executeChangeRecords(Collection changeRecords) {
 		Iterator it = changeRecords.iterator();
