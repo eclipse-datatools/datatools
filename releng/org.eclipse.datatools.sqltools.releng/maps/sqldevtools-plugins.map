@@ -21,7 +21,7 @@ plugin@org.eclipse.datatools.sqltools.routineeditor=GIT,tag=v201107221520,repo=g
 plugin@org.eclipse.datatools.sqltools.routineeditor.ui=GIT,tag=v201111230714,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.routineeditor.ui
 plugin@org.eclipse.datatools.sqltools.sqlbuilder=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sqlbuilder
 plugin@org.eclipse.datatools.sqltools.sqleditor=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sqleditor
-plugin@org.eclipse.datatools.sqltools.sqlscrapbook=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sqlscrapbook
+plugin@org.eclipse.datatools.sqltools.sqlscrapbook=GIT,tag=v201205170935,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sqlscrapbook
 plugin@org.eclipse.datatools.sqltools.sql=GIT,tag=v201110050515,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sql
 plugin@org.eclipse.datatools.sqltools.sql.ui=GIT,tag=v201201270735,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.sql.ui
 plugin@org.eclipse.datatools.sqltools.tabledataeditor=GIT,tag=v201005250945,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.tabledataeditor
