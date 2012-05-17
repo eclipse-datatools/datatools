@@ -14,6 +14,10 @@ import java.lang.reflect.Method;
 import java.net.URI;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.filesystem.EFS;
@@ -70,11 +74,9 @@ import org.eclipse.ui.editors.text.ILocationProvider;
 public class SQLScrapbookEditor extends SQLEditor {
 
 	public static final String EDITOR_ID = EditorConstants.SQLFILE_EDITOR_ID;
-	
-	private Connection _connection = null;
+
+	private Map /* <ISQLEditorConnectionInfo, ScrapbookOpenedConnection> */ connections;
 	private ConnectionService _conService = null;
-	private DatabaseIdentifier _databaseIdentifier = null;
-	private int _connid;
 	    
     public class ToolbarSourceViewer extends AdaptedSourceViewer implements Listener
     {
@@ -164,6 +166,7 @@ public class SQLScrapbookEditor extends SQLEditor {
 	
 	public SQLScrapbookEditor() {
 		super();
+		this.connections = new HashMap();
 	}
 
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
@@ -372,7 +375,8 @@ public class SQLScrapbookEditor extends SQLEditor {
         
         if(connInfo instanceof ScrapbookEditorConnectionInfo)
         {
-            if(((ScrapbookEditorConnectionInfo) connInfo).isAuto())
+        	ScrapbookEditorConnectionInfo scrapbookConnInfo = ((ScrapbookEditorConnectionInfo) connInfo);
+            if(scrapbookConnInfo.isAuto())
             {
                 return null;
             }
@@ -380,16 +384,27 @@ public class SQLScrapbookEditor extends SQLEditor {
         
         try
         {
-            if(_connection == null || _connection.isClosed())
-            {
-                fetchConnection();
-            }
+        	ScrapbookOpenedConnection openedConnection = (ScrapbookOpenedConnection) this.connections.get(connInfo);
+        	if (openedConnection != null)
+        	{
+        		Connection _connection = openedConnection.getConnection();
+        		if(_connection == null || _connection.isClosed())
+        		{
+        			fetchConnection();
+        		}
+        	}
+        	else
+        	{
+        		fetchConnection();
+        	}
         }
         catch (SQLException e)
         {
             SqlscrapbookPlugin.log(e);
         }
-        return _connection;
+        
+        ScrapbookOpenedConnection openedConnection = (ScrapbookOpenedConnection) this.connections.get(connInfo);
+        return openedConnection.getConnection();
     }
     
     /**
@@ -402,13 +417,14 @@ public class SQLScrapbookEditor extends SQLEditor {
         {
             String profileName = getConnectionInfo().getConnectionProfileName();
             String dbName = getConnectionInfo().getDatabaseName();
-            _databaseIdentifier = new DatabaseIdentifier(profileName, dbName);
+            DatabaseIdentifier _databaseIdentifier = new DatabaseIdentifier(profileName, dbName);
             
             SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByProfileName(_databaseIdentifier.getProfileName());
             _conService = f.getConnectionService();
             
-            _connection = _conService.createConnection(_databaseIdentifier, true);
-            _connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
+            Connection _connection = _conService.createConnection(_databaseIdentifier, true);
+            int _connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
+            this.connections.put(getConnectionInfo(), new ScrapbookOpenedConnection(_databaseIdentifier, _connection, _connid));
             
             IConnectionInitializer init = SQLToolsFacade.getConfiguration(null, _databaseIdentifier).getConnectionService().getConnectionInitializer();
             if (init != null)
@@ -437,25 +453,35 @@ public class SQLScrapbookEditor extends SQLEditor {
      */
     private void releaseConnection()
     {
-        if(_connection == null)
-        {
-            return;
-        }
-        
-        try
-        {
-            if(_conService != null)
-            {
-                if(!_connection.isClosed())
-                {
-                    _connection.setAutoCommit(true);
-                }
-                _conService.closeConnection(_connection, _connid, _databaseIdentifier);
-            }
-        }
-        catch (SQLException e)
-        {
-            SqlscrapbookPlugin.log(e);
-        }
+    	Collection allConnections = this.connections.values();
+    	Iterator entriesIterator = allConnections.iterator();
+    	
+    	while (entriesIterator.hasNext()) {
+			ScrapbookOpenedConnection currOpenedConnection = (ScrapbookOpenedConnection) entriesIterator.next();
+			DatabaseIdentifier _databaseIdentifier = currOpenedConnection.getDatabaseIdentifier();
+			Connection _connection = currOpenedConnection.getConnection();
+			int _connid = currOpenedConnection.getConnid();
+
+			if(_connection == null)
+	        {
+	            return;
+	        }
+	        
+	        try
+	        {
+	            if(_conService != null)
+	            {
+	                if(!_connection.isClosed())
+	                {
+	                    _connection.setAutoCommit(true);
+	                }
+	                _conService.closeConnection(_connection, _connid, _databaseIdentifier);
+	            }
+	        }
+	        catch (SQLException e)
+	        {
+	            SqlscrapbookPlugin.log(e);
+	        }
+		}
     }
 }
