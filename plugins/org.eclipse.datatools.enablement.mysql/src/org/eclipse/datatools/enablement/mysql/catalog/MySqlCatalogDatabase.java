@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCDatabase;
 import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -50,13 +49,19 @@ public class MySqlCatalogDatabase extends JDBCDatabase {
 			}
 		}
 
+		synchronized (catalogsLoaded) {
+			if (catalogsLoaded.booleanValue()) {
+				catalogsLoaded = Boolean.FALSE;
+			}
+		}
+
 		synchronized (authorizationIdsLoaded) {
 			if (authorizationIdsLoaded.booleanValue()) {
 				authorizationIdsLoaded = Boolean.FALSE;
 			}
 		}
 
-		RefreshManager.getInstance().referesh(this);
+		super.refresh();
 	}
 
 	public EList getSchemas() {
@@ -69,6 +74,7 @@ public class MySqlCatalogDatabase extends JDBCDatabase {
 					Schema schema = new MySqlCatalogSchema();
 					schema.setName(getName());
 					schemas.add(schema);
+					schemasLoaded = Boolean.TRUE;
 				}
 				return this.schemas;
 			}
@@ -83,6 +89,7 @@ public class MySqlCatalogDatabase extends JDBCDatabase {
 					catalogs = new EObjectWithInverseResolvingEList(Schema.class, this,
 									SQLSchemaPackage.DATABASE__CATALOGS,
 									SQLSchemaPackage.SCHEMA__DATABASE);
+					catalogsLoaded = Boolean.TRUE;
 				}
 			}
 		}
