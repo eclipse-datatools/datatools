@@ -220,8 +220,8 @@ public class SQLService
 	 * @return
 	 */
 	private boolean isQuoted(IDocument doc, int offset) {
-        Pattern pSingle = Pattern.compile("'[^']*('')*[^']*;+[^']*('')*[^']*'");
-        Pattern pDouble = Pattern.compile("\"[^\"]*(\"\")*[^\"]*;+[^\"]*(\"\")*[^\"]*\"");
+        Pattern pSingle = Pattern.compile("'[^']*+('')*[^']*;+[^']*+('')*[^']*+'");
+        Pattern pDouble = Pattern.compile("\"[^\"]*+(\"\")*[^\"]*;+[^\"]*+(\"\")*[^\"]*+\"");
 
 		Matcher mSingle = pSingle.matcher(doc.get());
 		while (mSingle.find()) {
