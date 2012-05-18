@@ -29,7 +29,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleEvent;
+import org.osgi.framework.BundleListener;
 
 /**
  * Reads org.eclipse.datatools.sqltools.editor.core.dbFactories extensions.
@@ -229,6 +231,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 			{
 				public void run()
 				{
+					waitForEditorCorePluginStart();
 					l.configurationLoaded();
 				}
 			}.start();
@@ -247,6 +250,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     	new Thread() {
 			public void run() {
 				{
+					waitForEditorCorePluginStart();
 					if (_factoriesLoaded.booleanValue())
 					{
 						listener.configurationLoaded();
@@ -258,5 +262,36 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 				}
 			}
 		}.start();
+    }
+    
+    private static Object bundleStartSemaphore = new Object();
+    
+    private static BundleListener listenerBundleStart = new BundleListener() {
+		public void bundleChanged(BundleEvent event) {
+			if (event.getBundle() == EditorCorePlugin.getDefault().getBundle() && event.getType() == BundleEvent.STARTED) {
+				synchronized (bundleStartSemaphore) {
+					bundleStartSemaphore.notify();
+				}
+			}
+		}
+	};
+    
+    private static void waitForEditorCorePluginStart() {
+    	final Bundle bundle = EditorCorePlugin.getDefault().getBundle();
+    	if (bundle.getState() != Bundle.STARTING)
+    		return;
+    	
+    	bundle.getBundleContext().addBundleListener(listenerBundleStart);
+    	
+    	synchronized (bundleStartSemaphore) {
+    		while (bundle.getState() == Bundle.STARTING) {
+    			try {
+    				bundleStartSemaphore.wait();
+    			}
+    			catch (InterruptedException ie) { }
+    		}
+    	}
+    	
+    	bundle.getBundleContext().removeBundleListener(listenerBundleStart);
     }
 }
