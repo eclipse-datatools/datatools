@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2011 Actuate Corporation.
+ * Copyright (c) 2011, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -69,6 +69,12 @@ public class MenuButton extends Composite
 
 	private static final int WIDTH_MORE = 2 * MARGIN_GAP + TRIANGLE_WIDTH + 1;
 
+	public void setText( String text )
+	{
+		this.text = text;
+		layoutControl( );
+	}
+
 	private void layoutControl( )
 	{
 		getParent( ).layout( );
@@ -85,6 +91,7 @@ public class MenuButton extends Composite
 		Button tmp = new Button( this, button.getStyle( ) );
 		if ( text != null )
 		{
+			tmp.setText( text );
 			height = tmp.computeSize( SWT.DEFAULT, SWT.DEFAULT ).y;
 		}
 		else
@@ -181,7 +188,7 @@ public class MenuButton extends Composite
 		
 		button = new Button( this, style );
 		GridData gd = new GridData( GridData.FILL_BOTH );
-		button.setText(text);
+		this.setText(text);
 		button.setLayoutData( gd );
 		button.addPaintListener( new PaintListener( ) {
 
@@ -372,6 +379,17 @@ public class MenuButton extends Composite
 						size.width - left,
 						( size.height - height ) / 2 + height );
 				e.gc.setForeground( fgColor );
+			}
+
+			if ( text != null && text.trim( ).length( ) > 0 )
+			{
+				int width = e.gc.textExtent( text, DRAW_FLAGS ).x;
+				int fontHeight = e.gc.textExtent( text, DRAW_FLAGS ).y;
+				left += ( MARGIN_GAP + width );
+				e.gc.drawText( text,
+						( size.width - left ) / 2 + MARGIN_GAP,
+						( size.height - fontHeight ) / 2,
+						DRAW_FLAGS | SWT.DRAW_TRANSPARENT );
 			}
 
 			if ( image != null )
