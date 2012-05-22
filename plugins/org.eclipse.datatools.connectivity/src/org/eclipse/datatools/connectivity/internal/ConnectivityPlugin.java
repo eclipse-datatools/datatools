@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2011 Sybase, Inc. and others.
+ * Copyright (c) 2005, 2012 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -9,6 +9,7 @@
  * Contributors: 
  *      Sybase, Inc. - initial API and implementation
  *      Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
+ *      Actuate Corporation - Bugzilla 330725: fix for OSGi-less platform support
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -164,6 +165,21 @@ public class ConnectivityPlugin extends Plugin {
 	}
 
 	/**
+	 * Returns the file path of the specified filename in 
+	 * this plug-in's default workspace location.  
+	 * Provides support for both OSGi and OSGi-less platforms.
+	 * @param filename base file name
+	 * @return the path of of the specified file in this plug-in's 
+	 *         default workspace location
+     * @since DTP 1.10
+	 */
+	public static IPath getWorkspaceFilePath( String filename )
+	{
+        IPath metadataPath = ConnectivityPlugin.getDefaultStateLocation();
+        return metadataPath.append( filename );
+	}
+
+	/**
 	 * Returns the default storage location for persisted files that are 
 	 * configured and consumed by this plug-in, 
 	 * such as those of connection profiles and driver definitions.
@@ -236,18 +252,43 @@ public class ConnectivityPlugin extends Plugin {
 	}
 
 	/**
+     * Sets the current value of the string-valued property with the
+     * specified name. 
+     * @param name  the name of the property; must not be <code>null</code>
+     * @param value     the new current value of the property
+     * @since DTP 1.10
+	 */
+	public void setPreferenceValue( String name, String value ) 
+    {
+        getPreferences().setValue( name, value );
+    }
+
+	/**
 	 * Returns the current value of the boolean-valued property with the
      * specified name.
 	 * @param name  the name of the property; must not be <code>null</code>
 	 * @return the boolean-valued property; or the default value (<code>false</code>) 
-     *      if there is no property with the given name, or if the current value 
+     *      if there is no property with the specified name, or if the current value 
      *      cannot be treated as a boolean
 	 */
 	public boolean getPreferenceBooleanValue( String name ) 
 	{
         return getPreferences().getBoolean( name );
 	}
-	
+
+	/**
+     * Returns the current value of the string-valued property with the
+     * specified name.
+     * @param name  the name of the property; must not be <code>null</code>
+     * @return the string-valued property; or the default-default value (the empty string "") 
+     *      if there is no property with the specified name
+     * @since DTP 1.10
+	 */
+	public String getPreferenceStringValue( String name ) 
+    {
+        return getPreferences().getString( name );
+    }
+
 	/**
 	 * Saves the non-default-valued preference properties  
      * to the specified output stream.

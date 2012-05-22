@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2011 Sybase, Inc. and others.
+ * Copyright (c) 2004-2012 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -10,6 +10,8 @@
  *               IBM Corporation - fix for 243829
  *               Actuate Corporation - Bugzilla 300464
  *               Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
+ *               IBM Corporation - Bugzilla 330725
+ *               Actuate Corporation - Bugzilla 330725: fix for OSGi-less platform support
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
@@ -125,7 +127,7 @@ public class DriverManager {
 	}
 
 	private DriverInstance getDriverInstanceFromMapByName( String name ) {
-		updatemDriverInstanceMap();
+//		updatemDriverInstanceMap();
         Iterator iter = mDriverInstanceMap.values().iterator();
         while (iter.hasNext()) {
             DriverInstance di = (DriverInstance) iter.next();
@@ -136,7 +138,7 @@ public class DriverManager {
 	}
 	
 	private DriverInstance getDriverInstanceFromMapByID( String id ) {
-		updatemDriverInstanceMap();
+//		updatemDriverInstanceMap();
         return (DriverInstance) mDriverInstanceMap.get(id);
 	}
 
@@ -247,7 +249,7 @@ public class DriverManager {
         Vector driverInstanceCollection = new Vector();
             XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
             try {
-        		updatemDriverInstanceMap();
+//        		updatemDriverInstanceMap();
                 IPropertySet[] psets = XMLFileManager.loadPropertySets();
                 if (psets.length > 0) {
                     for (int i = 0; i < psets.length; i++) {
@@ -533,8 +535,7 @@ public class DriverManager {
 	 */
 	private boolean wereDefaultDriversCreated() {
 		IPath metadataPath = 
-			ConnectivityPlugin.getDefaultStateLocation();
-		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+			ConnectivityPlugin.getWorkspaceFilePath(DRIVER_MARKER_FILE_NAME);
 		File file = metadataPath.toFile();
 		if (file.exists()){
 			FileInputStream fis = null;
@@ -565,8 +566,7 @@ public class DriverManager {
 	 */
 	private boolean createDefaultDriversMarker() {
 		IPath metadataPath = 
-			ConnectivityPlugin.getDefaultStateLocation();
-		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+			ConnectivityPlugin.getWorkspaceFilePath(DRIVER_MARKER_FILE_NAME);
 		File file = metadataPath.toFile();
 		if (!file.exists()){
 			try {
@@ -610,8 +610,7 @@ public class DriverManager {
 	private static boolean syncDriverChangesToPreferenceStore() {
 		String driverValues = "";
 		String driverValuesTemp = "";
-		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
-		metadataPath = metadataPath.append(IDriverMgmtConstants.DRIVER_FILE);
+		IPath metadataPath = ConnectivityPlugin.getWorkspaceFilePath(IDriverMgmtConstants.DRIVER_FILE);
 		File file = metadataPath.toFile();
 		if (file.exists()){
 			FileReader fr = null;
@@ -623,11 +622,11 @@ public class DriverManager {
 				if((driverValuesTemp = br.readLine())!=null){
 					driverValues = driverValuesTemp;
 				}
-				String preferenceStoreDriverValues = ConnectivityPlugin.getDefault().getPluginPreferences().getString(IDriverMgmtConstants.DRIVER_VALUES);
+				String preferenceStoreDriverValues = ConnectivityPlugin.getDefault().getPreferenceStringValue(IDriverMgmtConstants.DRIVER_VALUES);
 
 				if(!(driverValues.equals(preferenceStoreDriverValues))){
 					// setting key value preference pair in preference store
-					ConnectivityPlugin.getDefault().getPluginPreferences().setValue(IDriverMgmtConstants.DRIVER_VALUES, driverValues);
+					ConnectivityPlugin.getDefault().setPreferenceValue(IDriverMgmtConstants.DRIVER_VALUES, driverValues);
 					return true;
 				}
 			} catch (FileNotFoundException e) {
@@ -655,13 +654,12 @@ public class DriverManager {
 	}
 
 	private static void syncPreferenceStoreAndDriverManagerXML(){
-		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
-		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+		IPath metadataPath = ConnectivityPlugin.getWorkspaceFilePath(DRIVER_MARKER_FILE_NAME);
 		File file = metadataPath.toFile();
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(file);
-			ConnectivityPlugin.getDefault().getPluginPreferences().store(fos, "DriverManager.Preferences"); //$NON-NLS-1$
+			ConnectivityPlugin.getDefault().storePreferences(fos, "DriverManager.Preferences"); //$NON-NLS-1$
 		} catch (FileNotFoundException e) {
 			ConnectivityPlugin.getDefault().log(e);
 		} catch (IOException e) {
@@ -680,9 +678,9 @@ public class DriverManager {
 	private static boolean syncPreferenceStoreChangesToDriver(){
 		String driverValues = "";
 		String driverValuesTemp = "";
-		String preferenceStoreDriverValues = ConnectivityPlugin.getDefault().getPluginPreferences().getString(IDriverMgmtConstants.DRIVER_VALUES);
-		IPath metadataPath = ConnectivityPlugin.getDefault().getStateLocation();
-		metadataPath = metadataPath.append(IDriverMgmtConstants.DRIVER_FILE);
+		String preferenceStoreDriverValues = 
+		        ConnectivityPlugin.getDefault().getPreferenceStringValue(IDriverMgmtConstants.DRIVER_VALUES);
+		IPath metadataPath = ConnectivityPlugin.getWorkspaceFilePath(IDriverMgmtConstants.DRIVER_FILE);
 		File file = metadataPath.toFile();
 		if (file.exists()){
 			FileReader fr = null;
@@ -899,8 +897,7 @@ public class DriverManager {
             setPreferenceValue( driverTemplateId, isDefaultCreated );
         
         IPath metadataPath = 
-            ConnectivityPlugin.getDefaultStateLocation();
-        metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+            ConnectivityPlugin.getWorkspaceFilePath(DRIVER_MARKER_FILE_NAME);
         File file = metadataPath.toFile();
         if (!file.exists()){
             try {
