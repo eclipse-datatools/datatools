@@ -56,6 +56,7 @@ public class DriverManager {
 	private static boolean refreshDriverMap = false;
 	
 	private static String DRIVER_MARKER_FILE_NAME = "driverManagerPreferences.xml"; //$NON-NLS-1$
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
 	private static boolean mDebug = ConnectivityPlugin.getDefault().isDebugging();
 
@@ -277,7 +278,7 @@ public class DriverManager {
 	public String getFullJarList() {
 		updatemDriverInstanceMap();
 		Object[] drivers = mDriverInstanceMap.values().toArray();
-		String fullList = ""; //$NON-NLS-1$
+		String fullList = EMPTY_STRING;
 		for (int x = 0; x < drivers.length; x++) {
 			DriverInstance di = (DriverInstance) drivers[x];
 			if (di.getJarList() != null) {
@@ -305,7 +306,7 @@ public class DriverManager {
 				}
 			}
 
-			String newList = ""; //$NON-NLS-1$
+			String newList = EMPTY_STRING;
 			Iterator iter2 = list.iterator();
 			while (iter2.hasNext()) {
 				newList = newList + iter2.next()
@@ -608,8 +609,8 @@ public class DriverManager {
 	}
 
 	private static boolean syncDriverChangesToPreferenceStore() {
-		String driverValues = "";
-		String driverValuesTemp = "";
+		String driverValues = EMPTY_STRING;
+		String driverValuesTemp = EMPTY_STRING;
 		IPath metadataPath = ConnectivityPlugin.getWorkspaceFilePath(IDriverMgmtConstants.DRIVER_FILE);
 		File file = metadataPath.toFile();
 		if (file.exists()){
@@ -676,10 +677,13 @@ public class DriverManager {
 	}
 
 	private static boolean syncPreferenceStoreChangesToDriver(){
-		String driverValues = "";
-		String driverValuesTemp = "";
 		String preferenceStoreDriverValues = 
 		        ConnectivityPlugin.getDefault().getPreferenceStringValue(IDriverMgmtConstants.DRIVER_VALUES);
+		if( preferenceStoreDriverValues.equals( EMPTY_STRING ) )
+		    return false;     // no driver values in preference store, nothing to sync
+		
+        String driverValues = EMPTY_STRING;
+        String driverValuesTemp = EMPTY_STRING;
 		IPath metadataPath = ConnectivityPlugin.getWorkspaceFilePath(IDriverMgmtConstants.DRIVER_FILE);
 		File file = metadataPath.toFile();
 		if (file.exists()){
@@ -746,7 +750,7 @@ public class DriverManager {
 			}
 		}
 		//To take care of the case when Driver Definitions are not initialized but preference store has been set due to import 
-		else if((!(file.exists()))&&(!(preferenceStoreDriverValues.equals(""))))
+		else if( !file.exists() )
 		{
 			FileWriter fw = null;
 			BufferedWriter bw = null;
@@ -1050,7 +1054,7 @@ public class DriverManager {
 			// create the base properties
 			Properties props = new Properties();
 
-			String jarList = ""; //$NON-NLS-1$
+			String jarList = EMPTY_STRING;
 			String valsJarList = null;
 			String overrideValsJarList = null;
 			
