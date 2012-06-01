@@ -53,7 +53,7 @@ while read LINE; do
 	elif [ "$MajorVersion" = "$MajorVersion2" ]; then
 		#Exclude current bundle version timestamp of v201203291105,v201202021103,v201201240505,v201201250511,v201201270735 in list of plugins with potential version issue
 		#Someone checked in an incorrect change in Head (for 1.10) for oe.d.c.oda.profile, but has since been reverted, so we should not increment the version number
-		if ( echo "$TimeStamp2" | grep v201203291105 >/dev/null ) || ( echo "$TimeStamp2" | grep v201202021103 >/dev/null ) || ( echo "$TimeStamp2" | grep v201201240505 >/dev/null ) ( echo "$TimeStamp2" | grep v201201250511 >/dev/null ) || ( echo "$TimeStamp2" | grep v201201270735 >/dev/null ); then
+		if ( echo "$TimeStamp2" | grep v201203291105 >/dev/null ) || ( echo "$TimeStamp2" | grep v201202021103 >/dev/null ) || ( echo "$TimeStamp2" | grep v201201240505 >/dev/null ) || ( echo "$TimeStamp2" | grep v201201250511 >/dev/null ) || ( echo "$TimeStamp2" | grep v201201270735 >/dev/null ); then
 			echo "$PluginName: Exclude in list of plugins with potential version issue"
                         echo "$PluginName" >> excludechange.txt
                         echo "Last_Release_Version: $MajorVersion.$TimeStamp" >> excludechange.txt
