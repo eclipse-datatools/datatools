@@ -2578,7 +2578,12 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
                     // columns in the tables exposed columnList (tables not resolved)
                     // in that case we are checking for other columns that refer
                     // to that table : check disconnected mode
-                    refTableFound = findTableExpressionForColumnName(tableExprList, colName, true);
+                    refTableFound = findTableExpressionForColumnName(tableExprList, colName, true);                    
+                }
+                
+                // The table ref found is not valid if it is a query select that contains the column.
+                if (refTableFound != null && getIsQueryParentOfColumn(refTableFound, col) == true) {
+                    refTableFound = null;
                 }
             }
             // was the column previously resolved?
@@ -3484,6 +3489,30 @@ public static Schema getSchemaForTableInDatabase(TableInDatabase tableInDB)
         return isOffLine;
     }
 
+    /**
+     * Gets whether or not the given table reference is a query select that contains the given column.
+     * 
+     * @param tblRef the table reference to check
+     * @param col the column to check
+     * @return true when the table reference is a query select that contains the column otherwise false
+     */
+    private static boolean getIsQueryParentOfColumn(TableReference tblRef, ValueExpressionColumn col) {
+        boolean isQueryParent = false;
+        
+        if (tblRef instanceof QuerySelect) {
+            EObject colContainerObj = col.eContainer();
+            while (colContainerObj != null && !(colContainerObj instanceof QuerySelect)) {
+                colContainerObj = colContainerObj.eContainer();
+            } 
+            
+            if (colContainerObj == tblRef) {
+                isQueryParent = true;
+            }
+        }
+        
+        return isQueryParent;
+    }
+    
     /**
      * Convenience method:
      * Returns the Schema name of the given <code>TableExpression</code> if the
