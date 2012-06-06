@@ -293,6 +293,11 @@ public final class TestSQLQueryParserColumnTableReferences extends
         
         assertTrue( "column reference \"t1.col1\" should be resolved", //$NON-NLS-1$
                         columnRefTable(withQuery, "t1.col1", "t1") ); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        // check that the column in the sub-query doesn't get qualified by the sub-query correlation name.
+        input = "SELECT * FROM (SELECT COLA FROM T1, T2) QUERY1";
+        parserVerifySuccess(input, true);
+        
     }
 
     
