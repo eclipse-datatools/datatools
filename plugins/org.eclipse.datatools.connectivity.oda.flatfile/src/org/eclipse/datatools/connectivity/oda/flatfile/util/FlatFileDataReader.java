@@ -137,7 +137,7 @@ public class FlatFileDataReader
 		{
 			if( this.flatFileBufferedReader == null )
 			{
-				examCharset( getInputStream( ) );
+				examCharset( );
 	
 				this.flatFileBufferedReader = new FlatFileBufferedReader( getInputStream( ),
 						this.charSet, conn.getDelimeter( ));
@@ -194,10 +194,12 @@ public class FlatFileDataReader
 	 * file is encoded with "UTF-16LE" or "UTF-16BE". If neither, then treat
 	 * file as using default "UTF-8"
 	 */
-	private void examCharset( InputStream fis ) throws OdaException, IOException
+	private void examCharset( ) throws OdaException, IOException
 	{
 		if ( this.charSet != null && this.charSet.length( ) > 0 )
 			return;
+		
+		InputStream fis = getInputStream( );
 		byte[] byteMarker = new byte[2];
 		fis.read( byteMarker );
 		// file encoded using UTF-16LE sometimes have two bytes prefix
@@ -226,8 +228,7 @@ public class FlatFileDataReader
 		ResourceInputStream fis = null;
 		try
 		{
-			fis = getInputStream( );
-			examCharset( fis );
+			examCharset( );
 			fis = getInputStream( );
 			FlatFileBufferedReader br = new FlatFileBufferedReader( fis, this.charSet, conn.getDelimeter( ));
 			List<String> columnLine;
