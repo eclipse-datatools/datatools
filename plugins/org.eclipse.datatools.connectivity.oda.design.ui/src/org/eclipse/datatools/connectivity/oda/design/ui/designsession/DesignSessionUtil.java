@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2011 Actuate Corporation.
+ * Copyright (c) 2006, 2012 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -57,6 +57,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class DesignSessionUtil extends DesignSessionUtilBase
 {
+    private static final String EMPTY_STRING = "";   //$NON-NLS-1$
     // logging variable
     private static final String sm_className = DesignSessionUtil.class.getName();
 
@@ -396,9 +397,13 @@ public class DesignSessionUtil extends DesignSessionUtilBase
 
         if( profileName == null || profileName.length() == 0 )
             profileName = dataSourceDesign.getName();
-        
+
+        String description = dataSourceDesign.getDisplayName();
+        if( description == null )
+            description = EMPTY_STRING;
+
         return OdaProfileFactory.createProfile( profileName, 
-                dataSourceDesign.getDisplayName(), 
+                description, 
                 dataSourceDesign.getOdaExtensionDataSourceId(), 
                 getEffectiveDataSourceProperties( dataSourceDesign ) );
     }
