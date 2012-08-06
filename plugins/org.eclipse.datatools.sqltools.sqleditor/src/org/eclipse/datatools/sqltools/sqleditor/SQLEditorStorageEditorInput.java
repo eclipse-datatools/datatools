@@ -39,7 +39,7 @@ public class SQLEditorStorageEditorInput implements IStorageEditorInput, ISQLEdi
      * @param storageSource the editor input source string
      */
     public SQLEditorStorageEditorInput(String name, String storageSource ) {
-        this( new SQLEditorStorage( name, storageSource ) );
+        this( new SQLEditorStringStorage( name, storageSource ) );
     }
 
     /**

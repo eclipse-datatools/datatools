@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStringStorage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IPersistableElement;
 
@@ -50,7 +51,7 @@ public class ProcEditorInput extends SQLEditorStorageEditorInput
         {
         	RoutineEditorUIActivator.getDefault().log(e);
         }
-        setStorage(new SQLEditorStorage(_procIdentifier.getDisplayString(), code));
+        setStorage(new SQLEditorStringStorage(_procIdentifier.getDisplayString(), code));
         setConnectionInfo(new SQLEditorConnectionInfo(ProfileUtil.getDatabaseVendorDefinitionId(procid.getProfileName()), procid.getProfileName(), procid.getDatabaseName(), procid.getOwnerName()));
      }
 
@@ -191,7 +192,7 @@ public class ProcEditorInput extends SQLEditorStorageEditorInput
      */
     public void setSourceCode(String code)
     {
-    	setStorage(new SQLEditorStorage(_procIdentifier.getDisplayString(), code));
+    	setStorage(new SQLEditorStringStorage(_procIdentifier.getDisplayString(), code));
     }
     
     public boolean isConnectionRequired()

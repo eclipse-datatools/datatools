@@ -25,6 +25,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ISQLStatementInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStatementInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStringStorage;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
@@ -82,7 +83,7 @@ public class SQLBuilderEditorInputUtil {
 		/*
 		 * Create SQLBuilderStorageEditorInput and put the SQL, ConnectionInfo and OmitSchemaInfo in it
 		 */
-		SQLEditorStorage storage = new SQLEditorStorage(file.getName(), sSQL);
+		SQLEditorStorage storage = new SQLEditorStringStorage(file.getName(), sSQL);
 		SQLBuilderStorageEditorInput storageEditorInput = new SQLBuilderStorageEditorInput(storage);
 		storageEditorInput.setConnectionInfo(connectionInfo);
 		storageEditorInput.setOmitSchemaInfo(omitSchemaInfo);

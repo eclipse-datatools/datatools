@@ -26,6 +26,21 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 /**
  * This class implements the IStorage interface to facilitate launching the SQL
  * Editor from an editor input that isn't based on a file.
+ * 
+ * BZ267428: Since this class is supposed to facilitate launching the SQL
+ * Editor on input that isn't based on a file (see the first sentence above),
+ * the {@link #getCharset()} method really shouldn't provide a file-system-based
+ * character set. It should specify a UTF character set name. This is because
+ * the SQL string isn't going to be stored on the file system and might contain
+ * characters that can't be represented in the workspace's encoding.
+ * 
+ * BUT: this class *is* extended by ExternalFileStorage which does depend on
+ * the workspace's encoding. There might be others out in the wild.
+ * 
+ * SO: for instances in the SQLTools projects that create SQL Editor Storage
+ * that is coming from Strings, a new class that is explicitly used for String
+ * input will extend this class and specify UTF-8 as the encoding. The new class
+ * will be used where is is applicable.
  */
 public class SQLEditorStorage implements IEncodedStorage 
 {
