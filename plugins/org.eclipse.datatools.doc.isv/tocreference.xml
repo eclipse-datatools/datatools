@@ -371,21 +371,135 @@
 		<topic label="org.eclipse.datatools.sqltools.tabledataeditor.actions.providers" href="html/reference/api/org/eclipse/datatools/sqltools/tabledataeditor/actions/providers/package-summary.html"/>
 	</topic>
 	<topic label="Extension Points Reference">
-		<topic label="org.eclipse.datatools.connectivity.connectionProfile" href="html/reference/extension-points/org_eclipse_datatools_connectivity_connectionProfile.html"/>
-		<topic label="org.eclipse.datatools.connectivity.oda.consumer.driverBridge" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_consumer_driverBridge.html"/>
-		<topic label="org.eclipse.datatools.connectivity.oda.consumer.propertyProvider" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_consumer_propertyProvider.html"/>
-		<topic label="org.eclipse.datatools.connectivity.oda.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_datasource.html"/>
-		<topic label="org.eclipse.datatools.connectivity.oda.design.ui.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_design_ui_datasource.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.catalog" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_catalog.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_dataModelElementFactory.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_databaseDefinition.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ddlGeneration.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.logicalContainment" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_logicalContainment.html"/>
-		<topic label="org.eclipse.datatools.connectivity.sqm.core.ui.labelService" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_labelService.html"/>
-		<topic label="org.eclipse.datatools.sqltools.common.ui.preferenceSections" href="html/reference/extension-points/org_eclipse_datatools_sqltools_common_ui_preferenceSections.html"/>
-		<topic label="org.eclipse.datatools.sqltools.result.reExecuteScript" href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_reExecuteScript.html"/>
-		<topic label="org.eclipse.datatools.sqltools.routineeditor.documentprovider" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_documentprovider.html"/>
-		<topic label="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_launchConfigurationTypes.html"/>
-		<topic label="org.eclipse.datatools.sqltools.sqleditor.texthover" href="html/reference/extension-points/org_eclipse_datatools_sqltools_sqleditor_texthover.html"/>
+  <topic label="org.eclipse.datatools.connectivity.cipherProvider" href="html/reference/extension-points/org_eclipse_datatools_connectivity_cipherProvider.html">
+  </topic>		
+  <topic label="org.eclipse.datatools.connectivity.connectionProfile" href="html/reference/extension-points/org_eclipse_datatools_connectivity_connectionProfile.html">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.driverExtension" href="html/reference/extension-points/org_eclipse_datatools_connectivity_driverExtension.html">
+  </topic>		
+  <topic label="org.eclipse.datatools.connectivity.oda.consumer.driverBridge" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_consumer_driverBridge.html">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.oda.consumer.propertyProvider" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_consumer_propertyProvider.html">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.oda.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_datasource.html">
+  </topic>		
+  <topic label="org.eclipse.datatools.connectivity.oda.design.ui.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_design_ui_datasource.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_dynamicResultSet.html" label="org.eclipse.datatools.connectivity.oda.dynamicResultSet">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_profile_profileStore.html" label="org.eclipse.datatools.connectivity.oda.profile.profileStore">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ProfileManagerInitializationProvider.html" label="org.eclipse.datatools.connectivity.ProfileManagerInitializationProvider">
+  </topic>	
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.catalog" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_catalog.html">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_databaseDefinition.html">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_dataModelElementFactory.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_databaseRecognition.html" label="org.eclipse.datatools.connectivity.sqm.core.databaseRecognition">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ddlGeneration.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ddlParser.html" label="org.eclipse.datatools.connectivity.sqm.core.ddlParser">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.logicalContainment" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_logicalContainment.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_mappings.html" label="org.eclipse.datatools.connectivity.sqm.core.mappings">
+  </topic>
+  <topic label="org.eclipse.datatools.connectivity.sqm.core.ui.labelService" href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_labelService.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_markerNavigationProvider.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.markerNavigationProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_sorterValidatorProvider.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.sorterValidatorProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_validConnectionHandler.html" label="org.eclipse.datatools.connectivity.sqm.core.validConnectionHandler">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_metaDataExtension.html" label="org.eclipse.datatools.connectivity.sqm.core.metaDataExtension">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_sqlexceptionHandler.html" label="org.eclipse.datatools.connectivity.sqm.core.sqlexceptionHandler">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_addObjectProvider.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.addObjectProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_creationInfoProvider.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.creationInfoProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_elementID.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.elementID">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_sqm_core_ui_filterInformation.html" label="org.eclipse.datatools.connectivity.sqm.core.ui.filterInformation">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ui_addConnectListener.html" label="org.eclipse.datatools.connectivity.ui.addConnectListener">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ui_connectionExceptionHandler.html" label="org.eclipse.datatools.connectivity.ui.connectionExceptionHandler">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ui_connectionProfileImage.html" label="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ui_driverPropertyEditor.html" label="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_ui_driverUIContributor.html" label="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_enablement_sybase_ase_additionalcontroller.html" label="org.eclipse.datatools.enablement.sybase.ase.additionalcontroller">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_enablement_sybase_deltaDdlGenProvider.html" label="DDLGenProtoType.deltaDdlGenProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_help_helpKeyProperties.html" label="org.eclipse.datatools.help.helpKeyProperties">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_modelbase_sql_query_sourceWriterExtension.html" label="org.eclipse.datatools.modelbase.sql.query.sourcewriterextension">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_modelbase_sql_sqlObjectNameHelper.html" label="org.eclipse.datatools.modelbase.sql.sqlObjectNameHelper">
+  </topic>
+  <topic label="org.eclipse.datatools.sqltools.common.ui.preferenceSections" href="html/reference/extension-points/org_eclipse_datatools_sqltools_common_ui_preferenceSections.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_data_core_columnDataAccessors.html" label="org.eclipse.datatools.sqltools.data.core.columnDataAccessor">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_data_core_tableEditorResultFilter.html" label="org.eclipse.datatools.sqltools.data.core.tableEditorResultFilter">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_data_ui_externalTableDataEditor.html" label="org.eclipse.datatools.sqltools.data.ui.externalTableDataEditor">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_data_ui_externalTableDataExtract.html" label="org.eclipse.datatools.sqltools.data.ui.externalTableDataExtract">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_data_ui_externalTableDataLoad.html" label="org.eclipse.datatools.sqltools.data.ui.externalTableDataLoad">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_debugger_core_sourceLocatorProvider.html" label="org.eclipse.datatools.sqltools.debugger.core.sourceLocatorProvider">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_editor_core_dbConfigurations.html" label="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_editor_core_SQLBuilderUIComponentService.html" label="org.eclipse.datatools.sqltools.editor.core.SQLBuilderUIComponentService">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_editor_core_ui_dbUIConfigurations.html" label="org.eclipse.datatools.sqltools.editor.ui.core.dbUIConfigurations">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_parsers_sql_query_vendorExtension.html" label="com.ibm.db.parsers.sql.query.com.ibm.db.parsers.sql.query.vendorextension">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_plan_planService.html" label="org.eclipse.datatools.sqltools.plan.planService">
+  </topic>
+  <topic label="org.eclipse.datatools.sqltools.result.reExecuteScript" href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_reExecuteScript.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_resultListener.html" label="org.eclipse.datatools.sqltools.result.resultListener">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_resultSetOutputter.html" label="org.eclipse.datatools.sqltools.result.resultSetOutputter">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_ui_parameterViewer.html" label="org.eclipse.datatools.sqltools.result.ui.externalParameterViewer">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_ui_resultSetViewer.html" label="org.eclipse.datatools.sqltools.result.ui.externalResultSetViewer">
+  </topic>
+  <topic label="org.eclipse.datatools.sqltools.routineeditor.documentprovider" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_documentprovider.html">
+  </topic>
+  <topic label="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_launchConfigurationTypes.html">
+  </topic>
+  <topic label="org.eclipse.datatools.sqltools.sqleditor.texthover" href="html/reference/extension-points/org_eclipse_datatools_sqltools_sqleditor_texthover.html">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_tabledataeditor_externalRunQuery.html" label="org.eclipse.datatools.sqltools.tabledataeditor.externalRunQuery">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_sqlscrapbook_dbdeffilter.html" label="org.eclipse.datatools.sqltools.sqlscrapbook.dbdeffilter">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_sqleditor_sourceViewerConfiguration.html" label="org.eclipse.datatools.sqltools.sqleditor.sourceViewerConfiguration">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_sqleditor_actionExtensions.html" label="org.eclipse.datatools.sqltools.sqleditor.actionExtensions">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_sql_ui_sqlNodesImage.html" label="org.eclipse.datatools.sqltools.sql.ui.sqlNodesImage">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_schemaobjecteditor_ui_schemaObjectEditor.html" label="org.eclipse.datatools.sqltools.schemaobjecteditor.schemaObjectEditor">
+  </topic>
+  <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_schemaobjecteditor_ui_pages_introductionPage.html" label="org.eclipse.datatools.sqltools.schemaobjecteditor.introductionPage">
+  </topic>
 	</topic>
 </toc>
