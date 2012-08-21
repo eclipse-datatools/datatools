@@ -381,9 +381,9 @@
   </topic>
   <topic label="org.eclipse.datatools.connectivity.oda.consumer.propertyProvider" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_consumer_propertyProvider.html">
   </topic>
-  <topic label="org.eclipse.datatools.connectivity.oda.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_datasource.html">
+  <topic label="org.eclipse.datatools.connectivity.oda.dataSource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_dataSource.html">
   </topic>		
-  <topic label="org.eclipse.datatools.connectivity.oda.design.ui.datasource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_design_ui_datasource.html">
+  <topic label="org.eclipse.datatools.connectivity.oda.design.ui.dataSource" href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_design_ui_dataSource.html">
   </topic>
   <topic href="html/reference/extension-points/org_eclipse_datatools_connectivity_oda_dynamicResultSet.html" label="org.eclipse.datatools.connectivity.oda.dynamicResultSet">
   </topic>
@@ -481,7 +481,7 @@
   </topic>
   <topic href="html/reference/extension-points/org_eclipse_datatools_sqltools_result_ui_resultSetViewer.html" label="org.eclipse.datatools.sqltools.result.ui.externalResultSetViewer">
   </topic>
-  <topic label="org.eclipse.datatools.sqltools.routineeditor.documentprovider" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_documentprovider.html">
+  <topic label="org.eclipse.datatools.sqltools.routineeditor.ui.documentprovider" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_ui_documentprovider.html">
   </topic>
   <topic label="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes" href="html/reference/extension-points/org_eclipse_datatools_sqltools_routineeditor_launchConfigurationTypes.html">
   </topic>
