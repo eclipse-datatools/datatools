@@ -298,8 +298,26 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 							_fWord, result.getScope(),
 							defaultSchemaName,
 							result);
-					List proposalList = fProposalFactory
-							.getDBObjectProposals(request);
+					/*
+					 * BZ 387818: The wrong proposals service is used if editors for multiple vendors
+					 * are open at the same time. The proposals service of the last vendor's editor
+					 * to be created is used for all editor.
+					 * 
+					 * This fix uses the proposals service associated with the current editor if
+					 * it is available. Otherwise, the proposals service contained in the proposal
+					 * factory is used (as was always being done before).
+					 */
+					List proposalList;
+					ISQLDBProposalsService editorProposalService = _editor.getDBProposalsService();
+					if (editorProposalService != null) {
+						proposalList = new ArrayList(); 
+			            if (editorProposalService.populate( request )) {
+			            	proposalList.addAll(editorProposalService.getDBProposals());                
+			            }           
+					} else {
+						proposalList = fProposalFactory
+								.getDBObjectProposals(request);
+					}
 					resultCollector
 							.setDBProposalList(adaptDBProposals(proposalList, request.getScope()),
 									request.getScope());
