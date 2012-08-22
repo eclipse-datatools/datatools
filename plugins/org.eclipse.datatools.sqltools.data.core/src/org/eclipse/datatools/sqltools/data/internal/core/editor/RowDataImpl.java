@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2010 IBM Corporation and others.
+ * Copyright (c) 2001, 2012 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -87,8 +87,8 @@ public class RowDataImpl extends AbstractRowData
     	int index = -1;
     	for (int i=0; i<table.getColumnCount(); ++i) {
     		Column sqlCol = (Column) table.getResultColumns().get(i);
-    		//Do not include columns that are always generated
-    		if (sqlCol.getIdentitySpecifier() == null) {
+    		//Omit the always generated columns and columns where default value needs to be used.
+    		if ( isColumnIncluded(sqlCol, i) ) {
     			index++;
     			if (exprs.elementAt(index)!=null) {    				
             		cols.add(table.getQuotedColumnName(i));            		
@@ -180,7 +180,8 @@ public class RowDataImpl extends AbstractRowData
         Vector exprs = new Vector();        
         for (int col=0; col<newData.length; ++col) {        	
         	Column sqlCol = (Column) table.getResultColumns().get(col);
-        	if (sqlCol.getIdentitySpecifier() == null) {
+        	//Omit the always generated columns and columns where default value needs to be used.
+        	if ( isColumnIncluded(sqlCol, col) ) {
         		exprs.add( table.getColumnDataAccessor(col).getValuesExpr(newData[col]) );
         	}         	
         }
@@ -191,8 +192,8 @@ public class RowDataImpl extends AbstractRowData
     {       
     	for (int col=0; col<newData.length; ++col) {
 		Column sqlCol = (Column) table.getResultColumns().get(col);
-    		//Omit the always generted columns
-    		if (sqlCol.getIdentitySpecifier() == null) {
+			//Omit the always generated columns and columns where default value needs to be used.
+    		if ( isColumnIncluded(sqlCol, col) ) {
 	            String[] args = table.getColumnDataAccessor(col).writeValuesExprArgs(pst, stmtLog.getArgsCount(),
 	            		newData[col], table.getColumnType(col));
 	            
@@ -274,7 +275,34 @@ public class RowDataImpl extends AbstractRowData
         return sb.toString();
     }
     
+    protected boolean isColumnIncluded(Column sqlCol, int colIndex)
+    {    	
+    	if ( sqlCol.getIdentitySpecifier() == null  //
+    			&& sqlCol.getGenerateExpression() == null //
+				&& !this.useDefaultValue(sqlCol, colIndex) )
+    	{
+    		return true;
+    	}
+    	
+    	return false;
+    }
     
+    protected boolean useDefaultValue(Column sqlCol, int colIndex)
+    {
+    	if (this.getValue(colIndex) != null //user has given some value in UI, no default value here.
+    			|| sqlCol.getDefaultValue() == null ||
+    			sqlCol.getDefaultValue().trim().equalsIgnoreCase("NULL")) //there is no default value for column
+    		return false;
+    	if (sqlCol.getDefaultValue() != null) {
+    		if (this.state == STATE_ORIGINAL)
+    			return true ; //no UI mods
+    		if (this.state == STATE_UPDATED)
+    			return this.newData[colIndex] == null ? false : true;
+    		if (this.state == STATE_INSERTED) //row to be inserted, but user has not given any values for column with default
+    			return this.newData[colIndex] == null ? true : false;
+    	}
+    	return false ; //no default value and no value in UI either
+    }
 }
 
 
