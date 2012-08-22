@@ -315,16 +315,23 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IndexMember" eSuperTypes="#//schema/SQLObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="IndexMember is an EObject.  It does not have a name or associated SQL descriptor so it is not an SQLObject.  This is the way we have chosen to model Index columns because EMF does not support association classes."/>
+        <details key="documentation" value="IndexMember is an EObject.  It does not have a name or associated SQL descriptor so it is not an SQLObject.  This is the way we have chosen to model Index columns because EMF does not support association classes.&#xD;&#xA;The &quot;expression&quot; reference was added to support function/expression-based indexes.  The expression relationship and the column relationship should be mutually exclusive; that is, one and only one of these should be set."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="incrementType" eType="#//constraints/IncrementType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
-          eType="#//tables/Column"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="column" eType="#//tables/Column"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//constraints/IndexExpression"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="IncrementType">
       <eLiterals name="ASC"/>
       <eLiterals name="DESC" value="1"/>
       <eLiterals name="RANDOM" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IndexExpression" eSuperTypes="#//schema/SQLObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IndexExpression is a SQLObject.  It was added to support function/expression-based indexes."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sql" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="datatypes" nsURI="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"

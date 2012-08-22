@@ -18,6 +18,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.IncrementType;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
+import org.eclipse.datatools.modelbase.sql.constraints.IndexExpression;
 import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.constraints.MatchType;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
@@ -124,6 +125,13 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * @generated
 	 */
 	private EClass indexMemberEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass indexExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -582,6 +590,33 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIndexMember_Expression() {
+		return (EReference)indexMemberEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIndexExpression() {
+		return indexExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIndexExpression_Sql() {
+		return (EAttribute)indexExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getMatchType() {
 		return matchTypeEEnum;
 	}
@@ -671,6 +706,10 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		indexMemberEClass = createEClass(INDEX_MEMBER);
 		createEAttribute(indexMemberEClass, INDEX_MEMBER__INCREMENT_TYPE);
 		createEReference(indexMemberEClass, INDEX_MEMBER__COLUMN);
+		createEReference(indexMemberEClass, INDEX_MEMBER__EXPRESSION);
+
+		indexExpressionEClass = createEClass(INDEX_EXPRESSION);
+		createEAttribute(indexExpressionEClass, INDEX_EXPRESSION__SQL);
 
 		// Create enums
 		matchTypeEEnum = createEEnum(MATCH_TYPE);
@@ -716,6 +755,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		primaryKeyEClass.getESuperTypes().add(this.getUniqueConstraint());
 		indexEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
 		indexMemberEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
+		indexExpressionEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(assertionEClass, Assertion.class, "Assertion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -765,7 +805,11 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 
 		initEClass(indexMemberEClass, IndexMember.class, "IndexMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIndexMember_IncrementType(), this.getIncrementType(), "incrementType", null, 0, 1, IndexMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getIndexMember_Column(), theSQLTablesPackage.getColumn(), null, "column", null, 1, 1, IndexMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIndexMember_Column(), theSQLTablesPackage.getColumn(), null, "column", null, 0, 1, IndexMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIndexMember_Expression(), this.getIndexExpression(), null, "expression", null, 0, 1, IndexMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(indexExpressionEClass, IndexExpression.class, "IndexExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIndexExpression_Sql(), ecorePackage.getEString(), "sql", null, 0, 1, IndexExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(matchTypeEEnum, MatchType.class, "MatchType"); //$NON-NLS-1$

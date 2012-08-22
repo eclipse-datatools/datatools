@@ -227,6 +227,28 @@ public class SQLConstraintsItemProviderAdapterFactory extends SQLConstraintsAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IndexExpressionItemProvider indexExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createIndexExpressionAdapter() {
+		if (indexExpressionItemProvider == null) {
+			indexExpressionItemProvider = new IndexExpressionItemProvider(this);
+		}
+
+		return indexExpressionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

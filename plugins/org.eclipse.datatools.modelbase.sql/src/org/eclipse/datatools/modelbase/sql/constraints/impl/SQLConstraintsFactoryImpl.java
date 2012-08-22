@@ -70,6 +70,7 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 			case SQLConstraintsPackage.PRIMARY_KEY: return createPrimaryKey();
 			case SQLConstraintsPackage.INDEX: return createIndex();
 			case SQLConstraintsPackage.INDEX_MEMBER: return createIndexMember();
+			case SQLConstraintsPackage.INDEX_EXPRESSION: return createIndexExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -175,6 +176,16 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	public IndexMember createIndexMember() {
 		IndexMemberImpl indexMember = new IndexMemberImpl();
 		return indexMember;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IndexExpression createIndexExpression() {
+		IndexExpressionImpl indexExpression = new IndexExpressionImpl();
+		return indexExpression;
 	}
 
 	/**

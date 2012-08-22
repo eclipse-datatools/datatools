@@ -105,6 +105,9 @@ public class SQLConstraintsAdapterFactory extends AdapterFactoryImpl {
 			public Object caseIndexMember(IndexMember object) {
 				return createIndexMemberAdapter();
 			}
+			public Object caseIndexExpression(IndexExpression object) {
+				return createIndexExpressionAdapter();
+			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -269,6 +272,20 @@ public class SQLConstraintsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIndexMemberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression <em>Index Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.IndexExpression
+	 * @generated
+	 */
+	public Adapter createIndexExpressionAdapter() {
 		return null;
 	}
 

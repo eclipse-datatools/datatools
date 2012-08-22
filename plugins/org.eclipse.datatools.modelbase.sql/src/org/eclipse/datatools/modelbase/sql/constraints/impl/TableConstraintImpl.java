@@ -63,7 +63,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * @generated
 	 */
 	public BaseTable getBaseTable() {
-		if (eContainerFeatureID != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE) return null;
+		if (eContainerFeatureID() != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE) return null;
 		return (BaseTable)eContainer();
 	}
 
@@ -83,7 +83,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * @generated
 	 */
 	public void setBaseTable(BaseTable newBaseTable) {
-		if (newBaseTable != eInternalContainer() || (eContainerFeatureID != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE && newBaseTable != null)) {
+		if (newBaseTable != eInternalContainer() || (eContainerFeatureID() != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE && newBaseTable != null)) {
 			if (EcoreUtil.isAncestor(this, newBaseTable))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -132,7 +132,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * @generated
 	 */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
 				return eInternalContainer().eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
 		}

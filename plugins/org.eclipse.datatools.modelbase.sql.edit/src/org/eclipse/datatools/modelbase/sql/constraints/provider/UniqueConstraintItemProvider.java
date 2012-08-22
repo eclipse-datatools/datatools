@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
@@ -59,9 +60,32 @@ public class UniqueConstraintItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addClusteredPropertyDescriptor(object);
 			addForeignKeyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Clustered feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addClusteredPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_UniqueConstraint_clustered_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_UniqueConstraint_clustered_feature", "_UI_UniqueConstraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLConstraintsPackage.Literals.UNIQUE_CONSTRAINT__CLUSTERED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -118,6 +142,12 @@ public class UniqueConstraintItemProvider
 	 */
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(UniqueConstraint.class)) {
+			case SQLConstraintsPackage.UNIQUE_CONSTRAINT__CLUSTERED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

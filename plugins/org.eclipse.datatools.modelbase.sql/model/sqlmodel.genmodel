@@ -191,6 +191,10 @@
       <genClasses ecoreClass="sqlmodel.ecore#//constraints/IndexMember">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/IndexMember/incrementType"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/IndexMember/column"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/IndexMember/expression"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/IndexExpression">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/IndexExpression/sql"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLDataTypes" basePackage="org.eclipse.datatools.modelbase.sql"

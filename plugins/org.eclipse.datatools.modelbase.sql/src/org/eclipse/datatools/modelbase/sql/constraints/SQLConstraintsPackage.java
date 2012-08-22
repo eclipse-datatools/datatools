@@ -1507,13 +1507,122 @@ public interface SQLConstraintsPackage extends EPackage {
 	int INDEX_MEMBER__COLUMN = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_MEMBER__EXPRESSION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Index Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_MEMBER_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
+	int INDEX_MEMBER_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexExpressionImpl <em>Index Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.IndexExpressionImpl
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIndexExpression()
+	 * @generated
+	 */
+	int INDEX_EXPRESSION = 10;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__EANNOTATIONS = SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__NAME = SQLSchemaPackage.SQL_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__DEPENDENCIES = SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__DESCRIPTION = SQLSchemaPackage.SQL_OBJECT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__EXTENSIONS = SQLSchemaPackage.SQL_OBJECT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
+	 * The feature id for the '<em><b>Sql</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION__SQL = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Index Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_EXPRESSION_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.MatchType <em>Match Type</em>}' enum.
@@ -1523,7 +1632,7 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getMatchType()
 	 * @generated
 	 */
-	int MATCH_TYPE = 10;
+	int MATCH_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.IncrementType <em>Increment Type</em>}' enum.
@@ -1533,7 +1642,7 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIncrementType()
 	 * @generated
 	 */
-	int INCREMENT_TYPE = 11;
+	int INCREMENT_TYPE = 12;
 
 
 	/**
@@ -1956,6 +2065,38 @@ public interface SQLConstraintsPackage extends EPackage {
 	EReference getIndexMember_Column();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getExpression()
+	 * @see #getIndexMember()
+	 * @generated
+	 */
+	EReference getIndexMember_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression <em>Index Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Index Expression</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.IndexExpression
+	 * @generated
+	 */
+	EClass getIndexExpression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.constraints.IndexExpression#getSql <em>Sql</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sql</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.IndexExpression#getSql()
+	 * @see #getIndexExpression()
+	 * @generated
+	 */
+	EAttribute getIndexExpression_Sql();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.constraints.MatchType <em>Match Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2328,6 +2469,32 @@ public interface SQLConstraintsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INDEX_MEMBER__COLUMN = eINSTANCE.getIndexMember_Column();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX_MEMBER__EXPRESSION = eINSTANCE.getIndexMember_Expression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexExpressionImpl <em>Index Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.IndexExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIndexExpression()
+		 * @generated
+		 */
+		EClass INDEX_EXPRESSION = eINSTANCE.getIndexExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Sql</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_EXPRESSION__SQL = eINSTANCE.getIndexExpression_Sql();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.MatchType <em>Match Type</em>}' enum.

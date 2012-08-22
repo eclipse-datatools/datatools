@@ -20,6 +20,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
  *
  * <!-- begin-model-doc -->
  * IndexMember is an EObject.  It does not have a name or associated SQL descriptor so it is not an SQLObject.  This is the way we have chosen to model Index columns because EMF does not support association classes.
+ * The "expression" reference was added to support function/expression-based indexes.  The expression relationship and the column relationship should be mutually exclusive; that is, one and only one of these should be set.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -27,6 +28,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getIncrementType <em>Increment Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getColumn <em>Column</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,7 +77,7 @@ public interface IndexMember extends SQLObject{
 	 * @return the value of the '<em>Column</em>' reference.
 	 * @see #setColumn(Column)
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndexMember_Column()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Column getColumn();
@@ -89,5 +91,31 @@ public interface IndexMember extends SQLObject{
 	 * @generated
 	 */
 	void setColumn(Column value);
+
+	/**
+	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Expression</em>' containment reference.
+	 * @see #setExpression(IndexExpression)
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndexMember_Expression()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IndexExpression getExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember#getExpression <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
+	 * @see #getExpression()
+	 * @generated
+	 */
+	void setExpression(IndexExpression value);
 
 } // IndexMember

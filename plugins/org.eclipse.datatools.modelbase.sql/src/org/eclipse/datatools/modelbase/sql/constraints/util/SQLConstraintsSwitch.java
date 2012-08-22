@@ -200,6 +200,15 @@ public class SQLConstraintsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLConstraintsPackage.INDEX_EXPRESSION: {
+				IndexExpression indexExpression = (IndexExpression)theEObject;
+				Object result = caseIndexExpression(indexExpression);
+				if (result == null) result = caseSQLObject(indexExpression);
+				if (result == null) result = caseENamedElement(indexExpression);
+				if (result == null) result = caseEModelElement(indexExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -351,6 +360,21 @@ public class SQLConstraintsSwitch {
 	 * @generated
 	 */
 	public Object caseIndexMember(IndexMember object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Index Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Index Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseIndexExpression(IndexExpression object) {
 		return null;
 	}
 
