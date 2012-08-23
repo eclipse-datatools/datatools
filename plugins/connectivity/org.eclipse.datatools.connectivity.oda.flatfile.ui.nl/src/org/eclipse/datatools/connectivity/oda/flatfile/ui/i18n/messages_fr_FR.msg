@@ -1,4 +1,4 @@
-wizard.title.selectColumns=Sélection des colonnes
+wizard.title.selectColumns=Sélectionner les colonnes
 wizard.defaultMessage.selectFile=Sélectionnez le fichier et les colonnes pour le jeu de données.
 wizard.WizardTitle.DEFAULT_MESSAGE=Sélectionnez un dossier contenant les fichiers plats ou saisissez un URI pour le fichier plat.
 
