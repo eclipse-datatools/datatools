@@ -74,28 +74,61 @@ public class QueryTextUtil
 		};
 		boolean inQuote = false;
 		boolean isEscaped = false;
+		boolean isFrom = false;
 		char[] chars = trimmedQueryText.toCharArray( );
 		
 		for ( int i = 0; i < chars.length; i++ )
 		{
-			if ( chars[i] == '"' )
+			if ( !isFrom )
 			{
-				if ( !isEscaped )
-					inQuote = !inQuote;
-				else
+				if ( !inQuote
+						&& chars[i] == 'f' && i + 3 < chars.length
+						&& chars[i + 1] == 'r' && chars[i + 2] == 'o'
+						&& chars[i + 3] == 'm' )
+				{
+					isFrom = !isFrom;
+					i = i + 3;
+				}
+				if ( chars[i] == '"' )
+				{
+					if ( !isEscaped )
+						inQuote = !inQuote;
+					else
+						isEscaped = !isEscaped;
+				}
+				else if ( chars[i] == '\\' )
+				{
 					isEscaped = !isEscaped;
+				}
+				else if ( ( !inQuote ) && chars[i] == QUERY_TEXT_DELIMITER )
+					delimiterIndex = i;
+				else if ( ( !inQuote )
+						&& chars[i] == COLUMNSINFO_BEGIN_DELIMITER )
+				{
+					columnsInfoBeginIndex = i;
+					break;
+				}
+
 			}
-			else if ( chars[i] == '\\' )
+			else
 			{
-				isEscaped = !isEscaped;
+				if ( chars[i] == '"' )
+				{
+					if ( !isEscaped )
+						inQuote = !inQuote;
+					else
+						isEscaped = !isEscaped;
+				}
+				else if ( ( !inQuote ) && chars[i] == QUERY_TEXT_DELIMITER )
+					delimiterIndex = i;
+				else if ( ( !inQuote )
+						&& chars[i] == COLUMNSINFO_BEGIN_DELIMITER )
+				{
+					columnsInfoBeginIndex = i;
+					break;
+				}
 			}
-			else if ( ( !inQuote ) && chars[i] == QUERY_TEXT_DELIMITER )
-				delimiterIndex = i;
-			else if ( ( !inQuote ) && chars[i] == COLUMNSINFO_BEGIN_DELIMITER )
-			{
-				columnsInfoBeginIndex = i;
-				break;
-			}
+
 		}
 
 		if ( inQuote )
