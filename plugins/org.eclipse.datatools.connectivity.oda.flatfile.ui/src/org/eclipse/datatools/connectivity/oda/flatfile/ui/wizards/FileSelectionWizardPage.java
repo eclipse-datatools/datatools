@@ -124,7 +124,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private static final String columnsInfoEndSymbol = "}"; //$NON-NLS-1$
 
 	private static String name = Messages.getString( "editor.title.name" ); //$NON-NLS-1$
-	private static String originalName = Messages.getString( "editor.title.originalName" ); //$NON-NLS-1$
 	private static String dataType = Messages.getString( "editor.title.type" ); //$NON-NLS-1$
 
 	private static String[] dataTypeDisplayNames = new String[]{
@@ -443,10 +442,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				selectedColumnsViewer.getTable( ).deselectAll( );
-				btnAdd.setEnabled( true );
-				btnRemove.setEnabled( false );
-				btnMoveDown.setEnabled( false );
-				btnMoveUp.setEnabled( false );
+				updateButtons( );
 			}
 		} );
 
@@ -563,6 +559,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				removeColumns( );
+				updateButtons( );
 			}
 
 		} );
@@ -573,6 +570,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				removeAllColumns( );
+				updateButtons( );
 			}
 		} );
 
@@ -586,50 +584,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						menuRemove.setEnabled( selectedColumnsViewer.getTable( )
 								.getSelectionCount( ) > 0 );
 
-						btnAdd.setEnabled( false );
 						availableList.deselectAll( );
+						updateButtons( );
 
-						int count = selectedColumnsViewer.getTable( )
-								.getSelectionCount( );
-						int index = selectedColumnsViewer.getTable( )
-								.getSelectionIndex( );
-						if ( count == 1 )
-						{
-							btnRemove.setEnabled( true );
-							if( selectedColumnsViewer.getTable( ).getItemCount( ) == 1 )
-							{
-								btnMoveUp.setEnabled( false );
-								btnMoveDown.setEnabled( false );
-							}
-							else if ( index == 0 )
-							{
-								btnMoveUp.setEnabled( false );
-								btnMoveDown.setEnabled( true );
-							}
-							else if ( index == ( selectedColumnsViewer.getTable( )
-									.getItemCount( ) - 1 ) )
-							{
-								btnMoveUp.setEnabled( true );
-								btnMoveDown.setEnabled( false );
-							}
-							else
-							{
-								btnMoveUp.setEnabled( true );
-								btnMoveDown.setEnabled( true );
-							}
-						}
-						else if ( count > 1 )
-						{
-							btnRemove.setEnabled( true );
-							btnMoveUp.setEnabled( false );
-							btnMoveDown.setEnabled( false );
-						}
-						else
-						{
-							btnRemove.setEnabled( false );
-							btnMoveUp.setEnabled( false );
-							btnMoveDown.setEnabled( false );
-						}
 					}
 				} );
 		
@@ -944,9 +901,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			enableListAndViewer( );
 			availableList.setItems( columnNames );
 			availableList.select( 0 );
-			btnRemove.setEnabled( false );
-			btnMoveUp.setEnabled( false );
-			btnMoveDown.setEnabled( false );
+			
+			updateButtons( );
+			
 			if ( !( fileName.endsWith( CSV_EXTENSION )
 					|| fileName.endsWith( TXT_EXTENSION )
 					|| fileName.endsWith( SSV_EXTENSION )
@@ -957,6 +914,43 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 			else
 				setMessage( DEFAULT_MESSAGE );
+		}
+	}
+	
+	private void updateButtons( )
+	{
+		if ( availableList.getSelectionCount( ) > 0 )
+		{
+			btnAdd.setEnabled( true );
+			btnRemove.setEnabled( false );
+			btnMoveUp.setEnabled( false );
+			btnMoveDown.setEnabled( false );
+		}
+		else if ( selectedColumnsViewer.getTable( ).getSelectionCount( ) > 0 )
+		{
+			btnAdd.setEnabled( false );
+			btnRemove.setEnabled( true );
+
+			btnMoveUp.setEnabled( false );
+			btnMoveDown.setEnabled( false );
+
+			int index = selectedColumnsViewer.getTable( ).getSelectionIndex( );
+			if ( index > 0 )
+			{
+				btnMoveUp.setEnabled( true );
+			}
+			if ( index < ( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 ) )
+			{
+				btnMoveDown.setEnabled( true );
+			}
+
+		}
+		else
+		{
+			btnAdd.setEnabled( false );
+			btnRemove.setEnabled( false );
+			btnMoveUp.setEnabled( false );
+			btnMoveDown.setEnabled( false );
 		}
 	}
 	
@@ -1568,14 +1562,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		setDisplayContent( savedSelectedColumnsInfoList, selectedColumnsViewer );
 
 		setPageComplete( true );
-		btnAdd.setEnabled( false );
-		btnRemove.setEnabled( false );
-		btnMoveUp.setEnabled( false );
-		btnMoveDown.setEnabled( false );
+		
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
 		{
 			setPageComplete( false );
 		}
+		
+		updateButtons( );
+		
 	}
 
 	/**
@@ -1753,19 +1747,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		selectedColumnsViewer.getTable( )
 				.setSelection( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 );
 
-		int nextSelectionIndex = availableList.getSelectionIndex( ) + 1;
-		if( nextSelectionIndex < availableList.getItemCount( ) )
-		{
-			availableList.setSelection( nextSelectionIndex );
-			btnAdd.setEnabled( true );
-		}
-		else if ( availableList.getSelectionCount( ) == 0 )
-		{
-			btnAdd.setEnabled( false );
-		}
-
 		selectedColumnsViewer.getTable( ).setSelection( -1 );
 		
+		updateButtons( );
+
 		setMessage( DEFAULT_MESSAGE );
 		setPageComplete( true );
 	}
