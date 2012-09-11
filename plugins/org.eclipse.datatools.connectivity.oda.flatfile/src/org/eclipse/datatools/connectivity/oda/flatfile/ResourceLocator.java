@@ -43,6 +43,15 @@ public final class ResourceLocator
 		if ( stream != null)
 			return stream;
 		
+		if ( homeFolder == null )
+		{
+			throw new InvalidResourceException( InvalidResourceException.ERROR_INVALID_RESOURCE,
+					MessageFormat.format( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_URI" ), //$NON-NLS-1$
+							new Object[]{
+									fileURI
+							} ) );
+		}
+		
 		stream = getResourceInputStream( homeFolder, table );
 		
 		return stream;
@@ -143,12 +152,7 @@ public final class ResourceLocator
 					}
 					else
 					{
-						throw new InvalidResourceException( InvalidResourceException.ERROR_INVALID_RESOURCE,
-								MessageFormat.format( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_URI" ), //$NON-NLS-1$
-										new Object[]{
-												fileURI,
-												new FileNotFoundException( )
-										} ) );
+						return null;
 					}
 				}
 				stream = new ResourceInputStream( uri.toURL( ).openStream( ), fileURI );
