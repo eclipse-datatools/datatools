@@ -954,6 +954,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 	}
 	
+	private void updateSelectionFocus( )
+	{
+		int[] indices = availableList.getSelectionIndices( );
+		if ( indices.length > 0 )
+		{
+			int nextIndex = indices[indices.length - 1] + 1;
+			if ( availableList.getItemCount( ) > nextIndex )
+			{
+				availableList.deselectAll( );
+				availableList.select( nextIndex );
+			}
+		}
+	}
+
 	private void validateSelectedColumns( )
 	{
 		boolean pageComplete = true;
@@ -1749,6 +1763,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		selectedColumnsViewer.getTable( ).setSelection( -1 );
 		
+		updateSelectionFocus( );
 		updateButtons( );
 
 		setMessage( DEFAULT_MESSAGE );
