@@ -1130,6 +1130,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			else 
 			{
 				updateFileSelection( );
+				updateButtons( );
 			}
 		}
 	}
