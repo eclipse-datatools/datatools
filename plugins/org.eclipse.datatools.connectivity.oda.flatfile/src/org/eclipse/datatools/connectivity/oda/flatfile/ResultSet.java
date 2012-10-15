@@ -366,8 +366,10 @@ public class ResultSet implements IResultSet
      * Transform a String value to an int value
      * @param stringValue String value
      * @return Corresponding int value
+     * @throws ParseException 
+     * @throws OdaException 
      */
-    private int stringToInt( String stringValue )
+    private int stringToInt( String stringValue ) throws  OdaException
     {
     	if( stringValue != null )
         {
@@ -387,6 +389,7 @@ public class ResultSet implements IResultSet
 				}
 				catch ( ParseException e1 )
 				{
+					throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to Integer" );
 				}
             }
         }
@@ -398,8 +401,9 @@ public class ResultSet implements IResultSet
      * Transform a String value to a double value
      * @param stringValue String value
      * @return Corresponding double value
+     * @throws OdaException 
      */
-    private double stringToDouble( String stringValue )
+    private double stringToDouble( String stringValue ) throws OdaException
     {
     	if( stringValue != null )
         {
@@ -419,6 +423,7 @@ public class ResultSet implements IResultSet
 				}
 				catch ( ParseException e1 )
 				{
+					throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to a double value" );
 				}
             }
         }
@@ -430,8 +435,9 @@ public class ResultSet implements IResultSet
      * Transform a String value to a big decimal value
      * @param stringValue String value
      * @return Corresponding BigDecimal value
+     * @throws OdaException 
      */
-    private BigDecimal stringToBigDecimal( String stringValue )
+    private BigDecimal stringToBigDecimal( String stringValue ) throws OdaException
     {
     	if( stringValue != null )
         {
@@ -451,6 +457,7 @@ public class ResultSet implements IResultSet
 				}
 				catch ( ParseException e1 )
 				{
+					throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to a BigDecimal value" );
 				}
             }
         }
@@ -475,6 +482,7 @@ public class ResultSet implements IResultSet
 			}
 			catch ( OdaException oe )
 			{
+				throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to a date value" );
 			}
 		}
 		
@@ -498,6 +506,7 @@ public class ResultSet implements IResultSet
 			}
 			catch ( OdaException oe )
 			{
+				throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to a Time value" );
 			}
 		}
 		this.wasNull = true;
@@ -537,7 +546,7 @@ public class ResultSet implements IResultSet
 					}
 					catch ( OdaException ex )
 					{
-						//ignore
+						throw new OdaException( "Can not convert string "+"\""+stringValue+"\""+" to a Timestamp value" );
 					}
 				}
 			}
@@ -550,8 +559,9 @@ public class ResultSet implements IResultSet
 	 * Transform a string to boolean value
 	 * @param stringValue
 	 * @return
+     * @throws OdaException 
 	 */
-	private Boolean stringToBoolean( String stringValue )
+	private Boolean stringToBoolean( String stringValue ) throws OdaException
 	{
 		if ( stringValue != null )
 		{
@@ -580,6 +590,7 @@ public class ResultSet implements IResultSet
 					}
 					catch ( ParseException e1 )
 					{
+						throw new OdaException( "Can not convert "+"\""+stringValue+"\""+" to boolean value" );						
 					}
 				}
 			}
