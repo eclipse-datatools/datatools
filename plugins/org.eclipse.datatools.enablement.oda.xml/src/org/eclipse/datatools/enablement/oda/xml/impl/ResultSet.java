@@ -482,7 +482,10 @@ public class ResultSet implements IResultSet
         {
             try
             {
+            	if ( !stringValue.endsWith( "Z" ))
+				{
             	stringValue = stringValue.replaceAll("\\QT\\E", SINGLE_SPACE).split("\\QZ\\E")[0];//$NON-NLS-1$	//$NON-NLS-2$
+				}
             	return Timestamp.valueOf( stringValue );
             }
             catch( IllegalArgumentException e )

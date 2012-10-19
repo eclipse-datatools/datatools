@@ -80,7 +80,7 @@ public class DateFormatISO8601
 		int zoneIndex = s.indexOf( 'Z' );
 		if ( zoneIndex >= 0 && zoneIndex == s.length( ) - 1 )
 		{
-			return s.substring( 0, zoneIndex ).trim( );
+			return s.replace( "Z", "+00:00" ).trim( );
 		}
 		return s;
 	}
