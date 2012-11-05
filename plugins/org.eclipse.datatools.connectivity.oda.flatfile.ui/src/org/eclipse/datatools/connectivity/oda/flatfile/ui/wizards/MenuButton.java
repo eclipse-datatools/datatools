@@ -75,6 +75,7 @@ public class MenuButton extends Composite
 	public void setText( String text )
 	{
 		this.text = text;
+		this.button.setText( text );
 		layoutControl( );
 	}
 
@@ -267,12 +268,33 @@ public class MenuButton extends Composite
 				if ( listeners == null )
 					return;
 
-				e.widget = MenuButton.this;
-
-				for ( int i = 0; i < listeners.size( ); i++ )
+				// separate the mouse click from the key press event on the button
+				boolean keyPress = false;
+				if ( e.widget instanceof Button )
 				{
-					( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
+					if ( ( (Button) e.widget ).getParent( ) instanceof MenuButton )
+					{
+						if ( menu != null )
+						{
+							keyPress = true;
+							Rectangle size = button.getBounds( );
+							menu.setLocation( button.toDisplay( new Point( 0,
+									size.height - 1 ) ) );
+							menu.setVisible( true );
+						}
+					}
 				}
+
+				if ( !keyPress )
+				{
+					e.widget = MenuButton.this;
+
+					for ( int i = 0; i < listeners.size( ); i++ )
+					{
+						( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
+					}
+				}
+
 			}
 
 		} );
@@ -427,17 +449,6 @@ public class MenuButton extends Composite
 						size.width - left,
 						( size.height - height ) / 2 + height );
 				e.gc.setForeground( fgColor );
-			}
-
-			if ( text != null && text.trim( ).length( ) > 0 )
-			{
-				int width = e.gc.textExtent( text, DRAW_FLAGS ).x;
-				int fontHeight = e.gc.textExtent( text, DRAW_FLAGS ).y;
-				left += ( MARGIN_GAP + width );
-				e.gc.drawText( text,
-						( size.width - left ) / 2 + MARGIN_GAP,
-						( size.height - fontHeight ) / 2,
-						DRAW_FLAGS | SWT.DRAW_TRANSPARENT );
 			}
 
 			if ( image != null )
