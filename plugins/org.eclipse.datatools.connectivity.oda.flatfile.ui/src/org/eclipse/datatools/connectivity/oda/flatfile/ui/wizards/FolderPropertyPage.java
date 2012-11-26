@@ -30,15 +30,19 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		super( );
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#collectCustomProperties(java.util.Properties)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage
+	 * #collectCustomProperties(java.util.Properties)
 	 */
 	public Properties collectCustomProperties( Properties profileProps )
 	{
-		/* 
-		 * Optionally assigns a custom designer state, for inclusion
-		 * in the ODA design session response, using
-		 *      setResponseDesignerState( DesignerState customState ); 
+		/*
+		 * Optionally assigns a custom designer state, for inclusion in the ODA
+		 * design session response, using setResponseDesignerState(
+		 * DesignerState customState );
 		 */
 
 		if ( pageHelper == null )
@@ -47,8 +51,13 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		return pageHelper.collectCustomProperties( profileProps );
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#createAndInitCustomControl(org.eclipse.swt.widgets.Composite, java.util.Properties)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage
+	 * #createAndInitCustomControl(org.eclipse.swt.widgets.Composite,
+	 * java.util.Properties)
 	 */
 	protected void createAndInitCustomControl( Composite parent,
 			Properties profileProps )
@@ -59,42 +68,51 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		pageHelper.setResourceIdentifiers( getHostResourceIdentifiers( ) );
 		pageHelper.createCustomControl( parent );
 
-		/* 
+		/*
 		 * Optionally hides the Test Connection button, using
-		 *      setPingButtonVisible( false );  
+		 * setPingButtonVisible( false );
 		 */
 
-		/* 
-		 * Optionally restores the state of a previous design session.
-		 * Obtains designer state, using
-		 *      getInitializationDesignerState(); 
+		/*
+		 * Optionally restores the state of a previous design session. Obtains
+		 * designer state, using getInitializationDesignerState();
 		 */
 
-        pageHelper.initCustomControl( profileProps );
+		pageHelper.initCustomControl( profileProps );
 	}
 
-    /*
-     * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#refresh(java.util.Properties)
-     */
-    protected void refresh( Properties customConnectionProps  )
-    {
-        if( pageHelper != null )
-            pageHelper.initCustomControl( customConnectionProps );
-        
-        // enable/disable all controls on page in respect of the editable session state
-        enableAllControls( getControl(), isSessionEditable() );
-        
-        if ( pageHelper != null && isSessionEditable() )
-        	pageHelper.restUIStatus( );
-    }
-    
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
-     */
-    protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
-    {
-    	return pageHelper.createTestConnectionRunnable( profile );
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage
+	 * #refresh(java.util.Properties)
+	 */
+	protected void refresh( Properties customConnectionProps )
+	{
+		if ( pageHelper != null )
+			pageHelper.initCustomControl( customConnectionProps );
+
+		// enable/disable all controls on page in respect of the editable
+		// session state
+		enableAllControls( getControl( ), isSessionEditable( ) );
+		pageHelper.refreshTypeLineCheckBoxStatus( );
+
+		if ( pageHelper != null && isSessionEditable( ) )
+			pageHelper.restUIStatus( );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.
+	 * DataSourceEditorPageCore
+	 * #createTestConnectionRunnable(org.eclipse.datatools
+	 * .connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
+	{
+		return pageHelper.createTestConnectionRunnable( profile );
+	}
 
 }
