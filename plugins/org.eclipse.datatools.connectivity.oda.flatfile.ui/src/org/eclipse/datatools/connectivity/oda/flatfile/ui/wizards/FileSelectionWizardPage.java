@@ -803,7 +803,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		for ( int j = 0; j < existedColumns.size( ); j++ )
 		{
-			if ( ( columnName + "_" + count ).equals( ( (String[]) savedSelectedColumnsInfoList.get( j ) )[0] ) ) //$NON-NLS-1$
+			if ( ( columnName + "_" + count ).equals( ( (String[]) existedColumns.get( j ) )[0] ) ) //$NON-NLS-1$
 			{
 				count++;
 				j = -1;
