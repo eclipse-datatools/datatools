@@ -2,9 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.0.2.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin
 Bundle-Localization: plugin
+Bundle-Vendor: %Plugin.providerName
 Require-Bundle: 
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity;bundle-version="[1.0.0,2.0.0)",
@@ -12,10 +13,9 @@ Require-Bundle:
  org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.sybase.asa.models;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.sybase;bundle-version="[1.0.0,2.0.0)",
- com.ibm.icu;bundle-version="[3.4.0,5.0.0)",
  org.eclipse.datatools.sqltools.editor.core;bundle-version="[1.0.0,2.0.0)"
-Eclipse-LazyStart: true
-Bundle-Vendor: %Plugin.providerName
+Import-Package: com.ibm.icu.text;version="3.6.1",
+ com.ibm.icu.util;version="3.6.1"
 Export-Package: org.eclipse.datatools.enablement.sybase.asa,
  org.eclipse.datatools.enablement.sybase.asa.base.catalog,
  org.eclipse.datatools.enablement.sybase.asa.baseloaders,
