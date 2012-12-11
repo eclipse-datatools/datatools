@@ -3,10 +3,28 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %_UI_PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlbuilder; singleton:=true
 Bundle-ClassPath: .
-Bundle-Version: 1.0.4.qualifier
+Bundle-Version: 1.0.5.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin
 Bundle-Vendor: %_UI_PLUGIN_PROVIDER
 Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.resources;bundle-version="[3.1.2,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.1.2,4.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.gef;bundle-version="[3.1.1,4.0.0)",
+ org.eclipse.datatools.modelbase.sql.query.edit;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.datatools.modelbase.sql.xml.query;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.sqltools.editor.core;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.datatools.sqltools.parsers.sql.query;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.sqltools.sqleditor;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.forms;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.1.1,4.0.0)",
+ org.eclipse.datatools.sqltools.editor.core.ui;bundle-version="[1.0.0,1.5.0)",
+ org.eclipse.datatools.sqltools.result.ui;bundle-version="[1.0.0,1.5.0)",
+ org.eclipse.help;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.sqltools.sql.ui;bundle-version="[1.0.0,2.0.0)";visibility:=reexport
+Import-Package: com.ibm.icu.text;version="3.6.1",
+ com.ibm.icu.util;version="3.6.1"
 Export-Package: org.eclipse.datatools.sqltools.sqlbuilder,
  org.eclipse.datatools.sqltools.sqlbuilder.actions,
  org.eclipse.datatools.sqltools.sqlbuilder.dialogs,
@@ -38,24 +56,6 @@ Export-Package: org.eclipse.datatools.sqltools.sqlbuilder,
  org.eclipse.datatools.sqltools.sqlbuilder.views.source,
  org.eclipse.datatools.sqltools.sqlbuilder.views.update,
  org.eclipse.datatools.sqltools.sqlbuilder.views.with
-Require-Bundle: org.eclipse.core.resources;bundle-version="[3.1.2,4.0.0)",
- org.eclipse.core.runtime;bundle-version="[3.1.2,4.0.0)",
- org.eclipse.emf.edit.ui;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.gef;bundle-version="[3.1.1,4.0.0)",
- org.eclipse.datatools.modelbase.sql.query.edit;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.datatools.modelbase.sql.xml.query;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.sqltools.editor.core;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.datatools.sqltools.parsers.sql.query;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.sqltools.sqleditor;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- com.ibm.icu;bundle-version="[3.4.3,5.0.0)",
- org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.forms;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.ide;bundle-version="[3.1.1,4.0.0)",
- org.eclipse.datatools.sqltools.editor.core.ui;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.sqltools.result.ui;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.help;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.sqltools.sql.ui;bundle-version="[1.0.0,2.0.0)";visibility:=reexport 
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
