@@ -170,7 +170,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private Object selectedFile;
 
 	private String nameOfFileWithErrorInLastAccess = null;
-	
+
 	private java.util.List<String[]> originalFileColumnsInfoList = new ArrayList<String[]>( );
 	private java.util.List<String[]> savedSelectedColumnsInfoList = new ArrayList<String[]>( );
 
@@ -201,7 +201,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createPageCustomControl( Composite parent )
 	{
@@ -218,21 +220,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createColumnTypeMap( )
 	{
-		dataTypeDisplayNameMap.put( new Integer(4), 
+		dataTypeDisplayNameMap.put( new Integer( 4 ),
 				Messages.getString( "datatypes.integer" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(8), 
+		dataTypeDisplayNameMap.put( new Integer( 8 ),
 				Messages.getString( "datatypes.float" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(12),
+		dataTypeDisplayNameMap.put( new Integer( 12 ),
 				Messages.getString( "datatypes.string" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(91),
+		dataTypeDisplayNameMap.put( new Integer( 91 ),
 				Messages.getString( "datatypes.date" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(92),
+		dataTypeDisplayNameMap.put( new Integer( 92 ),
 				Messages.getString( "datatypes.time" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(93),
+		dataTypeDisplayNameMap.put( new Integer( 93 ),
 				Messages.getString( "datatypes.dateTime" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(2), 
+		dataTypeDisplayNameMap.put( new Integer( 2 ),
 				Messages.getString( "datatypes.decimal" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer(16), 
+		dataTypeDisplayNameMap.put( new Integer( 16 ),
 				Messages.getString( "datatypes.boolean" ) ); //$NON-NLS-1$
 
 		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -247,7 +249,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		dataTypeValueMape.put( Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
 				"BIGDECIMAL" ); //$NON-NLS-1$
 		dataTypeValueMape.put( Messages.getString( "datatypes.boolean" ), //$NON-NLS-1$
-		        "BOOLEAN" ); //$NON-NLS-1$
+				"BOOLEAN" ); //$NON-NLS-1$
 	}
 
 	/**
@@ -280,22 +282,27 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 * DataSetDesign)
 	 */
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
-		//if this page in DataSetEditor hasn't been activated
+		// if this page in DataSetEditor hasn't been activated
 		if ( fileViewer == null )
 			return design;
-		
+
 		savePage( design );
 		return design;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPage#collectResponseState()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPage
+	 * #collectResponseState()
 	 */
 	protected void collectResponseState( )
 	{
@@ -341,7 +348,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		updateFileListAndCharSet( );
 		return composite;
 	}
-	
+
 	/**
 	 * Create the top composite of the page
 	 * 
@@ -389,7 +396,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				if ( fileURI != null && fileURI.length( ) > 0 )
 					return;
-				
+
 				String currSelectFilter = fileFilter.getCombo( ).getText( );
 				if ( currSelectFilter.equalsIgnoreCase( selectedFileFilter ) )
 					return;
@@ -480,7 +487,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		btnAdd.setLayoutData( gridData );
 		btnAdd.setToolTipText( Messages.getString( "tooltip.button.add" ) ); //$NON-NLS-1$
 
-		if ( btnAdd.getStyle( ) ==( btnAdd.getStyle( )|SWT.LEFT_TO_RIGHT))
+		if ( btnAdd.getStyle( ) == ( btnAdd.getStyle( ) | SWT.LEFT_TO_RIGHT ) )
 		{
 			btnAdd.setImage( PlatformUI.getWorkbench( )
 					.getSharedImages( )
@@ -492,7 +499,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					.getSharedImages( )
 					.getImage( ISharedImages.IMG_TOOL_BACK ) );
 		}
-		
+
 		btnAdd.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -518,7 +525,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		data.left = new FormAttachment( btnComposite, 3 );
 		data.right = new FormAttachment( 100, -2 );
 		data.bottom = new FormAttachment( 100, -5 );
-		
+
 		Composite rightComposite = new Composite( composite, SWT.BORDER );
 		rightComposite.setLayoutData( data );
 		GridLayout layout = new GridLayout( );
@@ -529,8 +536,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				| SWT.FULL_SELECTION | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
-		selectedColumnsViewer.getTable( ).setLayoutData( new GridData( GridData.FILL_BOTH ) );
-		
+		selectedColumnsViewer.getTable( )
+				.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+
 		TableColumn column = new TableColumn( selectedColumnsViewer.getTable( ),
 				SWT.NONE );
 		column.setText( Messages.getString( "editor.title.name" ) ); //$NON-NLS-1$
@@ -541,7 +549,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		column = new TableColumn( selectedColumnsViewer.getTable( ), SWT.NONE );
 		column.setText( Messages.getString( "editor.title.type" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
-		
+
 		Menu menu = new Menu( selectedColumnsViewer.getTable( ) );
 		menu.addMenuListener( new MenuAdapter( ) {
 
@@ -553,7 +561,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		final MenuItem menuRemove = new MenuItem( menu, SWT.NONE );
 		menuRemove.setText( Messages.getString( "FileSelectionWizardPage.MenuItem.remove" ) ); //$NON-NLS-1$
-		menuRemove.setEnabled( selectedColumnsViewer.getTable( ).getSelectionCount( ) > 0 );
+		menuRemove.setEnabled( selectedColumnsViewer.getTable( )
+				.getSelectionCount( ) > 0 );
 		menuRemove.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -589,24 +598,23 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 					}
 				} );
-		
+
 		selectedColumnsViewer.addDoubleClickListener( new IDoubleClickListener( ) {
 
 			public void doubleClick( DoubleClickEvent event )
 			{
 				doEdit( );
 			}
-			
-		} );
 
+		} );
 
 		setColumnsViewerContent( );
 
 		setColumnsViewerLabels( );
-	
+
 		createEditBtnGroup( rightComposite );
 	}
-	
+
 	protected void doEdit( )
 	{
 		if ( selectedColumnsViewer.getTable( ).getSelection( ).length > 0 )
@@ -631,7 +639,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 								editDialog.getOriginalName( ),
 								editDialog.getDataType( )
 						} );
-				
+
 				selectedColumnsViewer.refresh( );
 
 			}
@@ -641,7 +649,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	}
 
 	/**
-	 * Create the right button group that displays the UP,DOWN and REMOVE buttons
+	 * Create the right button group that displays the UP,DOWN and REMOVE
+	 * buttons
 	 * 
 	 * @param rightComposite
 	 */
@@ -684,7 +693,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				moveDownItem( );
 			}
 		} );
-		
+
 		resetButtonWidth( );
 	}
 
@@ -693,8 +702,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		int widthHint = Math.max( btnMoveUp.computeSize( SWT.DEFAULT,
 				SWT.DEFAULT ).x, btnRemove.computeSize( SWT.DEFAULT,
 				SWT.DEFAULT ).x );
-		widthHint = Math.max( widthHint, btnMoveDown.computeSize( SWT.DEFAULT,
-				SWT.DEFAULT ).x );
+		widthHint = Math.max( widthHint,
+				btnMoveDown.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x );
 		widthHint = Math.max( widthHint, 52 );
 		GridData btnGd = new GridData( );
 		btnGd.widthHint = widthHint;
@@ -775,8 +784,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 
 		} );
-	}	
-	
+	}
 
 	/**
 	 * get the count of hte existence of the given column name in the already
@@ -791,7 +799,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		int count = 0;
 		java.util.List<String[]> existedColumns = new ArrayList<String[]>( );
-		
+
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
 		{
 			if ( columnName.equals( ( (String[]) savedSelectedColumnsInfoList.get( i ) )[1] ) )
@@ -809,41 +817,17 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				j = -1;
 			}
 		}
-		
 
 		return count;
 	}
 
-	/**
-	 * replace the element in the saved selected columns informaiton list
-	 * 
-	 * @param element
-	 *            the selected element
-	 * @param property
-	 *            the element's selected property
-	 * @param value
-	 *            the value of the selected property in the element
-	 */
-	private void replace( String[] element, String property, String value )
-	{
-		int index = savedSelectedColumnsInfoList.indexOf( (Object) element );
-
-		if ( name.equals( property ) )
-		{
-			element[0] = value;
-			savedSelectedColumnsInfoList.set( index, element );
-		}
-		else if ( dataType.equals( property ) )
-		{
-			element[2] = value;
-			savedSelectedColumnsInfoList.set( index, element );
-		}
-	}
 
 	/*
 	 * File Combo Viewer selection changed listener
 	 * 
-	 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
+	 * @see
+	 * org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(
+	 * org.eclipse.jface.viewers.SelectionChangedEvent)
 	 */
 	public void selectionChanged( SelectionChangedEvent event )
 	{
@@ -869,11 +853,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			setPageComplete( false );
 			availableList.removeAll( );
 			nameOfFileWithErrorInLastAccess = null;
-			updateAvailableColumnsInfo( ((File) file).getName( ) );
-			
+			updateAvailableColumnsInfo( ( (File) file ).getName( ) );
+
 			if ( selectedFile != null ) // File selection changed.
 			{
-				if ( savedSelectedColumnsInfoList.size( ) > 0  )
+				if ( savedSelectedColumnsInfoList.size( ) > 0 )
 				{
 					if ( MessageDialog.openConfirm( getShell( ),
 							Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
@@ -891,7 +875,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			selectedFile = file;
 		}
 	}
-	
+
 	private void updateAvailableColumnsInfo( String fileName )
 	{
 		String[] columnNames = getFileColumnNames( fileName );
@@ -901,9 +885,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			enableListAndViewer( );
 			availableList.setItems( columnNames );
 			availableList.select( 0 );
-			
+
 			updateButtons( );
-			
+
 			if ( !( fileName.endsWith( CSV_EXTENSION )
 					|| fileName.endsWith( TXT_EXTENSION )
 					|| fileName.endsWith( SSV_EXTENSION )
@@ -916,7 +900,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				setMessage( DEFAULT_MESSAGE );
 		}
 	}
-	
+
 	private void updateButtons( )
 	{
 		if ( availableList.getSelectionCount( ) > 0 )
@@ -953,7 +937,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			btnMoveDown.setEnabled( false );
 		}
 	}
-	
+
 	private void updateSelectionFocus( )
 	{
 		int[] indices = availableList.getSelectionIndices( );
@@ -994,9 +978,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				break;
 			}
 		}
-		if ( savedSelectedColumnsInfoList.size( ) <= 0)
+		if ( savedSelectedColumnsInfoList.size( ) <= 0 )
 			pageComplete = false;
-		
+
 		if ( pageComplete )
 		{
 			setMessage( DEFAULT_MESSAGE );
@@ -1009,7 +993,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void loadProperties( )
 	{
-	    DataSourceDesign dataSourceDesign = getInitializationDesign( ).getDataSourceDesign( );
+		DataSourceDesign dataSourceDesign = getInitializationDesign( ).getDataSourceDesign( );
 		java.util.Properties dataSourceProps = null;
 		try
 		{
@@ -1024,14 +1008,15 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		String sourcePath = dataSourceProps.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
 		if ( sourcePath != null )
 		{
-			File cpFile = DesignUtil.convertPathToResourceFile( sourcePath, dataSourceDesign.getHostResourceIdentifiers() );
+			File cpFile = DesignUtil.convertPathToResourceFile( sourcePath,
+					dataSourceDesign.getHostResourceIdentifiers( ) );
 			if ( cpFile == null )
 			{
-				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{ sourcePath } ), ERROR ); //$NON-NLS-1$
+				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{sourcePath} ), ERROR ); //$NON-NLS-1$
 				return;
 			}
 		}
-		
+
 		odaHome = dataSourceProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
 		fileURI = dataSourceProps.getProperty( CommonConstants.CONN_FILE_URI_PROP );
 		charSet = dataSourceProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
@@ -1039,10 +1024,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		inclColumnNameLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		inclTypeLine = dataSourceProps.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
 		trailNullCols = dataSourceProps.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
-		
+
 		verifyFileLocation( );
 	}
-	
+
 	private void verifyFileLocation( )
 	{
 		if ( fileURI != null && fileURI.length( ) > 0 )
@@ -1086,7 +1071,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			odaHome = null;
 		}
 	}
-	
+
 	/**
 	 * Update file list in combo viewer
 	 */
@@ -1107,9 +1092,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				if ( folder.isDirectory( ) && folder.exists( ) )
 				{
 					File[] files = folder.getAbsoluteFile( )
-					.listFiles( new CSVFileFilter( fileFilter.getCombo( )
-							.getText( ) ) );
-					
+							.listFiles( new CSVFileFilter( fileFilter.getCombo( )
+									.getText( ) ) );
+
 					allFiles.addAll( Arrays.asList( files ) );
 				}
 			}
@@ -1118,7 +1103,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				allFiles.add( fileURI );
 			}
 			fileViewer.setInput( allFiles.toArray( ) );
-			
+
 			if ( allFiles.size( ) <= 0 )
 			{
 				setMessage( Messages.getFormattedString( "error.noCSVFiles", //$NON-NLS-1$
@@ -1127,14 +1112,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						} ) );
 				disableAll( );
 			}
-			else 
+			else
 			{
 				updateFileSelection( );
 				updateButtons( );
 			}
 		}
 	}
-	
+
 	private void updateFileSelection( )
 	{
 		Object[] files = (Object[]) fileViewer.getInput( );
@@ -1155,9 +1140,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				toSelectFile = files[0];
 
 			fileViewer.setSelection( new StructuredSelection( toSelectFile ) );
-			if (!( nameOfFileWithErrorInLastAccess != null
-					&& nameOfFileWithErrorInLastAccess.equals( fileViewer.getCombo( )
-							.getText( ) ) ))
+			if ( !( nameOfFileWithErrorInLastAccess != null && nameOfFileWithErrorInLastAccess.equals( fileViewer.getCombo( )
+					.getText( ) ) ) )
 				setMessage( DEFAULT_MESSAGE );
 		}
 		else
@@ -1208,8 +1192,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		try
 		{
 			conn = ffDriver.getConnection( null );
-			IResultSetMetaData metadata = getResultSetMetaData( queryText,
-					conn );
+			IResultSetMetaData metadata = getResultSetMetaData( queryText, conn );
 
 			int columnCount = metadata.getColumnCount( );
 			if ( columnCount == 0 )
@@ -1224,7 +1207,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						savedSelectedColumnsInfoString,
 						metadata );
 
-				result[2] = getDataTypeDisplayName( new Integer ( metadata.getColumnType( i + 1 ) ) );
+				result[2] = getDataTypeDisplayName( new Integer( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
 			return columnList;
@@ -1244,7 +1227,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private void updateExceptionInfo( )
 	{
-		nameOfFileWithErrorInLastAccess = fileViewer.getCombo( ).getText( );	
+		nameOfFileWithErrorInLastAccess = fileViewer.getCombo( ).getText( );
 		if ( availableList.getItemCount( ) == 0 )
 			disableAvailableListAndButtons( );
 	}
@@ -1367,39 +1350,40 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			IConnection conn ) throws OdaException
 	{
 		java.util.Properties prop = new java.util.Properties( );
-		if( odaHome != null )
+		if ( odaHome != null )
 		{
 			prop.put( CommonConstants.CONN_HOME_DIR_PROP, odaHome );
 		}
-		if( fileURI != null )
+		if ( fileURI != null )
 		{
 			prop.put( CommonConstants.CONN_FILE_URI_PROP, fileURI );
 		}
-		if( flatfileDelimiterType != null )		
+		if ( flatfileDelimiterType != null )
 		{
-			prop.put( CommonConstants.CONN_DELIMITER_TYPE, flatfileDelimiterType );
+			prop.put( CommonConstants.CONN_DELIMITER_TYPE,
+					flatfileDelimiterType );
 		}
-		if( charSet != null )		
+		if ( charSet != null )
 		{
 			prop.put( CommonConstants.CONN_CHARSET_PROP, charSet );
 		}
-		if( inclColumnNameLine != null )		
+		if ( inclColumnNameLine != null )
 		{
-			prop.put( CommonConstants.CONN_INCLCOLUMNNAME_PROP, inclColumnNameLine );
+			prop.put( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+					inclColumnNameLine );
 		}
-		if( inclTypeLine != null )		
+		if ( inclTypeLine != null )
 		{
 			prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, inclTypeLine );
 		}
-		if( trailNullCols != null )		
+		if ( trailNullCols != null )
 		{
 			prop.put( CommonConstants.CONN_TRAILNULLCOLS_PROP, trailNullCols );
 		}
 
-		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
+		savedSelectedColumnsInfoString = ( new QueryTextUtil( queryText ) ).getColumnsInfo( );
 
-		Map<String, Object> appContext = 
-		    DesignSessionUtil.createResourceIdentifiersContext( getHostResourceIdentifiers() );
+		Map<String, Object> appContext = DesignSessionUtil.createResourceIdentifiersContext( getHostResourceIdentifiers( ) );
 		conn.setAppContext( appContext );
 		conn.open( prop );
 
@@ -1410,10 +1394,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		return query.getMetaData( );
 	}
-	
+
 	private ResourceIdentifiers getResourceIdentifiers( )
 	{
-	    return DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers() );
+		return DesignSessionUtil.createRuntimeResourceIdentifiers( getHostResourceIdentifiers( ) );
 	}
 
 	/**
@@ -1447,7 +1431,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param tViewer
 	 *            the table viewer
 	 */
-	private void setDisplayContent( java.util.List<String[]> list, TableViewer tViewer )
+	private void setDisplayContent( java.util.List<String[]> list,
+			TableViewer tViewer )
 	{
 		tViewer.getTable( ).removeAll( );
 		tViewer.setInput( list );
@@ -1464,14 +1449,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
 			return ""; //$NON-NLS-1$
-		
+
 		String tableName = null;
 		StringBuffer buf = new StringBuffer( );
 		Object file = ( (StructuredSelection) fileViewer.getSelection( ) ).getFirstElement( );
 		if ( file != null )
 		{
 			if ( file instanceof File )
-				tableName = ((File)file).getName( );
+				tableName = ( (File) file ).getName( );
 			else if ( file instanceof String )
 				tableName = (String) file;
 		}
@@ -1530,12 +1515,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		if ( queryText.length( ) == 0 )
 			return;
-		
+
 		try
 		{
 			String query = ( new QueryTextUtil( queryText ) ).getQuery( );
 			String[] metadata = QueryTextUtil.getQueryMetaData( query );
-			
+
 			// The query must have a table name and columns.
 			if ( metadata != null && metadata[0] != null && metadata[2] != null )
 			{
@@ -1577,14 +1562,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		setDisplayContent( savedSelectedColumnsInfoList, selectedColumnsViewer );
 
 		setPageComplete( true );
-		
+
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
 		{
 			setPageComplete( false );
 		}
-		
+
 		updateButtons( );
-		
+
 	}
 
 	/**
@@ -1603,7 +1588,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				MessageDialog.openWarning( getShell( ),
 						Messages.getString( "fileURIChanged.warning.reselectColumnsTitle" ), //$NON-NLS-1$
 						Messages.getString( "fileURIChanged.warning.reselectColumnsMessage" ) ); //$NON-NLS-1$
-				
+
 				updateAvailableColumnsInfo( fileURI );
 				selectedColumnsViewer.getTable( ).removeAll( );
 				savedSelectedColumnsInfoList.clear( );
@@ -1638,7 +1623,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		return selected;
 	}
-	
+
 	private void setFileFilter( String table )
 	{
 		String tableName = table.toLowerCase( );
@@ -1751,7 +1736,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void addColumns( )
 	{
 		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
-		
+
 		for ( int i = 0; i < addedItems.size( ); i++ )
 		{
 			savedSelectedColumnsInfoList.add( addedItems.get( i ) );
@@ -1763,7 +1748,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				.setSelection( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 );
 
 		selectedColumnsViewer.getTable( ).setSelection( -1 );
-		
+
 		updateSelectionFocus( );
 		updateButtons( );
 
@@ -1778,7 +1763,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param addedColumnNames
 	 * @return
 	 */
-	private java.util.List<String[]> createAddedColumnsInfo( String[] addedColumnNames )
+	private java.util.List<String[]> createAddedColumnsInfo(
+			String[] addedColumnNames )
 	{
 		java.util.List<String[]> addedColumnsInfo = new ArrayList<String[]>( );
 		int count = 0;
@@ -1859,7 +1845,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			setPageComplete( false );
 		}
 	}
-	
+
 	private void removeAllColumns( )
 	{
 		selectedColumnsViewer.getTable( ).removeAll( );
@@ -1871,7 +1857,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnMoveDown.setEnabled( false );
 		btnMoveUp.setEnabled( false );
-		
+
 		setPageComplete( false );
 	}
 
@@ -1882,7 +1868,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 *            list that contains the given elements that are going to be
 	 *            removed
 	 */
-	private void removeItemsFromSelectedOnes( java.util.List<String[]> removedItemsList )
+	private void removeItemsFromSelectedOnes(
+			java.util.List<String[]> removedItemsList )
 	{
 		for ( int i = 0; i < removedItemsList.size( ); i++ )
 		{
@@ -1898,10 +1885,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			}
 		}
-		
+
 		validateSelectedColumns( );
 	}
-	
+
 	/**
 	 * Updates the given dataSetDesign with the query and its metadata defined
 	 * in this page.
@@ -1922,8 +1909,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			IDriver ffDriver = new FlatFileDriver( );
 			conn = ffDriver.getConnection( null );
-			IResultSetMetaData metadata = getResultSetMetaData( queryText,
-					conn );
+			IResultSetMetaData metadata = getResultSetMetaData( queryText, conn );
 			setResultSetMetaData( dataSetDesign, metadata );
 		}
 		catch ( OdaException e )
@@ -1950,17 +1936,17 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	/**
 	 * Gets the query text
+	 * 
 	 * @return query text
 	 */
 	private String getQueryText( )
 	{
 		String query = getQuery( );
-		String queryText = query.length( ) > 0 
-				? query
+		String queryText = query.length( ) > 0 ? query
 				+ CommonConstants.DELIMITER_SPACE + queryTextDelimiter
 				+ CommonConstants.DELIMITER_SPACE + columnsInfoStartSymbol
-				+ createSelectedColumnsInfoString( )
-				+ columnsInfoEndSymbol : ""; //$NON-NLS-1$
+				+ createSelectedColumnsInfoString( ) + columnsInfoEndSymbol
+				: ""; //$NON-NLS-1$
 		return queryText;
 	}
 
@@ -2090,9 +2076,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				return name.toLowerCase( ).endsWith( extension );
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
 	 */
 	public void setVisible( boolean visible )
@@ -2100,24 +2087,26 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		super.setVisible( visible );
 		getControl( ).setFocus( );
 	}
-	
+
 	private class ColumnEditDialog extends StatusDialog
 	{
+
 		String columnName, columnOriginalName, columnDataType;
-		
+
 		public ColumnEditDialog( Shell parent )
 		{
 			super( parent );
 
 		}
-		
-		public void setInput( String columnName, String columnOriginalName, String columnDataType )
+
+		public void setInput( String columnName, String columnOriginalName,
+				String columnDataType )
 		{
 			this.columnName = columnName;
 			this.columnOriginalName = columnOriginalName;
 			this.columnDataType = columnDataType;
 		}
-		
+
 		protected boolean isResizable( )
 		{
 			return true;
@@ -2145,73 +2134,76 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			composite.setLayout( layout );
 			GridData data = new GridData( GridData.FILL_BOTH );
 			composite.setLayoutData( data );
-			
+
 			GridData lableData = new GridData( );
 			lableData.widthHint = 100;
-			
+
 			Label columnNameLabel = new Label( composite, SWT.BOLD );
 			columnNameLabel.setLayoutData( lableData );
-			columnNameLabel.setText( Messages.getString( "FileSelectionWizardPage.label.columnName" ) );
+			columnNameLabel.setText( Messages.getString( "FileSelectionWizardPage.label.columnName" ) ); //$NON-NLS-1$
 			int width = columnNameLabel.computeSize( -1, -1 ).x;
-			if( width > lableData.widthHint )
+			if ( width > lableData.widthHint )
 			{
 				lableData.widthHint = width;
 			}
 			columnNameLabel.setLayoutData( lableData );
-			
+
 			final Text columnNameText = new Text( composite, SWT.BORDER );
 			columnNameText.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 			columnNameText.setText( this.columnName );
-			columnNameText.addModifyListener( new ModifyListener( ){
+			columnNameText.addModifyListener( new ModifyListener( ) {
 
 				public void modifyText( ModifyEvent arg0 )
 				{
 					columnName = columnNameText.getText( ).trim( );
 					validate( );
 				}
-				
-			});
-			
+
+			} );
 
 			Label originalNameLabel = new Label( composite, SWT.BOLD );
-			originalNameLabel.setText(  Messages.getString( "FileSelectionWizardPage.label.originalName" ) );
+			originalNameLabel.setText( Messages.getString( "FileSelectionWizardPage.label.originalName" ) ); //$NON-NLS-1$
 			width = originalNameLabel.computeSize( -1, -1 ).x;
-			if( width > lableData.widthHint )
+			if ( width > lableData.widthHint )
 			{
 				lableData.widthHint = width;
 			}
 			originalNameLabel.setLayoutData( lableData );
-			
-			Text originalNameText = new Text( composite, SWT.BORDER | SWT.READ_ONLY );
+
+			Text originalNameText = new Text( composite, SWT.BORDER
+					| SWT.READ_ONLY );
 			originalNameText.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 			originalNameText.setText( this.columnOriginalName );
-			
-		
+
 			Label typeLabel = new Label( composite, SWT.BOLD );
 			typeLabel.setLayoutData( lableData );
-			typeLabel.setText(  Messages.getString( "FileSelectionWizardPage.label.dataType" ) );
-			
-			final CCombo combo = new CCombo( composite, SWT.READ_ONLY | SWT.BORDER );
+			typeLabel.setText( Messages.getString( "FileSelectionWizardPage.label.dataType" ) ); //$NON-NLS-1$
+
+			final CCombo combo = new CCombo( composite, SWT.READ_ONLY
+					| SWT.BORDER );
 			combo.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 			combo.setItems( dataTypeDisplayNames );
 			combo.setText( columnDataType );
-			combo.addSelectionListener( new SelectionListener( ){
+			combo.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetDefaultSelected( SelectionEvent arg0 )
 				{
-					
+
 				}
 
 				public void widgetSelected( SelectionEvent arg0 )
 				{
 					columnDataType = combo.getText( );
 				}
-				
-			});
+
+			} );
+
+			Utility.setSystemHelp( getControl( ),
+					IHelpConstants.CONEXT_ID_COLUMN_EDIT_DIALOG_FLATFILE );
 
 			return parent;
 		}
-		
+
 		private boolean isDuplicatedName( )
 		{
 			for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
@@ -2240,12 +2232,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			if ( this.columnName.trim( ).length( ) == 0 )
 			{
 				status = getMiscStatus( IStatus.ERROR,
-						Messages.getString( "FileSelectionWizardPage.error.selectColumn.EmptyName" ) );
+						Messages.getString( "FileSelectionWizardPage.error.selectColumn.EmptyName" ) ); //$NON-NLS-1$
 			}
 			else if ( isDuplicatedName( ) )
 			{
 				status = getMiscStatus( IStatus.ERROR,
-						Messages.getString( "FileSelectionWizardPage.error.selectColumn.duplicatedFileName" ) );
+						Messages.getString( "FileSelectionWizardPage.error.selectColumn.duplicatedFileName" ) ); //$NON-NLS-1$
 			}
 			else
 			{
@@ -2267,24 +2259,27 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		 */
 		protected Status getMiscStatus( int severity, String message )
 		{
-			return new Status( severity, PlatformUI.PLUGIN_ID, severity, message, null );
+			return new Status( severity,
+					PlatformUI.PLUGIN_ID,
+					severity,
+					message,
+					null );
 		}
 
 		public String getColumnName( )
 		{
 			return this.columnName;
 		}
-		
+
 		public String getOriginalName( )
 		{
 			return this.columnOriginalName;
 		}
-		
+
 		public String getDataType( )
 		{
 			return this.columnDataType;
 		}
-		
 
 	}
 

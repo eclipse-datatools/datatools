@@ -26,4 +26,7 @@ public interface IHelpConstants
 	public static final String CONEXT_ID_DATASET_FLATFILE = PREFIX
 			+ "Dialog_SelectTableColumn_ID";//$NON-NLS-1$
 
+	public static final String CONEXT_ID_COLUMN_EDIT_DIALOG_FLATFILE = PREFIX
+			+ "Dialog_ColumnEditDialog_ID";//$NON-NLS-1$
+
 }
