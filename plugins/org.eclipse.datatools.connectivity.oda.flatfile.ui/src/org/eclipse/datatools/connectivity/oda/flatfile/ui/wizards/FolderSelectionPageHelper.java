@@ -902,7 +902,7 @@ public class FolderSelectionPageHelper
 	protected void refreshTypeLineCheckBoxStatus( )
 	{
 		if ( columnNameLineCheckBox.getSelection( ) )
-			typeLineCheckBox.setEnabled( true );
+			typeLineCheckBox.setEnabled( columnNameLineCheckBox.isEnabled( ) );
 		else
 		{
 			typeLineCheckBox.setSelection( false );
