@@ -59,7 +59,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 
 	Based on the above consideration, we decide to cache the chars fetched from the 
 	characters method and proceed them when endElement method is called */
-	private Map cachedValues;
+	private Map<String, StringBuilder> cachedValues;
 
 	private boolean stopFlag;
 	private boolean useNamespace;
@@ -325,19 +325,26 @@ public class SaxParser extends DefaultHandler implements Runnable
 	public void endElement( String uri, String localName, String qName )
 			throws SAXException
 	{	
-		String value = (String) cachedValues.get( currentElementPath.getPathString( ) );
-		value = value == null ? "" : value;
+		String pathString = currentElementPath.getPathString( );
+		StringBuilder cachedValue = cachedValues.get( pathString );
+		String value;
+		if ( cachedValue == null )
+		{
+			value = "";
+		}
+		else
+		{
+			value = cachedValue.toString( );
+			cachedValues.remove( currentElementPath.getPathString( ) );
+		}
 		
 		spConsumer.manipulateData( currentElementPath,
 				value );
 		
 		spConsumer.endElement( currentElementPath );
-		cachedValues.remove(  currentElementPath.getPathString( ));
 		pathHolder.endElement( );
 		currentElementPath = pathHolder.getCurrentElementPath( );
 	}
-
-
 
 	/*
 	 *  (non-Javadoc)
@@ -345,11 +352,14 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void characters( char ch[], int start, int length )
 	{
-		String pathString = currentElementPath.getPathString( );
-		String currentValue = new String( ch, start, length );
-		Object cachedValue = cachedValues.get( pathString );
-		String value = (cachedValue == null ? "" : cachedValue) + currentValue;
-		cachedValues.put( pathString, value );
+		String pathString = currentElementPath.getPathString( );	
+		StringBuilder cachedValue = cachedValues.get( pathString );
+		if ( cachedValue == null )
+		{
+			cachedValue = new StringBuilder( length > 0 ? length : 64 );
+			cachedValues.put( pathString, cachedValue );
+		}
+		cachedValue.append( ch, start, length );
 	}
 	
 	
