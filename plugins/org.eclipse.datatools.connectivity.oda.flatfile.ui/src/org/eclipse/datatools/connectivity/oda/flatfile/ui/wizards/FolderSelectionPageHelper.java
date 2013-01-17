@@ -423,11 +423,8 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( true );
-				if ( getFolderLocationString( ).trim( ).length( ) > 0 )
-				{
-					verifyFileLocation( );
-				}
-				else
+				verifyFileLocation( );
+				if ( !( getFolderLocationString( ).trim( ).length( ) > 0 ) )
 				{
 					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				}
@@ -449,11 +446,8 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				if ( getFolderLocationString( ).trim( ).length( ) > 0 )
-				{
-					verifyFileLocation( );
-				}
-				else
+				verifyFileLocation( );
+				if ( !( getFolderLocationString( ).trim( ).length( ) > 0 ) )
 				{
 					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				}
@@ -498,11 +492,8 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( false );
-				if ( getFileURIString( ).trim( ).length( ) > 0 )
-				{
-					verifyFileURILocation( );
-				}
-				else
+				verifyFileURILocation( );
+				if ( !( getFileURIString( ).trim( ).length( ) > 0 ) )
 				{
 					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				}
@@ -525,11 +516,8 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				if ( getFileURIString( ).trim( ).length( ) > 0 )
-				{
-					verifyFileURILocation( );
-				}
-				else
+				verifyFileURILocation( );
+				if ( !( getFileURIString( ).trim( ).length( ) > 0 ) )
 				{
 					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				}
