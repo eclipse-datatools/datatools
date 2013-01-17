@@ -423,6 +423,14 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( true );
+				if ( getFolderLocationString( ).trim( ).length( ) > 0 )
+				{
+					verifyFileLocation( );
+				}
+				else
+				{
+					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+				}
 			}
 
 			public void widgetDefaultSelected( SelectionEvent e )
@@ -441,7 +449,14 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				verifyFileLocation( );
+				if ( getFolderLocationString( ).trim( ).length( ) > 0 )
+				{
+					verifyFileLocation( );
+				}
+				else
+				{
+					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+				}
 			}
 
 		} );
@@ -483,6 +498,14 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( false );
+				if ( getFileURIString( ).trim( ).length( ) > 0 )
+				{
+					verifyFileURILocation( );
+				}
+				else
+				{
+					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+				}
 			}
 
 			public void widgetDefaultSelected( SelectionEvent e )
@@ -502,17 +525,13 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				String fileURIValue = getFileURIString( ).trim( );
-				fileURIValue = fileURIValue.length( ) > 0 ? fileURIValue : null;
-				if ( fileURIValue == null )
+				if ( getFileURIString( ).trim( ).length( ) > 0 )
 				{
-					setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
-					setPageComplete( false );
+					verifyFileURILocation( );
 				}
 				else
 				{
-					setPageComplete( true );
-					setMessage( Messages.getString( "Connection.warning.untested" ), IMessageProvider.WARNING ); //$NON-NLS-1$
+					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
 				}
 			}
 
@@ -603,15 +622,7 @@ public class FolderSelectionPageHelper
 
 			if ( filePath != null )
 			{
-				try
-				{
-					setFileURIString( new File( filePath ).toURI( )
-							.toURL( )
-							.toExternalForm( ) );
-				}
-				catch ( MalformedURLException e1 )
-				{
-				}
+				setFileURIString( filePath );
 			}
 		}
 	}
@@ -637,6 +648,24 @@ public class FolderSelectionPageHelper
 		fileURI.setEnabled( !homeFolder );
 		browseLocalFileButton.setEnabled( !homeFolder );
 		fileURIChoice.setSelection( !homeFolder );
+	}
+	
+	
+	
+	private void verifyFileURILocation( )
+	{
+		String fileURIValue = getFileURIString( ).trim( );
+		fileURIValue = fileURIValue.length( ) > 0 ? fileURIValue : null;
+		if ( fileURIValue == null )
+		{
+			setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
+			setPageComplete( false );
+		}
+		else
+		{
+			setPageComplete( true );
+			setMessage( Messages.getString( "Connection.warning.untested" ), IMessageProvider.WARNING ); //$NON-NLS-1$
+		}
 	}
 
 	/**
