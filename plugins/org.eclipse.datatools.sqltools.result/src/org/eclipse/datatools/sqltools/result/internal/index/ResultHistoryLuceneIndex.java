@@ -26,12 +26,13 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Searcher;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -61,7 +62,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
     {
         _ramDir = new RAMDirectory();
         
-        _analyzer = new StandardAnalyzer();
+        _analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
         _id2result = new HashMap();
         _result2id = new HashMap();
         _instances = new ArrayList();
@@ -69,7 +70,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         // Create the index
         try
         {
-            _writer = new IndexWriter(_ramDir, _analyzer, true);
+            _writer = new IndexWriter(_ramDir, _analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
             _writer.close();
         }
         catch(IOException ioe)
@@ -108,7 +109,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 try
                 {
                     // Append new document to the index
-                    _writer = new IndexWriter(_ramDir, _analyzer, false);
+                    _writer = new IndexWriter(_ramDir, _analyzer, false, IndexWriter.MaxFieldLength.UNLIMITED);
                     for (int i = 0; i < instances.length; i++)
                     {
                         IResultInstance instance = instances[i];
@@ -120,12 +121,12 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                         {
                             _instances.add(instance);
                             Document doc = new Document();
-                            doc.add(new Field(FIELD_OPERATION, getCombinedDisplayString(instance), Field.Store.YES, Field.Index.TOKENIZED));
+                            doc.add(new Field(FIELD_OPERATION, getCombinedDisplayString(instance), Field.Store.YES, Field.Index.ANALYZED));
                             doc.add(new Field(FIELD_ACTION, OperationCommand.getActionString(instance
-                                    .getOperationCommand().getActionType()), Field.Store.YES, Field.Index.TOKENIZED));
-                            doc.add(new Field(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName(), Field.Store.YES, Field.Index.TOKENIZED));
-                            doc.add(new Field(FIELD_FREQ, Integer.toString(instance.getFrequency()), Field.Store.YES, Field.Index.TOKENIZED));
-                            doc.add(new Field(FIELD_IDENTIFIER, Integer.toString(ID), Field.Store.YES, Field.Index.UN_TOKENIZED));
+                                    .getOperationCommand().getActionType()), Field.Store.YES, Field.Index.ANALYZED));
+                            doc.add(new Field(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName(), Field.Store.YES, Field.Index.ANALYZED));
+                            doc.add(new Field(FIELD_FREQ, Integer.toString(instance.getFrequency()), Field.Store.YES, Field.Index.ANALYZED));
+                            doc.add(new Field(FIELD_IDENTIFIER, Integer.toString(ID), Field.Store.YES, Field.Index.NOT_ANALYZED));
                             _id2result.put(Integer.toString(ID), instance);
                             _result2id.put(instance, Integer.toString(ID));
                             ID++;
@@ -207,18 +208,19 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         }
         synchronized (this)
         {
-            QueryParser parser = new QueryParser(FIELD_OPERATION, _analyzer);
+            QueryParser parser = new QueryParser(Version.LUCENE_CURRENT, FIELD_OPERATION, _analyzer);
             try
             {
                 Query query = parser.parse(expression);
                 Searcher searcher = new IndexSearcher(_ramDir);
-                Hits hits = searcher.search(query);
-                int count = hits.length();
+                TopDocs hits = searcher.search(query, searcher.maxDoc());
+                int count = hits.totalHits;
                 IResultInstance[] instances = new IResultInstance[count];
                 
                 for(int i=0;i<count;i++)
                 {
-                    Document doc = hits.doc(i);
+		    int docID = hits.scoreDocs[i].doc;
+                    Document doc = searcher.doc(docID);
                     instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
                 }
                 return instances;
