@@ -15,7 +15,7 @@ plugin@org.eclipse.datatools.sqltools.parsers.sql.lexer=GIT,tag=v201107221520,re
 plugin@org.eclipse.datatools.sqltools.parsers.sql.query=GIT,tag=v201201250511,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql.query
 plugin@org.eclipse.datatools.sqltools.parsers.sql.xml.query=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.parsers.sql.xml.query
 plugin@org.eclipse.datatools.sqltools.plan=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.plan
-plugin@org.eclipse.datatools.sqltools.result=GIT,tag=v201212120623,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result
+plugin@org.eclipse.datatools.sqltools.result=GIT,tag=v201301190757,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result
 plugin@org.eclipse.datatools.sqltools.result.ui=GIT,tag=v201212120623,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.result.ui
 plugin@org.eclipse.datatools.sqltools.routineeditor=GIT,tag=v201107221520,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.routineeditor
 plugin@org.eclipse.datatools.sqltools.routineeditor.ui=GIT,tag=v201211200616,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.sqltools.git,path=plugins/org.eclipse.datatools.sqltools.routineeditor.ui
