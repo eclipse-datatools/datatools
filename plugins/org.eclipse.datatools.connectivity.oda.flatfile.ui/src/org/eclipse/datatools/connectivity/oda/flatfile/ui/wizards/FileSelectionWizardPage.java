@@ -67,6 +67,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MenuAdapter;
 import org.eclipse.swt.events.MenuEvent;
 import org.eclipse.swt.events.ModifyEvent;
@@ -122,9 +124,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private static final String queryTextDelimiter = ":"; //$NON-NLS-1$
 	private static final String columnsInfoStartSymbol = "{"; //$NON-NLS-1$
 	private static final String columnsInfoEndSymbol = "}"; //$NON-NLS-1$
-
-	private static String name = Messages.getString( "editor.title.name" ); //$NON-NLS-1$
-	private static String dataType = Messages.getString( "editor.title.type" ); //$NON-NLS-1$
 
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
@@ -458,6 +457,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void mouseDoubleClick( MouseEvent e )
 			{
 				addColumns( );
+				validateSelectedColumns( );
 			}
 		} );
 	}
@@ -505,6 +505,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				addColumns( );
+				validateSelectedColumns( );
 			}
 		} );
 
@@ -569,6 +570,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				removeColumns( );
 				updateButtons( );
+				validateSelectedColumns( );
 			}
 
 		} );
@@ -580,7 +582,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				removeAllColumns( );
 				updateButtons( );
+				validateSelectedColumns( );
 			}
+			
 		} );
 
 		selectedColumnsViewer.getTable( ).setMenu( menu );
@@ -606,6 +610,24 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				doEdit( );
 			}
 
+		} );
+
+		selectedColumnsViewer.getTable( ).addKeyListener( new KeyListener( ) {
+
+			public void keyPressed( KeyEvent e )
+			{
+				if ( e.keyCode == SWT.DEL )
+				{
+					removeColumns( );
+					updateButtons( );
+					validateSelectedColumns( );
+				}
+			}
+
+			public void keyReleased( KeyEvent e )
+			{
+				
+			}
 		} );
 
 		setColumnsViewerContent( );
@@ -979,7 +1001,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		}
 		if ( savedSelectedColumnsInfoList.size( ) <= 0 )
+		{
+			setMessage( Messages.getString( "FileSelectionWizardPage.error.selectColumn.NoColumnSelected" ), //$NON-NLS-1$
+					ERROR );
 			pageComplete = false;
+		}
 
 		if ( pageComplete )
 		{
@@ -1752,8 +1778,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		updateSelectionFocus( );
 		updateButtons( );
 
-		setMessage( DEFAULT_MESSAGE );
-		setPageComplete( true );
 	}
 
 	/**
