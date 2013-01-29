@@ -411,14 +411,30 @@ public class XMLSelectionPageHelper
 	{
 		if ( getFolderLocation( ).trim( ).length( ) == 0 )
 		{
-			m_wizardPage.setMessage( Messages.getString( "XMLSelectionWizardPage.message.error.emptyXMLSource" ),//$NON-NLS-1$
-					IMessageProvider.ERROR );
-			m_wizardPage.setPageComplete( false );
+			if ( m_wizardPage != null )
+			{
+				m_wizardPage.setMessage( Messages.getString( "XMLSelectionWizardPage.message.error.emptyXMLSource" ),//$NON-NLS-1$
+						IMessageProvider.ERROR );
+				m_wizardPage.setPageComplete( false );
+			}
+			else if ( m_propertyPage != null )
+			{
+				m_propertyPage.setMessage( Messages.getString( "XMLSelectionWizardPage.message.error.emptyXMLSource" ),//$NON-NLS-1$
+						IMessageProvider.ERROR );
+			}
 		}
-		else
+		else 
 		{
-			m_wizardPage.setMessage( DEFAULT_MESSAGE );
-			m_wizardPage.setPageComplete( true );
+			if ( m_wizardPage != null )
+			{
+				m_wizardPage.setMessage( DEFAULT_MESSAGE );
+				m_wizardPage.setPageComplete( true );
+			}
+			else if ( m_propertyPage != null )
+			{
+				m_propertyPage.setMessage( DEFAULT_MESSAGE );
+			}
+
 		}
 	}
 
