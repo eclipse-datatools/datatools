@@ -164,7 +164,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			{
 				numberText.setText( rowNumber );
 			}
-			setPageStatus( );
+			updatePageStatus( );
 		}
 		catch ( NumberFormatException e )
 		{
@@ -221,11 +221,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 
 			public void modifyText( ModifyEvent e )
 			{
-				if ( numberText.getText( ) != null
-						&& numberText.getText( ).trim( ).length( ) > 0 )
-				{
-					setPageStatus( );
-				}
+				updatePageStatus( );
 			}
 		} );
 		final Label label = new Label( numOfLinesGroup, SWT.BEGINNING );
@@ -265,7 +261,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 					fileLocation = folderLocation.getText( );
 				}
 				setXMLFileLocaiton();
-				setPageStatus( );
+				updatePageStatus( );
 			}
 
 			public void widgetDefaultSelected( SelectionEvent e )
@@ -279,9 +275,9 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		sourceData.horizontalSpan = 3;
 		sourceData.verticalIndent = 8;		
 		enterXMLSourceButton = new Button( composite, SWT.RADIO );
-		//enterXMLSourceButton.addSelectionListener( sa );
-		enterXMLSourceButton.setLayoutData( sourceData );
+ 		enterXMLSourceButton.setLayoutData( sourceData );
 		enterXMLSourceButton.setText( Messages.getString( "lable.selectXmlFile" ) );       //$NON-NLS-1$
+		enterXMLSourceButton.addSelectionListener( sa );
 	}
 
 	/**
@@ -293,12 +289,23 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		folderLocation.setEnabled( enable );
 		browseFolderButton.setEnabled( enable );
 	}
+	
 	/**
 	 * set page status based on row number
 	 *
 	 */
-	private void setPageStatus( )
+	private void updatePageStatus( )
 	{
+		if( enterXMLSourceButton.getSelection( ) )
+		{
+			if( fileLocation == null || fileLocation.trim( ).length( ) == 0 )
+			{
+				setDetailsMessage( Messages.getString( "error.dataset.Error.MissingFileLocation" ), //$NON-NLS-1$
+						IMessageProvider.ERROR );
+				setPageComplete( false );
+				return;
+			}
+		}
 		if ( numberText == null )
 		{
 			setMessage( DEFAULT_MESSAGE );
@@ -309,7 +316,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		if ( maxRow == INVALID_ROW_NUMBER || maxRow == NEGATIVE_ROW_NUMBER )
 		{
 			setPageComplete( false );
-			setDetailsMessage( Messages.getString( "error.dataset.maxRowNumberError" ),       //$NON-NLS-1$
+			setDetailsMessage( Messages.getString( "error.dataset.maxRowNumberError" ), //$NON-NLS-1$
 					IMessageProvider.ERROR );
 		}
 		else
@@ -378,6 +385,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			public void modifyText( ModifyEvent e )
 			{
 				setXMLFileLocaiton( );
+				updatePageStatus( );
 			}
 
 		} );
@@ -413,6 +421,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 					folderLocation.setText( selectedLocation );
 					setXMLFileLocaiton( );
 				}
+				updatePageStatus( );
 			}
 		} );
 
@@ -599,7 +608,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private boolean isValid( )
 	{
-		if ( maxRow == UNUSED_ROW_CACHE || maxRow >= 0 )
+		if ( isPageComplete( ) && ( maxRow == UNUSED_ROW_CACHE || maxRow >= 0 ) )
 			return true;
 		else
 			return false;
@@ -631,7 +640,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
     protected boolean canLeave( )
 	{
-    	setPageStatus( );
+    	updatePageStatus( );
 		return isValid( );
 	}
 	
