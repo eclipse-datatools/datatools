@@ -47,7 +47,7 @@ public class FileSelectionButton extends MenuButton
 	
 	public FileSelectionButton( Composite parent, int style )
 	{
-		this( parent, style, ABSOLUTE_PATH );
+		this( parent, style, RELATIVE_PATH );
 	}
 
 	public FileSelectionButton( Composite parent, int style, final int defaultAction )
