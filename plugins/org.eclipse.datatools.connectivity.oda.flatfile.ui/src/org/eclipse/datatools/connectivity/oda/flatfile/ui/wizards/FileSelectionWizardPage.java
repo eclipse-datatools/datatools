@@ -663,6 +663,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						} );
 
 				selectedColumnsViewer.refresh( );
+				validateSelectedColumns( );
 
 			}
 
@@ -999,6 +1000,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				pageComplete = false;
 				break;
 			}
+			if ( isNumeric(columnName) )
+			{
+				setMessage( Messages.getString( "FileSelectionWizardPage.error.selectColumn.numberName" ), //$NON-NLS-1$
+						ERROR );
+				pageComplete = false;
+			}
 		}
 		if ( savedSelectedColumnsInfoList.size( ) <= 0 )
 		{
@@ -1012,6 +1019,80 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			setMessage( DEFAULT_MESSAGE );
 			setPageComplete( true );
 		}
+	}
+
+	/**
+	 * If text is a decimal presentation of int32 value, then text is index. In
+	 * this case return true and make send out error message. Otherwise return
+	 * false means the column name is right.
+	 */
+	private boolean isNumeric( String text )
+	{
+		long indexTest = indexFromString( text );
+		if ( indexTest >= 0 )
+		{
+			return true;
+		}
+		return false;
+	}
+
+	private long indexFromString( String str )
+	{
+		// The length of the decimal string representation of
+		// Integer.MAX_VALUE, 2147483647
+		final int MAX_VALUE_LENGTH = 10;
+
+		int len = str.length( );
+		if ( len > 0 )
+		{
+			int i = 0;
+			boolean negate = false;
+			int c = str.charAt( 0 );
+			if ( c == '-' )
+			{
+				if ( len > 1 )
+				{
+					c = str.charAt( 1 );
+					i = 1;
+					negate = true;
+				}
+			}
+			c -= '0';
+			if ( 0 <= c
+					&& c <= 9
+					&& len <= ( negate ? MAX_VALUE_LENGTH + 1
+							: MAX_VALUE_LENGTH ) )
+			{
+				// Use negative numbers to accumulate index to handle
+				// Integer.MIN_VALUE that is greater by 1 in absolute value
+				// then Integer.MAX_VALUE
+				int index = -c;
+				int oldIndex = 0;
+				i++;
+				if ( index != 0 )
+				{
+					// Note that 00, 01, 000 etc. are not indexes
+					while ( i != len
+							&& 0 <= ( c = str.charAt( i ) - '0' ) && c <= 9 )
+					{
+						oldIndex = index;
+						index = 10 * index - c;
+						i++;
+					}
+				}
+				// Make sure all characters were consumed and that it
+				// couldn't
+				// have overflowed.
+				if ( i == len
+						&& ( oldIndex > ( Integer.MIN_VALUE / 10 ) || ( oldIndex == ( Integer.MIN_VALUE / 10 ) && c <= ( negate
+								? -( Integer.MIN_VALUE % 10 )
+								: ( Integer.MAX_VALUE % 10 ) ) ) ) )
+				{
+					return 0xFFFFFFFFL & ( negate ? index : -index );
+				}
+			}
+		}
+		return -1L;
 	}
 
 	/**
@@ -2262,6 +2343,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				status = getMiscStatus( IStatus.ERROR,
 						Messages.getString( "FileSelectionWizardPage.error.selectColumn.duplicatedFileName" ) ); //$NON-NLS-1$
+			}
+			else if ( isNumeric( this.columnName.trim( ) ) )
+			{
+				status = getMiscStatus( IStatus.ERROR,
+						Messages.getString( "FileSelectionWizardPage.error.selectColumn.numberName" ) ); //$NON-NLS-1$			
 			}
 			else
 			{
