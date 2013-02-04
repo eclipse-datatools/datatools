@@ -135,22 +135,6 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 
 		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( dataSetDesign );
-
-		String xmlFile = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE );
-		if ( xmlFile == null || xmlFile.trim( ).length( ) == 0 )
-		{
-			useXMLDataSourceButton.setSelection( true );
-			enterXMLSourceButton.setSelection( false );
-			this.folderLocation.setText( EMPTY_STRING );
-			enableFolderLocation( false );
-		}
-		else
-		{
-			useXMLDataSourceButton.setSelection( false );
-			enterXMLSourceButton.setSelection( true );
-			this.folderLocation.setText( xmlFile );
-			enableFolderLocation( true );
-		}
 		
 		String rowNumber = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW );
 		try
@@ -170,6 +154,23 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		{
 			maxRow = UNUSED_ROW_CACHE;
 		}
+
+		String xmlFile = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE );
+		if ( xmlFile == null || xmlFile.trim( ).length( ) == 0 )
+		{
+			useXMLDataSourceButton.setSelection( true );
+			enterXMLSourceButton.setSelection( false );
+			this.folderLocation.setText( EMPTY_STRING );
+			enableFolderLocation( false );
+		}
+		else
+		{
+			useXMLDataSourceButton.setSelection( false );
+			enterXMLSourceButton.setSelection( true );
+			this.folderLocation.setText( xmlFile );
+			enableFolderLocation( true );
+		}
+		
 		setPageComplete( true );
 		if ( !isSessionEditable( ) )
 			getControl( ).setEnabled( false );
@@ -296,7 +297,13 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void updatePageStatus( )
 	{
-		if( enterXMLSourceButton.getSelection( ) )
+		if ( numberText == null )
+		{
+			setMessage( DEFAULT_MESSAGE );
+			return;
+		}
+		
+		if( enterXMLSourceButton!= null && enterXMLSourceButton.getSelection( ) )
 		{
 			if( fileLocation == null || fileLocation.trim( ).length( ) == 0 )
 			{
@@ -305,12 +312,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				setPageComplete( false );
 				return;
 			}
-		}
-		if ( numberText == null )
-		{
-			setMessage( DEFAULT_MESSAGE );
-			return;
-		}
+		}		
 		String rowNumber = numberText.getText( );
 		maxRow = validateRowNumber( rowNumber );
 		if ( maxRow == INVALID_ROW_NUMBER || maxRow == NEGATIVE_ROW_NUMBER )
@@ -322,7 +324,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		else
 		{
 			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_MAX_ROW,
-					Integer.toString( maxRow ) );
+						Integer.toString( maxRow ) );				
 			setPageComplete( true );
 			setMessage( DEFAULT_MESSAGE );
 		}
