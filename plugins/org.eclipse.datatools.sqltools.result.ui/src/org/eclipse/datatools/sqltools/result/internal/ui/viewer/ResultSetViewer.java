@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2013 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *    Sybase, Inc. - initial API and implementation
+ *    IBM Corporation - Bug 376356
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui.viewer;
 
@@ -52,11 +53,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
-import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IViewReference;
-import org.eclipse.ui.IViewSite;
 
+import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -443,11 +441,20 @@ class ViewerSorterByColumn extends ViewerSorter
                 return 0;
             }
         }
-        else if (type == Types.CHAR || type == Types.VARCHAR || type == Types.LONGVARCHAR)
+        else if (type == Types.CHAR || type == Types.VARCHAR || type == Types.LONGVARCHAR || type == Types.NVARCHAR)
         {
-            return super.compare(viewer, _labelProvider.getColumnText(e1, index), _labelProvider.getColumnText(e2,
-                index))
-                * _order;
+                  	
+        	String str1= _labelProvider.getColumnText(e1, index);
+        	String str2= _labelProvider.getColumnText(e2, index);
+        	Collator collator = Collator.getInstance();
+        	collator.setStrength(Collator.PRIMARY);
+        	if(collator.compare(str1, str2)>0){
+        		 return -1 * _order;
+        	}else if (collator.compare(str1, str2)==0){
+        		return 0;
+        	}else{
+        		 return 1 * _order;
+        	}
         }
         else if (type == Types.DATE || type == Types.TIMESTAMP || type == Types.TIME)
         {
