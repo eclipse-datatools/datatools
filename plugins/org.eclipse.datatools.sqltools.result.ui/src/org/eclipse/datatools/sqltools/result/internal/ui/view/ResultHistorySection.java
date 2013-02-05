@@ -27,6 +27,7 @@ import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.actions.ReExecuteAction;
 import org.eclipse.datatools.sqltools.result.internal.ui.utils.PreferenceUtil;
+import org.eclipse.datatools.sqltools.result.internal.utils.SerializationHelper;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.ui.ResultsViewUIPlugin;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
@@ -450,6 +451,8 @@ public class ResultHistorySection
                                 // set the result and parameter list of the last display to be null for reclaiming them, when selection is changed.
                                 if(lastResultInstance instanceof ResultInstance)
                                 {
+                                	Object[] objs ={lastResultInstance.getParameters(),((ResultInstance) lastResultInstance).getResults()};
+                                	SerializationHelper.SaveObjects(objs, ((ResultInstance) lastResultInstance).getFileName());
                                     ((ResultInstance) lastResultInstance).reclaimedTransientThings();
                                 }
                             }
