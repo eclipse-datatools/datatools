@@ -35,7 +35,7 @@ feature@org.eclipse.datatools.sqldevtools.data.feature=GIT,tag=v201209181447,rep
 feature@org.eclipse.datatools.sqldevtools.ddl.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.ddl.feature
 feature@org.eclipse.datatools.sqldevtools.ddlgen.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.ddlgen.feature
 feature@org.eclipse.datatools.sqldevtools.parsers.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.parsers.feature
-feature@org.eclipse.datatools.sqldevtools.results.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.results.feature
+feature@org.eclipse.datatools.sqldevtools.results.feature=GIT,tag=v201301241741,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.results.feature
 feature@org.eclipse.datatools.sqldevtools.sqlbuilder.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.sqlbuilder.feature
 feature@org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature=GIT,tag=v201209181447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature
 
