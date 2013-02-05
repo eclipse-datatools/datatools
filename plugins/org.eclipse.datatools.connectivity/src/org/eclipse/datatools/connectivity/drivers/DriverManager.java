@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2012 Sybase, Inc. and others.
+ * Copyright (c) 2004-2013 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -12,6 +12,7 @@
  *               Actuate Corporation - support for OSGi-less platform (Bugzilla 338997)
  *               IBM Corporation - Bugzilla 330725
  *               Actuate Corporation - Bugzilla 330725: fix for OSGi-less platform support
+ *               IBM Corporation - Bugzilla 399992
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
@@ -512,7 +513,13 @@ public class DriverManager {
 	}
 
 	public void addDriverInstances(IPropertySet[] propertySets) {
-		saveChanges(propertySets);
+		
+		for(int i = 0; i < propertySets.length;i++)	{
+			DriverInstance di = new DriverInstance(propertySets[i]);
+			mDriverInstanceMap.put(di.getId(), di);
+		}
+		IPropertySet[] psets = getPropertySetsFromMap();
+		saveChanges(psets);
 		mDriverInstanceMap = new HashMap();
 		loadAllInstances();
 	}
