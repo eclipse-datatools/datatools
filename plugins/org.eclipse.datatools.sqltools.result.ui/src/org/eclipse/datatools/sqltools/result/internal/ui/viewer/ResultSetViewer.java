@@ -441,7 +441,7 @@ class ViewerSorterByColumn extends ViewerSorter
                 return 0;
             }
         }
-        else if (type == Types.CHAR || type == Types.VARCHAR || type == Types.LONGVARCHAR || type == Types.NVARCHAR)
+        else if (type == Types.CHAR || type == Types.VARCHAR || type == Types.LONGVARCHAR)
         {
                   	
         	String str1= _labelProvider.getColumnText(e1, index);
