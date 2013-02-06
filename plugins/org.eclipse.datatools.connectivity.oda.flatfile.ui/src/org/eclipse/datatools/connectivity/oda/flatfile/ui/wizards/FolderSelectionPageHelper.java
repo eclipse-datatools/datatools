@@ -96,6 +96,9 @@ public class FolderSelectionPageHelper
 
 	private static final Integer SELECT_RELATIVE_PATH = 1;
 	private static final Integer SELECT_ABSOLUTE_PATH = 2;
+	
+	private boolean needsCheckURITest = true;
+	private String URIValue = EMPTY_STRING;
 
 	FolderSelectionPageHelper( WizardPage page )
 	{
@@ -423,16 +426,12 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( true );
-				verifyFileLocation( );
-				if ( !( getFolderLocationString( ).trim( ).length( ) > 0 ) )
-				{
-					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
-				}
+				validatePageStatus( );
 			}
 
 			public void widgetDefaultSelected( SelectionEvent e )
 			{
-				switchFileSelectionMode( true );
+
 			}
 
 		} );
@@ -446,11 +445,7 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				verifyFileLocation( );
-				if ( !( getFolderLocationString( ).trim( ).length( ) > 0 ) )
-				{
-					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
-				}
+				validatePageStatus( );
 			}
 
 		} );
@@ -492,16 +487,14 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				switchFileSelectionMode( false );
-				verifyFileURILocation( );
-				if ( !( getFileURIString( ).trim( ).length( ) > 0 ) )
-				{
-					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
-				}
+				needsCheckURITest = true;
+				validatePageStatus( );
+				needsCheckURITest = false;
 			}
 
 			public void widgetDefaultSelected( SelectionEvent e )
 			{
-				switchFileSelectionMode( false );
+
 			}
 
 		} );
@@ -516,10 +509,12 @@ public class FolderSelectionPageHelper
 
 			public void modifyText( ModifyEvent e )
 			{
-				verifyFileURILocation( );
-				if ( !( getFileURIString( ).trim( ).length( ) > 0 ) )
+				if ( !fileURI.getText( ).trim( ).equals( URIValue ) )
 				{
-					setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+					needsCheckURITest = true;
+					validatePageStatus( );
+					needsCheckURITest = false;
+					URIValue = fileURI.getText( ).trim( );
 				}
 			}
 
@@ -639,23 +634,6 @@ public class FolderSelectionPageHelper
 	}
 	
 	
-	
-	private void verifyFileURILocation( )
-	{
-		String fileURIValue = getFileURIString( ).trim( );
-		fileURIValue = fileURIValue.length( ) > 0 ? fileURIValue : null;
-		if ( fileURIValue == null )
-		{
-			setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
-			setPageComplete( false );
-		}
-		else
-		{
-			setPageComplete( true );
-			setMessage( Messages.getString( "Connection.warning.untested" ), IMessageProvider.WARNING ); //$NON-NLS-1$
-		}
-	}
-
 	/**
 	 * 
 	 * @return
@@ -904,7 +882,7 @@ public class FolderSelectionPageHelper
 		}
 	}
 
-	public void restUIStatus( )
+	public void resetUIStatus( )
 	{
 		if ( getFileURI( ).length( ) > 0 )
 		{
@@ -913,9 +891,9 @@ public class FolderSelectionPageHelper
 		else
 		{
 			switchFileSelectionMode( true );
-		}
+		}		
 	}
-
+	
 	protected void refreshTypeLineCheckBoxStatus( )
 	{
 		if ( columnNameLineCheckBox.getSelection( ) )
@@ -926,4 +904,44 @@ public class FolderSelectionPageHelper
 			typeLineCheckBox.setEnabled( false );
 		}
 	}
+
+	private void validatePageStatus( )
+	{
+		int status = 1;
+		if ( homeFolderChoice.getSelection( ) )
+		{
+			if ( getFolderLocationString( ).trim( ).length( ) == 0 )
+			{
+				setMessage( Messages.getString( "error.emptyFolderPath" ), //$NON-NLS-1$?
+						IMessageProvider.ERROR );
+				status = -1;
+			}
+			else if ( verifyFileLocation( ) == ERROR_INVALID_PATH )
+			{
+				setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
+				status = -1;
+			}
+		}
+		else if ( fileURIChoice.getSelection( ) )
+		{
+			if ( getFileURIString( ).trim( ).length( ) == 0 )
+			{
+				setMessage( Messages.getString( "error.emptyFileURIPath" ), IMessageProvider.ERROR );
+				status = -1;
+			}
+			else if ( needsCheckURITest )
+			{
+				setMessage( Messages.getString( "Connection.warning.untested" ), IMessageProvider.WARNING ); //$NON-NLS-1$
+				status = 0;
+			}
+		}
+
+		if ( status == 1 )
+		{
+			setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+		}
+
+		setPageComplete( status >= 0 );
+	}
+	
 }

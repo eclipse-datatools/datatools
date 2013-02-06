@@ -99,7 +99,7 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		pageHelper.refreshTypeLineCheckBoxStatus( );
 
 		if ( pageHelper != null && isSessionEditable( ) )
-			pageHelper.restUIStatus( );
+			pageHelper.resetUIStatus( );
 	}
 
 	/*

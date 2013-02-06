@@ -71,7 +71,7 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
         enableAllControls( getControl(), isSessionEditable() );
         
         if ( pageHelper != null && isSessionEditable() )
-        	pageHelper.restUIStatus( );
+        	pageHelper.resetUIStatus( );
     }
 
 	/* (non-Javadoc)
