@@ -448,3 +448,7 @@ _UI_CollectionDataType_elementType_feature = 元素类型
 _UI_CharacterSet_CharacterStringDataType_feature = 字符串数据类型
 _UI_ElementType_CollectionDataType_feature = 采集数据类型
 _UI_IncrementType_RANDOM_literal = 随机
+_UI_IndexExpression_type = Index Expression
+_UI_UniqueConstraint_clustered_feature = Clustered
+_UI_IndexMember_expression_feature = Expression
+_UI_IndexExpression_sql_feature = Sql
