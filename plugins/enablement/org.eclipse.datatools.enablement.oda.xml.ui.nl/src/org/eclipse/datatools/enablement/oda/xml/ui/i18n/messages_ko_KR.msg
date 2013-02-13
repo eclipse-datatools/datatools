@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=XML 스키마를 구문 �
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0과 {0} 사이에 있는 숫자를 입력하십시오.
 designer.preview.preference.columnMappingPage.group.title=열 매핑
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 요소 선택
 xPathChoosePage.messages.elementSelection.item.absolutePath=고정된 절대 경로에서 이름이 "{0}"인 XML 요소(&X)\n
@@ -91,6 +94,7 @@ error.selectFolder=선택한 파일 URL이 잘못되었거나 파일이 없습니다.
 error.emptyPath=파일 URL이 비어 있습니다.
 error.xpath.canNotContainAttribute=XPath 식이 XML 특성으로 매핑할 수 없습니다.
 error.xpath.getPathList=선택한 XML 트리 항목별 XPath 목록을 가져오는 도중 오류가 발생했습니다.
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=최대 행은 숫자여야 합니다.
 error.columnMapping.createPage=열 매핑 페이지에 오류가 발생했습니다. 
 error.columnMapping.columnElement.create=열 매핑 요소를 매핑하는 도중 오류가 발생했습니다.

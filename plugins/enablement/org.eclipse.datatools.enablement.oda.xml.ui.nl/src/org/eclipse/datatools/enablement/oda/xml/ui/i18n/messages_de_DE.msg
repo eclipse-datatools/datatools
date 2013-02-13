@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=Anzahl der zu analy
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Geben Sie eine Zahl zwischen 0 und {0} ein.
 designer.preview.preference.columnMappingPage.group.title=Spaltenzuordnung
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML-Element-Auswahl
 xPathChoosePage.messages.elementSelection.item.absolutePath=&XML-Elemente mit dem Namen '{0}' an feststehendem absolutem Pfad\n
@@ -91,6 +94,7 @@ error.selectFolder=Der URL für die gewählte Datei ist ungültig oder nicht vorhan
 error.emptyPath=Der URL der Datei enthält keine Daten
 error.xpath.canNotContainAttribute=Der XPath-Ausdruck kann nicht einem XML-Attribut zugeordnet werden.
 error.xpath.getPathList=Beim Abrufen der XPath-Liste durch den ausgewählten Eintrag im XML-Strukturbaum ist ein Fehler aufgetreten.
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=Der Wert für die maximale Zeilenzahl muss eine Zahl sein.
 error.columnMapping.createPage=Auf der Spaltenzuordnungsseite ist ein Fehler aufgetreten. 
 error.columnMapping.columnElement.create=Bei der Zuordnung eines Spaltenzuordnungselements ist ein Fehler aufgetreten.

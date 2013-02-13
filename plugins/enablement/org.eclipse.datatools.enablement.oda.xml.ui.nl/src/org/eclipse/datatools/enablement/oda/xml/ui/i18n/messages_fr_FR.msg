@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=Nombre d'éléments d
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Entrez un nombre compris entre 0 et {0}.
 designer.preview.preference.columnMappingPage.group.title=Mise en correspondance de colonne
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Sélection de l'élément XML
 xPathChoosePage.messages.elementSelection.item.absolutePath=Eléments &XML intitulés "{0}" sur un chemin d'accès absolu fixe\n
@@ -91,6 +94,7 @@ error.selectFolder=L'URL de fichier sélectionnée n'est pas valide ou le fichier 
 error.emptyPath=L'URL du fichier est vide.
 error.xpath.canNotContainAttribute=L'expression XPath ne peut mettre en correspondance l'attribut XML.
 error.xpath.getPathList=Une erreur s'est produite lors de la récupération de la liste XPath par l'élément d'arborescence XML sélectionné.
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=Le nombre maximal de lignes doit être renseigné par un nombre.
 error.columnMapping.createPage=Une erreur s'est produite dans la page de mise en correspondance de colonne 
 error.columnMapping.columnElement.create=Une erreur s'est produite lors de la mise en correspondance d'un élément de mise en correspondance de colonne.

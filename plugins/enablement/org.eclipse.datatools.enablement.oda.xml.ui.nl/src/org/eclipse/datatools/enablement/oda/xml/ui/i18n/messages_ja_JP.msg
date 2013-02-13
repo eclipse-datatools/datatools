@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=XML ƒXƒL[ƒ}‚Å‰ğÍ‚
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0`{0} ‚Ü‚Å‚Ì”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 designer.preview.preference.columnMappingPage.group.title=—ñ‚Ìƒ}ƒbƒsƒ“ƒO
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML —v‘f‚Ì‘I‘ğ
 xPathChoosePage.messages.elementSelection.item.absolutePath=ŒÅ’è‚³‚ê‚½â‘ÎƒpƒX‚É‚ ‚é XML —v‘f "{0}"(&X)\n
@@ -91,6 +94,7 @@ error.selectFolder=‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚Ì URL ‚Í–³Œø‚©Aƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB
 error.emptyPath=ƒtƒ@ƒCƒ‹‚Ì URL ‚ª‹ó”’‚Å‚·B
 error.xpath.canNotContainAttribute=XPath ®‚Í XML ‘®«‚Éƒ}ƒbƒsƒ“ƒO‚Å‚«‚Ü‚¹‚ñB
 error.xpath.getPathList=‘I‘ğ‚µ‚½ XML ƒcƒŠ[€–Ú‚Å XPath ƒŠƒXƒg‚ğæ“¾’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=Å‘ås”‚É‚ÍA”’l‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
 error.columnMapping.createPage=—ñƒ}ƒbƒsƒ“ƒOƒy[ƒW‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B 
 error.columnMapping.columnElement.create=—ñƒ}ƒbƒsƒ“ƒO—v‘f‚ğŠ„‚è“–‚Ä’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B

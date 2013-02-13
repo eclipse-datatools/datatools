@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=要为 XML 架构分析的
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=请输入一个介于 0 和 {0} 之间的数。
 designer.preview.preference.columnMappingPage.group.title=列映射
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 元素选择
 xPathChoosePage.messages.elementSelection.item.absolutePath=固定绝对路径中名为“{0}”的 XML 元素(&X)\n
@@ -91,6 +94,7 @@ error.selectFolder=选择的文件 URL 无效或文件不存在。
 error.emptyPath=文件 URL 为空。
 error.xpath.canNotContainAttribute=XPath 表达式不能映射到 XML 属性。
 error.xpath.getPathList=通过选定的 XML 树项目获取 XPath 列表时出错。
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=max 行应为数字。
 error.columnMapping.createPage=列映射页中发生错误。 
 error.columnMapping.columnElement.create=映射列映射元素时出错。

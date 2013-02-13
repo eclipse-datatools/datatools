@@ -25,6 +25,9 @@ designer.preview.preference.numberOfElementPassedToGetSchema=Número de elementos
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Introduzca un número entre 0 y {0}.
 designer.preview.preference.columnMappingPage.group.title=Asignación de columnas
 
+#XML data source folder selection wizard page
+XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Selección de elemento XML
 xPathChoosePage.messages.elementSelection.item.absolutePath=Elementos &XML con nombre "{0}" en una ruta absoluta fija\n
@@ -91,6 +94,7 @@ error.selectFolder=La URL de archivo seleccionada no es válida o el archivo no e
 error.emptyPath=La URL del archivo está vacía.
 error.xpath.canNotContainAttribute=No se puede asignar la expresión XPath a un atributo XML.
 error.xpath.getPathList=Se ha producido un error al obtener la lista de XPath por el elemento del árbol XML seleccionado.
+error.dataset.Error.MissingFileLocation=Please specify the XML file location.
 error.dataset.maxRowNumberError=La fila máxima debe ser un número.
 error.columnMapping.createPage=Se ha producido un error en la página de asignación de columna. 
 error.columnMapping.columnElement.create=Se ha producido un error al asignar un elemento de asignación de columna.
