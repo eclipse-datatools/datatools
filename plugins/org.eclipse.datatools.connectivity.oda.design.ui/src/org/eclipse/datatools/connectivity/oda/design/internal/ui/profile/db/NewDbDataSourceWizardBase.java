@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2010 Actuate Corporation.
+ * Copyright (c) 2007, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
@@ -46,12 +47,8 @@ public class NewDbDataSourceWizardBase extends NewDataSourceWizard
         super();
     }
     
-    /*
-     * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.NewDataSourceWizardBase#isValid(java.lang.String, org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile)
-     */
-    public boolean isValid( String odaDataSourceId, 
-                              OdaConnectionProfile odaProfile )
+    @Override
+    public boolean isValid( String odaDataSourceId, ProfileReferenceBase profileRef )
     {
         if( ! getOdaDataSourceId().equals( odaDataSourceId ) )
             return false;
@@ -59,16 +56,22 @@ public class NewDbDataSourceWizardBase extends NewDataSourceWizard
         if( getPageCount() == 0 )   // no wizard page is setup yet, 
             return true;            // still open to any type of handling 
         
-        // if creating a new design from scratch, wizard must be setup to select a db profile type
+        // if not creating from a profile, wizard must be setup to select a db profile type
+        IConnectionProfile odaProfile = ( profileRef == null || ! profileRef.maintainExternalLink() ) ? 
+                                        null : 
+                                        profileRef.getProfileInstance();
         if( odaProfile == null )
             return ( m_dbSelectionPage != null );
         
         // creating from a profile reference, expects existing page to be a profile wizard page
         if( m_dbProfileWizPage == null )
             return false;
-        
+
+        if( ! (odaProfile instanceof OdaConnectionProfile) )
+            return false;
+
         // check if existing db profile wizard page is setup for the specified db profile type
-        String dbProviderId = DbProfileUtil.getDbProviderIdFromProfileProperties( odaProfile );
+        String dbProviderId = DbProfileUtil.getDbProviderIdFromProfileProperties( (OdaConnectionProfile)odaProfile );
         if( dbProviderId == null )
             dbProviderId = odaProfile.getProviderId();
         if( ! dbProviderId.equals( m_dbProfileWizPage.getDbProfileProviderId() ))

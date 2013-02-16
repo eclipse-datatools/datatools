@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2011 Actuate Corporation.
+ * Copyright (c) 2006, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -139,11 +139,9 @@ public class DataSourceDesignSessionBase
     {
         // if restarting with a different oda data source type that is not applicable to 
         // the existing wizard, reset the session's context and wizard 
-        OdaConnectionProfile odaProfile = ( profileRef == null ) ? null :
-                                        profileRef.getOdaProfileInstance();
         if( m_odaDataSourceId == null || 
             ( m_dataSourceWizard != null && 
-              ! m_dataSourceWizard.isValid( odaDataSourceId, odaProfile ) ))
+              ! m_dataSourceWizard.isValid( odaDataSourceId, profileRef ) ))
         {
             m_odaDataSourceId = odaDataSourceId;
             if( m_dataSourceWizard != null )

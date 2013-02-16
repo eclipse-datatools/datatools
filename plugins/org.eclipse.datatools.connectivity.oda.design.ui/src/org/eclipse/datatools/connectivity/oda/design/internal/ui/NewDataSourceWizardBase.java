@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2011 Actuate Corporation.
+ * Copyright (c) 2006, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -391,6 +391,26 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     public String getOdaDesignerId()
     {
         return m_odaDesignerPluginId;
+    }
+
+    /**
+     * For internal use only.
+     * Indicates whether this wizard is valid and can use its pages to create a new
+     * data source design of the specified oda data source type, and 
+     * optionally based on reference to an existing ODA connection profile instance.
+     * @param odaDataSourceId   oda data source extension id
+     * @param profileRef    reference to the profile instance from which to create a new data source design;
+     *                          optional, may be null
+     * @return  true if this wizard can be re-used; false otherwise
+     * @since DTP 1.11
+     */
+    public boolean isValid( String odaDataSourceId, ProfileReferenceBase profileRef )
+    {
+        IConnectionProfile odaProfile = ( profileRef == null ) ? null :
+                                profileRef.getProfileInstance();
+        if( odaProfile == null || odaProfile instanceof OdaConnectionProfile )
+            return isValid( odaDataSourceId, (OdaConnectionProfile)odaProfile );
+        return false;   // expects null or an OdaConnectionProfile
     }
 
     /**
