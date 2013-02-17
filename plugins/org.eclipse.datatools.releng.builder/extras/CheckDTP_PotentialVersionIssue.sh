@@ -12,8 +12,8 @@ fi
 
 CurrentPostDir=$1
 CurrentBuildId=$2
-LastReleasePostDir=$HOME/releng/BIRTOutput/dtp.output/1.10.1/v20120908-0500-Release
-LastReleaseBuildId=1.10.1RC3-201209080500
+LastReleasePostDir=$HOME/releng/BIRTOutput/dtp.output/1.10.2/v20130206-1842-Release
+LastReleaseBuildId=1.10.2RC4-201302061842
 
 if [ ! -e $CurrentPostDir/dtp-sdk-${CurrentBuildId}.zip ]; then
 	echo "Currect build does not exist,cancel comparison script."
