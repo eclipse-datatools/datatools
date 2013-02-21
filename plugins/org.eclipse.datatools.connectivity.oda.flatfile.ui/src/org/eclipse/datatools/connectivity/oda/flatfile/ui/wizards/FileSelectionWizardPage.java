@@ -140,6 +140,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private HashMap<String, String> dataTypeValueMape = new HashMap<String, String>( );
 
+	private HashMap<String, Boolean> flatFileStatusCache = new HashMap<String, Boolean>( );
+
 	private final int DEFAULT_WIDTH = 200;
 	private final int DEFAULT_HEIGHT = 200;
 
@@ -457,7 +459,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void mouseDoubleClick( MouseEvent e )
 			{
 				addColumns( );
-				validateSelectedColumns( );
+				validatePageStatus( );
 			}
 		} );
 	}
@@ -505,7 +507,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				addColumns( );
-				validateSelectedColumns( );
+				validatePageStatus( );
 			}
 		} );
 
@@ -570,7 +572,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				removeColumns( );
 				updateButtons( );
-				validateSelectedColumns( );
+				validatePageStatus( );
 			}
 
 		} );
@@ -582,9 +584,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			{
 				removeAllColumns( );
 				updateButtons( );
-				validateSelectedColumns( );
+				validatePageStatus( );
 			}
-			
+
 		} );
 
 		selectedColumnsViewer.getTable( ).setMenu( menu );
@@ -620,13 +622,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				{
 					removeColumns( );
 					updateButtons( );
-					validateSelectedColumns( );
+					validatePageStatus( );
 				}
 			}
 
 			public void keyReleased( KeyEvent e )
 			{
-				
+
 			}
 		} );
 
@@ -663,7 +665,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						} );
 
 				selectedColumnsViewer.refresh( );
-				validateSelectedColumns( );
+				validatePageStatus( );
 
 			}
 
@@ -844,7 +846,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		return count;
 	}
 
-
 	/*
 	 * File Combo Viewer selection changed listener
 	 * 
@@ -862,7 +863,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			if ( file != null ) // Update column info.
 			{
 				updateAvailableColumnsInfo( (String) file );
-				validateSelectedColumns( );
+				validatePageStatus( );
 			}
 			return;
 		}
@@ -886,7 +887,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 							Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
 							Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
 					{
-						validateSelectedColumns( );
+						validatePageStatus( );
 					}
 					else
 					{
@@ -974,9 +975,23 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		}
 	}
-
-	private void validateSelectedColumns( )
+	
+	private boolean validateSelectedFileStatus( )
 	{
+		String fileName = fileViewer.getCombo( ).getText( ).trim( );
+		if ( flatFileStatusCache.containsKey( fileName ) )
+		{
+			return flatFileStatusCache.get( fileName );
+		}
+		return true;
+	}
+
+	private void validatePageStatus( )
+	{
+		if ( !validateSelectedFileStatus( ) )
+		{
+			return;
+		}
 		boolean pageComplete = true;
 		String[] columnNames = availableList.getItems( );
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
@@ -1000,7 +1015,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				pageComplete = false;
 				break;
 			}
-			if ( isNumeric(columnName) )
+			if ( isNumeric( columnName ) )
 			{
 				setMessage( Messages.getString( "FileSelectionWizardPage.error.selectColumn.numberName" ), //$NON-NLS-1$
 						ERROR );
@@ -1317,10 +1332,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				result[2] = getDataTypeDisplayName( new Integer( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
+			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ), true );
 			return columnList;
 		}
 		catch ( OdaException e )
 		{
+			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ), false );
 			setMessage( e.getLocalizedMessage( ), ERROR );
 			updateExceptionInfo( );
 			return new ArrayList<String[]>( );
@@ -1538,12 +1555,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param tViewer
 	 *            the table viewer
 	 */
-	private void setDisplayContent( java.util.List<String[]> list,
-			TableViewer tViewer )
+	private void setDisplayContent( java.util.List<String[]> list )
 	{
-		tViewer.getTable( ).removeAll( );
-		tViewer.setInput( list );
-		tViewer.getTable( ).select( tViewer.getTable( ).getTopIndex( ) );
+		selectedColumnsViewer.getTable( ).removeAll( );
+		selectedColumnsViewer.setInput( list );
+		selectedColumnsViewer.getTable( )
+				.select( selectedColumnsViewer.getTable( ).getTopIndex( ) );
 	}
 
 	/**
@@ -1666,7 +1683,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		savedSelectedColumnsInfoList = getQueryColumnsInfo( queryText );
 
-		setDisplayContent( savedSelectedColumnsInfoList, selectedColumnsViewer );
+		setDisplayContent( savedSelectedColumnsInfoList );
 
 		setPageComplete( true );
 
@@ -1849,7 +1866,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			savedSelectedColumnsInfoList.add( addedItems.get( i ) );
 		}
 
-		setDisplayContent( savedSelectedColumnsInfoList, selectedColumnsViewer );
+		setDisplayContent( savedSelectedColumnsInfoList );
 
 		selectedColumnsViewer.getTable( )
 				.setSelection( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 );
@@ -1991,7 +2008,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		}
 
-		validateSelectedColumns( );
+		validatePageStatus( );
 	}
 
 	/**
@@ -2356,7 +2373,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			updateStatus( status );
 		}
 
-		protected Status getOKStatus( )
+		private Status getOKStatus( )
 		{
 			return getMiscStatus( IStatus.OK, "" ); //$NON-NLS-1$
 		}
@@ -2367,7 +2384,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		 * @param message
 		 * @return
 		 */
-		protected Status getMiscStatus( int severity, String message )
+		private Status getMiscStatus( int severity, String message )
 		{
 			return new Status( severity,
 					PlatformUI.PLUGIN_ID,
