@@ -26,7 +26,7 @@ designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0～{0}
 designer.preview.preference.columnMappingPage.group.title=列のマッピング
 
 #XML data source folder selection wizard page
-XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+XMLSelectionWizardPage.message.error.emptyXMLSource=XML ソースの URL を指定するか、XML ファイルを参照してください。
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 要素の選択
@@ -94,7 +94,7 @@ error.selectFolder=選択したファイルの URL は無効か、ファイルが存在しません。
 error.emptyPath=ファイルの URL が空白です。
 error.xpath.canNotContainAttribute=XPath 式は XML 属性にマッピングできません。
 error.xpath.getPathList=選択した XML ツリー項目で XPath リストを取得中にエラーが発生しました。
-error.dataset.Error.MissingFileLocation=Please specify the XML file location.
+error.dataset.Error.MissingFileLocation=XML ファイルの場所を指定してください。
 error.dataset.maxRowNumberError=最大行数には、数値を指定してください。
 error.columnMapping.createPage=列マッピングページでエラーが発生しました。 
 error.columnMapping.columnElement.create=列マッピング要素を割り当て中にエラーが発生しました。

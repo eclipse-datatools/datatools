@@ -26,7 +26,7 @@ designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Introd
 designer.preview.preference.columnMappingPage.group.title=Asignación de columnas
 
 #XML data source folder selection wizard page
-XMLSelectionWizardPage.message.error.emptyXMLSource=Please specify the XML source URL or browse the XML file.
+XMLSelectionWizardPage.message.error.emptyXMLSource=Especifique la URL fuente del XML o examine el archivo XML.
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Selección de elemento XML
@@ -94,7 +94,7 @@ error.selectFolder=La URL de archivo seleccionada no es válida o el archivo no e
 error.emptyPath=La URL del archivo está vacía.
 error.xpath.canNotContainAttribute=No se puede asignar la expresión XPath a un atributo XML.
 error.xpath.getPathList=Se ha producido un error al obtener la lista de XPath por el elemento del árbol XML seleccionado.
-error.dataset.Error.MissingFileLocation=Please specify the XML file location.
+error.dataset.Error.MissingFileLocation=Especifique la ubicación del archivo XML.
 error.dataset.maxRowNumberError=La fila máxima debe ser un número.
 error.columnMapping.createPage=Se ha producido un error en la página de asignación de columna. 
 error.columnMapping.columnElement.create=Se ha producido un error al asignar un elemento de asignación de columna.
