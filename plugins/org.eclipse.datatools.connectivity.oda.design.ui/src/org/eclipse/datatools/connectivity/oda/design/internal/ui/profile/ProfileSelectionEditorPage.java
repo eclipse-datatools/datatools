@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2011 Actuate Corporation.
+ * Copyright (c) 2007, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -215,15 +215,13 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         if( profileRef == null )
             return candidateProps;  // has no changes
         
-        // updates candidates with latest selected profile's properties,
+        // return latest selected profile's properties, 
         // regardless of whether an external link is maintained;
         // the external link will be used later to determine whether to
         // apply these profile properties
         Properties selectedProfileProps =
             profileRef.getProfileInstance().getBaseProperties();
-        if( selectedProfileProps != null )
-            candidateProps.putAll( selectedProfileProps );
-        return candidateProps;
+        return selectedProfileProps;
     }
     
     /**
