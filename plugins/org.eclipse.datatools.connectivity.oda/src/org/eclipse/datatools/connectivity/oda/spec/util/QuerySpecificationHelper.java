@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -301,16 +301,20 @@ public class QuerySpecificationHelper
         buffer.append( "\nProperty name-value pairs: " ); //$NON-NLS-1$
         for( Entry<String,Object> propValuePair : querySpec.getProperties().entrySet() )
         {
+            String propValueClassName = propValuePair.getValue() != null ?
+                    propValuePair.getValue().getClass().getSimpleName() : "null"; //$NON-NLS-1$
             buffer.append( LOG_NEWLINE_CHAR + propValuePair.getKey() +
-                    LOG_PAIR_ENTRY_SEPARATOR + propValuePair.getValue().getClass().getSimpleName() +
+                    LOG_PAIR_ENTRY_SEPARATOR + propValueClassName +
                     SPACE + propValuePair.getValue() );
         }
 
         buffer.append( "\nParameter values: " ); //$NON-NLS-1$
         for( Entry<ParameterIdentifier,Object> parameterValuePair : querySpec.getParameterValues().entrySet() )
         {
+            String paramValueClassName = parameterValuePair.getValue() != null ?
+                    parameterValuePair.getValue().getClass().getSimpleName() : "null"; //$NON-NLS-1$
             buffer.append( LOG_NEWLINE_CHAR + parameterValuePair.getKey() +
-                    LOG_PAIR_ENTRY_SEPARATOR + parameterValuePair.getValue().getClass().getSimpleName() +
+                    LOG_PAIR_ENTRY_SEPARATOR + paramValueClassName +
                     SPACE + parameterValuePair.getValue() );
         }
         
