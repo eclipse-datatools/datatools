@@ -901,7 +901,7 @@ public class FlatFileQuery implements IQuery
 			queryColumnNames = FlatFileDataReader.getStringArrayFromList( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
 			validateColumnName( queryColumnNames, allColumnNames);
 			if ( savedSelectedColInfo == null
-					|| savedSelectedColInfo.length( ) == 0 )
+					|| savedSelectedColInfo.length( ) == 0 || hasTypeLine )
 			{				
 				queryColumnTypes = this.hasTypeLine
 						? getQueryColumnTypes( allColumnNames,
