@@ -71,6 +71,9 @@ public class FileSelectionButton extends MenuButton
 				}
 				else if ( e.widget instanceof MenuButton )
 				{
+					defaultAction = handler != null
+							&& handler.getBaseFolder( ) != null ? RELATIVE_PATH
+							: ABSOLUTE_PATH;
 					handleFileSelection( defaultAction );
 				}
 			}
