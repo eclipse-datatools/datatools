@@ -123,6 +123,14 @@ public class SOAPRequestPage extends DataSetWizardPage
 		queryText = new Text( parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.LEFT_TO_RIGHT );
 		GridData layoutData = new GridData( GridData.FILL_BOTH );
 		queryText.setLayoutData( layoutData );
+		queryText.addModifyListener( new ModifyListener( ){
+
+			public void modifyText( ModifyEvent arg0 )
+			{
+				validatePageStatus( );				
+			}
+			
+		});
 	}
 
 	private void setupButtonComposite( Composite parent )
@@ -191,6 +199,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				queryText.setText( WSUtil.EMPTY_STRING );
+				validatePageStatus( );
 			}
 
 		} );
@@ -343,6 +352,16 @@ public class SOAPRequestPage extends DataSetWizardPage
 	protected void cleanup( )
 	{
 		WSConsole.getInstance( ).terminateSession( );
+	}
+
+	private void validatePageStatus( )
+	{
+		boolean valid = true;
+		if ( queryText.getText( ).trim( ).length( ) == 0 )
+		{
+			valid = false;
+		}
+		setPageComplete( valid );
 	}
 
 	class ParameterInputDialog extends StatusDialog
