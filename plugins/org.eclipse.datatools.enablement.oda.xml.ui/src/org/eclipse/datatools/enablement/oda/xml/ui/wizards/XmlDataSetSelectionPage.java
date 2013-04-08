@@ -88,7 +88,6 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		super( pageName );
 		setTitle( pageName );
 		setMessage( DEFAULT_MESSAGE );
-		setPageComplete( false );
 	}
 
 	/*
