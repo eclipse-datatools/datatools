@@ -1000,6 +1000,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
 		{
 			String columnName = ( (String[]) savedSelectedColumnsInfoList.get( i ) )[0];
+			if ( columnName == null || isNumeric( columnName ) )
+			{
+				setMessage( Messages.getString( "FileSelectionWizardPage.error.selectColumn.numberName" ), //$NON-NLS-1$
+						ERROR );
+				pageComplete = false;
+				break;
+			}
 			String originalName = ( (String[]) savedSelectedColumnsInfoList.get( i ) )[1];
 			boolean columnExists = false;
 			for ( int k = 0; k < columnNames.length; k++ )
@@ -1018,12 +1025,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				pageComplete = false;
 				break;
 			}
-			if ( isNumeric( columnName ) )
-			{
-				setMessage( Messages.getString( "FileSelectionWizardPage.error.selectColumn.numberName" ), //$NON-NLS-1$
-						ERROR );
-				pageComplete = false;
-			}
 		}
 		if ( savedSelectedColumnsInfoList.size( ) <= 0 )
 		{
@@ -1035,8 +1036,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( pageComplete )
 		{
 			setMessage( DEFAULT_MESSAGE );
-			setPageComplete( true );
 		}
+		setPageComplete( pageComplete );
 	}
 
 	/**
