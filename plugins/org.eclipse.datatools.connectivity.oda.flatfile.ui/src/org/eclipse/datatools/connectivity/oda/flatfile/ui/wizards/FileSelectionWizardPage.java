@@ -31,6 +31,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
@@ -268,6 +269,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( dataSetDesign == null )
 			return; // nothing to initialize
 
+		updateFileFilterComboStatus( dataSetDesign );
+		
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText == null )
 			return; // nothing to initialize
@@ -1666,6 +1669,25 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
 		{
 			setPageComplete( false );
+		}
+	}
+	
+	private void updateFileFilterComboStatus( DataSetDesign dataSetDesign )
+	{
+		Properties properties = dataSetDesign.getDataSourceDesign( )
+				.getPublicProperties( );
+		Object value = properties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
+		if ( value instanceof String )
+		{
+			String folder = (String) value;
+			if ( folder == null || folder.trim( ).length( ) == 0 )
+			{
+				fileFilter.getCombo( ).setEnabled( false );
+			}
+		}
+		else
+		{
+			fileFilter.getCombo( ).setEnabled( false );
 		}
 	}
 
