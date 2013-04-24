@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2011 Actuate Corporation.
+ * Copyright (c) 2007, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -245,12 +245,22 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
         if( ! super.validateFilePath() )
             return false;
 
+        File file = new File( getFilePathText() );
+
         // Overrides to further validate the file extension, if a default extension is defined
         String defaultExtension = ProfileFileExtension.getDefault();        
-        if( ! ProfileFileExtension.exists( defaultExtension ) )
-            return true;    // no default file extension is defined, no need to validate further
-
-        File file = new File( getFilePathText() );
+        if( ProfileFileExtension.exists( defaultExtension ) )
+        {
+            if( ! validateFileExtension( file, defaultExtension ) )
+                return false;
+        }
+        
+        // file extension is valid, now check if file already exists
+        return validateOverwriteExistingFile( file );
+    }
+    
+    private boolean validateFileExtension( File file, String defaultExtension ) 
+    {
         String fileName = file.getName();
         
         int lastIndex = fileName.lastIndexOf( EXT_SEPARATOR );
@@ -283,6 +293,17 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 
         super.setFilePathText( revisedFilePathText.toString() );
         return false;   // requires user to verify the filePath and press Ok to continue
+    }
+
+    private boolean validateOverwriteExistingFile( File file ) 
+    {
+        if( ! file.exists() )
+            return true;
+        
+        // raise dialog about overwriting the specified file
+        return MessageDialog.openConfirm( getShell(), 
+                Messages.ui_saveAsTitle,
+                Messages.bind( Messages.ui_replaceFilePrompt, file ) );
     }
 
     /*

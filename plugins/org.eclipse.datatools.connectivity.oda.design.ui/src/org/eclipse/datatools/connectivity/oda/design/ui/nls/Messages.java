@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2011 Actuate Corporation.
+ * Copyright (c) 2006, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -85,9 +85,11 @@ public class Messages extends NLS
     public static String manifest_dataSetUi_invalidPageId;
     public static String manifest_dataSetUi_missingElement;
     public static String ui_defaultDataSourceTitle;
+    public static String ui_replaceFilePrompt;
     public static String ui_requiredFieldsMissingValue;
     public static String ui_errorLabel;
     public static String ui_errorCreatingCustomCtrls;
+    public static String ui_saveAsTitle;
     public static String profileStoreCreationDialog_button_new;
     public static String profileStoreCreationDialog_title;
     public static String profileStoreCreationDialog_grouptext;
