@@ -72,7 +72,13 @@ public class MenuButton extends Composite
 	public void setText( String text )
 	{
 		this.text = text;
+		button.setText( "" ); //$NON-NLS-1$
 		layoutControl( );
+	}
+
+	public void setToolTipText( String string )
+	{
+		button.setToolTipText( string );
 	}
 
 	private void layoutControl( )
@@ -85,6 +91,7 @@ public class MenuButton extends Composite
 
 	public Point computeSize( int wHint, int hHint, boolean changed )
 	{
+
 		int width;
 		int height;
 
@@ -135,12 +142,6 @@ public class MenuButton extends Composite
 		layoutControl( );
 	}
 
-    public void setToolTipText( String toolTipText )
-    {
-        super.setToolTipText( toolTipText );
-        button.setToolTipText( toolTipText );
-    }
-    
 	public void setBackground( Color color )
 	{
 		super.setBackground( color );
@@ -169,40 +170,53 @@ public class MenuButton extends Composite
 		button.redraw( );
 	}
 
-	public MenuButton( Composite parent, int style, String text )
+	public MenuButton( Composite parent, int style )
 	{
-		this( parent, style, false, text );		
+		this( parent, style, false );
 	}
 
 	private boolean isFixed = true;
 
 	private boolean mouseSelection = false;
 
-	public MenuButton( Composite parent, int style, boolean fixed, String text )
+	private boolean mouseDown = false;
+
+	public MenuButton( Composite parent, int style, boolean fixed )
 	{
-		super( parent, SWT.NONE );
+		super( parent, SWT.DOUBLE_BUFFERED );
 		isFixed = fixed;
 		GridLayout layout = new GridLayout( );
 		layout.marginHeight = layout.marginWidth = 0;
 		this.setLayout( layout );
-		
-		button = new Button( this, style );
+
+		button = new Button( this, style | SWT.DOUBLE_BUFFERED ){
+			protected void checkSubclass( )
+			{
+				
+			}
+
+			public String getText( )
+			{
+				return MenuButton.this.getText( );
+			}
+		};
 		GridData gd = new GridData( GridData.FILL_BOTH );
-		this.setText(text);
 		button.setLayoutData( gd );
 		button.addPaintListener( new PaintListener( ) {
 
-			public void paintControl( PaintEvent e )
+			public void paintControl( final PaintEvent e )
 			{
 				MenuButton.this.paintControl( e );
 			}
 		} );
+
 		button.addListener( SWT.MouseUp, new Listener( ) {
 
 			public void handleEvent( Event e )
 			{
-				if ( !button.isEnabled( ) || e.button != 1 )
+				if ( !button.isEnabled( ) || e.button != 1 || !mouseDown )
 					return;
+				mouseDown = false;
 				mouseSelection = true;
 				Rectangle size = button.getBounds( );
 				if ( !size.contains( e.x, e.y ) )
@@ -232,6 +246,21 @@ public class MenuButton extends Composite
 						menu.setVisible( true );
 					}
 				}
+			}
+
+		} );
+
+		button.addListener( SWT.MouseDown, new Listener( ) {
+
+			public void handleEvent( Event e )
+			{
+				if ( !button.isEnabled( ) || e.button != 1 )
+					return;
+				mouseSelection = true;
+				Rectangle size = button.getBounds( );
+				if ( !size.contains( e.x, e.y ) )
+					return;
+				mouseDown = true;
 			}
 
 		} );
@@ -265,32 +294,12 @@ public class MenuButton extends Composite
 				if ( listeners == null )
 					return;
 
-                // separate the mouse click from the key press event on the button
-                boolean keyPress = false;
-                if( e.widget instanceof Button )
-                {
-                    if( ((Button)e.widget).getParent() instanceof MenuButton )
-                    {
-                        if ( menu != null )
-                        {
-                            keyPress = true;
-                            Rectangle size = button.getBounds( );
-                            menu.setLocation( button.toDisplay( new Point( 0,
-                                    size.height - 1 ) ) );
-                            menu.setVisible( true );
-                        }
-                    }
-                }
-                
-                if( !keyPress )
-                {
-                    e.widget = MenuButton.this;
+				e.widget = MenuButton.this;
 
-                    for ( int i = 0; i < listeners.size( ); i++ )
-                    {
-                        ( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
-                    }
-                }
+				for ( int i = 0; i < listeners.size( ); i++ )
+				{
+					( (SelectionListener) listeners.get( i ) ).widgetSelected( new SelectionEvent( e ) );
+				}
 			}
 
 		} );
@@ -303,12 +312,12 @@ public class MenuButton extends Composite
 		this.menu = menu;
 	}
 
-	private List<SelectionListener> listeners;
+	private List listeners;
 
 	public void addSelectionListener( SelectionListener listener )
 	{
 		if ( listeners == null )
-			listeners = new ArrayList<SelectionListener>( );
+			listeners = new ArrayList( );
 		listeners.add( listener );
 	}
 
@@ -397,13 +406,9 @@ public class MenuButton extends Composite
 				int imageWidth = image.getImageData( ).width;
 				int imageHeight = image.getImageData( ).height;
 
-				Image imageTemp;
+				Image imageTemp = null;
 
-				if ( isEnabled( ) )
-					imageTemp = new Image( e.gc.getDevice( ),
-							image,
-							SWT.IMAGE_COPY );
-				else
+				if ( !isEnabled( ) )
 					imageTemp = new Image( e.gc.getDevice( ),
 							image,
 							SWT.IMAGE_DISABLE );
@@ -417,18 +422,34 @@ public class MenuButton extends Composite
 				}
 
 				left += ( MARGIN_GAP + imageWidth );
-				e.gc.drawImage( imageTemp,
-						0,
-						0,
-						imageTemp.getImageData( ).width,
-						imageTemp.getImageData( ).height,
-						( size.width - left ) / 2 + MARGIN_GAP,
-						Math.round( ( (float) ( size.height - imageHeight ) / 2 ) ),
-						imageWidth,
-						imageHeight );
+				if ( !isEnabled( ) )
+				{
+					e.gc.drawImage( imageTemp,
+							0,
+							0,
+							imageTemp.getImageData( ).width,
+							imageTemp.getImageData( ).height,
+							( size.width - left ) / 2 + MARGIN_GAP,
+							Math.round( ( (float) ( size.height - imageHeight ) / 2 ) ),
+							imageWidth,
+							imageHeight );
 
-				imageTemp.dispose( );
+					imageTemp.dispose( );
+				}
+				else
+				{
+					e.gc.drawImage( image,
+							0,
+							0,
+							image.getImageData( ).width,
+							image.getImageData( ).height,
+							( size.width - left ) / 2 + MARGIN_GAP,
+							Math.round( ( (float) ( size.height - imageHeight ) / 2 ) ),
+							imageWidth,
+							imageHeight );
+				}
 			}
+
 		}
 		finally
 		{

@@ -62,7 +62,7 @@ public class ProfileStoreBrowseButton
 			IMenuButtonProvider provider, IBrowseButtonHost host)
 	{
 		this.host = host;
-		button = new MenuButton( parent, style, provider.getButtonText() );
+		button = new MenuButton( parent, style );
 		button.addSelectionListener( listener );
 		button.addSelectionListener( new SelectionAdapter( ) {
 
@@ -75,6 +75,7 @@ public class ProfileStoreBrowseButton
 
 		menu = new Menu( parent.getShell( ), SWT.POP_UP );
 		button.setDropDownMenu( menu );
+		button.setText( provider.getButtonText( ) );
         button.setToolTipText( provider.getToolTipText() );
 		setMenuButtonProvider( provider );
 		refresh( );
