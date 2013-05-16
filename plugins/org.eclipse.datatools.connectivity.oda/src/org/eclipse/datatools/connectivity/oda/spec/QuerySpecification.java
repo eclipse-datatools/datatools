@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.spec.basequery.CombinedQuery;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
@@ -32,6 +33,7 @@ public class QuerySpecification
     private ResultSetSpecification m_resultSpec;
     private Map<String,Object> m_propertyMap;
     private Map<ParameterIdentifier,Object> m_parameterValues;
+    private BaseQuery m_baseQuery;
 
     // trace logging variables
     private static final String sm_className = QuerySpecification.class.getName();
@@ -314,6 +316,29 @@ public class QuerySpecification
     }
 
     /**
+     * <strong>EXPERIMENTAL</strong><br>
+     * Specifies the optional base query on which this query specification is to be applied.
+     * @param baseQuery     a concrete type of BaseQuery; may be null to defer the specification 
+     *                  until an {@link org.eclipse.datatools.connectivity.oda.IQuery} is prepared.
+     * @since 3.4 (DTP 1.11)
+     */
+    public void setBaseQuery( BaseQuery baseQuery )
+    {
+        m_baseQuery = baseQuery;
+    }
+
+    /**
+     * Gets the base query on which this query specification is to be applied.
+     * @return     a concrete type of BaseQuery; may be null to defer the specification 
+     *                  until an {@link org.eclipse.datatools.connectivity.oda.IQuery} is prepared.
+     * @since 3.4 (DTP 1.11)
+     */
+    public BaseQuery getBaseQuery()
+    {
+        return m_baseQuery;
+    }
+
+    /**
      * Validates this in the specified context. 
      * @param context   context for validation; may be null which would limit the scope of validation
      * @throws OdaException if validation failed.  The exception thrown may be a chained OdaException, 
@@ -338,7 +363,23 @@ public class QuerySpecification
             throw ex;
         }
     }
-    
+
+    @Override
+    public String toString()
+    {
+        StringBuffer buffer = new StringBuffer( QuerySpecification.class.getSimpleName() );
+        buffer.append( "\n    { property count: " ); //$NON-NLS-1$
+        buffer.append( getProperties().size() );
+        buffer.append( " }; { parameter count: " ); //$NON-NLS-1$
+        buffer.append( getParameterValues().size() );
+        buffer.append( " }\n    { base query: " ); //$NON-NLS-1$
+        buffer.append( m_baseQuery );
+        buffer.append( " }\n    { resultSpec: " ); //$NON-NLS-1$
+        buffer.append( m_resultSpec );
+        buffer.append( " }" ); //$NON-NLS-1$
+        return buffer.toString();
+    }
+
     /**
      * The identifier of a data set query parameter, defined by its native name and/or id (1-based).
      * <br>A name if specified takes precedence over its specified id.

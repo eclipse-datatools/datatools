@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2010 Actuate Corporation.
+ * Copyright (c) 2004, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -67,9 +67,11 @@ public class Messages extends NLS
     public static String querySpec_CUSTOM_FUNC_LESS_THAN_MIN_ARGS;
     public static String querySpec_EXTENSION_ID_NOT_FOUND;
     public static String querySpec_ILLEGAL_CONSTRUCTOR_ARG;
+    public static String querySpec_INCOMPLETE_COMBINED_QUERY;
     public static String querySpec_INVALID_AGGR_EXPR;
     public static String querySpec_INVALID_AGGR_HIDE_COLUMN;
     public static String querySpec_INVALID_ARG;
+    public static String querySpec_INVALID_BASE_QUERY;
     public static String querySpec_INVALID_CLASS_TYPE_ATTRIBUTE;
     public static String querySpec_INVALID_COLUMN_IDENTIFIER;
     public static String querySpec_INVALID_EXT_POINT_ATTR_VALUE;
@@ -80,6 +82,8 @@ public class Messages extends NLS
     public static String querySpec_INVALID_SORT_SPEC;
     public static String querySpec_INVALID_VALUE_EXPR;
     public static String querySpec_MAX_ONE_NEGATING_EXPR;
+    public static String querySpec_MISSING_ATOMIC_QUERY_TEXT;
+    public static String querySpec_MISSING_COMBINED_MATCHING_EXPR;
     public static String querySpec_MISSING_COMPOSITE_MIN_CHILDREN;
     public static String querySpec_MISSING_EXPR_VARIABLE;
     public static String querySpec_MISSING_EXT_POINT_ATTR_VALUE;

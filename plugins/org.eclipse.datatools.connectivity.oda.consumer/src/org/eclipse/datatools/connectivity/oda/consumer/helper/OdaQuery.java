@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2011 Actuate Corporation.
+ * Copyright (c) 2004, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
  * OdaQuery is the ODA wrapper for query statements.
@@ -215,12 +216,22 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		// statement
 		resetStatementStates();
 		
-		// check whether the queryText is valid according to the ODA interfaces spec,
-		// i.e. not null; if null, convert it to an empty string
- 		if( queryText == null )
+		// checks whether the queryText is valid according to the ODA interfaces spec; 
+		// if null or empty, applies the atomic base query if exists; otherwise, 
+		// if null, convert it to an empty string
+ 		if( queryText == null || queryText.trim().isEmpty() )
  		{
-		    log( logContext, "Converted the null queryText argument to an empty String value to comply with the ODA interfaces specification." ); //$NON-NLS-1$
- 			queryText = ""; //$NON-NLS-1$
+ 		    QuerySpecification querySpec = getSpecification();
+ 		    if( querySpec != null && QuerySpecificationHelper.hasAtomicQueryText( querySpec ) )
+ 		    {
+                log( logContext, "Applied the query text specified in the query specification's base query." ); //$NON-NLS-1$
+ 		        queryText = QuerySpecificationHelper.getAtomicQuery( querySpec ).getQueryText();
+ 		    }
+ 		    else if( queryText == null )
+ 		    {
+    		    log( logContext, "Converted the null queryText argument to an empty String value to comply with the ODA interfaces specification." ); //$NON-NLS-1$
+     			queryText = ""; //$NON-NLS-1$
+ 		    }
  		}
 		
 		if( ! getOdaConnection().canSupportMoreOpenedStatements() )

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.spec.BaseQuery;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
@@ -314,6 +315,8 @@ public class ValidatorUtil
 //                if( restrictedInstanceTypes.length > 0 )
 //                    hasRestrictedInstanceTypes = true;
 //                break;
+            default:
+                break;
         }
         if( ! hasRestrictedOdaDataTypes && ! hasRestrictedInstanceTypes )
             return;     // has no type restrictions
@@ -853,6 +856,75 @@ public class ValidatorUtil
         return false;
     }
 
+    /**
+     * Creates and returns a top-level OdaException to indicate that the 
+     * specified invalidBaseQuery is the cause of the specified driverEx exception.
+     * @param invalidBaseQuery a {@link BaseQuery} that is invalid
+     * @param driverEx  optional detail OdaException thrown by an ODA driver that has detected 
+     *              the invalid state; may be null
+     * @return  an OdaException chain with the specified invalidBaseQuery
+     *          identified as the cause
+     * @see {@link #isInvalidBaseQuery(BaseQuery, OdaException)}
+     * @since 3.4 (DTP 1.11)
+     */
+    public static OdaException newBaseQueryException( BaseQuery invalidBaseQuery, OdaException driverEx )
+    {
+        return newBaseQueryException( Messages.querySpec_INVALID_BASE_QUERY, invalidBaseQuery, driverEx );
+    }
+    
+    /**
+     * Creates and returns an OdaException with the specified invalidBaseQuery identified as the cause.
+     * @param message   custom exception message
+     * @param invalidBaseQuery    the invalid {@link BaseQuery} to set as the cause
+     * @return  an OdaException with the specified message and invalidBaseQuery
+     *          identified as the cause
+     * @see {@link #isInvalidBaseQuery(BaseQuery, OdaException)}
+     * @since 3.4 (DTP 1.11)
+     */
+    public static OdaException newBaseQueryException( String message, BaseQuery invalidBaseQuery )
+    {
+        return newBaseQueryException( message, invalidBaseQuery, null );
+    }
+    
+    private static OdaException newBaseQueryException( String message, BaseQuery invalidBaseQuery, 
+            OdaException chainedEx )
+    {
+        // if this BaseQuery is already identified as a cause in the caught exception,
+        // proceed to use chainedEx as is; otherwise, add this BaseQuery as the root cause 
+        if( chainedEx != null && isInvalidBaseQuery( invalidBaseQuery, chainedEx ) )
+            return chainedEx;
+        return newOdaException( message, getInstanceId( invalidBaseQuery ), chainedEx );
+    }
+    
+    /**
+     * Indicates whether the specified baseQuery is one of the cause(s)
+     * in the specified OdaException chain.
+     * @param baseQuery    a {@link BaseQuery} whose processing might have caused an OdaException
+     * @param rootEx    the root of an OdaException chain caught while processing the baseQuery
+     * @return  true if the specified baseQuery is one of the cause(s) in the OdaException chain;
+     *          false otherwise
+     * @since 3.4 (DTP 1.11)
+     */
+    public static boolean isInvalidBaseQuery( BaseQuery baseQuery, OdaException rootEx )
+    {
+        if( baseQuery == null )
+            return true;
+
+        String baseQueryId = getInstanceId( baseQuery );
+        OdaException currentEx = rootEx;
+        while( currentEx != null )
+        {
+            Throwable cause = currentEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    baseQueryId.equals( cause.getMessage() ) )
+                return true;
+            
+            currentEx = currentEx.getNextException();
+        }
+
+        return false;
+    }
+
     private static String getInstanceId( FilterExpression filterExpr )
     {
         if( filterExpr == null )
@@ -893,6 +965,13 @@ public class ValidatorUtil
         if( resultSetSpec == null )
             return null;
         return resultSetSpec.getClass().getSimpleName() + AT_SYMBOL + Integer.toHexString( resultSetSpec.hashCode() );
+    }
+
+    private static String getInstanceId( BaseQuery baseQuery )
+    {
+        if( baseQuery == null )
+            return null;
+        return baseQuery.getName() + AT_SYMBOL + Integer.toHexString( baseQuery.hashCode() );
     }
     
 }

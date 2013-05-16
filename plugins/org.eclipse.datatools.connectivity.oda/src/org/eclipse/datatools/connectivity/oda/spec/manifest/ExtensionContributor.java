@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,6 +43,7 @@ public class ExtensionContributor implements IContributor
     public static final String SUB_ELEMENT_ROW_ORDERING_SUPPORT = "supportsRowOrdering"; //$NON-NLS-1$
     public static final String ATTR_NULL_ORDERING_SUPPORT = "nullValueOrdering"; //$NON-NLS-1$
     public static final String ATTR_NESTED_VALUEEXPR_SUPPORT = "supportsNestedExpressions"; //$NON-NLS-1$
+    public static final String SUB_ELEMENT_COMBINE_QUERIES_SUPPORT = "supportsCombiningQueries"; //$NON-NLS-1$
     
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
     
@@ -54,6 +55,7 @@ public class ExtensionContributor implements IContributor
     private boolean m_supportsRowOrdering;
     private boolean m_supportsNullOrdering;
     private boolean m_supportsNestedValueExprs;
+    private boolean m_supportsCombineQueries;
     
     public ExtensionContributor( IConfigurationElement contributorElement ) throws OdaException
     {
@@ -85,6 +87,14 @@ public class ExtensionContributor implements IContributor
                 m_supportsNullOrdering = Boolean.parseBoolean( attrValue );
         }
 
+        // supportsCombiningQueries child element
+        m_supportsCombineQueries = false;   // default value
+        IConfigurationElement[] combineQueriesElements = contributorElement.getChildren( SUB_ELEMENT_COMBINE_QUERIES_SUPPORT );
+        if( combineQueriesElements.length > 0 )
+        {
+            m_supportsCombineQueries = true;
+        }
+       
         // processing of optional validator and specificationFactory attributes are deferred till it is needed
     }
 
@@ -237,7 +247,18 @@ public class ExtensionContributor implements IContributor
     {
         return m_supportsRowOrdering;
     }
-    
+
+    /**
+     * Indicates whether this contributor supports dynamic operation that combines
+     * two or more queries for all its supported data set types.
+     * @return  true if dynamic combining queries is supported; false otherwise
+     * @since 3.4 (DTP 1.11)
+     */
+    public boolean supportsDynamicCombiningQueries()
+    {
+        return m_supportsCombineQueries;
+    }
+
     /**
      * Indicates whether this contributor's support of dynamic row ordering includes
      * control over the ordering of null vs. non-null values in the row order.

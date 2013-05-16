@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -133,6 +133,30 @@ public interface IValidator
      *          by the class implementing this method.
      */
     public void validate( SortSpecification sortSpec, ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * <strong>EXPERIMENTAL</strong><br>
+     * Validates the specified base query in the specified context. 
+     * @param baseQuery     a concrete {@link BaseQuery} to validate
+     * @param context      context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     * @since 3.4 (DTP 1.11)
+     */
+    public void validate( BaseQuery baseQuery, ValidationContext context ) 
+        throws OdaException;
+
+    /**
+     * <strong>EXPERIMENTAL</strong><br>
+     * Performs syntactic validation of the specified base query in the specified context. 
+     * @param baseQuery     a concrete {@link BaseQuery} to validate
+     * @param context      context for validation; may be null which would limit the scope of validation
+     * @throws OdaException if validation failed. The cause is defined 
+     *          by the class implementing this method.
+     * @since 3.4 (DTP 1.11)
+     */
+    public void validateSyntax( BaseQuery baseQuery, ValidationContext context )
         throws OdaException;
 
     /**

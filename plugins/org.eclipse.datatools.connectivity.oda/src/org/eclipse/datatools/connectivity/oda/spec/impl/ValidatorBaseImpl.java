@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,11 +15,12 @@
 package org.eclipse.datatools.connectivity.oda.spec.impl;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.spec.BaseQuery;
 import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
-import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext.Connection;
+import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
@@ -109,6 +110,18 @@ public class ValidatorBaseImpl implements IValidator
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validate(org.eclipse.datatools.connectivity.oda.spec.BaseQuery, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     * @since 3.4 (DTP 1.11)
+     */
+    public void validate( BaseQuery baseQuery, ValidationContext context )
+        throws OdaException
+    {
+        validateSyntax( baseQuery, context );
+        
+        // sub-class to extend
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
      */
     public void validateSyntax( FilterExpression filterExpr,
@@ -131,6 +144,16 @@ public class ValidatorBaseImpl implements IValidator
      */
     public void validateSyntax( ValueExpression valueExpr,
             ValidationContext context ) throws OdaException
+    {
+        // sub-class to extend
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.spec.IValidator#validateSyntax(org.eclipse.datatools.connectivity.oda.spec.BaseQuery, org.eclipse.datatools.connectivity.oda.spec.ValidationContext)
+     * @since 3.4 (DTP 1.11)
+     */
+    public void validateSyntax( BaseQuery baseQuery, ValidationContext context ) 
+        throws OdaException
     {
         // sub-class to extend
     }

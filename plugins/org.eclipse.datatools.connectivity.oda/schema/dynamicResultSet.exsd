@@ -60,6 +60,7 @@
          <sequence>
             <element ref="supportedDataSetType" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="supportsRowOrdering" minOccurs="0" maxOccurs="1"/>
+            <element ref="supportsCombiningQueries" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="validatorClass" type="string">
             <annotation>
@@ -436,6 +437,14 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
       </complexType>
    </element>
 
+   <element name="supportsCombiningQueries" type="string">
+      <annotation>
+         <documentation>
+            [Experimental] Indicates this extension contributes dynamic operation that combines two or more queries for all its supported data set types.  Absence of this element indicates no support.
+         </documentation>
+      </annotation>
+   </element>
+
    <element name="valueExpressionTypes">
       <annotation>
          <documentation>
@@ -665,7 +674,7 @@ The name should be unique within the extension.
       <documentation>
          A sample implementation of this extension point can be found in the
 &lt;i&gt;org.eclipse.datatools.connectivity.oda.consumer.testdriver&lt;/i&gt; project 
-in DTP CVS under the org.eclipse.datatools.connectivity/tests/ folder.
+in DTP Connectivity Git repository under the org.eclipse.datatools.connectivity/tests/ folder.
       </documentation>
    </annotation>
 
@@ -674,7 +683,7 @@ in DTP CVS under the org.eclipse.datatools.connectivity/tests/ folder.
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         Copyright (c) 2009, 2010 Actuate Corporation.
+         Copyright (c) 2009, 2013 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>

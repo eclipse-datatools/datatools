@@ -20,8 +20,11 @@ import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.AdvancedQuerySpecification;
+import org.eclipse.datatools.connectivity.oda.spec.BaseQuery;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification.ParameterIdentifier;
+import org.eclipse.datatools.connectivity.oda.spec.basequery.AtomicQuery;
+import org.eclipse.datatools.connectivity.oda.spec.basequery.CombinedQuery;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
@@ -282,7 +285,55 @@ public class QuerySpecificationHelper
     {
         return ( querySpec != null ) ? querySpec.getResultSetSpecification() : null;
     }
-    
+
+    /**
+     * Gets the atomic base query from the specified querySpec.
+     * @param querySpec a query specification
+     * @return  the {@link AtomicQuery} in the specified querySpec, or null if none is available
+     * @since 3.4 (DTP 1.11)
+     */
+    public static AtomicQuery getAtomicQuery( QuerySpecification querySpec )
+    {
+        BaseQuery baseQuery = querySpec != null ? querySpec.getBaseQuery() : null;
+        return baseQuery instanceof AtomicQuery ? (AtomicQuery)baseQuery : null;
+    }
+
+    /**
+     * Gets the combined base query from the specified querySpec.
+     * @param querySpec a query specification
+     * @return the {@link CombinedQuery} in the specified querySpec, or null if none is available
+     * @since 3.4 (DTP 1.11)
+     */
+    public static CombinedQuery getCombinedQuery( QuerySpecification querySpec )
+    {
+        BaseQuery baseQuery = querySpec != null ? querySpec.getBaseQuery() : null;
+        return baseQuery instanceof CombinedQuery ? (CombinedQuery)baseQuery : null;
+    }
+
+    /**
+     * Indicates whether the specified querySpec contains an atomic base query defined with
+     * a query text.
+     * @return  true if an atomic base query text is specified; false otherwise
+     * @since 3.4 (DTP 1.11)
+     */
+    public static boolean hasAtomicQueryText( QuerySpecification querySpec )
+    {
+        AtomicQuery atomicQuery = getAtomicQuery( querySpec );
+        return atomicQuery != null ? 
+                    atomicQuery.hasQueryText() : 
+                    false;
+    }
+
+    /**
+     * Indicates whether the specified querySpec contains a composite base query.
+     * @return  true if a combined base query is specified; false otherwise
+     * @since 3.4 (DTP 1.11)
+     */
+    public static boolean hasCombinedQuery( QuerySpecification querySpec )
+    {
+        return getCombinedQuery( querySpec ) != null;
+    }
+
     /**
      * Returns the string representation of the content found in the specified QuerySpecification.
      * This utility method may be used for logging and debugging purpose.
