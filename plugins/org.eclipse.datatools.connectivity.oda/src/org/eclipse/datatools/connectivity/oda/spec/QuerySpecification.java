@@ -19,7 +19,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.basequery.CombinedQuery;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
@@ -364,6 +363,10 @@ public class QuerySpecification
         }
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     * @see {@link QuerySpecificationHelper#getContentAsString(QuerySpecification)}
+     */
     @Override
     public String toString()
     {
