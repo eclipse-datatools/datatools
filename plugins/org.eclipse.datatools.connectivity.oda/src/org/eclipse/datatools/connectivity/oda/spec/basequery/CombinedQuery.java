@@ -34,8 +34,10 @@ public class CombinedQuery extends BaseQuery
 {
     public enum CombinedType
     {
-        INNER_JOIN
-        ;   // TODO additional combined types
+        INNER_JOIN,
+        LEFT_OUTER,
+        RIGHT_OUTER,
+        FULL_OUTER;
     }
     
     private CombinedType m_combinedType;
