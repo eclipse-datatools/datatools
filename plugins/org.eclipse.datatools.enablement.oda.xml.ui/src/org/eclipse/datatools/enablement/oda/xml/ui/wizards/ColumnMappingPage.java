@@ -50,12 +50,14 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -167,17 +169,31 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	public void createPageCustomControl( Composite parent )
 	{
-		setControl( createPageControl( parent ) );
-		if( XMLInformationHolder.hasDestroyed( ) )
+		ScrolledComposite sComposite = new ScrolledComposite( parent,
+				SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Control control = createPageControl( sComposite );
+
+		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( this.getInitializationDesign( ) );
 		initializeControl( );
 		if ( selectedTreeItemText != null )
 			populateXMLTree( );
-		
+
+		Point size = control.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		control.setSize( size.x, size.y );
+
+		sComposite.setContent( control );
+		setControl( sComposite );
+
 		XMLRelationInfoUtil.setSystemHelp( getControl( ),
 				IHelpConstants.CONEXT_ID_DATASET_XML_COLUMNMAPPING );
 	}
-	
+
 	/**
 	 * initial the page info property after create the page control
 	 * 
@@ -338,6 +354,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 						if ( columnDialog.open( ) == Window.OK )
 						{
 							columnElement = columnDialog.getColumnMapping( );
+						}
+						else
+						{
+							return;
 						}
 					}
 					if ( columnElement != null )
@@ -750,6 +770,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 					public void handleEvent( Event event )
 					{
+						availableXmlTree.getTree( ).deselectAll( );
 						if ( columnMappingTable.getViewer( )
 								.getTable( )
 								.getSelectionCount( ) == 1 )
@@ -768,6 +789,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 										.setEnabled( true );
 							}
 						}
+						availableXmlTree.getSingleButton( ).setEnabled( false );
 					}
 				} );
 
