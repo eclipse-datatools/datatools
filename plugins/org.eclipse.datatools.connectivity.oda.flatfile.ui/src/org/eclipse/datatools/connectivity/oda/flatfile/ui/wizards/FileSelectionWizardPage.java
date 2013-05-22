@@ -150,10 +150,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private transient ComboViewer fileFilter = null;
 	private transient List availableList = null;
 	private transient TableViewer selectedColumnsViewer = null;
-	private transient Button btnAdd = null;
-	private transient Button btnRemove = null;
-	private transient Button btnMoveUp = null;
-	private transient Button btnMoveDown = null;
+	private transient Button btnAdd, btnAddAll, btnRemove, btnRemoveAll,
+			btnMoveUp, btnMoveDown;
 	private boolean initialized = true;
 
 	private String odaHome;
@@ -343,13 +341,15 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		createLeftComposite( composite );
 
-		Composite btnComposite = createAddBtnComposite( composite );
+		Composite btnComposite = createCenterBtnComposite( composite );
 
 		createRightComposite( composite, btnComposite );
 
 		loadProperties( );
 		populateFileFilter( );
 		updateFileListAndCharSet( );
+		updateButtonStatus( );
+		
 		return composite;
 	}
 
@@ -453,7 +453,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				selectedColumnsViewer.getTable( ).deselectAll( );
-				updateButtons( );
+				updateButtonStatus( );
 			}
 		} );
 
@@ -462,6 +462,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void mouseDoubleClick( MouseEvent e )
 			{
 				addColumns( );
+
+				updateButtonStatus( );
 				validatePageStatus( );
 			}
 		} );
@@ -473,10 +475,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param composite
 	 * @return
 	 */
-	private Composite createAddBtnComposite( Composite composite )
+	private Composite createCenterBtnComposite( Composite composite )
 	{
 		FormData data = new FormData( );
-		data.top = new FormAttachment( 50, 5 );
+		data.top = new FormAttachment( 40, 5 );
 		data.left = new FormAttachment( availableList, 3 );
 
 		Composite btnComposite = new Composite( composite, SWT.NONE );
@@ -485,35 +487,76 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		layout.numColumns = 1;
 		btnComposite.setLayout( layout );
 
+		GridData gridData = new GridData( );
+		gridData.widthHint = 40;
 		btnAdd = new Button( btnComposite, SWT.NONE );
-		GridData gridData = new GridData( GridData.VERTICAL_ALIGN_CENTER
-				| GridData.FILL_HORIZONTAL );
-		gridData.heightHint = 25;
 		btnAdd.setLayoutData( gridData );
+		btnAdd.setText( ">" ); //$NON-NLS-1$
 		btnAdd.setToolTipText( Messages.getString( "tooltip.button.add" ) ); //$NON-NLS-1$
-
-		if ( btnAdd.getStyle( ) == ( btnAdd.getStyle( ) | SWT.LEFT_TO_RIGHT ) )
-		{
-			btnAdd.setImage( PlatformUI.getWorkbench( )
-					.getSharedImages( )
-					.getImage( ISharedImages.IMG_TOOL_FORWARD ) );
-		}
-		else
-		{
-			btnAdd.setImage( PlatformUI.getWorkbench( )
-					.getSharedImages( )
-					.getImage( ISharedImages.IMG_TOOL_BACK ) );
-		}
 
 		btnAdd.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
 				addColumns( );
+
+				updateButtonStatus( );
+				validatePageStatus( );
+			}
+		} );		
+		
+		gridData = new GridData( );
+		gridData.widthHint = 40;
+		btnAddAll = new Button( btnComposite, SWT.NONE );
+		btnAddAll.setLayoutData( gridData );
+		btnAddAll.setText( ">>" ); //$NON-NLS-1$
+		btnAddAll.setToolTipText( Messages.getString( "tooltip.button.AddAll" ) ); //$NON-NLS-1$
+
+		btnAddAll.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				addAllAvailableColumns( );
+
+				updateButtonStatus( );
 				validatePageStatus( );
 			}
 		} );
+		
+		gridData = new GridData( );
+		gridData.widthHint = 40;
+		btnRemove = new Button( btnComposite, SWT.NONE );
+		btnRemove.setLayoutData( gridData );
+		btnRemove.setText( "<" ); //$NON-NLS-1$
+		btnRemove.setToolTipText( Messages.getString( "tooltip.button.remove" ) ); //$NON-NLS-1$
 
+		btnRemove.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				removeColumns( );
+				updateButtonStatus( );
+				validatePageStatus( );
+			}
+		} );
+		
+		gridData = new GridData( );
+		gridData.widthHint = 40;
+		btnRemoveAll = new Button( btnComposite, SWT.NONE );
+		btnRemoveAll.setLayoutData( gridData );
+		btnRemoveAll.setText( "<<" ); //$NON-NLS-1$
+		btnRemoveAll.setToolTipText( Messages.getString( "tooltip.button.RemoveAll" ) ); //$NON-NLS-1$
+
+		btnRemoveAll.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				removeAllColumns( );
+				updateButtonStatus( );
+				validatePageStatus( );
+			}
+		} );
+		
 		return btnComposite;
 	}
 
@@ -574,7 +617,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				removeColumns( );
-				updateButtons( );
+				updateButtonStatus( );
 				validatePageStatus( );
 			}
 
@@ -586,7 +629,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				removeAllColumns( );
-				updateButtons( );
+				updateButtonStatus( );
 				validatePageStatus( );
 			}
 
@@ -603,7 +646,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 								.getSelectionCount( ) > 0 );
 
 						availableList.deselectAll( );
-						updateButtons( );
+						updateButtonStatus( );
 
 					}
 				} );
@@ -624,7 +667,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				if ( e.keyCode == SWT.DEL )
 				{
 					removeColumns( );
-					updateButtons( );
+					updateButtonStatus( );
 					validatePageStatus( );
 				}
 			}
@@ -700,17 +743,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 
-		btnRemove = new Button( btnComposite, SWT.NONE );
-		btnRemove.setText( Messages.getString( "button.delete" ) ); //$NON-NLS-1$
-		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) ); //$NON-NLS-1$
-		btnRemove.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				removeColumns( );
-			}
-		} );
-
 		btnMoveDown = new Button( btnComposite, SWT.NONE );
 		btnMoveDown.setText( Messages.getString( "button.moveDown" ) ); //$NON-NLS-1$
 		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) ); //$NON-NLS-1$
@@ -727,16 +759,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private void resetButtonWidth( )
 	{
-		int widthHint = Math.max( btnMoveUp.computeSize( SWT.DEFAULT,
-				SWT.DEFAULT ).x, btnRemove.computeSize( SWT.DEFAULT,
-				SWT.DEFAULT ).x );
+		int widthHint = btnMoveUp.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x;
 		widthHint = Math.max( widthHint,
 				btnMoveDown.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x );
 		widthHint = Math.max( widthHint, 52 );
 		GridData btnGd = new GridData( );
 		btnGd.widthHint = widthHint;
 		btnMoveUp.setLayoutData( btnGd );
-		btnRemove.setLayoutData( btnGd );
 		btnMoveDown.setLayoutData( btnGd );
 	}
 
@@ -901,6 +930,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 			selectedFile = file;
 		}
+		updateButtonStatus( );
 	}
 
 	private void updateAvailableColumnsInfo( String fileName )
@@ -913,7 +943,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			availableList.setItems( columnNames );
 			availableList.select( 0 );
 
-			updateButtons( );
+			updateButtonStatus( );
 
 			if ( !( fileName.endsWith( CSV_EXTENSION )
 					|| fileName.endsWith( TXT_EXTENSION )
@@ -928,8 +958,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 	}
 
-	private void updateButtons( )
+	private void updateButtonStatus( )
 	{
+		int availableListItemCount = availableList.getItemCount( );
+		int selectedColumnsItemCount = selectedColumnsViewer.getTable( )
+				.getItemCount( );
+
 		if ( availableList.getSelectionCount( ) > 0 )
 		{
 			btnAdd.setEnabled( true );
@@ -937,48 +971,83 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			btnMoveUp.setEnabled( false );
 			btnMoveDown.setEnabled( false );
 		}
-		else if ( selectedColumnsViewer.getTable( ).getSelectionCount( ) > 0 )
-		{
-			btnAdd.setEnabled( false );
-			btnRemove.setEnabled( true );
-
-			btnMoveUp.setEnabled( false );
-			btnMoveDown.setEnabled( false );
-
-			int index = selectedColumnsViewer.getTable( ).getSelectionIndex( );
-			if ( index > 0 )
-			{
-				btnMoveUp.setEnabled( true );
-			}
-			if ( index < ( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 ) )
-			{
-				btnMoveDown.setEnabled( true );
-			}
-
-		}
 		else
 		{
-			btnAdd.setEnabled( false );
-			btnRemove.setEnabled( false );
-			btnMoveUp.setEnabled( false );
-			btnMoveDown.setEnabled( false );
+			int count = selectedColumnsViewer.getTable( ).getSelectionCount( );
+
+			if ( count < 1 )
+			{
+				btnAdd.setEnabled( false );
+				btnRemove.setEnabled( false );
+				btnMoveUp.setEnabled( false );
+				btnMoveDown.setEnabled( false );
+			}
+			else if ( count > 1 )
+			{
+				btnAdd.setEnabled( false );
+				btnRemove.setEnabled( true );
+				btnMoveUp.setEnabled( false );
+				btnMoveDown.setEnabled( false );
+			}
+			else
+			{
+				int index = selectedColumnsViewer.getTable( )
+						.getSelectionIndex( );
+				btnAdd.setEnabled( false );
+				btnRemove.setEnabled( true );
+				btnMoveUp.setEnabled( index > 0 );
+				btnMoveDown.setEnabled( index >= 0
+						&& index < ( selectedColumnsItemCount - 1 ) );
+			}
+
 		}
+
+		btnAddAll.setEnabled( availableListItemCount > 0 );
+		btnRemoveAll.setEnabled( selectedColumnsItemCount > 0 );
 	}
 
-	private void updateSelectionFocus( )
+	private void updateAvailableListSelection( )
 	{
 		int[] indices = availableList.getSelectionIndices( );
+		availableList.deselectAll( );
 		if ( indices.length > 0 )
 		{
 			int nextIndex = indices[indices.length - 1] + 1;
 			if ( availableList.getItemCount( ) > nextIndex )
 			{
-				availableList.deselectAll( );
 				availableList.select( nextIndex );
+			}
+			else
+			{
+				availableList.select( availableList.getItemCount( ) - 1 );
 			}
 		}
 	}
 	
+	private void updateSelectedItemsSelection( int nextIndex )
+	{
+		int itemCount = selectedColumnsViewer.getTable( ).getItemCount( );
+		
+		availableList.deselectAll( );
+		selectedColumnsViewer.getTable( ).deselectAll( );
+
+		if ( itemCount == 0 )
+		{
+			if ( availableList.getItemCount( ) > 0 )
+			{
+				availableList.select( 0 );
+			}
+		}
+		else if ( itemCount > nextIndex )
+		{
+			selectedColumnsViewer.getTable( ).select( nextIndex );
+		}
+		else if ( itemCount > 0 )
+		{
+			selectedColumnsViewer.getTable( ).select( itemCount - 1 );
+		}
+	}
+
 	private boolean validateSelectedFileStatus( )
 	{
 		String fileName = fileViewer.getCombo( ).getText( ).trim( );
@@ -1241,7 +1310,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			else
 			{
 				updateFileSelection( );
-				updateButtons( );
+				updateButtonStatus( );
 			}
 		}
 	}
@@ -1360,15 +1429,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			disableAvailableListAndButtons( );
 	}
 
-	/**
-	 * 
-	 *
-	 */
 	private void disableAvailableListAndButtons( )
 	{
 		availableList.setEnabled( false );
 		btnAdd.setEnabled( false );
+		btnAddAll.setEnabled( false );
 		btnRemove.setEnabled( false );
+		btnRemoveAll.setEnabled( false );
 		btnMoveDown.setEnabled( false );
 		btnMoveUp.setEnabled( false );
 	}
@@ -1546,6 +1613,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		selectedColumnsViewer.getTable( ).setEnabled( false );
 		btnAdd.setEnabled( false );
 		btnRemove.setEnabled( false );
+		btnRemoveAll.setEnabled( false );
 		btnMoveUp.setEnabled( false );
 		btnMoveDown.setEnabled( false );
 		setPageComplete( false );
@@ -1715,7 +1783,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			setPageComplete( false );
 		}
 
-		updateButtons( );
+		updateButtonStatus( );
 
 	}
 
@@ -1875,15 +1943,24 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( index == count - 2 )
 			btnMoveDown.setEnabled( false );
 	}
+	
+	private void addAllAvailableColumns( )
+	{
+		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getItems( ) );
+		addColumns( addedItems );
+	}
 
 	/**
 	 * Add selectd columns
 	 */
-
 	private void addColumns( )
 	{
 		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
+		addColumns( addedItems );
+	}
 
+	private void addColumns( java.util.List<String[]> addedItems )
+	{
 		for ( int i = 0; i < addedItems.size( ); i++ )
 		{
 			savedSelectedColumnsInfoList.add( addedItems.get( i ) );
@@ -1891,14 +1968,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		setDisplayContent( savedSelectedColumnsInfoList );
 
-		selectedColumnsViewer.getTable( )
-				.setSelection( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 );
-
-		selectedColumnsViewer.getTable( ).setSelection( -1 );
-
-		updateSelectionFocus( );
-		updateButtons( );
-
+		selectedColumnsViewer.getTable( ).deselectAll( );
+		updateAvailableListSelection( );
 	}
 
 	/**
@@ -1954,7 +2025,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void removeColumns( )
 	{
 		TableItem[] tis = selectedColumnsViewer.getTable( ).getSelection( );
-		int index = selectedColumnsViewer.getTable( ).getSelectionIndex( );
+		int index = selectedColumnsViewer.getTable( ).getSelectionIndex( )
+				- selectedColumnsViewer.getTable( ).getSelectionCount( ) + 1;
 		String[] removedColumnInfo = null;
 
 		java.util.List<String[]> removedItems = new ArrayList<String[]>( );
@@ -1971,19 +2043,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		selectedColumnsViewer.refresh( );
 
-		if ( index > 0 )
-			selectedColumnsViewer.getTable( ).setSelection( index - 1 );
-		else
-			selectedColumnsViewer.getTable( ).setSelection( index );
-
-		if ( selectedColumnsViewer.getTable( ).getSelectionCount( ) == 0 )
-			btnRemove.setEnabled( false );
-
-		if ( savedSelectedColumnsInfoList.size( ) <= 1 )
-		{
-			btnMoveDown.setEnabled( false );
-			btnMoveUp.setEnabled( false );
-		}
+		availableList.deselectAll( );
+		updateSelectedItemsSelection( index );
 
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
 		{
@@ -1998,11 +2059,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		selectedColumnsViewer.refresh( );
 
-		btnRemove.setEnabled( false );
-
-		btnMoveDown.setEnabled( false );
-		btnMoveUp.setEnabled( false );
-
+		updateSelectedItemsSelection( -1 );
 		setPageComplete( false );
 	}
 
