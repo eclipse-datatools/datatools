@@ -74,7 +74,10 @@ public class SOAPRequestPage extends DataSetWizardPage
 	protected final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
 	protected final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
-	private Button editBtn;
+	private Button editBtn, paramBtn;
+	
+	private SOAPRequest soapRequest;
+
 	
 	public SOAPRequestPage( String pageName )
 	{
@@ -166,11 +169,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 		int width = getMaxWidth( templateBtn, 60 );
 
-		Button paramBtn = new Button( composite, SWT.NONE );
+		paramBtn = new Button( composite, SWT.NONE );
 		paramBtn.setText( Messages.getString( "soapRequestPage.button.insertParameter" ) );//$NON-NLS-1$
 		layoutData = new GridData( );
 		layoutData.widthHint = 120;
 		paramBtn.setLayoutData( layoutData );
+		paramBtn.setEnabled( parameters != null && parameters.length > 0 );
 
 		paramBtn.addSelectionListener( new SelectionAdapter( ) {
 
@@ -183,7 +187,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 			{
 				ParameterInputDialog dlg = new ParameterInputDialog( );
 				if ( dlg.open( ) == Window.OK )
-					parameters = dlg.getSOAPParameters( );
+					parameters = updateSOAPParameters( );
 			}
 
 		} );
@@ -233,6 +237,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		initWSConsole( );
 		initFromModel( );
+		initParameters( );
 	}
 
 	private void initWSConsole( )
@@ -249,6 +254,44 @@ public class SOAPRequestPage extends DataSetWizardPage
 			queryText.setText( wsQueryText );
 		parameters = WSConsole.getInstance( ).getParameters( );
 		saved = false;
+	}
+
+	private void initParameters( )
+	{
+		soapRequest = new SOAPRequest( queryText.getText( ) );
+		mergeParameters( );
+		SOAPParameter[] params = soapRequest.getParameters( );
+		paramBtn.setEnabled( params != null && params.length > 0 );
+	}
+
+	private void mergeParameters( )
+	{
+		SOAPParameter[] soapParameters = soapRequest.getParameters( );
+		for ( int i = 0; parameters != null && i < parameters.length; i++ )
+		{
+			if ( !WSUtil.isNull( parameters[i] ) )
+			{
+				int pos = -1;
+				for ( int j = 0; soapParameters != null
+						&& j < soapParameters.length; j++ )
+				{
+					if ( !WSUtil.isNull( soapParameters[j].getName( ) )
+							&& soapParameters[j].getName( )
+									.equals( parameters[i].getName( ) ) )
+					{
+						pos = j;
+						break;
+					}
+				}
+				if ( pos != -1 )
+					soapParameters[pos].setDefaultValue( parameters[i].getDefaultValue( ) );
+			}
+		}
+	}
+
+	SOAPParameter[] updateSOAPParameters( )
+	{
+		return soapRequest.getParameters( );
 	}
 
 	/*
@@ -299,6 +342,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		if ( value != null )
 			queryText.setText( value );
 		parameters = WSConsole.getInstance( ).getParameters( );
+		initParameters( );
 		saved = false;
 	}
 
@@ -368,7 +412,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 
 		private TableViewer viewer;
-		private SOAPRequest soapRequest;
 
 		/**
 		 * 
@@ -410,7 +453,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 			composite.setLayout( layout );
 
 			createCustomControls( composite );
-			initParameters( );
+			viewer.setInput( soapRequest.getParameters( ) );
 			WSUIUtil.setSystemHelp( composite, IHelpConstants.CONEXT_ID_WS_SOAP_REQUEST_PARMETER );
 			return composite;
 		}
@@ -583,42 +626,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 			}
 			viewer.getTable( ).setSelection( -1 );
 			editBtn.setEnabled( false );
-		}
-
-		private void initParameters( )
-		{
-			soapRequest = new SOAPRequest( queryText.getText( ) );
-			mergeParameters( );
-			viewer.setInput( soapRequest.getParameters( ) );
-		}
-
-		private void mergeParameters( )
-		{
-			SOAPParameter[] soapParameters = soapRequest.getParameters( );
-			for ( int i = 0; parameters != null && i < parameters.length; i++ )
-			{
-				if ( !WSUtil.isNull( parameters[i] ) )
-				{
-					int pos = -1;
-					for ( int j = 0; soapParameters != null && j < soapParameters.length; j++ )
-					{
-						if ( !WSUtil.isNull( soapParameters[j].getName( ) )
-								&& soapParameters[j].getName( )
-										.equals( parameters[i].getName( ) ) )
-						{
-							pos = j;
-							break;
-						}
-					}
-					if( pos != -1 )
-						soapParameters[pos].setDefaultValue( parameters[i].getDefaultValue( ) );
-				}
-			}
-		}
-
-		SOAPParameter[] getSOAPParameters( )
-		{
-			return soapRequest.getParameters( );
 		}
 
 	}
