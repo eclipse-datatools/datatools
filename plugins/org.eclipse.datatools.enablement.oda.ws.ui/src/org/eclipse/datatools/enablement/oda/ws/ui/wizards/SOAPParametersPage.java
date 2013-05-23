@@ -64,6 +64,8 @@ public class SOAPParametersPage extends DataSetWizardPage
 	private CheckboxTableViewer viewer;
 	private SOAPRequest soapRequest;
 	private String wsQueryText;
+	
+	private boolean modelChanged;
 
 	private static String DEFAULT_MESSAGE = Messages.getString( "soapParametersPage.message.default" );//$NON-NLS-1$
 
@@ -104,6 +106,9 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		setupParametersComposite( composite );
 		setupSelectionButtons( composite );
+		
+		modelChanged = true;
+		
 		return composite;
 	}
 
@@ -135,8 +140,12 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				viewer.setAllChecked( true );
-				saveToModel( );
+				if( viewer.getCheckedElements( ).length < viewer.getTable( ).getItemCount( ) )
+				{
+					viewer.setAllChecked( true );
+					saveToModel( );
+					modelChanged = true;
+				}
 			}
 
 		} );
@@ -147,8 +156,12 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				viewer.setAllChecked( false );
-				saveToModel( );
+				if ( viewer.getCheckedElements( ).length > 0 )
+				{
+					viewer.setAllChecked( false );
+					saveToModel( );
+					modelChanged = true;
+				}
 			}
 
 		} );
@@ -190,6 +203,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				sortParametersTable( );
+				modelChanged = true;
 			}
 
 		} );
@@ -279,6 +293,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 					viewer.refresh( );
 					saveToModel( );
 				}
+				modelChanged = true;
 			}
 
 		} );
@@ -404,18 +419,24 @@ public class SOAPParametersPage extends DataSetWizardPage
 	 */
 	public IWizardPage getNextPage( )
 	{
-		saveToModel( );
 
 		IWizardPage page = super.getNextPage( );
-		if ( page instanceof SOAPRequestPage )
-			try
+		if ( modelChanged )
+		{
+			saveToModel( );
+			if ( page instanceof SOAPRequestPage )
 			{
-				( (SOAPRequestPage) page ).refresh( );
+				try
+				{
+					( (SOAPRequestPage) page ).refresh( );
+					modelChanged = false;
+				}
+				catch ( OdaException e )
+				{
+					this.setErrorMessage( e.getMessage( ) );
+				}
 			}
-			catch ( OdaException e )
-			{
-				this.setErrorMessage( e.getMessage( ) );
-			}
+		}
 
 		return page;
 	}
