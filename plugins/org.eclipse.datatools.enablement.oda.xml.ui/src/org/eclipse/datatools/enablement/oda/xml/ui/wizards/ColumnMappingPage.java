@@ -464,10 +464,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 		layout.verticalSpacing = 10;
 		tableViewerGroup.setLayout( layout );
 		FormData data = new FormData( );
-		data.top = new FormAttachment( 0, 2 );
+		data.top = new FormAttachment( 0, 5 );
 		data.left = new FormAttachment( availableXmlTree.getBtnComposite( ), 5 );
 		data.right = new FormAttachment( 100, 0 );
-		data.bottom = new FormAttachment( 100, 0 );
+		data.bottom = new FormAttachment( 100, -5 );
 		tableViewerGroup.setLayoutData( data );
 		tableViewerGroup.setEnabled( true );
 		createTableViewerGroup( tableViewerGroup );
