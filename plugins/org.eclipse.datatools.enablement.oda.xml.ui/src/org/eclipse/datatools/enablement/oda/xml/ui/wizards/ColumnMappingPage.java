@@ -788,7 +788,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 					{
 						if ( e.keyCode == SWT.DEL )
 						{
+							int index = columnMappingTable.getViewer( )
+									.getTable( )
+									.getSelectionIndex( );
 							removeSelectedItems( );
+							updateSelectedItemsSelection( index );
 							setPageProperties( ); 
 						}
 					}
@@ -844,7 +848,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 					public void widgetSelected( SelectionEvent e )
 					{
+						int index = columnMappingTable.getViewer( )
+								.getTable( )
+								.getSelectionIndex( );
 						removeSelectedItems( );
+						updateSelectedItemsSelection( index );
 						setPageProperties( );
 					}
 
@@ -861,7 +869,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 					public void widgetSelected( SelectionEvent e )
 					{
+						int index = columnMappingTable.getViewer( )
+								.getTable( )
+								.getSelectionIndex( );
 						removeSelectedItems( );
+						updateSelectedItemsSelection( index );
 						setPageProperties( );
 					}
 
@@ -877,6 +889,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					public void widgetSelected( SelectionEvent e )
 					{
 						removeAllItem( );
+						updateSelectedItemsSelection( 0 );
 						setPageProperties( );
 					}
 
@@ -976,6 +989,23 @@ public class ColumnMappingPage extends DataSetWizardPage
 		columnMappingTable.getUpButton( ).setEnabled( enabled );
 		columnMappingTable.getDownButton( )
 				.setEnabled( enabled );
+	}
+
+	private void updateSelectedItemsSelection( int nextIndex )
+	{
+		int itemCount = columnMappingTable.getViewer( ).getTable( ).getItemCount( );
+		
+		availableXmlTree.getTree( ).deselectAll( );
+		columnMappingTable.getViewer( ).getTable( ).deselectAll( );
+
+		if ( itemCount > nextIndex )
+		{
+			columnMappingTable.getViewer( ).getTable( ).select( nextIndex );
+		}
+		else if ( itemCount > 0 )
+		{
+			columnMappingTable.getViewer( ).getTable( ).select( itemCount - 1 );
+		}
 	}
 
 	/**
