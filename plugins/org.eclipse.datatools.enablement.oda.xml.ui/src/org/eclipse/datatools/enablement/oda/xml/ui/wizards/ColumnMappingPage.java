@@ -243,17 +243,44 @@ public class ColumnMappingPage extends DataSetWizardPage
      */
 	public void refresh( )
 	{
-		selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+		boolean needsRefresh = false;
+		if( !valueEquals( selectedTreeItemText, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH ) ) )
+		{
+			selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
+			needsRefresh = true;
+		}
+		if( !valueEquals( xsdFileName, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST ) ) )
+		{
+			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+			needsRefresh = true;
+		}
+		if( !valueEquals( xmlFileName, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
+		{
+			xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+			needsRefresh = true;
+		}
+		if( !valueEquals( xmlEncoding, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST ) ) )
+		{
+			xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+			needsRefresh = true;
+		}
+
 		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
 			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
-		if ( selectedTreeItemText != null )
+		if ( needsRefresh && selectedTreeItemText != null )
 		{
 			populateXMLTree( );
+			setPageProperties( );
 		}
-		setPageProperties( );
+	}
+	
+	private boolean valueEquals( String value1, String value2 )
+	{
+		if ( value1 == null )
+		{
+			return value2 == null;
+		}
+		return value1.equals( value2 );
 	}
 	
 	/*
@@ -266,8 +293,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 		DEFAULT_PAGE_Message = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ); //$NON-NLS-1$
 		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( dataSetDesign );
-		this.setMessage( DEFAULT_PAGE_Message );
 		refresh( );
+		if ( getMessageType( ) == IMessageProvider.NONE )
+		{
+			this.setMessage( DEFAULT_PAGE_Message );
+		}
 	}
 	
 	/**

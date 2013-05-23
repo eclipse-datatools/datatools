@@ -29,6 +29,7 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
@@ -37,9 +38,12 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -56,7 +60,8 @@ import org.eclipse.ui.PlatformUI;
 
 public class XPathChoosePage extends DataSetWizardPage
 {
-    private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );  //$NON-NLS-1$
+    private String pageDefaultMessage = Messages.getString( "wizard.defaultMessage.selectXPath" );  //$NON-NLS-1$
+    
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
 	private transient XMLTreeViewer availableXmlTree;
@@ -90,7 +95,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		super( pageName );
 		this.setTitle( pageName );
-		this.setMessage( DEFAULT_MESSAGE );
+		this.setMessage( pageDefaultMessage );
 		this.setPageComplete( false );
 		this.supportsXMLParameter = true;
 	}
@@ -101,13 +106,26 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	public void createPageCustomControl( Composite parent )
 	{
-		setControl( createPageControl( parent ) );
+		ScrolledComposite sComposite = new ScrolledComposite( parent,
+				SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Control control = createPageControl( sComposite );
 		
 		if( XMLInformationHolder.hasDestroyed() )
 			XMLInformationHolder.start( this.getInitializationDesign( ) );
 		initializeControl( );
 		populateXMLTree( );
 		
+		Point size = control.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		control.setSize( size.x, size.y );
+
+		sComposite.setContent( control );
+		setControl( sComposite );
+
 		XMLRelationInfoUtil.setSystemHelp( getControl( ),
 				IHelpConstants.CONEXT_ID_DATASET_XML_XPATH );
 	}
@@ -148,22 +166,57 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
-		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.elementSelection.label" );     //$NON-NLS-1$
+		pageDefaultMessage = Messages.getString( "xPathChoosePage.messages.elementSelection.label" );     //$NON-NLS-1$
 		if ( XMLInformationHolder.hasDestroyed( ) )
-			XMLInformationHolder.start( dataSetDesign );
+			XMLInformationHolder.start( dataSetDesign );		
 		
 		refresh( );
+		if ( getMessageType( ) == IMessageProvider.NONE )
+		{
+			setMessage( pageDefaultMessage );
+		}
 	}
 	
 	protected void refresh( )
 	{
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+		boolean needsRefresh = false;
+		if( !valueEquals( xsdFileName, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST ) ) )
+		{
+			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+			needsRefresh = true;
+		}
+		if( !valueEquals( xmlFileName, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
+		{
+			xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+			needsRefresh = true;
+		}
+		if( !valueEquals( xmlEncoding, XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST ) ) )
+		{
+			xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+			needsRefresh = true;
+		}
+
+		if ( needsRefresh )
+		{
+			refreshControls( );
+		}
+	}
+
+	private void refreshControls( )
+	{
 		populateXMLTree( );
 		backupRootPath( );
 		this.availableXmlTree.getSingleButton( ).setEnabled( false );
-		setMessage( DEFAULT_MESSAGE );
+		setMessage( pageDefaultMessage );
+	}
+	
+	private boolean valueEquals( String value1, String value2 )
+	{
+		if ( value1 == null )
+		{
+			return value2 == null;
+		}
+		return value1.equals( value2 );
 	}
 	
     /**
@@ -173,8 +226,8 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	public Control createPageControl(Composite parent) 
 	{
-		DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );   //$NON-NLS-1$
-		this.setMessage( DEFAULT_MESSAGE );
+		pageDefaultMessage = Messages.getString( "wizard.defaultMessage.selectXPath" );   //$NON-NLS-1$
+		this.setMessage( pageDefaultMessage );
 		Composite composite = new Composite( parent, SWT.NONE );
 
 		FormLayout layout = new FormLayout( );
@@ -285,7 +338,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			public void modifyText( ModifyEvent e )
 			{
 				rootPath = xmlPathText.getText( ).trim( );
-				setPageStatus( );
+				updatePageStatus( );
 			}
 		} );
 
@@ -395,13 +448,9 @@ public class XPathChoosePage extends DataSetWizardPage
 			if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
 					&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
 			{
-				this.setErrorMessage( Messages.getString( "xPathChoosePage.messages.noURLOfSourceOrSchema" ) ); //$NON-NLS-1$
 				return;
 			}
-			else
-			{
-				this.setErrorMessage( null );
-			}
+
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
 					.getPluginPreferences( );
@@ -435,6 +484,8 @@ public class XPathChoosePage extends DataSetWizardPage
 						Messages.getString( "error.label" ), //$NON-NLS-1$
 						ex.getMessage( ),
 						ex );
+				this.setErrorMessage( Messages.getString( "dataset.error.CannotPopulateXMLTree" ) ); //$NON-NLS-1$
+				setPageComplete( false );
 			}
 			else
 			{
@@ -447,6 +498,8 @@ public class XPathChoosePage extends DataSetWizardPage
 					Messages.getString( "error.label" ),  //$NON-NLS-1$
 					e.getMessage( ),
 					e );
+			this.setErrorMessage( Messages.getString( "dataset.error.CannotPopulateXMLTree" ) ); //$NON-NLS-1$
+			setPageComplete( false );
 		}
 	}
 
@@ -454,15 +507,21 @@ public class XPathChoosePage extends DataSetWizardPage
 	 * set page status based on row number
 	 * 
 	 */
-	private void setPageStatus( )
+	private void updatePageStatus( )
 	{
-		if ( !isRootPathValid( ) )
+		if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
+				&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
 		{
+			this.setErrorMessage( Messages.getString( "xPathChoosePage.messages.noURLOfSourceOrSchema" ) ); //$NON-NLS-1$
 			setPageComplete( false );
-			this.setMessage( Messages.getFormattedString( "error.invalidXpath",       //$NON-NLS-1$
+		}
+		else if ( !isRootPathValid( ) )
+		{
+			this.setMessage( Messages.getFormattedString( "error.invalidXpath", //$NON-NLS-1$
 					new Object[]{
 						rootPath == null ? EMPTY_STRING : rootPath
 					} ), IMessageProvider.ERROR );
+			setPageComplete( false );
 		}
 		else
 		{
@@ -470,12 +529,12 @@ public class XPathChoosePage extends DataSetWizardPage
 					&& !initRootPath.equals( EMPTY_STRING )
 					&& !initRootPath.equals( rootPath ) )
 			{
-				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),  //$NON-NLS-1$
+				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ), //$NON-NLS-1$
 						INFORMATION );
 			}
 			else
 			{
-				setMessage( DEFAULT_MESSAGE );
+				setMessage( pageDefaultMessage );
 			}
 			setPageComplete( true );
 		}
