@@ -540,16 +540,11 @@ public class XPathChoosePage extends DataSetWizardPage
 		}
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	private boolean isRootPathValid( )
 	{
-		return !(rootPath == null
-				|| rootPath.trim( ).length( ) == 0);
+		return rootPath != null && rootPath.trim( ).length( ) > 0;
 	}
-	
+
 	/**
 	 * when XPath text has changed, reset the dataSetHandle.CONST_PROP_XPATH
 	 * 
@@ -624,12 +619,10 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		if ( this.getControl( ) == null || this.getControl( ).isDisposed( ) )
 			return true;
+		
 		if ( !isRootPathValid( ) )
 		{
-			this.setMessage( Messages.getFormattedString( "error.invalidXpath",  //$NON-NLS-1$
-					new Object[]{
-						rootPath == null ? EMPTY_STRING : rootPath
-					} ), IMessageProvider.ERROR );
+			this.setMessage( Messages.getString( "error.invalidXpath" ), IMessageProvider.ERROR ); //$NON-NLS-1$
 			return false;
 		}
 		else
