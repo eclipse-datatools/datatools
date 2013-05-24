@@ -23,10 +23,12 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -82,7 +84,14 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private Control createPageControl( Composite parent )
 	{
-		Composite composite = new Composite( parent, SWT.NONE );
+		ScrolledComposite sComposite = new ScrolledComposite( parent,
+				SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Composite composite = new Composite( sComposite, SWT.NONE );
 		GridLayout layout = new GridLayout( 1, false );
 		layout.verticalSpacing = 20;
 		composite.setLayout( layout );
@@ -94,7 +103,13 @@ public class SOAPResponsePage extends DataSetWizardPage
 		setupXSDGroup( composite );
 		setupXMLGroup( composite );
 
-		return composite;
+		Point size = composite.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		composite.setSize( size.x, size.y );
+
+		sComposite.setContent( composite );
+		setControl( sComposite );
+
+		return sComposite;
 	}
 
 	private void setupXSDGroup( Composite parent )

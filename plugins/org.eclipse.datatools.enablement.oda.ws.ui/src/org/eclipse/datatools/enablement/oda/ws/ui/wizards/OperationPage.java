@@ -36,11 +36,13 @@ import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -93,8 +95,16 @@ public class OperationPage extends DataSetWizardPage
 	public void createPageCustomControl( Composite parent )
 	{
 		initialImages( );
-		setControl( createPageControl( parent ) );
+		
+		ScrolledComposite sComposite = new ScrolledComposite( parent, SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Control control = createPageControl( sComposite );
 		initializeControl( );
+
 		int x = java.awt.Toolkit.getDefaultToolkit( ).getScreenSize( ).width
 				- 800;
 		int y = java.awt.Toolkit.getDefaultToolkit( ).getScreenSize( ).height
@@ -107,6 +117,13 @@ public class OperationPage extends DataSetWizardPage
 		{
 			parent.getShell( ).setLocation( x / 2, y / 2 );
 		}
+		
+		Point size = control.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		control.setSize( size.x, size.y );
+
+		sComposite.setContent( control );
+		setControl( sComposite );
+
 		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_OPERATION );
 	}
 

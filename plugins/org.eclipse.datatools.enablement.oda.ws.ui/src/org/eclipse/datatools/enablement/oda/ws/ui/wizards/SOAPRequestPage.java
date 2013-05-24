@@ -38,6 +38,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -102,11 +103,16 @@ public class SOAPRequestPage extends DataSetWizardPage
 	 */
 	private Control createPageControl( Composite parent )
 	{
-		Composite composite = new Composite( parent, SWT.NONE );
+		ScrolledComposite sComposite = new ScrolledComposite( parent, SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Composite composite = new Composite( sComposite, SWT.NONE );
 		GridLayout layout = new GridLayout( 2, false );
 		composite.setLayout( layout );
-		GridData layoutData = new GridData( GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.VERTICAL_ALIGN_FILL );
+		GridData layoutData = new GridData( GridData.FILL_BOTH );
 		composite.setLayoutData( layoutData );
 
 		Label prompt = new Label( composite, SWT.NONE );
@@ -118,13 +124,20 @@ public class SOAPRequestPage extends DataSetWizardPage
 		setupQueryTextComposite( composite );
 		setupButtonComposite( composite );
 
-		return composite;
+		Point size = composite.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		composite.setSize( size.x, size.y );
+
+		sComposite.setContent( composite );
+		setControl( sComposite );
+
+		return sComposite;
 	}
 
 	private void setupQueryTextComposite( Composite parent )
 	{
 		queryText = new Text( parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.LEFT_TO_RIGHT );
 		GridData layoutData = new GridData( GridData.FILL_BOTH );
+		layoutData.heightHint = 400;
 		queryText.setLayoutData( layoutData );
 		queryText.addModifyListener( new ModifyListener( ){
 

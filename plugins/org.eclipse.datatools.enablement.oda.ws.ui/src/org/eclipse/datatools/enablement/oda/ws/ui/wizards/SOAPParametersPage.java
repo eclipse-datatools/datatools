@@ -39,9 +39,11 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -96,20 +98,31 @@ public class SOAPParametersPage extends DataSetWizardPage
 	 */
 	private Control createPageControl( Composite parent )
 	{
-		Composite composite = new Composite( parent, SWT.NONE );
+		ScrolledComposite sComposite = new ScrolledComposite( parent, SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 600 );
+		sComposite.setExpandHorizontal( true );
+
+		Composite composite = new Composite( sComposite, SWT.NONE );
 		GridLayout layout = new GridLayout( 1, false );
 		layout.verticalSpacing = 20;
 		composite.setLayout( layout );
-		GridData layoutData = new GridData( GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.VERTICAL_ALIGN_FILL );
+		GridData layoutData = new GridData( GridData.FILL_BOTH );
 		composite.setLayoutData( layoutData );
 
 		setupParametersComposite( composite );
 		setupSelectionButtons( composite );
 		
+		Point size = composite.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		composite.setSize( size.x, size.y );
+
+		sComposite.setContent( composite );
+		setControl( sComposite );
+
 		modelChanged = true;
 		
-		return composite;
+		return sComposite;
 	}
 
 	private void setupParametersComposite( Composite parent )
@@ -190,6 +203,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 		TableLayout tableLayout = new TableLayout( );
 		table.setLayout( tableLayout );
 		GridData layouData = new GridData( GridData.FILL_BOTH );
+		layouData.heightHint = 400;
 		table.setLayoutData( layouData );
 
 		table.setHeaderVisible( true );
