@@ -27,6 +27,13 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.ITextOperationTarget;
+import org.eclipse.jface.text.IUndoManager;
+import org.eclipse.jface.text.TextViewerUndoManager;
+import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -39,6 +46,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -65,7 +75,6 @@ import org.eclipse.ui.PlatformUI;
 public class SOAPRequestPage extends DataSetWizardPage
 {
 
-	private transient Text queryText;
 	// parameters for page, different from soapParameters
 	private SOAPParameter[] parameters;
 	private static String DEFAULT_MESSAGE = Messages.getString( "soapRequestPage.message.defaultTitle" );//$NON-NLS-1$
@@ -75,9 +84,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 	protected final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
 	protected final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
-	private Button editBtn, paramBtn;
+	private Button paramBtn;
 	
 	private SOAPRequest soapRequest;
+	
+	private SourceViewer templateSourceViewer;
+	private StyledText templateText;
 
 	
 	public SOAPRequestPage( String pageName )
@@ -121,7 +133,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		labelGd.horizontalSpan = 2;
 		prompt.setLayoutData( labelGd );
 		
-		setupQueryTextComposite( composite );
+		setupTemplateTextArea( composite );
 		setupButtonComposite( composite );
 
 		Point size = composite.computeSize( SWT.DEFAULT, SWT.DEFAULT );
@@ -133,13 +145,17 @@ public class SOAPRequestPage extends DataSetWizardPage
 		return sComposite;
 	}
 
-	private void setupQueryTextComposite( Composite parent )
+	private void setupTemplateTextArea( Composite parent )
 	{
-		queryText = new Text( parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.LEFT_TO_RIGHT );
-		GridData layoutData = new GridData( GridData.FILL_BOTH );
+		templateSourceViewer = new SourceViewer( parent, null, SWT.BORDER
+				| SWT.LEFT_TO_RIGHT | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL );
+		templateSourceViewer.configure( new SourceViewerConfiguration( ) );
+		templateText = templateSourceViewer.getTextWidget( );
+		GridData layoutData = new GridData( SWT.FILL, SWT.FILL, true, true );
 		layoutData.heightHint = 400;
-		queryText.setLayoutData( layoutData );
-		queryText.addModifyListener( new ModifyListener( ){
+		templateText.setLayoutData( layoutData );
+		templateText.setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT ));
+		templateText.addModifyListener( new ModifyListener( ){
 
 			public void modifyText( ModifyEvent arg0 )
 			{
@@ -147,6 +163,43 @@ public class SOAPRequestPage extends DataSetWizardPage
 			}
 			
 		});
+
+		templateSourceViewer.setDocument( new Document( ) );
+		
+		IUndoManager undoManager = new TextViewerUndoManager( 10 );
+		undoManager.connect( templateSourceViewer );
+		templateSourceViewer.setUndoManager( undoManager );
+
+		templateText.addKeyListener( new KeyAdapter( ) {
+
+			private boolean isRedoKeyPress( KeyEvent e )
+			{
+				return ( ( e.stateMask & SWT.CONTROL ) > 0 )
+						&& ( ( e.keyCode == 'y' ) || ( e.keyCode == 'Y' ) );
+			}
+
+			private boolean isUndoKeyPress( KeyEvent e )
+			{
+				return ( ( e.stateMask & SWT.CONTROL ) > 0 )
+						&& ( ( e.keyCode == 'z' ) || ( e.keyCode == 'Z' ) );
+			}
+
+			public void keyPressed( KeyEvent e )
+			{
+				if ( isUndoKeyPress( e ) )
+				{
+					templateSourceViewer.doOperation( ITextOperationTarget.UNDO );
+					validatePageStatus( );				
+				}
+				else if ( isRedoKeyPress( e ) )
+				{
+					templateSourceViewer.doOperation( ITextOperationTarget.REDO );
+					validatePageStatus( );				
+				}
+			}
+
+		} );
+
 	}
 
 	private void setupButtonComposite( Composite parent )
@@ -215,8 +268,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				queryText.setText( WSUtil.EMPTY_STRING );
+				templateText.setText( WSUtil.EMPTY_STRING );
 				validatePageStatus( );
+				templateText.setFocus( );
 			}
 
 		} );
@@ -238,7 +292,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	private void regenerateTemplate( ) throws OdaException
 	{
-		queryText.setText( WSConsole.getInstance( ).getTemplate( ) );
+		templateText.setText( WSConsole.getInstance( ).getTemplate( ) );
 		parameters = WSConsole.getInstance( ).getParameters( );
 		saved = false;
 	}
@@ -264,14 +318,16 @@ public class SOAPRequestPage extends DataSetWizardPage
 		String wsQueryText = WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT );
 		if ( wsQueryText != null )
-			queryText.setText( wsQueryText );
+			templateText.setText( wsQueryText );
+		
 		parameters = WSConsole.getInstance( ).getParameters( );
+		initParameters( );
 		saved = false;
 	}
 
 	private void initParameters( )
 	{
-		soapRequest = new SOAPRequest( queryText.getText( ) );
+		soapRequest = new SOAPRequest( templateText.getText( ) );
 		mergeParameters( );
 		SOAPParameter[] params = soapRequest.getParameters( );
 		paramBtn.setEnabled( params != null && params.length > 0 );
@@ -353,7 +409,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		String value = WSConsole.getInstance( ).manipulateTemplate( );
 		if ( value != null )
-			queryText.setText( value );
+			templateText.setText( value );
+		
 		parameters = WSConsole.getInstance( ).getParameters( );
 		initParameters( );
 		saved = false;
@@ -393,10 +450,14 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
-		if( this.queryText == null )
+		if( this.templateText == null )
 			return;
+		
+		String templateContent = templateText.getText( ) == null
+				? WSUtil.EMPTY_STRING : templateText.getText( );
 		WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
-				queryText.getText( ) );
+				templateContent );
+
 		WSConsole.getInstance( ).updateParameters( parameters );
 		saved = true;
 	}
@@ -414,7 +475,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	private void validatePageStatus( )
 	{
 		boolean valid = true;
-		if ( queryText.getText( ).trim( ).length( ) == 0 )
+		if ( templateText.getText( ).trim( ).length( ) == 0 )
 		{
 			valid = false;
 		}
@@ -425,7 +486,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 
 		private TableViewer viewer;
-
+		private Button editBtn;
 		/**
 		 * 
 		 */
