@@ -68,6 +68,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MenuAdapter;
@@ -81,9 +82,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -97,7 +96,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -142,9 +140,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private HashMap<String, String> dataTypeValueMape = new HashMap<String, String>( );
 
 	private HashMap<String, Boolean> flatFileStatusCache = new HashMap<String, Boolean>( );
-
-	private final int DEFAULT_WIDTH = 200;
-	private final int DEFAULT_HEIGHT = 200;
 
 	private transient ComboViewer fileViewer = null;
 	private transient ComboViewer fileFilter = null;
@@ -207,8 +202,24 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	public void createPageCustomControl( Composite parent )
 	{
-		setControl( createPageControl( parent ) );
+		ScrolledComposite sComposite = new ScrolledComposite( parent,
+				SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new FillLayout( ) );
+		sComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		sComposite.setMinWidth( 560 );
+		sComposite.setExpandHorizontal( true );
+		sComposite.setMinHeight( 300 );
+		sComposite.setExpandVertical( true );
+
+		Composite control = createPageControl( sComposite );
+
 		initializeControl( );
+
+		Point size = control.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		control.setSize( size.x, size.y );
+
+		sComposite.setContent( control );
+		setControl( sComposite );
 
 		Utility.setSystemHelp( getControl( ),
 				IHelpConstants.CONEXT_ID_DATASET_FLATFILE );
@@ -322,35 +333,35 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param parent
 	 * @return
 	 */
-	private Control createPageControl( Composite parent )
+	private Composite createPageControl( Composite parent )
 	{
-		Composite composite = new Composite( parent, SWT.NULL );
+		
+		Composite mainComposite = new Composite( parent, SWT.NONE );
+		mainComposite.setLayout( new GridLayout( ) );
+		mainComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
-		FormLayout layout = new FormLayout( );
+		createTopComposite( mainComposite );
+
+		Composite composite = new Composite( mainComposite, SWT.NONE );
+		GridLayout layout = new GridLayout( );
+		layout.numColumns = 4;
 		composite.setLayout( layout );
-
-		FormData data = new FormData( );
-		data.left = new FormAttachment( 0, 5 );
-		data.top = new FormAttachment( 0, 5 );
-
-		Label label = new Label( composite, SWT.NONE );
-		label.setText( Messages.getString( "label.selectFile" ) ); //$NON-NLS-1$
-		label.setLayoutData( data );
-
-		createTopComposite( composite, label );
+		composite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
 		createLeftComposite( composite );
 
-		Composite btnComposite = createCenterBtnComposite( composite );
+		createCenterBtnComposite( composite );
 
-		createRightComposite( composite, btnComposite );
+		createRightTableComposite( composite );
 
+		createEditBtnGroup( composite );
+		
 		loadProperties( );
 		populateFileFilter( );
 		updateFileListAndCharSet( );
 		updateButtonStatus( );
-		
-		return composite;
+
+		return mainComposite;
 	}
 
 	/**
@@ -359,14 +370,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param composite
 	 * @param label
 	 */
-	private void createTopComposite( Composite composite, Label label )
+	private void createTopComposite( Composite parent )
 	{
-		final Shell shell = composite.getShell( );
-		FormData data = new FormData( );
-		data.left = new FormAttachment( label, 5 );
-		data.right = new FormAttachment( 80, -5 );
+		Composite composite = new Composite( parent, SWT.NONE );
+		GridLayout layout = new GridLayout( );
+		layout.numColumns = 4;
+		composite.setLayout( layout );
+		composite.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+
+		Label label = new Label( composite, SWT.NONE );
+		label.setText( Messages.getString( "label.selectFile" ) ); //$NON-NLS-1$
+		label.setLayoutData( new GridData( ) );
+
 		fileViewer = new ComboViewer( composite, SWT.BORDER | SWT.READ_ONLY );
-		fileViewer.getControl( ).setLayoutData( data );
+		fileViewer.getControl( ).setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 		fileViewer.setContentProvider( new ArrayContentProvider( ) );
 		fileViewer.addSelectionChangedListener( this );
 		fileViewer.setLabelProvider( new LabelProvider( ) {
@@ -381,19 +398,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 
-		data = new FormData( );
-		data.left = new FormAttachment( fileViewer.getControl( ), 5 );
-		data.top = new FormAttachment( 0, 5 );
-
 		label = new Label( composite, SWT.NONE );
 		label.setText( Messages.getString( "label.fileFilter" ) ); //$NON-NLS-1$
-		label.setLayoutData( data );
+		label.setLayoutData( new GridData( ) );
 
-		data = new FormData( );
-		data.left = new FormAttachment( label, 5 );
-		data.right = new FormAttachment( 100, -5 );
 		fileFilter = new ComboViewer( composite, SWT.READ_ONLY );
-		fileFilter.getControl( ).setLayoutData( data );
+		fileFilter.getControl( ).setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 		fileFilter.addSelectionChangedListener( new ISelectionChangedListener( ) {
 
 			public void selectionChanged( SelectionChangedEvent event )
@@ -414,7 +424,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				else
 				{
 					if ( currSelectFilter.equals( MATCH_ALL_FILES )
-							|| MessageDialog.openConfirm( shell,
+							|| MessageDialog.openConfirm( fileViewer.getCombo( ).getShell( ),
 									Messages.getString( "confirm.reselectFileFilterTitle" ), //$NON-NLS-1$
 									Messages.getString( "confirm.reselectFileFilterMessage" ) ) ) //$NON-NLS-1$
 					{
@@ -437,17 +447,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createLeftComposite( Composite composite )
 	{
-		FormData data = new FormData( );
-		data.top = new FormAttachment( fileViewer.getControl( ), 10, SWT.BOTTOM );
-		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 40, -5 );
-		data.bottom = new FormAttachment( 100, -5 );
-		data.width = DEFAULT_WIDTH;
-		data.height = DEFAULT_HEIGHT;
+		GridData gd = new GridData( GridData.FILL_BOTH );
+		gd.widthHint = 230;
+		gd.heightHint = 300;
 		availableList = new List( composite, SWT.MULTI
 				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
 
-		availableList.setLayoutData( data );
+		availableList.setLayoutData( gd );
 		availableList.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -475,16 +481,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param composite
 	 * @return
 	 */
-	private Composite createCenterBtnComposite( Composite composite )
+	private void createCenterBtnComposite( Composite composite )
 	{
-		FormData data = new FormData( );
-		data.top = new FormAttachment( 40, 5 );
-		data.left = new FormAttachment( availableList, 3 );
-
 		Composite btnComposite = new Composite( composite, SWT.NONE );
-		btnComposite.setLayoutData( data );
 		GridLayout layout = new GridLayout( );
-		layout.numColumns = 1;
+		layout.verticalSpacing = 5;
 		btnComposite.setLayout( layout );
 
 		GridData gridData = new GridData( );
@@ -557,7 +558,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 		
-		return btnComposite;
 	}
 
 	/**
@@ -566,22 +566,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param composite
 	 * @param btnComposite
 	 */
-	private void createRightComposite( Composite composite,
-			Composite btnComposite )
+	private void createRightTableComposite( Composite composite )
 	{
-		FormData data = new FormData( );
-		data.top = new FormAttachment( fileViewer.getControl( ), 10, SWT.BOTTOM );
-		data.left = new FormAttachment( btnComposite, 3 );
-		data.right = new FormAttachment( 100, -2 );
-		data.bottom = new FormAttachment( 100, -5 );
-
-		Composite rightComposite = new Composite( composite, SWT.BORDER );
-		rightComposite.setLayoutData( data );
-		GridLayout layout = new GridLayout( );
-		layout.numColumns = 2;
-		rightComposite.setLayout( layout );
-
-		selectedColumnsViewer = new TableViewer( rightComposite, SWT.MULTI
+		selectedColumnsViewer = new TableViewer( composite, SWT.MULTI
 				| SWT.FULL_SELECTION | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
@@ -682,7 +669,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		setColumnsViewerLabels( );
 
-		createEditBtnGroup( rightComposite );
 	}
 
 	protected void doEdit( )

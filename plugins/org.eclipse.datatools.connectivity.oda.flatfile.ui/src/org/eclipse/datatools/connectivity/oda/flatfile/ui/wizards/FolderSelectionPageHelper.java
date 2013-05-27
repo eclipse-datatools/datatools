@@ -39,11 +39,13 @@ import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -116,8 +118,14 @@ public class FolderSelectionPageHelper
 	 */
 	void createCustomControl( Composite parent )
 	{
+		ScrolledComposite sComposite = new ScrolledComposite( parent,
+				SWT.H_SCROLL | SWT.V_SCROLL );
+		sComposite.setLayout( new GridLayout( ) );
+		sComposite.setMinWidth( 550 );
+		sComposite.setExpandHorizontal( true );
+
 		this.parent = parent;
-		Composite content = new Composite( parent, SWT.NULL );
+		Composite content = new Composite( sComposite, SWT.NONE );
 		GridLayout layout = new GridLayout( 3, false );
 		content.setLayout( layout );
 
@@ -135,6 +143,11 @@ public class FolderSelectionPageHelper
 		setupTypeLineCheckBox( content );
 
 		setupTrailNullsCheckBox( content );
+
+		Point size = content.computeSize( SWT.DEFAULT, SWT.DEFAULT );
+		content.setSize( size.x, size.y );
+
+		sComposite.setContent( content );
 
 		Utility.setSystemHelp( getControl( ),
 				IHelpConstants.CONEXT_ID_DATASOURCE_FLATFILE );
