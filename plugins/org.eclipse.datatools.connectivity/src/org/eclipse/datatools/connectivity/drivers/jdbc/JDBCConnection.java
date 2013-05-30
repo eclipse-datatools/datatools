@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2011 Sybase, Inc. and others
+ * Copyright (c) 2005, 2013 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,7 +8,8 @@
  * 
  * Contributors: rcernich - initial API and implementation
  *      IBM Corporation - migrated to new wizard framework
- *      Actuate Corporation - fix for Bugzilla 305757
+ *      Actuate Corporation - fix for Bugzilla 305757, 406521
+ *      
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.jdbc;
 
@@ -20,14 +21,17 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.DriverConnectionBase;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
+import org.eclipse.datatools.connectivity.internal.ClassLoaderCacheManager;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 /**
@@ -50,12 +54,16 @@ public class JDBCConnection extends DriverConnectionBase {
 
 	private Version mTechVersion = Version.NULL_VERSION;
 	private Version mServerVersion = Version.NULL_VERSION;
-	private String mServerName;
-	
+	private String mServerName;	
 	private boolean mHasDriverDefn = true;
+    private URL[] m_jdbcJars;
 
 	public JDBCConnection(IConnectionProfile profile, Class factoryClass) {
 		super(profile, factoryClass);
+
+        URL[] jdbcJars = getJdbcDriverJars( profile );
+        if( jdbcJars != null && jdbcJars.length > 0 )
+            m_jdbcJars = jdbcJars;
 	}
 
 	public void open() {
@@ -95,6 +103,9 @@ public class JDBCConnection extends DriverConnectionBase {
 		
 		if (!hasDriver)
 			internalCreateConnection();
+
+		// cache the connection's class loader, if appropriate, for re-use in subsequent call to #open
+        cacheConnectionClassLoader( getRawConnection() );
 	}
 	
 	public String[] getJarListAsArray(String jarList) {
@@ -133,6 +144,53 @@ public class JDBCConnection extends DriverConnectionBase {
 		return URLClassLoader.newInstance(jars, parentCL);
 	}
 
+    protected URL[] getJdbcDriverJars( IConnectionProfile profile ) {
+        // first try get jar list defined in the referenced driver definition
+        String[] connJarArray = getDriverDefinitionJarPaths();
+
+        // none available from driver definition, get the jar list from the profile's properties
+        if( connJarArray == null || connJarArray.length == 0 ) {
+            if( profile == null )
+                return null;   // no jar list available
+
+            String profileJarList = 
+                profile.getBaseProperties().getProperty( IDriverMgmtConstants.PROP_DEFN_JARLIST );
+            connJarArray = getJarListAsArray( profileJarList );  // convert to an array
+
+            if( connJarArray == null || connJarArray.length == 0 )
+                return null;   // no jar list specified
+        }
+        
+        // convert jar paths to URLs
+        ArrayList<URL> jdbcJarURLs = new ArrayList<URL>(connJarArray.length);
+        for( int i=0; i < connJarArray.length; ++i ) {
+            String jarPath = connJarArray[i];       
+            try {
+                URL jarPathURL = new File(jarPath).toURL();
+                jdbcJarURLs.add( jarPathURL );
+            }
+            catch( MalformedURLException ex ) {
+                // ignore this invalid jar path
+                continue;
+            }
+        }
+        return jdbcJarURLs.toArray( new URL[jdbcJarURLs.size()] );
+    }
+
+    protected String[] getDriverDefinitionJarPaths() {
+        DriverInstance driver;
+        try {
+            driver = getDriverDefinition();
+        }
+        catch( Exception ex ) {
+            return null;
+        }
+        if( driver == null )
+            return null;
+        
+        return driver.getJarListAsArray();
+    }
+
 	private void internalCreateConnection() {
 		try {
 			ClassLoader parentCL = getParentClassLoader();
@@ -154,6 +212,32 @@ public class JDBCConnection extends DriverConnectionBase {
 			clearVersionCache();
 		}
 	}
+
+    @Override
+    protected ClassLoader getParentClassLoader()
+    {
+        ClassLoader parentClassLoader = 
+                ClassLoaderCacheManager.getInstance().getDriverClassLoader( m_jdbcJars );
+        ClassLoaderCacheManager.getInstance().setIsActive( true );
+        return parentClassLoader != null ? parentClassLoader : super.getParentClassLoader();
+    }
+    
+    protected void cacheConnectionClassLoader( Object sqlConnection )
+    {
+        if( sqlConnection == null )   // not connected yet, no class loader to cache
+            return;
+
+        // if this implementation of #getParentClassLoader is inactive, or has existing parentClassLoader
+        // no need to cache the connection's class loader for re-use in subsequent call to #open
+        if( ! ClassLoaderCacheManager.getInstance().isActive() || getParentClassLoader() != null )
+            return;
+        
+        ClassLoader jdbcDriverCL = sqlConnection.getClass().getClassLoader();
+        if( jdbcDriverCL instanceof URLClassLoader )
+        {
+            ClassLoaderCacheManager.getInstance().addURLClassLoader( (URLClassLoader)jdbcDriverCL );
+        }
+    }
 
 	private boolean profileHasDriverDetails() {
 		Properties props = getConnectionProfile().getBaseProperties();

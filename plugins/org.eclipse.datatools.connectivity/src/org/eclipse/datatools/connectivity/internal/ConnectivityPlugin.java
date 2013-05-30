@@ -93,6 +93,7 @@ public class ConnectivityPlugin extends Plugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		InternalProfileManager.getInstance().dispose();
+		ClassLoaderCacheManager.releaseInstance();
 		super.stop(context);
 	}
 
