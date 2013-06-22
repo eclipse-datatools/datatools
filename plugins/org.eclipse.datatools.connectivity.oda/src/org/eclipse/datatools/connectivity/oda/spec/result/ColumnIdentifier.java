@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.result;
 
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
+
 /**
  * The identifier of a result set column, defined by its number and/or native name/expression.
  * <br>A column number, if specified, takes precedence over its specified name/expression.
@@ -26,14 +28,16 @@ public class ColumnIdentifier
 {
     private Integer m_pos;
     private String m_nameExpr;
+    private QuerySpecification m_querySpecRef;
  
     private static final String LOG_CLASSNAME_PREFIX = "ColumnIdentifier@"; //$NON-NLS-1$
     private static final String LOG_ORDINAL_LABEL = " [ordinal= "; //$NON-NLS-1$
     private static final String LOG_NAME_LABEL = ", name= "; //$NON-NLS-1$
+    private static final String LOG_QUERYSPEC_LABEL = ", querySpec= "; //$NON-NLS-1$
     private static final String LOG_END_BRACKET = "]"; //$NON-NLS-1$
 
     /**
-     * Constructor that creates an instance that identifies a result set column by both its ordinal
+     * Constructor to create an instance that identifies a result set column by both its ordinal
      * position and native name/expression.  This would uniquely identify a column when multiple columns
      * in a result set have the same name.
      * @param pos   column number (1-based)
@@ -46,7 +50,7 @@ public class ColumnIdentifier
     }
     
     /**
-     * Constructor that creates an instance that identifies a result set column by its ordinal
+     * Constructor to create an instance that identifies a result set column by its ordinal
      * position.
      * @param pos   column number (1-based)
      * @throws IllegalArgumentException if specified argument is not greater or equal to 1
@@ -60,7 +64,7 @@ public class ColumnIdentifier
     }
     
     /**
-     * Constructor that creates an instance that identifies a result set column by its 
+     * Constructor to create an instance that identifies a result set column by its 
      * native name or expression.
      * @param nameExpr native name or expression of the column
      * @throws IllegalArgumentException if specified argument is null or empty
@@ -71,6 +75,31 @@ public class ColumnIdentifier
             throw new IllegalArgumentException( nameExpr );
         
         m_nameExpr = nameExpr;
+    }
+
+    /**
+     * Constructor to create an instance that identifies a column by its
+     * native name or expression in the result set defined in a query specification.
+     * @param nameExpr   native name or expression of the column
+     * @param queryQualifier    the optional {@link QuerySpecification} qualifier of this column identifier
+     * @since 3.4.1 (DTP 1.11.1)
+     */
+    public ColumnIdentifier( String nameExpr, QuerySpecification queryQualifier )
+    {
+        this( nameExpr );
+        setQueryQualifier( queryQualifier );
+    }
+
+    /**
+     * Constructor that copies the content of the specified identifier.
+     * @param thatIdentifier    the ColumnIdentifier to copy from
+     * @since 3.4.1 (DTP 1.11.1)
+     */
+    public ColumnIdentifier( ColumnIdentifier thatIdentifier )
+    {
+        this.m_nameExpr = thatIdentifier.m_nameExpr;
+        this.m_pos = thatIdentifier.m_pos;
+        this.m_querySpecRef =  thatIdentifier.m_querySpecRef;
     }
 
     /**
@@ -160,6 +189,37 @@ public class ColumnIdentifier
     }
 
     /**
+     * Specifies the query that projects this identified column in its result set.  
+     * This may be used to optionally qualify a column, when its name may be ambiguous. 
+     * @param querySpec     the optional {@link QuerySpecification} qualifier of this column identifier
+     * @since 3.4.1 (DTP 1.11.1)
+     */
+    public void setQueryQualifier( QuerySpecification querySpec )
+    {
+        m_querySpecRef = querySpec;
+    }
+
+    /**
+     * Gets the column's query qualifier, if specified.
+     * @return  the QuerySpecification that projects this column in its result set; may be null if not specified
+     * @since 3.4.1 (DTP 1.11.1)
+     */
+    public QuerySpecification getQueryQualifier()
+    {
+        return m_querySpecRef;
+    }
+
+    /**
+     * Indicates whether this column has a query qualifier.
+     * @return  true if this is qualified by the query that projects it in its result set; false otherwise
+     * @since 3.4.1 (DTP 1.11.1)
+     */
+    public boolean hasQueryQualifier()
+    {
+        return m_querySpecRef != null;
+    }
+
+    /**
      * Indicates whether this has either a valid number or name expression.
      * @return  true if this has a valid number or name expression; false otherwise
      */
@@ -186,20 +246,21 @@ public class ColumnIdentifier
             return true;
 
         // compares by position first, if exists
-        boolean isEqual = false;
         if( this.isIdentifiedByNumber() )
         {
-            if( this.m_pos.equals( thatObj.m_pos ) )
-                isEqual = true;
-            else
+            if( ! this.m_pos.equals( thatObj.m_pos ) )
                 return false;
         }
         
         // compares by name, if exists
         if( this.hasNameExpression() )
-            return this.m_nameExpr.equals( thatObj.m_nameExpr );
-
-        return isEqual;
+        {
+            if( ! this.m_nameExpr.equals( thatObj.m_nameExpr ) )
+                return false;
+        }
+        
+        // compares the query qualifier
+        return this.getQueryQualifier() == thatObj.getQueryQualifier();
     }
 
     /* (non-Javadoc)
@@ -214,8 +275,11 @@ public class ColumnIdentifier
             hashCode = m_pos.hashCode();
         
         if( hasNameExpression() )
-            return hashCode ^ m_nameExpr.hashCode();
+            hashCode = hashCode ^ m_nameExpr.hashCode();
         
+        if( m_querySpecRef != null )
+            return hashCode ^ m_querySpecRef.hashCode();
+
         return (hashCode == 0) ? super.hashCode() : hashCode;
     }
 
@@ -231,6 +295,8 @@ public class ColumnIdentifier
         buffer.append( m_pos ); 
         buffer.append( LOG_NAME_LABEL );
         buffer.append( m_nameExpr );
+        buffer.append( LOG_QUERYSPEC_LABEL );
+        buffer.append( m_querySpecRef );
         buffer.append( LOG_END_BRACKET ); 
         return buffer.toString();
     }                  

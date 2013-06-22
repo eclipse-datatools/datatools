@@ -19,8 +19,15 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.spec.BaseQuery;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
+import org.eclipse.datatools.connectivity.oda.spec.ValueExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.filter.AtomicExpression;
+import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
 import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.ColumnValueExpression;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpression;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.NestedValueExpression;
 
 /**
  * <strong>EXPERIMENTAL</strong>.<br>
@@ -45,8 +52,6 @@ public class CombinedQuery extends BaseQuery
     private QuerySpecification m_rightQuery;
     private CombinedQueryCondition m_combinedCondition;
     
-    private static final CombinedQuery sm_factory = new CombinedQuery();
-    
     public CombinedQuery()
     {
         this( CombinedType.INNER_JOIN );  // default
@@ -56,13 +61,13 @@ public class CombinedQuery extends BaseQuery
     {
         m_combinedType = combinedType;
     }
-    
+
     /** 
      * Specifies the left and right sets of {@link QuerySpecification} to combine 
      * under the CombinedQueryCondition.
      * @param leftQuery     the left query to combine
      * @param rightQuery    the right query to combine
-     * @param combinedCondition     the condition to evaluate in combining the 2 sets of queries
+     * @param combinedCondition     the condition to evaluate in combining the 2 queries
      * @throws OdaException     when the specified combining components are invalid
      */
     public void setCombinedQuery( QuerySpecification leftQuery, QuerySpecification rightQuery, CombinedQueryCondition combinedCondition ) 
@@ -130,6 +135,92 @@ public class CombinedQuery extends BaseQuery
         }
     }
 
+    private void validateCombiningExpression( FilterExpression combiningExpr ) 
+            throws OdaException
+    {
+        if( combiningExpr instanceof AtomicExpression )
+        {
+            AtomicExpression atomicCombiningExpr = (AtomicExpression)combiningExpr;
+
+            // validate the variable's querySpec qualifier, if exists
+            validateQueryQualifier( atomicCombiningExpr.getVariable().getValueExpression() );
+
+            int numArgs = atomicCombiningExpr.getArguments().valueCount();
+            for( int i=0; i < numArgs; i++ )
+            {
+                // validate each argument's querySpec qualifier, if exists
+                validateQueryQualifier( atomicCombiningExpr.getArguments().getValueExpression(i) );
+            }
+            return;
+        }
+
+        if( combiningExpr instanceof CompositeExpression )
+        {
+            FilterExpression[] childExprs = ((CompositeExpression)combiningExpr).getChildren();
+            for( int i= 0; i < childExprs.length; i++ )
+                validateCombiningExpression( childExprs[i] );
+            return;
+        }
+    }
+    
+    private void validateQueryQualifier( ValueExpression valueExpr )
+        throws OdaException
+    {
+        if( valueExpr instanceof ColumnValueExpression )
+        {
+            ColumnIdentifier columnIdentifier = ((ColumnValueExpression)valueExpr).getColumnReference();
+            if( columnIdentifier != null )
+            {
+                // validate that its querySpec qualifier, if exists, must be one of the combining queries
+                QuerySpecification columnQuerySpec = columnIdentifier.getQueryQualifier();
+                if( columnQuerySpec != null && ! containsCombiningQuery( columnQuerySpec ) )
+                    throw ValidatorUtil.newValueExprException( 
+                        Messages.bind( Messages.querySpec_NON_RELATED_QUERYSPEC, columnIdentifier ), valueExpr );
+                return;              
+            }
+        }
+
+        if( valueExpr instanceof NestedValueExpression )
+        {
+            validateQueryQualifier( ((NestedValueExpression)valueExpr).getNestedExpression() );
+            return;
+        }
+
+        if( valueExpr instanceof CombinedValueExpression )
+        {
+            validateQueryQualifier( ((CombinedValueExpression)valueExpr).getLeftExpression() );
+            validateQueryQualifier( ((CombinedValueExpression)valueExpr).getRightExpression() );
+            return;
+        }
+    }
+
+    /*
+     *  Checks whether the specified querySpec is one of the combining queries, which may be nested.
+     */
+    private boolean containsCombiningQuery( QuerySpecification querySpec )
+    {
+        if( querySpec == getLeftQuery() )
+            return true;
+        if( querySpec == getRightQuery() )
+            return true;
+        
+        // check nested combining queries
+        CombinedQuery nestedCombinedQuery;
+        if( getLeftQuery().getBaseQuery() instanceof CombinedQuery )
+        {
+            nestedCombinedQuery = (CombinedQuery)getLeftQuery().getBaseQuery();
+            if( nestedCombinedQuery != this && nestedCombinedQuery.containsCombiningQuery( querySpec ) )
+                return true;
+        }
+        if( getRightQuery().getBaseQuery() instanceof CombinedQuery )
+        {
+            nestedCombinedQuery = (CombinedQuery)getRightQuery().getBaseQuery();
+            if( nestedCombinedQuery != this && nestedCombinedQuery.containsCombiningQuery( querySpec ) )
+                return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString()
     {
@@ -149,12 +240,13 @@ public class CombinedQuery extends BaseQuery
     /**
      * Instantiates a new CombinedQueryCondition that specifies the matching criteria to apply
      * in combining 2 sets of queries.
-     * @param combinedExpr  a root-level filter expression for evaluation of matching criteria
-     * @return  a {@link CombinedQueryCondition} that may be used to specify a CombinedQuery
+     * @param combinedExpr  a root-level filter expression for evaluation of combining criteria
+     * @return  a {@link CombinedQueryCondition} that may be used to define a CombinedQuery
+     * @since 3.4.1 (DTP 1.11.1)
      */
-    public static CombinedQueryCondition createCombinedCondition( FilterExpression combinedExpr )
+    public CombinedQueryCondition createCombinedCondition( FilterExpression combinedExpr )
     {
-        return sm_factory.new CombinedQueryCondition( combinedExpr );
+        return this.new CombinedQueryCondition( combinedExpr );
     }
 
     /**
@@ -166,19 +258,21 @@ public class CombinedQuery extends BaseQuery
         
         /**
          * Constructor.
-         * @param matchingExpr    a root-level {@link FilterExpression} for evaluation of matching criteria
+         * @param combiningExpr    a root-level {@link FilterExpression} for evaluation of matching criteria
+         *                  to combine two sets of query specification
          */
-        public CombinedQueryCondition( FilterExpression matchingExpr )
+        CombinedQueryCondition( FilterExpression combiningExpr )
         {
-            m_expr = matchingExpr;
+            m_expr = combiningExpr;
         }
         
         /**
          * Gets the root-level filter expression for evaluation of matching criteria to combine
          * two sets of query specification.
          * @return  a {@link FilterExpression}
+         * @since 3.4.1 (DTP 1.11.1)
          */
-        public FilterExpression getMatchingExpression()
+        public FilterExpression getCombiningExpression()
         {
             return m_expr;
         }
@@ -216,12 +310,13 @@ public class CombinedQuery extends BaseQuery
             if( m_expr == null )
                 throw new OdaException( Messages.querySpec_MISSING_COMBINED_MATCHING_EXPR );
             m_expr.validateSyntax( context );
+            validateCombiningExpression( m_expr );
         }
 
         @Override
         public String toString()
         {
-            StringBuffer buffer = new StringBuffer( " { matching expr: " ); //$NON-NLS-1$
+            StringBuffer buffer = new StringBuffer( " { combining expr: " ); //$NON-NLS-1$
             buffer.append( m_expr );
             buffer.append( " }" ); //$NON-NLS-1$
             return buffer.toString();
