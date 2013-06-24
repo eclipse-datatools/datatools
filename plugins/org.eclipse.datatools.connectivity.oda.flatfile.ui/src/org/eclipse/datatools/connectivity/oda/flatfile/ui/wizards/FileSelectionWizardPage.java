@@ -220,6 +220,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		sComposite.setContent( control );
 		setControl( sComposite );
+		
+		updateButtonStatus( );
+		validatePageStatus( );
 
 		Utility.setSystemHelp( getControl( ),
 				IHelpConstants.CONEXT_ID_DATASET_FLATFILE );
@@ -359,8 +362,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		loadProperties( );
 		populateFileFilter( );
 		updateFileListAndCharSet( );
-		updateButtonStatus( );
-
+		
 		return mainComposite;
 	}
 
@@ -1043,11 +1045,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		return true;
 	}
+	
+	private void clearSelectedFileStatus( )
+	{
+		String fileName = fileViewer.getCombo( ).getText( ).trim( );
+		if ( flatFileStatusCache.containsKey( fileName ) )
+		{
+			flatFileStatusCache.remove( fileName );
+		}
+	}
 
 	private void validatePageStatus( )
 	{
 		if ( !validateSelectedFileStatus( ) )
 		{
+			clearSelectedFileStatus( );
 			return;
 		}
 		boolean pageComplete = true;
@@ -1721,10 +1733,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			updateExceptionInfo( );
 		}
 
-		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
-		{
-			setPageComplete( false );
-		}
 	}
 	
 	private void updateFileFilterComboStatus( DataSetDesign dataSetDesign )
