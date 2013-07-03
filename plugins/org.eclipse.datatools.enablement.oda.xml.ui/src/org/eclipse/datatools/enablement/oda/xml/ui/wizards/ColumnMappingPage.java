@@ -330,8 +330,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 		FormLayout layout = new FormLayout( );
 		composite.setLayout( layout );
 		GridData gridData = new GridData( GridData.FILL_BOTH );
-		int height = parent.getShell( ).getDisplay( ).getBounds( ).height;
-		gridData.heightHint = height * 4 / 10;
 		composite.setLayoutData( gridData );
 		createLeftGroup( composite );
 		availableXmlTree.getSingleButton( ).addSelectionListener( new SelectionAdapter( ) {
