@@ -57,6 +57,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private transient Text soapEndPoint;
 
 	private boolean saved = false;
+	private boolean initialized = false;
 
 	/**
 	 * 
@@ -80,6 +81,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 		setControl( createPageControl( parent ) );
 		initializeControl( );
 		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_SOAP_RESPONSE );
+		initialized = true;
 	}
 
 	private Control createPageControl( Composite parent )
@@ -123,6 +125,51 @@ public class SOAPResponsePage extends DataSetWizardPage
 		setupDFTXSDRadio( group );
 		setupRESXSDRadio( group );
 		setupEXTXSDRadio( group );
+		
+		initXSDGroupStatus( );
+	}
+	
+	private void initXSDGroupStatus( )
+	{
+		if ( getInitializationDesign( ) == null
+				|| getInitializationDesign( ).getPrivateProperties( ) == null )
+		{
+			setToDefaultXSDSelection( );
+			return;
+		}
+
+		String schema = getInitializationDesign( ).getPrivateProperties( )
+				.getProperty( Constants.RESPONSE_SCHEMA );
+		if ( schema != null )
+		{
+			if ( Constants.FROM_WS_SERVER.equals( schema ) )
+			{
+				resXSDRadio.setSelection( true );
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WS_SERVER );
+			}
+			else if ( Constants.FROM_EXTERNAL_SCHEMA.equals( schema ) )
+			{
+				extXSDRadio.setSelection( true );
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_EXTERNAL_SCHEMA );
+			}
+			else
+			{
+				setToDefaultXSDSelection( );
+			}
+		}
+		else
+		{
+			setToDefaultXSDSelection( );
+		}
+
+	}
+
+	private void setToDefaultXSDSelection( )
+	{
+		dftXSDRadio.setSelection( true );
+		WSConsole.getInstance( )
+				.setPropertyValue( Constants.RESPONSE_SCHEMA,
+						Constants.FROM_WSDL );
 	}
 
 	private void setupDFTXSDRadio( Composite parent )
@@ -132,9 +179,6 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData.horizontalSpan = 3;
 		dftXSDRadio.setLayoutData( layoutData );
 		dftXSDRadio.setText( Messages.getString( "soapResponsePage.radio.defaultSchema" ) );//$NON-NLS-1$
-		dftXSDRadio.setSelection( true );
-		
-		WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
 		
 		dftXSDRadio.addSelectionListener( new SelectionAdapter( ) {
 
@@ -148,7 +192,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
 				xsdFileURI.setText( WSUtil.EMPTY_STRING );
-				setPageStatus( );
+				updatePageStatus( );
 			}
 
 		} );
@@ -173,7 +217,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WS_SERVER );
 				xsdFileURI.setText( WSUtil.EMPTY_STRING );
-				setPageStatus( );
+				updatePageStatus( );
 			}
 
 		} );
@@ -194,8 +238,8 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
-				setPageStatus( );
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_EXTERNAL_SCHEMA );
+				updatePageStatus( );
 			}
 
 		} );
@@ -206,7 +250,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 			public void modifyText( ModifyEvent e )
 			{
-				setPageStatus( );
+				updatePageStatus( );
 			}
 		} );
 		Button button = new Button( parent, SWT.NONE );
@@ -416,7 +460,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void savePage( DataSetDesign design )
 	{
-		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+		if ( !initialized || !WSConsole.getInstance( ).isSessionOK( ) )
 			return;
 
 		// ok being clicked without leaving the page
@@ -429,6 +473,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 		design.getPrivateProperties( ).setProperty( Constants.XSD_FILE_URI,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.XSD_FILE_URI ) );
+		design.getPrivateProperties( ).setProperty( Constants.RESPONSE_SCHEMA,
+				WSConsole.getInstance( )
+						.getPropertyValue( Constants.RESPONSE_SCHEMA ) );
 
 		// TODO: necessary?
 		design.getDataSourceDesign( )
@@ -490,7 +537,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	 * 
 	 * @return
 	 */
-	public void setPageStatus( )
+	public void updatePageStatus( )
 	{
 		if( extXSDRadio.getSelection( ) && WSUtil.isNull( xsdFileURI.getText( ) ) )
 		{

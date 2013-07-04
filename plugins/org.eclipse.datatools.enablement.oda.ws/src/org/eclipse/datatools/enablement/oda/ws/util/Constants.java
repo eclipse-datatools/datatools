@@ -45,6 +45,7 @@ public class Constants
 	public static final String RESPONSE_SCHEMA = "ResponseSchema";//$NON-NLS-1$
 	public static final String FROM_WS_SERVER = "FromWSServer";//$NON-NLS-1$
 	public static final String FROM_WSDL = "FromWSDL";//$NON-NLS-1$
+	public static final String FROM_EXTERNAL_SCHEMA = "FromExternalSchema";//$NON-NLS-1$
 	public static final String OPERATION_TRACE = "operationTrace";//$NON-NLS-1$
 	public static final String XML_QUERYTEXT = "xmlQueryText";//$NON-NLS-1$
 
