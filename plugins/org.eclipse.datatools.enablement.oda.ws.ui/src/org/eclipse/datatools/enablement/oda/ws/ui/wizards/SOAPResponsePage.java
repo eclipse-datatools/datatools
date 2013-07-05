@@ -308,6 +308,39 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		setupDFTXMLRadio( group );
 		setupEXTXMLRadio( group );
+		
+		initXMLRadioGroupStatus( );
+	}
+	
+	private void initXMLRadioGroupStatus( )
+	{
+		if ( getInitializationDesign( ) == null
+				|| getInitializationDesign( ).getPrivateProperties( ) == null )
+		{
+			updateSOAPEndPointSelection( true );
+			return;
+		}
+
+		String useSOAPEndPoint = getInitializationDesign( ).getPrivateProperties( )
+				.getProperty( Constants.RESPONSE_USE_SOAPENDPOINT );
+		if ( useSOAPEndPoint != null )
+		{
+			updateSOAPEndPointSelection( Boolean.valueOf( useSOAPEndPoint ) );
+		}
+		else
+		{
+			updateSOAPEndPointSelection( true );
+		}
+
+	}
+
+	private void updateSOAPEndPointSelection( boolean SOAPEndPointSelected )
+	{
+		dftXMLRadio.setSelection( SOAPEndPointSelected );
+		extXMLRadio.setSelection( !SOAPEndPointSelected );
+		WSConsole.getInstance( )
+				.setPropertyValue( Constants.RESPONSE_USE_SOAPENDPOINT,
+						String.valueOf( SOAPEndPointSelected ) );
 	}
 
 	private void setupDFTXMLRadio( Composite parent )
@@ -317,7 +350,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData.horizontalSpan = 2;
 		dftXMLRadio.setLayoutData( layoutData );
 		dftXMLRadio.setText( Messages.getString( "soapResponsePage.radio.endPoint" ) );//$NON-NLS-1$
-		dftXMLRadio.setSelection( true );
+
 		dftXMLRadio.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -327,7 +360,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				xmlFileURI.setText( WSUtil.EMPTY_STRING );
+				
 			}
 
 		} );
@@ -371,6 +404,20 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData.horizontalSpan = 2;
 		extXMLRadio.setLayoutData( layoutData );
 		extXMLRadio.setText( Messages.getString( "soapResponsePage.radio.externalXML" ) );//$NON-NLS-1$
+		extXMLRadio.addSelectionListener( new SelectionAdapter( ) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+
+			}
+
+		} );
+
 
 		xmlFileURI = new Text( parent, SWT.BORDER );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
@@ -405,8 +452,6 @@ public class SOAPResponsePage extends DataSetWizardPage
 				if ( selectedLocation != null )
 				{
 					xmlFileURI.setText( selectedLocation );
-					extXMLRadio.setSelection( true );
-					dftXMLRadio.setSelection( false );
 				}
 			}
 
@@ -443,8 +488,6 @@ public class SOAPResponsePage extends DataSetWizardPage
 				.getPropertyValue( Constants.XML_FILE_URI );
 		if ( !WSUtil.isNull( xml ) )
 		{
-			dftXMLRadio.setSelection( false );
-			extXMLRadio.setSelection( true );
 			xmlFileURI.setText( xml );
 		}
 
@@ -484,6 +527,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 		design.getPrivateProperties( ).setProperty( Constants.RESPONSE_SCHEMA,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.RESPONSE_SCHEMA ) );
+		design.getPrivateProperties( )
+				.setProperty( Constants.RESPONSE_USE_SOAPENDPOINT,
+						String.valueOf( dftXMLRadio.getSelection( ) ) );
 
 		// TODO: necessary?
 		design.getDataSourceDesign( )
