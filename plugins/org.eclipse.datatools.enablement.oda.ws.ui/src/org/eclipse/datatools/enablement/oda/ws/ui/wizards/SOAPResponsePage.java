@@ -51,6 +51,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private transient Button extXSDRadio;
 	private transient Button dftXMLRadio;
 	private transient Button extXMLRadio;
+	private Button XSDBrowseBtn;
 
 	private transient Text xmlFileURI;
 	private transient Text xsdFileURI;
@@ -161,6 +162,8 @@ public class SOAPResponsePage extends DataSetWizardPage
 		{
 			setToDefaultXSDSelection( );
 		}
+		
+		updateXSDGroupControl( );
 
 	}
 
@@ -191,7 +194,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			{
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
-				xsdFileURI.setText( WSUtil.EMPTY_STRING );
+				updateXSDGroupControl( );
 				updatePageStatus( );
 			}
 
@@ -216,7 +219,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			{
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WS_SERVER );
-				xsdFileURI.setText( WSUtil.EMPTY_STRING );
+				updateXSDGroupControl( );
 				updatePageStatus( );
 			}
 
@@ -253,11 +256,11 @@ public class SOAPResponsePage extends DataSetWizardPage
 				updatePageStatus( );
 			}
 		} );
-		Button button = new Button( parent, SWT.NONE );
+		XSDBrowseBtn = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		button.setLayoutData( layoutData );
-		button.setText( Messages.getString( "soapResponsePage.button.browse1" ) );//$NON-NLS-1$
-		button.addSelectionListener( new SelectionAdapter( ) {
+		XSDBrowseBtn.setLayoutData( layoutData );
+		XSDBrowseBtn.setText( Messages.getString( "soapResponsePage.button.browse1" ) );//$NON-NLS-1$
+		XSDBrowseBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -282,12 +285,17 @@ public class SOAPResponsePage extends DataSetWizardPage
 				if ( selectedLocation != null )
 				{
 					xsdFileURI.setText( selectedLocation );
-					extXSDRadio.setSelection( true );
-					dftXSDRadio.setSelection( false );
 				}
+				updateXSDGroupControl( );
 			}
 
 		} );
+	}
+	
+	private void updateXSDGroupControl( )
+	{
+		xsdFileURI.setEnabled( extXSDRadio.getSelection( ) );
+		XSDBrowseBtn.setEnabled( extXSDRadio.getSelection( ) );
 	}
 
 	private void setupXMLGroup( Composite parent )
@@ -564,15 +572,28 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
-		if ( xsdFileURI != null )
+		if ( extXSDRadio.getSelection( ) && xsdFileURI != null )
+		{
 			WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
 					xsdFileURI.getText( ) );
+		}
+		else
+		{
+			WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
+					WSUtil.EMPTY_STRING );
+		}
+
 		if ( soapEndPoint != null )
+		{
 			WSConsole.getInstance( ).setPropertyValue( Constants.SOAP_ENDPOINT,
 					soapEndPoint.getText( ) );
+		}
+
 		if ( xmlFileURI != null )
+		{
 			WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
 					xmlFileURI.getText( ) );
+		}
 	}
 
 	/*
