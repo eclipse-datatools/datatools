@@ -511,7 +511,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void savePage( DataSetDesign design )
 	{
-		if ( !initialized || !WSConsole.getInstance( ).isSessionOK( ) )
+		if ( !initialized
+				|| dftXMLRadio == null
+				|| !WSConsole.getInstance( ).isSessionOK( ) )
 			return;
 
 		// ok being clicked without leaving the page
@@ -618,6 +620,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
+		if ( !initialized || extXSDRadio == null || extXSDRadio.isDisposed( ) )
+			return;
+
 		if ( extXSDRadio.getSelection( ) && xsdFileURI != null )
 		{
 			WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
