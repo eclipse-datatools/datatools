@@ -51,7 +51,8 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private transient Button extXSDRadio;
 	private transient Button dftXMLRadio;
 	private transient Button extXMLRadio;
-	private Button XSDBrowseBtn;
+
+	private Button XSDBrowseBtn, connectBtn, browseXMLBtn;
 
 	private transient Text xmlFileURI;
 	private transient Text xsdFileURI;
@@ -360,7 +361,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				
+				updateXMLControlStatus( );
 			}
 
 		} );
@@ -369,16 +370,18 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		soapEndPoint.setLayoutData( layoutData );
 
-		Button button = new Button( parent, SWT.NONE );
+		connectBtn = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		button.setLayoutData( layoutData );
-		button.setText( Messages.getString( "soapResponsePage.button.connect" ) );//$NON-NLS-1$
-		button.addSelectionListener( new SelectionAdapter( ) {
+		connectBtn.setLayoutData( layoutData );
+		connectBtn.setText( Messages.getString( "soapResponsePage.button.connect" ) );//$NON-NLS-1$
+		connectBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
 			 * 
-			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 * @see
+			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse
+			 * .swt.events.SelectionEvent)
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
@@ -394,6 +397,16 @@ public class SOAPResponsePage extends DataSetWizardPage
 				}
 			}
 		} );
+
+		soapEndPoint.addModifyListener( new ModifyListener( ) {
+
+			public void modifyText( ModifyEvent e )
+			{
+				connectBtn.setEnabled( soapEndPoint.getText( ).trim( ).length( ) > 0 );
+			}
+
+		} );
+
 	}
 
 	private void setupEXTXMLRadio( Composite parent )
@@ -413,7 +426,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-
+				updateXMLControlStatus( );
 			}
 
 		} );
@@ -423,11 +436,11 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		xmlFileURI.setLayoutData( layoutData );
 
-		Button button = new Button( parent, SWT.NONE );
+		browseXMLBtn = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		button.setLayoutData( layoutData );
-		button.setText( Messages.getString( "soapResponsePage.button.browse2" ) );//$NON-NLS-1$
-		button.addSelectionListener( new SelectionAdapter( ) {
+		browseXMLBtn.setLayoutData( layoutData );
+		browseXMLBtn.setText( Messages.getString( "soapResponsePage.button.browse2" ) );//$NON-NLS-1$
+		browseXMLBtn.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -456,6 +469,17 @@ public class SOAPResponsePage extends DataSetWizardPage
 			}
 
 		} );
+	}
+	
+	private void updateXMLControlStatus( )
+	{
+		boolean defaultXMLSelection = dftXMLRadio.getSelection( );
+		soapEndPoint.setEnabled( defaultXMLSelection );
+		connectBtn.setEnabled( defaultXMLSelection
+				&& soapEndPoint.getText( ).trim( ).length( ) > 0 );
+
+		xmlFileURI.setEnabled( !defaultXMLSelection );
+		browseXMLBtn.setEnabled( !defaultXMLSelection );
 	}
 
 	/**
@@ -495,6 +519,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 				.getPropertyValue( Constants.SOAP_ENDPOINT );
 		if ( value != null )
 			soapEndPoint.setText( value );
+		
+		updateXMLControlStatus( );
+		
 		saved = false;
 	}
 
