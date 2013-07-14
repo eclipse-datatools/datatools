@@ -363,6 +363,17 @@ public class ValidatorUtil
         }
     }
 
+    private static OdaException newOdaException( String message, String causeIdentifier, 
+            OdaException chainedEx )
+    {
+        if( causeIdentifier == null )
+            return ( chainedEx != null ) ? chainedEx : new OdaException( message );
+        
+        OdaException rootEx = newOdaException( message, causeIdentifier );
+        addException( rootEx, chainedEx );
+        return rootEx;
+    }
+
     /**
      * Creates and returns an OdaException with the specified message and
      * an IllegalArgumentException cause with the specified causeIdentifier.
@@ -376,16 +387,30 @@ public class ValidatorUtil
         odaEx.initCause( new IllegalArgumentException( causeIdentifier ) );
         return odaEx;
     }
-    
-    private static OdaException newOdaException( String message, String causeIdentifier, 
-            OdaException chainedEx )
+
+    private static boolean isCauseOfException( OdaException odaEx, String causeIdentifier )
     {
         if( causeIdentifier == null )
-            return ( chainedEx != null ) ? chainedEx : new OdaException( message );
-        
-        OdaException rootEx = newOdaException( message, causeIdentifier );
-        addException( rootEx, chainedEx );
-        return rootEx;
+            return false;
+
+        while( odaEx != null )
+        {
+            Throwable cause = odaEx.getCause();
+            if( cause instanceof IllegalArgumentException && 
+                    causeIdentifier.equals( cause.getMessage() ) )
+                return true;
+
+            // check on nested cause, if exists
+            if( cause instanceof OdaException )
+            {
+                if( isCauseOfException( (OdaException)cause, causeIdentifier ) )
+                    return true;
+            }
+                            
+            odaEx = odaEx.getNextException();
+        }
+
+        return false;
     }
     
     /**
@@ -455,20 +480,7 @@ public class ValidatorUtil
     {
         if( filterExpr == null )
             return true;
-
-        String filterExprId = getInstanceId( filterExpr );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    filterExprId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( filterExpr ) );
     }
     
     /**
@@ -522,20 +534,7 @@ public class ValidatorUtil
     {
         if( aggrExpr == null )
             return true;
-
-        String aggrExprId = getInstanceId( aggrExpr );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    aggrExprId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( aggrExpr ) );
     }
     
     /**
@@ -589,20 +588,7 @@ public class ValidatorUtil
     {
         if( valueExpr == null )
             return true;
-
-        String valueExprId = getInstanceId( valueExpr );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    valueExprId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( valueExpr ) );
     }
     
     /**
@@ -656,20 +642,7 @@ public class ValidatorUtil
     {
         if( resultProj == null )
             return true;
-
-        String resultProjId = getInstanceId( resultProj );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    resultProjId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( resultProj ) );
     }
     
     /**
@@ -725,19 +698,8 @@ public class ValidatorUtil
         if( sortKeySequenceOrder == 0 )
             return true;
 
-        String aggrExprId = String.valueOf( sortKeySequenceOrder );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    aggrExprId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        String sortKeyId = String.valueOf( sortKeySequenceOrder );
+        return isCauseOfException( rootEx, sortKeyId );
     }
     
     /**
@@ -791,20 +753,7 @@ public class ValidatorUtil
     {
         if( sortSpec == null )
             return true;
-
-        String sortSpecId = getInstanceId( sortSpec );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    sortSpecId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( sortSpec ) );
     }
     
     /**
@@ -840,20 +789,7 @@ public class ValidatorUtil
     {
         if( resultSetSpec == null )
             return true;
-
-        String specId = getInstanceId( resultSetSpec );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    specId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( resultSetSpec ) );
     }
 
     /**
@@ -909,20 +845,7 @@ public class ValidatorUtil
     {
         if( baseQuery == null )
             return true;
-
-        String baseQueryId = getInstanceId( baseQuery );
-        OdaException currentEx = rootEx;
-        while( currentEx != null )
-        {
-            Throwable cause = currentEx.getCause();
-            if( cause instanceof IllegalArgumentException && 
-                    baseQueryId.equals( cause.getMessage() ) )
-                return true;
-            
-            currentEx = currentEx.getNextException();
-        }
-
-        return false;
+        return isCauseOfException( rootEx, getInstanceId( baseQuery ) );
     }
 
     private static String getInstanceId( FilterExpression filterExpr )
@@ -957,7 +880,7 @@ public class ValidatorUtil
     {
         if( sortSpec == null )
             return null;
-        return sortSpec + AT_SYMBOL + Integer.toHexString( sortSpec.hashCode() );
+        return sortSpec.getClass().getSimpleName() + AT_SYMBOL + Integer.toHexString( sortSpec.hashCode() );
     }
     
     private static String getInstanceId( ResultSetSpecification resultSetSpec )
