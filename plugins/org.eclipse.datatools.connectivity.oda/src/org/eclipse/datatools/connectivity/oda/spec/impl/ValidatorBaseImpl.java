@@ -53,6 +53,8 @@ public class ValidatorBaseImpl implements IValidator
             return;     // nothing to validate
         
         validate( querySpec.getResultSetSpecification(), context );
+        if( querySpec.getBaseQuery() != null )
+            validate( querySpec.getBaseQuery(), context );
 
         // sub-class to extend to validate the data set query properties and/or 
         // input parameters in querySpec, as appropriate
