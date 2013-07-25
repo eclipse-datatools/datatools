@@ -15,7 +15,6 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
@@ -70,7 +69,7 @@ public class FolderSelectionPageHelper
 	private transient Text fileURI = null;
 	private transient MenuButton browseLocalFileButton = null;
 	private transient Button typeLineCheckBox = null;
-	private transient Button browseFolderButton = null;
+	private transient MenuButton browseFolderButton = null;
 	private transient Combo charSetSelectionCombo = null;
 	private transient Button columnNameLineCheckBox = null;
 	private transient Combo flatFileStyleCombo = null;
@@ -98,7 +97,7 @@ public class FolderSelectionPageHelper
 
 	private static final Integer SELECT_RELATIVE_PATH = 1;
 	private static final Integer SELECT_ABSOLUTE_PATH = 2;
-	
+
 	private boolean needsCheckURITest = true;
 	private String URIValue = EMPTY_STRING;
 
@@ -180,8 +179,7 @@ public class FolderSelectionPageHelper
 		if ( columnNameLineCheckBox == null
 				|| !columnNameLineCheckBox.getEnabled( ) )
 			return EMPTY_STRING;
-		return columnNameLineCheckBox.getSelection( )
-				? CommonConstants.INC_COLUMN_NAME_YES
+		return columnNameLineCheckBox.getSelection( ) ? CommonConstants.INC_COLUMN_NAME_YES
 				: CommonConstants.INC_COLUMN_NAME_NO;
 	}
 
@@ -193,8 +191,7 @@ public class FolderSelectionPageHelper
 	{
 		if ( typeLineCheckBox == null )
 			return EMPTY_STRING;
-		return typeLineCheckBox.getSelection( )
-				? CommonConstants.INC_TYPE_LINE_YES
+		return typeLineCheckBox.getSelection( ) ? CommonConstants.INC_TYPE_LINE_YES
 				: CommonConstants.INC_TYPE_LINE_NO;
 	}
 
@@ -202,8 +199,7 @@ public class FolderSelectionPageHelper
 	{
 		if ( trailNullColsCheckBox == null )
 			return EMPTY_STRING;
-		return trailNullColsCheckBox.getSelection( )
-				? CommonConstants.TRAIL_NULL_COLS_YES
+		return trailNullColsCheckBox.getSelection( ) ? CommonConstants.TRAIL_NULL_COLS_YES
 				: CommonConstants.TRAIL_NULL_COLS_NO;
 	}
 
@@ -261,12 +257,13 @@ public class FolderSelectionPageHelper
 	void initCustomControl( Properties profileProps )
 	{
 		if ( profileProps == null
-				|| profileProps.isEmpty( ) || folderLocation == null
+				|| profileProps.isEmpty( )
+				|| folderLocation == null
 				|| fileURI == null )
 			return; // nothing to initialize
 
 		String folderPath = profileProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		if ( folderPath != null && folderPath.length( ) != 0 )
+		if ( folderPath != null )
 		{
 			setFolderLocationString( folderPath );
 			switchFileSelectionMode( true );
@@ -319,6 +316,7 @@ public class FolderSelectionPageHelper
 			charSetSelectionCombo.select( 0 );
 		else
 			charSetSelectionCombo.select( charSetSelectionCombo.indexOf( charSet ) );
+		validatePageStatus( );
 	}
 
 	/**
@@ -463,33 +461,97 @@ public class FolderSelectionPageHelper
 
 		} );
 
-		browseFolderButton = new Button( composite, SWT.NONE );
-		browseFolderButton.setText( Messages.getString( "button.selectFolder.browse" ) ); //$NON-NLS-1$
-		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
+		browseFolderButton = new MenuButton( composite, SWT.NONE );
+		browseFolderButton.setText( Messages.getString( "button.selectFileURI.browse" ) ); //$NON-NLS-1$
+		browseFolderButton.setToolTipText( Messages.getString( "button.selectFileURI.browse.tooltips" ) ); //$NON-NLS-1$
 
-			/*
-			 * @see
-			 * org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse
-			 * .swt.events.SelectionEvent)
-			 */
+		Menu menu = new Menu( composite.getShell( ), SWT.POP_UP );
+		SelectionAdapter action = new SelectionAdapter( ) {
+
 			public void widgetSelected( SelectionEvent e )
 			{
-				DirectoryDialog dialog = new DirectoryDialog( folderLocation.getShell( ) );
-				String folderLocationValue = getFolderLocationString( );
-				if ( folderLocationValue != null
-						&& folderLocationValue.trim( ).length( ) > 0 )
+				if ( e.widget instanceof MenuItem )
 				{
-					dialog.setFilterPath( folderLocationValue );
+					MenuItem item = (MenuItem) e.widget;
+					Integer type = (Integer) item.getData( );
+					handleFolderSelection( type );
 				}
-
-				dialog.setMessage( DEFAULT_MESSAGE );
-				String selectedLocation = dialog.open( );
-				if ( selectedLocation != null )
+				else if ( e.widget instanceof MenuButton )
 				{
-					setFolderLocationString( selectedLocation );
+					if ( ri != null )
+					{
+						handleFolderSelection( SELECT_RELATIVE_PATH );
+					}
+					else
+					{
+						handleFolderSelection( SELECT_ABSOLUTE_PATH );
+					}
 				}
 			}
-		} );
+		};
+
+		MenuItem item;
+		if ( ri != null )
+		{
+			item = new MenuItem( menu, SWT.PUSH );
+			item.setText( Messages.getString( "button.selectFileURI.menuItem.relativePath" ) ); //$NON-NLS-1$
+			item.setData( SELECT_RELATIVE_PATH );
+			item.addSelectionListener( action );
+		}
+
+		item = new MenuItem( menu, SWT.PUSH );
+		item.setText( Messages.getString( "button.selectFileURI.menuItem.absolutePath" ) ); //$NON-NLS-1$
+		item.setData( SELECT_ABSOLUTE_PATH );
+		item.addSelectionListener( action );
+
+		// Add relative path selection support while having resource identifier
+		browseFolderButton.setDropDownMenu( menu );
+		browseFolderButton.addSelectionListener( action );
+
+		GridData btnData = new GridData( );
+		btnData.widthHint = browseFolderButton.computeSize( -1, -1 ).x;
+		browseFolderButton.setLayoutData( btnData );
+	}
+
+	protected void handleFolderSelection( Integer selectionType )
+	{
+		if ( selectionType == SELECT_RELATIVE_PATH )
+		{
+			RelativeFileSelectionDialog dialog = new RelativeFileSelectionDialog( folderLocation.getShell( ),
+					new File( getResourceFolder( ) ),
+					true );
+			if ( dialog.open( ) == Window.OK )
+			{
+				try
+				{
+					URI uri = dialog.getSelectedURI( );
+					if ( uri != null )
+					{
+						setFolderLocationString( uri.getPath( ) );;
+					}
+				}
+				catch ( URISyntaxException e )
+				{
+				}
+			}
+		}
+		else if ( selectionType == SELECT_ABSOLUTE_PATH )
+		{
+			DirectoryDialog dialog = new DirectoryDialog( folderLocation.getShell( ) );
+			String folderLocationValue = getFolderLocationString( );
+			if ( folderLocationValue != null
+					&& folderLocationValue.trim( ).length( ) > 0 )
+			{
+				dialog.setFilterPath( folderLocationValue );
+			}
+
+			dialog.setMessage( DEFAULT_MESSAGE );
+			String selectedLocation = dialog.open( );
+			if ( selectedLocation != null )
+			{
+				setFolderLocationString( selectedLocation );
+			}
+		}
 	}
 
 	private void setupFileURI( Composite composite )
@@ -554,9 +616,10 @@ public class FolderSelectionPageHelper
 					{
 						handleFileSelection( SELECT_RELATIVE_PATH );
 					}
-					else {
+					else
+					{
 						handleFileSelection( SELECT_ABSOLUTE_PATH );
-					}				
+					}
 				}
 			}
 		};
@@ -589,7 +652,8 @@ public class FolderSelectionPageHelper
 		if ( selectionType == SELECT_RELATIVE_PATH )
 		{
 			RelativeFileSelectionDialog dialog = new RelativeFileSelectionDialog( fileURI.getShell( ),
-					new File( getResourceFolder( ) ) );
+					new File( getResourceFolder( ) ),
+					false );
 			if ( dialog.open( ) == Window.OK )
 			{
 				try
@@ -645,8 +709,7 @@ public class FolderSelectionPageHelper
 		browseLocalFileButton.setEnabled( !homeFolder );
 		fileURIChoice.setSelection( !homeFolder );
 	}
-	
-	
+
 	/**
 	 * 
 	 * @return
@@ -674,8 +737,9 @@ public class FolderSelectionPageHelper
 	{
 		String folderLocationValue = getFolderLocationString( ).trim( );
 		String fileURIValue = getFileURIString( ).trim( );
-		folderLocationValue = folderLocationValue.length( ) > 0
-				? folderLocationValue : null;
+		// folderLocationValue = folderLocationValue.length( ) > 0 ?
+		// folderLocationValue
+		// : null;
 		fileURIValue = fileURIValue.length( ) > 0 ? fileURIValue : null;
 
 		try
@@ -683,7 +747,7 @@ public class FolderSelectionPageHelper
 			if ( fileURIChoice.getSelection( ) )
 				ResourceLocator.validateFileURI( fileURIValue, ri );
 			else if ( homeFolderChoice.getSelection( ) )
-				ResourceLocator.validateHomeFolder( folderLocationValue );
+				ResourceLocator.validateHomeFolder( folderLocationValue, ri );
 		}
 		catch ( InvalidResourceException ex )
 		{
@@ -904,9 +968,9 @@ public class FolderSelectionPageHelper
 		else
 		{
 			switchFileSelectionMode( true );
-		}		
+		}
 	}
-	
+
 	protected void refreshTypeLineCheckBoxStatus( )
 	{
 		if ( columnNameLineCheckBox.getSelection( ) )
@@ -923,13 +987,14 @@ public class FolderSelectionPageHelper
 		int status = 1;
 		if ( homeFolderChoice.getSelection( ) )
 		{
-			if ( getFolderLocationString( ).trim( ).length( ) == 0 )
-			{
-				setMessage( Messages.getString( "error.emptyFolderPath" ), //$NON-NLS-1$?
-						IMessageProvider.ERROR );
-				status = -1;
-			}
-			else if ( verifyFileLocation( ) == ERROR_INVALID_PATH )
+			// if ( getFolderLocationString( ).trim( ).length( ) == 0 )
+			// {
+			//				setMessage( Messages.getString( "error.emptyFolderPath" ), //$NON-NLS-1$?
+			// IMessageProvider.ERROR );
+			// status = -1;
+			// }
+			// else
+			if ( verifyFileLocation( ) == ERROR_INVALID_PATH )
 			{
 				setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$?
 				status = -1;
@@ -939,7 +1004,8 @@ public class FolderSelectionPageHelper
 		{
 			if ( getFileURIString( ).trim( ).length( ) == 0 )
 			{
-				setMessage( Messages.getString( "error.emptyFileURIPath" ), IMessageProvider.ERROR );
+				setMessage( Messages.getString( "error.emptyFileURIPath" ),
+						IMessageProvider.ERROR );
 				status = -1;
 			}
 			else if ( needsCheckURITest )
@@ -956,5 +1022,5 @@ public class FolderSelectionPageHelper
 
 		setPageComplete( status >= 0 );
 	}
-	
+
 }

@@ -31,8 +31,9 @@ import com.ibm.icu.util.ULocale;
 
 public class Connection implements IConnection
 {
+
 	private boolean isOpen = false;
-	
+
 	@SuppressWarnings("rawtypes")
 	private Map appContext = null;
 	private char delimiter;
@@ -43,9 +44,11 @@ public class Connection implements IConnection
 	private String homeFolder;
 	private String fileURI;
 	private Object ri; // ResourceIdentifiers
-	
+
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties
+	 * )
 	 */
 	public void open( Properties connProperties ) throws OdaException
 	{
@@ -53,21 +56,23 @@ public class Connection implements IConnection
 			throw new OdaException( Messages.getString( "connection_CONNECTION_PROPERTIES_MISSING" ) ); //$NON-NLS-1$
 
 		populateFileLocation( connProperties );
-		
+
 		populateDelimiter( connProperties );
 
 		populateInclColumnNames( connProperties );
 
 		populateInclTypeLine( connProperties );
-		
+
 		populateTrailNullCols( connProperties );
-		
+
 		populateCharSet( connProperties );
 
 	}
 
 	/**
-	 * Validate the HOME property exists and has specified an existing directory.
+	 * Validate the HOME property exists and has specified an existing
+	 * directory.
+	 * 
 	 * @param connProperties
 	 * @throws OdaException
 	 */
@@ -75,16 +80,19 @@ public class Connection implements IConnection
 			throws OdaException
 	{
 		homeFolder = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		if ( homeFolder != null && homeFolder.trim( ).length() == 0 )
-			homeFolder = null;
-		
+
+		if ( homeFolder == null )
+			homeFolder = "";
+		// if ( homeFolder != null && homeFolder.trim( ).length() == 0 )
+		// homeFolder = null;
+
 		fileURI = connProperties.getProperty( CommonConstants.CONN_FILE_URI_PROP );
-		if ( fileURI != null && fileURI.trim( ).length() == 0 )
+		if ( fileURI != null && fileURI.trim( ).length( ) == 0 )
 			fileURI = null;
-		
+
 		if ( homeFolder == null && fileURI == null )
-			throw new OdaException( Messages.getString( "connection_MISSING_FILELOCATION" )); //$NON-NLS-1$
-			
+			throw new OdaException( Messages.getString( "connection_MISSING_FILELOCATION" ) ); //$NON-NLS-1$
+
 		this.isOpen = true;
 	}
 
@@ -111,10 +119,11 @@ public class Connection implements IConnection
 			else
 				throw new OdaException( Messages.getString( "Unsupported_Delimiter" ) ); //$NON-NLS-1$
 		}
-		
-		this.delimiter = CommonConstants.getDelimiterValue( delimiterName ).charAt( 0 );
+
+		this.delimiter = CommonConstants.getDelimiterValue( delimiterName )
+				.charAt( 0 );
 	}
-	
+
 	private void populateCharSet( Properties connProperties )
 	{
 		this.charSet = connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP );
@@ -129,13 +138,13 @@ public class Connection implements IConnection
 		boolean includeColumnNames = true;
 		String inclColumnNames = connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		if ( inclColumnNames != null && inclColumnNames.trim( ).length( ) > 0 )
-			includeColumnNames = inclColumnNames.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO )
-					? false : true;
-		
+			includeColumnNames = inclColumnNames.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO ) ? false
+					: true;
+
 		connProperties.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
-					includeColumnNames ? CommonConstants.INC_COLUMN_NAME_YES
-							: CommonConstants.INC_COLUMN_NAME_NO );
-		
+				includeColumnNames ? CommonConstants.INC_COLUMN_NAME_YES
+						: CommonConstants.INC_COLUMN_NAME_NO );
+
 		this.hasColumnNames = includeColumnNames;
 	}
 
@@ -148,33 +157,36 @@ public class Connection implements IConnection
 		boolean includeTypeLine = true;
 		String inclTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
 		if ( inclTypeLine != null && inclTypeLine.trim( ).length( ) > 0 )
-			includeTypeLine = inclTypeLine.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO )
-					? false : true;
-		
+			includeTypeLine = inclTypeLine.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) ? false
+					: true;
+
 		connProperties.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
-					includeTypeLine ? CommonConstants.INC_TYPE_LINE_YES
-							: CommonConstants.INC_TYPE_LINE_NO );
-		
+				includeTypeLine ? CommonConstants.INC_TYPE_LINE_YES
+						: CommonConstants.INC_TYPE_LINE_NO );
+
 		this.hasTypeLine = includeTypeLine;
 	}
-	
+
 	private void populateTrailNullCols( Properties connProperties )
 	{
 		boolean trailNullCols = true;
 		String trailNullColsProp = connProperties.getProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP );
-		if ( trailNullColsProp != null && trailNullColsProp.trim( ).length( ) > 0 )
-			trailNullCols = trailNullColsProp.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_NO )
-					? false : true;
-		
+		if ( trailNullColsProp != null
+				&& trailNullColsProp.trim( ).length( ) > 0 )
+			trailNullCols = trailNullColsProp.equalsIgnoreCase( CommonConstants.TRAIL_NULL_COLS_NO ) ? false
+					: true;
+
 		connProperties.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
-					trailNullCols ? CommonConstants.TRAIL_NULL_COLS_YES
-							: CommonConstants.TRAIL_NULL_COLS_NO );
-		
+				trailNullCols ? CommonConstants.TRAIL_NULL_COLS_YES
+						: CommonConstants.TRAIL_NULL_COLS_NO );
+
 		this.trailNullColumns = trailNullCols;
 	}
 
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java.lang.Object)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java
+	 * .lang.Object)
 	 */
 	@SuppressWarnings("rawtypes")
 	public void setAppContext( Object context ) throws OdaException
@@ -199,7 +211,9 @@ public class Connection implements IConnection
 	}
 
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang.String)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang
+	 * .String)
 	 */
 	public IDataSetMetaData getMetaData( String dataSetType )
 			throws OdaException
@@ -208,7 +222,9 @@ public class Connection implements IConnection
 	}
 
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang.String)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang
+	 * .String)
 	 */
 	public IQuery newQuery( String dataSourceType ) throws OdaException
 	{
@@ -234,58 +250,63 @@ public class Connection implements IConnection
 		throw new UnsupportedOperationException( );
 	}
 
-	/* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
-     */
-    public void setLocale( ULocale locale ) throws OdaException
-    {
-        throw new UnsupportedOperationException( );
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.
+	 * icu.util.ULocale)
+	 */
+	public void setLocale( ULocale locale ) throws OdaException
+	{
+		throw new UnsupportedOperationException( );
+	}
 
-    /*
+	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMaxQueries()
 	 */
 	public int getMaxQueries( ) throws OdaException
 	{
 		return CommonConstants.MaxStatements;
 	}
-	
+
 	public char getDelimeter( )
 	{
 		return this.delimiter;
 	}
-	
+
 	public String getCharSet( )
 	{
 		return this.charSet;
 	}
-	
+
 	public boolean hasTypeLine( )
 	{
 		return this.hasTypeLine;
 	}
-	
+
 	public boolean hasColumnNames( )
 	{
 		return this.hasColumnNames;
 	}
-	
+
 	public boolean trailNullColumns( )
 	{
 		return this.trailNullColumns;
 	}
-	
+
 	public String getHomeFolder( )
 	{
 		return this.homeFolder;
 	}
-	
+
 	public String getFileURI( )
 	{
 		return this.fileURI;
 	}
-	
-	public ResourceInputStream getInputStream( String tableName ) throws OdaException
+
+	public ResourceInputStream getInputStream( String tableName )
+			throws OdaException
 	{
 		if ( ri == null && appContext != null )
 		{
@@ -295,6 +316,9 @@ public class Connection implements IConnection
 				ri = resource;
 			}
 		}
-		return ResourceLocator.getResourceInputStream( homeFolder, tableName, fileURI, ri );
+		return ResourceLocator.getResourceInputStream( homeFolder,
+				tableName,
+				fileURI,
+				ri );
 	}
 }

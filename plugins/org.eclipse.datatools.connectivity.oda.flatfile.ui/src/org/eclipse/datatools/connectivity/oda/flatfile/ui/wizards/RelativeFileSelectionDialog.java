@@ -53,11 +53,28 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 
 	private File rootFolder;
 
+	private static boolean showFolder = false;
+
 	public RelativeFileSelectionDialog( Shell parent, File rootFolder )
 	{
 		super( parent, new LabelProvider( ), new ContentProvider( ) );
 
 		assert rootFolder != null;
+
+		this.setValidator( new SelectionValidator( ) );
+		this.setInput( rootFolder.getAbsolutePath( ) );
+		this.setTitle( Messages.getString( "RelativeFileSelectionDialog.Title.SelectFile" ) ); //$NON-NLS-1$
+		this.rootFolder = rootFolder;
+	}
+
+	public RelativeFileSelectionDialog( Shell parent, File rootFolder,
+			boolean showFolder )
+	{
+		super( parent, new LabelProvider( ), new ContentProvider( ) );
+
+		assert rootFolder != null;
+
+		RelativeFileSelectionDialog.showFolder = showFolder;
 
 		this.setValidator( new SelectionValidator( ) );
 		this.setInput( rootFolder.getAbsolutePath( ) );
@@ -197,9 +214,8 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 
 	}
 
-	private static class SelectionValidator
-			implements
-				ISelectionStatusValidator
+	private static class SelectionValidator implements
+			ISelectionStatusValidator
 	{
 
 		public IStatus validate( Object[] selections )
@@ -210,7 +226,8 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 				{
 					if ( o instanceof File )
 					{
-						if ( ( (File) o ).isFile( ) )
+						if ( ( showFolder && ( (File) o ).isDirectory( ) )
+								|| ( !showFolder && ( (File) o ).isFile( ) ) )
 						{
 							return new Status( IStatus.OK,
 									"org.eclipse.datatools.connectivity.oda.flatfile.ui", //$NON-NLS-1$
@@ -244,7 +261,10 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 				{
 					return true;
 				}
-				return true;
+				if ( !showFolder )
+					return true;
+				else
+					return false;
 			}
 		} );
 		if ( result != null )
@@ -262,7 +282,8 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 		for ( Object o : selected )
 		{
 			File f = (File) o;
-			if ( f.isFile( ) )
+			if ( ( showFolder && f.isDirectory( ) )
+					|| ( !showFolder && f.isFile( ) ) )
 			{
 				URI relative = rootFolder.toURI( ).relativize( f.toURI( ) );
 				result.add( relative.getPath( ) );
@@ -272,10 +293,9 @@ public class RelativeFileSelectionDialog extends ElementTreeSelectionDialog
 		return result.toArray( new String[0] );
 	}
 
-	public static class FileComparator
-			implements
-				Comparator<File>,
-				Serializable
+	public static class FileComparator implements
+			Comparator<File>,
+			Serializable
 	{
 
 		private static final long serialVersionUID = 1L;

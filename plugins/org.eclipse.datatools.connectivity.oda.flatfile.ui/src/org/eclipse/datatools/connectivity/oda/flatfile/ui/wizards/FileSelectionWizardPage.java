@@ -102,9 +102,8 @@ import org.eclipse.ui.PlatformUI;
  * Extends the ODA design ui framework to provide a driver-specific custom
  * editor page to create or edit an ODA data set design instance.
  */
-public class FileSelectionWizardPage extends DataSetWizardPage
-		implements
-			ISelectionChangedListener
+public class FileSelectionWizardPage extends DataSetWizardPage implements
+		ISelectionChangedListener
 {
 
 	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
@@ -220,7 +219,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		sComposite.setContent( control );
 		setControl( sComposite );
-		
+
 		updateButtonStatus( );
 		validatePageStatus( );
 
@@ -282,7 +281,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			return; // nothing to initialize
 
 		updateFileFilterComboStatus( dataSetDesign );
-		
+
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText == null )
 			return; // nothing to initialize
@@ -338,7 +337,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private Composite createPageControl( Composite parent )
 	{
-		
+
 		Composite mainComposite = new Composite( parent, SWT.NONE );
 		mainComposite.setLayout( new GridLayout( ) );
 		mainComposite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
@@ -358,11 +357,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		createRightTableComposite( composite );
 
 		createEditBtnGroup( composite );
-		
+
 		loadProperties( );
 		populateFileFilter( );
 		updateFileListAndCharSet( );
-		
+
 		return mainComposite;
 	}
 
@@ -385,7 +384,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		label.setLayoutData( new GridData( ) );
 
 		fileViewer = new ComboViewer( composite, SWT.BORDER | SWT.READ_ONLY );
-		fileViewer.getControl( ).setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+		fileViewer.getControl( )
+				.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 		fileViewer.setContentProvider( new ArrayContentProvider( ) );
 		fileViewer.addSelectionChangedListener( this );
 		fileViewer.setLabelProvider( new LabelProvider( ) {
@@ -405,7 +405,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		label.setLayoutData( new GridData( ) );
 
 		fileFilter = new ComboViewer( composite, SWT.READ_ONLY );
-		fileFilter.getControl( ).setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+		fileFilter.getControl( )
+				.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 		fileFilter.addSelectionChangedListener( new ISelectionChangedListener( ) {
 
 			public void selectionChanged( SelectionChangedEvent event )
@@ -426,7 +427,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				else
 				{
 					if ( currSelectFilter.equals( MATCH_ALL_FILES )
-							|| MessageDialog.openConfirm( fileViewer.getCombo( ).getShell( ),
+							|| MessageDialog.openConfirm( fileViewer.getCombo( )
+									.getShell( ),
 									Messages.getString( "confirm.reselectFileFilterTitle" ), //$NON-NLS-1$
 									Messages.getString( "confirm.reselectFileFilterMessage" ) ) ) //$NON-NLS-1$
 					{
@@ -453,7 +455,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		gd.widthHint = 230;
 		gd.heightHint = 300;
 		availableList = new List( composite, SWT.MULTI
-				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
+				| SWT.BORDER
+				| SWT.H_SCROLL
+				| SWT.V_SCROLL );
 
 		availableList.setLayoutData( gd );
 		availableList.addSelectionListener( new SelectionAdapter( ) {
@@ -469,7 +473,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			public void mouseDoubleClick( MouseEvent e )
 			{
-				addColumns( );
+				addColumns( true );
 
 				updateButtonStatus( );
 				validatePageStatus( );
@@ -501,13 +505,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				addColumns( );
+				addColumns( true );
 
 				updateButtonStatus( );
 				validatePageStatus( );
 			}
-		} );		
-		
+		} );
+
 		gridData = new GridData( );
 		gridData.widthHint = 40;
 		btnAddAll = new Button( btnComposite, SWT.NONE );
@@ -525,7 +529,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				validatePageStatus( );
 			}
 		} );
-		
+
 		gridData = new GridData( );
 		gridData.widthHint = 40;
 		btnRemove = new Button( btnComposite, SWT.NONE );
@@ -542,7 +546,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				validatePageStatus( );
 			}
 		} );
-		
+
 		gridData = new GridData( );
 		gridData.widthHint = 40;
 		btnRemoveAll = new Button( btnComposite, SWT.NONE );
@@ -559,7 +563,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				validatePageStatus( );
 			}
 		} );
-		
+
 	}
 
 	/**
@@ -571,7 +575,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void createRightTableComposite( Composite composite )
 	{
 		selectedColumnsViewer = new TableViewer( composite, SWT.MULTI
-				| SWT.FULL_SELECTION | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
+				| SWT.FULL_SELECTION
+				| SWT.BORDER
+				| SWT.H_SCROLL
+				| SWT.V_SCROLL );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
 		selectedColumnsViewer.getTable( )
@@ -1011,11 +1018,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		}
 	}
-	
+
 	private void updateSelectedItemsSelection( int nextIndex )
 	{
 		int itemCount = selectedColumnsViewer.getTable( ).getItemCount( );
-		
+
 		availableList.deselectAll( );
 		selectedColumnsViewer.getTable( ).deselectAll( );
 
@@ -1045,7 +1052,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		return true;
 	}
-	
+
 	private void clearSelectedFileStatus( )
 	{
 		String fileName = fileViewer.getCombo( ).getText( ).trim( );
@@ -1159,7 +1166,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				{
 					// Note that 00, 01, 000 etc. are not indexes
 					while ( i != len
-							&& 0 <= ( c = str.charAt( i ) - '0' ) && c <= 9 )
+							&& 0 <= ( c = str.charAt( i ) - '0' )
+							&& c <= 9 )
 					{
 						oldIndex = index;
 						index = 10 * index - c;
@@ -1170,8 +1178,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				// couldn't
 				// have overflowed.
 				if ( i == len
-						&& ( oldIndex > ( Integer.MIN_VALUE / 10 ) || ( oldIndex == ( Integer.MIN_VALUE / 10 ) && c <= ( negate
-								? -( Integer.MIN_VALUE % 10 )
+						&& ( oldIndex > ( Integer.MIN_VALUE / 10 ) || ( oldIndex == ( Integer.MIN_VALUE / 10 ) && c <= ( negate ? -( Integer.MIN_VALUE % 10 )
 								: ( Integer.MAX_VALUE % 10 ) ) ) ) )
 				{
 					return 0xFFFFFFFFL & ( negate ? index : -index );
@@ -1211,6 +1218,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 
 		odaHome = dataSourceProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
+		if ( odaHome == null )
+			odaHome = "";
 		fileURI = dataSourceProps.getProperty( CommonConstants.CONN_FILE_URI_PROP );
 		charSet = dataSourceProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
 		flatfileDelimiterType = dataSourceProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
@@ -1240,11 +1249,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				fileURI = null;
 			}
 		}
-		else if ( odaHome != null && odaHome.length( ) > 0 )
+		else if ( odaHome != null )
 		{
 			try
 			{
-				ResourceLocator.validateHomeFolder( odaHome );
+				ResourceLocator.validateHomeFolder( odaHome,
+						this.getResourceIdentifiers( ) );
 			}
 			catch ( InvalidResourceException e )
 			{
@@ -1281,14 +1291,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			ArrayList<Object> allFiles = new ArrayList<Object>( );
 			if ( odaHome != null )
 			{
-				File folder = new File( odaHome );
-				if ( folder.isDirectory( ) && folder.exists( ) )
+				try
 				{
-					File[] files = folder.getAbsoluteFile( )
-							.listFiles( new CSVFileFilter( fileFilter.getCombo( )
-									.getText( ) ) );
+					File folder = ResourceLocator.getHomeFolderFile( odaHome,
+							this.getResourceIdentifiers( ) );
+					if ( folder.isDirectory( ) && folder.exists( ) )
+					{
+						File[] files = folder.getAbsoluteFile( )
+								.listFiles( new CSVFileFilter( fileFilter.getCombo( )
+										.getText( ) ) );
 
-					allFiles.addAll( Arrays.asList( files ) );
+						allFiles.addAll( Arrays.asList( files ) );
+					}
+				}
+				catch ( InvalidResourceException e )
+				{
 				}
 			}
 			else if ( fileURI != null )
@@ -1403,12 +1420,14 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				result[2] = getDataTypeDisplayName( new Integer( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
-			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ), true );
+			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ),
+					true );
 			return columnList;
 		}
 		catch ( OdaException e )
 		{
-			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ), false );
+			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ),
+					false );
 			setMessage( e.getLocalizedMessage( ), ERROR );
 			updateExceptionInfo( );
 			return new ArrayList<String[]>( );
@@ -1734,7 +1753,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 
 	}
-	
+
 	private void updateFileFilterComboStatus( DataSetDesign dataSetDesign )
 	{
 		Properties properties = dataSetDesign.getDataSourceDesign( )
@@ -1937,23 +1956,24 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( index == count - 2 )
 			btnMoveDown.setEnabled( false );
 	}
-	
+
 	private void addAllAvailableColumns( )
 	{
 		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getItems( ) );
-		addColumns( addedItems );
+		addColumns( addedItems, false );
 	}
 
 	/**
 	 * Add selectd columns
 	 */
-	private void addColumns( )
+	private void addColumns( boolean updateSelection )
 	{
 		java.util.List<String[]> addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
-		addColumns( addedItems );
+		addColumns( addedItems, updateSelection );
 	}
 
-	private void addColumns( java.util.List<String[]> addedItems )
+	private void addColumns( java.util.List<String[]> addedItems,
+			boolean updateSelection )
 	{
 		for ( int i = 0; i < addedItems.size( ); i++ )
 		{
@@ -1963,7 +1983,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		setDisplayContent( savedSelectedColumnsInfoList );
 
 		selectedColumnsViewer.getTable( ).deselectAll( );
-		updateAvailableListSelection( );
+		if ( updateSelection )
+			updateAvailableListSelection( );
 	}
 
 	/**
@@ -2020,7 +2041,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		TableItem[] tis = selectedColumnsViewer.getTable( ).getSelection( );
 		int index = selectedColumnsViewer.getTable( ).getSelectionIndex( )
-				- selectedColumnsViewer.getTable( ).getSelectionCount( ) + 1;
+				- selectedColumnsViewer.getTable( ).getSelectionCount( )
+				+ 1;
 		String[] removedColumnInfo = null;
 
 		java.util.List<String[]> removedItems = new ArrayList<String[]>( );
@@ -2139,10 +2161,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		String query = getQuery( );
 		String queryText = query.length( ) > 0 ? query
-				+ CommonConstants.DELIMITER_SPACE + queryTextDelimiter
-				+ CommonConstants.DELIMITER_SPACE + columnsInfoStartSymbol
-				+ createSelectedColumnsInfoString( ) + columnsInfoEndSymbol
-				: ""; //$NON-NLS-1$
+				+ CommonConstants.DELIMITER_SPACE
+				+ queryTextDelimiter
+				+ CommonConstants.DELIMITER_SPACE
+				+ columnsInfoStartSymbol
+				+ createSelectedColumnsInfoString( )
+				+ columnsInfoEndSymbol : ""; //$NON-NLS-1$
 		return queryText;
 	}
 
