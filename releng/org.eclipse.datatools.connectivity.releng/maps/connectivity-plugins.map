@@ -1,4 +1,4 @@
-plugin@org.eclipse.datatools.connectivity=GIT,tag=v201305301230,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity
+plugin@org.eclipse.datatools.connectivity=GIT,tag=v201307261105,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity
 plugin@org.eclipse.datatools.connectivity.apache.derby.dbdefinition=GIT,tag=v201107221459,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby.dbdefinition
 plugin@org.eclipse.datatools.connectivity.apache.derby.ui=GIT,tag=v201107221459,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby.ui
 plugin@org.eclipse.datatools.connectivity.apache.derby=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby
@@ -14,7 +14,7 @@ plugin@org.eclipse.datatools.connectivity.sqm.core.ui=GIT,tag=v201212070447,repo
 plugin@org.eclipse.datatools.connectivity.sqm.server.ui=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.sqm.server.ui
 plugin@org.eclipse.datatools.connectivity.oda=GIT,tag=v201307181043,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda
 plugin@org.eclipse.datatools.connectivity.oda.template.ui=GIT,tag=v201301111130,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.template.ui
-plugin@org.eclipse.datatools.connectivity.oda.profile=GIT,tag=v201209080429,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.profile
+plugin@org.eclipse.datatools.connectivity.oda.profile=GIT,tag=v201307261105,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.profile
 plugin@org.eclipse.datatools.connectivity.oda.design=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.design
 plugin@org.eclipse.datatools.connectivity.oda.design.ui=GIT,tag=v201305031540,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.design.ui
 plugin@org.eclipse.datatools.connectivity.oda.consumer=GIT,tag=v201305170644,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda.consumer
