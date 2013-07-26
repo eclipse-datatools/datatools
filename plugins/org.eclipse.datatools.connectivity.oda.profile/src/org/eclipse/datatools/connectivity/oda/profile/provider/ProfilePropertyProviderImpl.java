@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2011 Actuate Corporation.
+ * Copyright (c) 2007, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -153,9 +153,10 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
 
         if( profile == null )
         {
-            // log warning that no profile is found
-            getLogger().warning( "No connection profile is found by its specified name: " +  //$NON-NLS-1$
-                                getProfileName( candidateProperties ) );
+            // log warning that no profile is found for a specified name
+            String profileName = getProfileName( candidateProperties );
+            if( profileName != null && ! profileName.isEmpty() )
+                getLogger().warning( "No connection profile is found by its specified name: " + profileName ); //$NON-NLS-1$              
         }
 
         return profile;

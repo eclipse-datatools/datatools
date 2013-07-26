@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2011 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2013 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich, shongxum - initial API and implementation
- *     Actuate Corporation - transient profile handling (bug #310356)
+ *     Actuate Corporation - transient and external profiles handling (bug #310356, #413778)
  *
  ******************************************************************************/
 
@@ -725,7 +725,8 @@ public class ConnectionProfile extends PlatformObject implements
 				InternalProfileManager.getInstance().modifyProfile(this);
 			}
 			catch (ConnectionProfileException e) {
-				ConnectivityPlugin.getDefault().log(e);
+			    if( mConnectListeners.size() > 0 )   // log only if there are listeners that might care
+			        ConnectivityPlugin.getDefault().log(e);
 			}
 	}
 
