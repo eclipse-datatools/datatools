@@ -1289,7 +1289,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 			}
 
 			ArrayList<Object> allFiles = new ArrayList<Object>( );
-			if ( odaHome != null )
+			if ( fileURI == null )
 			{
 				try
 				{
