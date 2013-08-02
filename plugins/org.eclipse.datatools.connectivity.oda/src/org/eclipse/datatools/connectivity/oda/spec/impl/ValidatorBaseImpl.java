@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.oda.spec.result.AggregateExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.FilterExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
  * A base class that provides stub implementation of all the {@link IValidator} interface methods.
@@ -51,13 +52,32 @@ public class ValidatorBaseImpl implements IValidator
     {
         if( querySpec == null )
             return;     // nothing to validate
-        
+
+        // set atomic query text if exists in context for validation
+        boolean hasSetQueryText = setContextQueryTextFromSpec( context, querySpec );
+
         validate( querySpec.getResultSetSpecification(), context );
         if( querySpec.getBaseQuery() != null )
             validate( querySpec.getBaseQuery(), context );
 
+        // restore the original state in context
+        if( hasSetQueryText )
+            context.setQueryText( null );
+
         // sub-class to extend to validate the data set query properties and/or 
         // input parameters in querySpec, as appropriate
+    }
+
+    protected boolean setContextQueryTextFromSpec( ValidationContext context, QuerySpecification querySpec )
+    {
+        if( context == null || context.getQueryText() != null )
+            return false;     // no context, or already has query text; leave it as is
+        
+        if( ! QuerySpecificationHelper.hasAtomicQueryText( querySpec ) )
+            return false;     // no query text available in the querySpec
+        
+        context.setQueryText( QuerySpecificationHelper.getAtomicQuery( querySpec ).getQueryText() );
+        return true;
     }
 
     /* (non-Javadoc)
