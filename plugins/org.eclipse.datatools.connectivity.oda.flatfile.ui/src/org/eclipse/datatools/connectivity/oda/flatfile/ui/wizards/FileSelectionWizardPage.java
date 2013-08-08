@@ -58,7 +58,6 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -102,8 +101,7 @@ import org.eclipse.ui.PlatformUI;
  * Extends the ODA design ui framework to provide a driver-specific custom
  * editor page to create or edit an ODA data set design instance.
  */
-public class FileSelectionWizardPage extends DataSetWizardPage implements
-		ISelectionChangedListener
+public class FileSelectionWizardPage extends DataSetWizardPage
 {
 
 	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
@@ -361,6 +359,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 		loadProperties( );
 		populateFileFilter( );
 		updateFileListAndCharSet( );
+		selectFileChanged( );
 
 		return mainComposite;
 	}
@@ -387,7 +386,19 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 		fileViewer.getControl( )
 				.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
 		fileViewer.setContentProvider( new ArrayContentProvider( ) );
-		fileViewer.addSelectionChangedListener( this );
+		fileViewer.getCombo( ).addSelectionListener( new SelectionListener( ){
+
+			public void widgetDefaultSelected( SelectionEvent arg0 )
+			{
+				
+			}
+
+			public void widgetSelected( SelectionEvent arg0 )
+			{
+				selectFileChanged( );
+			}
+			
+		});
 		fileViewer.setLabelProvider( new LabelProvider( ) {
 
 			public String getText( Object element )
@@ -873,60 +884,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 		return count;
 	}
 
-	/*
-	 * File Combo Viewer selection changed listener
-	 * 
-	 * @see
-	 * org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(
-	 * org.eclipse.jface.viewers.SelectionChangedEvent)
-	 */
-	public void selectionChanged( SelectionChangedEvent event )
-	{
-		Object file = ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
-
-		// File URI mode
-		if ( fileURI != null && fileURI.length( ) > 0 )
-		{
-			if ( file != null ) // Update column info.
-			{
-				updateAvailableColumnsInfo( (String) file );
-				validatePageStatus( );
-			}
-			return;
-		}
-
-		// Home folder mode
-		if ( file.equals( selectedFile ) )
-			return;
-		else
-		{
-			// Not initialized or file selection changed.
-			setPageComplete( false );
-			availableList.removeAll( );
-			nameOfFileWithErrorInLastAccess = null;
-			updateAvailableColumnsInfo( ( (File) file ).getName( ) );
-
-			if ( selectedFile != null ) // File selection changed.
-			{
-				if ( savedSelectedColumnsInfoList.size( ) > 0 )
-				{
-					if ( MessageDialog.openConfirm( getShell( ),
-							Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
-							Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
-					{
-						validatePageStatus( );
-					}
-					else
-					{
-						selectedColumnsViewer.getTable( ).removeAll( );
-						savedSelectedColumnsInfoList.clear( );
-					}
-				}
-			}
-			selectedFile = file;
-		}
-		updateButtonStatus( );
-	}
 
 	private void updateAvailableColumnsInfo( String fileName )
 	{
@@ -2306,6 +2263,54 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 	{
 		super.setVisible( visible );
 		getControl( ).setFocus( );
+	}
+
+	private void selectFileChanged( )
+	{
+		String file = fileViewer.getCombo( ).getText( ).trim( );
+
+		// File URI mode
+		if ( fileURI != null && fileURI.length( ) > 0 )
+		{
+			if ( file != null ) // Update column info.
+			{
+				updateAvailableColumnsInfo( file );
+				validatePageStatus( );
+			}
+			return;
+		}
+
+		// Home folder mode
+		if ( file.equals( selectedFile ) )
+			return;
+		else
+		{
+			// Not initialized or file selection changed.
+			setPageComplete( false );
+			availableList.removeAll( );
+			nameOfFileWithErrorInLastAccess = null;
+			updateAvailableColumnsInfo( file );
+
+			if ( selectedFile != null ) // File selection changed.
+			{
+				if ( savedSelectedColumnsInfoList.size( ) > 0 )
+				{
+					if ( MessageDialog.openConfirm( getShell( ),
+							Messages.getString( "confirm.reselectFileNameTitle" ), //$NON-NLS-1$
+							Messages.getString( "confirm.reselectFileNameMessage" ) ) ) //$NON-NLS-1$
+					{
+						validatePageStatus( );
+					}
+					else
+					{
+						selectedColumnsViewer.getTable( ).removeAll( );
+						savedSelectedColumnsInfoList.clear( );
+					}
+				}
+			}
+			selectedFile = file;
+		}
+		updateButtonStatus( );
 	}
 
 	private class ColumnEditDialog extends StatusDialog
