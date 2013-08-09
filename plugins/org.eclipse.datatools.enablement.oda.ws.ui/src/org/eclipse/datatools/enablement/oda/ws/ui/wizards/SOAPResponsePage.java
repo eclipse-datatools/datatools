@@ -171,6 +171,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private void setToDefaultXSDSelection( )
 	{
 		dftXSDRadio.setSelection( true );
+		updateXSDGroupControl( );
 		WSConsole.getInstance( )
 				.setPropertyValue( Constants.RESPONSE_SCHEMA,
 						Constants.FROM_WSDL );
