@@ -236,6 +236,7 @@ public class QueryTextUtil
 	public static String getQuotedName( String name )
 	{
 		if ( name == null
+				|| name.trim( ).length( ) == 0
 				|| ( name.charAt( 0 ) == '\"' && name.charAt( name.length( ) - 1 ) == '\"' ) )
 			return name;
 

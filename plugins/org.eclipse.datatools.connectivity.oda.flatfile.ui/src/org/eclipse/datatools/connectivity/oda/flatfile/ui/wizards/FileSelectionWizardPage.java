@@ -2268,6 +2268,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void selectFileChanged( )
 	{
 		String file = fileViewer.getCombo( ).getText( ).trim( );
+		if ( file.length( ) == 0 )
+		{
+			return;
+		}
 
 		// File URI mode
 		if ( fileURI != null && fileURI.length( ) > 0 )
