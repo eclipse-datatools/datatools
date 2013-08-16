@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2010 Actuate Corporation.
+ * Copyright (c) 2009, 2013 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
+import org.eclipse.datatools.connectivity.oda.spec.valueexpr.ColumnValueExpression;
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
 
 /**
@@ -126,7 +128,10 @@ public class ExpressionArguments
         Object value = getValue( index );
         if( value instanceof ValueExpression )
             return (ValueExpression) value;
-        
+
+        if( value instanceof ColumnIdentifier )
+            return new ColumnValueExpression( (ColumnIdentifier)value );
+
         return new SimpleValueExpression( value );
     }
     
