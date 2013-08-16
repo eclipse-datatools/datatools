@@ -1,12 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006, 2013 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: rcernich - initial API and implementation
+ * Contributors: 
+ *      rcernich - initial API and implementation
+ *      Actuate Corporation - re-factoring to expose method to sub-classes (BZ 348160)
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.loader;
 
@@ -39,14 +41,14 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
-	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM";
+	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM"; //$NON-NLS-1$
 
 	/**
 	 * The column name containing the schema's catalog name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
-	public static final String COLUMN_TABLE_CATALOG = "TABLE_CATALOG";
+	public static final String COLUMN_TABLE_CATALOG = "TABLE_CATALOG"; //$NON-NLS-1$
 
 	private Set mSupportedColumns;
 
@@ -228,8 +230,7 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected boolean isSchemaInCatalog(ResultSet rs) throws SQLException {
-	    DatabaseMetaData databaseMetaData = getCatalogObject().getConnection().getMetaData ();
-	    boolean caseSensitive = databaseMetaData.supportsMixedCaseIdentifiers () || databaseMetaData.supportsMixedCaseQuotedIdentifiers ();
+	    boolean caseSensitive = isCaseSensitive();
 	    
 		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
 			Catalog catalog = getCatalog();
@@ -242,13 +243,31 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 			    }
 			}
 		}
+
 		// NULL/No catalog found. Some databases only return the schema column.
-		// check to see if the current catalog matches this catalog or
-		// if the current catalog does not exist and this is the catalog
-		// for objects without a catalog.
+		return isCurrentCatalog( caseSensitive );
+	}
+	
+	private boolean isCaseSensitive() throws SQLException {
+        DatabaseMetaData databaseMetaData = getCatalogObject().getConnection().getMetaData ();
+	    return databaseMetaData.supportsMixedCaseIdentifiers () || databaseMetaData.supportsMixedCaseQuotedIdentifiers ();
+	}
+
+    /* 
+     * Check to see if the current catalog matches this catalog or
+     * if the current catalog does not exist and this is the catalog
+     * for objects without a catalog.
+	 */
+    protected boolean isCurrentCatalog() throws SQLException {
+        return isCurrentCatalog( null );
+    }
+
+	private boolean isCurrentCatalog( Boolean isCaseSensitive ) throws SQLException {
+	    if( isCaseSensitive == null )
+	        isCaseSensitive = isCaseSensitive();
 		
-		return (caseSensitive && getCatalog().getName().equals(getCatalogObject().getConnection().getCatalog()) 
-				|| !caseSensitive && getCatalog().getName ().equalsIgnoreCase (getCatalogObject().getConnection().getCatalog()))
+		return (isCaseSensitive && getCatalog().getName().equals(getCatalogObject().getConnection().getCatalog()) 
+				|| !isCaseSensitive && getCatalog().getName ().equalsIgnoreCase (getCatalogObject().getConnection().getCatalog()))
 				|| (getCatalog().getName().length() == 0 && getCatalogObject()
 						.getConnection().getCatalog() == null);
 	}
