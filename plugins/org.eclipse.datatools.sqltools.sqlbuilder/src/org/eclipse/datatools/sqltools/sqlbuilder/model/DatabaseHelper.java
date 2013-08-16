@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2013 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -79,8 +79,10 @@ public class DatabaseHelper {
         	while (itCatalogs.hasNext()){
         		Catalog catalog = (Catalog) itCatalogs.next();
         		String catName = catalog.getName();
-        		if (catalog.getSchemas()  != null && catalog.getSchemas().size() > 0){
-        			tempList.addAll(catalog.getSchemas());
+                // avoid repeated calls that could re-trigger load schemas if it has an exception
+                List catalogSchemas = catalog.getSchemas();   
+                if ( catalogSchemas != null && catalogSchemas.size() > 0 ){
+                    tempList.addAll( catalogSchemas );
         		}
         	}
         }
