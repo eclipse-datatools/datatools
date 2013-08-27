@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.MenuItem;
  * relative path is calculated.
  * 
  */
-public class FileSelectionButton extends MenuButton
+public class FileSelectionButton
 {
 
 	private static final int ABSOLUTE_PATH = 1;
@@ -44,6 +44,9 @@ public class FileSelectionButton extends MenuButton
 
 	private IMenuActionHandler handler;
 	private int defaultAction;
+	private MenuButton menuButton;
+	private Menu menu;
+	private SelectionAdapter menuAction;
 	
 	public FileSelectionButton( Composite parent, int style )
 	{
@@ -52,14 +55,19 @@ public class FileSelectionButton extends MenuButton
 
 	public FileSelectionButton( Composite parent, int style, final int defaultAction )
 	{
-		super( parent, style );
+		menuButton = new MenuButton( parent, style );
 		this.defaultAction = defaultAction;
-		initMenuItems( );
+		initMenuItems( false );
 	}
 	
-	private void initMenuItems( )
+	public void setText( String text )
 	{
-		SelectionAdapter menuAction = new SelectionAdapter( ) {
+		menuButton.setText( text );
+	}
+	
+	private void initSelectionListener( )
+	{
+		menuAction = new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
@@ -79,14 +87,36 @@ public class FileSelectionButton extends MenuButton
 			}
 		};
 		
-		Menu menu = new Menu( getShell( ), SWT.POP_UP );
+	}
+
+	private void initMenuItems( boolean supportRelative )
+	{
+		if ( menuAction == null )
+		{
+			initSelectionListener( );
+		}
+		
+		if( menu != null )
+		{
+			menu.dispose( );
+		}
+		
+		menu = new Menu( menuButton.getShell( ), SWT.POP_UP );
 		MenuItem item = new MenuItem( menu, SWT.PUSH );
 		item.setText( Messages.getString( "FileSelectionButton.menuItem.absolutePath" ) ); //$NON-NLS-1$
 		item.setData( ABSOLUTE_PATH );
 		item.addSelectionListener( menuAction );
 
-		setDropDownMenu( menu );
-		addSelectionListener( menuAction );
+		if ( supportRelative )
+		{
+			MenuItem relativeItem = new MenuItem( menu, SWT.PUSH );
+			relativeItem.setText( Messages.getString( "FileSelectionButton.menuItem.relativePath" ) ); //$NON-NLS-1$
+			relativeItem.setData( RELATIVE_PATH );
+			relativeItem.addSelectionListener( menuAction );
+		}
+
+		menuButton.setDropDownMenu( menu );
+		menuButton.addSelectionListener( menuAction );
 	}
 	
 	private void handleFileSelection( int selectionType )
@@ -95,7 +125,7 @@ public class FileSelectionButton extends MenuButton
 			return;
 		if ( selectionType == RELATIVE_PATH )
 		{
-			RelativeFileSelectionDialog dialog = new RelativeFileSelectionDialog( getShell( ),
+			RelativeFileSelectionDialog dialog = new RelativeFileSelectionDialog( menuButton.getShell( ),
 					handler.getBaseFolder( ) ,
 					handler.getExtensionsFilter( ) );
 			if ( dialog.open( ) == Window.OK )
@@ -115,7 +145,7 @@ public class FileSelectionButton extends MenuButton
 		}
 		else if ( selectionType == ABSOLUTE_PATH )
 		{
-			FileDialog dialog = new FileDialog( this.getShell( ) );
+			FileDialog dialog = new FileDialog( menuButton.getShell( ) );
 			dialog.setFilterExtensions( handler.getExtensionsFilter( ) );
 			String path = handler.getFilePath( );
 			if ( path != null && path.trim( ).length( ) > 0 )
@@ -144,14 +174,7 @@ public class FileSelectionButton extends MenuButton
 		handler = action;
 		if ( handler.getBaseFolder( ) != null )
 		{
-			MenuItem item = new MenuItem( menu, SWT.PUSH );
-			item.setText( Messages.getString( "FileSelectionButton.menuItem.relativePath" ) ); //$NON-NLS-1$
-			item.setData( RELATIVE_PATH );
-			
-			for ( int i = 0; listeners != null && i < listeners.size( ); i++ )
-			{
-				item.addSelectionListener( listeners.get( i ) );
-			}
+			initMenuItems( true );
 		}
 	}
 
