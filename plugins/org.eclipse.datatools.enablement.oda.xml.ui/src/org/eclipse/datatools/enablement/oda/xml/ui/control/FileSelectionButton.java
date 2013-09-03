@@ -94,6 +94,7 @@ public class FileSelectionButton
 		if ( menuAction == null )
 		{
 			initSelectionListener( );
+			menuButton.addSelectionListener( menuAction );
 		}
 		
 		if( menu != null )
@@ -116,7 +117,6 @@ public class FileSelectionButton
 		}
 
 		menuButton.setDropDownMenu( menu );
-		menuButton.addSelectionListener( menuAction );
 	}
 	
 	private void handleFileSelection( int selectionType )
