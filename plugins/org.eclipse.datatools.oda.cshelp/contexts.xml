@@ -23,6 +23,14 @@ To remove a column from the data set, use the X button.
 To change the order of the columns in the data set, use the up and down arrow buttons.
 </description>
 </context>
+<context id="Dialog_ColumnEditDialog_ID" title="Select Columns">
+   <description>Type a meaningful name to display for the column.
+
+Select the data type that matches the column values.
+
+Original Name contains the name specified in the flat file or a name that starts with COLUMN if the file did not specify column names.
+   </description>
+</context>
 <context id="Dialog_SOAP_Request_Parameter_Properties_ID">
    <description>Use this dialog to set the default value for a parameter for the SOAP operation for a WSDL data set. The WSDL data set uses this value to query the WSDL data source.
 </description>
