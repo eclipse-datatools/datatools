@@ -2427,7 +2427,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			} );
 
-			Utility.setSystemHelp( getControl( ),
+			Utility.setSystemHelp( composite,
 					IHelpConstants.CONEXT_ID_COLUMN_EDIT_DIALOG_FLATFILE );
 
 			return parent;
