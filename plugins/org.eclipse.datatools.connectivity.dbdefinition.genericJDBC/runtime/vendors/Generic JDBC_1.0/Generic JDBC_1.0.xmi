@@ -136,7 +136,7 @@
   <indexDefinition/>
   <tableDefinition/>
   <udtDefinition/>
-  <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
+  <queryDefinition identifierQuoteString="&quot;" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
   <SQLSyntaxDefinition>
     <keywords>ADD</keywords>
     <keywords>ALL</keywords>
