@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -92,27 +93,29 @@ public final class ResourceLocator
 		ResourceInputStream stream = null;
 		if ( homeFolder != null )
 		{
-			File homeFolderFile = getHomeFolderFile( homeFolder,
-					resourceIdentifiers );
-
 			// Home folder is valid.
-			if ( table == null || homeFolderFile == null )
+			if ( table == null )
 				return null;
 
-			// Verify data file while file name is available.
-			File file = new File( homeFolderFile, table.trim( ) );
+			String filePath = null;
+			if ( homeFolder.endsWith( File.separator ) )
+				filePath = homeFolder + table;
+			else
+				filePath = homeFolder + File.separator + table;
 
-			File homeFile = new File( homeFolder );
-			String filePath = homeFolder + File.separator + table;
-			if ( !homeFile.isAbsolute( ) )
+			File file;
+			try
 			{
-				if ( homeFolder.endsWith( "/" ) )
-					filePath = homeFolder + table;
-				else
-					filePath = homeFolder + "/" + table;
+				file = getResourceFile( filePath, resourceIdentifiers );
+			}
+			catch ( Exception e1 )
+			{
+				throw new InvalidResourceException( InvalidResourceException.ERROR_INVALID_RESOURCE,
+						Messages.getString( "query_invalidTableName" ) //$NON-NLS-1$
+								+ filePath ); 
 			}
 
-			if ( !file.exists( ) )
+			if ( file == null || !file.exists( ) )
 				throw new InvalidResourceException( InvalidResourceException.ERROR_INVALID_RESOURCE,
 						Messages.getString( "query_invalidTableName" ) //$NON-NLS-1$
 								+ filePath );
@@ -139,40 +142,8 @@ public final class ResourceLocator
 		{
 			try
 			{
-				URI uri = null;
-				File file = new File( homeFolder );
-				if ( file.exists( ) )
-				{
-					if ( file.isAbsolute( ) )
-						return file;
-				}
-
-				try
-				{
-					uri = new URI( homeFolder );
-				}
-				catch ( URISyntaxException ex )
-				{
-					uri = new URI( null, null, convertURI( homeFolder ), null );
-				}
-
-				if ( uri.isAbsolute( ) )
-				{
-					; // Already resolved, do nothing.
-				}
-				else if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
-				{
-					URI uriResolved = ResourceIdentifiers.resolveApplResource( resourceIdentifiers,
-							uri );
-					uri = uriResolved == null ? uri : uriResolved;
-				}
-				else
-				{
-					return null;
-				}
-
-				File homeFile = new File( FileLocator.toFileURL( uri.toURL( ) )
-						.toURI( ) );
+				File homeFile = getResourceFile( homeFolder,
+						resourceIdentifiers );
 				if ( homeFile.exists( ) && homeFile.isDirectory( ) )
 					return homeFile;
 			}
@@ -187,6 +158,47 @@ public final class ResourceLocator
 		}
 
 		return null;
+	}
+
+	private static File getResourceFile( String filePath,
+			Object resourceIdentifiers ) throws URISyntaxException,
+			IOException, MalformedURLException
+	{
+		URI uri = null;
+		File file = new File( filePath );
+		if ( file.exists( ) )
+		{
+			if ( file.isAbsolute( ) )
+				return file;
+		}
+
+		try
+		{
+			uri = new URI( filePath );
+		}
+		catch ( URISyntaxException ex )
+		{
+			uri = new URI( null, null, convertURI( filePath ), null );
+		}
+
+		if ( uri.isAbsolute( ) )
+		{
+			; // Already resolved, do nothing.
+		}
+		else if ( !uri.isAbsolute( ) && resourceIdentifiers != null )
+		{
+			URI uriResolved = ResourceIdentifiers.resolveApplResource( resourceIdentifiers,
+					uri );
+			uri = uriResolved == null ? uri : uriResolved;
+		}
+		else
+		{
+			return null;
+		}
+
+		File homeFile = new File( FileLocator.toFileURL( uri.toURL( ) )
+				.toURI( ) );
+		return homeFile;
 	}
 
 	public static ResourceInputStream getResourceInputStream( String fileURI,
