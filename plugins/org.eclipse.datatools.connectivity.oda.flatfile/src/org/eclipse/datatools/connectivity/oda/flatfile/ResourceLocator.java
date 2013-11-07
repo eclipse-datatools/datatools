@@ -98,8 +98,15 @@ public final class ResourceLocator
 				return null;
 
 			String filePath = null;
-			if ( homeFolder.endsWith( File.separator ) )
-				filePath = homeFolder + table;
+			
+			if ( homeFolder.trim( ).length( ) == 0 )
+			{
+				filePath = table;
+			}
+			else if ( homeFolder.endsWith( File.separator ) )
+			{
+				filePath = homeFolder + table;				
+			}
 			else
 				filePath = homeFolder + File.separator + table;
 
