@@ -1,4 +1,4 @@
-plugin@org.eclipse.datatools.doc.isv=GIT,tag=v201306041604,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.doc.git,path=plugins/org.eclipse.datatools.doc.isv
+plugin@org.eclipse.datatools.doc.isv=GIT,tag=v201311111338,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.doc.git,path=plugins/org.eclipse.datatools.doc.isv
 plugin@org.eclipse.datatools.help=GIT,tag=v200906020553,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.doc.git,path=plugins/org.eclipse.datatools.help
 plugin@org.eclipse.datatools.oda.cshelp=GIT,tag=v201309200751,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.doc.git,path=plugins/org.eclipse.datatools.oda.cshelp
 
