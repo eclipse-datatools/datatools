@@ -552,6 +552,62 @@
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.datatools.enablement.ingres.dbdefinition.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ingres.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ingres.ui.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.jdt.classpath.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.sqlite.dbdefinition.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.sqlite.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.sqlite.ui.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.datatools.modelbase.dbdefinition.nl1"
          download-size="0"
          install-size="0"
