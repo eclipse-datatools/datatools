@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2010 Actuate Corporation.
+# Copyright (c) 2004, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -67,9 +67,11 @@ querySpec_CUSTOM_FUNC_INCOMPATIBLE_DUPL_CHECK=The custom function type ({0}) can
 querySpec_CUSTOM_FUNC_LESS_THAN_MIN_ARGS=The custom function value expression ({0}) has {1} arguments, but requires a minimum of {2} arguments.
 querySpec_EXTENSION_ID_NOT_FOUND=Keine {0}-Erweiterung mit ID ({1}) gefunden.
 querySpec_ILLEGAL_CONSTRUCTOR_ARG=Illegal {0} constructor argument
+querySpec_INCOMPLETE_COMBINED_QUERY=Unvollständig kombinierte Abfragespezifikation.
 querySpec_INVALID_AGGR_EXPR=Ungültiger Aggregatausdruck.
 querySpec_INVALID_AGGR_HIDE_COLUMN=Ungültige Aggregatprojektion auf eine ausgeblendete Spalte {0}.
 querySpec_INVALID_ARG=Ungültiges Argument: {0}.
+querySpec_INVALID_BASE_QUERY=Ungültige Basisabfrage
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=Ungültiger Klassentyp: ({0}).  Attribut {1} muss eine Instanz von {2} sein.
 querySpec_INVALID_COLUMN_IDENTIFIER=Invalid column reference {0}.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0}-Erweiterung ({1}) hat ungültigen Wert ({2}) für Attribut {3}.
@@ -80,6 +82,8 @@ querySpec_INVALID_SORT_KEY=Ungültiger Sortierschlüssel.
 querySpec_INVALID_SORT_SPEC=Ungültige Sortierangaben.
 querySpec_INVALID_VALUE_EXPR=Invalid value expression.
 querySpec_MAX_ONE_NEGATING_EXPR=Es kann nicht mehr als ein Ausdruck mit Negation zu {0} hinzugefügt werden.
+querySpec_MISSING_ATOMIC_QUERY_TEXT=Fehlender Abfragetext in atomarer Basisabfrage.
+querySpec_MISSING_COMBINED_MATCHING_EXPR=Fehlende übereinstimmende Ausdrücke in kombinierten Bedingungen.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=Composite {0} muss mindestens {1} untergeordnete Ausdrücke enthalten.
 querySpec_MISSING_EXPR_VARIABLE=Für Filterausdruck ({0}) fehlt eine verbundene Variable.
 querySpec_MISSING_EXT_POINT_ATTR_VALUE=Bei {0}-Erweiterung ({1}) fehlt der Attributwert für {2} in Element {3}.
@@ -89,6 +93,7 @@ querySpec_NON_DEFINED_COMBINED_OP=Typ ({0}) des Operators zur Kombinierung von A
 querySpec_NON_DEFINED_CUSTOM_AGGR=Benutzerdefinierter Aggregatausdruck ({0}) nicht in Erweiterungsregistrierung dynamicResultSet gefunden.
 querySpec_NON_DEFINED_CUSTOM_FILTER=Benutzerdefinierter Filterausdruck ({0}) nicht in Erweiterungsregistrierung dynamicResultSet gefunden.
 querySpec_NON_DEFINED_CUSTOM_FUNC=The custom function ({0}) is not found in the dynamicResultSet extension registry.
+querySpec_NON_RELATED_QUERYSPEC=Die Spalte {0} in einem kombinierten Abfrageausdruck kann nicht von einer Abfrage gekennzeichnet werden, die keine der kombinierten Abfragen ist.
 querySpec_NONSUPPORTED_NULL_ORDERING=Null-Reihenfolgenspezifikation wird vom Datenquellen-Anbieter nicht unterstützt.
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=The ODA data type ({0}) of the value expression ({1}) is not supported by the type of custom expression used.
 querySpec_NOT_EXPR_INCOMPATIBLE=Ungültige Verwendung eines nicht negierbaren Ausdrucks ({0}) in {1}.

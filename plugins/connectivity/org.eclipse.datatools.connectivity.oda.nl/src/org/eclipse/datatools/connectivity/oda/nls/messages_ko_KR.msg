@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2010 Actuate Corporation.
+# Copyright (c) 2004, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -67,9 +67,11 @@ querySpec_CUSTOM_FUNC_INCOMPATIBLE_DUPL_CHECK=The custom function type ({0}) can
 querySpec_CUSTOM_FUNC_LESS_THAN_MIN_ARGS=The custom function value expression ({0}) has {1} arguments, but requires a minimum of {2} arguments.
 querySpec_EXTENSION_ID_NOT_FOUND=ID({1})가 있는 {0} 확장명을 찾을 수 없습니다.
 querySpec_ILLEGAL_CONSTRUCTOR_ARG=Illegal {0} constructor argument
+querySpec_INCOMPLETE_COMBINED_QUERY=결합된 쿼리 사양이 불완전합니다.
 querySpec_INVALID_AGGR_EXPR=집계 식이 잘못되었습니다.
 querySpec_INVALID_AGGR_HIDE_COLUMN=숨겨진 열 {0}의 집계 프로젝션이 잘못되었습니다.
 querySpec_INVALID_ARG=잘못된 인수: {0}
+querySpec_INVALID_BASE_QUERY=잘못된 기본 쿼리입니다.
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=잘못된 클래스 유형({0})입니다.  {1} 특성은 {2}의 인스턴스여야 합니다.
 querySpec_INVALID_COLUMN_IDENTIFIER=Invalid column reference {0}.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0} 확장({1})에 {3} 특성에 대해 잘못된 값({2})이 있습니다.
@@ -80,6 +82,8 @@ querySpec_INVALID_SORT_KEY=정렬 키가 잘못되었습니다.
 querySpec_INVALID_SORT_SPEC=정렬 지정이 잘못되었습니다.
 querySpec_INVALID_VALUE_EXPR=Invalid value expression.
 querySpec_MAX_ONE_NEGATING_EXPR={0}에 부정 식을 두 개 이상 추가할 수 없습니다.
+querySpec_MISSING_ATOMIC_QUERY_TEXT=원자성 기본 쿼리에서 쿼리 텍스트가 누락되었습니다.
+querySpec_MISSING_COMBINED_MATCHING_EXPR=결합된 조건에서 일치하는 식이 누락되었습니다.
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=복합 {0}에는 {1}개 이상의 자식 식이 있어야 합니다.
 querySpec_MISSING_EXPR_VARIABLE=필터 식({0})에 관련 변수가 없습니다.
 querySpec_MISSING_EXT_POINT_ATTR_VALUE={0} 확장({1})에 {3} 요소의 {2} 특성 값이 없습니다.
@@ -89,6 +93,7 @@ querySpec_NON_DEFINED_COMBINED_OP=dynamicResultSet 확장 레지스트리에 통합 식 연�
 querySpec_NON_DEFINED_CUSTOM_AGGR=dynamicResultSet 확장 레지스트리에 사용자 지정 집계식({0})이 없습니다.
 querySpec_NON_DEFINED_CUSTOM_FILTER=dynamicResultSet 확장 레지스트리에 사용자 지정 필터 식({0})이 없습니다.
 querySpec_NON_DEFINED_CUSTOM_FUNC=The custom function ({0}) is not found in the dynamicResultSet extension registry.
+querySpec_NON_RELATED_QUERYSPEC=결합 쿼리가 아닌 쿼리로는 결합된 쿼리 식의 열 {0}을(를) 한정할 수 없습니다.
 querySpec_NONSUPPORTED_NULL_ORDERING=널(null) 순서 지정은 데이터 원본 공급자에서 지원되지 않습니다.
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=The ODA data type ({0}) of the value expression ({1}) is not supported by the type of custom expression used.
 querySpec_NOT_EXPR_INCOMPATIBLE={1}에 무효화할 수 없는 식({0})이 잘못 사용되었습니다.

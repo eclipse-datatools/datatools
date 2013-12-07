@@ -1,6 +1,6 @@
-Bundle-Vendor = Eclipse Data Tools Platform
-Bundle-Name = Eclipse Data Tools Platform SQLite Database Definition Enablement Plug-in
+Bundle-Vendor = Eclipse-Datentools-Plattform
+Bundle-Name = Eclipse-Datentools-Plattform SQLite Datenbank-Definition Enablement Plug-In
 
 product.display.string = SQLite
 product.display.version.string = 3.5.9
-product.display.description = SQLite Connection Profile
+product.display.description = SQLite-Verbindungsprofil

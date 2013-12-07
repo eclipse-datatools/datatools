@@ -8,7 +8,7 @@
 ## Contributors:
 ##    Sybase, Inc. - initial API and implementation
 ################################################################################ 
-Plugin.Name = Data Tools Platform Connectivity JDT Extension Plug-in
-Plugin.ProviderName = Eclipse Data Tools Platform
+Plugin.Name = 数据工具平台连接 JDT 扩展插件
+Plugin.ProviderName = Eclipse 数据工具平台
 
-driver.classpath.container.name = Connectivity Driver Definition
+driver.classpath.container.name = 连接驱动程序定义

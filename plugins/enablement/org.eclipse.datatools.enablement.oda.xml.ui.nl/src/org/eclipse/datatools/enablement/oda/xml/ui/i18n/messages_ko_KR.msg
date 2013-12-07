@@ -87,7 +87,8 @@ dataset.editor.columnName=이름
 dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=형식
 dataset.editor.rowelement=행 요소
-dataset.error.populateXMLTree=XML 데이터 원본을 검색할 수 없습니다. XML 데이터 원본 파일이 잘못되었거나 파일이 없습니다.
+dataset.error.populateXMLTree=XML 데이터 소스를 검색할 수 없습니다. XML 데이터 소스 파일이 잘못되었거나 존재하지 않습니다.
+dataset.error.CannotPopulateXMLTree=XML 데이터 소스를 검색할 수 없습니다.
 
 error.label=오류
 error.selectFolder=선택한 파일 URL이 잘못되었거나 파일이 없습니다.
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=적어도 하나의 열을 매핑하십시오.
 error.columnMapping.tableMappingXPathNotExist=테이블 매핑 XPath가 없습니다.
 error.file.null=URL이 모두 비어 있습니다. 데이터 원본을 선택하지 않은 것입니다. 계속하시겠습니까?
 error.columnMapping.sameColumnName=열 이름 [{0}]이(가) 이미 있습니다. 다른 이름을 사용하십시오.
-error.invalidXpath=XPath 식"{0}"이(가) 잘못되었습니다.
+error.invalidXpath=XPath 식이 잘못되었습니다.
 error.invalidSource=xml 소스 파일을 찾을 수 없습니다.
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=새 데이터 집합
 file.choose=찾아보기(&O)...
 schema.choose=찾아보기(&S)...
 title.warning=경고
-FileSelectionButton.menuItem.absolutePath=절대 경로
-FileSelectionButton.menuItem.relativePath=상대 경로
+FileSelectionButton.menuItem.absolutePath=절대 경로(&A)
+FileSelectionButton.menuItem.relativePath=상대 경로(&R)
 SelectRelativeFileDialog.Title=파일 선택
 
 datasource.propertyPage.tooltip=XML 데이터 원본

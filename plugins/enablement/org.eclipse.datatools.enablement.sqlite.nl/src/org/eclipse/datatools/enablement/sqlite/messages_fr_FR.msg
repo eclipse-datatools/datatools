@@ -1,1 +1,0 @@
-SQLiteSchemaLoader.DefaultSchemaName=DEFAULT

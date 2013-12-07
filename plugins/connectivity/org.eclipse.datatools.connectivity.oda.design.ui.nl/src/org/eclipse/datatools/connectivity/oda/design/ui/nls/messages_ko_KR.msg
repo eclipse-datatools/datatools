@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2011 Actuate Corporation.
+# Copyright (c) 2006, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -39,9 +39,11 @@ manifest_dataSetUi_missingPageId=pageId 값은 필수입니다.
 manifest_dataSetUi_invalidPageId=pageId 값({0})이 올바르지 않습니다.
 manifest_dataSetUi_missingElement=확장에는 {0} 요소가 필수입니다.
 ui_defaultDataSourceTitle=데이터 소스 연결 속성
+ui_replaceFilePrompt={0}이(가) 이미 있습니다. 바꾸시겠습니까?
 ui_requiredFieldsMissingValue=하나 이상의 필수 필드('*'로 표시됨) 값이 누락되었습니다.
 ui_errorLabel=오류
 ui_errorCreatingCustomCtrls=사용자 정의 제어 작성 및 초기화 중 오류가 발생했습니다.
+ui_saveAsTitle=다른 이름으로 저장
 profilePage_pageTitle=연결 프로필 선택
 profilePage_pageLabel=연결 프로필
 profilePage_selectProfileDefaultMessage=데이터 원본을 생성할 연결 프로필 선택

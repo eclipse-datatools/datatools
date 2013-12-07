@@ -88,6 +88,7 @@ dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=Tipo
 dataset.editor.rowelement=Elemento de fila
 dataset.error.populateXMLTree=No se puede recuperar la fuente de datos XML. El archivo de fuente de datos XML no es válido o no existe.
+dataset.error.CannotPopulateXMLTree=No se puede recuperar la fuente de datos XML.
 
 error.label=Error
 error.selectFolder=La URL de archivo seleccionada no es válida o el archivo no existe.
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=Asigne al menos una columna.
 error.columnMapping.tableMappingXPathNotExist=La asignación de tablas XPath no existe.
 error.file.null=Todas las URL están vacías, lo que significa que no ha seleccionado ninguna fuente de datos. ¿Seguro que desea conservarlo?
 error.columnMapping.sameColumnName=El nombre de la columna [{0}] ya existe. Utilice otro nombre.
-error.invalidXpath=La expresión XPath  "{0}" no es válida.
+error.invalidXpath=La expresión XPath no es válida.
 error.invalidSource=No se puede encontrar el archivo fuente .xml.
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=Nuevo conjunto de datos
 file.choose=&Examinar...
 schema.choose=E&xaminar...
 title.warning=Advertencia
-FileSelectionButton.menuItem.absolutePath=Ruta absoluta
-FileSelectionButton.menuItem.relativePath=Ruta relativa
+FileSelectionButton.menuItem.absolutePath=&Ruta absoluta
+FileSelectionButton.menuItem.relativePath=&Ruta relativa
 SelectRelativeFileDialog.Title=Seleccionar un archivo
 
 datasource.propertyPage.tooltip=Fuente de datos XML

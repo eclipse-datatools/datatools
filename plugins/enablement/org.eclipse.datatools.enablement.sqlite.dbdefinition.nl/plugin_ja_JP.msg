@@ -3,4 +3,4 @@ Bundle-Name = Eclipse Data Tools Platform SQLite Database Definition Enablement 
 
 product.display.string = SQLite
 product.display.version.string = 3.5.9
-product.display.description = SQLite Connection Profile
+product.display.description = SQLite 接続プロファイル

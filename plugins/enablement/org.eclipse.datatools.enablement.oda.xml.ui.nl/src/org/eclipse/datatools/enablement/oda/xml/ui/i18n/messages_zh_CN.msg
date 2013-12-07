@@ -87,7 +87,8 @@ dataset.editor.columnName=名称
 dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=类型
 dataset.editor.rowelement=行元素
-dataset.error.populateXMLTree=无法检索 XML 数据源。XML 数据源文件无效或文件不存在。
+dataset.error.populateXMLTree=无法检索 XML 数据源。 XML 数据源文件无效或者文件不存在。
+dataset.error.CannotPopulateXMLTree=无法检索 XML 数据源。
 
 error.label=错误
 error.selectFolder=选择的文件 URL 无效或文件不存在。
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=请至少映射一列。
 error.columnMapping.tableMappingXPathNotExist=表映射 XPath 不存在。
 error.file.null=所有 URL 均为空，这意味着您尚未选择任何数据源。是否确定要保持这样？
 error.columnMapping.sameColumnName=列名称 [{0}] 已经存在。请使用另一个名称。
-error.invalidXpath=XPath 表达式“{0}”无效。
+error.invalidXpath=XPath 表达式无效。
 error.invalidSource=找不到 xml 源文件。
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=新数据集
 file.choose=浏览(&O)...
 schema.choose=浏览(&S)...
 title.warning=警告
-FileSelectionButton.menuItem.absolutePath=绝对路径
-FileSelectionButton.menuItem.relativePath=相对路径
+FileSelectionButton.menuItem.absolutePath=绝对路径(&A)
+FileSelectionButton.menuItem.relativePath=相对路径(&R)
 SelectRelativeFileDialog.Title=选择文件
 
 datasource.propertyPage.tooltip=XML 数据源

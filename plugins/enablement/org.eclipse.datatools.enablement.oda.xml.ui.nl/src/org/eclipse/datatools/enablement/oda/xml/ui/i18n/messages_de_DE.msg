@@ -87,7 +87,8 @@ dataset.editor.columnName=Name
 dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=Typ
 dataset.editor.rowelement=Zeilenelement
-dataset.error.populateXMLTree=Die XML-Datenquelle kann nicht aufgerufen werden. Entweder ist die XML-Datenquelle ungültig, oder die Datei ist nicht vorhanden.
+dataset.error.populateXMLTree=Die XML-Datenquelle kann nicht abgerufen werden. Die XML-Datenquellendatei ist ungültig oder existiert nicht.
+dataset.error.CannotPopulateXMLTree=Die XML-Datenquelle kann nicht abgerufen werden.
 
 error.label=Fehler
 error.selectFolder=Der URL für die gewählte Datei ist ungültig oder nicht vorhanden.
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=Ordnen Sie mindestens eine Spalte zu.
 error.columnMapping.tableMappingXPathNotExist=Es gibt keinen XPath für die Tabellenzuordnung.
 error.file.null=Keiner der URLs enthält Daten. Sie haben foglich keine Datenquelle ausgewählt. Soll diese Auswahl beibehalten werden?
 error.columnMapping.sameColumnName=Der Spaltenname [{0}] ist bereits vorhanden. Wählen Sie einen anderen Namen.
-error.invalidXpath=Der XPath-Ausdruck "{0}" ist ungültig.
+error.invalidXpath=Der XPath-Ausdruck ist ungültig.
 error.invalidSource=Die XML-Quelldatei kann nicht gefunden werden.
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=Neuer Datensatz
 file.choose=&Durchsuchen ...
 schema.choose=Durch&suchen...
 title.warning=Warnung
-FileSelectionButton.menuItem.absolutePath=Absoluter Pfad
-FileSelectionButton.menuItem.relativePath=Relativer Pfad
+FileSelectionButton.menuItem.absolutePath=&Absoluter Pfad
+FileSelectionButton.menuItem.relativePath=&Relativer Pfad
 SelectRelativeFileDialog.Title=Datei auswählen
 
 datasource.propertyPage.tooltip=XML-Datenquelle

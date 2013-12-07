@@ -13,7 +13,6 @@
 #<copyright>
 # </copyright>
 #
-# $Id: plugin_ja_JP.msg,v 1.3 2010/02/16 18:09:19 ydoshiro Exp $
 #/
 
 # ====================================================================
@@ -448,7 +447,7 @@ _UI_CollectionDataType_elementType_feature = 要素型
 _UI_CharacterSet_CharacterStringDataType_feature = 文字列のデータ型
 _UI_ElementType_CollectionDataType_feature = コレクションのデータ型
 _UI_IncrementType_RANDOM_literal = ランダム
-_UI_IndexExpression_type = Index 式
+_UI_IndexExpression_type = インデックスの式
 _UI_UniqueConstraint_clustered_feature = クラスタ化
 _UI_IndexMember_expression_feature = 式
 _UI_IndexExpression_sql_feature = SQL

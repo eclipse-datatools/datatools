@@ -10,7 +10,7 @@
 ##  Ingres - update for bugzilla 317378
 ################################################################################
 
-PLUGIN_NAME = Ingres DTP UI Plug-in
+PLUGIN_NAME = Complemento de IU de Ingres DTP
 PROVIDER_NAME=Eclipse Data Tools Platform
 
 # new connection profile wizard
@@ -18,7 +18,7 @@ WIZARD_NAME        = Ingres
 WIZARD_DESCRIPTION =
 
 # Property page
-PROPERTY_PAGE_NAME = Ingres Connection Properties
+PROPERTY_PAGE_NAME = Propiedades de conexión de Ingres
 
-SynonymDecorationServiceLabel = Data Tools - Ingres Synonym
-datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Data Tools - Ingres Column Data Type 
+SynonymDecorationServiceLabel = Herramientas de datos: sinónimo de Ingres
+datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Herramientas de datos: tipo de datos de columna de Ingres 

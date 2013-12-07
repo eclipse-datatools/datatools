@@ -9,7 +9,7 @@
 ##  Ingres - Implementation
 ################################################################################
 
-PLUGIN_NAME = Ingres DTP Plug-in
+PLUGIN_NAME = Complemento de Ingres DTP
 PROVIDER_NAME = Eclipse Data Tools Platform
 
 # Parent category for Ingres in the driver definition
@@ -21,36 +21,36 @@ CATEGORY_PRODUCT_NAME        = 2006
 CATEGORY_PRODUCT_DESCRIPTION =
 
 # Ingres 2006 Driver Template
-DRIVER_NAME = Ingres JDBC Driver
+DRIVER_NAME = Controlador JDBC de Ingres
 DRIVER_DESCRIPTION =
 
 # Various properties for the driver template
 
-DRIVER_DRIVER_CLASS_NAME = Driver Class
+DRIVER_DRIVER_CLASS_NAME = Clase de controlador
 DRIVER_DRIVER_CLASS_DESCRIPTION =
 
-DRIVER_DB_VENDOR_NAME = Vendor
+DRIVER_DB_VENDOR_NAME = Proveedor
 DRIVER_DB_VENDOR_DESCRIPTION =
 
 DRIVER_DB_VERSION_NAME = 2006
 DRIVER_DB_VERSION_DESCRIPTION =
 
-DRIVER_DATABASE_NAME_NAME = Database Name
+DRIVER_DATABASE_NAME_NAME = Nombre de base de datos
 DRIVER_DATABASE_NAME_DESCRIPTION =
 
-DRIVER_DB_URL_NAME = Connection URL
+DRIVER_DB_URL_NAME = URL de conexión
 DRIVER_DB_URL_DESCRIPTION =
 
-DRIVER_DB_USERNAME_NAME = Username
+DRIVER_DB_USERNAME_NAME = Nombre de usuario
 DRIVER_DB_USERNAME_DESCRIPTION =
 
-DRIVER_DB_PASSWORD_NAME = Password
+DRIVER_DB_PASSWORD_NAME = Contraseña
 DRIVER_DB_PASSWORD_DESCRIPTION =
 
 # Connection Profile
-CONNECTION_PROFILE_NAME = Ingres Database
+CONNECTION_PROFILE_NAME = Base de datos Ingres
 
 # Connection factory
-CONNECTION_FACTORY_NAME = Ingres JDBC Connection Factory
+CONNECTION_FACTORY_NAME = Fábrica de conexión JDBC de Ingres
 # ====================================================================
 

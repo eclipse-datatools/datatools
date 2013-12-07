@@ -11,6 +11,6 @@
 # package: org.eclipse.datatools.connectivity.jdt.internal
 
 DriverClasspathContainerPage.name = MyDriverClassPathPage
-DriverClasspathContainerPage.title = Connectivity Driver Definition
-DriverClasspathContainerPage.msg = Select a driver definition to add its jars to the classpath.
-DriverClasspathContainerPage.combo.title = Available Driver Definitions:
+DriverClasspathContainerPage.title = 连接驱动程序定义
+DriverClasspathContainerPage.msg = 选择一个驱动程序定义，以将其 jar 添加到类路径。
+DriverClasspathContainerPage.combo.title = 可用的驱动程序定义:

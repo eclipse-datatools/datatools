@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2011 Actuate Corporation.
+# Copyright (c) 2006, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -39,9 +39,11 @@ manifest_dataSetUi_missingPageId=Für 'pageId' ist ein Wert erforderlich.
 manifest_dataSetUi_invalidPageId=Der Wert für ''pageId'' ({0}) ist ungültig.
 manifest_dataSetUi_missingElement=In der Erweiterung ist ein Element {0} erforderlich.
 ui_defaultDataSourceTitle=Eigenschaften der Datenquellenverbindung
+ui_replaceFilePrompt={0} ist bereits vorhanden. Möchten Sie ersetzen?
 ui_requiredFieldsMissingValue=Bei einen oder mehreren erforderlichen Feldern (gekennzeichnet mit '*') fehlt ein Wert.
 ui_errorLabel=Fehler
 ui_errorCreatingCustomCtrls=Bei der Erstellung und Initialisierung von angepassten Steuerelementen trat ein Fehler auf.
+ui_saveAsTitle=Speichern unter
 profilePage_pageTitle=Verbindungsprofil wählen
 profilePage_pageLabel=Verbindungsprofil
 profilePage_selectProfileDefaultMessage=Wählen Sie das Verbindungsprofil, aus dem eine Datenquelle erstellt werden soll.

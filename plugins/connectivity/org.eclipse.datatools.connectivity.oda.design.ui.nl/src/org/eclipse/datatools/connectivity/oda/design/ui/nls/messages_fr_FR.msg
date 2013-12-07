@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2011 Actuate Corporation.
+# Copyright (c) 2006, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -39,9 +39,11 @@ manifest_dataSetUi_missingPageId=Une valeur d'ID page est requise.
 manifest_dataSetUi_invalidPageId=Valeur d''ID page incorrecte ({0}).
 manifest_dataSetUi_missingElement=Un élément {0} est requis dans l''extension.
 ui_defaultDataSourceTitle=Propriétés de connexion à la source de données
+ui_replaceFilePrompt={0} existe déjà. Voulez-vous le remplacer ?
 ui_requiredFieldsMissingValue=Une valeur est manquante dans une ou plusieurs zones (signalées par '*').
 ui_errorLabel=Erreur
 ui_errorCreatingCustomCtrls=Une erreur est survenue lors de la création et de l'initialisation des commandes personnalisées.
+ui_saveAsTitle=Enregistrer sous
 profilePage_pageTitle=Sélectionner un profil de connexion
 profilePage_pageLabel=Profil de connexion
 profilePage_selectProfileDefaultMessage=Sélectionnez le profil de connexion à partir duquel créer la source de données

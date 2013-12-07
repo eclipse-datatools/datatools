@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2011 Actuate Corporation.
+# Copyright (c) 2006, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -39,9 +39,11 @@ manifest_dataSetUi_missingPageId=页标识值是必需的。
 manifest_dataSetUi_invalidPageId=页标识值（{0}）无效。
 manifest_dataSetUi_missingElement=在扩展中，{0} 元素是必需的。
 ui_defaultDataSourceTitle=数据源连接属性
+ui_replaceFilePrompt={0} 已存在。 要替换它吗？
 ui_requiredFieldsMissingValue=一个或多个必需字段（用“*”标出）缺少值。
 ui_errorLabel=错误
 ui_errorCreatingCustomCtrls=创建并初始化定制控件时出错。
+ui_saveAsTitle=另存为
 profilePage_pageTitle=选择连接配置文件
 profilePage_pageLabel=连接配置文件
 profilePage_selectProfileDefaultMessage=选择用于创建数据源的连接配置文件

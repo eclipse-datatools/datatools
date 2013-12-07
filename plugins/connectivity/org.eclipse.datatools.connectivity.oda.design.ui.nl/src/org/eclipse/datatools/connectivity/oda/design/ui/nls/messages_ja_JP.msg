@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2006, 2011 Actuate Corporation.
+# Copyright (c) 2006, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -39,9 +39,11 @@ manifest_dataSetUi_missingPageId=pageId 値が必要です。
 manifest_dataSetUi_invalidPageId=無効な pageId 値 ({0})。
 manifest_dataSetUi_missingElement=拡張に {0} 要素が必要です。
 ui_defaultDataSourceTitle=データソース接続プロパティー
+ui_replaceFilePrompt={0} はすでに存在します。 置き換えますか ?
 ui_requiredFieldsMissingValue=値が指定されていない必須フィールド('*' でマークされています)が 1 つ以上あります。
 ui_errorLabel=エラー
 ui_errorCreatingCustomCtrls=カスタム・コントロールの作成および初期化中にエラーが発生しました。
+ui_saveAsTitle=名前を付けて保存
 profilePage_pageTitle=接続プロファイルの選択
 profilePage_pageLabel=接続プロファイル
 profilePage_selectProfileDefaultMessage=データソースの作成元とする接続プロファイルを選択してください。

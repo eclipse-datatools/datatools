@@ -1,19 +1,19 @@
 Bundle-Vendor = Eclipse Data Tools Platform
-Bundle-Name = Eclipse Data Tools Platform SQLite Enablement Plug-in
+Bundle-Name = Complemento de activación de SQLite para Eclipse Data Tools Platform
 
 driver.category.name = SQLite
-driver.category.description = SQLite JDBC Drivers
+driver.category.description = Controladores JDBC de SQLite
 driver.version.category.name = 3.5.9
-driver.version.category.description = SQLite JDBC Drivers for Version 3.5.9
-driver.name = SQLite JDBC Driver
-driver.description = JDBC driver for SQLite
+driver.version.category.description = Controladores JDBC de SQLite para versión 3.5.9
+driver.name = Controlador JDBC de SQLite
+driver.description = Controlador JDBC para SQLite
 
-DRIVER_CLASS_PROPERTY_NAME=Driver Class
-VENDOR_PROPERTY_NAME=Vendor
-VERSION_PROPERTY_NAME=Version
-DATABASE_NAME_PROPERTY_NAME=Database Name
-CONNECTION_URL_PROPERTY_NAME=Connection URL
-USER_ID_PROPERTY_NAME=User ID
+DRIVER_CLASS_PROPERTY_NAME=Clase de controlador
+VENDOR_PROPERTY_NAME=Proveedor
+VERSION_PROPERTY_NAME=Versión
+DATABASE_NAME_PROPERTY_NAME=Nombre de base de datos
+CONNECTION_URL_PROPERTY_NAME=URL de conexión
+USER_ID_PROPERTY_NAME=Identificador de usuario
 
-connection.factory = SQLite Connection Factory
-connection.profile = SQLite Connection Profile
+connection.factory = Fábrica de conexión SQLite
+connection.profile = Perfil de conexión SQLite

@@ -1,6 +1,6 @@
 #
 #************************************************************************
-# Copyright (c) 2004, 2010 Actuate Corporation.
+# Copyright (c) 2004, 2013 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -67,9 +67,11 @@ querySpec_CUSTOM_FUNC_INCOMPATIBLE_DUPL_CHECK=The custom function type ({0}) can
 querySpec_CUSTOM_FUNC_LESS_THAN_MIN_ARGS=The custom function value expression ({0}) has {1} arguments, but requires a minimum of {2} arguments.
 querySpec_EXTENSION_ID_NOT_FOUND=ID ({1}) ‚ğ‚Â {0} Šg’£‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 querySpec_ILLEGAL_CONSTRUCTOR_ARG=Illegal {0} constructor argument
+querySpec_INCOMPLETE_COMBINED_QUERY=¬‡ƒNƒGƒŠ‚Ìw’è‚ª•sŠ®‘S‚Å‚·B
 querySpec_INVALID_AGGR_EXPR=WŒv®‚ª–³Œø‚Å‚·B
 querySpec_INVALID_AGGR_HIDE_COLUMN=”ñ•\¦‚Ì—ñ {0} ‚ÌWŒvƒvƒƒWƒFƒNƒVƒ‡ƒ“‚ª–³Œø‚Å‚·B
 querySpec_INVALID_ARG=ˆø” {0} ‚ª–³Œø‚Å‚·B
+querySpec_INVALID_BASE_QUERY=ƒx[ƒXƒNƒGƒŠ‚ª–³Œø‚Å‚·B
 querySpec_INVALID_CLASS_TYPE_ATTRIBUTE=ƒNƒ‰ƒXŒ^ ({0}) ‚ª–³Œø‚Å‚·B  {1} ‘®«‚É‚ÍA{2} ‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
 querySpec_INVALID_COLUMN_IDENTIFIER=Invalid column reference {0}.
 querySpec_INVALID_EXT_POINT_ATTR_VALUE={0} Šg’£ ({1}) ‚Ì’l ({2}) ‚ª {3} ‘®«‚É‘Î‚µ‚Ä–³Œø‚Å‚·B
@@ -80,6 +82,8 @@ querySpec_INVALID_SORT_KEY=ƒ\[ƒgƒL[‚ª–³Œø‚Å‚·B
 querySpec_INVALID_SORT_SPEC=ƒ\[ƒg‡‚ª–³Œø‚Å‚·B
 querySpec_INVALID_VALUE_EXPR=Invalid value expression.
 querySpec_MAX_ONE_NEGATING_EXPR={0} ‚É‚Í•¡”‚Ì•‰”‚Ì®‚Í’Ç‰Á‚Å‚«‚Ü‚¹‚ñB
+querySpec_MISSING_ATOMIC_QUERY_TEXT=ƒAƒgƒ~ƒbƒNƒx[ƒXƒNƒGƒŠ“à‚ÌƒNƒGƒŠƒeƒLƒXƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
+querySpec_MISSING_COMBINED_MATCHING_EXPR=¬‡ğŒ“à‚Éˆê’v‚·‚é®‚ª‚ ‚è‚Ü‚¹‚ñB
 querySpec_MISSING_COMPOSITE_MIN_CHILDREN=‡¬ {0} ‚É‚ÍA­‚È‚­‚Æ‚à {1} ŒÂ‚Ìq‚Ì®‚ğŠÜ‚ß‚Ä‚­‚¾‚³‚¢B
 querySpec_MISSING_EXPR_VARIABLE=ƒtƒBƒ‹ƒ^® ({0}) ‚ÉŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚é•Ï”‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 querySpec_MISSING_EXT_POINT_ATTR_VALUE={0} Šg’£ ({1}) ‚ÉA{3} —v‘f‚Ì {2} ‘®«’l‚ª‚ ‚è‚Ü‚¹‚ñB
@@ -89,6 +93,7 @@ querySpec_NON_DEFINED_COMBINED_OP=¬‡®‰‰Zq‚ÌŒ^ ({0}) ‚ª dynamicResultSet Šg’
 querySpec_NON_DEFINED_CUSTOM_AGGR=ƒJƒXƒ^ƒ€WŒv® ({0}) ‚ª dynamicResultSet Šg’£ƒŒƒWƒXƒgƒŠ‚É‚ ‚è‚Ü‚¹‚ñB
 querySpec_NON_DEFINED_CUSTOM_FILTER=ƒJƒXƒ^ƒ€ƒtƒBƒ‹ƒ^® ({0}) ‚ª dynamicResultSet Šg’£ƒŒƒWƒXƒgƒŠ‚É‚ ‚è‚Ü‚¹‚ñB
 querySpec_NON_DEFINED_CUSTOM_FUNC=The custom function ({0}) is not found in the dynamicResultSet extension registry.
+querySpec_NON_RELATED_QUERYSPEC=¬‡ƒNƒGƒŠ‚Ì®“à‚Ì—ñ {0} ‚ğA¬‡ƒNƒGƒŠ‚Ì‚¢‚¸‚ê‚©‚Å‚Í‚È‚¢ƒNƒGƒŠ‚É‚æ‚Á‚ÄCü‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
 querySpec_NONSUPPORTED_NULL_ORDERING=ƒf[ƒ^ƒ\[ƒXƒvƒƒoƒCƒ_‚Í Null ‚Ì‡˜‚Ìw’è‚ğƒTƒ|[ƒg‚µ‚Ä‚¢‚Ü‚¹‚ñB
 querySpec_NONSUPPORTED_VAR_DATA_TYPE=The ODA data type ({0}) of the value expression ({1}) is not supported by the type of custom expression used.
 querySpec_NOT_EXPR_INCOMPATIBLE={1} ‚Å‚ÍAƒlƒQ[ƒg•s‰Â”\‚È® ({0}) ‚Í–³Œø‚Å‚·B

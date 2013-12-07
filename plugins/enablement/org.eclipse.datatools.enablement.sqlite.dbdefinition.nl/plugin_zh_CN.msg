@@ -1,6 +1,6 @@
-Bundle-Vendor = Eclipse Data Tools Platform
-Bundle-Name = Eclipse Data Tools Platform SQLite Database Definition Enablement Plug-in
+Bundle-Vendor = Eclipse 数据工具平台
+Bundle-Name = Eclipse 数据工具平台 SQLite 数据库定义启用插件
 
 product.display.string = SQLite
 product.display.version.string = 3.5.9
-product.display.description = SQLite Connection Profile
+product.display.description = SQLite 连接配置文件

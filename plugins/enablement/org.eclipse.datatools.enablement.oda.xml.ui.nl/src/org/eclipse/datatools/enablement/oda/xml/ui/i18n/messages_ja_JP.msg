@@ -26,7 +26,7 @@ designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0`{0}
 designer.preview.preference.columnMappingPage.group.title=—ñ‚Ìƒ}ƒbƒsƒ“ƒO
 
 #XML data source folder selection wizard page
-XMLSelectionWizardPage.message.error.emptyXMLSource=XML ƒ\[ƒX‚Ì URL ‚ğw’è‚·‚é‚©AXML ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+XMLSelectionWizardPage.message.error.emptyXMLSource=XML ƒ\[ƒX URL ‚ğw’è‚·‚é‚©AXML ƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML —v‘f‚Ì‘I‘ğ
@@ -87,7 +87,8 @@ dataset.editor.columnName=–¼‘O
 dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=Œ^
 dataset.editor.rowelement=s—v‘f
-dataset.error.populateXMLTree=XML ƒf[ƒ^ƒ\[ƒX‚ğæ“¾‚Å‚«‚Ü‚¹‚ñBXML ƒf[ƒ^ƒ\[ƒXƒtƒ@ƒCƒ‹‚ª–³Œø‚©A‘¶İ‚µ‚Ü‚¹‚ñB
+dataset.error.populateXMLTree=XML ƒf[ƒ^ƒ\[ƒX‚ğæ“¾‚Å‚«‚Ü‚¹‚ñB XML ƒf[ƒ^ƒ\[ƒXƒtƒ@ƒCƒ‹‚ª–³Œø‚©ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB
+dataset.error.CannotPopulateXMLTree=XML ƒf[ƒ^ƒ\[ƒX‚ğæ“¾‚Å‚«‚Ü‚¹‚ñB
 
 error.label=ƒGƒ‰[
 error.selectFolder=‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚Ì URL ‚Í–³Œø‚©Aƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=­‚È‚­‚Æ‚à 1 ‚Â‚Ì—ñ‚ğƒ}ƒbƒsƒ“ƒO‚µ‚Ä‚­‚¾‚³‚¢
 error.columnMapping.tableMappingXPathNotExist=ƒe[ƒuƒ‹‚ğƒ}ƒbƒsƒ“ƒO‚·‚é‚½‚ß‚Ì XPath ‚ª‘¶İ‚µ‚Ü‚¹‚ñB
 error.file.null=ƒf[ƒ^ƒ\[ƒX‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢‚½‚ßAURL ‚ª‚·‚×‚Ä‹ó”’‚É‚È‚Á‚Ä‚¢‚Ü‚·B‚±‚Ì‚Ü‚Ü‘±s‚µ‚Ü‚·‚© ?
 error.columnMapping.sameColumnName=—ñ–¼ [{0}] ‚Í‚·‚Å‚Ég—p‚³‚ê‚Ä‚¢‚Ü‚·B•Ê‚Ì–¼‘O‚ğg—p‚µ‚Ä‚­‚¾‚³‚¢B
-error.invalidXpath=XPath ® "{0}" ‚ª–³Œø‚Å‚·B
+error.invalidXpath=XPath ®‚ª–³Œø‚Å‚·B
 error.invalidSource=xml ƒ\[ƒXƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=V‹Kƒf[ƒ^ƒZƒbƒg
 file.choose=QÆ(&O)...
 schema.choose=QÆ(&S)...
 title.warning=Œx
-FileSelectionButton.menuItem.absolutePath=â‘ÎƒpƒX
-FileSelectionButton.menuItem.relativePath=‘Š‘ÎƒpƒX
+FileSelectionButton.menuItem.absolutePath=â‘ÎƒpƒX(&A)
+FileSelectionButton.menuItem.relativePath=‘Š‘ÎƒpƒX(&R)
 SelectRelativeFileDialog.Title=ƒtƒ@ƒCƒ‹‚Ì‘I‘ğ
 
 datasource.propertyPage.tooltip=XML ƒf[ƒ^ƒ\[ƒX

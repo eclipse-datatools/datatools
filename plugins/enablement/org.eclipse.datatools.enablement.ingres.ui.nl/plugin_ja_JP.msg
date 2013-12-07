@@ -18,7 +18,7 @@ WIZARD_NAME        = Ingres
 WIZARD_DESCRIPTION =
 
 # Property page
-PROPERTY_PAGE_NAME = Ingres Connection Properties
+PROPERTY_PAGE_NAME = Ingres 接続プロパティ
 
-SynonymDecorationServiceLabel = Data Tools - Ingres Synonym
-datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Data Tools - Ingres Column Data Type 
+SynonymDecorationServiceLabel = データツール - Ingres シノニム
+datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = データツール - Ingres 列のデータ型 

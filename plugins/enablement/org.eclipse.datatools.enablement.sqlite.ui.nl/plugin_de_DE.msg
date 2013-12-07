@@ -1,14 +1,14 @@
-DRIVER_CLASS_PROPERTY_NAME=Driver Class
-VENDOR_PROPERTY_NAME=Vendor
+DRIVER_CLASS_PROPERTY_NAME=Treiberklasse
+VENDOR_PROPERTY_NAME=Anbieter
 VERSION_PROPERTY_NAME=Version
-DATABASE_NAME_PROPERTY_NAME=Database Name
-CONNECTION_URL_PROPERTY_NAME=Connection URL
-USER_ID_PROPERTY_NAME=User ID
-PASSWORD_PROPERTY_NAME=Password
+DATABASE_NAME_PROPERTY_NAME=Datenbankname
+CONNECTION_URL_PROPERTY_NAME=Verbindungs-URL
+USER_ID_PROPERTY_NAME=Benutzer-ID
+PASSWORD_PROPERTY_NAME=Kennwort
 
-Bundle-Vendor = Eclipse Data Tools Platform
-Bundle-Name = Eclipse Data Tools Platform SQLite UI Enablement Plug-in
-profile.page.name = SQLite Profile Properties
+Bundle-Vendor = Eclipse-Datentools-Plattform
+Bundle-Name = Eclipse-Datentools-Plattform SQLite UI Enablement Plug-In
+profile.page.name = SQLite Profileigenschaften
 
 connection.profile.newwizard = SQLite
-connection.profile.newwizard.description = Create a SQLite connection profile.
+connection.profile.newwizard.description = Erstellen Sie ein neues SQLite-Verbindungsprofil.

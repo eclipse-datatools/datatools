@@ -87,7 +87,8 @@ dataset.editor.columnName=Nom
 dataset.editor.xpathexpression=XPath
 dataset.editor.datatype=Type
 dataset.editor.rowelement=Elément de ligne
-dataset.error.populateXMLTree=Impossible de récupérer la source de données XML. Le fichier de source de données XML est incorrect ou le fichier n'existe pas.
+dataset.error.populateXMLTree=La source de données XML ne peut pas être récupérée. Le fichier de source de données XML est incorrect ou le fichier n'existe pas.
+dataset.error.CannotPopulateXMLTree=La source de données XML ne peut pas être récupérée.
 
 error.label=Erreur
 error.selectFolder=L'URL de fichier sélectionnée n'est pas valide ou le fichier n'existe pas.
@@ -105,7 +106,7 @@ error.columnMapping.noMappingColumn=Veuillez mettre au moins une colonne en corr
 error.columnMapping.tableMappingXPathNotExist=L'expression XPath de mise en correspondance de table n'existe pas.
 error.file.null=Toutes les URL sont vides. Vous n'avez donc pas sélectionné de source de données. Souhaitez-vous continuer ?
 error.columnMapping.sameColumnName=Le nom de colonne [{0}] existe déjà. Utilisez un autre nom.
-error.invalidXpath=L'expression XPath "{0}" n'est pas valide.
+error.invalidXpath=L'expression XPath est incorrecte.
 error.invalidSource=Fichier source xml introuvable.
 
 #data types for column mapping
@@ -127,8 +128,8 @@ dataset.new=Nouveau jeu de données
 file.choose=Parc&ourir...
 schema.choose=&Parcourir...
 title.warning=Avertissement
-FileSelectionButton.menuItem.absolutePath=Chemin d'accès absolu
-FileSelectionButton.menuItem.relativePath=Chemin d'accès relatif
+FileSelectionButton.menuItem.absolutePath=Chemin d'accès &absolu
+FileSelectionButton.menuItem.relativePath=Chemin d'accès &relatif
 SelectRelativeFileDialog.Title=Sélectionner un fichier
 
 datasource.propertyPage.tooltip=Source de données XML

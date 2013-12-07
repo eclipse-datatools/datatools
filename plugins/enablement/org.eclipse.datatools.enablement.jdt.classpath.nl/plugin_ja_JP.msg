@@ -11,4 +11,4 @@
 Plugin.Name = Data Tools Platform Connectivity JDT Extension Plug-in
 Plugin.ProviderName = Eclipse Data Tools Platform
 
-driver.classpath.container.name = Connectivity Driver Definition
+driver.classpath.container.name = 接続ドライバの定義

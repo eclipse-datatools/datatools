@@ -9,8 +9,8 @@
 ##  Ingres - Implementation
 ################################################################################
 
-PLUGIN_NAME = Ingres DTP Database Definition Plug-in
-PROVIDER_NAME=Eclipse Data Tools Platform
+PLUGIN_NAME = Plug-in de définition de base de données DTP Ingres
+PROVIDER_NAME=Plate-forme d'outils de données Eclipse
 
 PRODUCT_DISPLAY_STRING = Ingres
 VERSION_DISPLAY_STRING = 2006
