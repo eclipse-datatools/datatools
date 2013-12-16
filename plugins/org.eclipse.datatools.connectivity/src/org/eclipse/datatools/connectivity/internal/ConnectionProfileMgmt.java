@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2011 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2013 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: shongxum - initial API and implementation
  *    Actuate Corporation - added the cipherProvider extension point [BZ 358686]
+ *    Actuate Corporation - fix for Bugzilla 423976
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -55,6 +56,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
@@ -271,7 +273,6 @@ public class ConnectionProfileMgmt {
 			child.setAttribute(PROFILEID, cp.getInstanceID());
 			
 			boolean hasDriverReference = false;
-			boolean hasJarList = false;
 			String driverID = null;
 			Properties props = cp.getBaseProperties();
 			try {
@@ -293,7 +294,9 @@ public class ConnectionProfileMgmt {
 				}
 			}
 			baseProps = document.createElement(BASEPROPERTIESTAG);
+
 			String key, value;
+            String profileJarList = null;
 			for (Enumeration enu = props.propertyNames(); enu
 					.hasMoreElements();) {
 				key = (String) enu.nextElement();
@@ -302,13 +305,32 @@ public class ConnectionProfileMgmt {
 					driverID = value;
 					hasDriverReference = true;
 				}
-				if (key.equals(IDriverMgmtConstants.PROP_DEFN_JARLIST)) {
-	                // Set to false so that actual jarList will be used if available
-                    hasJarList = false;
-				}
-				appendPropertyToElement ( document, baseProps, key, value );
+
+				if (key.equals(IDriverMgmtConstants.PROP_DEFN_JARLIST))
+				    // defer writing the jarList property, so that the actual jarList will be used if available
+                    profileJarList = value;
+				else
+				    appendPropertyToElement ( document, baseProps, key, value );
 			}
-			child.appendChild(baseProps);
+
+            // determine the actual jarList used to write in profile baseProperties
+            if (hasDriverReference && driverID != null) {
+                
+                DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
+                if (di != null &&
+                        new DriverValidator(di).isValid(false) ) {
+                    Properties diprops = di.getPropertySet().getBaseProperties();
+                    String driverJarList = diprops.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
+                    if ( driverJarList != null && driverJarList.length() > 0 )
+                        profileJarList = driverJarList;
+                }
+            }
+            if (profileJarList != null)
+                appendPropertyToElement ( document, baseProps, 
+                    IDriverMgmtConstants.PROP_DEFN_JARLIST, profileJarList );
+
+            child.appendChild(baseProps);
+
 			for (Iterator it = ((ConnectionProfile)cp).getPropertiesMap().entrySet()
 					.iterator(); it.hasNext();) {
 				Map.Entry me = (Map.Entry) it.next();
@@ -362,19 +384,9 @@ public class ConnectionProfileMgmt {
 				}
 				child.appendChild(extraChild);
 			}
-			if (!hasJarList && hasDriverReference && driverID != null) {
-				DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
-				if (di != null) {
-					Properties diprops = di.getPropertySet().getBaseProperties();
-					String jarList = diprops.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
-					if (jarList != null) {
-						appendPropertyToElement ( document, baseProps, 
-							IDriverMgmtConstants.PROP_DEFN_JARLIST, 
-							jarList );
-					}
-				}
-			}
-			if (hasDriverReference && driverID != null ) {
+
+            // write the driver reference element
+            if (hasDriverReference && driverID != null ) {
 				Element driverElem = document.createElement(DRIVERREFTAG);
 				DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
 				if (di != null) {
@@ -652,7 +664,7 @@ public class ConnectionProfileMgmt {
 					Properties props = keysElementsToProperties((Element) extNode);
 					String driverName = props.getProperty(DRIVERNAMEATTR);
 					String driverTypeID = props.getProperty(DRIVERTYPEIDATTR);
-					String driverID = "";
+					String driverID = ""; //$NON-NLS-1$
 					
 					// Bug 240433 - brianf
 					// Issue with importing 2 profiles with same driver ID but from different exports
@@ -854,7 +866,7 @@ public class ConnectionProfileMgmt {
                                 .getDefaultDefinitionName();
                     }
                     String driverClass = baseProperties
-                            .getProperty("org.eclipse.datatools.connectivity.db.driverClass").toString();
+                            .getProperty(IJDBCDriverDefinitionConstants.DRIVER_CLASS_PROP_ID).toString();
                     String uniqueDriverInstanceName = generateUniqueDriverDefinitionName(driverDefinitionNameBase);
                     DriverInstance newDriverInstance = DriverManager
                             .getInstance().createNewDriverInstance(

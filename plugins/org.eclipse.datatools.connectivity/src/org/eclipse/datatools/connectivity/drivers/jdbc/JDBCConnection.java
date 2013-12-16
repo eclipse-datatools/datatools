@@ -8,7 +8,7 @@
  * 
  * Contributors: rcernich - initial API and implementation
  *      IBM Corporation - migrated to new wizard framework
- *      Actuate Corporation - fix for Bugzilla 305757, 406521
+ *      Actuate Corporation - fix for Bugzilla 305757, 406521, 423976
  *      
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.jdbc;
@@ -30,6 +30,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.internal.ClassLoaderCacheManager;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
@@ -76,7 +77,19 @@ public class JDBCConnection extends DriverConnectionBase {
 
 		boolean hasDriver = false;
 		try {
-			if (getDriverDefinition() != null) {
+		    DriverInstance di = getDriverDefinition();
+			if (di != null) {
+                // if the driver definition's properties are invalid, cannot use
+                DriverValidator validator = new DriverValidator( di );
+                if ( ! validator.isValid(false) ) {
+                    // force skip to processing in the catch exception block, which would use 
+                    // the profile's driver properties instead
+                    String causeMsgId = "DriverConnectionBase.error.driverDefinitionNotFound"; //$NON-NLS-1$
+                    throw new Exception( validator.getMessage(),
+                                        new Throwable( causeMsgId ) );
+                }
+                    
+                // the driver definition's jarList and required properties exist
 				hasDriver = true;
 				super.open();
 			}
@@ -91,7 +104,7 @@ public class JDBCConnection extends DriverConnectionBase {
                     ConnectivityPlugin.getDefault().logInfo( 
                             ConnectivityPlugin.getDefault().getResourceString(
                                     "JDBCConnection.invalidDriverDefinition", //$NON-NLS-1$
-                                    new Object[] { exceptionCauseMsg, getDriverDefinitionId() } ));
+                                    new Object[] { e.getLocalizedMessage(), getDriverDefinitionId() } ));
 				}
 				else {
 					e.printStackTrace();
@@ -145,10 +158,10 @@ public class JDBCConnection extends DriverConnectionBase {
 	}
 
     protected URL[] getJdbcDriverJars( IConnectionProfile profile ) {
-        // first try get jar list defined in the referenced driver definition
-        String[] connJarArray = getDriverDefinitionJarPaths();
+        // first try get valid jar list defined in the referenced driver definition
+        String[] connJarArray = getDriverDefinitionJarPaths( true );
 
-        // none available from driver definition, get the jar list from the profile's properties
+        // if none available from driver definition, get the jar list from the profile's properties
         if( connJarArray == null || connJarArray.length == 0 ) {
             if( profile == null )
                 return null;   // no jar list available
@@ -178,6 +191,10 @@ public class JDBCConnection extends DriverConnectionBase {
     }
 
     protected String[] getDriverDefinitionJarPaths() {
+        return getDriverDefinitionJarPaths( false );
+    }
+    
+    private String[] getDriverDefinitionJarPaths( boolean validateDriver ) {
         DriverInstance driver;
         try {
             driver = getDriverDefinition();
@@ -188,6 +205,12 @@ public class JDBCConnection extends DriverConnectionBase {
         if( driver == null )
             return null;
         
+        // validate the driver definition's jarList and required properties exist
+        if( validateDriver ) {
+            if( ! new DriverValidator( driver ).isValid( false ) )           
+                return null;    // the driver definition is invalid, cannot use its jarList            
+        }
+
         return driver.getJarListAsArray();
     }
 
