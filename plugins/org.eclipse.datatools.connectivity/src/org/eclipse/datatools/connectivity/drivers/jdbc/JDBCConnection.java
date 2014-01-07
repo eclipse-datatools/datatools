@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2013 Sybase, Inc. and others
+ * Copyright (c) 2005, 2014 Sybase, Inc. and others
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -52,6 +52,8 @@ public class JDBCConnection extends DriverConnectionBase {
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
 	public static final String TECHNOLOGY_NAME = ConnectivityPlugin.getDefault()
 			.getResourceString("JDBCConnection.technologyName"); //$NON-NLS-1$
+	public static final String PROPS_DELIMITER = ",";  //$NON-NLS-1$
+	public static final String NAME_VALUE_EQUALS = "=";      //$NON-NLS-1$
 
 	private Version mTechVersion = Version.NULL_VERSION;
 	private Version mServerVersion = Version.NULL_VERSION;
@@ -157,7 +159,12 @@ public class JDBCConnection extends DriverConnectionBase {
 		return URLClassLoader.newInstance(jars, parentCL);
 	}
 
-    protected URL[] getJdbcDriverJars( IConnectionProfile profile ) {
+	protected URL[] getJdbcDriverJars()
+	{
+	    return this.m_jdbcJars;
+	}
+
+	protected URL[] getJdbcDriverJars( IConnectionProfile profile ) {
         // first try get valid jar list defined in the referenced driver definition
         String[] connJarArray = getDriverDefinitionJarPaths( true );
 
@@ -305,10 +312,10 @@ public class JDBCConnection extends DriverConnectionBase {
 		}
 
 		if (nameValuePairs != null && nameValuePairs.length() > 0) {
-			String[] pairs = parseString(nameValuePairs, ","); //$NON-NLS-1$
+			String[] pairs = parseString( nameValuePairs, PROPS_DELIMITER );
 			String addPairs = ""; //$NON-NLS-1$
 			for (int i = 0; i < pairs.length; i++) {
-				String[] namevalue = parseString(pairs[i], "="); //$NON-NLS-1$
+				String[] namevalue = parseString( pairs[i], NAME_VALUE_EQUALS );
 				connectionProps.setProperty(namevalue[0], namevalue[1]);
 				if (i == 0 || i < pairs.length - 1) {
 					addPairs = addPairs + propDelim;
