@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2008 IBM Corporation and others. All rights reserved.
+ * Copyright 2007, 2012 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -506,9 +506,33 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 		removeListeners();
 		DB2JDBCURL url = getURLHandle(this.properties
 				.getProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID));
-		hostText.setText(url.getNode());
-		portText.setText(url.getPort());
-		databaseText.setText(url.getDatabaseName());
+		// If the properties includes hostname, port or database name, use the values in properties
+//bgp un-comment the following line (and delete the one after that) once the constants class is updated
+//bgp		String host = this.properties.getProperty( IJDBCDriverDefinitionConstants.HOSTNAME_PROP_ID );
+		String host = this.properties.getProperty( "hostname" ); //$NON-NLS-1$
+		if ( host != null ) {
+			hostText.setText( host );
+		}
+		else {
+			hostText.setText( url.getNode() );
+		}
+//bgp un-comment the following line (and delete the one after that) once the constants class is updated
+//bgp		String port = this.properties.getProperty( IJDBCDriverDefinitionConstants.PORT_PROP_ID );
+		String port = this.properties.getProperty( "port" ); //$NON-NLS-1$
+		if ( port != null ) {
+			portText.setText( port );
+		}
+		else {
+			portText.setText(url.getPort());
+		}
+		String database = this.properties.getProperty( IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID );
+		if ( database != null ) {
+			databaseText.setText( database );
+		}
+		else {
+			databaseText.setText(url.getDatabaseName());
+		}
+		
 		if (url.useClientAuthentication()) {
 			clientAuthenticationCheckbox.setSelection(true);
 			enableAuthenticationControls(false);
@@ -703,24 +727,49 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
          * Formats the driver URL based on values specified in 
          * constructor {@link DB2JDBCURL(String, String, String, boolean, String)}.
          */
-        protected String formatURL() {
-            String url = "jdbc:db2://" + getNode() + ":" //$NON-NLS-1$ //$NON-NLS-2$
+        public String formatURL() {
+            String url = "jdbc:db2://" + formatNode(getNode()) + ":" //$NON-NLS-1$ //$NON-NLS-2$
                             + getPort()
                             + "/" + getDatabaseName() //$NON-NLS-1$
                             + ":retrieveMessagesFromServerOnGetMessage=true;"; //$NON-NLS-1$
             if( useClientAuthentication() )
                 url += CLIENT_AUTHETICATION_TEXT;
-            url += getProperties();
+            if(this.urlProperties!=null && this.urlProperties.length()>0){
+            	url += this.urlProperties;
+            }
+            url += getURLOptionalParameters();
             return url;
-        }        
+        }         
+        
+        
+        /**
+         * @return The driver URL formatted in the default URL format
+         */
+		public String getBaseURL() {
+			String url = "jdbc:db2://" + formatNode(getNode()) + ":" //$NON-NLS-1$ //$NON-NLS-2$
+					+ getPort()
+					+ "/" + getDatabaseName() //$NON-NLS-1$
+					+ ":retrieveMessagesFromServerOnGetMessage=true;"; //$NON-NLS-1$
+			if (useClientAuthentication())
+                url += CLIENT_AUTHETICATION_TEXT;
+			return url;
+		}
 
+        private String formatNode(String node)
+        {
+        	if (node.indexOf(":") > -1) {
+        		return "[" + node + "]";
+        	}
+        	return node;
+        }
+        
         /**
          * Parses the specified URL string into URL attributes that can be accessed 
          * by the corresponding getter methods.
          */
-		protected void parseURL(String url) {
+        protected void parseURL(String url) {
 			try {
-				setURLOptionalParameters(""); //$NON-NLS-1$
+				setURLOptionalParameters("");
 				String remainingURL = url.substring(url.indexOf(':') + 1);
 				this.subprotocol = remainingURL.substring(0, remainingURL
 						.indexOf(':'));
@@ -728,54 +777,66 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 						.substring(remainingURL.indexOf(':') + 3);
 				this.node = remainingURL
 						.substring(0, remainingURL.indexOf('/'));
-				if (this.node.indexOf(':') > -1) {
-					this.port = this.node.substring(this.node.indexOf(':') + 1);
-					this.node = this.node.substring(0, this.node.indexOf(':'));
+				
+				if (node.indexOf('[') > -1 && node.indexOf("]:") > -1) {
+					port = node.substring(node.indexOf("]:") + 2);
+					node = node.substring(1, node.indexOf("]:"));							
+				} else if (node.indexOf(':') > -1) {
+					port = node.substring(node.indexOf(':') + 1);
+					node = node.substring(0, node.indexOf(':'));
 				}
 				remainingURL = remainingURL
 						.substring(remainingURL.indexOf('/') + 1);
-				if (remainingURL.indexOf(';') > -1) {
-					
-					String urlString = remainingURL.substring(0, remainingURL
-							.indexOf(';'));
-						if(urlString.contains("retrieveMessagesFromServerOnGetMessage=true")){ //$NON-NLS-1$
-							this.databaseName = remainingURL.substring(0, remainingURL
-									.indexOf(':'));
-							remainingURL = remainingURL.substring(remainingURL
-									.indexOf(':') + 1);
-						}else{
-					      this.databaseName = remainingURL.substring(0, remainingURL
-							.indexOf(';'));
-					      remainingURL = remainingURL.substring(remainingURL
-									.indexOf(';') + 1);
-						}
-					
+				if (remainingURL.indexOf(':') > -1) {
+					this.databaseName = remainingURL.substring(0, remainingURL
+							.indexOf(':'));
+					remainingURL = remainingURL.substring(remainingURL
+							.indexOf(':') + 1);
 					this.urlProperties = remainingURL;
 					this.useClientAuthentication = (this.urlProperties.indexOf(CLIENT_AUTHETICATION_TEXT) > -1 );
-					String userOptionalParameters=""; //$NON-NLS-1$
-					String userParameter = ""; //$NON-NLS-1$
-					if(remainingURL!=null && remainingURL.length()>0)
-					{
-						StringTokenizer st = new StringTokenizer(remainingURL, ";"); //$NON-NLS-1$
-						int tokenLength = st.countTokens();
-						for(int i=0; i< tokenLength; i++)
-						{
-							userParameter = st.nextToken();
-							if(userParameter!=null && userParameter.length()>0){
-								if(!(userParameter.startsWith("retrieveMessagesFromServerOnGetMessage=true"))) //$NON-NLS-1$
-									userOptionalParameters +=	userParameter+";"; //$NON-NLS-1$
-							}
-						}
-
-						setURLOptionalParameters(userOptionalParameters);
-					}
-				
 				} else {
-					this.databaseName = remainingURL;
+					if(remainingURL.indexOf(';') > -1){
+						this.databaseName = remainingURL.substring(0,remainingURL.indexOf(';'));
+						remainingURL=remainingURL.substring(remainingURL.indexOf(';')+1);
+						
+					}
+					else{
+						this.databaseName = remainingURL;
+						remainingURL="";
+					}
+					
 				}
 				
-			
+				 String userOptionalParameters="";
+			     String userParameter = "";
+			     if(remainingURL!=null && remainingURL.length()>0)
+			     {
+				     StringTokenizer st = new StringTokenizer(remainingURL, ";");
+				     int tokenLength = st.countTokens();
+				     for(int i=0; i< tokenLength; i++)
+				     {  
+				    	 userParameter = st.nextToken();
+				    	 if(userParameter!=null && userParameter.length()>0){
+				    		 
+				    		 if(!(userParameter.startsWith("retrieveMessagesFromServerOnGetMessage")
+				    				 ||(userParameter.equals("securityMechanism=4")				    				 
+				    				 || userParameter.startsWith("traceFile")
+						    		 || userParameter.startsWith("traceFileAppend")
+						   			 || userParameter.startsWith("traceLevel")
+					 				 || userParameter.startsWith("traceDirectory"))))
+				    			 userOptionalParameters +=	userParameter+";"; 
+				    		 //securityMechanism=4 equals Client authentication, so set
+				    		 //clientAuthentication flag
+				    		 if (userParameter.equals("securityMechanism=4")){				    			
+				    			 useClientAuthentication=true;
+				    		 }
+				    	 }
+				     }
+		
+					 setURLOptionalParameters(userOptionalParameters);
+			     }
 			} catch (Exception e) {
+				e.printStackTrace();				
 			}
 		}
 	}

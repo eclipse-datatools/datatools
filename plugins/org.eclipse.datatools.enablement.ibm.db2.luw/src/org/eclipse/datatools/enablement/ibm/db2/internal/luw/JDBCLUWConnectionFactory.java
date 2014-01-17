@@ -8,7 +8,6 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.datatools.enablement.ibm.db2.internal.luw;
 
 import org.eclipse.datatools.connectivity.IConnection;
