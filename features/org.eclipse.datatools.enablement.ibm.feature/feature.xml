@@ -4,7 +4,7 @@
       label="%featureName"
       version="1.11.2.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.datatools.enablement.finfo"
+      plugin="org.eclipse.datatools.enablement.ibm"
       image="eclipse_update_120.jpg">
 
    <description>
@@ -30,13 +30,20 @@
       <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.8.0" match="greaterOrEqual"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.datatools.enablement.ibm.ui"
+  <plugin
+         id="org.eclipse.datatools.enablement.ibm"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
+  <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
    <plugin
          id="org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition"
          download-size="0"
@@ -122,7 +129,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.finfo"
+         id="org.eclipse.datatools.enablement.ibm.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
