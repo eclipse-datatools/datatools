@@ -2,19 +2,21 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw.ui;singleton:=true
-Bundle-Version: 1.0.4.qualifier
+Bundle-Version: 1.0.5.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui;bundle-version="[3.2.0,4.0)",
  org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.datatools.enablement.ibm.db2.luw;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.enablement.ibm.ui;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.datatools.enablement.ibm.ui;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.ui;bundle-version="[3.2.0,4.0)"
 Import-Package: com.ibm.icu.text;version="3.6.1",
  com.ibm.icu.util;version="3.6.1"
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers,
- org.eclipse.datatools.enablement.ibm.db2.luw.ui.drivers
+ org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.util,
+ org.eclipse.datatools.enablement.ibm.db2.luw.ui.drivers,
+ org.eclipse.datatools.enablement.ibm.db2.luw.ui.l10n
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

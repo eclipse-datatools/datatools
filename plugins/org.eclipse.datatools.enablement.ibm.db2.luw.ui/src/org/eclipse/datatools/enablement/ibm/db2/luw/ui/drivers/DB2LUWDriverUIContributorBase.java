@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2007, 2012 IBM Corporation and others. All rights reserved.
+ * Copyright 2007, 2014 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -21,7 +21,7 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
 import org.eclipse.datatools.connectivity.ui.wizards.OptionalPropertiesPane;
-import org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.Messages;
+import org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.util.ResourceLoader;
 import org.eclipse.datatools.enablement.ibm.internal.ui.drivers.IBMJDBCDriverTracingOptionsPane;
 import org.eclipse.datatools.enablement.ibm.internal.ui.drivers.IIBMJDBCDriverProvider;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -45,32 +45,23 @@ import com.ibm.icu.text.MessageFormat;
 public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 		IIBMJDBCDriverProvider, Listener {
 
-	protected String CUI_NEWCW_DATABASE_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_DATABASE_LBL_UI_"); //$NON-NLS-1$
+	protected String CUI_NEWCW_DATABASE_LBL_UI_ = ResourceLoader.CUI_NEWCW_DATABASE_LBL_UI_;
 
-	private static final String CUI_NEWCW_HOST_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_HOST_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_HOST_LBL_UI_ = ResourceLoader.CUI_NEWCW_HOST_LBL_UI_;
 
-	private static final String CUI_NEWCW_PORT_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_PORT_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PORT_LBL_UI_ = ResourceLoader.CUI_NEWCW_PORT_LBL_UI_;
 
-	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = ResourceLoader.CUI_NEWCW_CONNECTIONURL_LBL_UI_;
 
-	private static final String CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_ = Messages
-			.getString("CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_ = ResourceLoader.CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_;
 
-	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_USERNAME_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = ResourceLoader.CUI_NEWCW_USERNAME_LBL_UI_;
 
-	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_PASSWORD_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = ResourceLoader.CUI_NEWCW_PASSWORD_LBL_UI_;
 
-	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = ResourceLoader.CUI_NEWCW_SAVE_PASSWORD_LBL_UI_;
 
-	private static final String CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_ = ResourceLoader.CUI_NEWCW_DEFAULT_SCHEMA_LBL_UI_;
 
 	private static final String CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_ = org.eclipse.datatools.enablement.ibm.internal.ui.drivers.Messages
 			.getString("CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_"); //$NON-NLS-1$
@@ -78,35 +69,25 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 	private static final String CUI_NEWCW_TRACING_OPTIONS_TAB_UI_ = org.eclipse.datatools.enablement.ibm.internal.ui.drivers.Messages
 			.getString("CUI_NEWCW_TRACING_OPTIONS_TAB_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_;
 
-	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_DEFAULT_SCHEMA_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_URL_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_;
 
-	private static final String CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = ResourceLoader.CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_;
 
 	private static final String CLIENT_AUTHETICATION_TEXT = "securityMechanism=4;"; //$NON-NLS-1$
 
@@ -455,28 +436,22 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
 		if (databaseText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(MessageFormat.format(Messages
-					.getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_"), //$NON-NLS-1$
-					new Object[] { Messages
-							.getString("CUI_NEWCW_DEFDBNAME_VAL_UI_") })); //$NON-NLS-1$
+			parentPage.setErrorMessage(MessageFormat.format( ResourceLoader.CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_,
+					new Object[] { ResourceLoader.CUI_NEWCW_DEFDBNAME_VAL_UI_ }));
 			isComplete = false;
 		} else if (hostText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages
-					.getString("CUI_NEWCW_VALIDATE_HOST_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage( ResourceLoader.CUI_NEWCW_VALIDATE_HOST_REQ_UI_ );
 			isComplete = false;
 		} else if (portText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages
-					.getString("CUI_NEWCW_VALIDATE_PORT_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage( ResourceLoader.CUI_NEWCW_VALIDATE_PORT_REQ_UI_ );
 			isComplete = false;
 		} else if (!clientAuthenticationCheckbox.getSelection()
 				&& usernameText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages
-					.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage( ResourceLoader.CUI_NEWCW_VALIDATE_USERID_REQ_UI_ );
 			isComplete = false;
 		} else if (!clientAuthenticationCheckbox.getSelection()
 				&& passwordText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages
-					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage( ResourceLoader.CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ );
 			isComplete = false;
 
 		} else if ( tracingOptionsComposite != null && !tracingOptionsComposite.validateControl(parentPage)) {
