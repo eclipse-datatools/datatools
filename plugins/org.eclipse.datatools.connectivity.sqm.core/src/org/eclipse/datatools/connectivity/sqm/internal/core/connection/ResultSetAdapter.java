@@ -18,11 +18,14 @@ import java.sql.Array;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.Ref;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -516,4 +519,217 @@ public class ResultSetAdapter implements ResultSet {
 	public boolean wasNull() throws SQLException {
 		return resultSet.wasNull();
 	}
+    public <T> T unwrap(Class<T> iface) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public boolean isWrapperFor(Class<?> iface) throws SQLException {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    public RowId getRowId(int columnIndex) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public RowId getRowId(String columnLabel) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public void updateRowId(int columnIndex, RowId x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateRowId(String columnLabel, RowId x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public int getHoldability() throws SQLException {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+    
+    public boolean isClosed() throws SQLException {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    public void updateNString(int columnIndex, String nString) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNString(String columnLabel, String nString) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(int columnIndex, NClob nClob) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(String columnLabel, NClob nClob) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public NClob getNClob(int columnIndex) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public NClob getNClob(String columnLabel) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public SQLXML getSQLXML(int columnIndex) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public SQLXML getSQLXML(String columnLabel) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public void updateSQLXML(int columnIndex, SQLXML xmlObject) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateSQLXML(String columnLabel, SQLXML xmlObject) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public String getNString(int columnIndex) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public String getNString(String columnLabel) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public Reader getNCharacterStream(int columnIndex) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public Reader getNCharacterStream(String columnLabel) throws SQLException {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    public void updateNCharacterStream(int columnIndex, Reader x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNCharacterStream(String columnLabel, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateAsciiStream(int columnIndex, InputStream x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBinaryStream(int columnIndex, InputStream x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateCharacterStream(int columnIndex, Reader x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateAsciiStream(String columnLabel, InputStream x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBinaryStream(String columnLabel, InputStream x, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateCharacterStream(String columnLabel, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBlob(int columnIndex, InputStream inputStream, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBlob(String columnLabel, InputStream inputStream, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateClob(int columnIndex, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateClob(String columnLabel, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(int columnIndex, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(String columnLabel, Reader reader, long length) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNCharacterStream(int columnIndex, Reader x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNCharacterStream(String columnLabel, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateAsciiStream(int columnIndex, InputStream x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBinaryStream(int columnIndex, InputStream x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateCharacterStream(int columnIndex, Reader x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateAsciiStream(String columnLabel, InputStream x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBinaryStream(String columnLabel, InputStream x) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateCharacterStream(String columnLabel, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBlob(int columnIndex, InputStream inputStream) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateBlob(String columnLabel, InputStream inputStream) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateClob(int columnIndex, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateClob(String columnLabel, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(int columnIndex, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
+    
+    public void updateNClob(String columnLabel, Reader reader) throws SQLException {
+        // TODO Auto-generated method stub
+    }
 }
