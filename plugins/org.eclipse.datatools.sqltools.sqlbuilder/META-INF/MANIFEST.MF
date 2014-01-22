@@ -57,5 +57,5 @@ Export-Package: org.eclipse.datatools.sqltools.sqlbuilder,
  org.eclipse.datatools.sqltools.sqlbuilder.views.update,
  org.eclipse.datatools.sqltools.sqlbuilder.views.with
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
