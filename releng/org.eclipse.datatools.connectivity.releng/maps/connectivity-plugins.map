@@ -1,4 +1,4 @@
-plugin@org.eclipse.datatools.connectivity=GIT,tag=v201401230244,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity
+plugin@org.eclipse.datatools.connectivity=GIT,tag=v201401230755,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity
 plugin@org.eclipse.datatools.connectivity.apache.derby.dbdefinition=GIT,tag=v201107221459,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby.dbdefinition
 plugin@org.eclipse.datatools.connectivity.apache.derby.ui=GIT,tag=v201107221459,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby.ui
 plugin@org.eclipse.datatools.connectivity.apache.derby=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.apache.derby
@@ -9,7 +9,7 @@ plugin@org.eclipse.datatools.connectivity.dbdefinition.genericJDBC=GIT,tag=v2013
 plugin@org.eclipse.datatools.connectivity.ui=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.ui
 plugin@org.eclipse.datatools.connectivity.ui.templates=GIT,tag=v201205240353,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.ui.templates
 plugin@org.eclipse.datatools.connectivity.ui.dse=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.ui.dse
-plugin@org.eclipse.datatools.connectivity.sqm.core=GIT,tag=v201401210908,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.sqm.core
+plugin@org.eclipse.datatools.connectivity.sqm.core=GIT,tag=v201401230755,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.sqm.core
 plugin@org.eclipse.datatools.connectivity.sqm.core.ui=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.sqm.core.ui
 plugin@org.eclipse.datatools.connectivity.sqm.server.ui=GIT,tag=v201212070447,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.sqm.server.ui
 plugin@org.eclipse.datatools.connectivity.oda=GIT,tag=v201311051159,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.connectivity.git,path=plugins/org.eclipse.datatools.connectivity.oda
