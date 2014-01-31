@@ -732,8 +732,8 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 
         private String formatNode(String node)
         {
-        	if (node.indexOf(":") > -1) {
-        		return "[" + node + "]";
+        	if (node.indexOf(":") > -1) { //$NON-NLS-1$
+        		return "[" + node + "]"; //$NON-NLS-1$ //$NON-NLS-2$
         	}
         	return node;
         }
@@ -744,7 +744,7 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
          */
         protected void parseURL(String url) {
 			try {
-				setURLOptionalParameters("");
+				setURLOptionalParameters(""); //$NON-NLS-1$
 				String remainingURL = url.substring(url.indexOf(':') + 1);
 				this.subprotocol = remainingURL.substring(0, remainingURL
 						.indexOf(':'));
@@ -753,9 +753,9 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 				this.node = remainingURL
 						.substring(0, remainingURL.indexOf('/'));
 				
-				if (node.indexOf('[') > -1 && node.indexOf("]:") > -1) {
-					port = node.substring(node.indexOf("]:") + 2);
-					node = node.substring(1, node.indexOf("]:"));							
+				if (node.indexOf('[') > -1 && node.indexOf("]:") > -1) { //$NON-NLS-1$
+					port = node.substring(node.indexOf("]:") + 2); //$NON-NLS-1$
+					node = node.substring(1, node.indexOf("]:")); //$NON-NLS-1$				
 				} else if (node.indexOf(':') > -1) {
 					port = node.substring(node.indexOf(':') + 1);
 					node = node.substring(0, node.indexOf(':'));
@@ -777,32 +777,32 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 					}
 					else{
 						this.databaseName = remainingURL;
-						remainingURL="";
+						remainingURL=""; //$NON-NLS-1$
 					}
 					
 				}
 				
-				 String userOptionalParameters="";
-			     String userParameter = "";
+				 String userOptionalParameters=""; //$NON-NLS-1$
+			     String userParameter = ""; //$NON-NLS-1$
 			     if(remainingURL!=null && remainingURL.length()>0)
 			     {
-				     StringTokenizer st = new StringTokenizer(remainingURL, ";");
+				     StringTokenizer st = new StringTokenizer(remainingURL, ";"); //$NON-NLS-1$
 				     int tokenLength = st.countTokens();
 				     for(int i=0; i< tokenLength; i++)
 				     {  
 				    	 userParameter = st.nextToken();
 				    	 if(userParameter!=null && userParameter.length()>0){
 				    		 
-				    		 if(!(userParameter.startsWith("retrieveMessagesFromServerOnGetMessage")
-				    				 ||(userParameter.equals("securityMechanism=4")				    				 
-				    				 || userParameter.startsWith("traceFile")
-						    		 || userParameter.startsWith("traceFileAppend")
-						   			 || userParameter.startsWith("traceLevel")
-					 				 || userParameter.startsWith("traceDirectory"))))
+				    		 if(!(userParameter.startsWith("retrieveMessagesFromServerOnGetMessage") //$NON-NLS-1$
+				    				 ||(userParameter.equals("securityMechanism=4")	//$NON-NLS-1$    				 
+				    				 || userParameter.startsWith("traceFile") //$NON-NLS-1$
+						    		 || userParameter.startsWith("traceFileAppend") //$NON-NLS-1$
+						   			 || userParameter.startsWith("traceLevel") //$NON-NLS-1$
+					 				 || userParameter.startsWith("traceDirectory")))) //$NON-NLS-1$
 				    			 userOptionalParameters +=	userParameter+";"; 
 				    		 //securityMechanism=4 equals Client authentication, so set
 				    		 //clientAuthentication flag
-				    		 if (userParameter.equals("securityMechanism=4")){				    			
+				    		 if (userParameter.equals("securityMechanism=4")){ //$NON-NLS-1$			
 				    			 useClientAuthentication=true;
 				    		 }
 				    	 }
@@ -811,7 +811,7 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
 					 setURLOptionalParameters(userOptionalParameters);
 			     }
 			} catch (Exception e) {
-				e.printStackTrace();				
+				//e.printStackTrace();				
 			}
 		}
 	}
