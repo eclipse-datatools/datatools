@@ -702,7 +702,7 @@ public class DB2LUWDriverUIContributorBase implements IDriverUIContributor,
          * Formats the driver URL based on values specified in 
          * constructor {@link DB2JDBCURL(String, String, String, boolean, String)}.
          */
-        public String formatURL() {
+        protected String formatURL() {
             String url = "jdbc:db2://" + formatNode(getNode()) + ":" //$NON-NLS-1$ //$NON-NLS-2$
                             + getPort()
                             + "/" + getDatabaseName() //$NON-NLS-1$
