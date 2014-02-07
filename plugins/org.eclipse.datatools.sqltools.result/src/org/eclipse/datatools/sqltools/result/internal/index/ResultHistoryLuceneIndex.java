@@ -164,7 +164,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         {
             try
             {
-                IndexReader reader = IndexReader.open(_ramDir);
+                IndexReader reader = IndexReader.open(_ramDir, false);
                 if(instances != null)
                 {
                     IResultInstance instance = null;
@@ -212,14 +212,14 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
             try
             {
                 Query query = parser.parse(expression);
-                Searcher searcher = new IndexSearcher(_ramDir);
+                Searcher searcher = new IndexSearcher(_ramDir, true);
                 TopDocs hits = searcher.search(query, searcher.maxDoc());
                 int count = hits.totalHits;
                 IResultInstance[] instances = new IResultInstance[count];
                 
                 for(int i=0;i<count;i++)
                 {
-		    int docID = hits.scoreDocs[i].doc;
+		            int docID = hits.scoreDocs[i].doc;
                     Document doc = searcher.doc(docID);
                     instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
                 }
