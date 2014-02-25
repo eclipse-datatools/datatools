@@ -95,9 +95,11 @@
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build.git"/>
 		</antcall>
+	<!--
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.incubator.git"/>
 		</antcall>
+	-->
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity.git"/>
 		</antcall>
@@ -462,6 +464,7 @@
 		</zip>
 
 		<!-- package incubator-sdk package -->
+	<!--
 		<zip destfile="${buildDirectory}/${buildId}/dtp-incubator-sdk-${package.version}.zip">
 			<zipfileset dir="${buildDirectory}/tmpsite/new/eclipse/features" prefix="eclipse/features">
 				<include name="org.eclipse.datatools.enablement.oda.ecore.*/**"/>
@@ -474,8 +477,9 @@
 				<include name="*.html"/>
 			</zipfileset>
 		</zip>
-
+	-->
 		<!-- package incubator package -->
+	<!--
 		<zip destfile="${buildDirectory}/${buildId}/dtp-incubator-${package.version}.zip">
 			<zipfileset dir="${buildDirectory}/tmpsite/new/eclipse/features" prefix="eclipse/features">
 				<include name="org.eclipse.datatools.enablement.oda.ecore.feature_*/**"/>
@@ -491,6 +495,7 @@
 				<include name="*.html"/>
 			</zipfileset>
 		</zip>
+	-->
 
 		<!-- package source package -->
 		<zip destfile="${buildDirectory}/${buildId}/dtp-source-${package.version}.zip">
@@ -505,8 +510,10 @@
 		<mkdir dir="${postingDirectory}/${buildId}" />
 		<copy file="${buildDirectory}/${buildId}/dtp-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
+	<!--
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
+	-->
 		<copy file="${buildDirectory}/${buildId}/dtp-source-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/directory.txt" todir="${postingDirectory}/${buildId}"/>
         <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
