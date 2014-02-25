@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.apache.derby.feature"
       label="%featureName"
-      version="1.11.2.qualifier"
+      version="1.12.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.sybase"
       image="eclipse_update_120.jpg">
@@ -20,8 +20,8 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
    </url>
 
    <includes
@@ -29,9 +29,9 @@
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.8.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.sqldevtools.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.12.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.12.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.sqldevtools.feature" version="1.12.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

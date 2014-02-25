@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.parsers.feature"
       label="%featureName"
-      version="1.11.2.qualifier"
+      version="1.12.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.sqltools.parsers.sql"
       image="eclipse_update_120.jpg">
@@ -20,12 +20,12 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
    </url>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.12.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

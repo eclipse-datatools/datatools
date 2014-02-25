@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.connectivity.oda.designer.core.feature"
       label="%featureName"
-      version="1.11.2.qualifier"
+      version="1.12.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.connectivity.oda.design.ui"
       image="eclipse_update_120.jpg">
@@ -20,26 +20,19 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
    </url>
 
    <requires>
       <import feature="org.eclipse.emf" version="2.4.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.oda.feature" version="1.8.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.doc.user" version="1.8.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.8.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.oda.feature" version="1.12.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.doc.user" version="1.7.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.12.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
          id="org.eclipse.datatools.connectivity.oda.design.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.connectivity.oda.flatfile.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
