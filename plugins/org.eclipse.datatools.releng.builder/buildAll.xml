@@ -47,7 +47,7 @@
 		<antcall target="compareMapFiles" />
 		<antcall target="buildDtpEnablementAllFeature"/>
     	<antcall target="buildDtpDocISV"/>
-		<antcall target="buildDtpIncubationAllFeature"/>
+    	<!--  <antcall target="buildDtpIncubationAllFeature"/>  -->
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
         <antcall target="Package"/>
@@ -279,7 +279,9 @@
 		<!-- unzip all dtp packages into same directory -->
 		<unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${buildDirectory}/tmpsite"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
+	<!--		
 		<unzip src="${buildDirectory}/${buildId}/dtp-incubation-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
+	-->
 		<copy todir="${buildDirectory}/tmpsite/eclipse/plugins" overwrite="true">
 			<fileset dir="${buildDirectory}">
 				<include name="org.eclipse.datatools.doc.isv_*.jar"/>
