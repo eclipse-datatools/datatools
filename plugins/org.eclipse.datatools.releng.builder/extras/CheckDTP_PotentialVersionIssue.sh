@@ -1,5 +1,3 @@
-#!/bin/bash
-#
 # Copyright (c) 2011, 2014 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
@@ -34,13 +32,13 @@ rm -f nochange.txt change.txt allchange.txt excludechange.txt
 
 echo "unzip -q -o $CurrentPostDir/dtp-sdk-${CurrentBuildId}.zip -d DtpCurrent"
 unzip -q -o $CurrentPostDir/dtp-sdk-${CurrentBuildId}.zip -d DtpCurrent
-echo "unzip -q -o $CurrentPostDir/dtp-incubator-sdk-${CurrentBuildId}.zip -d DtpCurrent"
-unzip -q -o $CurrentPostDir/dtp-incubator-sdk-${CurrentBuildId}.zip -d DtpCurrent
+# echo "unzip -q -o $CurrentPostDir/dtp-incubator-sdk-${CurrentBuildId}.zip -d DtpCurrent"
+# unzip -q -o $CurrentPostDir/dtp-incubator-sdk-${CurrentBuildId}.zip -d DtpCurrent
 
 echo "unzip -q -o $LastReleasePostDir/dtp-sdk-${LastReleaseBuildId}.zip -d DtpLast"
 unzip -q -o $LastReleasePostDir/dtp-sdk-${LastReleaseBuildId}.zip -d DtpLast
-echo "unzip -q -o $LastReleasePostDir/dtp-incubator-sdk-${LastReleaseBuildId}.zip -d DtpLast"
-unzip -q -o $LastReleasePostDir/dtp-incubator-sdk-${LastReleaseBuildId}.zip -d DtpLast
+# echo "unzip -q -o $LastReleasePostDir/dtp-incubator-sdk-${LastReleaseBuildId}.zip -d DtpLast"
+# unzip -q -o $LastReleasePostDir/dtp-incubator-sdk-${LastReleaseBuildId}.zip -d DtpLast
 
 ls DtpCurrent/eclipse/plugins/ | grep org.eclipse.datatools | grep -v .source_ > DtpCurrent.txt
 ls DtpLast/eclipse/plugins/ | grep org.eclipse.datatools | grep -v .source_ > DtpLast.txt
