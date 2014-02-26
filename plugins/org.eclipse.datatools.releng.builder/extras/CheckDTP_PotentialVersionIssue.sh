@@ -1,3 +1,9 @@
+# Copyright (c) 2011, 2014 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
 #Script that can automatically compare each plugin's version between the current version and the last release version.
 #And send the list of plugins that have potential version update issue in an email to the PMC members.
 #For example, the org.eclipse.datatools.enablement.oda.xml plugin has version 1.2.1.v201104121500 in the last release 1.9.1.
@@ -12,11 +18,11 @@ fi
 
 CurrentPostDir=$1
 CurrentBuildId=$2
-LastReleasePostDir=$HOME/releng/BIRTOutput/dtp.output/1.11.1/v20130906-0500-Release
-LastReleaseBuildId=1.11.1RC3-201309060500
+LastReleasePostDir=$HOME/releng/BIRTOutput/dtp.output/1.11.2/v20140208-0500-Released
+LastReleaseBuildId=1.11.2RC2-201402080500
 
 if [ ! -e $CurrentPostDir/dtp-sdk-${CurrentBuildId}.zip ]; then
-	echo "Currect build does not exist,cancel comparison script."
+	echo "Current build does not exist, cancel comparison script."
 	exit
 fi
 
