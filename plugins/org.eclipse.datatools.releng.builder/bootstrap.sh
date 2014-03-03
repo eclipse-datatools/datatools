@@ -14,6 +14,9 @@ CVS_RSH=ssh
 ulimit -c unlimited
 export CVSROOT CVS_RSH USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
 
+#cvs update -r HEAD -C -d buildAll.xml build.xml eclipse extras
+#dos2unix extras/updateFeatureTag.sh extras/checkCompareDone.sh
+#chmod -R +x build.xml buildAll.xml eclipse extras
 
 export GitRepo=ssh://xgu@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
 export BranchName=master
@@ -33,7 +36,8 @@ export PATH=${PATH}:${ANT_HOME}/bin:/usr/local/bin
 proc=$$
 
 #notification list
-recipients=yjiang@actuate.com,xgu@actuate.com
+recipients=lchan@actuate.com,xgu@actuate.com
+sender=qa-build@actuate.com
 
 #sets skip.performance.tests Ant property
 skipPerf=""
@@ -71,13 +75,13 @@ buildLabel=""
 mapVersionTag=HEAD
 
 # directory in which to export builder projects
-builderDir=$HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder
+builderDir=$HOME/releng.dtp.1120/org.eclipse.datatools.releng.builder
 
 # buildtype determines whether map file tags are used as entered or are replaced with HEAD
 buildType=I
 
 # directory where to copy build
-postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.10.0
+postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.12.0
 
 # flag to indicate if test build
 testBuild=""
@@ -115,6 +119,7 @@ do
 		 		 -mapVersionTag) mapVersionTag="$2"; shift;;
 				 -noAutoTag) noAutoTag=true;;
 				 -ForceAutoTag) ForceAutoTag=true;;
+				 -Fridaybuild) FridayBuild=true;;
 		 		 -tagMapFiles) tagMaps="-DtagMaps=true";;
 		 		 -noSign) noSign="-DnoSign=true";;
 		 		 -skipPerf) skipPerf="-Dskip.performance.tests=true";;
@@ -181,7 +186,7 @@ echo "======[customBuilderTag]: $customBuilderTag" >> $USER.log
 #fi
 
 # directory where features and plugins will be compiled
-buildDirectory=$HOME/releng.dtp.1100/src
+buildDirectory=$HOME/releng.dtp.1120/src
 
 echo "======[buildDirectory]: $buildDirectory" >> $USER.log
 
@@ -200,10 +205,12 @@ pull() {
         fi
         popd
         pushd $builderDir/gitClones/$directory
+	echo git fetch
+        git fetch
         echo git checkout $2
         git checkout $2
-	echo git pull
-        git pull
+	echo git pull origin $BranchName
+        git pull origin $BranchName
         popd
 }
 
@@ -230,7 +237,7 @@ else
 	echo "$GitRoot/org.eclipse.datatools.enablement.sap.git $BranchName" >> repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.enablement.sqlite.git $BranchName" >> repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.enablement.sybase.git $BranchName" >> repos-clean.txt
-	echo "$GitRoot/org.eclipse.datatools.incubator.git $BranchName" >> repos-clean.txt
+#	echo "$GitRoot/org.eclipse.datatools.incubator.git $BranchName" >> repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.modelbase.git $BranchName" >> repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.sqltools.git $BranchName" >> repos-clean.txt
 	
@@ -241,7 +248,7 @@ else
         	pull $1 $2
         	echo $1 | sed 's/ssh:.*@git.eclipse.org/git:\/\/git.eclipse.org/g' >> clones.txt
 	done < repos-clean.txt
-	
+
 	cat clones.txt| xargs /bin/bash git-map.sh $builderDir/gitClones \
         $builderDir/gitClones > maps.txt
 		
@@ -251,10 +258,27 @@ else
 		/bin/bash run.txt
                 mkdir -p $builderDir/report
                 cp report.txt $builderDir/report/report$buildId.txt
+		if [ "$FridayBuild" == "true" ]; then
+			echo "This is Friday build"
+			echo "DoFridayBuild=false" > checkFridayBuild.properties
+		else
+			echo "This is not Friday build"
+			echo "DoFridayBuild=true" > checkFridayBuild.properties
+		fi
 	elif [ "$ForceAutoTag" == "true" ]; then
 		echo "Continue to build even if no bundles changed for -ForceAutoTag build"
+	elif [ "$FridayBuild" == "true" ]; then
+		source checkFridayBuild.properties
+		if [ "$DoFridayBuild" == "true" ]; then
+			echo "Have change since the previous Friday build,continue to build"
+			echo "DoFridayBuild=false" > checkFridayBuild.properties
+		else
+			echo "No change since the previous Friday build, 1.12.0 Nightly Build ($buildId) is canceled"
+			exit
+		fi
 	else
-		echo "No change detected. 1.10.0 Nightly Build ($buildId) is canceled"
+		echo "No change detected. 1.12.0 Nightly Build ($buildId) is canceled"
+		sendEmail -f xgu@actuate.com -t xgu@actuate.com lchan@actuate.com -cc bpayton@us.ibm.com -s localhost:5025 -u "1.12.0 Nightly build ($buildId) is canceled, no bundles were changed in all DTP repositories" -m "No change detected in all DTP repositories.\n1.12.0 Nightly Build ($buildId) is canceled" -l mail.log
                 exit
 	fi
 	
@@ -262,16 +286,15 @@ else
 fi
 
 mkdir -p $postingDirectory/$buildLabel
-chmod -R 755 $builderDir
+#chmod -R 755 $builderDir
 
 #default value of the bootclasspath attribute used in ant javac calls.  
 bootclasspath="/usr/local/j2sdk1.4.2_13/jre/lib/rt.jar:/usr/local/j2sdk1.4.2_13/jre/lib/jsse.jar:/usr/local/j2sdk1.4.2_13/jre/lib/jce.jar"
-#bootclasspath="/usr/local/j2sdk1.4.2_13/jre/lib/rt.jar:/usr/local/j2sdk1.4.2_13/jre/lib/jsse.jar"
-bootclasspath_15="/usr/local/jdk1.5.0_02/jre/lib/rt.jar:/usr/local/jdk1.5.0_02/jre/lib/jce.jar"
-bootclasspath_16="/usr/local/jdk1.6.0/jre/lib/rt.jar:/usr/local/jdk1.6.0/jre/lib/jsse.jar"
+bootclasspath_15="/usr/local/jdk1.5.0_02/jre/lib/rt.jar:/usr/local/jdk1.5.0_02/jre/lib/jsse.jar:/usr/local/jdk1.5.0_02/jre/lib/jce.jar:"
+bootclasspath_16="/usr/local/jdk1.6.0/jre/lib/rt.jar:/usr/local/jdk1.6.0/jre/lib/jsse.jar:/usr/local/jdk1.6.0/jre/lib/jce.jar"
 jvm15_home="/usr/local/jdk1.5.0_02"
 
-cd $HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder
+cd $HOME/releng.dtp.1120/org.eclipse.datatools.releng.builder
 
 echo buildId=$buildId >> monitor.properties 
 echo timestamp=$timestamp >> monitor.properties 
@@ -282,12 +305,13 @@ echo sender=$sender >> monitor.properties
 echo log=$postingDirectory/$buildLabel/index.php >> monitor.properties
 
 #the base command used to run AntRunner headless
-antRunner="/usr/local/jdk1.5.0_09/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
+#antRunner="/usr/local/jdk1.5.0_09/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
 #antRunner="/usr/local/j2sdk1.4.2_13/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
+antRunner="/usr/local/jdk1.6.0/bin/java -Xmx500m -jar ../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar -Dosgi.os=linux -Dosgi.ws=gtk -Dosgi.arch=ppc -application org.eclipse.ant.core.antRunner"
 
 echo "==========[antRunner]: $antRunner" >> $USER.log
 
-#$HOME/releng.dtp.1100/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
+#$HOME/releng.dtp.1120/BIRTBuilder/replaceBuildInfo.sh $buildinfoDate $buildinfounivDate
 
 #clean drop directories
 
@@ -296,25 +320,34 @@ echo "==========[antRunner]: $antRunner" >> $USER.log
 echo $tagMaps >> $USER.log
 echo $compareMaps >> $USER.log
 
-PackageVersion=1.10.0M5-$timestamp
+PackageVersion=1.12.0M6-$timestamp
 echo "======[PackageVersion]: $PackageVersion" >> $USER.log
 
-#cp $HOME/releng.dtp.1100/dtpURLmonitor.properties $HOME/releng.260/src/
+#cp $HOME/releng.dtp.1120/dtpURLmonitor.properties $HOME/releng.260/src/
 
 buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMaps \
 -DmapVersionTag=$mapVersionTag -DpostingDirectory=$postingDirectory \
 -Dbootclasspath=$bootclasspath_15 -DbuildType=$buildType -D$buildType=true \
 -DbuildId=$buildId -Dbuildid=$buildId -DbuildLabel=$buildId -Dtimestamp=$timestamp $skipPerf $skipTest $tagMaps $noSign \
 -DJ2SE-1.5=$bootclasspath_15 -DJavaSE-1.6=$bootclasspath_16 -DlogExtension=.xml $javadoc $updateSite $sign \
--Djava15-home=$bootclasspath_15 -DbuildDirectory=$HOME/releng.dtp.1100/src \
--DbaseLocation=$HOME/releng.dtp.1100/baseLocation -Dwtp.home=$HOME/releng.dtp.1100/baseLocation \
+-Djava15-home=$bootclasspath_15 -DbuildDirectory=$HOME/releng.dtp.1120/src \
+-DbaseLocation=$HOME/releng.dtp.1120/baseLocation -Dwtp.home=$HOME/releng.dtp.1120/baseLocation \
 -DgroupConfiguration=true -DjavacVerbose=true -DjavacFailOnError=false \
--Dbasebuilder=$HOME/releng.dtp.1100/org.eclipse.releng.basebuilder  \
--Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.1100/org.eclipse.datatools.releng.builder/mapTag.properties \
+-Dbasebuilder=$HOME/releng.dtp.1120/org.eclipse.releng.basebuilder  \
+-Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.1120/org.eclipse.datatools.releng.builder/mapTag.properties \
 -Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
 -DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
--DmapVersionTag=$BranchName -DBranchVersion=1.10.0 \
--Dusername.sign=slee -Dpassword.sign=x -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/slee -Dsign.dir=/home/data/httpd/download-staging.priv/birt"
+-DmapVersionTag=$BranchName -DBranchVersion=1.12.0 \
+-Dusername.sign=xgu -Dpassword.sign=Actuate2 -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/xgu -Dsign.dir=/home/data/httpd/download-staging.priv/birt \
+-Dorbit.url.token=download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/plugins \
+-Dorbit.url.newvalue=qa-build/BIRTOutput/platform/orbit-S20110521195923-Indigo/bundles"
+
+
+#-DjavacTarget=1.5 -DjavacSource=1.5 \
+
+#-DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
+#-Ddtp.url.token=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
+#-Ddtp.url.newvalue=:ext:xgu@192.168.218.218:/cvsroot/datatools"
 
 #skipPreBuild
 
@@ -333,6 +366,28 @@ $buildCommand >> $USER.log
 
 #clean up
 #rm -rf $builderDir
-rm -rf $HOME/releng.dtp.1100/src/$buildId
-#cp -f $HOME/releng.dtp.1100/src/directory.txt last_directory.txt
+rm -rf $HOME/releng.dtp.1120/src/$buildId
+#cp -f $HOME/releng.dtp.1120/src/directory.txt last_directory.txt
+
+#Audit Check of DTP release plugin version updates
+if [ "$CheckPluginVersion" = "true" ]; then
+  dos2unix -k $builderDir/extras/CheckDTP_PotentialVersionIssue.sh
+  source $builderDir/extras/CheckDTP_PotentialVersionIssue.sh $postingDirectory/$buildId $PackageVersion > CheckDTP_PotentialVersionIssue.log
+  if [ -s $builderDir/change.txt ]; then
+    sendEmail -f lchan@actuate.com -t xgu@actuate.com lchan@actuate.com -cc bpayton@us.ibm.com \
+    -s localhost:5025 \
+    -u "Automated script: potential version update issue between $PackageVersion and 1.11.2 Release" \
+    -o message-file=$builderDir/change.txt \
+    -l mail.log
+  fi
+fi
+
+#upload build to eclipse site
+if [ "$upload" = "true" ]
+then
+# expects DTP website Git repo is already checked out in datatools folder under the working directory
+  cd $builderDir/uploadScripts
+  ant -f dtplogupload.1.12.0.xml -l log/dtplogupload.1.12.0.log
+  ant -f dtpupload.1.12.0.xml  -l log/dtpupload.1.12.0.log
+fi
 
