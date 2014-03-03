@@ -9,16 +9,17 @@ xhost +$HOSTNAME
 DISPLAY=:0.0
 export DISPLAY
 
-CVSROOT=:ext:xgu@dev.eclipse.org:/cvsroot/datatools
-CVS_RSH=ssh
+# CVSROOT=:ext:xgu@dev.eclipse.org:/cvsroot/datatools
+# CVS_RSH=ssh
 ulimit -c unlimited
-export CVSROOT CVS_RSH USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
+export USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
 
 #cvs update -r HEAD -C -d buildAll.xml build.xml eclipse extras
 #dos2unix extras/updateFeatureTag.sh extras/checkCompareDone.sh
 #chmod -R +x build.xml buildAll.xml eclipse extras
 
-export GitRepo=ssh://xgu@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
+gitUser=xgu
+export GitRepo=ssh://${gitUser}@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
 export BranchName=master
 rm -rf plugins
 git archive --format=tar --remote=$GitRepo $BranchName plugins/org.eclipse.datatools.releng.builder | tar -xf -
@@ -221,7 +222,7 @@ else
 
 	#remove comments
 	rm -f repos-clean.txt clones.txt
-	GitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools
+	GitRoot=ssh://${gitUser}@git.eclipse.org/gitroot/datatools
 	echo "$GitRoot/org.eclipse.datatools.build.git $BranchName" > repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.connectivity.git $BranchName" >> repos-clean.txt
 	echo "$GitRoot/org.eclipse.datatools.doc.git $BranchName" >> repos-clean.txt
@@ -336,18 +337,18 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -Dbasebuilder=$HOME/releng.dtp.1120/org.eclipse.releng.basebuilder  \
 -Djvm15_home=$jvm15_home  -DmapTag.properties=$HOME/releng.dtp.1120/org.eclipse.datatools.releng.builder/mapTag.properties \
 -Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
--DmapGitRoot=ssh://xgu@git.eclipse.org/gitroot/datatools \
+-DmapGitRoot=ssh://${gitUser}@git.eclipse.org/gitroot/datatools \
 -DmapVersionTag=$BranchName -DBranchVersion=1.12.0 \
--Dusername.sign=xgu -Dpassword.sign=Actuate2 -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/xgu -Dsign.dir=/home/data/httpd/download-staging.priv/birt \
+-Dusername.sign=${gitUser} -Dpassword.sign=xx -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/${gitUser} -Dsign.dir=/home/data/httpd/download-staging.priv/birt \
 -Dorbit.url.token=download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/plugins \
 -Dorbit.url.newvalue=qa-build/BIRTOutput/platform/orbit-S20110521195923-Indigo/bundles"
 
 
 #-DjavacTarget=1.5 -DjavacSource=1.5 \
 
-#-DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
-#-Ddtp.url.token=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
-#-Ddtp.url.newvalue=:ext:xgu@192.168.218.218:/cvsroot/datatools"
+#-DmapCvsRoot=:ext:${gitUser}@dev.eclipse.org:/cvsroot/datatools \
+#-Ddtp.url.token=:ext:${gitUser}@dev.eclipse.org:/cvsroot/datatools \
+#-Ddtp.url.newvalue=:ext:${gitUser}@192.168.218.218:/cvsroot/datatools"
 
 #skipPreBuild
 
