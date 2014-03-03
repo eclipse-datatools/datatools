@@ -15,7 +15,7 @@
 <project default="main">
 
         <property name="username" value="xgu"/>
-        <property name="password" value="Actuate2"/>
+        <property name="password" value=""/>
         <property name="hostname" value="build.eclipse.org"/>
         <property name="eclipse_dtp_path" value="~/downloads/datatools/downloads/drops/N_DTP_1.12.0"/>
         <property name="buildDir" value="/home/adb/releng.dtp.1120/org.eclipse.datatools.releng.builder"/>

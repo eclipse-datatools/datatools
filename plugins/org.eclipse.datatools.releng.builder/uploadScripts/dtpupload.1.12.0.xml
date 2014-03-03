@@ -17,7 +17,7 @@
 	<taskdef resource="net/sf/antcontrib/antlib.xml"/>
         
         <property name="username" value="xgu"/>
-        <property name="password" value="Actuate2"/>
+        <property name="password" value=""/>
 	<property name="hostname" value="build.eclipse.org"/>
 	<property name="username_sign" value="slee"/>
         <property name="password_sign" value="Actuate#"/>
