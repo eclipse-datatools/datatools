@@ -2,8 +2,8 @@
     <property name="eclipse.sdk.url" value=""/>
     <property name="emf.url" value=""/>
     <target name="run">
-        <target name="installDependencies"/>
-        <target name="runBuilder"/>
+        <antcall target="installDependencies"/>
+        <antcall target="runBuilder"/>
     </target>
     <target name="installDependencies">
     </target>
