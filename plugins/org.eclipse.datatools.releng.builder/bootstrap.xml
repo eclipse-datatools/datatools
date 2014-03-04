@@ -1,0 +1,15 @@
+<project name="bootstrap" default="run">
+    <property name="eclipse.sdk.url" value=""/>
+    <property name="emf.url" value=""/>
+    <property name="" value=""/>
+    <target name="run">
+        <target name="installDependencies"/>
+        <target name="runBuilder"/>
+    </target>
+    <target name="installDependencies">
+    </target>
+    <target name="runBuilder">
+    </target>
+       
+	
+</project>
