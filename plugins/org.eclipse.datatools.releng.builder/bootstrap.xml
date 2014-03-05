@@ -55,6 +55,7 @@
     </tstamp>
 
     <target name="run">
+	<property name="BranchName" value="master" />
         <ant antfile="buildAll.xml">
 	    <property name="postingDirectory" value="${WORKSPACE}/output" />
 	    <property name="buildDirectory" value="${WORKSPACE}/src" />

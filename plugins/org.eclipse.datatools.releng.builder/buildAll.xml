@@ -91,6 +91,7 @@
 	<target name="prepareMapFile" depends="checkLocal" unless="mapsLocal">
 		
 		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
+                <mkdir dir="${buildDirectory}/maps"/>
 		
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build.git"/>
