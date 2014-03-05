@@ -1,11 +1,45 @@
 <project name="bootstrap" default="run">
-    <property name="eclipse.sdk.url" value=""/>
-    <property name="emf.url" value=""/>
+
+    <property environment="env" />
+    <property name="WORKSPACE" location="${env.WORKSPACE}" />
+
+    <property name="eclipse.sdk.url" value="http://archive.eclipse.org/eclipse/downloads/drops/R-3.7.2-201202080800/eclipse-SDK-3.7.2-linux-gtk.tar.gz"/>
+    <property name="eclipse.sdk.name" value="eclipse-SDK-3.7.2-linux-gtk.tar.gz"/>
+
+    <property name="emf.url" value="http://download.eclipse.org/modeling/emf/emf/downloads/drops/2.7.2/R201201300943/emf-xsd-SDK-2.7.2.zip"/>
+    <property name="emf.name" value="emf-xsd-SDK-2.7.2.zip"/>
+
+    <property name="gef.url" value="http://archive.eclipse.org/tools/gef/downloads/drops/3.7.2/R201201171043/GEF-ALL-3.7.2.zip"/>
+    <property name="gef.name" value="GEF-ALL-3.7.2"/>
+
     <target name="run">
         <antcall target="installDependencies"/>
         <antcall target="runBuilder"/>
     </target>
     <target name="installDependencies">
+
+        <!-- install eclipse -->
+        <get src="${eclipse.sdk.url}"  dest="/tmp/${eclipse.sdk.name}" verbose="true" usetimestamp="true" />
+        <exec executable="tar" dir="${WORKSPACE}">
+             <arg value="-xzf"/>
+             <arg value="/tmp/${eclipse.sdk.name}"/>
+             <arg value="-C"/>
+             <arg value="${WORKSPACE}"/>
+        </exec>
+
+        <!-- install emf -->
+        <get src="${emf.url}"  dest="/tmp/${emf.name}" verbose="true" usetimestamp="true" />
+        <exec executable="unzip" dir="${WORKSPACE}">
+             <arg value="-o"/>
+             <arg value="/tmp/${emf.name}"/>
+        </exec>
+
+        <!-- install gef -->
+        <get src="${gef.url}"  dest="/tmp/${gef.name}" verbose="true" usetimestamp="true" />
+        <exec executable="unzip" dir="${WORKSPACE}">
+             <arg value="-o"/>
+             <arg value="/tmp/${gef.name}"/>
+        </exec>
     </target>
     <target name="runBuilder">
     </target>
