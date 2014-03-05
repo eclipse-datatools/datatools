@@ -21,7 +21,6 @@
 
     <target name="prepareDependency">
         <antcall target="installDependencies"/>
-        <antcall target="runBuilder"/>
     </target>
     <target name="installDependencies">
 
