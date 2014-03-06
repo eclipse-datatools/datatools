@@ -86,7 +86,7 @@
             <property name="package.version" value="1.12.0M6-${buildTimestamp2}"/>
             <property name="eclipse.pdebuild.scripts" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build/scripts"/>
             <property name="eclipse.pdebuild.templates" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build/templates"/>
-            <property name="eclipse.pdebuild.home" value=${WORKSPACE}/eclipse.platform.releng.basebuilder"/>
+            <property name="eclipse.pdebuild.home" value="${WORKSPACE}/eclipse.platform.releng.basebuilder"/>
 
 	</ant>
     </target>
