@@ -189,7 +189,7 @@
 
 
                 <copy todir="${buildDirectory}/maps">
-                    <fileset dir="${buildDirectory}/${gitRepo.name}/releng/${gitRepo.name}.releng/maps">
+                    <fileset dir="${buildDirectory}/${gitRepo.name}/releng">
                         <include name="*/**"/>
                     </fileset>
 		</copy>
