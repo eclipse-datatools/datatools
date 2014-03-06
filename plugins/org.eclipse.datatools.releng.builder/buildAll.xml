@@ -186,13 +186,21 @@
 		<copy todir="${buildDirectory}/maps">
 			<fileset dir="${buildDirectory}/TempRepo/${gitRepo.name}/releng" includes="${gitRepo.name}.releng/**"/>
 		</copy-->
-		<echo message="git archive -o ${buildDirectory}/maps/${gitRepo.name}.maps.tar --remote=${mapGitRoot}/${gitRepo.name} ${mapVersionTag} releng"/>
-		<exec executable="git" dir="${buildDirectory}/maps" output="${buildDirectory}/maps/${gitRepo.name}.maps.tar">
-                        <arg line="archive --format=tar" />
-                        <arg line="--remote=${mapGitRoot}/${gitRepo.name}" />
-                        <arg line="${mapVersionTag} releng" />
+		<exec executable="git" dir="${buildDirectory}">
+                        <arg line="clone" />
+                        <arg line="-b ${mapVersionTag}" />
+                        <arg line="${mapGitRoot}/${gitRepo.name}" />
                 </exec>
-                <untar src="${buildDirectory}/maps/${gitRepo.name}.maps.tar" dest="${buildDirectory}/maps" />
+
+                <mkdir dir="${buildDirectory}/maps">
+
+                <copy todir="${buildDirectory}/maps">
+                    <fileset dir="${buildDirectory}/org.eclipse.datatools.build/releng/org.eclipse.datatools.releng/maps">
+                        <include name="*/**"/>
+                    </fileset>
+		</copy>
+                <delete dir="${buildDirectory}/org.eclipse.datatools.build"/>
+
 	</target>
 	
 	<target name="compareMapFiles" if="compareMaps">
