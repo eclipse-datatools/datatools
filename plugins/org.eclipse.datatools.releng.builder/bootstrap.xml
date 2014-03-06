@@ -15,6 +15,8 @@
     <property name="javahome_15" value="/shared/common/jdk-1.5.0_16"/>
     <property name="javahome_16" value="/shared/common/sun-jdk1.6.0_21_i586"/>
 
+    <property file="${WORKSPACE}/build.properties"/>
+
  
     <target name="nodefault">
     </target>
