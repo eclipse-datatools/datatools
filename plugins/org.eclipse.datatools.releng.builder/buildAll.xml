@@ -94,60 +94,55 @@
                 <mkdir dir="${buildDirectory}/maps"/>
 		
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.build.git"/>
-		</antcall>
-	<!--
-		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.incubator.git"/>
-		</antcall>
-	-->
-		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.build"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.modelbase.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.sqltools.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.modelbase"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.doc.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.sqltools"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.general.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.doc"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.hsqldb.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.general"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ibm.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.hsqldb"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ingres.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ibm"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.msft.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ingres"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.mysql.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.msft"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oda.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.mysql"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oracle.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oda"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.postgresql.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oracle"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sap.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.postgresql"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sqlite.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sap"/>
 		</antcall>
 		<antcall target="GetMapFiles">
-			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sybase.git"/>
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sqlite"/>
+		</antcall>
+		<antcall target="GetMapFiles">
+			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sybase"/>
 		</antcall>
 				
 		<!--compare the map files project-->
@@ -189,16 +184,18 @@
 		<exec executable="git" dir="${buildDirectory}">
                         <arg line="clone" />
                         <arg line="-b ${mapVersionTag}" />
-                        <arg line="${mapGitRoot}/${gitRepo.name}" />
+                        <arg line="${mapGitRoot}/${gitRepo.name}.git" />
                 </exec>
 
 
                 <copy todir="${buildDirectory}/maps">
-                    <fileset dir="${buildDirectory}/org.eclipse.datatools.build/releng/org.eclipse.datatools.releng/maps">
+                    <fileset dir="${buildDirectory}/${gitRepo.name}/releng/${gitRepo.name}.releng/maps">
                         <include name="*/**"/>
                     </fileset>
 		</copy>
-                <delete dir="${buildDirectory}/org.eclipse.datatools.build"/>
+<!--
+                <delete dir="${buildDirectory}/${gitRepo.name}"/>
+-->
 
 	</target>
 	
