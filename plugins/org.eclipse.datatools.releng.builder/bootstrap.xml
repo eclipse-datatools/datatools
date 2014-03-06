@@ -84,8 +84,8 @@
             <property name="JavaSE-1.6" value="${javahome_16}/jre/lib/rt.jar:${javahome_16}/jre/lib/jsse.jar:${javahome_16}/jre/lib/jce.jar"/>
             <property name="mapTag.properties" value="${WORKSPACE}/org.eclipse.datatools.releng.builder/mapTag.properties"/>
             <property name="package.version" value="1.12.0M6-${buildTimestamp2}"/>
-            <property name="eclipse.pdebuild.scripts" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build/scripts"/>
-            <property name="eclipse.pdebuild.templates" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build/templates"/>
+            <property name="eclipse.pdebuild.scripts" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build_3.8.0.v20120119-1950/scripts"/>
+            <property name="eclipse.pdebuild.templates" value="${WORKSPACE}/eclipse.platform.releng.basebuilder/plugins/org.eclipse.pde.build_3.8.0.v20120119-1950/templates"/>
             <property name="eclipse.pdebuild.home" value="${WORKSPACE}/eclipse.platform.releng.basebuilder"/>
 
 	</ant>
