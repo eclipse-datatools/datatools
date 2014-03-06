@@ -192,7 +192,6 @@
                         <arg line="${mapGitRoot}/${gitRepo.name}" />
                 </exec>
 
-                <mkdir dir="${buildDirectory}/maps">
 
                 <copy todir="${buildDirectory}/maps">
                     <fileset dir="${buildDirectory}/org.eclipse.datatools.build/releng/org.eclipse.datatools.releng/maps">
