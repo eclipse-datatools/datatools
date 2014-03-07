@@ -48,7 +48,9 @@
 		<antcall target="buildDtpEnablementAllFeature"/>
     	<antcall target="buildDtpDocISV"/>
     	<!--  <antcall target="buildDtpIncubationAllFeature"/>  -->
+<!--
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
+-->
 		<antcall target="integrateDtpFeatures"/>
         <antcall target="Package"/>
         <antcall target="GenerateUpdateSite"/>
