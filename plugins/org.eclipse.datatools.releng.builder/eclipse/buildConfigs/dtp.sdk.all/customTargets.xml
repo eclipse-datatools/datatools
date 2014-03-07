@@ -123,18 +123,16 @@
 	<!-- Steps to do after the fetch -->
 	<!-- ===================================================================== -->
 	<target name="postFetch">
-		<!--
 		<copy todir="${buildDirectory}/plugins">
 			<fileset dir="${buildDirectory}/../staticFiles" includes="*.jar"/>
 		</copy>
-		-->
-                <replace dir="${buildDirectory}/plugins" value="1.7.2.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/plugins" value="1.12.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
-                <replace dir="${buildDirectory}/features" value="1.7.2.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/features" value="1.12.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
-                <replace dir="${buildDirectory}/features" value="1.7.2.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/features" value="1.12.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
 	</target>
