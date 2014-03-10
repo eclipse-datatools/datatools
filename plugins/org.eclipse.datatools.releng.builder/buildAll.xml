@@ -394,7 +394,7 @@
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
 -->
 	<copy tofile="${target.dir}/${target.name}" overwrite="true">
-             file="${signingDir}/${source.name}"/>
+             <file="${signingDir}/${source.name}"/>
         </copy>
     	
         <tstamp prefix="timestamp">
