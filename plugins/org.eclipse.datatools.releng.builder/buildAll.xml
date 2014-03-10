@@ -379,7 +379,8 @@
                  command="cd ${sign.dir};cp ${home.dir}/${source.name} ./;sign ${source.name} nomail;"/>
         -->
 	<exec  executable="sign" dir="${signingDir}">
-		<arg value="${source.name} nomail">
+		<arg value="${source.name}"/>
+		<arg value="nomail"/>
         </exec>
     	<sleep minutes="15"/>
     	
