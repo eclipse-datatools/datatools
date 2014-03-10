@@ -360,7 +360,7 @@
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
         </scp>
 -->
-        <property name="signingDir" value="/opt/users/hudsonbuild/.hudson/jobs/DTP_1.12.0_Nightly/workspace/build"/>
+        <property name="signingDir" value="/opt/public/hipp/homes/genie.datatools/workspace/build"/>
         <property name="buildServerUser" value="xgu@build.eclipse.org"/>
 
         <mkdir dir="${signingDir}"/>
