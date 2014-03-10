@@ -356,26 +356,45 @@
         </tstamp>
         <echo message="[${timestamp.upload}] Upload unsign package to signing server ..."/>
     	
+<!--
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
-            <fileset dir="${source.dir}" includes="${source.name}"/>
         </scp>
-    	
+-->
+        <property name="signingDir" value="/opt/users/hudsonbuild/.hudson/jobs/DTP_1.12.0_Nightly/workspace/build"/>
+        <property name="buildServerUser" value="xgu@build.eclipse.org"/>
+
+        <mkdir dir="${signingDir}"/>
+
+    	<copy todir="${signingDir}">
+            <fileset dir="${source.dir}" includes="${source.name}"/>
+        </copy>
+
         <tstamp prefix="timestamp">
             <format property="sign.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
         <echo message="[${timestamp.sign.start}] Upload finished and start jarsigning, wait for 25 mins."/>
     	
+        <!--
         <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
                  command="cd ${sign.dir};cp ${home.dir}/${source.name} ./;sign ${source.name} nomail;"/>
-    	<sleep minutes="25"/>
+        -->
+	<exec  executable="sign" dir="${signingDir}">
+		<arg value="${source.name} nomail">
+        </exec>
+    	<sleep minutes="15"/>
     	
         <tstamp prefix="timestamp">
             <format property="download.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
     	<echo message="[${timestamp.download.start}] Download signed jars from server starts"/>
     	
+<!--
         <scp localtofile="${target.dir}/${target.name}" trust="true"
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
+-->
+	<copy tofile="${target.dir}/${target.name}" overwrite="true">
+             file="${signingDir}/${source.name}"/>
+        </copy>
     	
         <tstamp prefix="timestamp">
             <format property="download.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
