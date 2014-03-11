@@ -633,9 +633,11 @@
 		<replace file="${eclipse.build.configs}/../../extras/pack200" token="@pack200@" value="${jvm15_home}/bin/pack200"/>
 		<chmod file="${eclipse.build.configs}/../../extras/pack200" perm="755"/>
 
+<!--
 		<exec executable="dos2unix" dir="${eclipse.build.configs}/../../extras">
 			<arg line=" pack200" />
 		</exec>
+-->
 		
     	<!-- create pack200 -->
     	<java jar="${basedir}/../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar"
@@ -652,6 +654,7 @@
     	    	
         <!-- generator features and plugins metadata -->
         <!--copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/-->
+<!--
     	<p2.publish.featuresAndBundles
     	      metadataRepository="file:${repo}"
     	      artifactRepository="file:${repo}"
@@ -663,15 +666,21 @@
     	   <fileset dir="${pack200Dir}/features" includes="*.pack.gz"/>
         </copy>
         
+-->
         <!--try create composite repository-->
+<!--
         <p2.composite.artifact.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
         <p2.composite.metadata.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
+-->
 
         <!--add childRepo to composite repo-->
+<!--
         <p2.composite.artifact.repository.add location="file://${compsite.site}" child="${buildId}" />
         <p2.composite.metadata.repository.add location="file://${compsite.site}" child="${buildId}" />
+-->
 
     	<!-- copy p2 metadata to build directory -->
+<!--
     	<copy todir="${postingDirectory}/${buildId}/UpdateSite" overwrite="true">
     		<fileset dir="${compsite.site}/${buildId}">
     			<include name="features/**"/>
@@ -679,6 +688,7 @@
     			<include name="*.jar"/>
     		</fileset>
     	</copy>
+-->
     	
     </target>
 	<!-- test -->
