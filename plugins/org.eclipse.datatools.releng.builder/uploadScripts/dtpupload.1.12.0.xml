@@ -19,8 +19,8 @@
         <property name="username" value="xgu"/>
         <property name="password" value="xx"/>
 	<property name="hostname" value="build.eclipse.org"/>
-	<property name="username_sign" value="xgu"/>
-        <property name="password_sign" value="xx"/>
+	<property name="username_sign" value="${username}"/>
+        <property name="password_sign" value="${password}"/>
         <property name="hostname_sign" value="build.eclipse.org"/>
 
         <property name="dtp.buildhome"  value="/home/adb/releng.dtp.1120"/>
