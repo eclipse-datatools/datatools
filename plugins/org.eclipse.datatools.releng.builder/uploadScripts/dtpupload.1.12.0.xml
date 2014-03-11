@@ -19,7 +19,7 @@
         <property name="username" value="xgu"/>
         <property name="password" value="xx"/>
 	<property name="hostname" value="build.eclipse.org"/>
-	<property name="username_sign" value="slee"/>
+	<property name="username_sign" value="xgu"/>
         <property name="password_sign" value="xx"/>
         <property name="hostname_sign" value="build.eclipse.org"/>
 
@@ -36,7 +36,7 @@
         <property name="eclipse_dtp_path" value="~/downloads/datatools/downloads/drops/N_DTP_1.12.0"/>
         <property name="eclipse_staging_path" value="/home/data/httpd/download-staging.priv/birt"/>
         <!--property name="local_version" value="RC1"/-->
-        <property name="M_version" value="M6"/>
+        <property name="M_version" value="M7"/>
 
 
         <tstamp prefix="timestamp">
@@ -150,32 +150,33 @@ currentDay=${timestamp.date}
              <arg line="pull origin master" />
            </exec>
 
+           <echo message="Updating downloads.php matching pattern: dtp-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_N} SDK.*Nightly Build(.*)dtp-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"/>
            <replaceregexp file="${DTP.website.repo}/downloads.php"
-                          match="dtp-sdk-1\.12\.0${M_version}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${M_version} SDK.*Nightly Build(.*)dtp-sdk-1\.12\.0${M_version}-${lasttimestamp_N}"
+                          match="dtp-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_N} SDK.*Nightly Build(.*)dtp-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"
                           replace="dtp-sdk-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} SDK ${downloads.php.pattern} Nightly Build\3dtp-sdk-1.12.0${M_version}-${timestamp}"/>
            <replaceregexp file="${DTP.website.repo}/downloads.php"
-                          match="dtp-1\.12\.0${M_version}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${M_version}.*Nightly Build(.*)dtp-1\.12\.0${M_version}-${lasttimestamp_N}" 
+                          match="dtp-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_N}.*Nightly Build(.*)dtp-1\.12\.0${lastMversion_N}-${lasttimestamp_N}" 
                           replace="dtp-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} ${downloads.php.pattern} Nightly Build\3dtp-1.12.0${M_version}-${timestamp}"/>
            <replaceregexp file="${DTP.website.repo}/downloads.php"
-                          match="dtp-p2repo-1\.12\.0${M_version}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${M_version} P2 Repo.*Nightly Build(.*)dtp-p2repo-1\.12\.0${M_version}-${lasttimestamp_N}"
+                          match="dtp-p2repo-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_N} P2 Repo.*Nightly Build(.*)dtp-p2repo-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"
                           replace="dtp-p2repo-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} P2 Repo ${downloads.php.pattern} Nightly Build\3dtp-p2repo-1.12.0${M_version}-${timestamp}"/>
            <!--replaceregexp file="${DTP.website.repo}/downloads.php"
-                          match="dtp-incubator-sdk-1\.12\.0${M_version}-${lasttimestamp_N}\.zip(.*)(\s*)DTP Incubator 1\.12\.0${M_version} SDK.*Nightly Build(.*)dtp-incubator-sdk-1\.12\.0${M_version}-${lasttimestamp_N}"
+                          match="dtp-incubator-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP Incubator 1\.12\.0${lastMversion_N} SDK.*Nightly Build(.*)dtp-incubator-sdk-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"
                           replace="dtp-incubator-sdk-1.12.0${M_version}-${timestamp}.zip\1\2DTP Incubator 1.12.0${M_version} SDK ${downloads.php.pattern} Nightly Build\3dtp-incubator-sdk-1.12.0${M_version}-${timestamp}"/>
            <replaceregexp file="${DTP.website.repo}/downloads.php"
-                          match="dtp-incubator-1\.12\.0${M_version}-${lasttimestamp_N}\.zip(.*)(\s*)DTP Incubator 1\.12\.0${M_version}.*Nightly Build(.*)dtp-incubator-1\.12\.0${M_version}-${lasttimestamp_N}"
+                          match="dtp-incubator-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP Incubator 1\.12\.0${lastMversion_N}.*Nightly Build(.*)dtp-incubator-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"
                           replace="dtp-incubator-1.12.0${M_version}-${timestamp}.zip\1\2DTP Incubator 1.12.0${M_version} ${downloads.php.pattern} Nightly Build\3dtp-incubator-1.12.0${M_version}-${timestamp}"/-->
            <if>
               <equals arg1="${todayinweek}" arg2="Fri"/>
               <then>
                  <replaceregexp file="${DTP.website.repo}/downloads.php"
-                                match="dtp-sdk-1\.12\.0${M_version}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${M_version} SDK.*I-Build(.*)dtp-sdk-1\.12\.0${M_version}-${lasttimestamp_I}"
+                                match="dtp-sdk-1\.12\.0${lastMversion_I}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_I} SDK.*I-Build(.*)dtp-sdk-1\.12\.0${lastMversion_I}-${lasttimestamp_I}"
                                 replace="dtp-sdk-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} SDK ${downloads.php.pattern} I-Build\3dtp-sdk-1.12.0${M_version}-${timestamp}"/>
                  <replaceregexp file="${DTP.website.repo}/downloads.php"
-                                match="dtp-1\.12\.0${M_version}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${M_version}.*I-Build(.*)dtp-1\.12\.0${M_version}-${lasttimestamp_I}"
+                                match="dtp-1\.12\.0${lastMversion_I}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_I}.*I-Build(.*)dtp-1\.12\.0${lastMversion_I}-${lasttimestamp_I}"
                                 replace="dtp-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} ${downloads.php.pattern} I-Build\3dtp-1.12.0${M_version}-${timestamp}"/>
                  <replaceregexp file="${DTP.website.repo}/downloads.php"
-                                match="dtp-p2repo-1\.12\.0${M_version}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${M_version} P2 Repo.*I-Build(.*)dtp-p2repo-1\.12\.0${M_version}-${lasttimestamp_I}"
+                                match="dtp-p2repo-1\.12\.0${lastMversion_I}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_I} P2 Repo.*I-Build(.*)dtp-p2repo-1\.12\.0${lastMversion_I}-${lasttimestamp_I}"
                                 replace="dtp-p2repo-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} P2 Repo ${downloads.php.pattern} I-Build\3dtp-p2repo-1.12.0${M_version}-${timestamp}"/>
                  <scp remoteTofile="${username}:${password}@${hostname}:${eclipse_dtp_path}/directory_I.txt" trust="true"
                       file="${local_dtp_path}/directory.txt"/>
@@ -194,12 +195,14 @@ currentDay=${timestamp.date}
 
            <echo file="lastmonitor_N_1120.properties">
 lasttimestamp_N=${timestamp}
+lastMversion_N=${M_version}
 </echo>
            <if>
               <equals arg1="${todayinweek}" arg2="Fri"/>
               <then>
                  <echo file="lastmonitor_I_1120.properties">
 lasttimestamp_I=${timestamp}
+lastMversion_I=${M_version}
 </echo>
               </then>
            </if>
