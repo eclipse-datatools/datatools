@@ -640,7 +640,7 @@
 -->
 		
     	<!-- create pack200 -->
-    	<java jar="${basedir}/../org.eclipse.releng.basebuilder/plugins/org.eclipse.equinox.launcher.jar"
+    	<java jar="${eclipse.pdebuild.home}/plugins/org.eclipse.equinox.launcher.jar"
                 fork="true"
                 timeout="10800000"
                 jvm="${jvm15_home}/bin/java"
