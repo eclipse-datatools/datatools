@@ -393,9 +393,7 @@
         <scp localtofile="${target.dir}/${target.name}" trust="true"
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
 -->
-	<copy tofile="${target.dir}/${target.name}" 
-             overwrite="true" 
-             file="${signingDir}/${source.name}"/>
+	<copy tofile="${target.dir}/${target.name}" overwrite="true" file="${signingDir}/${source.name}"/>
     	
         <tstamp prefix="timestamp">
             <format property="download.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
@@ -429,8 +427,11 @@
         </tstamp>
         <echo message="[${timestamp.download.again.start}] Download signed package again"/>
     	
+<!--
         <scp localtofile="${target.dir}/${target.name}" trust="true"
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
+-->
+	<copy tofile="${target.dir}/${target.name}" overwrite="true" file="${signingDir}/${source.name}"/>
     	
         <tstamp prefix="timestamp">
             <format property="download.again.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
