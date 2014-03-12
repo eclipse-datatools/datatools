@@ -640,6 +640,7 @@
 -->
 		
     	<!-- create pack200 -->
+        <echo message="pack200 location:${jvm15_home}/bin/pack200"/>
     	<java jar="${eclipse.pdebuild.home}/plugins/org.eclipse.equinox.launcher.jar"
                 fork="true"
                 timeout="10800000"
@@ -647,7 +648,7 @@
                 failonerror="true"
                 maxmemory="512m"
                 dir="${postingDirectory}/${buildId}/">
-                <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${eclipse.build.configs}/../../extras"/>
+                <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${jvm15_home}/bin"/>
                 <arg line="-application org.eclipse.update.core.siteOptimizer -verbose"/>
                 <arg line="-jarProcessor -outputDir ${pack200Dir} -processAll -pack UpdateSite"/>
         </java>
