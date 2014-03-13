@@ -642,10 +642,10 @@
     	<!-- create pack200 -->
         <echo message="pack200 location:${jvm15_home}/bin/pack200"/>
         <echo message="pack200 dir:${pack200Dir}"/>
-        <echo message="launcher jar location:${eclipse.pdebuild.home}/plugins/org.eclipse.equinox.launcher.jar"/>
+        <echo message="launcher jar location:${basebuilder}/plugins/org.eclipse.equinox.launcher.jar"/>
         <mkdir dir="${pack200Dir}"/>
 
-    	<java jar="${eclipse.pdebuild.home}/plugins/org.eclipse.equinox.launcher.jar"
+    	<java jar="${basebuilder}/plugins/org.eclipse.equinox.launcher.jar"
                 fork="true"
                 timeout="10800000"
                 jvm="${jvm15_home}/bin/java"
