@@ -42,20 +42,20 @@
     <property name="sign.dir" value="" />
 
     <target name="main" depends="init">
-		<antcall target="prepareMapFile"/>
-		<antcall target="buildDtpSdkAllFeature"/>
-		<antcall target="compareMapFiles" />
-		<antcall target="buildDtpEnablementAllFeature"/>
-    	<antcall target="buildDtpDocISV"/>
-    	<!--  <antcall target="buildDtpIncubationAllFeature"/>  -->
+	<antcall target="prepareMapFile"/>
+	<antcall target="buildDtpSdkAllFeature"/>
+	<antcall target="compareMapFiles" />
+	<antcall target="buildDtpEnablementAllFeature"/>
+        <antcall target="buildDtpDocISV"/>
+        <!--  <antcall target="buildDtpIncubationAllFeature"/>  -->
+        <!-- we don't need verify compile step for builds on hudson -->
 <!--
-		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
+        <ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 -->
-		<antcall target="integrateDtpFeatures"/>
+	<antcall target="integrateDtpFeatures"/>
         <antcall target="Package"/>
         <antcall target="GenerateUpdateSite"/>
-
-	</target>
+    </target>
 
 	<target name="init">
 		<ant antfile="build.xml" target="init" />
@@ -624,20 +624,23 @@
 
     <target name="genP2CompositeUpdateSite">
     	
-        <property name="compsite.site" value="${postingDirectory}/../../../../UpdateSite/dtp_${BranchVersion}" />
+        <property name="compsite.site" value="${postingDirectory}/LocalUpdateSite/dtp_${BranchVersion}" />
         <property name="repo" value="${compsite.site}/${buildId}" />
         <property name="p2.repo.name" value="DTP Update Site" />
         <mkdir dir="${repo}" />       
     	
-	   	<!-- generate pack200 -->	
-		<replace file="${eclipse.build.configs}/../../extras/pack200" token="@pack200@" value="${jvm15_home}/bin/pack200"/>
-		<chmod file="${eclipse.build.configs}/../../extras/pack200" perm="755"/>
+	<!--  ===========================================
+         use the default pack200 binary on hudson server 
+         below settings are obsolete for hudson 
+        ================================================= -->
+        <!-- OBSOLETE FOR HUDSON
+	<replace file="${eclipse.build.configs}/../../extras/pack200" token="@pack200@" value="${jvm15_home}/bin/pack200"/>
+	<chmod file="${eclipse.build.configs}/../../extras/pack200" perm="755"/>
 
-<!--
-		<exec executable="dos2unix" dir="${eclipse.build.configs}/../../extras">
-			<arg line=" pack200" />
-		</exec>
--->
+	<exec executable="dos2unix" dir="${eclipse.build.configs}/../../extras">
+		<arg line=" pack200" />
+	</exec>
+        -->
 		
     	<!-- create pack200 -->
         <echo message="pack200 location:${jvm15_home}/bin/pack200"/>
@@ -658,8 +661,8 @@
         </java>
     	    	
         <!-- generator features and plugins metadata -->
-        <!--copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/-->
-<!--
+        <copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/>
+
     	<p2.publish.featuresAndBundles
     	      metadataRepository="file:${repo}"
     	      artifactRepository="file:${repo}"
@@ -667,25 +670,20 @@
     	      publishArtifacts="true"
     	      compress="true"
     	      reusePackedFiles="true"/>
+
     	<copy todir="${repo}/features">
     	   <fileset dir="${pack200Dir}/features" includes="*.pack.gz"/>
         </copy>
         
--->
         <!--try create composite repository-->
-<!--
         <p2.composite.artifact.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
         <p2.composite.metadata.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
--->
 
         <!--add childRepo to composite repo-->
-<!--
         <p2.composite.artifact.repository.add location="file://${compsite.site}" child="${buildId}" />
         <p2.composite.metadata.repository.add location="file://${compsite.site}" child="${buildId}" />
--->
 
     	<!-- copy p2 metadata to build directory -->
-<!--
     	<copy todir="${postingDirectory}/${buildId}/UpdateSite" overwrite="true">
     		<fileset dir="${compsite.site}/${buildId}">
     			<include name="features/**"/>
@@ -693,8 +691,6 @@
     			<include name="*.jar"/>
     		</fileset>
     	</copy>
--->
     	
     </target>
-	<!-- test -->
 </project>
