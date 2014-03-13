@@ -568,10 +568,10 @@
     	<property name="pack200Dir" value="${postingDirectory}/${buildId}/pack200site"/>
         
     	<!-- replace the feature version in site.xml -->
-        <!--copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
+        <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
         <replace file="${updateSiteDir}/site.xml" value="1.8.0" token="@RELEASE.VERSION@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
-        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/-->
+        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
         <!-- push update site to output directory -->
 
@@ -593,23 +593,23 @@
             </fileset>
         </delete>
 	
-		<!-- push p2 repo to local update site for testing -->
-		<antcall target="genP2CompositeUpdateSite"/>
+	<!-- push p2 repo to local update site for testing -->
+	<antcall target="genP2CompositeUpdateSite"/>
 		
     	<!-- zip p2 repo-->
-		<zip destfile="${postingDirectory}/${buildId}/dtp-p2repo-${package.version}.zip">
-			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/features/" prefix="features">
-				<include name="*.jar"/>
-				<include name="*.pack.gz"/>
-			</zipfileset>
-			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/plugins/" prefix="plugins">
-				<include name="*.jar"/>
-				<include name="*.pack.gz"/>
-			</zipfileset>
-			<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/">
-				<include name="*.jar"/>
-			</zipfileset>
-		</zip>
+	<zip destfile="${postingDirectory}/${buildId}/dtp-p2repo-${package.version}.zip">
+		<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/features/" prefix="features">
+			<include name="*.jar"/>
+			<include name="*.pack.gz"/>
+		</zipfileset>
+		<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/plugins/" prefix="plugins">
+			<include name="*.jar"/>
+			<include name="*.pack.gz"/>
+		</zipfileset>
+		<zipfileset dir="${postingDirectory}/${buildId}/UpdateSite/">
+			<include name="*.jar"/>
+		</zipfileset>
+	</zip>
     	
     	<delete includeemptydirs="true" failonerror="false">
             <fileset dir="${postingDirectory}/${buildId}">
