@@ -215,6 +215,7 @@ pull() {
         git pull origin $BranchName
         popd
 }
+##################AUTO TAGGING START ###########################
 
 if [ "$buildType" == "N" -o "$noAutoTag" ]; then
 	echo "Skipping auto plugins tagging for nightly build or -noAutoTag build"
@@ -261,31 +262,33 @@ else
                 mkdir -p $builderDir/report
                 cp report.txt $builderDir/report/report$buildId.txt
 		if [ "$FridayBuild" == "true" ]; then
-			echo "This is Friday build"
+			echo "This is Friday build" >> $USER.log
 			echo "DoFridayBuild=false" > checkFridayBuild.properties
 		else
-			echo "This is not Friday build"
+			echo "This is not Friday build" >> $USER.log
 			echo "DoFridayBuild=true" > checkFridayBuild.properties
 		fi
 	elif [ "$ForceAutoTag" == "true" ]; then
-		echo "Continue to build even if no bundles changed for -ForceAutoTag build"
+		echo "Continue to build even if no bundles changed for -ForceAutoTag build" >> $USER.log
 	elif [ "$FridayBuild" == "true" ]; then
 		source checkFridayBuild.properties
 		if [ "$DoFridayBuild" == "true" ]; then
-			echo "Have change since the previous Friday build,continue to build"
+			echo "Detected changes since the previous Friday build, continue to build..." >> $USER.log
 			echo "DoFridayBuild=false" > checkFridayBuild.properties
 		else
-			echo "No change since the previous Friday build, 1.12.0 Nightly Build ($buildId) is canceled"
+			echo "No changes since the previous Friday Integration build. The 1.12.0 Integration Build ($buildId) is canceled." >> $USER.log
+			sendEmail -f lchan@actuate.com -t lchan@actuate.com -cc bpayton@us.ibm.com -s localhost:5025 -u "1.12.0 Integration build ($buildId) is canceled" -m "No changes were detected since the previous Integration build.\nThe 1.12.0 Integration Build ($buildId) is canceled" -l mail.log
 			exit
 		fi
 	else
-		echo "No change detected. 1.12.0 Nightly Build ($buildId) is canceled"
-		sendEmail -f xgu@actuate.com -t xgu@actuate.com lchan@actuate.com -cc bpayton@us.ibm.com -s localhost:5025 -u "1.12.0 Nightly build ($buildId) is canceled, no bundles were changed in all DTP repositories" -m "No change detected in all DTP repositories.\n1.12.0 Nightly Build ($buildId) is canceled" -l mail.log
+		echo "No change detected. 1.12.0 Nightly Build ($buildId) is canceled." >> $USER.log
+		sendEmail -f xgu@actuate.com -t xgu@actuate.com lchan@actuate.com -cc bpayton@us.ibm.com -s localhost:5025 -u "1.12.0 Nightly build ($buildId) is canceled" -m "No changes were detected in all the DTP Git repositories.\nThe 1.12.0 Nightly Build ($buildId) is canceled" -l mail.log
                 exit
 	fi
 	
 	popd
 fi
+#### END OF auto-tagging ######
 
 mkdir -p $postingDirectory/$buildLabel
 #chmod -R 755 $builderDir
