@@ -19,6 +19,8 @@
 	<property name="sdkHelper" location="${eclipse.build.configs}/eclipse/helper.xml"/>
 	<property name="base.builder" value="${basedir}/../BaseBuilder" />
 	
+	<property name="git.executable" value="/usr/local/bin/git" />
+
 	<!--location of properties file containing last tag used for integration build-->
 	<property name="mapTag.properties" value="/home/users/releng/buildTools/eclipse33/mapTag.properties"/>
 	
@@ -174,16 +176,16 @@
 	
 	<target name="GetMapFiles">
 		<!--echo message="git clone ${mapGitRoot}/${gitRepo.name}.git ${buildDirectory}/TempRepo/${gitRepo.name}"/>
-		<exec executable="git">
+		<exec executable="${git.executable}">
 			<arg line="clone ${mapGitRoot}/${gitRepo.name}.git ${buildDirectory}/TempRepo/${gitRepo.name}"/>
 		</exec>
-		<exec executable="git" dir="${buildDirectory}/TempRepo/${gitRepo.name}">
+		<exec executable="${git.executable}" dir="${buildDirectory}/TempRepo/${gitRepo.name}">
 			<arg line="checkout ${mapVersionTag}"/>
 		</exec>
 		<copy todir="${buildDirectory}/maps">
 			<fileset dir="${buildDirectory}/TempRepo/${gitRepo.name}/releng" includes="${gitRepo.name}.releng/**"/>
 		</copy-->
-		<exec executable="git" dir="${buildDirectory}">
+		<exec executable="${git.executable}" dir="${buildDirectory}">
                         <arg line="clone" />
                         <arg line="-b ${mapVersionTag}" />
                         <arg line="${mapGitRoot}/${gitRepo.name}.git" />
