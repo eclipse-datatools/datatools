@@ -97,10 +97,11 @@
 		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
                 <mkdir dir="${buildDirectory}/maps"/>
 		
+<!-- No need to repeat; already handled by pre-build script
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build"/>
-			<param name="mapVersionTag" value="${hudsonBuildBranch}"/>
 		</antcall>
+-->
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity"/>
 		</antcall>
