@@ -99,6 +99,7 @@
 		
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build"/>
+			<param name="mapVersionTag" value="${hudsonBuildBranch}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity"/>
@@ -185,12 +186,12 @@
 		<copy todir="${buildDirectory}/maps">
 			<fileset dir="${buildDirectory}/TempRepo/${gitRepo.name}/releng" includes="${gitRepo.name}.releng/**"/>
 		</copy-->
+        	<echo message="${git.executable} clone -b ${mapVersionTag} ${mapGitRoot}/${gitRepo.name}.git..."/>
 		<exec executable="${git.executable}" dir="${buildDirectory}">
                         <arg line="clone" />
                         <arg line="-b ${mapVersionTag}" />
                         <arg line="${mapGitRoot}/${gitRepo.name}.git" />
                 </exec>
-
 
                 <copy todir="${buildDirectory}/maps">
                     <fileset dir="${buildDirectory}/${gitRepo.name}/releng">
