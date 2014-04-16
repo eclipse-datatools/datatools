@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <description url="http://download.eclipse.org//datatools/drops/updates/site.xml">
+<site pack200="true" mirrorsURL="http://www.eclipse.org/downloads/download.php?file=/datatools/downloads/drops/M_updates_@RELEASE.VERSION@/site.xml&amp;format=xml">
+   <description url="http://download.eclipse.org/datatools/downloads/drops/M_updates_@RELEASE.VERSION@/site.xml">
       To install these plugins, point your Eclipse Update Manager at this site.
    </description>
    <feature url="features/org.eclipse.datatools.sdk.feature_@org.eclipse.datatools.sdk.feature@.jar" id="org.eclipse.datatools.sdk.feature" version="@org.eclipse.datatools.sdk.feature@">

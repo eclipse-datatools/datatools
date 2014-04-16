@@ -30,7 +30,7 @@
 	<mkdir dir="${tmpDir}" />
 
         <!-- install Eclipse Platform SDK -->
-	<copy file="${eclipse.sdk.file}" todir="${tmpDir}" overwrite="true" verbose="true" preservelastmodified="true" />
+	<copy file="${eclipse.sdk.file}" todir="${tmpDir}" verbose="true" preservelastmodified="true" />
         <exec executable="tar" dir="${WORKSPACE}">
              <arg value="-xzf"/>
              <arg value="${tmpDir}/${eclipse.sdk.name}"/>
@@ -39,16 +39,16 @@
         </exec>
 
         <!-- install EMF SDK -->
-	<copy file="${emf.file}" todir="${tmpDir}" overwrite="true" verbose="true" preservelastmodified="true" />
+	<copy file="${emf.file}" todir="${tmpDir}" verbose="true" preservelastmodified="true" />
         <exec executable="unzip" dir="${WORKSPACE}">
-             <arg value="-o"/>
+             <arg value="-oq"/>
              <arg value="${tmpDir}/${emf.name}"/>
         </exec>
 
         <!-- install GEF SDK -->
-	<copy file="${gef.file}" todir="${tmpDir}" overwrite="true" verbose="true" preservelastmodified="true" />
+	<copy file="${gef.file}" todir="${tmpDir}" verbose="true" preservelastmodified="true" />
         <exec executable="unzip" dir="${WORKSPACE}">
-             <arg value="-o"/>
+             <arg value="-oq"/>
              <arg value="${tmpDir}/${gef.name}"/>
         </exec>
     </target>

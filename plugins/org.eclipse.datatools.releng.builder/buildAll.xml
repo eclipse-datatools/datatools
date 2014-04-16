@@ -46,7 +46,9 @@
     <target name="main" depends="init">
 	<antcall target="prepareMapFile"/>
 	<antcall target="buildDtpSdkAllFeature"/>
+<!--
 	<antcall target="compareMapFiles" />
+-->
 	<antcall target="buildDtpEnablementAllFeature"/>
         <antcall target="buildDtpDocISV"/>
         <!--  <antcall target="buildDtpIncubationAllFeature"/>  -->
@@ -97,11 +99,10 @@
 		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
                 <mkdir dir="${buildDirectory}/maps"/>
 		
-<!-- No need to repeat; already handled by pre-build script
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build"/>
 		</antcall>
--->
+
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity"/>
 		</antcall>
@@ -152,10 +153,14 @@
 		</antcall>
 				
 		<!--compare the map files project-->
-		<!--antcall target="compareMapFiles" /-->
+<!--
+		<antcall target="compareMapFiles" />
+-->
 
 		<!--tag the map files project-->
+<!--
 		<antcall target="tagMapFiles" />
+-->
 			
 		<!-- this value could be overwrite by the bootstrap command -->
 		<!--property name="dtp.url.token" value="@DTP.URL.TOKEN@"/>
@@ -573,7 +578,7 @@
         
     	<!-- replace the feature version in site.xml -->
         <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
-        <replace file="${updateSiteDir}/site.xml" value="1.8.0" token="@RELEASE.VERSION@"/>
+        <replace file="${updateSiteDir}/site.xml" value="${BranchVersion}" token="@RELEASE.VERSION@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
@@ -666,6 +671,7 @@
     	    	
         <!-- generator features and plugins metadata -->
         <copy file="${updateSiteDir}/site.xml" todir="${pack200Dir}"/>
+        <copy file="${updateSiteDir}/site.xml" todir="${repo}"/>
 
     	<p2.publish.featuresAndBundles
     	      metadataRepository="file:${repo}"
