@@ -2,7 +2,7 @@
 
     <property environment="env" />
     <property name="WORKSPACE" location="${env.WORKSPACE}" />
-    <property name="tmpDir" location="${WORKSPACE}/tmp" />
+    <property name="tmpDir" location="${WORKSPACE}/dependencyPkgs" />
     <property name="downloadBasePath" location="/home/data/httpd/download.eclipse.org" />
 
     <property name="eclipse.sdk.name" value="eclipse-SDK-4.2.2-linux-gtk.tar.gz"/>
