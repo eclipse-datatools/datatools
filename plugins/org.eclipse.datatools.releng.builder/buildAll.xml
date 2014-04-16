@@ -101,55 +101,72 @@
 		
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.build"/>
+			<param name="git.branch.name" value="${buildGitBranch}"/>
 		</antcall>
 
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.connectivity"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.modelbase"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.sqltools"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.doc"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.general"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.hsqldb"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ibm"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.ingres"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.msft"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.mysql"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oda"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.oracle"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.postgresql"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sap"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sqlite"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 		<antcall target="GetMapFiles">
 			<param name="gitRepo.name" value="org.eclipse.datatools.enablement.sybase"/>
+			<param name="git.branch.name" value="${mapVersionTag}"/>
 		</antcall>
 				
 		<!--compare the map files project-->
@@ -180,6 +197,9 @@
 		<!--delete dir="${buildDirectory}/TempRepo" failonerror="false" /-->
 		
 	</target>
+
+	<target name="GetBuildMapFiles">
+	</target>
 	
 	<target name="GetMapFiles">
 		<!--echo message="git clone ${mapGitRoot}/${gitRepo.name}.git ${buildDirectory}/TempRepo/${gitRepo.name}"/>
@@ -192,10 +212,10 @@
 		<copy todir="${buildDirectory}/maps">
 			<fileset dir="${buildDirectory}/TempRepo/${gitRepo.name}/releng" includes="${gitRepo.name}.releng/**"/>
 		</copy-->
-        	<echo message="${git.executable} clone -b ${mapVersionTag} ${mapGitRoot}/${gitRepo.name}.git..."/>
+        	<echo message="${git.executable} clone -b ${git.branch.name} ${mapGitRoot}/${gitRepo.name}.git..."/>
 		<exec executable="${git.executable}" dir="${buildDirectory}">
                         <arg line="clone" />
-                        <arg line="-b ${mapVersionTag}" />
+                        <arg line="-b ${git.branch.name}" />
                         <arg line="${mapGitRoot}/${gitRepo.name}.git" />
                 </exec>
 
