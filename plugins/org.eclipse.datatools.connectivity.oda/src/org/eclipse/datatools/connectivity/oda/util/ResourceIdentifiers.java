@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008, 2011 Actuate Corporation.
+ * Copyright (c) 2008, 2014 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -338,7 +338,6 @@ public class ResourceIdentifiers
     }
     
     /**
-     * <strong>EXPERIMENTAL</strong>
      * Converts and resolves the specified resource location path to a URI, based on the 
      * registered resource URILocator and its base URI.  
      * This will first attempt to use the application resources URILocator, if exists;

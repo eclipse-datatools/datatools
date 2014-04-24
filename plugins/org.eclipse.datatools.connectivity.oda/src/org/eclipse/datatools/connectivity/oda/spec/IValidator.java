@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2009, 2013 Actuate Corporation.
+ * Copyright (c) 2009, 2014 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -136,7 +136,6 @@ public interface IValidator
         throws OdaException;
 
     /**
-     * <strong>EXPERIMENTAL</strong><br>
      * Validates the specified base query in the specified context. 
      * @param baseQuery     a concrete {@link BaseQuery} to validate
      * @param context      context for validation; may be null which would limit the scope of validation
@@ -148,7 +147,6 @@ public interface IValidator
         throws OdaException;
 
     /**
-     * <strong>EXPERIMENTAL</strong><br>
      * Performs syntactic validation of the specified base query in the specified context. 
      * @param baseQuery     a concrete {@link BaseQuery} to validate
      * @param context      context for validation; may be null which would limit the scope of validation

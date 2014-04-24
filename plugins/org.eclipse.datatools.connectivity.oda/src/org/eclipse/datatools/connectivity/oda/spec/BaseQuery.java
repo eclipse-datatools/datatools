@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2013 Actuate Corporation.
+ * Copyright (c) 2013, 2014 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
 
 /**
- * <strong>EXPERIMENTAL</strong><br>
  * Specification of a query base in a {@link QuerySpecification}, on which other 
  * query characteristics are to be applied.
  * A query base is optional in a QuerySpecification, which defers its specification till 

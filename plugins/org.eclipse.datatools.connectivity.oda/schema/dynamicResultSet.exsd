@@ -440,7 +440,8 @@ Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined w
    <element name="supportsCombiningQueries" type="string">
       <annotation>
          <documentation>
-            [Experimental] Indicates this extension contributes dynamic operation that combines two or more queries for all its supported data set types.  Absence of this element indicates no support.
+            Indicates this extension contributes dynamic operation that combines two or more queries for all its supported data set types.  Absence of this element indicates no support.
+@since 3.4 (DTP 1.11)
          </documentation>
       </annotation>
    </element>
@@ -683,7 +684,7 @@ in DTP Connectivity Git repository under the org.eclipse.datatools.connectivity/
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         Copyright (c) 2009, 2013 Actuate Corporation.
+         Copyright (c) 2009, 2014 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>

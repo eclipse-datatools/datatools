@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2013 Actuate Corporation.
+ * Copyright (c) 2013, 2014 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -30,7 +30,6 @@ import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpres
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.NestedValueExpression;
 
 /**
- * <strong>EXPERIMENTAL</strong>.<br>
  * A composite base query formed by dynamically combining two sets of
  * query characteristics under a specified condition.
  * Each combining query, specified in a {@link QuerySpecification}, may in turn be based on

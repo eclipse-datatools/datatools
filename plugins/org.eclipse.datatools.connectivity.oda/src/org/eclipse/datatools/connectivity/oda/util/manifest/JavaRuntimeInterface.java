@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2011 Actuate Corporation.
+ * Copyright (c) 2004, 2014 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -131,7 +131,6 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	}
 	
 	/**
-	 * <strong>EXPERIMENTAL</strong>
 	 * Set the location of the ODA runtime extension bundle that contains the specified driver class.
 	 * @param driverClass  the class of an ODA extension that implements the 
 	 *             {@link org.eclipse.datatools.connectivity.oda.IDriver} interface
