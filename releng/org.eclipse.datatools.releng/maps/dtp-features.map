@@ -1,6 +1,6 @@
 !**************** SDK FEATURES **************************
 feature@org.eclipse.datatools.sdk-all.feature=GIT,tag=v201405281819,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sdk-all.feature
-feature@org.eclipse.datatools.enablement.sdk.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sdk.feature
+feature@org.eclipse.datatools.enablement.sdk.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sdk.feature
 feature@org.eclipse.datatools.sdk.feature=GIT,tag=v201405281819,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.sdk.feature
 
 !**************** CONNECTIVITY FEATURES *****************
@@ -20,12 +20,12 @@ feature@org.eclipse.datatools.enablement.msft.feature=GIT,tag=v201402250837,repo
 feature@org.eclipse.datatools.enablement.mysql.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.mysql.feature
 feature@org.eclipse.datatools.enablement.oda.designer.feature=GIT,tag=v201405272300,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oda.designer.feature
 feature@org.eclipse.datatools.enablement.oda.feature=GIT,tag=v201405272300,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oda.feature
-feature@org.eclipse.datatools.enablement.oracle.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oracle.feature
-feature@org.eclipse.datatools.enablement.postgresql.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.postgresql.feature
-feature@org.eclipse.datatools.enablement.sap.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sap.feature
-feature@org.eclipse.datatools.enablement.sybase.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sybase.feature
+feature@org.eclipse.datatools.enablement.oracle.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oracle.feature
+feature@org.eclipse.datatools.enablement.postgresql.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.postgresql.feature
+feature@org.eclipse.datatools.enablement.sap.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sap.feature
+feature@org.eclipse.datatools.enablement.sybase.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sybase.feature
 feature@org.eclipse.datatools.enablement.ingres.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.ingres.feature
-feature@org.eclipse.datatools.enablement.sqlite.feature=GIT,tag=v201402250837,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sqlite.feature
+feature@org.eclipse.datatools.enablement.sqlite.feature=GIT,tag=v201405291724,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.sqlite.feature
 feature@org.eclipse.datatools.enablement.oda.ecore.feature=GIT,tag=v201402250828,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oda.ecore.feature
 feature@org.eclipse.datatools.enablement.oda.ecore.sdk.feature=GIT,tag=v201402250828,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git,path=features/org.eclipse.datatools.enablement.oda.ecore.sdk.feature
 
