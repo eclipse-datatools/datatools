@@ -35,8 +35,8 @@
         <property name="local_dtp_path" value="${postingDirectory}/${buildId}"/>
         <property name="eclipse_dtp_path" value="~/downloads/datatools/downloads/drops/N_DTP_1.12.0"/>
         <property name="eclipse_staging_path" value="/home/data/httpd/download-staging.priv/birt"/>
-        <!--property name="local_version" value="RC1"/-->
-        <property name="M_version" value="M7"/>
+        <!--property name="local_version" value="RC3"/-->
+        <property name="M_version" value="RC3"/>
 
 
         <tstamp prefix="timestamp">
@@ -91,7 +91,8 @@ currentDay=${timestamp.date}
            </scp>
            <scp remoteTofile="${username}:${password}@${hostname}:${eclipse_dtp_path}/directory_N.txt" trust="true"
                 file="${local_dtp_path}/directory.txt"/>
-           <sshexec host="${hostname}" username="${username}" password="${password}" trust="true"
+           <sshexec host="${hostname}" username="${username}" password="${password}" trust="true" 
+			failonerror="false" 
                     command="chmod g+w ${eclipse_dtp_path}/dtp-*1.12.0${M_version}-${timestamp}.zip ${eclipse_dtp_path}/directory_N.txt" />
 	</target>
 
@@ -102,6 +103,7 @@ currentDay=${timestamp.date}
              <fileset dir="${LocalUpdatesiteDir}" includes="compositeArtifacts.jar,compositeContent.jar"/>
            </scp>
            <sshexec host="${hostname}" username="${username}" password="${password}" trust="true"
+			failonerror="false" 
                     command="chmod -R g+w ${eclipse_dtp_path}/../N_updates_1.12.0/*.jar ${eclipse_dtp_path}/../N_updates_1.12.0/${buildId}" />
         </target>
 
@@ -135,13 +137,11 @@ currentDay=${timestamp.date}
        </target>
       
         <target name="updategitfile">
+	   <property name="integrationBuild" value="false"/>
            <property file="lastmonitor_N_1120.properties"/>
            <property file="lastmonitor_I_1120.properties"/>
            <tstamp>
                <format property="downloads.php.pattern" pattern="M/d/yy"/> 
-           </tstamp>
-           <tstamp>
-               <format property="todayinweek" pattern="E"/>
            </tstamp>
 
            <!--cvs command="update -C downloads.php" dest="www/datatools"/-->
@@ -167,7 +167,7 @@ currentDay=${timestamp.date}
                           match="dtp-incubator-1\.12\.0${lastMversion_N}-${lasttimestamp_N}\.zip(.*)(\s*)DTP Incubator 1\.12\.0${lastMversion_N}.*Nightly Build(.*)dtp-incubator-1\.12\.0${lastMversion_N}-${lasttimestamp_N}"
                           replace="dtp-incubator-1.12.0${M_version}-${timestamp}.zip\1\2DTP Incubator 1.12.0${M_version} ${downloads.php.pattern} Nightly Build\3dtp-incubator-1.12.0${M_version}-${timestamp}"/-->
            <if>
-              <equals arg1="${todayinweek}" arg2="Fri"/>
+	      <equals arg1="${integrationBuild}" arg2="true"/>
               <then>
                  <replaceregexp file="${DTP.website.repo}/downloads.php"
                                 match="dtp-sdk-1\.12\.0${lastMversion_I}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_I} SDK.*I-Build(.*)dtp-sdk-1\.12\.0${lastMversion_I}-${lasttimestamp_I}"
@@ -178,9 +178,11 @@ currentDay=${timestamp.date}
                  <replaceregexp file="${DTP.website.repo}/downloads.php"
                                 match="dtp-p2repo-1\.12\.0${lastMversion_I}-${lasttimestamp_I}\.zip(.*)(\s*)DTP 1\.12\.0${lastMversion_I} P2 Repo.*I-Build(.*)dtp-p2repo-1\.12\.0${lastMversion_I}-${lasttimestamp_I}"
                                 replace="dtp-p2repo-1.12.0${M_version}-${timestamp}.zip\1\2DTP 1.12.0${M_version} P2 Repo ${downloads.php.pattern} I-Build\3dtp-p2repo-1.12.0${M_version}-${timestamp}"/>
+
                  <scp remoteTofile="${username}:${password}@${hostname}:${eclipse_dtp_path}/directory_I.txt" trust="true"
                       file="${local_dtp_path}/directory.txt"/>
            	 <sshexec host="${hostname}" username="${username}" password="${password}" trust="true"
+			failonerror="false" 
                     command="chmod g+w ${eclipse_dtp_path}/directory_I.txt" />
               </then>
            </if>
@@ -198,7 +200,7 @@ lasttimestamp_N=${timestamp}
 lastMversion_N=${M_version}
 </echo>
            <if>
-              <equals arg1="${todayinweek}" arg2="Fri"/>
+	      <equals arg1="${integrationBuild}" arg2="true"/>
               <then>
                  <echo file="lastmonitor_I_1120.properties">
 lasttimestamp_I=${timestamp}
@@ -212,11 +214,11 @@ lastMversion_I=${M_version}
         <target name="inform">
  
            <mail from="DAILYBUILD@QA-SHA" tolist="xgu@actuate.com,lchan@actuate.com,bpayton@us.ibm.com" mailport="5025" 
-                 subject="Today's DTP 1.12.0 daily build is available (${buildId})">
+                 subject="Today's DTP 1.12.0 build is available (${buildId})">
              <message>
 Hi All,
 
-Today's DTP daily build is available at:
+Today's DTP build is available at:
 
 SDK package: http://www.eclipse.org/downloads/download.php?file=/datatools/downloads/drops/N_DTP_1.12.0/dtp-sdk-1.12.0${M_version}-${timestamp}.zip  
 

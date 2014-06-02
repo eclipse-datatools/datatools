@@ -20,6 +20,8 @@ export USERNAME BASH_ENV LD_LIBRARY_PATH DISPLAY
 
 gitUser=xgu
 gitPass=xx
+buildEclipseUser=xgu
+buildEclipsePass=xx
 export GitRepo=ssh://${gitUser}@git.eclipse.org/gitroot/datatools/org.eclipse.datatools.build.git
 export BranchName=master
 rm -rf plugins
@@ -81,6 +83,9 @@ builderDir=$HOME/releng.dtp.1120/org.eclipse.datatools.releng.builder
 
 # buildtype determines whether map file tags are used as entered or are replaced with HEAD
 buildType=I
+
+# Integration Build, normally done on Friday
+FridayBuild=false
 
 # directory where to copy build
 postingDirectory=$HOME/releng/BIRTOutput/dtp.output/1.12.0
@@ -325,7 +330,7 @@ echo "==========[antRunner]: $antRunner" >> $USER.log
 echo $tagMaps >> $USER.log
 echo $compareMaps >> $USER.log
 
-PackageVersion=1.12.0M7-$timestamp
+PackageVersion=1.12.0RC3-$timestamp
 echo "======[PackageVersion]: $PackageVersion" >> $USER.log
 
 #cp $HOME/releng.dtp.1120/dtpURLmonitor.properties $HOME/releng.260/src/
@@ -343,7 +348,7 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -Dbuild.date=$builddate -Dpackage.version=$PackageVersion \
 -DmapGitRoot=ssh://${gitUser}@git.eclipse.org/gitroot/datatools \
 -DmapVersionTag=$BranchName -DBranchVersion=1.12.0 \
--Dusername.sign=${gitUser} -Dpassword.sign=${gitPass} -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/${gitUser} -Dsign.dir=/home/data/httpd/download-staging.priv/birt \
+-Dusername.sign=${buildEclipseUser} -Dpassword.sign=${buildEclipsePass} -Dhostname.sign=build.eclipse.org -Dhome.dir=/home/data/users/${buildEclipseUser} -Dsign.dir=/home/data/httpd/download-staging.priv/birt \
 -Dorbit.url.token=download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/plugins \
 -Dorbit.url.newvalue=qa-build/BIRTOutput/platform/orbit-S20110521195923-Indigo/bundles"
 
@@ -387,12 +392,12 @@ if [ "$CheckPluginVersion" = "true" ]; then
   fi
 fi
 
-#upload build to eclipse site
+#upload build to Eclipse site
 if [ "$upload" = "true" ]
 then
 # expects DTP website Git repo is already checked out in datatools folder under the working directory
   cd $builderDir/uploadScripts
-  ant -f dtplogupload.1.12.0.xml -l log/dtplogupload.1.12.0.log
-  ant -f dtpupload.1.12.0.xml  -l log/dtpupload.1.12.0.log
+  ant -f dtplogupload.1.12.0.xml -l log/dtplogupload.1.12.0.log -Dusername=${buildEclipseUser} -Dpassword=${buildEclipsePass}
+  ant -f dtpupload.1.12.0.xml -l log/dtpupload.1.12.0.log -Dusername=${buildEclipseUser} -Dpassword=${buildEclipsePass} -DintegrationBuild=${FridayBuild}
 fi
 

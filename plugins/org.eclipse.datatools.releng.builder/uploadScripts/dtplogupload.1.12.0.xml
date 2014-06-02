@@ -49,6 +49,7 @@
            <scp remoteTofile="${username}:${password}@${hostname}:${eclipse_dtp_path}/build.log" trust="true"
                 file="${local_upload_path}/${buildVersionLog}"/>
            <sshexec host="${hostname}" username="${username}" password="${password}" trust="true"
+			failonerror="false" 
                     command="chmod g+w ${eclipse_dtp_path}/build.log" />
         </target>
 
