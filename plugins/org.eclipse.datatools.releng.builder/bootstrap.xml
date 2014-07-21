@@ -3,17 +3,16 @@
     <property environment="env" />
     <property name="WORKSPACE" location="${env.WORKSPACE}" />
     <property name="tmpDir" location="${WORKSPACE}/dependencyPkgs" />
-    <property name="archiveBasePath" location="/home/data/httpd/archive.eclipse.org" />
-    <property name="downloadBasePath" location="/home/data/httpd/download.eclipse.org" />
+    <property name="archiveBasePath" location="/home/data/httpd/download.eclipse.org/datatools/archives/dependencyPkgs" />
 
     <property name="eclipse.sdk.name" value="eclipse-SDK-4.2.2-linux-gtk.tar.gz"/>
-    <property name="eclipse.sdk.file" value="${archiveBasePath}/eclipse/downloads/drops4/R-4.2.2-201302041200/${eclipse.sdk.name}"/>
+    <property name="eclipse.sdk.file" value="${archiveBasePath}/platform/R-4.2.2-201302041200/${eclipse.sdk.name}"/>
 
     <property name="emf.name" value="emf-xsd-SDK-2.8.3.zip"/>
-    <property name="emf.file" value="${downloadBasePath}/modeling/emf/emf/downloads/drops/2.8.3/R201301250826/${emf.name}"/>
+    <property name="emf.file" value="${archiveBasePath}/modeling/emf/2.8.3/R201301250826/${emf.name}"/>
 
     <property name="gef.name" value="GEF-SDK-3.8.2.zip"/>
-    <property name="gef.file" value="${archiveBasePath}/tools/gef/downloads/drops/3.8.2/R201301141834/${gef.name}"/>
+    <property name="gef.file" value="${archiveBasePath}/tools/gef/3.8.2/R201301141834/${gef.name}"/>
 
     <property name="javahome_15" value="/shared/common/jdk-1.5.0_16"/>
     <property name="javahome_16" value="/shared/common/sun-jdk1.6.0_21_i586"/>
