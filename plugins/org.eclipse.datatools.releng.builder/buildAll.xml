@@ -389,7 +389,7 @@
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
         </scp>
 -->
-        <property name="signingDir" value="/shared/download-staging.priv/birt"/>
+        <property name="signingDir" value="/shared/download-staging.priv/datatools"/>
         <property name="buildServerUser" value="xgu@build.eclipse.org"/>
 
         <mkdir dir="${signingDir}"/>
