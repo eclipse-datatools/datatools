@@ -171,7 +171,7 @@
               <zip destfile="${build.dir}/repository.zip" basedir="${build.dir}/repository"/>
               <delete dir="${build.dir}/repository"/>
             
-              <Sign Project="dtp" Job="${dtp.version.no.qualifier}" File="${build.dir}/repository.zip" Output="${build.dir}/repository.zip"/>
+              <Sign Project="datatools" Job="${dtp.version.no.qualifier}" File="${build.dir}/repository.zip" Output="${build.dir}/repository.zip"/>
             
               <unzip src="${build.dir}/repository.zip" dest="${build.dir}/repository"/>
               <delete file="${build.dir}/repository.zip"/>
