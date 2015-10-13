@@ -1,0 +1,1071 @@
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2015 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<project name="dtp" default="build">
+
+
+  <!--
+    *************************************************************************************************
+    * Initialization                                                                                *
+    *************************************************************************************************
+  -->
+
+  <property environment="env"/>
+  
+  <import file="releng/ant-library/library.xml"/>
+  <import file="releng/tools/build.xml"/>
+    
+  <property name="Signing.Library" value="sign-local.xml"/>
+  <import file="${Signing.Library}"/>
+  
+  <echo message="Java Version: ${java.version}"/>
+  
+
+  <target name="init" depends="init-library,build-sapphire-releng-tools,init-jdk">
+
+    <dirname property="root.dir" file="${ant.file.dtp}"/>
+    <property name="releng.dir" value="${root.dir}/releng"/>
+    <property name="build.dir" value="${root.dir}/build"/>
+
+    <property file="build.properties"/>
+    <property file="${releng.dir}/installables.properties"/>
+
+  </target>
+
+
+  <target name="init-bootstrap-platform" depends="init">
+
+    <property name="bootstrap.platform" value="${build.dir}/bootstrap"/>
+
+    <if>
+      <not><available file="${bootstrap.platform}"/></not>
+      <then>
+        <install-eclipse dest="${bootstrap.platform}"/>
+      </then>
+    </if>
+
+  </target>
+
+
+
+  <!--
+    *************************************************************************************************
+    * Repository Build                                                                              *
+    *************************************************************************************************
+  -->
+
+  <target name="build-repository" depends="init,init-bootstrap-platform">
+    <build-repository/>
+  </target>
+
+
+  <macrodef name="build-repository">
+    <sequential>
+
+      <if>
+        <not><isset property="build.repository.completed"/></not>
+        <then>
+          <if>
+            <available file="${build.dir}/repository"/>
+            <then>
+              <echo message="Found existing DTP repository..."/>
+              <var name="build.repository.completed" value="true"/>
+              <load-build-repository url="file:${build.dir}/repository"/>
+            </then>
+          </if>
+        </then>
+      </if>
+
+      <if>
+        <not><isset property="build.repository.completed"/></not>
+        <then>
+
+          <delete dir="${build.dir}/repository" quiet="true"/>
+          <mkdir dir="${build.dir}/repository"/>
+            
+          <!-- Stage 1 -->
+            
+          <echo message="Copying plugins and features to the staging area..."/>
+              
+          <delete dir="${build.dir}/staging" quiet="true"/>
+          <mkdir dir="${build.dir}/staging"/>
+              
+          <for param="git.repo">
+            <dirset dir="${root.dir}/../.." includes="org.eclipse.*"/>
+            <sequential>
+              <copy todir="${build.dir}/staging">
+                <fileset dir="@{git.repo}" includes="plugins/**"/>
+                <fileset dir="@{git.repo}" includes="features/**"/>
+              </copy>
+            </sequential>
+          </for>
+          
+          <copy todir="${build.dir}/staging/features">
+            <fileset dir="${root.dir}/releng" includes="org.eclipse.datatools/**"/>
+          </copy>
+            
+          <!-- Stage 2 -->
+            
+          <delete dir="${build.dir}/packaged_jars" quiet="true"/>
+          <mkdir dir="${build.dir}/packaged_jars/plugins"/>
+            
+          <copy todir="${build.dir}/packaged_jars/plugins">
+            <fileset dir="${root.dir}/../../org.eclipse.datatools.doc/packaged_jars"/>
+          </copy>
+            
+          <p2.publish.FeaturesAndBundles location="${build.dir}/packaged_jars"/>
+            
+          <!-- Stage 3 -->
+
+          <with-target-platform configuration="${configuration.recommended}">
+            <pde-build build.id="${DSTAMP}" feature="org.eclipse.datatools" eclipse="${.target.platform}" root.dir="${build.dir}/staging"/>
+          </with-target-platform>
+            
+          <unzip src="${build.dir}/staging/build/org.eclipse.datatools-${DSTAMP}.zip" dest="${build.dir}/repository">
+            <mapper type="regexp" from="^eclipse/(.*)$$" to="\1"/>
+          </unzip>
+          
+          <delete file="${build.dir}/staging/build/org.eclipse.datatools-${DSTAMP}.zip"/>
+
+          <delete>
+            <fileset dir="${build.dir}/repository" includes="epl-v10.html"/>
+            <fileset dir="${build.dir}/repository" includes="notice.html"/>
+          </delete>
+
+          <zip-dirs source.dir="${build.dir}/repository/features" suffix="jar"/>
+
+          <!-- Stage 4 -->
+          
+          <echo message="Conditioning repository archives..."/>
+          
+          <condition-jars folder="${build.dir}/repository"/>
+
+          <!-- Stage 5 -->
+            
+          <property-from-set property=".dtp.feature">
+            <fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools.connectivity.feature_*.jar"/>
+          </property-from-set>
+
+          <var name="dtp.version" unset="true"/>
+          <propertyregex property="dtp.version" input="${.dtp.feature}" regexp=".*_([0-9]*.[0-9]*.[0-9]*.[0-9]*).jar" select="\1"/>
+            
+          <var name="dtp.version.no.qualifier" unset="true"/>
+          <propertyregex property="dtp.version.no.qualifier" input="${dtp.version}" regexp="([0-9]*.[0-9]*.[0-9]*).[0-9]*" select="\1"/>
+
+          <if>
+            <istrue value="${sign}"/>
+            <then>
+               
+              <echo message="Signing features and plugins..."/>
+                
+              <zip destfile="${build.dir}/repository.zip" basedir="${build.dir}/repository"/>
+              <delete dir="${build.dir}/repository"/>
+            
+              <Sign Project="dtp" Job="${dtp.version.no.qualifier}" File="${build.dir}/repository.zip" Output="${build.dir}/repository.zip"/>
+            
+              <unzip src="${build.dir}/repository.zip" dest="${build.dir}/repository"/>
+              <delete file="${build.dir}/repository.zip"/>
+                
+            </then>
+          </if>
+            
+          <!-- Stage 6 -->
+          
+          <echo message="Packing repository archives..."/>
+          
+          <pack-jars folder="${build.dir}/repository"/>
+
+          <!-- Stage 7 -->
+
+          <echo message="Packaging the repository..."/>
+
+          <copy file="${build.dir}/staging/plugins/org.eclipse.datatools.releng.builder/extras/site.xml" tofile="${build.dir}/repository/site.xml"/>
+
+          <replace file="${build.dir}/repository/site.xml">
+            <replacefilter token="@RELEASE.VERSION@" value="${dtp.version.no.qualifier}"/>
+            <replacefilter token="@org.eclipse.datatools.sdk.feature@" value="${dtp.version}"/>
+            <replacefilter token="@org.eclipse.datatools.enablement.sdk.feature@" value="${dtp.version}"/>
+          </replace>
+		  
+          <p2.publish.UpdateSite location="${build.dir}/repository" name="Eclipse Data Tools ${dtp.version.no.qualifier}"/>
+
+          <delete file="${build.dir}/repository/site.xml"/>
+
+          <load-build-repository url="file:${build.dir}/repository"/>
+            
+          <gen-repository-landing repository="${build.dir}/repository" name="Eclipse Data Tools ${dtp.version.no.qualifier}"/>
+
+          <property name="build.repository.completed" value="true"/>
+
+        </then>
+        <else>
+
+          <!-- Determine the version of DTP in repository. -->
+
+          <property-from-set property=".dtp.feature">
+            <fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools.connectivity.feature_*.jar"/>
+          </property-from-set>
+
+          <var name="dtp.version" unset="true"/>
+          <propertyregex property="dtp.version" input="${.dtp.feature}" regexp=".*_([0-9]*.[0-9]*.[0-9]*.[0-9]*).jar" select="\1"/>
+
+        </else>
+      </if>
+
+    </sequential>
+  </macrodef>
+  
+
+  <!--
+    *************************************************************************************************
+    * Alternative Configurations Build                                                              *
+    *************************************************************************************************
+  -->
+
+  <!-- Builds against alternative supported configurations. The list of alternative
+       configurations is defined to exclude the recommended configuration, which is covered by the
+       build-repository target. The purpose of this target is only to verify clean compilation. As
+       such, unlike build-repository target, this target does not perform any of the post-build
+       processing or produce consumable binaries. -->
+
+  <target name="build-alt-configurations" unless="build.alt.configurations.completed" depends="init,init-bootstrap-platform,build-repository">
+
+    <for-each-configuration>
+      <if>
+        <not><equals arg1="${.configuration}" arg2="${configuration.recommended}"/></not>
+        <then>
+
+          <echo message="Building DTP with ${.configuration} configuration..."/>
+
+          <with-target-platform configuration="${.configuration}">
+            <pde-build build.id="${DSTAMP}" feature="org.eclipse.datatools" eclipse="${.target.platform}" root.dir="${build.dir}/staging"/>
+          </with-target-platform>
+
+          <delete file="${build.dir}/org.eclipse.datatools-${DSTAMP}.zip"/>
+
+        </then>
+      </if>
+    </for-each-configuration>
+
+    <property name="build.alt.configurations.completed" value="true"/>
+
+  </target>
+
+
+
+  <!--
+    *************************************************************************************************
+    * Full Build                                                                                    *
+    *************************************************************************************************
+  -->
+
+  <target name="build" depends="build-repository">
+
+    <delete dir="${build.dir}/packages" quiet="true"/>
+    <mkdir dir="${build.dir}/packages"/>
+
+    <zip destfile="${build.dir}/packages/dtp-repository-${dtp.version}.zip" filesonly="true">
+      <fileset dir="${build.dir}/repository" excludes=".artifactlock/**/*"/>
+    </zip>
+
+  </target>
+
+  
+  <!--
+    *************************************************************************************************
+    * Development Environment                                                                       *
+    *************************************************************************************************
+  -->
+
+  <target name="create-dev-eclipse" depends="build-repository">
+
+    <property name="dev.eclipse.dir" value="${root.dir}/dev-eclipse"/>
+    <install-eclipse dest="${dev.eclipse.dir}" extensions="${iu.dev.env}"/>
+
+  </target>
+
+
+  <target name="create-dev-target" depends="build-repository">
+
+    <property name="dev.target.dir" value="${root.dir}/dev-target"/>
+    
+    <if>
+      <isset property="iu.dev.target.${configuration.recommended}"/>
+      <then>
+        <propertycopy property=".extensions" from="iu.dev.target.${configuration.recommended}" override="true"/>
+      </then>
+      <else>
+        <var name=".extensions" value="${iu.dev.target}"/>
+      </else>
+    </if>
+    
+    <install-eclipse dest="${dev.target.dir}" extensions="${.extensions}"/>
+
+    <var name=".extensions" unset="true"/>
+
+  </target>
+
+
+  <target name="clean-start" depends="clean,create-dev-eclipse,create-dev-target,prune-downloads-from-eclipse">
+  </target>
+
+
+
+  <!--
+    *************************************************************************************************
+    * Cleanup                                                                                       *
+    *************************************************************************************************
+  -->
+
+  <target name="clean" depends="clean-bootstrap,clean-repository,clean-target-platforms">
+    
+    <delete dir="${build.dir}"/>
+
+  </target>
+
+
+  <target name="clean-bootstrap" depends="init">
+
+    <delete dir="${build.dir}/bootstrap" quiet="true"/>
+    <var name="bootstrap.platform" unset="true"/>
+
+  </target>
+
+
+  <target name="clean-repository" depends="init">
+
+    <delete dir="${build.dir}/repository" quiet="true"/>
+    <var name="build.repository.completed" unset="true"/>
+
+  </target>
+
+
+  <target name="clean-target-platforms" depends="init">
+
+    <for-each-configuration>
+      <delete dir="${build.dir}/target-@{configuration}" quiet="true"/>
+      <var name="target-@{configuration}" unset="true"/>
+    </for-each-configuration>
+
+  </target>
+
+
+
+  <!--
+    *************************************************************************************************
+    * Target Platform                                                                               *
+    *************************************************************************************************
+  -->
+
+
+  <macrodef name="create-target-platform">
+    <attribute name="configuration"/>
+    <sequential>
+
+      <if>
+        <not><isset property="target-@{configuration}"/></not>
+        <then>
+
+          <property name="target-@{configuration}" value="${build.dir}/target-@{configuration}"/>
+
+          <if>
+            <not><available file="${build.dir}/target-@{configuration}"/></not>
+            <then>
+              <install-eclipse dest="${build.dir}/target-@{configuration}" configuration="@{configuration}" extensions="${iu.build.target}"/>
+            </then>
+          </if>
+
+        </then>
+      </if>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="with-target-platform">
+    <attribute name="configuration"/>
+    <element name="body" implicit="yes"/>
+    <sequential>
+
+      <create-target-platform configuration="@{configuration}"/>
+      <propertycopy property=".target.platform" from="target-@{configuration}" override="true"/>
+      <body/>
+      <var name=".target.platform" unset="true"/>
+
+    </sequential>
+  </macrodef>
+
+
+
+
+  <!--
+    *************************************************************************************************
+    * Configuration and Repository Macros                                                           *
+    *************************************************************************************************
+  -->
+
+  <macrodef name="load-configuration">
+    <attribute name="name"/>
+    <sequential>
+
+      <if>
+        <not><isset property="repositories.@{name}"/></not>
+        <then>
+
+          <echo message="Loading configuration @{name}..."/>
+
+          <property file="${releng.dir}/repositories-@{name}.properties" prefix="."/>
+
+          <var name="eclipse.platform.build.@{name}" value="${.eclipse.platform.build}"/>
+
+          <if>
+            <isset property=".p2.repositories"/>
+            <then>
+              <for list="${.p2.repositories}" param="repo">
+                <sequential>
+                  <if>
+                      <or>
+                      <matches pattern="http:.*" string="@{repo}"/>
+                      <matches pattern="https:.*" string="@{repo}"/>
+                        <matches pattern="file:.*" string="@{repo}"/>
+                      </or>
+                    <then>
+                      <load-repository url="@{repo}" property="repositories.@{name}"/>
+                    </then>
+                    <else>
+                      <with-download-from-eclipse file="@{repo}">
+                        <load-repository-archive file="${.download}" property="repositories.@{name}"/>
+                      </with-download-from-eclipse>
+                    </else>
+                  </if>
+                </sequential>
+              </for>
+            </then>
+          </if>
+
+          <if>
+            <isset property=".legacy.packages"/>
+            <then>
+              <for list="${.legacy.packages}" param="repo">
+                <sequential>
+                  <echo message="@{repo}"/>
+                  <with-download-from-eclipse file="@{repo}">
+                    <load-repository-legacy file="${.download}" property="repositories.@{name}"/>
+                  </with-download-from-eclipse>
+                </sequential>
+              </for>
+            </then>
+          </if>
+
+          <var name=".eclipse.platform.build" unset="true"/>
+          <var name=".p2.repositories" unset="true"/>
+          <var name=".legacy.packages" unset="true"/>
+
+        </then>
+      </if>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="with-configuration">
+    <attribute name="name"/>
+    <element name="body" implicit="yes"/>
+    <sequential>
+
+      <load-configuration name="@{name}"/>
+      <propertycopy property=".eclipse.platform.build" from="eclipse.platform.build.@{name}" override="true"/>
+      <propertycopy property=".repositories" from="repositories.@{name}" override="true"/>
+      <body/>
+      <var name=".eclipse.platform.build" unset="true"/>
+      <var name=".repositories" unset="true"/>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="for-each-configuration">
+    <element name="body" implicit="yes"/>
+    <sequential>
+
+      <for list="${configurations}" param="configuration">
+        <sequential>
+          <var name=".configuration" value="@{configuration}"/>
+          <body/>
+          <var name=".configuration" unset="true"/>
+        </sequential>
+      </for>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="init-download-from-eclipse">
+    <sequential>
+    
+      <!-- Set "downloads" property or SAPPHIRE_DOWNLOADS environment variable to share downloads folder. -->
+         
+      <if>
+        <not><isset property="downloads"/></not>
+        <then>
+          <if>
+            <isset property="env.SAPPHIRE_DOWNLOADS"/>
+            <then>
+              <var name="downloads" value="${env.SAPPHIRE_DOWNLOADS}"/>
+            </then>
+            <else>
+              <var name="downloads" value="${basedir}/downloads"/>
+            </else>
+          </if>
+        </then>
+      </if>
+      
+      <!-- Set "ignore.checksum.issues" property or SAPPHIRE_IGNORE_CHECKSUM_ISSUES environment variable to 
+           not fail build if eclipse.org download fails checksum verification. -->
+         
+      <if>
+        <not><isset property="ignore.checksum.issues"/></not>
+        <then>
+          <if>
+            <isset property="env.SAPPHIRE_IGNORE_CHECKSUM_ISSUES"/>
+            <then>
+              <var name="ignore.checksum.issues" value="${env.SAPPHIRE_IGNORE_CHECKSUM_ISSUES}"/>
+            </then>
+            <else>
+              <var name="ignore.checksum.issues" value="false"/>
+            </else>
+          </if>
+        </then>
+      </if>
+      
+      <!-- Lookup the set of downloads with known checksum issues that should be ignored. -->
+      
+      <if>
+        <not><isset property="ignore.checksum.issues.list"/></not>
+        <then>
+          <loadfile srcfile="${basedir}/releng/ignore-checksum-issues.txt" property="ignore.checksum.issues.list"/>
+        </then>
+      </if>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="download-from-eclipse">
+    <attribute name="file"/>
+    <attribute name="property"/>
+    <sequential>
+    
+      <init-download-from-eclipse/>
+      
+      <mkdir dir="${downloads}"/>
+      
+      <echo message="Downloading from Eclipse... @{file}"/>
+
+      <echo message="@{file}" file="${downloads}/url-checksum.txt"/>
+      <checksum file="${downloads}/url-checksum.txt" property=".url.checksum"/>
+      <delete file="${downloads}/url-checksum.txt"/>
+      
+      <echo message="URL checksum... ${.url.checksum}"/>
+      
+      <var name=".content.valid" value="false"/>
+      
+      <for list="1,2,3,4,5" param="counter">
+        <sequential>
+          <if>
+            <not><istrue value="${.content.valid}"/></not>
+            <then>
+
+              <if>
+                <available file="${downloads}/${.url.checksum}"/>
+                <then>
+                
+                  <!-- Download the expected checksum. -->
+                  
+                  <delete file="${downloads}/content-checksum.txt" quiet="true"/>
+                  
+                  <for list="1,2,3,4,5" param="retry">
+                    <sequential>
+                      <if>
+                        <not><available file="${downloads}/content-checksum.txt"/></not>
+                        <then>
+                          <trycatch>
+                            <try>
+                              <get src="http://www.eclipse.org/downloads/sums.php?file=@{file}&amp;type=sha512" dest="${downloads}/content-checksum.txt"/>
+                            </try>
+                            <catch>
+                              <echo message="Failed to retrieve the checksum on try @{retry}."/>
+                            </catch>
+                           </trycatch>
+                        </then>
+                      </if>
+                    </sequential>
+                  </for>
+                  
+                  <loadfile srcfile="${downloads}/content-checksum.txt" property=".content.checksum"/>
+                  <delete file="${downloads}/content-checksum.txt"/>
+                  <propertyregex property=".content.checksum" override="true" input="${.content.checksum}" regexp="([^ ]*).*" select="\1"/>
+                  
+                  <!-- Verify the local file againsted the expected checksum. -->
+                  
+                  <checksum file="${downloads}/${.url.checksum}" property=".content.checksum.actual" algorithm="SHA-512"/>
+                      
+                  <if>
+                    <equals arg1="${.content.checksum}" arg2="${.content.checksum.actual}"/>
+                    <then>
+                      <var name=".content.valid" value="true"/>
+                    </then>
+                    <else>
+                      <echo message="Checksums did not match. Expected ${.content.checksum}. Got ${.content.checksum.actual}."/>
+                      <if>
+                        <or>
+                          <istrue value="${ignore.checksum.issues}"/>
+                          <contains string="${ignore.checksum.issues.list}" substring="@{file}"/>
+                        </or>
+                        <then>
+                          <var name=".content.valid" value="true"/>
+                        </then>
+                      </if>
+                    </else>
+                  </if>
+                  
+                  <var name=".content.checksum" unset="true"/>
+                  <var name=".content.checksum.actual" unset="true"/>
+                  
+                </then>
+              </if>
+
+              <if>
+                <not><istrue value="${.content.valid}"/></not>
+                <then>
+                  <if>
+                    <istrue value="${force.eclipse.org}"/>
+                    <then>
+                      <get src="http://www.eclipse.org/downloads/download.php?file=@{file}&amp;mirror_id=1" dest="${downloads}/${.url.checksum}"/>
+                    </then>
+                    <else>
+                      <get src="http://www.eclipse.org/downloads/download.php?file=@{file}&amp;r=1&amp;protocol=http" dest="${downloads}/${.url.checksum}"/>
+                    </else>
+                  </if>
+                </then>
+              </if>
+              
+            </then>
+          </if>
+        </sequential>
+      </for>
+      
+      <if>
+        <istrue value="${.content.valid}"/>
+        <then>
+        
+          <propertyfile file="${downloads}/${.url.checksum}.properties">
+            <entry key="LastUsed" type="date" value="now" pattern="yyyy-MM-dd"/>
+          </propertyfile>
+        
+          <var name="@{property}" value="${downloads}/${.url.checksum}"/>
+          <var name=".url.checksum" unset="true"/>
+          <var name=".content.valid" unset="true"/>
+          <var name=".file" unset="true"/>
+          <var name=".archived" unset="true"/>
+          
+        </then>
+        <else>
+          <fail message="Failed to download @{file} from Eclipse Foundation."/>
+        </else>
+      </if>
+      
+    </sequential>
+  </macrodef>
+  
+    
+  <macrodef name="prune-downloads-from-eclipse">
+    <sequential>
+    
+      <init-download-from-eclipse/>
+      
+      <if>
+        <available file="${downloads}" type="dir"/>
+        <then>
+        
+          <echo message="Removing Eclipse downloads that haven't been used recently..."/>
+        
+          <for param="dfe.file">
+            <path>
+              <fileset dir="${downloads}">
+                <include name="*"/>
+                  <exclude name="*.properties"/>
+              </fileset>
+            </path>
+            <sequential>
+          
+              <basename file="@{dfe.file}" property=".dfe.file.name"/>
+              <property name=".dfe.file.metadata" value="${downloads}/${.dfe.file.name}.properties"/>
+            
+              <if>
+                <available file="${.dfe.file.metadata}"/>
+                <then>
+                  <property file="${.dfe.file.metadata}" prefix=".dfe.metadata."/>
+                </then>
+              </if>
+              
+              <if>
+                <isset property=".dfe.metadata.LastUsed"/>
+                <then>
+                  
+                  <if>
+                      <scriptcondition language="javascript">
+                      <![CDATA[
+                          var dateParts = project.getProperty( ".dfe.metadata.LastUsed" ).split( "-" );
+                          
+                          if( dateParts.length == 3 )
+                          {
+                              var lastUsed = new Date( dateParts[ 0 ], dateParts[ 1 ] - 1, dateParts[ 2 ] );
+                              var today = new Date();
+                              
+                              if( today.getTime() - lastUsed.getTime() < ( 30 * 24 * 60 * 60 * 1000 ) )
+                              {
+                                  self.value = false;
+                              }
+                              else
+                              {
+                                  self.value = true;
+                            }
+                          }
+                          else
+                          {
+                              self.value = false;
+                          }
+                      ]]>
+                      </scriptcondition>
+                      <then>
+                        <delete file="@{dfe.file}"/>
+                        <delete file="${.dfe.file.metadata}"/>
+                      </then>
+                  </if>
+                  
+                </then>
+                <else>
+                  <propertyfile file="${.dfe.file.metadata}">
+                    <entry key="LastUsed" type="date" value="now" pattern="yyyy-MM-dd"/>
+                  </propertyfile>
+                </else>
+              </if>
+              
+              <var name=".dfe.file.name" unset="true"/>
+              <var name=".dfe.file.metadata" unset="true"/>
+              <var name=".dfe.metadata.LastUsed" unset="true"/>
+              
+            </sequential>
+          </for>
+          
+        </then>
+      </if>
+      
+    </sequential>
+  </macrodef>
+
+
+  <target name="prune-downloads-from-eclipse" depends="init">
+  
+    <prune-downloads-from-eclipse/>
+
+  </target>
+
+  
+  <macrodef name="wipe-download-from-eclipse">
+    <attribute name="file"/>
+    <sequential>
+    
+      <init-download-from-eclipse/>
+      
+      <echo message="@{file}" file="${downloads}/url-checksum.txt"/>
+      <checksum file="${downloads}/url-checksum.txt" property=".url.checksum"/>
+      <delete file="${downloads}/url-checksum.txt"/>
+      
+      <delete file="${downloads}/${.url.checksum}"/>
+      
+    </sequential>
+  </macrodef>
+
+
+  <target name="wipe-download-from-eclipse" depends="init">
+  
+    <wipe-download-from-eclipse file="${file}"/>
+
+  </target>
+
+
+  <macrodef name="with-download-from-eclipse">
+    <attribute name="file"/>
+    <element name="body" implicit="yes"/>
+    <sequential>
+
+      <download-from-eclipse file="@{file}" property=".download"/>
+      <body/>
+      <var name=".download" unset="true"/>
+
+    </sequential>
+  </macrodef>
+  
+
+  <macrodef name="load-build-repository">
+    <attribute name="url"/>
+    <sequential>
+      <load-repository url="@{url}" property="build.repositories"/>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="load-repository">
+    <attribute name="url"/>
+    <attribute name="property"/>
+    <sequential>
+      <echo message="Loading repository @{url} ..."/>
+      <prepend property="@{property}" value="@{url}"/>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="load-repository-archive">
+    <attribute name="file"/>
+    <attribute name="property"/>
+    <sequential>
+      <load-repository url="jar:file:@{file}!/" property="@{property}"/>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="load-repository-legacy">
+    <attribute name="file"/>
+    <attribute name="property"/>
+    <sequential>
+
+      <if>
+        <not><available file="@{file}.repo"/></not>
+        <then>
+
+          <unzip src="@{file}" dest="@{file}.repo">
+            <mapper type="regexp" from="^eclipse/(.*)$$" to="\1"/>
+          </unzip>
+
+          <delete includeemptydirs="true">
+            <fileset dir="@{file}.repo">
+              <exclude name="plugins/**"/>
+              <exclude name="features/**"/>
+            </fileset>
+          </delete>
+
+          <p2.publish.FeaturesAndBundles location="@{file}.repo"/>
+
+          <delete includeemptydirs="true">
+            <fileset dir="@{file}.repo">
+              <exclude name="*.jar"/>
+              <exclude name="plugins/*.jar"/>
+              <exclude name="features/*.jar"/>
+            </fileset>
+          </delete>
+
+        </then>
+      </if>
+
+      <load-repository url="file:@{file}.repo" property="@{property}"/>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="install-eclipse">
+    <attribute name="dest"/>
+    <attribute name="configuration" default="${configuration.recommended}"/>
+    <attribute name="platform" default="${current.platform}"/>
+    <attribute name="extensions" default=""/>
+    <sequential>
+
+      <delete dir="@{dest}" quiet="true"/>
+      <mkdir dir="@{dest}"/>
+
+      <with-configuration name="@{configuration}">
+        <if>
+          <contains string="@{platform}" substring="win32"/>
+          <then>
+            <var name=".format" value="zip"/>
+          </then>
+          <else>
+            <var name=".format" value="tar.gz"/>
+          </else>
+        </if>
+        <with-download-from-eclipse file="${.eclipse.platform.build}-@{platform}.${.format}">
+          <if>
+            <equals arg1="${.format}" arg2="zip"/>
+            <then>
+              <unzip src="${.download}" dest="@{dest}">
+                <mapper type="regexp" from="^eclipse/(.*)$$" to="\1"/>
+              </unzip>
+            </then>
+            <else>
+              <delete file="${.download}.tar" quiet="true"/>
+              <gunzip src="${.download}" dest="${.download}.tar"/>
+              <untar src="${.download}.tar" dest="@{dest}">
+                <mapper type="regexp" from="^eclipse/(.*)$$" to="\1"/>
+              </untar>
+              <delete file="${.download}.tar"/>
+              <chmod file="@{dest}/eclipse" perm="777"/>
+            </else>
+          </if>
+        </with-download-from-eclipse>
+        <var name=".format" unset="true"/>
+      </with-configuration>
+
+      <if>
+        <not><equals arg1="@{extensions}" arg2=""/></not>
+        <then>
+          <install-extensions dest="@{dest}" configuration="@{configuration}" extensions="@{extensions}"/>
+        </then>
+      </if>
+
+      <adjust-eclipse-ini install="@{dest}" platform="@{platform}"/>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="install-extensions">
+    <attribute name="dest"/>
+    <attribute name="configuration" default="${configuration.recommended}"/>
+    <attribute name="extensions"/>
+    <sequential>
+      <with-configuration name="@{configuration}">
+        <if>
+          <isset property="build.repositories"/>
+          <then>
+            <append property=".repositories" value="${build.repositories}"/>
+          </then>
+        </if>
+        <java classname="org.eclipse.core.launcher.Main" fork="true" failonerror="true">
+          <classpath>
+            <fileset dir="${bootstrap.platform}/plugins">
+              <include name="**/org.eclipse.equinox.launcher_*.jar"/>
+            </fileset>
+          </classpath>
+          <arg line="-application org.eclipse.equinox.p2.director"/>
+          <arg line="-repository ${.repositories}"/>
+          <arg line="-destination @{dest}"/>
+          <arg line="-installIU @{extensions}"/>
+          <arg line="-vmargs"/>
+          <arg line="-Declipse.p2.data.area=@{dest}/p2"/>
+          <jvmarg line="-Xmx512m"/>
+        </java>
+      </with-configuration>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="adjust-eclipse-ini">
+    <attribute name="install"/>
+    <attribute name="platform"/>
+    <sequential>
+      <var name=".eclipse.ini" value="@{install}/eclipse.ini"/>
+      <if>
+        <not><available file="${.eclipse.ini}"/></not>
+        <then>
+          <var name=".eclipse.ini" value="@{install}/Eclipse.app/Contents/MacOS/eclipse.ini"/>
+        </then>
+      </if>
+      <if>
+        <available file="${.eclipse.ini}"/>
+        <then>
+          <if>
+            <contains string="@{platform}" substring="win32"/>
+            <then>
+              <var name=".nl" value="&#13;&#10;"/>
+            </then>
+            <else>
+              <var name=".nl" value="&#10;"/>
+            </else>
+          </if>
+          <if>
+            <contains string="@{platform}" substring="x86_64"/>
+            <then>
+              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx1024m\1-XX:MaxPermSize=512m${.nl}-Djava.net.preferIPv4Stack=true"/>
+            </then>
+            <else>
+              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx512m\1-XX:MaxPermSize=256m${.nl}-Djava.net.preferIPv4Stack=true"/>
+            </else>
+          </if>
+          <replaceregexp file="${.eclipse.ini}" match="[\n|\r]*--launcher.XXMaxPermSize[\n|\r]*[0-9]*m" replace=""/>
+          <var name=".eclipse.ini" unset="true"/>
+          <var name=".nl" unset="true"/>
+        </then>
+        <else>
+          <fail message="Could not locate eclipse.ini file in @{install}"/>
+        </else>
+      </if>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="condition-jars">
+    <attribute name="folder"/>
+    <sequential>
+      <for param="jar">
+        <path>
+          <fileset dir="@{folder}" includes="**/*.jar"/>
+        </path>
+        <sequential>
+          <basename property=".filename" file="@{jar}"/>
+          <echo message="Conditioning ${.filename}"/>
+          <exec executable="pack200">
+            <arg value="-r"/>
+            <arg value="@{jar}"/>
+          </exec>
+          <var name=".filename" unset="true"/>
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+
+  <target name="condition-jars" depends="init">
+    <fail unless="folder" message="The &quot;folder&quot; property must be specified."/>
+    <condition-jars folder="${folder}"/>
+  </target>
+
+
+  <macrodef name="pack-jars">
+    <attribute name="folder"/>
+    <sequential>
+      <for param="jar">
+        <path>
+          <fileset dir="@{folder}" includes="**/*.jar"/>
+        </path>
+        <sequential>
+          <basename property=".filename" file="@{jar}"/>
+          <echo message="Packing ${.filename}"/>
+          <exec executable="pack200">
+            <arg value="-E9"/>
+            <arg value="@{jar}.pack.gz"/>
+            <arg value="@{jar}"/>
+          </exec>
+          <var name=".filename" unset="true"/>
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+
+  <target name="pack-jars" depends="init">
+    <fail unless="folder" message="The &quot;folder&quot; property must be specified."/>
+    <pack-jars folder="${folder}"/>
+  </target>
+
+
+</project>

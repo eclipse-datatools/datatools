@@ -1,0 +1,39 @@
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2015 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<project name="sapphire-releng-tools">
+
+    <dirname property="basedir.sapphire-releng-tools" file="${ant.file.sapphire-releng-tools}"/>
+    
+    <taskdef resource="org/eclipse/sapphire/releng/antlib.xml">
+        <classpath>
+            <pathelement location="${basedir.sapphire-releng-tools}/sapphire-releng-tools.jar"/>
+        </classpath>
+    </taskdef>
+
+    <target name="gen-folder-listing">
+        <fail unless="folder" message="Property &quot;folder&quot; must be specified."/>
+        <gen-folder-listing folder="${folder}">
+            <excludes><path><pathelement path="${excludes}"/></path></excludes>
+        </gen-folder-listing>
+    </target>
+
+    <target name="gen-repository-landing">
+        <fail unless="repository" message="Property &quot;repository&quot; must be specified."/>
+        <fail unless="name" message="Property &quot;name&quot; must be specified."/>
+        <gen-repository-landing repository="${repository}" name="${name}">
+            <excludes><path><pathelement path="${excludes}"/></path></excludes>
+        </gen-repository-landing>
+    </target>
+    
+</project>

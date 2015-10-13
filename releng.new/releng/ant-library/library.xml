@@ -1,0 +1,464 @@
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2015 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<project name="sapphire-releng-antlib">
+
+  <target name="init-library" unless="init.library.completed">
+
+    <property environment="env"/>
+  
+    <dirname property=".base.dir" file="${ant.file.sapphire-releng-antlib}"/>
+  	
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+      <classpath>
+        <pathelement location="${.base.dir}/../ant-contrib/ant-contrib-1.0b3.jar"/>
+      </classpath>
+    </taskdef>
+
+    <property name=".src.dir" value="${.base.dir}/src"/>
+    <property name=".classes.dir" value="${.base.dir}/bin"/>
+    <property name=".antlib.jar" value="${.base.dir}/sapphire-releng-antlib.jar"/>
+    
+    <if>
+      <uptodate targetfile="${.antlib.jar}">
+        <srcfiles dir="${.src.dir}" includes="**/*"/>
+      </uptodate>
+      <then>
+      	<echo message="Found an up-to-date version of Sapphire releng Ant library. Skipping build..."/>
+      </then>
+      <else>
+      	<echo message="Building Sapphire releng Ant library..."/>
+        <delete dir="${.classes.dir}" quiet="true"/>
+        <mkdir dir="${.classes.dir}"/>
+        <javac debug="true" destdir="${.classes.dir}" source="1.8" target="1.8">
+          <src path="${.src.dir}"/>
+        </javac>
+        <jar destfile="${.antlib.jar}">
+          <fileset dir="${.classes.dir}"/>
+          <fileset dir="${.src.dir}" excludes="**/*.java"/>
+        </jar>
+      </else>
+    </if>
+  	
+    <taskdef resource="org/eclipse/sapphire/releng/ant/library.xml">
+      <classpath>
+        <pathelement location="${.antlib.jar}"/>
+      </classpath>
+    </taskdef>
+
+    <var name="DSTAMP" unset="true"/>
+
+    <tstamp>
+      <format property="DSTAMP" pattern="yyyyMMddHHmm"/>
+    </tstamp>
+
+    <if>
+      <os family="windows"/>
+      <then>
+        <if>
+          <os arch="x86"/>
+          <then>
+            <property name="current.platform" value="win32"/>
+            <property name="current.platform.x64" value="false"/>
+          </then>
+          <else>
+            <property name="current.platform" value="win32-x86_64"/>
+            <property name="current.platform.x64" value="true"/>
+          </else>
+        </if> 
+      </then>
+      <elseif>
+        <os family="mac"/>
+        <then>
+          <property name="current.platform" value="macosx-cocoa-x86_64"/>
+        </then>
+      </elseif>
+      <elseif>
+        <os family="unix"/>
+        <then>
+          <if>
+            <equals arg1="${os.arch}" arg2="i386"/>
+            <then>
+              <property name="current.platform" value="linux-gtk"/>
+            </then>
+            <else>
+              <property name="current.platform" value="linux-gtk-x86_64"/>
+            </else>
+          </if> 
+        </then>
+      </elseif>
+      <else>
+        <fail message="Unable to identify the operating system."/>
+      </else>
+    </if>
+
+    <property name="init.library.completed" value="true"/>
+
+    <var name=".base.dir" unset="true"/>
+    <var name=".src.dir" unset="true"/>
+    <var name=".classes.dir" unset="true"/>
+    <var name=".antlib.jar" unset="true"/>
+    
+  </target>
+
+
+  <target name="init-jdk" depends="init-library">
+    <init-jdk version="5"/>
+	<init-jdk version="6"/>
+	<init-jdk version="7"/>
+	<init-jdk version="8"/>
+  </target>
+
+
+  <macrodef name="init-jdk">
+    <attribute name="version"/>
+    <sequential>
+
+      <if>
+        <not><isset property="env.JDK_@{version}_HOME"/></not>
+        <then>
+          <fail message="Could not locate JDK @{version}. Environment variable JDK_@{version}_HOME not set."/>
+        </then>
+      </if>
+
+      <var name=".location" unset="true"/>
+      <var name=".prefix" unset="true"/>
+      <var name=".compiler.path" unset="true"/>
+      <var name=".system.classpath" unset="true"/>
+
+      <propertycopy property=".location" from="env.JDK_@{version}_HOME"/>
+      <property name=".prefix" value="java.@{version}"/>
+
+      <if>
+        <os family="windows"/>
+        <then>
+          <property name=".compiler.path" value="${.location}/bin/javac.exe"/>
+        </then>
+        <else>
+          <property name=".compiler.path" value="${.location}/bin/javac"/>
+        </else>
+      </if>
+
+      <pathconvert property=".system.classpath">
+        <fileset dir="${.location}">
+          <include name="lib/*.jar"/>
+          <include name="jre/lib/*.jar"/>
+        </fileset>
+      </pathconvert>
+
+      <property name="${.prefix}.compiler.path" value="${.compiler.path}"/>
+      <property name="${.prefix}.system.classpath" value="${.system.classpath}"/>
+
+      <echo message="Java @{version} Compiler Path : ${.compiler.path}"/>
+      <echo message="Java @{version} System Classpath : ${.system.classpath}"/>
+
+      <var name=".location" unset="true"/>
+      <var name=".prefix" unset="true"/>
+      <var name=".compiler.path" unset="true"/>
+      <var name=".system.classpath" unset="true"/>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="append">
+    <attribute name="property"/>
+    <attribute name="value"/>
+    <attribute name="separator" default=","/>
+    <sequential>
+      <if>
+        <isset property="@{property}"/>
+        <then>
+          <propertycopy property=".value" from="@{property}" override="true"/>
+          <var name="@{property}" value="${.value}@{separator}@{value}"/>
+          <var name=".value" unset="true"/>
+        </then>
+        <else>
+          <var name="@{property}" value="@{value}"/>
+        </else>
+      </if>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="prepend">
+    <attribute name="property"/>
+    <attribute name="value"/>
+    <attribute name="separator" default=","/>
+    <sequential>
+      <if>
+        <isset property="@{property}"/>
+        <then>
+          <propertycopy property=".value" from="@{property}" override="true"/>
+          <var name="@{property}" value="@{value}@{separator}${.value}"/>
+          <var name=".value" unset="true"/>
+        </then>
+        <else>
+          <var name="@{property}" value="@{value}"/>
+        </else>
+      </if>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="property-from-set">
+    <attribute name="property"/>
+    <element name="set" implicit="true"/>
+    <sequential>
+      <pathconvert property="@{property}">
+        <first count="1">
+          <sort>
+            <set/>
+            <reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+              <name/>
+            </reverse>
+          </sort>
+        </first>
+      </pathconvert>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="expand-all">
+    <attribute name="source.dir"/>
+    <attribute name="dest.dir" default="@{source.dir}"/>
+    <attribute name="suffix" default="jar"/>
+    <attribute name="includes" default="*.@{suffix}"/>
+    <attribute name="excludes" default=""/>
+    <element name="do" implicit="true" optional="true"/>
+    <sequential>
+      <for param="archive.file">
+        <path>
+          <fileset dir="@{source.dir}" includes="@{includes}" excludes="@{excludes}"/>
+        </path>
+        <sequential>
+          <basename property="base.name" file="@{archive.file}" suffix="@{suffix}"/>
+          <unzip src="@{archive.file}" dest="@{dest.dir}/${base.name}" overwrite="true"/>
+          <do/>
+          <var name="base.name" unset="true"/>
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="zip-dirs">
+    <attribute name="source.dir"/>
+    <attribute name="dest.dir" default="@{source.dir}"/>
+    <attribute name="suffix" default="zip"/>
+    <attribute name="includes" default="*"/>
+    <attribute name="excludes" default=""/>
+    <element name="do" optional="true" implicit="true"/>
+    <sequential>
+      <if>
+        <available file="@{source.dir}"/>
+        <then>
+          <for param="dir">
+            <path>
+              <dirset dir="@{source.dir}" includes="@{includes}" excludes="@{excludes}"/>
+            </path>
+            <sequential>
+              <basename property="dir.name" file="@{dir}"/>
+              <property name="zip.file" value="@{dest.dir}/${dir.name}.@{suffix}"/>
+              <zip destfile="${zip.file}">
+                <fileset dir="@{dir}"/>
+              </zip>
+              <delete dir="@{dir}"/>
+              <do/>
+              <var name="zip.file" unset="true"/>
+              <var name="dir.name" unset="true"/>
+            </sequential>
+          </for>
+        </then>
+      </if>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="eclipse">
+    <attribute name="location"/>
+    <attribute name="application"/>
+    <attribute name="failonerror" default="true"/>
+    <attribute name="resultproperty" default=""/>
+    <element name="args" optional="true" implicit="true"/>
+    <sequential>
+      <java classname="org.eclipse.core.launcher.Main" fork="true" failonerror="@{failonerror}" resultproperty="@{resultproperty}">
+        <classpath>
+          <fileset dir="@{location}/plugins">
+            <include name="**/org.eclipse.equinox.launcher_*.jar"/>
+          </fileset>
+        </classpath>
+        <jvmarg value="-Xmx1024m"/>
+        <jvmarg value="-XX:MaxPermSize=256m"/>
+        <arg line="-application @{application}"/>
+        <args/>
+      </java>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="p2.publish.FeaturesAndBundles">
+    <attribute name="location"/>
+    <attribute name="name" default="repository"/>
+    <sequential>
+      <eclipse location="${bootstrap.platform}" application="org.eclipse.equinox.p2.publisher.FeaturesAndBundlesPublisher">
+        <arg line="-metadataRepository file:@{location}"/>
+        <arg line="-artifactRepository file:@{location}"/>
+        <arg line="-metadataRepositoryName &quot;@{name}&quot;"/>
+        <arg line="-artifactRepositoryName &quot;@{name}&quot;"/>
+        <arg line="-source @{location}"/>
+        <arg line="-compress"/>
+        <arg line="-publishArtifacts"/>
+        <arg line="-reusePack200Files"/>
+      </eclipse>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="p2.publish.UpdateSite">
+    <attribute name="location"/>
+    <attribute name="name" default="repository"/>
+    <sequential>
+      <eclipse location="${bootstrap.platform}" application="org.eclipse.equinox.p2.publisher.UpdateSitePublisher">
+        <arg line="-metadataRepository file:@{location}"/>
+        <arg line="-artifactRepository file:@{location}"/>
+        <arg line="-metadataRepositoryName &quot;@{name}&quot;"/>
+        <arg line="-artifactRepositoryName &quot;@{name}&quot;"/>
+        <arg line="-source @{location}"/>
+        <arg line="-compress"/>
+        <arg line="-publishArtifacts"/>
+        <arg line="-reusePack200Files"/>
+      </eclipse>
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="pde-build">
+    <attribute name="root.dir"/>
+    <attribute name="build.id"/>
+    <attribute name="eclipse"/>
+    <attribute name="feature"/>
+  	<attribute name="warnings" default="false"/>
+    <element name="java-args" optional="true" implicit="true"/>
+    <sequential>
+
+      <clean-pde-build root.dir="@{root.dir}"/>
+
+      <property-from-set property=".pdeBuildDir">
+        <dirset dir="@{eclipse}/plugins" includes="org.eclipse.pde.build_*"/>
+      </property-from-set>
+
+      <delete dir="@{root.dir}/build/pde" quiet="true"/>
+      <delete dir="@{root.dir}/build/compilelogs" quiet="true"/>
+
+      <mkdir dir="@{root.dir}/build/pde"/>
+
+      <copy
+          file="${.pdeBuildDir}/templates/headless-build/build.properties"
+          todir="@{root.dir}/build/pde/builder"
+          overwrite="true"/>
+
+      <copy
+          file="${.pdeBuildDir}/templates/headless-build/customTargets.xml"
+          todir="@{root.dir}/build/pde/builder"
+          overwrite="true"/>
+
+      <if>
+      	<and>
+      	  <istrue value="@{warnings}"/>
+          <istrue value="${warnings}"/>
+      	</and>
+        <then>
+          <property name="pde.build.compiler.arg" value=""/>
+        </then>
+        <else>
+          <property name="pde.build.compiler.arg" value="-nowarn"/>
+        </else>
+      </if>
+
+      <eclipse location="@{eclipse}" application="org.eclipse.ant.core.antRunner">
+        <arg line="-clean"/>
+        <arg line="-data @{root.dir}/build/pde/workspace"/>
+        <arg line="-configuration @{root.dir}/build/pde/configuration"/>
+        <arg line="-buildfile ${.pdeBuildDir}/scripts/build.xml"/>
+        <arg value="-DtopLevelElementId=@{feature}"/>
+        <arg value="-DarchivePrefix=eclipse"/>
+        <arg value="-DbaseLocation=@{eclipse}"/>
+        <arg value="-DbuildDirectory=@{root.dir}"/>
+        <arg value="-Dbuilder=@{root.dir}/build/pde/builder"/>
+        <arg value="-DcollectingFolder=collecting"/>
+        <arg value="-DbuildId=@{build.id}"/>
+        <arg value="-DbuildType=I"/>
+        <arg value="-DbuildLabel=build"/>
+        <arg value="-DforceContextQualifier=@{build.id}"/>
+        <arg value="-DgenerateFeatureVersionSuffix=false"/>
+        <arg value="-DindividualSourceBundles=true"/>
+        <arg value="-DallowBinaryCycles=true" />
+        <arg value="-DcompilerArg=${pde.build.compiler.arg}"/>
+		<arg value="-DJ2SE-1.5=${java.5.system.classpath}"/>
+		<arg value="-DJavaSE-1.6=${java.6.system.classpath}"/>
+        <arg value="-DJavaSE-1.7=${java.7.system.classpath}"/>
+        <arg value="-DJavaSE-1.8=${java.8.system.classpath}"/>
+        <arg value="-DjavacFailOnError=true"/>
+        <arg value="-DjavacVerbose=${javacVerbose}"/>
+        <arg value="-DjavacDebugInfo=true"/>
+        <java-args/>
+      </eclipse>
+
+      <var name="pde.build.compiler.arg" unset="true"/>
+      <var name=".pdeBuildDir" unset="true"/>
+
+      <delete dir="@{root.dir}/build/pde" quiet="true"/>
+      <delete dir="@{root.dir}/build/compilelogs" quiet="true"/>
+
+      <clean-pde-build root.dir="@{root.dir}"/>
+
+    </sequential>
+  </macrodef>
+
+
+  <macrodef name="clean-pde-build">
+    <attribute name="root.dir"/>
+    <sequential>
+      <delete includeEmptyDirs="true" quiet="false" failOnError="false">
+        <fileset dir="@{root.dir}">
+          <include name="final*.*"/>
+          <include name="package*.*"/>
+          <include name="assemble*.*"/>
+        </fileset>
+        <fileset dir="@{root.dir}/plugins">
+          <include name="**/javaCompiler.*.args"/>
+          <include name="*/build.xml"/>
+          <include name="*/@dot/**"/>
+          <include name="*/temp.folder/**"/>
+          <include name="*.source/**"/>
+          <include name="*/src.zip"/>
+          <include name="*/build/**"/>
+          <include name="*/bin/**"/>
+          <include name="*/@dot.log"/>
+          <include name="*/.apt_generated/**"/>
+          <include name="*/.resources/**"/>
+          <include name="org.eclipse.*.source_*/**"/>
+          <exclude name="**/.do-not-delete"/>
+        </fileset>
+        <fileset dir="@{root.dir}/features">
+          <include name="*/*.log.zip"/>
+          <include name="*/build.xml"/>
+          <include name="*/feature.temp.folder/**"/>
+        </fileset>
+      </delete>
+    </sequential>
+  </macrodef>
+
+  
+</project>
