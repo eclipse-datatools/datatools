@@ -140,6 +140,7 @@
           <delete>
             <fileset dir="${build.dir}/repository" includes="epl-v10.html"/>
             <fileset dir="${build.dir}/repository" includes="notice.html"/>
+          	<fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools_*/**"/>
           </delete>
 
           <zip-dirs source.dir="${build.dir}/repository/features" suffix="jar"/>
