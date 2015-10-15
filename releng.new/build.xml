@@ -977,13 +977,12 @@
           <if>
             <contains string="@{platform}" substring="x86_64"/>
             <then>
-              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx1024m\1-XX:MaxPermSize=512m${.nl}-Djava.net.preferIPv4Stack=true"/>
+              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx1024m\1${.nl}-Djava.net.preferIPv4Stack=true"/>
             </then>
             <else>
-              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx512m\1-XX:MaxPermSize=256m${.nl}-Djava.net.preferIPv4Stack=true"/>
+              <replaceregexp file="${.eclipse.ini}" match="([\n|\r]*)-Xmx[0-9]*m" replace="\1-Xmx512m\1${.nl}-Djava.net.preferIPv4Stack=true"/>
             </else>
           </if>
-          <replaceregexp file="${.eclipse.ini}" match="[\n|\r]*--launcher.XXMaxPermSize[\n|\r]*[0-9]*m" replace=""/>
           <var name=".eclipse.ini" unset="true"/>
           <var name=".nl" unset="true"/>
         </then>
