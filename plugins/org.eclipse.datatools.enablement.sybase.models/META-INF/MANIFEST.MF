@@ -11,5 +11,5 @@ Export-Package:
  org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl,
  org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.util
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
