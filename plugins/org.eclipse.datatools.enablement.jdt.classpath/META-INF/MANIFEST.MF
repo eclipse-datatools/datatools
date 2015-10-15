@@ -16,4 +16,4 @@ Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.jdt.classpath,
  org.eclipse.datatools.enablement.jdt.classpath.internal
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
