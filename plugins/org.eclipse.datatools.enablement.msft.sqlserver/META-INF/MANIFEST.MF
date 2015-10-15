@@ -15,4 +15,4 @@ Export-Package: org.eclipse.datatools.enablement.msft.internal.sqlserver.connect
  org.eclipse.datatools.enablement.msft.internal.sqlserver.driver,
  org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
