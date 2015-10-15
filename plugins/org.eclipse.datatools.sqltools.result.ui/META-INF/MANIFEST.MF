@@ -21,4 +21,4 @@ Import-Package: com.ibm.icu.text;version="3.6.1",
 Export-Package: org.eclipse.datatools.sqltools.result.ui,
  org.eclipse.datatools.sqltools.result.ui.view
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -27,4 +27,4 @@ Export-Package: org.eclipse.datatools.sqltools.data.internal.ui,
  org.eclipse.datatools.sqltools.data.internal.ui.extract,
  org.eclipse.datatools.sqltools.data.internal.ui.load
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

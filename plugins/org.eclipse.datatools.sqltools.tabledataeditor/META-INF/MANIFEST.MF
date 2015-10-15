@@ -22,4 +22,4 @@ Export-Package: org.eclipse.datatools.sqltools.internal.tabledataeditor,
  org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute,
  org.eclipse.datatools.sqltools.tabledataeditor.actions.providers
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -22,4 +22,4 @@ Export-Package: org.eclipse.datatools.sqltools.debugger.breakpoint,
  org.eclipse.datatools.sqltools.debugger.debug,
  org.eclipse.datatools.sqltools.debugger.model,
  org.eclipse.datatools.sqltools.debugger.sourcelookup
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

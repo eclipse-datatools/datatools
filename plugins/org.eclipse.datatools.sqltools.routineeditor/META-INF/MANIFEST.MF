@@ -23,4 +23,4 @@ Export-Package: org.eclipse.datatools.sqltools.routineeditor.internal,
  org.eclipse.datatools.sqltools.routineeditor.parameter,
  org.eclipse.datatools.sqltools.routineeditor.result,
  org.eclipse.datatools.sqltools.routineeditor.util;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

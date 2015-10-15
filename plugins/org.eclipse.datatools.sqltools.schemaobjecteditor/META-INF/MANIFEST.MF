@@ -16,4 +16,4 @@ Export-Package: org.eclipse.datatools.sqltools.schemaobjecteditor,
  org.eclipse.datatools.sqltools.schemaobjecteditor.ddl,
  org.eclipse.datatools.sqltools.schemaobjecteditor.model
 Bundle-Vendor: %Plugin.ProviderName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

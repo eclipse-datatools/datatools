@@ -4,6 +4,7 @@ Bundle-Name: %_UI_PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlbuilder; singleton:=true
 Bundle-ClassPath: .
 Bundle-Version: 1.0.7.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin
 Bundle-Vendor: %_UI_PLUGIN_PROVIDER
 Bundle-Localization: plugin
@@ -57,5 +58,3 @@ Export-Package: org.eclipse.datatools.sqltools.sqlbuilder,
  org.eclipse.datatools.sqltools.sqlbuilder.views.update,
  org.eclipse.datatools.sqltools.sqlbuilder.views.with
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
