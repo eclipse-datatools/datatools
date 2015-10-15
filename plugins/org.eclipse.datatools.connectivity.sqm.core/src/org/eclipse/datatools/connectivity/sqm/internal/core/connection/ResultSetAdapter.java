@@ -214,11 +214,17 @@ public class ResultSetAdapter implements ResultSet {
 	public Object getObject(int arg0) throws SQLException {
 		return resultSet.getObject(arg0);
 	}
+	public <T> T getObject(int arg0, Class<T> type) throws SQLException {
+		return resultSet.getObject(arg0, type);
+	}
 	public Object getObject(int arg0, Map arg1) throws SQLException {
 		return resultSet.getObject(arg0, arg1);
 	}
 	public Object getObject(String arg0) throws SQLException {
 		return resultSet.getObject(arg0);
+	}
+	public <T> T getObject(String arg0, Class<T> type) throws SQLException {
+		return resultSet.getObject(arg0, type);
 	}
 	public Object getObject(String arg0, Map arg1) throws SQLException {
 		return resultSet.getObject(arg0, arg1);
@@ -732,4 +738,6 @@ public class ResultSetAdapter implements ResultSet {
     public void updateNClob(String columnLabel, Reader reader) throws SQLException {
         // TODO Auto-generated method stub
     }
+    
+    
 }

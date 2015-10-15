@@ -27,6 +27,6 @@ Export-Package: org.eclipse.datatools.connectivity.ui.dse,
  org.eclipse.datatools.connectivity.ui.dse.dialogs.filters,
  org.eclipse.datatools.connectivity.ui.dse.dnd,
  org.eclipse.datatools.connectivity.ui.dse.views
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.ibm.icu.text;version="3.6.1",
  com.ibm.icu.util;version="3.6.1"

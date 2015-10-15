@@ -27,6 +27,7 @@ import java.sql.Statement;
 import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -270,4 +271,30 @@ public class ConnectionAdapter implements Connection {
         // TODO Auto-generated method stub
         return null;
     }
+    
+    public int getNetworkTimeout() throws SQLException
+    {
+    	return this.connection.getNetworkTimeout();
+    }
+    
+    public void setNetworkTimeout( final Executor executor, final int milliseconds ) throws SQLException
+    {
+    	this.connection.setNetworkTimeout( executor, milliseconds );
+    }
+    
+    public String getSchema() throws SQLException
+    {
+    	return this.connection.getSchema();
+    }
+
+    public void setSchema( final String schema ) throws SQLException
+    {
+    	this.connection.setSchema( schema );
+    }
+    
+    public void abort( final Executor executor ) throws SQLException
+    {
+    	this.connection.abort( executor );
+    }
+    
 }

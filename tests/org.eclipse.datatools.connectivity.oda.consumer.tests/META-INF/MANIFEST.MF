@@ -11,4 +11,4 @@ Require-Bundle: org.junit;bundle-version="[3.8.1,4.0.0)",
  org.eclipse.datatools.connectivity.oda.consumer.testdriver;bundle-version="[3.2.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.consumer.test.impl.OdaConsumerTestPlugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

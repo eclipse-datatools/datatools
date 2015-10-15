@@ -220,6 +220,16 @@ public class StatementAdapter implements Statement {
         return false;
     }
     
+    public boolean isCloseOnCompletion() throws SQLException
+    {
+    	return this.statement.isCloseOnCompletion();
+    }
+    
+    public void closeOnCompletion() throws SQLException
+    {
+    	this.statement.closeOnCompletion();
+    }
+    
     public void setPoolable(boolean poolable) throws SQLException {
         // TODO Auto-generated method stub
     }

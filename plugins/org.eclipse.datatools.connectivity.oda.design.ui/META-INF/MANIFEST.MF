@@ -3,9 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui; singleton:=true
 Bundle-Version: 3.2.9.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.datatools.connectivity.oda.design.internal.ui,
  org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.db;x-internal:=true,
  org.eclipse.datatools.connectivity.oda.design.ui.designsession,
