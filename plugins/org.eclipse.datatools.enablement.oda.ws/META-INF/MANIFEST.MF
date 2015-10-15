@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws; singleton:=true
 Bundle-Version: 1.2.6.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.Activator
 Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
@@ -18,4 +19,3 @@ Export-Package: org.eclipse.datatools.enablement.oda.ws.api,
  org.eclipse.datatools.enablement.oda.ws.impl;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
  org.eclipse.datatools.enablement.oda.ws.soap;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
  org.eclipse.datatools.enablement.oda.ws.util;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6

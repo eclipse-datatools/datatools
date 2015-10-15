@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml;singleton:=true
 Bundle-Version: 1.2.5.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
@@ -18,4 +19,3 @@ Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.util;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.date;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.ui;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
