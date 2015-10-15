@@ -113,9 +113,6 @@
 
 
   <target name="init-jdk" depends="init-library">
-    <init-jdk version="5"/>
-	<init-jdk version="6"/>
-	<init-jdk version="7"/>
 	<init-jdk version="8"/>
   </target>
 
@@ -405,9 +402,6 @@
         <arg value="-DindividualSourceBundles=true"/>
         <arg value="-DallowBinaryCycles=true" />
         <arg value="-DcompilerArg=${pde.build.compiler.arg}"/>
-		<arg value="-DJ2SE-1.5=${java.5.system.classpath}"/>
-		<arg value="-DJavaSE-1.6=${java.6.system.classpath}"/>
-        <arg value="-DJavaSE-1.7=${java.7.system.classpath}"/>
         <arg value="-DJavaSE-1.8=${java.8.system.classpath}"/>
         <arg value="-DjavacFailOnError=true"/>
         <arg value="-DjavacVerbose=${javacVerbose}"/>

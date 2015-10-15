@@ -115,6 +115,12 @@
           </copy>
             
           <!-- Stage 2 -->
+          
+          <echo message="Performing source code verification..."/>
+          
+          <verify-bundle-required-env source="${build.dir}/staging"/>
+            
+          <!-- Stage 3 -->
             
           <delete dir="${build.dir}/packaged_jars" quiet="true"/>
           <mkdir dir="${build.dir}/packaged_jars/plugins"/>
@@ -125,7 +131,7 @@
             
           <p2.publish.FeaturesAndBundles location="${build.dir}/packaged_jars"/>
             
-          <!-- Stage 3 -->
+          <!-- Stage 4 -->
 
           <with-target-platform configuration="${configuration.recommended}">
             <pde-build build.id="${DSTAMP}" feature="org.eclipse.datatools" eclipse="${.target.platform}" root.dir="${build.dir}/staging"/>
@@ -145,13 +151,13 @@
 
           <zip-dirs source.dir="${build.dir}/repository/features" suffix="jar"/>
 
-          <!-- Stage 4 -->
+          <!-- Stage 5 -->
           
           <echo message="Conditioning repository archives..."/>
           
           <condition-jars folder="${build.dir}/repository"/>
 
-          <!-- Stage 5 -->
+          <!-- Stage 6 -->
             
           <property-from-set property=".dtp.feature">
             <fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools.connectivity.feature_*.jar"/>
@@ -180,13 +186,13 @@
             </then>
           </if>
             
-          <!-- Stage 6 -->
+          <!-- Stage 7 -->
           
           <echo message="Packing repository archives..."/>
           
           <pack-jars folder="${build.dir}/repository"/>
 
-          <!-- Stage 7 -->
+          <!-- Stage 8 -->
 
           <echo message="Packaging the repository..."/>
 
@@ -226,6 +232,51 @@
     </sequential>
   </macrodef>
   
+
+  <macrodef name="verify-bundle-required-env">
+    <attribute name="source"/>
+    <sequential>
+      <var name=".verify.bundle.required.env.failed" unset="true"/>
+      <for param="file">
+        <path>
+          <fileset dir="@{source}">
+            <include name="**/MANIFEST.MF"/>
+          </fileset>
+        </path>
+        <sequential>
+          <var name=".file.content" unset="true"/>
+          <loadfile property=".file.content" srcfile="@{file}"/>
+          <if>
+            <and>
+              <contains string="${.file.content}" substring="Bundle-SymbolicName" casesensitive="false"/>
+              <not><contains string="${.file.content}" substring="Bundle-RequiredExecutionEnvironment: JavaSE-1.8" casesensitive="false"/></not>
+            </and>
+            <then>
+              <var name=".file.relative" unset="true"/>
+              <pathconvert property=".file.relative">
+                <path location="@{file}"/>
+                <map from="@{source}\" to=""/>
+                <map from="@{source}/" to=""/>
+                <map from="@{source}" to=""/>
+              </pathconvert>
+              <echo message="Missing Bundle-RequiredExecutionEnvironment: ${.file.relative}"/>
+              <var name=".verify.bundle.required.env.failed" value="true"/>
+            </then>
+          </if>
+        </sequential>
+      </for>
+      <if>
+        <istrue value="${.verify.bundle.required.env.failed}"/>
+        <then>
+          <fail message="Found one or more bundles with missing Bundle-RequiredExecutionEnvironment."/>
+        </then>
+      </if>
+      <var name=".file.content" unset="true"/>
+      <var name=".file.relative" unset="true"/>
+      <var name=".verify.bundle.required.env.failed" unset="true"/>
+    </sequential>
+  </macrodef>
+
 
   <!--
     *************************************************************************************************
