@@ -19,5 +19,5 @@ Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw,
  org.eclipse.datatools.enablement.ibm.db2.luw.containment,
  org.eclipse.datatools.enablement.ibm.db2.luw.model
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWPluginActivator

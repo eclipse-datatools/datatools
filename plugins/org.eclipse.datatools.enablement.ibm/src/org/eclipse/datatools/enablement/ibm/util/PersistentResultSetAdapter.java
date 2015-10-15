@@ -341,6 +341,12 @@ public abstract class PersistentResultSetAdapter implements ResultSet
 		return getCurrentValue( columnIndex );
 	}
 
+	@Override
+	public <T> T getObject( final int columnIndex, final Class<T> type ) throws SQLException
+	{
+		return type.cast( getCurrentValue( columnIndex ) );
+	}
+	
 	public Object getObject( int columnIndex, Map<String, Class<?>> map ) throws SQLException
 	{
 		throw new UnsupportedOperationException();
@@ -1041,6 +1047,11 @@ public abstract class PersistentResultSetAdapter implements ResultSet
 	{
 		int index = findColumn( columnName );
 		return getObject( index );
+	}
+
+	public <T> T getObject( final String columnName, final Class<T> type ) throws SQLException
+	{
+		return type.cast( getObject( columnName ) );
 	}
 
 	public Object getObject( String columnName, Map<String, Class<?>> map ) throws SQLException
