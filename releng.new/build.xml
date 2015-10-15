@@ -146,7 +146,7 @@
           
           <for param="jar">
             <path>
-              <fileset dir="${build.dir}/repository" includes="**/*.jar"/>
+              <fileset dir="${build.dir}/repository" includes="**/org.eclipse.datatools.*.jar"/>
             </path>
             <sequential>
               <condition jar="@{jar}"/>
