@@ -147,8 +147,55 @@
           </delete>
 
           <zip-dirs source.dir="${build.dir}/repository/features" suffix="jar"/>
-
+          
           <!-- Stage 5 -->
+
+          <echo message="Setting Require-Bundle version constraints..."/>
+
+          <mkdir dir="${build.dir}/repository/temp"/>
+
+          <expand-all source.dir="${build.dir}/repository/plugins" dest.dir="${build.dir}/repository/temp" suffix="jar">
+            <delete file="@{archive.file}"/>
+          </expand-all>
+
+          <with-target-platform configuration="${configuration.min}">
+            <create-inventory dest="${build.dir}/repository/temp/min-platform-inventory.txt">
+              <plugins>
+                <pathelement location="${.target.platform}/plugins"/>
+              </plugins>
+            </create-inventory>
+          </with-target-platform>
+
+          <with-target-platform configuration="${configuration.max}">
+            <create-inventory dest="${build.dir}/repository/temp/max-platform-inventory.txt">
+              <plugins>
+                <pathelement location="${.target.platform}/plugins"/>
+              </plugins>
+            </create-inventory>
+          </with-target-platform>
+
+          <set-bundle-version-constraints
+            minPlatformInventory="${build.dir}/repository/temp/min-platform-inventory.txt"
+            targetPlatformInventory="${build.dir}/repository/temp/max-platform-inventory.txt"
+            pluginsDirectory="${build.dir}/repository/temp">
+            <exclude id=".*\.source"/>
+            <exclude id="javax\..*"/>
+            <exclude id="net\.sourceforge\..*"/>
+            <exclude id="org\.apache\..*"/>
+            <rule bundle="*" expr="[M1.M2.M3,T1+1.0.0)"/>
+          </set-bundle-version-constraints>
+
+          <!-- Stage 6 -->
+
+          <echo message="Setting versions of Export-Package entries..."/>
+
+          <set-export-package-version bundles="${build.dir}/repository/temp"/>
+            
+          <zip-dirs source.dir="${build.dir}/repository/temp" dest.dir="${build.dir}/repository/plugins" suffix="jar"/>
+
+          <delete dir="${build.dir}/repository/temp"/>
+
+          <!-- Stage 7 -->
           
           <for param="jar">
             <path>
@@ -161,7 +208,7 @@
             </sequential>
           </for>
 
-          <!-- Stage 6 -->
+          <!-- Stage 8 -->
 
           <echo message="Packaging the repository..."/>
 
