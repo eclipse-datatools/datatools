@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw;singleton:=true
-Bundle-Version: 1.0.3.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.enablement.ibm;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.enablement.ibm.db2;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.modelbase.sql;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.emf.ecore.change;bundle-version="[2.7.0,3.0.0)"
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.enablement.ibm,
+ org.eclipse.datatools.enablement.ibm.db2,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.emf.ecore.change
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw,
  org.eclipse.datatools.enablement.ibm.db2.internal.luw,
