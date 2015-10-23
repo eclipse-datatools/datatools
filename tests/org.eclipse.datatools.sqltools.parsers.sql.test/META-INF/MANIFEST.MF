@@ -9,9 +9,9 @@ Bundle-Localization: plugin
 Export-Package: 
  org.eclipse.datatools.sqltools.parsers.sql.test
 Require-Bundle: 
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.junit;bundle-version="[3.8.0,4.0.0)",
- org.eclipse.datatools.sqltools.parsers.sql;bundle-version="[0.9.0,1.5.0)",
- org.eclipse.datatools.sqltools.parsers.sql.query;bundle-version="[0.9.0,1.5.0)"
+ org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.datatools.sqltools.parsers.sql,
+ org.eclipse.datatools.sqltools.parsers.sql.query
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
