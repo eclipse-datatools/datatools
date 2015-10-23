@@ -2,18 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa;singleton:=true
-Bundle-Version: 1.0.2.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin
 Bundle-Localization: plugin
 Bundle-Vendor: %Plugin.providerName
 Require-Bundle: 
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.enablement.sybase.asa.models;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.enablement.sybase;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.sqltools.editor.core;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.enablement.sybase.asa.models,
+ org.eclipse.datatools.enablement.sybase,
+ org.eclipse.datatools.sqltools.editor.core
 Import-Package: com.ibm.icu.text;version="3.6.1",
  com.ibm.icu.util;version="3.6.1"
 Export-Package: org.eclipse.datatools.enablement.sybase.asa,
