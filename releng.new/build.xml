@@ -162,7 +162,19 @@
           </for>
 
           <!-- Stage 6 -->
+
+          <echo message="Packaging the repository..."/>
+
+          <property-from-set property=".dtp.feature">
+            <fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools.connectivity.feature_*.jar"/>
+          </property-from-set>
+
+          <var name="dtp.version" unset="true"/>
+          <propertyregex property="dtp.version" input="${.dtp.feature}" regexp=".*_([0-9]*.[0-9]*.[0-9]*.[0-9]*).jar" select="\1"/>
             
+          <var name="dtp.version.no.qualifier" unset="true"/>
+          <propertyregex property="dtp.version.no.qualifier" input="${dtp.version}" regexp="([0-9]*.[0-9]*.[0-9]*).[0-9]*" select="\1"/>
+
           <copy file="${build.dir}/staging/plugins/org.eclipse.datatools.releng.builder/extras/site.xml" tofile="${build.dir}/repository/site.xml"/>
 
           <replace file="${build.dir}/repository/site.xml">
