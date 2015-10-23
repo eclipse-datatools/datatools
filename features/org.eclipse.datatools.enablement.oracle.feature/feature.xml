@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.oracle.feature"
       label="%featureName"
-      version="1.12.1.qualifier"
+      version="2.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.finfo"
       image="eclipse_update_120.jpg">
@@ -25,9 +25,9 @@
    </url>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.12.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.12.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.12.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="2" match="compatible"/>
    </requires>
 
    <plugin
