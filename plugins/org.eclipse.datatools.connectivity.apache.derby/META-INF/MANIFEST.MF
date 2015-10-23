@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.apache.derby;singleton:=true
-Bundle-Version: 1.0.103.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.apache.internal.derby.DerbyPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -12,17 +12,17 @@ Export-Package: org.eclipse.datatools.connectivity.apache.internal.derby,
  org.eclipse.datatools.connectivity.apache.internal.derby.containment,
  org.eclipse.datatools.connectivity.apache.internal.derby.ddl,
  org.eclipse.datatools.connectivity.apache.internal.derby.driver
-Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.2.0,3.0.0)",
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[0.9.0,1.5.0)",
- org.eclipse.datatools.modelbase.sql;bundle-version="[0.9.0,1.5.0)",
- org.eclipse.datatools.connectivity.sqm.core;bundle-version="[0.9.1,1.5.0)",
- org.eclipse.datatools.modelbase.derby;bundle-version="[0.9.0,1.5.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.2.2,2.0.0)"
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.modelbase.derby,
+ org.eclipse.datatools.connectivity
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: com.ibm.icu.text;version="3.6.1",
- com.ibm.icu.util;version="3.6.1"
+Import-Package: com.ibm.icu.text,
+ com.ibm.icu.util
 

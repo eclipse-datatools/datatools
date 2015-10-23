@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui; singleton:=true
-Bundle-Version: 3.2.9.qualifier
+Bundle-Version: 4.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -14,13 +14,13 @@ Export-Package: org.eclipse.datatools.connectivity.oda.design.internal.ui,
  org.eclipse.datatools.connectivity.oda.design.ui.pages.impl,
  org.eclipse.datatools.connectivity.oda.design.ui.profile.db.wizards,
  org.eclipse.datatools.connectivity.oda.design.ui.wizards
-Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.ui;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[1.1.6,2.0.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.oda;bundle-version="[3.3.3,4.0.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.oda.profile;bundle-version="[3.2.7,4.0.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.oda.design;bundle-version="[3.3.4,4.0.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.2.5,4.0.0)",
- org.eclipse.ui.navigator;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.datatools.help;bundle-version="[1.5.0,2.0.0)";visibility:=reexport
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.datatools.connectivity.ui;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda.profile;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda.design;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda.consumer,
+ org.eclipse.ui.navigator,
+ org.eclipse.datatools.help;visibility:=reexport
 Bundle-ActivationPolicy: lazy

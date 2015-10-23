@@ -2,23 +2,23 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse; singleton:=true
-Bundle-Version: 1.1.5.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.ui.dse.DSEPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.5.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.ui;bundle-version="[1.1.1,1.5.0)";visibility:=reexport,
- org.eclipse.ui.views.properties.tabbed;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ltk.core.refactoring;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.help;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.help;bundle-version="[0.9.1,2.0.0)",
- org.eclipse.help.base;bundle-version="[3.2.0,5.0.0)",
- org.eclipse.ui.navigator.resources;bundle-version="[3.2.0,4.0.0)"
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.datatools.connectivity;visibility:=reexport,
+ org.eclipse.datatools.connectivity.ui;visibility:=reexport,
+ org.eclipse.ui.views.properties.tabbed,
+ org.eclipse.ui.navigator,
+ org.eclipse.ltk.core.refactoring,
+ org.eclipse.help,
+ org.eclipse.datatools.help,
+ org.eclipse.help.base,
+ org.eclipse.ui.navigator.resources
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.connectivity.ui.dse,
@@ -28,5 +28,5 @@ Export-Package: org.eclipse.datatools.connectivity.ui.dse,
  org.eclipse.datatools.connectivity.ui.dse.dnd,
  org.eclipse.datatools.connectivity.ui.dse.views
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: com.ibm.icu.text;version="3.6.1",
- com.ibm.icu.util;version="3.6.1"
+Import-Package: com.ibm.icu.text,
+ com.ibm.icu.util
