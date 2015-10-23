@@ -2,18 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws.ui; singleton:=true
-Bundle-Version: 1.2.6.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.ui.Activator
 Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="[3.2.2,4.0.0)",
- org.eclipse.datatools.enablement.oda.ws;bundle-version="[1.2.1,2.0.0)",
- org.eclipse.datatools.enablement.oda.xml.ui;bundle-version="[1.2.0,2.0.0)",
- javax.wsdl;bundle-version="[1.5.0,1.6.0)",
- org.apache.xerces;bundle-version="[2.8.0,3.0.0)";resolution:=optional,
- org.eclipse.jface.text;bundle-version="[3.2.0,4.0.0)"
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity.oda.design.ui,
+ org.eclipse.datatools.enablement.oda.ws,
+ org.eclipse.datatools.enablement.oda.xml.ui,
+ javax.wsdl,
+ org.apache.xerces;resolution:=optional,
+ org.eclipse.jface.text
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
