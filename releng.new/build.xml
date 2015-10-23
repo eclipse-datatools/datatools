@@ -112,6 +112,12 @@
           </copy>
             
           <!-- Stage 2 -->
+          
+          <echo message="Performing source code verification..."/>
+          
+          <verify-bundle-required-env source="${build.dir}/staging"/>
+            
+          <!-- Stage 3 -->
             
           <delete dir="${build.dir}/packaged_jars" quiet="true"/>
           <mkdir dir="${build.dir}/packaged_jars/plugins"/>
@@ -122,7 +128,7 @@
             
           <p2.publish.FeaturesAndBundles location="${build.dir}/packaged_jars"/>
             
-          <!-- Stage 3 -->
+          <!-- Stage 4 -->
 
           <with-target-platform configuration="${configuration.recommended}">
             <pde-build build.id="${DSTAMP}" feature="org.eclipse.datatools" eclipse="${.target.platform}" root.dir="${build.dir}/staging"/>
@@ -142,7 +148,7 @@
 
           <zip-dirs source.dir="${build.dir}/repository/features" suffix="jar"/>
 
-          <!-- Stage 4 -->
+          <!-- Stage 5 -->
           
           <for param="jar">
             <path>
@@ -155,20 +161,8 @@
             </sequential>
           </for>
 
-          <!-- Stage 5 -->
-
-          <echo message="Packaging the repository..."/>
-
-          <property-from-set property=".dtp.feature">
-            <fileset dir="${build.dir}/repository/features" includes="org.eclipse.datatools.connectivity.feature_*.jar"/>
-          </property-from-set>
-
-          <var name="dtp.version" unset="true"/>
-          <propertyregex property="dtp.version" input="${.dtp.feature}" regexp=".*_([0-9]*.[0-9]*.[0-9]*.[0-9]*).jar" select="\1"/>
+          <!-- Stage 6 -->
             
-          <var name="dtp.version.no.qualifier" unset="true"/>
-          <propertyregex property="dtp.version.no.qualifier" input="${dtp.version}" regexp="([0-9]*.[0-9]*.[0-9]*).[0-9]*" select="\1"/>
-
           <copy file="${build.dir}/staging/plugins/org.eclipse.datatools.releng.builder/extras/site.xml" tofile="${build.dir}/repository/site.xml"/>
 
           <replace file="${build.dir}/repository/site.xml">
@@ -205,6 +199,51 @@
     </sequential>
   </macrodef>
   
+
+  <macrodef name="verify-bundle-required-env">
+    <attribute name="source"/>
+    <sequential>
+      <var name=".verify.bundle.required.env.failed" unset="true"/>
+      <for param="file">
+        <path>
+          <fileset dir="@{source}">
+            <include name="**/MANIFEST.MF"/>
+          </fileset>
+        </path>
+        <sequential>
+          <var name=".file.content" unset="true"/>
+          <loadfile property=".file.content" srcfile="@{file}"/>
+          <if>
+            <and>
+              <contains string="${.file.content}" substring="Bundle-SymbolicName" casesensitive="false"/>
+              <not><contains string="${.file.content}" substring="Bundle-RequiredExecutionEnvironment: JavaSE-1.8" casesensitive="false"/></not>
+            </and>
+            <then>
+              <var name=".file.relative" unset="true"/>
+              <pathconvert property=".file.relative">
+                <path location="@{file}"/>
+                <map from="@{source}\" to=""/>
+                <map from="@{source}/" to=""/>
+                <map from="@{source}" to=""/>
+              </pathconvert>
+              <echo message="Missing Bundle-RequiredExecutionEnvironment: ${.file.relative}"/>
+              <var name=".verify.bundle.required.env.failed" value="true"/>
+            </then>
+          </if>
+        </sequential>
+      </for>
+      <if>
+        <istrue value="${.verify.bundle.required.env.failed}"/>
+        <then>
+          <fail message="Found one or more bundles with missing Bundle-RequiredExecutionEnvironment."/>
+        </then>
+      </if>
+      <var name=".file.content" unset="true"/>
+      <var name=".file.relative" unset="true"/>
+      <var name=".verify.bundle.required.env.failed" unset="true"/>
+    </sequential>
+  </macrodef>
+
 
   <!--
     *************************************************************************************************
