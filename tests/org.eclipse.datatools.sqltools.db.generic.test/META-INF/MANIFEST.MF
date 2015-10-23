@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.db.generic,
  org.eclipse.datatools.sqltools.sql,
  org.junit,
- org.eclipse.jface.text;bundle-version="3.4.1"
+ org.eclipse.jface.text
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: genericdbtest.jar
