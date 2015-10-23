@@ -33,11 +33,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%featureUpdateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-      <discovery label="%featureDiscoverySiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-   </url>
-
    <plugin
          id="org.eclipse.datatools.common.doc.user"
          download-size="0"

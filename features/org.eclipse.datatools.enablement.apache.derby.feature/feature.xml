@@ -19,11 +19,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-   </url>
-
    <includes
          id="org.eclipse.datatools.enablement.jdbc.feature"
          version="0.0.0"/>

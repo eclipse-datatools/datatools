@@ -19,11 +19,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/datatools/updates/1.12"/>
-   </url>
-
    <requires>
       <import feature="org.eclipse.datatools.connectivity.feature" version="2" match="compatible"/>
    </requires>
