@@ -189,7 +189,12 @@
 
           <echo message="Setting versions of Export-Package entries..."/>
 
-          <set-export-package-version bundles="${build.dir}/repository/temp"/>
+          <set-export-package-version bundles="${build.dir}/repository/temp">
+            <exclude id=".*\.source"/>
+            <exclude id="javax\..*"/>
+            <exclude id="net\.sourceforge\..*"/>
+            <exclude id="org\.apache\..*"/>
+          </set-export-package-version>
             
           <zip-dirs source.dir="${build.dir}/repository/temp" dest.dir="${build.dir}/repository/plugins" suffix="jar"/>
 

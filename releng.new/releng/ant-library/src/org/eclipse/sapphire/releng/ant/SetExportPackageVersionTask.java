@@ -13,6 +13,8 @@ package org.eclipse.sapphire.releng.ant;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.apache.tools.ant.BuildException;
 
@@ -26,10 +28,50 @@ public final class SetExportPackageVersionTask extends AbstractTask
     private static final String PROP_EXPORT_PACKAGE = "Export-Package";
     
     private File bundlesLocation = null;
+    private final List<ExcludeEntry> excludes = new ArrayList<ExcludeEntry>();
     
     public void setBundles( final File bundlesLocation )
     {
         this.bundlesLocation = bundlesLocation;
+    }
+    
+    public ExcludeEntry createExclude()
+    {
+        final ExcludeEntry exclude = new ExcludeEntry();
+        this.excludes.add( exclude );
+        return exclude;
+    }
+    
+    private boolean isExcluded( final String id )
+    {
+        for( ExcludeEntry entry : this.excludes )
+        {
+            final String pattern = entry.getId();
+            
+            if( pattern != null && id.matches( pattern ) )
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private boolean isExcluded( final File bundle )
+    {
+        try
+        {
+            return isExcluded( ( new BundleInfo( bundle ) ).getId() );
+        }
+        catch( Exception e )
+        {
+             if( "true".equals( System.getProperty( "debug" ) ) )
+             {
+                e.printStackTrace();
+             }
+        }
+        
+        return true;
     }
     
     @Override
@@ -46,7 +88,7 @@ public final class SetExportPackageVersionTask extends AbstractTask
             {
                 for( File location : this.bundlesLocation.listFiles() )
                 {
-                    if( BundleInfo.isValidBundle( location ) )
+                    if( BundleInfo.isValidBundle( location ) && ! isExcluded( location ) )
                     {
                         final String originalExportPackage = ManifestUtil.readManifestEntry( location, PROP_EXPORT_PACKAGE );
                         
@@ -92,6 +134,21 @@ public final class SetExportPackageVersionTask extends AbstractTask
         catch( IOException e )
         {
             throw new BuildException( e );
+        }
+    }
+    
+    public static final class ExcludeEntry
+    {
+        private String id;
+        
+        public String getId()
+        {
+            return this.id;
+        }
+        
+        public void setId( final String id )
+        {
+            this.id = id;
         }
     }
     
