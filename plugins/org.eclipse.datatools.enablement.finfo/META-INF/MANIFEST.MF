@@ -5,5 +5,5 @@ Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.datatools.enablement.finfo; singleton:=true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 1.6.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
