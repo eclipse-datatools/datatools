@@ -20,7 +20,7 @@
 
    <requires>
       <import feature="org.eclipse.draw2d" version="3.4.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="1.13.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

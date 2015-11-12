@@ -20,9 +20,9 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="2" match="compatible"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="2" match="compatible"/>
-      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.13.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.13.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.13.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

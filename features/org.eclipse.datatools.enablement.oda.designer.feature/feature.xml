@@ -20,8 +20,8 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.datatools.connectivity.oda.designer.feature" version="2" match="compatible"/>
-      <import feature="org.eclipse.datatools.enablement.oda.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.connectivity.oda.designer.feature" version="1.13.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.enablement.oda.feature" version="1.13.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

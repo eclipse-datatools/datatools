@@ -35,7 +35,7 @@
          optional="true"/>
 
    <requires>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="2" match="compatible"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.13.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
