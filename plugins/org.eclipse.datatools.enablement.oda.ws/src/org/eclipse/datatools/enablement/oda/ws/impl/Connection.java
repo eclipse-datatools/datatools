@@ -16,6 +16,7 @@ package org.eclipse.datatools.enablement.oda.ws.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -95,13 +96,20 @@ public class Connection implements IConnection
 		pingURL( connProperties.getProperty( Constants.WSDL_URI ) );
 	}
 
-	private void pingURL( String spec ) throws MalformedURLException,
-			IOException
-	{
-		if ( !WSUtil.isNull( spec ) )
-			if ( !new File( spec ).exists( ) )
-				new URL( spec ).openStream( );
-	}
+    private void pingURL( String spec ) throws MalformedURLException,
+            IOException
+    {
+        if ( !WSUtil.isNull( spec ) )
+        {
+            if ( !new File( spec ).exists( ) )
+            {
+                InputStream stream = new URL( spec ).openStream( );
+                if (stream != null) {
+                    stream.close( );
+                }
+            }
+        }
+    }
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java.lang.Object)
@@ -115,15 +123,15 @@ public class Connection implements IConnection
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#close()
 	 */
-	public void close( ) throws OdaException
-	{
-		m_isOpen = false;
-		
-		if ( isCustom )
-			java2SOAPManager = null;
-		else
-			rawMessageSender = null;
-	}
+    public void close( ) throws OdaException
+    {
+        m_isOpen = false;
+
+        if ( isCustom )
+            java2SOAPManager = null;
+        else
+            rawMessageSender = null;
+    }
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#isOpen()
