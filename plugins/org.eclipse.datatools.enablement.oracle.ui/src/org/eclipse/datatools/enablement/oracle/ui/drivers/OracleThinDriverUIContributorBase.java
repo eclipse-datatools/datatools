@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.enablement.oracle.ui.drivers;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -114,7 +116,13 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
 
     private Label databaseLabel;
 
+    protected Button svcBtn;
+    protected Button sidBtn;
+    protected boolean isUsingService;
+
     protected Text databaseText;
+    private Text serviceText;
+    private Text sidText;
 
     private Label hostLabel;
 
@@ -155,8 +163,13 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
     public boolean determineContributorCompletion() {
         boolean isComplete = true;
         if (databaseText.getText().trim().length() < 1) {
-            parentPage.setErrorMessage(Messages
-                    .getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_")); //$NON-NLS-1$
+        	if (!isDialogUsingService()) {
+	            parentPage.setErrorMessage(Messages
+	                    .getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_")); //$NON-NLS-1$
+        	} else {
+                parentPage.setErrorMessage(Messages
+                        .getString("CUI_NEWCW_VALIDATE_SERVICE_REQ_UI_")); //$NON-NLS-1$
+        	}
             isComplete = false;
         } else if (hostText.getText().trim().length() < 1) {
             parentPage.setErrorMessage(Messages
@@ -219,13 +232,68 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
             gd.verticalAlignment = GridData.BEGINNING;
             databaseLabel.setLayoutData(gd);
 
+			svcBtn = new Button( baseComposite, SWT.RADIO );
+			svcBtn.setText( "Service Name" ); // Carl NON-NLS
+			svcBtn.setSelection(true);
+            gd = new GridData();
+            gd.horizontalAlignment = GridData.FILL;
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.horizontalSpan = 1;
+    		svcBtn.setLayoutData(gd);
+
+            serviceText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
+            gd = new GridData();
+            gd.horizontalAlignment = GridData.FILL;
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.horizontalSpan = 1;
+            gd.grabExcessHorizontalSpace = true;
+    		serviceText.setLayoutData(gd);
+
             databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
             gd = new GridData();
-            gd.verticalAlignment = GridData.BEGINNING;
             gd.horizontalAlignment = GridData.FILL;
-            gd.horizontalSpan = 2;
-            databaseText.setLayoutData(gd);
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.horizontalSpan = 1;
+            gd.grabExcessHorizontalSpace = false;
+            gd.widthHint = 0;
+    		databaseText.setLayoutData(gd);
+    		databaseText.setEnabled(false);
+    		databaseText.setVisible(false);
 
+
+			sidBtn = new Button( baseComposite, SWT.RADIO );
+			sidBtn.setText( "SID" );
+            gd = new GridData();
+            gd.horizontalAlignment = GridData.FILL;
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.horizontalSpan = 1;
+    		sidBtn.setLayoutData(gd);
+
+            sidText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
+            gd = new GridData();
+            gd.horizontalAlignment = GridData.FILL;
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.horizontalSpan = 1;
+            gd.grabExcessHorizontalSpace = true;
+    		sidText.setLayoutData(gd);
+    		sidText.setEnabled(false);
+
+            urlLabel = new Label(baseComposite, SWT.NONE);
+            urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
+            gd = new GridData();
+            gd.verticalAlignment = GridData.BEGINNING;
+            urlLabel.setLayoutData(gd);
+
+            urlText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER
+                    | SWT.READ_ONLY);
+            gd = new GridData();
+            gd.horizontalAlignment = GridData.FILL;
+            gd.verticalAlignment = GridData.BEGINNING;
+            gd.grabExcessHorizontalSpace = true;
+            gd.horizontalSpan = 2;
+            urlText.setLayoutData(gd);
+
+            
             hostLabel = new Label(baseComposite, SWT.NONE);
             hostLabel.setText(CUI_NEWCW_HOST_LBL_UI_);
             gd = new GridData();
@@ -283,29 +351,16 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
             gd.horizontalSpan = 2;
             passwordText.setLayoutData(gd);
 
+            Label label = new Label(baseComposite, SWT.NONE);
+            
             this.savePasswordButton = new Button(baseComposite, SWT.CHECK);
             this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_);
             gd = new GridData();
             gd.horizontalAlignment = GridData.FILL;
             gd.verticalAlignment = GridData.BEGINNING;
-            gd.horizontalSpan = 3;
+            gd.horizontalSpan = 2;
             gd.grabExcessHorizontalSpace = true;
             savePasswordButton.setLayoutData(gd);
-
-            urlLabel = new Label(baseComposite, SWT.NONE);
-            urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
-            gd = new GridData();
-            gd.verticalAlignment = GridData.BEGINNING;
-            urlLabel.setLayoutData(gd);
-
-            urlText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER
-                    | SWT.READ_ONLY);
-            gd = new GridData();
-            gd.horizontalAlignment = GridData.FILL;
-            gd.verticalAlignment = GridData.BEGINNING;
-            gd.grabExcessHorizontalSpace = true;
-            gd.horizontalSpan = 2;
-            urlText.setLayoutData(gd);
 
             catalogLabel = new Label(baseComposite, SWT.NONE);
             catalogLabel.setText(CATALOG_LBL_UI_);
@@ -345,6 +400,8 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
     }
 
     private void addListeners() {
+        serviceText.addListener(SWT.Modify, this);
+        sidText.addListener(SWT.Modify, this);
         databaseText.addListener(SWT.Modify, this);
         hostText.addListener(SWT.Modify, this);
         portText.addListener(SWT.Modify, this);
@@ -352,9 +409,13 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
         passwordText.addListener(SWT.Modify, this);
         savePasswordButton.addListener(SWT.Selection, this);
         catalogCombo.addListener(SWT.Modify, this);
+        svcBtn.addListener(SWT.Selection, this);
+        sidBtn.addListener(SWT.Selection, this);
     }
 
     private void removeListeners() {
+        serviceText.removeListener(SWT.Modify, this);
+        sidText.removeListener(SWT.Modify, this);
         databaseText.removeListener(SWT.Modify, this);
         hostText.removeListener(SWT.Modify, this);
         portText.removeListener(SWT.Modify, this);
@@ -362,6 +423,8 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
         passwordText.removeListener(SWT.Modify, this);
         savePasswordButton.removeListener(SWT.Selection, this);
         catalogCombo.removeListener(SWT.Modify, this);
+        svcBtn.removeListener(SWT.Selection, this);
+        sidBtn.removeListener(SWT.Selection, this);
     }
 
     protected void updateURL() {
@@ -401,6 +464,12 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
         hostText.setText(url.getNode());
         portText.setText(url.getPort());
         databaseText.setText(url.getDatabaseName());
+
+        this.isUsingService = url.isUrlUsingService();
+		this.svcBtn.setSelection(this.isUsingService);
+		this.sidBtn.setSelection(!this.isUsingService);
+		serviceText.setText(this.isUsingService ? url.getDatabaseName() : ""); //NON-NLS-1$
+		sidText.setText(!this.isUsingService ? url.getDatabaseName() : ""); //NON-NLS-1$
 
         String username = this.properties
                 .getProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID);
@@ -458,6 +527,24 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
                 savePasswordButton.setSelection(!savePasswordButton.getSelection());
             }
         } else {
+        	if (event.widget == svcBtn) {
+        		serviceText.setEnabled(true);
+        		databaseText.setText(serviceText.getText());
+        		sidText.setEnabled(false);
+        		this.isUsingService = true;
+        	}
+        	else if (event.widget == sidBtn) {
+        		serviceText.setEnabled(false);
+        		databaseText.setText(sidText.getText());
+        		sidText.setEnabled(true);
+        		this.isUsingService = false;
+        	}
+        	else if (event.widget == sidText) {
+        		databaseText.setText(sidText.getText());
+        	}
+        	else if (event.widget == serviceText) {
+        		databaseText.setText(serviceText.getText());
+        	}
             updateURL();
             setConnectionInformation();
         }
@@ -526,11 +613,25 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
         return new OracleJDBCURL( node, port, sid );
     }
 
+	/**
+	 * @return the isDialogUsingService
+	 */
+	protected boolean isDialogUsingService() {
+		return this.isUsingService;
+	}
+
+	/**
+	 * @param isDialogUsingService the isDialogUsingService to set
+	 */
+	protected void setDialogUsingService(boolean isDialogUsingService) {
+		this.isUsingService = isDialogUsingService;
+	}
+
     /**
      * An Oracle JDBC URL handle that formats and parses a driver-specific JDBC conection URL.
      */
     protected class OracleJDBCURL {
-        protected String subprotocol = ""; //$NON-NLS-1$
+    	protected String subprotocol = ""; //$NON-NLS-1$
 
         protected String node = ""; //$NON-NLS-1$
 
@@ -539,8 +640,14 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
         protected String databaseName = ""; //$NON-NLS-1$
 
         protected String urlProperties = ""; //$NON-NLS-1$
-        
+
+        protected boolean isUrlUsingService = true;
+
         private static final String URL_SEPARATOR = ":"; //$NON-NLS-1$
+
+    	protected static final String URL_ATTRIBUTE_NAME_SERVICE = "ServiceName"; //$NON-NLS-1$
+
+    	protected static final String URL_ATTRIBUTE_NAME_SID = "SID"; //$NON-NLS-1$
 
         public OracleJDBCURL(String url) {
             parseURL(url);
@@ -625,6 +732,46 @@ public class OracleThinDriverUIContributorBase implements IDriverUIContributor, 
             } catch (Exception e) {
             }
         }
+
+		/**
+		 * @return the isUsingService
+		 */
+		protected boolean isUrlUsingService() {
+			return this.isUrlUsingService;
+		}
+
+		/**
+		 * @param isUsingService the isUsingService to set
+		 */
+		protected void setUrlUsingService(boolean isUsingService) {
+			this.isUrlUsingService = isUsingService;
+		}
+
+		protected void parseAttributes(String remainingURL) throws IOException {
+			StringReader reader = new StringReader(remainingURL);
+			Properties props = new Properties();
+			props.load(reader);
+			if (props.containsKey(URL_ATTRIBUTE_NAME_SERVICE))
+			{
+				this.databaseName = props.getProperty( URL_ATTRIBUTE_NAME_SERVICE );
+				props.remove( URL_ATTRIBUTE_NAME_SERVICE );
+				this.setUrlUsingService( true );
+			}
+			else if (props.containsKey(URL_ATTRIBUTE_NAME_SID))
+			{
+				this.databaseName = props.getProperty( URL_ATTRIBUTE_NAME_SID );
+				props.remove( URL_ATTRIBUTE_NAME_SID );
+				this.setUrlUsingService( false );
+			}
+
+			if ( !props.isEmpty() )
+			{
+				// Any database name has been removed (sid or servicename)
+				this.urlProperties = props.toString();
+			}
+		}
+
     }
 
 }
+
