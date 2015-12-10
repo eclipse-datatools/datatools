@@ -1283,7 +1283,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 		else if (sashForm.getOrientation() == SWT.VERTICAL){
 			stateInfo.setWidth(size.x);
-			if (sashForm.getSavedSizes() != null && sashForm.getSavedSizes().length >= iSashIndex){
+			if (sashForm.getSavedSizes() != null
+					&& sashForm.getSavedSizes().length > iSashIndex
+					&& sashForm.getSavedSizes()[iSashIndex] != null) {
 				stateInfo.setHeight(sashForm.getSavedSizes()[iSashIndex].y);
 			}
 			else {
@@ -1291,7 +1293,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			}
 		}
 		else if (sashForm.getOrientation() == SWT.HORIZONTAL){
-			if (sashForm.getSavedSizes() != null && sashForm.getSavedSizes().length >= iSashIndex){
+			if (sashForm.getSavedSizes() != null
+					&& sashForm.getSavedSizes().length > iSashIndex
+					&& sashForm.getSavedSizes()[iSashIndex] != null) {
 				stateInfo.setWidth(sashForm.getSavedSizes()[iSashIndex].x);
 			}
 			else {
