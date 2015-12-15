@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-	<extension
-         point="org.eclipse.datatools.connectivity.connectionProfile">
+    <extension point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard
             class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.NewSQLServerConnectionProfileWizard"
             icon="icons/new_db_element.gif"
@@ -11,8 +10,7 @@
             description = "%profile.sqlserver.wizard.description"
             profile="org.eclipse.datatools.enablement.msft.sqlserver.connectionProfile"/>
    </extension>
-   <extension
-         point="org.eclipse.ui.propertyPages">
+   <extension point="org.eclipse.ui.propertyPages">
       <page
             class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.SQLServerDBProfilePropertyPage"
             id="org.eclipse.datatools.enablement.msft.sqlserver.profileProperties"
@@ -23,8 +21,19 @@
                value="org.eclipse.datatools.enablement.msft.sqlserver.connectionProfile"/>
       </page>
    </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+   <extension point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverTemplate.password">
+      </propertyEditor>
       <propertyEditor
             customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
             driverPropertyID="org.eclipse.datatools.connectivity.db.password"
@@ -73,6 +82,22 @@
       </driverUIContributor>
    </extension>
 
+  <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2014DriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2014DriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+  <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2012DriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2012DriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
       <driverUIContributor
             class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2008DriverUIContributor"

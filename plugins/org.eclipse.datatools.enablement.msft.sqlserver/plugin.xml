@@ -31,6 +31,14 @@
 			name="%SQLSERVER_CATEGORY_NAME" />
 		<category
 			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.driverCategory"
+			id="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverCategory"
+			name="%2014_VERSION_CATEGORY_NAME" />
+		<category
+			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.driverCategory"
+			id="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverCategory"
+			name="%2012_VERSION_CATEGORY_NAME" />
+		<category
+			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.driverCategory"
 			id="org.eclipse.datatools.enablement.msft.sqlserver.2008.driverCategory"
 			name="%2008_VERSION_CATEGORY_NAME" />
 		<category
@@ -41,6 +49,70 @@
 			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.driverCategory"
 			id="org.eclipse.datatools.enablement.msft.sqlserver.2000.driverCategory"
 			name="%2000_VERSION_CATEGORY_NAME" />
+		<driverTemplate createDefault="false" emptyJarListIsOK="false"
+			id="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverTemplate"
+			jarList="sqljdbc.jar"
+			name="%org.eclipse.datatools.enablement.msft.sqlserver.2014.driverTemplate"
+			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverCategory"
+			valuesProvider="org.eclipse.datatools.enablement.msft.internal.sqlserver.driver.SQLServer2014DriverValuesProvider">
+			<properties>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.driverClass" name="%driverClass"
+					value="com.microsoft.sqlserver.jdbc.SQLServerDriver" required="true"
+					visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.vendor" name="%driverVendor"
+					value="SQL Server" required="true" visible="false" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.version" name="%driverVersion"
+					value="2014" required="true" visible="false" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.databaseName" name="%driverDBName"
+					value="pubs" required="true" visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.URL" name="%driverConnectionURL"
+					value="jdbc:sqlserver://localhost:1433;databaseName=pubs" required="true"
+					visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.username" name="%driverUID"
+					value="" required="false" visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.password" name="%driverPWD"
+					required="false" visible="true" />
+			</properties>
+		</driverTemplate>
+		<driverTemplate createDefault="false" emptyJarListIsOK="false"
+			id="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverTemplate"
+			jarList="sqljdbc.jar"
+			name="%org.eclipse.datatools.enablement.msft.sqlserver.2012.driverTemplate"
+			parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverCategory"
+			valuesProvider="org.eclipse.datatools.enablement.msft.internal.sqlserver.driver.SQLServer2012DriverValuesProvider">
+			<properties>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.driverClass" name="%driverClass"
+					value="com.microsoft.sqlserver.jdbc.SQLServerDriver" required="true"
+					visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.vendor" name="%driverVendor"
+					value="SQL Server" required="true" visible="false" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.version" name="%driverVersion"
+					value="2012" required="true" visible="false" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.databaseName" name="%driverDBName"
+					value="pubs" required="true" visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.URL" name="%driverConnectionURL"
+					value="jdbc:sqlserver://localhost:1433;databaseName=pubs" required="true"
+					visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.username" name="%driverUID"
+					value="" required="false" visible="true" />
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.password" name="%driverPWD"
+					required="false" visible="true" />
+			</properties>
+		</driverTemplate>
 		<driverTemplate createDefault="false" emptyJarListIsOK="false"
 			id="org.eclipse.datatools.enablement.msft.sqlserver.2008.driverTemplate"
 			jarList="sqljdbc.jar"
@@ -233,6 +305,16 @@
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005SchemaLoader"
 			eclass="org.eclipse.datatools.modelbase.sql.schema.Schema" 
 			product="SQL Server"
+			version="2014" />
+		<overrideLoader
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005SchemaLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.schema.Schema" 
+			product="SQL Server"
+			version="2012" />
+		<overrideLoader
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005SchemaLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.schema.Schema" 
+			product="SQL Server"
 			version="2008" />
 		<overrideLoader
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005SchemaLoader"
@@ -244,7 +326,17 @@
 			eclass="org.eclipse.datatools.modelbase.sql.schema.Schema" 
 			product="SQL Server"
 			version="2000" />
-			
+		
+		<overrideLoader
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005ColumnLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.tables.Column" 
+			product="SQL Server"
+			version="2014" />
+		<overrideLoader
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005ColumnLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.tables.Column" 
+			product="SQL Server"
+			version="2012" />	
 		<overrideLoader
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005ColumnLoader"
 			eclass="org.eclipse.datatools.modelbase.sql.tables.Column" 
@@ -260,7 +352,16 @@
 			eclass="org.eclipse.datatools.modelbase.sql.tables.Column" 
 			product="SQL Server"
 			version="2000" />
-			
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005RoutineLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
+			product="SQL Server"
+			version="2014" />
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005RoutineLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
+			product="SQL Server"
+			version="2012" />	
 		<overrideLoader 
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005RoutineLoader"
 			eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
@@ -276,7 +377,16 @@
 			eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
 			product="SQL Server"
 			version="2000" />
-			
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.tables.Table"
+			product="SQL Server"
+			version="2014" />
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.tables.Table"
+			product="SQL Server"
+			version="2012" />	
 		<overrideLoader 
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableLoader"
 			eclass="org.eclipse.datatools.modelbase.sql.tables.Table"
@@ -292,7 +402,17 @@
 			eclass="org.eclipse.datatools.modelbase.sql.tables.Table"
 			product="SQL Server"
 			version="2000" />
-			
+		
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableIndexLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.constraints.Index"
+			product="SQL Server"
+			version="2014" />
+		<overrideLoader 
+			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableIndexLoader"
+			eclass="org.eclipse.datatools.modelbase.sql.constraints.Index"
+			product="SQL Server"
+			version="2012" />	
 		<overrideLoader 
 			provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005TableIndexLoader"
 			eclass="org.eclipse.datatools.modelbase.sql.constraints.Index"
@@ -340,6 +460,16 @@
 			class="org.eclipse.datatools.enablement.msft.internal.sqlserver.ddl.SqlServerDdlGenerator"
 			product="SQL Server"
 			version="2008">
+		</generator>
+		<generator
+			class="org.eclipse.datatools.enablement.msft.internal.sqlserver.ddl.SqlServerDdlGenerator"
+			product="SQL Server"
+			version="2012">
+		</generator>
+		<generator
+			class="org.eclipse.datatools.enablement.msft.internal.sqlserver.ddl.SqlServerDdlGenerator"
+			product="SQL Server"
+			version="2014">
 		</generator>
 	</extension>
 	
@@ -506,6 +636,133 @@
                 name="%driverVersion"
                 required="true"
                 value="2008"
+                visible="false">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.databaseName"
+                name="%driverDBName"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.URL"
+                name="%driverConnectionURL"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.username"
+                name="%driverUID"
+                required="false"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.password"
+                name="%driverPWD"
+                required="false"
+                visible="true">
+          </property>
+       </properties>
+    </driverTemplate>
+ </extension>
+ 
+ <extension
+       point="org.eclipse.datatools.connectivity.driverExtension">
+    <driverTemplate
+          createDefault="false"
+          emptyJarListIsOK="false"
+          id="org.eclipse.datatools.enablement.msft.sqlserver.2012.other.driverTemplate"
+          name="%org.eclipse.datatools.enablement.msft.sqlserver.2012.other.driverTemplate"
+          parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.2012.driverCategory">
+       <properties>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.driverClass"
+                name="%driverClass"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.vendor"
+                name="%driverVendor"
+                required="true"
+                value="SQL Server"
+                visible="false">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.version"
+                name="%driverVersion"
+                required="true"
+                value="2012"
+                visible="false">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.databaseName"
+                name="%driverDBName"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.URL"
+                name="%driverConnectionURL"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.username"
+                name="%driverUID"
+                required="false"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.password"
+                name="%driverPWD"
+                required="false"
+                visible="true">
+          </property>
+       </properties>
+    </driverTemplate>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.driverExtension">
+    <driverTemplate
+          createDefault="false"
+          emptyJarListIsOK="false"
+          id="org.eclipse.datatools.enablement.msft.sqlserver.2014.other.driverTemplate"
+          name="%org.eclipse.datatools.enablement.msft.sqlserver.2014.other.driverTemplate"
+          parentCategory="org.eclipse.datatools.enablement.msft.sqlserver.2014.driverCategory">
+       <properties>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.driverClass"
+                name="%driverClass"
+                required="true"
+                visible="true">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.vendor"
+                name="%driverVendor"
+                required="true"
+                value="SQL Server"
+                visible="false">
+          </property>
+          <property
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.version"
+                name="%driverVersion"
+                required="true"
+                value="2014"
                 visible="false">
           </property>
           <property

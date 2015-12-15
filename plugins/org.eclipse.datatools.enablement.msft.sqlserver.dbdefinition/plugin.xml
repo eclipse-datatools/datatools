@@ -25,5 +25,19 @@
             versionDisplayString="%2008VersionString"
             file="runtime/vendors/SQL Server_2008/SQL Server_2008.xmi">
       </definition>
+      <definition
+            version="2012"
+            product="SQL Server"
+            productDisplayString="%2012ProductString"
+            versionDisplayString="%2012VersionString"
+            file="runtime/vendors/SQL Server_2012/SQL Server_2012.xmi">
+      </definition>
+      <definition
+            version="2014"
+            product="SQL Server"
+            productDisplayString="%2014ProductString"
+            versionDisplayString="%2014VersionString"
+            file="runtime/vendors/SQL Server_2014/SQL Server_2014.xmi">
+      </definition>
    </extension>
 </plugin>
