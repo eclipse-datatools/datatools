@@ -182,6 +182,7 @@
             <exclude id="javax\..*"/>
             <exclude id="net\.sourceforge\..*"/>
             <exclude id="org\.apache\..*"/>
+          	<exclude id="com\.ibm\.icu.*"/>
             <rule bundle="*" expr="[M1.M2.M3,T1+1.0.0)"/>
           </set-bundle-version-constraints>
 
