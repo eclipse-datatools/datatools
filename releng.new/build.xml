@@ -25,7 +25,7 @@
   <import file="releng/ant-library/library.xml"/>
   <import file="releng/tools/build.xml"/>
     
-  <echo message="Java Version: ${java.version}"/>
+  <echo message="Java version: ${java.version}"/>
   
 
   <target name="init" depends="init-library,build-sapphire-releng-tools,init-jdk">
