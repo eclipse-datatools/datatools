@@ -24,13 +24,6 @@
    </requires>
 
    <plugin
-         id="net.sourceforge.lpg.lpgjavaruntime"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.datatools.sqltools.parsers.sql.lexer"
          download-size="0"
          install-size="0"
