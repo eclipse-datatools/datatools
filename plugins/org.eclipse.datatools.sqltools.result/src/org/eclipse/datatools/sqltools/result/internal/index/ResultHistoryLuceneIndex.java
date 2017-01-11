@@ -19,8 +19,10 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
@@ -31,7 +33,6 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -124,12 +125,12 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                         {
                             _instances.add(instance);
                             Document doc = new Document();
-                            doc.add(new Field(FIELD_OPERATION, getCombinedDisplayString(instance), Field.Store.YES, Field.Index.ANALYZED));
-                            doc.add(new Field(FIELD_ACTION, OperationCommand.getActionString(instance
-                                    .getOperationCommand().getActionType()), Field.Store.YES, Field.Index.ANALYZED));
-                            doc.add(new Field(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName(), Field.Store.YES, Field.Index.ANALYZED));
-                            doc.add(new Field(FIELD_FREQ, Integer.toString(instance.getFrequency()), Field.Store.YES, Field.Index.ANALYZED));
-                            doc.add(new Field(FIELD_IDENTIFIER, Integer.toString(ID), Field.Store.YES, Field.Index.NOT_ANALYZED));
+                            doc.add(new TextField(FIELD_OPERATION, getCombinedDisplayString(instance), Field.Store.YES));
+                            doc.add(new TextField(FIELD_ACTION, OperationCommand.getActionString(instance
+                                    .getOperationCommand().getActionType()), Field.Store.YES));
+                            doc.add(new TextField(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName(), Field.Store.YES));
+                            doc.add(new TextField(FIELD_FREQ, Integer.toString(instance.getFrequency()), Field.Store.YES));
+                            doc.add(new StringField(FIELD_IDENTIFIER, Integer.toString(ID), Field.Store.YES));
                             _id2result.put(Integer.toString(ID), instance);
                             _result2id.put(instance, Integer.toString(ID));
                             ID++;
