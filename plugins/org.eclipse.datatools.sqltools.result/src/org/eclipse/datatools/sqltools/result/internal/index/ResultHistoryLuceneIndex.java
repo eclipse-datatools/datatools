@@ -1,13 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2017 Sybase and Other Contributors
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Sybase, Inc. - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.datatools.sqltools.result.internal.index;
 
 import java.io.IOException;
@@ -22,13 +20,14 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.Searcher;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
@@ -62,7 +61,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
     {
         _ramDir = new RAMDirectory();
         
-        _analyzer = new StandardAnalyzer(Version.LUCENE_CURRENT);
+        _analyzer = new StandardAnalyzer();
         _id2result = new HashMap();
         _result2id = new HashMap();
         _instances = new ArrayList();
@@ -70,7 +69,9 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         // Create the index
         try
         {
-            _writer = new IndexWriter(_ramDir, _analyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
+            IndexWriterConfig conf = new IndexWriterConfig(_analyzer);
+            conf.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
+            _writer = new IndexWriter(_ramDir, conf);
             _writer.close();
         }
         catch(IOException ioe)
@@ -109,7 +110,9 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 try
                 {
                     // Append new document to the index
-                    _writer = new IndexWriter(_ramDir, _analyzer, false, IndexWriter.MaxFieldLength.UNLIMITED);
+                    IndexWriterConfig conf = new IndexWriterConfig(_analyzer);
+                    conf.setOpenMode(IndexWriterConfig.OpenMode.APPEND);
+                    _writer = new IndexWriter(_ramDir, conf);
                     for (int i = 0; i < instances.length; i++)
                     {
                         IResultInstance instance = instances[i];
@@ -164,9 +167,11 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         {
             try
             {
-                IndexReader reader = IndexReader.open(_ramDir, false);
                 if(instances != null)
                 {
+                    IndexWriterConfig conf = new IndexWriterConfig(_analyzer);
+                    conf.setOpenMode(IndexWriterConfig.OpenMode.APPEND);
+                    _writer = new IndexWriter(_ramDir, conf);
                     IResultInstance instance = null;
                     for(int i=0;i<instances.length;i++)
                     {
@@ -181,7 +186,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                             {
                                 try
                                 {
-                                    reader.deleteDocuments(new Term(FIELD_IDENTIFIER, id));
+                                    _writer.deleteDocuments(new Term(FIELD_IDENTIFIER, id));
                                 }
                                 catch(IOException ioe)
                                 {
@@ -190,7 +195,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                             }
                         }
                     }
-                    reader.close();
+                    _writer.close();
                 }
             }
             catch(IOException ioe)
@@ -208,12 +213,13 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         }
         synchronized (this)
         {
-            QueryParser parser = new QueryParser(Version.LUCENE_CURRENT, FIELD_OPERATION, _analyzer);
+            QueryParser parser = new QueryParser(FIELD_OPERATION, _analyzer);
             try
             {
+                IndexReader reader = DirectoryReader.open(_ramDir);
                 Query query = parser.parse(expression);
-                Searcher searcher = new IndexSearcher(_ramDir, true);
-                TopDocs hits = searcher.search(query, searcher.maxDoc());
+                IndexSearcher searcher = new IndexSearcher(reader);
+                TopDocs hits = searcher.search(query, reader.maxDoc());
                 int count = hits.totalHits;
                 IResultInstance[] instances = new IResultInstance[count];
                 
@@ -223,6 +229,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                     Document doc = searcher.doc(docID);
                     instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
                 }
+                reader.close();
                 return instances;
             }
             catch(ParseException pe)

@@ -10,6 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.help,
  org.apache.lucene.core,
+ org.apache.lucene.analyzers-common,
+ org.apache.lucene.queryparser,
  org.eclipse.datatools.connectivity
 Import-Package: com.ibm.icu.text;version="3.6.1",
  com.ibm.icu.util;version="3.6.1"
