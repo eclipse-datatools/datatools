@@ -107,7 +107,7 @@
       </delete>
 
       <with-target name="${configuration.recommended}">
-        <for list="javax.wsdl,javax.xml,net.sourceforge.lpg.lpgjavaruntime,org.apache.xerces,org.apache.xml.resolver,org.apache.xml.serializer" param="bundle">
+        <for list="javax.wsdl,javax.xml,net.sourceforge.lpg.lpgjavaruntime,org.apache.xerces,org.apache.xml.resolver,org.apache.xml.serializer,org.apache.lucene.core,org.apache.lucene.analyzers-common,org.apache.lucene.queryparser" param="bundle">
           <sequential>
             <echo message="Mirroring @{bundle} bundle"/>
             <find-eclipse-bundle property=".bundle" eclipse="${.target}" bundle="@{bundle}"/>
