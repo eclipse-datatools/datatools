@@ -7,7 +7,7 @@ package org.eclipse.datatools.sqltools.common.core.tableviewer;
 
 import java.util.Vector;
 
-import org.eclipse.jface.util.ListenerList;
+import org.eclipse.core.runtime.ListenerList;
 
 /**
  * 
@@ -20,7 +20,7 @@ public abstract class AbstractTableData implements ITableData
     /** Vector for IRowData objects */
     protected Vector  _rows = new Vector();
 
-    protected ListenerList _listenerList = new ListenerList();
+    protected ListenerList<ITableDataChangeListener> _listenerList = new ListenerList<>();
     /**
      * Set IRowData objects.
      * Each member of rows is <code>IRowData</code> object.
@@ -42,10 +42,9 @@ public abstract class AbstractTableData implements ITableData
             ((RowData) row).setState(RowData.STATE_DELETED);
         }
 
-        Object[] listeners = _listenerList.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (ITableDataChangeListener listener : _listenerList)
         {
-            ((ITableDataChangeListener) listeners[i]).rowDeleted(row);
+            listener.rowDeleted(row);
         }
     }
 
@@ -55,10 +54,9 @@ public abstract class AbstractTableData implements ITableData
         IRowData row = new RowData(this, RowData.STATE_INSERTED, data);
         _rows.add(row);
 
-        Object[] listeners = _listenerList.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (ITableDataChangeListener listener : _listenerList)
         {
-            ((ITableDataChangeListener) listeners[i]).rowAdded(row);
+            listener.rowAdded(row);
         }
 
         return row;
@@ -67,10 +65,9 @@ public abstract class AbstractTableData implements ITableData
     public void insertRow(IRowData rowData, int row)
     {
         _rows.insertElementAt(rowData, row);
-        Object[] listeners = _listenerList.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (ITableDataChangeListener listener : _listenerList)
         {
-            ((ITableDataChangeListener) listeners[i]).rowAdded(rowData);
+            listener.rowAdded(rowData);
         }
     }
 
@@ -120,10 +117,9 @@ public abstract class AbstractTableData implements ITableData
 
     public void fireUpdated(IRowData row, int colIndex, Object oldVal, Object newVal)
     {
-        Object[] listeners = _listenerList.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (ITableDataChangeListener listener : _listenerList)
         {
-            ((ITableDataChangeListener) listeners[i]).rowDataUpdated(row, colIndex, oldVal, newVal);
+            listener.rowDataUpdated(row, colIndex, oldVal, newVal);
         }
     }
 

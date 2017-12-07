@@ -5,10 +5,10 @@
  */
 package org.eclipse.datatools.sqltools.common.ui.tableviewer;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.IRowData;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.ITableData;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorListener;
@@ -47,7 +47,7 @@ public class TableDataTableCursor extends TableCursor implements ISelectionProvi
 
     protected AccessibleTableViewer _tableViewer;
 
-    protected ListenerList          _selectionChangedListeners = new ListenerList();
+    protected ListenerList<ISelectionChangedListener>  _selectionChangedListeners = new ListenerList<>();
 
     public TableDataTableCursor(AccessibleTableViewer tableViewer)
     {
@@ -441,10 +441,8 @@ public class TableDataTableCursor extends TableCursor implements ISelectionProvi
 
     public void selectionChanged()
     {
-        Object[] listeners = _selectionChangedListeners.getListeners();
-        for (int i = 0; i < listeners.length; ++i)
+        for (final ISelectionChangedListener l : _selectionChangedListeners)
         {
-            final ISelectionChangedListener l = (ISelectionChangedListener) listeners[i];
             Platform.run(new SafeRunnable()
             {
                 public void run()
