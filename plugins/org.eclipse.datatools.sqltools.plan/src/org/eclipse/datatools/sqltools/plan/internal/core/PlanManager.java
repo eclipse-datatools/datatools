@@ -16,12 +16,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManager;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManagerListener;
-import org.eclipse.jface.util.ListenerList;
-
 
 /**
  * Implementation of <code>IPlanManager</code>
@@ -30,9 +29,9 @@ import org.eclipse.jface.util.ListenerList;
  */
 public class PlanManager implements IPlanManager
 {
-    ListenerList _listeners = new ListenerList();
-    List         _plans     = new ArrayList();
-    Map          _map       = new HashMap();
+    ListenerList<IPlanManagerListener> _listeners = new ListenerList<>();
+    List _plans = new ArrayList();
+    Map _map = new HashMap();
     /**
      * Constructor
      * 
@@ -69,10 +68,9 @@ public class PlanManager implements IPlanManager
 
     protected void fireAdded(IPlanInstance instance)
     {
-        Object[] listeners = this._listeners.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (IPlanManagerListener listener : this._listeners)
         {
-            ((IPlanManagerListener) listeners[i]).planInstanceCreated(instance);
+            listener.planInstanceCreated(instance);
         }
     }
 
@@ -83,28 +81,25 @@ public class PlanManager implements IPlanManager
      */
     public void fireFinish(IPlanInstance instance)
     {
-        Object[] listeners = this._listeners.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (IPlanManagerListener listener : this._listeners)
         {
-            ((IPlanManagerListener) listeners[i]).planInstanceFinished(instance);
+            listener.planInstanceFinished(instance);
         }
     }
 
     protected void fireRemoved()
     {
-        Object[] listeners = this._listeners.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (IPlanManagerListener listener : this._listeners)
         {
-            ((IPlanManagerListener) listeners[i]).planInstancesRemoved();
+            listener.planInstancesRemoved();
         }
     }
 
     protected void fireRemoved(IPlanInstance instance)
     {
-        Object[] listeners = this._listeners.getListeners();
-        for (int i = 0; i < listeners.length; i++)
+        for (IPlanManagerListener listener : this._listeners)
         {
-            ((IPlanManagerListener) listeners[i]).planInstanceRemoved(instance);
+            listener.planInstanceRemoved(instance);
         }
     }
 

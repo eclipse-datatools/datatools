@@ -6,8 +6,8 @@
  */
 package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -17,12 +17,10 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-
 public class TableDataEditorSelectionProvider implements ISelectionProvider
 {
 	protected ITableDataEditor editor;
-	
-	protected ListenerList selectionChangedListeners = new ListenerList();
+	protected ListenerList<ISelectionChangedListener> selectionChangedListeners = new ListenerList<>();
 	
 	public TableDataEditorSelectionProvider(ITableDataEditor editor)
 	{
@@ -61,12 +59,10 @@ public class TableDataEditorSelectionProvider implements ISelectionProvider
     }
 	
 	public void selectionChanged() {
-		Object[] listeners = selectionChangedListeners.getListeners();
-		for (int i = 0; i < listeners.length; ++i) {
-			final ISelectionChangedListener l = (ISelectionChangedListener)listeners[i];
+	    for (ISelectionChangedListener listener : this.selectionChangedListeners) {
 			Platform.run(new SafeRunnable() {
 				public void run() {
-					l.selectionChanged(new SelectionChangedEvent(TableDataEditorSelectionProvider.this, getSelection()));
+					listener.selectionChanged(new SelectionChangedEvent(TableDataEditorSelectionProvider.this, getSelection()));
 				}
 			});		
 		}
