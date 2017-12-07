@@ -3,7 +3,7 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: %PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres;singleton:=true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.1.qualifier
 Bundle-Vendor: %PROVIDER_NAME
 Require-Bundle: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.db.generic,
