@@ -537,9 +537,7 @@
 
       	<module>examples/org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample</module>
       	<module>examples/org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui</module>
-      	<module>examples/org.eclipse.datatools.connectivity.repository.uri</module>
       	<module>examples/org.eclipse.datatools.connectivity.sample</module>
-      	<module>examples/org.eclipse.datatools.connectivity.sample.cp</module>
       	<module>examples/org.eclipse.datatools.connectivity.sample.ftp</module>
       	<module>examples/org.eclipse.datatools.enablement.rcp</module>
       	<module>examples/org.eclipse.datatools.sqltools.sqlbuilder.examples</module>
