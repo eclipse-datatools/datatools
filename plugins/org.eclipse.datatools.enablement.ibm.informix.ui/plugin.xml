@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.NewInformixConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.ibm.informix.NewInformixConnectionProfileWizard"
+            name="%profile.informix.wizard.title"
+            description = "%profile.informix.wizard.description"
+            profile="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.InformixDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.ibm.informix.profileProperties"
+            name="%profile.informix.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate.password">
+      </propertyEditor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.10_0.InformixOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_4.InformixOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_3.InformixOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_2.InformixOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.10_0.InformixDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_4.InformixDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_3.InformixDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.InformixDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.internal.ui.drivers.9_2.InformixDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+ </plugin>  

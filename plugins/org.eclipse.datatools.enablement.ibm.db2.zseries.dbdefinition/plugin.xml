@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            product="DB2 UDB zSeries"
+            version="V7"
+            description="%V7Description"
+            productDisplayString="%V7ProductString"
+            versionDisplayString="%V7VersionString"
+            file="runtime/vendors/DB2 UDB zSeries_7/DB2 UDB zSeries_7.xmi">
+      </definition>
+      <definition
+            product="DB2 UDB zSeries"
+            version="V8 (Compatibility Mode)"
+            description="%V8CompatibilityDescription"
+            productDisplayString="%V8CompatibilityProductString"
+            versionDisplayString="%V8CompatibilityVersionString"
+            file="runtime/vendors/DB2 UDB zSeries_8/DB2 UDB zSeries_8 (Compatibility Mode).xmi">
+      </definition>
+      <definition
+            product="DB2 UDB zSeries"
+            version="V8 (New-Function Mode)"
+            description="%V8NewFunctionDescription"
+            productDisplayString="%V8NewFunctionProductString"
+            versionDisplayString="%V8NewFunctionVersionString"
+            file="runtime/vendors/DB2 UDB zSeries_8/DB2 UDB zSeries_8 (New-Function Mode).xmi">
+      </definition>
+            <definition
+            product="DB2 UDB zSeries"
+            version="V9 (Compatibility Mode)"
+            productDisplayString="%V9CompatibilityProductString"
+            versionDisplayString="%V9CompatibilityVersionString"
+            description="%V9CompatibilityDescription"
+            file="runtime/vendors/DB2 UDB zSeries_V9/DB2 UDB zSeries_V9 (Compatibility Mode).xmi">
+      </definition>
+      <definition
+            product="DB2 UDB zSeries"
+            version="V9 (New-Function Mode)"            
+            productDisplayString="%V9NewFunctionProductString"
+            versionDisplayString="%V9NewFunctionVersionString"
+            description="%V9NewFunctionDescription"
+            file="runtime/vendors/DB2 UDB zSeries_V9/DB2 UDB zSeries_V9 (New-Function Mode).xmi">
+       </definition>
+   </extension>
+   
+</plugin>

@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB zSeries" version="9 (Compatibility Mode)" maximumIdentifierLength="8" maximumCommentLength="64" aliasSupported="true" sequenceSupported="true" mQTSupported="true" synonymSupported="true" authorizationIdentifierSupported="true" userDefinedTypeSupported="true" packageSupported="true">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>GRAPHIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" maximumLength="16352" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARGRAPHIC</name>
+    <name>VARG</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_2" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONG VARGRAPHIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>CHAR</name>
+    <name>CHARACTER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>CLOB</name>
+    <name>CHARACTER LARGE OBJECT</name>
+    <name>CHAR LARGE OBJECT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="DOUBLE_BYTE" defaultLength="1024" maximumLength="1073741823" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DBCLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="32704" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARCHAR</name>
+    <name>CHARACTER VARYING</name>
+    <name>CHAR VARYING</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" primitiveType="CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONG VARCHAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" identitySupported="true" scaleSupported="true" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DECIMAL</name>
+    <name>DEC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" primitiveType="FLOAT" defaultPrecision="53" maximumPrecision="53" cutoffPrecision="22" jdbcEnumType="6" javaClassName="double">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>FLOAT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>INTEGER</name>
+    <name>INT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" identitySupported="true" scaleSupported="true" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>NUMERIC</name>
+    <name>NUM</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="REAL_1" keyConstraintSupported="true" primitiveType="REAL" jdbcEnumType="7" javaClassName="float">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="short">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SMALLINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIME_1" keyConstraintSupported="true" primitiveType="TIME" jdbcEnumType="92" javaClassName="java.sql.Time">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIMESTAMP</name>
+    <name>TIMESTMP</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_2" keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>ROWID</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="CHAR ({0}) FOR BIT DATA" keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>CHAR FOR BIT DATA</name>
+    <name>CHARACTER FOR BIT DATA</name>
+    <name>CHAR () FOR BIT DATA</name>
+    <name>CHARACTER () FOR BIT DATA</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="VARCHAR ({0}) FOR BIT DATA" keyConstraintSupported="true" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+    <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARCHAR FOR BIT DATA</name>
+    <name>CHARACTER VARYING FOR BIT DATA</name>
+    <name>CHAR VARYING FOR BIT DATA</name>
+    <name>VARCHAR () FOR BIT DATA</name>
+    <name>CHARACTER VARYING () FOR BIT DATA</name>
+    <name>CHAR VARYING () FOR BIT DATA</name>
+  </predefinedDataTypeDefinitions>
+  <tableSpaceDefinition maximumIdentifierLength="8" >
+    <tableSpaceType>REGULAR</tableSpaceType>
+    <tableSpaceType>LOB</tableSpaceType>
+    <tableSpaceType>LARGE</tableSpaceType>
+  </tableSpaceDefinition>
+  <storedProcedureDefinition maximumIdentifierLength="128" parameterStyleSupported="true">
+    <parameterStyle>DB2SQL</parameterStyle>
+    <parameterStyle>GENERAL</parameterStyle>
+    <parameterStyle>GENERAL_WITH_NULLS</parameterStyle>
+    <parameterStyle>JAVA</parameterStyle>
+    <languageType>SQL</languageType>
+    <languageType>JAVA</languageType>
+    <languageType>C</languageType>
+    <languageType>COBOL</languageType>
+    <languageType>ASSEMBLY</languageType>
+    <languageType>PLI</languageType>
+    <functionLanguageType>SQL</functionLanguageType>
+    <functionLanguageType>JAVA</functionLanguageType>
+    <functionLanguageType>C</functionLanguageType>
+    <functionLanguageType>ASSEMBLY</functionLanguageType>
+    <functionLanguageType>COBOL</functionLanguageType>
+    <functionLanguageType>PLI</functionLanguageType>
+  </storedProcedureDefinition>
+  <columnDefinition maximumIdentifierLength="30" identitySupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
+  <constraintDefinition maximumPrimaryKeyIdentifierLength="8" maximumForeignKeyIdentifierLength="8" maximumCheckConstraintIdentifierLength="18">
+    <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
+    <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
+  </constraintDefinition>
+  <sequenceDefinition predefinedDataTypeDefinitions="INTEGER_1 SMALLINT_1 DECIMAL_1" defaultDataTypeDefinition="INTEGER_1" typeEnumerationSupported="true" cacheSupported="true" orderSupported="true" noMaximumValueString="NO MAXVALUE" noMinimumValueString="NO MINVALUE" noCacheString="NO CACHE" cacheDefaultValue="20"/>
+  <triggerDefinition maximumIdentifierLength="128"/>
+  <indexDefinition maximumIdentifierLength="128" clusteringSupported="true"/>
+  <queryDefinition hostVariableMarker=":"/>
+  <viewDefinition maximumIdentifierLength="128"/>
+  <tableDefinition maximumIdentifierLength="128"/>
+  <schemaDefinition maximumIdentifierLength="128"/>
+  <privilegedElementDefinitions name="DatabaseInstance">
+  	<privilegeDefinitions name="DBADM"/>
+	<privilegeDefinitions name="DBCTRL"/>
+	<privilegeDefinitions name="DBMAINT"/>
+	<privilegeDefinitions name="CREATETAB"/>
+	<privilegeDefinitions name="CREATETS"/>
+	<privilegeDefinitions name="DISPLAYDB"/>
+	<privilegeDefinitions name="DROP"/>
+	<privilegeDefinitions name="IMAGCOPY"/>
+	<privilegeDefinitions name="LOAD"/>
+	<privilegeDefinitions name="RECOVERDB"/>
+	<privilegeDefinitions name="REORG"/>
+	<privilegeDefinitions name="REPAIR"/>
+	<privilegeDefinitions name="STARTDB"/>
+	<privilegeDefinitions name="STATS"/>
+	<privilegeDefinitions name="STOPDB"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Schema">
+  	<privilegeDefinitions name="ALTERIN"/>
+  	<privilegeDefinitions name="CREATEIN"/>
+    <privilegeDefinitions name="DROPIN"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="PersistentTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="TRIGGER"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="ViewTable">
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions xmi:id="COLUMN_1" name="Column"/>
+  <privilegedElementDefinitions name="MaterializedQueryTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="TRIGGER"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Routine">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Sequence">
+  	<privilegeDefinitions name="ALTER"/>
+  	<privilegeDefinitions name="USAGE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="UserDefinedType">
+  	<privilegeDefinitions name="USAGE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Tablespace">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="BufferPool">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="StorageGroup">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Package">
+    <privilegeDefinitions name="BIND"/>
+  	<privilegeDefinitions name="COPY"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="System">
+	<privilegeDefinitions name="ARCHIVE"/>
+	<privilegeDefinitions name="BINDADD"/>
+	<privilegeDefinitions name="BINDAGENT"/>
+	<privilegeDefinitions name="BSDS"/>
+	<privilegeDefinitions name="CREATEALIAS"/>
+	<privilegeDefinitions name="CREATEDBA"/>
+	<privilegeDefinitions name="CREATEDBC"/>
+	<privilegeDefinitions name="CREATESG"/>
+	<privilegeDefinitions name="CREATETMTAB"/>
+	<privilegeDefinitions name="DISPLAY"/>
+	<privilegeDefinitions name="MONITOR1"/>
+	<privilegeDefinitions name="MONITOR2"/>
+	<privilegeDefinitions name="RECOVER"/>
+	<privilegeDefinitions name="STOPALL"/>
+	<privilegeDefinitions name="STOSPACE"/>
+	<privilegeDefinitions name="SYSADM"/>
+	<privilegeDefinitions name="SYSCTRL"/>
+	<privilegeDefinitions name="SYSOPR"/>
+	<privilegeDefinitions name="TRACE"/>
+  </privilegedElementDefinitions>
+  <SQLSyntaxDefinition terminationCharacter=";">
+    <keywords>ABSOLUTE</keywords>
+    <keywords>ACCESS</keywords>
+    <keywords>ACTION</keywords>
+    <keywords>ACTIVATE</keywords>
+    <keywords>ADA</keywords>
+    <keywords>ADD</keywords>
+    <keywords>AFTER</keywords>
+    <keywords>ALIAS</keywords>
+    <keywords>ALL</keywords>
+    <keywords>ALLOCATE</keywords>
+    <keywords>ALLOW</keywords>
+    <keywords>ALTER</keywords>
+    <keywords>ALTERIN</keywords>
+    <keywords>ALWAYS</keywords>
+    <keywords>AND</keywords>
+    <keywords>ANY</keywords>
+    <keywords>APPEND</keywords>    
+    <keywords>ARE</keywords>
+    <keywords>AS</keywords>
+    <keywords>ASC</keywords>
+    <keywords>ASCII</keywords>
+    <keywords>ASSERTION</keywords>    
+    <keywords>ASSOCIATE</keywords>    
+    <keywords>ASUTIME</keywords>
+    <keywords>AT</keywords>
+    <keywords>ATOMIC</keywords>    
+    <keywords>ATTRIBUTES</keywords>
+    <keywords>AUTHORIZATION</keywords>    
+    <keywords>AUTHID</keywords>
+    <keywords>AUTOMATIC</keywords>    
+    <keywords>AVG</keywords>
+    <keywords>BEFORE</keywords>
+    <keywords>BEGIN</keywords>
+    <keywords>BETWEEN</keywords>    
+    <keywords>BINARY</keywords>
+    <keywords>BIND</keywords>
+    <keywords>BINDADD</keywords>
+    <keywords>BIT</keywords>
+    <keywords>BIT_LENGTH</keywords>
+    <keywords>BLOB</keywords>
+    <keywords>BLOCKED</keywords>
+    <keywords>BOTH</keywords>    
+    <keywords>BUFFERPOOL</keywords>
+    <keywords>BUFFERPOOLS</keywords>    
+    <keywords>BY</keywords>
+    <keywords>C</keywords>
+    <keywords>CACHE</keywords>
+    <keywords>CALL</keywords>
+    <keywords>CALLED</keywords>
+    <keywords>CALLER</keywords>
+    <keywords>CAPTURE</keywords>
+    <keywords>CARDINALITY</keywords>
+    <keywords>CASCADE</keywords>
+    <keywords>CASCADED</keywords>
+    <keywords>CASE</keywords>
+    <keywords>CAST</keywords>
+    <keywords>CATALOG</keywords>
+    <keywords>CATALOG_NAME</keywords>
+    <keywords>CHANGE</keywords>
+    <keywords>CHANGED</keywords>
+    <keywords>CHANGES</keywords>
+    <keywords>CHAR</keywords>
+    <keywords>CHAR_LENGTH</keywords>
+    <keywords>CHARACTER</keywords>
+    <keywords>CHARACTER_LENGTH</keywords>    
+    <keywords>CHECK</keywords>
+    <keywords>CHECKED</keywords>    
+    <keywords>CLIENT</keywords>
+    <keywords>CLOB</keywords>
+    <keywords>CLOSE</keywords>
+    <keywords>CLUSTER</keywords>
+    <keywords>COBOL</keywords>    
+    <keywords>COLLATE</keywords>
+    <keywords>COLLATION</keywords>     
+    <keywords>COLLECT</keywords>
+    <keywords>COLLID</keywords>
+    <keywords>COLUMN</keywords>    
+    <keywords>COMMENT</keywords>
+    <keywords>COMMIT</keywords>
+    <keywords>COMMITTED</keywords>    
+    <keywords>COMPARISONS</keywords>
+    <keywords>CONCAT</keywords>
+    <keywords>CONDITION</keywords>
+    <keywords>CONDITION_NUMBER</keywords>
+    <keywords>CONNECT</keywords>
+    <keywords>CONNECTION</keywords>    
+    <keywords>CONNECTION_NAME</keywords>    
+    <keywords>CONSERVATIVE</keywords>
+    <keywords>CONSTRAINT</keywords>    
+    <keywords>CONSTRAINTS</keywords>    
+    <keywords>CONTAINS</keywords>
+    <keywords>CONTINUE</keywords>
+    <keywords>CONTROL</keywords>
+    <keywords>CONVERT</keywords>
+    <keywords>COPY</keywords>
+    <keywords>CORRELATION</keywords>
+    <keywords>CORR</keywords>
+    <keywords>CORRESPONDING</keywords>
+    <keywords>COUNT</keywords>
+    <keywords>COUNT_BIG</keywords>
+    <keywords>CPU</keywords>
+    <keywords>C++</keywords>
+    <keywords>CREATE</keywords>
+    <keywords>CREATEIN</keywords>    
+    <keywords>CREATETAB</keywords>
+    <keywords>CROSS</keywords>
+    <keywords>CUBE</keywords>
+    <keywords>CURRENT</keywords>
+    <keywords>CURRENT_DATE</keywords>    
+    <keywords>CURRENT_PATH</keywords>    
+    <keywords>CURRENT_SCHEMA</keywords>
+    <keywords>CURRENT_SERVER</keywords>
+    <keywords>CURRENT_SQLID</keywords>
+    <keywords>CURRENT_TIME</keywords>
+    <keywords>CURRENT_TIMESTAMP</keywords>
+    <keywords>CURRENT_TIMEZONE</keywords>
+    <keywords>CURRENT_USER</keywords>    
+    <keywords>CURSOR</keywords>
+    <keywords>CURSORS</keywords>
+    <keywords>CURSOR_NAME</keywords>
+    <keywords>CYCLE</keywords>
+    <keywords>DATE</keywords>
+    <keywords>DATA</keywords>
+    <keywords>DATABASE</keywords>
+    <keywords>DATALINK</keywords>     
+    <keywords>DAY</keywords>
+    <keywords>DAYS</keywords>
+    <keywords>DB</keywords>
+    <keywords>DBADM</keywords>
+    <keywords>DBCLOB</keywords>
+    <keywords>DBINFO</keywords>
+    <keywords>DB2DARI</keywords>
+    <keywords>DB2GENRL</keywords>
+    <keywords>DB2GENERAL</keywords>    
+    <keywords>DB2SQL</keywords>
+    <keywords>DEADLOCKS</keywords>
+    <keywords>DEALLOCATE</keywords>
+    <keywords>DEC</keywords>
+    <keywords>DECIMAL</keywords>
+    <keywords>DECLARE</keywords>
+    <keywords>DEFAULT</keywords>
+    <keywords>DEFAULTS</keywords>
+    <keywords>DEFINE</keywords>
+    <keywords>DEFINITION</keywords>
+    <keywords>DEGREE</keywords>
+    <keywords>DEFER</keywords>
+    <keywords>DEFERRABLE</keywords>
+    <keywords>DEFERRED</keywords>
+    <keywords>DELETE</keywords>
+    <keywords>DESC</keywords>
+    <keywords>DESCRIBE</keywords>
+    <keywords>DESCRIPTOR</keywords>    
+    <keywords>DETERMINISTIC</keywords>    
+    <keywords>DIAGNOSTICS</keywords>
+    <keywords>DIMENSIONS</keywords>
+    <keywords>DISABLE</keywords>
+    <keywords>DISALLOW</keywords>
+    <keywords>DISCONNECT</keywords>
+    <keywords>DISPATCH</keywords>
+    <keywords>DISTINCT</keywords>    
+    <keywords>DOMAIN</keywords>
+    <keywords>DO</keywords>
+    <keywords>DOUBLE</keywords>
+    <keywords>DROP</keywords>
+    <keywords>DROPIN</keywords>    
+    <keywords>DYNAMIC</keywords>    
+    <keywords>EACH</keywords>
+    <keywords>EBCDIC</keywords>
+    <keywords>ELSE</keywords>
+    <keywords>ELSEIF</keywords>
+    <keywords>EMPTY</keywords>
+    <keywords>ENABLE</keywords>
+    <keywords>END</keywords>
+    <keywords>END-EXEC</keywords>
+    <keywords>ERASE</keywords>
+    <keywords>ESCAPE</keywords>
+    <keywords>EUR</keywords>    
+    <keywords>EVENT</keywords>
+    <keywords>EXACT</keywords>
+    <keywords>EXCEPT</keywords>
+    <keywords>EXCEPTION</keywords>
+    <keywords>EXCLUDE</keywords>
+    <keywords>EXCLUDING</keywords>
+    <keywords>EXCLUSIVE</keywords>
+    <keywords>EXEC</keywords>    
+    <keywords>EXECUTE</keywords>
+    <keywords>EXISTS</keywords>
+    <keywords>EXIT</keywords>    
+    <keywords>EXPLAIN</keywords>    
+    <keywords>EXTENDED</keywords>
+    <keywords>EXTENSION</keywords>    
+    <keywords>EXTERNAL</keywords>
+    <keywords>EXTRACT</keywords>
+    <keywords>FALSE</keywords>
+    <keywords>FEDERATED</keywords>
+    <keywords>FENCED</keywords>
+    <keywords>FETCH</keywords>
+    <keywords>FILE</keywords>    
+    <keywords>FINAL</keywords>
+    <keywords>FIRST</keywords>
+    <keywords>FLOAT</keywords>
+    <keywords>FLUSH</keywords>
+    <keywords>FOLLOWING</keywords>
+    <keywords>FOR</keywords>
+    <keywords>FORCE</keywords>
+    <keywords>FOREIGN</keywords>    
+    <keywords>FORTRAN</keywords>
+    <keywords>FOUND</keywords>
+    <keywords>FREEPAGE</keywords>
+    <keywords>FROM</keywords>
+    <keywords>FS</keywords>
+    <keywords>FULL</keywords>
+    <keywords>FUNCTION</keywords>
+    <keywords>G</keywords>
+    <keywords>GBPCACHE</keywords>
+    <keywords>GENERAL</keywords>
+    <keywords>GENERATE</keywords>
+    <keywords>GENERATED</keywords>
+    <keywords>GET</keywords>
+    <keywords>GLOBAL</keywords>
+    <keywords>GO</keywords>
+    <keywords>GOTO</keywords>
+    <keywords>GRANT</keywords>
+    <keywords>GRAPHIC</keywords>
+    <keywords>GROUP</keywords>
+    <keywords>GROUPING</keywords>
+    <keywords>HANDLER</keywords>    
+    <keywords>HAVING</keywords>      
+    <keywords>HOLD</keywords>
+    <keywords>HOUR</keywords>
+    <keywords>HOURS</keywords>
+    <keywords>IDENTITY</keywords>
+    <keywords>IF</keywords>
+    <keywords>IMMEDIATE</keywords>
+    <keywords>IMPLICIT_SCHEMA</keywords>
+    <keywords>IN</keywords>
+    <keywords>INCLUDE</keywords>
+    <keywords>INCLUDING</keywords>
+    <keywords>INCREMENT</keywords>    
+    <keywords>INDEX</keywords>
+    <keywords>INDEXES</keywords>
+    <keywords>INDICATOR</keywords>    
+    <keywords>INHERIT</keywords>
+    <keywords>INITIALLY</keywords>
+    <keywords>INITIAL_INSTS</keywords>
+    <keywords>INITIAL_IOS</keywords>    
+    <keywords>INNER</keywords>
+    <keywords>INOUT</keywords>
+    <keywords>INPUT</keywords>
+    <keywords>INSENSITIVE</keywords>
+    <keywords>INSERT</keywords>    
+    <keywords>INSTEAD</keywords>
+    <keywords>INSTS_PER_ARGBYTE</keywords>
+    <keywords>INSTS_PER_INVOC</keywords>
+    <keywords>INT</keywords>
+    <keywords>INTEGER</keywords>
+    <keywords>INTEGRITY</keywords>
+    <keywords>INTERSECT</keywords>
+    <keywords>INTERVAL</keywords>
+    <keywords>INTO</keywords>    
+    <keywords>IOS_PER_ARGBYTE</keywords>
+    <keywords>IOS_PER_INVOC</keywords>
+    <keywords>IS</keywords>
+    <keywords>ISO</keywords>
+    <keywords>ITERATE</keywords>
+    <keywords>ISOLATION</keywords>
+    <keywords>JAVA</keywords>    
+    <keywords>JIS</keywords>
+    <keywords>JOIN</keywords>
+    <keywords>K</keywords>
+    <keywords>KEY</keywords>
+    <keywords>KEYS</keywords>
+    <keywords>LANGUAGE</keywords>
+    <keywords>LARGE</keywords>
+    <keywords>LAST</keywords>
+    <keywords>LEADING</keywords>
+    <keywords>LEAVE</keywords>
+    <keywords>LEFT</keywords>
+    <keywords>LENGTH</keywords>
+    <keywords>LEVEL</keywords>
+    <keywords>LIBRARY</keywords>
+    <keywords>LIKE</keywords>
+    <keywords>LIMIT</keywords>
+    <keywords>LINK</keywords>
+    <keywords>LINKTYPE</keywords>
+    <keywords>LOAD</keywords>
+    <keywords>LOCAL</keywords>
+    <keywords>LOCATOR</keywords>
+    <keywords>LOCATORS</keywords>
+    <keywords>LOCK</keywords>
+    <keywords>LOCKS</keywords>
+    <keywords>LOCKSIZE</keywords>
+    <keywords>LOGGED</keywords>
+    <keywords>LONG</keywords>
+    <keywords>LONGVAR</keywords>
+    <keywords>LOOP</keywords>
+    <keywords>LOWER</keywords>
+    <keywords>M</keywords>
+    <keywords>MAINTAINED</keywords>    
+    <keywords>MAPPING</keywords>
+    <keywords>MATCH</keywords>
+    <keywords>MAX</keywords>    
+    <keywords>MAXVALUE</keywords>     
+    <keywords>MESSAGE_TEXT</keywords>
+    <keywords>METHOD</keywords>    
+    <keywords>MICROSECOND</keywords>
+    <keywords>MICROSECONDS</keywords>    
+    <keywords>MINUTE</keywords>
+    <keywords>MINUTES</keywords>
+    <keywords>MINVALUE</keywords>
+    <keywords>MIXED</keywords>
+    <keywords>MODE</keywords>
+    <keywords>MODIFIES</keywords>
+    <keywords>MODULE</keywords>
+    <keywords>MONITOR</keywords>
+    <keywords>MONTH</keywords>
+    <keywords>MONTHS</keywords>
+    <keywords>MORE</keywords>    
+    <keywords>NAMED</keywords>
+    <keywords>NAMES</keywords>
+    <keywords>NATIONAL</keywords>
+    <keywords>NATURAL</keywords>
+    <keywords>NCHAR</keywords>
+    <keywords>NEW</keywords>
+    <keywords>NEW_TABLE</keywords>
+    <keywords>NEXT</keywords>
+    <keywords>NEXTVAL</keywords>
+    <keywords>NICKNAME</keywords>
+    <keywords>NO</keywords>
+    <keywords>NOCACHE</keywords>
+    <keywords>NOCYCLE</keywords>
+    <keywords>NODE</keywords>    
+    <keywords>NOMAXVALUE</keywords>
+    <keywords>NOMINVALUE</keywords>    
+    <keywords>NONE</keywords>
+    <keywords>NOORDER</keywords>
+    <keywords>NOT</keywords>
+    <keywords>NULL</keywords>
+    <keywords>NULLABLE</keywords>    
+    <keywords>NULLS</keywords>    
+    <keywords>NUMBER</keywords>
+    <keywords>NUMERIC</keywords>    
+    <keywords>OBJECT</keywords>
+    <keywords>OF</keywords>
+    <keywords>OFF</keywords>
+    <keywords>OLD</keywords>
+    <keywords>OLD_TABLE</keywords>
+    <keywords>OLE</keywords>
+    <keywords>OLEDB</keywords>
+    <keywords>ON</keywords>
+    <keywords>ONCE</keywords>
+    <keywords>ONLINE</keywords>
+    <keywords>ONLY</keywords>
+    <keywords>OPEN</keywords>
+    <keywords>OPTIMIZATION</keywords>
+    <keywords>OPTIMIZE</keywords>
+    <keywords>OPTION</keywords>
+    <keywords>OPTIONS</keywords>
+    <keywords>OR</keywords>
+    <keywords>ORDER</keywords>
+    <keywords>OUT</keywords>
+    <keywords>OUTER</keywords>
+    <keywords>OUTPUT</keywords>
+    <keywords>OVER</keywords>    
+    <keywords>OVERLAPS</keywords>    
+    <keywords>PACKAGE</keywords>
+    <keywords>PAD</keywords>    
+    <keywords>PARTIAL</keywords>
+    <keywords>PARALLEL</keywords>    
+    <keywords>PARAMETER</keywords>
+    <keywords>PASCAL</keywords>
+    <keywords>PASSTHRU</keywords>
+    <keywords>PASSWORD</keywords>
+    <keywords>PATH</keywords>
+    <keywords>PARTITION</keywords>
+    <keywords>PARTITIONING</keywords>    
+    <keywords>PCTFREE</keywords>    
+    <keywords>PERCENT_ARGBYTES</keywords>
+    <keywords>PERMISSION</keywords>
+    <keywords>PIECESIZE</keywords>
+    <keywords>PIPE</keywords>
+    <keywords>PLAN</keywords>
+    <keywords>PLI</keywords>
+    <keywords>POSITION</keywords>
+    <keywords>PRECEDING</keywords>
+    <keywords>PRECISION</keywords>     
+    <keywords>PREPARE</keywords>
+    <keywords>PRESERVE</keywords>
+    <keywords>PRIMARY</keywords>    
+    <keywords>PRIOR</keywords>
+    <keywords>PRIQTY</keywords>
+    <keywords>PRIVILEGES</keywords>
+    <keywords>PROCEDURE</keywords>
+    <keywords>PROGRAM</keywords>    
+    <keywords>PROTOCOL</keywords>
+    <keywords>PUBLIC</keywords>
+    <keywords>QUERY</keywords>
+    <keywords>QUERYNO</keywords>    
+    <keywords>RANGE</keywords>    
+    <keywords>READ</keywords>
+    <keywords>READS</keywords>
+    <keywords>REAL</keywords>
+    <keywords>RECOMMEND</keywords>    
+    <keywords>RECOVERY</keywords>    
+    <keywords>REF</keywords>
+    <keywords>REFERENCE</keywords>
+    <keywords>REFERENCES</keywords>
+    <keywords>REFERENCING</keywords>
+    <keywords>REFRESH</keywords>
+    <keywords>REGISTERS</keywords>    
+    <keywords>RELATIVE</keywords>
+    <keywords>RELEASE</keywords>    
+    <keywords>RENAME</keywords>
+    <keywords>REPEATABLE</keywords>
+    <keywords>REPEAT</keywords>    
+    <keywords>REPLACE</keywords>
+    <keywords>REPLICATED</keywords>
+    <keywords>RESET</keywords>
+    <keywords>RESIDENT</keywords>
+    <keywords>RESIGNAL</keywords>    
+    <keywords>RESOLVE</keywords>
+    <keywords>RESTART</keywords>
+    <keywords>RESTORE</keywords>
+    <keywords>RESTRICT</keywords>
+    <keywords>RESULT</keywords>
+    <keywords>RESULT_SET_LOCATOR</keywords>    
+    <keywords>RETURNED_SQLSTATE</keywords>
+    <keywords>RETAIN</keywords>
+    <keywords>RETURN</keywords>
+    <keywords>RETURNS</keywords>
+    <keywords>RETURN_STATUS</keywords>   
+    <keywords>REVOKE</keywords>
+    <keywords>RIGHT</keywords>
+    <keywords>ROLLBACK</keywords>
+    <keywords>ROLLUP</keywords>
+    <keywords>ROUTINE</keywords>
+    <keywords>ROW</keywords>
+    <keywords>ROW_COUNT</keywords>
+    <keywords>ROWID</keywords>
+    <keywords>ROWS</keywords>
+    <keywords>RUN</keywords>
+    <keywords>S</keywords>    
+    <keywords>SAVEPOINT</keywords>
+    <keywords>SBCS</keywords>
+    <keywords>SCALE</keywords>    
+    <keywords>SCHEMA</keywords>    
+    <keywords>SCOPE</keywords>
+    <keywords>SCRATCHPAD</keywords>
+    <keywords>SCROLL</keywords>
+    <keywords>SEARCH</keywords>
+    <keywords>SECOND</keywords>
+    <keywords>SECONDS</keywords>
+    <keywords>SECQTY</keywords>
+    <keywords>SECTION</keywords>
+    <keywords>SELECT</keywords>    
+    <keywords>SELECTIVITY</keywords>
+    <keywords>SELF</keywords>
+    <keywords>SEQUENCE</keywords>
+    <keywords>SERIALIZABLE</keywords>
+    <keywords>SERVER</keywords>
+    <keywords>SERVER_NAME</keywords>
+    <keywords>SESSION</keywords>
+    <keywords>SESSION_USER</keywords>
+    <keywords>SET</keywords>
+    <keywords>SETS</keywords>    
+    <keywords>SHARE</keywords>
+    <keywords>SHRLEVEL</keywords>
+    <keywords>SIGNAL</keywords>
+    <keywords>SIMPLE</keywords>
+    <keywords>SIZE</keywords>
+    <keywords>SMALLINT</keywords>
+    <keywords>SNAPSHOT</keywords>
+    <keywords>SOME</keywords>
+    <keywords>SOURCE</keywords>
+    <keywords>SPACE</keywords>
+    <keywords>SPECIAL</keywords>
+    <keywords>SPECIFIC</keywords>    
+    <keywords>SQL</keywords>
+    <keywords>SQLCODE</keywords>
+    <keywords>SQLERROR</keywords>
+    <keywords>SQLEXCEPTION</keywords>
+    <keywords>SQLWARNING</keywords>
+    <keywords>SQLID</keywords>    
+    <keywords>SQLSTATE</keywords>    
+    <keywords>START</keywords>
+    <keywords>STATE</keywords>
+    <keywords>STATEMENT</keywords>    
+    <keywords>STATISTICS</keywords>
+    <keywords>STAY</keywords>
+    <keywords>STOGROUP</keywords>
+    <keywords>STORAGE</keywords>
+    <keywords>STORED</keywords>
+    <keywords>STYLE</keywords>
+    <keywords>SUB</keywords>    
+    <keywords>SUBSTRING</keywords>
+    <keywords>SUMMARY</keywords>
+    <keywords>SWITCH</keywords>
+    <keywords>SYNONYM</keywords>
+    <keywords>SYSTEM</keywords>
+    <keywords>SYSTEM_USER</keywords>
+    <keywords>TABLE</keywords>
+    <keywords>TABLES</keywords>
+    <keywords>TABLE_NAME</keywords>
+    <keywords>TABLESPACE</keywords>
+    <keywords>TABLESPACES</keywords>    
+    <keywords>TEMPLATE</keywords>
+    <keywords>TEMPORARY</keywords>
+    <keywords>THEN</keywords>
+    <keywords>THREADSAFE</keywords>    
+    <keywords>TIME</keywords>
+    <keywords>TIMESTAMP</keywords>
+    <keywords>TIMEZONE</keywords>
+    <keywords>TIMEZONE_HOUR</keywords>
+    <keywords>TIMEZONE_MINUTE</keywords>
+    <keywords>TO</keywords>
+    <keywords>TRAILING</keywords>
+    <keywords>TRANSACTION</keywords>    
+    <keywords>TRANSFORM</keywords>    
+    <keywords>TRANSLATE</keywords>
+    <keywords>TRANSLATION</keywords>
+    <keywords>TREAT</keywords>
+    <keywords>TRIGGER</keywords>
+    <keywords>TRIM</keywords>
+    <keywords>TRUE</keywords>
+    <keywords>TYPE</keywords>
+    <keywords>UNBOUNDED</keywords>    
+    <keywords>UNCOMMITTED</keywords>
+    <keywords>UNDER</keywords>
+    <keywords>UNDO</keywords>
+    <keywords>UNICODE</keywords>
+    <keywords>UNION</keywords>
+    <keywords>UNIQUE</keywords>
+    <keywords>UNKNOWN</keywords>    
+    <keywords>UNTIL</keywords>    
+    <keywords>UPDATE</keywords>
+    <keywords>UPPER</keywords>
+    <keywords>URL</keywords>
+    <keywords>USA</keywords>
+    <keywords>USE</keywords>
+    <keywords>USAGE</keywords>
+    <keywords>USER</keywords>
+    <keywords>USING</keywords>
+    <keywords>VALUE</keywords>
+    <keywords>VALUES</keywords>
+    <keywords>VARCHAR</keywords>
+    <keywords>VARGRAPHIC</keywords>
+    <keywords>VARIANT</keywords>
+    <keywords>VARYING</keywords>
+    <keywords>VCAT</keywords>
+    <keywords>VERSION</keywords>
+    <keywords>VIEW</keywords>
+    <keywords>VOLATILE</keywords>
+    <keywords>WHEN</keywords>
+    <keywords>WHENEVER</keywords>
+    <keywords>WHERE</keywords>
+    <keywords>WHILE</keywords>
+    <keywords>WITH</keywords>
+    <keywords>WITHOUT</keywords>
+    <keywords>WORK</keywords>
+    <keywords>WRAPPER</keywords>
+    <keywords>WRITE</keywords>
+    <keywords>YEAR</keywords>
+    <keywords>YEARS</keywords>
+    <keywords>YES</keywords>    
+    <keywords>ZONE</keywords>
+    <operators>&lt;</operators>
+    <operators>&quot;</operators>
+    <operators>%</operators>
+    <operators>&amp;</operators>
+    <operators>''''</operators>
+    <operators>(</operators>
+    <operators>)</operators>
+    <operators>*</operators>
+    <operators>+</operators>
+    <operators>,</operators>
+    <operators>-</operators>
+    <operators>.</operators>
+    <operators>/</operators>
+    <operators>:</operators>
+    <operators>;</operators>
+    <operators>=</operators>
+    <operators>?</operators>
+    <operators>[</operators>
+    <operators>]</operators>
+    <operators>_</operators>
+    <operators>'|'</operators>
+    <operators>,=</operators>
+    <operators>&lt;=</operators>
+    <operators>||</operators>
+    <operators>..</operators>
+    <operators>'-,'</operators>
+    <operators>!</operators>
+    <operators>~</operators>
+    <operators>:=</operators>
+    <operators>{</operators>
+    <operators>}</operators>
+    <operators>(+)</operators>
+  </SQLSyntaxDefinition>
+</DBDefinition:DatabaseVendorDefinition>

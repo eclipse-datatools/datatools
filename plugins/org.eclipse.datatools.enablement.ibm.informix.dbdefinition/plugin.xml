@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="10.0"
+            product="Informix"
+            productDisplayString="%10.0ProductString"
+            versionDisplayString="%10.0VersionString"
+            file="runtime/vendors/Informix_10.0/Informix_10.0.xmi">
+      </definition>
+      <definition
+            version="10"
+            product="Informix"
+            productDisplayString="%10ProductString"
+            versionDisplayString="%10VersionString"
+            file="runtime/vendors/Informix_10.0/Informix_10.0.xmi">
+      </definition>
+      <definition
+            version="9.4"
+            product="Informix"
+            productDisplayString="%94ProductString"
+            versionDisplayString="%94VersionString"
+            file="runtime/vendors/Informix_9.4/Informix_9.4.xmi">
+      </definition>
+      <definition
+            version="9.3"
+            product="Informix"
+            productDisplayString="%93ProductString"
+            versionDisplayString="%93VersionString"
+            file="runtime/vendors/Informix_9.3/Informix_9.3.xmi">
+      </definition>
+      <definition
+            version="9.2"
+            product="Informix"
+            productDisplayString="%92ProductString"
+            versionDisplayString="%92VersionString"
+            file="runtime/vendors/Informix_9.2/Informix_9.2.xmi">
+      </definition>
+   </extension>
+
+</plugin>

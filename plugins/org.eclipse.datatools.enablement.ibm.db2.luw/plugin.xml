@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+      <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWDatabase"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWDatabaseContainmentProvider">
+      </containment>
+            <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWTemporaryTable"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWTemporaryTableContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWGlobalVariable"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWGlobalVariableContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWNickname"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWNicknameContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWServer"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWServerContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWPartitionGroup"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWPartitionGroupContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWTableSpace"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWTableSpaceContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWBufferPool"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWBufferPoolContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWDatabasePartition"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWDatabasePartitionContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWWrapper"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWWrapperContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="FederatedProcedure"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWFederatedSPContainmentProvider">
+      </containment>    
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWUserMapping"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWUserMappingContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWSecurityPolicy"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWSecurityPolicyContainmentProvider">
+      </containment>   
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWSecurityLabelComponent"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWSecurityLabelComponentContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWSecurityLabelComponentElement"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWSecurityLabelComponentElementContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWSecurityLabel"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWSecurityLabelContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/enablement/ibm/db2/luw.ecore"
+            class="LUWTable"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.containment.LUWTableContainmentProvider">
+      </containment>
+   </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory">
+      <factory
+            version="V8.1"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory">
+      </factory>
+      <factory
+            version="V8.2"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory">
+      </factory>
+      <factory
+            version="V9.1"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory">
+      </factory>
+      <factory
+            version="V9.5"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory">
+      </factory>
+      <factory
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory"
+            product="DB2 UDB"
+            version="V9.7">
+      </factory>
+      <factory
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory"
+            product="DB2 UDB"
+            version="V9.8">
+      </factory>
+      <factory
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory"
+            product="DB2 UDB"
+            version="V10.1">
+      </factory>
+      <factory
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWModelElementFactory"
+            product="DB2 UDB"
+            version="V10.5">
+      </factory>
+   </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+      <catalog
+            version="V8.1"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V8.2"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V9.1"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V9.5"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V9.7"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V9.8"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V10.1"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+      <catalog
+            version="V10.5"
+            product="DB2 UDB"
+            provider="org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogProvider"
+            priority = "10">
+      </catalog>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+      <generator
+            product="DB2 UDB"
+            version="V8.1"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator">
+      </generator>
+      <generator
+            product="DB2 UDB"
+            version="V8.2"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator">
+      </generator>
+      <generator
+            product="DB2 UDB"
+            version="V9.1"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator">
+      </generator>
+      <generator
+            product="DB2 UDB"
+            version="V9.5"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator">
+      </generator>
+      <generator
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator"
+            product="DB2 UDB"
+            version="V9.7">
+      </generator>
+      <generator
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator"
+            product="DB2 UDB"
+            version="V9.8">
+      </generator>
+      <generator
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator"
+            product="DB2 UDB"
+            version="V10.1">
+      </generator>
+      <generator
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDdlGenerator"
+            product="DB2 UDB"
+            version="V10.5">
+      </generator>
+      <delta
+            product="DB2 UDB"
+            version="V8.1"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator">
+      </delta>
+      <delta
+            product="DB2 UDB"
+            version="V8.2"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator">
+      </delta>
+      <delta
+            product="DB2 UDB"
+            version="V9.1"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator9">
+      </delta>
+      <delta
+            product="DB2 UDB"
+            version="V9.5"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator95">
+      </delta>
+      <delta
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator97"
+            product="DB2 UDB"
+            version="V9.7">
+      </delta>
+      <delta
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator97"
+            product="DB2 UDB"
+            version="V9.8">
+      </delta>
+      <delta
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator97"
+            product="DB2 UDB"
+            version="V10.1">
+      </delta>
+      <delta
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.ddl.LUWDeltaDdlGenerator97"
+            product="DB2 UDB"
+            version="V10.5">
+      </delta>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.datatools.sqltools.data.core.columnDataAccessors">
+      <accessor
+            vendor="DB2 UDB"
+            dataType="DATALINK"
+            class="org.eclipse.datatools.enablement.ibm.db2.data.DatalinkAccessor"
+            />
+       <accessor
+            vendor="DB2 UDB"
+            dataType="DISTINCT"
+            class="org.eclipse.datatools.enablement.ibm.db2.data.DistinctAccessor"
+            />   
+   </extension>
+ 
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseRecognition">
+      <recognizer
+            class="org.eclipse.datatools.enablement.ibm.db2.internal.luw.LUWDatabaseRecognizer">
+      </recognizer>
+   </extension>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.metaDataExtension">
+      <metaDataExtension
+            version="V8.1"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+      <metaDataExtension
+            version="V8.2"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+      <metaDataExtension
+            version="V9.1"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+      <metaDataExtension
+            version="V9.5"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+      <metaDataExtension
+            version="V9.7"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension> 
+      <metaDataExtension
+            version="V9.8"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension> 
+      <metaDataExtension
+            version="V10.1"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+      <metaDataExtension
+            version="V10.5"
+            product="DB2 UDB"
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.LUWMetaDataExtension">
+      </metaDataExtension>
+   </extension>
+
+   <extension point="org.eclipse.datatools.connectivity.driverExtension">
+      <driverTemplateOverride 
+        priority="3" 
+        createDefault="true" 
+        valuesProvider="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWDriverValuesProvider" 
+        targetId="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate" /> 
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.driverExtension">
+      <driverTemplateOverride 
+        priority="3" 
+        createDefault="true" 
+        targetId="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate" /> 
+   </extension>
+ 
+    <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
+      <driverTemplate
+            createDefault="true"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.kerberosDriverTemplate"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cu.jar"
+            name="%org.eclipse.datatools.enablement.ibm.db2.luw.kerberosDriverTemplate"
+            parentCategory="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            valuesProvider="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWDriverValuesProvider"
+            displayRank="5">
+<!--         <migration
+                  class="org.eclipse.datatools.connectivity.drivers.DriverJarFileMigrator">
+         </migration> -->
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  value="com.ibm.db2.jcc.DB2Driver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="V9.1"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value="jdbc:db2://localhost:50000/SAMPLE:retrieveMessagesFromServerOnGetMessage=true;securityMechanism=11;"
+                  required="true"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+   
+        <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
+      <driverTemplate
+            createDefault="true"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.kerberosDriverTemplate"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc4.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cu.jar"
+            name="%org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.kerberosDriverTemplate"
+            parentCategory="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            valuesProvider="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWJDBC4DriverValuesProvider"
+            displayRank="2">
+<!--         <migration
+                  class="org.eclipse.datatools.connectivity.drivers.DriverJarFileMigrator">
+         </migration> -->
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  value="com.ibm.db2.jcc.DB2Driver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="V9.1"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value="jdbc:db2://localhost:50000/SAMPLE:retrieveMessagesFromServerOnGetMessage=true;securityMechanism=11;"
+                  required="true"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">   
+    <driverTemplate
+            createDefault="true"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.driverTemplate"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc4.jar;C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cu.jar"
+            name="%org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.driverTemplate"
+            parentCategory="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            valuesProvider="org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWJDBC4DriverValuesProvider"
+            displayRank="1">
+<!--         <migration
+                  class="org.eclipse.datatools.connectivity.drivers.DriverJarFileMigrator">
+         </migration> -->
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  value="com.ibm.db2.jcc.DB2Driver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="V9.1"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value="jdbc:db2://localhost:50000/SAMPLE:retrieveMessagesFromServerOnGetMessage=true;"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%driverUID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="%driverPWD"
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.connectionProfile"
+            name="%profile.db2.luw.title"
+            pingFactory="org.eclipse.datatools.enablement.ibm.db2.internal.luw.JDBCLUWConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.ibm.db2.internal.luw.LUWDBPropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.ibm.db2.internal.luw.JDBCLUWConnectionFactory"
+            id="java.sql.Connection"
+            name="%jdbc.connection.name"
+            profile="org.eclipse.datatools.enablement.ibm.db2.luw.connectionProfile"/>
+   </extension>   
+   
+	<extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
+         <category
+      		parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
+            id="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            name="%DB2_UDB_CATEGORY_NAME"/>    
+   
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar;C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cu.jar"
+            name="%org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate"
+            parentCategory="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            displayRank="4">
+<!--          <migration
+                  class="org.eclipse.datatools.connectivity.drivers.DriverJarFileMigrator">
+      	 </migration> -->
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  value="com.ibm.db2.jcc.DB2Driver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="V9.1"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value="jdbc:db2://localhost:50000/SAMPLE:retrieveMessagesFromServerOnGetMessage=true;"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%driverUID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="%driverPWD"
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate"
+            jarList=""
+            name="%org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate"
+            parentCategory="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            displayRank="8">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  value=""
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="V9.1"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value=""
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value=""
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%driverUID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="%driverPWD"
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+      <providerIDtoDriverCategoryID
+            driverCategoryID="org.eclipse.datatools.enablement.ibm.db2.driverCategory"
+            providerID="org.eclipse.datatools.enablement.ibm.db2.luw.connectionProfile">
+      </providerIDtoDriverCategoryID>
+   </extension>
+   
+   
+   
+ </plugin>  

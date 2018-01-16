@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.NewLUWConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.NewLUWConnectionProfileWizard"
+            name="%profile.db2.luw.wizard.title"
+            description = "%profile.db2.luw.wizard.description"
+            profile="org.eclipse.datatools.enablement.ibm.db2.luw.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.LUWDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.profileProperties"
+            name="%profile.db2.luw.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.ibm.db2.luw.connectionProfile"/>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate.password">
+      </propertyEditor>
+   </extension>
+ 
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWKerberosDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.kerberosDriverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWKerberosDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWKerberosDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.kerberosDriverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.jdbc4.DB2LUWKerberosDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.jdbc4.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.jdbc4.DB2LUWDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+ </plugin>  
