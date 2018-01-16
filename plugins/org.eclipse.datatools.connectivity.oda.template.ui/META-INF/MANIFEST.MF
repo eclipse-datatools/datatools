@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.template.ui;singleton:=true
+Bundle-Version: 3.4.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Activator: org.eclipse.datatools.connectivity.oda.template.ui.plugin.Activator
+Bundle-Vendor: Eclipse Data Tools Platform
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;resolution:=optional,
+ org.eclipse.pde.ui
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,702 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access"/>
+      </appInfo>
+      <documentation>
+         [API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="dataSource"/>
+            <element ref="dataSet" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dataSource">
+      <annotation>
+         <documentation>
+            The definition of a type of ODA data source extension for use at design-time and run-time.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="traceLogging" minOccurs="0" maxOccurs="1"/>
+            <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified ID that uniquely identifies this ODA data source extension within an ODA consumer application&apos;s environment. If a data source designer extension (that implements &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&lt;/i&gt; extension point) is available for this ODA driver, the value of this attribute must match that of the designer extension&apos;s &lt;i&gt;id&lt;/i&gt; attribute in its data source element.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="odaVersion" type="string" use="default" value="3.0">
+            <annotation>
+               <documentation>
+                  Version of the ODA interfaces for which this driver is developed. This element is required and should take the format of Major.Minor or Major.Minor.Service (e.g. 3.0 or 2.0.1).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  The display name of the ODA data source extension.  Its value can be localized by using the plugin.properties mechanism.  Default to the extension id if no display name is specified.
+It can be used by an ODA consumer application&apos;s designer tool in displaying a list of ODA data source extensions, when they do not have a corresponding data source editor (data source UI extension point).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="driverClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Concrete class that implements the &lt;i&gt;org.eclipse.datatools.connectivity.oda.IDriver&lt;/i&gt; interface. This is the entry point of the ODA runtime driver.  The same driver may support multiple data source extensions.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.IDriver"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="setThreadContextClassLoader" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  If true, the consumer of the ODA runtime extension plug-in should set the thread context class loader to the one used to load this driver before calling any ODA interface method.
+Any data source plug-in extension with this flag set to true would take precedence, and is applied to all data source extensions implemented by this plug-in. 
+&lt;br&gt;
+If the thread context class loader being set is the OSGi class loader that was used to load this ODA runtime plugin, it is not designed to be used by a plugin to in turn load additional classes.  If further class loading is needed, it is up to individual ODA runtime plugin implementation to provide its own URLClassLoader, and switch thread context class loader as appropriate.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="overrideExplorerFiltering" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Overrides the ODA extension explorer filtering behavior.  Default value is false.  If set to true, this extension is always made visible to the client even if it would have been excluded by the ODA extension explorer filtering.
+&lt;br&gt;@since 3.2.2 (DTP 1.7.2)
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dataSet">
+      <annotation>
+         <documentation>
+            The definition of a type of data set supported by the dataSource extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="dataTypeMapping" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified ID that uniquely identifies this ODA data set definition within an ODA consumer application&apos;s environment.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  The display name of the ODA data set definition.  Its value can be localized by using the plugin.properties mechanism.  Default to its id if no display name is specified.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dataTypeMapping">
+      <annotation>
+         <documentation>
+            A data types mapping from a data provider&apos;s native data type to one or more ODA data types.  
+Each native data type must be mapped to a primary ODA scalar data type.  The driver can optionally provide a list of alternate ODA data types to which it is capable of converting a native data type.
+This data type mapping facilitates all ODA consumers to map from the same set of ODA data types to its own application-specific data types.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="alternativeOdaDataType" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="nativeDataType" type="string">
+            <annotation>
+               <documentation>
+                  Native data type name (a string).  Used for information only.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="nativeDataTypeCode" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Native data type code (an integer). Its value must match one of the data type codes returned in the driver&apos;s ODA interface implementation.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="odaScalarDataType" use="default" value="String">
+            <annotation>
+               <documentation>
+                  The primary ODA scalar data type to which the native type is mapped. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob, Boolean and Java Object.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="Timestamp">
+                  </enumeration>
+                  <enumeration value="Decimal">
+                  </enumeration>
+                  <enumeration value="Blob">
+                  </enumeration>
+                  <enumeration value="Clob">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="JavaObject">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="alternativeOdaDataType">
+      <annotation>
+         <documentation>
+            Provide an alternative mapping to an ODA scalar data type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="odaScalarDataType" use="required">
+            <annotation>
+               <documentation>
+                  The ODA scalar data type to which the native type may be converted by the driver.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="Timestamp">
+                  </enumeration>
+                  <enumeration value="Decimal">
+                  </enumeration>
+                  <enumeration value="Blob">
+                  </enumeration>
+                  <enumeration value="Clob">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="JavaObject">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="traceLogging">
+      <annotation>
+         <documentation>
+            Configures the ODA run-time driver&apos;s trace logging settings for the data source extension.
+The configured values are passed through to the driver&apos;s implementation of the &lt;code&gt;IDriver.setLogConfiguration&lt;/code&gt; method.
+&lt;br&gt;It is up to individual ODA driver on how to honor any of these trace logging attributes as appropriate.
+
+&lt;br&gt;&lt;br&gt;Note: The trace logging configuration specified in the plug-in PDE .options file would take precedence over those configured in this element, if the debug tracing flag is set to &quot;true&quot;.
+&lt;br&gt;The ODA plug-in&apos;s PDE tracing options, listed below for cross reference, match the attributes of this element.
+&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&amp;lt;plug-in Id&amp;gt;/debug = true/false
+&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&amp;lt;plug-in Id&amp;gt;/traceLogging/logLevel 
+&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&amp;lt;plug-in Id&amp;gt;/traceLogging/logFileNamePrefix 
+&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&amp;lt;plug-in Id&amp;gt;/traceLogging/logDirectory
+&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+&amp;lt;plug-in Id&amp;gt;/traceLogging/logFormatterClass
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="logLevel" type="string" use="default" value="WARNING">
+            <annotation>
+               <documentation>
+                  The name or numeric value for the driver&apos;s log level.
+&lt;br&gt;The log levels&apos; names and corresponding numeric values are:
+&lt;br&gt;
+ &quot;SEVERE&quot;       = 1000;
+ &quot;WARNING&quot;      = 900;
+ &quot;INFO&quot;         = 800;
+ &quot;CONFIG&quot;       = 700;
+ &quot;FINE&quot;         = 500;
+ &quot;FINER&quot;        = 400;
+ &quot;FINEST&quot;       = 300;
+ &quot;ALL&quot;          = 0;
+ &quot;OFF&quot;          = 1001 or higher .
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="logFileNamePrefix" type="string">
+            <annotation>
+               <documentation>
+                  A string prefix for driver&apos;s log file name.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="logDirectory" type="string">
+            <annotation>
+               <documentation>
+                  Directory for log file.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="logFormatterClass" type="string">
+            <annotation>
+               <documentation>
+                  The class name of a concrete log formatter, suitable for use by the driver-specific logging utility.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="property">
+      <annotation>
+         <documentation>
+            A property whose value can be edited at design-time using an ODA consumer application&apos;s designer tool.  Its value is then passed to the ODA runtime driver during run-time.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="choice" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Unique name of the property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  The default display name.  Its value can be localized by using the plugin.properties mechanism.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" use="default" value="string">
+            <annotation>
+               <documentation>
+                  Type of the property. The property type could be one of the values listed in the Restriction enumerations.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="string">
+                  </enumeration>
+                  <enumeration value="choice">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="canInherit" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Reserved.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultValue" type="string">
+            <annotation>
+               <documentation>
+                  Default value of the property, if no property value is set.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isEncryptable" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  A flag indicating whether this property value is encryptable.  Setting it to &quot;true&quot; indicates to an ODA consumer application that this property&apos;s value should be encrypted.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="allowsEmptyValueAsNull" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  A flag that indicates whether an empty value of this property can be treated as a null value.  Default value is true.  This attribute setting applies when an ODA consumer passes the property&apos;s value to this ODA runtime driver.  This optional attribute may be used to accommodate the case where a property value&apos;s input control does not provide the means to specify a null value.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyGroup">
+      <annotation>
+         <documentation>
+            A grouping of one or more properties in an ODA consumer application&apos;s designer tool.  The group attributes are for display only.  All properties listed under a propertyGroup are handled as scalar properties at run-time.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="property" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  The default display name.  Its value can be localized by using the plugin.properties mechanism.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyVisibility">
+      <annotation>
+         <documentation>
+            Used to set the visibility level of the named property when it is shown in the property sheet of an ODA consumer application&apos;s designer tool.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of a property that is defined either by this data source extension or is a system-defined property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visibility">
+            <annotation>
+               <documentation>
+                  The valid options are: change, hide, lock.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="change">
+                  </enumeration>
+                  <enumeration value="lock">
+                  </enumeration>
+                  <enumeration value="hide">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="choice">
+      <annotation>
+         <documentation>
+            Choice of property values.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the choice
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string">
+            <annotation>
+               <documentation>
+                  Value to be used, if the given choice is selected.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDisplayName" type="string">
+            <annotation>
+               <documentation>
+                  The default display name.  Its value can be localized by using the plugin.properties mechanism.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="properties">
+      <annotation>
+         <documentation>
+            A collection of property definitions in a data source extension or its supported data set definitions.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="property" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="propertyGroup" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="propertyVisibility" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="relationship">
+      <annotation>
+         <documentation>
+            An optional element to specify the relationship(s) of this element.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  The type of relationship that this extension&apos;s dataSource or dataSet element has with the &lt;i&gt;relatedId&lt;/i&gt; element.
+Valid value(s) are: 
+&lt;br&gt;* &lt;i&gt;replacedBy&lt;/i&gt;: specifies that this dataSource/dataSet is deprecated and replaced by that of &lt;i&gt;relatedId&lt;/i&gt;.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.  A deprecated data source type is hidden by default from the list of data sources presented in the ODA design UI framework, such as for creating a new connection profile instance.
+&lt;br&gt;* &lt;i&gt;wrapperOf&lt;/i&gt;: specifies that this dataSource/dataSet is a wrapper of the &lt;i&gt;relatedId&lt;/i&gt; identifier.  A wrapper data source type is hidden by default from the list of available data sources presented in the ODA design UI framework. Since: 3.1.2.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="replacedBy">
+                  </enumeration>
+                  <enumeration value="wrapperOf">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="relatedId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully qualified ID of the related ODA data source or data set element.
+Its value for a  &lt;i&gt;replacedBy&lt;/i&gt; type must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; or &lt;i&gt;dataSet.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         3.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;
+   &lt;pre&gt;
+   &lt;extension
+         point=&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;&gt;
+      &lt;dataSource
+            odaVersion=&quot;3.1&quot;
+            driverClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver&quot;
+            defaultDisplayName=&quot;Flat File Data Source&quot;
+            id=&quot;org.eclipse.datatools.connectivity.oda.flatfile&quot;
+            setThreadContextClassLoader=&quot;false&quot;&gt;
+         &lt;properties&gt;
+         &lt;propertyGroup
+               defaultDisplayName=&quot;Connection Properties&quot;
+               name=&quot;connectionProperties&quot;&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  defaultDisplayName=&quot;Home Folder&quot;
+                  canInherit=&quot;true&quot;
+                  name=&quot;HOME&quot;/&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  defaultDisplayName=&quot;Character Set&quot;
+                  canInherit=&quot;true&quot;
+                  name=&quot;CHARSET&quot;/&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  canInherit=&quot;true&quot;
+                  defaultDisplayName=&quot;Includes Data Type (Yes/No)&quot;
+                  name=&quot;INCLTYPELINE&quot;/&gt;                 
+         &lt;/propertyGroup&gt;
+         &lt;/properties&gt;
+      &lt;/dataSource&gt;
+      &lt;dataSet
+            defaultDisplayName=&quot;Flat File Data Set&quot;
+            id=&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BIT&quot;
+                  nativeDataTypeCode=&quot;-7&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TINYINT&quot;
+                  nativeDataTypeCode=&quot;-6&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;SMALLINT&quot;
+                  nativeDataTypeCode=&quot;5&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;INTEGER&quot;
+                  nativeDataTypeCode=&quot;4&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BIGINT&quot;
+                  nativeDataTypeCode=&quot;-5&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;FLOAT&quot;
+                  nativeDataTypeCode=&quot;6&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;REAL&quot;
+                  nativeDataTypeCode=&quot;7&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DOUBLE&quot;
+                  nativeDataTypeCode=&quot;8&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;NUMERIC&quot;
+                  nativeDataTypeCode=&quot;2&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DECIMAL&quot;
+                  nativeDataTypeCode=&quot;3&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;CHAR&quot;
+                  nativeDataTypeCode=&quot;1&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;VARCHAR&quot;
+                  nativeDataTypeCode=&quot;12&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;LONGVARCHAR&quot;
+                  nativeDataTypeCode=&quot;-1&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DATE&quot;
+                  nativeDataTypeCode=&quot;91&quot;
+                  odaScalarDataType=&quot;Date&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TIME&quot;
+                  nativeDataTypeCode=&quot;92&quot;
+                  odaScalarDataType=&quot;Time&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TIMESTAMP&quot;
+                  nativeDataTypeCode=&quot;93&quot;
+                  odaScalarDataType=&quot;Timestamp&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BINARY&quot;
+                  nativeDataTypeCode=&quot;-2&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;VARBINARY&quot;
+                  nativeDataTypeCode=&quot;-3&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;LONGVARBINARY&quot;
+                  nativeDataTypeCode=&quot;-4&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BOOLEAN&quot;
+                  nativeDataTypeCode=&quot;16&quot;
+                  odaScalarDataType=&quot;Boolean&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BLOB&quot;
+                  nativeDataTypeCode=&quot;2004&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;CLOB&quot;
+                  nativeDataTypeCode=&quot;2005&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+      &lt;/dataSet&gt;
+   &lt;/extension&gt; 
+   &lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         The data source extension&apos;s driver must implement the interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package. See the package&apos;s JavaDoc documentation and API interfaces for more information.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The ODA framework provides an ODA Plug-in Project Template Wizard to automatically generate a custom ODA plug-in project with a set of default implementation of the main ODA interfaces.  The wizard is available in the New-&gt;Project... dialog; one for ODA Runtime Driver, another for ODA Designer. 
+&lt;br&gt;
+Their generated implementation classes assume the behavior of a simple ODA driver and designer UI.  They contain TODO task tags for an ODA driver developer to implement data source specific behavior.
+These concrete classes are provided to aid in the development of a custom ODA data source.  Their use is purely optional.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2004-2009 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>

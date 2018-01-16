@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.NewGenericJDBCConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
+            name="%wizard.name"
+            description = "%wizard.description"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.GenericJDBCDBProfilePropertyPage"
+            id="org.eclipse.datatools.connectivity.db.generic.profileProperties"
+            name="%page.name.jdbcConnectionProperties">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.DriverClassBrowsePropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.driverClass"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.db.generic.genericDriver.ui.propertyEditor.driverClass">
+      </propertyEditor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.drivers.GenericJDBCDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.db.generic.internal.ui.drivers.GenericJDBCDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+</plugin>

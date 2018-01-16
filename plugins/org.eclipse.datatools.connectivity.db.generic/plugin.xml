@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+ 
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="org.eclipse.datatools.connectivity.db.category"
+            name="%databases.category"/>
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
+            name="%generic.profile.name"
+            pingFactory="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            id="java.sql.Connection"
+            name="%jdbc.connection.name"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+   </extension>
+   
+  <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">     
+
+      <category
+            id="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="%org.eclipse.datatools.connectivity.db.driverCategory"/>
+   
+      <category
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="%org.eclipse.datatools.connectivity.db.generic.genericDriverCategory"
+            id="org.eclipse.datatools.connectivity.db.genericDriverCategory"/>
+
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            jarList=""
+            name="%org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            parentCategory="org.eclipse.datatools.connectivity.db.genericDriverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driverClass"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%driverVendor"
+                  value="Generic JDBC"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%driverVersion"
+                  value="1.0"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%driverDBName"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%driverConnectionURL"
+                  value="jdbc:"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%driverUID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension> 
+     
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+      <providerIDtoDriverCategoryID
+            driverCategoryID="org.eclipse.datatools.connectivity.db.genericDriverCategory"
+            providerID="org.eclipse.datatools.connectivity.db.generic.connectionProfile">
+      </providerIDtoDriverCategoryID>
+   </extension>
+ 
+</plugin>

@@ -1,0 +1,16 @@
+# Logging && Tracing options for the com.ibm.datatools.core.ui plug-in
+
+# Turn on general debugging for the com.ibm.datatools.core.ui plug-in
+
+com.ibm.datatools.core.ui/debug=true
+
+# Turn on tracing for the com.ibm.datatools.core.ui
+
+com.ibm.datatools.core.ui/modelExplorer/trace=true
+com.ibm.datatools.core.ui/modelExplorerDecoration/trace=true
+
+# Turn on Logging for the com.ibm.datatools.core.ui
+
+com.ibm.datatools.core.ui/modelExplorer/log=true
+com.ibm.datatools.core.ui/editor/log=true
+com.ibm.datatools.core.ui/plugin/log=true

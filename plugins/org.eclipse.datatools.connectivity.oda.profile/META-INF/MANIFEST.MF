@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.profile;singleton:=true
+Bundle-Version: 3.4.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Eclipse Data Tools Platform
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.connectivity.oda.profile,
+ org.eclipse.datatools.connectivity.oda.profile.internal;x-friends:="org.eclipse.datatools.connectivity.oda.design.ui,org.eclipse.birt.report.data.oda.jdbc.dbprofile"
+Require-Bundle: org.eclipse.datatools.connectivity;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda.consumer,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.datatools.connectivity.oda.profile.OdaProfilePlugin

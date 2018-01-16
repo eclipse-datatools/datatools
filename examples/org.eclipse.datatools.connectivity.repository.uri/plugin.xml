@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.connectionProfileRepositoryCategory"
+            icon="icons/local_file_repository.GIF"
+            id="org.eclipse.datatools.connectivity.repository.uri.connectionProfile"
+            name="URI Based Connection Profile Repository"
+            pingFactory="org.eclipse.datatools.connectivity.repository.uri.URIRepositoryConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.connectivity.repository.uri.PropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.repository.uri.URIRepositoryConnectionFactory"
+            id="org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository"
+            name="Connection Profile URI Repository Connection"
+            profile="org.eclipse.datatools.connectivity.repository.uri.connectionProfile"/>
+      <newWizard
+            class="org.eclipse.datatools.connectivity.repository.uri.NewURIRepositoryProfileWizard"
+            id="org.eclipse.datatools.connectivity.repository.uri.newWizard1"
+            name="URI Based Connection Profile Repository"
+            profile="org.eclipse.datatools.connectivity.repository.uri.connectionProfile"/>
+   </extension>
+
+</plugin>

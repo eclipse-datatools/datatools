@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.datatools.connectivity.test" default="build.jars" basedir=".">
+
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="false"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="false"/>
+	<property name="logExtension" value=".log"/>
+	<property name="compilerArg" value=""/>
+	<property name="javacSource" value="1.3"/>
+	<property name="javacTarget" value="1.2"/>
+	<path id="path_bootclasspath">
+		<fileset dir="${java.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+	<property name="bundleJavacSource" value="${javacSource}"/>
+	<property name="bundleJavacTarget" value="${javacTarget}"/>
+	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+
+	<target name="init" depends="properties">
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/org.eclipse.datatools.connectivity.test">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.connectivity.test for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip destfile="${plugin.destination}/org.eclipse.datatools.connectivity.test_1.0.0.jar" basedir="${temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" filesonly="false" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="connectivityTest.jar" depends="init" unless="connectivityTest.jar" description="Create jar: org.eclipse.datatools.connectivity.test connectivityTest.jar.">
+		<delete dir="${temp.folder}/connectivityTest.jar.bin"/>
+		<mkdir dir="${temp.folder}/connectivityTest.jar.bin"/>
+		<path id="connectivityTest.jar.classpath">
+			<pathelement path="../org.eclipse.datatools.connectivity/bin/"/>
+			<pathelement path="../org.eclipse.datatools.connectivity/connectivity.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.osgi_3.2.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.equinox.common_3.2.0.v20060512.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.jobs_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060426/runtime_registry_compatibility.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060426"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.equinox.registry_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.equinox.preferences_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060426/@dot"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.contenttype_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime.compatibility.auth_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.resources_3.2.0.v20060512.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.resources.compatibility_3.2.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.resources.win32_3.2.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.runtime.compatibility_3.1.100.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.update.configurator_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ant.core_3.1.100.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.variables_3.1.100.v20060517.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.expressions_3.2.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.filesystem_1.0.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.filesystem.win32.x86_1.0.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/com.ibm.icu_3.4.4.1.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui_3.2.0.I20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.swt_3.2.0.v3232k.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.swt.win32.win32.x86_3.2.0.v3232g.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jface_3.2.0.I20060526-0010a.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.commands_3.2.0.I20060511-0800a.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.workbench_3.2.0.I20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.workbench.compatibility_3.2.0.I20060511-2000/@dot"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.workbench.compatibility_3.2.0.I20060511-2000/compatibility.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.help_3.2.0.v20060518.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.junit_3.2.0.v20060518-0800/junitsupport.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.ide_3.2.0.I20060519-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.win32_3.2.0.I20060511-2000.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.views_3.2.0.I20060511-2000.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.update.core_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.update.core.win32_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.update.ui_3.2.0.v20060511.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.forms_3.2.0.v20060510.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jface.text_3.2.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.text_3.2.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.workbench.texteditor_3.2.0.v20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.editors_3.2.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.core.filebuffers_3.2.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.debug.core_3.2.0.v20060525.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.debug.ui_3.2.0.v20060525a.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.console_3.1.100.v20060518.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.core_3.2.0.v_668.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.team.core_3.2.0.I200605181830.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.ui_3.2.0.v20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.search_3.2.0.v20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.launching_3.2.0.v20060525.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.debug_3.2.0.v20060518/jdi.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.debug_3.2.0.v20060518/jdimodel.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.debug_3.2.0.v20060518/tools.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.compare_3.2.0.v20060525.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.team.ui_3.2.0.I200605181830.jar"/>
+			<pathelement path="../org.eclipse.ui.navigator/bin"/>
+			<pathelement path="../org.eclipse.ui.navigator/@dot"/>
+			<pathelement path="../org.eclipse.ui.navigator.resources/bin"/>
+			<pathelement path="../org.eclipse.ui.navigator.resources/@dot"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ui.views.properties.tabbed_3.2.0.I20060511-0800a.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ltk.core.refactoring_3.2.0.v20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.ltk.ui.refactoring_3.2.0.v20060526-0010.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.core.manipulation_1.0.0.v20060518-0800.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.debug.ui_3.2.0.v20060517.jar"/>
+			<pathelement path="../../eclipse/plugins/org.eclipse.jdt.junit.runtime_3.2.0.v20060526-0010/junitruntime.jar"/>
+			<pathelement path="../../eclipse/plugins/org.junit_3.8.1/junit.jar"/>
+			<pathelement path="../org.eclipse.datatools.connectivity.ui/bin/"/>
+			<pathelement path="../org.eclipse.datatools.connectivity.ui/connectivityui.jar"/>
+			<pathelement path="@dot"/>
+			<pathelement path="${build.result.folder}/../org.eclipse.datatools.connectivity.test/@dot"/>
+		</path>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/connectivityTest.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bundleBootClasspath}" source="${bundleJavacSource}" target="${bundleJavacTarget}"		>
+			<compilerarg line="${compilerArg}" compiler="${build.compiler}"/>
+			<classpath refid="connectivityTest.jar.classpath" />
+			<src path="src/"			/>
+			<compilerarg value="@${basedir}/javaCompiler.connectivityTest.jar.args" compiler="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+			<compilerarg line="-log '${temp.folder}/connectivityTest.jar.bin${logExtension}'" compiler="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+		</javac>
+		<!-- Copy necessary resources -->
+		<copy todir="${temp.folder}/connectivityTest.jar.bin" failonerror="true" overwrite="false">
+			<fileset dir="src/" excludes="**/*.java, **/package.htm*"			/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar destfile="${build.result.folder}/connectivityTest.jar" basedir="${temp.folder}/connectivityTest.jar.bin"/>
+		<delete dir="${temp.folder}/connectivityTest.jar.bin"/>
+	</target>
+
+	<target name="connectivityTestsrc.zip" depends="init" unless="connectivityTestsrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip destfile="${build.result.folder}/connectivityTestsrc.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/" includes="**/*.java"			/>
+		</zip>
+	</target>
+
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.connectivity.test.">
+		<available property="connectivityTest.jar" file="${build.result.folder}/connectivityTest.jar"/>
+		<antcall target="connectivityTest.jar"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="connectivityTestsrc.zip" file="${build.result.folder}/connectivityTestsrc.zip"/>
+		<antcall target="connectivityTestsrc.zip"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0"/>
+		<copy todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}" includes="connectivityTest.jar"			/>
+		</copy>
+		<copy todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}" includes="META-INF/,plugin.xml,test_files/,about.html,connectivityTest.jar"			/>
+		</copy>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0"/>
+		<copy file="${build.result.folder}/connectivityTestsrc.zip" todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" failonerror="false" overwrite="false"/>
+		<copy todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes=""			/>
+		</copy>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0"/>
+		<copy file="${temp.folder}/connectivityTest.jar.bin${logExtension}" todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.test_1.0.0" failonerror="false" overwrite="false"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.connectivity.test of all the zips, jars and logs created.">
+		<delete file="${build.result.folder}/connectivityTest.jar"/>
+		<delete file="${build.result.folder}/connectivityTestsrc.zip"/>
+		<delete file="${plugin.destination}/org.eclipse.datatools.connectivity.test_1.0.0.jar"/>
+		<delete file="${plugin.destination}/org.eclipse.datatools.connectivity.test_1.0.0.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="F:/Eclipse3.2RC6/workspace/org.eclipse.datatools.connectivity.test" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.connectivity.test.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin${logExtension}"			/>
+		</delete>
+		<zip destfile="${plugin.destination}/org.eclipse.datatools.connectivity.test_1.0.0.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+</project>

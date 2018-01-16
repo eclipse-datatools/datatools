@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
+   <extension-point id="logicalContainment" name="%logicalContainmentExtensionPointName" schema="schema/logicalContainment.exsd"/>
+   <extension-point id="dataModelElementFactory" name="%DataModelElementFactoryExtensionPointName" schema="schema/dataModelElementFactory.exsd"/>
+   <extension-point id="ddlParser" name="%DDLParserExtensionPointName" schema="schema/ddlParser.exsd"/>
+   <extension-point id="ddlGeneration" name="%DDLGenerationExtensionPointName" schema="schema/ddlGeneration.exsd"/>
+   <extension-point id="catalog" name="%CatalogExtensionPointName" schema="schema/catalog.exsd"/>
+   <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
+   <extension-point id="metaDataExtension" name="metaDataExtension" schema="schema/metaDataExtension.exsd"/>
+   <extension-point id="mappings" name="Mappings" schema="schema/mappings.exsd"/>
+   <extension-point id="sqlexceptionHandler" name="sqlexceptionHandler" schema="schema/sqlexceptionHandler.exsd"/>
+   <extension-point id="validConnectionHandler" name="%validConnectionHandlerName" schema="schema/validConnectionHandler.exsd"/>
+   
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Dependency"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.DependencyContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Database"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.DatabaseContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Schema"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.SchemaContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Comment"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.CommentContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="BaseTable"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.TableContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="ViewTable"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ViewContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="Column"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ColumnContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Sequence"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.SequenceContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="Trigger"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.TriggerContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="Index"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.IndexContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="Constraint"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ConstraintContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/routines.ecore"
+            class="Routine"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.RoutineContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"
+            class="UserDefinedType"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.UserDefinedTypeContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Catalog"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.CatalogContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="AuthorizationIdentifier"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.AuthorizationIdContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="Privilege"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.PrivilegeContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="RoleAuthorization"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.RoleAuthorizationContainmentProvider">
+      </containment>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionFactoryAdapter
+            class="org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory"
+            id="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"
+            name="%SQLModelConnectionName"
+            factory="java.sql.Connection"/>
+      <profileExtension
+            id="org.eclipse.datatools.connectivity.sqm.filterSettings"
+            name="%FilterProfileExtensionName"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+   </extension>
+</plugin>

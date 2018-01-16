@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sample Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.sample; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.connectivity.sample.Activator
+Bundle-Vendor: Eclipse.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.datatools.connectivity.ui.dse
+Eclipse-LazyStart: true

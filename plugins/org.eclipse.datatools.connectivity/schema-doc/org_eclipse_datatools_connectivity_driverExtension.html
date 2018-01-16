@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Driver Definition</title>
+<style>@import url("file:/F:/Eclipse3.2M6/eclipse/plugins/org.eclipse.sdk_3.2.0.v20060329/book.css");</style>
+<style>@import url("file:/F:/Eclipse3.2M6/eclipse/configuration/org.eclipse.osgi/bundles/77/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>Driver Definition</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.driverExtension<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>DTP 0.x
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6><p>
+The driverExtension is used by developers to define templates that describe the mechanical components necessary for opening connections to servers.  Users create specific driver definitions using these templates.
+</p>
+<p>
+The driver definitions are intended to be used in conjunction with connection profiles, where the driver definition specifies the mechanics (e.g. JAR files, driver class names, etc.) necessary for opening the connection and where the connection profile specifies the particulars for connecting to a specific server (e.g. host, port, user ID, password, etc.).
+</p></p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.category">category</a>* , <a href="#e.driverTemplate">driverTemplate</a>)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.category">category</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST category</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>parentCategory&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to identify a category.  Categories are used to group related connection profile types (e.g. databases).</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The id of this category.  This value is referenced by <samp>driverTemplate</samp> elements.</li>
+<li><b>name</b> - The display name for this category.</li>
+<li><b>description</b> - The description of this category. This value will be used in the UI to describe a particular category.</li>
+<li><b>parentCategory</b> - The id of a parent category, if this category has a parent.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.driverTemplate">driverTemplate</a> (<a href="#e.properties">properties</a>?)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST driverTemplate</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>parentCategory&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>jarList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>createDefault&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>emptyJarListIsOK&nbsp;(true | false) "false"&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to identify a template.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The id of this driver type.</li>
+<li><b>name</b> - The display name for this driver type.</li>
+<li><b>description</b> - The description of this driver type. This value will be used in the UI to describe a particular type.</li>
+<li><b>parentCategory</b> - The id of the category to which this template belongs.</li>
+<li><b>jarList</b> - The list of JAR files used to create the classpath used when connecting using this driver.</li>
+<li><b>createDefault</b> - Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.</li>
+<li><b>emptyJarListIsOK</b> - Specifies whether or not it is valid for the jarList property to be empty.  Default is false.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.properties">properties</a> (<a href="#e.property">property</a>+)&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Parent container for specific driver definition properties.</p>
+<br><br>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.property">property</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST property</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>required&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>generated&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"<p class=code id=dtdAttlist>customPropertyDescriptor&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+A property definition for a driver definition.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The id of this property.  Used to identify this property in the driver definition.</li>
+<li><b>name</b> - The display name for this property.</li>
+<li><b>description</b> - The description of this property. This value will be used in the UI to describe a particular type.</li>
+<li><b>value</b> - The default value for this property.</li>
+<li><b>visible</b> - Specifies whether or not this property is visible and editable to the user.  Default is true.</li>
+<li><b>example</b> - Specifies an example value for this property.</li>
+<li><b>required</b> - Specifies whether or not this is a required property.  Default is true.</li>
+<li><b>generated</b> - currently unused and undefined.</li>
+<li><b>customPropertyDescriptor</b> - Provides a way to specify a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.</li>
+<li><b>category</b> - The category tag is used to provide an optional category for your template properties. The default is "General" if no category is specified for the property. You can use this to group properties in arbitrary categories.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><extension
+         point="org.eclipse.datatools.connectivity.driverExtension">
+      <category
+            id="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="Database"/>
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.genericDriverTemplate"
+            jarList=""
+            name="Generic JDBC Driver"
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="Driver Class"
+                  value=""
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.dbdefinition"
+                  name="DBDefinition Model Instance"
+                  value=""
+                  required="true"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[Enter API information here.]
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+<p>Copyright (c) 2004-2005 Sybase, Inc.</p>
+<p>All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></p>
+
+<p>Contributors: brianf - initial API and implementation</p>
+<p></p>
+
+</p>
+</BODY>
+</HTML>

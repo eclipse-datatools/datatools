@@ -1,0 +1,32 @@
+# package: com.sybase.suade.servers.sample.jdbc
+NewConnectionProfileWizard.title = New JDBC Connection Profile
+NewConnectionProfileWizard.error.title = Error Creating New JDBC Connection Profile
+NewConnectionProfileWizard.error.msg = An exception occurred while creating a new JDBC connection profile.
+
+GenericDBProfileDetailsWizardPage.title = Specify a Driver and Connection Details
+GenericDBProfileDetailsWizardPage.msg = Select a driver from the drop-down and provide login details for the connection.
+GenericDBProfileDetailsWizardPage.driverCombo.label = Drivers:
+GenericDBProfileDetailsWizardPage.databaseName.label = Database:
+GenericDBProfileDetailsWizardPage.url.label = URL:
+GenericDBProfileDetailsWizardPage.PingButton=Test connection
+GenericDBProfileDetailsWizardPage.userName.label = User name:
+GenericDBProfileDetailsWizardPage.password.label = Password:
+GenericDBProfileDetailsWizardPage.persistpassword.label = Save password
+GenericDBProfileDetailsWizardPage.optionalProps.label = Optional properties:
+GenericDBProfileDetailsWizardPage.summary.driverName.label = Driver name
+GenericDBProfileDetailsWizardPage.summary.connProps.label = Connection properties
+GenericDBProfileDetailsWizardPage.summary.userName.label = User name
+GenericDBProfileDetailsWizardPage.summary.password.label = Password
+GenericDBProfileDetailsWizardPage.summary.url.label = URL
+
+JDBCConnectionUtils.Milliseconds=\ milli(s)
+JDBCConnectionUtils.StatusTitle=JDBCConnectionUtils
+JDBCConnectionUtils.TimeoutInXMilliSecondsMsg=Login timeout in 
+JDBCConnectionUtils.AttemptToConnectMessage=Attempting to connect...
+JDBCConnectionUtils.DBConnectAttemptJob=Database Connection Attempt
+JDBCConnectionUtils.ClassNotFoundStatus=Could not load class: 
+JDBCConnectionUtils.ConnectionTimeoutMessage=Connection timed out.
+
+JDBCConnection.technologyName = JDBC
+JDBCConnection.error.DriverNotExist = Driver does not exist.
+JDBCConnection.error.EmptyJarList = Empty jar list in driver definition.

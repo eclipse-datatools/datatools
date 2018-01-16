@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.pde.ui.pluginContent">
+      <wizard
+            class="org.eclipse.datatools.connectivity.ui.templates.ConnectivityPluginTemplateWizard"
+            icon="$nl$/icons/etool16/newexprj_wiz.gif"
+            id="org.eclipse.datatools.connectivity.ui.templates.connectionProfileWizard"
+            java="true"
+            name="%wizard.name.profile"
+            requiresActivator="false"
+            ui-content="true">
+         <description>
+         	%wizard.name.profile.description
+		</description>
+      </wizard>
+      <wizard
+            class="org.eclipse.datatools.connectivity.ui.templates.DriverTemplatePluginTemplateWizard"
+            icon="$nl$/icons/etool16/newexprj_wiz.gif"
+            id="org.eclipse.datatools.connectivity.ui.templates.driverTemplateWizard"
+            java="true"
+            name="%wizard.name.driver"
+            requiresActivator="false"
+            ui-content="true">
+         <description>
+         	%wizard.name.driver.description
+		</description>
+      </wizard>
+      <wizard
+            class="org.eclipse.datatools.connectivity.ui.templates.ProfileSamplePluginTemplateWizard"
+            icon="$nl$/icons/etool16/newexprj_wiz.gif"
+            id="org.eclipse.datatools.connectivity.ui.templates.sampleProfileWizard"
+            java="true"
+            name="%PluginSampleTemplateWizard"
+            requiresActivator="false"
+            ui-content="true">
+         <description>
+            %PluginSampleTemplateWizard.profile.description
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.pde.ui.templates">
+      <template
+            class="org.eclipse.datatools.connectivity.ui.templates.ConnectionProfileTemplateSection"
+            contributingId="org.eclipse.datatools.connectivity.connectionProfile"
+            id="org.eclipse.datatools.connectivity.templates.connectionProfile"
+            name="%template.name.profile">
+      </template>
+      <template
+            class="org.eclipse.datatools.connectivity.ui.templates.DriverTemplateSection"
+            contributingId="org.eclipse.datatools.connectivity.driverExtension"
+            id="org.eclipse.datatools.connectivity.templates.driverTemplate"
+            name="%template.name.driver">
+      </template>
+      <template
+            class="org.eclipse.datatools.connectivity.ui.templates.ProfileSamplePluginTemplateWizard"
+            contributingId="org.eclipse.datatools.connectivity.connectionProfile"
+            id="org.eclipse.datatools.connectivity.templates.sampleTemplate"
+            name="%PluginSampleTemplate">
+      </template>
+   </extension>
+
+</plugin>

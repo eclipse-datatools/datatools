@@ -1,0 +1,640 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="driverExtension" name="Driver Definition"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;
+The driverExtension is used by developers to define templates that describe the mechanical components necessary for opening connections to servers.  Users create specific driver definitions using these templates.
+&lt;/p&gt;
+&lt;p&gt;
+The driver definitions are intended to be used in conjunction with connection profiles, where the driver definition specifies the mechanics (e.g. JAR files, driver class names, etc.) necessary for opening the connection and where the connection profile specifies the particulars for connecting to a specific server (e.g. host, port, user ID, password, etc.).
+&lt;/p&gt;
+&lt;p&gt;
+In addition, using the driverTemplateOverride functionality, adopters can take existing driver templates (such as for one of the Enablement projects) and update the driver&apos;s jar list to actually point to a wrapped jar, or update individual properties of a template to fit a particular use. 
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="category" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="driverTemplate" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="driverTemplateOverride" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="category">
+      <annotation>
+         <documentation>
+            This element is used to identify a category.  Categories are used to group related connection profile types (e.g. databases).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this category.  This value is referenced by &lt;samp&gt;driverTemplate&lt;/samp&gt; elements.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The display name for this category.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The description of this category. This value will be used in the UI to describe a particular category.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of a parent category, if this category has a parent.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="driverTemplate">
+      <annotation>
+         <documentation>
+            This element is used to identify a template.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="migration" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this driver type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The display name for this driver type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The description of this driver type. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of the category to which this template belongs.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="jarList" type="string">
+            <annotation>
+               <documentation>
+                  The list of JAR files used to create the classpath used when connecting using this driver.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createDefault" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="emptyJarListIsOK" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Specifies whether or not it is valid for the jarList property to be empty.  Default is false.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="valuesProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDefinitionName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="properties">
+      <annotation>
+         <documentation>
+            Parent container for specific driver definition properties.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="property" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="property">
+      <annotation>
+         <documentation>
+            A property definition for a driver definition.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this property.  Used to identify this property in the driver definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The display name for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The description of this property. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string">
+            <annotation>
+               <documentation>
+                  The default value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visible" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this property is visible and editable to the user.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="example" type="string">
+            <annotation>
+               <documentation>
+                  Specifies an example value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="required" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this is a required property.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="generated" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  currently unused and undefined.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="customPropertyDescriptor" type="string">
+            <annotation>
+               <documentation>
+                  Provides a way to specify a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+
+Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
+
+ private static String DRIVER_CLASS_PROP_ID = &quot;org.eclipse.datatools.connectivity.db.driverClass&quot;; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString(&quot;DriverClassBrowsePropertyDescriptor.property.label&quot;)); //$NON-NLS-1$
+ }
+ 
+Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor" deprecated="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  The category tag is used to provide an optional category for your template properties. The default is &quot;General&quot; if no category is specified for the property. You can use this to group properties in arbitrary categories.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="driverTemplateOverride">
+      <annotation>
+         <documentation>
+            This element is used to identify a template override
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="1">
+            <element ref="propertyOverrides"/>
+         </sequence>
+         <attribute name="targetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the driver template to be overridden.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The overridden display name for this driver type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The overridden description of this driver type. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of the category to which this template belongs.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="jarList" type="string">
+            <annotation>
+               <documentation>
+                  The list of JAR files used to create the classpath used when connecting using this driver.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createDefault" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="emptyJarListIsOK" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not it is valid for the jarList property to be empty.  Default is false.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="valuesProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The value for priority should be a value of 1 to 5, with 1 being low and 5 being high, indicating the priority for this override. If there are other overrides for the particular target driver template, the priority will be used to indicate which override should take precedence. If no priority is specified, the priority will default to &quot;1&quot;. If multiple overrides have the same priority, the one with the lowest plug-in ID alphabetically (IDs will be sorted in ascending alphabetical order) will take precedence.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDefinitionName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The id attribute, though optional, is required to allow one driverTemplateOverride instance to override another. For example, if driver A has an override B that changes or removes a property, another adopter might implement override C that uses the id of override B as the targetId, thus replacing the overridden driver template with their own. In the case of multiple overrides or overrides of overrides, the priority is taken into account.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="remove" type="boolean">
+            <annotation>
+               <documentation>
+                  Removes the template from the list of available templates.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyOverrides">
+      <annotation>
+         <documentation>
+            Parent container for specific driver definition overridden properties
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="propertyOverride"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="propertyOverride">
+      <annotation>
+         <documentation>
+            A property override definition for a driver template
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="targetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the property to override. Must match the property ID from the driver template you are overriding.  Used to identify this property in the driver definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The overridden display name for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The overridden description of this property. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string">
+            <annotation>
+               <documentation>
+                  The overridden default value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visible" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this property is visible and editable to the user.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="example" type="string">
+            <annotation>
+               <documentation>
+                  Specifies an example value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="required" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this is a required property.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="customPropertyDescriptor" type="string">
+            <annotation>
+               <documentation>
+                  Provides a way to override a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+
+Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
+
+ private static String DRIVER_CLASS_PROP_ID = &quot;org.eclipse.datatools.connectivity.db.driverClass&quot;; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString(&quot;DriverClassBrowsePropertyDescriptor.property.label&quot;)); //$NON-NLS-1$
+ }
+ 
+Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor:" deprecated="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  The category tag is used to override the category for your template properties. The default is &quot;General&quot; if no category is specified for the property. You can use this to group properties in arbitrary categories.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="remove" type="boolean">
+            <annotation>
+               <documentation>
+                  Indicates if this property should be removed
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="migration">
+      <annotation>
+         <documentation>
+            Use this element to add migration support for a deprecated driver type (e.g. ID changes, property changes, etc.). Make sure if you are migrating driver definitions of one template to another and the first driver template was set to &quot;createDefault = true&quot;, that you set the old driver template to createDefault = false or the driver manager will attempt to recreate the older template and then migrate it.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="propertyMigration" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="newDriverTemplateID" type="string">
+            <annotation>
+               <documentation>
+                  The ID of the new driver template to which the old driver template should be associated with.  If this attribute is not specified, the ID of the driver template is not changed.  However, propertyMigration elements, if any, will still be processed and applied.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  A migration implementation that allows the provider to perform a specialized migration.  Use this method if you require a more complex migration algorithm (i.e. anything other than simple name and property mapping).
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.drivers.DriverMigratorBase:org.eclipse.datatools.connectivity.drivers.IDriverMigrator"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyMigration">
+      <annotation>
+         <documentation>
+            This element is used to specify a simple mapping for property key names from a source driver definition to a target driver definition
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="oldPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the source driver definition  If this property is not specified, the new property will be defaulted with the value of newValue.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the target driver definition  If this value is not specified, the old property will be deleted.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newValue" type="string">
+            <annotation>
+               <documentation>
+                  Use this attribute for populating a default property value for a new property.  newPropertyKey must be set.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         DTP 0.x
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;extension
+         point=&quot;org.eclipse.datatools.connectivity.driverExtension&quot;&gt;
+      &lt;category
+            id=&quot;org.eclipse.datatools.connectivity.db.driverCategory&quot;
+            name=&quot;Database&quot;/&gt;
+      &lt;driverTemplate
+            createDefault=&quot;false&quot;
+            emptyJarListIsOK=&quot;false&quot;
+            id=&quot;org.eclipse.datatools.connectivity.db.genericDriverTemplate&quot;
+            jarList=&quot;&quot;
+            name=&quot;Generic JDBC Driver&quot;
+            parentCategory=&quot;org.eclipse.datatools.connectivity.db.driverCategory&quot;&gt;
+         &lt;properties&gt;
+            &lt;property
+                  generated=&quot;false&quot;
+                  id=&quot;org.eclipse.datatools.connectivity.db.driverClass&quot;
+                  name=&quot;Driver Class&quot;
+                  value=&quot;&quot;
+                  required=&quot;true&quot;
+                  visible=&quot;true&quot;/&gt;
+            &lt;property
+                  generated=&quot;false&quot;
+                  id=&quot;org.eclipse.datatools.connectivity.db.dbdefinition&quot;
+                  name=&quot;DBDefinition Model Instance&quot;
+                  value=&quot;&quot;
+                  required=&quot;true&quot;
+                  visible=&quot;true&quot;/&gt;
+         &lt;/properties&gt;
+      &lt;/driverTemplate&gt;
+    &lt;driverTemplateOverride
+          jarList=&quot;[PLUGIN]\mydriver\driver.jar&quot;
+          name=&quot;Override for Generic JDBC Driver&quot;
+          targetId=&quot;org.eclipse.datatools.connectivity.db.genericDriverTemplate&quot;&gt;
+       &lt;propertyOverrides&gt;
+          &lt;propertyOverride
+                value=&quot;my.class&quot;
+                targetId=&quot;org.eclipse.datatools.connectivity.db.driverClass&quot;/&gt;
+       &lt;/propertyOverrides&gt;
+    &lt;/driverTemplateOverride&gt;
+   &lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         &lt;p&gt;Copyright (c) 2004-2007 Sybase, Inc.&lt;/p&gt;
+&lt;p&gt;All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Contributors: brianf - initial API and implementation&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+</schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="1.0"
+            product="Generic JDBC"
+            productDisplayString="%1.0_ProductString"
+            versionDisplayString="%1.0_VersionString"
+            file="runtime/vendors/Generic JDBC_1.0/Generic JDBC_1.0.xmi">
+      </definition>
+   </extension>
+   
+</plugin>

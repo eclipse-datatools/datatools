@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+    
+<!-- Content provider for Derby in Database Explorer -->
+   <extension point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <contentExtension
+                  pattern="org.eclipse.datatools.connectivity.apache.derby.ui.ServerExplorerContent"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            name="Database_Explorer_Derby_Content_Extension"
+            priority="high"
+            icon="platform:/plugin/org.eclipse.datatools.connectivity.sqm.core.ui/icons/server_explorer.gif"
+            activeByDefault="true"
+            contentProvider="org.eclipse.datatools.connectivity.apache.derby.internal.ui.explorer.providers.ServerExplorerContentProvider"
+            labelProvider="org.eclipse.datatools.connectivity.apache.derby.internal.ui.explorer.providers.label.ServerExplorerlabelProvider"			
+            id="org.eclipse.datatools.connectivity.apache.derby.ui.ServerExplorerContent">
+		    <triggerPoints>
+		         <or>
+		            <instanceof 
+		                  value="org.eclipse.datatools.modelbase.derby.DerbySchema" />
+		         </or>
+		    </triggerPoints>
+	        <possibleChildren>
+	           <or>         
+	            	<instanceof
+	                  	value="org.eclipse.datatools.connectivity.apache.derby.ui.explorer.providers.virtual.ISynonymFolder" /> 
+		            <instanceof
+		                  value="org.eclipse.datatools.modelbase.derby.Synonym" /> 
+	           </or>
+	        </possibleChildren>
+      </navigatorContent>
+   </extension>
+
+   <!-- Label Service -->	
+   <extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+		<contributor
+			type = "org.eclipse.datatools.modelbase.derby.Synonym"
+			iconLocation = "icons/alias.gif"
+			displayType = "%Synonym">
+		</contributor>
+	</extension>
+	
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby101.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby102.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.derby.db2UniversalDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.derby101.db2UniversalDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.clientDriver"
+            id="org.eclipse.datatools.connectivity.derby101.clientDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.clientDriver"
+            id="org.eclipse.datatools.connectivity.derby102.clientDriver.ui.propertyEditor.password">
+      </propertyEditor>
+   </extension>
+	
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.NewDerbyEmbeddedConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.connectivity.db.derby.embedded.NewConnectionProfileWizard"
+            name="%DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_NAME"
+            description = "%DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_DESCRIPTION"
+            profile="org.eclipse.datatools.connectivity.db.derby.embedded.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.DerbyEmbeddedDBPropertyPage"
+            id="org.eclipse.datatools.connectivity.db.derby.profileProperties"
+            name="%DERBY_EMBEDDED_DB_PROPERTY_PAGE_NAME">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.connectivity.db.derby.embedded.connectionProfile"/>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+	   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.otherDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_0.DerbyOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.otherDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_1.DerbyOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.otherDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_2.DerbyOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyEmbeddedDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_0.DerbyEmbeddedDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyEmbeddedDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_1.DerbyEmbeddedDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyEmbeddedDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_2.DerbyEmbeddedDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_0.DerbyDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_1.DerbyDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyClientDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.clientDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_1.DerbyClientDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.DerbyClientDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.clientDriver"
+            id="org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers.10_2.DerbyClientDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+</plugin>

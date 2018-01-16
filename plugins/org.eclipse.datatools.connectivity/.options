@@ -1,0 +1,5 @@
+# Turn on debug tracing for org.eclipse.datatools.connectivity plugin
+org.eclipse.datatools.connectivity/debug=true
+
+# Reports extensions
+org.eclipse.datatools.connectivity/connectionprofileextension=false

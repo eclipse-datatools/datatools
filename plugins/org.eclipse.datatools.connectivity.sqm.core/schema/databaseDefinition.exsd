@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="databaseDefinition" name="Database Definition"/>
+      </appinfo>
+      <documentation>
+         Provides a database definition.  The data definition, which must implement the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition&lt;/code&gt; interface, can be used to obtain meta-information about the database of given type and version, and can also be used to obtain a data model element factory, as contributed by the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory&lt;/code&gt; extension point.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="definition" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="definition">
+      <complexType>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A description of the database definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="product" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Vendor name for the db definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="version" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Version name for the db definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="previous" type="string">
+            <annotation>
+               <documentation>
+                  This attribute should be deprecated.  It is never loaded by the code.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="allowsConnections" type="boolean">
+            <annotation>
+               <documentation>
+                  This method should be deprecated. It is left over from WTP and does not make sense in DTP.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="productDisplayString" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A string suitable for display to users for product. See product attribute.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="versionDisplayString" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A string suitable for display to users for version.  See version attribute.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The  location of the instance of the database definition model file.  The path is relative to the root of the plug-in.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.7
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         Use the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry&lt;/code&gt; instance to obtain the database definition.
+      </documentation>
+   </annotation>
+
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright 2005, 2007 IBM Corporation and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made 
+available under the terms of the Eclipse Public License v1.0 which 
+accompanies this distribution, and is available at 
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

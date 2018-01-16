@@ -1,0 +1,5 @@
+org.eclipse.datatools.connectivity.oda.consumer.testdriver/debug = true
+org.eclipse.datatools.connectivity.oda.consumer.testdriver/traceLogging/logLevel = OFF
+org.eclipse.datatools.connectivity.oda.consumer.testdriver/traceLogging/logFormatterClass = 
+org.eclipse.datatools.connectivity.oda.consumer.testdriver/traceLogging/logFileNamePrefix = 
+org.eclipse.datatools.connectivity.oda.consumer.testdriver/traceLogging/logDirectory = traceOptionsDir

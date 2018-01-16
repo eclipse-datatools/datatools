@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="databaseRecognition" name="Database Recognition"/>
+      </appinfo>
+      <documentation>
+         Provides a database recognizer.  The database recognizer instance, which must implement &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.IDatabaseRecognizer&lt;/code&gt;, can be used for determining the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition&lt;/code&gt; instance that is appropriate for a given &lt;code&gt;java.sql.Connection&lt;/code&gt; object.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="recognizer" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="dbDefinitionMapping" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="recognizer">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a class that implements org.eclipse.datatools.connectivity.sqm.core.definition.IDatabaseRecognizer.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.sqm.core.definition.IDatabaseRecognizer"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  Arbitrary name for the recognizer.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dbDefinitionMapping">
+      <annotation>
+         <documentation>
+            Specifies the mapping to look up the product and version of a  &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition&lt;/code&gt; instance, given the database product meta-data provided by a JDBC driver.
+ The specialized database recognizer contributed in this extension would first try to determine the appropriate DatabaseDefinition instance.  If it is not able to find a match, these mappings will then get used to determine an appropriate DatabaseDefinition instance.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="jdbcDatabaseProductName" type="string">
+            <annotation>
+               <documentation>
+                  The name of a database product, as specified by a JDBC driver in its implementation of the java.sql.DatabaseMetaData#getDatabaseProductName method.  This attribute value may either be 
+the exact name to compare to (ignoring case), or 
+a RegEx pattern to match
+the value returned by the #getDatabaseProductName method.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="jdbcDatabaseProductVersion" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The version number of a database product, as specified by a JDBC driver in its implementation of the java.sql.DatabaseMetaData#getDatabaseProductVersion method.  This attribute value may either be 
+the exact name to compare to (ignoring case), or 
+a RegEx pattern to match
+the value returned by the #getDatabaseProductVersion method.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="dbdefinitionProduct" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The vendor or product name specified in an extension of the org.eclipse.datatools.connectivity.sqm.core.databaseDefinition extension point.  The value must reference the definition.product attribute in a databaseDefinition extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="dbdefinitionVersion" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The version name specified in an extension of the org.eclipse.datatools.connectivity.sqm.core.databaseDefinition extension point.  The value must reference the definition.version attribute in a databaseDefinition extension.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.7
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         Use the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry#recognize(Connection)&lt;/code&gt; method to exercise the functionality provided by this extension point.
+      </documentation>
+   </annotation>
+
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright 2005, 2009 IBM Corporation and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made 
+available under the terms of the Eclipse Public License v1.0 which 
+accompanies this distribution, and is available at 
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

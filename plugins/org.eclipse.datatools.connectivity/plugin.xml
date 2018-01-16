@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension-point id="connectionProfile" name="%extension-point.name.connectionProfile" schema="schema/connectionProfile.exsd"/>
+   <extension-point id="driverExtension" name="%extension-point.name.driverExtension" schema="schema/driverExtension.exsd"/>
+   <extension-point id="ProfileManagerInitializationProvider" name="%extension-point.name.ProfileManagerInitializationProvider" schema="schema/ProfileManagerInitializationProvider.exsd"/>
+   <extension-point id="cipherProvider" name="%extension-point.name.cipherProvider" schema="schema/cipherProvider.exsd"/> 
+
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            name="%ConnectionProfileRepository.Category.Name"
+            id="org.eclipse.datatools.connectivity.connectionProfileRepositoryCategory">
+      </category>
+   </extension>
+</plugin>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *************************************************************************
+ * Copyright (c) 2007 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *  
+ *************************************************************************
+ *
+ *  buildAnt.xml
+ *
+ *  Build script for project org.eclipse.datatools.connectivity.oda.consumer.testdriver
+ *
+ *  Usage:
+ *    ant [any one or more of the public targets] 
+ *        -Declipse.home=<your eclipse home> 
+ *		  -Ddtp.home=<your DTP plugins source home>  [optional]
+ *
+ *  Default target is "build.jars".
+ *
+ *  Notes:
+ *  1. classpath need to be set for junit.jar
+ *  2. The build script requires Ant 1.6
+ *
+-->
+
+<project name="org.eclipse.datatools.connectivity.oda.consumer.testdriver" default="download.plugin" basedir=".">
+	<property file="build.properties"/>
+	<property name="module.name" value="org.eclipse.datatools.connectivity.oda.consumer.testdriver"/>
+	<property file="META-INF/MANIFEST.MF" />
+	<property name="plugin.version" value="${Bundle-Version}" />
+	<property name="plugin.package" value="${module.name}_${plugin.version}" />
+
+	<property name="eclipse.home" location="."/>
+	<property name="dtp.home" location="../../plugins/"/>
+
+	<property name="src.dir" value="${source..}"/>
+	<property name="bin.dir" value="${output..}"/>
+	
+	<property name="dtp.oda.plugin" value="org.eclipse.datatools.connectivity.oda" />
+	<property name="dtp.oda.dir" location="${dtp.home}/${dtp.oda.plugin}"/>
+
+	<!-- Class Path -->
+	<path id="class.path">
+		<pathelement path="${bin.dir}"/>
+		<fileset dir="${dtp.oda.dir}">
+			<include name="oda.jar"/>
+			<include name="download/${dtp.oda.plugin}_*.jar"/>			
+		</fileset>
+		<!-- Dependencies on Eclipse installation -->
+		<fileset dir="${eclipse.home}/plugins">
+			<include name="org.eclipse.core.runtime*.jar"/>
+			<include name="org.eclipse.osgi*.jar"/>
+			<include name="com.ibm.icu_*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="compileSource" depends="buildDependency">
+		<mkdir dir="${bin.dir}"/>
+		<!-- compile the source code -->
+		<javac srcdir="${src.dir}"
+			   destdir="${bin.dir}" 
+			   debug="${javac.debug}" 
+			   includeAntRuntime="no" 
+			   source="${javac.source}" 
+			   target="${javac.target}" 
+			   encoding="utf-8">
+			<classpath refid="class.path" />
+		</javac>
+	</target>
+
+	<target name="buildDependency">
+	</target>
+						
+	<target name="clean" description="Clean the plug-in of all the zips, jars and logs created.">
+		<!-- Delete the binary and unit tests directories -->
+		<delete dir="${bin.dir}"/>
+		<delete dir="${temp.dir}"/>
+		<antcall target="clean.download.dir"/>
+		<delete>
+			<fileset dir="${plugin.destination}" includes="${module.name}_*.zip"/>
+		</delete>
+	</target>
+
+	<target name="clean.download.dir" unless="dtp.build">
+		<delete dir="${download.dir}"/>
+	</target>
+
+	<target name="create.download.dir" unless="dtp.build">
+		<mkdir dir="${download.dir}"/>
+	</target>
+	
+	<target name="download.plugin" description="Create a download folder that contains all the files to include in DTP download build.">
+		<antcall target="clean"/>
+		<antcall target="create.download.dir"/>
+		
+		<antcall target="compileSource"/>
+		<antcall target="jar.plugin"/>
+	</target>
+
+	<target name="jar.plugin" >
+		<property file="META-INF/MANIFEST.MF" />
+		<property name="jar.name" value="${plugin.package}.jar" />
+		<jar destfile="${download.dir}/${jar.name}" manifest="./META-INF/MANIFEST.MF">
+			<fileset dir="${bin.dir}">
+				<include name="**/*.class"/>
+				<include name="**/*.txt"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.def"/>
+				<include name="**/*.properties"/>
+			</fileset>
+			<fileset dir="." includes="${bin.includes}"/>
+	    </jar>
+	</target>
+
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+      		product="Derby"
+            version="10.0"
+            productDisplayString="%100ProductString"
+            versionDisplayString="%100VersionString"
+            file="runtime/vendors/Derby_10.0/Derby_10.0.xmi">
+      </definition>
+       <definition 
+       		product="Derby" 
+       		version="10.1" 
+       		productDisplayString="%101ProductString" 
+       		versionDisplayString="%101VersionString"
+            file="runtime/vendors/Derby_10.1/Derby_10.1.xmi"/>
+       <definition 
+       		product="Derby" 
+       		version="10.2" 
+       		productDisplayString="%102ProductString" 
+       		versionDisplayString="%102VersionString"
+            file="runtime/vendors/Derby_10.2/Derby_10.2.xmi"/>
+   </extension>
+</plugin>

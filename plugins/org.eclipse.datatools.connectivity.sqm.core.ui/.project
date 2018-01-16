@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>org.eclipse.datatools.connectivity.sqm.core.ui</name>
+	<comment></comment>
+	<projects>
+		<project>com.ibm.datatools.core</project>
+		<project>com.ibm.datatools.modelExtension</project>
+		<project>com.ibm.xtools.ecore.transfer.provider</project>
+		<project>com.ibm.xtools.jdt.transfer.provider</project>
+		<project>com.ibm.xtools.modeler.ui.views</project>
+		<project>com.ibm.xtools.modeler.ui.views.jdt</project>
+		<project>com.ibm.xtools.modeler.ui.views.viz</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.ManifestBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.SchemaBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.pde.PluginNature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>

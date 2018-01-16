@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DTP Open Data Access
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda; singleton:=true
+Bundle-Version: 3.6.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Eclipse Data Tools Platform
+Export-Package: org.eclipse.datatools.connectivity.oda,
+ org.eclipse.datatools.connectivity.oda.impl,
+ org.eclipse.datatools.connectivity.oda.spec,
+ org.eclipse.datatools.connectivity.oda.spec.basequery,
+ org.eclipse.datatools.connectivity.oda.spec.impl,
+ org.eclipse.datatools.connectivity.oda.spec.manifest,
+ org.eclipse.datatools.connectivity.oda.spec.result,
+ org.eclipse.datatools.connectivity.oda.spec.result.filter,
+ org.eclipse.datatools.connectivity.oda.spec.util,
+ org.eclipse.datatools.connectivity.oda.spec.valueexpr,
+ org.eclipse.datatools.connectivity.oda.util,
+ org.eclipse.datatools.connectivity.oda.util.logging,
+ org.eclipse.datatools.connectivity.oda.util.manifest
+Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
+ com.ibm.icu;visibility:=reexport
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.datatools.connectivity.oda.internal.OdaPlugin

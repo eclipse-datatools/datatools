@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <navigatorContent
+               contentProvider="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentProviderExtension"
+               id="org.eclipse.datatools.connectivity.db.sqlModelContent"
+               labelProvider="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelLabelProviderExtension"
+               name="%SQL_MODEL_CONTENT_EXTENSION_NAME">
+            <commonSorter
+            	id ="org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.ExplorerSorterProvider"
+            	class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.ExplorerSorterProvider">
+            </commonSorter>   
+            <actionProvider
+            		id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider"
+            		class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider">
+            <enablement>
+               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
+            </enablement>
+            </actionProvider>
+            <triggerPoints>
+				<or>
+                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
+			      <and>
+                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+				     <test
+						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
+						value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+                  </and>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode"/>
+                </or>
+            </triggerPoints>
+            <possibleChildren>
+               <or>
+                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
+               </or>
+            </possibleChildren>
+         </navigatorContent>
+      </extension>
+      
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.connectivity.db.sqlModelContent"/>
+            </includes>
+         </viewerContentBinding>
+         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.*"/>
+            </includes>
+         </viewerActionBinding>
+      </extension>  
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshActionProvider"
+            id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshActionProvider"
+            overrides="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.datatools.modelbase.sql.schema.SQLObject"
+            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.SQLObjectAdapterFactory">
+         <adapter type="org.eclipse.ui.views.properties.IPropertySource"/>
+      </factory>
+   </extension>
+
+<!-- Provide an override of IDs -->
+   <extension
+   		point="org.eclipse.datatools.connectivity.sqm.core.ui.elementID">
+   		<provider class = "org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil"/>
+   </extension>
+      
+<!-- Add a Navigator Action extension -->
+<!-- Bookmark global Action-->
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.BookmarkAction"
+            id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.BookmarkAction">
+	        <enablement>
+	            <or>
+		        	<adapt type="org.eclipse.datatools.modelbase.sql.schema.SQLObject" /> 
+		        </or>
+			 </enablement>	
+      </actionProvider>
+   </extension>
+</plugin>

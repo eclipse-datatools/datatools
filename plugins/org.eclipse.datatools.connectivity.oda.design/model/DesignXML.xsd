@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.eclipse.org/datatools/connectivity/oda/design">
+  <xsd:simpleType name="AxisType">
+    <xsd:annotation>
+      <xsd:documentation>Axis type of a result set column.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="DimensionMember"/>
+      <xsd:enumeration value="DimensionAttribute"/>
+      <xsd:enumeration value="Measure"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ElementNullability">
+    <xsd:annotation>
+      <xsd:documentation>Indicates whether a data element's value can be null.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Unknown"/>
+      <xsd:enumeration value="Nullable"/>
+      <xsd:enumeration value="NotNullable"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ExpressionVariableType">
+    <xsd:annotation>
+      <xsd:documentation>The type of a filter expression variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="ResultSetColumn"/>
+      <xsd:enumeration value="InstanceOf"/>
+      <xsd:enumeration value="QueryExpression"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="HorizontalAlignment">
+    <xsd:annotation>
+      <xsd:documentation>Horizontal display alignment of the data value.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Automatic"/>
+      <xsd:enumeration value="Left"/>
+      <xsd:enumeration value="Center"/>
+      <xsd:enumeration value="Right"/>
+      <xsd:enumeration value="LeftAndRight"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="InputPromptControlStyle">
+    <xsd:annotation>
+      <xsd:documentation>The style of UI control for prompting user to input a value.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="TextField"/>
+      <xsd:enumeration value="SelectableList"/>
+      <xsd:enumeration value="SelectableListWithTextField"/>
+      <xsd:enumeration value="CheckBox"/>
+      <xsd:enumeration value="RadioButton"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="NullOrderingType">
+    <xsd:annotation>
+      <xsd:documentation>The type of null value ordering defined in a sort key.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Unknown"/>
+      <xsd:enumeration value="NullsFirst"/>
+      <xsd:enumeration value="NullsLast"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OdaComplexDataType">
+    <xsd:annotation>
+      <xsd:documentation>ODA complex data types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Structure"/>
+      <xsd:enumeration value="Table"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OdaScalarDataType">
+    <xsd:annotation>
+      <xsd:documentation>ODA scalar data types.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Date"/>
+      <xsd:enumeration value="Double"/>
+      <xsd:enumeration value="Integer"/>
+      <xsd:enumeration value="String"/>
+      <xsd:enumeration value="Time"/>
+      <xsd:enumeration value="Timestamp"/>
+      <xsd:enumeration value="Decimal"/>
+      <xsd:enumeration value="Blob"/>
+      <xsd:enumeration value="Clob"/>
+      <xsd:enumeration value="Boolean"/>
+      <xsd:enumeration value="JavaObject"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ParameterMode">
+    <xsd:annotation>
+      <xsd:documentation>Indicates whether a parameter is of input and/or output mode.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="In"/>
+      <xsd:enumeration value="Out"/>
+      <xsd:enumeration value="InOut"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SessionStatus">
+    <xsd:annotation>
+      <xsd:documentation>Indicates to ODA host designer on how to proceed after an ODA design session exits.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Ok"/>
+      <xsd:enumeration value="UserCancelled"/>
+      <xsd:enumeration value="LoginFailed"/>
+      <xsd:enumeration value="Error"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionType">
+    <xsd:annotation>
+      <xsd:documentation>The type of sort direction defined in a sort key.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Ascending"/>
+      <xsd:enumeration value="Descending"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TextFormatType">
+    <xsd:annotation>
+      <xsd:documentation>The type of text content of the data column values, i.e. plain text, HTML or RTF.  It provides a hint on the type of text control to use for displaying the data value, e.g. a Text Control vs. Dynamic Text Control.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Plain"/>
+      <xsd:enumeration value="HTML"/>
+      <xsd:enumeration value="RTF"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="TextWrapType">
+    <xsd:annotation>
+      <xsd:documentation>A hint on the type of text wrapping on the data column values.  It could be in a single line (None), or word-wrapped (Word).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="None"/>
+      <xsd:enumeration value="Word"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="AndExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:CompositeFilterExpression"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AndExpression" type="design:AndExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="AtomicExpressionContext">
+    <xsd:annotation>
+      <xsd:documentation>The context within a basic, indivisible unit of expression that can be evaluated by itself.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variable" type="design:ExpressionVariable"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="arguments" type="design:ExpressionArguments">
+        <xsd:annotation>
+          <xsd:documentation>Defines the expression's argument(s) and each of its associated value(s).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="false" name="optional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether this atomic expression can be excluded at runtime.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="AtomicExpressionContext" type="design:AtomicExpressionContext">
+    <xsd:annotation>
+      <xsd:documentation>The context within a basic, indivisible unit of expression that can be evaluated by itself.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="AxisAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Multi-dimensional attributes of a data element, such as a result set column.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="relatedColumns" type="design:ResultSubset">
+        <xsd:annotation>
+          <xsd:documentation>The result set column(s) that are related to this data element.  For example, for a dimension member AxisType element, its related column(s) are those modeled to be its attribute. Multiple related columns may be combined to be a compounded attribute of a dimension.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="Measure" name="axisType" type="design:AxisType">
+      <xsd:annotation>
+        <xsd:documentation>The axis type of the data element.  It provides design hints to a consumer application on how the column data should be analyzed, or applied in a multi-dimensional view.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="true" name="onColumnLayout" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A design hint on whether the dimension data element should be laid out on a column or row.  It is normally used by presentation element such as a crosstab to design a default layout.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="AxisAttributes" type="design:AxisAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Multi-dimensional attributes of a data element, such as a result set column.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ColumnDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a result set column.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="attributes" type="design:DataElementAttributes"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="usageHints" type="design:OutputElementAttributes"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="multiDimensionAttributes" type="design:AxisAttributes">
+        <xsd:annotation>
+          <xsd:documentation>The attributes of a multi-dimensional data element.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ColumnDefinition" type="design:ColumnDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a result set column.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="CompositeFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="children" type="design:FilterExpression"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CompositeFilterExpression" type="design:CompositeFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="CustomData">
+    <xsd:annotation>
+      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, as identified by its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="providerId" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The unique identifier or namespace of the provider of this instance.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Custom data value that is normally used only by its provider.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayValue" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The String representation of the data value, which can be displayed by a non provider.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="CustomData" type="design:CustomData">
+    <xsd:annotation>
+      <xsd:documentation>Custom data specific to any participant of an ODA design session, i.e. an ODA host or custom designer, as identified by its providerId.  Its value is used only by its provider, but may be displayed in a string format by a non-provider component. This may be used as one of the StaticValues defined to be an input parameter's default values.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="CustomFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="type" type="design:FilterExpressionType"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="context" type="design:AtomicExpressionContext"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CustomFilterExpression" type="design:CustomFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataAccessDesign">
+    <xsd:annotation>
+      <xsd:documentation>The design of how to access a data set.  Its model is a design tree that starts with a top-level dataSetDesign, which contains its corresponding dataSourceDesign.  The top-level data set may contain nested data set designs.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dataSetDesign" type="design:DataSetDesign"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DataAccessDesign" type="design:DataAccessDesign">
+    <xsd:annotation>
+      <xsd:documentation>The design of how to access a data set.  Its model is a design tree that starts with a top-level dataSetDesign, which contains its corresponding dataSourceDesign.  The top-level data set may contain nested data set designs.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="identifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies this data element by name and/or position.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="uiHints" type="design:DataElementUIHints"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "identifier".  A name that uniquely identifies this data element.  If a data element can only be identified by position, this name may be empty.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="position" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "identifier". The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="0" name="nativeDataTypeCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Native data type code of the data element.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA extension's plugin.xml .</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="-1" name="precision" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Maximum number of decimal digits in a numeric value, or the length of a non-numeric value.  A value of -1 indicates this attribute is not applicable.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="-1" name="scale" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Maximum number of digits to the right of the decimal point.  A value of -1 indicates this attribute is not applicable.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="Unknown" name="nullability" type="design:ElementNullability"/>
+  </xsd:complexType>
+  <xsd:element name="DataElementAttributes" type="design:DataElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementIdentifier">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a data element by name and/or position.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>A name that uniquely identifies a data element.  If a data element can only be identified by position, this name may be empty.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="position" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataElementIdentifier" type="design:DataElementIdentifier">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a data element by name and/or position.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>A collection of data element identifiers.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="identifiers" type="design:DataElementIdentifier"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DataElementIdentifiers" type="design:DataElementIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>A collection of data element identifiers.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataElementUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a data element.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Business name of the data element.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="description" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>More extensive description of the data element.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataElementUIHints" type="design:DataElementUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a data element.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataSetDesign">
+    <xsd:annotation>
+      <xsd:documentation>A design-time data set definition.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dataSourceDesign" type="design:DataSourceDesign">
+        <xsd:annotation>
+          <xsd:documentation>The instance of dataSourceDesign that supports this type of data set.  Could be null, if nested within another dataSetDesign, to share the container's dataSourceDesign.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="query" type="design:DataSetQuery"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="publicProperties" type="design:Properties">
+        <xsd:annotation>
+          <xsd:documentation>Properties specific to the underlying data set query.  Public property values can be visible and editable in the host designer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="privateProperties" type="design:Properties">
+        <xsd:annotation>
+          <xsd:documentation>Private properties specific to the underlying data set query.  Their definitions are private to the ODA designer, i.e. must not be visible nor editable by the host designer.  The "private" nature only applies to the design-time behavior of an ODA host designer.  At run-time, both public and private properties are combined and passed to the ODA runtime driver as a single set of runtime properties.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="resultSets" type="design:ResultSets"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="parameters" type="design:DataSetParameters"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The unique name that identifies an instance of dataSetDesign.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="odaExtensionDataSetId" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The dataSet element ID defined in an ODA extension plugin manifest.  It identifies the type of data set design supported by the ODA extension.  Optional if only one dataSet element is defined in the manifest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="primaryResultSetName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identifies the primary result set if more than one result sets are available, and can be identified by name.  If results sets are identified by sequence, the first result set is the primary one.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataSetDesign" type="design:DataSetDesign">
+    <xsd:annotation>
+      <xsd:documentation>A design-time data set definition.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataSetParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of top-level parameters defined for a data set.  If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parameterDefinitions" type="design:ParameterDefinition"/>
+    </xsd:sequence>
+    <xsd:attribute default="true" name="derivedMetaData" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataSetParameters" type="design:DataSetParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of top-level parameters defined for a data set.  If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataSetQuery">
+    <xsd:annotation>
+      <xsd:documentation>Defines the query of a data set.  Includes the query text, and any additional query spec.  Future: may include a filterSpec for dynamicFiltering. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="queryText" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The query command text to execute at runtime to retrieve data for this data set.  Retrieved data could be for one or more result sets and/or output parameters, as defined in this data set design.  The query syntax is specific to a data source; could be an empty string.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataSetQuery" type="design:DataSetQuery">
+    <xsd:annotation>
+      <xsd:documentation>Defines the query of a data set.  Includes the query text, and any additional query spec.  Future: may include a filterSpec for dynamicFiltering. </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DataSourceDesign">
+    <xsd:annotation>
+      <xsd:documentation>A design-time data source definition.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="publicProperties" type="design:Properties">
+        <xsd:annotation>
+          <xsd:documentation>Properties specific to the underlying data source connection.  Public property values can be visible and editable in the host designer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="privateProperties" type="design:Properties">
+        <xsd:annotation>
+          <xsd:documentation>Private properties specific to the underlying data source connection.  Their definitions are private to the ODA designer, i.e. must not be visible nor editable by the host designer.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hostResourceIdentifiers" type="design:ResourceIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>The resource identifiers of the ODA host application that initiates the ODA design session request.  An ODA host application may optionally specify its resource identifiers for reference by an ODA designer.   Its support and usage by a custom ODA designer is optional and implementation-dependent.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The unique name that identifies an instance of dataSourceDesign.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="odaExtensionId" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The extension ID defined in an ODA extension plugin manifest.  It identifies the supporting ODA driver's extension plug-in that implements the ODA run-time extension point.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="effectiveOdaExtensionId" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The ID of the effective oda.datasource extension, which will be consumed by the ODA consumer framework at runtime.  This could be another extension that overrides this ODA extension at runtime.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="odaExtensionDataSourceId" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The data source element ID defined in an ODA extension plugin manifest.  Optional, defaults to be same as the ODA extension id if only one dataSource element is defined in the manifest.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="linkedProfileName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The name of a linked connection profile.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="linkedProfileStoreFilePath" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The full path name of a linked connection profiles storage file where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="resourceFile" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base name of a resource file for all localizable design attributes. The file name must end with .properties, and must locate relative to one of the host resource identifiers.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DataSourceDesign" type="design:DataSourceDesign">
+    <xsd:annotation>
+      <xsd:documentation>A design-time data source definition.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DesignerState">
+    <xsd:annotation>
+      <xsd:documentation>Private state of an ODA designer upon exit of a design session.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="stateContent" type="design:DesignerStateContent">
+        <xsd:annotation>
+          <xsd:documentation>Designer's private state information; its content is a blackbox to an ODA host.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="version" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Version of the designer state's data format.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DesignerState" type="design:DesignerState">
+    <xsd:annotation>
+      <xsd:documentation>Private state of an ODA designer upon exit of a design session.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DesignerStateContent">
+    <xsd:annotation>
+      <xsd:documentation>An ODA Designer's private state information; its content is a blackbox to an ODA host.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="stateContentAsString" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>State content in string format.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="stateContentAsBlob" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>State content in binary format.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DesignerStateContent" type="design:DesignerStateContent">
+    <xsd:annotation>
+      <xsd:documentation>An ODA Designer's private state information; its content is a blackbox to an ODA host.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DesignSessionRequest">
+    <xsd:annotation>
+      <xsd:documentation>Defines a design session requested by an ODA host designer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="dataAccessDesign" type="design:DataAccessDesign"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="sessionLocale" type="design:Locale">
+        <xsd:annotation>
+          <xsd:documentation>The suggested locale of the requested design session; normally the client locale of a locale-sensitive host designer.  It is up to an ODA designer whether it can support and honor the suggested locale.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="designerState" type="design:DesignerState">
+        <xsd:annotation>
+          <xsd:documentation>The private state of the ODA designer at the last design session.  It can be used by an ODA designer to resume the state of its last session.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="true" name="editable" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Specifies whether the design session is requested to be in an "editable" or "read-only" mode.  For a read-only design session, the ODA host designer would ignore any changes found in the session response.  It is up to individual ODA designer to honor the requested mode and adjusts its UI behavior.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DesignSessionRequest" type="design:DesignSessionRequest">
+    <xsd:annotation>
+      <xsd:documentation>Defines a design session requested by an ODA host designer.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DesignSessionResponse">
+    <xsd:annotation>
+      <xsd:documentation>Defines a design session response to an ODA host designer upon exit of the session.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="dataAccessDesign" type="design:DataAccessDesign">
+        <xsd:annotation>
+          <xsd:documentation>The latest data access design as updated during the design session.  Any updates should be made in own instance, separate from the instance provided in the design session request.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="designerState" type="design:DesignerState">
+        <xsd:annotation>
+          <xsd:documentation>The private state of the ODA designer upon exit of a design session.  An ODA host designer must handle it as a black-box; it should simply provide persistence services and pass it back in the next session request.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="Ok" name="sessionStatus" type="design:SessionStatus">
+      <xsd:annotation>
+        <xsd:documentation>ODA design session exit status.  This tells the ODA host designer whether the design session was successful, and how it may consume and save the session response information.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DesignSessionResponse" type="design:DesignSessionResponse">
+    <xsd:annotation>
+      <xsd:documentation>Defines a design session response to an ODA host designer upon exit of the session.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DocumentRoot"/>
+  <xsd:element name="DocumentRoot" type="design:DocumentRoot"/>
+  <xsd:complexType name="DynamicFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="context" type="design:AtomicExpressionContext"/>
+          <xsd:element maxOccurs="1" minOccurs="0" name="defaultType" type="design:FilterExpressionType">
+            <xsd:annotation>
+              <xsd:documentation>The default type of filter expression to apply at runtime.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="DynamicFilterExpression" type="design:DynamicFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="DynamicValuesQuery">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="dataSetDesign" type="design:DataSetDesign">
+        <xsd:annotation>
+          <xsd:documentation>A nested instance of dataSetDesign to use for retrieving the set of selectable user values.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="valueColumnIdentifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies the result set column whose values are retrieved as the value choices.  It must be one of the columns defined in the data set design's primary result set.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="true" name="enabled" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>If not enabled, use staticValueChoices if defined.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="valueColumn" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "valueColumnIdentifier".  The result set column name whose values are retrieved as the value choices.  This attribute must be one of the column names defined in the data set design's primary result set.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayNameColumn" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The result set column name whose values are the localized name that describes the corresponding value in the valueColumn on each data row.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="DynamicValuesQuery" type="design:DynamicValuesQuery">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="expressionParameters" type="design:ExpressionParameters">
+        <xsd:annotation>
+          <xsd:documentation>A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionArguments" type="design:ExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of an expression's argument.  An expression argument parameter design may specify either static argument value(s), or a data set input parameter.  Static values are pre-defined values of an expression argument, and are not exposed as a data set parameter.  Alternatively, a data set input parameter may be defined to dynamically collect user input value(s).  A data set input parameter definiiton here may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="staticValues" type="design:StaticValues"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dynamicInputParameter" type="design:ParameterDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionParameterDefinition" type="design:ExpressionParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of an expression's argument.  An expression argument parameter design may specify either static argument value(s), or a data set input parameter.  Static values are pre-defined values of an expression argument, and are not exposed as a data set parameter.  Alternatively, a data set input parameter may be defined to dynamically collect user input value(s).  A data set input parameter definiiton here may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parameterDefinitions" type="design:ExpressionParameterDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionParameters" type="design:ExpressionParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="ResultSetColumn" name="type" type="design:ExpressionVariableType">
+      <xsd:annotation>
+        <xsd:documentation>The type of variable.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="identifier" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>A name or expression that identifies the variable used to evaluate an expression.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="nativeDataTypeCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Native data type code of the identified variable.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA dataSource extension.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ExpressionVariable" type="design:ExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType abstract="true" name="FilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>Abstract base class for all filter expressions defined by an ODA designer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="false" name="negatable" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether the expression can be negated, i.e. applied with a NotExpression.  Default is false.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="FilterExpressionType">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a type of custom filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="declaringExtensionId" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The id of the ODA dynamicResultSet extension that declares this type of filter expression.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="id" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The id that uniquely identifies  a custom expression type within an ODA dynamicResultSet extension.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="FilterExpressionType" type="design:FilterExpressionType">
+    <xsd:annotation>
+      <xsd:documentation>Identifies a type of custom filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.dynamicResultSet extension point.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="InputElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element defined with the input mode.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="defaultValues" type="design:StaticValues">
+        <xsd:annotation>
+          <xsd:documentation>An optional collection of default input values.  If defined, this element overrides the deprecated defaultScalarValue element.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="staticValueChoices" type="design:ScalarValueChoices"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dynamicValueChoices" type="design:DynamicValuesQuery"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="uiHints" type="design:InputElementUIHints"/>
+    </xsd:sequence>
+    <xsd:attribute name="defaultScalarValue" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The literal string value to be used as the data element's default input value. Only applies to a scalar input data element.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="true" name="editable" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether this element value is editable or read-only in the host designer.  A host designer can further design whether to hide this attribute.  Applicable only if its container is visible, e.g. for public properties and input parameters.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="false" name="optional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether the element requires an input value.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="false" name="masksValue" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether input value should be masked or encrypted in persistent store and any UI display.  Applies to default value as well.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="InputElementAttributes" type="design:InputElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element defined with the input mode.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="InputElementUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a data element defined with the input mode.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="promptStyle" type="design:InputPromptControlStyle">
+      <xsd:annotation>
+        <xsd:documentation>Defaults to TextField if no static and dynamic value choices are defined; otherwise, defaults to SelectableList.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="1" name="autoSuggestThreshold" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The number of characters after which auto suggest will kick in.  It is applicable only where an user can input a value, e.g. when a SelectableListWithTextField promptStyle and a DynamicValuesQuery is used.
+</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="InputElementUIHints" type="design:InputElementUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a data element defined with the input mode.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="InputParameterAttributes">
+    <xsd:annotation>
+      <xsd:documentation>The attributes of a top-level input parameter, which can be either scalar or complex type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="elementAttributes" type="design:InputElementAttributes"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="uiHints" type="design:InputParameterUIHints"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="InputParameterAttributes" type="design:InputParameterAttributes">
+    <xsd:annotation>
+      <xsd:documentation>The attributes of a top-level input parameter, which can be either scalar or complex type.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="InputParameterUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a top-level parameter.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="groupPromptDisplayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>For grouping multiple top-level input parameters under the same UI group prompt.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="InputParameterUIHints" type="design:InputParameterUIHints">
+    <xsd:annotation>
+      <xsd:documentation>UI hints for a top-level parameter.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="Locale">
+    <xsd:annotation>
+      <xsd:documentation>Represents a specific geographical, political, or cultural region.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="en" name="language" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>An ISO Language Code; lower-case, two-letter codes as defined by ISO-639.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="country" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>An ISO Country Code; upper-case, two-letter codes as defined by ISO-3166.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="variant" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A vendor or browser-specific code.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="Locale" type="design:Locale">
+    <xsd:annotation>
+      <xsd:documentation>Represents a specific geographical, political, or cultural region.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="NameValuePair">
+    <xsd:annotation>
+      <xsd:documentation>A pair of name and corresponding value.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+    <xsd:attribute name="value" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="NameValuePair" type="design:NameValuePair">
+    <xsd:annotation>
+      <xsd:documentation>A pair of name and corresponding value.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="NotExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in negated filter expression.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="negatingExpression" type="design:FilterExpression"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="NotExpression" type="design:NotExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in negated filter expression.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="OdaDesignSession">
+    <xsd:annotation>
+      <xsd:documentation>Definition of an ODA design session on a Data Access Design.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="request" type="design:DesignSessionRequest"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="response" type="design:DesignSessionResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="OdaDesignSession" type="design:OdaDesignSession">
+    <xsd:annotation>
+      <xsd:documentation>Definition of an ODA design session on a Data Access Design.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="OrExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the Or boolean operator.  The composite expression is evaluated to be true if any of its child expressions is evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:CompositeFilterExpression"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="OrExpression" type="design:OrExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the Or boolean operator.  The composite expression is evaluated to be true if any of its child expressions is evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="OutputElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element defined with the output mode.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="formattingHints" type="design:ValueFormatHints"/>
+    </xsd:sequence>
+    <xsd:attribute name="label" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A free-format string used to identify the data element in a heading, such as a column header.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="helpText" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Provides additional information to the user about this data element, such as in a balloon help.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="OutputElementAttributes" type="design:OutputElementAttributes">
+    <xsd:annotation>
+      <xsd:documentation>Common attributes for a data element defined with the output mode.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Top-level parameter definition; may be input and/or output mode.  Parameter may be of scalar or complex type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="attributes" type="design:DataElementAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Attributes applicable to both input and output parameter mode.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="inputAttributes" type="design:InputParameterAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Required for input parameter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="outputUsageHints" type="design:OutputElementAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Optional for an output parameter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="fields" type="design:ParameterFields">
+        <xsd:annotation>
+          <xsd:documentation>Applicable to complex parameter only.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute default="In" name="inOutMode" type="design:ParameterMode"/>
+  </xsd:complexType>
+  <xsd:element name="ParameterDefinition" type="design:ParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Top-level parameter definition; may be input and/or output mode.  Parameter may be of scalar or complex type.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ParameterFieldDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of each field in a complex parameter.  A parameter field is of scalar type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="attributes" type="design:DataElementAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Attributes applicable to both input and output parameter mode.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="inputAttributes" type="design:InputElementAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Required for the field of an input parameter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="outputUsageHints" type="design:OutputElementAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Optional for the field of an output parameter.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ParameterFieldDefinition" type="design:ParameterFieldDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of each field in a complex parameter.  A parameter field is of scalar type.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ParameterFields">
+    <xsd:annotation>
+      <xsd:documentation>Defines all the fields of a complex parameter.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="fieldCollection" type="design:ParameterFieldDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ParameterFields" type="design:ParameterFields">
+    <xsd:annotation>
+      <xsd:documentation>Defines all the fields of a complex parameter.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="Properties">
+    <xsd:annotation>
+      <xsd:documentation>A collection of properties.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="properties" type="design:Property"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Properties" type="design:Properties">
+    <xsd:annotation>
+      <xsd:documentation>A collection of properties.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="Property">
+    <xsd:annotation>
+      <xsd:documentation>The property of a data design component.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="nameValue" type="design:NameValuePair">
+        <xsd:annotation>
+          <xsd:documentation>Property name and corresponding value if available.  The property value must be a string.  The value may be selected from one of the value choices defined for a property.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="designAttributes" type="design:PropertyAttributes">
+        <xsd:annotation>
+          <xsd:documentation>Property attributes defined for this *instance* of DataAccessDesign.  This set of attributes overrides all those pre-defined by an ODA extension in its plugin.xml.  An ODA host designer should apply those pre-defined attributes by default to this instance, only if none is specified here.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Property" type="design:Property">
+    <xsd:annotation>
+      <xsd:documentation>The property of a data design component.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="PropertyAttributes">
+    <xsd:annotation>
+      <xsd:documentation>The attributes of a property.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="elementAttributes" type="design:InputElementAttributes"/>
+    </xsd:sequence>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="true" name="derivedMetaData" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>If the property metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="PropertyAttributes" type="design:PropertyAttributes">
+    <xsd:annotation>
+      <xsd:documentation>The attributes of a property.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResourceIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Resource identifiers of an ODA host application or custom ODA designer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="applResourceBaseURIString" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base URI of general purpose resources of an ODA consumer application in string form.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="designResourceBaseURIString" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base URI of design resources of an ODA consumer application in string form.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResourceIdentifiers" type="design:ResourceIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Resource identifiers of an ODA host application or custom ODA designer.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResultSetColumns">
+    <xsd:annotation>
+      <xsd:documentation>A collection of result set columns' definitions.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="resultColumnDefinitions" type="design:ColumnDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ResultSetColumns" type="design:ResultSetColumns">
+    <xsd:annotation>
+      <xsd:documentation>A collection of result set columns' definitions.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResultSetCriteria">
+    <xsd:annotation>
+      <xsd:documentation>Specification of a result set criteria or characteristics.
+Applying the criteria may impact the data retrieved in a result set, in addition to any specification expressed in a query text.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="filterSpecification" type="design:FilterExpression">
+        <xsd:annotation>
+          <xsd:documentation>Pre-defined filter specification  of a result set. It may be any concrete type of FilterExpression.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="rowOrdering" type="design:SortSpecification">
+        <xsd:annotation>
+          <xsd:documentation>Specifies the ordering of rows in a result set.  An empty collection explicitly indicates that the result set has no sort keys defined.  Absence of this optional element, on the other hand, indicates that its row ordering specification is unknown or not available. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ResultSetCriteria" type="design:ResultSetCriteria">
+    <xsd:annotation>
+      <xsd:documentation>Specification of a result set criteria or characteristics.
+Applying the criteria may impact the data retrieved in a result set, in addition to any specification expressed in a query text.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResultSetDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a single homogeneous result set returned by a data set query.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="resultSetColumns" type="design:ResultSetColumns">
+        <xsd:annotation>
+          <xsd:documentation>Collection of data columns for this result set.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="criteria" type="design:ResultSetCriteria"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A name that uniquely identifies a result set at runtime.  If not specified, a result set is identified by its sequence in the resultSetDefinitions.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResultSetDefinition" type="design:ResultSetDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a single homogeneous result set returned by a data set query.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResultSets">
+    <xsd:annotation>
+      <xsd:documentation>A collection of result sets' definition and metadata. If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="resultSetDefinitions" type="design:ResultSetDefinition"/>
+    </xsd:sequence>
+    <xsd:attribute default="true" name="derivedMetaData" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResultSets" type="design:ResultSets">
+    <xsd:annotation>
+      <xsd:documentation>A collection of result sets' definition and metadata. If the metadata can be derived, i.e. can be obtained by an ODA driver in each design session, an ODA host designer is not required to include the derived metadata in the next design session request.  An ODA designer may ignore such metadata in a Request.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResultSubset">
+    <xsd:annotation>
+      <xsd:documentation>Defines a subset of columns in a data set design's result set.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dataSetDesign" type="design:DataSetDesign">
+        <xsd:annotation>
+          <xsd:documentation>A nested instance of dataSetDesign to use for retrieving the referenced data set column.  If not specified, the same data set design that contains this design element would apply by default.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="1" name="columnIdentifiers" type="design:DataElementIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies one or more columns in the specified result set.  Multiple columns are combined in the specified sequence, such as for a compounded attribute.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="resultSetName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Identifies the result set of the data set design if more than one result sets are available, and can be identified by name.  If no results set is explicitly specified here, the primary result set would apply by default.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResultSubset" type="design:ResultSubset">
+    <xsd:annotation>
+      <xsd:documentation>Defines a subset of columns in a data set design's result set.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ScalarValueChoices">
+    <xsd:annotation>
+      <xsd:documentation>A collection of scalar values defined for user selection.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="scalarValues" type="design:ScalarValueDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ScalarValueChoices" type="design:ScalarValueChoices">
+    <xsd:annotation>
+      <xsd:documentation>A collection of scalar values defined for user selection.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ScalarValueDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Defines a scalar value with a brief description.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="value" type="xsd:string" use="required"/>
+    <xsd:attribute name="displayName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>A localized name that describes the value.  Text can be localized with a resource key.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ScalarValueDefinition" type="design:ScalarValueDefinition">
+    <xsd:annotation>
+      <xsd:documentation>Defines a scalar value with a brief description.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="SortKey">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic sort key specified in a SortCriteria.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="columnIdentifier" type="design:DataElementIdentifier">
+        <xsd:annotation>
+          <xsd:documentation>Uniquely identifies a result set column by name and/or position.  It must reference one of the columns associated with the same ResultSetDefinition.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="columnName" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "columnIdentifier".  The unique name of a result set column. It must reference one of the columns associated with the same ResultSetDefinition.  If a column can only be identified by position, this name may be empty.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="columnPosition" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Deprecated as of 3.3.2; replaced by "columnIdentifier".  The 1-based index position (left-to-right order) of a result set column. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="Ascending" name="sortDirection" type="design:SortDirectionType">
+      <xsd:annotation>
+        <xsd:documentation>The sort direction of this result set column.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="nullValueOrdering" type="design:NullOrderingType">
+      <xsd:annotation>
+        <xsd:documentation>The ordering of null vs. non-null values in the sort order.  Default value is "Unknown", i.e. not specified.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="false" name="optional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether this sort key can be excluded at runtime.  Default value is false.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="SortKey" type="design:SortKey">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic sort key specified in a SortCriteria.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="SortSpecification">
+    <xsd:annotation>
+      <xsd:documentation>Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set has no sort keys defined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="sortKeys" type="design:SortKey"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SortSpecification" type="design:SortSpecification">
+    <xsd:annotation>
+      <xsd:documentation>Specification of zero or more sort keys.  An empty collection explicitly indicates that the result set has no sort keys defined.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="StaticValues">
+    <xsd:annotation>
+      <xsd:documentation>A collection of static values in any data type.  It may be in any one of the ODA defined data types, or a CustomData.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="StaticValues" type="design:StaticValues">
+    <xsd:annotation>
+      <xsd:documentation>A collection of static values in any data type.  It may be in any one of the ODA defined data types, or a CustomData.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ValueFormatHints">
+    <xsd:annotation>
+      <xsd:documentation>Hints on how to format a value.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="-1" name="displaySize" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Default display length of the data value.  A value of -1 means unknown length.  The default value, if not specified, is -1.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="displayFormat" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The preferred display format of the data value.  It contains a data format mask, e.g. #,###.00, ShortDate, etc.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="Plain" name="textFormatType" type="design:TextFormatType">
+      <xsd:annotation>
+        <xsd:documentation>The type of text content of the data value, i.e. plain text, HTML or RTF.  It provides a hint on the type of text control to use for displaying the data value, e.g. a Dynamic Text Control.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="Automatic" name="horizontalAlignment" type="design:HorizontalAlignment">
+      <xsd:annotation>
+        <xsd:documentation>Horizontal display alignment of the data value.  See valid enum values.  "Automatic" means that it is up to an ODA host designer to determine the alignment based on its default rules.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="None" name="textWrapType" type="design:TextWrapType">
+      <xsd:annotation>
+        <xsd:documentation>A hint on the type of text wrapping on the data value.  It could be in a single line (None), or word-wrapped (Word).</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ValueFormatHints" type="design:ValueFormatHints">
+    <xsd:annotation>
+      <xsd:documentation>Hints on how to format a value.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

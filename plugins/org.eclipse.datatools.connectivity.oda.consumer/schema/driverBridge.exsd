@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda.consumer">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda.consumer" id="driverBridge" name="DTP ODA Consumer Helper Driver Bridge"/>
+      </appInfo>
+      <documentation>
+         This ODA consumer helper component&apos;s extension point supports the use of a custom ODA driver bridge.  An extension would specify a run-time driver bridge that extends the consumer helper, and/or servers as an adapter to underlying data provider objects that do not implement the org.eclipse.datatools.connectivity.oda interfaces.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="bridge"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="bridge">
+      <annotation>
+         <documentation>
+            Defines the custom driver bridge for a type of driver.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="driverType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The type of an underlying data driver for which an ODA driver bridge is applied.  It can be either the interface name or class name of the driver.  A bridge defined for a driver class takes precedence over those defined for a driver&apos;s interface(s).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="bridgeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ODA data source element id of the driver bridge extension that adapts the ODA runtime interfaces for a data driver, and implements the ODA data source extension point &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt;.
+&lt;br&gt;Its driver bridge extension&apos;s &lt;i&gt;driverClass&lt;/i&gt; is the concrete class that serves as the custom bridge&apos;s entry point.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         3.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         The driver bridge must implement the runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package. See the package&apos;s JavaDoc documentation and API interfaces for more information.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2006 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>
