@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.sqlite.ui.connection.NewSQLITEConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.sqlite.connectionProfile.NewConnectionProfileWizard"
+            name="%connection.profile.newwizard"
+            description = "%connection.profile.newwizard.description"
+            profile="org.eclipse.datatools.enablement.sqlite.connectionProfile"/>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.sqlite.ui.connection.SQLITEProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.sqlite.connectionProfile.profileProperties"
+            name="%profile.page.name">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.sqlite.connectionProfile"/>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sqlite.ui.connection.drivers.SQLITEDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sqlite.3_5_9.driver"
+            id="org.eclipse.datatools.enablement.sqlite.ui.connection.drivers.3_5_9.SQLiteDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+</plugin>

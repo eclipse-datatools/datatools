@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQLITE" version="3.5.9" maximumIdentifierLength="64" maximumCommentLength="64" mQTSupported="true" schemaSupported="false" aliasSupported="true">
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>INTEGER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="254" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" scaleSupported="false" precisionSupported="false" keyConstraintSupported="true" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2" javaClassName="java.lang.Object">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" maximumPrecision="53" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>FLOAT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" displayNameSupported="true" displayName="VARCHAR({0})" lengthSemanticSupported="true" bitDataSupported="true" maximumLength="4000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>UID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <lengthSemantic>BYTE</lengthSemantic>
+    <lengthSemantic>CHAR</lengthSemantic>
+    <name>VARCHAR</name>
+   </predefinedDataTypeDefinitions>
+   <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="CHAR({0})" lengthSemanticSupported="true" keyConstraintSupported="true" bitDataSupported="true" maximumLength="2000" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>USER</defaultValueTypes>
+    <defaultValueTypes>UID</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <lengthSemantic>BYTE</lengthSemantic>
+    <lengthSemantic>CHAR</lengthSemantic>
+    <name>CHAR</name>
+    <name>CHARACTER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>SYSDATE</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATETIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="false" maximumPrecision="38" maximumScale="127" minimumScale="-84" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>NUMERIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" multipleColumnsSupported="true" primitiveType="INTEGER" jdbcEnumType="-7" javaClassName="boolean">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BOOL</name>
+  </predefinedDataTypeDefinitions>
+  <columnDefinition identitySupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
+  <constraintDefinition clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true">
+    <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
+    <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
+    <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
+    <checkOption>NONE</checkOption>
+    <checkOption>LOCAL</checkOption>
+    <checkOption>CASCADE</checkOption>
+  </constraintDefinition>
+  <SQLSyntaxDefinition>
+    <keywords>BOOL</keywords>
+   </SQLSyntaxDefinition>
+</DBDefinition:DatabaseVendorDefinition>
