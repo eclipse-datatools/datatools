@@ -1,0 +1,783 @@
+
+(object Petal
+    version    	47
+    _written   	"Rose 8.0.0303.1400"
+    charSet    	0)
+
+(object Class_Category "Statements"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"packageName"
+	    value      	(value Text "statements"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsPrefix"
+	    value      	(value Text "SQLStatements"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsURI"
+	    value      	(value Text "http:///org/eclipse/datatools/modelbase/sql/statements.ecore"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"basePackage"
+	    value      	(value Text "org.eclipse.datatools.modelbase.sql"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"prefix"
+	    value      	(value Text "SQLStatements")))
+    quid       	"4047743B009B"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "SQLStatement"
+	    quid       	"404908A2008B"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.33 SQL-statements"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getSQL"
+		    quid       	"404908F600A0"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setSQL"
+		    quid       	"4193E07F0122"
+		    parameters 	(list Parameters
+			(object Parameter "sqlText"
+			    quid       	"4193E0F101F8"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)))
+	(object Class "SQLDataStatement"
+	    quid       	"4049092B0395"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 14 Data Manipulation"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404909FD03D3"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLSchemaStatement"
+	    quid       	"404909440233"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 11 Schema definition and manipulation"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"40490A0202A4"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLControlStatement"
+	    quid       	"4049095A0220"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 15 Control statements"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"40490A0B0315"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLDataChangeStatement"
+	    quid       	"40490973001D"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 14 Data Manipulation"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"40490A210226"
+		    supplier   	"Logical View::SQLModel::Statements::SQLDataStatement"
+		    quidu      	"4049092B0395")))
+	(object Class "SQLStatementDefault"
+	    quid       	"40490988012C"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"40490A6C0094"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")
+		(object Inheritance_Relationship
+		    quid       	"40490AB50342"
+		    supplier   	"Logical View::SQLModel::Schema::SQLObject"
+		    quidu      	"3E9B3EB5002B"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "SQL"
+		    quid       	"40490A4001B3"
+		    type       	"String"
+		    exportControl 	"Public")))
+	(object Class "SQLConnectionStatement"
+	    quid       	"404F6FD10311"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 17 Connection management"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404F700F03A6"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLDiagnosticsStatement"
+	    quid       	"404F704300C6"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 22 Diagnostics management "
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404F706C0025"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLDynamicStatement"
+	    quid       	"404F70B2026A"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 19 Dynamic SQL"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404F70DE0278"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLSessionStatement"
+	    quid       	"404F711D03A5"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 18 Session management"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404F714600A1"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B")))
+	(object Class "SQLTransactionStatement"
+	    quid       	"404F718E02CB"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 16 Transaction management"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404F71B401C1"
+		    supplier   	"Logical View::SQLModel::Statements::SQLStatement"
+		    quidu      	"404908A2008B"))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Statements"
+	    quid       	"404908810124"
+	    title      	"Statements"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	1090
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLStatement" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    ShowOperationSignature 	TRUE
+		    location   	(1497, 592)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(1147, 508)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	700
+			justify    	0
+			label      	"SQLStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@1
+			location   	(1147, 458)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	700
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404908A2008B"
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(1147, 569)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	594)
+		    width      	718
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLDataStatement" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(968, 1365)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(740, 1336)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	456
+			justify    	0
+			label      	"SQLDataStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@2
+			location   	(740, 1286)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	456
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4049092B0395"
+		    width      	474
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLSchemaStatement" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2002, 1103)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1734, 1074)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	536
+			justify    	0
+			label      	"SQLSchemaStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@3
+			location   	(1734, 1024)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	536
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404909440233"
+		    width      	554
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLControlStatement" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(637, 1103)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(384, 1074)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	506
+			justify    	0
+			label      	"SQLControlStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@4
+			location   	(384, 1024)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	506
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4049095A0220"
+		    width      	524
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLDataChangeStatement" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(968, 1747)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(659, 1718)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	618
+			justify    	0
+			label      	"SQLDataChangeStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@5
+			location   	(659, 1668)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	618
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"40490973001D"
+		    width      	636
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @6
+		    location   	(1497, 888)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@1
+		    vertices   	(list Points
+			(1497, 888)
+			(1497, 738)))
+		(object InheritView "" @7
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490A0B0315"
+		    client     	@4
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(647, 1011)
+		    terminal_attachment 	(647, 888)
+		    drawSupplier 	@6)
+		(object InheritView "" @8
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404909FD03D3"
+		    client     	@2
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(968, 1274)
+		    terminal_attachment 	(968, 888)
+		    drawSupplier 	@6)
+		(object InheritView "" @9
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490A210226"
+		    client     	@5
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLStatementDefault" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2362, 655)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(2110, 574)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	504
+			justify    	0
+			label      	"SQLStatementDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"40490988012C"
+		    compartment 	(object Compartment
+			Parent_View 	@10
+			location   	(2110, 635)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	275)
+		    width      	522
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @11
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490A6C0094"
+		    client     	@10
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(2101, 650)
+		    terminal_attachment 	(1856, 650))
+		(object ClassView "Class" "Logical View::SQLModel::Schema::SQLObject" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(2361, 266)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(2129, 137)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	464
+			justify    	0
+			label      	"SQLObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13828055
+		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@12
+			location   	(2129, 242)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
+		    width      	482
+		    height     	282
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @13
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490AB50342"
+		    client     	@10
+		    supplier   	@12
+		    line_style 	0)
+		(object InheritView "" @14
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490A0202A4"
+		    client     	@3
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(2003, 1012)
+		    terminal_attachment 	(2003, 888)
+		    drawSupplier 	@6)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLConnectionStatement" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(309, 1372)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(14, 1343)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	590
+			justify    	0
+			label      	"SQLConnectionStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@15
+			location   	(14, 1293)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	590
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404F6FD10311"
+		    width      	608
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @16
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404F700F03A6"
+		    client     	@15
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(312, 1280)
+		    terminal_attachment 	(312, 888)
+		    drawSupplier 	@6)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLDiagnosticsStatement" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1324, 1103)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(1017, 1074)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	614
+			justify    	0
+			label      	"SQLDiagnosticsStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@17
+			location   	(1017, 1024)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	614
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404F704300C6"
+		    width      	632
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @18
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404F706C0025"
+		    client     	@17
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(1325, 1012)
+		    terminal_attachment 	(1325, 888)
+		    drawSupplier 	@6)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLDynamicStatement" @19
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1662, 1365)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@19
+			location   	(1390, 1336)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	544
+			justify    	0
+			label      	"SQLDynamicStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@19
+			location   	(1390, 1286)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	544
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404F70B2026A"
+		    width      	562
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @20
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404F70DE0278"
+		    client     	@19
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(1672, 1274)
+		    terminal_attachment 	(1672, 888)
+		    drawSupplier 	@6)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLSessionStatement" @21
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2318, 1362)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(2057, 1333)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	522
+			justify    	0
+			label      	"SQLSessionStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@21
+			location   	(2057, 1283)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	522
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404F711D03A5"
+		    width      	540
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @22
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404F714600A1"
+		    client     	@21
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(2327, 1271)
+		    terminal_attachment 	(2327, 888)
+		    drawSupplier 	@6)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLTransactionStatement" @23
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2664, 1093)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@23
+			location   	(2367, 1064)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	594
+			justify    	0
+			label      	"SQLTransactionStatement")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@23
+			location   	(2367, 1014)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	594
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404F718E02CB"
+		    width      	612
+		    height     	182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @24
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404F71B401C1"
+		    client     	@23
+		    supplier   	@1
+		    line_style 	3
+		    origin_attachment 	(2665, 1002)
+		    terminal_attachment 	(2665, 888)
+		    drawSupplier 	@6)))))

@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.modelbase.sql/src"
+    editDirectory="/org.eclipse.datatools.modelbase.sql.edit/src" editorDirectory="/org.eclipse.datatools.modelbase.sql.editor/src"
+    modelPluginID="org.eclipse.datatools.modelbase.sql" runtimeJar="true" modelName="Sqlmodel"
+    editPluginClass="org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin"
+    editorPluginClass="org.eclipse.datatools.modelbase.sql.schema.presentation.SqlmodelEditorPlugin"
+    nonNLSMarkers="true" rootImplementsInterface="" featureMapWrapperInterface=""
+    featureMapWrapperInternalInterface="" featureMapWrapperClass="" importerID="org.eclipse.emf.importer.rose"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>SQLModel.mdl</foreignModel>
+  <foreignModel>CDM_EXTRACT_PATH</foreignModel>
+  <foreignModel>../..</foreignModel>
+  <genPackages prefix="SQLModel" ecorePackage="sqlmodel.ecore#/">
+    <nestedGenPackages prefix="SQLSchema" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//schema">
+      <genEnums ecoreEnum="sqlmodel.ecore#//schema/GenerateType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/GenerateType/DEFAULT_GENERATED"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/GenerateType/ALWAYS_GENERATED"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//schema/ReferentialActionType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/ReferentialActionType/NO_ACTION"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/ReferentialActionType/RESTRICT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/ReferentialActionType/CASCADE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/ReferentialActionType/SET_NULL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//schema/ReferentialActionType/SET_DEFAULT"/>
+      </genEnums>
+      <genDataTypes ecoreDataType="sqlmodel.ecore#//schema/Date"/>
+      <genDataTypes ecoreDataType="sqlmodel.ecore#//schema/List"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/IdentitySpecifier">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/generationType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/startValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/increment"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/minimum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/maximum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/IdentitySpecifier/cycleOption"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/TypedElement">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/TypedElement/containedType"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/TypedElement/referencedType"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/TypedElement/setDataType">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/TypedElement/setDataType/newType"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/TypedElement/getDataType"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Dependency">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Dependency/targetEnd"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Dependency/dependencyType"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Schema">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/triggers"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/indices"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/tables"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/sequences"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/database"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/Catalog"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/assertions"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/userDefinedTypes"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/charSets"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/routines"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/owner"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/SQLObject">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/dependencies"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/description"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/label"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/comments"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/extensions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/privileges"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/addEAnnotation">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotation/source"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/addEAnnotationDetail">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotationDetail/eAnnotation"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotationDetail/key"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotationDetail/value"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/getEAnnotationDetail">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/getEAnnotationDetail/eAnnotation"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/getEAnnotationDetail/key"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/setAnnotationDetail">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/setAnnotationDetail/eAnnotation"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/setAnnotationDetail/key"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/setAnnotationDetail/value"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/removeEAnnotationDetail">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/removeEAnnotationDetail/eAnnotation"/>
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/removeEAnnotationDetail/key"/>
+        </genOperations>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/getEAnnotation">
+          <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/getEAnnotation/source"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Sequence">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Sequence/identity"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Sequence/schema"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Database">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Database/vendor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Database/version"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/schemas"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/events"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/catalogs"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/authorizationIds"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//schema/Database/getUserDefinedTypes"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Event">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/for"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/condition"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/action"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/enabled"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Event/Database"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Comment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Comment/description"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Comment/SQLObject"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Catalog">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/Database"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/schemas"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//schema/ObjectExtension">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/ObjectExtension/SQLObject"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLConstraints" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//constraints">
+      <genEnums ecoreEnum="sqlmodel.ecore#//constraints/MatchType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/MatchType/MATCH_SIMPLE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/MatchType/MATCH_FULL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/MatchType/MATCH_PARTIAL"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//constraints/IncrementType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/ASC"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/DESC"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//constraints/IncrementType/RANDOM"/>
+      </genEnums>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/Assertion">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Assertion/searchCondition"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Assertion/schema"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Assertion/constrainedTables"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/Constraint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Constraint/deferrable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Constraint/initiallyDeferred"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Constraint/enforced"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/TableConstraint">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/TableConstraint/BaseTable"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/ReferenceConstraint">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ReferenceConstraint/members"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/CheckConstraint">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/CheckConstraint/searchCondition"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/ForeignKey">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/ForeignKey/match"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/ForeignKey/onUpdate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/ForeignKey/onDelete"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/uniqueConstraint"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/referencedMembers"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/uniqueIndex"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/referencedTable"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/UniqueConstraint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/UniqueConstraint/clustered"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/UniqueConstraint/ForeignKey"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/PrimaryKey"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/Index">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/Schema"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/clustered"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/fillFactor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/unique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/systemGenerated"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/members"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/table"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/ForeignKey"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/includedMembers"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/IndexMember">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/IndexMember/incrementType"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/IndexMember/column"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/IndexMember/expression"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//constraints/IndexExpression">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/IndexExpression/sql"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLDataTypes" basePackage="org.eclipse.datatools.modelbase.sql"
+        disposableProviderFactory="true" ecorePackage="sqlmodel.ecore#//datatypes">
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/CoercibilityType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/IMPLICIT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/EXPLICIT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/COERCIBILE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/NO_COLLATION"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/IntervalQualifierType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/YEAR"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/MONTH"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/DAY"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/HOUR"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/MINUTE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/SECOND"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/FRACTION"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/OrderingType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingType/EQUALS"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingType/FULL"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/OrderingCategoryType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingCategoryType/RELATIVE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingCategoryType/MAP"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingCategoryType/STATE"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/PrimitiveType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/CHARACTER"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/CHARACTER_VARYING"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/CHARACTER_LARGE_OBJECT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/NATIONAL_CHARACTER"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/NATIONAL_CHARACTER_VARYING"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/NATIONAL_CHARACTER_LARGE_OBJECT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/BINARY"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/BINARY_VARYING"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/BINARY_LARGE_OBJECT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/NUMERIC"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/DECIMAL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/SMALLINT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/INTEGER"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/BIGINT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/FLOAT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/REAL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/DOUBLE_PRECISION"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/BOOLEAN"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/DATE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/TIME"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/TIMESTAMP"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/INTERVAL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/DATALINK"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/PrimitiveType/XML_TYPE"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/LinkControlOption">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/LinkControlOption/FILE_LINK_CONTROL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/LinkControlOption/NO_FILE_LINK_CONTROL"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/IntegrityControlOption">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntegrityControlOption/ALL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntegrityControlOption/SELECTIVE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntegrityControlOption/NONE"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/ReadPermissionOption">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/ReadPermissionOption/FS"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/ReadPermissionOption/DB"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/WritePermissionOption">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/WritePermissionOption/FS"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/WritePermissionOption/ADMIN"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/WritePermissionOption/BLOCKED"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/UnlinkOption">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/UnlinkOption/RESTORE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/UnlinkOption/DELETE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/UnlinkOption/NONE"/>
+      </genEnums>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/UserDefinedType">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedType/schema"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedType/ordering"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/DataType">
+        <genOperations ecoreOperation="sqlmodel.ecore#//datatypes/DataType/setContainer">
+          <genParameters ecoreParameter="sqlmodel.ecore#//datatypes/DataType/setContainer/newContainer"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/PredefinedDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/PredefinedDataType/primitiveType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/CollectionDataType">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CollectionDataType/elementType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/NumericalDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/NumericalDataType/precision"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/CharacterStringDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterStringDataType/length"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterStringDataType/coercibility"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterStringDataType/fixedLength"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterStringDataType/collationName"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CharacterStringDataType/characterSet"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/RowDataType">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/RowDataType/fields"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ArrayDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/ArrayDataType/maxCardinality"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/MultisetDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/BooleanDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/IntervalDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/leadingQualifier"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/trailingQualifier"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/leadingFieldPrecision"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/trailingFieldPrecision"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/fractionalSecondsPrecision"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/BinaryStringDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/BinaryStringDataType/length"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//datatypes/BinaryStringDataType/equals"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/CharacterSet">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterSet/repertoire"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterSet/defaultCollation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/CharacterSet/encoding"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CharacterSet/CharacterStringDataType"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CharacterSet/schema"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/TimeDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/TimeDataType/fractionalSecondsPrecision"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/TimeDataType/timeZone"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DistinctUserDefinedType">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/DistinctUserDefinedType/predefinedRepresentation"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/StructuredUserDefinedType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/StructuredUserDefinedType/instantiable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/StructuredUserDefinedType/final"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/StructuredUserDefinedType/super"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/StructuredUserDefinedType/sub"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/StructuredUserDefinedType/attributes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/StructuredUserDefinedType/methods"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/AttributeDefinition">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/AttributeDefinition/scopeCheck"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/AttributeDefinition/scopeChecked"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/AttributeDefinition/defaultValue"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/FixedPrecisionDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/Domain">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/Domain/constraint"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/Domain/defaultValue"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/Field">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/Field/scopeCheck"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/Field/scopeChecked"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ReferenceDataType">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ReferenceDataType/scopeTable"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ReferenceDataType/referencedType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ConstructedDataType"/>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/SQLDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DataLinkDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/length"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/linkControl"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/integrityControl"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/readPermission"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/writePermission"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/recovery"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/unlink"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/UserDefinedTypeOrdering">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/UserDefinedTypeOrdering/orderingForm"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/UserDefinedTypeOrdering/orderingCategory"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedTypeOrdering/orderingRoutine"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DateDataType"/>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ExactNumericDataType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/ExactNumericDataType/scale"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ApproximateNumericDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/IntegerDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/XMLDataType"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ElementType">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ElementType/CollectionDataType"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLExpressions" basePackage="org.eclipse.datatools.modelbase.sql"
+        disposableProviderFactory="true" ecorePackage="sqlmodel.ecore#//expressions">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/QueryExpression">
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/QueryExpression/getSQL"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/QueryExpression/setSQL">
+          <genParameters ecoreParameter="sqlmodel.ecore#//expressions/QueryExpression/setSQL/sqlText"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/ValueExpression">
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/ValueExpression/getSQL"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/ValueExpression/setSQL">
+          <genParameters ecoreParameter="sqlmodel.ecore#//expressions/ValueExpression/setSQL/sqlText"/>
+        </genOperations>
+      </genClasses>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/SearchCondition">
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/SearchCondition/getSQL"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//expressions/SearchCondition/setSQL">
+          <genParameters ecoreParameter="sqlmodel.ecore#//expressions/SearchCondition/setSQL/sqlText"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//expressions/QueryExpressionDefault">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//expressions/QueryExpressionDefault/SQL"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//expressions/SearchConditionDefault">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//expressions/SearchConditionDefault/SQL"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//expressions/ValueExpressionDefault">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//expressions/ValueExpressionDefault/SQL"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLRoutines" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//routines">
+      <genEnums ecoreEnum="sqlmodel.ecore#//routines/DataAccess">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/DataAccess/NO_SQL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/DataAccess/CONTAINS_SQL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/DataAccess/READS_SQL_DATA"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/DataAccess/MODIFIES_SQL_DATA"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//routines/ParameterMode">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/ParameterMode/IN"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/ParameterMode/OUT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//routines/ParameterMode/INOUT"/>
+      </genEnums>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Routine">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/specificName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/language"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/parameterStyle"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/deterministic"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/sqlDataAccess"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/creationTS"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/lastAlteredTS"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/authorizationID"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/security"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Routine/externalName"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Routine/parameters"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Routine/source"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Routine/schema"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Source">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Source/body"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Parameter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Parameter/mode"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Parameter/locator"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Parameter/routine"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Parameter/stringTypeOption"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Procedure">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Procedure/maxResultSets"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Procedure/oldSavePoint"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Procedure/resultSet"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Function">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/nullCall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/static"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/transformGroup"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/typePreserving"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/mutator"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnTable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnScalar"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnCast"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/RoutineResultTable"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/Method">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Method/overriding"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Method/constructor"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/UserDefinedFunction"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//routines/BuiltInFunction"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLStatements" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//statements">
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLStatement">
+        <genOperations ecoreOperation="sqlmodel.ecore#//statements/SQLStatement/getSQL"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//statements/SQLStatement/setSQL">
+          <genParameters ecoreParameter="sqlmodel.ecore#//statements/SQLStatement/setSQL/sqlText"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLDataStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLSchemaStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLControlStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLDataChangeStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLStatementDefault">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//statements/SQLStatementDefault/SQL"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLConnectionStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLDiagnosticsStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLDynamicStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLSessionStatement"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//statements/SQLTransactionStatement"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLTables" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//tables">
+      <genEnums ecoreEnum="sqlmodel.ecore#//tables/CheckType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/CheckType/CASCADED"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/CheckType/LOCAL"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/CheckType/NONE"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//tables/ReferenceType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ReferenceType/SYSTEM_GENERATED"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ReferenceType/USER_GENERATED"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ReferenceType/DERIVED_SELF_REF"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//tables/ActionTimeType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ActionTimeType/AFTER"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ActionTimeType/BEFORE"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ActionTimeType/INSTEADOF"/>
+      </genEnums>
+      <genEnums ecoreEnum="sqlmodel.ecore#//tables/ActionGranularityType">
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ActionGranularityType/STATEMENT"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//tables/ActionGranularityType/ROW"/>
+      </genEnums>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/ViewTable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/ViewTable/checkType"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/TemporaryTable">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/TemporaryTable/local"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/TemporaryTable/deleteOnCommit"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/Table">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/columns"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/supertable"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/subtables"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/schema"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/udt"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/triggers"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Table/index"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Table/selfRefColumnGeneration"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Table/insertable"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Table/updatable"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/PersistentTable"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/DerivedTable">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/DerivedTable/queryExpression"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/BaseTable">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/BaseTable/constraints"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/BaseTable/referencingForeignKeys"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getUniqueConstraints"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getForeignKeys"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getPrimaryKey"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/Column">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Column/table"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Column/identitySpecifier"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Column/generateExpression"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Column/implementationDependent"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Column/nullable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Column/defaultValue"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Column/scopeCheck"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Column/scopeChecked"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/Column/isPartOfForeignKey"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/Column/isPartOfUniqueConstraint"/>
+        <genOperations ecoreOperation="sqlmodel.ecore#//tables/Column/isPartOfPrimaryKey"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//tables/Trigger">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Trigger/schema"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Trigger/subjectTable"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Trigger/actionStatement"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Trigger/triggerColumn"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/actionGranularity"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/Trigger/when"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/timeStamp"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/actionTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/updateType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/insertType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/deleteType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/oldRow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/newRow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/oldTable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//tables/Trigger/newTable"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="SQLAccessControl" basePackage="org.eclipse.datatools.modelbase.sql"
+        ecorePackage="sqlmodel.ecore#//accesscontrol">
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/ownedSchema"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/Database"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/receivedRoleAuthorization"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/grantedRoleAuthorization"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/grantedPrivilege"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/receivedPrivilege"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Privilege">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/grantable"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/action"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/withHierarchy"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/grantor"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/grantee"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/actionObjects"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/object"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Group">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Group/user"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/User">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/User/group"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Role">
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Role/roleAuthorization"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/RoleAuthorization">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/RoleAuthorization/grantable"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/role"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/grantee"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/grantor"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

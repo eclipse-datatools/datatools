@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.modelbase.dbdefinition/src"
+    editDirectory="/org.eclipse.datatools.modelbase.dbdefinition.edit/src" editorDirectory="/org.eclipse.datatools.modelbase.dbdefinition.editor/src"
+    modelPluginID="org.eclipse.datatools.modelbase.dbdefinition" runtimeJar="true"
+    modelName="Dbdefinition" editPluginClass="org.eclipse.datatools.modelbase.dbdefinition.provider.DbdefinitionEditPlugin"
+    editorPluginClass="org.eclipse.datatools.modelbase.dbdefinition.presentation.DbdefinitionEditorPlugin"
+    nonNLSMarkers="true" importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>DatabaseDefinitionModel.mdl</foreignModel>
+  <foreignModel>CDM_EXTRACT_PATH</foreignModel>
+  <foreignModel>../../</foreignModel>
+  <genPackages prefix="DatabaseDefinition" basePackage="org.eclipse.datatools.modelbase"
+      ecorePackage="dbdefinition.ecore#/">
+    <genEnums ecoreEnum="dbdefinition.ecore#//CheckOption">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//CheckOption/NONE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//CheckOption/CASCADE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//CheckOption/LOCAL"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//LanguageType">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/SQL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/JAVA"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/C"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/OLE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/ASSEMBLY"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/COBOL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/PLI"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/CPLUSPLUS"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/CL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/COBOLLE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/FORTRAN"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/REXX"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/RPG"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/RPGLE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LanguageType/PLSQL"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//ParameterStyle">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/DB2SQL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/GENERAL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/GENERAL_WITH_NULLS"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/DB2GENRL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/DB2DARI"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/JAVA"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParameterStyle/SQL"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//ParentDeleteDRIRuleType">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentDeleteDRIRuleType/NO_ACTION"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentDeleteDRIRuleType/RESTRICT"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentDeleteDRIRuleType/CASCADE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentDeleteDRIRuleType/SET_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentDeleteDRIRuleType/SET_DEFAULT"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//ParentUpdateDRIRuleType">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentUpdateDRIRuleType/NO_ACTION"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentUpdateDRIRuleType/RESTRICT"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentUpdateDRIRuleType/CASCADE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentUpdateDRIRuleType/SET_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ParentUpdateDRIRuleType/SET_DEFAULT"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//ProcedureType">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ProcedureType/PROCEDURE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//ProcedureType/FUNCTION"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//TableSpaceType">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/REGULAR"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/LOB"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/SYSTEM_TEMPORARY"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/USER_TEMPORARY"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/PERMANENT"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/TEMPORARY"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//TableSpaceType/LARGE"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//PercentFreeTerminology">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//PercentFreeTerminology/PERCENT_FREE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//PercentFreeTerminology/FILL_FACTOR"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//PercentFreeTerminology/THRESHOLD"/>
+    </genEnums>
+    <genEnums ecoreEnum="dbdefinition.ecore#//LengthUnit">
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LengthUnit/DECIMAL"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LengthUnit/BIT"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LengthUnit/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="dbdefinition.ecore#//LengthUnit/DOUBLE_BYTE"/>
+    </genEnums>
+    <genClasses ecoreClass="dbdefinition.ecore#//DatabaseVendorDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/predefinedDataTypeDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/tableSpaceDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/storedProcedureDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/triggerDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/columnDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/constraintDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/extendedDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/indexDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/tableDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/sequenceDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/udtDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/queryDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/SQLSyntaxDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/nicknameDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/schemaDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/viewDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/debuggerDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/privilegedElementDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/constructedDataTypeDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/vendor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constraintsSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/maximumIdentifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/triggerSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/snapshotViewSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/joinSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/viewTriggerSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/tablespacesSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/maximumCommentLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/sequenceSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/mQTSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/schemaSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/aliasSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/synonymSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/userDefinedTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/domainSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/SQLStatementSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/nicknameSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/quotedDMLSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/quotedDDLSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/xmlSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/mQTIndexSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/eventSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/sqlUDFSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/storedProcedureSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/packageSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/authorizationIdentifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/groupSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/userSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleAuthorizationSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constructedDataTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/uDFSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//PredefinedDataTypeDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/trailingFieldQualifierDefinition"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultTrailingFieldQualifierDefinition"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultLeadingFieldQualifierDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/scaleSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/precisionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/keyConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/identitySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/multipleColumnsSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/nullableSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/clusteringSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/fillFactorSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/bitDataSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/maximumValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/minimumValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/maximumLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/maximumPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/maximumScale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/minimumScale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultValueTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/primitiveType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/jdbcEnumType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/characterSet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/encodingScheme"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/characterSetSuffix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/encodingSchemeSuffix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/javaClassName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/defaultScale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/cutoffPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/orderingSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/groupingSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/displayName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/displayNameSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/trailingFieldQualifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/fieldQualifierSeparator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemanticSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemantic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/languageType"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//TableSpaceDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/typeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/extentSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/prefetchSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/managedBySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/pageSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/bufferPoolSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/defaultSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/containerMaximumSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/containerInitialSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/containerExtentSizeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/tableSpaceType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//StoredProcedureDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//StoredProcedureDefinition/predefinedDataTypeDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/nullInputActionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/packageGenerationSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/determininsticSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/returnedNullSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/returnedTypeDeclarationConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/parameterInitValueSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/parameterStyleSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/returnTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/parameterDeclarationConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/maximumActionBodyLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/parameterStyle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/languageType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/functionLanguageType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/procedureType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//StoredProcedureDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//TriggerDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/maximumReferencePartLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/maximumActionBodyLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/typeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/whenClauseSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/granularitySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/referencesClauseSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/perColumnUpdateTriggerSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/insteadOfTriggerSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/rowTriggerReferenceSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/tableTriggerReferenceSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TriggerDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ColumnDefinition">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//ColumnDefinition/identityColumnDataTypeDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identitySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/computedSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identityStartValueSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identityIncrementSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identityMinimumSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identityMaximumSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/identityCycleSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ColumnDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ConstraintDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/deferrableConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/informationalConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/clusteredPrimaryKeySupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/clusteredUniqueConstraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/primaryKeyNullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/uniqueKeyNullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/maximumCheckExpressionLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/parentUpdateDRIRuleType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/parentDeleteDRIRuleType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/checkOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/maximumPrimaryKeyIdentifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/maximumForeignKeyIdentifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstraintDefinition/maximumCheckConstraintIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//IndexDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/percentFreeTerminology"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/percentFreeChangeable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/clusteringSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/clusterChangeable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/fillFactorSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/includedColumnsSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//IndexDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ExtendedDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ExtendedDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ExtendedDefinition/value"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//TableDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/auditSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/dataCaptureSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/editProcSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/encodingSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/validProcSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//SequenceDefinition">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//SequenceDefinition/predefinedDataTypeDefinitions"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//SequenceDefinition/defaultDataTypeDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/typeEnumerationSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/cacheSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/orderSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/noMaximumValueString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/noMinimumValueString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/noCacheString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SequenceDefinition/cacheDefaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//UserDefinedTypeDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//UserDefinedTypeDefinition/defaultValueSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//UserDefinedTypeDefinition/distinctTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//UserDefinedTypeDefinition/structuredTypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//UserDefinedTypeDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//QueryDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/identifierQuoteString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/hostVariableMarker"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/hostVariableMarkerSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/castExpressionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/defaultKeywordForInsertValueSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/extendedGroupingSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//QueryDefinition/tableAliasInDeleteSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//SQLSyntaxDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SQLSyntaxDefinition/keywords"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SQLSyntaxDefinition/operators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SQLSyntaxDefinition/terminationCharacter"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//NicknameDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//NicknameDefinition/constraintSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//NicknameDefinition/indexSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//NicknameDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//SchemaDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//SchemaDefinition/maximumIdentifierLength"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ViewDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/maximumIdentifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/indexSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/checkOptionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/checkOptionLevelsSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//FieldQualifierDefinition">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//FieldQualifierDefinition/validTrailingFieldQualifierDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/maximumPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/defaultPrecision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/precisionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/maximumScale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/defaultScale"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//FieldQualifierDefinition/scaleSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//DebuggerDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DebuggerDefinition/conditionSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//PrivilegedElementDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PrivilegedElementDefinition/privilegeDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PrivilegedElementDefinition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//PrivilegeDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PrivilegeDefinition/actionElementDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PrivilegeDefinition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//ConstructedDataTypeDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/arrayDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/multisetDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/rowDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/referenceDatatypeSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ConstructedDataTypeDefinition/cursorDatatypeSupported"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>SourceWriterExtension</title>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>SourceWriterExtension</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.modelbase.sql.query.sourcewriterextension<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>[Enter description of this extension point.]</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.pluginJava">pluginJava</a> , <a href="#e.sourceWriter">sourceWriter</a>+)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.pluginJava">pluginJava</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST pluginJava</p>
+<p class=code id=dtdAttlist>class&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+The Plugin class that must extend SQLQueryModelPlugin to invoke the registration of SourceWriters at plugin start time</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>class</b> - The Plugin.java file providing life-cycle methods for this plugin</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.sourceWriter">sourceWriter</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST sourceWriter</p>
+<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>packageName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>implPackageName&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>class</b> - The SQLQuerySourceWriter specified by fully qualified class name must implement "appendSQL" methods that have SQLQueryObject arguments out of the package specified in this extension-point's attribute "packageName"</li>
+<li><b>packageName</b> - The package name of the SQLQueryObjects that the SourceWriter is capable of generating SQL source for. The SQLQuerySourceWriter specified by fully qualified class name in this extension-point config attribute "class" must implement "appendSQL" methods that have arguments out of the package specified here</li>
+<li><b>implPackageName</b> - The package name of the SQLQueryObject implementations that the SourceWriter is capable of generating SQL source for. SQLQueryObject implementations must have suffix "Impl" appended to Class name of SQLQueryObject interfaces in package specified by attribute "packageName" in this extension-point configuration</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[Enter API information here.]
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+</p>
+</BODY>
+</HTML>

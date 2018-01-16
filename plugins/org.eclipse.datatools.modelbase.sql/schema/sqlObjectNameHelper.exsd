@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.modelbase.sql" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.modelbase.sql" id="sqlObjectNameHelper" name="SQL Object Name Helper"/>
+      </appinfo>
+      <documentation>
+         This extension point provides a database type-specific SQL object naming service. The naming service is used to obtain the name of a SQL Model object such as a table for use in specific contexts such as constructing a SQL statement.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="nameHelper" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="nameHelper">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="databaseType"/>
+         </appinfo>
+         <documentation>
+            Allows an extender to register a class that can provide names for database objects in a database type-specific manner.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="databaseType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Indicates the database type (vendor) handled by the helper.  The value given should be the value returned by the &quot;getVendor()&quot; method of the
+ org.eclipse.datatools.modelbase.sql.schema.Database class when connected to the desired database type.
+If the value from the getVendor call matches the value in the extension, then externsion will be used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the class which implements the ISQLObjectNameHelper interface.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.modelbase.sql.schema.helper.ISQLObjectNameHelper"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

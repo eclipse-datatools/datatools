@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="sqlObjectNameHelper" name="SQL Object Name Helper" schema="schema/sqlObjectNameHelper.exsd"/>
+   
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"
+            class="org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"
+            class="org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/statements.ecore"
+            class="org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/routines.ecore"
+            class="org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage"
+            genModel="model/sqlmodel.genmodel">
+      </package>
+   </extension>
+
+</plugin>

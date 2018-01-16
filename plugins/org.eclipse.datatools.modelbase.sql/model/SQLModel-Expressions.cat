@@ -1,0 +1,575 @@
+
+(object Petal
+    version    	47
+    _written   	"Rose 8.0.0303.1400"
+    charSet    	0)
+
+(object Class_Category "Expressions"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"packageName"
+	    value      	(value Text "expressions"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"basePackage"
+	    value      	(value Text "org.eclipse.datatools.modelbase.sql"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsPrefix"
+	    value      	(value Text "SQLExpressions"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsURI"
+	    value      	(value Text "http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"prefix"
+	    value      	(value Text "SQLExpressions")))
+    quid       	"3F27D6790133"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "QueryExpression"
+	    quid       	"3F392200019B"
+	    documentation 	
+|Reference: 5WD-02-Foundation-2002-12 7 Query Expression
+|
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getSQL"
+		    quid       	"404CD7F202DF"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setSQL"
+		    quid       	"4193E18B02F4"
+		    parameters 	(list Parameters
+			(object Parameter "sqlText"
+			    quid       	"4193E19E03B9"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)))
+	(object Class "ValueExpression"
+	    quid       	"3F4D273D00A9"
+	    documentation 	
+|Reference: 5WD-02-Foundation-2002-12 4.14.5 Base columns and generated columns
+|
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getSQL"
+		    quid       	"404CD826033E"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setSQL"
+		    quid       	"4193E1FA0221"
+		    parameters 	(list Parameters
+			(object Parameter "sqlText"
+			    quid       	"4193E1FA0222"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)))
+	(object Class "SearchCondition"
+	    quid       	"3FABEC590086"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getSQL"
+		    quid       	"404CD80F0023"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setSQL"
+		    quid       	"4193E1E402D3"
+		    parameters 	(list Parameters
+			(object Parameter "sqlText"
+			    quid       	"4193E1E402DD"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)))
+	(object Class "QueryExpressionDefault"
+	    quid       	"404912EB0127"
+	    documentation 	"Place holder for the default query expression."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"4049139E0233"
+		    supplier   	"Logical View::SQLModel::Expressions::QueryExpression"
+		    quidu      	"3F392200019B")
+		(object Inheritance_Relationship
+		    quid       	"4049140202B9"
+		    supplier   	"Logical View::SQLModel::Schema::SQLObject"
+		    quidu      	"3E9B3EB5002B"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "SQL"
+		    quid       	"4049131A01E3"
+		    type       	"String"
+		    exportControl 	"Public")))
+	(object Class "SearchConditionDefault"
+	    quid       	"404912F601A5"
+	    documentation 	"Place holder for the default search condition."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404913AC0388"
+		    supplier   	"Logical View::SQLModel::Expressions::SearchCondition"
+		    quidu      	"3FABEC590086")
+		(object Inheritance_Relationship
+		    quid       	"404913FB0132"
+		    supplier   	"Logical View::SQLModel::Schema::SQLObject"
+		    quidu      	"3E9B3EB5002B"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "SQL"
+		    quid       	"4049136602C9"
+		    type       	"String"
+		    exportControl 	"Public")))
+	(object Class "ValueExpressionDefault"
+	    quid       	"4049130202ED"
+	    documentation 	"Place holder for the default value expression."
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"404913C20267"
+		    supplier   	"Logical View::SQLModel::Expressions::ValueExpression"
+		    quidu      	"3F4D273D00A9")
+		(object Inheritance_Relationship
+		    quid       	"4049140E0068"
+		    supplier   	"Logical View::SQLModel::Schema::SQLObject"
+		    quidu      	"3E9B3EB5002B"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "SQL"
+		    quid       	"4049138803A4"
+		    type       	"String"
+		    exportControl 	"Public"))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Expressions"
+	    quid       	"3FB9158F00AF"
+	    title      	"Expressions"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	69
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::QueryExpression" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    ShowOperationSignature 	TRUE
+		    location   	(512, 233)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(162, 149)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	700
+			justify    	0
+			label      	"QueryExpression")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@1
+			location   	(162, 99)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	700
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F392200019B"
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(162, 210)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	603)
+		    width      	718
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::SearchCondition" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    ShowOperationSignature 	TRUE
+		    location   	(523, 724)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(172, 640)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	702
+			justify    	0
+			label      	"SearchCondition")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@2
+			location   	(172, 590)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	702
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FABEC590086"
+		    compartment 	(object Compartment
+			Parent_View 	@2
+			location   	(172, 701)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	603)
+		    width      	720
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::ValueExpression" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    ShowOperationSignature 	TRUE
+		    location   	(518, 1191)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(167, 1107)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	702
+			justify    	0
+			label      	"ValueExpression")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@3
+			location   	(167, 1057)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	702
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F4D273D00A9"
+		    compartment 	(object Compartment
+			Parent_View 	@3
+			location   	(167, 1168)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	603)
+		    width      	720
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::QueryExpressionDefault" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1417, 232)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1141, 151)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	552
+			justify    	0
+			label      	"QueryExpressionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404912EB0127"
+		    compartment 	(object Compartment
+			Parent_View 	@4
+			location   	(1141, 212)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	284)
+		    width      	570
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::SearchConditionDefault" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1407, 722)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1140, 641)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	534
+			justify    	0
+			label      	"SearchConditionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404912F601A5"
+		    compartment 	(object Compartment
+			Parent_View 	@5
+			location   	(1140, 702)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	284)
+		    width      	552
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::ValueExpressionDefault" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1419, 1191)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(1147, 1110)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	544
+			justify    	0
+			label      	"ValueExpressionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4049130202ED"
+		    compartment 	(object Compartment
+			Parent_View 	@6
+			location   	(1147, 1171)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	284)
+		    width      	562
+		    height     	186
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @7
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404913AC0388"
+		    client     	@5
+		    supplier   	@2
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::SQLObject" @8
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    location   	(2121, 719)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(1889, 590)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	464
+			justify    	0
+			label      	"SQLObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13828055
+		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@8
+			location   	(1889, 695)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	400)
+		    width      	482
+		    height     	282
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @9
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404913C20267"
+		    client     	@6
+		    supplier   	@3
+		    line_style 	0)
+		(object InheritView "" @10
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"4049139E0233"
+		    client     	@4
+		    supplier   	@1
+		    line_style 	0)
+		(object InheritView "" @11
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"4049140202B9"
+		    client     	@4
+		    supplier   	@8
+		    line_style 	0)
+		(object InheritView "" @12
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404913FB0132"
+		    client     	@5
+		    supplier   	@8
+		    line_style 	0)
+		(object InheritView "" @13
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"4049140E0068"
+		    client     	@6
+		    supplier   	@8
+		    line_style 	0)))))

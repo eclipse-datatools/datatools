@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.modelbase.sql.xml.query/src"
+    creationCommands="false" editDirectory="/org.eclipse.datatools.modelbase.sql.xml.query.edit/src"
+    editorDirectory="/org.eclipse.datatools.modelbase.sql.xml.query.editor/src" modelPluginID="org.eclipse.datatools.modelbase.sql.xml.query"
+    runtimeJar="true" modelName="SQLXMLQueryModel" editPluginClass="com.ibm.db.models.sql.xml.query.provider.SQLXMLQueryModelEditPlugin"
+    editorPluginClass="org.eclipse.datatools.modelbase.sql.xml.query.presentation.SQLXMLQueryModelEditorPlugin"
+    importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.genmodel#//query ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+  <foreignModel>SQLXMLQueryModel.mdl</foreignModel>
+  <foreignModel>CDM_EXTRACT_PATH</foreignModel>
+  <foreignModel>../..</foreignModel>
+  <genPackages prefix="SQLXMLQueryModel" basePackage="org.eclipse.datatools.modelbase.sql.xml"
+      disposableProviderFactory="true" ecorePackage="SQLXMLQueryModel.ecore#/">
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLPassingType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLPassingType/BY_REF"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLPassingType/BY_VALUE"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLPassingType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLContentType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType/CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType/DOCUMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLDeclarationType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLDeclarationType/EXCLUDING_XMLDECLARATION"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLDeclarationType/INCLUDING_XMLDECLARATION"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLDeclarationType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLReturningType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLReturningType/RETURNING_CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLReturningType/RETURNING_SEQUENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLReturningType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLNullHandlingType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/ABSENT_ON_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/EMPTY_ON_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/NIL_ON_NO_CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/NIL_ON_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/NULL_ON_NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLNullHandlingType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLWhitespaceHandlingType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLWhitespaceHandlingType/PRESERE_WHITESPACE"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLWhitespaceHandlingType/STRIP_WHITESPACE"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLWhitespaceHandlingType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLEmptyHandlingType">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLEmptyHandlingType/EMPTY_ON_EMPTY"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLEmptyHandlingType/NULL_ON_EMPTY"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLEmptyHandlingType/NONE"/>
+    </genEnums>
+    <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLContentType2">
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType2/CONTENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType2/DOCUMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType2/SEQUENCE"/>
+      <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLContentType2/NONE"/>
+    </genEnums>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionConcat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionConcat/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionConcat/concatContentList"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunction"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationPrefix">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationPrefix/prefix"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationDefault">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationDefault/noDefault"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLAttributeDeclarationItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAttributeDeclarationItem/valueExpr"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAttributeDeclarationItem/attributesDecl"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionElement/elementName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionElement/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElement/namespacesDecl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElement/attributesDecl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElement/elementContentList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationItem/uri"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLNamespaceDeclarationItem/namespacesDecl"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentItem/valueExpr"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentItem/elementContentList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionForest">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionForest/nullHandlingOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionForest/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionForest/forestContentList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionForest/namespacesDecl"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionComment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionComment/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionComment/commentContent"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionDocument">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionDocument/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionDocument/documentContent"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionParse">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionParse/contentOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionParse/whitespaceHandlingOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionParse/parseContent"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionPI">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionPI/targetName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionPI/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionPI/PIContent"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionQuery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionQuery/emptyHandlingOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionQuery/xqueryExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionQuery/xqueryArgList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionQuery/queryReturning"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionText/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionText/textContent"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidate/contentOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidate/validateContent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidate/validateAccordingTo"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueExpressionCast">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueExpressionCast/passingMechanism"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SQLXMLQueryModel.ecore#//XMLPredicate"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLPredicateContent"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLPredicateDocument"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLPredicateExists">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLPredicateExists/xqueryExpr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLPredicateExists/xqueryArgList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLPredicateValid"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLQueryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLQueryExpression/xqueryExprContent"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryExpression/predicateExists"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryExpression/valueFunctionQuery"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLQueryArgumentList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLQueryArgumentList/passingMechanism"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentList/predicateExists"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentList/xqueryArgListChildren"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentList/valueFunctionQuery"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentList/tableFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLQueryArgumentItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLQueryArgumentItem/passingMechanism"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentItem/xqueryArgList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLQueryArgumentItem/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLSerializeFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLSerializeFunction/contentOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLSerializeFunction/serializeVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLSerializeFunction/declarationOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLSerializeFunction/serializeTarget"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLSerializeFunction/serializeEncoding"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLSerializeFunctionTarget">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLSerializeFunctionTarget/serializeFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLSerializeFunctionTarget/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLAggregateFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLAggregateFunction/returningOption"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAggregateFunction/sortSpecList"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionConcatContentItem">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionConcatContentItem/valueFunctionConcat"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionConcatContentItem/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionCommentContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionCommentContent/valueFunctionComment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionCommentContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionDocumentContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionDocumentContent/valueFunctionDocument"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionDocumentContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLAggregateSortSpecification">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAggregateSortSpecification/aggregateFunction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAggregateSortSpecification/orderBySpec"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionForestContentItem">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionForestContentItem/valueFunctionForest"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionForestContentItem/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionParseContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionParseContent/valueFunctionParse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionParseContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionPIContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionPIContent/valueFunctionPI"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionPIContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLTableFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLTableFunction/tableRowPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableFunction/xqueryArgList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableFunction/columnDefList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableFunction/namespacesDecl"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionTextContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionTextContent/valueFunctionText"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionTextContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateContent">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateContent/valueFunctionValidate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateContent/valueExpr"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionItem">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionItem/tableFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionRegular">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionRegular/dataType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionRegular/passingOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionRegular/tableColumnPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionRegular/columnDefinitionDefault"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionOrdinality"/>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingTo">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingTo/valueFunctionValidate"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingTo/validateElement"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToURI">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToURI/noNamespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToURI/targetNamespaceURI"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToURI/schemaLocationURI"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToIdentifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToIdentifier/schemaName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateAccordingToIdentifier/registeredXMLSchemaName"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementName">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementName/validateElement"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementNamespace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementNamespace/noNamespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementNamespace/namespaceURI"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElementNamespace/validateElement"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLNamespacesDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLNamespacesDeclaration/namespaceDecltemList"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLNamespacesDeclaration/valueFunctionElement"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLNamespacesDeclaration/valueFunctionForest"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLNamespacesDeclaration/tableFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLAttributesDeclaration">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAttributesDeclaration/valueFunctionElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLAttributesDeclaration/attributeDeclItem"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentList/nullHandlingOption"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentList/valueFunctionElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionElementContentList/elementContentListChildren"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionQueryReturning">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionQueryReturning/returningOption"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLValueFunctionQueryReturning/passingOption"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionQueryReturning/valueFunctionQuery"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElement/validateElementNamespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElement/validateElementName"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLValueFunctionValidateElement/validateAccordingTo"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionDefault">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionDefault/valueExpr"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLXMLQueryModel.ecore#//XMLTableColumnDefinitionDefault/columnDefinitionRegular"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLXMLQueryModel.ecore#//XMLSerializeFunctionEncoding">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SQLXMLQueryModel.ecore#//XMLSerializeFunctionEncoding/encodingName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,3439 @@
+
+(object Petal
+    version    	47
+    _written   	"Rose 8.0.0303.1400"
+    charSet    	0)
+
+(object Class_Category "SQLModel"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"eCore"
+	    name       	"basePackage"
+	    value      	(value Text "com.ibm.dbtools"))
+	(object Attribute
+	    tool       	"eCore"
+	    name       	"packageName"
+	    value      	(value Text "SQLModel"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"packageName"
+	    value      	(value Text "sqlmodel"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsPrefix"
+	    value      	(value Text "SQLModel"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"prefix"
+	    value      	(value Text "SQLModel")))
+    quid       	"3E9B1F8201C1"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Association "$UNNAMED$0"
+	    quid       	"3FA723C6004D"
+	    roles      	(list role_list
+		(object Role "triggers"
+		    quid       	"3FA723C70243"
+		    label      	"triggers"
+		    supplier   	"Logical View::SQLModel::Tables::Trigger"
+		    quidu      	"3ED7B9780253"
+		    client_cardinality 	(value cardinality "0..n")
+		    is_navigable 	TRUE)
+		(object Role "schema"
+		    quid       	"3FA723C70257"
+		    label      	"schema"
+		    supplier   	"Logical View::SQLModel::Schema::Schema"
+		    quidu      	"3ED523C20089"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$1"
+	    quid       	"3FA7F6B60080"
+	    roles      	(list role_list
+		(object Role "dependencies"
+		    quid       	"3FA7F6BA0067"
+		    label      	"dependencies"
+		    supplier   	"Logical View::SQLModel::Schema::Dependency"
+		    quidu      	"3F967CB70382"
+		    client_cardinality 	(value cardinality "0..n")
+		    Containment 	"By Value"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3FA7F6BA0069"
+		    supplier   	"Logical View::SQLModel::Schema::SQLObject"
+		    quidu      	"3E9B3EB5002B"
+		    client_cardinality 	(value cardinality "1")
+		    is_aggregate 	TRUE)))
+	(object Association "$UNNAMED$3"
+	    quid       	"3FA7F70F015C"
+	    roles      	(list role_list
+		(object Role "targetEnd"
+		    quid       	"3FA7F7110046"
+		    label      	"targetEnd"
+		    supplier   	"Logical View::ecore::EObject"
+		    quidu      	"3C4F1C860123"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$4"
+		    quid       	"3FA7F7110050"
+		    supplier   	"Logical View::SQLModel::Schema::Dependency"
+		    quidu      	"3F967CB70382"
+		    client_cardinality 	(value cardinality "0..n")
+		    Containment 	"By Reference")))
+	(object Association "$UNNAMED$5"
+	    quid       	"3FA7FEAE0028"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$6"
+		    quid       	"3FA7FEAF0336"
+		    supplier   	"Logical View::SQLModel::Schema::Schema"
+		    quidu      	"3ED523C20089"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE
+		    is_aggregate 	TRUE)
+		(object Role "indices"
+		    quid       	"3FA7FEAF0340"
+		    label      	"indices"
+		    supplier   	"Logical View::SQLModel::Constraints::Index"
+		    quidu      	"3FA7FB2B02AA"
+		    client_cardinality 	(value cardinality "0..n")
+		    Containment 	"By Reference"
+		    is_navigable 	TRUE)))
+	(object Class_Category "Schema"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Schema.cat"
+	    quid       	"3F27D66B01AB")
+	(object Class_Category "Constraints"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Constraints.cat"
+	    quid       	"3F27D6500062")
+	(object Class_Category "DataTypes"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-DataTypes.cat"
+	    quid       	"3F27D65902FA")
+	(object Class_Category "Expressions"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Expressions.cat"
+	    quid       	"3F27D6790133")
+	(object Class_Category "Routines"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Routines.cat"
+	    quid       	"3F4E81D80011")
+	(object Class_Category "Statements"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Statements.cat"
+	    quid       	"4047743B009B")
+	(object Class_Category "Tables"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Tables.cat"
+	    quid       	"4071D00F009F")
+	(object Class_Category "AccessControl"
+	    is_unit    	TRUE
+	    is_loaded  	FALSE
+	    file_name  	"$SQL_MODEL_PLUGIN_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-AccessControl.cat"
+	    quid       	"407D7B39011B"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Main"
+	    quid       	"400C794E01D6"
+	    title      	"Main"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object CategoryView "Logical View::SQLModel::Schema" @1
+		    location   	(959, 222)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(815, 138)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Schema")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F27D66B01AB"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::Tables" @2
+		    location   	(969, 615)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(825, 531)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Tables")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4071D00F009F"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::Statements" @3
+		    location   	(388, 1112)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(244, 1028)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Statements")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4047743B009B"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::Routines" @4
+		    location   	(994, 1109)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(850, 1025)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Routines")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F4E81D80011"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::Expressions" @5
+		    location   	(1622, 1103)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1478, 1019)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Expressions")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F27D6790133"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::DataTypes" @6
+		    location   	(1603, 612)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(1459, 528)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"DataTypes")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F27D65902FA"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::Constraints" @7
+		    location   	(381, 615)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@7
+			location   	(237, 531)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"Constraints")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F27D6500062"
+		    width      	300
+		    height     	180)
+		(object CategoryView "Logical View::SQLModel::AccessControl" @8
+		    location   	(378, 228)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(234, 144)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	288
+			justify    	0
+			label      	"AccessControl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D7B39011B"
+		    width      	300
+		    height     	180)))
+	(object ClassDiagram "Inheritance"
+	    quid       	"408D5659015D"
+	    title      	"Inheritance"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	3903
+	    origin_y   	863
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::Role" @9
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1808, 1505)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@9
+			location   	(1631, 1456)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"Role")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D810501F2"
+		    width      	372
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::RoleAuthorization" @10
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1849, 320)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@10
+			location   	(1645, 271)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"RoleAuthorization")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D811200EC"
+		    width      	426
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::User" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2042, 1683)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1865, 1634)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"User")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D80DD00FA"
+		    width      	372
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::Group" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2271, 1499)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(2094, 1450)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"Group")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D80CF03C1"
+		    width      	372
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::ecore::EModelElement" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2320, 318)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(2131, 269)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	378
+			justify    	0
+			label      	"EModelElement")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3903D4E40050"
+		    width      	396
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::ecore::ENamedElement" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3234, 621)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(3029, 572)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	410
+			justify    	0
+			label      	"ENamedElement")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3B65CCC600FE"
+		    width      	428
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::Constraint" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(474, 1290)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(323, 1241)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"Constraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED5239F029C"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::PrimaryKey" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(750, 2330)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(599, 2281)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"PrimaryKey")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED5246901C3"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::UniqueConstraint" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(747, 2102)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(541, 2053)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	412
+			justify    	0
+			label      	"UniqueConstraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED52439006B"
+		    width      	430
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @18
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED55A4A0061"
+		    client     	@16
+		    supplier   	@17
+		    line_style 	0)
+		(object InheritTreeView "" @19
+		    location   	(474, 1441)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@15
+		    vertices   	(list Points
+			(474, 1441)
+			(474, 1351)))
+		(object InheritTreeView "" @20
+		    location   	(2320, 503)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@13
+		    vertices   	(list Points
+			(2320, 503)
+			(2320, 379)))
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::ArrayDataType" @21
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2918, 3312)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@21
+			location   	(2744, 3263)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"ArrayDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F12D9F402F3"
+		    width      	366
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::BinaryStringDataType" @22
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3947, 3087)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(3697, 3038)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	500
+			justify    	0
+			label      	"BinaryStringDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F216A9801A3"
+		    width      	518
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::BooleanDataType" @23
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4178, 2909)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@23
+			location   	(3964, 2860)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	428
+			justify    	0
+			label      	"BooleanDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F216E800160"
+		    width      	446
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::CharacterStringDataType" @24
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4797, 2921)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@24
+			location   	(4512, 2872)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	570
+			justify    	0
+			label      	"CharacterStringDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F2186CB02E1"
+		    width      	588
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::ConstructedDataType" @25
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2618, 2599)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@25
+			location   	(2369, 2550)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	498
+			justify    	0
+			label      	"ConstructedDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FB90F4001F0"
+		    width      	516
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::DataLinkDataType" @26
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5437, 2915)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@26
+			location   	(5217, 2866)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	440
+			justify    	0
+			label      	"DataLinkDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"400DFA2202A3"
+		    width      	458
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::DateDataType" @27
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5150, 3059)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@27
+			location   	(4978, 3010)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	344
+			justify    	0
+			label      	"DateDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"402BB4A400B0"
+		    width      	362
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::Domain" @28
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1282, 2865)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@28
+			location   	(1134, 2816)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"Domain")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EDF635C005F"
+		    width      	314
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::CheckConstraint" @29
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(928, 1827)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@29
+			location   	(729, 1778)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	398
+			justify    	0
+			label      	"CheckConstraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED5247D007B"
+		    width      	416
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::FixedPrecisionDataType" @30
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4809, 3346)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@30
+			location   	(4534, 3297)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	550
+			justify    	0
+			label      	"FixedPrecisionDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F54F5E9003C"
+		    width      	568
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::IntervalDataType" @31
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5742, 3081)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@31
+			location   	(5540, 3032)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	404
+			justify    	0
+			label      	"IntervalDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F216E7102DA"
+		    width      	422
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::MultisetDataType" @32
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2392, 3321)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@32
+			location   	(2182, 3272)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	420
+			justify    	0
+			label      	"MultisetDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F12DA6600D0"
+		    width      	438
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::AttributeDefinition" @33
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4505, 1596)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@33
+			location   	(4301, 1547)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	408
+			justify    	0
+			label      	"AttributeDefinition")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F54EF2F0194"
+		    width      	426
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::TimeDataType" @34
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3662, 2903)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@34
+			location   	(3489, 2854)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	346
+			justify    	0
+			label      	"TimeDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F216DF3039E"
+		    width      	364
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @35
+		    location   	(2626, 2760)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@25
+		    vertices   	(list Points
+			(2626, 2760)
+			(2626, 2660)))
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::PredefinedDataType" @36
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4159, 2660)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@36
+			location   	(3925, 2611)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	468
+			justify    	0
+			label      	"PredefinedDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EDF9E550371"
+		    width      	486
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::DistinctUserDefinedType" @37
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1280, 2621)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@37
+			location   	(1003, 2572)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	554
+			justify    	0
+			label      	"DistinctUserDefinedType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F4E44DD0126"
+		    width      	572
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::QueryExpressionDefault" @38
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1296, 1139)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@38
+			location   	(1020, 1090)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	552
+			justify    	0
+			label      	"QueryExpressionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404912EB0127"
+		    width      	570
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::SearchConditionDefault" @39
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(975, 1289)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@39
+			location   	(708, 1240)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	534
+			justify    	0
+			label      	"SearchConditionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"404912F601A5"
+		    width      	552
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Expressions::ValueExpressionDefault" @40
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1590, 1299)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@40
+			location   	(1318, 1250)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	544
+			justify    	0
+			label      	"ValueExpressionDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4049130202ED"
+		    width      	562
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Method" @41
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3796, 1799)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@41
+			location   	(3664, 1750)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	264
+			justify    	0
+			label      	"Method")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"411A8B5200D1"
+		    width      	282
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::UserDefinedTypeOrdering" @42
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2956, 1283)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@42
+			location   	(2669, 1234)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	574
+			justify    	0
+			label      	"UserDefinedTypeOrdering")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"4022861B0225"
+		    width      	592
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Procedure" @43
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3184, 1505)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@43
+			location   	(3049, 1456)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"Procedure")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F3D3B200263"
+		    width      	288
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::RoutineResultTable" @44
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5649, 1729)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@44
+			location   	(5416, 1680)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	466
+			justify    	0
+			label      	"RoutineResultTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FB914C00279"
+		    width      	484
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Source" @45
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3655, 1289)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@45
+			location   	(3523, 1240)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	264
+			justify    	0
+			label      	"Source")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F3D3B03023A"
+		    width      	282
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::UserDefinedFunction" @46
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3312, 1793)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@46
+			location   	(3072, 1744)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	480
+			justify    	0
+			label      	"UserDefinedFunction")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"411A8B5B016A"
+		    width      	498
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::Privilege" @47
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1321, 618)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@47
+			location   	(1144, 569)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	354
+			justify    	0
+			label      	"Privilege")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D806B013C"
+		    width      	372
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::SQLObject" @48
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3238, 861)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@48
+			location   	(3100, 812)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	276
+			justify    	0
+			label      	"SQLObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B3EB5002B"
+		    width      	294
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @49
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FB0FE5501DD"
+		    client     	@48
+		    supplier   	@14
+		    line_style 	0)
+		(object InheritTreeView "" @50
+		    location   	(3238, 1038)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@48
+		    vertices   	(list Points
+			(3238, 1038)
+			(3238, 922)))
+		(object InheritView "" @51
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED52ECA0076"
+		    client     	@15
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(472, 1229)
+		    terminal_attachment 	(472, 1038)
+		    drawSupplier 	@50)
+		(object InheritView "" @52
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40228CC1001A"
+		    client     	@42
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(2957, 1222)
+		    terminal_attachment 	(2957, 1038)
+		    drawSupplier 	@50)
+		(object InheritView "" @53
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"404913FB0132"
+		    client     	@39
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(975, 1228)
+		    terminal_attachment 	(975, 1038)
+		    drawSupplier 	@50)
+		(object InheritView "" @54
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"4049140E0068"
+		    client     	@40
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(1590, 1238)
+		    terminal_attachment 	(1590, 1038)
+		    drawSupplier 	@50)
+		(object InheritView "" @55
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"4049140202B9"
+		    client     	@38
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(1296, 1078)
+		    terminal_attachment 	(1296, 1038)
+		    drawSupplier 	@50)
+		(object InheritView "" @56
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3D52BA03C0"
+		    client     	@45
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(3655, 1228)
+		    terminal_attachment 	(3655, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::ecore::EObject" @57
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2322, 77)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@57
+			location   	(2217, 28)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	210
+			justify    	0
+			label      	"EObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3C4F1C860123"
+		    width      	228
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @58
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3C4F1CC50336"
+		    client     	@13
+		    supplier   	@57
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::Dependency" @59
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3868, 1154)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@59
+			location   	(3717, 1105)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"Dependency")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F967CB70382"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @60
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F967CC7023A"
+		    client     	@59
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(3868, 1093)
+		    terminal_attachment 	(3868, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::Database" @61
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4090, 1348)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@61
+			location   	(3961, 1299)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	258
+			justify    	0
+			label      	"Database")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FFDB2AD0234"
+		    width      	276
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @62
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FFDB2FD0026"
+		    client     	@61
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(4090, 1287)
+		    terminal_attachment 	(4090, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::CharacterSet" @63
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2412, 1286)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@63
+			location   	(2252, 1237)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	320
+			justify    	0
+			label      	"CharacterSet")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F25755001A0"
+		    width      	338
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @64
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F4E47750293"
+		    client     	@63
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(2412, 1225)
+		    terminal_attachment 	(2412, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::AccessControl::AuthorizationIdentifier" @65
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2039, 1134)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@65
+			location   	(1785, 1084)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	508
+			justify    	0
+			label      	"AuthorizationIdentifier")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"407D7FA3017A"
+		    width      	526
+		    height     	124
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @66
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"407D8033002D"
+		    client     	@65
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(2041, 1072)
+		    terminal_attachment 	(2041, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::Sequence" @67
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4921, 1589)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@67
+			location   	(4792, 1540)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	258
+			justify    	0
+			label      	"Sequence")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FABF02B03CD"
+		    width      	276
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::SQLDataType" @68
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3514, 2300)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@68
+			location   	(3349, 2251)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	330
+			justify    	0
+			label      	"SQLDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FB90EE3009E"
+		    width      	348
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @69
+		    location   	(3488, 2498)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@68
+		    vertices   	(list Points
+			(3488, 2498)
+			(3488, 2361)))
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::UserDefinedType" @70
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1555, 2287)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@70
+			location   	(1356, 2238)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	398
+			justify    	0
+			label      	"UserDefinedType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EDF9E8100EB"
+		    width      	416
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::TypedElement" @71
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4573, 1329)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@71
+			location   	(4399, 1280)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	348
+			justify    	0
+			label      	"TypedElement")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FA6A8930071"
+		    width      	366
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @72
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FA6A8DF0200"
+		    client     	@71
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(4575, 1268)
+		    terminal_attachment 	(4575, 1038)
+		    drawSupplier 	@50)
+		(object InheritTreeView "" @73
+		    location   	(4573, 1490)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@71
+		    vertices   	(list Points
+			(4573, 1490)
+			(4573, 1390)))
+		(object InheritView "" @74
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FABF052024A"
+		    client     	@67
+		    supplier   	@71
+		    line_style 	3
+		    origin_attachment 	(4921, 1528)
+		    terminal_attachment 	(4921, 1490)
+		    drawSupplier 	@73)
+		(object InheritView "" @75
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FA6AA01002E"
+		    client     	@33
+		    supplier   	@71
+		    line_style 	3
+		    origin_attachment 	(4505, 1535)
+		    terminal_attachment 	(4505, 1490)
+		    drawSupplier 	@73)
+		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLStatementDefault" @76
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4915, 1158)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@76
+			location   	(4664, 1109)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	502
+			justify    	0
+			label      	"SQLStatementDefault")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"40490988012C"
+		    width      	520
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @77
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"40490AB50342"
+		    client     	@76
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(4915, 1097)
+		    terminal_attachment 	(4915, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::TableConstraint" @78
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(747, 1545)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@78
+			location   	(553, 1496)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	388
+			justify    	0
+			label      	"TableConstraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED52ACF000F"
+		    width      	406
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @79
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED52B490312"
+		    client     	@78
+		    supplier   	@15
+		    line_style 	3
+		    origin_attachment 	(735, 1484)
+		    terminal_attachment 	(735, 1441)
+		    drawSupplier 	@19)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::BaseTable" @80
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5268, 1565)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@80
+			location   	(5127, 1516)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	282
+			justify    	0
+			label      	"BaseTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B41900372"
+		    width      	300
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::Assertion" @81
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(263, 1546)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@81
+			location   	(112, 1497)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"Assertion")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED524BC0165"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @82
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED52B5201F9"
+		    client     	@81
+		    supplier   	@15
+		    line_style 	3
+		    origin_attachment 	(263, 1485)
+		    terminal_attachment 	(263, 1441)
+		    drawSupplier 	@19)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::IdentitySpecifier" @83
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2786, 314)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@83
+			location   	(2597, 265)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	378
+			justify    	0
+			label      	"IdentitySpecifier")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EA3F30101D3"
+		    width      	396
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::ReferenceConstraint" @84
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(418, 1827)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@84
+			location   	(182, 1778)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	472
+			justify    	0
+			label      	"ReferenceConstraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EDE52410316"
+		    width      	490
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @85
+		    location   	(419, 1988)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@84
+		    vertices   	(list Points
+			(419, 1988)
+			(419, 1888)))
+		(object InheritView "" @86
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED548B9004E"
+		    client     	@17
+		    supplier   	@84
+		    line_style 	3
+		    origin_attachment 	(726, 2040)
+		    terminal_attachment 	(726, 1988)
+		    drawSupplier 	@85)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::ForeignKey" @87
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(319, 2105)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@87
+			location   	(168, 2056)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"ForeignKey")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3EDF626C0085"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @88
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED548BC006E"
+		    client     	@87
+		    supplier   	@84
+		    line_style 	3
+		    origin_attachment 	(304, 2043)
+		    terminal_attachment 	(304, 1988)
+		    drawSupplier 	@85)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::IndexMember" @89
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(694, 1139)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@89
+			location   	(530, 1090)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	328
+			justify    	0
+			label      	"IndexMember")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FA807740185"
+		    width      	346
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @90
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FB9179A0047"
+		    client     	@89
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(694, 1078)
+		    terminal_attachment 	(694, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::DerivedTable" @91
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(6028, 1576)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@91
+			location   	(5867, 1527)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	322
+			justify    	0
+			label      	"DerivedTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B419D0352"
+		    width      	340
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::PersistentTable" @92
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5006, 1964)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@92
+			location   	(4813, 1915)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	386
+			justify    	0
+			label      	"PersistentTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F579E8E01D1"
+		    width      	404
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::TemporaryTable" @93
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5465, 1961)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@93
+			location   	(5278, 1912)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	374
+			justify    	0
+			label      	"TemporaryTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F579E8200B1"
+		    width      	392
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::ViewTable" @94
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(6026, 1967)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@94
+			location   	(5890, 1918)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	272
+			justify    	0
+			label      	"ViewTable")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B4230022F"
+		    width      	290
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @95
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3E9B423903A5"
+		    client     	@94
+		    supplier   	@91
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::DataType" @96
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2616, 1142)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@96
+			location   	(2471, 1093)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	290
+			justify    	0
+			label      	"DataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B3F3400BF"
+		    width      	308
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::CollectionDataType" @97
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2662, 3031)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@97
+			location   	(2432, 2982)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	460
+			justify    	0
+			label      	"CollectionDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F12D9CF01F9"
+		    width      	478
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @98
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F33B2630206"
+		    client     	@97
+		    supplier   	@25
+		    line_style 	3
+		    origin_attachment 	(2635, 2970)
+		    terminal_attachment 	(2635, 2760)
+		    drawSupplier 	@35)
+		(object InheritView "" @99
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F38F4C800D1"
+		    client     	@96
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(2616, 1081)
+		    terminal_attachment 	(2616, 1038)
+		    drawSupplier 	@50)
+		(object InheritTreeView "" @100
+		    location   	(2616, 2159)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@96
+		    vertices   	(list Points
+			(2616, 2159)
+			(2616, 1203)))
+		(object InheritView "" @101
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3EDF9E9C001D"
+		    client     	@70
+		    supplier   	@96
+		    line_style 	3
+		    origin_attachment 	(1553, 2226)
+		    terminal_attachment 	(1553, 2159)
+		    drawSupplier 	@100)
+		(object InheritTreeView "" @102
+		    location   	(735, 1713)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@78
+		    vertices   	(list Points
+			(735, 1713)
+			(735, 1606)))
+		(object InheritView "" @103
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3EDE53940170"
+		    client     	@29
+		    supplier   	@78
+		    line_style 	3
+		    origin_attachment 	(1042, 1766)
+		    terminal_attachment 	(1042, 1713)
+		    drawSupplier 	@102)
+		(object InheritView "" @104
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3EDE538E0161"
+		    client     	@84
+		    supplier   	@78
+		    line_style 	3
+		    origin_attachment 	(416, 1766)
+		    terminal_attachment 	(416, 1713)
+		    drawSupplier 	@102)
+		(object InheritTreeView "" @105
+		    location   	(2029, 1394)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@65
+		    vertices   	(list Points
+			(2029, 1394)
+			(2029, 1196)))
+		(object InheritView "" @106
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"407D814B0012"
+		    client     	@9
+		    supplier   	@65
+		    line_style 	3
+		    origin_attachment 	(1806, 1444)
+		    terminal_attachment 	(1806, 1394)
+		    drawSupplier 	@105)
+		(object InheritView "" @107
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"407D81390215"
+		    client     	@12
+		    supplier   	@65
+		    line_style 	3
+		    origin_attachment 	(2228, 1437)
+		    terminal_attachment 	(2228, 1394)
+		    drawSupplier 	@105)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::Column" @108
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4065, 1589)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@108
+			location   	(3949, 1540)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"Column")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B2AFF0392"
+		    width      	250
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @109
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FA6A8C500EB"
+		    client     	@108
+		    supplier   	@71
+		    line_style 	3
+		    origin_attachment 	(4164, 1527)
+		    terminal_attachment 	(4164, 1490)
+		    drawSupplier 	@73)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::StructuredUserDefinedType" @110
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1977, 2609)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@110
+			location   	(1671, 2560)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	612
+			justify    	0
+			label      	"StructuredUserDefinedType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F4E44E8001C"
+		    width      	630
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::Trigger" @111
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5262, 1326)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@111
+			location   	(5146, 1277)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"Trigger")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED7B9780253"
+		    width      	250
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @112
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED7B99B023E"
+		    client     	@111
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(5262, 1265)
+		    terminal_attachment 	(5262, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Schema::Schema" @113
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4296, 1148)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@113
+			location   	(4167, 1099)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	258
+			justify    	0
+			label      	"Schema")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED523C20089"
+		    width      	276
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @114
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED52ED402B8"
+		    client     	@113
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(4296, 1087)
+		    terminal_attachment 	(4296, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::Index" @115
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(269, 1134)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@115
+			location   	(118, 1085)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	302
+			justify    	0
+			label      	"Index")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FA7FB2B02AA"
+		    width      	320
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @116
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FA807570399"
+		    client     	@115
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(269, 1073)
+		    terminal_attachment 	(269, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::Table" @117
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(5615, 1186)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@117
+			location   	(5502, 1137)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	226
+			justify    	0
+			label      	"Table")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B1FB60047"
+		    width      	244
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::ReferenceDataType" @118
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2957, 2868)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@118
+			location   	(2726, 2819)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	462
+			justify    	0
+			label      	"ReferenceDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F12DAE001E9"
+		    width      	480
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @119
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F12DAFD0257"
+		    client     	@118
+		    supplier   	@25
+		    line_style 	3
+		    origin_attachment 	(2944, 2806)
+		    terminal_attachment 	(2944, 2760)
+		    drawSupplier 	@35)
+		(object InheritView "" @120
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FA6A8EE02C0"
+		    client     	@117
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(5609, 1124)
+		    terminal_attachment 	(5609, 1038)
+		    drawSupplier 	@50)
+		(object InheritTreeView "" @121
+		    location   	(5268, 1829)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@80
+		    vertices   	(list Points
+			(5268, 1829)
+			(5268, 1626)))
+		(object InheritView "" @122
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F579EC0006A"
+		    client     	@93
+		    supplier   	@80
+		    line_style 	3
+		    origin_attachment 	(5465, 1900)
+		    terminal_attachment 	(5465, 1829)
+		    drawSupplier 	@121)
+		(object InheritTreeView "" @123
+		    location   	(5615, 1425)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@117
+		    vertices   	(list Points
+			(5615, 1425)
+			(5615, 1247)))
+		(object InheritView "" @124
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3E9B41AB03BF"
+		    client     	@91
+		    supplier   	@117
+		    line_style 	3
+		    origin_attachment 	(6029, 1515)
+		    terminal_attachment 	(6029, 1425)
+		    drawSupplier 	@123)
+		(object InheritView "" @125
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3C8D4364024F"
+		    client     	@14
+		    supplier   	@13
+		    line_style 	3
+		    origin_attachment 	(3232, 560)
+		    terminal_attachment 	(3232, 503)
+		    drawSupplier 	@20)
+		(object InheritView "" @126
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"407D81430219"
+		    client     	@11
+		    supplier   	@65
+		    line_style 	3
+		    origin_attachment 	(2028, 1622)
+		    terminal_attachment 	(2028, 1394)
+		    drawSupplier 	@105)
+		(object InheritView "" @127
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F579EC302B3"
+		    client     	@92
+		    supplier   	@80
+		    line_style 	3
+		    origin_attachment 	(5034, 1902)
+		    terminal_attachment 	(5034, 1829)
+		    drawSupplier 	@121)
+		(object InheritTreeView "" @128
+		    location   	(1557, 2450)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@70
+		    vertices   	(list Points
+			(1557, 2450)
+			(1557, 2348)))
+		(object InheritView "" @129
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F4E452201D4"
+		    client     	@110
+		    supplier   	@70
+		    line_style 	3
+		    origin_attachment 	(1935, 2548)
+		    terminal_attachment 	(1935, 2450)
+		    drawSupplier 	@128)
+		(object InheritView "" @130
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F4E451F02FC"
+		    client     	@37
+		    supplier   	@70
+		    line_style 	3
+		    origin_attachment 	(1279, 2560)
+		    terminal_attachment 	(1279, 2450)
+		    drawSupplier 	@128)
+		(object InheritView "" @131
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FB90F2302E1"
+		    client     	@36
+		    supplier   	@68
+		    line_style 	3
+		    origin_attachment 	(4260, 2599)
+		    terminal_attachment 	(4260, 2498)
+		    drawSupplier 	@69)
+		(object InheritView "" @132
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FB90F3400D1"
+		    client     	@68
+		    supplier   	@96
+		    line_style 	3
+		    origin_attachment 	(3529, 2239)
+		    terminal_attachment 	(3529, 2159)
+		    drawSupplier 	@100)
+		(object InheritTreeView "" @133
+		    location   	(2651, 3194)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@97
+		    vertices   	(list Points
+			(2651, 3194)
+			(2651, 3092)))
+		(object InheritView "" @134
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F12DA7002F3"
+		    client     	@32
+		    supplier   	@97
+		    line_style 	3
+		    origin_attachment 	(2394, 3260)
+		    terminal_attachment 	(2394, 3194)
+		    drawSupplier 	@133)
+		(object InheritView "" @135
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F12DA580014"
+		    client     	@21
+		    supplier   	@97
+		    line_style 	3
+		    origin_attachment 	(2913, 3250)
+		    terminal_attachment 	(2913, 3194)
+		    drawSupplier 	@133)
+		(object InheritTreeView "" @136
+		    location   	(4159, 2823)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@36
+		    vertices   	(list Points
+			(4159, 2823)
+			(4159, 2721)))
+		(object InheritView "" @137
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"402BB4E7028D"
+		    client     	@34
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(3662, 2842)
+		    terminal_attachment 	(3662, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @138
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3004830361"
+		    client     	@23
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(4178, 2848)
+		    terminal_attachment 	(4178, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @139
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F2FC6F3031D"
+		    client     	@22
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(3947, 3026)
+		    terminal_attachment 	(3947, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @140
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"402BB4B30333"
+		    client     	@27
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(5153, 2998)
+		    terminal_attachment 	(5153, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @141
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F218707016A"
+		    client     	@24
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(4569, 2860)
+		    terminal_attachment 	(4569, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @142
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"402BB4EC0335"
+		    client     	@31
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(5725, 3020)
+		    terminal_attachment 	(5725, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @143
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"400DFA6603D7"
+		    client     	@26
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(5428, 2853)
+		    terminal_attachment 	(5428, 2823)
+		    drawSupplier 	@136)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::NumericalDataType" @144
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4463, 3093)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@144
+			location   	(4230, 3047)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	466
+			justify    	0
+			label      	"NumericalDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F2693990310"
+		    width      	484
+		    height     	117
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @145
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F2693F9022B"
+		    client     	@144
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(4463, 3035)
+		    terminal_attachment 	(4463, 2823)
+		    drawSupplier 	@136)
+		(object InheritView "" @146
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3E9B41A50390"
+		    client     	@80
+		    supplier   	@117
+		    line_style 	3
+		    origin_attachment 	(5268, 1504)
+		    terminal_attachment 	(5268, 1425)
+		    drawSupplier 	@123)
+		(object InheritView "" @147
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3FB914DA038D"
+		    client     	@44
+		    supplier   	@117
+		    line_style 	3
+		    origin_attachment 	(5621, 1668)
+		    terminal_attachment 	(5621, 1425)
+		    drawSupplier 	@123)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Routine" @148
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3421, 1161)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@148
+			location   	(3290, 1112)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	262
+			justify    	0
+			label      	"Routine")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F3D36420226"
+		    width      	280
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @149
+		    location   	(3421, 1369)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@148
+		    vertices   	(list Points
+			(3421, 1369)
+			(3421, 1222)))
+		(object InheritView "" @150
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3D3B9D03E0"
+		    client     	@43
+		    supplier   	@148
+		    line_style 	3
+		    origin_attachment 	(3221, 1444)
+		    terminal_attachment 	(3221, 1369)
+		    drawSupplier 	@149)
+		(object InheritView "" @151
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3D37160216"
+		    client     	@148
+		    supplier   	@48
+		    line_style 	3
+		    origin_attachment 	(3446, 1100)
+		    terminal_attachment 	(3446, 1038)
+		    drawSupplier 	@50)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Parameter" @152
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4765, 1761)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@152
+			location   	(4631, 1712)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	268
+			justify    	0
+			label      	"Parameter")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F3D3B0F022D"
+		    width      	286
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::Routines::Function" @153
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3634, 1508)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	TRUE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@153
+			location   	(3503, 1459)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	262
+			justify    	0
+			label      	"Function")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F3D3B50012C"
+		    width      	280
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritTreeView "" @154
+		    location   	(3634, 1659)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    supplier   	@153
+		    vertices   	(list Points
+			(3634, 1659)
+			(3634, 1569)))
+		(object InheritView "" @155
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"411A8B92012D"
+		    client     	@41
+		    supplier   	@153
+		    line_style 	3
+		    origin_attachment 	(3821, 1738)
+		    terminal_attachment 	(3821, 1659)
+		    drawSupplier 	@154)
+		(object InheritView "" @156
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"411A8B8F006B"
+		    client     	@46
+		    supplier   	@153
+		    line_style 	3
+		    origin_attachment 	(3331, 1731)
+		    terminal_attachment 	(3331, 1659)
+		    drawSupplier 	@154)
+		(object InheritView "" @157
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3D3B9A01F1"
+		    client     	@153
+		    supplier   	@148
+		    line_style 	3
+		    origin_attachment 	(3659, 1446)
+		    terminal_attachment 	(3659, 1369)
+		    drawSupplier 	@149)
+		(object InheritView "" @158
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F3D3EDF00A0"
+		    client     	@152
+		    supplier   	@71
+		    line_style 	3
+		    origin_attachment 	(4765, 1700)
+		    terminal_attachment 	(4765, 1490)
+		    drawSupplier 	@73)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::Field" @159
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(4252, 1758)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@159
+			location   	(4104, 1709)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	296
+			justify    	0
+			label      	"Field")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED24C4E001D"
+		    width      	314
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::SQLModel::DataTypes::RowDataType" @160
+		    ShowCompartmentStereotypes 	TRUE
+		    SuppressAttribute 	TRUE
+		    SuppressOperation 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2404, 2865)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@160
+			location   	(2238, 2816)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	332
+			justify    	0
+			label      	"RowDataType")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3F12DAEF016C"
+		    width      	350
+		    height     	122
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @161
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3F12DAFB013D"
+		    client     	@160
+		    supplier   	@25
+		    line_style 	3
+		    origin_attachment 	(2382, 2804)
+		    terminal_attachment 	(2382, 2760)
+		    drawSupplier 	@35)
+		(object InheritView "" @162
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3ED2511800EF"
+		    client     	@159
+		    supplier   	@71
+		    line_style 	3
+		    origin_attachment 	(4253, 1697)
+		    terminal_attachment 	(4253, 1490)
+		    drawSupplier 	@73)))))

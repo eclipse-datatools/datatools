@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.modelbase.sql.query" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.modelbase.sql.query" id="sourcewriterextension" name="SourceWriterExtension"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="pluginJava"/>
+            <element ref="sourceWriter" minOccurs="1" maxOccurs="100"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pluginJava">
+      <annotation>
+         <documentation>
+            The Plugin class that must extend SQLQueryModelPlugin to invoke the registration of SourceWriters at plugin start time
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The Plugin.java file providing life-cycle methods for this plugin
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.modelbase.sql.query.util.SQLQueryModelPlugin:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="sourceWriter">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The SQLQuerySourceWriter specified by fully qualified class name must implement &quot;appendSQL&quot; methods that have SQLQueryObject arguments out of the package specified in this extension-point&apos;s attribute &quot;packageName&quot;
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="packageName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The package name of the SQLQueryObjects that the SourceWriter is capable of generating SQL source for. The SQLQuerySourceWriter specified by fully qualified class name in this extension-point config attribute &quot;class&quot; must implement &quot;appendSQL&quot; methods that have arguments out of the package specified here
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="implPackageName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The package name of the SQLQueryObject implementations that the SourceWriter is capable of generating SQL source for. SQLQueryObject implementations must have suffix &quot;Impl&quot; appended to Class name of SQLQueryObject interfaces in package specified by attribute &quot;packageName&quot; in this extension-point configuration
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
