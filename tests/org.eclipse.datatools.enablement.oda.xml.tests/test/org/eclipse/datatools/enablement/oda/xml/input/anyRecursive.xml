@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functional_areas>
+  <functional_area>
+    <id>1</id>
+    <area_name>Area 1</area_name>
+    <tests>
+      <test>
+        <test_name>Test 1</test_name>
+      </test>
+      <test>
+        <test_name>Test 2</test_name>
+        <subtests>
+          <test>
+            <test_name>Test 2.1</test_name>
+          </test>
+        </subtests>
+      </test>
+    </tests>
+  </functional_area>
+  <functional_area>
+    <id>2</id>
+    <area_name>Area 2</area_name>
+    <tests>
+      <test>
+        <test_name>Test 3</test_name>
+      </test>
+    </tests>
+  </functional_area>
+</functional_areas>

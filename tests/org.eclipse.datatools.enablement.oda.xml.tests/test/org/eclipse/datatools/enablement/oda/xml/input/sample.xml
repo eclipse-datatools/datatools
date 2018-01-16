@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<BookStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Books>
+		<Fiction count="2" type="Science">
+			<Book>
+				<ID>12345</ID>
+				<Title>The Bourne Identity</Title>
+				<Author>Robert Ludlum</Author>
+				<Price>20.05</Price>
+				<PublishingDate>03/02/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Action Mystery</SubTitle>
+				<FictionTheme>Mass Market </FictionTheme>
+			</Book>
+			<Book>
+				<ID>12346</ID>
+				<Title>The Bourne Supremacy </Title>
+				<Author>Robert Ludlum</Author>
+				<Price>10.05</Price>
+				<PublishingDate>04/04/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Action Mystery</SubTitle>
+				<FictionTheme>Mass Market </FictionTheme>
+			</Book>
+			<Book>
+				<ID>12345</ID>
+				<Title>The Bourne Ultimatum</Title>
+				<Author>Robert Ludlum</Author>
+				<Price>15.05</Price>
+				<PublishingDate>05/05/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Action Mystery</SubTitle>
+				<FictionTheme>Mass Market </FictionTheme>
+			</Book>
+
+			<Book>
+				<ID>12000</ID>
+				<Titles>
+					<Title> The Hound of the BaskerVilles</Title>
+				</Titles>	
+				<Author>Mr. A</Author>
+				<Price/>
+				<PublishingDate>07/10/2001</PublishingDate>
+				<BestSeller area="UK">true</BestSeller>
+			</Book>
+			<Book>
+				<ID>12001</ID>
+				<Titles>
+					<Title>Life of Pi</Title>
+				</Titles>	
+				<Author>Yann Martel </Author>
+				<Price>8.05</Price>
+				<PublishingDate>01/10/2002</PublishingDate>
+				<BestSeller area="UK">true</BestSeller>
+			</Book>
+				<Book>
+				<ID>12002</ID>
+				<Title>The Namesake : A Novel </Title>
+				<Author>Jhumpa Lahiri </Author>
+				<Price>14.40 </Price>
+				<PublishingDate>03/02/2003</PublishingDate>
+				<BestSeller>false</BestSeller>
+				<SubTitle>A Novel</SubTitle>
+				<FictionTheme>Some Fiction</FictionTheme>
+			</Book>
+				<Book>
+				<ID>12003</ID>
+				<Title>The Fortress of Solitude</Title>
+				<Author>Jonathan Lethem </Author>
+				<Price>22.05</Price>
+				<PublishingDate>03/03/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+			</Book>
+				<Book>
+				<ID>12004</ID>
+				<Title>To Kill a Mockingbird </Title>
+				<Author>Harper Lee </Author>
+				<Author>Mr. Y</Author>
+				<Price>6.99</Price>
+				<PublishingDate>04/02/1999</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>SubTitle</SubTitle>
+				<FictionTheme>Literature</FictionTheme>
+			</Book>
+				<Book>
+				<ID>12005</ID>
+				<Title>The Prince </Title>
+				<Author>Niccolo Machiavelli</Author>
+				<Author>Daniel Donno </Author>
+				<Price>4.50</Price>
+				<PublishingDate>01/01/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Think of some Sub Title</SubTitle>
+				<FictionTheme>General</FictionTheme>
+			</Book>
+				<Book>
+				<ID>12006</ID>
+				<Title>The Runaway Jury </Title>
+				<Author>John Grisham</Author>
+				<Price>14.50</Price>
+				<PublishingDate>01/01/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle></SubTitle>
+				<FictionTheme>Suspense Drama</FictionTheme>
+			</Book>
+				<Book>
+				<ID>12007</ID>
+				<Title> The Rainmaker  </Title>
+				<Author>John Grisham</Author>
+				<Price>4.50</Price>
+				<PublishingDate>01/01/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Think of some Sub Title</SubTitle>
+				<FictionTheme>Suspense Drama</FictionTheme>
+			</Book>
+				<Book>
+				<ID>12008</ID>
+				<Title>A Painted House  </Title>
+				<Author>John Grisham</Author>
+				<Price>4.50</Price>
+				<PublishingDate>02/02/2002</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Think of some Sub Title</SubTitle>
+				<FictionTheme>Suspense Drama</FictionTheme>
+			</Book>
+		</Fiction>
+		<NonFiction>
+			<Book>
+				<Title>The real life story</Title>
+				<ProposedTitle>Reality bites</ProposedTitle>
+				<Price>10.654</Price>
+				<BestSeller area="USA">false</BestSeller>
+				<NonFictionTheme>The life of a soldier</NonFictionTheme>
+			</Book>
+			<Book>
+				<ID>10001</ID>
+				<Title>Labyrinths of Reason : Paradox, Puzzles, and the Frailty of Knowledge 
+</Title>
+				<Author>William Poundstone </Author>
+				<Price>20.05</Price>
+				<PublishingDate>01/01/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Paradox, Puzzles, and the Frailty of Knowledge</SubTitle>
+				<FictionTheme>Philosophy</FictionTheme>
+			</Book>
+			<Book>
+				<ID>10002</ID>
+				<Title>Informal Logic : A Handbook for Critical Argument  </Title>
+				<Author>Douglas N. Walton </Author>
+				<Price>22.05</Price>
+				<PublishingDate>03/02/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>A Handbook for Critical Argument</SubTitle>
+				<FictionTheme>Philosophy</FictionTheme>
+			</Book>
+			<Book>
+				<ID>10003</ID>
+				<Title>Gaining Ground: A History of Landmaking in Boston   </Title>
+				<Author>Nancy S. Seasholes</Author>
+				<Price>4.50</Price>
+				<PublishingDate>03/03/2003</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>A History of Landmaking in Boston</SubTitle>
+				<FictionTheme>Urban Planning And Development 
+</FictionTheme>
+			</Book>
+			<Book>
+				<ID>10004</ID>
+				<Title>Building Communities from the Inside Out:  </Title>
+				<Author>John P. Kretzmann</Author>
+				<Author>John L. McKnight  </Author>
+				<Price>10.50 </Price>
+				<PublishingDate>07/10/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>A Path Toward Finding and Mobilizing a Community's Assets</SubTitle>
+				<FictionTheme>General</FictionTheme>
+			</Book>
+			<Book>
+				<ID>10005</ID>
+				<Title>The Great Unraveling: 
+ </Title>
+				<Author>Paul Krugman </Author>
+				<Price>4.50</Price>
+				<PublishingDate>01/01/2001</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Losing Our Way in the New Century</SubTitle>
+				<FictionTheme>General</FictionTheme>
+			</Book>
+			<Book>
+				<ID>10006</ID>
+				<Title> Nickel and Dimed  </Title>
+				<Author>Barbara Ehrenreich </Author>
+				<Price>7.80</Price>
+				<PublishingDate>02/02/2002</PublishingDate>
+				<BestSeller>true</BestSeller>
+				<SubTitle>Think of some Sub Title</SubTitle>
+				<FictionTheme>General</FictionTheme>
+			</Book>
+		</NonFiction>
+		<Publisher>McGraw-Hill</Publisher>
+		<Author>Freelancer</Author>
+	</Books>
+</BookStore>

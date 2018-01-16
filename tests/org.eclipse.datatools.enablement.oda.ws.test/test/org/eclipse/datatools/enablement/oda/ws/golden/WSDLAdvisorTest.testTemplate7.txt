@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<SOAP-ENV:Envelope
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<m:LicenseInfo xmlns:m="http://www.strikeiron.com">
+			<m:UnregisteredUser>
+				<m:EmailAddress xsi:type="xsd:string">&?EmailAddress?&</m:EmailAddress>
+			</m:UnregisteredUser>
+			<m:RegisteredUser>
+				<m:UserID xsi:type="xsd:string">&?UserID?&</m:UserID>
+				<m:Password xsi:type="xsd:string">&?Password?&</m:Password>
+			</m:RegisteredUser>
+		</m:LicenseInfo>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<m:GetLatestRates xmlns:m="http://www.strikeiron.com">
+			<m:CommaSeparatedListOfCurrenciesFrom xsi:type="xsd:string">&?CommaSeparatedListOfCurrenciesFrom?&</m:CommaSeparatedListOfCurrenciesFrom>
+			<m:SingleCurrencyTo xsi:type="xsd:string">&?SingleCurrencyTo?&</m:SingleCurrencyTo>
+		</m:GetLatestRates>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,6 @@
+title					lang					author					
+Everyday Italian					en					Giada De Laurentiis					
+Harry Potter					en					J K. Rowling					
+XQuery Kick Start					en					James McGovern					
+Learning XML					en					Erik T. Ray					
+Feels Like Home					en					Norah Jones					

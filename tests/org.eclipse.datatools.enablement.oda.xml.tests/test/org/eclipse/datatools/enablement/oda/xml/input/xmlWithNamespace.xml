@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+		<soap:Body>
+			<GetWeatherByZipCodeResponse xmlns="http://www.webservicex.net">
+				<GetWeatherByZipCodeResult>
+				<Latitude>37.61956</Latitude>
+				<Longitude>122.481606</Longitude>
+				<AllocationFactor>0.001263</AllocationFactor>
+				<FipsCode>06</FipsCode>
+				<PlaceName>PACIFICA</PlaceName>
+				<StateCode>CA</StateCode>
+				<Details>
+					<WeatherData>
+						<Day>Friday, April 18, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/bkn.jpg</WeatherImage>
+						<MaxTemperatureF>56</MaxTemperatureF>
+						<MinTemperatureF>46</MinTemperatureF>
+						<MaxTemperatureC>13</MaxTemperatureC>
+						<MinTemperatureC>8</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Saturday, April 19, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/sct.jpg</WeatherImage>
+						<MaxTemperatureF>49</MaxTemperatureF>
+						<MinTemperatureF>43</MinTemperatureF>
+						<MaxTemperatureC>9</MaxTemperatureC>
+						<MinTemperatureC>6</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Sunday, April 20, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/few.jpg</WeatherImage>
+						<MaxTemperatureF>47</MaxTemperatureF>
+						<MinTemperatureF>39</MinTemperatureF>
+						<MaxTemperatureC>8</MaxTemperatureC>
+						<MinTemperatureC>4</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Monday, April 21, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/sct.jpg</WeatherImage>
+						<MaxTemperatureF>51</MaxTemperatureF>
+						<MinTemperatureF>40</MinTemperatureF>
+						<MaxTemperatureC>11</MaxTemperatureC>
+						<MinTemperatureC>4</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Tuesday, April 22, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/sct.jpg</WeatherImage>
+						<MaxTemperatureF>54</MaxTemperatureF>
+						<MinTemperatureF>41</MinTemperatureF>
+						<MaxTemperatureC>12</MaxTemperatureC>
+						<MinTemperatureC>5</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Wednesday, April 23, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/bkn.jpg</WeatherImage>
+						<MaxTemperatureF>57</MaxTemperatureF>
+						<MinTemperatureF>45</MinTemperatureF>
+						<MaxTemperatureC>14</MaxTemperatureC>
+						<MinTemperatureC>7</MinTemperatureC>
+					</WeatherData>
+					<WeatherData>
+						<Day>Thursday, April 24, 2008</Day>
+						<WeatherImage>http://forecast.weather.gov/images/wtf/sct.jpg</WeatherImage>
+						<MaxTemperatureF>58</MaxTemperatureF>
+						<MinTemperatureF>44</MinTemperatureF>
+						<MaxTemperatureC>14</MaxTemperatureC>
+						<MinTemperatureC>7</MinTemperatureC>
+					</WeatherData>
+				</Details>
+			</GetWeatherByZipCodeResult>
+		</GetWeatherByZipCodeResponse>
+	</soap:Body>
+</soap:Envelope>

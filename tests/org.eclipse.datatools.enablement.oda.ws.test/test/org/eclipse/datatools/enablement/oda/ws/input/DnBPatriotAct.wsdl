@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s1="http://ws.strikeiron.com" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:si="http://www.strikeiron.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.strikeiron.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.strikeiron.com">
+      <s:element name="PatriotActCompliance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="si:Company" />
+            <s:element minOccurs="0" maxOccurs="1" name="confidence" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Company">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DUNSNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PatriotActComplianceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PatriotActComplianceResult" type="si:PACData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PACData">
+        <s:complexContent mixed="false">
+          <s:extension base="si:ProductData">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DunsNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OutOfBusinessInd" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TradeStyle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NonPostalTown" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PostalTown" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryGeographicArea" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PostCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CountryCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProofOfRightCount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ComplianceRiskIdx" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ComplianceRiskIdxClass" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ProductData" abstract="true" />
+      <s:element name="OFACCompliance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="companyOrLastName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OFACComplianceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OFACComplianceResult" type="si:ArrayOfListEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfListEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ListEntry" nillable="true" type="si:ListEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SDNType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Program" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDs" type="si:ArrayOfIdentification" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aliases" type="si:ArrayOfAlias" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addresses" type="si:ArrayOfAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nationality" type="si:ArrayOfNationOrigin" />
+          <s:element minOccurs="0" maxOccurs="1" name="Citizenship" type="si:ArrayOfNationOrigin" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlaceOfBirthRecords" type="si:ArrayOfPlaceOfBirthInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfBirthRecords" type="si:ArrayOfDateOfBirthInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="VesselInfo" type="si:VesselInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfIdentification">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Identification" nillable="true" type="si:Identification" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Identification">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IDCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IssueDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAlias">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Alias" nillable="true" type="si:Alias" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Alias">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Address" nillable="true" type="si:Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressLine3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StateProvince" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfNationOrigin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NationOrigin" nillable="true" type="si:NationOrigin" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NationOrigin">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MainEntry" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlaceOfBirthInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlaceOfBirthInfo" nillable="true" type="si:PlaceOfBirthInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlaceOfBirthInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlaceOfBirth" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MainEntry" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDateOfBirthInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DateOfBirthInfo" nillable="true" type="si:DateOfBirthInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DateOfBirthInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfBirth" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MainEntry" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VesselInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CallSign" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VesselType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VesselFlag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VesselOwner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tonnage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GrossRegisteredTonnage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CompanySearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="si:Company" />
+            <s:element minOccurs="0" maxOccurs="1" name="confidence" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompanySearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CompanySearchResult" type="si:ArrayOfCandidateCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCandidateCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CandidateCompany" nillable="true" type="si:CandidateCompany" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CandidateCompany">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BranchIndicator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TradingName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfidenceCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccuracyProbability" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MatchGrade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MatchComponents" type="si:MatchGradeComponents" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameMatchPercent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityMatchPercent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetNameMatchPercent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetNumberMatchPercent" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MatchGradeComponents">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTermsOfAgreement">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTermsOfAgreementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TermsOfAgreement" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTestDunsNumbers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTestDunsNumbersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="TestDunsNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountryCodes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCountryCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryCodes" type="si:ArrayOfCountryCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCountryCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CountryCode" nillable="true" type="si:CountryCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CountryCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://ws.strikeiron.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ws.strikeiron.com">
+      <xs:element name="LicenseInfo" type="tns1:LicenseInfo" />
+      <xs:complexType name="LicenseInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="RegisteredUser" type="tns1:RegisteredUser" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RegisteredUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserID" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SubscriptionInfo" type="tns1:SubscriptionInfo" />
+      <xs:complexType name="SubscriptionInfo">
+        <xs:sequence>
+          <xs:element name="LicenseStatusCode" type="xs:int" />
+          <xs:element minOccurs="0" name="LicenseStatus" type="xs:string" />
+          <xs:element name="LicenseActionCode" type="xs:int" />
+          <xs:element minOccurs="0" name="LicenseAction" type="xs:string" />
+          <xs:element name="RemainingHits" type="xs:int" />
+          <xs:element name="Amount" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetRemainingHits">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetRemainingHitsResponse">
+        <xs:complexType />
+      </xs:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PatriotActComplianceSoapIn">
+    <wsdl:part name="parameters" element="si:PatriotActCompliance" />
+  </wsdl:message>
+  <wsdl:message name="PatriotActComplianceSoapOut">
+    <wsdl:part name="parameters" element="si:PatriotActComplianceResponse" />
+  </wsdl:message>
+  <wsdl:message name="OFACComplianceSoapIn">
+    <wsdl:part name="parameters" element="si:OFACCompliance" />
+  </wsdl:message>
+  <wsdl:message name="OFACComplianceSoapOut">
+    <wsdl:part name="parameters" element="si:OFACComplianceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CompanySearchSoapIn">
+    <wsdl:part name="parameters" element="si:CompanySearch" />
+  </wsdl:message>
+  <wsdl:message name="CompanySearchSoapOut">
+    <wsdl:part name="parameters" element="si:CompanySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsOfAgreementSoapIn">
+    <wsdl:part name="parameters" element="si:GetTermsOfAgreement" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsOfAgreementSoapOut">
+    <wsdl:part name="parameters" element="si:GetTermsOfAgreementResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTestDunsNumbersSoapIn">
+    <wsdl:part name="parameters" element="si:GetTestDunsNumbers" />
+  </wsdl:message>
+  <wsdl:message name="GetTestDunsNumbersSoapOut">
+    <wsdl:part name="parameters" element="si:GetTestDunsNumbersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryCodesSoapIn">
+    <wsdl:part name="parameters" element="si:GetCountryCodes" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryCodesSoapOut">
+    <wsdl:part name="parameters" element="si:GetCountryCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRemainingHitsSoapIn">
+    <wsdl:part name="parameters" element="s1:GetRemainingHits" />
+  </wsdl:message>
+  <wsdl:message name="GetRemainingHitsSoapOut">
+    <wsdl:part name="parameters" element="s1:GetRemainingHitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LicenseInfoMessage">
+    <wsdl:part name="LicenseInfo" element="s1:LicenseInfo" />
+  </wsdl:message>
+  <wsdl:message name="SubscriptionInfoMessage">
+    <wsdl:part name="SubscriptionInfo" element="s1:SubscriptionInfo" />
+  </wsdl:message>
+  <wsdl:portType name="PatriotActComplianceServiceSoap">
+    <wsdl:operation name="PatriotActCompliance">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">PatriotActCompliance - specify DUNS number or company info, and optional confidence code level</documentation>
+      <wsdl:input message="si:PatriotActComplianceSoapIn" />
+      <wsdl:output message="si:PatriotActComplianceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OFACCompliance">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Search OFAC SDN list by specifying a company name or individual's last name</documentation>
+      <wsdl:input message="si:OFACComplianceSoapIn" />
+      <wsdl:output message="si:OFACComplianceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompanySearch">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Perform US Company Search</documentation>
+      <wsdl:input message="si:CompanySearchSoapIn" />
+      <wsdl:output message="si:CompanySearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsOfAgreement">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get Terms of Agreement</documentation>
+      <wsdl:input message="si:GetTermsOfAgreementSoapIn" />
+      <wsdl:output message="si:GetTermsOfAgreementSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestDunsNumbers">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get Test DUNS Numbers</documentation>
+      <wsdl:input message="si:GetTestDunsNumbersSoapIn" />
+      <wsdl:output message="si:GetTestDunsNumbersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRemainingHits">
+      <wsdl:input message="si:GetRemainingHitsSoapIn" />
+      <wsdl:output message="si:GetRemainingHitsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PatriotActComplianceServiceSoap" type="si:PatriotActComplianceServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="PatriotActCompliance">
+      <soap:operation soapAction="http://www.strikeiron.com/PatriotActCompliance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <si:validation>
+          <si:assertions />
+        </si:validation>
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OFACCompliance">
+      <soap:operation soapAction="http://www.strikeiron.com/OFACCompliance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <si:validation>
+          <si:assertions />
+        </si:validation>
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompanySearch">
+      <soap:operation soapAction="http://www.strikeiron.com/CompanySearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <si:validation>
+          <si:assertions />
+        </si:validation>
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsOfAgreement">
+      <soap:operation soapAction="http://www.strikeiron.com/GetTermsOfAgreement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <si:validation>
+          <si:assertions />
+        </si:validation>
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestDunsNumbers">
+      <soap:operation soapAction="http://www.strikeiron.com/GetTestDunsNumbers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <si:validation>
+          <si:assertions />
+        </si:validation>
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRemainingHits">
+      <soap:operation soapAction="http://ws.strikeiron.com/StrikeIron/DnBPatriotAct/PatriotActComplianceService/GetRemainingHits" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="si:LicenseInfoMessage" part="LicenseInfo" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="si:SubscriptionInfoMessage" part="SubscriptionInfo" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PatriotActComplianceService">
+    <wsdl:port name="PatriotActComplianceServiceSoap" binding="si:PatriotActComplianceServiceSoap">
+      <soap:address location="http://ws.strikeiron.com/StrikeIron/DnBPatriotAct/PatriotActComplianceService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

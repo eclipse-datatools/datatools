@@ -1,0 +1,12 @@
+<Top>
+  <Tree id="doc" lang="en" refid="tree">
+    <blocks>
+      <block id="block" order="1.1" refid="Type0" type="table">
+        <parameters>
+          <parameter id="Name" value="Bob"/>
+          <parameter id="Position" value="Developer"/>
+        </parameters>
+	</block>
+	</blocks>
+	</Tree>
+	</Top>

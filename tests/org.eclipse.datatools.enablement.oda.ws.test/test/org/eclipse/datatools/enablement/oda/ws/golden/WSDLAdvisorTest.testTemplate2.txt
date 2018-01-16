@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<SOAP-ENV:Envelope
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Body>
+		<m:updateAddress xmlns:m="http://address.jaxrpc.samples">
+			<in0>
+				<street xsi:type="xsd:string">&?street?&</street>
+				<postcode xsi:type="xsd:int">&?postcode?&</postcode>
+			</in0>
+			<in1 xsi:type="xsd:int">&?in1?&</in1>
+		</m:updateAddress>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

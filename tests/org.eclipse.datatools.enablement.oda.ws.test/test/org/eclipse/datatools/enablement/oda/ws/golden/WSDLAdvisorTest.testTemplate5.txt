@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<SOAP-ENV:Envelope
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<m:LicenseInfo xmlns:m="http://www.strikeiron.com">
+			<m:RegisteredUser>
+				<m:UserID xsi:type="xsd:string">&?UserID?&</m:UserID>
+				<m:Password xsi:type="xsd:string">&?Password?&</m:Password>
+			</m:RegisteredUser>
+		</m:LicenseInfo>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<m:PatriotActCompliance xmlns:m="http://www.strikeiron.com">
+			<m:company>
+				<m:DUNSNumber xsi:type="xsd:string">&?DUNSNumber?&</m:DUNSNumber>
+				<m:CompanyName xsi:type="xsd:string">&?CompanyName?&</m:CompanyName>
+				<m:Address xsi:type="xsd:string">&?Address?&</m:Address>
+				<m:City xsi:type="xsd:string">&?City?&</m:City>
+				<m:State xsi:type="xsd:string">&?State?&</m:State>
+				<m:PostalCode xsi:type="xsd:string">&?PostalCode?&</m:PostalCode>
+				<m:Phone xsi:type="xsd:string">&?Phone?&</m:Phone>
+			</m:company>
+			<m:confidence xsi:type="xsd:string">&?confidence?&</m:confidence>
+		</m:PatriotActCompliance>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+     <extension
+         point="org.eclipse.datatools.connectivity.oda.dataSource">
+      <dataSet
+            defaultDisplayName="%dataset.name"
+            id="org.eclipse.datatools.enablement.oda.xml.dataSet">
+          <properties>
+         <propertyGroup
+               defaultDisplayName="Dataset Properties"
+               name="dateset properties">
+            <property
+                  type="string"
+                  defaultDisplayName="max row"
+                  canInherit="true"
+                  name="MAX_ROW"/>           
+            <property
+                  type="string"
+                  defaultDisplayName="xml file"
+                  canInherit="true"
+                  name="XML_FILE"/>
+            <property
+                  type="string"
+                  defaultDisplayName="xml encoding"
+                  canInherit="true"
+                  name="XML_ENCODING"/> 
+         </propertyGroup>
+         <propertyVisibility name="queryText" visibility="hide"/>
+         <propertyVisibility name="MAX_ROW" visibility="hide"/>
+         <propertyVisibility name="XML_FILE" visibility="hide"/>
+         <propertyVisibility name="XML_ENCODING" visibility="hide"/>
+         </properties>
+            <dataTypeMapping
+                  nativeDataType="INT"
+                  nativeDataTypeCode="4"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="DOUBLE"
+                  nativeDataTypeCode="8"
+                  odaScalarDataType="Double"/>
+            <dataTypeMapping
+                  nativeDataType="STRING"
+                  nativeDataTypeCode="12"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="DATE"
+                  nativeDataTypeCode="91"
+                  odaScalarDataType="Date"/>
+            <dataTypeMapping
+                  nativeDataType="TIME"
+                  nativeDataTypeCode="92"
+                  odaScalarDataType="Time"/>
+            <dataTypeMapping
+                  nativeDataType="TIMESTAMP"
+                  nativeDataTypeCode="93"
+                  odaScalarDataType="Timestamp"/>
+            <dataTypeMapping
+                  nativeDataType="BLOB"
+                  nativeDataTypeCode="2004"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="CLOB"
+                  nativeDataTypeCode="2005"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="BIGDECIMAL"
+                  nativeDataTypeCode="2"
+                  odaScalarDataType="Decimal"/>
+           <dataTypeMapping nativeDataType="BOOLEAN"
+                  nativeDataTypeCode="16"
+                  odaScalarDataType="Boolean"/>
+      </dataSet>
+	  <dataSource
+            odaVersion="3.1"
+            driverClass="org.eclipse.datatools.enablement.oda.xml.impl.Driver"
+            defaultDisplayName="%datasource.name"
+            id="%oda.data.source.id"
+            setThreadContextClassLoader="false">
+         <properties>
+         <propertyGroup
+               defaultDisplayName="Connection Properties"
+               name="connectionProperties">
+            <property
+                  type="string"
+                  defaultDisplayName="%datasource.property.xmlFile"
+                  canInherit="true"
+                  name="FILELIST"/>
+            <property
+                  type="string"
+                  defaultDisplayName="%datasource.property.xmlEncoding"
+                  canInherit="true"
+                  name="ENCODINGLIST"/>
+            <property
+                  type="string"
+                  defaultDisplayName="%datasource.property.schemaFile"
+                  canInherit="true"
+                  name="SCHEMAFILELIST"/>          
+         </propertyGroup>
+         </properties>
+      </dataSource>
+   </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="%oda.data.source.id"
+            name="%oda.data.source.category.name"
+            parentCategory="%oda.parent.category.id"/>
+      <connectionProfile
+            category="%oda.data.source.id"
+            id="%oda.data.source.id"
+            name="%connection.profile.name"
+            pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"/>
+      <connectionFactory
+            id="org.eclipse.datatools.connectivity.oda.IConnection"
+            name="%oda.connection.factory.name"
+            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
+            profile="%oda.data.source.id"/>
+   </extension>   
+</plugin>
+

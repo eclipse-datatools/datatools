@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <entries>
+    <entry>
+      <field a="foo">a1</field>
+      <field b="bar1">b1-1</field>
+      <field b="bar2">b1-2</field>
+      <field b="bar3">b1-3</field>
+      <field b="time">2005-6-4 11:10:10</field>
+    </entry>
+    <entry>
+      <field a="foo">a2</field>
+      <field b="bar1">b2-1</field>
+      <field b="bar2">b2-2</field>
+      <field b="bar9">b2-3</field>
+      <field b="time">2005-6-5 11:10:10</field>
+    </entry>
+  </entries>
+</root>

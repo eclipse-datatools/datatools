@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<SOAP-ENV:Envelope
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<SOAP-ENV:Header>
+		<m:Header xmlns:m="http://www.xignite.com/services/">
+			<m:Username xsi:type="xsd:string">&?Username?&</m:Username>
+			<m:Password xsi:type="xsd:string">&?Password?&</m:Password>
+			<m:Tracer xsi:type="xsd:string">&?Tracer?&</m:Tracer>
+		</m:Header>
+	</SOAP-ENV:Header>
+	<SOAP-ENV:Body>
+		<m:GetGlobalLastClosingPrice xmlns:m="http://www.xignite.com/services/">
+			<m:Identifier xsi:type="xsd:string">&?Identifier?&</m:Identifier>
+			<m:IdentifierType xsi:type="xsd:IdentifierTypes">&?IdentifierType?&</m:IdentifierType>
+			<m:AdjustmentMethod xsi:type="xsd:AdjustmentMethods">&?AdjustmentMethod?&</m:AdjustmentMethod>
+		</m:GetGlobalLastClosingPrice>
+	</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

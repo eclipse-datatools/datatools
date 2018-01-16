@@ -1,0 +1,12 @@
+# Debug tracing 
+org.eclipse.datatools.connectivity.oda.flatfile/debug = false
+
+# Debug options for ODA framework's trace logging configuration,  
+# whose values may be passed to the oda IDriver.setLogConfiguration method.
+# This serves as a template only, and is not currently supported by the 
+# oda.flatfile driver.
+
+org.eclipse.datatools.connectivity.oda.flatfile/traceLogging/logLevel = WARNING
+org.eclipse.datatools.connectivity.oda.flatfile/traceLogging/logFormatterClass = 
+org.eclipse.datatools.connectivity.oda.flatfile/traceLogging/logFileNamePrefix = 
+org.eclipse.datatools.connectivity.oda.flatfile/traceLogging/logDirectory = 

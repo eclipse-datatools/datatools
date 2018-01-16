@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+     <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+		<newWizard
+            id="%oda.data.source.id"
+            name="%newwizard.name"
+            class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard"
+            description="%newwizard.description"
+            icon="icons/fieldlist.ico"
+            profile="%oda.data.source.id"/>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
+      <profileImage
+            profileID="%oda.data.source.id"
+            icon="icons/profile.gif">
+      </profileImage>
+   </extension>   
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            id="%oda.data.source.id"
+            name="%profile.propertypage.name"
+            class="org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLPropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="%oda.data.source.id"/>
+      </page>
+   </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.design.ui.dataSource">
+      <dataSourceUI id="%oda.data.source.id">
+         <newDataSourceWizard
+               includesProgressMonitor="false"
+               pageClass="org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLSelectionWizardPage"
+               pageTitle="%wizard.data.source.page.title"
+               windowTitle="%wizard.window.title"/>
+      </dataSourceUI>
+      <dataSetUI
+            id="org.eclipse.datatools.enablement.oda.xml.dataSet"
+            initialPageId="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui1"
+            supportsInParameters="true"
+            supportsOutParameters="false">
+            <dataSetWizard 
+                  class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard" 
+                  windowTitle="%wizard.data.set.window.title" />
+            <dataSetPage
+                  id="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui1"
+                  wizardPageClass="org.eclipse.datatools.enablement.oda.xml.ui.wizards.XmlDataSetSelectionPage"
+                  path="/"
+                  displayName="%oda.xml.dataset"/>
+            <dataSetPage
+                  id="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui2"
+                  wizardPageClass="org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage"
+                  path="/"
+                  displayName="%oda.xml.tablemapping"/>
+            <dataSetPage
+                  id="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui3"
+                  wizardPageClass="org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage"
+                  path="/"
+                  displayName="%oda.xml.columnmapping"/>     
+               
+       </dataSetUI>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+         <page
+            class="org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage"
+            category="org.eclipse.datatools.connectivity.oda.design.ui.preferences.OpenDataAccessPage"
+            name="%preference.datasetpreview"
+            id="org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage"/>
+   </extension>
+</plugin>

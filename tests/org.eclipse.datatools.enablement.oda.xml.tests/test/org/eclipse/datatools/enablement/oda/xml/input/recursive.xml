@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<A location = "shanghai">
+   <B location = "London" >B1</B>
+   <B location = "Hongkong" >B2</B>
+   <C location = "Paris">
+     <Book location = "Sunderland">
+        <D location = "Newcastle"/>
+     </Book>
+   </C>
+</A>

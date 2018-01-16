@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="addressType">
+   <xs:sequence>
+      <xs:element name="street" type="streetType"/>
+      <xs:element name="city" type="xs:string"/>
+      <xs:element name="state" type="xs:string"/>
+      <xs:element name="zip" type="xs:integer"/>
+   </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="streetType">
+   <xs:sequence>
+      <xs:element name="street1" type="xs:string"/>
+      <xs:element name="street2" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="purchaseOrder">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="shipTo" type="addressType"/>
+            <xs:element name="billTo" type="addressType"/>
+            <xs:element name="shipDate" type="xs:date"/>
+            <xs:element maxOccurs="unbounded" name="item"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

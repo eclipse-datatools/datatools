@@ -1,0 +1,2908 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.xignite.com/services/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.xignite.com/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.xignite.com/services/">
+      <s:element name="GetGlobalLastClosingPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="IdentifierTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Symbol" />
+          <s:enumeration value="CIK" />
+          <s:enumeration value="CUSIP" />
+          <s:enumeration value="ISIN" />
+          <s:enumeration value="Valoren" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AdjustmentMethods">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="SplitOnly" />
+              <s:enumeration value="CashDividendOnly" />
+              <s:enumeration value="StockDividendOnly" />
+              <s:enumeration value="SplitAndCashDividend" />
+              <s:enumeration value="SplitAndStockDividend" />
+              <s:enumeration value="CashAndStockDividend" />
+              <s:enumeration value="All" />
+              <s:enumeration value="DefaultValue" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetGlobalLastClosingPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalLastClosingPriceResult" type="tns:GlobalHistoricalQuote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GlobalHistoricalQuote">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Last" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Open" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="High" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Low" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Volume" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="LastClose" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ChangeFromOpen" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="PercentChangeFromOpen" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ChangeFromLastClose" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="PercentChangeFromLastClose" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="SplitRatio" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="CummulativeCashDividend" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="CummulativeStockDividendRatio" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Currency" type="tns:Currencies" />
+              <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethodUsed" type="tns:AdjustmentMethods" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataConfidence" type="tns:QuoteStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AbstractGlobalHistoricalObject" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Common" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Common">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Outcome" type="tns:OutcomeTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delay" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OutcomeTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="SystemError" />
+          <s:enumeration value="RequestError" />
+          <s:enumeration value="RegistrationError" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SplitRatio">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Common">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="1" maxOccurs="1" name="Ratio" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Security">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Common">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CIK" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Cusip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Symbol" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ISIN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Valoren" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Market" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CategoryOrIndustry" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SplitHistory">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="Splits" type="tns:ArrayOfSplit" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSplit">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Split" nillable="true" type="tns:Split" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Split">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Numerator" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="Denominator" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="SplitRatio" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataConfidence" type="tns:SplitStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="SplitStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Valid" />
+              <s:enumeration value="MissingId" />
+              <s:enumeration value="UnknownExDate" />
+              <s:enumeration value="UnknownNumerator" />
+              <s:enumeration value="UnknownDenominator" />
+              <s:enumeration value="UnknownSplitRatio" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="DividendHistory">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="Dividends" type="tns:ArrayOfDividend" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDividend">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Dividend" nillable="true" type="tns:Dividend" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Dividend">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="1" maxOccurs="1" name="Currency" type="tns:Currencies" />
+              <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:DividendCodes" />
+              <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:DividendTypes" />
+              <s:element minOccurs="1" maxOccurs="1" name="PaymentFrequency" type="tns:DividendPaymentFrequencies" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeclaredDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecordDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PayDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DividendAmount" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataConfidence" type="tns:DividendStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="Currencies">
+        <s:restriction base="s:string">
+          <s:enumeration value="USD" />
+          <s:enumeration value="AED" />
+          <s:enumeration value="AFA" />
+          <s:enumeration value="AFN" />
+          <s:enumeration value="ALL" />
+          <s:enumeration value="AMD" />
+          <s:enumeration value="ANG" />
+          <s:enumeration value="AOA" />
+          <s:enumeration value="ARA" />
+          <s:enumeration value="ARE" />
+          <s:enumeration value="ARS" />
+          <s:enumeration value="ATS" />
+          <s:enumeration value="AUD" />
+          <s:enumeration value="AUN" />
+          <s:enumeration value="AWG" />
+          <s:enumeration value="AZM" />
+          <s:enumeration value="BAM" />
+          <s:enumeration value="BBD" />
+          <s:enumeration value="BDT" />
+          <s:enumeration value="BEF" />
+          <s:enumeration value="BEL" />
+          <s:enumeration value="BGL" />
+          <s:enumeration value="BGN" />
+          <s:enumeration value="BHD" />
+          <s:enumeration value="BIF" />
+          <s:enumeration value="BMD" />
+          <s:enumeration value="BND" />
+          <s:enumeration value="BOB" />
+          <s:enumeration value="BOV" />
+          <s:enumeration value="BRC" />
+          <s:enumeration value="BRE" />
+          <s:enumeration value="BRI" />
+          <s:enumeration value="BRL" />
+          <s:enumeration value="BRR" />
+          <s:enumeration value="BSD" />
+          <s:enumeration value="BTN" />
+          <s:enumeration value="BWP" />
+          <s:enumeration value="BYR" />
+          <s:enumeration value="BZD" />
+          <s:enumeration value="CAD" />
+          <s:enumeration value="CDF" />
+          <s:enumeration value="CHF" />
+          <s:enumeration value="CHK" />
+          <s:enumeration value="CLP" />
+          <s:enumeration value="CNY" />
+          <s:enumeration value="COP" />
+          <s:enumeration value="CRC" />
+          <s:enumeration value="CSD" />
+          <s:enumeration value="CUP" />
+          <s:enumeration value="CVE" />
+          <s:enumeration value="CYP" />
+          <s:enumeration value="CZK" />
+          <s:enumeration value="DEM" />
+          <s:enumeration value="DJF" />
+          <s:enumeration value="DKK" />
+          <s:enumeration value="DOP" />
+          <s:enumeration value="DOW" />
+          <s:enumeration value="DZD" />
+          <s:enumeration value="ECS" />
+          <s:enumeration value="EEK" />
+          <s:enumeration value="EGP" />
+          <s:enumeration value="ERN" />
+          <s:enumeration value="ESP" />
+          <s:enumeration value="ETB" />
+          <s:enumeration value="EUR" />
+          <s:enumeration value="FIM" />
+          <s:enumeration value="FJD" />
+          <s:enumeration value="FKP" />
+          <s:enumeration value="FRF" />
+          <s:enumeration value="FRN" />
+          <s:enumeration value="GBP" />
+          <s:enumeration value="GEL" />
+          <s:enumeration value="GGP" />
+          <s:enumeration value="GHC" />
+          <s:enumeration value="GIP" />
+          <s:enumeration value="GMD" />
+          <s:enumeration value="GNF" />
+          <s:enumeration value="GRD" />
+          <s:enumeration value="GTQ" />
+          <s:enumeration value="GYD" />
+          <s:enumeration value="HKD" />
+          <s:enumeration value="HNL" />
+          <s:enumeration value="HRD" />
+          <s:enumeration value="HRK" />
+          <s:enumeration value="HTG" />
+          <s:enumeration value="HUF" />
+          <s:enumeration value="IDR" />
+          <s:enumeration value="IEP" />
+          <s:enumeration value="ILS" />
+          <s:enumeration value="IMP" />
+          <s:enumeration value="INR" />
+          <s:enumeration value="IQD" />
+          <s:enumeration value="IRR" />
+          <s:enumeration value="ISK" />
+          <s:enumeration value="ITL" />
+          <s:enumeration value="JEP" />
+          <s:enumeration value="JMD" />
+          <s:enumeration value="JOD" />
+          <s:enumeration value="JPY" />
+          <s:enumeration value="KES" />
+          <s:enumeration value="KGS" />
+          <s:enumeration value="KHR" />
+          <s:enumeration value="KMF" />
+          <s:enumeration value="KPW" />
+          <s:enumeration value="KRU" />
+          <s:enumeration value="KRW" />
+          <s:enumeration value="KWD" />
+          <s:enumeration value="KYD" />
+          <s:enumeration value="KZT" />
+          <s:enumeration value="LAK" />
+          <s:enumeration value="LBP" />
+          <s:enumeration value="LKR" />
+          <s:enumeration value="LRD" />
+          <s:enumeration value="LSL" />
+          <s:enumeration value="LTL" />
+          <s:enumeration value="LUF" />
+          <s:enumeration value="LVL" />
+          <s:enumeration value="LYD" />
+          <s:enumeration value="M5P" />
+          <s:enumeration value="MAD" />
+          <s:enumeration value="MAL" />
+          <s:enumeration value="MDL" />
+          <s:enumeration value="MFG" />
+          <s:enumeration value="MGA" />
+          <s:enumeration value="MKD" />
+          <s:enumeration value="MMK" />
+          <s:enumeration value="MNT" />
+          <s:enumeration value="MOP" />
+          <s:enumeration value="MRO" />
+          <s:enumeration value="MTL" />
+          <s:enumeration value="MTP" />
+          <s:enumeration value="MUR" />
+          <s:enumeration value="MVR" />
+          <s:enumeration value="MWK" />
+          <s:enumeration value="MXN" />
+          <s:enumeration value="MXP" />
+          <s:enumeration value="MYR" />
+          <s:enumeration value="MZM" />
+          <s:enumeration value="MZN" />
+          <s:enumeration value="NAD" />
+          <s:enumeration value="NBL" />
+          <s:enumeration value="NGN" />
+          <s:enumeration value="NIC" />
+          <s:enumeration value="NIO" />
+          <s:enumeration value="NLG" />
+          <s:enumeration value="NOK" />
+          <s:enumeration value="NPR" />
+          <s:enumeration value="NSO" />
+          <s:enumeration value="NZD" />
+          <s:enumeration value="OMR" />
+          <s:enumeration value="OSO" />
+          <s:enumeration value="PAB" />
+          <s:enumeration value="PEI" />
+          <s:enumeration value="PEN" />
+          <s:enumeration value="PGK" />
+          <s:enumeration value="PHP" />
+          <s:enumeration value="PKR" />
+          <s:enumeration value="PLN" />
+          <s:enumeration value="PLZ" />
+          <s:enumeration value="PTE" />
+          <s:enumeration value="PYG" />
+          <s:enumeration value="QAR" />
+          <s:enumeration value="ROL" />
+          <s:enumeration value="RON" />
+          <s:enumeration value="RUB" />
+          <s:enumeration value="RUR" />
+          <s:enumeration value="RWF" />
+          <s:enumeration value="SAR" />
+          <s:enumeration value="SBD" />
+          <s:enumeration value="SCR" />
+          <s:enumeration value="SDD" />
+          <s:enumeration value="SDP" />
+          <s:enumeration value="SDR" />
+          <s:enumeration value="SEK" />
+          <s:enumeration value="SGD" />
+          <s:enumeration value="SHP" />
+          <s:enumeration value="SIT" />
+          <s:enumeration value="SKK" />
+          <s:enumeration value="SLL" />
+          <s:enumeration value="SOS" />
+          <s:enumeration value="SPL" />
+          <s:enumeration value="SRG" />
+          <s:enumeration value="STD" />
+          <s:enumeration value="SUR" />
+          <s:enumeration value="SVC" />
+          <s:enumeration value="SYP" />
+          <s:enumeration value="SZL" />
+          <s:enumeration value="THB" />
+          <s:enumeration value="TJR" />
+          <s:enumeration value="TJS" />
+          <s:enumeration value="TMM" />
+          <s:enumeration value="TND" />
+          <s:enumeration value="TOP" />
+          <s:enumeration value="TRL" />
+          <s:enumeration value="TRY" />
+          <s:enumeration value="TTD" />
+          <s:enumeration value="TVD" />
+          <s:enumeration value="TWD" />
+          <s:enumeration value="TZS" />
+          <s:enumeration value="UAH" />
+          <s:enumeration value="UGX" />
+          <s:enumeration value="UNK" />
+          <s:enumeration value="UYP" />
+          <s:enumeration value="UYU" />
+          <s:enumeration value="UZS" />
+          <s:enumeration value="VEB" />
+          <s:enumeration value="VND" />
+          <s:enumeration value="VRL" />
+          <s:enumeration value="VRN" />
+          <s:enumeration value="VUV" />
+          <s:enumeration value="WST" />
+          <s:enumeration value="XAF" />
+          <s:enumeration value="XAG" />
+          <s:enumeration value="XAU" />
+          <s:enumeration value="XCD" />
+          <s:enumeration value="XDR" />
+          <s:enumeration value="XEU" />
+          <s:enumeration value="XOF" />
+          <s:enumeration value="XPD" />
+          <s:enumeration value="XPF" />
+          <s:enumeration value="XPT" />
+          <s:enumeration value="YER" />
+          <s:enumeration value="YUD" />
+          <s:enumeration value="YUM" />
+          <s:enumeration value="ZAL" />
+          <s:enumeration value="ZAR" />
+          <s:enumeration value="ZMK" />
+          <s:enumeration value="ZRN" />
+          <s:enumeration value="ZRZ" />
+          <s:enumeration value="ZWD" />
+          <s:enumeration value="BAD" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DividendCodes">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="CashPayment" />
+              <s:enumeration value="StockPayment" />
+              <s:enumeration value="CashAndStockPayment" />
+              <s:enumeration value="DefaultValue" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:simpleType name="DividendTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="OrdinaryDividend" />
+          <s:enumeration value="ExtraDividend" />
+          <s:enumeration value="BonusDividend" />
+          <s:enumeration value="OrdinaryAndExtraDividendAndOrBonus" />
+          <s:enumeration value="LiquidationDistribution" />
+          <s:enumeration value="CapitalGainTrust" />
+          <s:enumeration value="NoDividend" />
+          <s:enumeration value="CapitalGainShortTerm" />
+          <s:enumeration value="OtherDividendType" />
+          <s:enumeration value="CapitalGainLongTerm" />
+          <s:enumeration value="GuaranteedDividend" />
+          <s:enumeration value="ForeignIncomeDividend" />
+          <s:enumeration value="TaxDividend" />
+          <s:enumeration value="CapitalDistribution" />
+          <s:enumeration value="ReturnOnCapital" />
+          <s:enumeration value="CapitalGainMediumTerm" />
+          <s:enumeration value="DailyAccrualFund" />
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="DefaultValue" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DividendPaymentFrequencies">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Annual" />
+          <s:enumeration value="Initial" />
+          <s:enumeration value="Resumption" />
+          <s:enumeration value="Interim" />
+          <s:enumeration value="Quarterly" />
+          <s:enumeration value="SemiAnnual" />
+          <s:enumeration value="Monthly" />
+          <s:enumeration value="Final" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="DefaultValue" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DividendStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Valid" />
+              <s:enumeration value="MissingId" />
+              <s:enumeration value="UnknownCurrency" />
+              <s:enumeration value="UnknownCode" />
+              <s:enumeration value="UnknownType" />
+              <s:enumeration value="UnknownPaymentFrequency" />
+              <s:enumeration value="UnknownDeclareDate" />
+              <s:enumeration value="UnknownRecordDate" />
+              <s:enumeration value="UnknownPayDate" />
+              <s:enumeration value="UnknownAmount" />
+              <s:enumeration value="UnknownExDate" />
+              <s:enumeration value="TradesOnBothCanadianExchanges" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="GlobalHistoricalQuotes">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GlobalQuotes" type="tns:ArrayOfGlobalHistoricalQuote" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfGlobalHistoricalQuote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GlobalHistoricalQuote" nillable="true" type="tns:GlobalHistoricalQuote" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DividendTotal">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="1" maxOccurs="1" name="CashTotal" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="StockCumulativeRatio" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="FromDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="GlobalTop">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Rank" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GlobalTopType" type="tns:GlobalTopTypes" />
+              <s:element minOccurs="0" maxOccurs="1" name="GlobalQuote" type="tns:GlobalHistoricalQuote" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="GlobalTopTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Gainers" />
+          <s:enumeration value="Losers" />
+          <s:enumeration value="Movers" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CorporateAction">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="ActionDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ValorenNew" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ValorenOld" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExchangeIndicatorNew" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExchangeIndicatorOld" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityNameNew" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityNameOld" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SymbolNew" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SymbolOld" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ISINNew" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ISINOld" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CUSIPNew" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CUSIPOld" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CorporateActionType" type="tns:CorporateActionTypes" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataConfidence" type="tns:CorporateActionStatus" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="CorporateActionTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="AddNewIssue" />
+          <s:enumeration value="DeleteExistingIssue" />
+          <s:enumeration value="ChangeExistingIssue" />
+          <s:enumeration value="DefaultValue" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="CorporateActionStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Valid" />
+              <s:enumeration value="MissingId" />
+              <s:enumeration value="UnknownNewExchange" />
+              <s:enumeration value="UnknownOldExchange" />
+              <s:enumeration value="UnknownCorporateActionType" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:complexType name="CorporateActionHistory">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:AbstractGlobalHistoricalObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Security" type="tns:Security" />
+              <s:element minOccurs="0" maxOccurs="1" name="CorporateActions" type="tns:ArrayOfCorporateAction" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCorporateAction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CorporateAction" nillable="true" type="tns:CorporateAction" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="QuoteStatus">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="Valid" />
+              <s:enumeration value="MissingId" />
+              <s:enumeration value="UnknownDate" />
+              <s:enumeration value="UnknownOpen" />
+              <s:enumeration value="UnknownHigh" />
+              <s:enumeration value="UnknownLow" />
+              <s:enumeration value="UnknownClose" />
+              <s:enumeration value="UnknownVolume" />
+              <s:enumeration value="LowGreaterThanHigh" />
+              <s:enumeration value="CloseGreaterThanHigh" />
+              <s:enumeration value="OpenGreaterThanHigh" />
+              <s:enumeration value="CloseLessThanLow" />
+              <s:enumeration value="HighLessThanLow" />
+              <s:enumeration value="OpenLessThanLow" />
+              <s:enumeration value="UnknownExchange" />
+              <s:enumeration value="MissingLastClose" />
+              <s:enumeration value="UnknownCurrency" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="Header" type="tns:Header" />
+      <s:complexType name="Header">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tracer" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGlobalLastClosingPrices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifiers" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalLastClosingPricesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalLastClosingPricesResult" type="tns:ArrayOfGlobalHistoricalQuote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+            <s:element minOccurs="0" maxOccurs="1" name="AsOfDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalHistoricalQuoteResult" type="tns:GlobalHistoricalQuote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifiers" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+            <s:element minOccurs="0" maxOccurs="1" name="AsOfDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalHistoricalQuotesResult" type="tns:ArrayOfGlobalHistoricalQuote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuotesAsOf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PeriodType" type="tns:PeriodTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="Periods" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="PeriodTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Day" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="Month" />
+          <s:enumeration value="Quarter" />
+          <s:enumeration value="Year" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetGlobalHistoricalQuotesAsOfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalHistoricalQuotesAsOfResult" type="tns:GlobalHistoricalQuotes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuotesRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalQuotesRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalHistoricalQuotesRangeResult" type="tns:GlobalHistoricalQuotes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalMonthlyQuotesRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGlobalHistoricalMonthlyQuotesRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGlobalHistoricalMonthlyQuotesRangeResult" type="tns:GlobalHistoricalQuotes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockDividendHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockDividendHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockDividendHistoryResult" type="tns:DividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllStockDividendsByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ExchangeTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="AMEX" />
+          <s:enumeration value="NASDAQCM" />
+          <s:enumeration value="NASDAQGM" />
+          <s:enumeration value="NASDAQGS" />
+          <s:enumeration value="NYSE" />
+          <s:enumeration value="PINKSHEETS" />
+          <s:enumeration value="OTCBB" />
+          <s:enumeration value="OTHEROTC" />
+          <s:enumeration value="AIM" />
+          <s:enumeration value="AMMAN" />
+          <s:enumeration value="AMSTERDAM" />
+          <s:enumeration value="ASX" />
+          <s:enumeration value="ATHENS" />
+          <s:enumeration value="BAHRAIN" />
+          <s:enumeration value="BANGKOK" />
+          <s:enumeration value="BARCELONA" />
+          <s:enumeration value="BEIRUT" />
+          <s:enumeration value="BERLIN" />
+          <s:enumeration value="BERMUDA" />
+          <s:enumeration value="BILBAO" />
+          <s:enumeration value="BOGOTA" />
+          <s:enumeration value="BOSTWANA" />
+          <s:enumeration value="BOVESPA" />
+          <s:enumeration value="BRASTISLAVA" />
+          <s:enumeration value="BREMEN" />
+          <s:enumeration value="BRUSSELS" />
+          <s:enumeration value="BUCHAREST" />
+          <s:enumeration value="BUDAPEST" />
+          <s:enumeration value="BUENOSAIRES" />
+          <s:enumeration value="BULGARIA" />
+          <s:enumeration value="CAIRO" />
+          <s:enumeration value="CARACAS" />
+          <s:enumeration value="CASABLANCA" />
+          <s:enumeration value="COLOMBO" />
+          <s:enumeration value="COPENHAGEN" />
+          <s:enumeration value="CYPRUS" />
+          <s:enumeration value="DARESSALAAM" />
+          <s:enumeration value="DHAKA" />
+          <s:enumeration value="DUSSELDORF" />
+          <s:enumeration value="EASDAQ" />
+          <s:enumeration value="EUWAX" />
+          <s:enumeration value="FRANKFURT" />
+          <s:enumeration value="FUKUOKA" />
+          <s:enumeration value="GHANA" />
+          <s:enumeration value="GRETAI" />
+          <s:enumeration value="GUAYAQUIL" />
+          <s:enumeration value="HAMBURG" />
+          <s:enumeration value="HANOVER" />
+          <s:enumeration value="HELSINKI" />
+          <s:enumeration value="HIROSHIMA" />
+          <s:enumeration value="HONGKONG" />
+          <s:enumeration value="ICELAND" />
+          <s:enumeration value="INDIA" />
+          <s:enumeration value="IRISH" />
+          <s:enumeration value="ISTANBUL" />
+          <s:enumeration value="JAKARTA" />
+          <s:enumeration value="JASDAQ" />
+          <s:enumeration value="JOHANNESBURG" />
+          <s:enumeration value="KARACHI" />
+          <s:enumeration value="KOREA" />
+          <s:enumeration value="KOSDAQ" />
+          <s:enumeration value="KUALALUMPUR" />
+          <s:enumeration value="KUWAIT" />
+          <s:enumeration value="KYOTO" />
+          <s:enumeration value="LIMA" />
+          <s:enumeration value="LISBON" />
+          <s:enumeration value="LJUBLJANA" />
+          <s:enumeration value="LSE" />
+          <s:enumeration value="LUSAKA" />
+          <s:enumeration value="LUXEMBURG" />
+          <s:enumeration value="MACEDONIA" />
+          <s:enumeration value="MADRID" />
+          <s:enumeration value="MALAWI" />
+          <s:enumeration value="MALTA" />
+          <s:enumeration value="MANILA" />
+          <s:enumeration value="MEXICO" />
+          <s:enumeration value="MILAN" />
+          <s:enumeration value="MONTEVIDEO" />
+          <s:enumeration value="MUMBAI" />
+          <s:enumeration value="MUNICH" />
+          <s:enumeration value="NAGOYA" />
+          <s:enumeration value="NAIROBI" />
+          <s:enumeration value="NAMIBIA" />
+          <s:enumeration value="NASDAQ" />
+          <s:enumeration value="NEWZEALAND" />
+          <s:enumeration value="NIGERIA" />
+          <s:enumeration value="NIIGATA" />
+          <s:enumeration value="OMAN" />
+          <s:enumeration value="OSAKA" />
+          <s:enumeration value="OSLO" />
+          <s:enumeration value="PALESTINE" />
+          <s:enumeration value="PARIS" />
+          <s:enumeration value="PRAGUE" />
+          <s:enumeration value="QUITO" />
+          <s:enumeration value="RIGA" />
+          <s:enumeration value="RIODEJANEIRO" />
+          <s:enumeration value="RTSRUB" />
+          <s:enumeration value="RTSUSD" />
+          <s:enumeration value="SANTIAGO" />
+          <s:enumeration value="SAPPORO" />
+          <s:enumeration value="SHANGHAI" />
+          <s:enumeration value="SHENZEN" />
+          <s:enumeration value="SINGAPORE" />
+          <s:enumeration value="STOCKHOLM" />
+          <s:enumeration value="STPETERSBURG" />
+          <s:enumeration value="STUTTGART" />
+          <s:enumeration value="SURABAYA" />
+          <s:enumeration value="SWAZILAND" />
+          <s:enumeration value="SWISS" />
+          <s:enumeration value="TAIWAN" />
+          <s:enumeration value="TAIWANOTC" />
+          <s:enumeration value="TALLINN" />
+          <s:enumeration value="TEHRAN" />
+          <s:enumeration value="TELAVIV" />
+          <s:enumeration value="TOKYO" />
+          <s:enumeration value="TSX" />
+          <s:enumeration value="TSXV" />
+          <s:enumeration value="VALENCIA" />
+          <s:enumeration value="VIENNA" />
+          <s:enumeration value="VILNIUS" />
+          <s:enumeration value="VIRTX" />
+          <s:enumeration value="WARSAW" />
+          <s:enumeration value="XETRA" />
+          <s:enumeration value="ZAGREB" />
+          <s:enumeration value="ZIMBABWE" />
+          <s:enumeration value="NASDAQNM" />
+          <s:enumeration value="NASDAQSC" />
+          <s:enumeration value="FUNDS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetAllStockDividendsByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllStockDividendsByExchangeResult" type="tns:ArrayOfDividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDividendHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DividendHistory" nillable="true" type="tns:DividendHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStockDividendTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStockDividendTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStockDividendTotalResult" type="tns:DividendTotal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCashDividendsByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCashDividendsByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCashDividendsByExchangeResult" type="tns:ArrayOfDividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCashDividendTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCashDividendTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCashDividendTotalResult" type="tns:DividendTotal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDividendHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDividendHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDividendHistoryResult" type="tns:DividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendsByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendsByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDividendsByExchangeResult" type="tns:ArrayOfDividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDividendTotalResult" type="tns:DividendTotal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDividendHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllDividendHistoryResult" type="tns:DividendHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCorporateActionHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCorporateActionHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCorporateActionHistoryResult" type="tns:CorporateActionHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCorporateActionsByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCorporateActionsByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCorporateActionsByExchangeResult" type="tns:ArrayOfCorporateActionHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCorporateActionHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CorporateActionHistory" nillable="true" type="tns:CorporateActionHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTopMoversByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsOfDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopMoversByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopMoversByExchangeResult" type="tns:ArrayOfGlobalTop" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGlobalTop">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GlobalTop" nillable="true" type="tns:GlobalTop" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTopGainersByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsOfDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopGainersByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopGainersByExchangeResult" type="tns:ArrayOfGlobalTop" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopLosersByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsOfDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="1" maxOccurs="1" name="AdjustmentMethod" type="tns:AdjustmentMethods" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopLosersByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopLosersByExchangeResult" type="tns:ArrayOfGlobalTop" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSplitsByExchange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Exchange" type="tns:ExchangeTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSplitsByExchangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSplitsByExchangeResult" type="tns:ArrayOfSplitHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSplitHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SplitHistory" nillable="true" type="tns:SplitHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSplitRatio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSplitRatioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSplitRatioResult" type="tns:SplitRatio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSplitHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:IdentifierTypes" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSplitHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSplitHistoryResult" type="tns:SplitHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GlobalHistoricalQuote" nillable="true" type="tns:GlobalHistoricalQuote" />
+      <s:element name="ArrayOfGlobalHistoricalQuote" nillable="true" type="tns:ArrayOfGlobalHistoricalQuote" />
+      <s:element name="GlobalHistoricalQuotes" nillable="true" type="tns:GlobalHistoricalQuotes" />
+      <s:element name="DividendHistory" nillable="true" type="tns:DividendHistory" />
+      <s:element name="ArrayOfDividendHistory" nillable="true" type="tns:ArrayOfDividendHistory" />
+      <s:element name="DividendTotal" nillable="true" type="tns:DividendTotal" />
+      <s:element name="CorporateActionHistory" nillable="true" type="tns:CorporateActionHistory" />
+      <s:element name="ArrayOfCorporateActionHistory" nillable="true" type="tns:ArrayOfCorporateActionHistory" />
+      <s:element name="ArrayOfGlobalTop" nillable="true" type="tns:ArrayOfGlobalTop" />
+      <s:element name="ArrayOfSplitHistory" nillable="true" type="tns:ArrayOfSplitHistory" />
+      <s:element name="SplitRatio" nillable="true" type="tns:SplitRatio" />
+      <s:element name="SplitHistory" nillable="true" type="tns:SplitHistory" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetGlobalLastClosingPriceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalLastClosingPrice" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalLastClosingPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalLastClosingPrices" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalLastClosingPricesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotesAsOf" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotesAsOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotesRange" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalQuotesRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalMonthlyQuotesRange" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGlobalHistoricalMonthlyQuotesRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockDividendHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistoryHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllStockDividendsByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllStockDividendsByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStockDividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStockDividendTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCashDividendsByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCashDividendsByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCashDividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCashDividendTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDividendHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistoryHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDividendsByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDividendsByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDividendTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDividendHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistoryHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCorporateActionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCorporateActionHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistoryHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCorporateActionsByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCorporateActionsByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopMoversByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopMoversByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopGainersByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopGainersByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopLosersByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopLosersByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSplitsByExchange" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSplitsByExchangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSplitRatio" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSplitRatioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetSplitHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetSplitHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistoryHeader">
+    <wsdl:part name="Header" element="tns:Header" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceHttpGetOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesHttpGetIn">
+    <wsdl:part name="Identifiers" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="AsOfDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteHttpGetOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesHttpGetIn">
+    <wsdl:part name="Identifiers" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="AsOfDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+    <wsdl:part name="PeriodType" type="s:string" />
+    <wsdl:part name="Periods" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfHttpGetOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistoryHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeHttpGetIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeHttpGetIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistoryHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeHttpGetIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistoryHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistoryHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:CorporateActionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeHttpGetIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCorporateActionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeHttpGetIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeHttpGetIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeHttpGetIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeHttpGetIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSplitHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioHttpGetOut">
+    <wsdl:part name="Body" element="tns:SplitRatio" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistoryHttpGetIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistoryHttpGetOut">
+    <wsdl:part name="Body" element="tns:SplitHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPriceHttpPostOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesHttpPostIn">
+    <wsdl:part name="Identifiers" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalLastClosingPricesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="AsOfDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuoteHttpPostOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesHttpPostIn">
+    <wsdl:part name="Identifiers" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="AsOfDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalHistoricalQuote" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+    <wsdl:part name="PeriodType" type="s:string" />
+    <wsdl:part name="Periods" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesAsOfHttpPostOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalQuotesRangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGlobalHistoricalMonthlyQuotesRangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:GlobalHistoricalQuotes" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistoryHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendHistoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeHttpPostIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllStockDividendsByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetStockDividendTotalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeHttpPostIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCashDividendsByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCashDividendTotalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistoryHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDividendHistoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeHttpPostIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendsByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendTotalHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistoryHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDividendHistoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:DividendHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistoryHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCorporateActionHistoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:CorporateActionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeHttpPostIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCorporateActionsByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCorporateActionHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeHttpPostIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopMoversByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeHttpPostIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopGainersByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeHttpPostIn">
+    <wsdl:part name="AsOfDate" type="s:string" />
+    <wsdl:part name="Count" type="s:string" />
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="AdjustmentMethod" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopLosersByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfGlobalTop" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeHttpPostIn">
+    <wsdl:part name="Exchange" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSplitsByExchangeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfSplitHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitRatioHttpPostOut">
+    <wsdl:part name="Body" element="tns:SplitRatio" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistoryHttpPostIn">
+    <wsdl:part name="Identifier" type="s:string" />
+    <wsdl:part name="IdentifierType" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSplitHistoryHttpPostOut">
+    <wsdl:part name="Body" element="tns:SplitHistory" />
+  </wsdl:message>
+  <wsdl:portType name="XigniteGlobalHistoricalSoap">
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPriceSoapIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPriceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a collection of securities.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPricesSoapIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPricesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quote as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuoteSoapIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quotes as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesSoapIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a range of quotes for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesAsOfSoapIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesAsOfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for a given equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesRangeSoapIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for an equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalMonthlyQuotesRangeSoapIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalMonthlyQuotesRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get stock dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetStockDividendHistorySoapIn" />
+      <wsdl:output message="tns:GetStockDividendHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all stock dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllStockDividendsByExchangeSoapIn" />
+      <wsdl:output message="tns:GetAllStockDividendsByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative stock dividend ratio for a security between two dates. For instance, if a security saw a 3:1 stock dividend and 2:1 stock dividend during the period, the StockDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no stock dividends occurred.</documentation>
+      <wsdl:input message="tns:GetStockDividendTotalSoapIn" />
+      <wsdl:output message="tns:GetStockDividendTotalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllCashDividendsByExchangeSoapIn" />
+      <wsdl:output message="tns:GetAllCashDividendsByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetCashDividendTotalSoapIn" />
+      <wsdl:output message="tns:GetCashDividendTotalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetDividendHistorySoapIn" />
+      <wsdl:output message="tns:GetDividendHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllDividendsByExchangeSoapIn" />
+      <wsdl:output message="tns:GetAllDividendsByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllDividendTotalSoapIn" />
+      <wsdl:output message="tns:GetAllDividendTotalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetAllDividendHistorySoapIn" />
+      <wsdl:output message="tns:GetAllDividendHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all corporate actions for a date range.</documentation>
+      <wsdl:input message="tns:GetCorporateActionHistorySoapIn" />
+      <wsdl:output message="tns:GetCorporateActionHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllCorporateActionsByExchangeSoapIn" />
+      <wsdl:output message="tns:GetAllCorporateActionsByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top moving equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopMoversByExchangeSoapIn" />
+      <wsdl:output message="tns:GetTopMoversByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top gaining equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopGainersByExchangeSoapIn" />
+      <wsdl:output message="tns:GetTopGainersByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top losing equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopLosersByExchangeSoapIn" />
+      <wsdl:output message="tns:GetTopLosersByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all splits for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllSplitsByExchangeSoapIn" />
+      <wsdl:output message="tns:GetAllSplitsByExchangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative split ratio for a security between two dates. For instance, if a security saw a 3:1 split and 2:1 split during the period, the split ratio 6 is returned. Returns 1 if no split occurred.</documentation>
+      <wsdl:input message="tns:GetSplitRatioSoapIn" />
+      <wsdl:output message="tns:GetSplitRatioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get split history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetSplitHistorySoapIn" />
+      <wsdl:output message="tns:GetSplitHistorySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="XigniteGlobalHistoricalHttpGet">
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPriceHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPriceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a collection of securities.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPricesHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPricesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quote as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuoteHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuoteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quotes as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a range of quotes for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesAsOfHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesAsOfHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for a given equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesRangeHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesRangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for an equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalMonthlyQuotesRangeHttpGetIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalMonthlyQuotesRangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get stock dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetStockDividendHistoryHttpGetIn" />
+      <wsdl:output message="tns:GetStockDividendHistoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all stock dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllStockDividendsByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetAllStockDividendsByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative stock dividend ratio for a security between two dates. For instance, if a security saw a 3:1 stock dividend and 2:1 stock dividend during the period, the StockDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no stock dividends occurred.</documentation>
+      <wsdl:input message="tns:GetStockDividendTotalHttpGetIn" />
+      <wsdl:output message="tns:GetStockDividendTotalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllCashDividendsByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetAllCashDividendsByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetCashDividendTotalHttpGetIn" />
+      <wsdl:output message="tns:GetCashDividendTotalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetDividendHistoryHttpGetIn" />
+      <wsdl:output message="tns:GetDividendHistoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllDividendsByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetAllDividendsByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllDividendTotalHttpGetIn" />
+      <wsdl:output message="tns:GetAllDividendTotalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetAllDividendHistoryHttpGetIn" />
+      <wsdl:output message="tns:GetAllDividendHistoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all corporate actions for a date range.</documentation>
+      <wsdl:input message="tns:GetCorporateActionHistoryHttpGetIn" />
+      <wsdl:output message="tns:GetCorporateActionHistoryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllCorporateActionsByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetAllCorporateActionsByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top moving equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopMoversByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetTopMoversByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top gaining equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopGainersByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetTopGainersByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top losing equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopLosersByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetTopLosersByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all splits for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllSplitsByExchangeHttpGetIn" />
+      <wsdl:output message="tns:GetAllSplitsByExchangeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative split ratio for a security between two dates. For instance, if a security saw a 3:1 split and 2:1 split during the period, the split ratio 6 is returned. Returns 1 if no split occurred.</documentation>
+      <wsdl:input message="tns:GetSplitRatioHttpGetIn" />
+      <wsdl:output message="tns:GetSplitRatioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get split history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetSplitHistoryHttpGetIn" />
+      <wsdl:output message="tns:GetSplitHistoryHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="XigniteGlobalHistoricalHttpPost">
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPriceHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPriceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns last closing price for a collection of securities.</documentation>
+      <wsdl:input message="tns:GetGlobalLastClosingPricesHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalLastClosingPricesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quote as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuoteHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuoteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Returns a quotes as of a historical date. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a range of quotes for a security.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesAsOfHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesAsOfHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for a given equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalQuotesRangeHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalQuotesRangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns a complete range of stock quotes for an equity. This includes the adjusted price as specified.</documentation>
+      <wsdl:input message="tns:GetGlobalHistoricalMonthlyQuotesRangeHttpPostIn" />
+      <wsdl:output message="tns:GetGlobalHistoricalMonthlyQuotesRangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get stock dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetStockDividendHistoryHttpPostIn" />
+      <wsdl:output message="tns:GetStockDividendHistoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all stock dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllStockDividendsByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetAllStockDividendsByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative stock dividend ratio for a security between two dates. For instance, if a security saw a 3:1 stock dividend and 2:1 stock dividend during the period, the StockDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no stock dividends occurred.</documentation>
+      <wsdl:input message="tns:GetStockDividendTotalHttpPostIn" />
+      <wsdl:output message="tns:GetStockDividendTotalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllCashDividendsByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetAllCashDividendsByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetCashDividendTotalHttpPostIn" />
+      <wsdl:output message="tns:GetCashDividendTotalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetDividendHistoryHttpPostIn" />
+      <wsdl:output message="tns:GetDividendHistoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all cash dividends for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllDividendsByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetAllDividendsByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllDividendTotalHttpPostIn" />
+      <wsdl:output message="tns:GetAllDividendTotalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get cash dividend history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetAllDividendHistoryHttpPostIn" />
+      <wsdl:output message="tns:GetAllDividendHistoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all corporate actions for a date range.</documentation>
+      <wsdl:input message="tns:GetCorporateActionHistoryHttpPostIn" />
+      <wsdl:output message="tns:GetCorporateActionHistoryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative cash dividend ratio for a security between two dates. For instance, if a security saw a 3:1 cash dividend and 2:1 cash dividend during the period, the CashDividend ratio of 1/12 ( (1 / (1 + 3)) * (1 / (1 + 2)) ) is returned. Returns 1 if no cash dividends occurred.</documentation>
+      <wsdl:input message="tns:GetAllCorporateActionsByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetAllCorporateActionsByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top moving equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopMoversByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetTopMoversByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top gaining equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopGainersByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetTopGainersByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This operation returns quote information about the top losing equities for the requested exchange.</documentation>
+      <wsdl:input message="tns:GetTopLosersByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetTopLosersByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get all splits for a date range in the specified exchange.</documentation>
+      <wsdl:input message="tns:GetAllSplitsByExchangeHttpPostIn" />
+      <wsdl:output message="tns:GetAllSplitsByExchangeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Return the cumulative split ratio for a security between two dates. For instance, if a security saw a 3:1 split and 2:1 split during the period, the split ratio 6 is returned. Returns 1 if no split occurred.</documentation>
+      <wsdl:input message="tns:GetSplitRatioHttpPostIn" />
+      <wsdl:output message="tns:GetSplitRatioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Get split history for a stock for a date range.</documentation>
+      <wsdl:input message="tns:GetSplitHistoryHttpPostIn" />
+      <wsdl:output message="tns:GetSplitHistoryHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="XigniteGlobalHistoricalSoap" type="tns:XigniteGlobalHistoricalSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalLastClosingPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalLastClosingPriceHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalLastClosingPrices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalLastClosingPricesHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalHistoricalQuote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalHistoricalQuoteHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalHistoricalQuotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalHistoricalQuotesHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalHistoricalQuotesAsOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalHistoricalQuotesAsOfHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalHistoricalQuotesRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalHistoricalQuotesRangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetGlobalHistoricalMonthlyQuotesRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetGlobalHistoricalMonthlyQuotesRangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <soap:operation soapAction="http://www.xignite.com/services/GetStockDividendHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetStockDividendHistoryHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllStockDividendsByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllStockDividendsByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <soap:operation soapAction="http://www.xignite.com/services/GetStockDividendTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetStockDividendTotalHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllCashDividendsByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllCashDividendsByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <soap:operation soapAction="http://www.xignite.com/services/GetCashDividendTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCashDividendTotalHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <soap:operation soapAction="http://www.xignite.com/services/GetDividendHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDividendHistoryHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllDividendsByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllDividendsByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllDividendTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllDividendTotalHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllDividendHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllDividendHistoryHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <soap:operation soapAction="http://www.xignite.com/services/GetCorporateActionHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCorporateActionHistoryHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllCorporateActionsByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllCorporateActionsByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetTopMoversByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTopMoversByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetTopGainersByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTopGainersByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetTopLosersByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTopLosersByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <soap:operation soapAction="http://www.xignite.com/services/GetAllSplitsByExchange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllSplitsByExchangeHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <soap:operation soapAction="http://www.xignite.com/services/GetSplitRatio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSplitRatioHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <soap:operation soapAction="http://www.xignite.com/services/GetSplitHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSplitHistoryHeader" part="Header" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XigniteGlobalHistoricalHttpGet" type="tns:XigniteGlobalHistoricalHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <http:operation location="/GetGlobalLastClosingPrice" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <http:operation location="/GetGlobalLastClosingPrices" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <http:operation location="/GetGlobalHistoricalQuote" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <http:operation location="/GetGlobalHistoricalQuotes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <http:operation location="/GetGlobalHistoricalQuotesAsOf" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <http:operation location="/GetGlobalHistoricalQuotesRange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <http:operation location="/GetGlobalHistoricalMonthlyQuotesRange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <http:operation location="/GetStockDividendHistory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <http:operation location="/GetAllStockDividendsByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <http:operation location="/GetStockDividendTotal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <http:operation location="/GetAllCashDividendsByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <http:operation location="/GetCashDividendTotal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <http:operation location="/GetDividendHistory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <http:operation location="/GetAllDividendsByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <http:operation location="/GetAllDividendTotal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <http:operation location="/GetAllDividendHistory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <http:operation location="/GetCorporateActionHistory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <http:operation location="/GetAllCorporateActionsByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <http:operation location="/GetTopMoversByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <http:operation location="/GetTopGainersByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <http:operation location="/GetTopLosersByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <http:operation location="/GetAllSplitsByExchange" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <http:operation location="/GetSplitRatio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <http:operation location="/GetSplitHistory" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XigniteGlobalHistoricalHttpPost" type="tns:XigniteGlobalHistoricalHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetGlobalLastClosingPrice">
+      <http:operation location="/GetGlobalLastClosingPrice" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalLastClosingPrices">
+      <http:operation location="/GetGlobalLastClosingPrices" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuote">
+      <http:operation location="/GetGlobalHistoricalQuote" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotes">
+      <http:operation location="/GetGlobalHistoricalQuotes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesAsOf">
+      <http:operation location="/GetGlobalHistoricalQuotesAsOf" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalQuotesRange">
+      <http:operation location="/GetGlobalHistoricalQuotesRange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalHistoricalMonthlyQuotesRange">
+      <http:operation location="/GetGlobalHistoricalMonthlyQuotesRange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendHistory">
+      <http:operation location="/GetStockDividendHistory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllStockDividendsByExchange">
+      <http:operation location="/GetAllStockDividendsByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStockDividendTotal">
+      <http:operation location="/GetStockDividendTotal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCashDividendsByExchange">
+      <http:operation location="/GetAllCashDividendsByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCashDividendTotal">
+      <http:operation location="/GetCashDividendTotal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDividendHistory">
+      <http:operation location="/GetDividendHistory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendsByExchange">
+      <http:operation location="/GetAllDividendsByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendTotal">
+      <http:operation location="/GetAllDividendTotal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDividendHistory">
+      <http:operation location="/GetAllDividendHistory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCorporateActionHistory">
+      <http:operation location="/GetCorporateActionHistory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCorporateActionsByExchange">
+      <http:operation location="/GetAllCorporateActionsByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopMoversByExchange">
+      <http:operation location="/GetTopMoversByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopGainersByExchange">
+      <http:operation location="/GetTopGainersByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopLosersByExchange">
+      <http:operation location="/GetTopLosersByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSplitsByExchange">
+      <http:operation location="/GetAllSplitsByExchange" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitRatio">
+      <http:operation location="/GetSplitRatio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSplitHistory">
+      <http:operation location="/GetSplitHistory" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="XigniteGlobalHistorical">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">This web service provides international historical quotes.</documentation>
+    <wsdl:port name="XigniteGlobalHistoricalSoap" binding="tns:XigniteGlobalHistoricalSoap">
+      <soap:address location="http://www.xignite.com/xGlobalHistorical.asmx" />
+    </wsdl:port>
+    <wsdl:port name="XigniteGlobalHistoricalHttpGet" binding="tns:XigniteGlobalHistoricalHttpGet">
+      <http:address location="http://www.xignite.com/xGlobalHistorical.asmx" />
+    </wsdl:port>
+    <wsdl:port name="XigniteGlobalHistoricalHttpPost" binding="tns:XigniteGlobalHistoricalHttpPost">
+      <http:address location="http://www.xignite.com/xGlobalHistorical.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

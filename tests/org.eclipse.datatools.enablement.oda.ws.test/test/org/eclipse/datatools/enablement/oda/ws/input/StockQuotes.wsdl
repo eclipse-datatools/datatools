@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://swanandmokashi.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://swanandmokashi.com" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://swanandmokashi.com">
+      <s:element name="GetQuotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteTicker" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuotesResult" type="s0:ArrayOfQuote" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfQuote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Quote" type="s0:Quote" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Quote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StockTicker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StockQuote" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastUpdated" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Change" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OpenPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DayHighPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DayLowPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Volume" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarketCap" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="YearRange" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExDividendDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DividendYield" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DividendPerShare" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PercentChange" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfQuote" nillable="true" type="s0:ArrayOfQuote" />
+    </s:schema>
+  </types>
+  <message name="GetQuotesSoapIn">
+    <part name="parameters" element="s0:GetQuotes" />
+  </message>
+  <message name="GetQuotesSoapOut">
+    <part name="parameters" element="s0:GetQuotesResponse" />
+  </message>
+  <message name="GetQuotesHttpGetIn">
+    <part name="QuoteTicker" type="s:string" />
+  </message>
+  <message name="GetQuotesHttpGetOut">
+    <part name="Body" element="s0:ArrayOfQuote" />
+  </message>
+  <message name="GetQuotesHttpPostIn">
+    <part name="QuoteTicker" type="s:string" />
+  </message>
+  <message name="GetQuotesHttpPostOut">
+    <part name="Body" element="s0:ArrayOfQuote" />
+  </message>
+  <portType name="StockQuotesSoap">
+    <operation name="GetStockQuotes">
+      <documentation>Retrieves the latest(20 minutes delay) stock quote of a stock ticker. To get multiple quotes enter Ticker symbols seperated by ,(eg. MSFT,YHOO,GE) or space (eg. MSFT YHOO GE). &lt;BR&gt;Gives the company name ,ticker,Stock Quote, Change,Open price ,Day's range(high and low),Volume, the Market Cap and the Year range of the stock price.&lt;BR&gt;&lt;B&gt;Powered by Yahoo!'s stock Quotes service.Not for commerical use.&lt;/b&gt;</documentation>
+      <input name="GetQuotes" message="s0:GetQuotesSoapIn" />
+      <output name="GetQuotes" message="s0:GetQuotesSoapOut" />
+    </operation>
+  </portType>
+  <portType name="StockQuotesHttpGet">
+    <operation name="GetStockQuotes">
+      <documentation>Retrieves the latest(20 minutes delay) stock quote of a stock ticker. To get multiple quotes enter Ticker symbols seperated by ,(eg. MSFT,YHOO,GE) or space (eg. MSFT YHOO GE). &lt;BR&gt;Gives the company name ,ticker,Stock Quote, Change,Open price ,Day's range(high and low),Volume, the Market Cap and the Year range of the stock price.&lt;BR&gt;&lt;B&gt;Powered by Yahoo!'s stock Quotes service.Not for commerical use.&lt;/b&gt;</documentation>
+      <input name="GetQuotes" message="s0:GetQuotesHttpGetIn" />
+      <output name="GetQuotes" message="s0:GetQuotesHttpGetOut" />
+    </operation>
+  </portType>
+  <portType name="StockQuotesHttpPost">
+    <operation name="GetStockQuotes">
+      <documentation>Retrieves the latest(20 minutes delay) stock quote of a stock ticker. To get multiple quotes enter Ticker symbols seperated by ,(eg. MSFT,YHOO,GE) or space (eg. MSFT YHOO GE). &lt;BR&gt;Gives the company name ,ticker,Stock Quote, Change,Open price ,Day's range(high and low),Volume, the Market Cap and the Year range of the stock price.&lt;BR&gt;&lt;B&gt;Powered by Yahoo!'s stock Quotes service.Not for commerical use.&lt;/b&gt;</documentation>
+      <input name="GetQuotes" message="s0:GetQuotesHttpPostIn" />
+      <output name="GetQuotes" message="s0:GetQuotesHttpPostOut" />
+    </operation>
+  </portType>
+  <binding name="StockQuotesSoap" type="s0:StockQuotesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetStockQuotes">
+      <soap:operation soapAction="http://swanandmokashi.com/GetQuotes" style="document" />
+      <input name="GetQuotes">
+        <soap:body use="literal" />
+      </input>
+      <output name="GetQuotes">
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="StockQuotesHttpGet" type="s0:StockQuotesHttpGet">
+    <http:binding verb="GET" />
+    <operation name="GetStockQuotes">
+      <http:operation location="/GetQuotes" />
+      <input name="GetQuotes">
+        <http:urlEncoded />
+      </input>
+      <output name="GetQuotes">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="StockQuotesHttpPost" type="s0:StockQuotesHttpPost">
+    <http:binding verb="POST" />
+    <operation name="GetStockQuotes">
+      <http:operation location="/GetQuotes" />
+      <input name="GetQuotes">
+        <mime:content type="application/x-www-form-urlencoded" />
+      </input>
+      <output name="GetQuotes">
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <service name="StockQuotes">
+    <port name="StockQuotesSoap" binding="s0:StockQuotesSoap">
+      <soap:address location="http://www.swanandmokashi.com/HomePage/WebServices/StockQuotes.asmx" />
+    </port>
+    <port name="StockQuotesHttpGet" binding="s0:StockQuotesHttpGet">
+      <http:address location="http://www.swanandmokashi.com/HomePage/WebServices/StockQuotes.asmx" />
+    </port>
+    <port name="StockQuotesHttpPost" binding="s0:StockQuotesHttpPost">
+      <http:address location="http://www.swanandmokashi.com/HomePage/WebServices/StockQuotes.asmx" />
+    </port>
+  </service>
+</definitions>
