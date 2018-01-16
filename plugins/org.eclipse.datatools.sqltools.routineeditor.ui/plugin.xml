@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="documentprovider" name="SQL Routine Editor document provider" schema="schema/documentprovider.exsd"/>
+
+     <!-- launch configuration type.-->
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="%routine.launch.type"
+            delegate="org.eclipse.datatools.sqltools.routineeditor.ui.launching.SPLaunchConfigurationDelegate"
+            modes="run,debug"
+            id="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType">
+      </launchConfigurationType>
+   </extension>
+   
+   <!-- launch configuration tab group -->
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType"
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.launching.RoutineExecuteTabGroup"
+            id="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationTabGroup">
+            <launchMode 
+                  mode="debug"
+                  perspective="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+            </launchMode>
+            <launchMode
+                  mode="run">
+            </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+   
+   <!-- launch shortcut -->
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.launching.SPLaunchShortcut"
+            icon="icons/debug_exc.gif"
+            id="org.eclipse.datatools.sqltools.routineeditor.SPshortcut"
+            label="SQL Routine"
+            modes="run,debug">
+         <contextualLaunch>
+            <contextLabel
+                  label="SQL Routine"
+                  mode="run"/>
+            <contextLabel
+                  label="SQL Routine"
+                  mode="debug"/>
+            <enablement>
+               <with variable="selection">
+                  <iterate>
+                     <or>
+                        <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ui.ProcEditorInput"/>
+                        <instanceof value="org.eclipse.datatools.sqltools.core.ProcIdentifier"/>
+                        <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                        <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+                     </or>
+                  </iterate>
+                  <count value="1"/>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+  
+   <extension
+          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+     <launchConfigurationTypeImage
+     	id="org.eclipse.datatools.sqltools.routineeditor.launching.LaunchConfigurationTypeImage"
+	    configTypeID="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType"
+    	icon="icons/launch_configuration.gif">
+	 </launchConfigurationTypeImage>
+          
+   </extension>
+
+  
+   <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.sqltools.routineeditor.actions.RoutineActionProvider"/>
+            </includes>
+         </viewerActionBinding>
+      </extension>  
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RoutineActionProvider"
+            id="org.eclipse.datatools.sqltools.routineeditor.actions.RoutineActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.RoutineEditor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
+            default="true"
+            icon="icons/routine_editor.gif"
+            id="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            name="%Routineeditor.name"/>
+    </extension>
+   
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%Routineeditor.command.run"
+            id="org.eclipse.datatools.sqltools.sqleditor.runAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.debug"
+            id="org.eclipse.datatools.sqltools.sqleditor.debugAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.savetodb"
+            id="org.eclipse.datatools.sqltools.sqleditor.saveToDatabaseAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.refresh"
+            id="org.eclipse.datatools.sqltools.sqleditor.refreshFromDatabaseAction"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.bindings">
+      <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
+            carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.runAction"
+            sequence="M1+M3+R"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.debugAction"
+            sequence="M1+M3+D"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+    </extension>
+      
+    <!-- Configure link with editor and double click to eidt in DSE-->
+    <extension
+          point="org.eclipse.ui.navigator.linkHelper">
+       <linkHelper
+             class="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper"
+             id="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper">
+          <selectionEnablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+             </or>
+          </selectionEnablement>
+          <editorInputEnablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ui.ProcEditorInput"/>
+             </or>
+          </editorInputEnablement>
+       </linkHelper>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.viewer">
+       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <includes>
+             <contentExtension pattern="org.eclipse.datatools.sqltools.routineeditor.ui.DataSourceExplorerLinkHelper"/>
+          </includes>
+       </viewerContentBinding>
+       <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <includes>
+             <actionExtension pattern="org.eclipse.datatools.sqltools.routineeditor.ui.actions.*"/>
+          </includes>
+       </viewerActionBinding>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <actionProvider
+             class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.DoubleClickActionProvider"
+             id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.DoubleClickActionProvider">
+          <enablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+             </or>
+          </enablement>
+       </actionProvider>
+    </extension>
+</plugin>

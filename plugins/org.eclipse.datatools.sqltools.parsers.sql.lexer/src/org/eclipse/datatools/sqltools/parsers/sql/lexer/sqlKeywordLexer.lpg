@@ -1,0 +1,4055 @@
+--
+-- The SQL Keyword Lexer
+--
+-- 02-Feb-2005 ckadner	Created SQL DB2 Keyword Lexer
+
+%Options slr
+%Options fp=SQLKeywordLexer,prefix=Char_
+%options noserialize
+%options package=org.eclipse.datatools.sqltools.parsers.sql.lexer
+%options export_terminals=("SQLParsersym.java", "TK_")
+%options template=sqlkeywordlexerTemplate.lpg
+
+
+
+$Define
+
+--
+-- Definition of macros used in the lexer template
+--
+    $import_classes /../
+    $action_class /.$file_prefix./
+    $eof_char /.Char_EOF./
+$End
+
+$Headers
+/.
+    final static int tokenKind[] = new int[128];
+
+    static
+    {
+        tokenKind['a'] = Char_A;
+        tokenKind['b'] = Char_B;
+        tokenKind['c'] = Char_C;
+        tokenKind['d'] = Char_D;
+        tokenKind['e'] = Char_E;
+        tokenKind['f'] = Char_F;
+        tokenKind['g'] = Char_G;
+        tokenKind['h'] = Char_H;
+        tokenKind['i'] = Char_I;
+        tokenKind['j'] = Char_J;
+        tokenKind['k'] = Char_K;
+        tokenKind['l'] = Char_L;
+        tokenKind['m'] = Char_M;
+        tokenKind['n'] = Char_N;
+        tokenKind['o'] = Char_O;
+        tokenKind['p'] = Char_P;
+        tokenKind['q'] = Char_Q;
+        tokenKind['r'] = Char_R;
+        tokenKind['s'] = Char_S;
+        tokenKind['t'] = Char_T;
+        tokenKind['u'] = Char_U;
+        tokenKind['v'] = Char_V;
+        tokenKind['w'] = Char_W;
+        tokenKind['x'] = Char_X;
+        tokenKind['y'] = Char_Y;
+        tokenKind['z'] = Char_Z;
+
+        tokenKind['A'] = Char_A;
+        tokenKind['B'] = Char_B;
+        tokenKind['C'] = Char_C;
+        tokenKind['D'] = Char_D;
+        tokenKind['E'] = Char_E;
+        tokenKind['F'] = Char_F;
+        tokenKind['G'] = Char_G;
+        tokenKind['H'] = Char_H;
+        tokenKind['I'] = Char_I;
+        tokenKind['J'] = Char_J;
+        tokenKind['K'] = Char_K;
+        tokenKind['L'] = Char_L;
+        tokenKind['M'] = Char_M;
+        tokenKind['N'] = Char_N;
+        tokenKind['O'] = Char_O;
+        tokenKind['P'] = Char_P;
+        tokenKind['Q'] = Char_Q;
+        tokenKind['R'] = Char_R;
+        tokenKind['S'] = Char_S;
+        tokenKind['T'] = Char_T;
+        tokenKind['U'] = Char_U;
+        tokenKind['V'] = Char_V;
+        tokenKind['W'] = Char_W;
+        tokenKind['X'] = Char_X;
+        tokenKind['Y'] = Char_Y;
+        tokenKind['Z'] = Char_Z;
+
+        tokenKind['_'] = Char__;
+
+        tokenKind['0'] = Char_0;
+        tokenKind['1'] = Char_1;
+        tokenKind['2'] = Char_2;
+        tokenKind['3'] = Char_3;
+        tokenKind['4'] = Char_4;
+        tokenKind['5'] = Char_5;
+        tokenKind['6'] = Char_6;
+        tokenKind['7'] = Char_7;
+        tokenKind['8'] = Char_8;
+        tokenKind['9'] = Char_9;
+
+    };
+
+    final int getKind(char c)
+    {
+        return (c < 128 ? tokenKind[c] : 0);
+    }
+./
+$End
+
+
+$Export
+
+--------------------------------------------
+-- Keywords/Reserved Word list - included --
+--------------------------------------------
+
+  $include sqlKeywords.lpg
+
+$End
+
+
+$Terminals
+
+    A    B    C    D    E    F    G    H    I    J    K    L    M
+    N    O    P    Q    R    S    T    U    V    W    X    Y    Z
+    _
+
+    0    1    2    3    4    5    6    7    8    9
+
+$End
+
+$Eof
+	EOF
+$End
+
+$Start
+	KeyWord
+$End
+
+
+$Rules
+
+	KeyWord	::=	A C C E S S
+	        		/.$BeginAction
+	        		    $setResult($_ACCESS);
+	        		  $EndAction
+	        		./
+
+			|	A C C T N G
+	        		/.$BeginAction
+	        		    $setResult($_ACCTNG);
+	        		  $EndAction
+	        		./
+
+			|	A C T I O N
+	        		/.$BeginAction
+	        		    $setResult($_ACTION);
+	        		  $EndAction
+	        		./
+
+			|	A C T I V A T E
+	        		/.$BeginAction
+	        		    $setResult($_ACTIVATE);
+	        		  $EndAction
+	        		./
+
+			|	A D D
+	        		/.$BeginAction
+	        		    $setResult($_ADD);
+	        		  $EndAction
+	        		./
+
+			|	A D M I N
+	        		/.$BeginAction
+	        		    $setResult($_ADMIN);
+	        		  $EndAction
+	        		./
+
+			|	A D M I N I S T R A T I O N
+	        		/.$BeginAction
+	        		    $setResult($_ADMINISTRATION);
+	        		  $EndAction
+	        		./
+
+			|	A F T E R
+	        		/.$BeginAction
+	        		    $setResult($_AFTER);
+	        		  $EndAction
+	        		./
+
+			|	A G E
+	        		/.$BeginAction
+	        		    $setResult($_AGE);
+	        		  $EndAction
+	        		./
+
+			|	A L I A S
+	        		/.$BeginAction
+	        		    $setResult($_ALIAS);
+	        		  $EndAction
+	        		./
+
+			|	A L L
+	        		/.$BeginAction
+	        		    $setResult($_ALL);
+	        		  $EndAction
+	        		./
+
+			|	A L L O C A T E
+	        		/.$BeginAction
+	        		    $setResult($_ALLOCATE);
+	        		  $EndAction
+	        		./
+
+			|	A L L O W
+	        		/.$BeginAction
+	        		    $setResult($_ALLOW);
+	        		  $EndAction
+	        		./
+
+			|	A L T E R
+	        		/.$BeginAction
+	        		    $setResult($_ALTER);
+	        		  $EndAction
+	        		./
+
+			|	A L T E R I N
+	        		/.$BeginAction
+	        		    $setResult($_ALTERIN);
+	        		  $EndAction
+	        		./
+
+			|	A L W A Y S
+	        		/.$BeginAction
+	        		    $setResult($_ALWAYS);
+	        		  $EndAction
+	        		./
+
+			|	A N D
+	        		/.$BeginAction
+	        		    $setResult($_AND);
+	        		  $EndAction
+	        		./
+
+			|	A N Y
+	        		/.$BeginAction
+	        		    $setResult($_ANY);
+	        		  $EndAction
+	        		./
+
+			|	A P P E N D
+	        		/.$BeginAction
+	        		    $setResult($_APPEND);
+	        		  $EndAction
+	        		./
+
+			|	A P P L N A M E
+	        		/.$BeginAction
+	        		    $setResult($_APPLNAME);
+	        		  $EndAction
+	        		./
+
+			|	A R R A Y
+	        		/.$BeginAction
+	        		    $setResult($_ARRAY);
+	        		  $EndAction
+	        		./
+
+			|	A S
+	        		/.$BeginAction
+	        		    $setResult($_AS);
+	        		  $EndAction
+	        		./
+
+			|	A S C
+	        		/.$BeginAction
+	        		    $setResult($_ASC);
+	        		  $EndAction
+	        		./
+
+			|	A S C I I
+	        		/.$BeginAction
+	        		    $setResult($_ASCII);
+	        		  $EndAction
+	        		./
+
+			|	A S E N S I T I V E
+	        		/.$BeginAction
+	        		    $setResult($_ASENSITIVE);
+	        		  $EndAction
+	        		./
+
+			|	A S S I G N M E N T
+	        		/.$BeginAction
+	        		    $setResult($_ASSIGNMENT);
+	        		  $EndAction
+	        		./
+
+			|	A S S O C I A T E
+	        		/.$BeginAction
+	        		    $setResult($_ASSOCIATE);
+	        		  $EndAction
+	        		./
+
+			|	A S T
+	        		/.$BeginAction
+	        		    $setResult($_AST);
+	        		  $EndAction
+	        		./
+
+			|	A S U T I M E
+	        		/.$BeginAction
+	        		    $setResult($_ASUTIME);
+	        		  $EndAction
+	        		./
+
+			|	A T
+	        		/.$BeginAction
+	        		    $setResult($_AT);
+	        		  $EndAction
+	        		./
+
+			|	A T O M I C
+	        		/.$BeginAction
+	        		    $setResult($_ATOMIC);
+	        		  $EndAction
+	        		./
+
+			|	A T T R I B U T E S
+	        		/.$BeginAction
+	        		    $setResult($_ATTRIBUTES);
+	        		  $EndAction
+	        		./
+
+			|	A U T H O R I Z A T I O N
+	        		/.$BeginAction
+	        		    $setResult($_AUTHORIZATION);
+	        		  $EndAction
+	        		./
+
+			|	A U T H I D
+	        		/.$BeginAction
+	        		    $setResult($_AUTHID);
+	        		  $EndAction
+	        		./
+
+			|	A U T O M A T I C
+	        		/.$BeginAction
+	        		    $setResult($_AUTOMATIC);
+	        		  $EndAction
+	        		./
+
+			|	A U T O S T A R T
+	        		/.$BeginAction
+	        		    $setResult($_AUTOSTART);
+	        		  $EndAction
+	        		./
+
+			|	B
+	        		/.$BeginAction
+	        		    $setResult($_B);
+	        		  $EndAction
+	        		./
+
+			|	B E F O R E
+	        		/.$BeginAction
+	        		    $setResult($_BEFORE);
+	        		  $EndAction
+	        		./
+
+			|	B E G I N
+	        		/.$BeginAction
+	        		    $setResult($_BEGIN);
+	        		  $EndAction
+	        		./
+
+			|	B E R N O U L L I
+	        		/.$BeginAction
+	        		    $setResult($_BERNOULLI);
+	        		  $EndAction
+	        		./
+
+			|	B E T W E E N
+	        		/.$BeginAction
+	        		    $setResult($_BETWEEN);
+	        		  $EndAction
+	        		./
+
+			|	B I G I N T
+	        		/.$BeginAction
+	        		    $setResult($_BIGINT);
+	        		  $EndAction
+	        		./
+
+			|	B I N A R Y
+	        		/.$BeginAction
+	        		    $setResult($_BINARY);
+	        		  $EndAction
+	        		./
+
+			|	B I N D
+	        		/.$BeginAction
+	        		    $setResult($_BIND);
+	        		  $EndAction
+	        		./
+
+			|	B I N D A D D
+	        		/.$BeginAction
+	        		    $setResult($_BINDADD);
+	        		  $EndAction
+	        		./
+
+			|	B I T
+	        		/.$BeginAction
+	        		    $setResult($_BIT);
+	        		  $EndAction
+	        		./
+
+			|	B L O B
+	        		/.$BeginAction
+	        		    $setResult($_BLOB);
+	        		  $EndAction
+	        		./
+
+			|	B L O C K E D
+	        		/.$BeginAction
+	        		    $setResult($_BLOCKED);
+	        		  $EndAction
+	        		./
+
+			|	B L O C K S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_BLOCKSIZE);
+	        		  $EndAction
+	        		./
+
+			|	B O T H
+	        		/.$BeginAction
+	        		    $setResult($_BOTH);
+	        		  $EndAction
+	        		./
+
+			|	B U F F E R
+	        		/.$BeginAction
+	        		    $setResult($_BUFFER);
+	        		  $EndAction
+	        		./
+
+			|	B U F F E R P O O L
+	        		/.$BeginAction
+	        		    $setResult($_BUFFERPOOL);
+	        		  $EndAction
+	        		./
+
+			|	B U F F E R P O O L S
+	        		/.$BeginAction
+	        		    $setResult($_BUFFERPOOLS);
+	        		  $EndAction
+	        		./
+
+			|	B U F F E R S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_BUFFERSIZE);
+	        		  $EndAction
+	        		./
+
+			|	B U I L D
+	        		/.$BeginAction
+	        		    $setResult($_BUILD);
+	        		  $EndAction
+	        		./
+
+			|	B Y
+	        		/.$BeginAction
+	        		    $setResult($_BY);
+	        		  $EndAction
+	        		./
+
+			|	B Y P A S S
+	        		/.$BeginAction
+	        		    $setResult($_BYPASS);
+	        		  $EndAction
+	        		./
+
+			|	C
+	        		/.$BeginAction
+	        		    $setResult($_C);
+	        		  $EndAction
+	        		./
+
+			|	C A C H E
+	        		/.$BeginAction
+	        		    $setResult($_CACHE);
+	        		  $EndAction
+	        		./
+
+			|	C A C H I N G
+	        		/.$BeginAction
+	        		    $setResult($_CACHING);
+	        		  $EndAction
+	        		./
+
+			|	C A L L
+	        		/.$BeginAction
+	        		    $setResult($_CALL);
+	        		  $EndAction
+	        		./
+
+			|	C A L L E D
+	        		/.$BeginAction
+	        		    $setResult($_CALLED);
+	        		  $EndAction
+	        		./
+
+			|	C A L L E R
+	        		/.$BeginAction
+	        		    $setResult($_CALLER);
+	        		  $EndAction
+	        		./
+
+			|	C A P T U R E
+	        		/.$BeginAction
+	        		    $setResult($_CAPTURE);
+	        		  $EndAction
+	        		./
+
+			|	C A R D I N A L I T I E S
+	        		/.$BeginAction
+	        		    $setResult($_CARDINALITIES);
+	        		  $EndAction
+	        		./
+
+			|	C A R D I N A L I T Y
+	        		/.$BeginAction
+	        		    $setResult($_CARDINALITY);
+	        		  $EndAction
+	        		./
+
+			|	C A S C A D E
+	        		/.$BeginAction
+	        		    $setResult($_CASCADE);
+	        		  $EndAction
+	        		./
+
+			|	C A S C A D E D
+	        		/.$BeginAction
+	        		    $setResult($_CASCADED);
+	        		  $EndAction
+	        		./
+
+			|	C A S E
+	        		/.$BeginAction
+	        		    $setResult($_CASE);
+	        		  $EndAction
+	        		./
+
+			|	C A S T
+	        		/.$BeginAction
+	        		    $setResult($_CAST);
+	        		  $EndAction
+	        		./
+
+			|	C C S I D
+	        		/.$BeginAction
+	        		    $setResult($_CCSID);
+	        		  $EndAction
+	        		./
+
+			|	C H A N G E
+	        		/.$BeginAction
+	        		    $setResult($_CHANGE);
+	        		  $EndAction
+	        		./
+
+			|	C H A N G E D
+	        		/.$BeginAction
+	        		    $setResult($_CHANGED);
+	        		  $EndAction
+	        		./
+
+			|	C H A N G E S
+	        		/.$BeginAction
+	        		    $setResult($_CHANGES);
+	        		  $EndAction
+	        		./
+
+			|	C H A R
+	        		/.$BeginAction
+	        		    $setResult($_CHAR);
+	        		  $EndAction
+	        		./
+
+			|	C H A R A C T E R
+	        		/.$BeginAction
+	        		    $setResult($_CHARACTER);
+	        		  $EndAction
+	        		./
+
+			|	C H E C K
+	        		/.$BeginAction
+	        		    $setResult($_CHECK);
+	        		  $EndAction
+	        		./
+
+			|	C H E C K E D
+	        		/.$BeginAction
+	        		    $setResult($_CHECKED);
+	        		  $EndAction
+	        		./
+
+			|	C L I E N T
+	        		/.$BeginAction
+	        		    $setResult($_CLIENT);
+	        		  $EndAction
+	        		./
+
+			|	C L O B
+	        		/.$BeginAction
+	        		    $setResult($_CLOB);
+	        		  $EndAction
+	        		./
+
+			|	C L O S E
+	        		/.$BeginAction
+	        		    $setResult($_CLOSE);
+	        		  $EndAction
+	        		./
+
+			|	C L R
+	        		/.$BeginAction
+	        		    $setResult($_CLR);
+	        		  $EndAction
+	        		./
+
+			|	C L U S T E R
+	        		/.$BeginAction
+	        		    $setResult($_CLUSTER);
+	        		  $EndAction
+	        		./
+
+			|	C O B O L
+	        		/.$BeginAction
+	        		    $setResult($_COBOL);
+	        		  $EndAction
+	        		./
+
+			|	C O L L E C T
+	        		/.$BeginAction
+	        		    $setResult($_COLLECT);
+	        		  $EndAction
+	        		./
+
+			|	C O L L I D
+	        		/.$BeginAction
+	        		    $setResult($_COLLID);
+	        		  $EndAction
+	        		./
+
+			|	C O L U M N
+	        		/.$BeginAction
+	        		    $setResult($_COLUMN);
+	        		  $EndAction
+	        		./
+
+			|	C O L U M N S
+	        		/.$BeginAction
+	        		    $setResult($_COLUMNS);
+	        		  $EndAction
+	        		./
+
+			|	C O M M
+	        		/.$BeginAction
+	        		    $setResult($_COMM);
+	        		  $EndAction
+	        		./
+
+			|	C O M M E N T
+	        		/.$BeginAction
+	        		    $setResult($_COMMENT);
+	        		  $EndAction
+	        		./
+
+			|	C O M M I T
+	        		/.$BeginAction
+	        		    $setResult($_COMMIT);
+	        		  $EndAction
+	        		./
+
+			|	C O M M I T T E D
+	        		/.$BeginAction
+	        		    $setResult($_COMMITTED);
+	        		  $EndAction
+	        		./
+
+			|	C O M P A C T
+	        		/.$BeginAction
+	        		    $setResult($_COMPACT);
+	        		  $EndAction
+	        		./
+
+			|	C O M P A R E
+	        		/.$BeginAction
+	        		    $setResult($_COMPARE);
+	        		  $EndAction
+	        		./
+
+			|	C O M P A R I S O N S
+	        		/.$BeginAction
+	        		    $setResult($_COMPARISONS);
+	        		  $EndAction
+	        		./
+
+			|	C O M P R E S S
+	        		/.$BeginAction
+	        		    $setResult($_COMPRESS);
+	        		  $EndAction
+	        		./
+
+			|	C O M P R E S S I O N
+	        		/.$BeginAction
+	        		    $setResult($_COMPRESSION);
+	        		  $EndAction
+	        		./
+
+			|	C O N C A T
+	        		/.$BeginAction
+	        		    $setResult($_CONCAT);
+	        		  $EndAction
+	        		./
+
+			|	C O N D I T I O N
+	        		/.$BeginAction
+	        		    $setResult($_CONDITION);
+	        		  $EndAction
+	        		./
+
+			|	C O N N
+	        		/.$BeginAction
+	        		    $setResult($_CONN);
+	        		  $EndAction
+	        		./
+
+			|	C O N N E C T
+	        		/.$BeginAction
+	        		    $setResult($_CONNECT);
+	        		  $EndAction
+	        		./
+
+			|	C O N N E C T I O N S
+	        		/.$BeginAction
+	        		    $setResult($_CONNECTIONS);
+	        		  $EndAction
+	        		./
+
+			|	C O N N E C T O P T
+	        		/.$BeginAction
+	        		    $setResult($_CONNECTOPT);
+	        		  $EndAction
+	        		./
+
+			|	C O N N H E A D E R
+	        		/.$BeginAction
+	        		    $setResult($_CONNHEADER);
+	        		  $EndAction
+	        		./
+
+			|	C O N N M E M U S E
+	        		/.$BeginAction
+	        		    $setResult($_CONNMEMUSE);
+	        		  $EndAction
+	        		./
+
+			|	C O N S E R V A T I V E
+	        		/.$BeginAction
+	        		    $setResult($_CONSERVATIVE);
+	        		  $EndAction
+	        		./
+
+			|	C O N S T R A I N T
+	        		/.$BeginAction
+	        		    $setResult($_CONSTRAINT);
+	        		  $EndAction
+	        		./
+
+			|	C O N S T R A I N T S
+	        		/.$BeginAction
+	        		    $setResult($_CONSTRAINTS);
+	        		  $EndAction
+	        		./
+
+			|	C O N S T R U C T O R
+	        		/.$BeginAction
+	        		    $setResult($_CONSTRUCTOR);
+	        		  $EndAction
+	        		./
+
+			|	C O N T A I N E R S
+	        		/.$BeginAction
+	        		    $setResult($_CONTAINERS);
+	        		  $EndAction
+	        		./
+
+			|	C O N T A I N S
+	        		/.$BeginAction
+	        		    $setResult($_CONTAINS);
+	        		  $EndAction
+	        		./
+
+			|	C O N T E N T
+	        		/.$BeginAction
+	        		    $setResult($_CONTENT);
+	        		  $EndAction
+	        		./
+
+			|	C O N T I N U E
+	        		/.$BeginAction
+	        		    $setResult($_CONTINUE);
+	        		  $EndAction
+	        		./
+
+			|	C O N T R O L
+	        		/.$BeginAction
+	        		    $setResult($_CONTROL);
+	        		  $EndAction
+	        		./
+
+			|	C O P Y
+	        		/.$BeginAction
+	        		    $setResult($_COPY);
+	        		  $EndAction
+	        		./
+
+			|	C O U N T
+	        		/.$BeginAction
+	        		    $setResult($_COUNT);
+	        		  $EndAction
+	        		./
+
+			|	C P U
+	        		/.$BeginAction
+	        		    $setResult($_CPU);
+	        		  $EndAction
+	        		./
+
+			|	C R E A T E
+	        		/.$BeginAction
+	        		    $setResult($_CREATE);
+	        		  $EndAction
+	        		./
+
+			|	C R E A T E I N
+	        		/.$BeginAction
+	        		    $setResult($_CREATEIN);
+	        		  $EndAction
+	        		./
+
+			|	C R E A T E T A B
+	        		/.$BeginAction
+	        		    $setResult($_CREATETAB);
+	        		  $EndAction
+	        		./
+
+			|	C S
+	        		/.$BeginAction
+	        		    $setResult($_CS);
+	        		  $EndAction
+	        		./
+
+			|	C U B E
+	        		/.$BeginAction
+	        		    $setResult($_CUBE);
+	        		  $EndAction
+	        		./
+
+			|	C U R R E N T
+	        		/.$BeginAction
+	        		    $setResult($_CURRENT);
+	        		  $EndAction
+	        		./
+
+    		|	C U R R E N T _ D A T E
+                    /.$BeginAction
+                       $setResult($_CURRENT_DATE);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ D E F A U L T _ T R A N S F O R M _ G R O U P
+                    /.$BeginAction
+                       $setResult($_CURRENT_DEFAULT_TRANSFORM_GROUP);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ P A T H
+                    /.$BeginAction
+                       $setResult($_CURRENT_PATH);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ R O L E
+                    /.$BeginAction
+                       $setResult($_CURRENT_ROLE);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ T I M E
+                    /.$BeginAction
+                       $setResult($_CURRENT_TIME);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ T I M E S T A M P
+                    /.$BeginAction
+                       $setResult($_CURRENT_TIMESTAMP);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ T R A N S F O R M _ G R O U P _ F O R _ T Y P E
+                    /.$BeginAction
+                       $setResult($_CURRENT_TRANSFORM_GROUP_FOR_TYPE);
+                      $EndAction
+                    ./
+
+			|	C U R R E N T _ U S E R
+                    /.$BeginAction
+                       $setResult($_CURRENT_USER);
+                      $EndAction
+                    ./
+
+			|	C U R R V A L
+	        		/.$BeginAction
+	        		    $setResult($_CURRVAL);
+	        		  $EndAction
+	        		./
+
+			|	C U R S O R
+	        		/.$BeginAction
+	        		    $setResult($_CURSOR);
+	        		  $EndAction
+	        		./
+
+			|	C U R S O R S
+	        		/.$BeginAction
+	        		    $setResult($_CURSORS);
+	        		  $EndAction
+	        		./
+
+			|	C Y C L E
+	        		/.$BeginAction
+	        		    $setResult($_CYCLE);
+	        		  $EndAction
+	        		./
+
+			|	D A T A
+	        		/.$BeginAction
+	        		    $setResult($_DATA);
+	        		  $EndAction
+	        		./
+
+			|	D A T A B A S E
+	        		/.$BeginAction
+	        		    $setResult($_DATABASE);
+	        		  $EndAction
+	        		./
+
+			|	D A T A L I N K
+	        		/.$BeginAction
+	        		    $setResult($_DATALINK);
+	        		  $EndAction
+	        		./
+
+			|	D A T E
+	        		/.$BeginAction
+	        		    $setResult($_DATE);
+	        		  $EndAction
+	        		./
+
+			|	D A Y
+	        		/.$BeginAction
+	        		    $setResult($_DAY);
+	        		  $EndAction
+	        		./
+
+			|	D A Y S
+	        		/.$BeginAction
+	        		    $setResult($_DAYS);
+	        		  $EndAction
+	        		./
+
+			|	D B
+	        		/.$BeginAction
+	        		    $setResult($_DB);
+	        		  $EndAction
+	        		./
+
+			|	D B A D M
+	        		/.$BeginAction
+	        		    $setResult($_DBADM);
+	        		  $EndAction
+	        		./
+
+			|	D B C L O B
+	        		/.$BeginAction
+	        		    $setResult($_DBCLOB);
+	        		  $EndAction
+	        		./
+
+			|	D B I N F O
+	        		/.$BeginAction
+	        		    $setResult($_DBINFO);
+	        		  $EndAction
+	        		./
+
+			|	D B M E M U S E
+	        		/.$BeginAction
+	        		    $setResult($_DBMEMUSE);
+	        		  $EndAction
+	        		./
+
+			|	D B P A R T I T I O N N U M
+	        		/.$BeginAction
+	        		    $setResult($_DBPARTITIONNUM);
+	        		  $EndAction
+	        		./
+
+			|	D B P A R T I T I O N N U M S
+	        		/.$BeginAction
+	        		    $setResult($_DBPARTITIONNUMS);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 D A R I
+	        		/.$BeginAction
+	        		    $setResult($_DB2DARI);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 G E N R L
+	        		/.$BeginAction
+	        		    $setResult($_DB2GENRL);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 G E N E R A L
+	        		/.$BeginAction
+	        		    $setResult($_DB2GENERAL);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 O P T I O N S
+	        		/.$BeginAction
+	        		    $setResult($_DB2OPTIONS);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 S P L
+	        		/.$BeginAction
+	        		    $setResult($_DB2SPL);
+	        		  $EndAction
+	        		./
+
+			|	D B 2 S Q L
+	        		/.$BeginAction
+	        		    $setResult($_DB2SQL);
+	        		  $EndAction
+	        		./
+
+			|	D E A C T I V A T E
+	        		/.$BeginAction
+	        		    $setResult($_DEACTIVATE);
+	        		  $EndAction
+	        		./
+
+			|	D E A D L O C K
+	        		/.$BeginAction
+	        		    $setResult($_DEADLOCK);
+	        		  $EndAction
+	        		./
+
+			|	D E A D L O C K S
+	        		/.$BeginAction
+	        		    $setResult($_DEADLOCKS);
+	        		  $EndAction
+	        		./
+
+			|	D E C
+	        		/.$BeginAction
+	        		    $setResult($_DEC);
+	        		  $EndAction
+	        		./
+
+			|	D E C I M A L
+	        		/.$BeginAction
+	        		    $setResult($_DECIMAL);
+	        		  $EndAction
+	        		./
+
+			|	D E C L A R E
+	        		/.$BeginAction
+	        		    $setResult($_DECLARE);
+	        		  $EndAction
+	        		./
+
+			|	D E F A U L T
+	        		/.$BeginAction
+	        		    $setResult($_DEFAULT);
+	        		  $EndAction
+	        		./
+
+			|	D E F A U L T S
+	        		/.$BeginAction
+	        		    $setResult($_DEFAULTS);
+	        		  $EndAction
+	        		./
+
+			|	D E F I N E
+	        		/.$BeginAction
+	        		    $setResult($_DEFINE);
+	        		  $EndAction
+	        		./
+
+			|	D E F I N I T I O N
+	        		/.$BeginAction
+	        		    $setResult($_DEFINITION);
+	        		  $EndAction
+	        		./
+
+			|	D E G R E E
+	        		/.$BeginAction
+	        		    $setResult($_DEGREE);
+	        		  $EndAction
+	        		./
+
+			|	D E F E R
+	        		/.$BeginAction
+	        		    $setResult($_DEFER);
+	        		  $EndAction
+	        		./
+
+			|	D E F E R R E D
+	        		/.$BeginAction
+	        		    $setResult($_DEFERRED);
+	        		  $EndAction
+	        		./
+
+			|	D E L E T E
+	        		/.$BeginAction
+	        		    $setResult($_DELETE);
+	        		  $EndAction
+	        		./
+
+			|	D E S C
+	        		/.$BeginAction
+	        		    $setResult($_DESC);
+	        		  $EndAction
+	        		./
+
+			|	D E S C R I P T O R
+	        		/.$BeginAction
+	        		    $setResult($_DESCRIPTOR);
+	        		  $EndAction
+	        		./
+
+			|	D E T A I L E D
+	        		/.$BeginAction
+	        		    $setResult($_DETAILED);
+	        		  $EndAction
+	        		./
+
+			|	D E T A I L S
+	        		/.$BeginAction
+	        		    $setResult($_DETAILS);
+	        		  $EndAction
+	        		./
+
+			|	D E T E R M I N E D
+	        		/.$BeginAction
+	        		    $setResult($_DETERMINED);
+	        		  $EndAction
+	        		./
+
+			|	D E T E R M I N I S T I C
+	        		/.$BeginAction
+	        		    $setResult($_DETERMINISTIC);
+	        		  $EndAction
+	        		./
+
+			|	D E V I C E
+	        		/.$BeginAction
+	        		    $setResult($_DEVICE);
+	        		  $EndAction
+	        		./
+
+			|	D I A G N O S T I C S
+	        		/.$BeginAction
+	        		    $setResult($_DIAGNOSTICS);
+	        		  $EndAction
+	        		./
+
+			|	D I M E N S I O N S
+	        		/.$BeginAction
+	        		    $setResult($_DIMENSIONS);
+	        		  $EndAction
+	        		./
+
+			|	D I R T Y
+	        		/.$BeginAction
+	        		    $setResult($_DIRTY);
+	        		  $EndAction
+	        		./
+
+			|	D I S A L L O W
+	        		/.$BeginAction
+	        		    $setResult($_DISALLOW);
+	        		  $EndAction
+	        		./
+
+			|	D I S P A T C H
+	        		/.$BeginAction
+	        		    $setResult($_DISPATCH);
+	        		  $EndAction
+	        		./
+
+			|	D I S T I N C T
+	        		/.$BeginAction
+	        		    $setResult($_DISTINCT);
+	        		  $EndAction
+	        		./
+
+			|	D I S T R I B U T I O N
+	        		/.$BeginAction
+	        		    $setResult($_DISTRIBUTION);
+	        		  $EndAction
+	        		./
+
+			|	D L C O N N
+	        		/.$BeginAction
+	        		    $setResult($_DLCONN);
+	        		  $EndAction
+	        		./
+
+			|	D L L O C K
+	        		/.$BeginAction
+	        		    $setResult($_DLLOCK);
+	        		  $EndAction
+	        		./
+
+			|	D O
+	        		/.$BeginAction
+	        		    $setResult($_DO);
+	        		  $EndAction
+	        		./
+
+			|	D O U B L E
+	        		/.$BeginAction
+	        		    $setResult($_DOUBLE);
+	        		  $EndAction
+	        		./
+
+			|	D R O P
+	        		/.$BeginAction
+	        		    $setResult($_DROP);
+	        		  $EndAction
+	        		./
+
+			|	D R O P I N
+	        		/.$BeginAction
+	        		    $setResult($_DROPIN);
+	        		  $EndAction
+	        		./
+
+			|	D R O P P E D
+	        		/.$BeginAction
+	        		    $setResult($_DROPPED);
+	        		  $EndAction
+	        		./
+
+			|	E A C H
+	        		/.$BeginAction
+	        		    $setResult($_EACH);
+	        		  $EndAction
+	        		./
+
+			|	E L E M E N T
+	        		/.$BeginAction
+	        		    $setResult($_ELEMENT);
+	        		  $EndAction
+	        		./
+
+			|	E L S E
+	        		/.$BeginAction
+	        		    $setResult($_ELSE);
+	        		  $EndAction
+	        		./
+
+			|	E L S E I F
+	        		/.$BeginAction
+	        		    $setResult($_ELSEIF);
+	        		  $EndAction
+	        		./
+
+			|	E M P T Y
+	        		/.$BeginAction
+	        		    $setResult($_EMPTY);
+	        		  $EndAction
+	        		./
+
+			|	E N C R Y P T I O N
+	        		/.$BeginAction
+	        		    $setResult($_ENCRYPTION);
+	        		  $EndAction
+	        		./
+
+			|	E N D
+	        		/.$BeginAction
+	        		    $setResult($_END);
+	        		  $EndAction
+	        		./
+
+			|	E N D I N G
+	        		/.$BeginAction
+	        		    $setResult($_ENDING);
+	        		  $EndAction
+	        		./
+
+			|	E N F O R C E D
+	        		/.$BeginAction
+	        		    $setResult($_ENFORCED);
+	        		  $EndAction
+	        		./
+
+			|	E R A S E
+	        		/.$BeginAction
+	        		    $setResult($_ERASE);
+	        		  $EndAction
+	        		./
+
+			|	E S C A P E
+	        		/.$BeginAction
+	        		    $setResult($_ESCAPE);
+	        		  $EndAction
+	        		./
+
+			|	E S T I M A T E
+	        		/.$BeginAction
+	        		    $setResult($_ESTIMATE);
+	        		  $EndAction
+	        		./
+
+			|	E U R
+	        		/.$BeginAction
+	        		    $setResult($_EUR);
+	        		  $EndAction
+	        		./
+
+			|	E V A L U A T E
+	        		/.$BeginAction
+	        		    $setResult($_EVALUATE);
+	        		  $EndAction
+	        		./
+
+			|	E V E N T
+	        		/.$BeginAction
+	        		    $setResult($_EVENT);
+	        		  $EndAction
+	        		./
+
+			|	E X A C T
+	        		/.$BeginAction
+	        		    $setResult($_EXACT);
+	        		  $EndAction
+	        		./
+
+			|	E X C E P T
+	        		/.$BeginAction
+	        		    $setResult($_EXCEPT);
+	        		  $EndAction
+	        		./
+
+			|	E X C E P T I O N
+	        		/.$BeginAction
+	        		    $setResult($_EXCEPTION);
+	        		  $EndAction
+	        		./
+
+			|	E X C L U D E
+	        		/.$BeginAction
+	        		    $setResult($_EXCLUDE);
+	        		  $EndAction
+	        		./
+
+			|	E X C L U D E S
+	        		/.$BeginAction
+	        		    $setResult($_EXCLUDES);
+	        		  $EndAction
+	        		./
+
+			|	E X C L U D I N G
+	        		/.$BeginAction
+	        		    $setResult($_EXCLUDING);
+	        		  $EndAction
+	        		./
+
+			|	E X C L U S I V E
+	        		/.$BeginAction
+	        		    $setResult($_EXCLUSIVE);
+	        		  $EndAction
+	        		./
+
+			|	E X E C N O D E
+	        		/.$BeginAction
+	        		    $setResult($_EXECNODE);
+	        		  $EndAction
+	        		./
+
+			|	E X E C U T E
+	        		/.$BeginAction
+	        		    $setResult($_EXECUTE);
+	        		  $EndAction
+	        		./
+
+			|	E X I S T S
+	        		/.$BeginAction
+	        		    $setResult($_EXISTS);
+	        		  $EndAction
+	        		./
+
+			|	E X I T
+	        		/.$BeginAction
+	        		    $setResult($_EXIT);
+	        		  $EndAction
+	        		./
+
+			|	E X P A N D
+	        		/.$BeginAction
+	        		    $setResult($_EXPAND);
+	        		  $EndAction
+	        		./
+
+			|	E X P L A I N
+	        		/.$BeginAction
+	        		    $setResult($_EXPLAIN);
+	        		  $EndAction
+	        		./
+
+			|	E X P R E S S I O N
+	        		/.$BeginAction
+	        		    $setResult($_EXPRESSION);
+	        		  $EndAction
+	        		./
+
+			|	E X T E N D E D
+	        		/.$BeginAction
+	        		    $setResult($_EXTENDED);
+	        		  $EndAction
+	        		./
+
+			|	E X T E N S I O N
+	        		/.$BeginAction
+	        		    $setResult($_EXTENSION);
+	        		  $EndAction
+	        		./
+
+			|	E X T E N T S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_EXTENTSIZE);
+	        		  $EndAction
+	        		./
+
+			|	E X T E R N A L
+	        		/.$BeginAction
+	        		    $setResult($_EXTERNAL);
+	        		  $EndAction
+	        		./
+
+			|	F A L S E
+	        		/.$BeginAction
+	        		    $setResult($_FALSE);
+	        		  $EndAction
+	        		./
+
+			|	F E D E R A T E D
+	        		/.$BeginAction
+	        		    $setResult($_FEDERATED);
+	        		  $EndAction
+	        		./
+
+			|	F E N C E D
+	        		/.$BeginAction
+	        		    $setResult($_FENCED);
+	        		  $EndAction
+	        		./
+
+			|	F E T C H
+	        		/.$BeginAction
+	        		    $setResult($_FETCH);
+	        		  $EndAction
+	        		./
+
+			|	F I L E
+	        		/.$BeginAction
+	        		    $setResult($_FILE);
+	        		  $EndAction
+	        		./
+
+			|	F I L T E R
+	        		/.$BeginAction
+	        		    $setResult($_FILTER);
+	        		  $EndAction
+	        		./
+
+			|	F I N A L
+	        		/.$BeginAction
+	        		    $setResult($_FINAL);
+	        		  $EndAction
+	        		./
+
+			|	F I R S T
+	        		/.$BeginAction
+	        		    $setResult($_FIRST);
+	        		  $EndAction
+	        		./
+
+			|	F L O A T
+	        		/.$BeginAction
+	        		    $setResult($_FLOAT);
+	        		  $EndAction
+	        		./
+
+			|	F L U S H
+	        		/.$BeginAction
+	        		    $setResult($_FLUSH);
+	        		  $EndAction
+	        		./
+
+			|	F O L L O W I N G
+	        		/.$BeginAction
+	        		    $setResult($_FOLLOWING);
+	        		  $EndAction
+	        		./
+
+			|	F O R
+	        		/.$BeginAction
+	        		    $setResult($_FOR);
+	        		  $EndAction
+	        		./
+
+			|	F O R C E
+	        		/.$BeginAction
+	        		    $setResult($_FORCE);
+	        		  $EndAction
+	        		./
+
+			|	F O R E I G N
+	        		/.$BeginAction
+	        		    $setResult($_FOREIGN);
+	        		  $EndAction
+	        		./
+
+			|	F O U N D
+	        		/.$BeginAction
+	        		    $setResult($_FOUND);
+	        		  $EndAction
+	        		./
+
+			|	F R E E
+	        		/.$BeginAction
+	        		    $setResult($_FREE);
+	        		  $EndAction
+	        		./
+
+			|	F R E E P A G E
+	        		/.$BeginAction
+	        		    $setResult($_FREEPAGE);
+	        		  $EndAction
+	        		./
+
+			|	F R O M
+	        		/.$BeginAction
+	        		    $setResult($_FROM);
+	        		  $EndAction
+	        		./
+
+			|	F S
+	        		/.$BeginAction
+	        		    $setResult($_FS);
+	        		  $EndAction
+	        		./
+
+			|	F U L L
+	        		/.$BeginAction
+	        		    $setResult($_FULL);
+	        		  $EndAction
+	        		./
+
+			|	F U N C T I O N
+	        		/.$BeginAction
+	        		    $setResult($_FUNCTION);
+	        		  $EndAction
+	        		./
+
+			|	G
+	        		/.$BeginAction
+	        		    $setResult($_G);
+	        		  $EndAction
+	        		./
+
+			|	G B P C A C H E
+	        		/.$BeginAction
+	        		    $setResult($_GBPCACHE);
+	        		  $EndAction
+	        		./
+
+			|	G E N E R A L
+	        		/.$BeginAction
+	        		    $setResult($_GENERAL);
+	        		  $EndAction
+	        		./
+
+			|	G E N E R A T E
+	        		/.$BeginAction
+	        		    $setResult($_GENERATE);
+	        		  $EndAction
+	        		./
+
+			|	G E T
+	        		/.$BeginAction
+	        		    $setResult($_GET);
+	        		  $EndAction
+	        		./
+
+			|	G L O B A L
+	        		/.$BeginAction
+	        		    $setResult($_GLOBAL);
+	        		  $EndAction
+	        		./
+
+			|	G O T O
+	        		/.$BeginAction
+	        		    $setResult($_GOTO);
+	        		  $EndAction
+	        		./
+
+			|	G R A N T
+	        		/.$BeginAction
+	        		    $setResult($_GRANT);
+	        		  $EndAction
+	        		./
+
+			|	G R A P H I C
+	        		/.$BeginAction
+	        		    $setResult($_GRAPHIC);
+	        		  $EndAction
+	        		./
+
+			|	G R O U P
+	        		/.$BeginAction
+	        		    $setResult($_GROUP);
+	        		  $EndAction
+	        		./
+
+			|	G R O U P I N G
+	        		/.$BeginAction
+	        		    $setResult($_GROUPING);
+	        		  $EndAction
+	        		./
+
+			|	H A N D L E R
+	        		/.$BeginAction
+	        		    $setResult($_HANDLER);
+	        		  $EndAction
+	        		./
+
+			|	H A S H I N G
+	        		/.$BeginAction
+	        		    $setResult($_HASHING);
+	        		  $EndAction
+	        		./
+
+			|	H A V I N G
+	        		/.$BeginAction
+	        		    $setResult($_HAVING);
+	        		  $EndAction
+	        		./
+
+			|	H I D D E N
+	        		/.$BeginAction
+	        		    $setResult($_HIDDEN);
+	        		  $EndAction
+	        		./
+
+			|	H I E R A R C H Y
+	        		/.$BeginAction
+	        		    $setResult($_HIERARCHY);
+	        		  $EndAction
+	        		./
+
+			|	H I G H
+	        		/.$BeginAction
+	        		    $setResult($_HIGH);
+	        		  $EndAction
+	        		./
+
+			|	H O L D
+	        		/.$BeginAction
+	        		    $setResult($_HOLD);
+	        		  $EndAction
+	        		./
+
+			|	H O U R
+	        		/.$BeginAction
+	        		    $setResult($_HOUR);
+	        		  $EndAction
+	        		./
+
+			|	H O U R S
+	        		/.$BeginAction
+	        		    $setResult($_HOURS);
+	        		  $EndAction
+	        		./
+
+			|	H P J
+	        		/.$BeginAction
+	        		    $setResult($_HPJ);
+	        		  $EndAction
+	        		./
+
+			|	I D
+	        		/.$BeginAction
+	        		    $setResult($_ID);
+	        		  $EndAction
+	        		./
+
+			|	I D E N T I T Y
+	        		/.$BeginAction
+	        		    $setResult($_IDENTITY);
+	        		  $EndAction
+	        		./
+
+			|	I F
+	        		/.$BeginAction
+	        		    $setResult($_IF);
+	        		  $EndAction
+	        		./
+
+			|	I G N O R E
+	        		/.$BeginAction
+	        		    $setResult($_IGNORE);
+	        		  $EndAction
+	        		./
+
+			|	I M M E D I A T E
+	        		/.$BeginAction
+	        		    $setResult($_IMMEDIATE);
+	        		  $EndAction
+	        		./
+
+			|	I N
+	        		/.$BeginAction
+	        		    $setResult($_IN);
+	        		  $EndAction
+	        		./
+
+			|	I N C L U D E
+	        		/.$BeginAction
+	        		    $setResult($_INCLUDE);
+	        		  $EndAction
+	        		./
+
+			|	I N C L U D E S
+	        		/.$BeginAction
+	        		    $setResult($_INCLUDES);
+	        		  $EndAction
+	        		./
+
+			|	I N C L U D I N G
+	        		/.$BeginAction
+	        		    $setResult($_INCLUDING);
+	        		  $EndAction
+	        		./
+
+			|	I N C R E M E N T
+	        		/.$BeginAction
+	        		    $setResult($_INCREMENT);
+	        		  $EndAction
+	        		./
+
+			|	I N C R E M E N T A L
+	        		/.$BeginAction
+	        		    $setResult($_INCREMENTAL);
+	        		  $EndAction
+	        		./
+
+			|	I N D E X
+	        		/.$BeginAction
+	        		    $setResult($_INDEX);
+	        		  $EndAction
+	        		./
+
+			|	I N D E X E S
+	        		/.$BeginAction
+	        		    $setResult($_INDEXES);
+	        		  $EndAction
+	        		./
+
+			|	I N D I C A T O R
+	        		/.$BeginAction
+	        		    $setResult($_INDICATOR);
+	        		  $EndAction
+	        		./
+
+			|	I N F I X
+	        		/.$BeginAction
+	        		    $setResult($_INFIX);
+	        		  $EndAction
+	        		./
+
+			|	I N F O
+	        		/.$BeginAction
+	        		    $setResult($_INFO);
+	        		  $EndAction
+	        		./
+
+			|	I N H E R I T
+	        		/.$BeginAction
+	        		    $setResult($_INHERIT);
+	        		  $EndAction
+	        		./
+
+			|	I N I T I A L L Y
+	        		/.$BeginAction
+	        		    $setResult($_INITIALLY);
+	        		  $EndAction
+	        		./
+
+			|	I N L I N E
+	        		/.$BeginAction
+	        		    $setResult($_INLINE);
+	        		  $EndAction
+	        		./
+
+			|	I N N E R
+	        		/.$BeginAction
+	        		    $setResult($_INNER);
+	        		  $EndAction
+	        		./
+
+			|	I N O U T
+	        		/.$BeginAction
+	        		    $setResult($_INOUT);
+	        		  $EndAction
+	        		./
+
+			|	I N P U T
+	        		/.$BeginAction
+	        		    $setResult($_INPUT);
+	        		  $EndAction
+	        		./
+
+			|	I N S E N S I T I V E
+	        		/.$BeginAction
+	        		    $setResult($_INSENSITIVE);
+	        		  $EndAction
+	        		./
+
+			|	I N S E R T
+	        		/.$BeginAction
+	        		    $setResult($_INSERT);
+	        		  $EndAction
+	        		./
+
+			|	I N S T E A D
+	        		/.$BeginAction
+	        		    $setResult($_INSTEAD);
+	        		  $EndAction
+	        		./
+
+			|	I N T
+	        		/.$BeginAction
+	        		    $setResult($_INT);
+	        		  $EndAction
+	        		./
+
+			|	I N T E G E R
+	        		/.$BeginAction
+	        		    $setResult($_INTEGER);
+	        		  $EndAction
+	        		./
+
+			|	I N T E G R I T Y
+	        		/.$BeginAction
+	        		    $setResult($_INTEGRITY);
+	        		  $EndAction
+	        		./
+
+			|	I N T E R S E C T
+	        		/.$BeginAction
+	        		    $setResult($_INTERSECT);
+	        		  $EndAction
+	        		./
+
+			|	I N T O
+	        		/.$BeginAction
+	        		    $setResult($_INTO);
+	        		  $EndAction
+	        		./
+
+			|	I O
+	        		/.$BeginAction
+	        		    $setResult($_IO);
+	        		  $EndAction
+	        		./
+
+			|	I S
+	        		/.$BeginAction
+	        		    $setResult($_IS);
+	        		  $EndAction
+	        		./
+
+			|	I S O
+	        		/.$BeginAction
+	        		    $setResult($_ISO);
+	        		  $EndAction
+	        		./
+
+			|	I T E R A T E
+	        		/.$BeginAction
+	        		    $setResult($_ITERATE);
+	        		  $EndAction
+	        		./
+
+			|	I S O L A T I O N
+	        		/.$BeginAction
+	        		    $setResult($_ISOLATION);
+	        		  $EndAction
+	        		./
+
+			|	J A V A
+	        		/.$BeginAction
+	        		    $setResult($_JAVA);
+	        		  $EndAction
+	        		./
+
+			|	J I S
+	        		/.$BeginAction
+	        		    $setResult($_JIS);
+	        		  $EndAction
+	        		./
+
+			|	J O I N
+	        		/.$BeginAction
+	        		    $setResult($_JOIN);
+	        		  $EndAction
+	        		./
+
+			|	K
+	        		/.$BeginAction
+	        		    $setResult($_K);
+	        		  $EndAction
+	        		./
+
+			|	K E E P
+	        		/.$BeginAction
+	        		    $setResult($_KEEP);
+	        		  $EndAction
+	        		./
+
+			|	K E Y
+	        		/.$BeginAction
+	        		    $setResult($_KEY);
+	        		  $EndAction
+	        		./
+
+			|	K E Y S
+	        		/.$BeginAction
+	        		    $setResult($_KEYS);
+	        		  $EndAction
+	        		./
+
+			|	L
+	        		/.$BeginAction
+	        		    $setResult($_L);
+	        		  $EndAction
+	        		./
+
+			|	L A N G U A G E
+	        		/.$BeginAction
+	        		    $setResult($_LANGUAGE);
+	        		  $EndAction
+	        		./
+
+			|	L A R G E
+	        		/.$BeginAction
+	        		    $setResult($_LARGE);
+	        		  $EndAction
+	        		./
+
+			|	L A S T
+	        		/.$BeginAction
+	        		    $setResult($_LAST);
+	        		  $EndAction
+	        		./
+
+			|	L A T E R A L
+	        		/.$BeginAction
+	        		    $setResult($_LATERAL);
+	        		  $EndAction
+	        		./
+
+			|	L E A D I N G
+	        		/.$BeginAction
+	        		    $setResult($_LEADING);
+	        		  $EndAction
+	        		./
+
+			|	L E A V E
+	        		/.$BeginAction
+	        		    $setResult($_LEAVE);
+	        		  $EndAction
+	        		./
+
+			|	L E F T
+	        		/.$BeginAction
+	        		    $setResult($_LEFT);
+	        		  $EndAction
+	        		./
+
+			|	L E N G T H
+	        		/.$BeginAction
+	        		    $setResult($_LENGTH);
+	        		  $EndAction
+	        		./
+
+			|	L E V E L
+	        		/.$BeginAction
+	        		    $setResult($_LEVEL);
+	        		  $EndAction
+	        		./
+
+			|	L E V E L 2
+	        		/.$BeginAction
+	        		    $setResult($_LEVEL2);
+	        		  $EndAction
+	        		./
+
+			|	L I B R A R Y
+	        		/.$BeginAction
+	        		    $setResult($_LIBRARY);
+	        		  $EndAction
+	        		./
+
+			|	L I B R A R Y A D M
+	        		/.$BeginAction
+	        		    $setResult($_LIBRARYADM);
+	        		  $EndAction
+	        		./
+
+			|	L I K E
+	        		/.$BeginAction
+	        		    $setResult($_LIKE);
+	        		  $EndAction
+	        		./
+
+			|	L I M I T
+	        		/.$BeginAction
+	        		    $setResult($_LIMIT);
+	        		  $EndAction
+	        		./
+
+			|	L I N K
+	        		/.$BeginAction
+	        		    $setResult($_LINK);
+	        		  $EndAction
+	        		./
+
+			|	L I N K T Y P E
+	        		/.$BeginAction
+	        		    $setResult($_LINKTYPE);
+	        		  $EndAction
+	        		./
+
+			|	L O A D
+	        		/.$BeginAction
+	        		    $setResult($_LOAD);
+	        		  $EndAction
+	        		./
+
+			|	L O C A L
+	        		/.$BeginAction
+	        		    $setResult($_LOCAL);
+	        		  $EndAction
+	        		./
+
+    		|	L O C A L T I M E
+                    /.$BeginAction
+                       $setResult($_LOCALTIME);
+                      $EndAction
+                    ./
+
+			|	L O C A L T I M E S T A M P
+                    /.$BeginAction
+                       $setResult($_LOCALTIMESTAMP);
+                      $EndAction
+                    ./
+
+			|	L O C A L E
+	        		/.$BeginAction
+	        		    $setResult($_LOCALE);
+	        		  $EndAction
+	        		./
+
+			|	L O C A T O R
+	        		/.$BeginAction
+	        		    $setResult($_LOCATOR);
+	        		  $EndAction
+	        		./
+
+			|	L O C A T O R S
+	        		/.$BeginAction
+	        		    $setResult($_LOCATORS);
+	        		  $EndAction
+	        		./
+
+			|	L O C K
+	        		/.$BeginAction
+	        		    $setResult($_LOCK);
+	        		  $EndAction
+	        		./
+
+			|	L O C K S
+	        		/.$BeginAction
+	        		    $setResult($_LOCKS);
+	        		  $EndAction
+	        		./
+
+			|	L O C K S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_LOCKSIZE);
+	        		  $EndAction
+	        		./
+
+			|	L O G
+	        		/.$BeginAction
+	        		    $setResult($_LOG);
+	        		  $EndAction
+	        		./
+
+			|	L O G G E D
+	        		/.$BeginAction
+	        		    $setResult($_LOGGED);
+	        		  $EndAction
+	        		./
+
+			|	L O N G
+	        		/.$BeginAction
+	        		    $setResult($_LONG);
+	        		  $EndAction
+	        		./
+
+			|	L O N G V A R
+	        		/.$BeginAction
+	        		    $setResult($_LONGVAR);
+	        		  $EndAction
+	        		./
+
+			|	L O O P
+	        		/.$BeginAction
+	        		    $setResult($_LOOP);
+	        		  $EndAction
+	        		./
+
+			|	L O W
+	        		/.$BeginAction
+	        		    $setResult($_LOW);
+	        		  $EndAction
+	        		./
+
+			|	M
+	        		/.$BeginAction
+	        		    $setResult($_M);
+	        		  $EndAction
+	        		./
+
+			|	M A N A G E D
+	        		/.$BeginAction
+	        		    $setResult($_MANAGED);
+	        		  $EndAction
+	        		./
+
+			|	M A N U A L S T A R T
+	        		/.$BeginAction
+	        		    $setResult($_MANUALSTART);
+	        		  $EndAction
+	        		./
+
+			|	M A P P I N G
+	        		/.$BeginAction
+	        		    $setResult($_MAPPING);
+	        		  $EndAction
+	        		./
+
+			|	M A T C H E D
+	        		/.$BeginAction
+	        		    $setResult($_MATCHED);
+	        		  $EndAction
+	        		./
+
+			|	M A T E R I A L I Z E D
+	        		/.$BeginAction
+	        		    $setResult($_MATERIALIZED);
+	        		  $EndAction
+	        		./
+
+			|	M A X F I L E S
+	        		/.$BeginAction
+	        		    $setResult($_MAXFILES);
+	        		  $EndAction
+	        		./
+
+			|	M A X F I L E S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_MAXFILESIZE);
+	        		  $EndAction
+	        		./
+
+			|	M A X V A L U E
+	        		/.$BeginAction
+	        		    $setResult($_MAXVALUE);
+	        		  $EndAction
+	        		./
+
+			|	M D C
+	        		/.$BeginAction
+	        		    $setResult($_MDC);
+	        		  $EndAction
+	        		./
+
+			|	M E R G E
+	        		/.$BeginAction
+	        		    $setResult($_MERGE);
+	        		  $EndAction
+	        		./
+
+			|	M E T H O D
+	        		/.$BeginAction
+	        		    $setResult($_METHOD);
+	        		  $EndAction
+	        		./
+
+			|	M E T H O D S
+	        		/.$BeginAction
+	        		    $setResult($_METHODS);
+	        		  $EndAction
+	        		./
+
+			|	M I C R O S E C O N D
+	        		/.$BeginAction
+	        		    $setResult($_MICROSECOND);
+	        		  $EndAction
+	        		./
+
+			|	M I C R O S E C O N D S
+	        		/.$BeginAction
+	        		    $setResult($_MICROSECONDS);
+	        		  $EndAction
+	        		./
+
+			|	M I N P C T U S E D
+	        		/.$BeginAction
+	        		    $setResult($_MINPCTUSED);
+	        		  $EndAction
+	        		./
+
+			|	M I N U T E
+	        		/.$BeginAction
+	        		    $setResult($_MINUTE);
+	        		  $EndAction
+	        		./
+
+			|	M I N U T E S
+	        		/.$BeginAction
+	        		    $setResult($_MINUTES);
+	        		  $EndAction
+	        		./
+
+			|	M I N V A L U E
+	        		/.$BeginAction
+	        		    $setResult($_MINVALUE);
+	        		  $EndAction
+	        		./
+
+			|	M I X E D
+	        		/.$BeginAction
+	        		    $setResult($_MIXED);
+	        		  $EndAction
+	        		./
+
+			|	M O D E
+	        		/.$BeginAction
+	        		    $setResult($_MODE);
+	        		  $EndAction
+	        		./
+
+			|	M O D I F I E S
+	        		/.$BeginAction
+	        		    $setResult($_MODIFIES);
+	        		  $EndAction
+	        		./
+
+			|	M O N I T O R
+	        		/.$BeginAction
+	        		    $setResult($_MONITOR);
+	        		  $EndAction
+	        		./
+
+			|	M O N T H
+	        		/.$BeginAction
+	        		    $setResult($_MONTH);
+	        		  $EndAction
+	        		./
+
+			|	M O N T H S
+	        		/.$BeginAction
+	        		    $setResult($_MONTHS);
+	        		  $EndAction
+	        		./
+
+			|	M O V E M E N T
+	        		/.$BeginAction
+	        		    $setResult($_MOVEMENT);
+	        		  $EndAction
+	        		./
+
+			|	M U L T I S E T
+	        		/.$BeginAction
+	        		    $setResult($_MULTISET);
+	        		  $EndAction
+	        		./
+
+			|	N
+	        		/.$BeginAction
+	        		    $setResult($_N);
+	        		  $EndAction
+	        		./
+
+			|	N A M E
+	        		/.$BeginAction
+	        		    $setResult($_NAME);
+	        		  $EndAction
+	        		./
+
+			|	N E W
+	        		/.$BeginAction
+	        		    $setResult($_NEW);
+	        		  $EndAction
+	        		./
+
+			|	N E X T
+	        		/.$BeginAction
+	        		    $setResult($_NEXT);
+	        		  $EndAction
+	        		./
+
+			|	N E X T V A L
+	        		/.$BeginAction
+	        		    $setResult($_NEXTVAL);
+	        		  $EndAction
+	        		./
+
+			|	N I C K N A M E
+	        		/.$BeginAction
+	        		    $setResult($_NICKNAME);
+	        		  $EndAction
+	        		./
+
+			|	N O
+	        		/.$BeginAction
+	        		    $setResult($_NO);
+	        		  $EndAction
+	        		./
+
+			|	N O C A C H E
+	        		/.$BeginAction
+	        		    $setResult($_NOCACHE);
+	        		  $EndAction
+	        		./
+
+			|	N O C Y C L E
+	        		/.$BeginAction
+	        		    $setResult($_NOCYCLE);
+	        		  $EndAction
+	        		./
+
+			|	N O D E
+	        		/.$BeginAction
+	        		    $setResult($_NODE);
+	        		  $EndAction
+	        		./
+
+			|	N O D E S
+	        		/.$BeginAction
+	        		    $setResult($_NODES);
+	        		  $EndAction
+	        		./
+
+			|	N O D E G R O U P
+	        		/.$BeginAction
+	        		    $setResult($_NODEGROUP);
+	        		  $EndAction
+	        		./
+
+			|	N O M A X V A L U E
+	        		/.$BeginAction
+	        		    $setResult($_NOMAXVALUE);
+	        		  $EndAction
+	        		./
+
+			|	N O M I N V A L U E
+	        		/.$BeginAction
+	        		    $setResult($_NOMINVALUE);
+	        		  $EndAction
+	        		./
+
+			|	N O N B L O C K E D
+	        		/.$BeginAction
+	        		    $setResult($_NONBLOCKED);
+	        		  $EndAction
+	        		./
+
+			|	N O N E
+	        		/.$BeginAction
+	        		    $setResult($_NONE);
+	        		  $EndAction
+	        		./
+
+			|	N O O R D E R
+	        		/.$BeginAction
+	        		    $setResult($_NOORDER);
+	        		  $EndAction
+	        		./
+
+			|	N O T
+	        		/.$BeginAction
+	        		    $setResult($_NOT);
+	        		  $EndAction
+	        		./
+
+			|	N U L L
+	        		/.$BeginAction
+	        		    $setResult($_NULL);
+	        		  $EndAction
+	        		./
+
+			|	N U L L S
+	        		/.$BeginAction
+	        		    $setResult($_NULLS);
+	        		  $EndAction
+	        		./
+
+			|	N U M
+	        		/.$BeginAction
+	        		    $setResult($_NUM);
+	        		  $EndAction
+	        		./
+
+			|	N U M B L O C K P A G E S
+	        		/.$BeginAction
+	        		    $setResult($_NUMBLOCKPAGES);
+	        		  $EndAction
+	        		./
+
+			|	N U M E R I C
+	        		/.$BeginAction
+	        		    $setResult($_NUMERIC);
+	        		  $EndAction
+	        		./
+
+			|	O B J E C T
+	        		/.$BeginAction
+	        		    $setResult($_OBJECT);
+	        		  $EndAction
+	        		./
+
+			|	O F
+	        		/.$BeginAction
+	        		    $setResult($_OF);
+	        		  $EndAction
+	        		./
+
+			|	O F F
+	        		/.$BeginAction
+	        		    $setResult($_OFF);
+	        		  $EndAction
+	        		./
+
+			|	O L D
+	        		/.$BeginAction
+	        		    $setResult($_OLD);
+	        		  $EndAction
+	        		./
+
+			|	O L E
+	        		/.$BeginAction
+	        		    $setResult($_OLE);
+	        		  $EndAction
+	        		./
+
+			|	O L E D B
+	        		/.$BeginAction
+	        		    $setResult($_OLEDB);
+	        		  $EndAction
+	        		./
+
+			|	O N
+	        		/.$BeginAction
+	        		    $setResult($_ON);
+	        		  $EndAction
+	        		./
+
+			|	O N C E
+	        		/.$BeginAction
+	        		    $setResult($_ONCE);
+	        		  $EndAction
+	        		./
+
+			|	O N L I N E
+	        		/.$BeginAction
+	        		    $setResult($_ONLINE);
+	        		  $EndAction
+	        		./
+
+			|	O N L Y
+	        		/.$BeginAction
+	        		    $setResult($_ONLY);
+	        		  $EndAction
+	        		./
+
+			|	O P E N
+	        		/.$BeginAction
+	        		    $setResult($_OPEN);
+	        		  $EndAction
+	        		./
+
+			|	O P T I M I Z A T I O N
+	        		/.$BeginAction
+	        		    $setResult($_OPTIMIZATION);
+	        		  $EndAction
+	        		./
+
+			|	O P T I M I Z E
+	        		/.$BeginAction
+	        		    $setResult($_OPTIMIZE);
+	        		  $EndAction
+	        		./
+
+			|	O P T I O N
+	        		/.$BeginAction
+	        		    $setResult($_OPTION);
+	        		  $EndAction
+	        		./
+
+			|	O R
+	        		/.$BeginAction
+	        		    $setResult($_OR);
+	        		  $EndAction
+	        		./
+
+			|	O R D E R
+	        		/.$BeginAction
+	        		    $setResult($_ORDER);
+	        		  $EndAction
+	        		./
+
+			|	O R G A N I Z E
+	        		/.$BeginAction
+	        		    $setResult($_ORGANIZE);
+	        		  $EndAction
+	        		./
+
+			|	O U T
+	        		/.$BeginAction
+	        		    $setResult($_OUT);
+	        		  $EndAction
+	        		./
+
+			|	O U T E R
+	        		/.$BeginAction
+	        		    $setResult($_OUTER);
+	        		  $EndAction
+	        		./
+
+			|	O V E R
+	        		/.$BeginAction
+	        		    $setResult($_OVER);
+	        		  $EndAction
+	        		./
+
+			|	O V E R F L O W
+	        		/.$BeginAction
+	        		    $setResult($_OVERFLOW);
+	        		  $EndAction
+	        		./
+
+			|	O V E R H E A D
+	        		/.$BeginAction
+	        		    $setResult($_OVERHEAD);
+	        		  $EndAction
+	        		./
+
+			|	O V E R R I D I N G
+	        		/.$BeginAction
+	        		    $setResult($_OVERRIDING);
+	        		  $EndAction
+	        		./
+
+			|	P
+	        		/.$BeginAction
+	        		    $setResult($_P);
+	        		  $EndAction
+	        		./
+
+			|	P A C K A G E
+	        		/.$BeginAction
+	        		    $setResult($_PACKAGE);
+	        		  $EndAction
+	        		./
+
+			|	P A G E
+	        		/.$BeginAction
+	        		    $setResult($_PAGE);
+	        		  $EndAction
+	        		./
+
+			|	P A G E S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_PAGESIZE);
+	        		  $EndAction
+	        		./
+
+			|	P A R A L L E L
+	        		/.$BeginAction
+	        		    $setResult($_PARALLEL);
+	        		  $EndAction
+	        		./
+
+			|	P A R A M E T E R
+	        		/.$BeginAction
+	        		    $setResult($_PARAMETER);
+	        		  $EndAction
+	        		./
+
+			|	P A S S T H R U
+	        		/.$BeginAction
+	        		    $setResult($_PASSTHRU);
+	        		  $EndAction
+	        		./
+
+			|	P A S S W O R D
+	        		/.$BeginAction
+	        		    $setResult($_PASSWORD);
+	        		  $EndAction
+	        		./
+
+			|	P A T H
+	        		/.$BeginAction
+	        		    $setResult($_PATH);
+	        		  $EndAction
+	        		./
+
+			|	P A R T I T I O N
+	        		/.$BeginAction
+	        		    $setResult($_PARTITION);
+	        		  $EndAction
+	        		./
+
+			|	P A R T I T I O N I N G
+	        		/.$BeginAction
+	        		    $setResult($_PARTITIONING);
+	        		  $EndAction
+	        		./
+
+			|	P A R T I T I O N I N G S
+	        		/.$BeginAction
+	        		    $setResult($_PARTITIONINGS);
+	        		  $EndAction
+	        		./
+
+			|	P A T R O L L E R
+	        		/.$BeginAction
+	        		    $setResult($_PATROLLER);
+	        		  $EndAction
+	        		./
+
+			|	P C T D E A C T I V A T E
+	        		/.$BeginAction
+	        		    $setResult($_PCTDEACTIVATE);
+	        		  $EndAction
+	        		./
+
+			|	P C T F R E E
+	        		/.$BeginAction
+	        		    $setResult($_PCTFREE);
+	        		  $EndAction
+	        		./
+
+			|	P E N D I N G
+	        		/.$BeginAction
+	        		    $setResult($_PENDING);
+	        		  $EndAction
+	        		./
+
+			|	P E R M I S S I O N
+	        		/.$BeginAction
+	        		    $setResult($_PERMISSION);
+	        		  $EndAction
+	        		./
+
+			|	P I E C E S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_PIECESIZE);
+	        		  $EndAction
+	        		./
+
+			|	P I P E
+	        		/.$BeginAction
+	        		    $setResult($_PIPE);
+	        		  $EndAction
+	        		./
+
+			|	P L A N
+	        		/.$BeginAction
+	        		    $setResult($_PLAN);
+	        		  $EndAction
+	        		./
+
+			|	P R E C E D I N G
+	        		/.$BeginAction
+	        		    $setResult($_PRECEDING);
+	        		  $EndAction
+	        		./
+
+			|	P R E C I S I O N
+	        		/.$BeginAction
+	        		    $setResult($_PRECISION);
+	        		  $EndAction
+	        		./
+
+			|	P R E D I C A T E S
+	        		/.$BeginAction
+	        		    $setResult($_PREDICATES);
+	        		  $EndAction
+	        		./
+
+			|	P R E F E T C H S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_PREFETCHSIZE);
+	        		  $EndAction
+	        		./
+
+			|	P R E P A R E
+	        		/.$BeginAction
+	        		    $setResult($_PREPARE);
+	        		  $EndAction
+	        		./
+
+			|	P R E S E R V E
+	        		/.$BeginAction
+	        		    $setResult($_PRESERVE);
+	        		  $EndAction
+	        		./
+
+			|	P R E V I O U S
+	        		/.$BeginAction
+	        		    $setResult($_PREVIOUS);
+	        		  $EndAction
+	        		./
+
+			|	P R E V V A L
+	        		/.$BeginAction
+	        		    $setResult($_PREVVAL);
+	        		  $EndAction
+	        		./
+
+			|	P R I M A R Y
+	        		/.$BeginAction
+	        		    $setResult($_PRIMARY);
+	        		  $EndAction
+	        		./
+
+			|	P R I Q T Y
+	        		/.$BeginAction
+	        		    $setResult($_PRIQTY);
+	        		  $EndAction
+	        		./
+
+			|	P R I V I L E G E S
+	        		/.$BeginAction
+	        		    $setResult($_PRIVILEGES);
+	        		  $EndAction
+	        		./
+
+			|	P R O C E D U R E
+	        		/.$BeginAction
+	        		    $setResult($_PROCEDURE);
+	        		  $EndAction
+	        		./
+
+			|	P R O F I L E
+	        		/.$BeginAction
+	        		    $setResult($_PROFILE);
+	        		  $EndAction
+	        		./
+
+			|	P R O G R A M
+	        		/.$BeginAction
+	        		    $setResult($_PROGRAM);
+	        		  $EndAction
+	        		./
+
+			|	P R O P A G A T E
+	        		/.$BeginAction
+	        		    $setResult($_PROPAGATE);
+	        		  $EndAction
+	        		./
+
+			|	P R O T O C O L
+	        		/.$BeginAction
+	        		    $setResult($_PROTOCOL);
+	        		  $EndAction
+	        		./
+
+			|	P R U N E
+	        		/.$BeginAction
+	        		    $setResult($_PRUNE);
+	        		  $EndAction
+	        		./
+
+			|	P U B L I C
+	        		/.$BeginAction
+	        		    $setResult($_PUBLIC);
+	        		  $EndAction
+	        		./
+
+			|	Q U E R Y
+	        		/.$BeginAction
+	        		    $setResult($_QUERY);
+	        		  $EndAction
+	        		./
+
+			|	Q U E R Y N O
+	        		/.$BeginAction
+	        		    $setResult($_QUERYNO);
+	        		  $EndAction
+	        		./
+
+			|	Q U E R Y T A G
+	        		/.$BeginAction
+	        		    $setResult($_QUERYTAG);
+	        		  $EndAction
+	        		./
+
+			|	R A N G E
+	        		/.$BeginAction
+	        		    $setResult($_RANGE);
+	        		  $EndAction
+	        		./
+
+			|	R A T E
+	        		/.$BeginAction
+	        		    $setResult($_RATE);
+	        		  $EndAction
+	        		./
+
+			|	R A T I O
+	        		/.$BeginAction
+	        		    $setResult($_RATIO);
+	        		  $EndAction
+	        		./
+
+			|	R E A D
+	        		/.$BeginAction
+	        		    $setResult($_READ);
+	        		  $EndAction
+	        		./
+
+			|	R E A D S
+	        		/.$BeginAction
+	        		    $setResult($_READS);
+	        		  $EndAction
+	        		./
+
+			|	R E A L
+	        		/.$BeginAction
+	        		    $setResult($_REAL);
+	        		  $EndAction
+	        		./
+
+			|	R E C O M M E N D
+	        		/.$BeginAction
+	        		    $setResult($_RECOMMEND);
+	        		  $EndAction
+	        		./
+
+			|	R E C O N C I L E
+	        		/.$BeginAction
+	        		    $setResult($_RECONCILE);
+	        		  $EndAction
+	        		./
+
+			|	R E C O V E R Y
+	        		/.$BeginAction
+	        		    $setResult($_RECOVERY);
+	        		  $EndAction
+	        		./
+
+			|	R E C R E A T E
+	        		/.$BeginAction
+	        		    $setResult($_RECREATE);
+	        		  $EndAction
+	        		./
+
+			|	R E D U C E
+	        		/.$BeginAction
+	        		    $setResult($_REDUCE);
+	        		  $EndAction
+	        		./
+
+			|	R E F
+	        		/.$BeginAction
+	        		    $setResult($_REF);
+	        		  $EndAction
+	        		./
+
+			|	R E F E R E N C E
+	        		/.$BeginAction
+	        		    $setResult($_REFERENCE);
+	        		  $EndAction
+	        		./
+
+			|	R E F E R E N C E S
+	        		/.$BeginAction
+	        		    $setResult($_REFERENCES);
+	        		  $EndAction
+	        		./
+
+			|	R E F E R E N C I N G
+	        		/.$BeginAction
+	        		    $setResult($_REFERENCING);
+	        		  $EndAction
+	        		./
+
+			|	R E F R E S H
+	        		/.$BeginAction
+	        		    $setResult($_REFRESH);
+	        		  $EndAction
+	        		./
+
+			|	R E G I S T E R S
+	        		/.$BeginAction
+	        		    $setResult($_REGISTERS);
+	        		  $EndAction
+	        		./
+
+			|	R E G U L A R
+	        		/.$BeginAction
+	        		    $setResult($_REGULAR);
+	        		  $EndAction
+	        		./
+
+			|	R E L E A S E
+	        		/.$BeginAction
+	        		    $setResult($_RELEASE);
+	        		  $EndAction
+	        		./
+
+			|	R E M A I N
+	        		/.$BeginAction
+	        		    $setResult($_REMAIN);
+	        		  $EndAction
+	        		./
+
+			|	R E M O T E
+	        		/.$BeginAction
+	        		    $setResult($_REMOTE);
+	        		  $EndAction
+	        		./
+
+			|	R E N A M E
+	        		/.$BeginAction
+	        		    $setResult($_RENAME);
+	        		  $EndAction
+	        		./
+
+			|	R E O P T
+	        		/.$BeginAction
+	        		    $setResult($_REOPT);
+	        		  $EndAction
+	        		./
+
+			|	R E P E A T A B L E
+	        		/.$BeginAction
+	        		    $setResult($_REPEATABLE);
+	        		  $EndAction
+	        		./
+
+			|	R E P E A T
+	        		/.$BeginAction
+	        		    $setResult($_REPEAT);
+	        		  $EndAction
+	        		./
+
+			|	R E P L A C E
+	        		/.$BeginAction
+	        		    $setResult($_REPLACE);
+	        		  $EndAction
+	        		./
+
+			|	R E P L I C A T E D
+	        		/.$BeginAction
+	        		    $setResult($_REPLICATED);
+	        		  $EndAction
+	        		./
+
+			|	R E Q U I R I N G
+	        		/.$BeginAction
+	        		    $setResult($_REQUIRING);
+	        		  $EndAction
+	        		./
+
+			|	R E S E T
+	        		/.$BeginAction
+	        		    $setResult($_RESET);
+	        		  $EndAction
+	        		./
+
+			|	R E S I D E N T
+	        		/.$BeginAction
+	        		    $setResult($_RESIDENT);
+	        		  $EndAction
+	        		./
+
+			|	R E S I G N A L
+	        		/.$BeginAction
+	        		    $setResult($_RESIGNAL);
+	        		  $EndAction
+	        		./
+
+			|	R E S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_RESIZE);
+	        		  $EndAction
+	        		./
+
+			|	R E S O L V E
+	        		/.$BeginAction
+	        		    $setResult($_RESOLVE);
+	        		  $EndAction
+	        		./
+
+			|	R E S T A R T
+	        		/.$BeginAction
+	        		    $setResult($_RESTART);
+	        		  $EndAction
+	        		./
+
+			|	R E S T O R E
+	        		/.$BeginAction
+	        		    $setResult($_RESTORE);
+	        		  $EndAction
+	        		./
+
+			|	R E S T R I C T
+	        		/.$BeginAction
+	        		    $setResult($_RESTRICT);
+	        		  $EndAction
+	        		./
+
+			|	R E S U L T
+	        		/.$BeginAction
+	        		    $setResult($_RESULT);
+	        		  $EndAction
+	        		./
+
+			|	R E T A I N
+	        		/.$BeginAction
+	        		    $setResult($_RETAIN);
+	        		  $EndAction
+	        		./
+
+			|	R E T U R N
+	        		/.$BeginAction
+	        		    $setResult($_RETURN);
+	        		  $EndAction
+	        		./
+
+			|	R E T U R N S
+	        		/.$BeginAction
+	        		    $setResult($_RETURNS);
+	        		  $EndAction
+	        		./
+
+			|	R E V E R S E
+	        		/.$BeginAction
+	        		    $setResult($_REVERSE);
+	        		  $EndAction
+	        		./
+
+			|	R E V O K E
+	        		/.$BeginAction
+	        		    $setResult($_REVOKE);
+	        		  $EndAction
+	        		./
+
+			|	R I G H T
+	        		/.$BeginAction
+	        		    $setResult($_RIGHT);
+	        		  $EndAction
+	        		./
+
+			|	R O L L B A C K
+	        		/.$BeginAction
+	        		    $setResult($_ROLLBACK);
+	        		  $EndAction
+	        		./
+
+			|	R O L L U P
+	        		/.$BeginAction
+	        		    $setResult($_ROLLUP);
+	        		  $EndAction
+	        		./
+
+			|	R O U T I N E
+	        		/.$BeginAction
+	        		    $setResult($_ROUTINE);
+	        		  $EndAction
+	        		./
+
+			|	R O W
+	        		/.$BeginAction
+	        		    $setResult($_ROW);
+	        		  $EndAction
+	        		./
+
+			|	R O W S
+	        		/.$BeginAction
+	        		    $setResult($_ROWS);
+	        		  $EndAction
+	        		./
+
+			|	R R
+	        		/.$BeginAction
+	        		    $setResult($_RR);
+	        		  $EndAction
+	        		./
+
+			|	R S
+	        		/.$BeginAction
+	        		    $setResult($_RS);
+	        		  $EndAction
+	        		./
+
+			|	R U N
+	        		/.$BeginAction
+	        		    $setResult($_RUN);
+	        		  $EndAction
+	        		./
+
+			|	S
+	        		/.$BeginAction
+	        		    $setResult($_S);
+	        		  $EndAction
+	        		./
+
+			|	S A M P L E D
+	        		/.$BeginAction
+	        		    $setResult($_SAMPLED);
+	        		  $EndAction
+	        		./
+
+			|	S A V E P O I N T
+	        		/.$BeginAction
+	        		    $setResult($_SAVEPOINT);
+	        		  $EndAction
+	        		./
+
+			|	S B C S
+	        		/.$BeginAction
+	        		    $setResult($_SBCS);
+	        		  $EndAction
+	        		./
+
+			|	S C A N S
+	        		/.$BeginAction
+	        		    $setResult($_SCANS);
+	        		  $EndAction
+	        		./
+
+			|	S C H E M A
+	        		/.$BeginAction
+	        		    $setResult($_SCHEMA);
+	        		  $EndAction
+	        		./
+
+			|	S C O P E
+	        		/.$BeginAction
+	        		    $setResult($_SCOPE);
+	        		  $EndAction
+	        		./
+
+			|	S C R A T C H P A D
+	        		/.$BeginAction
+	        		    $setResult($_SCRATCHPAD);
+	        		  $EndAction
+	        		./
+
+			|	S C R O L L
+	        		/.$BeginAction
+	        		    $setResult($_SCROLL);
+	        		  $EndAction
+	        		./
+
+			|	S E A R C H
+	        		/.$BeginAction
+	        		    $setResult($_SEARCH);
+	        		  $EndAction
+	        		./
+
+			|	S E C O N D
+	        		/.$BeginAction
+	        		    $setResult($_SECOND);
+	        		  $EndAction
+	        		./
+
+			|	S E C O N D S
+	        		/.$BeginAction
+	        		    $setResult($_SECONDS);
+	        		  $EndAction
+	        		./
+
+			|	S E C Q T Y
+	        		/.$BeginAction
+	        		    $setResult($_SECQTY);
+	        		  $EndAction
+	        		./
+
+			|	S E C U R I T Y A D M
+	        		/.$BeginAction
+	        		    $setResult($_SECURITYADM);
+	        		  $EndAction
+	        		./
+
+			|	S E L E C T
+	        		/.$BeginAction
+	        		    $setResult($_SELECT);
+	        		  $EndAction
+	        		./
+
+			|	S E L E C T I O N
+	        		/.$BeginAction
+	        		    $setResult($_SELECTION);
+	        		  $EndAction
+	        		./
+
+			|	S E L E C T I V E
+	        		/.$BeginAction
+	        		    $setResult($_SELECTIVE);
+	        		  $EndAction
+	        		./
+
+			|	S E L E C T I V I T Y
+	        		/.$BeginAction
+	        		    $setResult($_SELECTIVITY);
+	        		  $EndAction
+	        		./
+
+			|	S E L F
+	        		/.$BeginAction
+	        		    $setResult($_SELF);
+	        		  $EndAction
+	        		./
+
+			|	S E N S I T I V E
+	        		/.$BeginAction
+	        		    $setResult($_SENSITIVE);
+	        		  $EndAction
+	        		./
+
+			|	S E Q U E N C E
+	        		/.$BeginAction
+	        		    $setResult($_SEQUENCE);
+	        		  $EndAction
+	        		./
+
+			|	S E R I A L I Z A B L E
+	        		/.$BeginAction
+	        		    $setResult($_SERIALIZABLE);
+	        		  $EndAction
+	        		./
+
+			|	S E R V E R
+	        		/.$BeginAction
+	        		    $setResult($_SERVER);
+	        		  $EndAction
+	        		./
+
+			|	S E S S I O N
+	        		/.$BeginAction
+	        		    $setResult($_SESSION);
+	        		  $EndAction
+	        		./
+
+			|	S E S S I O N _ U S E R
+                    /.$BeginAction
+                       $setResult($_SESSION_USER);
+                      $EndAction
+                    ./
+
+			|	S E T
+	        		/.$BeginAction
+	        		    $setResult($_SET);
+	        		  $EndAction
+	        		./
+
+			|	S E T S
+	        		/.$BeginAction
+	        		    $setResult($_SETS);
+	        		  $EndAction
+	        		./
+
+			|	S E T T I N G
+	        		/.$BeginAction
+	        		    $setResult($_SETTING);
+	        		  $EndAction
+	        		./
+
+			|	S H A R E
+	        		/.$BeginAction
+	        		    $setResult($_SHARE);
+	        		  $EndAction
+	        		./
+
+			|	S H R L E V E L
+	        		/.$BeginAction
+	        		    $setResult($_SHRLEVEL);
+	        		  $EndAction
+	        		./
+
+			|	S I G N A L
+	        		/.$BeginAction
+	        		    $setResult($_SIGNAL);
+	        		  $EndAction
+	        		./
+
+			|	S I M P L E
+	        		/.$BeginAction
+	        		    $setResult($_SIMPLE);
+	        		  $EndAction
+	        		./
+
+			|	S I Z E
+	        		/.$BeginAction
+	        		    $setResult($_SIZE);
+	        		  $EndAction
+	        		./
+
+			|	S M A L L I N T
+	        		/.$BeginAction
+	        		    $setResult($_SMALLINT);
+	        		  $EndAction
+	        		./
+
+			|	S N A P S H O T
+	        		/.$BeginAction
+	        		    $setResult($_SNAPSHOT);
+	        		  $EndAction
+	        		./
+
+			|	S O M E
+	        		/.$BeginAction
+	        		    $setResult($_SOME);
+	        		  $EndAction
+	        		./
+
+			|	S O U R C E
+	        		/.$BeginAction
+	        		    $setResult($_SOURCE);
+	        		  $EndAction
+	        		./
+
+			|	S P E C I A L
+	        		/.$BeginAction
+	        		    $setResult($_SPECIAL);
+	        		  $EndAction
+	        		./
+
+			|	S P E C I F I C
+	        		/.$BeginAction
+	        		    $setResult($_SPECIFIC);
+	        		  $EndAction
+	        		./
+
+			|	S P E C I F I C A T I O N
+	        		/.$BeginAction
+	        		    $setResult($_SPECIFICATION);
+	        		  $EndAction
+	        		./
+
+			|	S P L I T
+	        		/.$BeginAction
+	        		    $setResult($_SPLIT);
+	        		  $EndAction
+	        		./
+
+			|	S Q L
+	        		/.$BeginAction
+	        		    $setResult($_SQL);
+	        		  $EndAction
+	        		./
+
+			|	S Q L D A T A
+	        		/.$BeginAction
+	        		    $setResult($_SQLDATA);
+	        		  $EndAction
+	        		./
+
+			|	S Q L E R R O R
+	        		/.$BeginAction
+	        		    $setResult($_SQLERROR);
+	        		  $EndAction
+	        		./
+
+			|	S Q L E X C E P T I O N
+	        		/.$BeginAction
+	        		    $setResult($_SQLEXCEPTION);
+	        		  $EndAction
+	        		./
+
+			|	S Q L W A R N I N G
+	        		/.$BeginAction
+	        		    $setResult($_SQLWARNING);
+	        		  $EndAction
+	        		./
+
+			|	S Q L I D
+	        		/.$BeginAction
+	        		    $setResult($_SQLID);
+	        		  $EndAction
+	        		./
+
+			|	S Q L M A C R O
+	        		/.$BeginAction
+	        		    $setResult($_SQLMACRO);
+	        		  $EndAction
+	        		./
+
+			|	S Q L S T A T E
+	        		/.$BeginAction
+	        		    $setResult($_SQLSTATE);
+	        		  $EndAction
+	        		./
+
+			|	S S A
+	        		/.$BeginAction
+	        		    $setResult($_SSA);
+	        		  $EndAction
+	        		./
+
+			|	S T A B I L I T Y
+	        		/.$BeginAction
+	        		    $setResult($_STABILITY);
+	        		  $EndAction
+	        		./
+
+			|	S T A R T
+	        		/.$BeginAction
+	        		    $setResult($_START);
+	        		  $EndAction
+	        		./
+
+			|	S T A T E
+	        		/.$BeginAction
+	        		    $setResult($_STATE);
+	        		  $EndAction
+	        		./
+
+			|	S T A T E M E N T
+	        		/.$BeginAction
+	        		    $setResult($_STATEMENT);
+	        		  $EndAction
+	        		./
+
+			|	S T A T E M E N T S
+	        		/.$BeginAction
+	        		    $setResult($_STATEMENTS);
+	        		  $EndAction
+	        		./
+
+			|	S T A T I C
+	        		/.$BeginAction
+	        		    $setResult($_STATIC);
+	        		  $EndAction
+	        		./
+
+			|	S T A T I S T I C S
+	        		/.$BeginAction
+	        		    $setResult($_STATISTICS);
+	        		  $EndAction
+	        		./
+
+			|	S T A R T I N G
+	        		/.$BeginAction
+	        		    $setResult($_STARTING);
+	        		  $EndAction
+	        		./
+
+			|	S T A Y
+	        		/.$BeginAction
+	        		    $setResult($_STAY);
+	        		  $EndAction
+	        		./
+
+			|	S T M T
+	        		/.$BeginAction
+	        		    $setResult($_STMT);
+	        		  $EndAction
+	        		./
+
+			|	S T O G R O U P
+	        		/.$BeginAction
+	        		    $setResult($_STOGROUP);
+	        		  $EndAction
+	        		./
+
+			|	S T O R A G E
+	        		/.$BeginAction
+	        		    $setResult($_STORAGE);
+	        		  $EndAction
+	        		./
+
+			|	S T O R E D
+	        		/.$BeginAction
+	        		    $setResult($_STORED);
+	        		  $EndAction
+	        		./
+
+			|	S T R I P
+	        		/.$BeginAction
+	        		    $setResult($_STRIP);
+	        		  $EndAction
+	        		./
+
+			|	S T R I P E
+	        		/.$BeginAction
+	        		    $setResult($_STRIPE);
+	        		  $EndAction
+	        		./
+
+			|	S T Y L E
+	        		/.$BeginAction
+	        		    $setResult($_STYLE);
+	        		  $EndAction
+	        		./
+
+			|	S U B
+	        		/.$BeginAction
+	        		    $setResult($_SUB);
+	        		  $EndAction
+	        		./
+
+			|	S U B S E C T I O N
+	        		/.$BeginAction
+	        		    $setResult($_SUBSECTION);
+	        		  $EndAction
+	        		./
+
+			|	S U M M A R Y
+	        		/.$BeginAction
+	        		    $setResult($_SUMMARY);
+	        		  $EndAction
+	        		./
+
+			|	S W I T C H
+	        		/.$BeginAction
+	        		    $setResult($_SWITCH);
+	        		  $EndAction
+	        		./
+
+			|	S Y M M E T R I C
+	        		/.$BeginAction
+	        		    $setResult($_SYMMETRIC);
+	        		  $EndAction
+	        		./
+
+			|	S Y N O N Y M
+	        		/.$BeginAction
+	        		    $setResult($_SYNONYM);
+	        		  $EndAction
+	        		./
+
+			|	S Y S T E M
+	        		/.$BeginAction
+	        		    $setResult($_SYSTEM);
+	        		  $EndAction
+	        		./
+
+			|	S Y S T E M _ U S E R
+                    /.$BeginAction
+                       $setResult($_SYSTEM_USER);
+                      $EndAction
+                    ./
+
+			|	T
+	        		/.$BeginAction
+	        		    $setResult($_T);
+	        		  $EndAction
+	        		./
+
+			|	T A B L E
+	        		/.$BeginAction
+	        		    $setResult($_TABLE);
+	        		  $EndAction
+	        		./
+
+			|	T A B L E S
+	        		/.$BeginAction
+	        		    $setResult($_TABLES);
+	        		  $EndAction
+	        		./
+
+			|	T A B L E S A M P L E
+	        		/.$BeginAction
+	        		    $setResult($_TABLESAMPLE);
+	        		  $EndAction
+	        		./
+
+			|	T A B L E S P A C E
+	        		/.$BeginAction
+	        		    $setResult($_TABLESPACE);
+	        		  $EndAction
+	        		./
+
+			|	T A B L E S P A C E S
+	        		/.$BeginAction
+	        		    $setResult($_TABLESPACES);
+	        		  $EndAction
+	        		./
+
+			|	T A R G E T
+	        		/.$BeginAction
+	        		    $setResult($_TARGET);
+	        		  $EndAction
+	        		./
+
+			|	T E M P L A T E
+	        		/.$BeginAction
+	        		    $setResult($_TEMPLATE);
+	        		  $EndAction
+	        		./
+
+			|	T E M P O R A R Y
+	        		/.$BeginAction
+	        		    $setResult($_TEMPORARY);
+	        		  $EndAction
+	        		./
+
+			|	T H E N
+	        		/.$BeginAction
+	        		    $setResult($_THEN);
+	        		  $EndAction
+	        		./
+
+			|	T H R E A D S A F E
+	        		/.$BeginAction
+	        		    $setResult($_THREADSAFE);
+	        		  $EndAction
+	        		./
+
+			|	T H R O U G H
+	        		/.$BeginAction
+	        		    $setResult($_THROUGH);
+	        		  $EndAction
+	        		./
+
+			|	T I M E
+	        		/.$BeginAction
+	        		    $setResult($_TIME);
+	        		  $EndAction
+	        		./
+
+			|	T I M E O U T
+	        		/.$BeginAction
+	        		    $setResult($_TIMEOUT);
+	        		  $EndAction
+	        		./
+
+			|	T I M E S T A M P
+	        		/.$BeginAction
+	        		    $setResult($_TIMESTAMP);
+	        		  $EndAction
+	        		./
+
+			|	T I M E Z O N E
+	        		/.$BeginAction
+	        		    $setResult($_TIMEZONE);
+	        		  $EndAction
+	        		./
+
+			|	T O
+	        		/.$BeginAction
+	        		    $setResult($_TO);
+	        		  $EndAction
+	        		./
+
+			|	T O K E N
+	        		/.$BeginAction
+	        		    $setResult($_TOKEN);
+	        		  $EndAction
+	        		./
+
+			|	T R A I L I N G
+	        		/.$BeginAction
+	        		    $setResult($_TRAILING);
+	        		  $EndAction
+	        		./
+
+			|	T R A N S A C T I O N S
+	        		/.$BeginAction
+	        		    $setResult($_TRANSACTIONS);
+	        		  $EndAction
+	        		./
+
+			|	T R A N S F E R R A T E
+	        		/.$BeginAction
+	        		    $setResult($_TRANSFERRATE);
+	        		  $EndAction
+	        		./
+
+			|	T R A N S F O R M
+	        		/.$BeginAction
+	        		    $setResult($_TRANSFORM);
+	        		  $EndAction
+	        		./
+
+			|	T R A N S F O R M S
+	        		/.$BeginAction
+	        		    $setResult($_TRANSFORMS);
+	        		  $EndAction
+	        		./
+
+			|	T R A N S L A T E
+	        		/.$BeginAction
+	        		    $setResult($_TRANSLATE);
+	        		  $EndAction
+	        		./
+
+			|	T R E A T
+	        		/.$BeginAction
+	        		    $setResult($_TREAT);
+	        		  $EndAction
+	        		./
+
+			|	T R I G G E R
+	        		/.$BeginAction
+	        		    $setResult($_TRIGGER);
+	        		  $EndAction
+	        		./
+
+			|	T R U E
+	        		/.$BeginAction
+	        		    $setResult($_TRUE);
+	        		  $EndAction
+	        		./
+
+			|	T R U N C
+	        		/.$BeginAction
+	        		    $setResult($_TRUNC);
+	        		  $EndAction
+	        		./
+
+			|	T W O L E V E L
+	        		/.$BeginAction
+	        		    $setResult($_TWOLEVEL);
+	        		  $EndAction
+	        		./
+
+			|	T Y P E
+	        		/.$BeginAction
+	        		    $setResult($_TYPE);
+	        		  $EndAction
+	        		./
+
+			|	T Y P E S
+	        		/.$BeginAction
+	        		    $setResult($_TYPES);
+	        		  $EndAction
+	        		./
+
+			|	U N B O U N D E D
+	        		/.$BeginAction
+	        		    $setResult($_UNBOUNDED);
+	        		  $EndAction
+	        		./
+
+			|	U N C H E C K E D
+	        		/.$BeginAction
+	        		    $setResult($_UNCHECKED);
+	        		  $EndAction
+	        		./
+
+			|	U N C O M M I T T E D
+	        		/.$BeginAction
+	        		    $setResult($_UNCOMMITTED);
+	        		  $EndAction
+	        		./
+
+			|	U N D O
+	        		/.$BeginAction
+	        		    $setResult($_UNDO);
+	        		  $EndAction
+	        		./
+
+			|	U N I C O D E
+	        		/.$BeginAction
+	        		    $setResult($_UNICODE);
+	        		  $EndAction
+	        		./
+
+			|	U N I O N
+	        		/.$BeginAction
+	        		    $setResult($_UNION);
+	        		  $EndAction
+	        		./
+
+			|	U N I Q U E
+	        		/.$BeginAction
+	        		    $setResult($_UNIQUE);
+	        		  $EndAction
+	        		./
+
+			|	U N L I N K
+	        		/.$BeginAction
+	        		    $setResult($_UNLINK);
+	        		  $EndAction
+	        		./
+
+			|	U N T I L
+	        		/.$BeginAction
+	        		    $setResult($_UNTIL);
+	        		  $EndAction
+	        		./
+
+			|	U P D A T E
+	        		/.$BeginAction
+	        		    $setResult($_UPDATE);
+	        		  $EndAction
+	        		./
+
+			|	U R
+	        		/.$BeginAction
+	        		    $setResult($_UR);
+	        		  $EndAction
+	        		./
+
+			|	U R L
+	        		/.$BeginAction
+	        		    $setResult($_URL);
+	        		  $EndAction
+	        		./
+
+			|	U S A
+	        		/.$BeginAction
+	        		    $setResult($_USA);
+	        		  $EndAction
+	        		./
+
+			|	U S E
+	        		/.$BeginAction
+	        		    $setResult($_USE);
+	        		  $EndAction
+	        		./
+
+			|	U S A G E
+	        		/.$BeginAction
+	        		    $setResult($_USAGE);
+	        		  $EndAction
+	        		./
+
+			|	U S E R
+	        		/.$BeginAction
+	        		    $setResult($_USER);
+	        		  $EndAction
+	        		./
+
+			|	U S E R I D
+	        		/.$BeginAction
+	        		    $setResult($_USERID);
+	        		  $EndAction
+	        		./
+
+			|	U S I N G
+	        		/.$BeginAction
+	        		    $setResult($_USING);
+	        		  $EndAction
+	        		./
+
+			|	V A L U E
+	        		/.$BeginAction
+	        		    $setResult($_VALUE);
+	        		  $EndAction
+	        		./
+
+			|	V A L U E S
+	        		/.$BeginAction
+	        		    $setResult($_VALUES);
+	        		  $EndAction
+	        		./
+
+			|	V A R C H A R
+	        		/.$BeginAction
+	        		    $setResult($_VARCHAR);
+	        		  $EndAction
+	        		./
+
+			|	V A R G R A P H I C
+	        		/.$BeginAction
+	        		    $setResult($_VARGRAPHIC);
+	        		  $EndAction
+	        		./
+
+			|	V A R I A N T
+	        		/.$BeginAction
+	        		    $setResult($_VARIANT);
+	        		  $EndAction
+	        		./
+
+			|	V A R Y I N G
+	        		/.$BeginAction
+	        		    $setResult($_VARYING);
+	        		  $EndAction
+	        		./
+
+			|	V C A T
+	        		/.$BeginAction
+	        		    $setResult($_VCAT);
+	        		  $EndAction
+	        		./
+
+			|	V E R S I O N
+	        		/.$BeginAction
+	        		    $setResult($_VERSION);
+	        		  $EndAction
+	        		./
+
+			|	V I E W
+	        		/.$BeginAction
+	        		    $setResult($_VIEW);
+	        		  $EndAction
+	        		./
+
+			|	V O L A T I L E
+	        		/.$BeginAction
+	        		    $setResult($_VOLATILE);
+	        		  $EndAction
+	        		./
+
+			|	W A I T
+	        		/.$BeginAction
+	        		    $setResult($_WAIT);
+	        		  $EndAction
+	        		./
+
+			|	W H E N
+	        		/.$BeginAction
+	        		    $setResult($_WHEN);
+	        		  $EndAction
+	        		./
+
+			|	W H E R E
+	        		/.$BeginAction
+	        		    $setResult($_WHERE);
+	        		  $EndAction
+	        		./
+
+			|	W H I L E
+	        		/.$BeginAction
+	        		    $setResult($_WHILE);
+	        		  $EndAction
+	        		./
+
+			|	W I T H
+	        		/.$BeginAction
+	        		    $setResult($_WITH);
+	        		  $EndAction
+	        		./
+
+			|	W I T H O U T
+	        		/.$BeginAction
+	        		    $setResult($_WITHOUT);
+	        		  $EndAction
+	        		./
+
+			|	W O R K
+	        		/.$BeginAction
+	        		    $setResult($_WORK);
+	        		  $EndAction
+	        		./
+
+			|	W R A P P E R
+	        		/.$BeginAction
+	        		    $setResult($_WRAPPER);
+	        		  $EndAction
+	        		./
+
+			|	W R I T E
+	        		/.$BeginAction
+	        		    $setResult($_WRITE);
+	        		  $EndAction
+	        		./
+
+			|	W R K S T N N A M E
+	        		/.$BeginAction
+	        		    $setResult($_WRKSTNNAME);
+	        		  $EndAction
+	        		./
+
+			|	X
+	        		/.$BeginAction
+	        		    $setResult($_X);
+	        		  $EndAction
+	        		./
+
+			|	X A C T
+	        		/.$BeginAction
+	        		    $setResult($_XACT);
+	        		  $EndAction
+	        		./
+
+			|	Y E A R
+	        		/.$BeginAction
+	        		    $setResult($_YEAR);
+	        		  $EndAction
+	        		./
+
+			|	Y E A R S
+	        		/.$BeginAction
+	        		    $setResult($_YEARS);
+	        		  $EndAction
+	        		./
+
+			|	Y E S
+	        		/.$BeginAction
+	        		    $setResult($_YES);
+	        		  $EndAction
+	        		./
+
+
+$End
+
+$include sqlKeywordLexerXMLRules.lpg

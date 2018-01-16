@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="dbdeffilter" name="dbdefinition filter" schema="schema/dbdeffilter.exsd"/>
+
+     <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
+            default="true"
+            extensions="ddl,sql,sqlpage"
+            icon="images/qrydoc.gif"
+            id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor"
+            name="%ScrapbookEditor.name"/>
+   </extension>
+
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+<!-- SQL Scrapbook Menu -->
+      <viewerContribution
+            targetID="org.eclipse.datatools.connectivity.server.ui.navigator.serverExplorer"
+            id="org.eclipse.datatools.connectivity.server.ui.navigator.popupMenus.sqlscrapbook">
+         <action
+               label="%SQLScrapbookAction.title_UI_"
+               class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SQLScrapbookAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.popupMenus.sqlscrapbook">
+         </action>
+         <visibility>
+            <objectClass
+                  name="org.eclipse.datatools.modelbase.sql.schema.Database">
+            </objectClass>
+         </visibility>
+      </viewerContribution>
+   </extension>
+
+   <!-- sql file popup menus -->   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      
+      <objectContribution 
+         id="com.sybase.stf.dmp.ui.actions.ExecuteSQLFileActionDelegate.contribution" 
+         objectClass="org.eclipse.core.resources.IFile">
+		<visibility>
+			<and>
+				<objectClass name="org.eclipse.core.resources.IFile">
+				</objectClass>
+				<objectState 
+					name="extension"
+					value="sql"/>
+			</and>
+		</visibility>
+         <action
+               helpContextId="com.sybase.stf.dmp.debugger.sql_file_action"
+               enablesFor="+"
+               label="%DatabaseManagement.ExecuteSQLFile"
+               class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.ExecuteSQLFileActionDelegate"
+               icon="images/sql_execute.gif"
+               style="push"
+               menubarPath="additions"
+               id="com.sybase.stf.dmp.ui.actions.ExecuteSQLFileActionDelegate"> 
+         </action> 
+      </objectContribution> 
+      
+   </extension>   
+   
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="%NewWizardCategoryName"
+            id="org.eclipse.datatools.sql">
+      </category>
+      <wizard
+            name="%NewSQLScrapbookPage.label"
+            icon="images/qrydoc.gif"
+            category="org.eclipse.datatools.sql"
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"
+            id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard">
+         <description>
+            %NewSQLScrapbookPage.description
+         </description>
+      </wizard>
+   </extension>
+   
+   <!-- preference pages --> 
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.SQLScrapbookPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%datatools.preferences.sqlfile.name"
+            id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.sqlfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFilePreferenceInitializer"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+         <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.attach"
+            id="org.eclipse.datatools.sqltools.sqleditor.attachProfileAction"/>
+         <command
+               defaultHandler="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+               name="%open_sql_scrapbook">
+         </command>
+   </extension>
+   
+   <!-- Register a factory for recreating SQLEditorFileEditorInput objects when
+        the Workbench is restarted. -->
+   <extension 
+      point = "org.eclipse.ui.elementFactories"> 
+         <factory 
+            id ="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditorInputFactory" 
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditorInputFactory"> 
+         </factory> 
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet"
+            label="%sql_scrapbook"
+            visible="false">
+         <action
+               class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               icon="images/scrapbook.gif"
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               label="%open_sql_scrapbook"
+               toolbarPath="group.sqleditor.open"
+               tooltip="%open_sql_scrapbook_tooltip">
+         </action>
+      </actionSet>
+   </extension> 
+   
+    <!-- next are how to hook DTP SQL Editor perspective/actions with other perspectives/actions of eclipse -->
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <!-- extension to the DTP editor perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+	    	 <actionSet
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet">
+             </actionSet>
+
+            <!-- Add New SQL File Wizard shortcuts !-->
+            <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
+                  
+        </perspectiveExtension>
+        <!-- extension to the DTP debugger perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+            <!-- Add New SQL File Wizard shortcuts !-->
+            <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
+        </perspectiveExtension>
+    </extension>
+    
+    <extension  
+  		point="org.eclipse.ui.navigator.navigatorContent">
+   		<commonWizard
+         	type="new"
+         	wizardId="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard">
+      		<enablement>
+         		<or>
+            	<adapt type="org.eclipse.core.resources.IFile" /> 
+    			<adapt type="org.eclipse.core.resources.IFolder" />
+           		<adapt type="org.eclipse.core.resources.IProject" /> 
+             	<adapt type="org.eclipse.core.resources.IWorkspaceRoot" /> 
+         		</or>
+      		</enablement>
+   		</commonWizard>   
+	</extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="menu:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator?before=additions">
+          <separator
+                name="slot4"
+                visible="true">
+          </separator>
+       </menuContribution>
+       <menuContribution
+             locationURI="toolbar:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <separator
+                name="separator4"
+                visible="true">
+          </separator>
+          <command
+                commandId="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+                icon="images/scrapbook.gif"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbookinview"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </command>
+       </menuContribution>
+       <menuContribution
+             locationURI="menu:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator?before=slot4">
+          <command
+                commandId="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+                icon="images/scrapbook.gif"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.view.menu.openscrapbook"
+                label="%open_sql_scrapbook"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.popupMenus">
+       <objectContribution
+             id="org.eclipse.datatools.connectivity.ui.dse.objectContribution2"
+             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+          <action
+                class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.action1"
+                label="%open_sql_scrapbook"
+                menubarPath="slot4"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </action>
+       </objectContribution>
+       <viewerContribution
+            targetID="#SQLScrapbookEditorRulerContext"
+            id="org.eclipse.datatools.sqltools.sqleditor.ruler.context.actions">
+         <action
+               label="%AddBookmark.label"
+               helpContextId="org.eclipse.ui.bookmark_action_context"
+               class="org.eclipse.ui.texteditor.BookmarkRulerAction"
+               tooltip="%AddBookmark.tooltip"
+               menubarPath="additions"
+               id="org.eclipse.ui.texteditor.BookmarkRulerAction">
+         </action>
+      </viewerContribution>
+    </extension> 
+</plugin>

@@ -1,0 +1,83 @@
+# preference page
+TemplatePreferencePage_error_import=Failed to import templates.
+TemplatePreferencePage_error_export=Failed to export templates.
+TemplatePreferencePage_error_read_title=Reading Templates
+TemplatePreferencePage_error_write_title=Writing Templates
+TemplatePreferencePage_message=&Create, edit or remove templates:
+TemplatePreferencePage_title=Templates
+
+TemplatePreferencePage_new=&New...
+TemplatePreferencePage_edit=&Edit...
+TemplatePreferencePage_import=&Import...
+TemplatePreferencePage_export=E&xport...
+TemplatePreferencePage_remove=&Remove
+TemplatePreferencePage_editor=Template
+TemplatePreferencePage_revert=Re&vert to Default
+TemplatePreferencePage_restore=Restore Re&moved
+
+TemplatePreferencePage_column_name=Name
+TemplatePreferencePage_column_context=Context
+TemplatePreferencePage_column_description=Description
+TemplatePreferencePage_column_autoinsert=Auto Insert
+
+# on (as the opposite of off)
+TemplatePreferencePage_on=on
+
+TemplatePreferencePage_use_code_formatter=Use code &formatter
+
+TemplatePreferencePage_import_title=Importing Templates
+TemplatePreferencePage_import_extension=*.xml
+
+TemplatePreferencePage_export_title=Exporting {0} Templates
+TemplatePreferencePage_export_filename=templates.xml
+TemplatePreferencePage_export_extension=*.xml
+
+TemplatePreferencePage_export_exists_title= Exporting Templates
+TemplatePreferencePage_export_exists_message= {0} already exists.\nDo you want to replace it?
+
+TemplatePreferencePage_export_error_title= Exporting Templates
+TemplatePreferencePage_export_error_hidden= Export failed.\n{0} is a hidden file.
+TemplatePreferencePage_export_error_canNotWrite= Export failed.\n{0} cannot be modified.
+TemplatePreferencePage_export_error_fileNotFound= Export failed:\n{0}
+
+TemplatePreferencePage_error_parse_message= Failed to parse templates:\n{0}
+TemplatePreferencePage_error_read_message= Failed to read templates.
+TemplatePreferencePage_error_write_message= Failed to write templates.
+
+TemplatePreferencePage_question_create_new_title= Edit Template
+TemplatePreferencePage_question_create_new_message= The name of the template has been changed. Click 'Yes' to create an additional template with the new name or 'No' to rename the existing one.
+
+TemplatePreferencePage_preview=Previe&w:
+
+# edit template dialog
+EditTemplateDialog_error_noname=Template name cannot be empty.
+EditTemplateDialog_error_adjacent_variables=Template pattern has adjacent variables.
+EditTemplateDialog_title_new=New Template
+EditTemplateDialog_title_edit=Edit Template
+
+EditTemplateDialog_name=&Name:
+EditTemplateDialog_description=&Description:
+EditTemplateDialog_context=&Context:
+EditTemplateDialog_pattern=&Pattern:
+EditTemplateDialog_insert_variable=Insert &Variable...
+
+EditTemplateDialog_undo=&Undo
+EditTemplateDialog_cut=Cu&t
+EditTemplateDialog_copy=&Copy
+EditTemplateDialog_paste=&Paste
+EditTemplateDialog_select_all=Select &All
+EditTemplateDialog_autoinsert=Auto&matically Insert
+EditTemplateDialog_content_assist=Insert &Variable...
+
+TemplateVariableProposal_error_title=Error applying template variable proposal
+TemplateVariableProcessor_error_title=Error creating template variable proposals
+
+GlobalVariables_variable_description_cursor=The cursor position after editing template variables
+GlobalVariables_variable_description_dollar=The dollar symbol
+GlobalVariables_variable_description_date=Current date
+GlobalVariables_variable_description_year=Current year
+GlobalVariables_variable_description_time=Current time
+GlobalVariables_variable_description_user=User name
+GlobalVariables_variable_description_selectedWord= The selected word
+GlobalVariables_variable_description_selectedLines= The selected lines
+

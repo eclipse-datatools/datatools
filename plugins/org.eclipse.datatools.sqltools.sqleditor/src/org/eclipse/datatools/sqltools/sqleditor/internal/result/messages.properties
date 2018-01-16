@@ -1,0 +1,20 @@
+ResultSupportRunnable_name=SQL statement execution
+ResultSupportRunnable_task_connection=Obtaining connection...
+ResultSupportRunnable_task_statement=Obtaining statement...
+ResultSupportRunnable_task_run=Executing...
+ResultSupportRunnable_task_iterate=Iterating results...
+ResultSupportRunnable_exception_terminated=The instance has already been terminated!
+
+GroupSQLResultRunnable_name=SQL statement execution
+GroupSQLResultRunnable_groups=({0} groups)
+GroupSQLResultRunnable_group=Group {0}
+GroupSQLResultRunnable_error_interrupted=The execution has been interrupted.
+GroupSQLResultRunnable_group_exec=Group execution
+GroupSQLResultRunnable_not_complete=Execution is not successful
+
+GroupSQLResultRunnable_title=Continue Execution
+GroupSQLResultRunnable_message=Error occurred when executing last statement(s). Do you want to continue?
+
+sqlEditorName=SQL Editor
+GroupSQLResultRunnable_fail_to_create_conn=Fail to create database connection
+GroupSQLResultRunnable_fail_to_create_conn_to=Failed to create connection to {0}

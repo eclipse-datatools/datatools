@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <!-- Register the editor and action contributor class for the SQL Query Builder. -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.datatools.sqltools.sqlbuilder"
+            class="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor"
+            icon="images/qrydoc.gif"
+            default="true"
+            extensions="sql"
+            contributorClass="org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor"
+            name="%_UI_BUILDER_NAME"
+            matchingStrategy="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderMatchingStrategy">
+      </editor>
+   </extension>
+   <!-- preference initializer -->
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferenceInitializer">
+      </initializer>
+    </extension>
+   <!-- preference pages -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%SQLBuilder.PreferencePageName"
+            class="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data" 
+            id="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage">
+      </page>
+    </extension>
+    
+    <!-- This extension point should not be contributed to by any other plugins -->
+   <extension
+         point="org.eclipse.datatools.sqltools.editor.core.SQLBuilderUIComponentService">
+         <service
+         	name="%SQLEditor.SQLBuilderName"
+         	class="org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog.SQLBuilderUIComponentService"/>
+    </extension>
+    
+</plugin>

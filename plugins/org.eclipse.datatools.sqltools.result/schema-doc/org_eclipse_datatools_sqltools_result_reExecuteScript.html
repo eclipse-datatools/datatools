@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Re-execute History Statement</title>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>Re-execute History Statement</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.sqltools.result.reExecuteScript<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>[Enter description of this extension point.]</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> ((<a href="#e.reExecution">reExecution</a>))&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.reExecution">reExecution</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST reExecution</p>
+<p class=code id=dtdAttlist>database_id&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>consumer_name&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>database_id</b> - An id that can uniquely identify a database product, which can be obtained from "Connectivity Layer" given a database connection profile.</li>
+<li><b>consumer_name</b> - The name of the consumer of the SQL Results View.</li>
+<li><b>class</b> - A class which implements <code>IReExecutionRunnable</code>.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[Enter API information here.]
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+</p>
+</BODY>
+</HTML>

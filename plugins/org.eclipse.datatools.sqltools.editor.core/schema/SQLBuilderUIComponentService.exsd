@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.editor.core">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.editor.core" id="SQLBuilderUIComponentService" name="SQLBuilder UIComponentService"/>
+      </appInfo>
+      <documentation>
+         This extension point enables the org.eclipse.datatools.sqltools.sqlbuilder plugin to contribute a DML dialog for the default UIComponentService. The extension point should not be extended by plugins other than the sqlbuilder plugin.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="service"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="service">
+      <complexType>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The extension name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The implementation class for the extension
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         DTP 1.6
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;&lt;pre&gt;
+   &lt;extension
+         point=&quot;org.eclipse.datatools.sqltools.editor.core.SQLBuilderUIComponentService&quot;&gt;
+         &lt;service
+         	name=&quot;SQL Query Builder&quot;
+			class=&quot;org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog.SQLBuilderUIComponentService&quot;/&gt;
+    &lt;/extension&gt;
+&lt;/pre&gt;&lt;/p&gt;
+   Contributes a SQLBuilderUIComponentService extension to the SQL editor. The org.eclipse.datatools.sqltools.sqlbuilder plugin provides the only implementation of this extension point.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The org.eclipse.datatools.sqltools.sqlbuilder plugin provides the only implementation of this extension point.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2008 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation.
+      </documentation>
+   </annotation>
+
+</schema>

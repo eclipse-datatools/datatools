@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.data.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.data.core" id="tableEditorResultFilter" name="External Filter for Table Editor"/>
+      </appInfo>
+      <documentation>
+         This extension point allows users to set a filter for the columns and/or the where clause to use when the table editor cells are constructed.  Generally, all columns of all rows are displayed in the table editor.  This extension point allows users to restrict the columns/rows to be edited.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="editorFilter"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editorFilter">
+      <annotation>
+         <documentation>
+            Element specifies an external filter is to be used to filter the results sets used by the table editor
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="vendor" type="string">
+            <annotation>
+               <documentation>
+                  Vendor: String as returned by org.eclipse.datatools.modelbase.sql.schema.Database.getVendor().
+Ommit to match all vendors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Class name: Fully qualified name of the Class that is to be used to filter the results used by the table editor. The class must implement the org.eclipse.datatools.sqltools.data.internal.ui.editor.ITableEditorResultFilter interface.  If the method isUseExternalFilterDialog() returns false then the external filter will not be used, instead the default results will be used by the editor.  If isUseExternalFilterDialog() returns true then the external filter will be used.  This mechanism is used so that a preference can be used to determine by default whether or not to use external filter.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.sqltools.data.internal.core.editor.ITableEditorResultFilter"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

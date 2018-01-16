@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------
+-- Type mapping for SQLQueryParserFactory, alphabetically to avoid duplication.
+-------------------------------------------------------------------------------
+
+$Define
+
+    $import_classes 
+    /.
+        import org.eclipse.datatools.modelbase.sql.query.*;
+        import org.eclipse.datatools.modelbase.sql.query.util.*;
+        import org.eclipse.datatools.modelbase.sql.xml.query.*;
+        import org.eclipse.datatools.modelbase.sql.datatypes.*;
+        import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
+    ./
+$End
+
+
+$Define
+    $RT_xml_agg_function                    /.XMLAggregateFunction./
+    $RT_xml_attribute_declitem              /.XMLAttributeDeclarationItem./
+    $RT_xml_attribute_decl                  /.XMLAttributesDeclaration./
+--    $RT_xml_attribute_list                  /.List./
+--    $RT_xml_attributes_function             /.XMLAttributesFunction./
+    $RT_opt_as_QName                        /.String./
+    $RT_opt_default_clause                  /.QueryValueExpression./
+    $RT_opt_xml_element_namespaces_function /.XMLNamespacesFunction./
+--    $RT_opt_xml_element_attributes_function /.XMLAttributesFunction./
+    $RT_opt_xml_element_content_list        /.List./
+    $RT_opt_xml_forest_namespaces_function  /.XMLNamespacesFunction./
+--    $RT_xml_concat_function                 /.XMLConcatFunction./
+    $RT_xml_element_content                 /.XMLValueFunctionElementContent./
+    $RT_xml_element_content_list            /.List./
+    $RT_xml_element_function                /.XMLElementFunction./
+    $RT_xmlelementnamespace                 /.XMLValueFunctionValidateElementNamespace./
+    $RT_xmlelementname                      /.XMLValueFunctionValidateElementName./
+    $RT_xmlqueryexpression                  /.XMLQueryExpression./
+    $RT_xml_value_function_forest_contentitem /.XMLValueFunctionForestContentItem./
+    $RT_xml_valid_accordingto               /.XMLValueFunctionValidateAccordingTo./
+    $RT_xml_valuefunctionvalidate_element   /.XMLValueFunctionValidateElement./
+    $RT_xml_valuefunction_content           /.XMLValueFunctionValidateContent./
+    $RT_xml_namespace_decl_item             /.XMLNamespaceDeclarationItem./
+    $RT_xml_namespaces_decl                 /.XMLNamespacesDeclaration./
+    $RT_queryargument                       /.XMLQueryArgumentItem./
+    $RT_xmlqueryarglist                     /.XMLQueryArgumentList./
+    $RT_queryreturning                      /.XMLValueFunctionQueryReturning./
+    $RT_xmltablecolumndef                   /.XMLTableColumnDefinitionItem./
+    $RT_xml_table                           /.XMLTableFunction./
+--    $RT_xml_namespaces_function             /.XMLNamespacesFunction./
+    $RT_xml_valuefunction_elementcontent_list             /.XMLValueFunctionElementContentList./
+--    $RT_xml_namespace_list                  /.List./
+--    $RT_xml_namespace_prefix                /.String./
+--    $RT_xml_namespace_uri                   /.String./
+    $RT_xml_value_expression                /.QueryValueExpression./
+    $RT_xml_value_function_list             /.List./
+    $RT_xml_value_function                  /.XMLValueFunction./
+    $RT_xml_value_datatype                  /.$RT_datatype_character_national$./
+    
+
+
+$End

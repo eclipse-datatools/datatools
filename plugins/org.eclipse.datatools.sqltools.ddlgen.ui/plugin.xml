@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <actionExtension pattern="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.*" />
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.ddlgen.internal.ui.actions.popup.ForwardEngineerActionProvider"
+            id="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.base">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Database"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Schema"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.constraints.Index"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Sequence"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Procedure"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.accesscontrol.Role"/>
+               <instanceof value="org.eclipse.datatools.modelbase.derby.DerbySchema"/>
+               <instanceof value="org.eclipse.datatools.modelbase.derby.Synonym"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+</plugin>

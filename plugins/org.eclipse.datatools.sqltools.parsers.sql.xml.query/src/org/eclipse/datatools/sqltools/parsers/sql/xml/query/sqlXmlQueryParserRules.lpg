@@ -1,0 +1,596 @@
+$RULES
+
+--//*************************** rules that augment base grammar rules*********//
+
+<cast_expression> -> <xml_cast_specification>
+        
+<datatype_predefined>  ::=? <datatype_xml>
+
+<datatype_xml> ::=
+		XML 
+		/. $BeginAction setSym1(m_factory.createDataTypeXML()); $EndAction ./
+--		
+-- TODO the modifiers of the XML type are not yet supported in the SQL Model
+-- uncomment and fix the following when this is implemented in the model
+--<datatype_xml> ::=
+--        	XML <opt_xml_typemodifier>
+--            	
+-- <opt_xml_typemodifier> ::=
+--			_LPAREN <xml_typemodifier> _RPAREN
+--		|	$empty
+-- <xml_typemodifier>
+--			<primary_xml_typemodifier> <opt_secondary_xml_typemodifier>
+-- <opt_secondary_xml_typemodifier>			
+--			_LPAREN <secondary_xml_typemodifier> _RPAREN
+--		|	$empty
+-- <primary_xml_typemodifier> ::=
+--			DOCUMENT
+--		| 	CONTENT
+--		|	SEQUENCE
+--<secondary_xml_typemodifier> ::=
+--			ANY
+--		|	UNTYPED
+--		| 	XMLSCHEMA <xml_valid_according_to_what> <opt_xml_valid_element_clause>		
+
+
+<exists> -> <xml_exists>
+
+<expression_factor> ::=?
+                <xml_value_function>
+      
+<xml_value_expression> -> <expression>
+           
+<function> ::=?
+                <xml_function>
+           |    <xml_agg_function>
+ 
+<table_ref> ::=?
+            <xml_table> <table_correlation>
+                 /. $BeginAction setSym1(m_factory.addTableCorrelationToTableExpression(
+                         ($RT_xml_table)getSym(1),($RT_table_correlation)getSym(2))); $EndAction ./
+--TODO:   |   <xml_table> <opt_as> <table_correlation> _LPAREN <column_name_list> _RPAREN
+
+<xml_cast_specification> ::=
+                XMLCAST <left_paren> <xml_cast_operand> AS <xml_cast_target> 
+                    <opt_value_or_ref> <right_paren>
+                    /. $BeginAction setSym1(m_factory.createXMLValueExpressionCast(
+                            ($RT_expression)getSym(3),($RT_datatype)getSym(5),getInt(6))); $EndAction ./
+                 
+<xml_cast_operand> -> <cast_operand>
+                
+<xml_cast_target> -> <cast_target>
+
+--//*****************************Rules for  XML functions ********************************
+
+<content_or_sequence> ::=
+                CONTENT
+                    /. $BeginAction setInt1($parser_factory.XML_RETURNING_TYPE_CONTENT); $EndAction ./
+            |   SEQUENCE    
+                    /. $BeginAction setInt1($parser_factory.XML_RETURNING_TYPE_SEQUENCE); $EndAction ./
+                    
+<document_or_content> ::=
+                DOCUMENT
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE_DOCUMENT); $EndAction ./
+            |   CONTENT
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE_CONTENT); $EndAction ./
+
+<document_or_content_or_sequence> ::=
+                DOCUMENT
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE2_DOCUMENT); $EndAction ./
+            |   CONTENT
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE2_CONTENT); $EndAction ./
+            |   SEQUENCE
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE2_SEQUENCE); $EndAction ./            
+            |   $empty
+                    /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE2_NONE); $EndAction ./            
+            
+<opt_as_QName> ::=
+            AS <xml_QName>
+                /. $BeginAction setSym1(getString(2)); $EndAction ./
+        |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+                
+    
+<opt_document_or_content> ::=
+            <document_or_content>
+        |   $empty
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_TYPE_NONE); $EndAction ./
+            
+<opt_string_value_expression> ::=
+                _COMMA <string_value_expression> 
+                	/. $BeginAction setSym1(getSym(2)); $EndAction ./
+            |   $empty
+         			/. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_declaration_option> ::=
+            INCLUDING XMLDECLARATION
+                /. $BeginAction setInt1($parser_factory.XML_DECLARATION_TYPE_INCLUDING); $EndAction ./
+        |   EXCLUDING XMLDECLARATION
+                /. $BeginAction setInt1($parser_factory.XML_DECLARATION_TYPE_EXCLUDING); $EndAction ./
+        |   $empty
+                /. $BeginAction setInt1($parser_factory.XML_DECLARATION_TYPE_NONE); $EndAction ./
+              
+<opt_xml_attributes> ::=
+            _COMMA <xml_attributes>
+                /. $BeginAction setSym1(getSym(2)); $EndAction ./
+        |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_element_content_list> ::=
+            _COMMA <xml_element_content_list> <opt_xml_content_option>
+                /. $BeginAction setSym1(m_factory.createXMLValueFucnctionElementContentList(getList(2),getInt(3)));
+                $EndAction ./
+        |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_encoding_specification> ::=
+            ENCODING <xml_encoding_specification>
+                /. $BeginAction setSym1(getSym(2)); $EndAction ./
+        |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+                
+<opt_xml_content_option> ::=
+            OPTION <xml_content_option>
+            	/. $BeginAction setInt1(getInt(2)); $EndAction ./
+        |   $empty
+            	/. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_NONE); $EndAction ./
+
+<opt_xml_namespace_declaration_commafirst> ::= 
+            _COMMA <xml_namespaces_declaration> 
+            /. $BeginAction setSym1(getSym(2)); $EndAction ./
+        |   $empty
+            /. $BeginAction setSym1(null); $EndAction ./
+            
+<opt_xml_namespace_declaration_commalast> ::= 
+            <xml_namespaces_declaration> _COMMA
+            /. $BeginAction setSym1(getSym(1)); $EndAction ./
+        |   $empty
+            /. $BeginAction setSym1(null); $EndAction ./
+            
+--<opt_xml_passing_mechanism> ::=
+            --<xml_passing_mechanism>
+        -- |   $empty
+           -- /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_query_argument_list> ::=
+            <xml_query_default_passing_mechanism> <xml_query_argument_list>
+                /. $BeginAction setSym1(m_factory.createXMLQueryArgumentList(getInt(1),getList(2))); $EndAction ./
+        |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+            
+<opt_xml_returning_clause> ::=
+           <xml_returning_clause>
+        |   $empty
+                /. $BeginAction setInt1($parser_factory.XML_RETURNING_TYPE_NONE); $EndAction ./
+
+<opt_xml_returning_clause_opt_mechanism> ::=
+                <xml_returning_clause> <opt_xml_query_returning_mechanism>
+                    /. $BeginAction setSym1(m_factory.createXMLValueFunctionQueryReturning(getInt(1),getInt(2)));
+                        $EndAction ./
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_serialize_version> ::=
+                VERSION CHAR_STRING_LITERAL
+                    /. $BeginAction setSym1(getTokenName(2));$EndAction ./
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_table_argument_list> ::=
+                <xml_passing_mechanism> <xml_query_argument_list>
+                    /. $BeginAction setSym1(m_factory.createXMLQueryArgumentList(getInt(1),
+                            getList(2))); $EndAction ./
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+    
+<opt_xml_table_column_pattern> ::=
+                PATH CHAR_STRING_LITERAL
+                    /. $BeginAction setSym1(getTokenName(2)); $EndAction ./
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+                
+<opt_xml_query_returning_mechanism> ::= 
+                <value_or_ref>
+            |   $empty
+                    /. $BeginAction setInt1($parser_factory.XML_PASSING_TYPE_NONE); $EndAction ./                
+
+<opt_xml_valid_according_to_clause> ::=
+                <xml_valid_according_to_clause>
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_valid_element_name_specification> ::=
+                <xml_valid_element_name_specification>
+            |   $empty
+                    /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_valid_schema_location> ::=
+                LOCATION <xml_valid_schema_location_uri>
+                    /. $BeginAction setSym1(getSym(2)); $EndAction ./
+            |   $empty
+                --  /. $BeginAction setSym1(null); $EndAction ./
+
+<opt_xml_valid_element_clause> ::=
+                <xml_valid_element_clause>
+            |   $empty
+                /. $BeginAction setSym1(null); $EndAction ./
+                
+<opt_value_or_ref> ::=
+                <value_or_ref> 
+            |   $empty
+                /. $BeginAction setInt1($parser_factory.XML_PASSING_TYPE_NONE); $EndAction ./
+              
+<registered_xml_schema_name> -> <schema_qualified_name>
+
+<value_or_ref> ::=
+                BY VALUE
+                /. $BeginAction setInt1($parser_factory.XML_PASSING_TYPE_VALUE); $EndAction ./                
+            |   BY REF    
+                /. $BeginAction setInt1($parser_factory.XML_PASSING_TYPE_REF); $EndAction ./            
+
+<xml_attributes> ::=
+            XMLATTRIBUTES _LPAREN <xml_attribute_list> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLAttributesDeclaration(getList(3))); $EndAction ./            
+
+<xml_attribute_list> ::=
+                <xml_attribute>
+                    /. $BeginAction setSym1(m_factory.createXMLAttributeDeclaraionItemList(
+                            null,($RT_xml_attribute_declitem)getSym(1))); $EndAction ./
+            |   <xml_attribute_list> _COMMA <xml_attribute>
+                    /. $BeginAction setSym1(m_factory.createXMLAttributeDeclaraionItemList(
+                            getList(1),($RT_xml_attribute_declitem)getSym(3))); $EndAction ./
+
+
+--// expression here must only result into data types SMALLINT, INTEGER, BIGINT,
+--//   DECIMAL, NUMERIC, REAL, DOUBLE, CHAR, VARCHAR, LONG VARCHAR, CLOB, GRAPHIC,
+--//   VARGRAPHIC, LONG VARGRAPHIC, DBCLOB, DATE, TIME, TIMESTAMP
+<xml_attribute> ::=
+            <expression> AS <identifier>
+                /. $BeginAction setSym1(m_factory.createXMLAttributeDeclaraionItem(($RT_expression)getSym(1),
+                        getString(3))); $EndAction ./
+
+<xml_function> ::=
+            <xml_serialize_function>
+
+-- TODO this is only the string value version. need to do the blob vale version
+-- after work string value and blob value are added in base grammar 
+<xml_serialize_function> ::=
+            XMLSERIALIZE _LPAREN <opt_document_or_content> 
+                <xml_value_expression> AS <datatype> <opt_xml_encoding_specification>
+                <opt_xml_serialize_version> <opt_xml_declaration_option> _RPAREN
+                    /. $BeginAction setSym1(m_factory.createXMLSerializeFunction(getTokenName(1),getInt(3),
+                            ($RT_xml_value_expression)getSym(4),($RT_datatype)getSym(6),getString(7),getString(8),getInt(9)));
+                    $EndAction ./
+                            
+<xml_encoding_specification> ::=
+            CHAR_STRING_LITERAL
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+
+
+<xml_value_function> ::=
+                <xml_comment_function>
+          |     <xml_concat_function>
+          |     <xml_document_function>
+          |     <xml_element_function>
+          |     <xml_forest_function>
+          |     <xml_parse_function>
+          |     <xml_pi_function>
+          |     <xml_query_function>
+          |     <xml_text_function>
+          |     <xml_validate_function>
+
+
+<xml_agg_function> ::=
+            XMLAGG _LPAREN <xml_value_expression> <opt_order_by_clause> <opt_xml_returning_clause> _RPAREN
+               /. $BeginAction setSym1(m_factory.createXMLAggregateFunction(getTokenName(1),
+                       ($RT_xml_value_expression)getSym(3),getList(4),getInt(5))); $EndAction ./
+
+<xml_concat_function> ::=
+            XMLCONCAT _LPAREN <xml_concat_value_expression_list> <opt_xml_returning_clause> _RPAREN
+            /. $BeginAction setSym1(m_factory.createXMLValueFunctionConcat(getTokenName(1),getList(3),getInt(4))); $EndAction ./
+
+<xml_comment_function> ::=
+            XMLCOMMENT _LPAREN <string_value_expression> <opt_xml_returning_clause> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionComment(getTokenName(1),($RT_expression)getSym(3),
+                        getInt(4))); $EndAction ./
+
+<xml_content_option> ::=
+        |   ABSENT ON NULL
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_ABSENT_ON_NULL); $EndAction ./
+        |   EMPTY ON NULL
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_EMPTY_ON_NULL); $EndAction ./
+        |   NULL ON NULL
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_NULL_ON_NULL); $EndAction ./
+        |   NIL ON NULL
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_NIL_ON_NULL); $EndAction ./
+        |   NIL ON NO CONTENT 
+                /. $BeginAction setInt1($parser_factory.XML_CONTENT_OPTION_NIL_ON_NO_CONTENT); $EndAction ./
+
+<xml_document_function> ::=
+            XMLDOCUMENT _LPAREN <xml_value_expression> <opt_xml_returning_clause> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionDocument(getTokenName(1),
+                        ($RT_expression)getSym(3),getInt(4))); $EndAction ./
+
+<xml_element_function> ::=
+            XMLELEMENT _LPAREN NAME <xml_QName>
+                <opt_xml_namespace_declaration_commafirst> <opt_xml_attributes>
+                <opt_xml_element_content_list> <opt_xml_returning_clause> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFucntionElement(getTokenName(1),getString(4),
+                        ($RT_xml_namespaces_decl)getSym(5),($RT_xml_attribute_decl)getSym(6),
+                        ($RT_xml_valuefunction_elementcontent_list)getSym(7),getInt(8)));
+                   $EndAction ./
+
+<xml_exists> ::=
+            XMLEXISTS _LPAREN <xQuery_expression> <opt_xml_query_argument_list> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLPredicateExists(getTokenName(1),($RT_xmlqueryexpression)getSym(3),
+                        ($RT_xmlqueryarglist)getSym(4))); $EndAction ./
+
+<xml_element_content_list> ::=
+            <xml_element_content>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionElementContentItemList(null,
+                        ($RT_expression)getSym(1))); $EndAction ./
+        |   <xml_element_content_list> _COMMA <xml_element_content>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionElementContentItemList(getList(1),
+                        ($RT_expression)getSym(3))); $EndAction ./
+
+<xml_element_content> ::=
+            <expression>
+            
+<xml_namespaces_declaration> ::=
+            XMLNAMESPACES _LPAREN <xml_namespace_list> _RPAREN
+            /. $BeginAction setSym1(m_factory.createXMLNamespaceDeclaration(getList(3))); $EndAction ./
+            
+<xml_namespace_list> ::=
+            <xml_namespace>
+                /. $BeginAction setSym1(m_factory.createXMLNamespacesDeclarationItemList(null,
+                        ($RT_xml_namespace_decl_item)getSym(1))); $EndAction ./
+        |   <xml_namespace_list> _COMMA <xml_namespace>
+                /. $BeginAction setSym1(m_factory.createXMLNamespacesDeclarationItemList(getList(1),
+                        ($RT_xml_namespace_decl_item)getSym(3))); $EndAction ./
+
+<xml_namespace> ::=
+            <xml_namespace_uri> AS <xml_namespace_prefix>
+                /. $BeginAction setSym1(m_factory.createXMLNamespaceDeclarationPrefix(getString(1),
+                        getString(3))); $EndAction ./
+        |   DEFAULT <xml_namespace_uri>
+                /. $BeginAction setSym1(m_factory.createXMLNamespaceDeclarationDefault(getString(2),
+                        false)); $EndAction ./
+        |   NO DEFAULT
+                /. $BeginAction setSym1(m_factory.createXMLNamespaceDeclarationDefault(getString(2),
+                        true)); $EndAction ./
+
+
+--// namespace-uri = universal resource identifier (URI) is a character string constant
+--// This character string constant cannot be empty.
+<xml_namespace_uri> ::=
+            CHAR_STRING_LITERAL
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+                
+--// namespace-prefix = SQL identifier. It must be of the form of an XML NCName (SQLSTATE 42635)
+--// See the W3C XML namespace specifications. The prefix cannot be xml or xml_ns.
+--// The prefix must be unique within the list of namespace declarations.
+<xml_namespace_prefix> -> <identifier>
+--used to be            <xml_NCName>
+
+<xml_forest_function> ::=
+            XMLFOREST _LPAREN
+                <opt_xml_namespace_declaration_commalast>
+                <xml_forest_element_list> <opt_xml_content_option> <opt_xml_returning_clause> _RPAREN
+                    /. $BeginAction setSym1(m_factory.createXMLValueFunctionForest(getTokenName(1),
+                        ($RT_xml_namespaces_decl)getSym(3),getList(4),getInt(5),getInt(6)));
+                    $EndAction ./
+
+
+<xml_forest_element_list> ::=
+            <xml_forest_element>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionForestContentItemList(
+                        null,($RT_xml_value_function_forest_contentitem)getSym(1))); $EndAction ./
+        |   <xml_forest_element_list> _COMMA <xml_forest_element>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionForestContentItemList(
+                        getList(1),($RT_xml_value_function_forest_contentitem)getSym(3))); $EndAction ./
+
+<xml_forest_element> ::=
+            <xml_element_content> <opt_as_QName>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionForestContentItem(($RT_expression)getSym(1),
+                        getString(2))); $EndAction ./
+
+<xml_parse_function> ::=
+            XMLPARSE _LPAREN <document_or_content> <string_value_expression>
+                <xml_whitespace_option> _RPAREN
+                    /. $BeginAction setSym1(m_factory.createXMLValueFunctionParse(getTokenName(1),getInt(3),
+                            ($RT_xml_value_expression)getSym(4),getInt(5))); $EndAction ./
+ 
+<xml_passing_mechanism> ::=
+            PASSING <value_or_ref> 
+                /. $BeginAction setSym1(getSym(2)); $EndAction ./
+
+<xml_pi_function> ::=
+            XMLPI _LPAREN NAME <xml_pi_target> <opt_string_value_expression> 
+                <opt_xml_returning_clause> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionPI(getTokenName(1),getString(4),
+                    ($RT_expression)getSym(5),getInt(6))); $EndAction ./
+            
+<xml_pi_target> -> <identifier>
+
+<xml_query_argument> ::=
+            <xml_query_context_item>
+        |   <xml_query_variable>
+
+<xml_query_argument_list> ::=
+            <xml_query_argument>
+                /. $BeginAction setSym1(m_factory.createXMLQueryArgumentItemList(null,
+                        ($RT_queryargument)getSym(1))); $EndAction ./
+        |   <xml_query_argument_list> _COMMA <xml_query_argument>
+                /. $BeginAction setSym1(m_factory.createXMLQueryArgumentItemList(getList(1),
+                        ($RT_queryargument)getSym(3))); $EndAction ./
+                
+<xml_query_context_item> ::=
+            <expression> <opt_value_or_ref>                
+                /. $BeginAction setSym1(m_factory.createXMLQueryArgumentItem(($RT_expression)getSym(1),
+                        null,getInt(2))); $EndAction ./
+        
+<xml_query_default_passing_mechanism> -> <xml_passing_mechanism>
+         
+<xml_query_empty_handling_option> ::=
+            NULL ON EMPTY
+                /. $BeginAction setInt1($parser_factory.XML_EMPTYHANDLINGTYPE_NULL_ON_EMPTY); $EndAction ./
+        |   EMPTY ON EMPTY
+                /. $BeginAction setInt1($parser_factory.XML_EMPTYHANDLINGTYPE_EMPTY_ON_EMPTY); $EndAction ./
+                
+<xml_query_function> ::=
+            XMLQUERY _LPAREN <xQuery_expression> <opt_xml_query_argument_list> 
+            <opt_xml_returning_clause_opt_mechanism> <xml_query_empty_handling_option> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionQuery(getTokenName(1),
+                        ($RT_xmlqueryexpression)getSym(3),($RT_xmlqueryarglist)getSym(4),
+                        ($RT_queryreturning)getSym(5),getInt(6))); $EndAction ./
+
+<xml_returning_clause> ::=
+                RETURNING <content_or_sequence>
+                    /. $BeginAction setSym1(getSym(2)); $EndAction ./
+                
+<xml_query_variable> ::=
+            <expression> AS <identifier> <opt_value_or_ref>
+                /. $BeginAction setSym1(m_factory.createXMLQueryArgumentItem(($RT_expression)getSym(1),
+                        getString(3),getInt(4))); $EndAction ./
+         
+<xml_table> ::=
+            XMLTABLE _LPAREN  <opt_xml_namespace_declaration_commalast> <xml_table_row_pattern>
+                <opt_xml_table_argument_list> COLUMNS <xml_table_column_definition_list> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLTableFunction(getTokenName(1),
+                        ($RT_xml_namespaces_decl)getSym(3),getString(4),($RT_xmlqueryarglist)getSym(5),
+                        getList(7))); $EndAction ./
+
+                
+<xml_table_row_pattern> ::=
+            CHAR_STRING_LITERAL
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+                           
+
+<xml_table_column_definition_list> ::=
+            <xml_table_column_definition> 
+                /. $BeginAction setSym1(m_factory.createXMLTableColumnDefinitionList(null,
+                        ($RT_xmltablecolumndef)getSym(1))); $EndAction ./
+        |   <xml_table_column_definition_list> _COMMA <xml_table_column_definition>
+                /. $BeginAction setSym1(m_factory.createXMLTableColumnDefinitionList(getList(1),
+                        ($RT_xmltablecolumndef)getSym(3))); $EndAction ./
+
+<xml_table_column_definition> ::=
+            <xml_table_ordinality_column_definition>
+        |   <xml_table_regular_column_definition>
+        
+<xml_table_ordinality_column_definition> ::=
+            <column> FOR ORDINALITY
+                /. $BeginAction setSym1(m_factory.createXMLTableColumnDefinitionOrdinality(
+                        getString(1))); $EndAction ./
+            
+<xml_table_regular_column_definition> ::=
+            <column> <datatype> <opt_value_or_ref> <opt_default_clause> <opt_xml_table_column_pattern>
+                /. $BeginAction setSym1(m_factory.createXMLTableColumnDefinitionRegular(
+                        getString(1),($RT_datatype)getSym(2),getInt(3),($RT_opt_default_clause)getSym(4),getString(5))); $EndAction ./
+                
+<xml_text_function> ::=
+            XMLTEXT _LPAREN <string_value_expression> <opt_xml_returning_clause> _RPAREN
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionText(getTokenName(1),
+                                ($RT_expression)getSym(3),getInt(4))); $EndAction ./
+
+<xml_uri> ::= CHAR_STRING_LITERAL
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+            
+<xml_valid_according_to_clause> ::=
+            ACCORDING TO XMLSCHEMA <xml_valid_according_to_what> <opt_xml_valid_element_clause>
+                /. $BeginAction setSym1(m_factory.setElementContent(($RT_xml_valid_accordingto)getSym(4),
+                        ($RT_xml_valuefunctionvalidate_element)getSym(5))); $EndAction ./
+                                
+<xml_valid_according_to_identifier> ::=
+            ID <identifier>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateAccordingToIdentifier(
+                    null, getString(2))); $EndAction ./
+        |   ID <schema> _DOT <identifier>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateAccordingToIdentifier(
+                    getString(2), getString(4))); $EndAction ./
+    
+<xml_valid_according_to_what> ::= 
+            <xml_valid_according_to_uri>
+        |   <xml_valid_according_to_identifier>
+
+<xml_valid_according_to_uri> ::=        
+            URI <xml_valid_target_namespace_uri> <opt_xml_valid_schema_location>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateAccordingToURI(
+                        false,getString(2),getString(3))); $EndAction ./
+        |   NO NAMESPACE <opt_xml_valid_schema_location>         
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateAccordingToURI(
+                        true,null,getString(3))); $EndAction ./
+
+<xml_valid_element_clause> ::=
+            <xml_valid_element_name_specification>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateElement(null,
+                        ($RT_xmlelementname)getSym(1))); $EndAction ./
+        |   <xml_valid_element_namespace_specification> <opt_xml_valid_element_name_specification>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateElement(
+                        ($RT_xmlelementnamespace)getSym(1),($RT_xmlelementname)getSym(2))); $EndAction ./
+                
+<xml_valid_element_name> -> <identifier>
+    
+<xml_valid_element_name_specification> ::=
+            ELEMENT <xml_valid_element_name>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateElementName(getString(2)));
+                        $EndAction ./
+                        
+<xml_valid_element_namespace_uri> -> <xml_uri>
+
+<xml_valid_element_namespace_specification> ::=
+            NO NAMESPACE
+            /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateElementNamespace(true,null));
+                        $EndAction ./
+        |   NAMESPACE <xml_valid_element_namespace_uri>
+            /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidateElementNamespace(false,getString(2)));
+                        $EndAction ./
+    
+<xml_valid_schema_location_uri> -> <xml_uri>
+
+<xml_valid_target_namespace_uri> -> <xml_uri>
+            
+<xml_validate_function> ::=
+            XMLVALIDATE _LPAREN <document_or_content_or_sequence> <xml_value_expression>
+                <opt_xml_valid_according_to_clause> _RPAREN
+                    /. $BeginAction setSym1(m_factory.createXMLValueFunctionValidate(getTokenName(1),getInt(3),
+                          ($RT_expression)getSym(4),($RT_xml_valid_accordingto)getSym(5)));$EndAction ./
+                
+<xml_concat_value_expression_list> ::=
+            <xml_value_expression>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionConcatItemList(null,
+                        ($RT_expression)getSym(1))); $EndAction ./
+        |   <xml_concat_value_expression_list> _COMMA <xml_value_expression>
+                /. $BeginAction setSym1(m_factory.createXMLValueFunctionConcatItemList(getList(1),($RT_expression)getSym(3))); $EndAction ./
+
+-- <xml_value_function_list> ::=
+--            <xml_value_function>
+--                --  /. $BeginAction setSym1(m_factory.createXMLValueFunctionList(null,($RT_xml_value_function)getSym(1))); $EndAction ./
+--        |   <xml_value_function_list> _COMMA <xml_value_function>
+--                --  /. $BeginAction setSym1(m_factory.createXMLValueFunctionList(getList(1),($RT_xml_value_function)getSym(3))); $EndAction ./
+
+
+-- <xml_value_datatype> ->  <datatype_character>
+
+--// supposed to be a XML NCName complying with the W3C XML namespace specifications
+<xml_NCName> ::=
+            DELIMITED_IDENTIFIER
+            /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+
+--// supposed to be a XML QName complying with the W3C XML namespace specifications
+-- //TODO - verify with ck
+<xml_QName> ->   <identifier>
+
+<xQuery_expression> ::= CHAR_STRING_LITERAL
+            /. $BeginAction setSym1(m_factory.createXMLQueryExpression(getTokenName(1))); $EndAction ./
+
+<xml_whitespace_option> ::=
+                PRESERVE WHITESPACE
+                    /. $BeginAction setInt1($parser_factory.XML_WHITESPACE_PRESERVE); $EndAction ./
+            |   STRIP WHITESPACE         
+                    /. $BeginAction setInt1($parser_factory.XML_WHITESPACE_STRIP); $EndAction ./
+            |   $empty         
+                    /. $BeginAction setInt1($parser_factory.XML_WHITESPACE_NONE); $EndAction ./
+
+
+$End

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>
+   <extension-point id="actionExtensions" name="SQL Editor Action Extensions" schema="schema/actionExtensions.exsd"/>
+   <extension-point id="sourceViewerConfiguration" name="SQL Editor Source Viewer Configuration" schema="schema/sourceViewerConfiguration.exsd"/>
+    
+    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.sqleditor.internal.EditorPreferenceInitializer">
+      </initializer>
+    </extension>
+  	
+     <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
+            name="%sqlEditorName"
+            icon="icons/sql_editor.gif"
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor">
+      </editor>
+   </extension>
+
+<!-- Register the DocumentSetupParticipant class for the SQL Editor. -->
+<!-- Note: In order to make the SQL Editor more reusable, the DocumentSetupParticipant 
+     is set up in the main SQL Editor class rather than here.
+   <extension
+         point="org.eclipse.core.filebuffers.documentSetup"
+         id="SQLEditorDocumentSetupParticipant"
+         name="%documentSetupParticipantName">
+      <participant
+            extensions="%sqlEditorFileExtensions"
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditorDocumentSetupParticipant">
+      </participant>
+   </extension>
+-->
+
+   <!-- Register a factory for recreating SQLEditorFileEditorInput objects when
+        the Workbench is restarted. -->
+   <extension 
+      point = "org.eclipse.ui.elementFactories"> 
+         <factory 
+            id ="org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory" 
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory"> 
+         </factory> 
+   </extension> 
+
+   <!-- perspectives -->      
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="%database.development.perspective"
+            icon="icons/DB_dev_perspective.gif"
+            class="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"
+            id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+      </perspective>
+   </extension>
+   
+    <!-- next are how to hook DTP SQL Editor perspective/actions with other perspectives/actions of eclipse -->
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <!-- extension to the DTP editor perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+	    	 <actionSet
+               id="org.eclipse.debug.ui.breakpointActionSet">
+             </actionSet>
+
+
+             <!-- Add View Shortcuts !-->
+            <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
+            <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
+            <viewShortcut id="org.eclipse.ui.views.ContentOutline" />
+            <viewShortcut id="org.eclipse.ui.views.BookmarkView" />
+                        
+            <!-- Add Perspective shortcuts !-->
+            <perspectiveShortcut id="ConfigPerspective" />
+            <perspectiveShortcut id="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective" />
+
+		<!-- Outline as Fastview !-->
+          <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.25"
+                  relationship="fast"
+                  relative="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
+                  id="org.eclipse.ui.views.ContentOutline"/>
+          <view
+                closeable="true"
+                id="org.eclipse.datatools.sqltools.plan.planView"
+                moveable="true"
+                relationship="stack"
+                relative="org.eclipse.datatools.sqltools.result.resultView"
+                showTitle="true"
+                standalone="false"
+                visible="true">
+          </view>
+          <view
+                closeable="true"
+                id="org.eclipse.ui.views.BookmarkView"
+                moveable="true"
+                relationship="stack"
+                relative="org.eclipse.datatools.sqltools.plan.planView"
+                showTitle="true"
+                standalone="false"
+                visible="true">
+          </view>   
+                                    
+        </perspectiveExtension>
+
+    </extension>
+
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            name="%context.editingSQL.name"
+            description="%context.editingSQL.description"
+            parentId="org.eclipse.ui.textEditorScope"
+            id="org.eclipse.datatools.sqltools.SQLEditorScope">
+      </context>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="%category.datatools.name"
+            description="%category.datatools.description"
+            id="org.eclipse.datatools.sqltools.sqleditor.category">
+      </category>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.select"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"/>
+	  <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.as.one.statement"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteAsOneStatementAction"/>
+	  <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.current"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteCurrentAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.dmldialog.select"
+            id="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.gotomatchingtoken"
+            id="org.eclipse.datatools.sqltools.sqleditor.GotoMatchingTokenAction"/>
+      <command
+            categoryId="org.eclipse.ui.category.edit"
+            name="%DatabaseManagement.ToggleComment"
+            id="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.saveAsTemplate"
+            id="org.eclipse.datatools.sqltools.sqleditor.saveAsTemplateAction"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.bindings">
+      <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
+            carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
+      <key
+            sequence="M1+M3+X"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="M3+X"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+             sequence="M3+S"
+             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteCurrentAction"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+             sequence="M3+C"
+             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteAsOneStatementAction"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"
+            sequence="M1+/"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"
+            sequence="M3+Q"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.GotoMatchingTokenAction"
+            sequence="M1+M2+P"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+    </extension>
+    
+        <!-- Syntax validation problem marker -->
+    <extension id="syntaxproblem" point="org.eclipse.core.resources.markers" name="%sqlProblemName">
+            <super type="org.eclipse.core.resources.problemmarker"/>
+            <super type="org.eclipse.core.resources.textmarker"/>
+            <persistent value="false"/>
+            <attribute name="id"/>
+            <attribute name="flags"/>
+            <attribute name="arguments"/>
+    </extension>   
+
+    <!-- Portability check marker -->
+    <extension id="portabilitytask" name="%sqlPortabilityName" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.taskmarker"/> 
+        <persistent value="false"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.editors.templates">
+      <contextType
+            name="%templates.sql.generic.contextType.name"
+            class="org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType"
+            id="org.eclipse.datatools.sqltools.editor.template.sql.generic">
+      </contextType>
+      <include
+      		file="templates/default-templates.xml"
+      		translations="$nl$/templates/default-templates.properties">
+      </include>
+   </extension>
+    
+   <!-- preference pages -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%DatabaseManagement.General"
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.GeneralPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data" 
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.GeneralPreferencePage">
+      </page>
+      <!-- template for SQL editor -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditorPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            name="%DatabaseManagement.SQLEditor"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor"/>
+      <page
+            name="%DatabaseManagement.EditorTemplates"
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.TemplatesPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.TemplatesPreferencePage">
+      </page>
+      <!-- hide this page temporarily
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.ConnectionLevelOptionsPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            name="%DatabaseManagement.ConnectionOptions"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.connectionleveloptions"/>  
+      -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.CodeAssistPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%DatabaseManagement.CodeAssist"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.codeassist"/>
+      <!-- syntax coloring for SQL editor -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.SyntaxColoringPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%DatabaseManagement.SyntaxColoring"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.syntaxcoloring"/>
+   </extension>
+
+  
+    
+</plugin>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditor"
+            icon="icons/table.gif"
+            contributorClass="org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditorActionBarContributor"
+            name="%plugin.TableDataEditor"
+            id="org.eclipse.datatools.sqltools.data.internal.ui.editor.tableDataEditor"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.viewer">
+   		<viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.sqltools.data.internal.*"/>
+            </includes>
+        </viewerActionBinding>
+   </extension>  
+   	
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.data.internal.ui.editor.EditTableDataActionProvider"
+            id="org.eclipse.datatools.sqltools.data.internal.edit"            
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
+            <enablement>
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>  	
+           		</and> 	            	
+            </enablement>
+      </actionProvider>
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.data.internal.ui.load.LoadDataActionProvider"
+            id="org.eclipse.datatools.sqltools.data.internal.load"
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
+            <enablement>
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.BaseTable"/>
+            	</and>
+  	       	</enablement>
+      </actionProvider>
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.data.internal.ui.extract.ExtractDataActionProvider"
+            id="org.eclipse.datatools.sqltools.data.internal.extract"
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
+            <enablement>
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+            	</and>
+  	        </enablement>
+      </actionProvider>
+   </extension>
+
+   <extension
+         id="org.eclipse.datatools.sqltools.data.ui.defaultExternalTableDataEditor"
+         name="Default External Table Data Editor"
+         point="org.eclipse.datatools.sqltools.data.ui.externalTableDataEditor">
+      <externalEditor
+            length="30"
+            class="org.eclipse.datatools.sqltools.data.internal.ui.editor.DefaultExternalTableDataWizard"/>
+   </extension>
+
+    <extension-point id="externalTableDataEditor" name="External Table Data Editors" schema="schema/externalTableDataEditor.exsd"/>
+    <extension-point id="externalTableDataExtract" name="External support for Table Data Extract" schema="schema/externalTableDataExtract.exsd"/>
+    <extension-point id="externalTableDataLoad" name="External support for Table Data Load" schema="schema/externalTableDataLoad.exsd"/>
+</plugin>

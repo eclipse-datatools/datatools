@@ -1,0 +1,45 @@
+-----------------------------
+-- SQL/XML Keywords/Reserved Words --
+-----------------------------
+
+-- Check CONTENT and SEQUENCE is part of base. else move here
+    --CONTENT
+    --SEQUENCE
+
+    ABSENT
+    ACCORDING
+    BASE64
+    DOCUMENT
+    ENCODING
+    HEX
+    LOCATION
+    NAMESPACE
+    NIL
+    ORDINALITY
+    PASSING
+    PI
+    RETURNING
+    URI
+    WHITESPACE
+    XML
+    XMLAGG
+    XMLATTRIBUTES
+    XMLBINARY
+    XMLCAST
+    XMLCOMMENT
+    XMLCONCAT
+    XMLDECLARATION
+    XMLDOCUMENT
+    XMLELEMENT
+    XMLEXISTS
+    XMLFOREST
+    XMLNAMESPACES
+    XMLPARSE
+    XMLPI
+    XMLQUERY
+    XMLSCHEMA
+    XMLSERIALIZE
+    XMLTABLE
+    XMLTEXT
+    XMLVALIDATE
+

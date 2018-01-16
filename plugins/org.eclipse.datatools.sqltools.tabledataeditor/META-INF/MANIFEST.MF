@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.tabledataeditor; singleton:=true
+Bundle-Version: 1.2.1.qualifier
+Bundle-Vendor: %providerName
+Bundle-Activator: org.eclipse.datatools.sqltools.internal.tabledataeditor.TableDataEditorPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.navigator,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.sqltools.result,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.connectivity.sqm.core.ui,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.sqltools.result.ui
+Import-Package: com.ibm.icu.text;version="3.6.1",
+ com.ibm.icu.util;version="3.6.1"
+Export-Package: org.eclipse.datatools.sqltools.internal.tabledataeditor,
+ org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute,
+ org.eclipse.datatools.sqltools.tabledataeditor.actions.providers
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -1,0 +1,221 @@
+$Rules
+
+KeyWord ::=    A B S E N T
+                    /.$BeginAction
+                        $setResult($_ABSENT);
+                      $EndAction
+                    ./
+
+            |   A C C O R D I N G
+                    /.$BeginAction
+                        $setResult($_ACCORDING);
+                      $EndAction
+                    ./
+
+            |   B A S E 6 4
+                    /.$BeginAction
+                        $setResult($_BASE64);
+                      $EndAction
+                    ./
+
+            |   D O C U M E N T
+                    /.$BeginAction
+                        $setResult($_DOCUMENT);
+                      $EndAction
+                    ./
+
+            |   E N C O D I N G
+                    /.$BeginAction
+                        $setResult($_ENCODING);
+                      $EndAction
+                    ./
+
+            |   L O C A T I O N
+                    /.$BeginAction
+                        $setResult($_LOCATION);
+                      $EndAction
+                    ./
+
+			| H E X
+                    /.$BeginAction
+                        $setResult($_HEX);
+                      $EndAction
+                    ./
+
+            |   N A M E S P A C E
+                    /.$BeginAction
+                        $setResult($_NAMESPACE);
+                      $EndAction
+                    ./
+
+            |   N I L
+                    /.$BeginAction
+                        $setResult($_NIL);
+                      $EndAction
+                    ./
+
+            |   O R D I N A L I T Y
+                    /.$BeginAction
+                        $setResult($_ORDINALITY);
+                      $EndAction
+                    ./
+
+            |   P A S S I N G
+                    /.$BeginAction
+                        $setResult($_PASSING);
+                      $EndAction
+                    ./
+
+            |   P I
+                    /.$BeginAction
+                        $setResult($_PI);
+                      $EndAction
+                    ./
+
+            |   R E T U R N I N G
+                    /.$BeginAction
+                        $setResult($_RETURNING);
+                      $EndAction
+                    ./
+
+            |   U R I
+                    /.$BeginAction
+                        $setResult($_URI);
+                      $EndAction
+                    ./
+
+            |   W H I T E S P A C E
+                    /.$BeginAction
+                        $setResult($_WHITESPACE);
+                      $EndAction
+                    ./
+
+            |   X M L
+                    /.$BeginAction
+                        $setResult($_XML);
+                      $EndAction
+                    ./
+
+			|	X M L A G G
+	        		/.$BeginAction
+	        		    $setResult($_XMLAGG);
+	        		  $EndAction
+	        		./
+
+			|	X M L B I N A R Y
+	        		/.$BeginAction
+	        		    $setResult($_XMLBINARY);
+	        		  $EndAction
+	        		./
+
+			|	X M L A T T R I B U T E S
+	        		/.$BeginAction
+	        		    $setResult($_XMLATTRIBUTES);
+	        		  $EndAction
+	        		./
+
+            |   X M L C A S T
+                    /.$BeginAction
+                        $setResult($_XMLCAST);
+                      $EndAction
+                    ./
+
+            |   X M L C O M M E N T
+                    /.$BeginAction
+                        $setResult($_XMLCOMMENT);
+                      $EndAction
+                    ./
+
+            |   X M L C O N C A T
+                    /.$BeginAction
+                        $setResult($_XMLCONCAT);
+                      $EndAction
+                    ./
+
+            |   X M L D E C L A R A T I O N
+                    /.$BeginAction
+                        $setResult($_XMLDECLARATION);
+                      $EndAction
+                    ./
+
+            |   X M L D O C U M E N T
+                    /.$BeginAction
+                        $setResult($_XMLDOCUMENT);
+                      $EndAction
+                    ./
+
+			|	X M L E L E M E N T
+	        		/.$BeginAction
+	        		    $setResult($_XMLELEMENT);
+	        		  $EndAction
+	        		./
+
+            |   X M L E X I S T S
+                    /.$BeginAction
+                        $setResult($_XMLEXISTS);
+                      $EndAction
+                    ./
+
+			|	X M L F O R E S T
+	        		/.$BeginAction
+	        		    $setResult($_XMLFOREST);
+	        		  $EndAction
+	        		./
+
+			|	X M L N A M E S P A C E S
+	        		/.$BeginAction
+	        		    $setResult($_XMLNAMESPACES);
+	        		  $EndAction
+	        		./
+
+            |   X M L P A R S E
+                    /.$BeginAction
+                        $setResult($_XMLPARSE);
+                      $EndAction
+                    ./
+
+            |   X M L P I
+                    /.$BeginAction
+                        $setResult($_XMLPI);
+                      $EndAction
+                    ./
+
+            |   X M L Q U E R Y
+                    /.$BeginAction
+                        $setResult($_XMLQUERY);
+                      $EndAction
+                    ./
+
+            |   X M L S C H E M A
+                    /.$BeginAction
+                        $setResult($_XMLSCHEMA);
+                      $EndAction
+                    ./
+
+			|	X M L S E R I A L I Z E
+	        		/.$BeginAction
+	        		    $setResult($_XMLSERIALIZE);
+	        		  $EndAction
+	        		./
+
+            |   X M L T A B L E
+                    /.$BeginAction
+                        $setResult($_XMLTABLE);
+                      $EndAction
+                    ./
+
+            |   X M L T E X T
+                    /.$BeginAction
+                        $setResult($_XMLTEXT);
+                      $EndAction
+                    ./
+
+            |   X M L V A L I D A T E
+                    /.$BeginAction
+                        $setResult($_XMLVALIDATE);
+                      $EndAction
+                    ./
+
+
+
+$End

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="externalRunQuery" name="External Run Query" schema="schema/externalRunQuery.exsd"/>
+	<!-- Sample Content Menu -->
+	<extension point="org.eclipse.ui.navigator.viewer">
+		<viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+        	<includes>
+            	<actionExtension pattern="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.*"/>
+            </includes>
+    	</viewerActionBinding>
+    </extension>  
+   	<extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+   	  <actionProvider
+   			id = "org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider"
+   			class = "org.eclipse.datatools.sqltools.tabledataeditor.actions.providers.DataGroupProvider">
+   			<enablement>
+   				<or>
+  	               	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+  	               	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Column"/>
+   				</or>
+   			</enablement>
+   	  </actionProvider>
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.tabledataeditor.actions.providers.SampleContentProvider"
+            id="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.SampleContentProvider"
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
+            <enablement>
+			    <and>
+	            	<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+	            	<or>
+	  	        		<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+	  	            	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Column"/>
+	            	</or>
+	            </and>
+         	</enablement>
+      </actionProvider>
+	</extension>
+</plugin>

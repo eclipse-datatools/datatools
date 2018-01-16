@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   
+   	<extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.debugger.core.ui.DebuggerPreferenceInitializer">
+      </initializer>
+    </extension>
+
+   <extension
+         id="org.eclipse.datatools.sqltools.deugger.editorext.SQLDebuggerDocumentProvider"
+         name="SQL Debugger document provider"
+         point="org.eclipse.datatools.sqltools.routineeditor.ui.documentprovider">
+      <provider class="org.eclipse.datatools.sqltools.debugger.editorext.SQLDebuggerDocumentProvider"/>
+   </extension>
+
+   <extension
+         id="org.eclipse.datatools.sqltools.sqldebugger.core.texthover"
+         name="DTP SQL Debugger text hover"
+         point="org.eclipse.datatools.sqltools.sqleditor.texthover">
+      <hover class="org.eclipse.datatools.sqltools.debugger.editorext.SQLDebugHover"/>
+   </extension>
+
+   <!-- perspectives -->      
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="%database.debug.perspective"
+            icon="icons/debug_exc.gif"
+            class="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective"
+            id="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+      </perspective>
+   </extension>
+
+    <!-- next are how to hook DTP perspective/actions with other perspectives/actions of eclipse -->
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <!-- decide where to show the views in "debug" perspective -->
+        <perspectiveExtension 
+            targetID="org.eclipse.debug.ui.DebugPerspective"> 
+            <view id="org.eclipse.datatools.sqltools.result.resultView" 
+                relative="org.eclipse.ui.console.ConsoleView" 
+                relationship="stack" 
+                visible="false" />
+            <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
+            <perspectiveShortcut id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"/>                        
+        </perspectiveExtension> 
+
+        <!-- extension to the DTP debugger perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+	    	 <actionSet
+               id="org.eclipse.debug.ui.breakpointActionSet">
+             </actionSet>
+	    	 <!--actionSet
+               id="org.eclipse.datatools.sqltools.debugger.actionsets">
+             </actionSet-->
+            
+		<!-- Top left -->
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.25"
+                  relationship="top"
+                  relative="org.eclipse.ui.editorss"
+                  id="org.eclipse.debug.ui.DebugView"/>
+		<!-- Top right -->
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.5"
+                  relationship="right"
+                  relative="org.eclipse.debug.ui.DebugView"
+                  id="org.eclipse.debug.ui.VariableView"/>                  		             
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  relationship="stack"
+                  relative="org.eclipse.debug.ui.VariableView"
+                  id="org.eclipse.debug.ui.BreakpointView"/>       
+             
+		<!-- Bottom -->
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.65"
+                  relationship="bottom"
+                  relative="org.eclipse.ui.editorss"
+                  id="org.eclipse.datatools.sqltools.result.resultView"/>	
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="false"
+                  showTitle="true"
+                  relationship="stack"
+                  relative="org.eclipse.datatools.sqltools.result.resultView"
+                  id="org.eclipse.datatools.sqltools.plan.planView"/>	
+                                    		             
+		<!-- Right -->
+         <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.75"
+                  relationship="right"
+                  relative="org.eclipse.ui.editorss"
+                  id="org.eclipse.ui.views.ContentOutline"/>	
+          
+             <!-- Add View Shortcuts !-->
+            <viewShortcut id="org.eclipse.debug.ui.DebugView" />  
+            <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
+            <viewShortcut id="org.eclipse.debug.ui.VariableView" />
+            <viewShortcut id="org.eclipse.debug.ui.BreakpointView" />
+            <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
+            <viewShortcut id="org.eclipse.ui.views.ContentOutline" />            
+            <!-- Add Perspective shortcuts !-->
+            <perspectiveShortcut id="ConfigPerspective" />
+            <perspectiveShortcut id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective" />
+        </perspectiveExtension>
+        
+    </extension>        
+
+   <!-- DTP routine launch configuration type.-->
+   <extension
+         point="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes">
+      <launchConfigurationType
+            name="%routine.launch.type"
+            delegate="org.eclipse.datatools.sqltools.debugger.launching.SPDebuggerLaunchConfigurationDelegate"
+            modes="debug"
+            id="org.eclipse.datatools.sqltools.debugger.core.launchConfigurationType">
+      </launchConfigurationType>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+	  <!-- properties dialog for SP breakpoint -->
+      <objectContribution
+            objectClass="org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint"
+            id="org.eclipse.datatools.sqltools.debugger.SPBreakpointActions">
+         <action
+               enablesFor="1"
+               label="P&amp;roperties"
+               class="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesAction"
+               menubarPath="additions"
+               id="org.eclipse.jdt.debug.ui.actions.SPBreakpointProperties"/>
+      </objectContribution>
+            <!--
+      	breakpoint related ruler context menu items. 
+      -->
+      <viewerContribution
+            targetID="#SQLEditorRulerContext"
+            id="org.eclipse.datatools.sqltools.sqleditor.debug.ui.SQLEditorPopupActions">
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.breakpoint_properties_action"
+               label="Breakpoint Properties..."
+               class="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesRulerActionDelegate">
+         </action>
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.enable_disable_breakpoint_action"
+               label="Enable Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.EnableDisableBreakpointRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.EnableDisableBreakpointRulerActionDelegate">
+         </action>
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.toggle_breakpoint_action"
+               label="Toggle Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate">
+         </action>
+      </viewerContribution>
+      
+	</extension>
+	
+	   
+   <!-- debug model presentation -->
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="org.eclipse.datatools.sqltools.debugger.debug.SPModelPresentation"
+            id="org.eclipse.datatools.sqltools.debugger.core.debugModelPresentation"/>
+   </extension>
+   
+         
+   <!-- breakpoints -->
+   <extension
+         id="spLineBreakpointMarker"
+         name="SP Line breakpoint Marker"
+         point="org.eclipse.core.resources.markers">
+      <persistent value="true"/>
+      <super type="org.eclipse.debug.core.lineBreakpointMarker"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.procIdentifier"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.condition"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.conditionEnabled"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint"
+            markerType="org.eclipse.datatools.sqltools.debugger.core.ui.spLineBreakpointMarker"
+            id="spLineBreakpoint"/>
+   </extension>
+   
+       <!-- adapters for retargetable actions -->
+	<extension point="org.eclipse.core.runtime.adapters">
+         <factory 
+            class="org.eclipse.datatools.sqltools.debugger.actions.RetargettableActionAdapterFactory" 
+            adaptableType="org.eclipse.datatools.sqltools.sqleditor.SQLEditor">
+            <adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
+            <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+         </factory>
+    </extension>
+    
+    <!-- ruler double click for toggle breakpoint -->
+    <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            id="org.eclipse.datatools.sqltools.rullerDoubleClick">
+         <action
+               label="Add Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate"
+               actionID="RulerDoubleClick"
+               id="org.eclipse.jdt.debug.ui.actions.ManageBreakpointRulerAction">
+         </action>
+      </editorContribution>
+   </extension>
+
+   <!-- watch expression for debugger -->
+   <extension
+         point="org.eclipse.debug.core.watchExpressionDelegates">
+      <watchExpressionDelegate
+            debugModel="org.eclipse.datatools.sqltools.debugger.debug.debugModelPresentation"
+            delegateClass="org.eclipse.datatools.sqltools.debugger.model.SPWatchExpressionDelegate"/>
+   </extension>
+   
+
+</plugin>

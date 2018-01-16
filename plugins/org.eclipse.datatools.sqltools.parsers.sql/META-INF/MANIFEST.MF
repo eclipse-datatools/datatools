@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql;singleton:=true
+Bundle-Version: 1.2.1.qualifier
+Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.SQLParserPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: 
+ org.eclipse.datatools.sqltools.parsers.sql,
+ org.eclipse.datatools.sqltools.parsers.sql.postparse,
+ org.eclipse.datatools.sqltools.parsers.sql.util
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.datatools.sqltools.parsers.sql.lexer,
+ org.eclipse.datatools.modelbase.sql.query;visibility:=reexport
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

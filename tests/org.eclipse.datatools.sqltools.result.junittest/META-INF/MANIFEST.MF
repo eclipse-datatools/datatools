@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Junittest Fragment
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.result.junittest
+Bundle-Version: 0.9.0.200605101
+Fragment-Host: org.eclipse.datatools.sqltools.result
+Bundle-Localization: plugin
+Require-Bundle: org.junit
+Bundle-Vendor: Eclipse.org

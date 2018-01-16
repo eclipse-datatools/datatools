@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Database Contributions to SQL Development Tools</title>
+<style>@import url("file:/d:/hcao/eclipse3.1/eclipse/plugins/org.eclipse.sdk_3.1.2/book.css");</style>
+<style>@import url("file:/d:/hcao/eclipse3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.2/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>Database Contributions to SQL Development Tools</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.sqltools.editor.core.dbConfigurations<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>This extension point provides support for SQL development. Extensions register a dbConfiguration of the type <code>org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration</code> which will be responsible for creating vendor-specific algorithms that will be used to customize the default behavior of the SQL Dev Tools framework.</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dbConfiguration">dbConfiguration</a>+)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dbConfiguration">dbConfiguration</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dbConfiguration</p>
+<p class=code id=dtdAttlist>configurationClass&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>product&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>supportsDebugging&nbsp;&nbsp;(true | false) "false"<p class=code id=dtdAttlist>default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>configurationClass</b> - a fully qualified name of the Java class of the type <code>org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration</code> which will be responsible for providing database specific classes.</li>
+<li><b>product</b> - the DBMS name</li>
+<li><b>version</b> - the DBMS version</li>
+<li><b>description</b> - optional description</li>
+<li><b>supportsDebugging</b> - Whether the configuration class supports debugging. If true, the configurationClass should implement <code>org.eclipse.datatools.sqltools.debugger.core.SQLDebuggerConfiguration</code></li>
+<li><b>default</b> - Whether the configuration is the default one when no other configurations are registered against a database vendor id.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><p><pre>
+<p class=code id=tag>&lt;extension
+         point=<p class=code id=cstring>&quot;org.eclipse.datatools.sqltools.editor.core.dbConfigurations&quot;</p><p class=code id=tag>&gt;</p>
+      <p class=code id=tag>&lt;dbConfiguration
+            product=<p class=code id=cstring>&quot;Sybase Adaptive Server Enterprise&quot;</p><p class=code id=tag>
+            version=<p class=code id=cstring>&quot;12.5.x&quot;</p><p class=code id=tag>
+            configurationClass=<p class=code id=cstring>&quot;com.sybase.stf.dmp.ase.ASEConfiguration&quot;</p><p class=code id=tag>
+            &gt;</p>
+      <p class=code id=tag>&lt;/dbConfiguration&gt;</p>
+   <p class=code id=tag>&lt;/extension&gt;</p>
+</pre></p>
+   Contributes an ASE extenstion to the SQL editor. Note: SQL Dev Tools uses product and version information to find the associated database model definition contributed via the DTP dbdefinition extension point.
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>Value of the attribute dbConfiguration must be a fully qualified name of a Java class that extends the class org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration.
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+Copyright (c) 2005 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+<p></p>
+
+</p>
+</BODY>
+</HTML>

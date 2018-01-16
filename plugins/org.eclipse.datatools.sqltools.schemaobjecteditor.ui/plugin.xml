@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="schemaObjectEditor" name="org.eclipse.datatools.sqltools.schemaObjectEditor" schema="schema/schemaObjectEditor.exsd"/>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.SchemaObjectEditor"
+            contributorClass="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.core.SchemaObjectEditorActionBarContributor"
+            default="true"
+            icon="icons/baseeditor.gif"
+            id="org.eclipse.datatools.sqltools.schemaobjecteditor.editor"
+            name="%SchemaEditor.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            class="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.preference.SchemaObjectEditorPreferencePage"
+            id="org.eclipse.datatools.sqltools.schemaobjecteditor.page1"
+            name="%SchemaEditor.preference.page.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.preference.SchemaObjectEditorPreferenceInitializer"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.action.RefreshSchemaEditorAction"
+            id="refresh.schema.editor.action.id"
+            name="%schemaobjecteditor.command.refreshfromserver">
+      </command>
+      <command
+            defaultHandler="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.action.RevertSchemaEditorAction"
+            id="revert.schema.editor.action.id"
+            name="%schemaobjecteditor.command.revert">
+      </command>
+   </extension>
+</plugin>

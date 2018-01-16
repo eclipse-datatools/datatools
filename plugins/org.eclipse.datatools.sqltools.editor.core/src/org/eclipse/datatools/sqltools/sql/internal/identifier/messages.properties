@@ -1,0 +1,9 @@
+IdentifierValidator_doublequotation_invalid=This identifier is not properly quoted
+IdentifierValidator_doublequotation_notpermit=Quote is not permitted in quoted identifier off mode
+IdentifierValidator_table_invalidstart=Table name can only start with letter, _ or #
+IdentifierValidator_localvariable_invalidstart=Local variable can only start with letter, _ or @
+IdentifierValidator_parameter_invalidstart=Local variable can only start with letter, _ or @
+IdentifierValidator_other_invalidstart=Identifier can only start with letter, {0}
+IdentifierValidator_invalid_part=Subsequent characters can include letters, numbers, #, @, _, or currency symbols
+IdentifierValidator_invalid_reservedword=The identifier cannot be a reserved word
+

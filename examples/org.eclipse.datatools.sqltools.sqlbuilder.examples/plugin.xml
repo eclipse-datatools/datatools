@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialog"
+            objectClass="org.eclipse.core.resources.IFile"
+            adaptable="true">
+         <menu
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu"
+               label="SQLBuilder Dialog"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.datatools.sqltools.sqlbuilder.examples.actions.SQLBuilderDialogFileAction"
+               enablesFor="1"
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialogfileaction"
+               label="Open SQLBuilderFileEditorInput"
+               menubarPath="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu/group1">
+         </action>
+         <action
+               class="org.eclipse.datatools.sqltools.sqlbuilder.examples.actions.SQLBuilderDialogStorageAction"
+               enablesFor="1"
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialogstorageaction"
+               label="Open SQLBuilderStorageEditorInput"
+               menubarPath="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu/group1">
+         </action>
+         <action
+               class="org.eclipse.datatools.sqltools.sqlbuilder.examples.actions.SQLBuilderDialogEditorInputAction"
+               enablesFor="1"
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialogeditorinputaction"
+               label="Open SQLBuilderEditorInput"
+               menubarPath="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu/group1">
+         </action>
+         <action
+               class="org.eclipse.datatools.sqltools.sqlbuilder.examples.actions.SQLBuilderDialogNewStmtEditorInputAction"
+               enablesFor="1"
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialognewstmteditorinputaction"
+               label="Create new SELECT statement using SQLBuilderEditorInput"
+               menubarPath="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu/group1">
+         </action>
+         <action
+               class="org.eclipse.datatools.sqltools.sqlbuilder.examples.actions.SQLBuilderDialogDialectTestEditorInputAction"
+               enablesFor="*"
+               id="org.eclipse.datatools.sqltools.sqlbuilder.examples.sqlbuilderdialogdialecttesteditorinputaction"
+               label="Open statement created for different dialect"
+               menubarPath="org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogmenu/group1">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

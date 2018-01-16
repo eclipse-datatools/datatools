@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.lexer;singleton:=true
+Bundle-Version: 1.2.1.qualifier
+Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.lexer.LexerPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: 
+ org.eclipse.datatools.sqltools.parsers.sql.lexer
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ net.sourceforge.lpg.lpgjavaruntime;visibility:=reexport
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.xml.query.test;singleton:=true
+Bundle-Version: 1.0.0.200706151
+Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.xml.query.test.TestPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: 
+ org.eclipse.datatools.sqltools.parsers.sql.xml.query.test
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.junit,
+ org.eclipse.datatools.sqltools.parsers.sql.xml.query,
+ org.eclipse.datatools.sqltools.parsers.sql.query.test
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

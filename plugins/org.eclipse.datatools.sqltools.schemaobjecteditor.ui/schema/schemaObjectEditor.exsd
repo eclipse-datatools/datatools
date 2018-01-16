@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.schemaobjecteditor" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.schemaobjecteditor" id="schemaObjectEditor" name="org.eclipse.datatools.sqltools.schemaObjectEditor"/>
+      </appinfo>
+      <documentation>
+         This extension point is used to enable the consumers to define a new multiple pages based database schema object editor.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="SchemaObjectEditor" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="EditorPage" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="SchemaObjectEditor">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="EditorName" icon="Icon"/>
+         </appinfo>
+         <documentation>
+            A schema editor is used to edit a schema object, such as a table, a stored procedure, a view, etc.. 
+It can contain several pages, it&apos;s easy for the consumer to add a page, just add a EditorPage under SchemaObjectEditor node, also, it is the consumer&apos;s responsibility to create the content in a page.
+The schema object editor framework does not define any model for the consumer, so the consumer need to define the model and implement the subject-obsevers mechanism.
+The consumer can define the behaviour of the editor by defining the ConfigurationClass. Also, it can contribute actions via ContributorClass.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="EditorPage" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="ReferencedPage" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="ReferencedEditor" minOccurs="0" maxOccurs="1"/>
+            <element ref="DefaultPagesOrder" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="EditorId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the extended editor
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="EditorName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of an editor, by default, the name of the editor will be displayed as the part name of the editor.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="VendorName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The database vendor name for whom the editor is defined. The vendor name and the version will uniquely identify a database product.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="Version" type="string">
+            <annotation>
+               <documentation>
+                  The database version for which the editor is defined. The vendor name and the version will uniquely identify a database product.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ObjectTypeId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The object type id for which the editor is defined. The consumer can use any form for this attribute, once it defines the id for a specific object, it need to use this id to open the editor.  See SchemaEditorUtils.openEditor()
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="Handler" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Implement this interface to define the behaviour of the editor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.DefaultSchemaObjectEditorHandler:org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="VisibilityConfigurable" type="boolean">
+            <annotation>
+               <documentation>
+                  If need to let the end-user to set the visibility of pages on preference page, select this attribute to true. If it is false for an editor, then all pages will be shown.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="Icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon for this editor, if not specified, will use the default icon defined by the extension point.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="ContributorClass" type="string">
+            <annotation>
+               <documentation>
+                  Use this to contribute new actions.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.DefaultSchemaObjectEditorActionBarContributor:org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorActionBarContributor"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="MustBeFirstWhenShown" type="string">
+            <annotation>
+               <documentation>
+                  Specify a page which will be always the first page (The end user can not move it down on the page visibility/order preference page). For example, the introduction page of an editor should always be displayed as the first pge.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="MustBeLastWhenShown" type="string">
+            <annotation>
+               <documentation>
+                  Specify a page which will be always the last page (The end user can not move it up on the page visibility/order preference page). For example, the source code page should be always displayed as the last page.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ObjectTypeName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="EditorPage">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="PageName"/>
+         </appinfo>
+         <documentation>
+            An editor page is contained in a multiple pages editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="PageId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this page, it SHOULD be unique for its editor.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="PageName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of this page, it SHOULD be unique for its editor.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="VisibleByDefault" type="boolean">
+            <annotation>
+               <documentation>
+                  Will be selected to be displayed on the preference page by default if this is configured to be true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="Required" type="boolean">
+            <annotation>
+               <documentation>
+                  If this attribute is configured to be true, then this page can not be selected to be unvisible on the preference page.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="Class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The form page class.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.SchemaObjectEditorPage:org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorPage"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="ContextHelpId" type="string">
+            <annotation>
+               <documentation>
+                  If a context help id is specified, a small help icon will appear on the top-right corner of this page, if the end user clicks this icon, the related context help page will pop up.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="ObjectClassType" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="ReferencedPage">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="PageId"/>
+         </appinfo>
+         <documentation>
+            Reference a page defined in other editor. This is to reuse some pages.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="EditorId" type="string">
+            <annotation>
+               <documentation>
+                  The id of the editor in which the page is contained.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="PageId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the referenced page
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="PageExtensionId" type="string">
+            <annotation>
+               <documentation>
+                  This attribute is used in the following scenario: An extension point is defined for one page, this page will be common used by many editors, for example introduction page, the consumer need to extend the introduction page to provide their own introduction information in the extension (Declararively not programmtically), thus we need to know which extension the introduction page is using for a specific editor, use this extension id, the BASE introductin page can generate a introduction page properly.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="Excludes">
+      <annotation>
+         <documentation>
+            When referencing an exsiting editor, all pages in that editor will be added into this editor. To exclude some pages in the referencing editor, using this element.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="ExcludePage"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="ReferencedEditor">
+      <annotation>
+         <documentation>
+            If a referenced editor is specified, all the attributes will be ignored except DatabaseName, DatabaseVersion, ObjectTypeId and the containing pages.
+A common usage of referenced editor is: For a higer version database, it may reuse the lower version&apos;s editor, but need to add more pages.
+ATTN: The refrenced pages/editors in the referenced editor will not be included.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="Excludes" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="EditorId" type="string">
+            <annotation>
+               <documentation>
+                  The id of the editor to be referenced.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="ExcludePage">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="PageId"/>
+         </appinfo>
+         <documentation>
+            The excluded page in the referenced editor
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="PageId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the excluded page
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="DefaultPagesOrder">
+      <annotation>
+         <documentation>
+            Define the default order of pages which are REQUIRED or visible BY DEFAULT.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="OrderItem"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="OrderItem">
+      <annotation>
+         <appinfo>
+            <meta.element labelAttribute="PageId"/>
+         </appinfo>
+      </annotation>
+      <complexType>
+         <attribute name="PageId" type="string">
+            <annotation>
+               <documentation>
+                  The page id
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="OrderNum" type="string">
+            <annotation>
+               <documentation>
+                  The order number of the page, the number should be greater than 0, the order number of several pages need not to be continous, for example, if an editor has 3 pages which are REQUIRED or visible BY DEFAULT, the order number can be: 1, 2, 3 respectively, or 1,3,6  etc.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+
+
+
+
+</schema>

@@ -1,0 +1,792 @@
+--
+-- The DB2 LUW SQL Lexer in Java
+--
+-- 09-Jun-2004 ckadner Created DB2 Lexer
+
+%Options la=2
+%Options fp=SQLLexer,prefix=Char_
+%options single-productions
+%options noserialize
+%options package=org.eclipse.datatools.sqltools.parsers.sql.lexer
+%options template=sqllexerTemplate.lpg
+%options filter=sqlKeywordLexer.lpg
+%options export_terminals=("SQLParsersym.java", "TK_")
+
+
+
+
+
+-- now taken care of be keyword filter lexer
+--$Export
+--------------------------------------------
+-- Keywords/Reserved Word list - included --
+--------------------------------------------
+--  $include sqlquerylexerKeywords.lpg
+--$End
+
+
+
+
+
+
+
+
+$Export
+
+
+-----------------------------
+-- Special Parser symbols  --
+-----------------------------
+  EOLN
+  PARSE_ERROR
+
+-------------------------------------------------------------------------------
+-- Complex tokens parsed in scanner for speed, rather than by the grammar
+-------------------------------------------------------------------------------
+  REGULAR_IDENTIFIER
+  DELIMITED_IDENTIFIER
+--   SQL_LANG_IDENTIFIER
+  EMBEDDED_VARIABLE_NAME
+--   HOST_LABEL_IDENTIFIER
+  UNSIGNED_INTEGER
+  SUFFIXED_UNSIGNED_INTEGER  --TODO: define that!
+  EXACT_NUMERIC_LITERAL  --TODO:define that!
+  APPROXIMATE_NUMERIC_LITERAL
+  NATIONAL_CHAR_STRING_LITERAL
+  NATIONAL_HEX_STRING_LITERAL                                       -- @unicode
+  BIT_STRING_LITERAL
+  HEX_STRING_LITERAL
+  CHAR_STRING_LITERAL
+  COMMENT_STRING
+  DELIMITED_TYPE_IDENTIFIER                                       -- @f95756rps
+  VERSION_IDENTIFIER                                              -- @f95756rps
+--  LINE_COMMENT
+
+------------------------
+-- Special characters --
+------------------------
+
+  DOUBLE_QUOTE
+  PERCENT
+  AMPERSAND
+  QUOTE
+  LEFT_PAREN
+  RIGHT_PAREN
+  ASTERISK
+  PLUS_SIGN
+  COMMA
+  MINUS_SIGN
+  PERIOD
+  SOLIDUS
+  REVERSE_SOLIDUS
+  COLON
+  SEMICOLON
+  LESS_THAN_OPERATOR
+  EQUALS_OPERATOR
+  GREATER_THAN_OPERATOR
+  QUESTION_MARK
+  LEFT_BRACKET                                                    -- @f95756rps
+  RIGHT_BRACKET                                                   -- @f95756rps
+  LEFT_BRACKET_TRIGRAPH								 -- ckadner 20050920 SQL2003
+  RIGHT_BRACKET_TRIGRAPH							 -- ckadner 20050920 SQL2003
+--   UNDERSCORE
+  VERTICAL_BAR
+  NOT_EQUALS_OPERATOR
+  GREATER_THAN_OR_EQUALS_OPERATOR
+  LESS_THAN_OR_EQUALS_OPERATOR
+  CONCAT_OPERATOR
+  DOUBLE_PERIOD
+                                                          -- OSF_RT-BV-B 960906
+  RIGHT_ARROW
+                                                          -- OSF_RT-BV-E 960906
+
+  STATEMENT_TERMINATOR
+
+--  HOSTVARIABLE_PREFIX										 -- ckadner 20050208
+  HOSTVARIABLE 												 -- ckadner 20050208
+  PARAMETER_MARKER 											 -- ckadner 20050209
+
+------------------------
+-- Special characters --
+------------------------
+
+  LINE_COMMENT 												 -- ckadner 20050415
+  MULTILINE_COMMENT
+
+-- Unused characters
+  LEFT_BRACE
+  RIGHT_BRACE
+  BACK_QUOTE
+
+$End
+
+$Export
+	EOF
+$End
+
+
+$Terminals
+    CtlCharNotWS
+
+    LF   CR   HT   FF   StmtTerm  ParamMark DelimIdQt HostVarPrfx
+
+    A    B    C    D    E    F    G    H    I    J    K    L    M
+    N    O    P    Q    R    S    T    U    V    W    X    Y    Z
+    _
+
+    0    1    2    3    4    5    6    7    8    9
+
+    AfterASCII		::=	'\u0080..\ufffe'
+    Space			::=	' '
+    LF				::=	NewLine
+    CR				::=	Return
+    HT				::=	HorizontalTab
+    FF				::=	FormFeed
+    DoubleQuote		::=	'"'
+    SingleQuote		::=	"'"
+    Percent			::=	'%'
+    VerticalBar		::=	'|'
+    Exclaimation	::=	'!'
+    AtSign			::=	'@'
+    BackQuote		::=	'`'
+    Tilde			::=	'~'
+    Sharp			::=	'#'
+    DollarSign		::=	'$'
+    Ampersand		::=	'&'
+    Caret			::=	'^'
+    Colon			::=	':'
+    SemiColon		::=	';'
+    BackSlash		::=	'\'
+    LeftBrace		::=	'{'
+    RightBrace		::=	'}'
+    LeftBracket		::=	'['
+    RightBracket	::=	']'
+    QuestionMark	::=	'?'
+    Comma			::=	','
+    Dot				::=	'.'
+    LessThan		::=	'<'
+    GreaterThan		::=	'>'
+    Plus			::=	'+'
+    Minus			::=	'-'
+    Slash			::=	'/'
+    Star			::=	'*'
+    LeftParen		::=	'('
+    RightParen		::=	')'
+    Equal			::=	'='
+    StmtTerm		::= STATEMENT_TERMINATOR
+    HostVarPrfx		::= HOSTVARIABLE_PREFIX
+    ParamMark 		::= PARAMETER_MARKER
+    DelimIdQt 		::= DELIMITED_IDENTIFIER_QUOTE
+$End
+
+$Eof
+	EOF
+$End
+
+
+$Rules
+
+-- The Goal for the parser is a single Token.
+-- The Token is added to the token vector and the parser is restarted by ResetStackAction.
+
+Goal	::=	Token
+--	|	$empty
+
+Token	::=	Identifier
+
+	|	StringLiteral
+
+	|	IntegerLiteral
+
+	|	FloatingPointLiteral
+
+	| 	MLComment
+
+	|	SLComment
+	
+	|   opt_Comment_Whitespace
+
+	|	Operator
+
+	|	BracketOrTrigraph
+
+--	|	WhiteSpace
+
+	|	StatementTerminator
+
+	|	HostVariable
+
+	|	ParameterMarker
+
+    |   HexStringLiteral
+    
+    |   UnusedChar
+    
+    
+Operator	::=	SSOperator
+
+--Identifier	::=	SimpleIdentifier
+--			/.
+--//				getTokenAt(1).setKind(TK_REGULAR_IDENTIFIER);
+--			./
+--		| SimpleIdentifier Period SimpleIdentifier
+--			/.$BeginAction
+--				getTokenAt(1).setKind(TK_REGULAR_IDENTIFIER);
+--//				getTokenAt(3).setKind(TK_REGULAR_IDENTIFIER);
+--			  $EndAction
+--			./
+
+Identifier	::=	ID
+--		|	KeyWord WhiteSpace
+--		|	KeyWord SLComment
+--		|	KeyWord MLComment
+--		|	KeyWord Operator
+--		|	KeyWord StringLiteral
+--		|	KeyWord StatementTerminator
+--		|	KeyWord HostVariablePrefix
+--		|	KeyWord ParameterMarker
+
+ID		::=	Ident
+		/.$BeginAction
+			checkForKeyWord();
+		  $EndAction
+		./
+
+		| DelimitedIdent
+
+WhiteSpace	::= 	WS	-- White Space is scanned but not added to output vector
+		/.$BeginAction
+		    skipToken();
+		  $EndAction
+		./
+
+WS		::= 	WSChar
+
+		|	WS WSChar
+
+Ident		::=	Letter
+
+		|	Ident Letter
+
+		|	Ident Digit
+
+HexStringLiteral ::=  X "'" SLBody "'"
+        /.$BeginAction
+            makeToken(TK_HEX_STRING_LITERAL); 
+          $EndAction
+        ./
+
+StringLiteral	::=	"'" SLBody "'"
+		/.$BeginAction
+		    makeToken(TK_CHAR_STRING_LITERAL); // TK_StringLiteral
+		  $EndAction
+		./
+
+		|	"'" "'"
+		/.$BeginAction
+		    makeToken(TK_CHAR_STRING_LITERAL); // TK_StringLiteral
+		  $EndAction
+		./
+SLBody		::=	NotSQ
+
+		|	SLBody NotSQ
+
+
+
+DelimitedIdent	::=	DelimIdQt DIBody DelimIdQt
+		/.$BeginAction
+		    makeToken(TK_DELIMITED_IDENTIFIER); // TK_StringLiteral
+		  $EndAction
+		./
+
+		|	DelimIdQt DelimIdQt
+		/.$BeginAction
+		    makeToken(TK_DELIMITED_TYPE_IDENTIFIER); // TK_StringLiteral
+		  $EndAction
+		./
+
+DIBody		::=	NotDIQ
+
+		|	DIBody NotDIQ
+
+
+IntegerLiteral	::=	IntLiteral
+
+		|	HexLiteral
+
+
+IntLiteral	::=	Integer
+		/.$BeginAction
+		    makeToken(TK_UNSIGNED_INTEGER); //TK_IntegerLiteral
+		  $EndAction
+		./
+
+Integer		::=	Digit
+
+		|	Integer Digit
+
+HexLiteral	::=	'0' 'X' HexDigits
+		/.$BeginAction
+		    makeToken(TK_UNSIGNED_INTEGER);
+		  $EndAction
+		./
+
+HexDigits	::=	HexDigit
+
+		|	HexDigits HexDigit
+
+FloatingPointLiteral	::=	Decimal Exponent
+		/.$BeginAction
+		    makeToken(TK_APPROXIMATE_NUMERIC_LITERAL);
+		  $EndAction
+		./
+
+		|	Integer Exponent
+		/.$BeginAction
+		    makeToken(TK_APPROXIMATE_NUMERIC_LITERAL);
+		  $EndAction
+		./
+
+		|	Decimal
+		/.$BeginAction
+		    makeToken(TK_EXACT_NUMERIC_LITERAL);
+		  $EndAction
+		./
+
+Decimal		::=	'.' Integer
+
+		|	Integer '.'
+
+		|	Integer '.' Integer
+
+Exponent	::=	'E' Integer
+
+		|	'E' '-' Integer
+
+		|	'E' '+' Integer
+
+MLComment   ::= '/' '*' Inside Stars '/'  opt_Comment_Whitespace
+--      /.$BeginAction
+--          skipToken();
+--        $EndAction
+--      ./
+        /.$BeginAction
+            makeComment(TK_MULTILINE_COMMENT);
+          $EndAction
+        ./
+
+-- Whitespace that precedes or follows a multi-line comment
+opt_Comment_Whitespace ::= WhiteSpace
+        
+        |   $empty
+
+Inside		::=	Inside Stars NotSlashOrStar
+
+		|	Inside '/' NotStar
+
+		|	Inside NotSlashOrStar
+
+		|	$empty
+
+
+Stars		::=	'*'
+
+		|	Stars '*'
+
+
+SLComment	::=
+		'-' '-' SkipCommentToEol 	-- we assume the end of file will terminate it,
+									-- added to solve problem w/ missing LF/CR
+									-- after SLComment at the end of input
+									-- and removed the first SLComment rule,
+									-- check rule NotCommentEol
+--		/.$BeginAction
+--			skipToken();
+--		  $EndAction
+--	  	./
+
+
+		/.$BeginAction
+		    makeComment(TK_LINE_COMMENT);
+		  $EndAction
+		./
+
+SkipCommentToEol	::=	SkipCommentToEol NotCommentEol
+		/.$NoAction ./
+
+		|	$empty
+		/.$NoAction ./
+
+WSChar	::=	Space
+	|	LF
+	|	CR
+	|	HT
+	|	FF
+
+Letter ::=	AnyCaseLetter
+	|	_
+	|	'$'
+	|	'#'
+	|   '@'
+	|	'\u0080..\ufffe'
+
+AnyCaseLetter	::=	A | B | C | D | E | F | G | H | I | J | K | L | M |
+			N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+
+Digit		::=	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+--OctalDigit	::=	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+A..F		::=	A | B | C | D | E | F
+
+HexDigit	::=	Digit
+		|	A..F
+
+--HexDigits4	::=	HexDigit
+--		|	HexDigit HexDigit
+--		|	HexDigit HexDigit HexDigit
+--		|	HexDigit HexDigit HexDigit HexDigit
+
+--OctalDigits3	::=	OctalDigit
+--		|	OctalDigit OctalDigit
+--		|	OctalDigit OctalDigit OctalDigit
+
+
+SSOperator	::=	'+'
+		/.$BeginAction
+                        makeToken(TK_PLUS_SIGN);
+		  $EndAction
+		./
+
+		|	'-'
+		/.$BeginAction
+                        makeToken(TK_MINUS_SIGN);
+		  $EndAction
+		./
+
+		|	'*'
+		/.$BeginAction
+                        makeToken(TK_ASTERISK);
+		  $EndAction
+		./
+
+		|	'/'
+		/.$BeginAction
+                        makeToken(TK_SOLIDUS);
+		  $EndAction
+		./
+
+		|	'\'
+		/.$BeginAction
+                        makeToken(TK_REVERSE_SOLIDUS);
+		  $EndAction
+		./
+
+		|	'('
+		/.$BeginAction
+                        makeToken(TK_LEFT_PAREN);
+		  $EndAction
+		./
+
+		|	')'
+		/.$BeginAction
+                        makeToken(TK_RIGHT_PAREN);
+		  $EndAction
+		./
+
+		|	'='
+		/.$BeginAction
+                        makeToken(TK_EQUALS_OPERATOR);
+		  $EndAction
+		./
+
+		|	','
+		/.$BeginAction
+                        makeToken(TK_COMMA);
+		  $EndAction
+		./
+
+		|	':'
+		/.$BeginAction
+                        makeToken(TK_COLON);
+		  $EndAction
+		./
+
+		|	';'
+		/.$BeginAction
+                        makeToken(TK_SEMICOLON);
+		  $EndAction
+		./
+
+		|	'?'
+		/.$BeginAction
+                        makeToken(TK_QUESTION_MARK);
+		  $EndAction
+		./
+
+--		|	'^'
+--		/.$BeginAction
+--                        makeToken(TK_XOR);
+--		  $EndAction
+--		./
+
+		|	'%'
+		/.$BeginAction
+                        makeToken(TK_PERCENT);
+		  $EndAction
+		./
+
+		|	'&'
+		/.$BeginAction
+                        makeToken(TK_AMPERSAND);
+		  $EndAction
+		./
+
+		|	'<'
+		/.$BeginAction
+                        makeToken(TK_LESS_THAN_OPERATOR);
+		  $EndAction
+		./
+
+		|	'>'
+		/.$BeginAction
+                        makeToken(TK_GREATER_THAN_OPERATOR);
+		  $EndAction
+		./
+
+		|	Period
+--		'.'
+--		/.$BeginAction
+--                        makeToken(TK_PERIOD);
+--		  $EndAction
+--		./
+
+		|	'<' '='
+		/.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+		./
+
+		|	'>' '='
+		/.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+		./
+
+		|	'<' '>'
+		/.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+		./
+
+		|	'|' '|'
+		/.	$BeginAction
+				makeToken(TK_CONCAT_OPERATOR);
+			$EndAction
+		./
+
+        
+--TODO The following are DB2 specific operators which need to be seprated into a DB2 Lexer
+        |   '!' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '!' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '!' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+
+Period ::= '.'
+		/.$BeginAction
+			makeToken(TK_PERIOD);
+		  $EndAction
+		./
+
+--LineComment ::= '-' '-'
+--		/.$BeginAction
+--			makeToken(TK_LINE_COMMENT);
+--		  $EndAction
+--		./
+
+SpecialNotStar	::=	'+' | '-' | '/' | '(' | ')' | '"' | '!' | '`' | '~' |
+			'%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
+			'[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' |
+			ParamMark | DelimIdQt | HostVarPrfx
+
+SpecialNotSlash	::=	'+' | '-' |	-- exclude the star as well
+			'(' | ')' | '"' | '!' | '`' | '~' |
+			'%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
+			'[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' |
+			ParamMark | DelimIdQt | HostVarPrfx
+
+SpecialNotDIQ	::=	'+' | '-' | '/' | '(' | ')' | '*' | '"' | '!' | '`' | '~' |
+			'%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
+			'[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' |
+			ParamMark | HostVarPrfx
+
+SpecialNotSQ	::=	'+' | '-' | '/' | '(' | ')' | '*' | '"' | '!' | '`' | '~' |
+			'%' | '&' | '^' | ':' | ';' | '\' | '|' | '{' | '}' |
+			'[' | ']' | '?' | ',' | '.' | '<' | '>' | '=' |
+			ParamMark | DelimIdQt | HostVarPrfx     |
+			StmtTerm    -- STATEMENT_TERMINATOR only allowed in String literals and comments
+
+NotStar		::=	Letter
+		|	Digit
+		|	SpecialNotStar
+		|	WSChar
+
+NotSlashOrStar	::=	Letter
+		|	Digit
+		|	SpecialNotSlash
+		|	WSChar
+
+Eol		::=	LF
+   		|	CR
+
+NotCommentEol		::=	Letter
+		|	Digit
+		|	Space
+		|	'*'
+		|	SpecialNotStar
+		|	HT
+		|	FF
+		|	CtlCharNotWS
+		|	StmtTerm	-- This might be a bit dangerous if we use NotCommentEol
+						-- for stuff other than comments
+
+NotDIQ		::=	Letter
+		|	Digit
+		|	SpecialNotDIQ
+		|	WSChar
+        |   DelimIdQt DelimIdQt     -- that is a quoted quote
+--		|	EscapeSequence
+--		|	'\' U
+--		|	'\' OctalDigit
+
+NotSQ		::=	Letter
+		|	Digit
+		|	SpecialNotSQ
+		|	Space
+		|	Eol
+		|	EscapeSequence
+        |   CtlCharNotWS            -- TODO: figure out if that is correct, for SQL2003 and/or DB2, put in for Hsin-Liang: SELECT '' FROM tab1;
+--        |   "'" "'"                 --  double single quotes to represent a single quote
+        |   HT 
+        |   FF
+        
+--		|	'\' U HexDigits4
+--		|	'\' OctalDigits3
+
+EscapeSequence	::=	"'" "'"
+--		|	'\' B
+--		|	'\' T
+--		|	'\' N
+--		|	'\' F
+--		|	'\' R
+--		|	'\' '"'
+--		|	'\' "'"
+--		|	'\' '\'
+
+BracketOrTrigraph	::= '['
+		/.	$BeginAction
+				makeToken(TK_LEFT_BRACKET);
+			$EndAction
+		./
+
+		|	']'
+		/.	$BeginAction
+				makeToken(TK_RIGHT_BRACKET);
+			$EndAction
+		./
+
+		|	'?' '?' '('
+		/.	$BeginAction
+				makeToken(TK_LEFT_BRACKET_TRIGRAPH);
+			$EndAction
+		./
+
+		|	'?' '?' ')'
+		/.	$BeginAction
+				makeToken(TK_LEFT_BRACKET_TRIGRAPH);
+			$EndAction
+		./
+
+
+StatementTerminator	::= StmtTerm
+		/.	$BeginAction
+			makeToken(TK_STATEMENT_TERMINATOR);
+			$EndAction
+		./
+
+-- we dont want to export the hostVarPrefix by itself to not allow "select : var from tab;"
+-- cause the parser has no way to recognice whitespace later on
+HostVariable 	::= HostVarPrfx Ident
+		/.	$BeginAction
+			makeToken(TK_HOSTVARIABLE);
+			$EndAction
+		./
+
+ParameterMarker	::= ParamMark
+		/.	$BeginAction
+			makeToken(TK_PARAMETER_MARKER);
+			$EndAction
+		./
+
+-- The following chars are not used in SQL syntax.  Need to define rules for them to
+-- prevent hang in the lexer with LPG v1.1
+UnusedChar ::= '{'
+        /.  $BeginAction
+                makeToken(TK_LEFT_BRACE);
+            $EndAction
+        ./
+
+        |   '}'
+        /.  $BeginAction
+                makeToken(TK_RIGHT_BRACE);
+            $EndAction
+        ./
+
+        |   '`'
+        /.  $BeginAction
+                makeToken(TK_BACK_QUOTE);
+            $EndAction
+        ./
+
+$End

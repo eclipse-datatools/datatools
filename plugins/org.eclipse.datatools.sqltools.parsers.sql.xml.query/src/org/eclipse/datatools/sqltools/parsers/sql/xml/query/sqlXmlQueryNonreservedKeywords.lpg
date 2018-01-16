@@ -1,0 +1,9 @@
+----------------------------------------------------------
+-- Keywords/Reserved Words for SQL XML Query parser
+----------------------------------------------------------
+
+--TODO: after restructuring Lexer into separate extensions, use XML extension keywords
+--$include sqlKeywordsXML.lpg
+
+$include sqlKeywords.lpg
+

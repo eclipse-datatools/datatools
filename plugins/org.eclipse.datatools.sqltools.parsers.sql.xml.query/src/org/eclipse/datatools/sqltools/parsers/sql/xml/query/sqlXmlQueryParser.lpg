@@ -1,0 +1,145 @@
+-------------------------------------------------------------------------------
+-- For more information on the form of the LPG inputs, see the LPG Version 3.0
+-- User's Guide (available from Philippe G. Charles of IBM Yorktown).
+--
+-------------------------------------------------------------------------------
+%options escape=$
+%options table=java
+%options action=("SQLXMLQueryParser.java", "/.", "./")
+%options fp=SQLXMLQueryParser,prefix=TK_
+%options error-maps
+%options scopes
+%options margin=8
+--%options noshift_default
+%options shift_default
+%options nogoto_default
+%options single-productions
+%options noserialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
+--%options serialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
+--%options dat_directory="../../../../../.." --TODO change path
+--%options stream-type=TokenStream
+%options ParseTable=lpg.lpgjavaruntime.ParseTable
+%options package=org.eclipse.datatools.sqltools.parsers.sql.xml.query
+%options template=sqlparserTemplate.lpg
+--%options import_terminals=sqlquerylexer.lpg
+
+-- when use soft-keywords lookahead is forced to be 1 and don't use backtrack option
+%options soft-keywords
+%options LALR=4
+%options backtrack
+
+
+
+
+
+-------------------------------------------------------------------------------
+-- import declarations for generated parser
+-------------------------------------------------------------------------------
+
+$Define
+
+	$parser_base_class
+	/. org.eclipse.datatools.sqltools.parsers.sql.query.AbstractSQLQueryParser ./
+
+$End
+
+
+
+-------------------------------------------------------------------------------
+-- Type mapping imported, return types of factory methods/AST types
+-------------------------------------------------------------------------------
+
+$include sqlqueryparserTypes.lpg		-- inherited grammar types
+$include sqlXmlQueryParserTypes.lpg
+
+
+
+
+------------------------------------------------------------------------------
+-- Alias definitions imported
+------------------------------------------------------------------------------
+
+$include sqlXmlQueryParserAlias.lpg
+
+
+
+-------------------------------------------------------------------------------
+-- Base grammar rules imported
+-------------------------------------------------------------------------------
+
+$import sqlqueryparserRules.lpg
+
+-------------------------------------------------------------------------------
+-- Include rules that extend base grammar
+-------------------------------------------------------------------------------
+
+$include sqlXmlQueryParserRules.lpg
+
+
+
+-------------------------------------------------------------------------------
+-- Tail of Semantic Action Procedure (sqlnp_smactn)
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- Substitution strings (inserts into error messages)
+-------------------------------------------------------------------------------
+$NAMES
+
+   <expression> ::= 'expression'
+   EOF          ::= 'END-OF-COMMANDS'
+   PARSE_ERROR  ::= 'Valid token'
+   LEFT_PAREN   ::= '('
+   RIGHT_PAREN  ::= ')'
+   DOUBLE_QUOTE ::= '"'
+--    PERCENT      ::=  '%'
+--    AMPERSAND    ::= '&'
+   QUOTE        ::= ''''
+   ASTERISK     ::= '*'
+   PLUS_SIGN    ::= '+'
+   COMMA        ::= ','
+   MINUS_SIGN   ::= '-'
+   PERIOD       ::= '.'
+   SOLIDUS      ::= '/'
+   COLON        ::= ':'                                    -- @d124889gus begin
+   SEMICOLON    ::= ';'
+   LESS_THAN_OPERATOR    ::= '<'
+   EQUALS_OPERATOR       ::= '='
+   GREATER_THAN_OPERATOR ::= '>'
+   QUESTION_MARK ::= '?'
+--    LEFT_BRACKET  ::= '['                                  -- @f95756rps
+--    RIGHT_BRACKET ::= ']'                                  -- @f95756rps
+--    UNDERSCORE    ::= '_'
+--    VERTICAL_BAR  ::= '|'
+   NOT_EQUALS_OPERATOR             ::= '<>'
+   GREATER_THAN_OR_EQUALS_OPERATOR ::= '>='
+   LESS_THAN_OR_EQUALS_OPERATOR    ::= '<='
+   CONCAT_OPERATOR ::= '||'
+   DOUBLE_PERIOD   ::= '..'
+                                                          -- OSF_RT-BV-B 960906
+   RIGHT_ARROW     ::= '->'
+                                                          -- OSF_RT-BV-E 960906
+--   _FOREIGNKEY ::= 'FOREIGN KEY'
+--   _PRIMARYKEY ::= 'PRIMARY KEY'
+
+
+$END
+
+
+$KEYWORDS
+
+--------------------------------------------
+-- Keywords/Reserved Word list - included --
+--------------------------------------------
+$include  sqlXmlQueryNonreservedKeywords.lpg
+
+$END
+
+
+-------------------------------------------------------
+-- Token kind of identifiers for softkeyword support --
+-------------------------------------------------------
+$IDENTIFIER
+	REGULAR_IDENTIFIER
+$END
+

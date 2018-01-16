@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.sqleditor">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.sqleditor" id="actionExtensions" name="SQL Editor Action Extensions"/>
+      </appInfo>
+      <documentation>
+         This extension point allow tooling vendors to contribute additional context menus, toolbar items and workbench menus to the SQL Editor framework.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="actionExtension" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="actionExtension">
+      <complexType>
+         <attribute name="editorId" type="string" use="default" value="all">
+            <annotation>
+               <documentation>
+                  could be &quot;org.eclipse.datatools.sqltools.sqleditor.SQLEditor&quot;, &quot;org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor&quot;, &quot;org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor&quot; or &quot;all&quot;, which means all three types of editors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionContributorExtension"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         the class must implement &lt;code&gt;org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionContributorExtension&lt;/code&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2005 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

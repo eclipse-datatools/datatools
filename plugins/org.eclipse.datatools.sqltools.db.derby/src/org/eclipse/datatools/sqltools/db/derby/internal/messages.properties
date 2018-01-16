@@ -1,0 +1,12 @@
+####################################################
+#  SQL ParserExpection Message
+####################################################
+SQLParser_datatype_judgeLength = Precision must be great than zero
+SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
+SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+
+plugin_internal_error=Internal error
+
+#\u200E invisible LEFT-TO-RIGHT MARK (LRM).
+ProcIdentifierImpl_trigger_long_display_string=\u200E({0}).{1}.{2}.{3}\u200E
+ProcIdentifierImpl_long_display_string=\u200E({0}).{1}.{2}\u200E

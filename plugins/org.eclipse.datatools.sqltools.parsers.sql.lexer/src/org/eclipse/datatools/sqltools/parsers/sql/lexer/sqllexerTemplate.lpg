@@ -1,0 +1,217 @@
+--
+-- An LPG Lexer Template Using lpg.jar
+--
+-- An instance of this template must have a $Export section and the export_terminals option
+--
+-- Macros that must be defined in an instance of this template
+--
+--     $package_declaration
+--     $import_classes
+--     $action_class
+--     $prs_stream_class	-- use /.PrsStream./ if not subclassing
+--     $eof_token
+--
+--
+-- B E G I N N I N G   O F   T E M P L A T E
+--
+%Options escape=$,table=java,margin=4,nobacktrack
+%options action=("*.java", "/.", "./") -- SQLQueryLexer.java
+%options ParseTable=lpg.lpgjavaruntime.ParseTable
+
+$Notice /.$copyright./
+
+$Define
+
+    $copyright /./*
+     * This program and the accompanying materials 
+     * are made available under the terms of the Eclipse Public License v1.0
+     * which is available at
+     * http://www.eclipse.org/legal/epl-v10.html
+     */./
+
+    --
+    -- Definition of macros used in the lexer template
+    --
+    $import_classes
+    /.
+        import java.util.*;
+        import java.io.*;
+    ./
+    $action_class /.$file_prefix./
+    $prs_stream_class /.PrsStream./
+    $eof_token /.$_EOF./
+
+    --
+    -- Definition of macro used in the included file LexerBasicMapB.g
+    --
+    $kw_lexer_class /.SQLKeywordLexer./
+
+
+    --
+    -- Macros that may be needed in an instance of this template
+    --
+    $setSym1 /.lexParser.setSym1./
+    $setResult /.lexParser.setSym1./
+    $getSym /.lexParser.getSym./
+    $getToken /.lexParser.getToken./
+    $getLeftSpan /.lexParser.getFirstToken./
+    $getRightSpan /.lexParser.getLastToken./
+
+    --
+    -- Macros useful for specifying actions
+    --
+    $Header
+    /.
+                //
+                // Rule $rule_number:  $rule_text
+                //./
+
+    $DefaultAction
+    /. $Header
+                case $rule_number: { ./
+
+    $BeginAction
+    /.$DefaultAction./
+
+    $EndAction
+    /.          break;
+                }./
+
+    $NoAction
+    /. $Header
+                case $rule_number:
+                    break; ./
+
+    $BeginActions
+    /.
+        public void ruleAction( int ruleNumber)
+        {
+            switch(ruleNumber)
+            {./
+
+    $EndActions
+    /.
+                default:
+                    break;
+            }
+            return;
+        }./
+$End
+
+
+
+
+
+
+
+
+
+$Headers
+        /.
+
+    $import_classes
+    import lpg.lpgjavaruntime.*;
+
+    public class $action_class extends AbstractSQLLexer implements RuleAction, $exp_type, $sym_type
+    {
+
+
+        public String[] orderedExportedSymbols() { return $exp_type.orderedTerminalSymbols; }
+ 
+        public void lexer($prs_stream_class prsStream)
+        {
+            super.setPrsStream(prsStream);
+
+            prsStream.makeToken(0, 0, 0); // Token list must start with a bad token
+                
+            lexParser.parseCharacters();  // Lex the input characters
+                
+            int i = getStreamIndex();
+            prsStream.makeToken(i, i, $eof_token); // and end with the end of file token
+            prsStream.setSize();
+                
+            return;
+        }
+    ./
+$End
+
+$Headers
+/.
+    $kw_lexer_class kwLexer;
+    
+
+    public $action_class(char[] p_input, boolean p_printTokens, SQLCharacterKindMap p_charKindMap) //throws IOException
+    {
+        super(p_input, null, ECLIPSE_TAB_VALUE); 
+        
+        //TODO: take care of charKindMap
+        charKindMap = p_charKindMap;
+        
+        commentTokens = new ArrayList();
+        
+        prs = new SQLLexerprs();
+        lexParser = new LexParser(this, prs, this);
+
+        printTokens = p_printTokens;
+        kwLexer = new SQLKeywordLexer(getInputChars(), TK_REGULAR_IDENTIFIER);
+    }
+
+    
+    protected final void checkForKeyWord()
+    {
+        int startOffset = $getToken(1),
+            endOffset = $getRightSpan(),
+        kwKind = kwLexer.lexer(startOffset, endOffset);
+        getPrsStream().makeToken(startOffset, endOffset, kwKind);
+        if(printTokens) printValue(startOffset, endOffset);
+    }
+    
+    // implements abstract getKind(int i)
+    public int getKind(int i)
+    {
+        if (i >= getStreamLength() ) return Char_EOF;
+
+        char c = getCharValue(i); // char c = inputChars[i];
+
+        if (c < 128) // ASCII Character
+        {
+            return charKindMap.getTokenKind(c);
+        }
+        else if (c == TOKEN_EOF)
+        {
+            return Char_EOF;
+        }
+        else
+        {
+            return Char_AfterASCII;
+        }
+    }
+
+    
+./
+$End
+
+
+
+
+
+
+
+
+
+
+
+$Rules
+    /.$BeginActions./
+$End
+
+$Trailers
+    /.
+        $EndActions
+    }
+    ./
+$End
+
+--
+-- E N D   O F   T E M P L A T E
+--

@@ -1,0 +1,24 @@
+ParseException_expecting=Was expecting:
+ParseException_encountered=Encountered "
+ParseException_atline=" at line
+ParseException_atcolumn=, column
+ParseException_period=.
+ParseException_expection_oneof=Was expecting one of:
+
+JavaCharStream_invalid_escape=Invalid escape character at line {0} column {0}.
+
+SimpleNode_1=Error while trying to get position of node:
+SimpleNode_2=Error to getSQLText:
+SimpleNode_3=Error while trying to delete node:
+
+####################################################
+#  SQL ParserExpection Message
+####################################################
+SQLParser_datatype_judgeLength = Precision must be great than zero
+SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
+SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+
+TokenMgrError_lexical_error=Lexical error at line {0}, column {1}.  Encountered: {2}, after : "{3}"
+TokenMgrError_eof=<EOF>
+TokenMgrError_currentchar="{0}" ({1})
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="preferenceSections" name="DTP Preference Sections" schema="schema/preferenceSections.exsd"/>
+ <!-- SQL Development Node -->
+  	<extension
+    	point="org.eclipse.ui.preferencePages">
+        <page
+        	name="%datatools.core.ui.preferences.data"
+            class="org.eclipse.datatools.sqltools.common.ui.preferences.PreferencePage"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            category="org.eclipse.datatools.connectivity.ui.preferences.dataNode">            
+      	</page>
+	</extension>
+</plugin>

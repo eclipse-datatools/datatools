@@ -1,0 +1,812 @@
+--TODO: work w/ Gerry Fisher on that single-file-keyword-list concept
+--      get rid of K E Y W O R D section in lexer, make TokenKind equal TK_keyword
+
+-----------------------------
+-- Keywords/Reserved Words --
+-----------------------------
+--   ABSOLUTE
+  ACCESS                                                         -- @d125130cwd
+  ACCTNG                                                         -- @d173236PMB
+  ACTION
+  ACTIVATE                                                        -- @d73448see
+--   ADA
+  ADD
+  ADMIN                                                           -- @d178155jwh
+  ADMINISTRATION                                                   --@d300601mas
+  AFTER
+  AGE                                                             -- @d85690PMB
+  ALIAS
+  ALL
+  ALLOCATE                                                       -- @d124889gus
+  ALLOW                                               -- ALLOW added @d51983gmw
+  ALTER
+  ALTERIN
+  ALWAYS                                                         -- @fdercolspr
+  AND
+  ANY
+  APPEND
+  APPL_ID
+  APPL_NAME
+  APPLNAME                                                       -- @d173236PMB
+--   ARE
+  ARRAY                                             -- @ckadner20050920-SQL2003
+  AS
+  ASC
+  ASCII                                                          -- @d158383mas
+  ASENSITIVE                                                     -- @d161526PMB
+--   ASSERTION
+  ASSIGNMENT                                                    -- SE@f98620mmj
+  ASSOCIATE                                                      -- @d124889gus
+  AST                                                            -- @d153873see
+  ASUTIME                                                        -- @d157368mas
+  AT                                                             -- @d159586mas
+  ATOMIC                                                          -- @d28725RAW
+  ATTRIBUTE                                                -- OSF_RT-NSP 971117
+  ATTRIBUTES                                                     -- @d126450see
+  AUTHORIZATION
+  AUTH_ID
+  AUTHID                                                          -- @f95756rps
+  AUTOMATIC                                                       -- @d295265tyt
+  AUTOSTART
+  AVAILABLE                                                      -- @CATDDL_sv
+--AVG
+  B                                                              -- @d293547pch
+  BEFORE
+  BEGIN
+  BERNOULLI                                                       --@d203248mmj
+  BETWEEN
+  BIGINT                                                            --@fBINTkmw
+  BINARY                                                          --@d155139mas
+  BIND
+  BINDADD
+  BIT
+--   BIT_LENGTH
+  BLOB
+  BLOCKED
+  BLOCKSIZE                                                        --@d174744bda
+  BOTH                                                            -- @d293547pch
+  BUFFER                                                          -- @d95870see
+  BUFFERPOOL
+  BUFFERPOOLS
+  BUFFERSIZE
+  BUILD                                                           -- @d278249mif
+  BY
+  BYPASS                                                          -- @d225367PMB
+  C
+  CACHE                                                          -- @d120954spr
+  CACHING                                                         -- @d286608yka
+  CALL
+  CALLED                                                          -- @d98203see
+  CALLER                                                         -- @d124889gus
+  CAPTURE
+  CARDINALITIES                                                  -- @d178599PMB
+  CARDINALITY
+  CASCADE
+  CASCADED
+  CASE
+  CAST
+--   CATALOG
+--   CATALOG_NAME
+  CCSID                                                          -- @d158383mas
+  CHANGE                                                         -- @f122518cpz
+  CHANGED                                                        -- @d157305mas
+  CHANGES
+  CHAR
+--   CHAR_LENGTH
+  CHARACTER
+--   CHARACTER_LENGTH
+--   CHARACTER_SET_CATALOG
+--   CHARACTER_SET_NAME
+--   CHARACTER_SET_SCHEMA
+  CHECK
+  CHECKED
+--   CLASS_ORIGIN
+  CLIENT                                                         -- @d124889gus
+--  CLIENT_ACCTNG                                                  -- @db293418mko
+--  CLIENT_APPLNAME
+--  CLIENT_USERID
+--  CLIENT_WRKSTNNAME                                              -- @de293418mko
+  CLOB
+  CLOSE                                                          -- @d124889gus
+  CLR                                                             -- @d299789mko
+  CLUSTER                                                         -- @d52222cpz
+--COALESCE
+  COBOL                                                           -- @d98203see
+--   COLLATE
+--   COLLATION
+--   COLLATION_CATALOG
+--   COLLATION_NAME
+--   COLLATION_SCHEMA
+  COLLECT                                                        -- @f122518cpz
+  COLLID                                                         -- @d157368mas
+  COLUMN
+  COLUMNS                                                         -- @d82438see
+--   COLUMN_NAME
+  COMM                                                            -- @f95756rps
+--   COMMAND_FUNCTION
+  COMMENT
+  COMMIT
+  COMMITTED                                                       -- @d252711fli
+  COMPACT
+  COMPARE                                                         -- @d178599PMB
+  COMPARISONS
+  COMPRESS                                                        -- @d159401see
+  COMPRESSION                                                     -- @d159401see
+  CONCAT
+  CONDITION                                                      -- @d124889gus
+--   CONDITION_NUMBER
+  CONN                                                           -- @d160832mas
+  CONNECT
+--   CONNECTION
+  CONNECTIONS
+--   CONNECTION_NAME
+  CONNECTOPT                                                      -- @f95756rps
+  CONNHEADER                                                     -- @d160832mas
+  CONNMEMUSE                                                      -- @d261494mas
+  CONSERVATIVE                                                   -- @d112926see
+  CONSTRAINT
+--   CONSTRAINT_CATALOG
+--   CONSTRAINT_NAME
+--   CONSTRAINT_SCHEMA
+  CONSTRAINTS
+  CONSTRUCTOR                                                   --@d162170yb
+  CONTAINERS                                                     -- @d138802yyj
+  CONTAINS                                                        -- @d98203see
+  CONTENT                                                        -- @d288486sc
+  CONTINUE                                                       -- @d124889gus
+  CONTINUOUSLY                                                   -- @dCATDDL_sv
+  CONTROL
+--   CONVERT
+  COPY                                                           -- @d157305mas
+--   CORRESPONDING
+  COUNT
+  COUNT_BIG
+  CPU                                                             -- @f95756rps
+  CREATE
+  CREATE_EXTERNAL_ROUTINE                                        -- @d161489see
+  CREATEIN
+  CREATE_NOT_FENCED
+  CREATE_NOT_FENCED_ROUTINE                                      -- @d161489see
+  CREATETAB
+--   CROSS
+  CS                                                           -- @d168311nmt
+  CUBE
+  CURRENT
+  CURRENT_DATE                                                  -- @db084015mas
+  CURRENT_DEFAULT_TRANSFORM_GROUP                                  -- @051705ck
+  CURRENT_PATH
+  CURRENT_ROLE                                                     -- @051705ck
+--  CURRENT_SCHEMA
+--  CURRENT_SERVER
+  CURRENT_TIME
+  CURRENT_TIMESTAMP
+--  CURRENT_TIMEZONE                                              -- @de084015mas
+  CURRENT_TRANSFORM_GROUP_FOR_TYPE                                 -- @051705ck
+  CURRENT_USER                                                    --@d246765PMB
+  CURRVAL                                                         --@d155731spr
+  CURSOR                                                         -- @d124889gus
+  CURSORS                                                        -- @d120282yuk
+--   CURSOR_NAME
+  CYCLE                                                           --@d155731spr
+  DATA
+  DATABASE
+  DATALINK                                                --@dlnkdlnkpvt 971208
+  DATE
+--   DATETIME_INTERVAL_CODE
+--   DATETIME_INTERVAL_PRECISION
+  DAY
+  DAYS
+  DB                                                      --@dlnkdlnkpvt 971208
+  DBADM
+  DBCLOB
+  DBINFO                                                  -- DBINFO  @d45822gmw
+  DBMEMUSE                                                        -- @d261494mas
+  DBPARTITIONNUM                                                  -- @d196647sct
+  DBPARTITIONNUMS                                                 -- @d196647sct
+  DB2DARI                                                         -- @d57505pem
+  DB2GENRL                                                        -- @d59334pem
+  DB2GENERAL                                                      -- @d64151wyc
+  DB2OPTIONS                                              --@dlnkdlnkpvt 971208
+  DB2SPL
+  DB2SQL                    -- DB2SQL added 12/12/94 by GMW, replaces SQL_IBM94
+  DB2_RETURN_STATUS                                              -- @d243265gus
+  DB2_TOKEN_STRING                                               -- @c182491mwd
+  DEACTIVATE                                                      -- @d159401see
+  DEADLOCK                                                        --@d160832mas
+  DEADLOCKS
+--   DEALLOCATE
+  DEC
+  DECIMAL
+  DECLARE                                                        -- @d118708see
+  DEFAULT
+  DEFAULTS                                                        -- @d112690sv
+  DEFINE                                                         -- @d157305mas
+  DEFINITION                                                      -- @crttabgll
+  DEGREE                                                          -- @d48498jfh
+  DEFER                                                          -- @d157305mas
+--   DEFERRABLE
+  DEFERRED                                                        -- @crttabgll
+  DELETE
+  DESC
+--   DESCRIBE
+  DESCRIPTOR                                                     -- @d246481bdz
+  DETAILED                                                       -- @f122518cpz
+  DETAILS                                                        -- @d158911see
+  DETERMINED                                                     -- @d279188mmj
+  DETERMINISTIC                               -- DETERMINISTIC added @d51983gmw
+  DEVICE
+  DIAGNOSTICS                                                    -- @d124889gus
+  DIMENSIONS                                                     -- @d152613see
+  DIRTY                                                         -- @d252711fli
+  DISABLE                                                       -- @queryopt_sv
+  DISALLOW                                         -- DISALLOW added @d51983gmw
+--   DISCONNECT
+  DISPATCH                                                       -- @d183289see
+  DISTINCT
+  DISTRIBUTION                                                   -- @f122518cpz
+  DLCONN                                                         -- @d160832mas
+  DLLOCK                                                         -- @d160832mas
+--   DOMAIN
+  DO                                                             -- @d124889gus
+  DOUBLE
+  DROP
+  DROPIN
+  DROPPED                                                         -- @d84190yuk
+  DYNAMIC                                                   -- OSF_RT-BV 980216
+--   DYNAMIC_FUNCTION
+  EACH
+  ELEMENT
+  ELSE
+  ELSEIF                                                         -- @d124889gus
+  EMPTY                                                           -- @d73448see
+  ENABLE                                                        -- @queryopt_sv
+  ENCRYPTION                                                     -- @d190110liu
+  END
+  ENDING                                                         --@dRCTrnn
+--   END_EXEC
+  ENFORCED                                                       -- @d181226lpl
+  ERASE                                                          -- @d157305mas
+  ESCAPE
+  ESTIMATE                                                       -- @d178599PMB
+  EUR
+  EVALUATE
+  EVENT
+  EXACT                                                           --@d126963pkc
+  EXCEPT
+  EXCEPTION
+  EXCLUDE
+  EXCLUDES                                                       -- @d160832mas
+  EXCLUDING                                                      -- @d126450see
+  EXCLUSIVE
+--   EXEC
+  EXECNODE                                                       -- @d155731spr
+  EXECUTE
+  EXISTS
+  EXIT                                                           -- @d124889gus
+  EXPAND                                                         -- @matviewrss
+  EXPLAIN
+  EXPRESSION                                                    -- SE@f98620mmj
+  EXTEND                                                   -- OSF_RT-SPR 980131
+  EXTENDED
+  EXTENSION                                                     -- SE@f98620mmj
+  EXTENTSIZE
+  EXTERNAL
+--   EXTRACT
+  FALSE
+  FEDERATED                                                      -- @d103518rps
+  FEDERATED_TOOL                                                 -- @d297203ry
+  FENCED
+  FETCH
+  FILE
+  FILTER                                                        -- SE@f98620mmj
+  FINAL
+  FIRST
+  FLOAT
+  FLUSH                                                           -- @d95870see
+  FOLLOWING                                                     -- @fscalag2rwl
+  FOR
+  FORCE                                                          -- @fdercolspr
+  FOREIGN
+  _FOREIGNKEY        -- Not part of SQL language, just used to make SQL LALR(2)
+--   FORTRAN
+  FOUND                                                          -- @d124889gus
+  FREE                                                           -- @d195442spr
+  FREEPAGE                                                       -- @d157305mas
+  FROM
+  FS                                                      --@dlnkdlnkpvt 971208
+  FULL
+  FUNCTION
+  G
+  GBPCACHE                                                       -- @d157305mas
+  GENERAL                                                         -- @d98203see
+  GENERATE                                                        -- SE@d102868
+  GENERATED                                                -- OSF_RT-NSP 971117
+  GET                                                            -- @d124889gus
+  GLOBAL                                                          -- @d51092wyc
+--   GO
+  GOTO
+  GRANT
+  GRAPHIC
+  GROUP
+  GROUPING
+  HANDLER                                                        -- @d124889gus
+  HASHING                                                         -- @d43617wyc
+  HAVING
+  HIDDEN                                                         -- @fdercolspr
+  HIERARCHY                                                       --@d100600 JK
+  HIGH                                                             --@d268815bda
+  HOLD                                                           -- @d124889gus
+  HOUR
+  HOURS
+  HPJ                                                            -- @d120831bpg
+  ID                                                              -- @f95756rps
+  IDENTITY                                                       -- @d120954spr
+  IF                                                             -- @d124889gus
+  IGNORE                                                         -- @d262789bdz
+  IMMEDIATE
+  IMPLICIT_SCHEMA                                                 -- @d52191dtl
+  IN
+  INCLUDE                                                         -- @d52222cpz
+  INCLUDES                                                       -- @d160832mas
+  INCLUDING                                                       -- @d112690sv
+  INCREMENT                                                      -- @d120954spr
+  INCREMENTAL                                                    -- @d102025see
+  INDEX
+  INDEXES                                                         -- @d98591gav
+  INDICATOR
+  INFIX                                                           -- @f95756rps
+  INFO                                                            -- @d259146PMB
+  INHERIT                                                         -- @crttabgll
+  INITIALLY
+  INITIAL_INSTS                                                   -- @f95756rps
+  INITIAL_IOS                                                     -- @f95756rps
+  INLINE
+  INNER
+  INOUT                                                           -- @d57505pem
+  INPUT                                                           -- @d98203see
+  INSENSITIVE                                                     --@d161526PMB
+  INSERT
+  INSTANTIABLE                                              --OSF_RT-NSP 971117
+  INSTEAD                                                         -- @d166573lh
+  INSTS_PER_ARGBYTE                                               -- @f95756rps
+  INSTS_PER_INVOC                                                 -- @f95756rps
+  INT
+  INTEGER
+  INTEGRITY                                               --@dlnkdlnkpvt 971208
+  INTERSECT
+--   INTERVAL
+  INTO
+  IO                                                              -- @f95756rps
+  IOS_PER_ARGBYTE                                                 -- @f95756rps
+  IOS_PER_INVOC                                                   -- @f95756rps
+  IS
+  ISO
+  ITERATE                                                        -- @d124889gus
+  ISOLATION                                                      -- @d252711fli
+  JAVA                                                            -- @d55628pem
+  JIS
+  JOIN
+  K
+  KEEP                                                            -- @d309683rmi
+  KEY
+  KEYS                                                          -- SE@f98620mmj
+  L                                                              -- @d293547pch
+  LANGUAGE
+  LARGE                                                          -- @d155139mas
+  LAST                                                           -- @fscalagrwl
+  LATERAL                                                        -- @d300919spr
+  LC_CTYPE                                                       -- @d228752PMB
+  LEADING                                                        -- @d293547pch
+  LEAVE                                                          -- @d124889gus
+  LEFT
+  LENGTH                                                        -- SE@f98620mmj
+  LEVEL                                                          -- @d176267yuk
+  LEVEL2                                                          --@d268815bda
+  LIBRARY                                                         -- @f95756rps
+  LIBRARYADM                                                     -- @d161489see
+  LIKE
+  LIMIT                                                          -- @d157368mas
+  LINK                                                    --@dlnkdlnkpvt 971208
+  LINKTYPE                                                --@dlnkdlnkpvt 971208
+  LOAD                                                           -- @d121038iag
+  LOCAL
+  LOCALE                                                         -- @d228752PMB
+  LOCALTIME                                                        -- @051705ck
+  LOCALTIMESTAMP                                                   -- @051705ck
+--   LOCATIONS                                                   -- @d159196mas
+  LOCATOR
+  LOCATORS                                                       -- @d124889gus
+  LOCK
+  LOCKS                                                          -- @d120282yuk
+  LOCKSIZE                                                        -- @d77658see
+  LOG                                                             -- @d278249mif
+  LOGGED
+  LONG
+  LONGVAR                                                         -- @d82438see
+  LOOP                                                           -- @d124889gus
+  LOW                                                              --@d268815bda
+--   LOWER
+  M
+--  MAINTAINED                                                        -- @umst_sv
+  MAIN_PROG                                                       -- @d98203see
+  MANAGED
+  MANUALSTART
+  MAPPING                                                         -- @f95756rps
+--   MATCH
+  MATCHED                                                        -- @d262789bdz
+  MATERIALIZED                                                   -- @d203750mmj
+--  MAX
+  MAXFILES
+  MAXFILESIZE
+  MAXVALUE                                                        --@d155731spr
+  MDC                                                             --@d274205eat
+--   MESSAGE_LENGTH
+--   MESSAGE_OCTET_LENGTH
+  MERGE                                                          -- @d262789bdz
+  MESSAGE_TEXT                                                   -- @d129442gus
+  METHOD                                                         -- @d125130cwd
+  METHODS                                                       -- SE@f98620mmj
+  MICROSECOND
+  MICROSECONDS
+--MIN
+  MINPCTUSED                                                       -- @98338see
+  MINUTE
+  MINUTES
+  MINVALUE                                                       -- @d155731spr
+  MIXED                                                          -- @d158383mas
+  MODE
+  MODIFIES                                                        -- @d98203see
+--   MODULE
+  MONITOR
+  MONTH
+  MONTHS
+  MOVEMENT                                                       -- @ROWMOVEbdz
+--   MORE
+--   MUMPS
+  MULTISET                                           -- @ckadner20050920-SQL2003
+  N                                                               -- cka 082404
+  NAME
+--   NAMES
+--   NATIONAL
+--   NATURAL
+--   NCHAR
+  NEW
+  NEW_TABLE
+  NEXT                                                           -- @d253701see
+  NEXTVAL                                                        -- @d155731spr
+  NICKNAME                                                        -- @f95756rps
+  NO
+  NOCACHE                                                        -- @d155731spr
+  NOCYCLE                                                        -- @d155731spr
+  NODE                                                            -- @d43617wyc
+  NODES                                                           -- @d43617wyc
+  NODEGROUP                                                       -- @d43617wyc
+  NOMAXVALUE                                                     -- @d155731spr
+  NOMINVALUE                                                     -- @d155731spr
+  NONBLOCKED
+  NONE
+  NOORDER                                                        -- @d155731spr
+  NOT
+  NULL
+--   NULLABLE
+--   NULLCALL
+--NULLIF
+  NULLS                                                           -- @d98203see
+  NUM
+--   NUMBER
+  NUMBLOCKPAGES                                                    --@d174744bda
+  NUMERIC
+  NUM_FREQVALUES                                                 -- @f122518cpz
+  NUM_QUANTILES                                                  -- @f122518cpz
+--   OCTET_LENGTH
+  OBJECT                                                         -- @d155139mas
+  OF
+  OFF
+  OLD
+  OLD_TABLE
+  OLE                                                             -- @d58929bjr
+  OLEDB                                                           -- @d79557bjr
+  ON
+  ONCE                                                            -- @crttabgll
+  ONLINE                                                          --@d100959kws
+  ONLY
+  OPEN                                                           -- @d124889gus
+  OPTIMIZATION
+  OPTIMIZE
+  OPTION
+  OPTIONS                                                  -- OSF_RT-NSP 971117
+  OR
+  ORDER
+  ORGANIZE                                                        -- @d213579see
+  OUT                                                             -- @d57505pem
+  OUTER
+--   OUTPUT
+  OVER                                                           -- @fscalagrwl
+  OVERFLOW                                                        -- @dRCTgav
+  OVERHEAD
+--   OVERLAPS
+  OVERRIDING                                                      -- @d157813ns
+  P                                                               -- @f95756rps
+  PACKAGE
+--   PAD
+  PAGE                                                             --@d268815bda
+  PAGESIZE                                                        -- @d77383see
+--   PARTIAL
+  PARALLEL                                              -- PARALLEL  @d45822gmw
+--   PARALLELISM                                            -- @f122518cpz
+  PARAMETER
+--   PASCAL
+  PASSTHRU                                                        -- @f95756rps
+  PASSWORD                                                        -- @f95756rps
+  PATH
+  PARTITION                                                      -- @fscalagrwl
+  PARTITIONING                                                    -- @d43617wyc
+  PARTITIONINGS                                                   --@d155352see
+  PATROLLER                                                       --@d225363PMB
+  PCTDEACTIVATE                                                  -- @d160832mas
+  PCTFREE                                                         -- @d52222cpz
+  PENDING                                                 --@dlnkdlnkpvt 971208
+--   PERCENT                                                -- @f122518cpz
+  PERCENT_ARGBYTES                                                -- @f95756rps
+  PERMISSION                                              --@dlnkdlnkpvt 971208
+  PIECESIZE                                                      -- @d157305mas
+  PIPE
+  PLAN
+--   PLI
+--   POSITION
+  PRECEDING                                                     -- @fscalag2rwl
+  PRECISION
+  PREDICATES                                                      -- SE@d102868
+  PREFETCHSIZE
+  PREPARE                                                        -- @d124889gus
+  PRESERVE                                                       -- @d118708see
+  PREVIOUS                                                       -- @d253701see
+  PREVVAL                                                        -- @d180378spr
+  PRIMARY
+  _PRIMARYKEY        -- Not part of SQL language, just used to make SQL LALR(2)
+--   PRIOR
+  PRIQTY                                                         -- @d157305mas
+  PRIVILEGES
+  PROCEDURE                                                       -- @d57505pem
+  PROFILE                                                          --@d282160bda
+  PROGRAM
+  PROPAGATE                                                       --@d157881mmj
+  PROTOCOL                                                        -- @f95756rps
+  PRUNE                                                           --@d161046mmj
+  PUBLIC
+  QUERY
+  QUERYNO
+  QUERYTAG
+  QUIESCE_CONNECT                                                 --@d161489see
+  RANGE                                                         -- SE@f98620mmj
+  RATE                                                            -- @f95756rps
+  RATIO                                                           -- @f95756rps
+  READ
+  READS                                                           -- @d98203see
+  REAL
+  RECOMMEND                                                       -- @d98591gav
+  RECONCILE                                               --@dlnkdlnkpvt 971208
+  RECOVERY                                                --@dlnkdlnkpvt 971208
+  RECREATE                                                       -- @d112926see
+  REDUCE                                                          --@d178217bda
+  REF                                                      -- OSF_RT-btt 960628
+  REFERENCE                                                      -- @fdercolspr
+  REFERENCES
+  REFERENCING
+  REFRESH                                                         -- @crttabgll
+  REGISTERS                                                      -- @fSQLUDFdjd
+  REGULAR
+--   RELATIVE
+  RELEASE                                                        -- @d120282yuk
+  REMAIN                                                         -- @d102025see
+  REMOTE                                                          -- @f95756rps
+  RENAME                                                          -- @f46824see
+  REOPT                                                           -- @d283507SAQ
+  REPEATABLE                                                     -- @d203248mmj
+  REPEAT                                                         -- @d124889gus
+  REPLACE
+  REPLICATED                                                      -- @crttabgll
+  REQUIRING                                                      -- @d178155jwh
+  RESET                                                          -- @d103518rps
+  RESIDENT                                                       -- @d157368mas
+  RESIGNAL                                                       -- @d124889gus
+  RESIZE                                                         -- @d138802yyj
+  RESOLVE                                                        -- @d112926see
+  RESTART                                                         --@d155731spr
+  RESTORE                                                -- @dlnkdlnkpvt 971208
+  RESTRICT
+  RESULT                                                          -- @d57505pem
+  RESULT_SET_LOCATOR                                             -- @d124889gus
+--   RETURNED_LENGTH
+--   RETURNED_OCTET_LENGTH
+--   RETURNED_SQLSTATE
+  RETAIN                                                         -- @d120282yuk
+  RETURN                                                        -- SE@f98620mmj
+  RETURNS
+  RETURN_STATUS                                                  -- @d137208gus
+  REVERSE                                                        -- @d100644see
+  REVOKE
+  RIGHT
+  ROLLBACK
+  ROLLUP
+  ROUTINE
+  ROW
+  ROW_COUNT                                                      -- @d124889gus
+  ROWS
+  RR                                                             -- @d168311nmt
+  RS                                                             -- @d168311nmt
+  RUN
+  S                                                               -- @f95756rps
+  SAMPLED                                                        -- @f122518cpz
+  SAVEPOINT                                                      -- @d120282yuk
+  SBCS                                                           -- @d158383mas
+--   SCALE
+  SCANS                                                          -- @d100644see
+  SCHEMA
+--   SCHEMA_NAME
+  SCOPE                                                    -- OSF_RT-btt 960628
+  SCRATCHPAD
+  SCROLL                                                          --@d161526PMB
+  SEARCH                                                        -- SE@f98620mmj
+  SECOND
+  SECONDS
+  SECQTY                                                         -- @d157305mas
+--   SECTION
+  SECURITYADM                                                    -- @d161489see
+  SELECT
+  SELECTION
+  SELECTIVE                                              -- @dlnkdlnkpvt 971208
+  SELECTIVITY                                                    -- @d127529irf
+  SELF                                                           -- @d125130cwd
+  SENSITIVE                                                      -- @d161526PMB
+  SEQUENCE                                                       -- @d155731spr
+  SERIALIZABLE                                                   -- @d252711fli
+  SERVER
+--   SERVER_NAME
+  SESSION                                                        --@d246765PMB
+  SESSION_USER                                                   --@d246765PMB
+  SET
+  SETS
+  SETTING                                                         -- @f95756rps
+  SHARE
+  SHRLEVEL                                                       -- @f122518cpz
+  SIGNAL
+  SIMPLE                                                           --@d98203see
+  SIZE
+  SMALLINT
+  SNAPSHOT
+  SOME
+  SOURCE
+--   SPACE
+  SPECIAL                                                        -- @fSQLUDFdjd
+  SPECIFIC
+  SPECIFICATION                                                   -- @f95756rps
+  SPLIT                                                            --@d268815bda
+  SQL
+  SQLDATA                                                       --@d162170yb
+--   SQLCODE
+  SQLERROR                                                       -- @d124889gus
+  SQLEXCEPTION                                                   -- @d124889gus
+  SQLWARNING                                                     -- @d124889gus
+  SQLID
+  SQLMACRO                                                       -- @d123328spr
+  SQLSTATE
+  SSA                                                            -- @d297264PMB
+  STABILITY                                                      -- @d252711fli
+  STAGING                                                          -- @dIPDA_sv
+  START                                                          -- @d120954spr
+  STATE
+  STATEMENT
+  STATEMENTS
+  STATIC                                                         -- @d161526PMB
+  STATISTICS                                                     -- @f122518cpz
+  STARTING                                                       -- @dRCTrnn
+  STAY                                                           -- @d157368mas
+  STMT                                                           -- @d160832mas
+  STOGROUP                                                       -- @d157305mas
+  STORAGE
+  STORED                                                         -- @d156177rps
+  STRIP                                                          -- @d293547pch
+  STRIPE                                                          --@d178217bda
+  STYLE
+  SUB                                                             -- @d98203see
+--   SUBCLASS_ORIGIN
+  SUBSECTION                                                     -- @d160832mas
+--   SUBSTRING
+--SUM
+  SUMMARY                                                          --@crttabgll
+  SWITCH                                                          --@d100959kws
+  SYMMETRIC                                                        --@d268815bda
+  SYNONYM
+  SYSTEM
+  SYSTEM_USER                                                     --@d246765PMB
+  T                                                               --@d293547pch
+  TABLE
+  TABLES
+  TABLESAMPLE                                                     --@d203248mmj
+  TABLESPACE
+  TABLESPACES
+--   TABLE_NAME
+  TARGET                                                           --SE@d102868
+  TEMPLATE                                                        -- @f95756rps
+  TEMPORARY
+  THEN
+  THREADSAFE                                                     -- @fSQLUDFdjd
+  THROUGH                                                       -- SE@f98620mmj
+--  TIES                                                         -- @fscalagrwl
+  TIME
+  TIMEOUT                                                        -- @d287334kmc
+  TIMESTAMP
+  TIMEZONE
+--   TIMEZONE_HOUR
+--   TIMEZONE_MINUTE
+  TO
+  TOKEN                                                          -- @d178155jwh
+  TRAILING                                                       -- @d293547pch
+--   TRANSACTION
+  TRANSACTIONS
+  TRANSFERRATE
+  TRANSFORM                                                     -- SE@f98620mmj
+  TRANSFORMS                                                     -- @f122631ske
+  TRANSLATE
+--   TRANSLATION
+  TREAT                                                          -- @d125130cwd
+  TRIGGER
+--   TRIM
+  TRUE
+  TRUNC                                                          -- @d160832mas
+  TWOLEVEL                                                       -- @d203248mmj
+  TYPE
+  TYPES                                                         -- @d185814sv
+  UNBOUNDED                                                     -- @fscalag2rwl
+  UNCHECKED
+  UNCOMMITTED                                                  --@d252711fli
+  UNDER                                                   -- OSF_ADT-btt 960730
+  UNDO                                                           -- @d124889gus
+  UNICODE                                                        -- @d158383mas
+  UNION
+  UNIQUE
+--   UNKNOWN
+  UNLINK                                                  --@dlnkdlnkpvt 971208
+  UNTIL                                                          -- @d124889gus
+--   UNNAMED
+  UPDATE
+--   UPPER
+  UR                                                      -- @d168311nmt
+  URL                                                     --@dlnkdlnkpvt 971208
+  USA
+  USE
+  USAGE                                                          -- @d156420spr
+  USER
+  USERID                                                         -- @d173236PMB
+  USING
+  VALUE                                                          -- @d124889gus
+  VALUES
+  VARCHAR
+  VARGRAPHIC
+  VARIANT
+  VARYING
+  VCAT                                                           -- @d157305mas
+  VERSION                                                         -- @f95756rps
+  VIEW
+  VOLATILE                                                         --@d97765see
+  WAIT                                                           -- @d287334kmc
+  WHEN
+--   WHENEVER
+  WHERE
+  WHILE                                                          -- @d124889gus
+  WITH
+  WITHOUT                                                         -- @d43617wyc
+  WORK
+  WRAPPER                                                         -- @f95756rps
+  WRITE
+  WRKSTNNAME                                                     -- @d173236PMB
+  X                                                               -- cka 082404
+  XACT                                                           -- @d160832mas
+  YEAR
+  YEARS
+  YES
+--   ZONE
+
+
+$include sqlKeywordsXML.lpg

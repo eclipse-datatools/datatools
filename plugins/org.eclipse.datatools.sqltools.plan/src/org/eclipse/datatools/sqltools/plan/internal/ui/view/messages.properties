@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=No plan currently shown.
+PlanView.working=Working...
+PlansDialog.title=Previous Plans
+PlanView.preference=&Preferences...
+PlansDialog.message=&Select the plan to show in the plan view
+PlansDialog.remove=&Remove
+PlanView.sql=SQL:
+PlanView.vertical.orientation=&Vertical View Orientation
+PlanView.horizontal.orientation=&Horizontal View Orientation
+ExecutionPlansDrawer.no.extension=No suitable extension found for database:{0}, to support graphic execution plan for {1}, extend {2}.{3} first to provide plan parser and plan drawer.
+ExecutionPlansDrawer.no.drawer=No suitable plan drawer found for database: {0}
+ExecutionPlansDrawer.no.parser=No suitable plan parser found for database: {0}

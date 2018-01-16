@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.generic.test
+Bundle-Version: 1.0.0.200706131
+Bundle-Activator: org.eclipse.sqltools.db.generic.test.Activator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.sqltools.db.generic,
+ org.eclipse.datatools.sqltools.sql,
+ org.junit,
+ org.eclipse.jface.text
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: genericdbtest.jar

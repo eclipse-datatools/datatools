@@ -1,0 +1,5 @@
+a.tok
+*.l
+sqlqueryparserTemplateact.h
+sqlqueryparserRulesact.h
+SQLQueryParseract.h

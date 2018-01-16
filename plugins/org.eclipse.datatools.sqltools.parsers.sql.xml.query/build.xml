@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *************************************************************************
+ * Copyright (c) 2005 Sybase, Inc. and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Sybase, Inc.  - initial API and implementation
+ *  
+ ***************************************************************************
+ -->
+<project name="org.eclipse.datatools.sqltools.parsers.sql.xml.query" default="build.jars" basedir=".">
+	<import file="../org.eclipse.datatools.build/common_build.xml" optional="true"/>
+	<property name="module.name" value="org.eclipse.datatools.sqltools.parsers.sql.xml.query"/>
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+	<property name="eclipse.home" location="."/>
+	<property file="build.properties"/>
+	<!-- JavaDoc settings -->
+	<property name="javadocWindowTitle" value="DTP SQL XML Query Parser"/>
+	<property name="javadocDocTitle" value="DTP SQL XML Query Parser API (Internal)"/>
+	<property name="javadocPackages" value="org.eclipse.datatools.sqltools.parsers.sql.xml.query.*"/>
+	<property name="javadocFooter" value="&lt;i>Copyright &#169;  2005 IBM Corporation and others. All rights reserved. &lt;/i>"/>
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="true"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="true"/>
+	<property name="javacSource" value="${javac.source}"/>
+	<property name="javacTarget" value="${javac.target}"/>
+	<property name="compilerArg" value=""/>
+	<path id="path_bootclasspath">
+		<fileset dir="${java.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${eclipse.home}/plugins">
+			<include name="org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*.jar"/>
+			<!-- Include jared EMF plug-ins -->
+			<include name="org.eclipse.emf.ecore_*.jar"/>
+			<include name="org.eclipse.emf.common_*.jar"/>
+			<include name="org.eclipse.emf.ecore.sdo_*.jar"/>
+			<include name="org.eclipse.emf.commonj.sdo_*.jar"/>
+			<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
+			<include name="org.eclipse.emf.ecore.change_*.jar"/>
+			<!-- Include expanded EMF plug-ins -->
+			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
+			<include name="org.eclipse.emf.ecore_*/org.eclipse.emf.ecore*.jar"/>
+			<include name="org.eclipse.emf.common_*/org.eclipse.emf.common*.jar"/>
+			<include name="org.eclipse.emf.ecore.sdo_*/org.eclipse.emf.ecore.sdo*.jar"/>
+			<include name="org.eclipse.emf.commonj.sdo_*/org.eclipse.emf.commonj.sdo*.jar"/>
+			<include name="org.eclipse.emf.ecore.xmi_*/org.eclipse.emf.ecore.xmi*.jar"/>
+			<include name="org.eclipse.emf.ecore.change_*/org.eclipse.emf.ecore.change*.jar"/>
+		</fileset>
+		<!-- Dependencies on other DTP plug-ins, built before this one -->
+		<fileset dir="../">
+			<include name="org.eclipse.datatools.modelbase.sql/bin/*"/>
+			<include name="org.eclipse.datatools.modelbase.sql/sqlmodel.jar"/>
+			<include name="org.eclipse.datatools.modelbase.sql.query/bin/*"/>
+			<include name="org.eclipse.datatools.modelbase.sql.query/sqlquerymodel.jar"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql.lexer/bin/*"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql.lexer/lexer.jar"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql/bin/*"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql/sqlparser.jar"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql.query/bin/*"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql.query/sqlqueryparser.jar"/>
+			<include name="org.eclipse.datatools.modelbase.sql.xml.query/bin/*"/>
+			<include name="org.eclipse.datatools.modelbase.sql.xml.query/sqlxmlquerymodel.jar"/>
+			<include name="org.eclipse.datatools.sqltools.parsers.sql/thirdparty/lpg.jar"/>
+		</fileset>
+	</path>
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+
+	<target name="init" depends="properties">
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/${module.name}">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.parsers.sql.xml.query for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.jar" basedir="${temp.folder}/${module.name}_${plugin.version}" filesonly="false" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="sqlxmlqueryparser.jar" depends="init" unless="sqlxmlqueryparser.jar" description="Create jar: org.eclipse.datatools.sqltools.parsers.sql.xml.query sqlxmlqueryparser.jar.">
+		<delete dir="${temp.folder}/sqlxmlqueryparser.jar.bin"/>
+		<mkdir dir="${temp.folder}/sqlxmlqueryparser.jar.bin"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/sqlxmlqueryparser.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}"		>
+			<compilerarg line="${compilerArg}"/>
+			<classpath refid="path_bootclasspath"/>
+			<src path="src/"			/>
+			</javac>
+		<!-- Copy necessary resources -->
+		<copy todir="${temp.folder}/sqlxmlqueryparser.jar.bin" failonerror="true" overwrite="false">
+			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"			/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar destfile="${build.result.folder}/sqlxmlqueryparser.jar" basedir="${temp.folder}/sqlxmlqueryparser.jar.bin"/>
+		<delete dir="${temp.folder}/sqlxmlqueryparser.jar.bin"/>
+	</target>
+
+	<target name="sqlxmlqueryparsersrc.zip" depends="init" unless="sqlxmlqueryparsersrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip destfile="${build.result.folder}/sqlxmlqueryparsersrc.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/" includes="**/*.java"			/>
+		</zip>
+	</target>
+
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.parsers.sql.xml.query.">
+		<available property="sqlxmlqueryparser.jar" file="${build.result.folder}/sqlxmlqueryparser.jar"/>
+		<antcall target="sqlxmlqueryparser.jar"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="sqlxmlqueryparsersrc.zip" file="${build.result.folder}/sqlxmlqueryparsersrc.zip"/>
+		<antcall target="sqlxmlqueryparsersrc.zip"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}" includes="sqlxmlqueryparser.jar"			/>
+		</copy>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}" includes="plugin.xml,about.html,sqlxmlqueryparser.jar,META-INF/"			/>
+		</copy>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes="sqlxmlqueryparsersrc.zip"/>
+		</copy>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy file="${build.result.folder}/sqlxmlqueryparsersrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes=".classpath,.cvsignore,.project,build.properties,plugin.xml,src/,bin/"			/>
+		</copy>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy file="${temp.folder}/sqlxmlqueryparser.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.parsers.sql.xml.query of all the zips, jars and logs created.">
+		<delete file="${build.result.folder}/sqlxmlqueryparser.jar"/>
+		<delete file="${build.result.folder}/sqlxmlqueryparsersrc.zip"/>
+		<delete file="${plugin.destination}/${module.name}_${plugin.version}.jar"/>
+		<delete file="${plugin.destination}/${module.name}_${plugin.version}.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.sqltools.parsers.sql.xml.query" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.parsers.sql.xml.query.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"			/>
+		</delete>
+		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+</project>

@@ -1,0 +1,277 @@
+------------------------------------------------------------------------------
+-- Copyright (c) 1993, 2005 IBM Corporation and others.
+-- All rights reserved. This program and the accompanying materials 
+-- are made available under the terms of the Eclipse Public License v1.0
+-- which is available at
+-- http://www.eclipse.org/legal/epl-v10.html
+--  
+-- Contributors:
+--     IBM Corporation - initial API and implementation
+-------------------------------------------------------------------------------
+--
+-- Source File Name = org.eclipse.datatools.sqltools.parsers.sql.query/sqlqueryparser.lpg, cme, cme_v1r1)
+--
+-- Component Name   = SQL/92 Parser
+--
+-- Descriptive Name = Starwinds grammar source file (Full SQL/92 + extensions)
+--
+--
+-- Function = Source file defining Full SQL/92 grammar, plus extensions.
+--            This file is input to LPG (LALR(k) Parser Generator).
+--
+-- Parser Generator = LPG Version 2.2 by Philippe G. Charles, IBM Yorktown
+--
+-- List of Functions =
+--            sqlnp_tkactn - token action procedure (shift)
+--            sqlnp_smactn - semantic action procedure (reduce)
+--
+-- Dependencies =
+--            This grammar is dependent on the reordering of the SQL tokens,
+--            so that the FROM clause comes first (see sqlnp_reor.y)
+--
+-- Restrictions =
+--            The default LPG escape character, a percent sign (%), cannot
+--            be used due to conflicts with C's use of the percent sign.
+--            We use an exclamation point ($) instead (see the ESCAPE
+--            option).
+--
+-- Operating System = Common Code (LPG is available on AIX, DOS, OS/2, and VM)
+--
+-- Notes =
+--            The following LPG warning messages are normal, and may be
+--            ignored.
+--
+--            ***Warning: Base Check vector contains value > 255.  16-bit
+--               words used.
+--            ***Warning: Terminal symbol > 255.  16-bit words used.
+--
+-- Output =
+--            sqlnp_prs.C - generated C functions (input to C compiler)
+--                           sqlnp_tkactn - token action (shift) function
+--                           sqlnp_smactn - semantic action (reduce) function
+--                                          (a giant switch statement that
+--                                          executes code when a production
+--                                          is "fired")
+--            sqlnp_dcl.h - LALR parsing tables (big arrays of numbers)
+--            sqlnp_def.h - #defines for constants used by LPG (maximum
+--                         lookahead, number of rules, number of symbols, etc.)
+--            sqlnp_prs.h - code that looks up information in the parsing
+--                         tables:
+--                           nt_action -- non-terminal action (C macro)
+--                           t_action -- terminal action (C function)
+--            sqlnp_sym.h - #defines for all terminal symbols (SQLNP_xxx),
+--                         plus some other constants
+--
+-- Change Activity = (list most recent change first)
+--      DATE      WHO DESCRIPTION                                 Flag
+-- ============================================================================
+--   Feb 13, 95 - RAW Comment out grammar for <explain_stmt> and CURRENT
+--                    EXPLAIN MODE per request from Paul Bird.  This feature
+--                    has been cancelled from this release.
+--                    - Move memoryPool initialization statements around to
+--                    save a few instructions per call.
+--
+-- Feature Activity:
+-- feat #     DATE    WHO DESCRIPTION                                 Flag
+-- ============================================================================
+-- 00011208 24/Jun/94 LGM SET CURRENT QUERY OPTIMIZATION             @f11208LGM
+-- 00014427 12/Oct/94 dtl calling recursion_check from                @14427dtl
+--                        <SQL_schema_stmt> and <SQL_data_stmt>       @14427dtl
+-- f0124079 08/Sep/99 ske TRF: Enable SQNLP_A_TRANSF_GRP_ID         @f124079ske
+--
+-- Defect Activity:
+-- defect#    DATE    WHO DESCRIPTION                                 Flag
+-- ============================================================================
+-- 00028725 16/May/95 RAW Require keyword ATOMIC in CREATE TRIGGER.  @d28725RAW
+-- 00028863 19/May/95 JHC Flag syntax error for FROM ... SELECT ...  @d28863JHC
+-- 00032859 25/Jul/95 JHC assign host vars before sqlnq_sem_rtn for  @d32859JHC
+--                    stmts (non-SELECT) that skip the reorder phase @d32859JHC
+-- 00309683 03/Feb/04 rmi LI4255 Phase 1: Grammar & header files     @d309683rmi
+--
+--
+-- Last Changed =     (04/08/10)  (00:01:45)
+--
+-- ============================================================================
+-- ============================================================================
+-- Detailed Description =
+--
+-- The OPTIONS section defines LPG processing options that affect the output
+-- of the parser generator, including
+--    o time or space optimization for parsing tables (time)
+--    o name of generated semantic action file (sqlnp_prs.C)
+--    o names of various functions (sqlnp_tkactn, sqlnp_smactn, sqlnp_errmsg)
+--    o prefix for generated constants (SQLNP_)
+--    o prefix for generated header files names (sqlnp...)
+--
+-- The DEFINE section defines LPG macros (of C code) that will be inserted into
+-- the semantic action procedure (the big switch statement) at the appropriate
+-- place.  Textual substitution of rule text, rule number, etc., is done by
+-- LPG when generating the C code.  LPG macros may invoke other LPG macros, but
+-- recursion is not supported.
+--
+-- The TERMINALS section defines all the terminal symbols used in the grammar,
+-- each one having a unique token class.  Each terminal symbol is assigned a
+-- numeric value in the tables generated by LPG (see sqlnpsym.h).  The
+-- scanner/lexer (sqlnp_lex.C), tokenizes the SQL statement and returns the
+-- numeric value, or class, of each token.
+--
+-- The "terminal symbol"/"token class" values are used in the generated parse
+-- tables to indicate the valid expected tokens for a given state.  The
+-- lexer/scanner (sqlnp_lex.C) returns the token class of each token as a
+-- constant.  For the token SELECT, sqlnp_lex.C returns the constant
+-- SQLNP_SELECT, which is #defined in file sqlnpsym.h.
+--
+-- The ALIAS section defines sets of terminal symbols that are equivalent.
+--
+-- The START section defines a list of one or more goal symbols.
+--
+-- The RULES section contains the actual grammar specification
+-- for valid SQL/92 syntax.  Some productions have a name at the far right
+-- side of the line surrounded by "/." and "./" delimiters.  The name
+-- indicates an LPG macro to be executed if the processed input matches
+-- the production.  The metasymbols defined for the grammar productions
+-- grammar productions are:
+--      ::= separates a non-terminal from its productions
+--      | means OR (an alternate production follows)
+--      $ precedes an LPG macro name or an LPG keyword (can be changed to
+--        something else with the ESCAPE option).
+--      /. ./ is used to begin and end an LPG macro or C code generation
+--      -- begins comment lines within the PRODUCTIONS section
+--
+-- The NAMES section is used to define output text that will appear in
+-- error messages, e.g., ") inserted to complete phrase" instead of
+-- "LEFT_PAREN inserted to complete phrase".
+--
+-- For more information on the form of the LPG inputs, see the LPG Version 2.1
+-- User's Guide (available from Philippe G. Charles of IBM Yorktown).
+--
+-------------------------------------------------------------------------------
+%options escape=$
+%options table=java
+%options action=("*.java", "/.", "./") -- should take the fp when use "*"
+%options fp=SQLQueryParser        -- fp file prefix for all generated files
+%options prefix=TK_               -- TOKEN/Terminal symbol prefix that we omit in the grammar
+%options error-maps
+%options scopes
+%options margin=8
+--%options noshift_default
+%options shift_default
+%options nogoto_default
+%options single-productions
+%options noserialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
+--%options serialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
+--%options dat_directory="../../../../../.." --TODO change path
+--%options stream-type=TokenStream
+%options ParseTable=lpg.lpgjavaruntime.ParseTable
+%options package=org.eclipse.datatools.sqltools.parsers.sql.query
+%options template=sqlparserTemplate.lpg  --This option can be given at lpg compile time
+--%options import_terminals=sqlquerylexer.lpg
+
+-- when use soft-keywords lookahead is forced to be 1 and don't use backtrack option
+%options soft-keywords
+%options LALR=4
+%options backtrack
+
+
+-------------------------------------------------------------------------------
+-- import declarations for generated parser
+-------------------------------------------------------------------------------
+
+$Define
+
+	$parser_base_class
+	/. AbstractSQLQueryParser ./
+
+$End
+
+
+-------------------------------------------------------------------------------
+-- Type mapping imported, return types of factory methods/AST types
+-------------------------------------------------------------------------------
+
+$include sqlqueryparserTypes.lpg
+
+
+
+------------------------------------------------------------------------------
+-- Alias definitions imported
+------------------------------------------------------------------------------
+
+$include sqlqueryparserAlias.lpg
+
+
+
+-------------------------------------------------------------------------------
+-- Grammar rules imported
+-------------------------------------------------------------------------------
+
+$include sqlqueryparserRules.lpg
+
+
+
+-------------------------------------------------------------------------------
+-- Tail of Semantic Action Procedure (sqlnp_smactn)
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+-- Substitution strings (inserts into error messages)
+-------------------------------------------------------------------------------
+$NAMES
+
+   EOF          ::= 'END-OF-COMMANDS'
+   PARSE_ERROR  ::= 'Valid token'
+   LEFT_PAREN   ::= '('
+   RIGHT_PAREN  ::= ')'
+   DOUBLE_QUOTE ::= '"'
+--    PERCENT      ::=  '%'
+--    AMPERSAND    ::= '&'
+   QUOTE        ::= ''''
+   ASTERISK     ::= '*'
+   PLUS_SIGN    ::= '+'
+   COMMA        ::= ','
+   MINUS_SIGN   ::= '-'
+   PERIOD       ::= '.'
+   SOLIDUS      ::= '/'
+   COLON        ::= ':'                                    -- @d124889gus begin
+   SEMICOLON    ::= ';'
+   LESS_THAN_OPERATOR    ::= '<'
+   EQUALS_OPERATOR       ::= '='
+   GREATER_THAN_OPERATOR ::= '>'
+   QUESTION_MARK ::= '?'
+    LEFT_BRACKET  ::= '['                                  -- @f95756rps
+    RIGHT_BRACKET ::= ']'                                  -- @f95756rps
+--    UNDERSCORE    ::= '_'
+--    VERTICAL_BAR  ::= '|'
+   NOT_EQUALS_OPERATOR             ::= '<>'
+   GREATER_THAN_OR_EQUALS_OPERATOR ::= '>='
+   LESS_THAN_OR_EQUALS_OPERATOR    ::= '<='
+   CONCAT_OPERATOR ::= '||'
+   DOUBLE_PERIOD   ::= '..'
+                                                          -- OSF_RT-BV-B 960906
+   RIGHT_ARROW     ::= '->'
+                                                          -- OSF_RT-BV-E 960906
+--   _FOREIGNKEY ::= 'FOREIGN KEY'
+--   _PRIMARYKEY ::= 'PRIMARY KEY'
+
+   <table_ref_commalist> ::= 'table1, table2, table3, ...'
+
+$END
+
+
+$KEYWORDS
+
+--------------------------------------------
+-- Keywords/Reserved Word list - included --
+--------------------------------------------
+$include sqlKeywords.lpg
+
+$END
+
+
+-------------------------------------------------------
+-- Token kind of identifiers for softkeyword support --
+-------------------------------------------------------
+$IDENTIFIER
+	REGULAR_IDENTIFIER
+$END
+

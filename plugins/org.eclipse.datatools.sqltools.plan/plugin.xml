@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="planService" name="SQL Execution Plan Service" schema="schema/planService.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.datatools"
+            class="org.eclipse.datatools.sqltools.plan.internal.ui.view.PlanView"
+            icon="icons/sqlplan.gif"
+            id="org.eclipse.datatools.sqltools.plan.planView"
+            name="%PlanView.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.datatools.sqltools.plan.internal.preference.ExecutionPlanPage"
+            id="org.eclipse.datatools.sqltools.plan.executionPlanPage"
+            name="%PlanView.preferencePage.title"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.datatools.sqltools.plan.internal.preference.ExecutionPlanInitializer"/>
+   </extension>
+
+</plugin>

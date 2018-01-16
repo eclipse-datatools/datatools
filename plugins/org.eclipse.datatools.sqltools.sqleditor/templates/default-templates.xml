@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/***********************************************************************************************************************
+ * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
+ * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ **********************************************************************************************************************/
+-->
+
+<templates>
+
+<template name="select" id="com.sybase.stf.dmp.ui.sqleditor.template.select" description="%Templates.simple.select" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">select ${table}.* from ${table} where ${condition} order by ${table}.${col1}&#13;
+</template>
+<template name="begin" id="com.sybase.stf.dmp.ui.sqleditor.template.begin" description="%Templates.begin.end" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">begin&#13;
+	${line_selection}&#13;
+end&#13;
+</template>
+<template id="com.sybase.stf.dmp.ui.sqleditor.template.case.expr" name="case" description="%Templates.case.expr" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">case ${expression_condition}&#13;
+	when ${value} then ${expression1}&#13;
+	else ${expression2}&#13;
+end</template>
+<template id="com.sybase.stf.dmp.ui.sqleditor.template.case.search" name="case" description="%Templates.case.search" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">case&#13;
+	when ${search_condition} then ${expression1}&#13;
+	else ${expression2}&#13;
+end</template>
+<template id="com.sybase.stf.dmp.ui.sqleditor.template.create_trigger" name="create_trigger" description="%Templates.trigger" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">create trigger ${trigger_name}&#13;
+on ${table_name}&#13;
+for ${insert_update_delete}&#13;
+as&#13;
+	${cursor}&#13;
+	</template><template id="com.sybase.stf.dmp.ui.sqleditor.template.create_trigger.column" name="create_trigger" description="%Templates.trigger.column" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">create trigger ${trigger_name}&#13;
+on ${table_name}&#13;
+for ${insert_update}&#13;
+as&#13;
+	if update (${column_name1} ) ${and_or} update (${column_name2})&#13;
+	${cursor}&#13;
+	</template>
+<template id="com.sybase.stf.dmp.ui.sqleditor.template.delete" name="delete" description="%Templates.delete" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">delete ${tablename} where ${condition}</template>
+<template name="ifelse" id="com.sybase.stf.dmp.ui.sqleditor.template.ifelse" description="%Templates.ifelse" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">if (${condition}) &#13;
+begin&#13;
+	${line_selection}${cursor}&#13;
+end&#13;
+else&#13;
+begin&#13;
+&#13;
+end</template><template name="insert" id="com.sybase.stf.dmp.ui.sqleditor.template.insert" description="%Templates.insert" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">insert into ${tablename}(${col1},${col2}) values(${val1},${val2})</template>
+<template name="opencursor" id="com.sybase.stf.dmp.ui.sqleditor.template.opencursor" description="%Templates.open.cursor" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">open ${cursor_name} </template>
+<template name="update" id="com.sybase.stf.dmp.ui.sqleditor.template.update" description="%Templates.update" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">update ${tablename} set ${col1}=${val1} from ${tablename} where ${condition}</template>
+<template name="while" id="com.sybase.stf.dmp.ui.sqleditor.template.while" description="%Templates.while_condition" context="org.eclipse.datatools.sqltools.editor.template.sql.generic" enabled="true" deleted="false">while (${condition}) &#13;
+begin&#13;
+	${line_selection}${cursor}&#13;
+end</template>
+<template 
+name="create_table" 
+id="com.sybase.stf.dmp.ui.sqleditor.template.create_table"
+description="%Templates.create.table" 
+context="org.eclipse.datatools.sqltools.editor.template.sql.generic" 
+enabled="true" 
+deleted="false" 
+autoinsert="true">CREATE TABLE ${table_name}(&#13;
+${column1} ${DATE_TYPE1} PRIMARY KEY,&#13;
+${column2} ${DATE_TYPE2},&#13;
+${column3} ${DATE_TYPE3},&#13;
+${column4} ${DATE_TYPE4}&#13;
+)</template>
+<template 
+name="select" 
+id="com.sybase.stf.dmp.ui.sqleditor.template.select.into"
+description="%Templates.select.into" 
+context="org.eclipse.datatools.sqltools.editor.template.sql.generic" 
+enabled="true" 
+deleted="false" 
+autoinsert="true">SELECT * INTO ${table_name1} FROM ${table_name2}</template>
+
+</templates>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="org.eclipse.datatools.sqltools.db.generic.dbConfiguration"
+         name="Generic Database Support"
+         point="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
+      <dbConfiguration
+            configurationClass="org.eclipse.datatools.sqltools.db.generic.GenericDBConfiguration"
+            default="true"
+            description="%generic.db.desc"
+            product="%generic.db"
+            version="1.x"/>
+   </extension>
+
+</plugin>

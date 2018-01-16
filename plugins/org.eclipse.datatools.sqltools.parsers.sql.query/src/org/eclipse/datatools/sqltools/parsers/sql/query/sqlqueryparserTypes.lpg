@@ -1,0 +1,170 @@
+
+
+  -- TODO: all SQLObjects being produced by parser not implicitly by factory
+  --       to get the sourceInfo
+
+
+
+-------------------------------------------------------------------------------
+-- Type mapping for SQLQueryParserFactory, alphabetically to avoid duplication.
+-------------------------------------------------------------------------------
+$Define
+
+$import_classes
+    /.
+        import org.eclipse.datatools.modelbase.sql.datatypes.*;
+        import org.eclipse.datatools.modelbase.sql.query.*;
+        import org.eclipse.datatools.modelbase.sql.query.helper.*;
+        import org.eclipse.datatools.modelbase.sql.query.util.*;
+    ./
+$End
+
+
+
+$Define
+
+	$RT_alias_name 						/.String./
+	$RT_as_alias 						/.String./
+
+	$RT_boolean_expression				/.QuerySearchCondition./
+	$RT_boolean_term					/.QuerySearchCondition./
+	$RT_boolean_factor 					/.QuerySearchCondition./
+	$RT_boolean_test  					/.QuerySearchCondition./
+
+	$RT_boolean_values					/.Boolean./
+
+	$RT_boolean_primary					/.QuerySearchCondition./
+
+	$RT_case_expression 				/.ValueExpressionCase./
+	$RT_case_search_when 				/.ValueExpressionCaseSearchContent./
+	$RT_case_search_when_list 			/.List./
+	$RT_case_simple_when 				/.ValueExpressionCaseSimpleContent./
+	$RT_case_simple_when_list 			/.List./
+	$RT_cast_expression 				/.ValueExpressionCast./
+	$RT_column 							/.String./
+	$RT_column_name 					/.ColumnName./
+	$RT_column_name_list 				/.List./
+	$RT_column_ref 						/.ValueExpressionColumn./
+	$RT_column_ref_commalist 			/. ./
+	$RT_cond 							/. ./
+	$RT_condition 						/.QuerySearchCondition./
+	$RT_constant 						/. ./
+	$RT_datatype 						/.DataType./
+	$RT_datatype_array_type 			/.ArrayDataType./
+	$RT_datatype_binary			 		/.BinaryStringDataType./
+	$RT_datatype_boolean			 	/.BooleanDataType./
+	$RT_datatype_predefined			 	/.PredefinedDataType./
+	$RT_datatype_character			 	/.CharacterStringDataType./
+	$RT_datatype_character_national	 	/.CharacterStringDataType./
+	$RT_datatype_collection_type	 	/.CollectionDataType./
+	$RT_datatype_datalink			 	/.DataLinkDataType./
+	$RT_datatype_date			 		/.DateDataType./
+	$RT_datatype_interval			 	/.IntervalDataType./
+	$RT_datatype_multiset_type 	 		/.MultisetDataType./
+	$RT_datatype_numerical			 	/.NumericalDataType./
+	$RT_datatype_numerical_approximate 	/.ApproximateNumericDataType./
+	$RT_datatype_numerical_exact		/.ExactNumericDataType./
+	$RT_datatype_numerical_fixed_precision	 /.FixedPrecisionDataType./
+	$RT_datatype_numerical_integer		/.IntegerDataType./
+	$RT_datatype_time			 		/.TimeDataType./
+	$RT_datatype_user_defined_distinct	/.UserDefinedType./
+	$RT_datatype_user_defined_structured/.StructuredUserDefinedType./
+	$RT_datatype_user_defined_type      /.UserDefinedType./
+	$RT_datatype_xml			 		/.XMLDataType./
+	$RT_datatype_opt_size_unit			/.String./
+	$RT_delete_stmt 					/.QueryDeleteStatement./
+	$RT_duration 						/.Integer./
+	$RT_exists							/.PredicateExists./
+	$RT_expression 						/.QueryValueExpression./
+	$RT_expression_commalist 			/.List./
+	$RT_expression_factor 				/.QueryValueExpression./
+	$RT_expression_term 				/.QueryValueExpression./
+	$RT_func_ref 						/. ./
+	$RT_function 						/.ValueExpressionFunction./
+	$RT_grouping_spec_list 				/.List./
+	$RT_grouping_spec 					/.GroupingSpecification./
+	$RT_grouping 						/.Grouping./
+	$RT_grouping_exp 					/.GroupingExpression./
+	$RT_grouping_sets 					/.GroupingSets./
+	$RT_grouping_sets_element_list 		/.List./
+	$RT_grouping_sets_element 			/.GroupingSetsElement./
+	$RT_grouping_sets_element_expr 		/.GroupingSetsElementExpression./
+	$RT_grouping_sets_element_exp_list 	/.List./
+	$RT_in_cond 						/. ./
+	$RT_insert_row 						/.ValuesRow./
+	$RT_insert_row_commalist 			/. ./
+	$RT_insert_stmt 					/.QueryInsertStatement./
+	$RT_intervaltest 					/.PredicateBetween./
+	$RT_liketest 						/. ./
+	$RT_merge_on_condition              /.MergeOnCondition./
+	$RT_merge_source_table              /.MergeSourceTable./
+	$RT_merge_target_table              /.MergeTargetTable./
+	$RT_merge_when_clause               /.MergeOperationSpecification./
+	$RT_nulltest 						/. ./
+	$RT_opt_all_distinct 				/.String./
+	$RT_opt_as 							/. ./
+	$RT_opt_as_target_table 			/.TableCorrelation./
+	$RT_opt_asc_desc 					/.String./
+	$RT_opt_case_else					/.ValueExpressionCaseElse./
+	$RT_opt_column_name_list 			/.List./
+	$RT_opt_escape 						/.QueryValueExpression./
+	$RT_opt_group_by_clause 			/.List./
+	$RT_opt_having_clause 				/.QuerySearchCondition./
+	$RT_opt_join_type 					/.Integer./
+	$RT_opt_join_type_outer 			/. ./
+	$RT_opt_order_by_clause 			/.List./
+	$RT_opt_schema_dot				 	/.String./
+	$RT_opt_as_alias 					/.String./
+	$RT_opt_table_correlation 			/.TableCorrelation./
+	$RT_opt_target_column_list 			/. ./
+	$RT_opt_where_clause 				/.QuerySearchCondition./
+	$RT_ordering_spec 					/.OrderBySpecification./
+	$RT_ordering_spec_commalist		 	/. ./
+	$RT_parameter 						/. ./
+	$RT_proc_ref						/.ProcedureReference./
+	$RT_project 						/.QueryResultSpecification./
+	$RT_query_combined_operator 		/.Integer./
+	$RT_query_exp 						/.QueryExpressionBody./
+	$RT_query_exp_root					/.QueryExpressionRoot./
+	$RT_query_stmt 						/.QuerySelectStatement./
+	$RT_query_select 					/.QuerySelect./
+	$RT_query_term 						/.QueryExpressionBody./
+	$RT_query_values 					/.QueryValues./
+	$RT_relop 							/.Integer./
+	$RT_scalcomp 						/.PredicateBasic./
+	$RT_schema 							/. ./
+	$RT_selection 						/. ./
+	$RT_simplecomp					 	/.Predicate./
+	$RT_special_register 				/. ./
+	$RT_string_expression				/.QueryValueExpression./
+	$RT_subquery						/.QueryExpressionRoot./
+	$RT_super_groups 					/.SuperGroup./
+	$RT_super_groups_element_list 		/.List./
+	$RT_super_groups_element 			/.SuperGroupElement./
+	$RT_super_groups_element_expr 		/.SuperGroupElementExpression./
+	$RT_super_groups_element_exp_list 	/.List./
+	$RT_sql_dml_stmt					/.QueryStatement./
+	$RT_table 							/.String./
+	$RT_table_correlation 				/.TableCorrelation./
+	$RT_table_exp 						/.List./
+	$RT_table_join 						/.TableJoined./
+	$RT_table_query						/.QueryExpressionBody./
+	$RT_table_ref 						/.TableReference./
+	$RT_table_ref_commalist 			/. ./
+	$RT_target_column_list			 	/. ./
+	$RT_target_table 					/.TableInDatabase./
+	$RT_updatability_expression         /.UpdatabilityExpression./
+	$RT_update_assignment_clause 		/.List./
+	$RT_update_assignment_expression 	/.UpdateAssignmentExpression./
+	$RT_update_assignment_expression_commalist /.List./
+	$RT_update_stmt					 	/. ./
+	$RT_values_row 						/.ValuesRow./
+	$RT_with_clause					 	/.List./
+	$RT_with_table_spec_list 			/.List./
+	$RT_with_table_spec 				/.WithTableSpecification./
+--	$RT_ 			/. ./
+
+
+
+$End
+
