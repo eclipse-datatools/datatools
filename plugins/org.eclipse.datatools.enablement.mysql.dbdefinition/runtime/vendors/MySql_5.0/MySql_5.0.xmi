@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="MySql" version="5.0" maximumIdentifierLength="64" joinSupported="true" tablespacesSupported="false" maximumCommentLength="60" schemaSupported="false" aliasSupported="true" SQLStatementSupported="true">
+  <predefinedDataTypeDefinitions xmi:id="BIT_1" keyConstraintSupported="true"
+maximumValue="1" minimumValue="0" primitiveType="SMALLINT" jdbcEnumType="-6"
+javaClassName="byte">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>BIT</name>
+    <name>BOOL</name>
+    <name>BOOLEAN</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TINYINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="255" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="byte">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="65535" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>SMALLINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="MEDIUMINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="16777215" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>MEDIUMINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_UNSIGNED"
+keyConstraintSupported="true" maximumValue="4294967295" minimumValue="0"
+primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>INTEGER UNSIGNED</name>
+    <name>INT UNSIGNED</name>    
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BIGINT_UNSIGNED"
+keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT"
+jdbcEnumType="-5" javaClassName="java.math.BigInteger">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIGINT UNSIGNED</name>
+    <name>SERIAL</name>    
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="REAL_UNSIGNED"
+keyConstraintSupported="true" primitiveType="REAL" jdbcEnumType="7"
+javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_UNSIGNED_PRECISION"
+keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8"
+javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE UNSIGNED</name>
+    <name>DOUBLE UNSIGNED PRECISION</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_UNSIGNED"
+keyConstraintSupported="true" primitiveType="FLOAT" jdbcEnumType="6"
+javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>FLOAT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_UNSIGNED"
+scaleSupported="true" precisionSupported="true" maximumPrecision="64"
+keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3"
+javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DECIMAL UNSIGNED</name>
+    <name>DEC UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+    <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" maximumValue="127" minimumValue="-128" primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="byte">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_1" keyConstraintSupported="true" maximumValue="32767" minimumValue="-32768" primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="short">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SMALLINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" keyConstraintSupported="true" maximumValue="8388607" minimumValue="-8388608" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>MEDIUMINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" maximumValue="2147483647" minimumValue="-2147483648" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>INT</name>
+    <name>INTEGER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="java.math.BigInteger">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIGINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="REAL_1" keyConstraintSupported="true" primitiveType="REAL" jdbcEnumType="7" javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE</name>
+    <name>DOUBLE PRECISION</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" keyConstraintSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>FLOAT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" maximumPrecision="64" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DECIMAL</name>
+    <name>DEC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" maximumPrecision="64" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>NUMERIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIME_1" keyConstraintSupported="true" primitiveType="TIME" jdbcEnumType="92" javaClassName="java.sql.Time">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIMESTAMP</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_2" keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.util.Date">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATETIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <name>CHAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <name>VARCHAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" defaultSupported="false" maximumLength="256" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYBLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_2" defaultSupported="false" maximumLength="65536" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_3" defaultSupported="false" maximumLength="16777216" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>MEDIUMBLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_4" defaultSupported="false" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONGBLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" keyConstraintSupported="true" defaultSupported="false" maximumLength="256" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYTEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_2" keyConstraintSupported="true" defaultSupported="false" maximumLength="65536" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_3" keyConstraintSupported="true" defaultSupported="false" maximumLength="16777216" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>MEDIUMTEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_4" keyConstraintSupported="true" defaultSupported="false" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONGTEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="ENUM" keyConstraintSupported="false" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>ENUM</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_2" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>YEAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" lengthUnit="BYTE" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BINARY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" primitiveType="BINARY_VARYING" lengthUnit="BYTE" jdbcEnumType="-3" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARBINARY</name>
+  </predefinedDataTypeDefinitions>
+  <storedProcedureDefinition/>
+  <triggerDefinition/>
+  <columnDefinition maximumIdentifierLength="64" identitySupported="true" identityIncrementSupported="true"/>
+  <constraintDefinition clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true" primaryKeyNullable="true" uniqueKeyNullable="true">
+    <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
+    <parentUpdateDRIRuleType>CASCADE</parentUpdateDRIRuleType>
+    <parentUpdateDRIRuleType>SET_NULL</parentUpdateDRIRuleType>
+    <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
+    <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
+  </constraintDefinition>
+  <indexDefinition maximumIdentifierLength="64"/>
+  <tableDefinition maximumIdentifierLength="64"/>
+  <udtDefinition/>
+  <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
+  <viewDefinition maximumIdentifierLength="64" checkOptionLevelsSupported="true"/>
+  <SQLSyntaxDefinition>
+    <keywords>ADD</keywords>
+    <keywords>ALGORITHM</keywords>
+    <keywords>ALL</keywords>
+    <keywords>ALTER</keywords>
+    <keywords>ANALYZE</keywords>
+    <keywords>AND</keywords>
+    <keywords>AS</keywords>
+    <keywords>ASC</keywords>
+    <keywords>ASENSITIVE</keywords>
+    <keywords>BEFORE</keywords>
+    <keywords>BETWEEN</keywords>
+    <keywords>BIGINT</keywords>
+    <keywords>BINARY</keywords>
+    <keywords>BLOB</keywords>
+    <keywords>BOTH</keywords>
+    <keywords>BY</keywords>
+    <keywords>CALL</keywords>
+    <keywords>CASCADE</keywords>
+    <keywords>CASE</keywords>
+    <keywords>CHANGE</keywords>
+    <keywords>CHAR</keywords>
+    <keywords>CHARACTER</keywords>
+    <keywords>CHECK</keywords>
+    <keywords>CHECKSUM</keywords>
+    <keywords>COLLATE</keywords>
+    <keywords>COLUMN</keywords>
+    <keywords>COLUMNS</keywords>
+    <keywords>COMMENT</keywords>
+    <keywords>CONDITION</keywords>
+    <keywords>CONNECTION</keywords>
+    <keywords>CONSTRAINT</keywords>
+    <keywords>CONTINUE</keywords>
+    <keywords>CONVERT</keywords>
+    <keywords>CREATE</keywords>
+    <keywords>CROSS</keywords>
+    <keywords>CURRENT_DATE</keywords>
+    <keywords>CURRENT_TIME</keywords>
+    <keywords>CURRENT_TIMESTAMP</keywords>
+    <keywords>CURRENT_USER</keywords>
+    <keywords>CURSOR</keywords>
+    <keywords>DATABASE</keywords>
+    <keywords>DATABASES</keywords>
+    <keywords>DAY_HOUR</keywords>
+    <keywords>DAY_MICROSECOND</keywords>
+    <keywords>DAY_MINUTE</keywords>
+    <keywords>DAY_SECOND</keywords>
+    <keywords>DEC</keywords>
+    <keywords>DECIMAL</keywords>
+    <keywords>DECLARE</keywords>
+    <keywords>DEFAULT</keywords>
+    <keywords>DEFINER</keywords>
+    <keywords>DELAYED</keywords>
+    <keywords>DELETE</keywords>
+    <keywords>DESC</keywords>
+    <keywords>DESCRIBE</keywords>
+    <keywords>DETERMINISTIC</keywords>
+    <keywords>DISTINCT</keywords>
+    <keywords>DISTINCTROW</keywords>
+    <keywords>DIV</keywords>
+    <keywords>DOUBLE</keywords>
+    <keywords>DROP</keywords>
+    <keywords>DUAL</keywords>
+    <keywords>EACH</keywords>
+    <keywords>ELSE</keywords>
+    <keywords>ELSEIF</keywords>
+    <keywords>ENCLOSED</keywords>
+    <keywords>ESCAPED</keywords>
+    <keywords>EXISTS</keywords>
+    <keywords>EXIT</keywords>
+    <keywords>EXPLAIN</keywords>
+    <keywords>FALSE</keywords>
+    <keywords>FETCH</keywords>
+    <keywords>FIELDS</keywords>
+    <keywords>FLOAT</keywords>
+    <keywords>FLOAT4</keywords>
+    <keywords>FLOAT8</keywords>
+    <keywords>FOR</keywords>
+    <keywords>FORCE</keywords>
+    <keywords>FOREIGN</keywords>
+    <keywords>FROM</keywords>
+    <keywords>FULLTEXT</keywords>
+    <keywords>GOTO</keywords>
+    <keywords>GRANT</keywords>
+    <keywords>GROUP</keywords>
+    <keywords>HAVING</keywords>
+    <keywords>HIGH_PRIORITY</keywords>
+    <keywords>HOUR_MICROSECOND</keywords>
+    <keywords>HOUR_MINUTE</keywords>
+    <keywords>HOUR_SECOND</keywords>
+    <keywords>IF</keywords>
+    <keywords>IGNORE</keywords>
+    <keywords>IN</keywords>
+    <keywords>INDEX</keywords>
+    <keywords>INFILE</keywords>
+    <keywords>INNER</keywords>
+    <keywords>INOUT</keywords>
+    <keywords>INSENSITIVE</keywords>
+    <keywords>INSERT</keywords>
+    <keywords>INT</keywords>
+    <keywords>INT1</keywords>
+    <keywords>INT2</keywords>
+    <keywords>INT3</keywords>
+    <keywords>INT4</keywords>
+    <keywords>INT8</keywords>
+    <keywords>INTEGER</keywords>
+    <keywords>INTERVAL</keywords>
+    <keywords>INTO</keywords>
+    <keywords>INVOKER</keywords>
+    <keywords>IS</keywords>
+    <keywords>ITERATE</keywords>
+    <keywords>JOIN</keywords>
+    <keywords>KEY</keywords>
+    <keywords>KEYS</keywords>
+    <keywords>KILL</keywords>
+    <keywords>LABEL</keywords>
+    <keywords>LEADING</keywords>
+    <keywords>LEAVE</keywords>
+    <keywords>LEFT</keywords>
+    <keywords>LIKE</keywords>
+    <keywords>LIMIT</keywords>
+    <keywords>LINES</keywords>
+    <keywords>LOAD</keywords>
+    <keywords>LOCALTIME</keywords>
+    <keywords>LOCALTIMESTAMP</keywords>
+    <keywords>LOCK</keywords>
+    <keywords>LONG</keywords>
+    <keywords>LONGBLOB</keywords>
+    <keywords>LONGTEXT</keywords>
+    <keywords>LOOP</keywords>
+    <keywords>LOW_PRIORITY</keywords>
+    <keywords>MATCH</keywords>
+    <keywords>MAX_ROWS</keywords>
+    <keywords>MEDIUMBLOB</keywords>
+    <keywords>MEDIUMINT</keywords>
+    <keywords>MEDIUMTEXT</keywords>
+    <keywords>MERGE</keywords>
+    <keywords>MIDDLEINT</keywords>
+    <keywords>MIN_ROWS</keywords>
+    <keywords>MINUTE_MICROSECOND</keywords>
+    <keywords>MINUTE_SECOND</keywords>
+    <keywords>MOD</keywords>
+    <keywords>MODIFIES</keywords>
+    <keywords>NATURAL</keywords>
+    <keywords>NO_WRITE_TO_BINLOG</keywords>
+    <keywords>NOT</keywords>
+    <keywords>NULL</keywords>
+    <keywords>NUMERIC</keywords>
+    <keywords>ON</keywords>
+    <keywords>OPTIMIZE</keywords>
+    <keywords>OPTION</keywords>
+    <keywords>OPTIONALLY</keywords>
+    <keywords>OR</keywords>
+    <keywords>ORDER</keywords>
+    <keywords>OUT</keywords>
+    <keywords>OUTER</keywords>
+    <keywords>OUTFILE</keywords>
+    <keywords>PRECISION</keywords>
+    <keywords>PRIMARY</keywords>
+    <keywords>PRIVILEGES</keywords>
+    <keywords>PROCEDURE</keywords>
+    <keywords>PURGE</keywords>
+    <keywords>READ</keywords>
+    <keywords>READS</keywords>
+    <keywords>REAL</keywords>
+    <keywords>REFERENCES</keywords>
+    <keywords>REGEXP</keywords>
+    <keywords>RELEASE</keywords>
+    <keywords>RENAME</keywords>
+    <keywords>REPEAT</keywords>
+    <keywords>REPLACE</keywords>
+    <keywords>REQUIRE</keywords>
+    <keywords>RESTRICT</keywords>
+    <keywords>RETURN</keywords>
+    <keywords>REVOKE</keywords>
+    <keywords>RIGHT</keywords>
+    <keywords>RLIKE</keywords>
+    <keywords>ROW_FORMAT</keywords>
+    <keywords>SCHEMA</keywords>
+    <keywords>SCHEMAS</keywords>
+    <keywords>SECOND_MICROSECOND</keywords>
+    <keywords>SELECT</keywords>
+    <keywords>SENSITIVE</keywords>
+    <keywords>SEPARATOR</keywords>
+    <keywords>SET</keywords>
+    <keywords>SHOW</keywords>
+    <keywords>SMALLINT</keywords>
+    <keywords>SONAME</keywords>
+    <keywords>SPATIAL</keywords>
+    <keywords>SPECIFIC</keywords>
+    <keywords>SQL</keywords>
+    <keywords>SQL_BIG_RESULT</keywords>
+    <keywords>SQL_CALC_FOUND_ROWS</keywords>
+    <keywords>SQL_SECURITY</keywords>
+    <keywords>SQL_SMALL_RESULT</keywords>
+    <keywords>SQL</keywords>
+    <keywords>SQLEXCEPTION</keywords>
+    <keywords>SQLSTATE</keywords>
+    <keywords>SQLWARNING</keywords>
+    <keywords>SSL</keywords>
+    <keywords>STARTING</keywords>
+    <keywords>STRAIGHT_JOIN</keywords>
+    <keywords>TABLE</keywords>
+    <keywords>TABLES</keywords>
+    <keywords>TEMPTABLE</keywords>
+    <keywords>TERMINATED</keywords>
+    <keywords>THEN</keywords>
+    <keywords>TINYBLOB</keywords>
+    <keywords>TINYINT</keywords>
+    <keywords>TINYTEXT</keywords>
+    <keywords>TO</keywords>
+    <keywords>TRAILING</keywords>
+    <keywords>TRIGGER</keywords>
+    <keywords>TRUE</keywords>
+    <keywords>UNDEFINED</keywords>
+    <keywords>UNDO</keywords>
+    <keywords>UNION</keywords>
+    <keywords>UNIQUE</keywords>
+    <keywords>UNLOCK</keywords>
+    <keywords>UNSIGNED</keywords>
+    <keywords>UPDATE</keywords>
+    <keywords>UPGRADE</keywords>
+    <keywords>USAGE</keywords>
+    <keywords>USE</keywords>
+    <keywords>USING</keywords>
+    <keywords>UTC_DATE</keywords>
+    <keywords>UTC_TIME</keywords>
+    <keywords>UTC_TIMESTAMP</keywords>
+    <keywords>VALUES</keywords>
+    <keywords>VARBINARY</keywords>
+    <keywords>VARCHAR</keywords>
+    <keywords>VARCHARACTER</keywords>
+    <keywords>VARYING</keywords>
+    <keywords>WHEN</keywords>
+    <keywords>WHERE</keywords>
+    <keywords>WHILE</keywords>
+    <keywords>WITH</keywords>
+    <keywords>WRITE</keywords>
+    <keywords>XOR</keywords>
+    <keywords>YEAR_MONTH</keywords>
+    <keywords>ZEROFILL</keywords>
+    <operators>:=</operators>
+    <operators>||</operators>
+    <operators>OR</operators>
+    <operators>XOR</operators>
+    <operators>&amp;&amp;</operators>
+    <operators>AND</operators>
+    <operators>NOT</operators>
+    <operators>BETWEEN</operators>
+    <operators>CASE</operators>
+    <operators>WHEN</operators>
+    <operators>THEN</operators>
+    <operators>ELSE</operators>
+    <operators>=</operators>
+    <operators>&lt;=></operators>
+    <operators>>=</operators>
+    <operators>></operators>
+    <operators>&lt;=</operators>
+    <operators>&lt;</operators>
+    <operators>&lt;></operators>
+    <operators>!=</operators>
+    <operators>IS</operators>
+    <operators>LIKE</operators>
+    <operators>REGEXP</operators>
+    <operators>IN</operators>
+    <operators>|</operators>
+    <operators>&amp;</operators>
+    <operators>&lt;&lt;</operators>
+    <operators>>></operators>
+    <operators>-</operators>
+    <operators>+</operators>
+    <operators>*</operators>
+    <operators>/</operators>
+    <operators>DIV</operators>
+    <operators>%</operators>
+    <operators>MOD</operators>
+    <operators>^</operators>
+    <operators>~</operators>
+    <operators>!</operators>
+    <operators>BINARY</operators>
+    <operators>COLLATE</operators>
+  </SQLSyntaxDefinition>
+</DBDefinition:DatabaseVendorDefinition>

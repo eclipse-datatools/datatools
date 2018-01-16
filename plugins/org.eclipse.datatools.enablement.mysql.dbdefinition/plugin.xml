@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="4.0"
+            product="MySql"
+            productDisplayString="%4.0_ProductString"
+            versionDisplayString="%4.0_VersionString"
+            file="runtime/vendors/MySql_4.0/MySql_4.0.xmi">
+      </definition>
+      <definition
+            version="4.1"
+            product="MySql"
+            productDisplayString="%4.1_ProductString"
+            versionDisplayString="%4.1_VersionString"
+            file="runtime/vendors/MySql_4.1/MySql_4.1.xmi">
+      </definition>
+	  <definition
+            version="5.0"
+            product="MySql"
+            productDisplayString="%5.0_ProductString"
+            versionDisplayString="%5.0_VersionString"
+            file="runtime/vendors/MySql_5.0/MySql_5.0.xmi">
+      </definition>
+	  <definition
+            version="5.1"
+            product="MySql"
+            productDisplayString="%5.1_ProductString"
+            versionDisplayString="%5.1_VersionString"
+            file="runtime/vendors/MySql_5.1/MySql_5.1.xmi">
+      </definition>
+   </extension>
+
+</plugin>
