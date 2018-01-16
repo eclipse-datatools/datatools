@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.NewHSQLDBConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.hsqldb.connectionProfile.NewConnectionProfileWizard"
+            name="%connection.profile.newwizard"
+            description = "%connection.profile.newwizard.description"
+            profile="org.eclipse.datatools.enablement.hsqldb.connectionProfile"/>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.HSQLDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.hsqldb.connectionProfile.profileProperties"
+            name="%profile.page.name">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.hsqldb.connectionProfile"/>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers.HSQLDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.hsqldb.1_8.driver"
+            id="org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers.1_8.HSQLDBDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+<!--
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <contentExtension pattern="org.eclipse.datatools.enablement.hsqldb.navigatorContent"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            activeByDefault="true"
+            contentProvider="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBPipelineTreeContentProvider"
+            id="org.eclipse.datatools.enablement.hsqldb.navigatorContent"
+            labelProvider="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelLabelProviderExtension"
+            name="%navigator.content.name"
+            priority="highest">
+         <override
+               policy="InvokeAlwaysRegardlessOfSuppressedExt"
+               suppressedExtensionId="org.eclipse.datatools.connectivity.db.sqlModelContent"/>
+         <triggerPoints>
+            <instanceof value="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBCatalogSchema"/>
+         </triggerPoints>
+      </navigatorContent>
+   </extension>
+-->
+</plugin>
