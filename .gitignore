@@ -1,3 +1,4 @@
+bin/
 releng.new/build/**
 releng.new/dev-eclipse/**
-releng.new/dev-target/**
+releng.new/dev-target/**bin/
