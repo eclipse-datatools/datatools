@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.ase.models/src"
+    editDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.edit/src" editorDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.editor/src"
+    modelPluginID="org.eclipse.datatools.enablement.sybase.ase.models" runtimeJar="true"
+    modelName="Sybaseasesqlmodel" modelPluginClass="" editPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.provider.SybaseasesqlmodelEditPlugin"
+    editorPluginClass="org.eclipse.datatools.enablement.sybase.ase.models.presentation.SybaseasesqlmodelEditorPlugin"
+    nonNLSMarkers="true" testsDirectory="/org.eclipse.datatools.enablement.sybase.ase.models.tests/src"
+    testSuiteClass="org.eclipse.datatools.enablement.sybase.ase.models.tests.SybaseasesqlmodelAllTests"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+  <foreignModel>sybaseasesqlmodel.ecore</foreignModel>
+  <genPackages prefix="Sybaseasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.ase.models"
+      disposableProviderFactory="true" ecorePackage="sybaseasesqlmodel.ecore#/">
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//TransactionModeType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//TransactionModeType/CHAINED"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//TransactionModeType/UNCHAINED"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//TransactionModeType/ANYMODE"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//CacheStrategyType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//CacheStrategyType/PREFETCH"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//CacheStrategyType/MRU"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//CacheStrategyType/MRU_SERVER_DEFAULT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//CacheStrategyType/PREFETCH_SERVER_DEFAULT"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//LockingSchemaType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//LockingSchemaType/LOCKDATAROWS"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//LockingSchemaType/LOCKDATAPAGES"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//LockingSchemaType/LOCKALLPAGES"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//LockingSchemaType/SERVERDEFAULT"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//ProxyTableExternalType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//ProxyTableExternalType/TABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//ProxyTableExternalType/PROCEDURE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//ProxyTableExternalType/FILE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//ProxyTableExternalType/DIRECTORY"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//AccessRuleType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/DEF"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//AccessRuleType/OR"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasesqlmodel.ecore#//SybaseASECatalogType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//SybaseASECatalogType/PROXYCATALOG"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//SybaseASECatalogType/TEMPCATALOG"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasesqlmodel.ecore#//SybaseASECatalogType/USERCATALOG"/>
+    </genEnums>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASESchema">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASESchema/defaults"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASESchema/rules"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASESchema/encryptionKeys"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getWebServicesAsTables"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getNormalTables"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getProxyTables"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getViewTables"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getSystemProcedures"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getSystemTables"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASESchema/getSystemAndNormalTable"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEDatabase">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDatabase/dataTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/encryptionKeyApplicable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDatabase/roles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDatabase/caches"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDatabase/webServices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/webserviceApplicable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/sdsServer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDatabase/tempDBName"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isComputedColApplicable"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isPartitionsApplicable"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEDatabase/isFunctionalBasedIndexMemApplicable"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEWebService">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/service_id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/service_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/auth_required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/secure_required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/url_path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/user_name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/statement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebService/remarks"/>
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEWebService/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEPredefinedDataType">
+      <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEPredefinedDataType/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASECatalog">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECatalog/segments"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECatalog/dataDevices"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECatalog/logDevices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/override"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/defaultLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/forLoad"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/forProxyUpdate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/logIOSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/recoveryOrder"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECatalog/authorizationIds"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECatalog/cache"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASECatalog/catalogType"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEProcedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProcedure/groupNumber"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProcedure/transactionMode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProcedure/systemProcedure"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProcedure/withRecompile"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEDefault">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEDefault/schema"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEDefault/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASERule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASERule/schema"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASERule/statement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASERule/accessRule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASERule/accessType"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/maxRowPerPage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/reversePageGap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/ignoreDuplicateKey"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/sortedData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/ignoreDuplicateRow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEIndex/segment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/localIndex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEIndex/partitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/consumerNum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/statisticsStep"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/allowDuplicateRow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEIndex/suspect"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEIndex/cacheInfo"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASESegment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASESegment/catalog"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASESegment/deviceNames"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASESegment/thresholds"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEFuncBasedIndexMember"/>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASETable"/>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEColumnCheckConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEColumnCheckConstraint/column"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEColumn">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEColumn/columnCheck"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEColumn/boundDefault"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEColumn/boundRule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEColumn/materialized"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEColumn/encryptionKey"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEColumn/bindDefaultInFutureOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEColumn/bindRuleInFutureOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEColumn/hidden"/>
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASEColumn/isComputedColumn"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEUniqueConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEUniqueConstraint/systemGenedIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUniqueConstraint/systemGenedName"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEPrimaryKey">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEPrimaryKey/aseUniqueConstraint"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//DeviceItem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//DeviceItem/deviceName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//DeviceItem/size"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SegmentThreshold">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SegmentThreshold/procedureName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SegmentThreshold/freeSpace"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//CacheInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//CacheInfo/cacheStrategy"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//CacheInfo/cache"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/boundDefault"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/boundRule"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/bindDefaultInFutureOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/bindRuleInFutureOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/allowNulls"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUserDefinedType/identity"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEEncryptionKey">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEEncryptionKey/schema"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//LockPromotionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//LockPromotionInfo/rowLockPromotion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//LockPromotionInfo/LWM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//LockPromotionInfo/HWM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//LockPromotionInfo/PCT"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASERole">
+      <genOperations ecoreOperation="sybaseasesqlmodel.ecore#//SybaseASERole/getReceivedPrivileges">
+        <genParameters ecoreParameter="sybaseasesqlmodel.ecore#//SybaseASERole/getReceivedPrivileges/catalogName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASECache">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECache/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEViewTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEViewTable/withCheckOption"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASETempTable"/>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEProxyTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProxyTable/externalType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProxyTable/existing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProxyTable/columnDelimiter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEProxyTable/externalPath"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEWebServiceTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebServiceTable/method"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEWebServiceTable/WSDLURI"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEBaseTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/lockSchema"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/fillFactor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/maxRowPerPage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/expRowSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/reservePageGap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/identityGap"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/segment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/concurrencyOptThreshold"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/partitionCondition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/tableOnlyCacheInfo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/textOnlyCacheInfo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/lockPromotion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/partitions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASEBaseTable/textImageSegment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEBaseTable/systemTable"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEUser">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASEUser/loginName"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEGroup"/>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASEPrivilege"/>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASETrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//SybaseASETrigger/enabled"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasesqlmodel.ecore#//SybaseASECheckConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//SybaseASECheckConstraint/creator"/>
+    </genClasses>
+    <nestedGenPackages prefix="Partition" basePackage="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel"
+        disposableProviderFactory="true" ecorePackage="sybaseasesqlmodel.ecore#//partition">
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/SybaseASEPartition"/>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/SybaseASERangePartition">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASERangePartition/columns"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASERangePartition/rangePartitionItems"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/SybaseASEHashPartition">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASEHashPartition/columns"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASEHashPartition/partitionSegmentPairs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASEHashPartition/partitionNumInSegments"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/SybaseASEListPartition">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASEListPartition/column"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASEListPartition/listPartitionItems"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/SybaseASERoundrobinPartition">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASERoundrobinPartition/partitionSegmentPairs"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/SybaseASERoundrobinPartition/partitionNumInSegments"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/PartitionSegmentPair">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//partition/PartitionSegmentPair/partitionName"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/PartitionSegmentPair/segment"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/PartitionNumInSegments">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//partition/PartitionNumInSegments/partitionNumb"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/PartitionNumInSegments/segment"/>
+      </genClasses>
+      <genClasses ecoreClass="sybaseasesqlmodel.ecore#//partition/ListRangePartitionItem">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//partition/ListRangePartitionItem/partitionName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasesqlmodel.ecore#//partition/ListRangePartitionItem/values"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sybaseasesqlmodel.ecore#//partition/ListRangePartitionItem/segment"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

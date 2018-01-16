@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.asa.models/src"
+    modelPluginID="org.eclipse.datatools.enablement.sybase.asa.models" modelName="Sybaseasabasesqlmodel"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+  <foreignModel>sybaseasabasesqlmodel.ecore</foreignModel>
+  <genPackages prefix="Sybaseasabasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.asa.models"
+      disposableProviderFactory="true" ecorePackage="sybaseasabasesqlmodel.ecore#/">
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//TransactionOption">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TransactionOption/DELETE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TransactionOption/PRESERVE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TransactionOption/NOT_TRANSACTION"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//TypeOfDefault">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TypeOfDefault/NO_DEFAULT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TypeOfDefault/USER_DEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TypeOfDefault/SYSTEM_DEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//TypeOfDefault/COMPUTED_VALUE"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/BEFORE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/AFTER"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/RESOLVE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/ASE"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//EventType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/NOEVENTTYPE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/BACKUPEND"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/CONNECT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/CONNECTFAILED"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/DATABASESTART"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/DBDISKSPACE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/DISCONEECT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/GLOBALAUTOINCREMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/GROWDB"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/GROWLOG"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/GROWTEMP"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/LOGDISKSPACE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/RAISERROR"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/SERVERIDLE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/TEMPDISKSPACE"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//JavaSupportType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//JavaSupportType/OFF"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//JavaSupportType/ON"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//JavaSupportType/JDK13"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//JavaSupportType/JDK118"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//EventLocationType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/REMOTE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/CONSOLIDATED"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//IntervalUnitType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//IntervalUnitType/HOURS"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//IntervalUnitType/MINUTES"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//IntervalUnitType/SECONDS"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/AUTOINCREMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_DATABASE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_REMOTE_USER"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_UTC_TIMESTAMP"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/GLOBAL_AUTOINCREMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/TIMESTAMP"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/UTC_TIMESTAMP"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/LAST_USER"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_DATE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_TIME"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_TIMESTAMP"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_USER"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/CURRENT_PUBLISHER"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SystemDefinedDefaultType/USER"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//AllowNullType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//AllowNullType/Nullable"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//AllowNullType/Not_Nullable"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//AllowNullType/Database_Default"/>
+    </genEnums>
+    <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//ParameterType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//ParameterType/VARIABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//ParameterType/RESULT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//ParameterType/SQLSTATE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//ParameterType/SQLCODE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//ParameterType/RETURN"/>
+    </genEnums>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/eventType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/eventCreator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/location"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/schedules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/conditionDetails"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/dataTypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/webServices"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/dbSpaces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/databaseFileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/logFileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/mirrorFileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/caseSensitive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/collation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/blankPaddingOn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/checkSumOn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/jConnectOn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/pageSize"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/encryptionInfo"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/javaSupport"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/passwordCaseSensitive"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/isBaseOnASA10"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASAWebService">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/service_id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/service_type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/auth_required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/secure_required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/url_path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/user_name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASAWebService/statement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASAWebService/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//EncryptionInfo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EncryptionInfo/encryptedTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EncryptionInfo/encryptionKey"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EncryptionInfo/algorithm"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseUserDefinedType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseUserDefinedType/nullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseUserDefinedType/defaultType"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseUserDefinedType/isLiteralDefault"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseUserDefinedType/getGlobalIncrementPartitionSize"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABasePredefinedDataType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABasePredefinedDataType/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseTable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseTable/dbSpace"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/columnConstraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/typeOfDefault"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/unique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/isComputedColumn"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/isLiteralDefault"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/getGlobalIncrementPartitionSize"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint/clustered"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint/systemGenIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABasePrimaryKey"/>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseForeignKey">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseForeignKey/roleName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseForeignKey/clustered"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseIndex">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseIndex/dbSpace"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseDBSpace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseDBSpace/fileName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDBSpace/database"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseViewTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseViewTable/withCheckOption"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseViewTable/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseFunction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseFunction/onExceptionResume"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseProcedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProcedure/onExceptionResume"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseTempTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTempTable/transactionOption"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/order"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/sybaseASABaseActionTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/remoteName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/updateColumnType"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/getOldName"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/getNewName"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setOldName">
+        <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setOldName/oldName"/>
+      </genOperations>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setNewName">
+        <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setNewName/newName"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable/remoteObjectLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable/existing"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumnCheckConstraint">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseColumnCheckConstraint/column"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//Schedule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/recurring"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/stopTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/startDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/daysOfWeek"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/daysOfMonth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/intervalUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//Schedule/intervalMount"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//Schedule/event"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseRemoteProcedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseRemoteProcedure/location"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseParameter/parmType"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseGroup"/>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseUser"/>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema">
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getNormalTables"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getTempTables"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getSystemTables"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getProxyTables"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables">
+        <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables/systemFlag"/>
+      </genOperations>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getSystemAndNormalTables"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/isLiteral"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/partitionSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/type"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/parse"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//EventCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EventCondition/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EventCondition/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//EventCondition/event"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

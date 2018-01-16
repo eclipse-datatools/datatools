@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sybaseasesqlmodel"
+    nsURI="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybaseasesqlmodel.ecore"
+    nsPrefix="SybaseASEModel">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASESchema" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Schema ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eOperations name="getWebServicesAsTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getNormalTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getProxyTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getViewTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getSystemProcedures" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getSystemTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eOperations name="getSystemAndNormalTable" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaults" upperBound="-1"
+        eType="#//SybaseASEDefault" eOpposite="#//SybaseASEDefault/schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//SybaseASERule" eOpposite="#//SybaseASERule/schema"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="encryptionKeys" upperBound="-1"
+        eType="#//SybaseASEEncryptionKey" eOpposite="#//SybaseASEEncryptionKey/schema"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEDatabase" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Database ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eOperations name="isComputedColApplicable" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="isPartitionsApplicable" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="isFunctionalBasedIndexMemApplicable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTypes" upperBound="-1"
+        eType="#//SybaseASEPredefinedDataType" eOpposite="#//SybaseASEPredefinedDataType/database"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="encryptionKeyApplicable"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" upperBound="-1"
+        eType="#//SybaseASERole"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="caches" lowerBound="1"
+        upperBound="-1" eType="#//SybaseASECache" containment="true" eOpposite="#//SybaseASECache/database"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="webServices" upperBound="-1"
+        eType="#//SybaseASEWebService" containment="true" eOpposite="#//SybaseASEWebService/database"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="webserviceApplicable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sdsServer" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tempDBName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEWebService" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="auth_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secure_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url_path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user_name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="remarks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
+        eType="#//SybaseASEDatabase" eOpposite="#//SybaseASEDatabase/webServices"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPredefinedDataType" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/PredefinedDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/SQLDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" eType="#//SybaseASEDatabase"
+        eOpposite="#//SybaseASEDatabase/dataTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASECatalog" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Catalog ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segments" upperBound="-1"
+        eType="#//SybaseASESegment" containment="true" eOpposite="#//SybaseASESegment/catalog"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataDevices" upperBound="-1"
+        eType="#//DeviceItem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logDevices" upperBound="-1"
+        eType="#//DeviceItem"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="override" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forLoad" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forProxyUpdate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logIOSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="recoveryOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="0 as default value"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationIds" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="List of users and groups"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//SybaseASECache"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="catalogType" eType="#//SybaseASECatalogType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEProcedure" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseRoutine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionMode" eType="#//TransactionModeType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemProcedure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="withRecompile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TransactionModeType">
+    <eLiterals name="CHAINED" value="16"/>
+    <eLiterals name="UNCHAINED"/>
+    <eLiterals name="ANYMODE" value="32"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEDefault" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
+        eType="#//SybaseASESchema" eOpposite="#//SybaseASESchema/defaults"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="SQL scripts of creation statement of this Default"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASERule" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" lowerBound="1"
+        eType="#//SybaseASESchema" eOpposite="#//SybaseASESchema/rules"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="SQL scripts of creation statement of this Rule"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessRule" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessType" eType="#//AccessRuleType"
+        defaultValueLiteral="DEF"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEIndex" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/Index ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRowPerPage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reversePageGap" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoreDuplicateKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortedData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoreDuplicateRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segment" eType="#//SybaseASESegment"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partitions" upperBound="-1"
+        eType="#//partition/PartitionSegmentPair" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="consumerNum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statisticsStep" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowDuplicateRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="suspect" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cacheInfo" eType="#//CacheInfo"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASESegment" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="catalog" eType="#//SybaseASECatalog"
+        eOpposite="#//SybaseASECatalog/segments"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceNames" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thresholds" upperBound="-1"
+        eType="#//SegmentThreshold"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEFuncBasedIndexMember" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseIndexMember"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="CacheStrategyType">
+    <eLiterals name="PREFETCH" value="1"/>
+    <eLiterals name="MRU" value="2"/>
+    <eLiterals name="MRU_SERVER_DEFAULT" value="4"/>
+    <eLiterals name="PREFETCH_SERVER_DEFAULT" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASETable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/PersistentTable #//SybaseASEBaseTable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEColumnCheckConstraint" eSuperTypes="#//SybaseASECheckConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
+        eType="#//SybaseASEColumn" eOpposite="#//SybaseASEColumn/columnCheck"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEColumn" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizedObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="ASE column's defaultValue attribute will hold either inline default &#xD;&#xA;or bound default value. Judge boundDefault is null or not to determine&#xD;&#xA;the defaultValue's holder(inline or bound defualt). -- To be consistent&#xD;&#xA;with the standard SQL model"/>
+    </eAnnotations>
+    <eOperations name="isComputedColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnCheck" eType="#//SybaseASEColumnCheckConstraint"
+        eOpposite="#//SybaseASEColumnCheckConstraint/column"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefault" eType="#//SybaseASEDefault"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundRule" eType="#//SybaseASERule"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialized" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="encryptionKey" eType="#//SybaseASEEncryptionKey"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindDefaultInFutureOnly"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hidden" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LockingSchemaType">
+    <eLiterals name="LOCKDATAROWS"/>
+    <eLiterals name="LOCKDATAPAGES" value="1"/>
+    <eLiterals name="LOCKALLPAGES" value="2"/>
+    <eLiterals name="SERVERDEFAULT" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUniqueConstraint" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/UniqueConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="systemGenedIndex" lowerBound="1"
+        eType="#//SybaseASEIndex" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="SybaseASEUniqueConstraint wrap SybaseASEIndex as reference to provide isClustered, segment, marrowsize, members and other index related info."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemGenedName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPrimaryKey" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/PrimaryKey">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aseUniqueConstraint" lowerBound="1"
+        eType="#//SybaseASEUniqueConstraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeviceItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SegmentThreshold" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="procedureName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="freeSpace" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CacheInfo" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cacheStrategy" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//SybaseASECache"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUserDefinedType" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DistinctUserDefinedType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundDefault" eType="#//SybaseASEDefault"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundRule" eType="#//SybaseASERule"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindDefaultInFutureOnly"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bindRuleInFutureOnly" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allowNulls" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identity" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEEncryptionKey" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schema" eType="#//SybaseASESchema"
+        eOpposite="#//SybaseASESchema/encryptionKeys"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LockPromotionInfo" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowLockPromotion" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="LWM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="HWM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PCT" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProxyTableExternalType">
+    <eLiterals name="TABLE" literal="table"/>
+    <eLiterals name="PROCEDURE" value="1" literal="procedure"/>
+    <eLiterals name="FILE" value="2" literal="file"/>
+    <eLiterals name="DIRECTORY" value="3" literal="directory"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASERole" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Role ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
+    <eOperations name="getReceivedPrivileges" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Get privileges of role for specified catalog"/>
+      </eAnnotations>
+      <eParameters name="catalogName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASECache" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
+        eType="#//SybaseASEDatabase" eOpposite="#//SybaseASEDatabase/caches"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AccessRuleType">
+    <eLiterals name="DEF" literal="DEF"/>
+    <eLiterals name="AND" value="1"/>
+    <eLiterals name="OR" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEViewTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseViewTable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="withCheckOption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SybaseASECatalogType">
+    <eLiterals name="PROXYCATALOG" value="1"/>
+    <eLiterals name="TEMPCATALOG" value="2"/>
+    <eLiterals name="USERCATALOG" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASETempTable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/TemporaryTable #//SybaseASEBaseTable">
+    <eAnnotations source="GenModel">
+      <details key="documentation" value="We don't want the temporary table to extends persistent table, as a result&#xD;&#xA;it can not inherit SybaseASETable. It's only used for nonsharable temp table."/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEProxyTable" eSuperTypes="#//SybaseASETable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalType" eType="#//ProxyTableExternalType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="existing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnDelimiter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="externalPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEWebServiceTable" eSuperTypes="#//SybaseASEProxyTable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="WSDLURI" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEBaseTable" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
+    <eAnnotations source="GenModel">
+      <details key="documentation" value="Store attributes shared by SybaseASETable and SybaseASETempTable"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lockSchema" eType="#//LockingSchemaType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillFactor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRowPerPage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expRowSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reservePageGap" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityGap" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="segment" lowerBound="1"
+        eType="#//SybaseASESegment"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="concurrencyOptThreshold"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partitionCondition" eType="#//partition/SybaseASEPartition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableOnlyCacheInfo" eType="#//CacheInfo"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textOnlyCacheInfo" eType="#//CacheInfo"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lockPromotion" upperBound="-1"
+        eType="#//LockPromotionInfo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitions" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textImageSegment" eType="#//SybaseASESegment"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemTable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEUser" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/User ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loginName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEGroup" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//accesscontrol/Group ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPrivilege" eSuperTypes="../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybasePrivilege">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="@deprecated"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASETrigger" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASECheckConstraint" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/CheckConstraint ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/TableConstraint ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/Constraint ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="creator" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Schema"/>
+  </eClassifiers>
+  <eSubpackages name="partition" nsURI="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybasease../../org.eclipse.datatools.modelbase.sql/model/../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore/partition.ecore"
+      nsPrefix="Partition">
+    <eClassifiers xsi:type="ecore:EClass" name="SybaseASEPartition" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SybaseASERangePartition" eSuperTypes="#//partition/SybaseASEPartition ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="columns" lowerBound="1"
+          upperBound="-1" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rangePartitionItems"
+          upperBound="-1" eType="#//partition/ListRangePartitionItem"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SybaseASEHashPartition" eSuperTypes="#//partition/SybaseASEPartition ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="columns" lowerBound="1"
+          upperBound="-1" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="partitionSegmentPairs"
+          upperBound="-1" eType="#//partition/PartitionSegmentPair"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="partitionNumInSegments"
+          eType="#//partition/PartitionNumInSegments"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SybaseASEListPartition" eSuperTypes="#//partition/SybaseASEPartition ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="column" lowerBound="1"
+          eType="#//SybaseASEColumn"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="listPartitionItems" lowerBound="1"
+          upperBound="-1" eType="#//partition/ListRangePartitionItem"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SybaseASERoundrobinPartition" eSuperTypes="#//partition/SybaseASEPartition ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="partitionSegmentPairs"
+          upperBound="-1" eType="#//partition/PartitionSegmentPair"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="partitionNumInSegments"
+          eType="#//partition/PartitionNumInSegments"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PartitionSegmentPair" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="segment" lowerBound="1"
+          eType="#//SybaseASESegment"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PartitionNumInSegments" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitionNumb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="segment" lowerBound="1"
+          upperBound="-1" eType="#//SybaseASESegment"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ListRangePartitionItem" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="segment" eType="#//SybaseASESegment"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

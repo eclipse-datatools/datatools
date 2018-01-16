@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+            point="org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+         <contributor
+               displayType="%view.node.name"
+               iconLocation="/icons/dsefolder.gif"
+               type="org.eclipse.datatools.enablement.sybase.virtual.SybaseViewNode">
+         </contributor>
+      </extension>
+      
+      <!--For PrimaryKeyNode,UniqueConstraintNode,CheckConstraintNode,ForeignKeyNode -->
+   <extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+<!--      <contributor
+        displayType="%temptable.name"
+        iconLocation="/icons/temporary_table.gif"
+        type="org.eclipse.datatools.modelbase.sql.tables.TemporaryTable"/>
+      <contributor
+        displayType="%trigger.name"
+        iconLocation="/icons/trigger.gif"
+        type="org.eclipse.datatools.modelbase.sql.tables.Trigger"/> -->
+      <contributor
+        displayType="%parameters.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.virtual.ParametersNode"/>
+<!--      <contributor
+        displayType="%storedprocedure.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.StoredProcedureNode"/>
+      <contributor
+        displayType="%table.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TableNode"/>
+      <contributor
+        displayType="%udt.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDTNode"/>
+      <contributor
+        displayType="%view.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.ViewNode"/>
+      <contributor
+        displayType="%schema.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.SchemaNode"/>
+      <contributor
+        displayType="%column.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.ColumnNode"/>
+      <contributor
+        displayType="%index.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.IndexNode"/>
+      <contributor
+        displayType="%trigger.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TriggerNode"/>
+      <contributor
+        displayType="%catalog.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/>
+      <contributor
+        displayType="%udf.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDFNode"/> -->
+      <contributor
+        displayType="%checkconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.virtual.CheckConstraintNode"/>
+      <contributor
+        displayType="%foreignkey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.virtual.ForeignKeyNode"/>
+      <contributor
+        displayType="%primarykey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.virtual.PrimaryKeyNode"/>
+      <contributor
+        displayType="%uniqueconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.virtual.UniqueConstraintNode"/>
+<!--      <contributor
+        displayType="%parameter.name"
+        iconLocation="/icons/param_obj.gif"
+        type="org.eclipse.datatools.modelbase.sql.routines.Parameter"/>-->
+   </extension>
+   <!--end -->
+   
+   <!-- Label Providers -->
+<!--	<extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Database"
+			iconLocation = "/icons/database.gif"
+			displayType = "%database"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.BaseTable"
+			iconLocation = "/icons/table.gif"
+			displayType = "%baseTable"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Column"
+			iconLocation = "/icons/column.gif"
+			displayType = "%column"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType"
+			iconLocation = "/icons/userdefined_datatype.gif"
+			displayType = "%udt"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.Index"
+			iconLocation = "/icons/index.gif"
+			displayType = "%index"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Procedure"
+			iconLocation = "/icons/stored_procedure.gif"
+			displayType = "%procedure"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.ViewTable"
+			iconLocation = "/icons/view.gif"
+			displayType = "%view"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Table"
+			iconLocation = "/icons/table.gif"
+			displayType = "%baseTable"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Parameter"
+			iconLocation = "/icons/param_obj.gif"
+			displayType = "%parameter"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Trigger"
+			iconLocation = "/icons/trigger.gif"
+			displayType = "%trigger"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint"
+			iconLocation = "/icons/check_constraint.gif"
+			displayType = "%CheckConstraint"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint"
+			iconLocation = "/icons/unique_constraint.gif"
+			displayType = "%UniqueConstraint"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Function"
+			iconLocation = "/icons/udf.gif"
+			displayType = "%function"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey"
+			iconLocation = "/icons/primaryKey.gif"
+			displayType = "%primaryKey"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.ForeignKey"
+			iconLocation = "/icons/foreignKey.gif"
+			displayType = "%foreignKey"
+			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
+		</contributor>
+	</extension>-->
+	<!-- end -->   
+	
+	<extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+          adaptable="false"
+          class="org.eclipse.datatools.enablement.sybase.ui.SystemTableDecorationService"
+          id="org.eclipse.datatools.enablement.sybase.systemtabledecorator"
+          label="%decorator.label"
+          lightweight="true"
+          location="TOP_LEFT"
+          objectClass="org.eclipse.datatools.enablement.sybase.ui.SystemTableDecorationService"
+          state="true">
+        <enablement>
+          <or>
+             <objectClass name="org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable"/>
+          </or>
+        </enablement>
+      </decorator>
+   </extension>  
+
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="false"
+          id="org.eclipse.datatools.enablement.sybase.objectContribution1"
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+       <action
+       		 class="org.eclipse.datatools.enablement.sybase.ui.ShowSchemaAction"
+       		 id="org.eclipse.datatools.enablement.sybase.ui.showSchemaAction"
+       		 label="Show &amp;Schema"
+       		 style="toggle"
+       		 state="false"
+       		 menubarPath="slotSetting"/>
+       <action
+       		class="org.eclipse.datatools.enablement.sybase.ui.ShowOwnerAction"
+       		id="org.eclipse.datatools.enablement.sybase.ui.showOwnerAction"
+       		label="Show &amp;Owner"
+       		style="toggle"
+       		state="true"
+       		menubarPath="slotSetting"/>
+       <visibility>
+          <and>
+             <objectClass name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+             <or>
+             	<objectState
+                	name="org.eclipse.datatools.profile.property.id"
+                	value="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+                <objectState
+                	name="org.eclipse.datatools.profile.property.id"
+                	value="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile"/>
+                <objectState
+                	name="org.eclipse.datatools.profile.property.id"
+                	value="org.eclipse.datatools.enablement.sybase.iq.connectionProfile"/>   
+             </or>
+          </and>
+       </visibility>
+    </objectContribution>
+    <objectContribution
+          adaptable="false"
+          id="org.eclipse.datatools.enablement.sybase.objectContribution2"
+          objectClass="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase">
+       <action
+       		 class="org.eclipse.datatools.enablement.sybase.ui.ShowSchemaAction"
+       		 id="org.eclipse.datatools.enablement.sybase.ui.showSchemaAction2"
+       		 label="Show &amp;Schema"
+       		 style="toggle"
+       		 state="false"
+       		 menubarPath="slotSetting"/>
+       <action
+       		class="org.eclipse.datatools.enablement.sybase.ui.ShowOwnerAction"
+       		id="org.eclipse.datatools.enablement.sybase.ui.showOwnerAction2"
+       		label="Show &amp;Owner"
+       		style="toggle"
+       		state="true"
+       		menubarPath="slotSetting"/>
+    </objectContribution>
+    <objectContribution
+          adaptable="false"
+          id="org.eclipse.datatools.enablement.sybase.objectContribution3"
+          objectClass="org.eclipse.datatools.enablement.sybase.ase.catalog.SybaseASECatalog">
+       <action
+       		 class="org.eclipse.datatools.enablement.sybase.ui.ShowSchemaAction"
+       		 id="org.eclipse.datatools.enablement.sybase.ui.showSchemaAction3"
+       		 label="Show &amp;Schema"
+       		 style="toggle"
+       		 state="false"
+       		 menubarPath="slotSetting"/>
+       <action
+       		class="org.eclipse.datatools.enablement.sybase.ui.ShowOwnerAction"
+       		id="org.eclipse.datatools.enablement.sybase.ui.showOwnerAction3"
+       		label="Show &amp;Owner"
+       		style="toggle"
+       		state="true"
+       		menubarPath="slotSetting"/>
+    </objectContribution>    
+ </extension>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%database.connection.profile.title"
+            class="org.eclipse.datatools.enablement.sybase.ui.SybaseDatabaseProfileSettingPage"
+            id="org.eclipse.datatools.enablement.sybase.ui.SybaseDatabaseProfileSettingPage"
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage">
+      </page>
+   </extension>
+	<!--extension
+		point="org.eclipse.help.contexts">
+		<contexts
+			file="profileSettingHelpContexts.xml"
+			plugin="org.eclipse.datatools.enablement.sybase"/>
+	</extension-->
+	<extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.enablement.sybase.ui.SybasePreferenceInitializer">
+      </initializer>
+    </extension>
+    
+    <extension
+       point="org.eclipse.core.runtime.adapters">
+       <factory 
+            class="org.eclipse.datatools.enablement.sybase.ui.VirtualNodeAdapterFactory"
+            adaptableType="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode">
+            <adapter type="org.eclipse.datatools.enablement.sybase.VirtualNodeAdapter"/>
+         </factory>
+ </extension>	
+</plugin>

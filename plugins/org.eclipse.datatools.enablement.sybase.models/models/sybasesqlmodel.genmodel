@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.models/src"
+    editDirectory="/org.eclipse.datatools.enablement.sybase.models.edit/src" modelPluginID="org.eclipse.datatools.enablement.sybase.models"
+    modelName="Sybasesqlmodel" importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+  <foreignModel>sybasesqlmodel.ecore</foreignModel>
+  <genPackages prefix="Sybasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.models"
+      disposableProviderFactory="true" ecorePackage="sybasesqlmodel.ecore#/">
+    <genEnums ecoreEnum="sybasesqlmodel.ecore#//JDBCParameterType">
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/Unknown"/>
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/In"/>
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/InOut"/>
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/Result"/>
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/Out"/>
+      <genEnumLiterals ecoreEnumLiteral="sybasesqlmodel.ecore#//JDBCParameterType/Return"/>
+    </genEnums>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseParameter/nullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseParameter/defaultValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseParameter/JDBCParameterType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sybasesqlmodel.ecore#//SybaseRoutine">
+      <genOperations ecoreOperation="sybasesqlmodel.ecore#//SybaseRoutine/parseParameterDefaultValues"/>
+      <genOperations ecoreOperation="sybasesqlmodel.ecore#//SybaseRoutine/isSystem"/>
+    </genClasses>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseBaseTable">
+      <genOperations ecoreOperation="sybasesqlmodel.ecore#//SybaseBaseTable/isSystem"/>
+      <genOperations ecoreOperation="sybasesqlmodel.ecore#//SybaseBaseTable/getCheckConstraints"/>
+    </genClasses>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseViewTable">
+      <genOperations ecoreOperation="sybasesqlmodel.ecore#//SybaseViewTable/isSystem"/>
+    </genClasses>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybasesqlmodel.ecore#//SybaseAuthorizationIdentifier/sqlContainer"/>
+    </genClasses>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseIndexMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseIndexMember/columnExpression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sybasesqlmodel.ecore#//SybaseAuthorizedObject"/>
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybasePrivilege">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybasePrivilege/revoked"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

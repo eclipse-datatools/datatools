@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"
+            name="%profile.asa.title"
+            pingFactory="org.eclipse.datatools.enablement.sybase.asa.internal.connection.JDBCASAConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.SybaseASADBPropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.sybase.asa.internal.connection.JDBCASAConnectionFactory"
+            id="java.sql.Connection"
+            name="JDBC Connection"
+            profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+      <newWizard
+            class="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.NewASAConnectionProfileWizard"
+            description="%ASA_CONNECTION_PROFILE_WIZARD_DESCRIPTION"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.sybase.asa.NewConnectionProfileWizard"
+            name="%profile.asa.wizard.title"
+            profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.ASADBPropertyPage"
+            id="org.eclipse.datatools.enablement.sybase.asa.profileProperties"
+            name="%profile.asa.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+      </page>
+   </extension>
+   
+   <extension
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <navigatorContent
+               activeByDefault="true"
+               contentProvider="org.eclipse.datatools.enablement.sybase.asa.providers.SybaseASAContentProvider"
+               id="org.eclipse.datatools.enablement.sybase.asa.asaSqlModelContent"
+               labelProvider="org.eclipse.datatools.enablement.sybase.asa.providers.SybaseASALabelProviderExt"
+               name="%profile.asa.content"
+               priority="highest">
+            <triggerPoints>
+            	<or>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DataTypesFolder"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.WebServicesFolder"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.ProxyTableNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASATableNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAViewNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAStoredProcedureNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUDFNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUDTNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUDTNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAIndexNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.virtual.ParametersNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAPrimaryKeyNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUniqueConstraintNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASACheckConstraintNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAForeignKeyNode"/>
+	                	                
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseSchema"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePreDefinedDataType"/>
+	            </or>
+            </triggerPoints>
+            <possibleChildren>
+                <or>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase"/>
+     	       	<instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseSchema"/>
+     	       	<instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable"/>
+     	       	<instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter"/>
+	            </or>
+            </possibleChildren>
+			<override
+                  policy="InvokeAlwaysRegardlessOfSuppressedExt"
+                  suppressedExtensionId="org.eclipse.datatools.connectivity.db.sqlModelContent">
+            </override>
+            
+         </navigatorContent>
+      </extension>
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.enablement.sybase.asa.asaSqlModelContent"/>
+            </includes>
+         </viewerContentBinding>
+      </extension>  
+      <extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+  <contributor
+        displayType="%webservice.name"
+        iconLocation="/icons/webservice.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAWebService"/>
+  <contributor
+        displayType="%datatype.name"
+        iconLocation="/icons/DataType.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePredefinedDataType"/>
+  <contributor
+		type = "org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"
+		iconLocation = "/icons/userdefined_datatype.gif"
+		displayType = "%udt"/>        
+  <contributor
+        displayType="%event.name"
+        iconLocation="/icons/event.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseEvent"/>
+  <contributor
+        displayType="%proxytable.name"
+        iconLocation="/icons/remotetable.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable"/>
+  <contributor
+  		displayType="%proxytable.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.ProxyTableNode"/>
+  <contributor
+  		displayType="%datatype.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.providers.IDataTypesFolder"/>
+  <contributor
+  		displayType="%event.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.providers.IDBEventsFolder"/>                   
+  <contributor
+  		displayType="%asa.table.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASATableNode"/>
+  <contributor
+  		displayType="%asa.view.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAViewNode"/>
+  <contributor
+  		displayType="%asa.procedure.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAStoredProcedureNode"/>        
+  <contributor
+  		displayType="%asa.udf.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUDFNode"/>
+  <contributor
+  		displayType="%asa.udt.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUDTNode"/>     
+  <contributor
+  		displayType="%asa.index.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAIndexNode"/>       
+  <contributor
+  		displayType="%asa.priamrykey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAPrimaryKeyNode"/>        
+  <contributor
+  		displayType="%asa.uniqueconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAUniqueConstraintNode"/>
+  <contributor
+  		displayType="%asa.checkconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASACheckConstraintNode"/>         
+  <contributor
+  		displayType="%asa.foreignkey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASAForeignKeyNode"/>        
+	</extension>
+	
+	<extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="false"
+          id="org.eclipse.datatools.enablement.sybase.asa.objectContribution1"
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+       <action
+             class="org.eclipse.datatools.enablement.sybase.asa.actions.ProfileASAMultiDBAction"
+             id="org.eclipse.datatools.enablement.sybase.asa.action1"
+             label="%wizard.asa.multi.action"/>
+       <visibility>
+          <and>
+             <objectClass name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+             <objectState
+                   name="org.eclipse.datatools.profile.property.id"
+                   value="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+          </and>
+       </visibility>
+    </objectContribution>
+ </extension>
+ 
+ <extension
+       point="org.eclipse.ui.decorators">
+    <decorator
+          adaptable="false"
+          class="org.eclipse.datatools.enablement.asa.internal.ui.decorator.ProxyTableDecorationService"
+          id="org.eclipse.datatools.enablement.sybase.asa.proxytabledecorator"
+          label="%decorator.label"
+          lightweight="true"
+          location="TOP_LEFT"
+          objectClass="org.eclipse.datatools.enablement.asa.internal.ui.decorator.ProxyTableDecorationService"
+          state="true">
+       <enablement>
+          <or>
+             <objectClass name="org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseProxyTable"/>
+          </or>
+       </enablement>
+    </decorator>
+ </extension>  
+ 
+ <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.drivertemplate"
+            id="org.eclipse.datatools.connectivity.asa9.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.drivertemplate10"
+            id="org.eclipse.datatools.connectivity.asa10.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.sybase.asa.9_x.other.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.10_x.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.sybase.asa.10_x.other.ui.propertyEditor.password">
+      </propertyEditor>
+ </extension>       
+ 
+ <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.drivers.ASADriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.drivertemplate"
+            id="org.eclipse.datatools.enablement.sybase.asa.ui.connection.drivers.ASA9DriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+    <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.drivers.ASADriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.drivertemplate10"
+            id="org.eclipse.datatools.enablement.sybase.asa.ui.connection.drivers.ASA10DriverUIContributor">
+      </driverUIContributor>
+   </extension>
+    <extension
+          point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+       <driverUIContributor
+             class="org.eclipse.datatools.enablement.sybase.asa.ui.ASAOtherDriverUIContributor"
+             driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate"
+             id="org.eclipse.datatools.enablement.sybase.asa.9_x.other.ASAOtherDriverUIContributor">
+       </driverUIContributor>
+    </extension>
+    <extension
+          point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+       <driverUIContributor
+             class="org.eclipse.datatools.enablement.sybase.asa.ui.ASAOtherDriverUIContributor"
+             driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.10_x.other.driverTemplate"
+             id="org.eclipse.datatools.enablement.sybase.asa.10_x.other.ASAOtherDriverUIContributor">
+       </driverUIContributor>
+    </extension>
+ 
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+	   <!-- Database Explorer Menu for Generate DDL -->
+	      <actionProvider
+             class="org.eclipse.datatools.sqltools.ddlgen.internal.ui.actions.popup.ForwardEngineerActionProvider"
+             id="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.base">
+          <enablement>
+             <and>
+                <or>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATable">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumn">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumnCheckConstraint">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePredefinedDataType">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePrimaryKey">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseRemoteProcedure">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseSchema">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTrigger">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint">
+                   </adapt>
+                   <adapt
+                         type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseViewTable">
+                   </adapt>
+                </or>
+             </and>
+          </enablement>
+       </actionProvider>
+	   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+      <providerIDtoDriverCategoryID
+            driverCategoryID="org.eclipse.datatools.enablement.sybase.asa.category"
+            providerID="org.eclipse.datatools.enablement.sybase.asa.connectionProfile">
+      </providerIDtoDriverCategoryID>
+   </extension>  
+</plugin>
