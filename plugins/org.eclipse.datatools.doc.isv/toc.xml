@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Data Tools Platform Plug-in Developer Guide">
+   <topic label="Data Tools Platform Help-Helper Documentation">
+	<link toc="dtp_help_helper_doc.xml"/>
+   </topic>
+   <topic label="Reference">
+      <anchor id="reference"/>
+   </topic>
+</toc>

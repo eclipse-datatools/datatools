@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Dynamic Context-Sensitive Help"/>
+<meta name="abstract" content="Since 3.1, Eclipse supports dynamic context-sensitive help."/>
+<meta name="description" content="Since 3.1, Eclipse supports dynamic context-sensitive help."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_2C86D6580AB44FD38EE0F314ABCE6DEE"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Dynamic Context-Sensitive Help</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Dynamic Context-Sensitive Help</h1>
+
+    
+    <div><p>Since 3.1, Eclipse supports dynamic context-sensitive help.</p>
+
+        <div class="p"> The two pieces of dynamic context-sensitive help include:
+            <br/><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_8AD3545178F3419F8DCEC3CB2BB8E177"><!-- --></a><ul id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_8AD3545178F3419F8DCEC3CB2BB8E177">
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_D396E801FC374F57AB43C1DD1D1502B0"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_D396E801FC374F57AB43C1DD1D1502B0"><!-- --></a>An interface class (org.eclipse.help.IContextProvider), and</li>
+
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_3214765302EC4451A8DEE253D0626A3B"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_3214765302EC4451A8DEE253D0626A3B"><!-- --></a>The Help view (a workbench part)</li>
+
+            </ul>
+
+        </div>
+
+        <div class="p">To provide dynamic context-sensitive help, a UI component must define the
+           associations between its UI controls and help contexts dynamically, by
+           implementing methods of IContextProvider:
+            <br/><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_D0772BF18D3045FD92AE02AEB7598E82"><!-- --></a><ul id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_D0772BF18D3045FD92AE02AEB7598E82">
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_B3398BEEE76F40FC802AF7C1F194C110"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_B3398BEEE76F40FC802AF7C1F194C110"><!-- --></a>getContext(Object target) — returns a help context (ID) for the given target</li>
+
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_594BDD3B6EA34AFD9BC5D20996F78425"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_594BDD3B6EA34AFD9BC5D20996F78425"><!-- --></a>getContextChangeMask() — returns the mask created by combining supported
+                    change triggers, using the bitwise OR operation</li>
+
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_517EA1FCD50241FF850A05BAA922F76F"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_517EA1FCD50241FF850A05BAA922F76F"><!-- --></a>getSearchExpression(Object target) — returns a search expression that the help
+                system should use to find more help content related to the current target</li>
+
+            </ul>
+
+        </div>
+
+        <p>The Help view tracks the activation of workbench parts (views and editors), and
+           it checks to see if they adapt to the IContextProvider interface. If they do,
+           the Help view uses the IContextProvider methods (implemented in the UI
+           component) to locate a corresponding IContext object.
+        </p>
+
+        <p>The IContextProvider.getContextChangeMask method provides a mask that the Help
+           view uses to determine when a context change occurs dynamically (for example, as a
+           result of a user gesture to change the UI focus).
+        </p>
+
+        <div class="p">When the Help view detects a context change, it updates its context-sensitive
+           help presentation to display:
+            <br/><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_1E715FA0980448D8B32ED4A13894BE5B"><!-- --></a><ul id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__ul_1E715FA0980448D8B32ED4A13894BE5B">
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_8B94327EA3AF4FDA865D9E1754A721DE"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_8B94327EA3AF4FDA865D9E1754A721DE"><!-- --></a>The content of the IContext object that is associated with the current context
+                    (that is, the name and description of the UI control, and a list of related help
+                    topics)</li>
+
+                <li id="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_06847842575447B0A12C196B0DD7AF08"><a name="concept_2C86D6580AB44FD38EE0F314ABCE6DEE__li_06847842575447B0A12C196B0DD7AF08"><!-- --></a>Dynamic Help search results — a list of help topics found using the search
+                    expression that was returned by the IContextProvider.getSearchExpression method</li>
+
+            </ul>
+
+        </div>
+
+        <p>The content of an IContext object (and its association with a particular help
+           context ID) is defined by a context XML file, which is usually contributed by a
+           UA component.
+        </p>
+
+        <p>To register IContext content contributions with the help system, a UA plug-in
+           must declare an extension of org.eclipse.help.contexts, identifying both the
+           context XML file and the UI plug-in for which the IContext content is
+           contributed.
+        </p>
+
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_introduction_to_csh.html" title="Context-sensitive help is focused user assistance content, specific to the current application context (that is, the help context), and presented on demand when a platform-specific trigger is activated (for example, F1 on Windows).">Introduction to Context-Sensitive Help</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

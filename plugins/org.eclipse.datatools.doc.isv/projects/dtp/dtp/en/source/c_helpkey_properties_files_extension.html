@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="helpKey Properties Files Extension"/>
+<meta name="abstract" content="Each plug-in that contributes helpKey properties files must declare an extension to org.eclipse.datatools.help.helpKeyProperties in its plug-in manifest (plugin.xml file)."/>
+<meta name="description" content="Each plug-in that contributes helpKey properties files must declare an extension to org.eclipse.datatools.help.helpKeyProperties in its plug-in manifest (plugin.xml file)."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_ua_plugins.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_C426F6313F5D4449A7D9D7F211F33DEC"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>helpKey Properties Files Extension</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_C426F6313F5D4449A7D9D7F211F33DEC"><a name="concept_C426F6313F5D4449A7D9D7F211F33DEC"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">helpKey Properties Files Extension</h1>
+
+    
+    <div><p>Each plug-in that contributes helpKey properties files must declare an extension
+           to org.eclipse.datatools.help.helpKeyProperties in its plug-in manifest
+           (plugin.xml file).</p>
+
+        <div class="p"> For example:
+            <pre class="codeblock">
+    &lt;extension point="org.eclipse.datatools.help.helpKeyProperties"&gt;
+        &lt;contextIds plugin="org.eclipse.datatools.connectivity.ui"
+            file="org.eclipse.datatools.connectivity.ui.contextIds.properties"/&gt;
+        &lt;searchExpressions plugin="org.eclipse.datatools.connectivity.ui"
+            file="org.eclipse.datatools.connectivity.ui.searchExpressions.properties"/&gt;
+    &lt;/extension&gt;
+</pre>
+
+        </div>
+
+        <p>The <samp class="codeph">&lt;contextIds&gt;</samp> element identifies a helpKey properties 
+           file that defines help context IDs, and the UI plug-in for which it is provided.
+        </p>
+
+        <p>The <samp class="codeph">&lt;searchExpressions&gt;</samp> element identifies a helpKey properties file that
+           defines context-specific help search expressions, and the UI plug-in for which
+           it is provided.
+        </p>
+
+        <p>To accommodate context-sensitive help plug-ins that serve more than one UI
+           plug-in, the <samp class="codeph">&lt;extension&gt;</samp> element can contain any 
+           number of <samp class="codeph">&lt;contextIds&gt;</samp> and 
+           <samp class="codeph">&lt;searchExpressions&gt;</samp> elements.
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_ua_plugins.html" title="Context-sensitive help UA plug-ins handle the mapping of help contexts to context-specific help content and related online documentation topics.">Context-Sensitive Help UA Plug-ins</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

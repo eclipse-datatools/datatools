@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Context-Specific Help Content"/>
+<meta name="abstract" content="The ditamap requires specific markup to implement context-sensitive help."/>
+<meta name="description" content="The ditamap requires specific markup to implement context-sensitive help."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_35BBDB9083C84D199602016DEA6ED71B"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Context-Specific Help Content</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_35BBDB9083C84D199602016DEA6ED71B"><a name="concept_35BBDB9083C84D199602016DEA6ED71B"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Context-Specific Help Content</h1>
+
+    
+    <div><p>The ditamap requires specific markup to implement context-sensitive help.</p>
+
+        <div class="p">Each 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element that wraps a 
+           <samp class="codeph">&lt;resourceid&gt;</samp> element may optionally contain one 
+           <samp class="codeph">&lt;searchtitle&gt;</samp> element or one 
+           <samp class="codeph">&lt;shortdesc&gt;</samp> element, or both (one of each):
+            <br/><a name="concept_35BBDB9083C84D199602016DEA6ED71B__ul_0B256D3232FE4A878571157937671353"><!-- --></a><ul id="concept_35BBDB9083C84D199602016DEA6ED71B__ul_0B256D3232FE4A878571157937671353">
+                <li id="concept_35BBDB9083C84D199602016DEA6ED71B__li_D1F99AE153B9492EB74D8CB5AED44849"><a name="concept_35BBDB9083C84D199602016DEA6ED71B__li_D1F99AE153B9492EB74D8CB5AED44849"><!-- --></a>The <samp class="codeph">&lt;searchtitle&gt;</samp> element is used to 
+                    supply the value of the title attribute on the 
+                    <samp class="codeph">&lt;context&gt;</samp> element in the Eclipse context XML file.</li>
+
+                <li id="concept_35BBDB9083C84D199602016DEA6ED71B__li_2439F97A08E6428C8ED67E8F620E130B"><a name="concept_35BBDB9083C84D199602016DEA6ED71B__li_2439F97A08E6428C8ED67E8F620E130B"><!-- --></a>The <samp class="codeph">&lt;shortdesc&gt;</samp> element is used to supply 
+                    the content of the <samp class="codeph">&lt;description&gt;</samp>
+                    element in the Eclipse context XML file. For example:
+                    <pre class="codeblock">
+    &lt;topicref navtitle="label attribute in contexts.xml topic element"
+        href="path/to/topic.xml"&gt;
+        &lt;topicmeta&gt;
+            &lt;searchtitle&gt;Optional text to override the help About title.&lt;/searchtitle&gt;
+            &lt;shortdesc&gt;Text for context description.&lt;/shortdesc&gt;
+            &lt;resourceid id="help_context_ID_string"/&gt;
+        &lt;/topicmeta&gt;
+    &lt;/topicref&gt;
+</pre>
+</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="note"><span class="notetitle">Note:</span> The <samp class="codeph">&lt;searchtitle&gt;</samp>, <samp class="codeph">&lt;shortdesc&gt;</samp>,
+           and <samp class="codeph">&lt;resourceid&gt;</samp> elements must appear in the 
+           <samp class="codeph">&lt;topicmeta&gt;</samp> element in the order shown above.
+        </div>
+
+        <div class="p">A DITA map that contains the example shown above produces the following content
+           in an Eclipse context XML file:  
+           <pre class="codeblock">
+    &lt;contexts&gt;
+        ...
+        &lt;context id="help_context_ID_string"
+            title="Optional text to override the help About title."&gt;
+            &lt;description&gt;Text for context description.&lt;/description&gt;
+            &lt;topic label="label attribute in contexts.xml topic element"
+                href="PLUGINS_ROOT/<em>doc_plugin_ID</em>/path/to/topic.xml"/&gt;
+        &lt;/context&gt;
+        ...
+    &lt;/contexts&gt;
+</pre>
+
+           where <var class="varname">doc_plugin_ID</var> is the value of the id attribute on the 
+           <samp class="codeph">&lt;map&gt;</samp> element.
+        </div>
+
+        <p>The following illustration shows how the 
+           <samp class="codeph">&lt;searchtitle&gt;</samp> and <samp class="codeph">&lt;shortdesc&gt;</samp> elements
+           in a DITA map can be transformed into markup in the Eclipse context XML file,
+           and how those items in the context XML file provide the context-specific content
+           rendered in the Help view.
+        </p>
+
+        <br/><a name="concept_35BBDB9083C84D199602016DEA6ED71B__image_AECDC92CFEC5476BB3BF3641AF221535"><!-- --></a><div class="imagecenter"><img id="concept_35BBDB9083C84D199602016DEA6ED71B__image_AECDC92CFEC5476BB3BF3641AF221535" src="../images/dtp_cs_content.jpg" alt="Image shows how content in the &lt;searchtitle&gt; and &lt;shortdesc&gt; elements in a DITA map contribute context-specific content for the Eclipse context XML file."/></div><br/>
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_plugins_with_dita.html" title="Any DITA map document that defines an online documentation (doc) plug-in can be modified to also define a corresponding context-sensitive help plug-in by inserting the appropriate context-related markup.">Context-Sensitive Help Plug-ins with DITA</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

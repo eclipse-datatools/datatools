@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Driver Definition</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">Driver Definition</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.driverExtension<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>DTP 0.x
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6><p>
+The driverExtension is used by developers to define templates that describe the mechanical components necessary for opening connections to servers.  Users create specific driver definitions using these templates.
+</p>
+<p>
+The driver definitions are intended to be used in conjunction with connection profiles, where the driver definition specifies the mechanics (e.g. JAR files, driver class names, etc.) necessary for opening the connection and where the connection profile specifies the particulars for connecting to a specific server (e.g. host, port, user ID, password, etc.).
+</p>
+<p>
+In addition, using the driverTemplateOverride functionality, adopters can take existing driver templates (such as for one of the Enablement projects) and update the driver's jar list to actually point to a wrapped jar, or update individual properties of a template to fit a particular use. 
+</p><p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.category">category</a>* , <a href="#e.driverTemplate">driverTemplate</a>* , <a href="#e.driverTemplateOverride">driverTemplateOverride</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.category">category</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST category</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">parentCategory&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+This element is used to identify a category.  Categories are used to group related connection profile types (e.g. databases).</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of this category.  This value is referenced by <samp>driverTemplate</samp> elements.</li>
+<li><b>name</b> - The display name for this category.</li>
+<li><b>description</b> - The description of this category. This value will be used in the UI to describe a particular category.</li>
+<li><b>parentCategory</b> - The id of a parent category, if this category has a parent.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.driverTemplate">driverTemplate</a> (<a href="#e.properties">properties</a>? , <a href="#e.migration">migration</a>?)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST driverTemplate</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">parentCategory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">jarList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">createDefault&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"</p><p class="code SchemaDtdAttlist">emptyJarListIsOK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">valuesProvider&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">defaultDefinitionName&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+This element is used to identify a template.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of this driver type.</li>
+<li><b>name</b> - The display name for this driver type.</li>
+<li><b>description</b> - The description of this driver type. This value will be used in the UI to describe a particular type.</li>
+<li><b>parentCategory</b> - The id of the category to which this template belongs.</li>
+<li><b>jarList</b> - The list of JAR files used to create the classpath used when connecting using this driver.</li>
+<li><b>createDefault</b> - Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.</li>
+<li><b>emptyJarListIsOK</b> - Specifies whether or not it is valid for the jarList property to be empty.  Default is false.</li>
+<li><b>valuesProvider</b> - </li>
+<li><b>defaultDefinitionName</b> - </li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.properties">properties</a> (<a href="#e.property">property</a>+)&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Parent container for specific driver definition properties.</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.property">property</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST property</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"</p><p class="code SchemaDtdAttlist">example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">required&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"</p><p class="code SchemaDtdAttlist">generated&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">customPropertyDescriptor&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A property definition for a driver definition.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of this property.  Used to identify this property in the driver definition.</li>
+<li><b>name</b> - The display name for this property.</li>
+<li><b>description</b> - The description of this property. This value will be used in the UI to describe a particular type.</li>
+<li><b>value</b> - The default value for this property.</li>
+<li><b>visible</b> - Specifies whether or not this property is visible and editable to the user.  Default is true.</li>
+<li><b>example</b> - Specifies an example value for this property.</li>
+<li><b>required</b> - Specifies whether or not this is a required property.  Default is true.</li>
+<li><b>generated</b> - currently unused and undefined.</li>
+<li><i style="color: red;">Deprecated</i> <b>customPropertyDescriptor</b> - Provides a way to specify a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+
+Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
+
+ private static String DRIVER_CLASS_PROP_ID = "org.eclipse.datatools.connectivity.db.driverClass"; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.property.label")); //$NON-NLS-1$
+ }
+ 
+Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.</li>
+<li><b>category</b> - The category tag is used to provide an optional category for your template properties. The default is "General" if no category is specified for the property. You can use this to group properties in arbitrary categories.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.driverTemplateOverride">driverTemplateOverride</a> (<a href="#e.propertyOverrides">propertyOverrides</a>)?&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST driverTemplateOverride</p>
+<p class="code SchemaDtdAttlist">targetId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">parentCategory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">jarList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">createDefault&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p><p class="code SchemaDtdAttlist">emptyJarListIsOK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p><p class="code SchemaDtdAttlist">valuesProvider&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">priority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "1"</p><p class="code SchemaDtdAttlist">defaultDefinitionName&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">remove&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+This element is used to identify a template override</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>targetId</b> - The id of the driver template to be overridden.</li>
+<li><b>name</b> - The overridden display name for this driver type.</li>
+<li><b>description</b> - The overridden description of this driver type. This value will be used in the UI to describe a particular type.</li>
+<li><b>parentCategory</b> - The id of the category to which this template belongs.</li>
+<li><b>jarList</b> - The list of JAR files used to create the classpath used when connecting using this driver.</li>
+<li><b>createDefault</b> - Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.</li>
+<li><b>emptyJarListIsOK</b> - Specifies whether or not it is valid for the jarList property to be empty.  Default is false.</li>
+<li><b>valuesProvider</b> - </li>
+<li><b>priority</b> - The value for priority should be a value of 1 to 5, with 1 being low and 5 being high, indicating the priority for this override. If there are other overrides for the particular target driver template, the priority will be used to indicate which override should take precedence. If no priority is specified, the priority will default to "1". If multiple overrides have the same priority, the one with the lowest plug-in ID alphabetically (IDs will be sorted in ascending alphabetical order) will take precedence.</li>
+<li><b>defaultDefinitionName</b> - </li>
+<li><b>id</b> - The id attribute, though optional, is required to allow one driverTemplateOverride instance to override another. For example, if driver A has an override B that changes or removes a property, another adopter might implement override C that uses the id of override B as the targetId, thus replacing the overridden driver template with their own. In the case of multiple overrides or overrides of overrides, the priority is taken into account.</li>
+<li><b>remove</b> - Removes the template from the list of available templates.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyOverrides">propertyOverrides</a> (<a href="#e.propertyOverride">propertyOverride</a>)+&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Parent container for specific driver definition overridden properties</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyOverride">propertyOverride</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST propertyOverride</p>
+<p class="code SchemaDtdAttlist">targetId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p><p class="code SchemaDtdAttlist">example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">required&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p><p class="code SchemaDtdAttlist">customPropertyDescriptor&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">remove&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A property override definition for a driver template</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>targetId</b> - The id of the property to override. Must match the property ID from the driver template you are overriding.  Used to identify this property in the driver definition.</li>
+<li><b>name</b> - The overridden display name for this property.</li>
+<li><b>description</b> - The overridden description of this property. This value will be used in the UI to describe a particular type.</li>
+<li><b>value</b> - The overridden default value for this property.</li>
+<li><b>visible</b> - Specifies whether or not this property is visible and editable to the user.  Default is true.</li>
+<li><b>example</b> - Specifies an example value for this property.</li>
+<li><b>required</b> - Specifies whether or not this is a required property.  Default is true.</li>
+<li><i style="color: red;">Deprecated</i> <b>customPropertyDescriptor</b> - Provides a way to override a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+
+Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
+
+ private static String DRIVER_CLASS_PROP_ID = "org.eclipse.datatools.connectivity.db.driverClass"; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.property.label")); //$NON-NLS-1$
+ }
+ 
+Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.</li>
+<li><b>category</b> - The category tag is used to override the category for your template properties. The default is "General" if no category is specified for the property. You can use this to group properties in arbitrary categories.</li>
+<li><b>remove</b> - Indicates if this property should be removed</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.migration">migration</a> (<a href="#e.propertyMigration">propertyMigration</a>*)*&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST migration</p>
+<p class="code SchemaDtdAttlist">newDriverTemplateID&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Use this element to add migration support for a deprecated driver type (e.g. ID changes, property changes, etc.). Make sure if you are migrating driver definitions of one template to another and the first driver template was set to "createDefault = true", that you set the old driver template to createDefault = false or the driver manager will attempt to recreate the older template and then migrate it.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>newDriverTemplateID</b> - The ID of the new driver template to which the old driver template should be associated with.  If this attribute is not specified, the ID of the driver template is not changed.  However, propertyMigration elements, if any, will still be processed and applied.</li>
+<li><b>class</b> - A migration implementation that allows the provider to perform a specialized migration.  Use this method if you require a more complex migration algorithm (i.e. anything other than simple name and property mapping).</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyMigration">propertyMigration</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST propertyMigration</p>
+<p class="code SchemaDtdAttlist">oldPropertyKey&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">newPropertyKey&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">newValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+This element is used to specify a simple mapping for property key names from a source driver definition to a target driver definition</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>oldPropertyKey</b> - The key name in the source driver definition  If this property is not specified, the new property will be defaulted with the value of newValue.</li>
+<li><b>newPropertyKey</b> - The key name in the target driver definition  If this value is not specified, the old property will be deleted.</li>
+<li><b>newValue</b> - Use this attribute for populating a default property value for a new property.  newPropertyKey must be set.</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6><extension
+         point="org.eclipse.datatools.connectivity.driverExtension">
+      <category
+            id="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="Database"/>
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.genericDriverTemplate"
+            jarList=""
+            name="Generic JDBC Driver"
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="Driver Class"
+                  value=""
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.dbdefinition"
+                  name="DBDefinition Model Instance"
+                  value=""
+                  required="true"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+    <driverTemplateOverride
+          jarList="[PLUGIN]\mydriver\driver.jar"
+          name="Override for Generic JDBC Driver"
+          targetId="org.eclipse.datatools.connectivity.db.genericDriverTemplate">
+       <propertyOverrides>
+          <propertyOverride
+                value="my.class"
+                targetId="org.eclipse.datatools.connectivity.db.driverClass"/>
+       </propertyOverrides>
+    </driverTemplateOverride>
+   </extension>
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>[Enter API information here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+<p>Copyright (c) 2004-2007 Sybase, Inc.</p>
+<p>All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></p>
+
+<p>Contributors: brianf - initial API and implementation</p>
+
+</p>
+</BODY>
+</HTML>

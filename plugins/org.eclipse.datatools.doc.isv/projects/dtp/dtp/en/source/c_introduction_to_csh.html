@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Introduction to Context-Sensitive Help"/>
+<meta name="abstract" content="Context-sensitive help is focused user assistance content, specific to the current application context (that is, the help context), and presented on demand when a platform-specific trigger is activated (for example, F1 on Windows)."/>
+<meta name="description" content="Context-sensitive help is focused user assistance content, specific to the current application context (that is, the help context), and presented on demand when a platform-specific trigger is activated (for example, F1 on Windows)."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_static_vs_dynamic_help_contexts.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_dynamic_csh.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_help_context_abstraction.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_1F9797C4F7B148098584BD3E4D27335E"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Introduction to Context-Sensitive Help</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_1F9797C4F7B148098584BD3E4D27335E"><a name="concept_1F9797C4F7B148098584BD3E4D27335E"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Introduction to Context-Sensitive Help</h1>
+
+    
+    <div><p>Context-sensitive help is focused user assistance content, specific to the
+           current application context (that is, the help context), and presented on demand 
+           when a platform-specific trigger is activated (for example, F1 on Windows).
+        </p>
+
+        
+        <p>Context-sensitive help requires interactions between user interface (UI)
+           components, user assistance (UA) components, and the Eclipse platform help
+           system.
+        </p>
+
+        <div class="p">UI components:
+            <br/><a name="concept_1F9797C4F7B148098584BD3E4D27335E__ul_FBD3A9D82FE94D57AAA9FCCE504E0847"><!-- --></a><ul id="concept_1F9797C4F7B148098584BD3E4D27335E__ul_FBD3A9D82FE94D57AAA9FCCE504E0847">
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_C8A7F74E362E45CAB0298B18EA1EA7F9"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_C8A7F74E362E45CAB0298B18EA1EA7F9"><!-- --></a>Contribute UI controls</li>
+
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_E01E6C825BE947B88E5F44D163E3B8A5"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_E01E6C825BE947B88E5F44D163E3B8A5"><!-- --></a>Define the association of help contexts with UI controls</li>
+
+            </ul>
+
+        </div>
+
+        <div class="p">UA components:
+            <br/><a name="concept_1F9797C4F7B148098584BD3E4D27335E__ul_E5B36E4FA82D4AAABA94D8991A3B69AF"><!-- --></a><ul id="concept_1F9797C4F7B148098584BD3E4D27335E__ul_E5B36E4FA82D4AAABA94D8991A3B69AF">
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_D5B08C3C033243D9A280275208398F9E"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_D5B08C3C033243D9A280275208398F9E"><!-- --></a>Contribute context-specific help content and online documentation content</li>
+
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_86D015E4CF604FD2ADE99638D9BCC03F"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_86D015E4CF604FD2ADE99638D9BCC03F"><!-- --></a>Define the association of help contexts with context-specific help content and
+                related online documentation topics</li>
+
+            </ul>
+
+        </div>
+
+        <div class="p">Eclipse help system:
+            <br/><a name="concept_1F9797C4F7B148098584BD3E4D27335E__ul_91F3FD3421DD490ABAC859E50A8ECF15"><!-- --></a><ul id="concept_1F9797C4F7B148098584BD3E4D27335E__ul_91F3FD3421DD490ABAC859E50A8ECF15">
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_15523C390F2D4DEF8AE5776397242066"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_15523C390F2D4DEF8AE5776397242066"><!-- --></a>Resolves help context references to matching context-specific help
+                    contributions</li>
+
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_4E5B7391376542D090EA3555D1D1DEEB"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_4E5B7391376542D090EA3555D1D1DEEB"><!-- --></a>Contributes the help presentation mechanisms (for example, the Help view)</li>
+
+                <li id="concept_1F9797C4F7B148098584BD3E4D27335E__li_82435F15523C4F538138EC5594B2E649"><a name="concept_1F9797C4F7B148098584BD3E4D27335E__li_82435F15523C4F538138EC5594B2E649"><!-- --></a>Provides API to enable context-sensitive help interactions for UI and UA
+                    components</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_static_vs_dynamic_help_contexts.html">Static vs. Dynamic Help Contexts</a></strong><br/>
+UI components can define the associations between UI controls and help contexts, either statically or dynamically.</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_dynamic_csh.html">Dynamic Context-Sensitive Help</a></strong><br/>
+Since 3.1, Eclipse supports dynamic context-sensitive help.</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_help_context_abstraction.html">Help Context Abstraction</a></strong><br/>
+Help context abstraction is a technique to simplify the handling of help context IDs and help search expressions in the UI code, by abstracting them to “help keys.”</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

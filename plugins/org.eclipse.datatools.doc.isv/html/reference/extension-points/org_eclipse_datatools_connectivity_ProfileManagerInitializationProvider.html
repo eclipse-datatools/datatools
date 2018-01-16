@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ProfileManagerInitializationProvider</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">ProfileManagerInitializationProvider</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.ProfileManagerInitializationProvider<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>DTP 1.6
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>This extension point will provide a way for a sample profile to be populated at start-up time.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.connection">connection</a>)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.connection">connection</a> (<a href="#e.property">property</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST connection</p>
+<p class="code SchemaDtdAttlist">jarList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">connectionProfileName&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">connectionProfileID&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">driverDefinitionName&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">driverTemplateID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">connectionInitializer&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>jarList</b> - The jar list for the driver definition.</li>
+<li><b>connectionProfileName</b> - The name of the generated connection profile.</li>
+<li><b>connectionProfileID</b> - The id of the connection profile to generate.</li>
+<li><b>driverDefinitionName</b> - The name of the generated driver definition.</li>
+<li><b>driverTemplateID</b> - The id of the driver template to generate driver definition from.</li>
+<li><b>connectionInitializer</b> - Class that initializes the connection.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.property">property</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST property</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">value&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Collection of properties for specifying the properties needed by the driver template.
+
+If a property value requires the location of a plugin's state location, enter the value as follows:
+
+value="Plugin_State_Location/sample_value">
+
+Plugin_State_Location will be substituted with the declaring extension's state location.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of the driver template property.</li>
+<li><b>value</b> - The value of the driver template property.</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>[Enter API information here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2008 IBM Corporation.
+All rights reserved. This program and the accompanying materials are made
+available under the  terms of the Eclipse Public License v1.0 which accompanies
+this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+
+</p>
+</BODY>
+</HTML>

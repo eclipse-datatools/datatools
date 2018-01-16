@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="create.doc.isv" default="Javadoc">
+	
+	<description>Create the API Javadoc of datatools project</description>
+	
+	<property name="bundle-name" value="org.eclipse.datatools.doc.isv"/>
+	<property name="src.dir" value="${buildDirectory}/plugins" />
+	<property name="bin.dir" value="@dot"/>
+	<property name="output.dir" value="./html/reference/api/"/>
+	<property name="schema.out.dir" value="./html/reference/extension-points/"/>
+	
+	<property file="build.properties"/>
+
+	
+	<path id="classpath">
+		<fileset dir="${baseLocation}/plugins">
+			<include name="**/*.jar"/>
+			<exclude name="*.source_*.jar"/>
+		</fileset>
+		<fileset dir="${src.dir}">
+			<include name="*.jar"/>
+			<exclude name="*doc*.jar"/>
+		</fileset>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.console.profile/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.db.generic/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.db.generic.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.consumer/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.design/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.design.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.flatfile/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.flatfile.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.profile/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.template.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.core/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.core.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.server.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui.dse/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui.templates/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.finfo/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.hsqldb/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.hsqldb.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.hsqldb.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.iseries/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.iseries.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.luw/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.luw.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.zseries/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.zseries.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.informix/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.informix.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.informix.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ingres/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ingres.dbdefinition"/>
+        <pathelement path="${src.dir}/org.eclipse.datatools.enablement.ingres.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.jdt.classpath/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.msft.sqlserver/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.msft.sqlserver.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.mysql/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.mysql.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.mysql.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.ws/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.ws.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.xml/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.xml.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oracle/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oracle.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oracle.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.postgresql/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.postgresql.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.postgresql.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sap.maxdb/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sap.maxdb.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sap.maxdb.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sqlite/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sqlite.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sqlite.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.models/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples/${bin.dir}"/>                
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase.dbdefinition"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase.models/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.models/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.dbdefinition/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.derby/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.edit/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.query/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.query.edit/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.xml.query/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.common.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.data.core/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.data.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.derby/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.derby.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.generic/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.generic.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.ddlgen.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.debugger.core/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.debugger.core.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.editor.core/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.editor.core.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.lexer/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.query/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.xml.query/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.plan/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.result/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.result.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.routineeditor/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.routineeditor.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sql/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqlbuilder/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqleditor/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqlscrapbook/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sql.ui/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.tabledataeditor/${bin.dir}"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.help/${bin.dir}"/>
+	</path>
+	
+	<path id="path.fileset">
+
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity/src/"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby/src"/>
+		
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.apache.derby.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.console.profile/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.db.generic/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.db.generic.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.consumer/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.design/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.design.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.flatfile/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.flatfile.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.profile/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.oda.template.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.core/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.core.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.sqm.server.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui.dse/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.connectivity.ui.templates/src"/>
+
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.hsqldb/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.hsqldb.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.iseries/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.iseries.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.luw/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.luw.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.zseries/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.db2.zseries.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.informix/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.informix.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ibm.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ingres/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.ingres.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.jdt.classpath/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.msft.sqlserver/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.msft.sqlserver.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.mysql/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.mysql.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.ws/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.ws.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.xml/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oda.xml.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oracle/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.oracle.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.postgresql/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.postgresql.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sap.maxdb/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sap.maxdb.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sqlite/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sqlite.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.models/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.asa.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase.models/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ase.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.models/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.enablement.sybase.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.derby/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.edit/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.query/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.query.edit/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.modelbase.sql.xml.query/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.common.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.data.core/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.data.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.derby/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.derby.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.generic/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.db.generic.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.ddlgen.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.debugger.core/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.debugger.core.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.editor.core/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.editor.core.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.lexer/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.query/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.xml.query/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.plan/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.result/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.result.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.routineeditor/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.routineeditor.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sql/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqlbuilder/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqleditor/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sqlscrapbook/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.sql.ui/src"/>
+		<pathelement path="${src.dir}/org.eclipse.datatools.sqltools.tabledataeditor/src"/>
+
+	</path>
+	
+	<target name="CreateSchemaReference">
+		
+		<property name="dest" value="html/reference/extension-points" />	
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.result/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.profile/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.tabledataeditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.routineeditor.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.parsers.sql.query/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sqlscrapbook/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.data.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.consumer/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.core.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.help/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda.design.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sql.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.modelbase.sql/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.editor.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.result.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.sqleditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.routineeditor/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.sybase/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.oda/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.sybase.ase/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.editor.core.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.plan/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.debugger.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.modelbase.sql.query/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.connectivity.sqm.server.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.data.core/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.enablement.oda.ecore.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.common.ui/plugin.xml" destination="${dest}" />
+		<pde.convertSchemaToHTML manifest="${src.dir}/org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages/plugin.xml" destination="${dest}" />
+	</target>
+
+	<!-- org.eclipse.datatools.* -->
+	<target name="Javadoc" depends="Clean,CreateSchemaReference">
+		<echo message="src dir: ${src.dir}"/>
+		<echo message="eclipse.home: ${eclipse.home}"/>
+		
+		<property file="connectivity.package.properties"/>
+		<property file="enablement.package.properties"/>
+		<property file="modelbase.package.properties"/>
+		<property file="sqltools.package.properties"/>
+		
+        <javadoc sourcepathref="path.fileset" access="public" author="true" destdir="./html/reference/api/" defaultexcludes="yes"
+		nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" 
+		notree="false" source="1.5" splitindex="false" use="true" version="true" useexternalfile="true" 
+		packagenames="${enablement.include.package.names},${connectivity.include.package.names},${modelbase.include.package.names},${sqltools.include.package.names}" 
+        excludepackagenames="${enablement.exclude.package.names},${connectivity.exclude.package.names},${modelbase.exclude.package.names},${sqltools.exclude.package.names}" >
+			<classpath refid="classpath"/>
+		</javadoc>
+    </target>
+	
+	<target name="Clean">
+		<delete dir="${output.dir}" failonerror="false"/>
+		<delete dir="${schema.out.dir}" failonerror="false"/>
+	</target>
+	
+</project>
+

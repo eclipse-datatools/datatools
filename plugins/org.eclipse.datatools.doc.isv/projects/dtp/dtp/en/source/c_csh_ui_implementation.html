@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Context-Sensitive Help UI Implementation"/>
+<meta name="abstract" content="Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 source code."/>
+<meta name="description" content="Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 source code."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_view_implementation_example.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_dialog_implementation_example.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_helpkey_constants_interface_class.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_C89CFE21FCFF4115A5D04649D535CEAA"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Context-Sensitive Help UI Implementation</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_C89CFE21FCFF4115A5D04649D535CEAA"><a name="concept_C89CFE21FCFF4115A5D04649D535CEAA"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Context-Sensitive Help UI Implementation</h1>
+
+    
+    <div><p>Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 
+           source code.
+        </p>
+
+        
+        
+    </div>
+
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_view_implementation_example.html">View Implementation Example</a></strong><br/>
+The DataSourceExplorerView (in org.eclipse.datatools.connectivity.ui.dse) first implements the org.eclipse.help.IContextProvider interface, and then it creates an instance of the org.eclipse.datatools.help.ContextProviderDelegate.</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_dialog_implementation_example.html">Dialog Implementation Example</a></strong><br/>
+Dialogs must set the help context in the createDialogArea method (to provide context-sensitive help for the dialog itself).</li>
+<li class="ulchildlink"><strong><a href="../../../../../projects/dtp/dtp/en/source/c_helpkey_constants_interface_class.html">helpKey Constants Interface Class</a></strong><br/>
+To reference the externalized help context IDs, which are defined in a ResourceBundle properties file, UI components must implement an interface class to declare the abstract helpKey constants.</li>
+</ul>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Open Data Access</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">Open Data Access</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.oda.dataSource<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>3.0
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>[API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the <i>org.eclipse.datatools.connectivity.oda</i> package.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSource">dataSource</a> , <a href="#e.dataSet">dataSet</a>+)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataSource">dataSource</a> (<a href="#e.traceLogging">traceLogging</a>? , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST dataSource</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">odaVersion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "3.0"</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">driverClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">setThreadContextClassLoader&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">overrideExplorerFiltering&nbsp;&nbsp;&nbsp;(true | false) "false"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The definition of a type of ODA data source extension for use at design-time and run-time.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - A fully qualified ID that uniquely identifies this ODA data source extension within an ODA consumer application's environment. If a data source designer extension (that implements <i>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</i> extension point) is available for this ODA driver, the value of this attribute must match that of the designer extension's <i>id</i> attribute in its data source element.</li>
+<li><b>odaVersion</b> - Version of the ODA interfaces for which this driver is developed. This element is required and should take the format of Major.Minor or Major.Minor.Service (e.g. 3.0 or 2.0.1).</li>
+<li><b>defaultDisplayName</b> - The display name of the ODA data source extension.  Its value can be localized by using the plugin.properties mechanism.  Default to the extension id if no display name is specified.
+It can be used by an ODA consumer application's designer tool in displaying a list of ODA data source extensions, when they do not have a corresponding data source editor (data source UI extension point).</li>
+<li><b>driverClass</b> - Concrete class that implements the <i>org.eclipse.datatools.connectivity.oda.IDriver</i> interface. This is the entry point of the ODA runtime driver.  The same driver may support multiple data source extensions.</li>
+<li><b>setThreadContextClassLoader</b> - If true, the consumer of the ODA runtime extension plug-in should set the thread context class loader to the one used to load this driver before calling any ODA interface method.
+Any data source plug-in extension with this flag set to true would take precedence, and is applied to all data source extensions implemented by this plug-in. 
+<br>
+If the thread context class loader being set is the OSGi class loader that was used to load this ODA runtime plugin, it is not designed to be used by a plugin to in turn load additional classes.  If further class loading is needed, it is up to individual ODA runtime plugin implementation to provide its own URLClassLoader, and switch thread context class loader as appropriate.</li>
+<li><b>overrideExplorerFiltering</b> - Overrides the ODA extension explorer filtering behavior.  Default value is false.  If set to true, this extension is always made visible to the client even if it would have been excluded by the ODA extension explorer filtering.
+<br>@since 3.2.2 (DTP 1.7.2)</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataSet">dataSet</a> (<a href="#e.dataTypeMapping">dataTypeMapping</a>+ , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>?)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST dataSet</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+The definition of a type of data set supported by the dataSource extension.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - A fully qualified ID that uniquely identifies this ODA data set definition within an ODA consumer application's environment.</li>
+<li><b>defaultDisplayName</b> - The display name of the ODA data set definition.  Its value can be localized by using the plugin.properties mechanism.  Default to its id if no display name is specified.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataTypeMapping">dataTypeMapping</a> (<a href="#e.alternativeOdaDataType">alternativeOdaDataType</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST dataTypeMapping</p>
+<p class="code SchemaDtdAttlist">nativeDataType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">nativeDataTypeCode&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean|JavaObject) "String"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A data types mapping from a data provider's native data type to one or more ODA data types.  
+Each native data type must be mapped to a primary ODA scalar data type.  The driver can optionally provide a list of alternate ODA data types to which it is capable of converting a native data type.
+This data type mapping facilitates all ODA consumers to map from the same set of ODA data types to its own application-specific data types.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>nativeDataType</b> - Native data type name (a string).  Used for information only.</li>
+<li><b>nativeDataTypeCode</b> - Native data type code (an integer). Its value must match one of the data type codes returned in the driver's ODA interface implementation.</li>
+<li><b>odaScalarDataType</b> - The primary ODA scalar data type to which the native type is mapped. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob, Boolean and Java Object.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.alternativeOdaDataType">alternativeOdaDataType</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST alternativeOdaDataType</p>
+<p class="code SchemaDtdAttlist">odaScalarDataType&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean|JavaObject) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Provide an alternative mapping to an ODA scalar data type.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>odaScalarDataType</b> - The ODA scalar data type to which the native type may be converted by the driver.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.traceLogging">traceLogging</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST traceLogging</p>
+<p class="code SchemaDtdAttlist">logLevel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "WARNING"</p><p class="code SchemaDtdAttlist">logFileNamePrefix&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">logDirectory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">logFormatterClass&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Configures the ODA run-time driver's trace logging settings for the data source extension.
+The configured values are passed through to the driver's implementation of the <code>IDriver.setLogConfiguration</code> method.
+<br>It is up to individual ODA driver on how to honor any of these trace logging attributes as appropriate.
+
+<br><br>Note: The trace logging configuration specified in the plug-in PDE .options file would take precedence over those configured in this element, if the debug tracing flag is set to "true".
+<br>The ODA plug-in's PDE tracing options, listed below for cross reference, match the attributes of this element.
+<br>&nbsp;&nbsp;&nbsp;
+&lt;plug-in Id&gt;/debug = true/false
+<br>&nbsp;&nbsp;&nbsp;
+&lt;plug-in Id&gt;/traceLogging/logLevel 
+<br>&nbsp;&nbsp;&nbsp;
+&lt;plug-in Id&gt;/traceLogging/logFileNamePrefix 
+<br>&nbsp;&nbsp;&nbsp;
+&lt;plug-in Id&gt;/traceLogging/logDirectory
+<br>&nbsp;&nbsp;&nbsp;
+&lt;plug-in Id&gt;/traceLogging/logFormatterClass</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>logLevel</b> - The name or numeric value for the driver's log level.
+<br>The log levels' names and corresponding numeric values are:
+<br>
+ "SEVERE"       = 1000;
+ "WARNING"      = 900;
+ "INFO"         = 800;
+ "CONFIG"       = 700;
+ "FINE"         = 500;
+ "FINER"        = 400;
+ "FINEST"       = 300;
+ "ALL"          = 0;
+ "OFF"          = 1001 or higher .</li>
+<li><b>logFileNamePrefix</b> - A string prefix for driver's log file name.</li>
+<li><b>logDirectory</b> - Directory for log file.</li>
+<li><b>logFormatterClass</b> - The class name of a concrete log formatter, suitable for use by the driver-specific logging utility.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.property">property</a> (<a href="#e.choice">choice</a>*)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST property</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string|choice) "string"</p><p class="code SchemaDtdAttlist">canInherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"</p><p class="code SchemaDtdAttlist">defaultValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">isEncryptable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"</p><p class="code SchemaDtdAttlist">allowsEmptyValueAsNull&nbsp;(true | false) "true"</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A property whose value can be edited at design-time using an ODA consumer application's designer tool.  Its value is then passed to the ODA runtime driver during run-time.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>name</b> - Unique name of the property.</li>
+<li><b>defaultDisplayName</b> - The default display name.  Its value can be localized by using the plugin.properties mechanism.</li>
+<li><b>type</b> - Type of the property. The property type could be one of the values listed in the Restriction enumerations.</li>
+<li><b>canInherit</b> - Reserved.</li>
+<li><b>defaultValue</b> - Default value of the property, if no property value is set.</li>
+<li><b>isEncryptable</b> - A flag indicating whether this property value is encryptable.  Setting it to "true" indicates to an ODA consumer application that this property's value should be encrypted.</li>
+<li><b>allowsEmptyValueAsNull</b> - A flag that indicates whether an empty value of this property can be treated as a null value.  Default value is true.  This attribute setting applies when an ODA consumer passes the property's value to this ODA runtime driver.  This optional attribute may be used to accommodate the case where a property value's input control does not provide the means to specify a null value.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyGroup">propertyGroup</a> (<a href="#e.property">property</a>+)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST propertyGroup</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A grouping of one or more properties in an ODA consumer application's designer tool.  The group attributes are for display only.  All properties listed under a propertyGroup are handled as scalar properties at run-time.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>name</b> - </li>
+<li><b>defaultDisplayName</b> - The default display name.  Its value can be localized by using the plugin.properties mechanism.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.propertyVisibility">propertyVisibility</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST propertyVisibility</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">visibility&nbsp;(change|lock|hide) </p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Used to set the visibility level of the named property when it is shown in the property sheet of an ODA consumer application's designer tool.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>name</b> - The name of a property that is defined either by this data source extension or is a system-defined property.</li>
+<li><b>visibility</b> - The valid options are: change, hide, lock.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.choice">choice</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST choice</p>
+<p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">defaultDisplayName&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Choice of property values.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>name</b> - Name of the choice</li>
+<li><b>value</b> - Value to be used, if the given choice is selected.</li>
+<li><b>defaultDisplayName</b> - The default display name.  Its value can be localized by using the plugin.properties mechanism.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.properties">properties</a> (<a href="#e.property">property</a>* , <a href="#e.propertyGroup">propertyGroup</a>* , <a href="#e.propertyVisibility">propertyVisibility</a>*)&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A collection of property definitions in a data source extension or its supported data set definitions.</p>
+<br><br>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.relationship">relationship</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST relationship</p>
+<p class="code SchemaDtdAttlist">type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(replacedBy|wrapperOf) </p><p class="code SchemaDtdAttlist">relatedId&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+An optional element to specify the relationship(s) of this element.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>type</b> - The type of relationship that this extension's dataSource or dataSet element has with the <i>relatedId</i> element.
+Valid value(s) are: 
+<br>* <i>replacedBy</i>: specifies that this dataSource/dataSet is deprecated and replaced by that of <i>relatedId</i>.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.  A deprecated data source type is hidden by default from the list of data sources presented in the ODA design UI framework, such as for creating a new connection profile instance.
+<br>* <i>wrapperOf</i>: specifies that this dataSource/dataSet is a wrapper of the <i>relatedId</i> identifier.  A wrapper data source type is hidden by default from the list of available data sources presented in the ODA design UI framework. Since: 3.1.2.</li>
+<li><b>relatedId</b> - The fully qualified ID of the related ODA data source or data set element.
+Its value for a  <i>replacedBy</i> type must match that of the corresponding <i>dataSource.id</i> or <i>dataSet.id</i> attribute defined in another ODA driver's <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension.</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6><p>
+   <pre class="Example"><span class="code SchemaTag">
+   &lt;extension
+         point=</span><span class="code SchemaCstring">&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;</span><span class="code SchemaTag">&gt;
+      &lt;dataSource
+            odaVersion=</span><span class="code SchemaCstring">&quot;3.1&quot;</span><span class="code SchemaTag">
+            driverClass=</span><span class="code SchemaCstring">&quot;org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver&quot;</span><span class="code SchemaTag">
+            defaultDisplayName=</span><span class="code SchemaCstring">&quot;Flat File Data Source&quot;</span><span class="code SchemaTag">
+            id=</span><span class="code SchemaCstring">&quot;org.eclipse.datatools.connectivity.oda.flatfile&quot;</span><span class="code SchemaTag">
+            setThreadContextClassLoader=</span><span class="code SchemaCstring">&quot;false&quot;</span><span class="code SchemaTag">&gt;
+         &lt;properties&gt;
+         &lt;propertyGroup
+               defaultDisplayName=</span><span class="code SchemaCstring">&quot;Connection Properties&quot;</span><span class="code SchemaTag">
+               name=</span><span class="code SchemaCstring">&quot;connectionProperties&quot;</span><span class="code SchemaTag">&gt;
+            &lt;property
+                  type=</span><span class="code SchemaCstring">&quot;string&quot;</span><span class="code SchemaTag">
+                  defaultDisplayName=</span><span class="code SchemaCstring">&quot;Home Folder&quot;</span><span class="code SchemaTag">
+                  canInherit=</span><span class="code SchemaCstring">&quot;true&quot;</span><span class="code SchemaTag">
+                  name=</span><span class="code SchemaCstring">&quot;HOME&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;property
+                  type=</span><span class="code SchemaCstring">&quot;string&quot;</span><span class="code SchemaTag">
+                  defaultDisplayName=</span><span class="code SchemaCstring">&quot;Character Set&quot;</span><span class="code SchemaTag">
+                  canInherit=</span><span class="code SchemaCstring">&quot;true&quot;</span><span class="code SchemaTag">
+                  name=</span><span class="code SchemaCstring">&quot;CHARSET&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;property
+                  type=</span><span class="code SchemaCstring">&quot;string&quot;</span><span class="code SchemaTag">
+                  canInherit=</span><span class="code SchemaCstring">&quot;true&quot;</span><span class="code SchemaTag">
+                  defaultDisplayName=</span><span class="code SchemaCstring">&quot;Includes Data Type (Yes/No)&quot;</span><span class="code SchemaTag">
+                  name=</span><span class="code SchemaCstring">&quot;INCLTYPELINE&quot;</span><span class="code SchemaTag">/&gt;                 
+         &lt;/propertyGroup&gt;
+         &lt;/properties&gt;
+      &lt;/dataSource&gt;
+      &lt;dataSet
+            defaultDisplayName=</span><span class="code SchemaCstring">&quot;Flat File Data Set&quot;</span><span class="code SchemaTag">
+            id=</span><span class="code SchemaCstring">&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</span><span class="code SchemaTag">&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;BIT&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-7&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Integer&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;TINYINT&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-6&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Integer&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;SMALLINT&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;5&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Integer&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;INTEGER&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;4&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Integer&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;BIGINT&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-5&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Decimal&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;FLOAT&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;6&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Double&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;REAL&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;7&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Double&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;DOUBLE&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;8&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Double&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;NUMERIC&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;2&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Decimal&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;DECIMAL&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;3&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Decimal&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;CHAR&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;1&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;VARCHAR&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;12&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;LONGVARCHAR&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-1&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;DATE&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;91&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Date&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;TIME&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;92&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Time&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;TIMESTAMP&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;93&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Timestamp&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;BINARY&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-2&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;VARBINARY&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-3&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;LONGVARBINARY&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;-4&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;BOOLEAN&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;16&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;Boolean&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;BLOB&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;2004&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=</span><span class="code SchemaCstring">&quot;CLOB&quot;</span><span class="code SchemaTag">
+                  nativeDataTypeCode=</span><span class="code SchemaCstring">&quot;2005&quot;</span><span class="code SchemaTag">
+                  odaScalarDataType=</span><span class="code SchemaCstring">&quot;String&quot;</span><span class="code SchemaTag">/&gt;
+      &lt;/dataSet&gt;
+   &lt;/extension&gt; 
+   </span></pre>
+</p>
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>The data source extension's driver must implement the interfaces defined in the <i>org.eclipse.datatools.connectivity.oda</i> package. See the package's JavaDoc documentation and API interfaces for more information.
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>The ODA framework provides an ODA Plug-in Project Template Wizard to automatically generate a custom ODA plug-in project with a set of default implementation of the main ODA interfaces.  The wizard is available in the New->Project... dialog; one for ODA Runtime Driver, another for ODA Designer. 
+<br>
+Their generated implementation classes assume the behavior of a simple ODA driver and designer UI.  They contain TODO task tags for an ODA driver developer to implement data source specific behavior.
+These concrete classes are provided to aid in the development of a custom ODA data source.  Their use is purely optional.
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2004-2009 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+
+</p>
+</BODY>
+</HTML>

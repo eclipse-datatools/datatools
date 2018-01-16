@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DTP ODA Consumer Data Source Property Service Provider</title>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/plugins/org.eclipse.sdk_3.7.0.v201106131736/book.css");</style>
+<style type="text/css">@import url("file:/D:/dev/eclipse_platform/eclipse_37/configuration/org.eclipse.osgi/bundles/624/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1 style="text-align:center">DTP ODA Consumer Data Source Property Service Provider</H1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.datatools.connectivity.oda.consumer.propertyProvider<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>3.0.1
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>This ODA consumer helper component's extension point allows an ODA consumer application to extend the ODA consumer framework to provide application-specific service to obtain and adjust externalized property names and corresponding values, for use by an ODA run-time driver to connect to a data source.<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSourcePropertyService">dataSourcePropertyService</a>)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;</p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.dataSourcePropertyService">dataSourcePropertyService</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST dataSourcePropertyService</p>
+<p class="code SchemaDtdAttlist">consumerApplicationId&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">providerClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p>&gt;</p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Allows an ODA consumer application, such as J2EE application, to extend the ODA consumer framework to provide application-specific service to obtain and adjust configurable, externalized property names and corresponding values, for use by an ODA run-time driver to connect to a data source.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>consumerApplicationId</b> - The unique identifier of an ODA consumer application, such as a J2EE application, which embeds an engine that uses the ODA consumer helper framework.
+This consumer application id must match the value of the IPropertyProvider.ODA_CONSUMER_ID key, contained in a Map passed as the context in the call to the IDriver.setAppContext method.</li>
+<li><b>providerClass</b> - The concrete class that implements the <code>org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider</code> interface to provide an application-specific service to obtain and adjust the data source connection properties.
+<p>
+See <code>org.eclipse.datatools.connectivity.oda.consumer.services.impl.PropertyProviderImpl</code> for an exemplary base class implementation of the <code>IPropertyProvider</code> interface.</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">API Information: </h6>[Provisional] An extension must implement the IPropertyProvider interface defined in the <i>org.eclipse.datatools.connectivity.oda.consumer.services</i> package. See the package's JavaDoc documentation for more information.
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2006 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html .
+
+</p>
+</BODY>
+</HTML>

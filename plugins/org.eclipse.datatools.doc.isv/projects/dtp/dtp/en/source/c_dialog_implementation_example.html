@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Dialog Implementation Example"/>
+<meta name="abstract" content="Dialogs must set the help context in the createDialogArea method (to provide context-sensitive help for the dialog itself)."/>
+<meta name="description" content="Dialogs must set the help context in the createDialogArea method (to provide context-sensitive help for the dialog itself)."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_2C1E8DCD77A840428662961C62549C81"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Dialog Implementation Example</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_2C1E8DCD77A840428662961C62549C81"><a name="concept_2C1E8DCD77A840428662961C62549C81"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Dialog Implementation Example</h1>
+
+    
+    <div><p>Dialogs must set the help context in the createDialogArea method (to provide
+           context-sensitive help for the dialog itself).
+        </p>
+
+        
+        <p>EditDriverDialog (in org.eclipse.datatools.connectivity.internal.ui.dialogs)
+           implements the createDialogArea method like this:
+        </p>
+
+        <pre class="codeblock">
+    protected Control createDialogArea(Composite parent) {
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(),
+            HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG,
+            ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+       ...
+    }
+</pre>
+
+        <div class="p">This is similar to the technique in the DataSourceExplorerView, except that
+           EditDriverDialog uses methods of the org.eclipse.datatools.help.HelpUtil class
+           to associate an instance of the context provider delegate with the dialog.
+            <br/><a name="concept_2C1E8DCD77A840428662961C62549C81__ul_CF5B754DD3CC4565BE929E9423E0E37B"><!-- --></a><ul id="concept_2C1E8DCD77A840428662961C62549C81__ul_CF5B754DD3CC4565BE929E9423E0E37B">
+                <li id="concept_2C1E8DCD77A840428662961C62549C81__li_06AD0F61732F4389BF63D4214AD3E6AC"><a name="concept_2C1E8DCD77A840428662961C62549C81__li_06AD0F61732F4389BF63D4214AD3E6AC"><!-- --></a>The first call, <samp class="codeph">getShell().setData()</samp> 
+                    tells the help system that the dialog
+                    will use the help-helper’s delegated setHelp method to provide help contexts.</li>
+
+                <li id="concept_2C1E8DCD77A840428662961C62549C81__li_689653B16EB8495F9990104BAE8F4AFE"><a name="concept_2C1E8DCD77A840428662961C62549C81__li_689653B16EB8495F9990104BAE8F4AFE"><!-- --></a>The second call, <samp class="codeph">HelpUtil.setHelp()</samp> is a method that wraps the
+                    IWorkbench.setHelp call in a unique listener, so that the help system can find
+                    the correct help context for this control (in this case, the shell for the
+                    dialog).</li>
+
+            </ul>
+
+        </div>
+
+        <p>To provide more granular help, at a lower level in the dialog, the dialog could
+           call setHelp, with a unique help context for each control in the dialog.
+        </p>
+
+
+        <p>The string passed to the setHelp method is actually an 
+           abstract helpKey constant, whose property key is mapped to a concrete help 
+           context ID string by the ContextProviderDelegate.
+        </p>
+
+        <p>All helpKey constant strings must be declared in an interface class. 
+
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_csh_ui_implementation.html" title="Java code examples of dynamic help context implementation in a view and a dialog, with context abstraction, are from the Eclipse Data Tools Platform (DTP) 1.6 source code.">Context-Sensitive Help UI Implementation</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

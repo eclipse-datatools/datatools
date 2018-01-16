@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Help Context IDs"/>
+<meta name="abstract" content="Because helpKey constants are abstract entities in the Java code, and independent of the actual help context IDs, Documentation teams are responsible for defining the help contexts, which the Eclipse help system uses to locate context-specific help content, and associating each helpKey constant with an actual help context ID."/>
+<meta name="description" content="Because helpKey constants are abstract entities in the Java code, and independent of the actual help context IDs, Documentation teams are responsible for defining the help contexts, which the Eclipse help system uses to locate context-specific help content, and associating each helpKey constant with an actual help context ID."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_documentation_team_workflow.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_852970055E794BE68BB32AE5A9065CCE"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Help Context IDs</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_852970055E794BE68BB32AE5A9065CCE"><a name="concept_852970055E794BE68BB32AE5A9065CCE"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Help Context IDs</h1>
+
+    
+    <div><p>Because helpKey constants are abstract entities in the Java code, and independent
+           of the actual help context IDs, Documentation teams are responsible for defining
+           the help contexts, which the Eclipse help system uses to locate context-specific
+           help content, and associating each helpKey constant with an actual help context
+           ID.
+        </p>
+
+        
+        <div class="p">Additional considerations:
+            <br/><a name="concept_852970055E794BE68BB32AE5A9065CCE__ul_76DE1A03B7BD48ABAE11BAFD3B047761"><!-- --></a><ul id="concept_852970055E794BE68BB32AE5A9065CCE__ul_76DE1A03B7BD48ABAE11BAFD3B047761">
+                <li id="concept_852970055E794BE68BB32AE5A9065CCE__li_911FD703FF19408D8DF5E4138F0BCBE5"><a name="concept_852970055E794BE68BB32AE5A9065CCE__li_911FD703FF19408D8DF5E4138F0BCBE5"><!-- --></a>Each help context ID represents a single help context, but any one help
+                    context could occur more than once in a single UI component (that is, a UI
+                    plug-in). Therefore, any help context ID can be associated with any number of
+                    abstract helpKey constants, but
+                    each helpKey constant must be associated with exactly one help context ID.</li>
+
+                <li id="concept_852970055E794BE68BB32AE5A9065CCE__li_25A756A06A1F472CACF3BBEBA0E51C81"><a name="concept_852970055E794BE68BB32AE5A9065CCE__li_25A756A06A1F472CACF3BBEBA0E51C81"><!-- --></a>Each help context within a UI component should be associated with a unique
+                    help context ID; however, help context IDs need not be unique across all plug-ins. For example, a
+                            particular help context could be declared by more than one UI plug-in, if the
+                            Documentation team determines that the actual help context is the same for
+                            multiple UI plug-ins.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_documentation_team_workflow.html" title="Documentation teams should refer to the product’s architectural specifications to define an appropriate architecture (that is, granularity, content partitioning, plug-in naming, and so on) for online documentation plug-ins. With that information, Documentation teams can begin the process to create context-sensitive help plug-ins.">Documentation Team Workflow</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

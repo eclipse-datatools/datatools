@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Help Keys"/>
+<meta name="abstract" content="Rather than declaring help context IDs directly, UI controls use help keys (that is, helpKey constants). Though meaningless to the Eclipse help system, helpKey constants provide an abstraction in the Java code from the actual help context IDs and help search expressions."/>
+<meta name="description" content="Rather than declaring help context IDs directly, UI controls use help keys (that is, helpKey constants). Though meaningless to the Eclipse help system, helpKey constants provide an abstraction in the Java code from the actual help context IDs and help search expressions."/>
+<meta name="DC.Relation" scheme="URI" content="../../../../../projects/dtp/dtp/en/source/c_dtp_help_helper.html"/>
+<meta name="DC.Creator" content="dresch"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="concept_BA505FE560B547D7A26FB13209A499D9"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../../../../styles/doc.css"/>
+<title>Help Keys</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="concept_BA505FE560B547D7A26FB13209A499D9"><a name="concept_BA505FE560B547D7A26FB13209A499D9"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Help Keys</h1>
+
+    
+    <div><p>Rather than declaring help context IDs directly, UI controls use help keys
+           (that is, helpKey constants). Though meaningless to the Eclipse help system,
+           helpKey constants provide an abstraction in the Java code from the actual help
+           context IDs and help search expressions.
+        </p>
+
+        
+        <p>Each helpKey constant is used to reference an actual help context ID string and
+           a corresponding help search expression, which are defined in properties files
+           (one each for help context IDs and help search expressions).
+        </p>
+
+
+        <p>Any plug-in can contribute the helpKey properties files for a UI component
+           by declaring an extension to org.eclipse.datatools.help.helpKeyProperties in its
+           plugin.xml file. For example, a dedicated context-sensitive help plug-in could
+           contribute both the helpKey properties files and the Eclipse context XML files,
+           independent of the UI plug-in and the UA content contributor (online
+           documentation) plug-in.
+        </p>
+
+        <p>Similar to externalized messages, helpKey constants are declared as public
+           static final String in an interface class.
+        </p>
+
+        <p>UI components must implement a helpKey constants interface class to reference
+           the externalized help context IDs in a ResourceBundle properties file. 
+
+        </p>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../../../../projects/dtp/dtp/en/source/c_dtp_help_helper.html" title="The DTP help-helper plug-in (org.eclipse.datatools.help) provides a “help key” extension point (org.eclipse.datatools.help.helpKeyProperties), and supplies a context provider delegate implementation (org.eclipse.datatools.help.ContextProviderDelegate).">DTP Help-Helper</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

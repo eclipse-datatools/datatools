@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS type="org.eclipse.help.contexts"?>
+
+<contexts>
+<context id="dummy_outer_container" title="Data Tools ODA contexts">
+<description>Contexts for items identified by Actuate, 2008-08-26</description>
+</context>
+<context id="Dialog_ColumnMapping_ID" title="Column Mapping">
+<description>Use this dialog box to complete the definition of a column.
+
+The Column Name field contains the name of the XML element or attribute that you selected as the column. You can change this name to make it more meaningful. For example, your data structure might use the same attribute name in multiple elements. You can set the name so that you know which element is the source of the column.
+The XPath expression represents the XML element that you selected as the column. You can make changes to this expression if you want to filter the data. You must use valid XPath syntax.
+In Data Type, select the correct data type for the column.
+</description>
+</context>
+<context id="Dialog_SelectTableColumn_ID" title="Select Table - Select Columns">
+<description>Use this dialog box to select columns for the tables in a flat file data set.
+
+In Select File, select the file that contains the data for a table.
+
+For each table, use the right arrow button to move the available columns from the list on the left to the right. Columns in the list on the right are available to the report design. You can change the name and data type of a column in this list.
+To remove a column from the data set, use the X button.
+To change the order of the columns in the data set, use the up and down arrow buttons.
+</description>
+</context>
+<context id="Dialog_ColumnEditDialog_ID" title="Select Columns">
+   <description>Type a meaningful name to display for the column.
+
+Select the data type that matches the column values.
+
+Original Name contains the name specified in the flat file or a name that starts with COLUMN if the file did not specify column names.
+   </description>
+</context>
+<context id="Dialog_SOAP_Request_Parameter_Properties_ID">
+   <description>Use this dialog to set the default value for a parameter for the SOAP operation for a WSDL data set. The WSDL data set uses this value to query the WSDL data source.
+</description>
+</context>
+<context id="Dialog_SOAP_Request_Parameters_ID">
+   <description>Use this dialog to examine and set properties for the parameters for the SOAP operation for a WSDL data set.
+
+To set the properties for a parameter, double-click the parameter.
+</description>
+</context>
+<context id="Dialog_XMLSampleData_ID" title="Sample XML Data">
+<description>Use this table to verify that the XML or Web Services data set returns the expected data.
+
+This table displays values for each mapped column from the first few rows that the data set returns. If the values that you see do not match your requirements, or you see no values, modify your choices on the wizard or editor until this table does show the values you need.
+</description>
+</context>
+<context id="Dialog_XPathExpression_ID" title="Select or edit the XPath expression">
+<description>Use this dialog box to specify the XPath expression to be used.
+
+The XPath expression represents the XML element that you selected as the table root. You can make changes to this expression if you want to filter the data. You must use valid XPath syntax.
+</description>
+</context>
+<context id="Preference_DataSetEditor_XML_ID" title="Preferences - XML Data Set">
+<description>Use this dialog box to set preferences for XML data sets.
+
+Set the number of rows of XML data to parse if the XML data source does not use a schema file to define the data structure.
+</description>
+</context>
+<context id="Wizard_ConnectionProfile_ID" title="New Data Source - Select a Connection Profile">
+<description>Use this dialog box to select a connection profile for creating a data source.
+
+
+
+</description>
+</context>
+<context id="Wizard_FlatfileDatasource_ID" title="New Flat File Data Source Profile">
+<description>Use this dialog box to define the profile for a new flat file.
+
+A flat file data source contains values for a single table as character-separated values in a text file. The first line of the file can include the names of the columns. The second line of the file can include the data types of the columns.
+
+To set the value for the folder that contains the files of text data, either type the path to the folder in Select folder, or use the Browse button to navigate to the folder on the file system.
+
+In Select charset, select the character set that your data files use.
+
+In Select flatfile style, select the character that separates the values in each line in your text file. The available characters are comma (,), semi-colon (;), tab (character value 9), and pipe (|). Select CSV, SSV, TSV, or PSV respectively for these separators.
+
+If the first line of the file contains the column names, select Use first line as column name indicator. Column names must be separated by the same character that the file uses to separate data values.
+
+If the second line of the file contains data types for the columns, select Use second line as data type indicator. Data types must be separated by the same character that the file uses to separate data values. This choice is not available unless the first line contains column names.
+Valid data types are:
+Big Decimal
+Date
+Double
+Integer
+String
+Time
+Timestamp
+
+To test that the values you entered are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.
+</description>
+</context>
+<context id="Wizard_WS_OPERATION_ID">
+   <description>Use this dialog box to define the operation that the WSDL data source uses to provide data. Each WSDL data set uses a single WSDL operation to provide data. If multiple operations in the WSDL data source can provide data, you define a data set for each of these operations individually.
+
+In WSDL Operation, expand the tree of available operations and scroll to the operation that provides data.
+Select the operation.
+The operation&apos;s name appears in Selected Operation. If the WSDL provider has written any information about this operation, that information appears in Documentation.</description>
+</context>
+<context id="Wizard_XML_Datasource_ID" title="New XML File Data Source Profile">
+<description>Use this dialog box to define an XML file data source.
+
+The XML source must contain well-formed XML.
+
+To set the value for Enter the URL of the XML source or browse to the file containing the data:
+* Type the URL for XML data that is a network resource
+Or
+* Use the Browse button to locate a file on the file system
+
+The next field is Enter the URL of the XML schema or browse to the file containing the schema. Leave this empty if no schema is available.
+You provide a value for this field in the same way as the previous field. If you do not have an XML schema, the data source uses the data you provide in the XML file as a template for defining data tables and columns. In this case, make sure that the data file contains a representative selection of data. If the data file does not contain all the required columns, you will not be able to use the columns in your report design.
+
+To test that the values in the fields are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.
+</description>
+</context>
+<context id="Wizard_XML_ColumnMapping_ID" title="Column Mapping">
+<description>Use this page to map XML elements to columns.
+
+Select an XML element or attribute in the XML structure diagram to represent a data column. To set the element as a column, choose the > button.
+After you verify the definition for the column, the column details appear in the Column Mapping table. You can change the name and data type of a column in this list.
+Select as many XML elements to represent columns as you need in your data set. Use the > button to add the selected XML elements to the data set. Use the >> button to add all the available XML elements to the data set.
+
+To add a column using XPath syntax, choose the Add button.
+To modify a column's definition, select the column in Column Mapping and choose the Edit button.
+To remove one or more columns from the data set, select the columns in Column Mapping and choose the Remove button.
+To change the order of the columns in the data set, select the columns in Column Mapping and use the Up and Down buttons.
+
+To confirm that the set of columns in Column Mapping contains the data that you require, choose Show Sample Data.
+</description>
+</context>
+<context id="Wizard_XMLSample_ID" title="DTP XML DataSet">
+<description>Use this dialog box to specify a sample XML source for data preview.
+
+You can use the data file that the data source specifies or a different file that contains XML data with the same structure. To use the same file, select Use the XML file defined in data source. To use a different file, deselect this field, then type the path to the file you want to use in Enter the URL of the XML source or browse to the file containing the data. Alternatively, you can use the Browse button to find a file on the file system.
+
+If your XML data file is large, you can reduce the number of rows that the Report Designer reads when you preview the report. To set the number of rows, select Preview first, then enter the number of rows of data in the next field. When you choose this option, make sure that your data file contains all the data fields that you need in your report design in the set of rows that you choose.
+</description>
+</context>
+<context id="Wizard_XMLXPath_ID" title="Row Mapping">
+<description>Use this dialog box to define a row element.
+
+Select an XML element in the XML structure diagram to represent the row root. To set the element as the row, choose the &gt; button.
+After you verify the XPath expression for the row, the row path appears in Row Mapping-XPath Expression.
+The data set creates a row for every row element in the data source. For example, consider a data source that has a &lt;Customer&gt; element that has child elements, &lt;Order&gt;. If you define the &lt;Customer&gt; element as the row, the data set creates one row for every &lt;Customer&gt; element. This row can include the information for only one order. If you define the &lt;Order&gt; element as the row, the data set creates a row for every order element.
+</description>
+</context>
+<context id="Wizard_WS_DATASOURCE_ID">
+   <description>Use this dialog box to define a Web Services data source. This data source type requires a WSDL Descriptor. The other fields in this dialog box are optional.
+
+To set the value for WSDL Descriptor:
+* Type the URL for Web Services data that is a network resource
+Or
+* Use the Browse button to locate a file on the file system
+
+The next field is the SOAP End Point. Leave this field empty if the descriptor defines the end point or if the WSDL does not require a SOAP end point. If your WSDL does require a SOAP end point, type the URL here.
+
+If you have written a Java class to perform the connection to the WSDL data source, type the fully qualified path to this class in Custom Driver Class. This class must implement the <code>org.eclipse.datatools.enablement.oda.ws.api.IWSDriver</code> interface.
+
+If you have a custom driver class, list the JAR files or folders to search for the class in Driver Class Path. Separate multiple folders and JAR files with semicolon (;) characters in the normal way.
+
+To test that the values in the fields are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.</description>
+</context>
+<context id="Wizard_WS_SOAP_PARAMETER_ID">
+<description>Use this dialog box to select the SOAP parameters to use for the WSDL operation. The WSDL descriptor provides the information about the available parameters for the operation. The parameters you select are used to filter the query on the WSDL data set.
+
+Use the Select All button to select all the available parameters. Use the Deselect All button to use none of the parameters. Use the check-box beside each parameter to select or deselect the parameter individually.
+</description>
+</context>
+<context id="Wizard_WS_SOAP_REQUEST_ID">
+<description>Use this dialog box to check or modify the XML for the SOAP request. The XML defines the SOAP operation and its parameters. Parameters are indicated in the XML by &amp;?ParameterName?&amp;.
+
+Edit the XML if your data source needs customizations that the wizard does not provide.
+
+To discard all your changes and reset the parameter selection to the default for the SOAP operation, choose Regenerate Template.
+
+To set the default value for any parameters to the SOAP operation, choose Insert Parameter.
+
+To discard all the XML in the SOAP request, choose Clear.
+</description>
+</context>
+<context id="Wizard_WS_SOAP_RESPONSE_ID">
+   <description>Use this dialog box to define the SOAP response for the Web Services data set's WSDL operation.
+
+To set the value for Select SOAP Response Schema:
+* If the WSDL descriptor describes the SOAP response, select Use operation response schema defined in data source WSDL.
+Or
+* Use the Browse button to locate the XML schema file for the SOAP response on the file system
+
+The next field sets up a sample SOAP response message. This field is optional.
+* To request a sample response from the SOAP end point, select Query Web Services at SOAP end point, then type the URL, and choose Connect Now.
+Or
+* Select Use external sample data file, and use the Browse button to locate the file on the file system
+</description>
+</context>
+</contexts>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Open Data Access Designer</title>
+<style>@import url("file:/D:/Lang/eclipse_32M5a/plugins/org.eclipse.sdk_3.2.0.v20060214/book.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32M5a/configuration/org.eclipse.osgi/bundles/192/1/.cp/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>Open Data Access Designer</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.oda.design.ui.dataSource<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>3.0
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>This extension point provides extensibility to the Open Data Access (ODA) Designer UI framework, through which an user may define an ODA data source design and a data set design.  
+<br>An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to contribute customized ODA design wizard and property pages.</p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSourceUI">dataSourceUI</a> , <a href="#e.dataSetUI">dataSetUI</a>+)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSourceUI">dataSourceUI</a> (<a href="#e.newDataSourceWizard">newDataSourceWizard</a>)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dataSourceUI</p>
+<p class=code id=dtdAttlist>id&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Allows ODA data providers to define a customized dialog page for an user to create a new ODA data source design instance.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - A fully qualified ID that uniquely identifies the ODA data source extension within an ODA consumer application's environment.  Its value must match that of the <i>dataSource.id</i> attribute defined in the  <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension of the same ODA driver.  
+When implementing the <i>org.eclipse.datatools.connectivity.connectionProfile</i> extension point, its <i>connectionProfile.id</i> attribute must also match this id value.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.newDataSourceWizard">newDataSourceWizard</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST newDataSourceWizard</p>
+<p class=code id=dtdAttlist>windowTitle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>includesProgressMonitor&nbsp;(true | false) "true"<p class=code id=dtdAttlist>pageTitle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>pageClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Defines the customizable behavior of a data source wizard that allows an user to create a new ODA data source design instance.
+<br>The implementation class of the data source wizard is specified in the <i>newWizard.class</i> attribute defined in the <i>org.eclipse.datatools.connectivity.connectionProfile</i> extension point.  
+<br>The wizard class must either use or extend from the ODA framework's wizard base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard</i>. 
+<br><br>
+This element includes the attributes to specify the customized wizard starting page that an extension contributes to the data source wizard.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>windowTitle</b> - The customized title of the data source wizard window.</li>
+<li><b>includesProgressMonitor</b> - Indicates whether the data source wizard should include a progress monitor.  Default value is "true".</li>
+<li><b>pageTitle</b> - The page title of the data source wizard's customized starting page.  This value, if specified, overrides any title that may have been set by the wizard page's constructor.</li>
+<li><b>pageClass</b> - A fully qualified class name that implements the wizard starting page for creating a new ODA data source design instance.
+<br>This class must extend from the ODA abstract base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage</i>.
+<br>A default concrete implementation class is provided in the ODA framework,  <i>org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourceWizardPage</i>.  An ODA extension may choose to use or extend from this default implementation class.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetUI">dataSetUI</a> (<a href="#e.dataSetWizard">dataSetWizard</a> , <a href="#e.dataSetPage">dataSetPage</a>+)&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dataSetUI</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>initialPageId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>supportsInParameters&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>supportsOutParameters&nbsp;(true | false) "false"&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Allows ODA data providers to define customized dialog page(s) for an user to create or edit an ODA data set design instance.
+The element defines child elements for the data set wizard page(s) and editor page(s).  
+<br>An ODA host designer may use the custom wizard pages' control for editing a data set design instance.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - A fully qualified ID that uniquely identifies the ODA data set type within an ODA data source extension.  Its value must match that of the <i>dataSet.id</i> attribute defined in the  <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension of the same ODA driver.</li>
+<li><b>initialPageId</b> - Identifies a particular dataSetPage that should be selected in a data set dialog.</li>
+<li><b>supportsInParameters</b> - Indicates that this type of data set design supports input parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
+<li><b>supportsOutParameters</b> - Indicates that this type of data set design supports output parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetWizard">dataSetWizard</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dataSetWizard</p>
+<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"<p class=code id=dtdAttlist>windowTitle&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Defines a data set wizard that allows an user to create or edit an ODA data set design instance.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>class</b> - The implementation class of the data set wizard.  
+<br>The wizard class must either use or extend from the ODA framework's wizard base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard</i>.</li>
+<li><b>windowTitle</b> - The customized title of the data set wizard window.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetPage">dataSetPage</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dataSetPage</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>wizardPageClass&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>displayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>icon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+Defines a customized page that an extension contributes to an ODA host designer's data set dialog.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - A unique name of this page within a data set dialog.</li>
+<li><b>wizardPageClass</b> - A fully qualified class name that implements a data set wizard page to create or edit an ODA data set design instance.
+<br>This class must extend from the ODA abstract base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage</i>.</li>
+<li><b>displayName</b> - The page title or descriptive name of a customized page that will be displayed in the UI of this page.
+This value, if specified, overrides any title or descriptive name that may have been set by the page's constructor.</li>
+<li><b>path</b> - The path of the page in a data set preference dialog.
+<br>To add the page to the root node, specify "/" in this value.  Default value is "/".
+<br>To add the page as a child of another page node, specify its full path starting with a "/"; and use the  "/" as a separator in between each page node in the hierarchy.
+<br>For example, a path value "/parent" would add this page as a child node to an existing page called "parent".
+<br><br>Note: The page with the name "parent" should have been added before attempting to add the child page.</li>
+<li><b>icon</b> - A relative path to an icon that will be used in the UI in addition to the page's display name.</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><p>
+   <pre>
+   <p class=code id=tag>&lt;extension
+  point=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;</p><p class=code id=tag>&gt;</p>
+      <p class=code id=tag>&lt;dataSourceUI id=<p class=code id=cstring>&quot;%oda.data.source.id&quot;</p><p class=code id=tag>&gt;</p>
+         <p class=code id=tag>&lt;newDataSourceWizard
+               pageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderSelectionWizardPage&quot;</p><p class=code id=tag>
+               pageTitle=<p class=code id=cstring>&quot;Select Folder&quot;</p><p class=code id=tag>
+               windowTitle=<p class=code id=cstring>&quot;New Flat File Data Source Profile&quot;</p><p class=code id=tag>
+               includesProgressMonitor=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>/&gt;</p>
+      <p class=code id=tag>&lt;/dataSourceUI&gt;</p>
+      <p class=code id=tag>&lt;dataSetUI
+            id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</p><p class=code id=tag>
+            initialPageId=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
+            supportsInParameters=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>
+            supportsOutParameters=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
+         <p class=code id=tag>&lt;dataSetWizard
+               class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&quot;</p><p class=code id=tag>
+               windowTitle=<p class=code id=cstring>&quot;Select Table&quot;</p><p class=code id=tag>/&gt;</p>
+         <p class=code id=tag>&lt;dataSetPage
+               displayName=<p class=code id=cstring>&quot;Select Columns&quot;</p><p class=code id=tag>
+               icon=<p class=code id=cstring>&quot;icons/file.gif&quot;</p><p class=code id=tag>
+               id=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
+               path=<p class=code id=cstring>&quot;/&quot;</p><p class=code id=tag>
+               wizardPageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FileSelectionWizardPage&quot;</p><p class=code id=tag>/&gt;</p>
+      <p class=code id=tag>&lt;/dataSetUI&gt;</p>
+   <p class=code id=tag>&lt;/extension&gt;</p>
+   </pre>
+</p>
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[<b>Provisional</b>] An extension must implement the related dialog pages defined in the extension point's schema. 
+See the abstract base classes' JavaDoc documentation in the <i>org.eclipse.datatools.connectivity.oda.design.ui</i> project for more information.
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>The plug-in <i>org.eclipse.datatools.connectivity.oda.flatfile.ui</i>, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA Design UI extension.
+<p></p>
+
+<br>
+<p class=note id=copyright>
+Copyright (c) 2006 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+<p></p>
+
+</p>
+</BODY>
+</HTML>
