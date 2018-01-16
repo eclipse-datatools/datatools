@@ -18,6 +18,7 @@
         <!-- Set up the default target platform to build against -->
         <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
         <platform-site>http://download.eclipse.org/releases/photon/</platform-site>
+        <junit3-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</junit3-site>
     </properties>
 
   	<repositories>
@@ -26,11 +27,16 @@
           	<url>${license-site}</url>
           	<layout>p2</layout>
       	</repository>   
-      	<repository>
-          	<id>platform</id>
-          	<url>${platform-site}</url>
-          	<layout>p2</layout>
-      	</repository>
+        <repository>
+            <id>platform</id>
+            <url>${platform-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>junit3</id>
+            <url>${junit3-site}</url>
+            <layout>p2</layout>
+        </repository>
   	</repositories>
   	<pluginRepositories>
       	<pluginRepository>
@@ -528,7 +534,6 @@
       	<module>tests/org.eclipse.datatools.sqltools.parsers.sql.xml.query.test</module>
       	<module>tests/org.eclipse.datatools.sqltools.plan.junittest</module>
       	<module>tests/org.eclipse.datatools.sqltools.result.junittest</module>
-      	<module>tests/org.eclipse.datatools.sqltools.test</module>
 
       	<module>examples/org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample</module>
       	<module>examples/org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui</module>
