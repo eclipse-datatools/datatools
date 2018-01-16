@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer" name="OCLSyntaxViewer" schema="schema/org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer.exsd"/>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            name="%newwizard.name"
+            icon="icons/new_oda_dswiz.ico"
+            profile="%oda.data.source.id"
+            description="%newwizard.description"
+            class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard"
+            id="%oda.data.source.id">
+      </newWizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSourcePropertyPage"
+            id="%oda.data.source.id"
+            name="%profile.propertypage.name">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="%oda.data.source.id">
+         </filter>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.design.ui.dataSource">
+      <dataSourceUI
+            id="%oda.data.source.id">
+         <newDataSourceWizard
+               pageClass="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSourceWizardPage"
+               includesProgressMonitor="false"
+               pageTitle="%wizard.data.source.page.title"
+               windowTitle="%wizard.window.title">
+         </newDataSourceWizard>
+      </dataSourceUI>
+      <dataSetUI
+            supportsOutParameters="false"
+            supportsInParameters="true"
+            initialPageId="org.eclipse.datatools.enablement.oda.ecore.dataSet.page1"
+            id="org.eclipse.datatools.enablement.oda.ecore.dataSet">
+         <dataSetWizard
+               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"
+               windowTitle="%wizard.data.set.window.title">
+         </dataSetWizard>
+         <dataSetPage
+               displayName="%wizard.data.set.page.title"
+               icon="icons/datasetpage.ico"
+               wizardPageClass="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSetQueryWizardPage"
+               path="/"
+               id="org.eclipse.datatools.enablement.oda.ecore.ui.dataSet.page1">
+         </dataSetPage>
+         <dataSetPage
+               displayName="%wizard.data.set.columns.page.title"
+               icon="icons/datasetpage.ico"
+               id="org.eclipse.datatools.enablement.oda.ecore.ui.dataSet.page2"
+               path="/"
+               wizardPageClass="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSetColumnsWizardPage">
+         </dataSetPage>
+      </dataSetUI>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer">
+      <oclSourceViewer
+            class="org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.DefaultSourceViewer">
+      </oclSourceViewer>
+   </extension>
+
+</plugin>
