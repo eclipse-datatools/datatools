@@ -1,0 +1,1 @@
+NewDerbyEmbeddedConnectionProfileWizard.DerbyEmbeddedDatabaseWizardTitle=新建 Derby 连接配置文件

@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=Momentan wird kein Plan angezeigt.
+PlanView.working=Wird ausgeführt...
+PlansDialog.title=Vorherige Pläne
+PlanView.preference=&Voreinstellungen...
+PlansDialog.message=Plan für An&zeige in der Planansicht auswählen
+PlansDialog.remove=&Entfernen
+PlanView.sql=SQL:
+PlanView.vertical.orientation=&Vertikale Ansichtsausrichtung
+PlanView.horizontal.orientation=&Horizontale Ansichtsausrichtung
+ExecutionPlansDrawer.no.extension=Keine geeignete Erweiterung für Datenbank {0} gefunden, die den grafischen Ausführungsplan für {1} unterstützt. Erweitern Sie zunächst {2}.{3} , um einen Planparser und eine Plandrawer bereitzustellen.
+ExecutionPlansDrawer.no.drawer=Keine geeignete Plandrawer für Datenbank gefunden: {0}
+ExecutionPlansDrawer.no.parser=Keinen geeigneten Planparser für Datenbank gefunden: {0}

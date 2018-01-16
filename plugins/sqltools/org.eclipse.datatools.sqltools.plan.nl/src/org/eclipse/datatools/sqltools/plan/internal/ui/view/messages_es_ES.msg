@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=Actualmente no se muestra ningún plan.
+PlanView.working=Trabajando...
+PlansDialog.title=Planes anteriores
+PlanView.preference=&Preferencias...
+PlansDialog.message=&Seleccione el plan que se mostrará en la vista de planes
+PlansDialog.remove=Quita&r
+PlanView.sql=SQL:
+PlanView.vertical.orientation=Orientación de vista &vertical
+PlanView.horizontal.orientation=Orientación de vista &horizontal
+ExecutionPlansDrawer.no.extension=No se ha encontrado una extensión apropiada para la base de datos:{0}, para apoyar el plan de ejecución gráfica de {1}, ampliar {2}.{3} primero para proporcionar el analizador del plan y el diseñador del plan.
+ExecutionPlansDrawer.no.drawer=No se ha encontrado un diseñador de plan apropiado para la base de datos: {0}
+ExecutionPlansDrawer.no.parser=No se ha encontrado un analizador de plan apropiado para la base de datos: {0}

@@ -1,0 +1,15 @@
+ExecutionPlanPage.orientation.group.name=Affichage du plan d'exécution SQL
+ExecutionPlanPage.vertical.orientation=Affichage &vertical
+ExecutionPlanPage.export.group=Exporter le codage
+ExecutionPlanPage.default.enc=Valeur par d&éfaut({0})
+ExecutionPlanPage.other.enc=Au&tre :
+ExecutionPlanPage.horizontal.orientation=Affichage &horizontal
+ExportFormatPage.fileencoding.otherencoding = Au&tre :
+ExportFormatPage.fileencoding.numDefaultEncodings = 6
+ExportFormatPage.fileencoding.defaultEncoding1 = ISO-8859-1
+ExportFormatPage.fileencoding.defaultEncoding2 = UTF-8
+ExportFormatPage.fileencoding.defaultEncoding3 = UTF-16
+ExportFormatPage.fileencoding.defaultEncoding4 = UTF-16BE
+ExportFormatPage.fileencoding.defaultEncoding5 = UTF-16LE
+ExportFormatPage.fileencoding.defaultEncoding6 = US-ASCII
+ExportFormatPage.fileencoding.unsupportedEncoding = Codage non pris en charge

@@ -1,0 +1,11 @@
+DataTypeValidator_no_db_definition=Aucune configuration de base de données trouvée
+DataTypeValidator_can_not_use_in_current_context=Type ''{0}'': ne peut pas être utilisé dans le contexte actuel
+DataTypeValidator_invalid_type=Type ''{0}'': type de données invalide
+PredefinedDataTypeValidator_no_db_definition=Aucune définition de base de données fournie
+PredefinedDataTypeValidator_no_datatype_definition=Définition de type de données introuvable
+PredefinedDataTypeValidator_length_shouldbe_positive=Type prédéfini ''{0}'' : la longueur doit être une valeur positive
+PredefinedDataTypeValidator_length_exceed_max=Type prédéfini ''{0}'' : la longueur ne peut pas dépasser {1}
+PredefinedDataTypeValidator_precision_positive=Type prédéfini ''{0}'' : la précision doit être une valeur positive
+PredefinedDataTypeValidator_precision_exceed_max=Type prédéfini ''{0}'' : la précision ne peut pas dépasser {1}
+PredefinedDataTypeValidator_scale_below_min=Type prédéfini ''{0}'' : l'échelle ne peut pas être inférieure à {1}
+PredefinedDataTypeValidator_precision_lessthan_scale=Type prédéfini ''{0}'' : la précision doit être supérieure ou égale à l'échelle

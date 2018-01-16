@@ -1,0 +1,10 @@
+Cannot_disconnect_before_save=Impossible de se déconnecter sans enregistrer les modifications de l'éditeur
+Disconnect_error=Erreur
+SyntaxColoring_Comment=Commentaire sur une ligne
+SyntaxColoring_MultilineComment=Commentaire sur plusieurs lignes
+SyntaxColoring_QuotedLiteral=Chaîne entre guillemets simples
+SyntaxColoring_DelimitedIdentifier=Chaîne entre guillemets doubles
+SyntaxColoring_Keyword=Mot clé
+SyntaxColoring_Type=Type
+SyntaxColoring_Identifier=Identificateur
+SyntaxColoring_Default=Autres

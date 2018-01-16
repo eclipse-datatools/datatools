@@ -1,0 +1,46 @@
+DerbyEmbeddedDriverUIContributor.0=데이터베이스 위치(&A)\:
+DerbyEmbeddedDriverUIContributor.1=찾아보기(&R)...
+DerbyEmbeddedDriverUIContributor.2=데이터베이스 생성(필요 시)(&E)
+DerbyEmbeddedDriverUIContributor.3=현재 버전으로 데이터베이스 업그레이드(&P)
+DerbyEmbeddedDriverUIContributor.url.label = URL(&L)\:
+DerbyEmbeddedDriverUIContributor.userName.label = 사용자 이름(&U)\:
+DerbyEmbeddedDriverUIContributor.password.label = 암호(&W):
+DerbyEmbeddedDriverUIContributor.persistpassword.label = 암호 저장(&V)
+DerbyEmbeddedDriverUIContributor.optionalProps.label = 옵션 속성(&P)\:
+DerbyEmbeddedDriverUIContributor.summary.driverName.label = 드라이버 이름
+DerbyEmbeddedDriverUIContributor.summary.connProps.label = 옵션 속성
+DerbyEmbeddedDriverUIContributor.summary.userName.label = 사용자 이름:
+DerbyEmbeddedDriverUIContributor.summary.password.label = 암호
+DerbyEmbeddedDriverUIContributor.summary.url.label = URL
+DerbyEmbeddedDriverUIContributor.FileDialog.title.filebrowse = 데이터베이스 폴더 찾아보기
+DerbyEmbeddedDriverUIContributor.FileDialog.msg.filebrowse = Derby 데이터베이스와 일치하는 폴더를 선택하십시오.
+DerbyEmbeddedDriverUIContributor.general.tab = 일반(&G)
+DerbyEmbeddedDriverUIContributor.optional.tab = 옵션(&O)
+DerbyEmbeddedDriverUIContributor.optionalproperties.label = 옵션 속성(&P):
+CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = 암호 저장
+CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = 참
+CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = 거짓
+CUI_NEWCW_DATABASE_LOCATION_SUMMARY_DATA_TEXT_ = 데이터베이스 위치
+CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_ = 데이터베이스 생성(필요 시)
+CUI_NEWCW_UPGRADE_DATABASE_SUMMARY_DATA_TEXT_ = 현재 버전으로 데이터베이스 업그레이드
+CUI_NEWCW_DATABASE_LBL_UI_ = 데이터베이스(&S):
+CUI_NEWCW_HOST_LBL_UI_ = 호스트(&H):
+CUI_NEWCW_PORT_LBL_UI_ = 포트 번호(&M):
+CUI_NEWCW_CONNECTIONURL_LBL_UI_= URL(&L):
+CUI_NEWCW_USERNAME_LBL_UI_ = 사용자 이름(&A):
+CUI_NEWCW_PASSWORD_LBL_UI_ = 암호(&W):
+CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = 암호 저장(&V)
+CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = 데이터베이스
+CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = 호스트
+CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = 포트 번호
+CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = 사용자 이름:
+CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
+
+CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = 데이터베이스 이름을 입력하십시오.
+CUI_NEWCW_VALIDATE_DBLOCATION_REQ_UI_ = 데이터베이스 위치를 입력하십시오.
+CUI_NEWCW_VALIDATE_HOST_REQ_UI_= 데이터베이스 서버의 호스트 이름을 입력하십시오.
+CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = 데이터베이스 서버의 연결 포트 번호를 입력하십시오.
+CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = 사용자 이름을 입력하십시오.
+CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = 암호를 입력하십시오.
+
+

@@ -1,0 +1,15 @@
+ExecutionPlanPage.orientation.group.name=SQL 실행 계획 보기 방향
+ExecutionPlanPage.vertical.orientation=세로 방향(&V)
+ExecutionPlanPage.export.group=인코딩 내보내기
+ExecutionPlanPage.default.enc=기본값(&E)({0})
+ExecutionPlanPage.other.enc=기타(&T):
+ExecutionPlanPage.horizontal.orientation=가로 방향(&H)
+ExportFormatPage.fileencoding.otherencoding = 기타(&T):
+ExportFormatPage.fileencoding.numDefaultEncodings = 6
+ExportFormatPage.fileencoding.defaultEncoding1 = ISO-8859-1
+ExportFormatPage.fileencoding.defaultEncoding2 = UTF-8
+ExportFormatPage.fileencoding.defaultEncoding3 = UTF-16
+ExportFormatPage.fileencoding.defaultEncoding4 = UTF-16BE
+ExportFormatPage.fileencoding.defaultEncoding5 = UTF-16LE
+ExportFormatPage.fileencoding.defaultEncoding6 = US-ASCII
+ExportFormatPage.fileencoding.unsupportedEncoding = 지원되지 않는 인코딩

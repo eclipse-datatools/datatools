@@ -1,0 +1,11 @@
+DataTypeValidator_no_db_definition=データベースの設定がありません。
+DataTypeValidator_can_not_use_in_current_context=現在のコンテキストでは型 ''{0}'' を使用できません。
+DataTypeValidator_invalid_type=型 ''{0}' は無効なデータ型です。
+PredefinedDataTypeValidator_no_db_definition=データベース定義が指定されていません。
+PredefinedDataTypeValidator_no_datatype_definition=データ型の定義がありません。
+PredefinedDataTypeValidator_length_shouldbe_positive=定義済みの型 ''{0}'' の長さは正の値にしてください。
+PredefinedDataTypeValidator_length_exceed_max=定義済みの型 ''{0}'' を {1} より長くすることはできません。
+PredefinedDataTypeValidator_precision_positive=定義済みの型 ''{0}'' の精度は正の値にしてください。
+PredefinedDataTypeValidator_precision_exceed_max=定義済みの型 ''{0}'' の精度を {1} より大きくすることはできません。
+PredefinedDataTypeValidator_scale_below_min=定義済みの型 ''{0}'' のスケールは {1} より小さくできません。
+PredefinedDataTypeValidator_precision_lessthan_scale=定義済みの型 ''{0}'' の精度はスケール以上にしてください。

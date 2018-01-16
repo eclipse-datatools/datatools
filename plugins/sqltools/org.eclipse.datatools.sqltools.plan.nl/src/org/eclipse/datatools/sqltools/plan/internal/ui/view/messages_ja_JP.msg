@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=現在表示されているプランはありません。
+PlanView.working=実行中...
+PlansDialog.title=前のプラン
+PlanView.preference=環境設定(&P)...
+PlansDialog.message=プランビューに表示するプランを選択する(&S)
+PlansDialog.remove=削除(&R)
+PlanView.sql=SQL :
+PlanView.vertical.orientation=縦に表示(&V)
+PlanView.horizontal.orientation=横に表示(&H)
+ExecutionPlansDrawer.no.extension=データベース {0} に適した拡張子が見つかりません。{1} のグラフィック実行プランをサポートするには、最初に {2}.{3} を拡張して、プランパーサとプランドローワを指定してください。
+ExecutionPlansDrawer.no.drawer=データベース : {0} に適したプランドローワが見つかりません。
+ExecutionPlansDrawer.no.parser=データベース : {0} に適したプランパーサが見つかりません。

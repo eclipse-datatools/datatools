@@ -1,0 +1,16 @@
+POSTGRESQL_CATEGORY_NAME=PostgreSQL
+8.X_VERSION_CATEGORY_NAME=8.x
+POSTGRESQL_DRIVER_TEMPLATE_NAME=Pilote JDBC PostgreSQL
+DRIVER_CLASS_PROPERTY_NAME=Classe de pilote
+VENDOR_PROPERTY_NAME=Vendeur
+VERSION_PROPERTY_NAME=Version
+DATABASE_NAME_PROPERTY_NAME=Nom de la base de données
+CONNECTION_URL_PROPERTY_NAME=URL de connexion
+USER_ID_PROPERTY_NAME=ID utilisateur
+PASSWORD_PROPERTY_NAME=Mot de passe
+
+POSTGRESQL_PROFILE_NAME=Connexion JDBC PostgreSQL
+POSTGRESQL_JDBC_CONN_FACTORY_NAME=Génération de connexion JDBC PostgreSQL
+
+pluginName=PostgreSQL Connection Profile and Driver Template Plug-in
+providerName=Eclipse Data Tools Platform

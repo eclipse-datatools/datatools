@@ -1,0 +1,46 @@
+DerbyEmbeddedDriverUIContributor.0=D&atenbankpfad\:
+DerbyEmbeddedDriverUIContributor.1=Du&rchsuchen...
+DerbyEmbeddedDriverUIContributor.2=Dat&enbank erstellen (falls erforderlich)
+DerbyEmbeddedDriverUIContributor.3=&Datenbank auf aktuelle Version aktualisieren
+DerbyEmbeddedDriverUIContributor.url.label = UR&L\:
+DerbyEmbeddedDriverUIContributor.userName.label = &Benutzername\:
+DerbyEmbeddedDriverUIContributor.password.label = Kenn&wort:
+DerbyEmbeddedDriverUIContributor.persistpassword.label = &Kennwort speichern
+DerbyEmbeddedDriverUIContributor.optionalProps.label = Optionale &Eigenschaften\:
+DerbyEmbeddedDriverUIContributor.summary.driverName.label = Treibername
+DerbyEmbeddedDriverUIContributor.summary.connProps.label = Optionale Eigenschaften
+DerbyEmbeddedDriverUIContributor.summary.userName.label = Benutzername
+DerbyEmbeddedDriverUIContributor.summary.password.label = Kennwort
+DerbyEmbeddedDriverUIContributor.summary.url.label = URL
+DerbyEmbeddedDriverUIContributor.FileDialog.title.filebrowse = Suchen des Datenbankordners
+DerbyEmbeddedDriverUIContributor.FileDialog.msg.filebrowse = Wählen Sie den Ordner aus, der Ihrer Derby-Datenbank entspricht.
+DerbyEmbeddedDriverUIContributor.general.tab = &Allgemein
+DerbyEmbeddedDriverUIContributor.optional.tab = &Optional
+DerbyEmbeddedDriverUIContributor.optionalproperties.label = O&ptionale Eigenschaften:
+CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Kennwort speichern
+CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Wahr
+CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Falsch
+CUI_NEWCW_DATABASE_LOCATION_SUMMARY_DATA_TEXT_ = Datenbankpfad:
+CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_ = Datenbank erstellen (falls erforderlich)
+CUI_NEWCW_UPGRADE_DATABASE_SUMMARY_DATA_TEXT_ = Upgrade der Datenbank auf die aktuelle Version
+CUI_NEWCW_DATABASE_LBL_UI_ = Datenba&nk:
+CUI_NEWCW_HOST_LBL_UI_ = &Host:
+CUI_NEWCW_PORT_LBL_UI_ = &Anschlussnummer:
+CUI_NEWCW_CONNECTIONURL_LBL_UI_= UR&L:
+CUI_NEWCW_USERNAME_LBL_UI_ = Benutzern&ame:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Kenn&wort:
+CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = &Kennwort speichern
+CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Datenbank
+CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host:
+CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Anschlussnummer
+CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Benutzername
+CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
+
+CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = Geben Sie einen Datenbanknamen ein.
+CUI_NEWCW_VALIDATE_DBLOCATION_REQ_UI_ = Geben Sie den Pfad der Datenbank ein.
+CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Geben Sie einen Hostnamen für den Datenbankserver ein.
+CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Geben Sie die Anschlussnummer der Verbindung für den Datenbankserver ein.
+CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Geben Sie einen Benutzernamen ein.
+CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Geben Sie ein Kennwort ein.
+
+

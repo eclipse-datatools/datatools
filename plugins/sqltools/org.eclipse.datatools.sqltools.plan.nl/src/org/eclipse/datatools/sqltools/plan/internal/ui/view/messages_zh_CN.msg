@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=当前未显示任何计划。
+PlanView.working=正在工作...
+PlansDialog.title=先前的计划
+PlanView.preference=首选项(&P)...
+PlansDialog.message=选择要在计划视图中显示的计划(&S)
+PlansDialog.remove=删除(&R)
+PlanView.sql=SQL:
+PlanView.vertical.orientation=垂直视图方向(&V)
+PlanView.horizontal.orientation=水平视图方向(&H)
+ExecutionPlansDrawer.no.extension=找不到适合数据库 {0} 的扩展，为支持 {1} 的图形执行计划，先扩展 {2}.{3} 以提供方案分析程序和计划抽屉。
+ExecutionPlansDrawer.no.drawer=找不到适合数据库 {0} 的计划抽屉。
+ExecutionPlansDrawer.no.parser=找不到适合数据库 {0} 的计划分析程序。

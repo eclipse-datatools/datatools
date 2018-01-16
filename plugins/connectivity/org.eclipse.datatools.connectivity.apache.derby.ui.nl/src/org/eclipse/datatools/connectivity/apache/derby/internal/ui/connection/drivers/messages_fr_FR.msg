@@ -1,0 +1,46 @@
+DerbyEmbeddedDriverUIContributor.0=Emplacement b&ase de données\ :
+DerbyEmbeddedDriverUIContributor.1=Pa&rcourir...
+DerbyEmbeddedDriverUIContributor.2=Cr&éer une base de données (si nécessaire)
+DerbyEmbeddedDriverUIContributor.3=&Mettre la base de données à niveau vers la version actuelle
+DerbyEmbeddedDriverUIContributor.url.label = UR&L\ :
+DerbyEmbeddedDriverUIContributor.userName.label = Nom d'&utilisateur\ :
+DerbyEmbeddedDriverUIContributor.password.label = &Mot de passe :
+DerbyEmbeddedDriverUIContributor.persistpassword.label = Enregistre&r le mot de passe
+DerbyEmbeddedDriverUIContributor.optionalProps.label = &Propriétés en option\ :
+DerbyEmbeddedDriverUIContributor.summary.driverName.label = Nom du pilote
+DerbyEmbeddedDriverUIContributor.summary.connProps.label = Propriétés facultatives
+DerbyEmbeddedDriverUIContributor.summary.userName.label = Nom d'utilisateur
+DerbyEmbeddedDriverUIContributor.summary.password.label = Mot de passe
+DerbyEmbeddedDriverUIContributor.summary.url.label = URL
+DerbyEmbeddedDriverUIContributor.FileDialog.title.filebrowse = Rechercher le dossier de la base de données
+DerbyEmbeddedDriverUIContributor.FileDialog.msg.filebrowse = Sélectionner le dossier correspondant à votre base de données Derby.
+DerbyEmbeddedDriverUIContributor.general.tab = &Général
+DerbyEmbeddedDriverUIContributor.optional.tab = Fa&cultatif
+DerbyEmbeddedDriverUIContributor.optionalproperties.label = &Propriétés en option :
+CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Enregistrer le mot de passe
+CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = vrai
+CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = faux
+CUI_NEWCW_DATABASE_LOCATION_SUMMARY_DATA_TEXT_ = Emplacement de la base de données
+CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_ = Créer une base de données (si besoin)
+CUI_NEWCW_UPGRADE_DATABASE_SUMMARY_DATA_TEXT_ = Mettre à niveau la base de données à la version actuelle
+CUI_NEWCW_DATABASE_LBL_UI_ = Ba&se de données :
+CUI_NEWCW_HOST_LBL_UI_ = &Hôte :
+CUI_NEWCW_PORT_LBL_UI_ = Nu&méro de port :
+CUI_NEWCW_CONNECTIONURL_LBL_UI_= UR&L :
+CUI_NEWCW_USERNAME_LBL_UI_ = Nom d'utilis&ateur :
+CUI_NEWCW_PASSWORD_LBL_UI_ = &Mot de passe :
+CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Enregistre&r le mot de passe
+CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Base de données
+CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Hôte
+CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Numéro de port
+CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Nom d'utilisateur
+CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
+
+CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = Entrer un nom pour la base de données.
+CUI_NEWCW_VALIDATE_DBLOCATION_REQ_UI_ = Entrer un emplacement pour la base de données.
+CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Entrer le nom d'hôte pour le serveur de la base de données.
+CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Entrer le numéro de port de connexion pour le serveur de la base de données.
+CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Entrer un nom d'utilisateur.
+CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Entrer un mot de passe.
+
+

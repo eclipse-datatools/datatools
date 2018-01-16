@@ -1,0 +1,1 @@
+plugin_internal_error=发生了内部错误

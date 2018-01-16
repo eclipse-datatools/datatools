@@ -1,0 +1,10 @@
+Cannot_disconnect_before_save=Kann Verbindung nicht trennen, ohne die Editoränderungen zu speichern
+Disconnect_error=Fehler
+SyntaxColoring_Comment=Einzeiliger Kommentar
+SyntaxColoring_MultilineComment=Mehrzeiliger Kommentar
+SyntaxColoring_QuotedLiteral=Einzelne Zeichenfolge in Anführungszeichen
+SyntaxColoring_DelimitedIdentifier=Doppelte Zeichenfolge in Anführungszeichen
+SyntaxColoring_Keyword=Schlüsselwort
+SyntaxColoring_Type=Typ
+SyntaxColoring_Identifier=Kennung
+SyntaxColoring_Default=Weitere

@@ -1,0 +1,12 @@
+PlanView.no.plan.shown=현재 표시된 계획이 없습니다.
+PlanView.working=작업 중...
+PlansDialog.title=이전 계획
+PlanView.preference=기본 설정(&P)...
+PlansDialog.message=계획 보기에서 표시할 계획 선택(&S)
+PlansDialog.remove=제거(&R)
+PlanView.sql=SQL:
+PlanView.vertical.orientation=세로 보기 방향(&V)
+PlanView.horizontal.orientation=가로 보기 방향(&H)
+ExecutionPlansDrawer.no.extension={1} 그래픽 실행 계획을 지원하는 데이터베이스에 적합한 확장명을 찾을 수 없습니다:{0} 계획 파서 및 드로어를 입력하려면 먼저 {2}.{3}를 확장하십시오.
+ExecutionPlansDrawer.no.drawer=데이터베이스에 적합한 계획 드로어를 찾을 수 없습니다: {0}
+ExecutionPlansDrawer.no.parser=데이터베이스에 적합한 계획 파서를 찾을 수 없습니다: {0}
