@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--/*******************************************************************************-->
+<!-- * Copyright (c) 2008 SAP AG-->
+<!-- * All rights reserved. This program and the accompanying materials-->
+<!-- * are made available under the terms of the Eclipse Public License v1.0-->
+<!-- * which accompanies this distribution, and is available at-->
+<!-- * http://www.eclipse.org/legal/epl-v10.html-->
+<!-- *-->
+<!-- * Contributors:-->
+<!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
+<!-- *******************************************************************************--> 
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.MaxDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.profileProperties"
+            name="%profile.maxdb.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+         </filter>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
+            description="%profile.maxdb.wizard.description"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
+            name="%profile.maxdb.wizard.title"
+            profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+      </newWizard>
+   </extension>  
+    <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.MaxDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.76.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.76.MaxDBDriverUIContributor">
+      </driverUIContributor>
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.MaxDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.77.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.77.MaxDBDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.77.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.77.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.76.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.76.driverTemplate.password">
+      </propertyEditor>          
+   </extension>
+</plugin>

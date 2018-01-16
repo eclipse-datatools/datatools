@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--/*******************************************************************************-->
+<!-- * Copyright (c) 2008 SAP AG-->
+<!-- * All rights reserved. This program and the accompanying materials-->
+<!-- * are made available under the terms of the Eclipse Public License v1.0-->
+<!-- * which accompanies this distribution, and is available at-->
+<!-- * http://www.eclipse.org/legal/epl-v10.html-->
+<!-- *-->
+<!-- * Contributors:-->
+<!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
+<!-- *******************************************************************************--> 
+ 
+<plugin> 
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile"
+            name="%profile.maxdb.title"
+            pingFactory="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.MaxDBPasswordPropertiesPersistenceHook">
+      </connectionProfile>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
+            id="java.sql.Connection"
+            name="%jdbc.connection.name"
+            profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+      </connectionFactory>
+   </extension>   
+   <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.sap.maxdb.76.driverTemplate"
+            jarList="&lt;...MaxDB Installation...&gt;\programs\runtime\jar\sapdbc.jar"
+            name="%driver"
+            parentCategory="org.eclipse.datatools.enablement.sap.maxdb.driverCategory.version76">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%connection_url"
+                  required="true"
+                  value="jdbc:sapdb://127.0.0.1/&lt;db_instance&gt;?timeout=0"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%instance_name"
+                  required="true"
+                  value="&lt;db_instance&gt;"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driver_class"
+                  required="true"
+                  value="com.sap.dbtech.jdbc.DriverSapDB"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%user_id"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="%password"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%vendor"
+                  required="false"
+                  value="MaxDB"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%version"
+                  required="false"
+                  value="7.6"
+                  visible="false"/>
+                  
+         </properties>
+      </driverTemplate>
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.sap.maxdb.77.driverTemplate"
+            jarList="&lt;...MaxDB Installation...&gt;\programs\runtime\jar\sapdbc.jar"
+            name="%driver"
+            parentCategory="org.eclipse.datatools.enablement.sap.maxdb.driverCategory.version77">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="%connection_url"
+                  required="true"
+                  value="jdbc:sapdb://127.0.0.1/&lt;db_instance&gt;?timeout=0"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="%instance_name"
+                  required="true"
+                  value="&lt;db_instance&gt;"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="%driver_class"
+                  required="true"
+                  value="com.sap.dbtech.jdbc.DriverSapDB"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="%user_id"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="%password"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="%vendor"
+                  required="false"
+                  value="MaxDB"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="%version"
+                  required="false"
+                  value="7.7"
+                  visible="false"/>
+                  
+         </properties>
+      </driverTemplate>
+      <category
+            id="org.eclipse.datatools.enablement.sap.maxdb.driverCategory"
+            name="%category"
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"/>
+      <category
+            id="org.eclipse.datatools.enablement.sap.maxdb.driverCategory.version76"
+            name="%7_6_category_name"
+            parentCategory="org.eclipse.datatools.enablement.sap.maxdb.driverCategory"/>
+      <category
+            id="org.eclipse.datatools.enablement.sap.maxdb.driverCategory.version77"
+            name="%7_7_category_name"
+            parentCategory="org.eclipse.datatools.enablement.sap.maxdb.driverCategory"/>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+      <overrideLoader
+            eclass="org.eclipse.datatools.modelbase.sql.constraints.TableConstraint"
+            product="MaxDB"
+            provider="org.eclipse.datatools.enablement.sap.maxdb.MaxDBTableConstraintLoader"
+            version="7.6">
+      </overrideLoader>
+      <overrideLoader
+            eclass="org.eclipse.datatools.modelbase.sql.constraints.TableConstraint"
+            product="MaxDB"
+            provider="org.eclipse.datatools.enablement.sap.maxdb.MaxDBTableConstraintLoader"
+            version="7.7">
+      </overrideLoader>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+      <providerIDtoDriverCategoryID
+            driverCategoryID="org.eclipse.datatools.enablement.sap.maxdb.driverCategory"
+            providerID="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+      </providerIDtoDriverCategoryID>
+   </extension>   
+</plugin>

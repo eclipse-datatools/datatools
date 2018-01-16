@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--/*******************************************************************************-->
+<!-- * Copyright (c) 2008 SAP AG-->
+<!-- * All rights reserved. This program and the accompanying materials-->
+<!-- * are made available under the terms of the Eclipse Public License v1.0-->
+<!-- * which accompanies this distribution, and is available at-->
+<!-- * http://www.eclipse.org/legal/epl-v10.html-->
+<!-- *-->
+<!-- * Contributors:-->
+<!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
+<!-- *    Wolfgang Auer - extend db definition for MaxDB 7.7 -->
+<!-- *******************************************************************************--> 
+
+<plugin>   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="7.6"
+            product="MaxDB"
+            productDisplayString="%productDisplayString_76"
+            versionDisplayString="%versionDisplayString_76"
+            file="runtime/vendors/MaxDB_7.6/MaxDB_7.6.xmi">
+      </definition>
+       <definition
+            version="7.7"
+            product="MaxDB"
+            productDisplayString="%productDisplayString_77"
+            versionDisplayString="%versionDisplayString_77"
+            file="runtime/vendors/MaxDB_7.7/MaxDB_7.7.xmi">
+      </definition>
+   </extension>
+</plugin>
