@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="2000"
+            product="SQL Server"
+            productDisplayString="%2000ProductString"
+            versionDisplayString="%2000VersionString"
+            file="runtime/vendors/SQL Server_2000/SQL Server_2000.xmi">
+      </definition>
+      <definition
+            version="2005"
+            product="SQL Server"
+            productDisplayString="%2005ProductString"
+            versionDisplayString="%2005VersionString"
+            file="runtime/vendors/SQL Server_2005/SQL Server_2005.xmi">
+      </definition>
+      <definition
+            version="2008"
+            product="SQL Server"
+            productDisplayString="%2008ProductString"
+            versionDisplayString="%2008VersionString"
+            file="runtime/vendors/SQL Server_2008/SQL Server_2008.xmi">
+      </definition>
+      <definition
+            version="2012"
+            product="SQL Server"
+            productDisplayString="%2012ProductString"
+            versionDisplayString="%2012VersionString"
+            file="runtime/vendors/SQL Server_2012/SQL Server_2012.xmi">
+      </definition>
+      <definition
+            version="2014"
+            product="SQL Server"
+            productDisplayString="%2014ProductString"
+            versionDisplayString="%2014VersionString"
+            file="runtime/vendors/SQL Server_2014/SQL Server_2014.xmi">
+      </definition>
+   </extension>
+</plugin>
