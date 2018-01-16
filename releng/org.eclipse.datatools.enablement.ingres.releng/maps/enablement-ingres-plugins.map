@@ -1,0 +1,3 @@
+plugin@org.eclipse.datatools.enablement.ingres=GIT,tag=v200906111150,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.ingres.git,path=plugins/org.eclipse.datatools.enablement.ingres
+plugin@org.eclipse.datatools.enablement.ingres.dbdefinition=GIT,tag=v200906161800,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.ingres.git,path=plugins/org.eclipse.datatools.enablement.ingres.dbdefinition
+plugin@org.eclipse.datatools.enablement.ingres.ui=GIT,tag=v201105270214,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.ingres.git,path=plugins/org.eclipse.datatools.enablement.ingres.ui

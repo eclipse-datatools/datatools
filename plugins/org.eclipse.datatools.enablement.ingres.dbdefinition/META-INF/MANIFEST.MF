@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Name: %PLUGIN_NAME
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres.dbdefinition;singleton:=true
+Bundle-Version: 1.2.1.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %PROVIDER_NAME
+Eclipse-LazyStart: true
