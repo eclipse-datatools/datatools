@@ -18,7 +18,7 @@
         <!-- Set up the default target platform to build against -->
         <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
         <platform-site>http://download.eclipse.org/eclipse/updates/${sdk-version}</platform-site>
-        <orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20150821153341/repository</orbit-site>
+        <orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20170919201930/repository</orbit-site>
     </properties>
 
   	<repositories>
@@ -91,11 +91,16 @@
                               	<ws>gtk</ws>
                               	<arch>x86_64</arch>
                           	</environment>
-                          	<environment>
-                              	<os>win32</os>
-                              	<ws>win32</ws>
-                              	<arch>x86_64</arch>
-                          	</environment>
+                            <environment>
+                                <os>win32</os>
+                                <ws>win32</ws>
+                                <arch>x86</arch>
+                            </environment>
+                            <environment>
+                                <os>win32</os>
+                                <ws>win32</ws>
+                                <arch>x86_64</arch>
+                            </environment>
                       	</environments>
                       	<resolver>p2</resolver>
                       	<ignoreTychoRepositories>true</ignoreTychoRepositories>
@@ -124,6 +129,9 @@
                   	<artifactId>tycho-compiler-plugin</artifactId>
                   	<version>${tycho-version}</version>
                   	<configuration>
+                        <compilerArgument>-warn:+discouraged,forbidden</compilerArgument>
+                        <!-- ignore project settings which appear in Eclipse but are ignored by Tycho <= 0.26, like API access restrictions -->
+                        <useProjectSettings>false</useProjectSettings>
                       	<encoding>UTF-8</encoding>
                   	</configuration>
               	</plugin>
@@ -315,7 +323,8 @@
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC.nl</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.jdt</module>
-      	<module>plugins/connectivity/org.eclipse.datatools.connectivity.nl</module>
+      	<!-- TODO: why can't find org.eclipse.datatools.connectivity when building NL fragment?
+        <module>plugins/connectivity/org.eclipse.datatools.connectivity.nl</module> -->
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda.consumer</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda.consumer.nl</module>
