@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<!-- The driver template definition -->
+	<extension point="org.eclipse.datatools.connectivity.driverExtension">
+		<!-- Define a category for PostgreSQL under the "database" heading -->
+		<category
+			parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
+			id="org.eclipse.datatools.enablement.postgresql.driverCategory"
+			name="%POSTGRESQL_CATEGORY_NAME"/>
+		<!-- Define a 8.x version under the PostgreSQL category -->
+		<category
+			parentCategory="org.eclipse.datatools.enablement.postgresql.driverCategory"
+			id="org.eclipse.datatools.enablement.postgresql_8_x.driverCategory"
+			name="%8.X_VERSION_CATEGORY_NAME"/>
+		<!-- The driver template for PostgreSQL 8.x -->
+		<driverTemplate createDefault="false" emptyJarListIsOK="false"
+			id="org.eclipse.datatools.enablement.postgresql.postgresqlDriverTemplate"
+			jarList="postgresql-8.1-404.jdbc2.jar"
+			name="%POSTGRESQL_DRIVER_TEMPLATE_NAME"
+			parentCategory="org.eclipse.datatools.enablement.postgresql_8_x.driverCategory">
+			<properties>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.driverClass"
+					name="%DRIVER_CLASS_PROPERTY_NAME" 
+					value="org.postgresql.Driver"
+					required="true" 
+					visible="true"/>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.vendor"
+					name="%VENDOR_PROPERTY_NAME" 
+					value="postgres" required="true"
+					visible="false"/>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.version"
+					name="%VERSION_PROPERTY_NAME" 
+					value="8.x" 
+					required="true" 
+					visible="false"/>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.databaseName"
+					name="%DATABASE_NAME_PROPERTY_NAME" 
+					value="database" required="true"
+					visible="true"/>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.URL"
+					name="%CONNECTION_URL_PROPERTY_NAME" 
+					value="jdbc:postgresql://localhost:5432/database"
+					required="true" 
+					visible="true"/>
+				<property generated="false"
+					id="org.eclipse.datatools.connectivity.db.username"
+					name="%USER_ID_PROPERTY_NAME" 
+					value="pg" 
+					required="true" 
+					visible="true"/>
+				<property
+					generated="false"
+					id="org.eclipse.datatools.connectivity.db.password"
+					name="%PASSWORD_PROPERTY_NAME" 
+					required="false" 
+					visible="true"/>
+			</properties>
+		</driverTemplate>
+	</extension>
+	<!-- The Connection Profile for PostgreSQL -->
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <!-- The actual connection profile -->
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            icon="icons/postgresql_16.gif"
+            id="org.eclipse.datatools.enablement.postgresql.connectionProfile"
+            name="%POSTGRESQL_PROFILE_NAME"
+            pingFactory="org.eclipse.datatools.enablement.internal.postgresql.PostgreSQLConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.internal.postgresql.PostgresPasswordPersistenceHook"/>
+      <!-- JDBC connection factory -->
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.internal.postgresql.PostgreSQLConnectionFactory"
+            id="java.sql.Connection"
+            name="%POSTGRESQL_JDBC_CONN_FACTORY_NAME"
+            profile="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+   </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.mappings">
+    <providerIDtoDriverCategoryID
+          driverCategoryID="org.eclipse.datatools.enablement.postgresql.driverCategory"
+          providerID="org.eclipse.datatools.enablement.postgresql.connectionProfile">
+    </providerIDtoDriverCategoryID>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+    <catalog
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.PostgresCatalogProvider"
+          version="8.x">
+    </catalog>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+    <overrideLoader
+          eclass="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.loaders.PostgresAuthorizationIdentifierLoader"
+          version="8.x">
+    </overrideLoader>
+    <overrideLoader
+          eclass="org.eclipse.datatools.modelbase.sql.schema.Schema"
+          product="postgres"
+          provider="org.eclipse.datatools.enablement.postgresql.catalog.loaders.PostgresSchemaLoader"
+          version="8.x">
+    </overrideLoader>
+ </extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+    <containment
+          class="User"
+          package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+          provider="org.eclipse.datatools.enablement.postgresql.containment.PostgresAuthorizationIdContainmentProvider">
+    </containment>
+ </extension>
+
+</plugin>

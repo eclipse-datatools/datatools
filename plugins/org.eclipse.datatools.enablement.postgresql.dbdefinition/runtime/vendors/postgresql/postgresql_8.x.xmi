@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore"
+	vendor="postgres" version="8.x" maximumIdentifierLength="64"
+	joinSupported="true" tablespacesSupported="false" maximumCommentLength="60"
+	schemaSupported="true" aliasSupported="true" sequenceSupported="true" SQLStatementSupported="true">
+	
+	<!-- Label for unresolved data types -->
+	<predefinedDataTypeDefinitions xmi:id="UNRESOLVED_DATA_TYPE"
+		keyConstraintSupported="false" identitySupported="false"
+		nullableSupported="false" primitiveType="SMALLINT" 
+		jdbcEnumType="1111" javaClassName="java.lang.Object">
+		<defaultValueTypes/>
+		<name>Unresolved!</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- abstime data type -->
+	<predefinedDataTypeDefinitions xmi:id="ABSTIME"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>ABSTIME</name>
+	</predefinedDataTypeDefinitions>
+		
+	<!-- abstime[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="ABSTIME_ARRAY"
+		keyConstraintSupported="true" primitiveType="BINARY_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>ABSTIME[ ]</name>
+		<name>_ABSTIME</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- aclitem data type -->
+	<predefinedDataTypeDefinitions xmi:id="ACLITEM"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>ACLITEM</name>
+	</predefinedDataTypeDefinitions>
+		
+	<!-- aclitem[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="ACLITEM_ARRAY"
+		keyConstraintSupported="true" primitiveType="BINARY_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>ACLITEM[ ]</name>
+		<name>_ACLITEM</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bigserial data type -->
+	<predefinedDataTypeDefinitions xmi:id="BIGSERIAL" keyConstraintSupported="true"
+		identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5"
+		javaClassName="java.lang.Long">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BIGSERIAL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bit data type -->
+	<predefinedDataTypeDefinitions xmi:id="BIT"
+		keyConstraintSupported="false" identitySupported="false"
+		nullableSupported="false" primitiveType="SMALLINT" 
+		jdbcEnumType="-7" javaClassName="java.lang.Boolean">
+		<defaultValueTypes/>
+		<name>BIT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bit[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BIT_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BIT[ ]</name>
+		<name>_BIT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bool data type -->
+	<predefinedDataTypeDefinitions xmi:id="BOOL"
+		keyConstraintSupported="false" identitySupported="false"
+		nullableSupported="false" primitiveType="SMALLINT" 
+		jdbcEnumType="-7" javaClassName="java.lang.Boolean">
+		<defaultValueTypes/>
+		<name>BOOL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bool[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BOOL_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BOOL[ ]</name>
+		<name>_BOOL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bpchar data type -->
+	<predefinedDataTypeDefinitions xmi:id="BPCHAR"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="1"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BPCHAR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bpchar[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BPCHAR_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BPCHAR[ ]</name>
+		<name>_BPCHAR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bytea data type -->
+    <predefinedDataTypeDefinitions xmi:id="BYTEA" 
+		lengthSupported="true"  defaultLength="1" keyConstraintSupported="true" 
+		maximumLength="254" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>BYTEA</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- bytea[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BYTEA_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>BYTEA[ ]</name>
+		<name>_BYTEA</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- cid data type -->
+	<predefinedDataTypeDefinitions xmi:id="CID"
+		keyConstraintSupported="false" identitySupported="false"
+		nullableSupported="false" primitiveType="SMALLINT" 
+		jdbcEnumType="1111" javaClassName="java.lang.Object">
+		<defaultValueTypes/>
+		<name>CID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- cid[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="CID_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>CID[ ]</name>
+		<name>_CID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- cidr data type -->
+	<predefinedDataTypeDefinitions xmi:id="CIDR"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="24"
+		maximumLength="32" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>CIDR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- cidr[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="CIDR_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="CHARACTER_VARYING" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>CIDR[ ]</name>
+		<name>_CIDR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- date data type -->
+	<predefinedDataTypeDefinitions xmi:id="DATE" 
+		keyConstraintSupported="true" primitiveType="DATE" 
+		jdbcEnumType="91" javaClassName="java.sql.Date">
+      <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>DATE</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- date[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="DATE_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="DATE" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>DATE[ ]</name>
+		<name>_DATE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- float4 data type -->
+	<predefinedDataTypeDefinitions xmi:id="FLOAT4" 
+		keyConstraintSupported="true" primitiveType="REAL" 
+		jdbcEnumType="7" javaClassName="float">
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>FLOAT4</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- float[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="FLOAT4_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="REAL" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>FLOAT4[ ]</name>
+		<name>_FLOAT4</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- float8 data type -->
+	<predefinedDataTypeDefinitions xmi:id="FLOAT8" 
+		keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" 
+		jdbcEnumType="8" javaClassName="double">
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>FLOAT8</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- float8[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="FLOAT8_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="DOUBLE_PRECISION" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>FLOAT8[ ]</name>
+		<name>_FLOAT8</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int2 data type -->
+	<predefinedDataTypeDefinitions xmi:id="SMALLINT"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="java.lang.Integer">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT2</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int2[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="SMALLINT_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT2[ ]</name>
+		<name>_INT2</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int2vector[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="INT2VECTOR_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="SMALLINT" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT2VECTOR[ ]</name>
+		<name>_INT2VECTOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int4 data type -->
+	<predefinedDataTypeDefinitions xmi:id="INTEGER"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="4" javaClassName="java.lang.Integer">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT4</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int4[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="INTEGER_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT4[ ]</name>
+		<name>_INT4</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int8 data type -->
+	<predefinedDataTypeDefinitions xmi:id="BIGINT" keyConstraintSupported="true"
+		identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5"
+		javaClassName="java.lang.Long">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT8</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- int8[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BIGINT_ARRAY" keyConstraintSupported="true"
+		identitySupported="true" primitiveType="BIGINT" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INT8[ ]</name>
+		<name>_INT8</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- inet data type -->
+	<predefinedDataTypeDefinitions xmi:id="INET"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="15"
+		maximumLength="15" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INET</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- inet[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="INET_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="CHARACTER_VARYING" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INET[ ]</name>
+		<name>_INET</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- information_schema.cardinal_number data type -->
+	<predefinedDataTypeDefinitions xmi:id="INFO_SCHEMA_CARDINAL_NUMBER"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="4" javaClassName="java.lang.Integer">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INFORMATION_SCHEMA.CARDINAL_NUMBER</name>
+		<name>CARDINAL_NUMBER</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- information_schema.character_data data type -->
+	<predefinedDataTypeDefinitions xmi:id="INFO_SCHEMA_CHARACTER_DATA"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INFORMATION_SCHEMA.CHARACTER_DATA</name>
+		<name>CHARACTER_DATA</name>
+	</predefinedDataTypeDefinitions>
+		
+	<!-- information_schema.sql_identifier data type -->
+	<predefinedDataTypeDefinitions xmi:id="INFO_SCHEMA_SQL_IDENTIFIER"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INFORMATION_SCHEMA.SQL_IDENTIFIER</name>
+		<name>SQL_IDENTIFIER</name>
+	</predefinedDataTypeDefinitions>
+		
+	<!-- information_schema.time_stamp data type -->
+	<predefinedDataTypeDefinitions xmi:id="INFO_SCHEMA_TIME_STAMP"
+		keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93"
+		javaClassName="java.sql.Timestamp">
+		<defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INFORMATION_SCHEMA.TIME_STAMP</name>
+		<name>TIME_STAMP</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- interval data type -->
+	<predefinedDataTypeDefinitions xmi:id="INTERVAL"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="4" javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INTERVAL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- interval[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="INTERVAL_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>INTERVAL[ ]</name>
+		<name>_INTERVAL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- macaddr data type -->
+	<predefinedDataTypeDefinitions xmi:id="MACADDR"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="17"
+		maximumLength="128" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>MACADDR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- macaddr[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="MACADDR_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="CHARACTER_VARYING" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>MACADDR[ ]</name>
+		<name>_MACADDR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- money data type -->
+	<predefinedDataTypeDefinitions xmi:id="MONEY" 
+		keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" 
+		jdbcEnumType="8" javaClassName="double">
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>MONEY</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- money[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="MONEY_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="DOUBLE_PRECISION" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>MONEY[ ]</name>
+		<name>_MONEY</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- name[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="NAME_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>NAME[ ]</name>
+		<name>_NAME</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- numeric data type -->
+	<predefinedDataTypeDefinitions xmi:id="NUMERIC" 
+		precisionSupported="true" defaultPrecision="5" maximumPrecision="31" 
+		scaleSupported="true" defaultScale="0" keyConstraintSupported="true" 
+		primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>NUMERIC</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- numeric[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="NUMERIC_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="NUMERIC" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>NUMERIC[ ]</name>
+		<name>_NUMERIC</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- oid data type -->
+	<predefinedDataTypeDefinitions xmi:id="OID"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="4" javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>OID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- oid[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="OID_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>OID[ ]</name>
+		<name>_OID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- oidvector[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="OIDVECTOR_ARRAY"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="2003" javaClassName="java.sql.Array">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>OIDVECTOR[ ]</name>
+		<name>_OIDVECTOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- refcursor data type -->
+	<predefinedDataTypeDefinitions xmi:id="REFCURSOR"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REFCURSOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- refcursor[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REFCURSOR_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REFCURSOR[ ]</name>
+		<name>_REFCURSOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regclass data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGCLASS"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGCLASS</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regclass[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGCLASS_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGCLASS[ ]</name>
+		<name>_REGCLASS</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regoper data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGOPER"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGOPER</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regoper[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGOPER_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGOPER[ ]</name>
+		<name>_REGOPER</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regoperator data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGOPERATOR"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGOPERATOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regoperator[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGOPERATOR_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGOPERATOR[ ]</name>
+		<name>_REGOPERATOR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regproc data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGPROC"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGPROC</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regproc[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGPROC_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGPROC[ ]</name>
+		<name>_REGPROC</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regprocedure data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGPROCEDURE"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGPROCEDURE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regprocedure[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGPROCEDURE_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGPROCEDURE[ ]</name>
+		<name>_REGPROCEDURE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regtype data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGTYPE"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>REGTYPE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- regtype[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="REGTYPE_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>REGTYPE[ ]</name>
+		<name>_REGTYPE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- reltime data type -->
+	<predefinedDataTypeDefinitions xmi:id="RELTIME"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>RELTIME</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- reltime[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="RELTIME_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>RELTIME[ ]</name>
+		<name>_RELTIME</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- serial data type -->
+	<predefinedDataTypeDefinitions xmi:id="SERIAL"
+		keyConstraintSupported="true" identitySupported="true"
+		primitiveType="INTEGER" jdbcEnumType="4" javaClassName="java.lang.Integer">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>SERIAL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- smgr data type -->
+	<predefinedDataTypeDefinitions xmi:id="SMGR"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>SMGR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- text data type -->
+	<predefinedDataTypeDefinitions xmi:id="CHARACTER_TEXT"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TEXT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- text[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="CHARACTER_TEXT_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TEXT[ ]</name>
+		<name>_TEXT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- tid data type -->
+	<predefinedDataTypeDefinitions xmi:id="TID"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- tid[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TID_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>TID[ ]</name>
+		<name>_TID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- time data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIME" 
+		keyConstraintSupported="true" primitiveType="TIME" 
+		jdbcEnumType="92" javaClassName="java.sql.Time">
+      <defaultValueTypes>CURRENT_TIME</defaultValueTypes>
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>TIME</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- time[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIME_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>TIME[ ]</name>
+		<name>_TIME</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- timestamp data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMESTAMP"
+		keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93"
+		javaClassName="java.sql.Timestamp">
+		<defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TIMESTAMP</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- timestamp[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMESTAMP_ARRAY"
+		keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TIMESTAMP[ ]</name>
+		<name>_TIMESTAMP</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- timestamptz data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMESTAMPTZ"
+		keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93"
+		javaClassName="java.sql.Timestamp">
+		<defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TIMESTAMPTZ</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- timestamptz[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMESTAMPTZ_ARRAY"
+		keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>TIMESTAMPTZ[ ]</name>
+		<name>_TIMESTAMPTZ</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- timetz data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMETZ" 
+		keyConstraintSupported="true" primitiveType="TIME" 
+		jdbcEnumType="92" javaClassName="java.sql.Time">
+      <defaultValueTypes>CURRENT_TIME</defaultValueTypes>
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>TIMETZ</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- timetz[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIMETZ_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>TIMETZ[ ]</name>
+		<name>_TIMETZ</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- tinterval data type -->
+	<predefinedDataTypeDefinitions xmi:id="TINTERVAL" 
+		keyConstraintSupported="true" primitiveType="TIME" 
+		jdbcEnumType="92" javaClassName="java.sql.Time">
+      <defaultValueTypes>CURRENT_TIME</defaultValueTypes>
+      <defaultValueTypes>NULL</defaultValueTypes>
+      <name>TINTERVAL</name>
+    </predefinedDataTypeDefinitions>
+	
+	<!-- tinterval[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="TIME_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>TINTERVAL[ ]</name>
+		<name>_TINTERVAL</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- unknown data type -->
+	<predefinedDataTypeDefinitions xmi:id="UNKNOWN"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>UNKNOWN</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- varbit data type -->
+	<predefinedDataTypeDefinitions xmi:id="VARBIT"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>VARBIT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- varbit[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="VARBIT_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>VARBIT[ ]</name>
+		<name>_VARBIT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- varchar data type -->
+	<predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		javaClassName="java.lang.String">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>VARCHAR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- varchar[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>VARCHAR[ ]</name>
+		<name>_VARCHAR</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- xid data type -->
+	<predefinedDataTypeDefinitions xmi:id="XID"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="java.lang.Object">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>XID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- xid[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="XID_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>XID[ ]</name>
+		<name>_XID</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- *******************************
+	     PostgreSQL Geometric Data Types
+	     ******************************* -->
+	
+	<!-- box[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="BOX_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>BOX[ ]</name>
+		<name>_BOX</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- circle data type -->
+	<predefinedDataTypeDefinitions xmi:id="CIRCLE"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="org.postgresql.geometric.PGcircle">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>CIRCLE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- circle[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="CIRCLE_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>CIRCLE[ ]</name>
+		<name>_CIRCLE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- line[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="LINE_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>LINE[ ]</name>
+		<name>_LINE</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- lseg[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="LSEG_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>LSEG[ ]</name>
+		<name>_LSEG</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- path data type -->
+	<predefinedDataTypeDefinitions xmi:id="PATH"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="org.postgresql.geometric.PGpath">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>PATH</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- path[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="PATH_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>PATH[ ]</name>
+		<name>_PATH</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- point[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="POINT_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>POINT[ ]</name>
+		<name>_POINT</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- polygon data type -->
+	<predefinedDataTypeDefinitions xmi:id="POLYGON"
+		keyConstraintSupported="true" primitiveType="BINARY" jdbcEnumType="1111"
+		javaClassName="org.postgresql.geometric.PGpolygon">
+		<defaultValueTypes>NULL</defaultValueTypes>
+		<name>POLYGON</name>
+	</predefinedDataTypeDefinitions>
+	
+	<!-- polygon[] data type -->
+	<predefinedDataTypeDefinitions xmi:id="POLYGON_ARRAY"
+		lengthSupported="true" keyConstraintSupported="true"
+		primitiveType="BINARY" jdbcEnumType="2003"
+		javaClassName="java.sql.Array">
+		<name>POLYGON[ ]</name>
+		<name>_POLYGON</name>
+	</predefinedDataTypeDefinitions>
+	
+	<storedProcedureDefinition/>
+	
+	<triggerDefinition/>
+	
+	<columnDefinition identitySupported="true" identityIncrementSupported="true"/>
+	
+	<constraintDefinition clusteredPrimaryKeySupported="true"
+		clusteredUniqueConstraintSupported="true" primaryKeyNullable="true"
+		uniqueKeyNullable="true">
+		<parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
+		<parentUpdateDRIRuleType>CASCADE</parentUpdateDRIRuleType>
+		<parentUpdateDRIRuleType>SET_NULL</parentUpdateDRIRuleType>
+		<parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
+		<parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
+		<parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
+		<parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
+		<parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
+	</constraintDefinition>
+	
+	<indexDefinition/>
+	
+	<tableDefinition/>
+	
+	<udtDefinition/>
+	
+	<queryDefinition identifierQuoteString="&quot;" hostVariableMarker="@"
+		hostVariableMarkerSupported="true"/>
+		
+	<viewDefinition checkOptionSupported="false"/>
+	
+	<SQLSyntaxDefinition>
+		<keywords>ABORT</keywords>
+		<keywords>ADD</keywords>
+		<keywords>ALL</keywords>
+		<keywords>ALLOCATE</keywords>
+		<keywords>ALTER</keywords>
+		<keywords>ANALYZE</keywords>
+		<keywords>AND</keywords>
+		<keywords>ANY</keywords>
+		<keywords>ARE</keywords>
+		<keywords>AS</keywords>
+		<keywords>ASC</keywords>
+		<keywords>ASSERTION</keywords>
+		<keywords>AT</keywords>
+		<keywords>AUTHORIZATION</keywords>
+		<keywords>AVG</keywords>
+		<keywords>BEGIN</keywords>
+		<keywords>BETWEEN</keywords>
+		<keywords>BINARY</keywords>
+		<keywords>BIT</keywords>
+		<keywords>BIT_LENGTH</keywords>
+		<keywords>BOTH</keywords>
+		<keywords>BY</keywords>
+		<keywords>CASCADE</keywords>
+		<keywords>CASCADED</keywords>
+		<keywords>CASE</keywords>
+		<keywords>CAST</keywords>
+		<keywords>CATALOG</keywords>
+		<keywords>CHAR</keywords>
+		<keywords>CHAR_LENGTH</keywords>
+		<keywords>CHARACTER</keywords>
+		<keywords>CHARACTER_LENGTH</keywords>
+		<keywords>CHECK</keywords>
+		<keywords>CLOSE</keywords>
+		<keywords>CLUSTER</keywords>
+		<keywords>COALESCE</keywords>
+		<keywords>COLLATE</keywords>
+		<keywords>COLLATION</keywords>
+		<keywords>COLUMN</keywords>
+		<keywords>COMMIT</keywords>
+		<keywords>CONNECT</keywords>
+		<keywords>COPY</keywords>
+		<keywords>CORRESPONDING</keywords>
+		<keywords>COUNT</keywords>
+		<keywords>CREATE</keywords>
+		<keywords>CROSS</keywords>
+		<keywords>CURRENT</keywords>
+		<keywords>CURRENT_DATE</keywords>
+		<keywords>CURRENT_SESSION</keywords>
+		<keywords>CURRENT_TIME</keywords>
+		<keywords>CURRENT_TIMESTAMP</keywords>
+		<keywords>CURRENT_USER</keywords>
+		<keywords>CURSOR</keywords>
+		<keywords>DATE</keywords>
+		<keywords>DEALLOCATE</keywords>
+		<keywords>DEC</keywords>
+		<keywords>DECIMAL</keywords>
+		<keywords>DECLARE</keywords>
+		<keywords>DEFAULT</keywords>
+		<keywords>DELETE</keywords>
+		<keywords>DESC</keywords>
+		<keywords>DESCRIBE</keywords>
+		<keywords>DESCRIPTOR</keywords>
+		<keywords>DIAGNOSTICS</keywords>
+		<keywords>DISCONNECT</keywords>
+		<keywords>DISTINCT</keywords>
+		<keywords>DO</keywords>
+		<keywords>DOMAIN</keywords>
+		<keywords>DROP</keywords>
+		<keywords>ELSE</keywords>
+		<keywords>END</keywords>
+		<keywords>ESCAPE</keywords>
+		<keywords>EXCEPT</keywords>
+		<keywords>EXCEPTION</keywords>
+		<keywords>EXEC</keywords>
+		<keywords>EXECUTE</keywords>
+		<keywords>EXIST</keywords>
+		<keywords>EXISTS</keywords>
+		<keywords>EXPLAIN</keywords>
+		<keywords>EXTEND</keywords>
+		<keywords>EXTERNAL</keywords>
+		<keywords>EXTRACT</keywords>
+		<keywords>FALSE</keywords>
+		<keywords>FETCH</keywords>
+		<keywords>FIRST</keywords>
+		<keywords>FLOAT</keywords>
+		<keywords>FOR</keywords>
+		<keywords>FOREIGN</keywords>
+		<keywords>FOUND</keywords>
+		<keywords>FROM</keywords>
+		<keywords>FULL</keywords>
+		<keywords>GET</keywords>
+		<keywords>GLOBAL</keywords>
+		<keywords>GO</keywords>
+		<keywords>GOTO</keywords>
+		<keywords>GRANT</keywords>
+		<keywords>GROUP</keywords>
+		<keywords>HAVING</keywords>
+		<keywords>IDENTITY</keywords>
+		<keywords>IN</keywords>
+		<keywords>INDICATOR</keywords>
+		<keywords>INNER</keywords>
+		<keywords>INPUT</keywords>
+		<keywords>INSERT</keywords>
+		<keywords>INTERSECT</keywords>
+		<keywords>INTERVAL</keywords>
+		<keywords>INTO</keywords>
+		<keywords>IS</keywords>
+		<keywords>JOIN</keywords>
+		<keywords>LAST</keywords>
+		<keywords>LEADING</keywords>
+		<keywords>LEFT</keywords>
+		<keywords>LIKE</keywords>
+		<keywords>LISTEN</keywords>
+		<keywords>LOAD</keywords>
+		<keywords>LOCAL</keywords>
+		<keywords>LOCK</keywords>
+		<keywords>LOWER</keywords>
+		<keywords>MAX</keywords>
+		<keywords>MIN</keywords>
+		<keywords>MODULE</keywords>
+		<keywords>MOVE</keywords>
+		<keywords>NAMES</keywords>
+		<keywords>NATIONAL</keywords>
+		<keywords>NATURAL</keywords>
+		<keywords>NCHAR</keywords>
+		<keywords>NEW</keywords>
+		<keywords>NO</keywords>
+		<keywords>NONE</keywords>
+		<keywords>NOT</keywords>
+		<keywords>NOTIFY</keywords>
+		<keywords>NULL</keywords>
+		<keywords>NULLIF</keywords>
+		<keywords>NUMERIC</keywords>
+		<keywords>OCTET_LENGTH</keywords>
+		<keywords>OFFSET</keywords>
+		<keywords>ON</keywords>
+		<keywords>OPEN</keywords>
+		<keywords>OR</keywords>
+		<keywords>ORDER</keywords>
+		<keywords>OUTER</keywords>
+		<keywords>OUTPUT</keywords>
+		<keywords>OVERLAPS</keywords>
+		<keywords>PARTIAL</keywords>
+		<keywords>POSITION</keywords>
+		<keywords>PRECISION</keywords>
+		<keywords>PREPARE</keywords>
+		<keywords>PRESERVE</keywords>
+		<keywords>PRIMARY</keywords>
+		<keywords>PRIVILEGES</keywords>
+		<keywords>PROCEDURE</keywords>
+		<keywords>PUBLIC</keywords>
+		<keywords>REFERENCES</keywords>
+		<keywords>RESET</keywords>
+		<keywords>REVOKE</keywords>
+		<keywords>RIGHT</keywords>
+		<keywords>ROLLBACK</keywords>
+		<keywords>ROWS</keywords>
+		<keywords>SCHEMA</keywords>
+		<keywords>SECTION</keywords>
+		<keywords>SELECT</keywords>
+		<keywords>SESSION</keywords>
+		<keywords>SESSION_USER</keywords>
+		<keywords>SET</keywords>
+		<keywords>SETOF</keywords>
+		<keywords>SHOW</keywords>
+		<keywords>SIZE</keywords>
+		<keywords>SOME</keywords>
+		<keywords>SQL</keywords>
+		<keywords>SQLCODE</keywords>
+		<keywords>SQLERROR</keywords>
+		<keywords>SQLSTATE</keywords>
+		<keywords>SUBSTRING</keywords>
+		<keywords>SUM</keywords>
+		<keywords>SYSTEM_USER</keywords>
+		<keywords>TABLE</keywords>
+		<keywords>TEMPORARY</keywords>
+		<keywords>THEN</keywords>
+		<keywords>TO</keywords>
+		<keywords>TRAILING</keywords>
+		<keywords>TRANSACTION</keywords>
+		<keywords>TRANSLATE</keywords>
+		<keywords>TRANSLATION</keywords>
+		<keywords>TRIM</keywords>
+		<keywords>TRUE</keywords>
+		<keywords>UNION</keywords>
+		<keywords>UNIQUE</keywords>
+		<keywords>UNKNOWN</keywords>
+		<keywords>UNLISTEN</keywords>
+		<keywords>UNTIL</keywords>
+		<keywords>UPDATE</keywords>
+		<keywords>UPPER</keywords>
+		<keywords>USAGE</keywords>
+		<keywords>USER</keywords>
+		<keywords>USING</keywords>
+		<keywords>VACUUM</keywords>
+		<keywords>VALUE</keywords>
+		<keywords>VALUES</keywords>
+		<keywords>VARCHAR</keywords>
+		<keywords>VARYING</keywords>
+		<keywords>VERBOSE</keywords>
+		<keywords>VIEW</keywords>
+		<keywords>WHEN</keywords>
+		<keywords>WHENEVER</keywords>
+		<keywords>WHERE</keywords>
+		<keywords>WITH</keywords>
+		<keywords>WORK</keywords>
+		<keywords>WRITE</keywords>
+		
+		<operators>:=</operators>
+		<operators>||</operators>
+		<operators>OR</operators>
+		<operators>XOR</operators>
+		<operators>&amp;&amp;</operators>
+		<operators>AND</operators>
+		<operators>NOT</operators>
+		<operators>BETWEEN</operators>
+		<operators>CASE</operators>
+		<operators>WHEN</operators>
+		<operators>THEN</operators>
+		<operators>ELSE</operators>
+		<operators>=</operators>
+		<operators>&lt;=></operators>
+		<operators>>=</operators>
+		<operators>></operators>
+		<operators>&lt;=</operators>
+		<operators>&lt;</operators>
+		<operators>&lt;></operators>
+		<operators>!=</operators>
+		<operators>IS</operators>
+		<operators>LIKE</operators>
+		<operators>REGEXP</operators>
+		<operators>IN</operators>
+		<operators>|</operators>
+		<operators>&amp;</operators>
+		<operators>&lt;&lt;</operators>
+		<operators>>></operators>
+		<operators>-</operators>
+		<operators>+</operators>
+		<operators>*</operators>
+		<operators>/</operators>
+		<operators>DIV</operators>
+		<operators>%</operators>
+		<operators>MOD</operators>
+		<operators>^</operators>
+		<operators>~</operators>
+		<operators>!</operators>
+		<operators>BINARY</operators>
+		<operators>COLLATE</operators>
+	</SQLSyntaxDefinition>
+</DBDefinition:DatabaseVendorDefinition>
