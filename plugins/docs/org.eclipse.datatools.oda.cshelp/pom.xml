@@ -6,7 +6,7 @@
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>org.eclipse.datatools</artifactId>
     <version>1.14.100-SNAPSHOT</version>
-    <relativePath>../../</relativePath>
+    <relativePath>../../../</relativePath>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.oda.cshelp</artifactId>
