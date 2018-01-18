@@ -184,8 +184,6 @@ public class SQLBuilderDialog extends Dialog
 		
 		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
 		
-		ResultsViewAPI.getInstance().setCheckSRV(false);
-		
 		return topComposite;
 	}
 
@@ -395,8 +393,6 @@ public class SQLBuilderDialog extends Dialog
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
-		ResultsViewAPI.getInstance().setCheckSRV(true);
-		
 		_sqlBuilder.removeExecuteSQLListener(this);
 		_resultsViewControl.dispose();
 		

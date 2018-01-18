@@ -221,7 +221,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 Query query = parser.parse(expression);
                 IndexSearcher searcher = new IndexSearcher(reader);
                 TopDocs hits = searcher.search(query, reader.maxDoc());
-                int count = hits.totalHits;
+                int count = (int)hits.totalHits;
                 IResultInstance[] instances = new IResultInstance[count];
                 
                 for(int i=0;i<count;i++)

@@ -23,7 +23,6 @@ import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
-import org.eclipse.ui.internal.ide.model.WorkbenchAdapterBuilder;
 import org.eclipse.ui.internal.ide.undo.WorkspaceUndoMonitor;
 import org.osgi.framework.Bundle;
 
@@ -45,7 +44,6 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	    super.initialize(configurer);
 		// make sure we always save and restore workspace state
 		configurer.setSaveAndRestore(true);
-	    WorkbenchAdapterBuilder.registerAdapters();
 
 		final String ICONS_PATH = "icons/full/";
 		final String PATH_OBJECT = ICONS_PATH + "obj16/";
