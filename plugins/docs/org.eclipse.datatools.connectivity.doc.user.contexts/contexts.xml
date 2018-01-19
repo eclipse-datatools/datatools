@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<!-- Copyright (c) 2009 Sybase, Inc. All rights reserved. -->
+
+<contexts>
+   <context id="DATA_SOURCE_EXPLORER_VIEW">
+      <description> </description>
+      <topic label="Data Source Explorer View"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700328274.html"/>
+   </context>
+   <context id="LABEL_DECORATOR_PREFERENCE_PAGE">
+      <description> </description>
+      <topic label="Label Decorations Preferences"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700334258.html"/>
+   </context>
+   <context id="CONNECTIVITY_PREFERENCE_PAGE">
+      <description> </description>
+      <topic label="Setting Connectivity Preferences"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700329696.html"/>
+   </context>
+   <context id="DRIVER_PREFERENCES">
+      <description> </description>
+      <topic label="Driver Definitions"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700332633.html"/>
+   </context>
+   <context id="NEW_CONNECTION_PROFILE_WIZARD">
+      <description> </description>
+      <topic label="Creating a Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700343352.html"/>
+   </context>
+   <context id="DERBY_CONNECTION_PROFILE_WIZARD">
+      <description> </description>
+      <topic label="Creating a Database Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700344899.html"/>
+   </context>
+   <context id="JDBC_CONNECTION_PROFILE_WIZARD">
+      <description> </description>
+      <topic label="Creating a Database Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700344899.html"/>
+   </context>
+   <context id="GENERIC_DB_PROFILE_WIZARD">
+      <description> </description>
+      <topic label="Creating a Database Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700344899.html"/>
+   </context>
+   <context id="IMPORT_CONNECTION_PROFILES_DIALOG">
+      <description> </description>
+      <topic label="Importing a Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700354259.html"/>
+   </context>
+   <context id="EXPORT_CONNECTION_PROFILES_DIALOG">
+      <description> </description>
+      <topic label="Exporting a Connection Profile"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700357056.html"/>
+   </context>
+   <context id="CONNECTION_PROFILE_COMMON_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="Common Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700360259.html"/>
+   </context>
+   <context id="DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="Default Schema Filter Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700361681.html"/>
+   </context>
+   <context id="DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="Default Stored Procedure Filter Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700363103.html"/>
+   </context>
+   <context id="DEFAULT_TABLE_FILTER_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="Default Table Filter Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700364666.html"/>
+   </context>
+   <context id="JDBC_CONNECTION_PROFILE_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="JDBC or Driver Connection Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700366088.html"/>
+   </context>
+   <context id="GENERIC_DB_PROFILE_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="JDBC or Driver Connection Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700366088.html"/>
+   </context>
+   <context id="DERBY_CONNECTION_PROFILE_PROPERTY_PAGE">
+      <description> </description>
+      <topic label="Derby Connection Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700367572.html"/>
+   </context>
+   <context id="CONNECTION_PROFILE_VERSION_PROPERTIES">
+      <description> </description>
+      <topic label="Version Properties"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700369119.html"/>
+   </context>
+   <context id="DRIVER_DEFINITION_DIALOG">
+      <description> </description>
+      <topic label="Creating a Driver Definition"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700372057.html"/>
+   </context>
+   <context id="NEW_DRIVER_DEFINITION_DIALOG">
+      <description> </description>
+      <topic label="Creating a Driver Definition"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700372057.html"/>
+   </context>
+   <context id="EDIT_DRIVER_DEFINITION_DIALOG">
+      <description> </description>
+      <topic label="Editing a Driver Definition"
+             href="PLUGINS_ROOT/org.eclipse.datatools.connectivity.doc.user/doc/html/asc1229700373666.html"/>
+   </context>
+</contexts>
+
+<!-- Eclipse contexts XML file generated by TPS_build: ditamap-cs.pipeline.1-3_20090521092446 -->
+

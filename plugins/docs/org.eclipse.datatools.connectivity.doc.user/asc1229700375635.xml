@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Data Tools Platform Connectivity" topic="doc/html/asc1229700328274.html">
+   <topic label="Data Source Explorer View" href="doc/html/asc1229700328274.html"/>
+   <topic label="Label Decorations Preferences" href="doc/html/asc1229700334258.html"/>
+   <topic label="Setting Connectivity Preferences" href="doc/html/asc1229700329696.html">
+      <topic label="Database Connection Profile Preferences"
+             href="doc/html/asc1229700331243.html"/>
+      <topic label="Driver Definitions" href="doc/html/asc1229700332633.html"/>
+   </topic>
+   <topic label="Creating a Connection Profile" href="doc/html/asc1229700343352.html">
+      <topic label="Creating a Database Connection Profile"
+             href="doc/html/asc1229700344899.html"/>
+      <topic label="Refreshing a Connection Profile" href="doc/html/asc1229700346509.html"/>
+      <topic label="Renaming a Connection Profile" href="doc/html/asc1229700347915.html"/>
+      <topic label="Deleting a Connection Profile" href="doc/html/asc1229700349493.html"/>
+      <topic label="Testing a Connection Profile" href="doc/html/asc1229700350915.html"/>
+      <topic label="Importing a Connection Profile" href="doc/html/asc1229700354259.html"/>
+      <topic label="Exporting a Connection Profile" href="doc/html/asc1229700357056.html"/>
+      <topic label="Editing Connection Profile Properties"
+             href="doc/html/asc1229700358681.html">
+         <topic label="Common Properties" href="doc/html/asc1229700360259.html"/>
+         <topic label="Default Schema Filter Properties" href="doc/html/asc1229700361681.html"/>
+         <topic label="Default Stored Procedure Filter Properties"
+                href="doc/html/asc1229700363103.html"/>
+         <topic label="Default Table Filter Properties" href="doc/html/asc1229700364666.html"/>
+         <topic label="JDBC or Driver Connection Properties"
+                href="doc/html/asc1229700366088.html"/>
+         <topic label="Derby Connection Properties" href="doc/html/asc1229700367572.html"/>
+         <topic label="Version Properties" href="doc/html/asc1229700369119.html"/>
+         <topic label="Console Editor Application" href="doc/html/asc1229700370603.html"/>
+      </topic>
+   </topic>
+   <topic label="Creating a Driver Definition" href="doc/html/asc1229700372057.html">
+      <topic label="Editing a Driver Definition" href="doc/html/asc1229700373666.html"/>
+   </topic>
+</toc>

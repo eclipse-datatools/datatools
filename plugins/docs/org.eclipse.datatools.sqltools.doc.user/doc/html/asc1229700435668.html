@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating an INSERT Statement From a Values Set"/>
+<meta name="abstract" content="Use SQL Query Builder to create an INSERT statement to insert new rows at the end of a table with the values you indicate for the specified columns."/>
+<meta name="description" content="Use SQL Query Builder to create an INSERT statement to insert new rows at the end of a table with the values you indicate for the specified columns."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700427574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700429574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700437325.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700441997.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700443669.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700445247.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700448153.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700449560.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700427574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700410527.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_an_insert_statement.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_86648E662D54444085E2E6D11EF2EE03"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:15]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700435668"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating an INSERT Statement From a Values Set</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700435668"><a name="asc1229700435668"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating an INSERT Statement From a Values Set</h1>
+
+    
+    
+    <div><p>Use SQL Query Builder to create an INSERT statement to insert new rows at the end of a table with the values you indicate for the specified columns.</p>
+
+        <div class="p" id="asc1229700435668__prereq_D16B41D6C4DC49E9B3C36C04E496BCF2"><a name="asc1229700435668__prereq_D16B41D6C4DC49E9B3C36C04E496BCF2"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <p>Connect to the data source through a connection profile.</p>
+
+        </div>
+
+        <div class="section" id="asc1229700435668__context_426D1E58FB1A4DC5BC91A333E4E08684"><a name="asc1229700435668__context_426D1E58FB1A4DC5BC91A333E4E08684"><!-- --></a>
+            <div class="note"><span class="notetitle">Note:</span> Some syntactic variations might exist between your database and the SQL syntax that SQL Query Builder supports; consequently, some SQL Query Builder features might not work with your database.</div>
+
+        </div>
+
+        <a name="asc1229700435668__steps_AB9DD9354C0D47E0B73274D41CB8BEF4"><!-- --></a><ol id="asc1229700435668__steps_AB9DD9354C0D47E0B73274D41CB8BEF4">
+            <li class="stepexpand" id="asc1229700435668__step_A53205BCBBB846C198E8EE16CAB32573"><a name="asc1229700435668__step_A53205BCBBB846C198E8EE16CAB32573"><!-- --></a>
+                <span>Open a new or an existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_902D65BC308747D7B977C95BA42BF74E"><a name="asc1229700435668__step_902D65BC308747D7B977C95BA42BF74E"><!-- --></a>
+                <span>In an appropriate place in the editor window, right-click and select <span class="uicontrol">Edit in SQL Query Builder</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_074B4753F785414A86CD66C7CF06063C"><a name="asc1229700435668__step_074B4753F785414A86CD66C7CF06063C"><!-- --></a>
+                <span>In the Outline pane, right-click <span class="uicontrol">SELECT Statement</span> and select <span class="uicontrol">Change Statement Type</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_E5EBC758B48B4998AA6AC2D684148A51"><a name="asc1229700435668__step_E5EBC758B48B4998AA6AC2D684148A51"><!-- --></a>
+                <span>Select <span class="uicontrol">INSERT</span> and click <span class="uicontrol">OK</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_34BC995507684642A6E6246AD65D6F5F"><a name="asc1229700435668__step_34BC995507684642A6E6246AD65D6F5F"><!-- --></a>
+                <span>Select the table by right-clicking in the Tables pane and selecting <span class="uicontrol">Add Table</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_939685408FC5424387EE03ACC8B4E384"><a name="asc1229700435668__step_939685408FC5424387EE03ACC8B4E384"><!-- --></a>
+                <span>Specify the columns to use in the statement.</span>
+                <a name="asc1229700435668__d19e114"><!-- --></a>
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="choicetableborder" id="asc1229700435668__d19e114">
+<thead><tr><th valign="bottom" align="left" id="d4836e115-option">Option</th>
+<th valign="bottom" align="left" id="d4836e115-desc">Description</th></tr></thead>
+<tbody>
+                    
+                    <tr>
+                        <td valign="top" headers="d4836e115-option" id="d4836e128"><strong>Specify all columns</strong></td>
+
+                        <td valign="top" headers="d4836e115-desc d4836e128">Right-click the table in the Tables pane, and select <span class="uicontrol">Select All Columns</span>.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" headers="d4836e115-option" id="d4836e140"><strong>Specify specific columns</strong></td>
+
+                        <td valign="top" headers="d4836e115-desc d4836e140">Use either method:<br/><a name="asc1229700435668__d19e144"><!-- --></a><ul id="asc1229700435668__d19e144">
+                                <li id="asc1229700435668__d19e146"><a name="asc1229700435668__d19e146"><!-- --></a>In the Tables pane, select the check box next to the column name.</li>
+
+                                <li id="asc1229700435668__d19e149"><a name="asc1229700435668__d19e149"><!-- --></a>In the <span class="uicontrol">Columns</span> tab, select the specific column from the drop-down menu.</li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                </tbody></table>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_63BF853BC2D44302AAB5F32F63D0E78F"><a name="asc1229700435668__step_63BF853BC2D44302AAB5F32F63D0E78F"><!-- --></a>
+                <span>Enter the values for the selected columns.</span>
+                <a name="asc1229700435668__substeps_1E54EB3D1E4D4A61866F4DBE08119576"><!-- --></a><ol type="a" id="asc1229700435668__substeps_1E54EB3D1E4D4A61866F4DBE08119576">
+                    <li id="asc1229700435668__substep_9F5F5A3DC98C4AF5B75DADF867AE893E"><a name="asc1229700435668__substep_9F5F5A3DC98C4AF5B75DADF867AE893E"><!-- --></a>
+                        <span>In the Values pane, click the <span class="uicontrol">Values</span> box next to the column name.</span>
+                    </li>
+
+                    <li id="asc1229700435668__substep_5A93ABD4C9D4489A8E17D2D1A5694E03"><a name="asc1229700435668__substep_5A93ABD4C9D4489A8E17D2D1A5694E03"><!-- --></a>
+                        <span>Enter a value, select <span class="uicontrol">NULL</span>, or build an expression.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_E6E000F7845C4FD4B5DF68C57B6494E6"><a name="asc1229700435668__step_E6E000F7845C4FD4B5DF68C57B6494E6"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700435668__step_FB0A9273B2514A28AD9B81580CA8A8D7"><a name="asc1229700435668__step_FB0A9273B2514A28AD9B81580CA8A8D7"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700427574.html" title="Create, edit, or run SQL statements using the SQL Query Builder graphical interface, which provides access to your database schema and objects so that you can quickly create or edit SQL statements without actually typing any SQL code. However, you also have the flexibility to add or modify the SQL code in the editor window.">SQL Query Builder</a></div>
+</div>
+<div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700427574.html" title="Create, edit, or run SQL statements using the SQL Query Builder graphical interface, which provides access to your database schema and objects so that you can quickly create or edit SQL statements without actually typing any SQL code. However, you also have the flexibility to add or modify the SQL code in the editor window.">SQL Query Builder</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700429574.html" title="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.">Creating a SELECT Statement</a></div>
+<div><a href="../../doc/html/asc1229700437325.html" title="Use SQL Query Builder to create an INSERT statement from a subquery.">Creating an INSERT Statement From a Subquery</a></div>
+<div><a href="../../doc/html/asc1229700441997.html" title="Use SQL Query Builder to create an UPDATE statement to update data in a table. You can explicitly set the values or derive them from the results of a build expression.">Creating an UPDATE Statement</a></div>
+<div><a href="../../doc/html/asc1229700443669.html" title="Use SQL Query Builder to create a DELETE statement to remove data from a specified table. By specifying one or more conditions, you can indicate which rows in the database table to delete. If you do not specify any conditions, all rows in the target table are deleted.">Creating a DELETE Statement</a></div>
+<div><a href="../../doc/html/asc1229700445247.html" title="Use the Expression Builder in SQL Query Builder to build simple or complex expressions, or subqueries when creating SELECT, UPDATE, INSERT, and DELETE statements.">Building Expressions</a></div>
+<div><a href="../../doc/html/asc1229700448153.html" title="Use SQL Query Builder to edit an individual SQL statement. You can only edit one SQL statement at a time.">Editing a SQL Statement</a></div>
+<div><a href="../../doc/html/asc1229700449560.html" title="Use SQL Query Builder to run an individual SQL statement and view its execution results.">Running the SQL Statement Code</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700410527.html" title="Indicate the SQL Query Builder preferences.">SQL Query Builder Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

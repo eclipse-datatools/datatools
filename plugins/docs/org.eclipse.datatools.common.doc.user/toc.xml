@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="org.eclipse.datatools.common.doc.user"
+     link_to="../org.eclipse.datatools.doc.user/toc.xml#main"
+     topic="doc/html/asc1229700378416.html">
+   <topic label="Data Tools Platform" href="doc/html/asc1229700378416.html">
+      <topic label="Model Base" href="doc/html/asc1229700379979.html"/>
+      <topic label="Connectivity" href="doc/html/asc1229700381885.html"/>
+      <topic label="SQL Development Tools" href="doc/html/asc1229700383338.html"/>
+   </topic>
+   <topic label="Apache Derby Tutorial" href="doc/html/asc1229700384901.html">
+      <topic label="Apache Derby Tutorial Prerequisites"
+             href="doc/html/asc1229700386276.html"/>
+      <topic label="Creating a Driver Definition for Apache Derby"
+             href="doc/html/asc1229700387729.html"/>
+      <topic label="Creating an Apache Derby Connection Profile"
+             href="doc/html/asc1229700389307.html"/>
+      <topic label="Connecting to Apache Derby" href="doc/html/asc1229700390760.html"/>
+      <topic label="Running a Stored Procedure" href="doc/html/asc1229700392120.html"/>
+      <topic label="Creating and Executing a SQL Query"
+             href="doc/html/asc1229700393698.html"/>
+   </topic>
+</toc>

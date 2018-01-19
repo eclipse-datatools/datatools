@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="SQL Results View"/>
+<meta name="abstract" content="SQL Results view displays the results of executing SQL statements, running procedural routine objects, and creating database objects."/>
+<meta name="description" content="SQL Results view displays the results of executing SQL statements, running procedural routine objects, and creating database objects."/>
+<meta name="DC.subject" content="sybase_workspace, database_development, dtp"/>
+<meta name="keywords" content="sybase_workspace, database_development, dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700480170.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700492108.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700493499.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700494983.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700496577.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700497983.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700499390.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700480170.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700412058.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700413480.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700414871.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700416261.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\workspace\dmp\en\source\c_SQL_Results_View.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="concept_919FB9EB21674AD48FB043B331D84545"/>
+<meta name="status" content="Authoring:work"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:user" content="updates for 2.1.2"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700490436"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">SQL Results View</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700490436"><a name="asc1229700490436"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">SQL Results View</h1>
+
+
+    
+    
+    <div><p>SQL Results view
+displays the results of executing SQL statements, running <span>procedural</span>
+        <span>routine</span> objects, and creating database objects.</p>
+
+        <p>SQL Results
+ view appears in the  
+		Database Development
+ perspective and consists of a history frame and a
+		details frame. 
+The history
+		frame displays the execution history for past queries. The details  frame
+		displays the status and results of the last execution. Use the view pull-down menu to filter history results and set preferences.
+</p>
+
+        <div class="p">
+            
+<div class="tablenoborder"><a name="asc1229700490436__table_4074AEAAE60641929A4C5F3EF140BB31"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700490436__table_4074AEAAE60641929A4C5F3EF140BB31" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. SQL Results History fields </span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="21.69197396963124%" id="d9484e70">Field
+				  </th>
+
+                            <th class="cellrowborder" valign="top" width="78.30802603036877%" id="d9484e73">Description
+				  </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Status
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays whether the operation failed, succeeded,
+					 terminated, or is still running.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Operation
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the SQL statement or object that was executed.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Frequency
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the number of times the SQL statement or object
+					 has been executed.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Date
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the date and time the SQL statement or object
+					 failed, completed execution, terminated, or reached a breakpoint.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Action Type</td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the type of SQL action performed.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Consumer Name</td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the interface component from which the SQL action was initiated.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="21.69197396963124%" headers="d9484e70 ">Connection Profile</td>
+
+                            <td class="cellrowborder" valign="top" width="78.30802603036877%" headers="d9484e73 ">Displays the connection profile on which the SQL was executed.</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+        </div>
+
+        <p>To save SQL results, right-click in the history pane, and select <span class="uicontrol">Save History</span>.</p>
+
+        <p> When you execute multiple queries in a SQL file containing a delimiter (such as <span class="cmdname">go</span>) using the <span class="uicontrol">Execute All</span> or <span class="uicontrol">Execute Selected Text</span> options, the results are grouped in a tree structure in the SQL Results view. The root node is a top-level result history. Expand this node in the SQL Results view to see the results for each individual SQL statement.</p>
+
+        <p>Right-click the root node of the group SQL statement and select <span class="uicontrol">Save History</span> to save all the resultsets from one group execution of a set of SQL queries.</p>
+
+
+        <div class="p">There are two modes for the details frame, single-tab and multitab:<br/><a name="asc1229700490436__ul_E1EE48136DF24DFCB82B4B7855B13E54"><!-- --></a><ul id="asc1229700490436__ul_E1EE48136DF24DFCB82B4B7855B13E54">
+                <li id="asc1229700490436__li_DBABFBD8B09F4DB1B30A390A328D387A"><a name="asc1229700490436__li_DBABFBD8B09F4DB1B30A390A328D387A"><!-- --></a> In single-tab mode, all results and messages appear in the same column, with messages and status at the end.</li>
+
+                <li id="asc1229700490436__li_DFB93EECF25A4289BE43C5EA5E371E7F"><a name="asc1229700490436__li_DFB93EECF25A4289BE43C5EA5E371E7F"><!-- --></a> In multitab mode, each result and message is in a separate tab.</li>
+
+            </ul>
+
+        </div>
+
+        
+<div class="tablenoborder"><a name="asc1229700490436__table_DBE77993B7B44238A74113612702AA9F"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700490436__table_DBE77993B7B44238A74113612702AA9F" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Text View context menu options</span></caption>
+                
+                
+                <thead align="left">
+                    <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d9484e200">Option</th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d9484e203">Description</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e200 ">Find/Replace</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e203 ">Search for and replace specific text in the result set. This replaces the data of the displayed result set only. It does not replace the data on the server. <div class="note"><span class="notetitle">Note:</span> Find/Replace is enabled only when results are displayed in text mode.</div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e200 ">Save  Results</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e203 ">
+                            <span class="uicontrol">Save All Results</span> or <span class="uicontrol">Save Current Results</span> to a project. </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e200 ">Export Results</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e203 ">
+                            <span class="uicontrol">Export All Results</span> or <span class="uicontrol">Export Current Results</span> to save
+ the result set to a file outside of any
+project for use with other applications.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e200 ">Print Results</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d9484e203 ">
+                            <span class="uicontrol">Print All Results</span> or  <span class="uicontrol">Print Current Results</span> to send the SQL results to a printer. </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+</div>
+
+        <div class="p">
+            
+<div class="tablenoborder"><a name="asc1229700490436__table_FA3FEA18C04D4873849A4C2FA62FA877"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700490436__table_FA3FEA18C04D4873849A4C2FA62FA877" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 3. SQL Results tabs for multi-tab mode </span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="27.027027027027025%" id="d9484e287">Tab
+				  </th>
+
+                            <th class="cellrowborder" valign="top" width="72.97297297297297%" id="d9484e290">Description
+				  </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="27.027027027027025%" headers="d9484e287 ">Status
+				  </td>
+
+
+                            <td class="cellrowborder" valign="top" width="72.97297297297297%" headers="d9484e290 ">Shows the interim status of running the 
+					 <span>routine 
+					 </span>
+                                <span>procedural 
+					 </span>object or selected text.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="27.027027027027025%" headers="d9484e287 ">Parameters
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="72.97297297297297%" headers="d9484e290 ">For a 
+					 <span>routine 
+					 </span>
+                                <span>procedural 
+					 </span> object, displays the input and output parameter names, datatypes, values, and parameter types (IN, OUT, or IN/OUT).</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="27.027027027027025%" headers="d9484e287 ">Result n 
+				  </td>
+
+
+                            <td class="cellrowborder" valign="top" width="72.97297297297297%" headers="d9484e290 ">Displays results for a SQL query in the 
+					 <span>routine 
+					 </span>
+                                <span>procedural 
+					 </span>object, SQL file, or selected statement.
+				  </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="27.027027027027025%" headers="d9484e287 ">Message n 
+				  </td>
+
+                            <td class="cellrowborder" valign="top" width="72.97297297297297%" headers="d9484e290 ">Contains messages from the database server, such as the
+					 output of a SQL print statement.
+				  </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+            
+<div class="tablenoborder"><a name="asc1229700490436__table_99B35966534B4EC697D8D6DB8B8854E0"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700490436__table_99B35966534B4EC697D8D6DB8B8854E0" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 4. SQL Results buttons</span></caption>
+                    
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="17.152658662092623%" id="d9484e371">Icon 
+					 </th>
+
+                            <th class="cellrowborder" valign="top" width="28.30188679245283%" id="d9484e374">Name 
+					 </th>
+
+                            <th class="cellrowborder" valign="top" width="54.545454545454554%" id="d9484e377">Action 
+					 </th>
+
+                        </tr>
+
+                    </thead>
+
+                    
+                    
+                    
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_F1AC26F1A404474CBD42D4002167364C"><!-- --></a><img id="asc1229700490436__image_F1AC26F1A404474CBD42D4002167364C" src="../image/asc1229700481655.image" height="16" width="16" alt="Terminate Result &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  "/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Terminate Result 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Terminate a long-running instance. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_48F9F30344404B7682DBCE4218A661B0"><!-- --></a><img id="asc1229700490436__image_48F9F30344404B7682DBCE4218A661B0" src="../image/asc1229700483201.image" height="16" width="18" alt="Remove Result &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  "/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Remove Result 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Remove the status, result sets, and messages of a
+						selected SQL 
+						<dfn class="term">result instance</dfn>. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_475BBBD7CC25465B8720C61CAE7E3B03"><!-- --></a><img id="asc1229700490436__image_475BBBD7CC25465B8720C61CAE7E3B03" src="../image/asc1229700484592.image" height="20" width="22" alt="Remove All Finished Results &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  "/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Remove All Visible Results 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Remove all results for completed statements from the SQL
+						Results view. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_7DCDBABF7221483492761EF9B920744F"><!-- --></a><img id="asc1229700490436__image_7DCDBABF7221483492761EF9B920744F" src="../image/asc1229700486014.image" height="18" width="18" alt="Display Result as Text &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  "/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Display the Result in Text Mode 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Toggle between text mode and grid mode. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_2D7854AD39C14853815DD1FC41797C93"><!-- --></a><img id="asc1229700490436__image_2D7854AD39C14853815DD1FC41797C93" src="../image/asc1229700487592.image" height="18" width="18" alt="Display Result in single tab &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;  "/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Display the Result in Single Tab 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Toggle between single-tab and multitab display. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="17.152658662092623%" headers="d9484e371 ">
+                                <a name="asc1229700490436__image_753168BE986B41F0A875FC91253F17A0"><!-- --></a><img id="asc1229700490436__image_753168BE986B41F0A875FC91253F17A0" src="../image/asc1229700488967.image" height="18" width="22" alt="filter results"/>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="28.30188679245283%" headers="d9484e374 ">Filter Results 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="54.545454545454554%" headers="d9484e377 ">Filter the SQL results. </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+        </div>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700480170.html" title="Use the SQL Results view to see the results of an executed SQL query or routine procedural object.">Viewing SQL Results</a></div>
+<div><a href="../../doc/html/asc1229700492108.html" title="You can terminate the execution of a procedural routine object or SQL statement from the SQL Results view. Terminating the execution of an object or SQL statement stops further results from being displayed for the corresponding query.">Terminating Execution in SQL Results View</a></div>
+<div><a href="../../doc/html/asc1229700493499.html" title="In SQL Results view, you can export a single result set or all execution results.">Exporting SQL Execution Results</a></div>
+<div><a href="../../doc/html/asc1229700494983.html" title="After you execute SQL queries or run objects, you can save the results to a project from SQL Results view.">Saving Execution Results to a Project</a></div>
+<div><a href="../../doc/html/asc1229700496577.html" title="Remove query results from the History frame of the SQL Results view.">Removing Results from SQL Results View</a></div>
+<div><a href="../../doc/html/asc1229700497983.html" title="Save the SQL Results view history to a log file that includes the history summary and the result sets.">Saving SQL Results History</a></div>
+<div><a href="../../doc/html/asc1229700499390.html" title="Set filtering options for the SQL Results history to limit the visible results sets.">Filtering SQL Results History</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700412058.html" title="The SQL Results view preferences determine the behavior of the SQL Results view.">SQL Results View Options Preferences</a></div>
+<div><a href="../../doc/html/asc1229700413480.html" title="Set export format options for the XML format, column delimiters, and encoding.">Export Format Options Preferences</a></div>
+<div><a href="../../doc/html/asc1229700414871.html" title="Set history option preferences for the display of history in the SQL Results view.">History Options Preferences</a></div>
+<div><a href="../../doc/html/asc1229700416261.html" title="Select the viewer to display SQL results.">Result Set Viewer Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

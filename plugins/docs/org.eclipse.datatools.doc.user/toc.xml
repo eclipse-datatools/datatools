@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="Data Tools Platform User Documentation">
+   <anchor id="main"/>
+   <anchor id="connectivity"/>
+   <anchor id="sqltools"/>
+</toc>

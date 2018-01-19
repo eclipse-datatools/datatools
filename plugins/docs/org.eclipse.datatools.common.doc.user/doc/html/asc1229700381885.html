@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Connectivity"/>
+<meta name="abstract" content="The DTP Connectivity project provides resources for connecting to data sources."/>
+<meta name="description" content="The DTP Connectivity project provides resources for connecting to data sources."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700378416.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\c_Connectivity.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="concept_88D5C6D5A6964D458EBBB7715774C9DA"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:21]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700381885"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Connectivity</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700381885"><a name="asc1229700381885"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Connectivity</h1>
+
+    
+    
+    <div><p>The DTP Connectivity project provides resources for connecting to data sources.</p>
+
+        <p>The connection-management functionality
+provided in the Connectivity project includes the following components for defining, connecting to, and working with data sources.</p>
+
+        <dl>
+            
+                <dt class="dlterm">Driver Management Framework</dt>
+
+                <dd>The Driver Management Framework (DMF) supplies an Eclipse preference page enabling users to create driver definitions based on supplied templates. Some templates are provided in the base installation, and additional templates can be added by component developers contributing to DMF extension points.
+</dd>
+
+            
+            
+                <dt class="dlterm">Connection Management Framework</dt>
+
+                <dd>The Connection Management Framework (CMF) is the basis for specific connection types, called Connection Profiles (CPs). CPs are added to the CMF through extension points. Connect to data source instances by creating and configuring CPs for each type of data source. In creating a CP, you specify standard data source configuration parameters, such as a connection URL, user name, and password. These parameter values are stored as secure metadata for the created CP, which can be used for connectivity checks 
+(<span class="cmdname">ping</span>), to establish a connection, to automatically connect on CP startup, and to disconnect. CP extensions allow for additional functionality and content to be added to CPs. CMF also provides import and export functions for the reuse of CP instance configurations.  This functionality is available in Data Source   Explorer, making CPs the connection providers through which other DTP tooling can access data source instances.</dd>
+
+            
+            
+                <dt class="dlterm">JDBC connection support</dt>
+
+                <dd>DTP includes a JDBC driver template and CP for enabling database connectivity and serving as an example for further CP development. Database-specific capabilities can be exploited in CP extensions, allowing specialization and the presentation of different database functionality directly in a database CP.</dd>
+
+            
+            
+                <dt class="dlterm">Data Source Explorer</dt>
+
+                <dd>Data Source Explorer is an Eclipse view of CP instances. CP capabilities are exposed and data source content is presented in this view. The type and level of detail for an  instance are constrained by the CP. Data Source Explorer also provides CP instance data to clients, allowing data tooling that requires connection management to interact with Data Source Explorer as a mediator to CP instances.</dd>
+
+            
+            
+                <dt class="dlterm">Open Data Access</dt>
+
+                <dd>
+                    <p>Open Data Access (ODA) is a data-access framework allowing applications to access data from standard and custom data sources. ODA enables data connectivity between data consumers and data source providers through published run-time and design-time interfaces. ODA also includes an ODA driver management package that helps an ODA consumer application manage diverse behavior of individual ODA data drivers.</p>
+
+                    <p>A data driver is created by implementing the run-time interfaces defined by the framework. The run-time interfaces include support for establishing connections, accessing metadata, and executing queries to retrieve data.  A driver can define internal data source connection profiles and can work with CMF CP extensions. Once developed, a driver can be registered through an extension point with individual ODA consumer components to enable data connectivity. ODA also provides design-time interfaces to integrate custom query builders within an application designer tool.</p>
+
+                </dd>
+
+            
+        </dl>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700378416.html" title="The Data Tools Platform (DTP) project presents a cohesive set of frameworks and tools for creating, managing, and using data.">Data Tools Platform</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

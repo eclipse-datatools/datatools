@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Console Editor Application"/>
+<meta name="abstract" content="The Console Editor Application is a system console application to make minor changes to an exported connection profile, such as the file path to the JDBC driver JARs, a connection URL, an ODA data source file path, and so on."/>
+<meta name="description" content="The Console Editor Application is a system console application to make minor changes to an exported connection profile, such as the file path to the JDBC driver JARs, a connection URL, an ODA data source file path, and so on."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700358681.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\r_console_editor_application.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="reference_5235B217E2CB4B81A4C4059787944DB5"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:10]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700370603"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Console Editor Application</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700370603"><a name="asc1229700370603"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Console Editor Application</h1>
+
+    
+    
+    <div><p>The Console Editor Application is a  system console application to make minor changes to an exported connection
+profile, such as the file path to  the JDBC driver JARs, a connection
+URL, an ODA data source file path, and so on. </p>
+
+        <div class="section" id="asc1229700370603__section_1EAA8AAB25164CFBACDBF3BCD5671EAB"><a name="asc1229700370603__section_1EAA8AAB25164CFBACDBF3BCD5671EAB"><!-- --></a>
+            <p>When you copy an exported file to a server platform for deployment, you can use this
+editor tool to quickly adjust the connection profile properties
+without having to open Data Source Explorer in the Eclipse workbench.The updates are saved in a separate file for all
+the connection profiles.
+</p>
+
+            <p>Before you can use the Console Editor Application, you must install <span class="filepath">org.eclipse.datatools.connectivity.console.profile_<var class="varname">&lt;version&gt;</var>.jar</span>  in your Eclipse environment, along with the other
+DTP plug-ins.</p>
+
+            <p> From within your Eclipse home directory, enter the
+command syntax.
+</p>
+
+        </div>
+
+        <div class="section" id="asc1229700370603__refsyn_E983E1F01AE74EEBAAF2772907AD5FFA"><a name="asc1229700370603__refsyn_E983E1F01AE74EEBAAF2772907AD5FFA"><!-- --></a>eclipse[c] -nosplash -application
+org.eclipse.datatools.connectivity.console.profile.StorageFileEditor
+[ -? | -in <var class="varname">&lt;connectionProfileFile&gt;</var> | -out <var class="varname">&lt;saveAsFile&gt;</var>
+| -profile <var class="varname">&lt;profileName&gt;</var> ]
+</div>
+
+        <div class="section" id="asc1229700370603__section_C14A9CD78A7041918BDE8D83F5508ED8"><a name="asc1229700370603__section_C14A9CD78A7041918BDE8D83F5508ED8"><!-- --></a>
+            <p>For Windows platforms, indicate <kbd class="userinput">eclipsec</kbd>. For other platforms, use <kbd class="userinput">eclipse</kbd>.</p>
+
+            
+<div class="tablenoborder"><a name="asc1229700370603__table_32D32C5493CF4E488AA93CF8888F67AF"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700370603__table_32D32C5493CF4E488AA93CF8888F67AF" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Optional command line options</span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="NaN%" id="d4062e94">Option</th>
+
+                            <th class="cellrowborder" valign="top" width="NaN%" id="d4062e97">Description</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e94 ">-?
+</td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e97 ">Displays help.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e94 ">-in <var class="varname">&lt;connectionProfileFile&gt;</var>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e97 ">Enter the name of the connection profile storage file to
+view and/or change.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e94 ">-out <var class="varname">&lt;saveAsFile&gt;</var>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e97 ">Enter the name of the output file to save your changes.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e94 ">-profile <var class="varname">&lt;profileName&gt;</var>
+                            </td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4062e97 ">Enter the name of a connection profile to view and/or change. If you do not specify a connection profile name, the Console Editor steps through all the profiles found in
+the input file.</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+            <div class="note"><span class="notetitle">Note:</span> If you do not specify an argument value, the Console Editor prompts you for
+an input value.
+</div>
+
+        </div>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700358681.html" title="Edit data source/enterprise resource configuration parameters for a specific connection profile.">Editing Connection Profile Properties</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

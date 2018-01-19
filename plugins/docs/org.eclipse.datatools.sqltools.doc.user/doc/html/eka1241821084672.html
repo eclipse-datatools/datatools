@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Generating DDL"/>
+<meta name="abstract" content="Generate data definition language (DDL) for a database, database objects, or both."/>
+<meta name="description" content="Generate data definition language (DDL) for a database, database objects, or both."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="status" content="Authoring:work"/>
+<meta name="source" content="DITA - API"/>
+<meta name="comment:user" content="updated content for dtp 1.7"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="eka1241821084672"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Generating DDL</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="eka1241821084672"><a name="eka1241821084672"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Generating DDL</h1>
+
+    
+    
+    <div><p>Generate data definition language (DDL) for a database, database objects, or both.
+    </p>
+
+        <div class="section">
+            <p>Data definition language (DDL) defines the structure of a database, including rows, columns, tables, indexes, and so on.
+
+You can generate the data definition of a database object using the Generate DDL wizard. The DDL is generated into a .sql file in an Eclipse project, or is executed directly on the specified connection profile. You can use this .sql file to create the same database schema object in a different database, or you can generate the DDL of a complete database to create a new database on a different server. 
+
+You can edit the .sql file if you want to make changes.
+
+
+            </p>
+
+        </div>
+
+        <ol>
+            <li class="stepexpand">
+                <span>In Data Source Explorer, right click a database, table, user-defined function, user-defined datatype, or a database view.</span>
+            </li>
+
+            <li class="stepexpand">
+                <span>Select the model elements to include in the DDL script and click <span class="uicontrol">Next</span>.</span>
+                 
+                    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Model elements for DDL generation</span></caption>
+                            
+                            
+                            <thead align="left">
+                                <tr>
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d11367e73">Model element</th>
+
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d11367e76">Description</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e73 ">Fully Qualified Name</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e76 ">Use fully qualified names, including database, owner, and object.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e73 ">Quoted Identifier</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e76 ">Enable the <span class="cmdname">quoted_identifier</span>
+option that allows the interpretation of
+delimited strings to be changed.
+</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e73 ">DROP Statements</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e76 ">Generate SQL <span class="cmdname">drop</span> statements. DROP statements remove an existing object from the database.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e73 ">CREATE Statements</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e76 ">Generate SQL <span class="cmdname">create</span> statements. </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e73 ">Comments</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e76 ">
+                                    
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+</div>
+
+                
+            </li>
+
+            <li class="stepexpand">
+                <span>Select the model objects to include in the DDL script and click <span class="uicontrol">Next</span>.</span>
+                 
+                    <p>The object type determines which model object options are available.</p>
+
+                    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Model objects for DDL generation</span></caption>
+                            
+                            
+                            <thead align="left">
+                                <tr>
+                                    <th class="cellrowborder" valign="top" width="51.21951219512195%" id="d11367e173">Model object</th>
+
+                                    <th class="cellrowborder" valign="top" width="48.78048780487806%" id="d11367e176">Object type</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Check Constraint </td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Foreign Key Constraint</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Indexes</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Primary Key Constraint</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Tables</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Triggers</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database, table</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Views </td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">database</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Stored Procedures</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">stored procedure</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">Functions</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">user-defined function</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="51.21951219512195%" headers="d11367e173 ">User Defined Types</td>
+
+                                    <td class="cellrowborder" valign="top" width="48.78048780487806%" headers="d11367e176 ">user-defined datatype</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+</div>
+
+                
+            </li>
+
+            <li class="stepexpand">
+                <span>Select the save and run DDL options and click <span class="uicontrol">Next</span>.</span>
+                 
+                    
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" frame="border" border="1" rules="all">
+                            
+                            
+                            <thead align="left">
+                                <tr>
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d11367e301">Option</th>
+
+                                    <th class="cellrowborder" valign="top" width="NaN%" id="d11367e304">Description</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">Folder Name</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">Enter a project folder or click <span class="uicontrol">Browse</span> to select.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">File Name</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">Accept the default or enter file name.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">Preview DDL</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">View a preview of the generated DDL.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">Statement Terminator</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">Accept the default or enter a different one.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">Run DDL on Server</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">Runs the DDL against a  connection profile.</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e301 ">Open DDL File For Editing</td>
+
+                                    <td class="cellrowborder" valign="top" width="NaN%" headers="d11367e304 ">Opens SQL file in SQL Scrapbook.</td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+</div>
+
+                
+            </li>
+
+            <li class="stepexpand">
+                <span>(Optional) If you selected <span class="uicontrol">Run DDL on Server</span>, select an existing connection profile or click <span class="uicontrol">New</span> to create a new one, and then click <span class="uicontrol">Next</span>.</span>
+            </li>
+
+            <li class="stepexpand">
+                <span>Click <span class="uicontrol">Finish</span>.</span>
+            </li>
+
+        </ol>
+
+        <strong class="prereq-title">Next </strong>If you ran the DDL on the server, see SQL Results view for execution details. If you selected <span class="uicontrol">Open DDL File for Editing</span>, the file opens in SQL Scrapbook, where you can view or edit it.
+    </div>
+
+<div/>
+<div/>
+</body>
+</html>

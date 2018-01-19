@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating an Apache Derby Connection Profile"/>
+<meta name="abstract" content="Create a connection profile to connect to Apache Derby."/>
+<meta name="description" content="Create a connection profile to connect to Apache Derby."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700384901.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700387729.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700390760.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_a_connection_profile_for_apache_derby_embedded.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_EE5CD026137F4E3B8E58877391C681C2"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:29]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700389307"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating an Apache Derby Connection Profile</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700389307"><a name="asc1229700389307"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating an Apache Derby Connection Profile</h1>
+
+    
+    
+    <div><p>Create a connection profile to connect to Apache Derby.
+  </p>
+
+        <div class="p" id="asc1229700389307__prereq_EAD4E3F9B06A494EB914523F1EB6F20A"><a name="asc1229700389307__prereq_EAD4E3F9B06A494EB914523F1EB6F20A"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+                <p>Switch to the Database Development perspective. Make sure that the database server is running before attempting to test the connection or to connect to the database server.</p>
+
+            </div>
+
+        <a name="asc1229700389307__steps_DB15D98EE9A6415B9ED80385D55AE555"><!-- --></a><ol id="asc1229700389307__steps_DB15D98EE9A6415B9ED80385D55AE555">
+            <li class="stepexpand" id="asc1229700389307__step_C86EBC680E9D4EF999D22B45B33306D9"><a name="asc1229700389307__step_C86EBC680E9D4EF999D22B45B33306D9"><!-- --></a>
+                    <span>In Data Source Explorer, right-click <span class="uicontrol">Databases</span> and select <span class="uicontrol">New</span>.</span>
+                </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_3A45B0E24F064064B9431CEDFA311F56"><a name="asc1229700389307__step_3A45B0E24F064064B9431CEDFA311F56"><!-- --></a>
+                <span>Enter the letter <kbd class="userinput">d</kbd> to filter the <span class="uicontrol">Connection Profile Types</span> list.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_FEA6B6951637492197105E06180E8961"><a name="asc1229700389307__step_FEA6B6951637492197105E06180E8961"><!-- --></a>
+                <span>Select 
+			 <span class="uicontrol">Derby</span>. 
+		  </span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_F9E8860E73264AF6AD848BB8ABF0C249"><a name="asc1229700389307__step_F9E8860E73264AF6AD848BB8ABF0C249"><!-- --></a>
+                    <span>(Optional) Change the <span class="uicontrol">Name</span> from the system-provided default, and/or enter a <span class="uicontrol">Description</span>, and click 
+			 <span class="uicontrol">Next</span>.</span>
+                     
+                        <p>You must change the name if a connection profile already exists with the same name. </p>
+
+                    
+                </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_5021243906DB4F19A29B0BD26E89C340"><a name="asc1229700389307__step_5021243906DB4F19A29B0BD26E89C340"><!-- --></a>
+                <span>Select a Derby driver.</span>
+                 
+                    <p>The Properties tabs populate with default template information for the selected driver. </p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_653C7F72A3D646B09768FDD9658067F8"><a name="asc1229700389307__step_653C7F72A3D646B09768FDD9658067F8"><!-- --></a>
+                <span>(Optional) Add or modify the Properties information in the <span class="uicontrol">Connection</span> or <span class="uicontrol">Other Properties</span> tabs.</span>
+                <a name="asc1229700389307__substeps_F920DED692F44D5697A808C47242F1B2"><!-- --></a><ol type="a" id="asc1229700389307__substeps_F920DED692F44D5697A808C47242F1B2">
+                    <li class="substepexpand" id="asc1229700389307__substep_83FDD6C5650A420BB4C42CBF5BC51A38"><a name="asc1229700389307__substep_83FDD6C5650A420BB4C42CBF5BC51A38"><!-- --></a>
+                        <span>Click <span class="uicontrol">Create Database (If Required)</span> to create a database, if the one you indicated in the <span class="uicontrol">Database Location</span> does not exist.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700389307__substep_F266206192BD4EFABD987D9DB86F7408"><a name="asc1229700389307__substep_F266206192BD4EFABD987D9DB86F7408"><!-- --></a>
+                        <span>Click <span class="uicontrol">Upgrade Database to Current Version</span> if you are using an older version of a Derby database and want to use the version that matches the driver version. </span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700389307__substep_CD8E7E4F45984226977F1B5396EE7D21"><a name="asc1229700389307__substep_CD8E7E4F45984226977F1B5396EE7D21"><!-- --></a>
+                        <span>Click  <span class="uicontrol">Save Password</span> to save the password in the workspace metadata for the database server login. </span>
+                         
+                            <p>Unsaved passwords persist only for the current session.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700389307__substep_CD56D35FC37A4F5A98637CA58B2BE8BF"><a name="asc1229700389307__substep_CD56D35FC37A4F5A98637CA58B2BE8BF"><!-- --></a>
+                        <span>Select <span class="uicontrol">Connect When the Wizard Completes</span> to connect to the database server once you finish defining this connection profile. </span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700389307__substep_1D910871244043CE9BA37C701B39AB8C"><a name="asc1229700389307__substep_1D910871244043CE9BA37C701B39AB8C"><!-- --></a>
+                        <span>Select <span class="uicontrol">Connect Every Time the Workbench Is Started</span> to automatically connect to the database server using this connection profile when you launch Eclipse.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700389307__substep_CA4CD9DC32CE409FB98C0C7D3128CDBC"><a name="asc1229700389307__substep_CA4CD9DC32CE409FB98C0C7D3128CDBC"><!-- --></a>
+                        <span>Click 
+			 <span class="uicontrol">Test Connection</span> to ping the
+			 server and to verify that the connection profile is working.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_41F2703424A7477DAC7723B4A8B043E8"><a name="asc1229700389307__step_41F2703424A7477DAC7723B4A8B043E8"><!-- --></a>
+                    <span>(Optional) Click <span class="uicontrol">Next</span> to view Summary information.</span>
+                </li>
+
+            <li class="stepexpand" id="asc1229700389307__step_691EC0CBA28A4E46BB81665287CE4639"><a name="asc1229700389307__step_691EC0CBA28A4E46BB81665287CE4639"><!-- --></a>
+                    <span>Click <span class="uicontrol">Finish</span> to create the connection profile.</span>
+                </li>
+
+        </ol>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700384901.html" title="Use the tutorial to get started using the Data Tools Platform with Apache Derby.">Data Tools Platform Tutorial Overview</a></div>
+<div class="previouslink"><strong>Previous topic:</strong> <a href="../../doc/html/asc1229700387729.html" title="Define a driver to connect to Apache Derby.">Creating a Driver Definition for Apache Derby</a></div>
+<div class="nextlink"><strong>Next topic:</strong> <a href="../../doc/html/asc1229700390760.html" title="Connect to an Apache Derby database from the Data Source Explorer.">Connecting to Apache Derby</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

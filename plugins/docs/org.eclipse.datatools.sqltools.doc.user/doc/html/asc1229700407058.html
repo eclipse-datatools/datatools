@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="SQL Files/Scrapbooks Preferences"/>
+<meta name="abstract" content="SQL files and scrapbooks preferences define the behavior of SQL files in SQL File Editor and SQL Scrapbook."/>
+<meta name="description" content="SQL files and scrapbooks preferences define the behavior of SQL files in SQL File Editor and SQL Scrapbook."/>
+<meta name="DC.subject" content="sybase_workspace, database_development, dtp"/>
+<meta name="keywords" content="sybase_workspace, database_development, dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700404058.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700405683.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700408496.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700409121.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700452591.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700456982.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700458544.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700459919.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700466482.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700453997.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700455575.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\workspace\ws\en\source\r_sql_files_preferences.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="reference_C04BDC1571CB45B28C28F68171D6301E"/>
+<meta name="status" content="Authoring:work"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:user" content="incorp doc drop 2 comments"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700407058"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">SQL Files/Scrapbooks Preferences</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700407058"><a name="asc1229700407058"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">SQL Files/Scrapbooks Preferences</h1>
+
+    
+    
+    <div><p>SQL files and scrapbooks preferences define the behavior of SQL files
+	 in SQL File Editor and SQL Scrapbook.</p>
+
+        
+<div class="tablenoborder"><a name="asc1229700407058__table_6B90BADDBE844C719C0ED416F533EBE9"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700407058__table_6B90BADDBE844C719C0ED416F533EBE9" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. SQL Files/Scrapbooks preferences</span></caption>
+                
+                
+                <thead align="left">
+                    <tr>
+                        <th class="cellrowborder" valign="top" id="d1281e59">Field 
+				  </th>
+
+                        <th class="cellrowborder" valign="top" id="d1281e62">Description 
+				  </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d1281e59 ">Default Connection Information for New SQL Files/Scrapbooks</td>
+
+                        <td class="cellrowborder" valign="top" headers="d1281e62 ">Select a connection type, connection profile name, and database to use by default in new SQL File Editor or SQL Scrapbook sessions.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d1281e59 ">Persist the Target Connection Information When Executing Multiple SQL Files</td>
+
+                        <td class="cellrowborder" valign="top" headers="d1281e62 ">Use the same target connection information for multiple files.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d1281e59 ">Connection Commit Mode</td>
+
+                        <td class="cellrowborder" valign="top" headers="d1281e62 ">
+                            <br/><ul>
+                                <li>Select <span class="uicontrol">Auto</span> (default) to automatically commit your changes to the database. Auto treats every SQL statement as a complete transaction. You cannot roll back changes. Auto commit mode works well for query-only applications.</li>
+
+                                <li>Select <span class="uicontrol">Manual</span> to commit database changes manually. Statements executed on the same connection from the latest commit or rollback up to this point are treated as one transaction. You can roll back (cancel) all changes made during the transaction. <p>You set the maximum number of connections in the Database Development Miscellaneous preferences page. Use Manual commit mode for applications that require data source updates. </p>
+
+                                </li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+</div>
+
+    </div>
+
+<div><div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700453997.html" title="Use the SQL File Editor to create and edit SQL statements.">SQL File Editor</a></div>
+<div><a href="../../doc/html/asc1229700455575.html" title="SQL Scrapbook enables you to quickly create and execute SQL commands and queries, as well as procedural objects without creating a SQL file.">SQL Scrapbook</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700452591.html" title="Use Database Development tools to create SQL files.">Creating a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700456982.html" title="Edit the SQL statements in a SQL file.">Editing a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700458544.html" title="Open a SQL file for viewing or editing in the SQL File Editor.">Opening a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700459919.html" title="Save one or more SQL files to the current project, or save a SQL file to a different project or to a different file name.">Saving a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700466482.html" title="You can execute a SQL file from the SQL File Editor or from WorkSpace Navigator.">Executing a SQL File</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700404058.html" title="SQL Editor preferences define the behavior of the SQL File Editor.">SQL Editor Preferences</a></div>
+<div><a href="../../doc/html/asc1229700405683.html" title="SQL Editor Code Assist preferences define the behavior of the Code Assist feature in SQL File Editor.">Code Assist Preferences</a></div>
+<div><a href="../../doc/html/asc1229700408496.html" title="Indicate your preferences for syntax coloring and text style for SQL source code in SQL Editor or SQL Scrapbook.">Syntax Coloring Preferences</a></div>
+<div><a href="../../doc/html/asc1229700409121.html" title="You can create new SQL templates and edit existing ones.">Templates Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

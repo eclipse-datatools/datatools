@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+<toc label="org.eclipse.datatools.sqltools.doc.user"
+     link_to="../org.eclipse.datatools.doc.user/toc.xml#sqltools"
+     topic="doc/html/asc1229700397808.html">
+   <topic label="Setting SQL Development Preferences"
+          href="doc/html/asc1229700397808.html">
+      <topic label="Execution Plan View Options Preferences"
+             href="doc/html/asc1229700399339.html"/>
+      <topic label="Database Development General Preferences"
+             href="doc/html/asc1229700400855.html"/>
+      <topic label="SQL Editor Preferences" href="doc/html/asc1229700404058.html">
+         <topic label="Code Assist Preferences" href="doc/html/asc1229700405683.html"/>
+         <topic label="SQL Files/Scrapbooks Preferences" href="doc/html/asc1229700407058.html"/>
+         <topic label="Syntax Coloring Preferences" href="doc/html/asc1229700408496.html"/>
+         <topic label="Templates Preferences" href="doc/html/asc1229700409121.html"/>
+      </topic>
+      <topic label="SQL Query Builder Preferences" href="doc/html/asc1229700410527.html"/>
+      <topic label="SQL Results View Options Preferences"
+             href="doc/html/asc1229700412058.html">
+         <topic label="Export Format Options Preferences" href="doc/html/asc1229700413480.html"/>
+         <topic label="History Options Preferences" href="doc/html/asc1229700414871.html"/>
+         <topic label="Result Set Viewer Preferences" href="doc/html/asc1229700416261.html"/>
+      </topic>
+   </topic>
+   <topic label="SQL Query Builder" href="doc/html/asc1229700427574.html">
+      <topic label="Creating a SELECT Statement" href="doc/html/asc1229700429574.html">
+         <topic label="Creating a FULLSELECT (UNION) Statement"
+                href="doc/html/asc1229700431043.html"/>
+         <topic label="Creating a WITH Statement" href="doc/html/asc1229700432668.html"/>
+         <topic label="Creating Joins" href="doc/html/asc1229700434215.html"/>
+      </topic>
+      <topic label="Creating an INSERT Statement From a Values Set"
+             href="doc/html/asc1229700435668.html"/>
+      <topic label="Creating an INSERT Statement From a Subquery"
+             href="doc/html/asc1229700437325.html"/>
+      <topic label="Creating an UPDATE Statement" href="doc/html/asc1229700441997.html"/>
+      <topic label="Creating a DELETE Statement" href="doc/html/asc1229700443669.html"/>
+      <topic label="Building Expressions" href="doc/html/asc1229700445247.html">
+         <topic label="Expression Types" href="doc/html/asc1229700446684.html"/>
+      </topic>
+      <topic label="Editing a SQL Statement" href="doc/html/asc1229700448153.html"/>
+      <topic label="Running the SQL Statement Code" href="doc/html/asc1229700449560.html"/>
+   </topic>
+   <topic label="Creating a SQL File" href="doc/html/asc1229700452591.html">
+      <topic label="SQL File Editor" href="doc/html/asc1229700453997.html"/>
+      <topic label="SQL Scrapbook" href="doc/html/asc1229700455575.html"/>
+      <topic label="Editing a SQL File" href="doc/html/asc1229700456982.html"/>
+      <topic label="Opening a SQL File" href="doc/html/asc1229700458544.html"/>
+      <topic label="Saving a SQL File" href="doc/html/asc1229700459919.html"/>
+   </topic>
+   <topic label="Executing a SQL Statement" href="doc/html/asc1229700461576.html"/>
+   <topic label="Running an Ad Hoc SQL Statement" href="doc/html/asc1229700463513.html"/>
+   <topic label="Executing a SQL File" href="doc/html/asc1229700466482.html"/>
+   <topic label="Running a Routine Object" href="doc/html/asc1229700467920.html">
+      <topic label="Creating a Launch Configuration for Routine Objects"
+             href="doc/html/asc1229700470998.html"/>
+      <topic label="Routine Objects" href="doc/html/asc1229700478717.html"/>
+   </topic>
+   <topic label="Generating DDL" href="doc/html/eka1241821084672.html"/>
+   <topic label="Viewing SQL Results" href="doc/html/asc1229700480170.html">
+      <topic label="SQL Results View" href="doc/html/asc1229700490436.html"/>
+      <topic label="Terminating Execution in SQL Results View"
+             href="doc/html/asc1229700492108.html"/>
+      <topic label="Exporting SQL Execution Results" href="doc/html/asc1229700493499.html"/>
+      <topic label="Saving Execution Results to a Project"
+             href="doc/html/asc1229700494983.html"/>
+      <topic label="Removing Results from SQL Results View"
+             href="doc/html/asc1229700496577.html"/>
+      <topic label="Saving SQL Results History" href="doc/html/asc1229700497983.html"/>
+      <topic label="Filtering SQL Results History" href="doc/html/asc1229700499390.html"/>
+   </topic>
+</toc>

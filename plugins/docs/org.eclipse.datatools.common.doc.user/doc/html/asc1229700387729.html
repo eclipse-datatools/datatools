@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating a Driver Definition for Apache Derby"/>
+<meta name="abstract" content="Define a driver to connect to Apache Derby."/>
+<meta name="description" content="Define a driver to connect to Apache Derby."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700384901.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700386276.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700389307.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_a_driver_definition_for_apache_derby.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_0C166FF415C8467EACFC0E03DBB5F56C"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:27]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700387729"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating a Driver Definition for Apache Derby</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700387729"><a name="asc1229700387729"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating a Driver Definition for Apache Derby</h1>
+
+    
+    
+    <div><p>Define a driver to connect to Apache Derby.</p>
+
+        <div class="p" id="asc1229700387729__prereq_A8DEF4576E474154A4345E7A0A747C41"><a name="asc1229700387729__prereq_A8DEF4576E474154A4345E7A0A747C41"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <p>Install appropriate versions of Eclipse, Data Tools Platform, EMG, GEF, and Apache Derby. If necessary, switch to the Database Development perspective.</p>
+
+        </div>
+
+        <div class="section" id="asc1229700387729__context_CD09EC445F5D42C5963F64ABC18FCF6B"><a name="asc1229700387729__context_CD09EC445F5D42C5963F64ABC18FCF6B"><!-- --></a>
+            <p>You can also create the driver definition when creating the connection profile.</p>
+
+        </div>
+
+        <a name="asc1229700387729__steps_2B6584201EFC4704B5136EDD55860D85"><!-- --></a><ol id="asc1229700387729__steps_2B6584201EFC4704B5136EDD55860D85">
+            <li class="stepexpand" id="asc1229700387729__step_48DBFF2880F84FE9AE05C0FAE442B4CA"><a name="asc1229700387729__step_48DBFF2880F84FE9AE05C0FAE442B4CA"><!-- --></a>
+                    <span>Select <span class="menucascade">
+                            <span class="uicontrol">Window</span>
+                             &gt; <span class="uicontrol">Preferences</span>
+                        </span> from the main menu bar.</span>
+                </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_35D104E907874CEF918EE23A9AF1DFA5"><a name="asc1229700387729__step_35D104E907874CEF918EE23A9AF1DFA5"><!-- --></a>
+                    <span>Expand <span class="menucascade">
+                            <span class="uicontrol">Data Management</span>
+                             &gt; <span class="uicontrol">Connectivity</span>
+                        </span> and select <span class="uicontrol">Driver Definitions</span>.</span>
+                </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_A2DC736BBBD54F9BBA75C3ED17584FE9"><a name="asc1229700387729__step_A2DC736BBBD54F9BBA75C3ED17584FE9"><!-- --></a>
+                    <span>Click <span class="uicontrol">Add</span>.</span>
+                </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_0B6287BDEBBD4ACCB5A4163D1878E798"><a name="asc1229700387729__step_0B6287BDEBBD4ACCB5A4163D1878E798"><!-- --></a>
+                <span>In the <span class="uicontrol">Name/Type</span> tab, indicate the version of Derby on which you want to create the driver definition.</span>
+                <a name="asc1229700387729__substeps_A6C8ABA41B1A451E8D191E7EDB63E617"><!-- --></a><ol type="a" id="asc1229700387729__substeps_A6C8ABA41B1A451E8D191E7EDB63E617">
+                    <li id="asc1229700387729__substep_450463DB2ECC4AEC848F9D2C9B58E9F4"><a name="asc1229700387729__substep_450463DB2ECC4AEC848F9D2C9B58E9F4"><!-- --></a>
+                        <span>Select <span class="uicontrol">Derby</span> for the <span class="uicontrol">Vendor Filter</span> to narrow the display to only Derby driver definitions</span>
+                    </li>
+
+                    <li id="asc1229700387729__substep_01D08FCA9E494A84AE493233FB79C2EE"><a name="asc1229700387729__substep_01D08FCA9E494A84AE493233FB79C2EE"><!-- --></a>
+                        <span>Select <span class="uicontrol">Derby Embedded JDBC Driver</span> for the version of Derby you have installed.</span>
+                    </li>
+
+                    <li id="asc1229700387729__substep_29039015056D4AC98B5257D2A705ADE3"><a name="asc1229700387729__substep_29039015056D4AC98B5257D2A705ADE3"><!-- --></a>
+                        <span>(Optional) Modify the <span class="uicontrol">Driver Name</span> if a driver definition with this name already exists.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_22813CC714D541C58301D9B12E423CDC"><a name="asc1229700387729__step_22813CC714D541C58301D9B12E423CDC"><!-- --></a>
+                <span>In the <span class="uicontrol">JAR List</span> tab, highlight the default <span class="filepath">derby.jar</span> file and click <span class="uicontrol">Edit JAR/Zip</span> to indicate the fully qualified path of the Derby JAR file.</span>
+                <a name="asc1229700387729__substeps_67BB2CE4625F401C9F52E16130EC399B"><!-- --></a><ol type="a" id="asc1229700387729__substeps_67BB2CE4625F401C9F52E16130EC399B">
+                    <li id="asc1229700387729__substep_ECB521F50EFC48D789949BFD759518BE"><a name="asc1229700387729__substep_ECB521F50EFC48D789949BFD759518BE"><!-- --></a>
+                        <span>Browse to the location of the ZIP file.</span>
+                    </li>
+
+                    <li id="asc1229700387729__substep_D879F16A284949FFA31B8C0B7A7186D3"><a name="asc1229700387729__substep_D879F16A284949FFA31B8C0B7A7186D3"><!-- --></a>
+                        <span>Click <span class="uicontrol">Open</span>.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_5485589A9DA74AD08702ADD7E7E524F8"><a name="asc1229700387729__step_5485589A9DA74AD08702ADD7E7E524F8"><!-- --></a>
+                    <span>(Optional) In the <span class="uicontrol">Properties</span> tab, modify the default properties for the driver definition template.</span>
+                     
+                        <div class="note"><span class="notetitle">Note:</span> Options in the <span class="uicontrol">Properties</span> tab vary based on database server type. You can edit or enter a property in the <span class="uicontrol">Value</span> box.</div>
+
+                    
+                </li>
+
+            <li class="stepexpand" id="asc1229700387729__step_AD3DFF4E30BA429D989EB40C7007BA1E"><a name="asc1229700387729__step_AD3DFF4E30BA429D989EB40C7007BA1E"><!-- --></a>
+                    <span>Click <span class="uicontrol">OK</span>.</span>
+                </li>
+
+        </ol>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700384901.html" title="Use the tutorial to get started using the Data Tools Platform with Apache Derby.">Data Tools Platform Tutorial Overview</a></div>
+<div class="previouslink"><strong>Previous topic:</strong> <a href="../../doc/html/asc1229700386276.html" title="To use the tutorial, you must first install Eclipse, Data Tools Platform, and Apache Derby.">Apache Derby Tutorial Prerequisites</a></div>
+<div class="nextlink"><strong>Next topic:</strong> <a href="../../doc/html/asc1229700389307.html" title="Create a connection profile to connect to Apache Derby.">Creating an Apache Derby Connection Profile</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

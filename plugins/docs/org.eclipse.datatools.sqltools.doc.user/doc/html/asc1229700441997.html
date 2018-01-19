@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating an UPDATE Statement"/>
+<meta name="abstract" content="Use SQL Query Builder to create an UPDATE statement to update data in a table. You can explicitly set the values or derive them from the results of a build expression."/>
+<meta name="description" content="Use SQL Query Builder to create an UPDATE statement to update data in a table. You can explicitly set the values or derive them from the results of a build expression."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700427574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700429574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700435668.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700437325.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700443669.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700445247.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700448153.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700449560.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700427574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700410527.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_an_update_statement.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_18CE44D08C1049CBB72B9FC75B54C4B6"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:21]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700441997"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating an UPDATE Statement</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700441997"><a name="asc1229700441997"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating an UPDATE Statement</h1>
+
+    
+    
+    <div><p>Use SQL Query Builder to create an UPDATE statement to update data in a table. You can explicitly set the values or derive them from the results of a build expression.</p>
+
+        <div class="p" id="asc1229700441997__prereq_FA2C198A7F25463FAC6AA3D8067C7711"><a name="asc1229700441997__prereq_FA2C198A7F25463FAC6AA3D8067C7711"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <p>Connect to the data source through a connection profile.</p>
+
+        </div>
+
+        <div class="section" id="asc1229700441997__context_98BF9BA7870D40588C6597F914617008"><a name="asc1229700441997__context_98BF9BA7870D40588C6597F914617008"><!-- --></a>
+            <p>By specifying one or more conditions, you can indicate which rows in the database table to update. If you do not specify any conditions, all rows of the target table are updated.</p>
+
+        </div>
+
+        <a name="asc1229700441997__steps_174858097EC04427BB61B72F32278341"><!-- --></a><ol id="asc1229700441997__steps_174858097EC04427BB61B72F32278341">
+            <li class="stepexpand" id="asc1229700441997__step_B98EAF61F1E64375ACFB479A5A12DFAF"><a name="asc1229700441997__step_B98EAF61F1E64375ACFB479A5A12DFAF"><!-- --></a>
+                <span>Open a new or an existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_2D7347D898914DD1AF2CF2517941EBEC"><a name="asc1229700441997__step_2D7347D898914DD1AF2CF2517941EBEC"><!-- --></a>
+                <span>In an appropriate place in the editor window, right-click and select <span class="uicontrol">Edit in SQL Query Builder</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_AA48C6F1CF8442C7A4F496967D3452BA"><a name="asc1229700441997__step_AA48C6F1CF8442C7A4F496967D3452BA"><!-- --></a>
+                <span>In the Outline pane, right-click <span class="uicontrol">SELECT Statement</span> and select <span class="uicontrol">Change Statement Type</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_418F51C6ED8B49F8866B7E732B640910"><a name="asc1229700441997__step_418F51C6ED8B49F8866B7E732B640910"><!-- --></a>
+                <span>Select <span class="uicontrol">UPDATE</span> and click <span class="uicontrol">OK</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_DF356069364F49F1826F14F81A88DDCA"><a name="asc1229700441997__step_DF356069364F49F1826F14F81A88DDCA"><!-- --></a>
+                <span>Select the table by right-clicking in the Tables pane and selecting <span class="uicontrol">Add Table</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_9F76C501F63E4732985566B53F485B0A"><a name="asc1229700441997__step_9F76C501F63E4732985566B53F485B0A"><!-- --></a>
+                <span>Specify the columns to use in the statement.</span>
+                <a name="asc1229700441997__d19e114"><!-- --></a>
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="choicetableborder" id="asc1229700441997__d19e114">
+<thead><tr><th valign="bottom" align="left" id="d5397e115-option">Option</th>
+<th valign="bottom" align="left" id="d5397e115-desc">Description</th></tr></thead>
+<tbody>
+                    
+                    <tr>
+                        <td valign="top" headers="d5397e115-option" id="d5397e128"><strong>Specify all columns</strong></td>
+
+                        <td valign="top" headers="d5397e115-desc d5397e128">Right-click the table in the Tables pane, and select <span class="uicontrol">Select All Columns</span>.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" headers="d5397e115-option" id="d5397e140"><strong>Specify specific columns</strong></td>
+
+                        <td valign="top" headers="d5397e115-desc d5397e140">Use either method:<br/><a name="asc1229700441997__d19e144"><!-- --></a><ul id="asc1229700441997__d19e144">
+                                <li id="asc1229700441997__d19e146"><a name="asc1229700441997__d19e146"><!-- --></a>In the Tables pane, select the check box next to the column name.</li>
+
+                                <li id="asc1229700441997__d19e149"><a name="asc1229700441997__d19e149"><!-- --></a>In the <span class="uicontrol">Columns</span> tab, select the specific column from the drop-down menu.</li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                </tbody></table>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_C506B0DFE10243B08E7A36426D331029"><a name="asc1229700441997__step_C506B0DFE10243B08E7A36426D331029"><!-- --></a>
+                <span>In the <span class="uicontrol">Set</span> tab, indicate the columns to update and the update value.</span>
+                <a name="asc1229700441997__substeps_4D131A03ECFD4DBD8457CAB41A3A30AA"><!-- --></a><ol type="a" id="asc1229700441997__substeps_4D131A03ECFD4DBD8457CAB41A3A30AA">
+                    <li class="substepexpand" id="asc1229700441997__substep_BE7D79732C0742188BF8F4ED4B254A71"><a name="asc1229700441997__substep_BE7D79732C0742188BF8F4ED4B254A71"><!-- --></a>
+
+                        <span>Select an individual column by clicking a column and then <a name="asc1229700441997__image_EB899BC7F5A44CEBA3D3950B0EA563E9"><!-- --></a><img id="asc1229700441997__image_EB899BC7F5A44CEBA3D3950B0EA563E9" src="../image/asc1229700438825.image" alt="Add individual column to statement button"/>
+
+                            <span class="uicontrol">Add Individual Column to Statement</span> to select it for update, or select multiple columns by highlighting two or more columns and clicking <a name="asc1229700441997__image_0595048BDD58485FA761F85D7BAF28BE"><!-- --></a><img id="asc1229700441997__image_0595048BDD58485FA761F85D7BAF28BE" src="../image/asc1229700440278.image" alt="Add columns to statement as a group button"/>
+                            <span class="uicontrol">Add Columns to Statement As a Group</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700441997__substep_9D5E8617F928459FBEEBF90D0F290EAB"><a name="asc1229700441997__substep_9D5E8617F928459FBEEBF90D0F290EAB"><!-- --></a>
+                        <span>In the <span class="uicontrol">Expression</span> box, enter an expression or value.</span>
+                         
+                            <p>Enter a value directly in the box or select <span class="uicontrol">Specify Value</span> to enter one. Select <span class="uicontrol">Edit Expression</span> or <span class="uicontrol">Replace Expression</span> to build an expression using Expression Builder. Leave as <span class="uicontrol">DEFAULT</span> if you do not wish to change the value during update.</p>
+
+                        
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_46AA0B9766C8454AB05C53A6BE9BEFE6"><a name="asc1229700441997__step_46AA0B9766C8454AB05C53A6BE9BEFE6"><!-- --></a>
+                <span>(Optional) In the <span class="uicontrol">Where</span> tab, indicate a condition that targets specific rows for update.</span>
+                <a name="asc1229700441997__substeps_43703903AEB4463E851A98A2B61C7727"><!-- --></a><ol type="a" id="asc1229700441997__substeps_43703903AEB4463E851A98A2B61C7727">
+                    <li class="substepexpand" id="asc1229700441997__substep_EE50F4D270B445328B1877F5DEDB5D25"><a name="asc1229700441997__substep_EE50F4D270B445328B1877F5DEDB5D25"><!-- --></a>
+                        <span>Select a <span class="uicontrol">Column</span>.</span>
+                         
+                            <p>Alternately, select define a condition using the Expression Builder wizard.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700441997__substep_1ABCE7E9DB3C47A1893C997A63171DDF"><a name="asc1229700441997__substep_1ABCE7E9DB3C47A1893C997A63171DDF"><!-- --></a>
+                        <span>Select an <span class="uicontrol">Operator</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700441997__substep_403A08B35FBA4CBFB62918B01475C04C"><a name="asc1229700441997__substep_403A08B35FBA4CBFB62918B01475C04C"><!-- --></a>
+                        <span>Enter a specific <span class="uicontrol">Value</span>, select a column from the drop-down list, or build an expression.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700441997__substep_CE14F0474F0441F9A1F4004F2963913C"><a name="asc1229700441997__substep_CE14F0474F0441F9A1F4004F2963913C"><!-- --></a>
+                        <span>(Optional) Select <span class="uicontrol">AND</span> or <span class="uicontrol">OR</span> to specify another condition.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_ABB1EFBCFF994D05B4859411386F74E6"><a name="asc1229700441997__step_ABB1EFBCFF994D05B4859411386F74E6"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700441997__step_123096F96A274C9A8118FC59D2563071"><a name="asc1229700441997__step_123096F96A274C9A8118FC59D2563071"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700427574.html" title="Create, edit, or run SQL statements using the SQL Query Builder graphical interface, which provides access to your database schema and objects so that you can quickly create or edit SQL statements without actually typing any SQL code. However, you also have the flexibility to add or modify the SQL code in the editor window.">SQL Query Builder</a></div>
+</div>
+<div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700427574.html" title="Create, edit, or run SQL statements using the SQL Query Builder graphical interface, which provides access to your database schema and objects so that you can quickly create or edit SQL statements without actually typing any SQL code. However, you also have the flexibility to add or modify the SQL code in the editor window.">SQL Query Builder</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700429574.html" title="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.">Creating a SELECT Statement</a></div>
+<div><a href="../../doc/html/asc1229700435668.html" title="Use SQL Query Builder to create an INSERT statement to insert new rows at the end of a table with the values you indicate for the specified columns.">Creating an INSERT Statement From a Values Set</a></div>
+<div><a href="../../doc/html/asc1229700437325.html" title="Use SQL Query Builder to create an INSERT statement from a subquery.">Creating an INSERT Statement From a Subquery</a></div>
+<div><a href="../../doc/html/asc1229700443669.html" title="Use SQL Query Builder to create a DELETE statement to remove data from a specified table. By specifying one or more conditions, you can indicate which rows in the database table to delete. If you do not specify any conditions, all rows in the target table are deleted.">Creating a DELETE Statement</a></div>
+<div><a href="../../doc/html/asc1229700445247.html" title="Use the Expression Builder in SQL Query Builder to build simple or complex expressions, or subqueries when creating SELECT, UPDATE, INSERT, and DELETE statements.">Building Expressions</a></div>
+<div><a href="../../doc/html/asc1229700448153.html" title="Use SQL Query Builder to edit an individual SQL statement. You can only edit one SQL statement at a time.">Editing a SQL Statement</a></div>
+<div><a href="../../doc/html/asc1229700449560.html" title="Use SQL Query Builder to run an individual SQL statement and view its execution results.">Running the SQL Statement Code</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700410527.html" title="Indicate the SQL Query Builder preferences.">SQL Query Builder Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

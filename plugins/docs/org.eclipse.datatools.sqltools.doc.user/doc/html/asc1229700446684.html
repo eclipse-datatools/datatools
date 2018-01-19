@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Expression Types"/>
+<meta name="abstract" content="In SQL Query Builder, you can use build expressions of these types when creating SQL statements."/>
+<meta name="description" content="In SQL Query Builder, you can use build expressions of these types when creating SQL statements."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700445247.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\r_expression_types.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="reference_C6FE5F3CC4104EBE8A204B8C1B1023F4"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:26]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700446684"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Expression Types</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700446684"><a name="asc1229700446684"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Expression Types</h1>
+
+    
+    
+    <div><p>In SQL Query Builder, you can use build expressions of these types when creating SQL statements.</p>
+
+        
+<div class="tablenoborder"><a name="asc1229700446684__table_69C4CDB7D2A24AE79A0F486B852187ED"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700446684__table_69C4CDB7D2A24AE79A0F486B852187ED" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Expression types</span></caption>
+                
+                
+                <thead align="left">
+                    <tr>
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d6165e53">Type</th>
+
+                        <th class="cellrowborder" valign="top" width="NaN%" id="d6165e56">Description</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">Function</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 ">A function returns a value.
+Functions types include column functions, scalar
+functions, row functions, or table functions.
+<div class="p">
+                                <br/><a name="asc1229700446684__ul_A210AA5FC3124C1CA7416EA2D7C84792"><!-- --></a><ul id="asc1229700446684__ul_A210AA5FC3124C1CA7416EA2D7C84792">
+                                    <li id="asc1229700446684__li_39DA1F07171F4C778FBD97E160674DBD"><a name="asc1229700446684__li_39DA1F07171F4C778FBD97E160674DBD"><!-- --></a>The argument of a column function is a collection of like
+values (a column). This function can return a NULL value.</li>
+
+                                    <li id="asc1229700446684__li_68A5B3C73E304192A1A1D24415AE288E"><a name="asc1229700446684__li_68A5B3C73E304192A1A1D24415AE288E"><!-- --></a>The argument(s) of a scalar function are individual scalar
+values, which can be of different types. This function can return a NULL value.</li>
+
+                                    <li id="asc1229700446684__li_C44E4D6AC0FC4793B841A781F3826788"><a name="asc1229700446684__li_C44E4D6AC0FC4793B841A781F3826788"><!-- --></a>The argument of a row function is a structured type. The
+function returns a row of built-in data types and can only be
+specified as a transform function for a structured type.</li>
+
+                                    <li id="asc1229700446684__li_8CB2ECB8BD954F9B9B5324E87B7AEDDC"><a name="asc1229700446684__li_8CB2ECB8BD954F9B9B5324E87B7AEDDC"><!-- --></a>The argument(s) of a table function are individual scalar
+values, which can be of different types. The function returns a
+table, and can be specified only within the FROM clause of a SELECT
+statement.</li>
+
+                                </ul>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">CASE</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 "> CASE expressions allow an expression to be selected based on the evaluation of one or more conditions. A CASE expression contains one or more <span class="cmdname">when</span> clauses of either Search or Simple type. <br/><a name="asc1229700446684__ul_66A1FB7E0B2D46488A2243194D44447B"><!-- --></a><ul id="asc1229700446684__ul_66A1FB7E0B2D46488A2243194D44447B">
+                                <li id="asc1229700446684__li_2B3DF0C208D341FC96554E967DFF49F3"><a name="asc1229700446684__li_2B3DF0C208D341FC96554E967DFF49F3"><!-- --></a>A Search CASE expression contains a condition that is evaluated, such as i&lt;8.</li>
+
+                                <li id="asc1229700446684__li_CB2FA9E9C1CE43839CD33E7AA921108B"><a name="asc1229700446684__li_CB2FA9E9C1CE43839CD33E7AA921108B"><!-- --></a>A Simple CASE expression determines if the  <span class="cmdname">when</span> clause  evaluates to true; otherwise, the <span class="cmdname">else</span> clause determines the value of the case-expression. </li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">CAST</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 ">A CAST function converts instances of a datatype to
+instances of a different datatype.
+</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">Constant</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 "> A constant specifies a value: a string or a number. <br/><a name="asc1229700446684__ul_BEE18C9F06B8406CAB9585AF99A1E6B1"><!-- --></a><ul id="asc1229700446684__ul_BEE18C9F06B8406CAB9585AF99A1E6B1">
+                                <li id="asc1229700446684__li_BFA6B2D655C248EFB6E9D63CA7A74AB1"><a name="asc1229700446684__li_BFA6B2D655C248EFB6E9D63CA7A74AB1"><!-- --></a>Numeric constants can be an integer, floating-point, or decimal. </li>
+
+                                <li id="asc1229700446684__li_80AABDD7EBDA4E75B41DC477F7205AD2"><a name="asc1229700446684__li_80AABDD7EBDA4E75B41DC477F7205AD2"><!-- --></a>A string constant can be a character string, hexadecimal, or a host variable name. A colon precedes the host variable name, for example, <span class="cmdname">:var</span>. The host variable becomes a value when the statement is executed. </li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">Subquery</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 ">A subquery is a SELECT, WITH, or FULLSELECT statement nested within
+another SQL statement. The expression value is the result of the
+subquery.
+</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e53 ">Build up expressions by operators</td>
+
+                        <td class="cellrowborder" valign="top" width="NaN%" headers="d6165e56 ">You can build an expression by applying operators to columns or expressions such as x+y where <span class="cmdname">x</span> is a column and <span class="cmdname">y</span> is an expression. </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+</div>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700445247.html" title="Use the Expression Builder in SQL Query Builder to build simple or complex expressions, or subqueries when creating SELECT, UPDATE, INSERT, and DELETE statements.">Building Expressions</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

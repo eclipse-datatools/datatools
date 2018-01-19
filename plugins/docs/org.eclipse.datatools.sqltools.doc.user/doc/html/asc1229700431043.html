@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating a FULLSELECT (UNION) Statement"/>
+<meta name="abstract" content="Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables."/>
+<meta name="description" content="Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700429574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700432668.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700434215.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_a_fullselect_union_statement.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_CF7346DF2245409293AD1FA5216ACEDE"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:11]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700431043"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating a FULLSELECT (UNION) Statement</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700431043"><a name="asc1229700431043"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating a FULLSELECT (UNION) Statement</h1>
+
+    
+    
+    <div><p>Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables. </p>
+
+        <div class="p" id="asc1229700431043__prereq_939FDE01536E4CB98B6F5A03177F0920"><a name="asc1229700431043__prereq_939FDE01536E4CB98B6F5A03177F0920"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <p>Connect to the data source through a connection profile.</p>
+
+        </div>
+
+        <div class="section" id="asc1229700431043__context_7F32BA60C89E482EBF81104B6C5E9C65"><a name="asc1229700431043__context_7F32BA60C89E482EBF81104B6C5E9C65"><!-- --></a>
+            <div class="note"><span class="notetitle">Note:</span> Some syntactic variations might exist between your database and the SQL syntax that SQL Query Builder supports; consequently, some SQL Query Builder features might not work with your database.</div>
+
+        </div>
+
+        <a name="asc1229700431043__steps_8786ED1309274C3E9732285BBB7D5614"><!-- --></a><ol id="asc1229700431043__steps_8786ED1309274C3E9732285BBB7D5614">
+            <li class="stepexpand" id="asc1229700431043__step_F42EF89460364F9488CD2B20628FD370"><a name="asc1229700431043__step_F42EF89460364F9488CD2B20628FD370"><!-- --></a>
+                <span>Open a new or an existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_7C5EE53F936941F5A9ED3DE362432FAB"><a name="asc1229700431043__step_7C5EE53F936941F5A9ED3DE362432FAB"><!-- --></a>
+                <span>In an appropriate place in the editor window, right-click and select <span class="uicontrol">Edit in SQL Query Builder</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_B3A0705892E64951BBBD2FFC1A87BC83"><a name="asc1229700431043__step_B3A0705892E64951BBBD2FFC1A87BC83"><!-- --></a>
+                <span>Righ-click <span class="uicontrol">SELECT Statement</span>, and select <span class="uicontrol">Convert to FULLSELECT (UNION)</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_3EEA578FA1C2425B947B1AEF1BFFA213"><a name="asc1229700431043__step_3EEA578FA1C2425B947B1AEF1BFFA213"><!-- --></a>
+                <span>Add one or more tables to the statement.</span>
+                <a name="asc1229700431043__d19e81"><!-- --></a><ol type="a" id="asc1229700431043__d19e81">
+                    <li class="substepexpand" id="asc1229700431043__d19e83"><a name="asc1229700431043__d19e83"><!-- --></a>
+                        <span>Right-click in the Tables pane and select <span class="uicontrol">Add Table</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700431043__d19e92"><a name="asc1229700431043__d19e92"><!-- --></a>
+                        <span>(Optional) Indicate a <span class="uicontrol">Table alias</span>.</span>
+                         
+                            <p>You might want to use a table alias to make the table name more readable  or shorten it for display/output.</p>
+
+                        
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_0825087FC1E745F894F9DF80A0B13F1B"><a name="asc1229700431043__step_0825087FC1E745F894F9DF80A0B13F1B"><!-- --></a>
+                <span>Define the SELECT statements.</span>
+                <a name="asc1229700431043__substeps_BC8EF2E7C2AD4FBBA226400C329825E0"><!-- --></a><ol type="a" id="asc1229700431043__substeps_BC8EF2E7C2AD4FBBA226400C329825E0">
+                    <li class="substepexpand" id="asc1229700431043__substep_FCB02F23AC6C4B1EA93439C39CA7B4D4"><a name="asc1229700431043__substep_FCB02F23AC6C4B1EA93439C39CA7B4D4"><!-- --></a>
+                        <span>In Outline view, expand the SELECT Statement and Union trees.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700431043__substep_E13E6B6FC71A4B0B9FC4EDE2615A834C"><a name="asc1229700431043__substep_E13E6B6FC71A4B0B9FC4EDE2615A834C"><!-- --></a>
+                        <span>Click the first <span class="uicontrol">SELECT</span>, and then create the SELECT statement.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700431043__substep_613E82614DFA4861ADA627728B3DE035"><a name="asc1229700431043__substep_613E82614DFA4861ADA627728B3DE035"><!-- --></a>
+                        <span>Click the second <span class="uicontrol">SELECT</span>, and then create the SELECT statement.</span>
+                         
+                            <p>All selected columns need to be of the
+same data type.</p>
+
+                        
+                    </li>
+
+                </ol>
+
+                 
+                    <p>You can nest a FULLSELECT UNION statement under a SELECT statement.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_59AABE095AE14983859B6F4825FE9B04"><a name="asc1229700431043__step_59AABE095AE14983859B6F4825FE9B04"><!-- --></a>
+                <span>(Optional) Click SELECT Statement to define any other SELECT Statement options, such as operator or sort type.</span>
+                 
+                    <p>UNION
+ only selects distinct values while 
+UNION ALL
+
+selects all values.
+</p>
+
+                
+                <a name="asc1229700431043__substeps_3985D262A76B40F2967D5B9C4E69F095"><!-- --></a><ol type="a" id="asc1229700431043__substeps_3985D262A76B40F2967D5B9C4E69F095">
+                    <li id="asc1229700431043__substep_4F2CBC80E8E84F50A1B41C77134B5382"><a name="asc1229700431043__substep_4F2CBC80E8E84F50A1B41C77134B5382"><!-- --></a>
+                        <span>Next to the statement type, select <span class="uicontrol">UNION ALL</span> to change the <span class="uicontrol">Operator</span> from the default UNION.</span>
+                    </li>
+
+                    <li id="asc1229700431043__substep_E003CB1F33D24529B0837C3C020F09C6"><a name="asc1229700431043__substep_E003CB1F33D24529B0837C3C020F09C6"><!-- --></a>
+                        <span>Change the sort type or sort order.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_F40BA763A0C646FDBAAFF949AA568F3F"><a name="asc1229700431043__step_F40BA763A0C646FDBAAFF949AA568F3F"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700431043__step_959DCDA4F9D742799479081D3E1CE0BB"><a name="asc1229700431043__step_959DCDA4F9D742799479081D3E1CE0BB"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700429574.html" title="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.">Creating a SELECT Statement</a></div>
+<div><a href="../../doc/html/asc1229700432668.html" title="Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table expressions and a SELECT statement. A common table expression defines a named result table that you can specify as a table in the FROM clause of a subsequent SELECT statement.">Creating a WITH Statement</a></div>
+<div><a href="../../doc/html/asc1229700434215.html" title="Create a join in a SELECT statement to retrieve data from two or more tables based on matching column values.">Creating Joins</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating a WITH Statement"/>
+<meta name="abstract" content="Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table expressions and a SELECT statement. A common table expression defines a named result table that you can specify as a table in the FROM clause of a subsequent SELECT statement."/>
+<meta name="description" content="Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table expressions and a SELECT statement. A common table expression defines a named result table that you can specify as a table in the FROM clause of a subsequent SELECT statement."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700429574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700431043.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700434215.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_a_with_statement.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_F249D10F72B54D178FF51AA3F28EB54C"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:12]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700432668"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating a WITH Statement</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700432668"><a name="asc1229700432668"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating a WITH Statement</h1>
+
+    
+    
+    <div><p>Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table
+expressions and a SELECT statement. A common table expression
+defines a named result table that you can specify as a table in
+the FROM clause of a subsequent SELECT statement.
+</p>
+
+        <div class="p" id="asc1229700432668__prereq_4C09B8AD1A824CDAA921B9A3ADD9D8F6"><a name="asc1229700432668__prereq_4C09B8AD1A824CDAA921B9A3ADD9D8F6"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <div class="p">
+                <br/><a name="asc1229700432668__d158e42"><!-- --></a><ol id="asc1229700432668__d158e42">
+                    <li id="asc1229700432668__d158e44"><a name="asc1229700432668__d158e44"><!-- --></a>Connect to the data source through a connection profile.</li>
+
+                    <li id="asc1229700432668__d158e47"><a name="asc1229700432668__d158e47"><!-- --></a>Open a new or existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</li>
+
+                    <li id="asc1229700432668__d158e59"><a name="asc1229700432668__d158e59"><!-- --></a>In SQL Query Builder, create a SELECT statement.</li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="asc1229700432668__context_6176F26157B8402CB5A81D59CDD66CE1"><a name="asc1229700432668__context_6176F26157B8402CB5A81D59CDD66CE1"><!-- --></a>
+            <div class="note"><span class="notetitle">Note:</span> Some syntactic variations might exist between your database and the SQL syntax that SQL Query Builder supports; consequently, some SQL Query Builder features might not work with your database.</div>
+
+        </div>
+
+        <a name="asc1229700432668__steps_A7AE78CF69224187B9132B60357ABF11"><!-- --></a><ol id="asc1229700432668__steps_A7AE78CF69224187B9132B60357ABF11">
+            <li class="stepexpand" id="asc1229700432668__step_97BDBF2E60E34687A32A39EE328CC6AA"><a name="asc1229700432668__step_97BDBF2E60E34687A32A39EE328CC6AA"><!-- --></a>
+                <span>In the Outline pane, right-click <span class="uicontrol">SELECT Statement</span> and select <span class="uicontrol">Add Common Table Expression (WITH)</span>.</span>
+                 
+                    <p>SQL Query Builder adds the WITH statement code in the SQL Source pane and to the tree in the Outline pane.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_D23A428C44B944DCA3E201033F2A4062"><a name="asc1229700432668__step_D23A428C44B944DCA3E201033F2A4062"><!-- --></a>
+                <span>In the Outline view, expand the WITH statement tree, click <span class="uicontrol">SELECT</span> node contained inside the WITH node, and define its SELECT statement.</span>
+                 
+                    <p>SQL Query Builder creates a temporary table on which the main SELECT statement is based.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_2919E3119D0441C78E2827A97A47544F"><a name="asc1229700432668__step_2919E3119D0441C78E2827A97A47544F"><!-- --></a>
+                <span>Add a table.</span>
+                <a name="asc1229700432668__substeps_68848ECC93224E2092E85334E94D9A69"><!-- --></a><ol type="a" id="asc1229700432668__substeps_68848ECC93224E2092E85334E94D9A69">
+                    <li id="asc1229700432668__substep_C5E650C78DFD45C2A78BBC4AF2B3AB24"><a name="asc1229700432668__substep_C5E650C78DFD45C2A78BBC4AF2B3AB24"><!-- --></a>
+                        <span>(Optional) Select the WITH node and enter a name for the temporary <span class="uicontrol">Table</span>.</span>
+                    </li>
+
+                    <li id="asc1229700432668__substep_412F8DD753E449D1A1EE3AD14120663E"><a name="asc1229700432668__substep_412F8DD753E449D1A1EE3AD14120663E"><!-- --></a>
+                        <span>Select columns from the table.</span>
+                    </li>
+
+                    <li id="asc1229700432668__substep_DB38A41E31E446A28A28D9D782555662"><a name="asc1229700432668__substep_DB38A41E31E446A28A28D9D782555662"><!-- --></a>
+                        <span>(Optional) Select the WITH node and enter names for each <span class="uicontrol">Column</span> in the temporary table.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_C0ABF06C786E46DBBDF60EC1AC5D6094"><a name="asc1229700432668__step_C0ABF06C786E46DBBDF60EC1AC5D6094"><!-- --></a>
+                <span>In the Outline view, click the SELECT statement at the bottom of the outline tree. </span>
+                 
+                    <p>The SELECT statement is based on the temporary table just defined.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_9ECDC29395E047479430054EF1D5E69B"><a name="asc1229700432668__step_9ECDC29395E047479430054EF1D5E69B"><!-- --></a>
+                <span>Add the temporary WITH table and/or any other tables and select columns from the tables.</span>
+                 
+                    <p>The WITH table is now listed as a choice  in the <span class="uicontrol">Add Table</span> dialog.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_295A922C18414562A3971BFA98CE8C89"><a name="asc1229700432668__step_295A922C18414562A3971BFA98CE8C89"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700432668__step_903627D7F8C14329BFC883A9CCAFC939"><a name="asc1229700432668__step_903627D7F8C14329BFC883A9CCAFC939"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700429574.html" title="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.">Creating a SELECT Statement</a></div>
+<div><a href="../../doc/html/asc1229700431043.html" title="Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables.">Creating a FULLSELECT (UNION) Statement</a></div>
+<div><a href="../../doc/html/asc1229700434215.html" title="Create a join in a SELECT statement to retrieve data from two or more tables based on matching column values.">Creating Joins</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

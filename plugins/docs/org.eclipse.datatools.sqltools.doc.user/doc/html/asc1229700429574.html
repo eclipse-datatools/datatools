@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating a SELECT Statement"/>
+<meta name="abstract" content="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format."/>
+<meta name="description" content="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700435668.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700437325.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700441997.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700443669.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700445247.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700448153.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700449560.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700427574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700410527.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700431043.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700432668.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700434215.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_a_select_statement.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_56BB2320E88D4E76886F4CFEF189B4CB"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:09]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700429574"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating a SELECT Statement</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700429574"><a name="asc1229700429574"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating a SELECT Statement</h1>
+
+    
+    
+    <div><p>Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.</p>
+
+        <div class="p" id="asc1229700429574__prereq_555F371CF4ED4743B3405AD44C57432B"><a name="asc1229700429574__prereq_555F371CF4ED4743B3405AD44C57432B"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <p>Connect to the data source through a connection profile.</p>
+
+        </div>
+
+        <div class="section" id="asc1229700429574__context_AE0F82F5C9D64464B0A0701B69D5F259"><a name="asc1229700429574__context_AE0F82F5C9D64464B0A0701B69D5F259"><!-- --></a>
+            <div class="note"><span class="notetitle">Note:</span> Some syntactic variations might exist between your database and the SQL syntax that SQL Query Builder supports; consequently, some SQL Query Builder features might not work with your database.</div>
+
+        </div>
+
+        <a name="asc1229700429574__steps_5322EA54814446799FA476D30138D7A7"><!-- --></a><ol id="asc1229700429574__steps_5322EA54814446799FA476D30138D7A7">
+            <li class="stepexpand" id="asc1229700429574__step_0F93C8B8F08546CE8A65488A9C79A191"><a name="asc1229700429574__step_0F93C8B8F08546CE8A65488A9C79A191"><!-- --></a>
+                <span>Open a new or an existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_4FA926858E56423C9310DA27B30B873A"><a name="asc1229700429574__step_4FA926858E56423C9310DA27B30B873A"><!-- --></a>
+                <span>In an appropriate place in the editor window, right-click and select <span class="uicontrol">Edit in SQL Query Builder</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_230A047E503C4E558A5E9CC01FAA38B6"><a name="asc1229700429574__step_230A047E503C4E558A5E9CC01FAA38B6"><!-- --></a>
+                <span>Add one or more tables to the statement.</span>
+                <a name="asc1229700429574__d19e81"><!-- --></a><ol type="a" id="asc1229700429574__d19e81">
+                    <li class="substepexpand" id="asc1229700429574__d19e83"><a name="asc1229700429574__d19e83"><!-- --></a>
+                        <span>Right-click in the Tables pane and select <span class="uicontrol">Add Table</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e92"><a name="asc1229700429574__d19e92"><!-- --></a>
+                        <span>(Optional) Indicate a <span class="uicontrol">Table alias</span>.</span>
+                         
+                            <p>You might want to use a table alias to make the table name more readable  or shorten it for display/output.</p>
+
+                        
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_0E4AEAA088994F5482E21203F2DF3F11"><a name="asc1229700429574__step_0E4AEAA088994F5482E21203F2DF3F11"><!-- --></a>
+                <span>(Optional) If you added two or more  tables, you can create a join.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_8B21866DF13749139692F989A125FD62"><a name="asc1229700429574__step_8B21866DF13749139692F989A125FD62"><!-- --></a>
+                <span>(Optional) Select <span class="uicontrol">DISTINCT</span> if you want only one instance each of duplicated rows returned in the final result set.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_602A7BFBC1804C87B3D07C878B13C224"><a name="asc1229700429574__step_602A7BFBC1804C87B3D07C878B13C224"><!-- --></a>
+                <span>Specify the columns to use in the statement.</span>
+                <a name="asc1229700429574__d19e114"><!-- --></a>
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="choicetableborder" id="asc1229700429574__d19e114">
+<thead><tr><th valign="bottom" align="left" id="d3523e130-option">Option</th>
+<th valign="bottom" align="left" id="d3523e130-desc">Description</th></tr></thead>
+<tbody>
+                    
+                    <tr>
+                        <td valign="top" headers="d3523e130-option" id="d3523e143"><strong>Specify all columns</strong></td>
+
+                        <td valign="top" headers="d3523e130-desc d3523e143">Right-click the table in the Tables pane, and select <span class="uicontrol">Select All Columns</span>.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" headers="d3523e130-option" id="d3523e155"><strong>Specify specific columns</strong></td>
+
+                        <td valign="top" headers="d3523e130-desc d3523e155">Use either method:<br/><a name="asc1229700429574__d19e144"><!-- --></a><ul id="asc1229700429574__d19e144">
+                                <li id="asc1229700429574__d19e146"><a name="asc1229700429574__d19e146"><!-- --></a>In the Tables pane, select the check box next to the column name.</li>
+
+                                <li id="asc1229700429574__d19e149"><a name="asc1229700429574__d19e149"><!-- --></a>In the <span class="uicontrol">Columns</span> tab, select the specific column from the drop-down menu.</li>
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                </tbody></table>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_D19F1118A5D44B90B4C71FA638FD88A6"><a name="asc1229700429574__step_D19F1118A5D44B90B4C71FA638FD88A6"><!-- --></a>
+                <span>(Optional) Define other column attributes.</span>
+                <a name="asc1229700429574__substeps_9102B6B7A68F44CD8184459B7178EE77"><!-- --></a><ol type="a" id="asc1229700429574__substeps_9102B6B7A68F44CD8184459B7178EE77">
+                    <li class="substepexpand" id="asc1229700429574__substep_E9AD946C07474291994C1A0338EA971F"><a name="asc1229700429574__substep_E9AD946C07474291994C1A0338EA971F"><!-- --></a>
+                        <span>Specify a column alias.</span>
+                         
+                            <p>You might want to use a column alias to make the column name more readable  or shorten it for display/output.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__substep_3B5452BFD5294503B4DB168BF5895DA8"><a name="asc1229700429574__substep_3B5452BFD5294503B4DB168BF5895DA8"><!-- --></a>
+                        <span>Deselect <span class="uicontrol">Output</span> if you do not want the column values to display in the results set but want to use it for some other purpose.</span>
+                         
+                            <p>For example, you might want to order the output by customer number but you do not want the customer number to display.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__substep_F558AD129DC54D8389A42E761BBEF65B"><a name="asc1229700429574__substep_F558AD129DC54D8389A42E761BBEF65B"><!-- --></a>
+                        <span>Change the <span class="uicontrol">Sort Type</span> for each column.</span>
+                         
+                            <p>By default, columns are sorted in ascending order. </p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__substep_5B127338C07C467199C9E9A13565B75C"><a name="asc1229700429574__substep_5B127338C07C467199C9E9A13565B75C"><!-- --></a>
+                        <span>Change the <span class="uicontrol">Sort Order</span>.</span>
+                         
+                            <p>By default, columns are sorted in the order they appear in the Columns table.</p>
+
+                        
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_2B1DB2C6A7D241ECB27E54708C56C877"><a name="asc1229700429574__step_2B1DB2C6A7D241ECB27E54708C56C877"><!-- --></a>
+                <span>(Optional) In the <span class="uicontrol">Conditions</span> tab, indicate the conditions for the statement.</span>
+                 
+                    <p>The conditions enable you to better define which columns appear in the results set. For example, you might only want to list store locations with sales greater than $10,000. </p>
+
+                
+                <a name="asc1229700429574__substeps_2C3371E0CF084686B36A36315C990EE9"><!-- --></a><ol type="a" id="asc1229700429574__substeps_2C3371E0CF084686B36A36315C990EE9">
+                    <li class="substepexpand" id="asc1229700429574__d19e167"><a name="asc1229700429574__d19e167"><!-- --></a>
+                        <span>Select a <span class="uicontrol">Column</span>.</span>
+                         
+                            <p>Alternately, select define a condition using the Expression Builder wizard.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e182"><a name="asc1229700429574__d19e182"><!-- --></a>
+                        <span>Select an <span class="uicontrol">Operator</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e191"><a name="asc1229700429574__d19e191"><!-- --></a>
+                        <span>Enter a specific <span class="uicontrol">Value</span>, select a column from the drop-down list, or build an expression.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e200"><a name="asc1229700429574__d19e200"><!-- --></a>
+                        <span>(Optional) Select <span class="uicontrol">AND</span> or <span class="uicontrol">OR</span> to specify another condition.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_D90D151EA97A4933A629EFC9467392EF"><a name="asc1229700429574__step_D90D151EA97A4933A629EFC9467392EF"><!-- --></a>
+                <span>(Optional) In the <span class="uicontrol">Group</span> tab, indicate on which column you want to group results.</span>
+                 
+                    <p>For example, you might want to group the sum of all sales from each store.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_9013875A17134926A365F0180B5242B8"><a name="asc1229700429574__step_9013875A17134926A365F0180B5242B8"><!-- --></a>
+                <span>(Optional) To limit the output based on the specified GROUP clause, add a <span class="uicontrol">Group Condition</span>.
+</span>
+                <a name="asc1229700429574__substeps_0365CE9C5B6B4D398D478DBC3C7399E6"><!-- --></a><ol type="a" id="asc1229700429574__substeps_0365CE9C5B6B4D398D478DBC3C7399E6">
+                    <li class="substepexpand" id="asc1229700429574__d19e167"><a name="asc1229700429574__d19e167"><!-- --></a>
+                        <span>Select a <span class="uicontrol">Column</span>.</span>
+                         
+                            <p>Alternately, select define a condition using the Expression Builder wizard.</p>
+
+                        
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e182"><a name="asc1229700429574__d19e182"><!-- --></a>
+                        <span>Select an <span class="uicontrol">Operator</span>.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e191"><a name="asc1229700429574__d19e191"><!-- --></a>
+                        <span>Enter a specific <span class="uicontrol">Value</span>, select a column from the drop-down list, or build an expression.</span>
+                    </li>
+
+                    <li class="substepexpand" id="asc1229700429574__d19e200"><a name="asc1229700429574__d19e200"><!-- --></a>
+                        <span>(Optional) Select <span class="uicontrol">AND</span> or <span class="uicontrol">OR</span> to specify another condition.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_D2E0FC59E6524ED39E2112F10CCE9228"><a name="asc1229700429574__step_D2E0FC59E6524ED39E2112F10CCE9228"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700429574__step_ADDE5D962D724D5697C1AD4CA7E1D4E7"><a name="asc1229700429574__step_ADDE5D962D724D5697C1AD4CA7E1D4E7"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div><div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700427574.html" title="Create, edit, or run SQL statements using the SQL Query Builder graphical interface, which provides access to your database schema and objects so that you can quickly create or edit SQL statements without actually typing any SQL code. However, you also have the flexibility to add or modify the SQL code in the editor window.">SQL Query Builder</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700435668.html" title="Use SQL Query Builder to create an INSERT statement to insert new rows at the end of a table with the values you indicate for the specified columns.">Creating an INSERT Statement From a Values Set</a></div>
+<div><a href="../../doc/html/asc1229700437325.html" title="Use SQL Query Builder to create an INSERT statement from a subquery.">Creating an INSERT Statement From a Subquery</a></div>
+<div><a href="../../doc/html/asc1229700441997.html" title="Use SQL Query Builder to create an UPDATE statement to update data in a table. You can explicitly set the values or derive them from the results of a build expression.">Creating an UPDATE Statement</a></div>
+<div><a href="../../doc/html/asc1229700443669.html" title="Use SQL Query Builder to create a DELETE statement to remove data from a specified table. By specifying one or more conditions, you can indicate which rows in the database table to delete. If you do not specify any conditions, all rows in the target table are deleted.">Creating a DELETE Statement</a></div>
+<div><a href="../../doc/html/asc1229700445247.html" title="Use the Expression Builder in SQL Query Builder to build simple or complex expressions, or subqueries when creating SELECT, UPDATE, INSERT, and DELETE statements.">Building Expressions</a></div>
+<div><a href="../../doc/html/asc1229700448153.html" title="Use SQL Query Builder to edit an individual SQL statement. You can only edit one SQL statement at a time.">Editing a SQL Statement</a></div>
+<div><a href="../../doc/html/asc1229700449560.html" title="Use SQL Query Builder to run an individual SQL statement and view its execution results.">Running the SQL Statement Code</a></div>
+<div><a href="../../doc/html/asc1229700431043.html" title="Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables.">Creating a FULLSELECT (UNION) Statement</a></div>
+<div><a href="../../doc/html/asc1229700432668.html" title="Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table expressions and a SELECT statement. A common table expression defines a named result table that you can specify as a table in the FROM clause of a subsequent SELECT statement.">Creating a WITH Statement</a></div>
+<div><a href="../../doc/html/asc1229700434215.html" title="Create a join in a SELECT statement to retrieve data from two or more tables based on matching column values.">Creating Joins</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700410527.html" title="Indicate the SQL Query Builder preferences.">SQL Query Builder Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating a Launch Configuration for Routine Procedural Objects"/>
+<meta name="abstract" content="Use the launch configuration feature to run user-defined functions, events, stored procedures, triggers, and ad hoc queries. Creating your own launch configurations is optional, but it can help you perform more consistent, robust, and efficient iterative testing of routine procedural objects."/>
+<meta name="description" content="Use the launch configuration feature to run user-defined functions, events, stored procedures, triggers, and ad hoc queries. Creating your own launch configurations is optional, but it can help you perform more consistent, robust, and efficient iterative testing of routine procedural objects."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700467920.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700480170.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700478717.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\workspace\dmp\en\source\t_creating_a_launch_configuration_for_procedural_objects.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="t_cr41t836_1_1183c7_c435868r1t843_54r_5r4c438r11_4294ct7_060606"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:50]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700470998"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating a Launch Configuration for Routine Procedural Objects</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700470998"><a name="asc1229700470998"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1"> Creating a Launch Configuration for <span>Routine </span>  <span>Procedural </span>Objects</h1>
+
+
+    
+    
+    <div><p>Use the 
+	 <dfn class="term">launch configuration</dfn> feature to run <span>user-defined functions,</span>
+        <span> events,</span> stored procedures, triggers, and ad hoc queries. Creating your own launch configurations is optional, but it can
+	 help you perform more consistent, robust, and efficient iterative testing of 
+	 <span>routine 
+	 </span>
+        <span>procedural 
+	 </span>objects.
+  </p>
+
+        <div class="section" id="asc1229700470998__context_C3B12F1438904D15A21244E05D853A2F"><a name="asc1229700470998__context_C3B12F1438904D15A21244E05D853A2F"><!-- --></a>
+            <p>
+                <span>Sybase WorkSpace</span>
+                <span>DTP</span> creates a launch configuration automatically using the
+		  name, connection profile name and type, and object type. You can create additional launch configurations with
+		  different launch properties. For example, you can specify different parameters
+		  or ad hoc SQL statements.
+		</p>
+
+        </div>
+
+        <a name="asc1229700470998__steps_A35E7291BA134A85894D48C45885D9AC"><!-- --></a><ol id="asc1229700470998__steps_A35E7291BA134A85894D48C45885D9AC">
+            <li class="stepexpand" id="asc1229700470998__step_E2E46E2F23C440E08DD80C4A4FC170A7"><a name="asc1229700470998__step_E2E46E2F23C440E08DD80C4A4FC170A7"><!-- --></a>
+                <span>Select <span class="menucascade">
+                        <span class="uicontrol">Run</span>
+                         &gt; <span class="uicontrol">Open Run Dialog</span>
+                    </span>
+                    <span class="menucascade">
+                        <span class="uicontrol">Run</span>
+                         &gt; <span class="uicontrol">Run Configurations</span>
+                    </span> from the 
+			 main menu.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_EC69FC6C65054F438750267F4EABA63A"><a name="asc1229700470998__step_EC69FC6C65054F438750267F4EABA63A"><!-- --></a>
+                <span>Click <a name="asc1229700470998__image_07550A958E4B41608B93425323F8BE4E"><!-- --></a><img id="asc1229700470998__image_07550A958E4B41608B93425323F8BE4E" src="../image/asc1229700469373.image" alt="New Launch Configuration button"/>
+                    <span class="uicontrol">New Launch Configuration</span>.</span>
+                 
+                    <p>You can also choose an existing launch configuration by selecting it in the left pane. You can edit it, or duplicate it and use it as a basis for a new configuration.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_6A34F93F33E54B8986A2728EF9D709FB"><a name="asc1229700470998__step_6A34F93F33E54B8986A2728EF9D709FB"><!-- --></a>
+                <span>Enter a unique <span class="uicontrol">Name</span> for the launch configuration.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_39C8BCE8215E47A084849E2E0953CEA7"><a name="asc1229700470998__step_39C8BCE8215E47A084849E2E0953CEA7"><!-- --></a>
+                <span>On the 
+			 <span class="uicontrol">Main</span> tab, select a connection <span class="uicontrol">Profile</span> and a 
+					 <span class="uicontrol">Database</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_11EC7BD7CED74098B5AE87060314C29D"><a name="asc1229700470998__step_11EC7BD7CED74098B5AE87060314C29D"><!-- --></a>
+                <span>Select the object 
+					 <span class="uicontrol">Type</span>.
+				  
+</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_3B6DE7DC18AB4AF6A046D3AA77E3828F"><a name="asc1229700470998__step_3B6DE7DC18AB4AF6A046D3AA77E3828F"><!-- --></a>
+                <span>If basing the launch configuration on an existing object, click 
+					 <span class="uicontrol">Browse</span> to select the object.
+				  
+</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_1F18D5090A0742E585DEE2664DED69E3"><a name="asc1229700470998__step_1F18D5090A0742E585DEE2664DED69E3"><!-- --></a>
+                <span>In the <span class="uicontrol">Run</span> box, complete the execution information.</span>
+                <a name="asc1229700470998__choicetable_98988924196842C7B1EE2572115C8256"><!-- --></a>
+<table border="1" frame="hsides" rules="rows" cellpadding="4" cellspacing="0" summary="" class="choicetableborder" id="asc1229700470998__choicetable_98988924196842C7B1EE2572115C8256">
+<thead><tr><th valign="bottom" align="left" id="d8174e169-option">Object</th>
+<th valign="bottom" align="left" id="d8174e169-desc">Description</th></tr></thead>
+<tbody>
+                    
+                    <tr>
+                        <td valign="top" headers="d8174e169-option" id="d8174e182"><strong>Stored procedures<span>, user defined functions, event handlers</span>
+                        </strong></td>
+
+                        <td valign="top" headers="d8174e169-desc d8174e182">Click 
+			 <span class="uicontrol">Configure Parameter</span>, and assign values to any
+			 parameters.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" headers="d8174e169-option" id="d8174e197"><strong>Triggers</strong></td>
+
+
+                        <td valign="top" headers="d8174e169-desc d8174e197">Enter an INSERT, UPDATE, or DELETE statement, or click <span class="uicontrol">SQL</span> to visually build the statement using <span>Visual SQL</span>
+                            <span>SQL Query Builder</span>.</td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top" headers="d8174e169-option" id="d8174e215"><strong>Ad hoc SQL</strong></td>
+
+
+                        <td valign="top" headers="d8174e169-desc d8174e215">Enter the SQL statement, or click <span class="uicontrol">SQL</span> to visually build the statement using <span>Visual SQL</span>
+                            <span>SQL Query Builder</span>. </td>
+
+                    </tr>
+
+                </tbody></table>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_6A88BFB2DB274A6B8D00CD139A00C2BA"><a name="asc1229700470998__step_6A88BFB2DB274A6B8D00CD139A00C2BA"><!-- --></a>
+                <span>(Optional) Click the <span class="uicontrol">Options</span> tab to set additional preferences, if the database server support this feature. 
+		  </span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_91C24EA4C96842388AEF427FD74F33D4"><a name="asc1229700470998__step_91C24EA4C96842388AEF427FD74F33D4"><!-- --></a>
+                <span>(Optional) Click the 
+			 <span class="uicontrol">Common</span> tab to set other attributes for this object. 
+		  </span>
+                 
+                    
+<div class="tablenoborder"><a name="asc1229700470998__table_C6EAFD6FD234480BA00CD715C9C072F0"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700470998__table_C6EAFD6FD234480BA00CD715C9C072F0" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Common launch configuration attributes </span></caption>
+                            
+                            
+                            <thead align="left">
+                                <tr>
+                                    <th class="cellrowborder" valign="top" id="d8174e267">Field
+						  </th>
+
+                                    <th class="cellrowborder" valign="top" id="d8174e270">Explanation
+						  </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Save As
+						  </td>
+
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> Specify where to save the launch configuration: 
+							 <br/><a name="asc1229700470998__ul_4D384F088FFF407A9DAEA031D0F1421F"><!-- --></a><ul id="asc1229700470998__ul_4D384F088FFF407A9DAEA031D0F1421F">
+                                    <li id="asc1229700470998__li_4493413FA62A4781ACDC980871FDD711"><a name="asc1229700470998__li_4493413FA62A4781ACDC980871FDD711"><!-- --></a>
+                                    <p>Select 
+									 <span class="uicontrol">Local File</span> to make it
+									 available to this project only.
+								  </p>
+
+                                    </li>
+
+                                    <li id="asc1229700470998__li_CC546F29A73F4A42AC4F696BA2FD19AD"><a name="asc1229700470998__li_CC546F29A73F4A42AC4F696BA2FD19AD"><!-- --></a>
+                                    <p>Select 
+									 <span class="uicontrol">Shared File</span> to make it
+									 available to other projects.
+								  </p>
+
+                                    </li>
+
+                                    </ul>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Display in Favorites Menu
+						  </td>
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> Click 
+							 <span class="uicontrol">Debug</span> or 
+							 <span class="uicontrol">Run</span> to display the configuration
+							 in a Favorites menu. 
+						  </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Console Encoding
+						  </td>
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> (Optional) Click 
+							 <span class="uicontrol">Other</span>, and select an encoding to
+							 override Export Format preferences. 
+						  </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Standard Input and Output: Allocate Console
+						  </td>
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> Select 
+							 <span class="uicontrol">Allocate Console</span> if the object
+							 requires input (default).</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Standard Input and Output: File
+						  </td>
+
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> (Optional) Click 
+							 <span class="uicontrol">File</span> to choose a location for file
+							 output: 
+							 <br/><a name="asc1229700470998__ul_6E2EADA53E054C58A8E64131AB1FDF71"><!-- --></a><ul id="asc1229700470998__ul_6E2EADA53E054C58A8E64131AB1FDF71">
+                                    <li id="asc1229700470998__li_AD54882D274A489581DAC99320F1339B"><a name="asc1229700470998__li_AD54882D274A489581DAC99320F1339B"><!-- --></a>
+                                    <p>Click 
+									 <span class="uicontrol">Workspace</span> to select a
+									 project resource to which to redirect output.
+								  </p>
+
+                                    </li>
+
+                                    <li id="asc1229700470998__li_23DE71A8FDA74AA5879B27D82D821100"><a name="asc1229700470998__li_23DE71A8FDA74AA5879B27D82D821100"><!-- --></a>
+                                    <p>Click 
+									 <span class="uicontrol">File System</span> to save the
+									 output as a file.
+								  </p>
+
+                                    </li>
+
+                                    <li id="asc1229700470998__li_92CCF09E40754186991954DAE0023DDA"><a name="asc1229700470998__li_92CCF09E40754186991954DAE0023DDA"><!-- --></a>
+                                    <p>Click 
+									 <span class="uicontrol">Variables</span> to select and
+									 configure a variable for output.
+								  </p>
+
+                                    </li>
+
+                                    </ul>
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Standard Input and Output: Append
+						  </td>
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> (Optional) Click 
+							 <span class="uicontrol">Append</span> to append output from each
+							 launch to the existing file. Otherwise, each launch overwrites previous output. 
+						  </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="cellrowborder" valign="top" headers="d8174e267 ">Launch in Background
+						  </td>
+
+                                    <td class="cellrowborder" valign="top" headers="d8174e270 "> Indicates that the object runs in the
+							 background. 
+						  </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+</div>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_C5B1EE35A4494A66B056CC543A5FB5EE"><a name="asc1229700470998__step_C5B1EE35A4494A66B056CC543A5FB5EE"><!-- --></a>
+                <span>Click 
+			 <span class="uicontrol">Apply</span> to accept launch configuration changes.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700470998__step_899EBA2870744E20A8BE889A0D276599"><a name="asc1229700470998__step_899EBA2870744E20A8BE889A0D276599"><!-- --></a>
+                <span>Click 
+			 <span class="uicontrol">Run</span> to execute the object.</span>
+                 
+                    <p>Results appear in 
+				SQL Results view. 
+			 </p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div><div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700478717.html" title="Procedural Routine objects are the building blocks of a database application. Database Development builds the skeleton for procedural routine objects and provides tools to populate the body of the object with the appropriate SQL.">Procedural Routine Objects</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700467920.html" title="Run a routine object to obtain SQL results from the database.">Running a Routine Object</a></div>
+<div><a href="../../doc/html/asc1229700480170.html" title="Use the SQL Results view to see the results of an executed SQL query or routine procedural object.">Viewing SQL Results</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating Joins"/>
+<meta name="abstract" content="Create a join in a SELECT statement to retrieve data from two or more tables based on matching column values."/>
+<meta name="description" content="Create a join in a SELECT statement to retrieve data from two or more tables based on matching column values."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700429574.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700431043.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700432668.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_joins.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_EBC029D11E224D90AC89ECA301C1E8F7"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:14]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700434215"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating Joins</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700434215"><a name="asc1229700434215"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating Joins</h1>
+
+    
+    
+    <div><p>Create a  join in a SELECT statement to retrieve data from two or more tables based on matching column values. </p>
+
+        <div class="p" id="asc1229700434215__prereq_4134E4A853EF4DAA8ABFD97DF06DE894"><a name="asc1229700434215__prereq_4134E4A853EF4DAA8ABFD97DF06DE894"><!-- --></a><strong class="prereq-title">Prerequisites </strong>
+            <div class="p">
+                <br/><a name="asc1229700434215__d158e42"><!-- --></a><ol id="asc1229700434215__d158e42">
+                    <li id="asc1229700434215__d158e44"><a name="asc1229700434215__d158e44"><!-- --></a>Connect to the data source through a connection profile.</li>
+
+                    <li id="asc1229700434215__d158e47"><a name="asc1229700434215__d158e47"><!-- --></a>Open a new or existing SQL file, and be sure to select the connection profile <span class="uicontrol">Type</span>, <span class="uicontrol">Name</span>, and <span class="uicontrol">Database</span>.</li>
+
+                    <li id="asc1229700434215__d158e59"><a name="asc1229700434215__d158e59"><!-- --></a>In SQL Query Builder, create a SELECT statement.</li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+        <div class="section" id="asc1229700434215__context_2E988D8E1BE54F768B7D0525C39F4E4F"><a name="asc1229700434215__context_2E988D8E1BE54F768B7D0525C39F4E4F"><!-- --></a>
+            <p>A join enables you to select data from two or more tables into a single results set without repeating unnecessary data. You can create different kinds of joins depending on what data from each table you want in the results set.</p>
+
+            
+<div class="tablenoborder"><a name="asc1229700434215__table_A4613CBF61F04F8E9C3AA232D6B2C382"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700434215__table_A4613CBF61F04F8E9C3AA232D6B2C382" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Join operators</span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="NaN%" id="d4521e85">Join operator</th>
+
+                            <th class="cellrowborder" valign="top" width="NaN%" id="d4521e88">Description</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e85 ">Inner join</td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e88 ">Returns data from all tables based on a common condition.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e85 ">Left outer join</td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e88 ">Returns all the values from the left table plus matched values
+from the right table, and fills in NULLs for any missing values from the right table.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e85 ">Right outer join</td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e88 ">Returns all the values from the right table and matched values from
+the left table, and fills in NULLs for any missing values from the left table.</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e85 ">Full outer join</td>
+
+                            <td class="cellrowborder" valign="top" width="NaN%" headers="d4521e88 ">Combines the results of both left and right outer joins. The joined
+table contains all records from both tables, and fills in NULLs
+for missing matches on either side.
+</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+            <div class="note"><span class="notetitle">Note:</span> 
+                Some syntactic variations might exist between your database and the SQL syntax that SQL Query Builder supports; consequently, some SQL Query Builder features might not work with your database.</div>
+
+        </div>
+
+        <a name="asc1229700434215__steps_1C0875432C8641659F6DBCC450FDF0B3"><!-- --></a><ol id="asc1229700434215__steps_1C0875432C8641659F6DBCC450FDF0B3">
+            <li class="stepexpand" id="asc1229700434215__step_D634B563DAC94DB793ADCD1A20FC35A2"><a name="asc1229700434215__step_D634B563DAC94DB793ADCD1A20FC35A2"><!-- --></a>
+                <span>  In the Tables pane, add two or more tables</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700434215__step_D036FA83BB1340579A89A71B7E0A7623"><a name="asc1229700434215__step_D036FA83BB1340579A89A71B7E0A7623"><!-- --></a>
+                <span>Drag the pointer from a column in one table to a column in another table.</span>
+                 
+                    <p>By default, SQL Query Builder creates an inner join. You can also create a join by right-clicking anywhere in the Tables pane and selecting <span class="uicontrol">Create Join</span>.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700434215__step_A7BE3DD149054333931FD8914E062F66"><a name="asc1229700434215__step_A7BE3DD149054333931FD8914E062F66"><!-- --></a>
+                <span>(Optional) To change the join type from the default inner join, right-click on the connector line and select <span class="uicontrol">Specify Join Type</span>.</span>
+                 
+                    <p>All joins defined between the two tables change to the selected  join type.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700434215__step_15A4C0987A8448EBB902EE925972149C"><a name="asc1229700434215__step_15A4C0987A8448EBB902EE925972149C"><!-- --></a>
+                <span>(Optional) To run the SQL code, in the SQL Source pane, right-click and select <span class="uicontrol">Run SQL</span>.</span>
+                 
+                    <p>View the results in the <span class="uicontrol">SQL Results</span> tab.</p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700434215__step_FE523EE559A943C4BC42FD4ADBBAB870"><a name="asc1229700434215__step_FE523EE559A943C4BC42FD4ADBBAB870"><!-- --></a>
+                <span>Click <span class="uicontrol">OK</span> to exit SQL Query Builder and to return to the SQL File Editor, where the SQL code displays in the editor window.</span>
+                 
+                    <p>Clicking <span class="uicontrol">Cancel</span> results in no changes to the SQL code in the SQL File Editor. You lose any changes you made in SQL Query Builder.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700429574.html" title="Use SQL Query Builder to create a SELECT statement to retrieve data from a database and display the results set in table format.">Creating a SELECT Statement</a></div>
+<div><a href="../../doc/html/asc1229700431043.html" title="Use SQL Query Builder to create a FULLSELECT UNION statement, which combines the results set for two tables.">Creating a FULLSELECT (UNION) Statement</a></div>
+<div><a href="../../doc/html/asc1229700432668.html" title="Use SQL Query Builder to create a WITH statement that you can reference from a SELECT statement. A WITH statement comprises one or more common table expressions and a SELECT statement. A common table expression defines a named result table that you can specify as a table in the FROM clause of a subsequent SELECT statement.">Creating a WITH Statement</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

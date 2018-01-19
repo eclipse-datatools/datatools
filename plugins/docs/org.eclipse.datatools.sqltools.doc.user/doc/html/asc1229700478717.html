@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="concept"/>
+<meta name="DC.Title" content="Procedural Routine Objects"/>
+<meta name="abstract" content="Procedural Routine objects are the building blocks of a database application. Database Development builds the skeleton for procedural routine objects and provides tools to populate the body of the object with the appropriate SQL."/>
+<meta name="description" content="Procedural Routine objects are the building blocks of a database application. Database Development builds the skeleton for procedural routine objects and provides tools to populate the body of the object with the appropriate SQL."/>
+<meta name="DC.subject" content="service_development, sybase_workspace, database_development, dtp"/>
+<meta name="keywords" content="service_development, sybase_workspace, database_development, dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700467920.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700470998.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700480170.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\workspace\dmp\en\source\c_procedural_objects.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="concept_D5AFED222E63405AB6F165F7780CAB20"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:27:58]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700478717"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Procedural Routine Objects</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700478717"><a name="asc1229700478717"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">  <span>Procedural</span>  <span>Routine</span> Objects</h1>
+
+    
+    
+    <div><p>
+        <span>Procedural</span>
+        <span>Routine</span> objects are the building blocks of a
+	 database application. Database Development builds the skeleton for 
+	 <span>procedural</span>
+        <span>routine</span> objects and provides tools to populate
+	 the body of the object with the appropriate SQL. 
+  </p>
+
+        <p>
+            <span>Procedural</span>
+            <span>Routine</span> objects standardize actions performed by
+		more than one application program. By coding an action once and storing it in
+		the database for future use, applications need only execute the 
+		<span>procedure</span>
+            <span>routine</span> 
+		or fire the trigger 
+		to achieve the desired result repeatedly. Because changes occur in
+		only one place, all applications using the action automatically acquire the new
+		functionality if the implementation of the action changes. When you create an object, it is automatically checked for
+		correct syntax and stored in the system tables. The first time any application
+		calls or fires the object, it is compiled from the system
+		tables into the server's virtual memory and executed from there. <span>User-defined
+		functions and event handlers are similar to stored procedures with some
+		differences. 
+	 </span>
+        </p>
+
+        
+<div class="tablenoborder"><a name="asc1229700478717__table_C57E9092159D4FA0B0A00A45806E36B3"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700478717__table_C57E9092159D4FA0B0A00A45806E36B3" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1.  Object types</span></caption>
+                
+                
+                <thead align="left">
+                    <tr>
+                        <th class="cellrowborder" valign="top" width="26.041666666666668%" id="d8778e98">Object type 
+				  </th>
+
+                        <th class="cellrowborder" valign="top" width="73.95833333333334%" id="d8778e101">Description 
+				  </th>
+
+                    </tr>
+
+                </thead>
+
+                
+                <tbody>
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d8778e98 ">Stored procedures 
+				  </td>
+
+                        <td class="cellrowborder" valign="top" width="73.95833333333334%" headers="d8778e101 ">A stored procedure is a collection of SQL
+					 statements and optional control-of-flow statements. A
+					 stored procedure can use parameters to accept values and return values to the
+					 calling environment. A stored procedure can also return result sets or invoke
+					 other procedures. 
+				  </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d8778e98 ">Triggers 
+				  </td>
+
+                        <td class="cellrowborder" valign="top" width="73.95833333333334%" headers="d8778e101 ">A trigger is a special form of stored
+					 procedure that executes when a user attempts to change table or column data
+					 using a command such as 
+					 <span class="cmdname">insert</span>, 
+					 <span class="cmdname">delete</span>, or 
+					 <span class="cmdname">update</span>. Triggers can call stored procedures
+					 and functions and can fire other triggers. Triggers are often used to enforce
+					 referential integrity and can cascade changes through related tables, roll back
+					 transactions, enforce complex restrictions, and perform simple analyses. 
+				  <span>Triggers are available in SQL Anywhere and Adaptive Server Enterprise data servers only.</span>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d8778e98 ">Event handlers<span> (SQL Anywhere and Sybase IQ only)</span>
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="73.95833333333334%" headers="d8778e101 ">Event handlers are software routines that
+					 manage predefined system events. When an event condition is satisfied and an
+					 event handler executes, one or more actions are performed. These actions may
+					 include sending an e-mail message, performing a backup, or writing to a file.
+					 Event handlers, whether for scheduled events or for system event handling,
+					 contain compound statements and are similar to stored procedures in programming
+					 constructs used. Event handlers differ from stored procedures in that event
+					 handlers do not take any arguments. 
+				  </td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d8778e98 ">User-defined functions 
+					 <span>(SQL Anywhere and Sybase IQ
+						only)</span>
+                        </td>
+
+                        <td class="cellrowborder" valign="top" width="73.95833333333334%" headers="d8778e101 ">User-defined functions return a single
+					 value to the calling environment. User-defined functions do not modify
+					 parameters passed to them. Instead, they broaden the scope of functions
+					 available to queries and other SQL statements. 
+				  </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+</div>
+
+        <p>You can develop the object types that your database and server support. 
+	 </p>
+
+        
+<div class="tablenoborder"><a name="asc1229700478717__table_CE01F79D7FB342FD8B962FF163237FDE"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700478717__table_CE01F79D7FB342FD8B962FF163237FDE" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Procedural object support in Sybase servers</span></caption>
+                
+                
+                
+                
+                <thead align="left">
+                    <tr>
+                        <th class="cellrowborder" valign="top" id="d8778e187">Procedural object 
+						type</th>
+
+                        <th class="cellrowborder" align="center" valign="top" id="d8778e190">Adaptive Server Enterprise 
+						</th>
+
+                        <th class="cellrowborder" align="center" valign="top" id="d8778e193">SQL Anywhere 
+						</th>
+
+                        <th class="cellrowborder" align="center" valign="top" id="d8778e196">Sybase IQ 
+						</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d8778e187 ">Stored procedures 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e190 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e193 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e196 "> Yes 
+						</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d8778e187 ">Triggers 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e190 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e193 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e196 "> No</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d8778e187 ">Event handlers 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e190 "> No</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e193 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e196 "> Yes 
+						</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="cellrowborder" valign="top" headers="d8778e187 ">User-defined functions 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e190 "> No 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e193 "> Yes 
+						</td>
+
+                        <td class="cellrowborder" align="center" valign="top" headers="d8778e196 ">Yes, though performance considerations
+						  may apply 
+						</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+</div>
+
+        <div class="note" id="asc1229700478717__note_B4B4FB1C64D34CE380080A544D8CFCC6"><a name="asc1229700478717__note_B4B4FB1C64D34CE380080A544D8CFCC6"><!-- --></a><span class="notetitle">Note:</span> For more information on user-defined functions and event handlers, <span id="asc1229700478717__ph_cf_11934310113971"><a name="asc1229700478717__ph_cf_11934310113971"><!-- --></a>see the 
+		  <cite>SQL Anywhere</cite> documentation located at the
+		  main level of the Sybase online bookshelf. If this server
+		  documentation is not installed, the documentation is available on the Sybase
+		  Product Manuals Web site at 
+		  <a href="http://sybooks.sybase.com" target="_blank">http://sybooks.sybase.com</a>.
+		  
+		</span>
+        </div>
+
+    </div>
+
+<div><div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700467920.html" title="Run a routine object to obtain SQL results from the database.">Running a Routine Object</a></div>
+<div><a href="../../doc/html/asc1229700470998.html" title="Use the launch configuration feature to run user-defined functions, events, stored procedures, triggers, and ad hoc queries. Creating your own launch configurations is optional, but it can help you perform more consistent, robust, and efficient iterative testing of routine procedural objects.">Creating a Launch Configuration for Routine Procedural Objects</a></div>
+<div><a href="../../doc/html/asc1229700480170.html" title="Use the SQL Results view to see the results of an executed SQL query or routine procedural object.">Viewing SQL Results</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

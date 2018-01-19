@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.5
+Created-By: 1.5.0_15-b04 (Sun Microsystems Inc.)
+Built-By: TPS_build ditamap-cs.pipeline.1-4_20090521092446
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.doc.user.contexts;
+  singleton:=true
+Bundle-Version: 1.7.0.20090521092446
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-ActivationPolicy: lazy
+

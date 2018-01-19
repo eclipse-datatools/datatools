@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Creating and Executing a SQL Query"/>
+<meta name="abstract" content="Create a SQL file and run it against a given database instance."/>
+<meta name="description" content="Create a SQL file and run it against a given database instance."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700384901.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700392120.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\dtp\dtp\en\source\t_creating_and_executing_a_sql_query.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="task_7A3681B8AC7E4D2C9F85C52034DE228C"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:33]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700393698"/>
+<meta name="DC.Language" content="en"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">Creating and Executing a SQL Query</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700393698"><a name="asc1229700393698"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1">Creating and Executing a SQL Query</h1>
+
+    
+    
+    <div><p>Create a SQL file and run it against a given database instance.</p>
+
+        <a name="asc1229700393698__steps_09194B4588504D32B068E5C33488BA59"><!-- --></a><ol id="asc1229700393698__steps_09194B4588504D32B068E5C33488BA59">
+            <li class="stepexpand" id="asc1229700393698__step_A1496582253D4AB2BC235D30E5AE1A16"><a name="asc1229700393698__step_A1496582253D4AB2BC235D30E5AE1A16"><!-- --></a>
+                <span>Create a Java project.</span>
+                <a name="asc1229700393698__substeps_37CD0AFDA5364F26808B3367D6A2600F"><!-- --></a><ol type="a" id="asc1229700393698__substeps_37CD0AFDA5364F26808B3367D6A2600F">
+                    <li id="asc1229700393698__substep_1342E0B3C3C547DFA6505883BD55E685"><a name="asc1229700393698__substep_1342E0B3C3C547DFA6505883BD55E685"><!-- --></a>
+                        <span>Select <span class="menucascade">
+                                <span class="uicontrol">File</span>
+                                 &gt; <span class="uicontrol">New</span>
+                                 &gt; <span class="uicontrol">Project</span>
+                            </span> from the main menu bar.
+</span>
+                    </li>
+
+                    <li id="asc1229700393698__substep_27A4DF63CF004C41BD2E3B5F2000A7CB"><a name="asc1229700393698__substep_27A4DF63CF004C41BD2E3B5F2000A7CB"><!-- --></a>
+                        <span>Select <span class="uicontrol">Java Project</span> and click <span class="uicontrol">Next</span>.</span>
+                    </li>
+
+                    <li id="asc1229700393698__substep_67EE779990074ABCBE29EF83D5C9F7BD"><a name="asc1229700393698__substep_67EE779990074ABCBE29EF83D5C9F7BD"><!-- --></a>
+                        <span>Enter a <span class="uicontrol">Project Name</span> and click <span class="uicontrol">Finish</span>.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700393698__step_947B841E09AE45B6AA9808A0D9359D56"><a name="asc1229700393698__step_947B841E09AE45B6AA9808A0D9359D56"><!-- --></a>
+                <span>Create a SQL file and associate it with a Derby connection profile.</span>
+                <a name="asc1229700393698__substeps_A870686607784D8A9C87C4D186793E88"><!-- --></a><ol type="a" id="asc1229700393698__substeps_A870686607784D8A9C87C4D186793E88">
+                    <li id="asc1229700393698__substep_812437F8BB514C5C9785BD46677477A0"><a name="asc1229700393698__substep_812437F8BB514C5C9785BD46677477A0"><!-- --></a>
+                        <span>Select <span class="menucascade">
+                                <span class="uicontrol">File</span>
+                                 &gt; <span class="uicontrol">New</span>
+                                 &gt; <span class="uicontrol">SQL File</span>
+                            </span> from the main menu bar.
+</span>
+                    </li>
+
+                    <li id="asc1229700393698__substep_71AE5BC163C94731A352E3A9F96D1321"><a name="asc1229700393698__substep_71AE5BC163C94731A352E3A9F96D1321"><!-- --></a>
+                        <span>In the <span class="uicontrol">Enter or Select Parent Folder</span> box, select the Java project you just created.</span>
+                    </li>
+
+                    <li id="asc1229700393698__substep_8792F21A1385437AA1EB475C5B171747"><a name="asc1229700393698__substep_8792F21A1385437AA1EB475C5B171747"><!-- --></a>
+                        <span>Enter the <span class="uicontrol">File Name</span>.</span>
+                    </li>
+
+                    <li id="asc1229700393698__substep_A9109803DDB74087B0BF4106BC261D07"><a name="asc1229700393698__substep_A9109803DDB74087B0BF4106BC261D07"><!-- --></a>
+                        <span>Associate this SQL file with the Apache Derby connection profile by indicating the <span class="uicontrol">Database Server Type</span>, <span class="uicontrol">Connection Profile Name</span>, and <span class="uicontrol">Database Name</span>.</span>
+                    </li>
+
+                </ol>
+
+            </li>
+
+            <li class="stepexpand" id="asc1229700393698__step_B92304944ED34FD4883744AAB859F351"><a name="asc1229700393698__step_B92304944ED34FD4883744AAB859F351"><!-- --></a>
+                <span> Click <span class="uicontrol">Finish</span>.</span>
+            </li>
+
+            <li class="stepexpand" id="asc1229700393698__step_40E7B86AA27B4C22B7E289AA948FA6E8"><a name="asc1229700393698__step_40E7B86AA27B4C22B7E289AA948FA6E8"><!-- --></a>
+                <span>In SQL File Editor, enter the following SQL statement:</span>
+                 
+                    <p>
+                        <kbd class="userinput"> select * from SYS.SYSTABLES</kbd>
+                    </p>
+
+                
+            </li>
+
+            <li class="stepexpand" id="asc1229700393698__step_6EB9526C0BEF46E58A7F34953F9F094E"><a name="asc1229700393698__step_6EB9526C0BEF46E58A7F34953F9F094E"><!-- --></a>
+                <span>
+Right-click in the editor and select <span class="uicontrol">Execute All</span>.</span>
+                 
+                    <p>The query results appear in the SQL Results view. The left pane displays the execution history. For each statement, including stored procedures, that you run, you can create an Eclipse launch configuration. This allows you to quickly retest the execution using slightly different values and settings. You can rename or delete launch configurations as needed.</p>
+
+                
+            </li>
+
+        </ol>
+
+    </div>
+
+<div>
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="../../doc/html/asc1229700384901.html" title="Use the tutorial to get started using the Data Tools Platform with Apache Derby.">Data Tools Platform Tutorial Overview</a></div>
+<div class="previouslink"><strong>Previous topic:</strong> <a href="../../doc/html/asc1229700392120.html" title="Run a stored procedure in the database using the Apache Derby connection.">Running a Stored Procedure</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>

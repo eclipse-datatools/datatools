@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="SQL Editor Preferences"/>
+<meta name="abstract" content="SQL Editor preferences define the behavior of the SQL File Editor."/>
+<meta name="description" content="SQL Editor preferences define the behavior of the SQL File Editor."/>
+<meta name="DC.subject" content="dtp"/>
+<meta name="keywords" content="dtp"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700399339.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700400855.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700410527.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700412058.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700397808.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700405683.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700407058.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700408496.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700409121.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700452591.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700456982.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700458544.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700459919.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700466482.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700453997.html"/>
+<meta name="DC.Relation" scheme="URI" content="../../doc/html/asc1229700455575.html"/>
+<meta name="DC.Creator" content="ekapner"/>
+<meta name="DitaCms:MapImporter:OriginalFileFullPath" content="\\kohman-xpvm1\tech_pubs_base_pool_1\projects\workspace\ws\en\source\r_sql_editor_preferences.xml"/>
+<meta name="DitaCms:MapImporter:OriginalObjectId" content="r_761_438t4r_5r454r43c47_060606"/>
+<meta name="status" content="Authoring:initial"/>
+<meta name="source" content="Map Importer"/>
+<meta name="comment:system" content="Imported topic [2008/12/19 08:26:44]"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="asc1229700404058"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="../../styles/commonltr.css"/>
+<link rel="stylesheet" type="text/css" href="../../styles/doc.css"/>
+<title xmlns:xs="http://www.w3.org/2001/XMLSchema">SQL Editor Preferences</title>
+<meta name="provider" content="Sybase, Inc."/></head>
+<body id="asc1229700404058"><a name="asc1229700404058"><!-- --></a>
+<br/>
+
+    <h1 class="topictitle1"> SQL Editor Preferences</h1>
+
+    
+    
+    <div><p>SQL Editor preferences define the behavior of the SQL File Editor.</p>
+
+        <div class="section" id="asc1229700404058__section_602A998CB7804F0B82D696AEF2DF0184"><a name="asc1229700404058__section_602A998CB7804F0B82D696AEF2DF0184"><!-- --></a>
+            
+<div class="tablenoborder"><a name="asc1229700404058__table_64EC03DA222848C1A11868CBDE3DBC15"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700404058__table_64EC03DA222848C1A11868CBDE3DBC15" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. SQL Editor preferences: General </span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="34.48275862068966%" id="d444e55">Field
+					 </th>
+
+                            <th class="cellrowborder" valign="top" width="65.51724137931035%" id="d444e58">Description
+					 </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="34.48275862068966%" headers="d444e55 "> Enable Syntax Validation 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="65.51724137931035%" headers="d444e58 "> Automatically update SQL statement structure in outline
+						view and perform syntax validation while editing (default).  
+						<p>Disabling validation also disables portability checking
+						  and the Outline view.
+						</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="34.48275862068966%" headers="d444e55 "> Portability Check Target 
+					 </td>
+
+
+                            <td class="cellrowborder" valign="top" width="65.51724137931035%" headers="d444e58 "> Database type used as the standard target for
+						portability checks. You must enable syntax validation to select a portability
+						target. 
+						<p>Each line that is not portable to the
+						  target is annotated with a check 
+						  <a name="asc1229700404058__image_62FA202FE95D4F5FB0C287D470091A3E"><!-- --></a><img id="asc1229700404058__image_62FA202FE95D4F5FB0C287D470091A3E" src="../image/asc1229700402495.image" height="21" width="17" alt="content assist checkmark con"/>.
+						</p>
+
+                                <p>You can display additional information for the target (including error messages) by moving your cursor over  the marker, if you enable show detailed annotation information.</p>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="34.48275862068966%" headers="d444e55 "> Maximum Number of Lines 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="65.51724137931035%" headers="d444e58 "> Disable syntax validation when content exceeds this number of lines. Use this option to adjust editor performance.
+						The default is 1000. 
+					 </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="34.48275862068966%" headers="d444e55 "> Prompt to Disable Syntax Validation When Content
+						Exceeds Maximum Number of Lines 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="65.51724137931035%" headers="d444e58 "> Select to prompt before disabling validation (default). </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="34.48275862068966%" headers="d444e55 ">Show Detailed Annotation Information</td>
+
+                            <td class="cellrowborder" valign="top" width="65.51724137931035%" headers="d444e58 ">Display additional annotation information, including lists of expected commands for the encountered syntax, if you enabled syntax validation.</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+            
+<div class="tablenoborder"><a name="asc1229700404058__table_D11546F12FDA491CAFDE413A2E293BAD"><!-- --></a><table cellpadding="4" cellspacing="0" summary="" id="asc1229700404058__table_D11546F12FDA491CAFDE413A2E293BAD" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. SQL Editor preferences: Typing</span></caption>
+                    
+                    
+                    <thead align="left">
+                        <tr>
+                            <th class="cellrowborder" valign="top" width="35.08771929824561%" id="d444e139">Field
+					 </th>
+
+                            <th class="cellrowborder" valign="top" width="64.91228070175438%" id="d444e142">Description 
+					 and default values</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="35.08771929824561%" headers="d444e139 "> Close Single Quotes</td>
+
+                            <td class="cellrowborder" valign="top" width="64.91228070175438%" headers="d444e142 "> Automatically close single quotes ( ').</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="35.08771929824561%" headers="d444e139 "> Close Double Quotes 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="64.91228070175438%" headers="d444e142 "> Automatically close double quotes ( ").</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="35.08771929824561%" headers="d444e139 "> Close Parentheses 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="64.91228070175438%" headers="d444e142 "> Automatically close parentheses ( ).</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="35.08771929824561%" headers="d444e139 "> Close Comments 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="64.91228070175438%" headers="d444e142 "> Automatically close comments ( /* */).</td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="cellrowborder" valign="top" width="35.08771929824561%" headers="d444e139 "> Begin-End 
+					 </td>
+
+                            <td class="cellrowborder" valign="top" width="64.91228070175438%" headers="d444e142 "> Automatically add the END statement (for
+						Transact-SQL).</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+</div>
+
+        </div>
+
+    </div>
+
+<div><div class="relconcepts"><strong>Related concepts</strong><br/>
+<div><a href="../../doc/html/asc1229700453997.html" title="Use the SQL File Editor to create and edit SQL statements.">SQL File Editor</a></div>
+<div><a href="../../doc/html/asc1229700455575.html" title="SQL Scrapbook enables you to quickly create and execute SQL commands and queries, as well as procedural objects without creating a SQL file.">SQL Scrapbook</a></div>
+</div>
+<div class="reltasks"><strong>Related tasks</strong><br/>
+<div><a href="../../doc/html/asc1229700397808.html" title="Set SQL Development preferences for label decorations, execution plans, SQL Editor, SQL Query Builder, and SQL Results view.">Setting SQL Development Preferences</a></div>
+<div><a href="../../doc/html/asc1229700452591.html" title="Use Database Development tools to create SQL files.">Creating a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700456982.html" title="Edit the SQL statements in a SQL file.">Editing a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700458544.html" title="Open a SQL file for viewing or editing in the SQL File Editor.">Opening a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700459919.html" title="Save one or more SQL files to the current project, or save a SQL file to a different project or to a different file name.">Saving a SQL File</a></div>
+<div><a href="../../doc/html/asc1229700466482.html" title="You can execute a SQL file from the SQL File Editor or from WorkSpace Navigator.">Executing a SQL File</a></div>
+</div>
+<div class="relref"><strong>Related reference</strong><br/>
+<div><a href="../../doc/html/asc1229700399339.html" title="Set execution plan view options to specify defaults for viewing query plans.">Execution Plan View Options Preferences</a></div>
+<div><a href="../../doc/html/asc1229700400855.html" title="The general user preferences concern executing and debugging procedural objects.">Database Development General Preferences</a></div>
+<div><a href="../../doc/html/asc1229700410527.html" title="Indicate the SQL Query Builder preferences.">SQL Query Builder Preferences</a></div>
+<div><a href="../../doc/html/asc1229700412058.html" title="The SQL Results view preferences determine the behavior of the SQL Results view.">SQL Results View Options Preferences</a></div>
+<div><a href="../../doc/html/asc1229700405683.html" title="SQL Editor Code Assist preferences define the behavior of the Code Assist feature in SQL File Editor.">Code Assist Preferences</a></div>
+<div><a href="../../doc/html/asc1229700407058.html" title="SQL files and scrapbooks preferences define the behavior of SQL files in SQL File Editor and SQL Scrapbook.">SQL Files/Scrapbooks Preferences</a></div>
+<div><a href="../../doc/html/asc1229700408496.html" title="Indicate your preferences for syntax coloring and text style for SQL source code in SQL Editor or SQL Scrapbook.">Syntax Coloring Preferences</a></div>
+<div><a href="../../doc/html/asc1229700409121.html" title="You can create new SQL templates and edit existing ones.">Templates Preferences</a></div>
+</div>
+</div>
+<div/>
+</body>
+</html>
