@@ -245,7 +245,7 @@
               <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>target-platform-configuration</artifactId>
-                <version>${tycho.version}</version>
+                <version>${tycho-version}</version>
                 <configuration>
                   <includePackedArtifacts>true</includePackedArtifacts>
                 </configuration>
@@ -301,7 +301,7 @@
               <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-p2-plugin</artifactId>
-                <version>${tycho.version}</version>
+                <version>${tycho-version}</version>
                 <executions>
                   <execution>
                     <id>p2-metadata</id>
