@@ -3,15 +3,17 @@
 
    <feature id="org.eclipse.datatools.common.doc.user"><category name="dtp"/></feature>
    <feature id="org.eclipse.datatools.doc.user"><category name="dtp"/></feature>
+   <bundle id="org.eclipse.datatools.doc.isv"><category name="dtp"/></bundle>
    <feature id="org.eclipse.datatools.intro"><category name="dtp"/></feature>
    <feature id="org.eclipse.datatools.modelbase.feature"><category name="dtp"/></feature>
-   <!-- TODO: disabled in Fedora specfile <feature id="org.eclipse.datatools.sdk.feature"><category name="dtp"/></feature> -->
+   <feature id="org.eclipse.datatools.sdk.feature"><category name="dtp"/></feature>
 
    <feature id="org.eclipse.datatools.connectivity.doc.user"><category name="dtp-connectivity"/></feature>
    <feature id="org.eclipse.datatools.connectivity.feature"><category name="dtp-connectivity"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.designer.core.feature"><category name="dtp-connectivity"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.designer.feature"><category name="dtp-connectivity"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.feature"><category name="dtp-connectivity"/></feature>
+   <bundle id="org.eclipse.datatools.connectivity.ui.templates"><category name="dtp-connectivity"/></bundle>
 
    <feature id="org.eclipse.datatools.enablement.apache.derby.feature"><category name="dtp-enablement"/></feature>
    <feature id="org.eclipse.datatools.enablement.feature"><category name="dtp-enablement"/></feature>
@@ -27,7 +29,7 @@
    <feature id="org.eclipse.datatools.enablement.oracle.feature"><category name="dtp-enablement"/></feature>
    <feature id="org.eclipse.datatools.enablement.postgresql.feature"><category name="dtp-enablement"/></feature>
    <feature id="org.eclipse.datatools.enablement.sap.feature"><category name="dtp-enablement"/></feature>
-   <!-- TODO: disabled in Fedora specfile <feature id="org.eclipse.datatools.enablement.sdk.feature"><category name="dtp-enablement"/></feature> -->
+   <feature id="org.eclipse.datatools.enablement.sdk.feature"><category name="dtp-enablement"/></feature>
    <feature id="org.eclipse.datatools.enablement.sqlite.feature"><category name="dtp-enablement"/></feature>
    <feature id="org.eclipse.datatools.enablement.sybase.feature"><category name="dtp-enablement"/></feature>
 
