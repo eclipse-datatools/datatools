@@ -337,8 +337,6 @@
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.dbdefinition.genericJDBC.nl</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.jdt</module>
-      	<!-- TODO: why can't find org.eclipse.datatools.connectivity when building NL fragment?
-        <module>plugins/connectivity/org.eclipse.datatools.connectivity.nl</module> -->
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda.consumer</module>
       	<module>plugins/connectivity/org.eclipse.datatools.connectivity.oda.consumer.nl</module>
@@ -489,7 +487,7 @@
       	<module>plugins/docs/org.eclipse.datatools.help</module>
       	<module>plugins/docs/org.eclipse.datatools.oda.cshelp</module>
 
-      	<!-- TODO: disabled in Fedora specfile <module>plugins/org.eclipse.datatools.sdk</module> -->
+        <module>plugins/org.eclipse.datatools.sdk</module>
       	<module>plugins/sqltools/org.eclipse.datatools.sqltools.common.ui</module>
       	<module>plugins/sqltools/org.eclipse.datatools.sqltools.common.ui.nl</module>
       	<module>plugins/sqltools/org.eclipse.datatools.sqltools.data.core</module>
@@ -556,8 +554,6 @@
       	<module>examples/org.eclipse.datatools.enablement.rcp</module>
       	<module>examples/org.eclipse.datatools.sqltools.sqlbuilder.examples</module>
 
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.birt.dtp.nl.feature</module> -->
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.birt.dtp.sybase.nl.feature</module> -->
       	<module>features/org.eclipse.datatools.common.doc.user</module>
       	<module>features/org.eclipse.datatools.connectivity.doc.user</module>
       	<module>features/org.eclipse.datatools.connectivity.feature</module>
@@ -575,19 +571,16 @@
       	<module>features/org.eclipse.datatools.enablement.msft.feature</module>
       	<module>features/org.eclipse.datatools.enablement.mysql.feature</module>
       	<module>features/org.eclipse.datatools.enablement.oda.designer.feature</module>
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.datatools.enablement.oda.ecore.feature</module> -->
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.datatools.enablement.oda.ecore.sdk.feature</module> -->
       	<module>features/org.eclipse.datatools.enablement.oda.feature</module>
       	<module>features/org.eclipse.datatools.enablement.oracle.feature</module>
       	<module>features/org.eclipse.datatools.enablement.postgresql.feature</module>
       	<module>features/org.eclipse.datatools.enablement.sap.feature</module>
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.datatools.enablement.sdk.feature</module> -->
+      	<module>features/org.eclipse.datatools.enablement.sdk.feature</module>
       	<module>features/org.eclipse.datatools.enablement.sqlite.feature</module>
       	<module>features/org.eclipse.datatools.enablement.sybase.feature</module>
       	<module>features/org.eclipse.datatools.intro</module>
       	<module>features/org.eclipse.datatools.modelbase.feature</module>
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.datatools.sdk-all.feature</module> -->
-      	<!-- TODO: disabled in Fedora specfile <module>features/org.eclipse.datatools.sdk.feature</module> -->
+      	<module>features/org.eclipse.datatools.sdk.feature</module>
       	<module>features/org.eclipse.datatools.sqldevtools.data.feature</module>
       	<module>features/org.eclipse.datatools.sqldevtools.ddl.feature</module>
       	<module>features/org.eclipse.datatools.sqldevtools.ddlgen.feature</module>
