@@ -10,6 +10,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.enablement.oda.xml.tests</artifactId>
-  <version>1.0.1.200802181</version>
+  <version>1.0.2-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
 </project>
