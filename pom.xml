@@ -17,30 +17,60 @@
 
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
-      <platform-site>http://download.eclipse.org/releases/photon/</platform-site>
+      <platform-site>http://download.eclipse.org/eclipse/updates/4.8milestones/</platform-site>
+      <orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/S20180119201206/repository/</orbit-site>
+      <emf-site>http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/</emf-site>
+      <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326/</emf-query-site>
+      <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0/</mdt-ocl-site>
+      <gef-site>http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/</gef-site>
       <junit3-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</junit3-site>
 
       <cbi-plugins.version>1.1.4</cbi-plugins.version>
       <cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</cbi-repo.url>
 
       <!-- baseline check URLs: skip with -DskipBaselineComparison=true and/or -Dtycho.baseline=disable -->
-      <skipBaselineComparison>false</skipBaselineComparison>
+      <skipBaselineComparison>true</skipBaselineComparison>
       <lastStableRepository>http://download.eclipse.org/datatools/1.14.1.201712071719/repository/</lastStableRepository>
     </properties>
 
     <repositories>
         <repository>
-            <id>license-feature</id>
+            <id>license-site</id>
             <url>${license-site}</url>
             <layout>p2</layout>
         </repository>   
         <repository>
-            <id>platform</id>
+            <id>platform-site</id>
             <url>${platform-site}</url>
             <layout>p2</layout>
         </repository>
         <repository>
-            <id>junit3</id>
+            <id>orbit-site</id>
+            <url>${orbit-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>emf-site</id>
+            <url>${emf-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>emf-query-site</id>
+            <url>${emf-query-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>mdt-ocl-site</id>
+            <url>${mdt-ocl-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>gef-site</id>
+            <url>${gef-site}</url>
+            <layout>p2</layout>
+        </repository>
+        <repository>
+            <id>junit3-site</id>
             <url>${junit3-site}</url>
             <layout>p2</layout>
         </repository>
@@ -69,12 +99,55 @@
     </pluginRepositories>
     <build>
         <plugins>
-        <plugin>
+          <plugin>
+              <groupId>org.eclipse.tycho</groupId>
+              <artifactId>tycho-maven-plugin</artifactId>
+              <version>${tycho-version}</version>
+              <extensions>true</extensions>
+          </plugin>
+          <!-- to skip this check, use -Dtycho.baseline=disable -->
+          <plugin>
             <groupId>org.eclipse.tycho</groupId>
-            <artifactId>tycho-maven-plugin</artifactId>
+            <artifactId>tycho-p2-plugin</artifactId>
             <version>${tycho-version}</version>
-            <extensions>true</extensions>
-        </plugin>
+            <executions>
+              <execution>
+                <id>attached-p2-metadata</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>p2-metadata</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <baselineReplace>none</baselineReplace>
+              <baselineRepositories>
+                <repository>
+                  <url>${lastStableRepository}</url>
+                </repository>
+              </baselineRepositories>
+            </configuration>
+          </plugin>
+          <!-- to skip this check, use -DskipBaselineComparison=true -->
+          <plugin>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-p2-extras-plugin</artifactId>
+            <version>${tycho-version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>compare-version-with-baselines</goal>
+                </goals>
+                <phase>verify</phase>
+                <configuration>
+                  <skip>${skipBaselineComparison}</skip>
+                  <baselines>
+                    <repo>${lastStableRepository}</repo>
+                  </baselines>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin> 
         </plugins>
         <pluginManagement>
             <plugins>
@@ -166,49 +239,6 @@
                       <goals>
                         <goal>source-feature</goal>
                       </goals>
-                    </execution>
-                  </executions>
-                </plugin>
-
-                <!-- to skip this check, use -Dtycho.baseline=disable -->
-                <plugin>
-                  <groupId>org.eclipse.tycho</groupId>
-                  <artifactId>tycho-p2-plugin</artifactId>
-                  <version>${tycho-version}</version>
-                  <executions>
-                    <execution>
-                      <id>attached-p2-metadata</id>
-                      <phase>package</phase>
-                      <goals>
-                        <goal>p2-metadata</goal>
-                      </goals>
-                    </execution>
-                  </executions>
-                  <configuration>
-                    <baselineRepositories>
-                      <repository>
-                        <url>${lastStableRepository}</url>
-                      </repository>
-                    </baselineRepositories>
-                  </configuration>
-                </plugin>
-                <!-- to skip this check, use -DskipBaselineComparison=true -->
-                <plugin>
-                  <groupId>org.eclipse.tycho.extras</groupId>
-                  <artifactId>tycho-p2-extras-plugin</artifactId>
-                  <version>${tycho-version}</version>
-                  <executions>
-                    <execution>
-                      <goals>
-                        <goal>compare-version-with-baselines</goal>
-                      </goals>
-                      <phase>verify</phase>
-                      <configuration>
-                        <skip>${skipBaselineComparison}</skip>
-                        <baselines>
-                          <repo>${lastStableRepository}</repo>
-                        </baselines>
-                      </configuration>
                     </execution>
                   </executions>
                 </plugin>
@@ -539,9 +569,7 @@
         <module>plugins/modelbase/org.eclipse.datatools.modelbase.sql.query.nl</module>
         <module>plugins/modelbase/org.eclipse.datatools.modelbase.sql.xml.query</module>
         <module>plugins/modelbase/org.eclipse.datatools.modelbase.sql.xml.query.nl</module>
-        <module>plugins/docs/org.eclipse.datatools.doc.isv</module>
-        <module>plugins/docs/org.eclipse.datatools.help</module>
-        <module>plugins/docs/org.eclipse.datatools.oda.cshelp</module>
+        <module>plugins/docs</module>
 
         <module>plugins/org.eclipse.datatools.sdk</module>
         <module>plugins/sqltools/org.eclipse.datatools.sqltools.common.ui</module>
