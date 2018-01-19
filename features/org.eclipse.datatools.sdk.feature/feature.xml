@@ -19,94 +19,14 @@
       %license
    </license>
 
-   <includes
-         id="org.eclipse.datatools.modelbase.feature"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.feature"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.feature"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.modelbase.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.intro"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.doc.user"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.common.doc.user"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.doc.user"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqltools.doc.user"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.oda.designer.feature.source"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.connectivity.oda.feature.source"
-         version="0.0.0"
-         optional="true"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.data.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.ddl.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.ddlgen.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.parsers.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.results.feature.source"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"
-         version="0.0.0"/>
-
    <requires>
-      <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
+     <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
+
+     <import feature="org.eclipse.datatools.intro"/>
+     <import feature="org.eclipse.datatools.doc.user"/>
+     <import feature="org.eclipse.datatools.common.doc.user"/>
+     <import feature="org.eclipse.datatools.connectivity.doc.user"/>
+     <import feature="org.eclipse.datatools.sqltools.doc.user"/>
    </requires>
 
    <plugin
@@ -125,13 +45,6 @@
 
    <plugin
          id="org.eclipse.datatools.connectivity.ui.templates"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.connectivity.ui.templates.source"
          download-size="0"
          install-size="0"
          version="0.0.0"

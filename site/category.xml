@@ -44,7 +44,7 @@
    <feature id="org.eclipse.datatools.sqltools.doc.user"><category name="dtp-sqltools"/></feature>
 
    <!-- sources -->
-   <feature id="org.eclipse.datatools.connectivity.feature.source"><category name="dtp-sources"/></feature>
+<!--    <feature id="org.eclipse.datatools.connectivity.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.designer.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.connectivity.oda.feature.source"><category name="dtp-sources"/></feature>
@@ -71,7 +71,7 @@
    <feature id="org.eclipse.datatools.sqldevtools.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.sqldevtools.parsers.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.sqldevtools.results.feature.source"><category name="dtp-sources"/></feature>
-   <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"><category name="dtp-sources"/></feature>
+   <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"><category name="dtp-sources"/></feature> -->
 
    <category-def name="dtp" label="Eclipse Data Tools"><description>Data Tools Platform (DTP) - main features</description></category-def>
    <category-def name="dtp-sources" label="Eclipse Data Tools - Sources"><description>Data Tools Platform (DTP) - sources</description></category-def>
