@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.eclipse.datatools</groupId>
+    <artifactId>org.eclipse.datatools</artifactId>
+    <version>1.14.100-SNAPSHOT</version>
+    <relativePath>../../</relativePath>
+  </parent>
+  <groupId>org.eclipse.datatools</groupId>
+  <artifactId>docs</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>org.eclipse.datatools.common.doc.user</module>
+    <module>org.eclipse.datatools.connectivity.doc.user</module>
+    <module>org.eclipse.datatools.connectivity.doc.user.contexts</module>
+    <module>org.eclipse.datatools.doc.isv</module>
+    <module>org.eclipse.datatools.doc.user</module>
+    <module>org.eclipse.datatools.help</module>
+    <module>org.eclipse.datatools.intro</module>
+    <module>org.eclipse.datatools.oda.cshelp</module>
+    <module>org.eclipse.datatools.sqltools.doc.user</module>
+    <module>org.eclipse.datatools.sqltools.doc.user.contexts</module>
+  </modules>
+</project>

@@ -8,7 +8,7 @@
     <version>1.14.100-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
-  <artifactId>org.eclipse.datatools.help</artifactId>
-  <version>1.7.1-SNAPSHOT</version>
+  <artifactId>org.eclipse.datatools.intro</artifactId>
+  <version>1.7.0.v201005281800</version>
   <packaging>eclipse-plugin</packaging>
 </project>
