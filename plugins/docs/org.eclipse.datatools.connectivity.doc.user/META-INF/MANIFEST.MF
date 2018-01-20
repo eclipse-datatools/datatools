@@ -7,7 +7,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.doc.user; sing
  leton:=true
-Bundle-Version: 1.7.0.20090521092446
+Bundle-Version: 1.7.1.qualifier
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 

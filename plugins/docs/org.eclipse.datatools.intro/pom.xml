@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.intro</artifactId>
-  <version>1.7.0.v201005281800</version>
+  <version>1.7.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

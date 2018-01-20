@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.connectivity.doc.user.contexts</artifactId>
-  <version>1.7.0.20090521092446</version>
+  <version>1.7.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

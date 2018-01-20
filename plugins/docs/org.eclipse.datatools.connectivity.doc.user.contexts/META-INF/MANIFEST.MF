@@ -6,7 +6,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.doc.user.conte
  xts; singleton:=true
-Bundle-Version: 1.7.0.20090521092446
+Bundle-Version: 1.7.1.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
