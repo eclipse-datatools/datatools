@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.eclipse.datatools</groupId>
+    <artifactId>org.eclipse.datatools</artifactId>
+    <version>1.14.100-SNAPSHOT</version>
+  </parent>
+  <groupId>org.eclipse.datatools</groupId>
+  <artifactId>tests</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>org.eclipse.datatools.connectivity.oda.consumer.testdriver</module>
+    <module>org.eclipse.datatools.connectivity.oda.consumer.tests</module>
+    <module>org.eclipse.datatools.connectivity.oda.design.tests</module>
+    <module>org.eclipse.datatools.connectivity.oda.flatfile.tests</module>
+    <module>org.eclipse.datatools.connectivity.oda.profile.tests</module>
+    <module>org.eclipse.datatools.connectivity.oda.tests</module>
+    <module>org.eclipse.datatools.connectivity.test</module>
+    <module>org.eclipse.datatools.enablement.dbdefinition.junittest</module>
+    <module>org.eclipse.datatools.enablement.oda.ws.test</module>
+    <module>org.eclipse.datatools.enablement.oda.xml.tests</module>
+    <module>org.eclipse.datatools.sqltools.db.generic.test</module>
+    <module>org.eclipse.datatools.sqltools.parsers.sql.query.test</module>
+    <module>org.eclipse.datatools.sqltools.parsers.sql.test</module>
+    <module>org.eclipse.datatools.sqltools.parsers.sql.xml.query.test</module>
+    <module>org.eclipse.datatools.sqltools.plan.junittest</module>
+    <module>org.eclipse.datatools.sqltools.result.junittest</module>
+  </modules>
+</project>

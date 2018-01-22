@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.eclipse.datatools</groupId>
+    <artifactId>plugins</artifactId>
+    <version>1.14.100-SNAPSHOT</version>
+  </parent>
+  <groupId>org.eclipse.datatools</groupId>
+  <artifactId>modelbase</artifactId>
+  <version>1.14.100-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>org.eclipse.datatools.modelbase.dbdefinition</module>
+    <module>org.eclipse.datatools.modelbase.dbdefinition.nl</module>
+    <module>org.eclipse.datatools.modelbase.derby</module>
+    <module>org.eclipse.datatools.modelbase.derby.nl</module>
+    <module>org.eclipse.datatools.modelbase.sql</module>
+    <module>org.eclipse.datatools.modelbase.sql.edit</module>
+    <module>org.eclipse.datatools.modelbase.sql.edit.nl</module>
+    <module>org.eclipse.datatools.modelbase.sql.nl</module>
+    <module>org.eclipse.datatools.modelbase.sql.query</module>
+    <module>org.eclipse.datatools.modelbase.sql.query.edit</module>
+    <module>org.eclipse.datatools.modelbase.sql.query.edit.nl</module>
+    <module>org.eclipse.datatools.modelbase.sql.query.nl</module>
+    <module>org.eclipse.datatools.modelbase.sql.xml.query</module>
+    <module>org.eclipse.datatools.modelbase.sql.xml.query.nl</module>
+  </modules>
+</project>

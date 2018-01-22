@@ -6,10 +6,16 @@
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>org.eclipse.datatools</artifactId>
     <version>1.14.100-SNAPSHOT</version>
-    <relativePath>../../../</relativePath>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
-  <artifactId>org.eclipse.datatools.connectivity.nl1</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
-  <packaging>eclipse-plugin</packaging>
+  <artifactId>plugins</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>connectivity</module>
+    <module>docs</module>
+    <module>enablement</module>
+    <module>modelbase</module>
+    <module>sqltools</module>
+    <module>org.eclipse.datatools.sdk</module>
+  </modules>
 </project>
