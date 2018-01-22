@@ -11,8 +11,6 @@
   <artifactId>features</artifactId>
   <packaging>pom</packaging>
   <modules>
-    <module>org.eclipse.birt.dtp.nl.feature</module>
-    <module>org.eclipse.birt.dtp.sybase.nl.feature</module>
     <module>org.eclipse.datatools.common.doc.user</module>
     <module>org.eclipse.datatools.connectivity.doc.user</module>
     <module>org.eclipse.datatools.connectivity.feature</module>
