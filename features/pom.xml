@@ -10,6 +10,18 @@
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>features</artifactId>
   <packaging>pom</packaging>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.eclipse.tycho.extras</groupId>
+            <artifactId>tycho-source-feature-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-p2-plugin</artifactId>
+        </plugin>
+    </plugins>
+  </build>
   <modules>
     <module>org.eclipse.datatools.common.doc.user</module>
     <module>org.eclipse.datatools.connectivity.doc.user</module>
