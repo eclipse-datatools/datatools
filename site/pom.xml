@@ -6,7 +6,6 @@
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>org.eclipse.datatools</artifactId>
     <version>1.14.100-SNAPSHOT</version>
-    <relativePath>../</relativePath>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>site</artifactId>
