@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.intro"
       label="%featureName"
-      version="1.14.1.qualifier"
+      version="1.14.100.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.intro"
       image="eclipse32.png">

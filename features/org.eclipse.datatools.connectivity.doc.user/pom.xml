@@ -9,6 +9,5 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.connectivity.doc.user</artifactId>
-  <version>1.14.1-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>

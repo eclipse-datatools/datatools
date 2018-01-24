@@ -9,6 +9,5 @@
   </parent>
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.doc.user</artifactId>
-  <version>1.14.1-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
