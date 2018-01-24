@@ -30,7 +30,7 @@
       <cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</cbi-repo.url>
 
       <!-- baseline check URLs: skip with -DskipBaselineComparison=true and/or -Dtycho.baseline=disable -->
-      <skipBaselineComparison>true</skipBaselineComparison>
+      <skipBaselineComparison>false</skipBaselineComparison>
       <lastStableRepository>http://download.eclipse.org/datatools/1.14.1.201712071719/repository/</lastStableRepository>
     </properties>
 
@@ -274,11 +274,11 @@
             </executions>
             <configuration>
               <!-- <baselineReplace>none</baselineReplace> -->
-              <!-- <baselineRepositories>
+              <baselineRepositories>
                 <repository>
                   <url>${lastStableRepository}</url>
                 </repository>
-              </baselineRepositories> -->
+              </baselineRepositories>
             </configuration>
           </plugin>
         </plugins>
