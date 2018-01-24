@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.connectivity.oda.profile.nl1</artifactId>
-  <version>3.0.6-SNAPSHOT</version>
+  <version>3.0.100-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.connectivity.oda.consumer</artifactId>
-  <version>3.4.1-SNAPSHOT</version>
+  <version>3.4.100-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

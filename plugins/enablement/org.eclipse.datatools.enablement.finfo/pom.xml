@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools.enablement.finfo</artifactId>
-  <version>1.7.0-SNAPSHOT</version>
+  <version>1.7.100-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
