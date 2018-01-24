@@ -7,7 +7,7 @@
     <artifactId>tests</artifactId>
     <version>1.14.100-SNAPSHOT</version>
   </parent>
-  <groupId>org.eclipse.datatools</groupId>
+  <groupId>org.eclipse.datatools.tests</groupId>
   <artifactId>org.eclipse.datatools.enablement.oda.xml.tests</artifactId>
   <version>1.0.2-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>

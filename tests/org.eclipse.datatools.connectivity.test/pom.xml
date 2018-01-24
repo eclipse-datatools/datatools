@@ -7,7 +7,7 @@
     <artifactId>tests</artifactId>
     <version>1.14.100-SNAPSHOT</version>
   </parent>
-  <groupId>org.eclipse.datatools</groupId>
+  <groupId>org.eclipse.datatools.tests</groupId>
   <artifactId>org.eclipse.datatools.connectivity.test</artifactId>
   <version>1.0.1.200802251</version>
   <packaging>eclipse-plugin</packaging>

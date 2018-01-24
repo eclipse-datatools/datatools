@@ -7,7 +7,7 @@
     <artifactId>sqltools</artifactId>
     <version>1.14.100-SNAPSHOT</version>
   </parent>
-  <groupId>org.eclipse.datatools</groupId>
+  <groupId>org.eclipse.datatools.plugins</groupId>
   <artifactId>org.eclipse.datatools.sqltools.db.generic.nl1</artifactId>
   <version>1.0.100-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
