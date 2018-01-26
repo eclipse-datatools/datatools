@@ -1,6 +1,6 @@
 # Eclipse Data Tools #
 
-As of January 2018, Eclipse Data Tools (DTP) is now build with Maven 3.5 & Tycho 1.0.
+As of January 2018, Eclipse Data Tools (DTP) is now build with [Maven 3.5 & Tycho 1.0](https://maven.apache.org/download.cgi).
 
 
 ## Building locally ##
@@ -50,4 +50,4 @@ Therefore the latest CI build can be found here:
 
 ## Deprecated Code
 
-Note that this repo is now the combination of the other [18 org.eclipse.datatools.\*.git repos](http://git.eclipse.org/c/datatools/), which means the other repos are deprecated. Should you want to run the old Ant-based build, check out the 19 repos and then run the build in org.eclipse.datatools, from the DTP_1_14_1_Release tag, not from the master branch.
+Note that this repo is now the combination of the other [18 org.eclipse.datatools.\*.git repos](http://git.eclipse.org/c/datatools/), which means the other repos are deprecated. Should you want to run the old Ant-based build, check out the 19 repos and then run the build in org.eclipse.datatools, from the ```DTP_1_14_1_Release``` tag, not from the master branch.
