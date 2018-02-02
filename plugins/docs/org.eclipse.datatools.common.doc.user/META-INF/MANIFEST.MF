@@ -10,4 +10,4 @@ Bundle-SymbolicName: org.eclipse.datatools.common.doc.user; singleton:
 Bundle-Version: 1.14.100.qualifier
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-
+Import-Package: org.eclipse.help.base

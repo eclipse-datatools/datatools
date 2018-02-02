@@ -5,9 +5,8 @@ Built-By: TPS_build ditamap.pipeline.1-3_20090521092446
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-SymbolicName: org.eclipse.datatools.connectivity.doc.user; sing
- leton:=true
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.doc.user; singleton:=true
 Bundle-Version: 1.14.100.qualifier
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
-
+Import-Package: org.eclipse.help.base
