@@ -6,8 +6,7 @@ Bundle-Version: 1.14.100.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.internal.ConnectivityPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.resources,
  com.ibm.icu
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
