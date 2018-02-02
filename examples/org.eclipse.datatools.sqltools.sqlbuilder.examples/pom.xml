@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools.examples</groupId>
   <artifactId>org.eclipse.datatools.sqltools.sqlbuilder.examples</artifactId>
-  <version>1.0.0.200803111</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
