@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2007, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Nick Boldt, Red Hat - update for Tycho 1.1
  *******************************************************************************/
 
 package org.eclipse.datatools.sqltools.sqlbuilder.expressionbuilder.caseexpr;
@@ -363,7 +364,7 @@ public class CaseSimplePage extends WizardPage implements SelectionListener {
     public void updateFinishButton() {
         isComplete = true;
 
-        if (caseClauseComboHelper.getSelectedObject() == null || caseClauseCombo.getSelection().equals("")
+        if (caseClauseComboHelper.getSelectedObject() == null || caseClauseCombo.getSelection().toString().equals("")
                 || caseClauseComboHelper.getSelectedObject().equals("")) {
             isComplete = false;
         }
