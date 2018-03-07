@@ -25,6 +25,7 @@ public class SQLServerDatabaseRecognizer implements IDatabaseRecognizer {
 	public static final String VERSION2008 = "2008"; //$NON-NLS-1$
 	public static final String VERSION2012 = "2012"; //$NON-NLS-1$
 	public static final String VERSION2014 = "2014"; //$NON-NLS-1$
+	public static final String VERSION2016 = "2016"; //$NON-NLS-1$
     
     public DatabaseDefinition recognize(Connection connection) {
         try {
@@ -54,6 +55,9 @@ public class SQLServerDatabaseRecognizer implements IDatabaseRecognizer {
             }
             else if(version.startsWith("12.")) { //$NON-NLS-1$
                 return DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(PRODUCT, VERSION2014);
+            }
+            else if(version.startsWith("13.")) { //$NON-NLS-1$
+                return DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(PRODUCT, VERSION2016);
             }
         }
         catch (Exception e) {
