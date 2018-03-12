@@ -5,6 +5,13 @@
    <extension
          point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
       <definition
+            version="12"
+            product="Oracle"
+            productDisplayString="%12ProductString"
+            versionDisplayString="%12VersionString"
+            file="runtime/vendors/Oracle_12/Oracle_12.xmi">
+      </definition>
+	  <definition
             version="11"
             product="Oracle"
             productDisplayString="%11ProductString"

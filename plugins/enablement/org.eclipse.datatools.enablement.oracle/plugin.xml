@@ -24,6 +24,10 @@
       		parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
             id="org.eclipse.datatools.enablement.oracle.driverCategory"
             name="%ORACLE_CATEGORY_NAME"/>
+		 <category
+      		parentCategory="org.eclipse.datatools.enablement.oracle.driverCategory"
+            id="org.eclipse.datatools.enablement.oracle.12.driverCategory"
+            name="%12_VERSION_CATEGORY_NAME"/>
          <category
       		parentCategory="org.eclipse.datatools.enablement.oracle.driverCategory"
             id="org.eclipse.datatools.enablement.oracle.11.driverCategory"
