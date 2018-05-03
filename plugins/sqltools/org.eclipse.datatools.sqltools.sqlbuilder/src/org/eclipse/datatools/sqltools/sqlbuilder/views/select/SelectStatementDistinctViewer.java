@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -27,7 +27,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -97,7 +97,7 @@ public class SelectStatementDistinctViewer extends ContentViewer implements Sele
 
         checkBox = ViewUtility.createCheckBox(mainUIComponent, "DISTINCT"); //$NON-NLS-1$
         checkBox.addSelectionListener(this);
-        WorkbenchHelp.setHelp(checkBox, SQLBuilderContextIds.SQLB_SELECT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(checkBox, SQLBuilderContextIds.SQLB_SELECT_VIEW);
 
         hookControl(getControl());
         return getControl();

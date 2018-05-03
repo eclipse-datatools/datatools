@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class FileFormatWizardPage extends WizardPage
@@ -82,7 +82,7 @@ public class FileFormatWizardPage extends WizardPage
         Composite c = new Composite(parent, SWT.NONE);
         c.setLayout(new GridLayout(3, false));
         if (getHelpID()!=null)
-        	WorkbenchHelp.setHelp(c, getHelpID());
+        	PlatformUI.getWorkbench().getHelpSystem().setHelp(c, getHelpID());
         
         Label l = new Label(c, SWT.NONE);
         if (extract)

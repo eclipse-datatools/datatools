@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class DefineTypeComposite {
@@ -39,7 +39,7 @@ public class DefineTypeComposite {
 
     public DefineTypeComposite(Composite parent, SQLDomainModel domainModel, int joinKind) {
         typeControls = new Composite(parent, SWT.NULL);
-        WorkbenchHelp.setHelp(typeControls, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(typeControls, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
 
         GridLayout layout = new GridLayout();
         layout.numColumns = 1;
@@ -70,10 +70,10 @@ public class DefineTypeComposite {
         fullOuterJoinRadio = ViewUtility.createRadioButton(buttonGroup, 
                 Messages._UI_RADIO_FULL_OUTER_JOIN);
 
-        WorkbenchHelp.setHelp(innerJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
-        WorkbenchHelp.setHelp(leftOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
-        WorkbenchHelp.setHelp(rightOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
-        WorkbenchHelp.setHelp(fullOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(innerJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(leftOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(rightOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(fullOuterJoinRadio, SQLBuilderContextIds.SQLG_DEFINE_JOINTYPE_DIALOG);
 
         if (domainModel.getVendor().isDB2() || domainModel.getVendor().isMSSQLServer() || 
                 domainModel.getVendor().isInstantDB()) {

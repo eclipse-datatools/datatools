@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -12,11 +12,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views;
 
 import java.util.List;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.help.WorkbenchHelp;
-import org.eclipse.ui.part.PageBook;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
@@ -39,6 +34,11 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.select.SelectViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.update.UpdateViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.with.WithStatementViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.with.WithTableViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.PageBook;
 
 /**
  * Design Pane 
@@ -122,17 +122,17 @@ public class DesignViewer extends PageBook {
         if (input instanceof QueryInsertStatement) {
             showPage(insertViewer.getControl());            
             insertViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_INSERT_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_INSERT_VIEW);
         }
         else if (input instanceof QueryUpdateStatement) {
             showPage(updateViewer.getControl());            
             updateViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_UPDATE_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_UPDATE_VIEW);
         }
         else if (input instanceof QueryDeleteStatement) {
             showPage(deleteViewer.getControl());            
             deleteViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_DELETE_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_DELETE_VIEW);
         }
         else if (input instanceof QuerySelectStatement) {
             QueryExpressionBody queryBody = SelectHelper.getQueryExpressionBody((QuerySelectStatement) input);
@@ -144,54 +144,54 @@ public class DesignViewer extends PageBook {
                 List withClause = sqlSelectStatement.getQueryExpr().getWithClause();
                 if(withClause.isEmpty())
                 {
-                    WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
+                	PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
                 }
                 else
                 {
-                    WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_WITH_STATEMENT_VIEW);
+                	PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_WITH_STATEMENT_VIEW);
                 }
             }
             else if (queryBody instanceof QueryCombined) {
                 showPage(fullSelect);                
                 fullSelectViewer.setInput(queryBody);
-                WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_FULL_SELECT_VIEW);
+                PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_FULL_SELECT_VIEW);
             }
             else if (queryBody instanceof QueryValues) {
                 showPage(valuesRowPage);                
                 valuesRowViewer.setInput(queryBody);
-                WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_CLAUSE_VIEW);
+                PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_CLAUSE_VIEW);
             }
             else {
                 selectViewer.setInput(input);
                 showPage(selectViewer.getControl());                
-                WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
+                PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
             }
 
         }
         else if (input instanceof WithTableSpecification) {
             showPage(withTable);            
             withTableViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_WITH_TABLE_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_WITH_TABLE_VIEW);
         }
         else if (input instanceof QuerySelect) {
             selectViewer.setInput(input);
             showPage(selectViewer.getControl());            
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_SELECT_VIEW);
         }
         else if (input instanceof QueryCombined) {
             showPage(fullSelect);            
             fullSelectViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_FULL_SELECT_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_FULL_SELECT_VIEW);
         }
         else if (input instanceof QueryValues) {
             showPage(valuesClause);            
             valuesViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_CLAUSE_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_CLAUSE_VIEW);
         }
         else if (input instanceof ValuesRow) {
             showPage(valuesRowPage);             
             valuesRowViewer.setInput(input);
-            WorkbenchHelp.setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_ROW_VIEW);
+            PlatformUI.getWorkbench().getHelpSystem().setHelp(getParent(), SQLBuilderContextIds.SQLB_VALUES_ROW_VIEW);
         }
     }
     

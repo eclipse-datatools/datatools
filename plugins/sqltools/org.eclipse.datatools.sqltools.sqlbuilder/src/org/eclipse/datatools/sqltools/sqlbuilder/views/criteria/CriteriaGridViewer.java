@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -44,7 +44,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class CriteriaGridViewer extends NavigableTableViewer implements IMenuListener {
@@ -87,7 +87,7 @@ public class CriteriaGridViewer extends NavigableTableViewer implements IMenuLis
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
 
-        WorkbenchHelp.setHelp(table, SQLBuilderContextIds.SQSS_SHARED_SEL_UP_DEL_GRID);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(table, SQLBuilderContextIds.SQSS_SHARED_SEL_UP_DEL_GRID);
 
         columnEditor = new DynamicComboBoxCellEditor(table, null, this);
         ITextProvider columnTextProvider = new ITextProvider() {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -222,7 +222,7 @@ public class SourceTargetDialog extends Dialog {
     public Control createDialogArea(Composite parent) {
         Composite client = (Composite) super.createDialogArea(parent);
 
-        WorkbenchHelp.setHelp(client, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(client, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
         GridLayout layout = (GridLayout) client.getLayout();
         layout.numColumns = 1;
         layout.makeColumnsEqualWidth = true;
@@ -237,13 +237,13 @@ public class SourceTargetDialog extends Dialog {
         ViewUtility.createLabel(grp1, 
                 Messages._UI_LABEL_TARGET_TABLE);
         srcTableField = ViewUtility.createComboBox(grp1);
-        WorkbenchHelp.setHelp(srcTableField, 
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(srcTableField, 
                 SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
 
         ViewUtility.createLabel(grp1, 
                 Messages._UI_LABEL_COLUMN);
         srcColumnField = ViewUtility.createComboBox(grp1);
-        WorkbenchHelp.setHelp(srcColumnField, 
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(srcColumnField, 
                 SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
 
         ViewUtility.createLabel(grp1, 
@@ -254,11 +254,11 @@ public class SourceTargetDialog extends Dialog {
                 Messages._UI_GROUP_TARGET, false);
         ViewUtility.createLabel(grp2, Messages._UI_LABEL_TABLE);
         tgtTableField = ViewUtility.createComboBox(grp2);
-        WorkbenchHelp.setHelp(tgtTableField, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(tgtTableField, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
 
         ViewUtility.createLabel(grp2, Messages._UI_LABEL_TARGET_COLUMN);
         tgtColumnField = ViewUtility.createComboBox(grp2);
-        WorkbenchHelp.setHelp(tgtColumnField, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(tgtColumnField, SQLBuilderContextIds.SQLG_CREATE_JOIN_DIALOG);
 
         ViewUtility.createLabel(grp2, Messages._UI_LABEL_JOIN_TGTCOL_TYPE);
         targetType = ViewUtility.createLabel(grp2, "");

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Grid viewer for select statement
@@ -71,7 +71,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
     public SelectGridViewer(SQLDomainModel domainModel, Composite parent) {
         super(domainModel, parent);
 
-        WorkbenchHelp.setHelp(table, SQLBuilderContextIds.SQDS_COLUMNS_TAB_GRID);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(table, SQLBuilderContextIds.SQDS_COLUMNS_TAB_GRID);
 
         c2 = new TableColumn(table, SWT.NULL);
         c2.setText(Messages._UI_COLUMN_SELECT_ALIAS);

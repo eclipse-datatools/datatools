@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -10,6 +10,17 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.views.insert;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
+import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.LabelValuePair;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.GridViewer;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.Modifier;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnPixelData;
@@ -20,19 +31,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.help.WorkbenchHelp;
-import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
-
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
-import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.util.LabelValuePair;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.GridViewer;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.Modifier;
+import org.eclipse.ui.PlatformUI;
 
 public class InsertGridViewer extends GridViewer {
 
@@ -45,7 +44,7 @@ public class InsertGridViewer extends GridViewer {
 
         this.domainModel = domainModel;
 
-        WorkbenchHelp.setHelp(table, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(table, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         c2 = new TableColumn(table, SWT.NULL);
         c2.setText(Messages._UI_COLUMN_INSERT_VALUE);

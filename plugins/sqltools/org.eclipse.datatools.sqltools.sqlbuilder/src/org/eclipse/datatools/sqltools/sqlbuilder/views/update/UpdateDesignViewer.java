@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -52,7 +52,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -106,7 +106,7 @@ public class UpdateDesignViewer extends ContentViewer implements ISelectionProvi
 
         setContentList = new org.eclipse.swt.widgets.List(canvas, SWT.MULTI | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
         // ratio 0.35
-        WorkbenchHelp.setHelp(setContentList, SQLBuilderContextIds.SQDU_SET_TAB);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(setContentList, SQLBuilderContextIds.SQDU_SET_TAB);
 
         setContentHelper = new ObjectListHelper(setContentList);
         SetContentListener setContentListener = new SetContentListener();
@@ -118,19 +118,19 @@ public class UpdateDesignViewer extends ContentViewer implements ISelectionProvi
         ButtonSelectListener addButtonListener = new ButtonSelectListener();
         addButton.addSelectionListener(addButtonListener);
         addButton.setToolTipText(Messages._UI_TOOLTIP_UPDATE_ADD_COL);
-        WorkbenchHelp.setHelp(addButton, SQLBuilderContextIds.SQDU_SET_TAB);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(addButton, SQLBuilderContextIds.SQDU_SET_TAB);
 
         removeButton = ViewUtility.createPushButton(buttonPanel, "<");
         ButtonSelectListener removeButtonListener = new ButtonSelectListener();
         removeButton.addSelectionListener(removeButtonListener);
-        WorkbenchHelp.setHelp(removeButton, SQLBuilderContextIds.SQDU_SET_TAB);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(removeButton, SQLBuilderContextIds.SQDU_SET_TAB);
 
         groupButton = ViewUtility.createPushButton(buttonPanel, ">");
         groupButton.setImage(SQLBuilderPlugin.getPlugin().getImage(SQLResource.SQL_COLUMN_GROUP));
         groupButton.setToolTipText(Messages._UI_TOOLTIP_UPDATE_ADD_GRP);
         ButtonSelectListener groupButtonListener = new ButtonSelectListener();
         groupButton.addSelectionListener(groupButtonListener);
-        WorkbenchHelp.setHelp(groupButton, SQLBuilderContextIds.SQDU_SET_TAB);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(groupButton, SQLBuilderContextIds.SQDU_SET_TAB);
 
         updateTreeViewer = new UpdateTreeViewer(domainModel, canvas);
         // ratio 0.55

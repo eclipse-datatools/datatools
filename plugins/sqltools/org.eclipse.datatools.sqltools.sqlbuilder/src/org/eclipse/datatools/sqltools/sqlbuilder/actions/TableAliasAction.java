@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -12,22 +12,14 @@ package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import java.util.Iterator;
 
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.help.WorkbenchHelp;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.DatabaseHelper;
@@ -35,6 +27,13 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 public class TableAliasAction extends Action {
 
@@ -65,7 +64,7 @@ public class TableAliasAction extends Action {
         AliasValidator aliasValidator = new AliasValidator(tableAliasName);
 
         Shell aliasShell = Display.getCurrent().getActiveShell();
-        WorkbenchHelp.setHelp(aliasShell, SQLBuilderContextIds.SQLG_UPDATE_ALIAS_TEXT);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(aliasShell, SQLBuilderContextIds.SQLG_UPDATE_ALIAS_TEXT);
 
         UpdateTableAliasDialog updateAliasDialog = new UpdateTableAliasDialog(aliasShell, Messages._UI_DIALOG_CHANGE_ALIAS_TITLE,
                 Messages._UI_DIALOG_CHANGE_ALIAS_TEXT, tableAliasName, aliasValidator); 

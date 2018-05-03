@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2009 Sybase, Inc. and others.
+ * Copyright ï¿½ 2000, 2018 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * Dialog that lets the user select a new SQL Set Operator.
@@ -104,7 +104,7 @@ public class ChangeSetOperatorDialog extends Dialog {
 		GridData gd = null;
 		
         Composite composite = new Composite(parent, SWT.NONE);
-        WorkbenchHelp.setHelp(composite, SQLBuilderContextIds.SQLB_ADD_TABLE_DIALOG); // TODO
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(composite, SQLBuilderContextIds.SQLB_ADD_TABLE_DIALOG); // TODO
         
         GridLayout compositeLayout = new GridLayout(1, true);
         composite.setLayout(compositeLayout);

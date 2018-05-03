@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -53,7 +53,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -92,7 +92,7 @@ public class InsertSelectViewer extends ContentViewer {
         // ratio 0.45
         listPanel.setData("layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
         columnList = new org.eclipse.swt.widgets.List(listPanel, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI | SWT.BORDER);
-        WorkbenchHelp.setHelp(columnList, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(columnList, SQLBuilderContextIds.SQLB_INSERT_VIEW);
         GridData gridData = ViewUtility.createFill();
         gridData.horizontalSpan = 2;
         gridData.widthHint = 10;
@@ -108,27 +108,27 @@ public class InsertSelectViewer extends ContentViewer {
         addButton = ViewUtility.createPushButton(buttonPanel, ">"); //$NON-NLS-1$
         SelectListener addButtonListener = new SelectListener();
         addButton.addSelectionListener(addButtonListener);
-        WorkbenchHelp.setHelp(addButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(addButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         removeButton = ViewUtility.createPushButton(buttonPanel, "<"); //$NON-NLS-1$
         SelectListener removeButtonListener = new SelectListener();
         removeButton.addSelectionListener(removeButtonListener);
-        WorkbenchHelp.setHelp(removeButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(removeButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         addAllButton = ViewUtility.createPushButton(buttonPanel, ">>"); //$NON-NLS-1$
         SelectListener addAllButtonListener = new SelectListener();
         addAllButton.addSelectionListener(addAllButtonListener);
-        WorkbenchHelp.setHelp(addAllButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(addAllButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         removeAllButton = ViewUtility.createPushButton(buttonPanel, "<<"); //$NON-NLS-1$
         SelectListener removeAllButtonListener = new SelectListener();
         removeAllButton.addSelectionListener(removeAllButtonListener);
-        WorkbenchHelp.setHelp(removeAllButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(removeAllButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         Composite colGroup = ViewUtility.createComposite(canvas, 2, true);
         // ratio 0.45
         colGroup.setData("layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
-        WorkbenchHelp.setHelp(colGroup, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(colGroup, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         columnGrid = new ColumnListGridViewer(domainModel, colGroup);
         gridData = ViewUtility.createFill();

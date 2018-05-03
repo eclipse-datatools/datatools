@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2009 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class FullSelectGridViewer extends NavigableTableViewer implements IMenuListener {
@@ -74,7 +74,7 @@ public class FullSelectGridViewer extends NavigableTableViewer implements IMenuL
         table.setLinesVisible(true);
         table.setHeaderVisible(true);
         table.setLayoutData(ViewUtility.createFill());
-        WorkbenchHelp.setHelp(table, SQLBuilderContextIds.SQDF_STMT_OPER_GRID);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(table, SQLBuilderContextIds.SQDF_STMT_OPER_GRID);
 
         TableLayout layout = new TableLayout();
         layout.addColumnData(new ColumnWeightData(50, true)); // statement

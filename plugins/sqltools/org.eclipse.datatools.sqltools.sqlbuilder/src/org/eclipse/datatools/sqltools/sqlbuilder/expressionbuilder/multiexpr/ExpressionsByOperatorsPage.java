@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -27,7 +27,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class ExpressionsByOperatorsPage extends WizardPage implements SelectionListener {
@@ -62,7 +62,7 @@ public class ExpressionsByOperatorsPage extends WizardPage implements SelectionL
 
     public void createControl(Composite parent) {
         Composite mainPanel = new Composite(parent, SWT.NONE);
-        WorkbenchHelp.setHelp(mainPanel, SQLBuilderContextIds.SQLE_EXPRESSIONS_BY_OPERATOR_PAGE);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(mainPanel, SQLBuilderContextIds.SQLE_EXPRESSIONS_BY_OPERATOR_PAGE);
         GridLayout mainPanelLayout = new GridLayout();
         mainPanel.setLayout(mainPanelLayout);
         mainPanel.setLayoutData(ViewUtility.createFill());

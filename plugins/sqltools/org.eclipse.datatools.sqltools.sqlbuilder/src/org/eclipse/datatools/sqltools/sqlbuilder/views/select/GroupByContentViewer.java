@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -75,7 +75,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 public class GroupByContentViewer extends ContentViewer {
@@ -306,7 +306,7 @@ public class GroupByContentViewer extends ContentViewer {
         canvas = sashForm;
 
         groupByContentList = ViewUtility.createListBox(canvas, 10, false);
-        WorkbenchHelp.setHelp(groupByContentList, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(groupByContentList, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
 
         // ratio 0.3
         groupByContentList.setData("layout ratio", new Long((((long) 30 << 16) + 99) / 100)); //$NON-NLS-1$
@@ -329,7 +329,7 @@ public class GroupByContentViewer extends ContentViewer {
         });
 
         Composite typeGroup = ViewUtility.createComposite(canvas, 2, true);
-        WorkbenchHelp.setHelp(typeGroup, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(typeGroup, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
 
         // ratio 0.7
         typeGroup.setData("layout ratio", new Long((((long) 70 << 16) + 99) / 100)); //$NON-NLS-1$
@@ -337,7 +337,7 @@ public class GroupByContentViewer extends ContentViewer {
         label.setText(Messages._UI_LABEL_GROUPS_TYPE);
 
         typeCombo = new Combo(typeGroup, SWT.READ_ONLY);
-        WorkbenchHelp.setHelp(typeCombo, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(typeCombo, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
 
         typeCombo.add(P_NONE);
         typeCombo.add(P_ROLLUP);

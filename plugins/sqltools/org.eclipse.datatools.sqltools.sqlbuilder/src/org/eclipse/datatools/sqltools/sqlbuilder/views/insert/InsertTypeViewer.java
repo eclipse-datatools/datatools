@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.PageBook;
 
 
@@ -90,12 +90,12 @@ public class InsertTypeViewer extends ContentViewer {
         valuesButton = ViewUtility.createRadioButton(buttonGroup, Messages._UI_RADIO_VALUES);
         SelectListener valuesButtonSelectListener = new SelectListener();
         valuesButton.addSelectionListener(valuesButtonSelectListener);
-        WorkbenchHelp.setHelp(valuesButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(valuesButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         queryButton = ViewUtility.createRadioButton(buttonGroup, Messages._UI_RADIO_INSERT_FROM_SUBQUERY);
         SelectListener queryButtonSelectListener = new SelectListener();
         queryButton.addSelectionListener(queryButtonSelectListener);
-        WorkbenchHelp.setHelp(queryButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(queryButton, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         valuesButton.setSelection(true);
         queryButton.setSelection(false);
@@ -103,7 +103,7 @@ public class InsertTypeViewer extends ContentViewer {
         ViewUtility.createLabel(buttonGroup, Messages._UI_LABEL_QUERY_NAME);
         insertQueryCombo = ViewUtility.createComboBox(buttonGroup);
         insertQueryCombo.setText(""); //$NON-NLS-1$
-        WorkbenchHelp.setHelp(insertQueryCombo, SQLBuilderContextIds.SQLB_INSERT_VIEW);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(insertQueryCombo, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         SelectListener queryComboListener = new SelectListener();
         insertQueryCombo.addSelectionListener(queryComboListener);

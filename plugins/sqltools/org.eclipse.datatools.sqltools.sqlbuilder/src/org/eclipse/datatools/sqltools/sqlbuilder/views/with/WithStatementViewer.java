@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -45,7 +45,7 @@ public class WithStatementViewer extends BaseWindow {
 
         ViewUtility.createLabel(client, Messages._UI_LABEL_WITH_STATEMENT);
         nameField = new Text(client, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
-        WorkbenchHelp.setHelp(nameField, SQLBuilderContextIds.SQDW_STMT_NAME_FIELD);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(nameField, SQLBuilderContextIds.SQDW_STMT_NAME_FIELD);
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         data.grabExcessHorizontalSpace = true;
