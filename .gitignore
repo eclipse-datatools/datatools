@@ -3,3 +3,4 @@ releng.new/build/**
 releng.new/dev-eclipse/**
 releng.new/dev-target/**bin/
 target/
+.settings/
