@@ -18,8 +18,8 @@
 
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
-      <platform-site>http://download.eclipse.org/eclipse/updates/4.8milestones/</platform-site>
-      <orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/S20180119201206/repository/</orbit-site>
+      <platform-repo.url>http://download.eclipse.org/eclipse/updates/4.8-I-builds/</platform-repo.url>
+      <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/I20180417184143/repository/</orbit-repo.url>
       <emf-site>http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/</emf-site>
       <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326/</emf-query-site>
       <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0/</mdt-ocl-site>
@@ -41,13 +41,13 @@
             <layout>p2</layout>
         </repository>   
         <repository>
-            <id>platform-site</id>
-            <url>${platform-site}</url>
+            <id>platform-repo.url</id>
+            <url>${platform-repo.url}</url>
             <layout>p2</layout>
         </repository>
         <repository>
-            <id>orbit-site</id>
-            <url>${orbit-site}</url>
+            <id>orbit-repo.url</id>
+            <url>${orbit-repo.url}</url>
             <layout>p2</layout>
         </repository>
         <repository>
