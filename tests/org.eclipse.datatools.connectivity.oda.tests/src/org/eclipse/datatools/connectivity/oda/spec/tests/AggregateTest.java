@@ -91,18 +91,18 @@ public class AggregateTest extends TestCase
         assertFalse( isInstanceDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
     }
     
-    public void testCreateExpression() throws Exception
-    {
-        CustomAggregate countExpr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, COUNT_AGGRG_ID );
-        assertEquals( TEST_EXTENSION_ID, countExpr.getDeclaringExtensionId() );
-        assertEquals( COUNT_AGGRG_ID, countExpr.getId() );
-        assertTrue( countExpr.canIgnoreDuplicateValues() );
-        assertNotNull( countExpr.getDefinition() );
-        
-        String testKey = "test"; //$NON-NLS-1$
-        String testValue = "testValue"; //$NON-NLS-1$
-        countExpr.setData( testKey, testValue );
-        assertEquals( testValue, countExpr.getData( testKey ) );
-    }
+//    public void testCreateExpression() throws Exception
+//    {
+//        CustomAggregate countExpr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, COUNT_AGGRG_ID );
+//        assertEquals( TEST_EXTENSION_ID, countExpr.getDeclaringExtensionId() );
+//        assertEquals( COUNT_AGGRG_ID, countExpr.getId() );
+//        assertTrue( countExpr.canIgnoreDuplicateValues() );
+//        assertNotNull( countExpr.getDefinition() );
+//        
+//        String testKey = "test"; //$NON-NLS-1$
+//        String testValue = "testValue"; //$NON-NLS-1$
+//        countExpr.setData( testKey, testValue );
+//        assertEquals( testValue, countExpr.getData( testKey ) );
+//    }
     
 }

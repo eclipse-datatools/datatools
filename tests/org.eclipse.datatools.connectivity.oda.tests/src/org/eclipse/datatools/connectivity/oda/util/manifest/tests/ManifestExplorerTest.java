@@ -44,12 +44,12 @@ public class ManifestExplorerTest extends TestCase
         assertEquals( "Flat File Data Source", names.getProperty( m_dtpFlatFileId ) );
     }
     
-    public void testGetExtensionConfigs() throws Exception
-    {
-        ExtensionManifest[] configs = 
-            ManifestExplorer.getInstance().getExtensionManifests();
-        verifyExtensionConfigs( configs, m_dtpFlatFileId );
-    }
+//    public void testGetExtensionConfigs() throws Exception
+//    {
+//        ExtensionManifest[] configs = 
+//            ManifestExplorer.getInstance().getExtensionManifests();
+//        verifyExtensionConfigs( configs, m_dtpFlatFileId );
+//    }
     
     void verifyExtensionConfigs( ExtensionManifest[] configs, String driverId )
     {
@@ -66,42 +66,42 @@ public class ManifestExplorerTest extends TestCase
         assertTrue( isFound );
     }
 
-    public void testGetExtensionConfig() throws Exception
-    {
-        ExtensionManifest config = 
-            ManifestExplorer.getInstance().getExtensionManifest( m_dtpFlatFileId );
-        verifyFlatfileExtensionConfig( config );
-    }
+//    public void testGetExtensionConfig() throws Exception
+//    {
+//        ExtensionManifest config = 
+//            ManifestExplorer.getInstance().getExtensionManifest( m_dtpFlatFileId );
+//        verifyFlatfileExtensionConfig( config );
+//    }
     
-    void verifyFlatfileExtensionConfig( ExtensionManifest config )
-        throws Exception
-    {
-        assertNotNull( config );
-        assertEquals( m_dtpFlatFileId, config.getDataSourceElementID() );
-        assertEquals( "Flat File Data Source", config.getDataSourceDisplayName() );
-        assertEquals( "3.0", config.getOdaVersion() );
-        
-        RuntimeInterface runtime = config.getRuntimeInterface();
-        assertTrue( runtime instanceof JavaRuntimeInterface );
-        JavaRuntimeInterface javaRuntime = (JavaRuntimeInterface) runtime;
-        assertEquals( "org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver",
-                      javaRuntime.getDriverClass() );
-        assertFalse( javaRuntime.needSetThreadContextClassLoader() );
-        assertEquals( RuntimeInterface.JAVA_TYPE, javaRuntime.getInterfaceType() );
-        assertTrue( javaRuntime.getLibraryLocation().toString()
-                .endsWith( "org.eclipse.datatools.connectivity.oda.flatfile/" ) );
-        
-        TraceLogging traceLogging = config.getTraceLogging();
-        assertNull( traceLogging );
-        
-        myTestFFGetExtensionProperties( config );
-        
-        String[] dataSetTypeIds = config.getDataSetTypeIDs();
-        assertTrue( dataSetTypeIds.length == 1 );
-        
-        assertEquals( m_expectedFFDataSetId, dataSetTypeIds[0] );
-        myTestFFGetDataSetTypes( config );
-    }
+//    void verifyFlatfileExtensionConfig( ExtensionManifest config )testGetDoubleString
+//        throws Exception
+//    {
+//        assertNotNull( config );
+//        assertEquals( m_dtpFlatFileId, config.getDataSourceElementID() );
+//        assertEquals( "Flat File Data Source", config.getDataSourceDisplayName() );
+//        assertEquals( "3.0", config.getOdaVersion() );
+//        
+//        RuntimeInterface runtime = config.getRuntimeInterface();
+//        assertTrue( runtime instanceof JavaRuntimeInterface );
+//        JavaRuntimeInterface javaRuntime = (JavaRuntimeInterface) runtime;
+//        assertEquals( "org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver",
+//                      javaRuntime.getDriverClass() );
+//        assertFalse( javaRuntime.needSetThreadContextClassLoader() );
+//        assertEquals( RuntimeInterface.JAVA_TYPE, javaRuntime.getInterfaceType() );
+//        assertTrue( javaRuntime.getLibraryLocation().toString()
+//                .endsWith( "org.eclipse.datatools.connectivity.oda.flatfile/" ) );
+//        
+//        TraceLogging traceLogging = config.getTraceLogging();
+//        assertNull( traceLogging );
+//        
+//        myTestFFGetExtensionProperties( config );
+//        
+//        String[] dataSetTypeIds = config.getDataSetTypeIDs();
+//        assertTrue( dataSetTypeIds.length == 1 );
+//        
+//        assertEquals( m_expectedFFDataSetId, dataSetTypeIds[0] );
+//        myTestFFGetDataSetTypes( config );
+//    }
     
     void myTestFFGetExtensionProperties( ExtensionManifest config )
     {

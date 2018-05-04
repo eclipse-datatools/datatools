@@ -99,99 +99,99 @@ public class FilterExtensionsTest extends TestCase
         assertFalse( isInstanceDefn.isOptionable() );
     }
     
-    public void testVariableRestrictions() throws Exception
-    {
-        FilterExpressionDefinition betweenDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
-        
-        // test the content of variableRestriction elements
-        assertEquals( 1, betweenDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
-        assertTrue( betweenDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( betweenDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ) );
-        assertTrue( betweenDefn.getVariableRestrictions().getResultColumnRestrictedOdaDataTypes().length >= 7 );
-        assertTrue( betweenDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
-        
-        assertFalse( betweenDefn.getVariableRestrictions().supportsVariableType( VariableType.INSTANCE_OF ));
-        assertFalse( betweenDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.INSTANCE_OF ) );
-        assertEquals( 0, betweenDefn.getVariableRestrictions().getInstanceRestrictedTypes().length );
-        assertFalse( betweenDefn.getVariableRestrictions().supportsClassType( VariableType.INSTANCE_OF, RESTRICTED_CLASS_NAME ) );
+//    public void testVariableRestrictions() throws Exception
+//    {
+//        FilterExpressionDefinition betweenDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
+//        
+//        // test the content of variableRestriction elements
+//        assertEquals( 1, betweenDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
+//        assertTrue( betweenDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( betweenDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ) );
+//        assertTrue( betweenDefn.getVariableRestrictions().getResultColumnRestrictedOdaDataTypes().length >= 7 );
+//        assertTrue( betweenDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
+//        
+//        assertFalse( betweenDefn.getVariableRestrictions().supportsVariableType( VariableType.INSTANCE_OF ));
+//        assertFalse( betweenDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.INSTANCE_OF ) );
+//        assertEquals( 0, betweenDefn.getVariableRestrictions().getInstanceRestrictedTypes().length );
+//        assertFalse( betweenDefn.getVariableRestrictions().supportsClassType( VariableType.INSTANCE_OF, RESTRICTED_CLASS_NAME ) );
+//
+//        FilterExpressionDefinition isInstanceDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, INSTANCE_EXPR_ID );
+//
+//        assertEquals( 1, isInstanceDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
+//        assertTrue( isInstanceDefn.getVariableRestrictions().supportsVariableType( VariableType.INSTANCE_OF ));
+//        assertTrue( isInstanceDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.INSTANCE_OF ) );
+//        assertTrue( isInstanceDefn.getVariableRestrictions().getInstanceRestrictedTypes().length >= 1 );
+//        assertTrue( isInstanceDefn.getVariableRestrictions().supportsClassType( VariableType.INSTANCE_OF, RESTRICTED_CLASS_NAME ) );
+//        
+//        assertFalse( isInstanceDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertFalse( isInstanceDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ) );
+//        assertEquals( 0, isInstanceDefn.getVariableRestrictions().getResultColumnRestrictedOdaDataTypes().length );
+//        assertFalse( isInstanceDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
+//
+//        FilterExpressionDefinition idEqDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, "IdentityEq" ); //$NON-NLS-1$
+//        assertTrue( idEqDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.JAVA_OBJECT ) );
+//    }
 
-        FilterExpressionDefinition isInstanceDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, INSTANCE_EXPR_ID );
-
-        assertEquals( 1, isInstanceDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
-        assertTrue( isInstanceDefn.getVariableRestrictions().supportsVariableType( VariableType.INSTANCE_OF ));
-        assertTrue( isInstanceDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.INSTANCE_OF ) );
-        assertTrue( isInstanceDefn.getVariableRestrictions().getInstanceRestrictedTypes().length >= 1 );
-        assertTrue( isInstanceDefn.getVariableRestrictions().supportsClassType( VariableType.INSTANCE_OF, RESTRICTED_CLASS_NAME ) );
-        
-        assertFalse( isInstanceDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertFalse( isInstanceDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ) );
-        assertEquals( 0, isInstanceDefn.getVariableRestrictions().getResultColumnRestrictedOdaDataTypes().length );
-        assertFalse( isInstanceDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
-
-        FilterExpressionDefinition idEqDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, "IdentityEq" ); //$NON-NLS-1$
-        assertTrue( idEqDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.JAVA_OBJECT ) );
-    }
-
-    public void testCreateExpression() throws Exception
-    {
-        CustomExpression betweenExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
-        assertEquals( "org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression",  //$NON-NLS-1$
-                    betweenExpr.getClass().getName() );
-        
-        betweenExpr.setVariable( new ExpressionVariable( "(CREDITLIMIT / 100)" ) ); //$NON-NLS-1$
-        ExpressionArguments betweenArgs = new ExpressionArguments();
-        betweenArgs.addValue( 100.0 )
-            .addValue( 700.0 );
-        betweenExpr.setArguments( betweenArgs );
-
-        CustomExpression isNullExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, ISNULL_EXPR_ID,
-                new ExpressionVariable( "VIP" ), null ); //$NON-NLS-1$
-
-        FilterExpressionDefinition equalDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, EQUAL_EXPR_ID );
-        CustomExpression equalExpr = equalDefn.createExpression();
-        equalExpr.setVariable( new ExpressionVariable( "ORDERNUMBER" ) ); //$NON-NLS-1$
-        equalExpr.setArguments( new ExpressionArguments( 10199 ) );
-
-        String testKey = "test"; //$NON-NLS-1$
-        String testValue = "testValue"; //$NON-NLS-1$
-        equalExpr.setData( testKey, testValue );
-        assertEquals( testValue, equalExpr.getData( testKey ) );
-
-        CustomExpression equalExpr2 = equalDefn.createExpression( 
-                new ExpressionVariable( "STATE" ),  //$NON-NLS-1$
-                new ExpressionArguments( "NY" ) ); //$NON-NLS-1$
-
-        NotExpression notExpr = new NotExpression( equalExpr2 );
-        
-        CompositeExpression andExpr1 = new AndExpression()
-            .add( equalExpr )
-            .add( notExpr )
-            .add( betweenExpr ); 
-
-        CompositeExpression rootExpr = new OrExpression()
-            .add( andExpr1 )
-            .add( new NotExpression( isNullExpr ) );
-        
-        assertEquals( 2, rootExpr.childCount() );
-        assertEquals( 2, rootExpr.getChildren().length );
-        // test sequence of children is expected to be kept in order added
-        assertTrue( rootExpr.getChildren()[0] instanceof AndExpression );   
-        assertEquals( 3, ((AndExpression)rootExpr.getChildren()[0]).childCount() );       
-        
-        // TODO - enrich the custom tester in test extension
-        ValidationContext context = new ValidationContext( equalDefn.getContributor() );
-        try
-        {
-            rootExpr.validate( context );
-        }
-        catch( OdaException ex )
-        {
-            fail();
-        }        
-    }
+//    public void testCreateExpression() throws Exception
+//    {
+//        CustomExpression betweenExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
+//        assertEquals( "org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression",  //$NON-NLS-1$
+//                    betweenExpr.getClass().getName() );
+//        
+//        betweenExpr.setVariable( new ExpressionVariable( "(CREDITLIMIT / 100)" ) ); //$NON-NLS-1$
+//        ExpressionArguments betweenArgs = new ExpressionArguments();
+//        betweenArgs.addValue( 100.0 )
+//            .addValue( 700.0 );
+//        betweenExpr.setArguments( betweenArgs );
+//
+//        CustomExpression isNullExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, ISNULL_EXPR_ID,
+//                new ExpressionVariable( "VIP" ), null ); //$NON-NLS-1$
+//
+//        FilterExpressionDefinition equalDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, EQUAL_EXPR_ID );
+//        CustomExpression equalExpr = equalDefn.createExpression();
+//        equalExpr.setVariable( new ExpressionVariable( "ORDERNUMBER" ) ); //$NON-NLS-1$
+//        equalExpr.setArguments( new ExpressionArguments( 10199 ) );
+//
+//        String testKey = "test"; //$NON-NLS-1$
+//        String testValue = "testValue"; //$NON-NLS-1$
+//        equalExpr.setData( testKey, testValue );
+//        assertEquals( testValue, equalExpr.getData( testKey ) );
+//
+//        CustomExpression equalExpr2 = equalDefn.createExpression( 
+//                new ExpressionVariable( "STATE" ),  //$NON-NLS-1$
+//                new ExpressionArguments( "NY" ) ); //$NON-NLS-1$
+//
+//        NotExpression notExpr = new NotExpression( equalExpr2 );
+//        
+//        CompositeExpression andExpr1 = new AndExpression()
+//            .add( equalExpr )
+//            .add( notExpr )
+//            .add( betweenExpr ); 
+//
+//        CompositeExpression rootExpr = new OrExpression()
+//            .add( andExpr1 )
+//            .add( new NotExpression( isNullExpr ) );
+//        
+//        assertEquals( 2, rootExpr.childCount() );
+//        assertEquals( 2, rootExpr.getChildren().length );
+//        // test sequence of children is expected to be kept in order added
+//        assertTrue( rootExpr.getChildren()[0] instanceof AndExpression );   
+//        assertEquals( 3, ((AndExpression)rootExpr.getChildren()[0]).childCount() );       
+//        
+//        // TODO - enrich the custom tester in test extension
+//        ValidationContext context = new ValidationContext( equalDefn.getContributor() );
+//        try
+//        {
+//            rootExpr.validate( context );
+//        }
+//        catch( OdaException ex )
+//        {
+//            fail();
+//        }        
+//    }
 
 }

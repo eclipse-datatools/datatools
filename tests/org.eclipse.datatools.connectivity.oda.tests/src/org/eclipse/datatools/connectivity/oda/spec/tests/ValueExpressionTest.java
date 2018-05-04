@@ -177,16 +177,16 @@ public class ValueExpressionTest extends TestCase
         assertTrue( funcDefn.getVariableRestrictions().supportsOdaBooleanDataTypes( VariableType.RESULT_SET_COLUMN ));
     }
     
-    public void testCreateCustomFunction() throws Exception
-    {
-        CustomFunction customFunc =
-            ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "100" ); //$NON-NLS-1$
-        assertNotNull( customFunc );
-        assertEquals( "MyCustomFunction", customFunc.getClass().getSimpleName() );
-        assertTrue( customFunc.getDefinition().getName().equals( "CustomFunc" ) );
-        assertTrue( customFunc.getName().equals( "MyCustomFunc" ) );    // overriden by extended class
-        assertTrue( customFunc.getDefinition().getDisplayName().equals( "Custom Function" ) );        
-    }
+//    public void testCreateCustomFunction() throws Exception
+//    {
+//        CustomFunction customFunc =
+//            ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "100" ); //$NON-NLS-1$
+//        assertNotNull( customFunc );
+//        assertEquals( "MyCustomFunction", customFunc.getClass().getSimpleName() );
+//        assertTrue( customFunc.getDefinition().getName().equals( "CustomFunc" ) );
+//        assertTrue( customFunc.getName().equals( "MyCustomFunc" ) );    // overriden by extended class
+//        assertTrue( customFunc.getDefinition().getDisplayName().equals( "Custom Function" ) );        
+//    }
     
     public void testCreateSimpleValueExpressionVariables() throws Exception
     {
@@ -207,81 +207,81 @@ public class ValueExpressionTest extends TestCase
         assertEquals( 2, ((ColumnValueExpression) exprVar.getValueExpression()).getColumnNumber().intValue() );
     }
     
-    public void testCreateComplexValueExpressions() throws Exception
-    {
-        // CustomFunction with arguments
-        CustomFunction func = ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "MOD" );
-        func.setArguments( (new ExpressionArguments()).addValue( new SimpleValueExpression( "Col") )
-                .addValue( 3 ));
-        ExpressionVariable exprVar = new ExpressionVariable( func );
-        String varString = exprVar.toString();
-        assertEquals( VariableType.QUERY_EXPRESSION, exprVar.getType() );
-        ExpressionArguments funcArgs = ((FunctionValueExpression) exprVar.getValueExpression()).getArguments();
-        assertEquals( 2, funcArgs.valueCount() );
-        assertEquals( "MOD", exprVar.getValueExpression().getName() );
-        assertEquals( "Col", funcArgs.getValueExpression( 0 ).getName() );
-        assertEquals( "3", funcArgs.getValueExpression( 1 ).getName() );
-
-        // test this extension supports the various complex expression types
-        ExtensionContributor contributor = getTestContributor();
-        assertTrue( contributor.supportsCombinedValueExpressionType() );
-        assertTrue( contributor.supportsNestedValueExpressionType() );
-        assertTrue( contributor.supportsFunctionValueExpressionType() );
-        
-        //  col1 * (1 + col2)
-        String complexExprText1 = "col1 * (1 + col2)"; //$NON-NLS-1$
-        CombinedValueExpressionOperator customAddOp = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.ADD );
-        CombinedValueExpressionOperator customMultiplyOp = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.MULTIPLY );
-
-        CombinedValueExpression complexExpr1 = new CombinedValueExpression( 
-                new ColumnValueExpression( new ColumnIdentifier( 1, "col1") ), 
-                customMultiplyOp, 
-                new NestedValueExpression(
-                        new CombinedValueExpression(
-                                new SimpleValueExpression( Integer.valueOf(1) ),
-                                customAddOp,
-                                new ColumnValueExpression( new ColumnIdentifier( 2, "col2") )) ) );
-        exprVar = new ExpressionVariable( complexExpr1 );
-        varString = exprVar.toString();
-        exprVar.getValueExpression().validate();
-        
-        //  (colA || UPPER( CustomerName || State )) + col1
-        String complexExprText2 = "(colA || UPPER( CustomerName || State )) + col1"; //$NON-NLS-1$
-            // custom concatenate operator overrides the default symbol '+'
-        CombinedValueExpressionOperator customConcatOp = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.CONCATENATE );
-        func = ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "UPPER" );
-        
-        CombinedValueExpression customerNameState = new CombinedValueExpression(
-                new ColumnValueExpression( new ColumnIdentifier("CustomerName") ),
-                customConcatOp,
-                new ColumnValueExpression( new ColumnIdentifier("State") ));
-
-        func.setArguments( (new ExpressionArguments()).addValue( customerNameState ));
-        
-        CombinedValueExpression complexExpr2 = new CombinedValueExpression( 
-                new NestedValueExpression(
-                        new CombinedValueExpression(
-                                new SimpleValueExpression( "colA" ),
-                                customConcatOp,
-                                func ) ),
-                customAddOp, 
-                new ColumnValueExpression( new ColumnIdentifier( 1, "col1") ) );
-        exprVar = new ExpressionVariable( complexExpr2 );
-        varString = exprVar.toString();
-        exprVar.getValueExpression().validate();
-        
-        // test complex value expression in ExpressionArguments
-        ExpressionArguments args3 =
-            (new ExpressionArguments()).addValue( complexExpr1 ).addValue( 1 ).addValue( complexExpr2 );
-        assertEquals( 3, args3.valueCount() );
-        assertTrue( args3.getValueExpression(0) instanceof CombinedValueExpression );
-        assertTrue( args3.getValueExpression(1) instanceof SimpleValueExpression );
-        assertEquals( Integer.valueOf("1"), ((SimpleValueExpression)args3.getValueExpression(1)).getValue() );
-        assertTrue( args3.getValueExpression(2) instanceof CombinedValueExpression );        
-    }
+//    public void testCreateComplexValueExpressions() throws Exception
+//    {
+//        // CustomFunction with arguments
+//        CustomFunction func = ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "MOD" );
+//        func.setArguments( (new ExpressionArguments()).addValue( new SimpleValueExpression( "Col") )
+//                .addValue( 3 ));
+//        ExpressionVariable exprVar = new ExpressionVariable( func );
+//        String varString = exprVar.toString();
+//        assertEquals( VariableType.QUERY_EXPRESSION, exprVar.getType() );
+//        ExpressionArguments funcArgs = ((FunctionValueExpression) exprVar.getValueExpression()).getArguments();
+//        assertEquals( 2, funcArgs.valueCount() );
+//        assertEquals( "MOD", exprVar.getValueExpression().getName() );
+//        assertEquals( "Col", funcArgs.getValueExpression( 0 ).getName() );
+//        assertEquals( "3", funcArgs.getValueExpression( 1 ).getName() );
+//
+//        // test this extension supports the various complex expression types
+//        ExtensionContributor contributor = getTestContributor();
+//        assertTrue( contributor.supportsCombinedValueExpressionType() );
+//        assertTrue( contributor.supportsNestedValueExpressionType() );
+//        assertTrue( contributor.supportsFunctionValueExpressionType() );
+//        
+//        //  col1 * (1 + col2)
+//        String complexExprText1 = "col1 * (1 + col2)"; //$NON-NLS-1$
+//        CombinedValueExpressionOperator customAddOp = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.ADD );
+//        CombinedValueExpressionOperator customMultiplyOp = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.MULTIPLY );
+//
+//        CombinedValueExpression complexExpr1 = new CombinedValueExpression( 
+//                new ColumnValueExpression( new ColumnIdentifier( 1, "col1") ), 
+//                customMultiplyOp, 
+//                new NestedValueExpression(
+//                        new CombinedValueExpression(
+//                                new SimpleValueExpression( Integer.valueOf(1) ),
+//                                customAddOp,
+//                                new ColumnValueExpression( new ColumnIdentifier( 2, "col2") )) ) );
+//        exprVar = new ExpressionVariable( complexExpr1 );
+//        varString = exprVar.toString();
+//        exprVar.getValueExpression().validate();
+//        
+//        //  (colA || UPPER( CustomerName || State )) + col1
+//        String complexExprText2 = "(colA || UPPER( CustomerName || State )) + col1"; //$NON-NLS-1$
+//            // custom concatenate operator overrides the default symbol '+'
+//        CombinedValueExpressionOperator customConcatOp = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.CONCATENATE );
+//        func = ExpressionFactory.createCustomFunction( TEST_EXTENSION_ID, "UPPER" );
+//        
+//        CombinedValueExpression customerNameState = new CombinedValueExpression(
+//                new ColumnValueExpression( new ColumnIdentifier("CustomerName") ),
+//                customConcatOp,
+//                new ColumnValueExpression( new ColumnIdentifier("State") ));
+//
+//        func.setArguments( (new ExpressionArguments()).addValue( customerNameState ));
+//        
+//        CombinedValueExpression complexExpr2 = new CombinedValueExpression( 
+//                new NestedValueExpression(
+//                        new CombinedValueExpression(
+//                                new SimpleValueExpression( "colA" ),
+//                                customConcatOp,
+//                                func ) ),
+//                customAddOp, 
+//                new ColumnValueExpression( new ColumnIdentifier( 1, "col1") ) );
+//        exprVar = new ExpressionVariable( complexExpr2 );
+//        varString = exprVar.toString();
+//        exprVar.getValueExpression().validate();
+//        
+//        // test complex value expression in ExpressionArguments
+//        ExpressionArguments args3 =
+//            (new ExpressionArguments()).addValue( complexExpr1 ).addValue( 1 ).addValue( complexExpr2 );
+//        assertEquals( 3, args3.valueCount() );
+//        assertTrue( args3.getValueExpression(0) instanceof CombinedValueExpression );
+//        assertTrue( args3.getValueExpression(1) instanceof SimpleValueExpression );
+//        assertEquals( Integer.valueOf("1"), ((SimpleValueExpression)args3.getValueExpression(1)).getValue() );
+//        assertTrue( args3.getValueExpression(2) instanceof CombinedValueExpression );        
+//    }
 
     private ExtensionContributor getTestContributor() throws OdaException
     {

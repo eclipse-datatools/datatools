@@ -245,17 +245,17 @@ public abstract class ResultSetTestBase extends TestCase
 	 * 
 	 * @throws OdaException
 	 */
-	public void testGetDoubleString( ) throws OdaException
-	{
-		statement.prepare( "select  DOUBLE0_COL  ,  DOUBLE1_COL   from    table2"
-				+ getSuffix( ) + getExtension( ) );
-		IResultSet rs = statement.executeQuery( );
-		rs.next( );
-		assertEquals( rs.getDouble( "DOUBLE0_COL" ), 0.123456789, 0 );
-		assertFalse( rs.wasNull( ) );
-		assertEquals( rs.getDouble( "DOUBLE1_COL" ), 0.987654321, 0 );
-		assertFalse( rs.wasNull( ) );
-	}
+//	public void testGetDoubleString( ) throws OdaException
+//	{
+//		statement.prepare( "select  DOUBLE0_COL  ,  DOUBLE1_COL   from    table2"
+//				+ getSuffix( ) + getExtension( ) );
+//		IResultSet rs = statement.executeQuery( );
+//		rs.next( );
+//		assertEquals( rs.getDouble( "DOUBLE0_COL" ), 0.123456789, 0 );
+//		assertFalse( rs.wasNull( ) );
+//		assertEquals( rs.getDouble( "DOUBLE1_COL" ), 0.987654321, 0 );
+//		assertFalse( rs.wasNull( ) );
+//	}
 
 	/**
 	 * Class under test for BigDecimal getBigDecimal(int)
@@ -422,58 +422,58 @@ public abstract class ResultSetTestBase extends TestCase
 	 * 
 	 * @throws OdaException
 	 */
-	public void testFindColumn( ) throws OdaException
-	{
-		statement.prepare( "select  INT0_COL , INT1_COL , DOUBLE0_COL ,"
-				+ " DOUBLE1_COL , TIME_COL , DATE_COL , BLOB_COL , STRING_COL , BIGDECIMAL_COL   from   table2"
-				+ getSuffix( ) + getExtension( ) );
-		IResultSet rs = statement.executeQuery( );
-		try
-		{
-			assertEquals( 1, rs.findColumn( "int0_col" ) );
-			assertEquals( 2, rs.findColumn( "int1_col" ) );
-			assertEquals( 3, rs.findColumn( "DoubLE0_coL" ) );
-			assertEquals( 4, rs.findColumn( "double1_col" ) );
-			assertEquals( 5, rs.findColumn( "time_col" ) );
-			assertEquals( 6, rs.findColumn( "date_col" ) );
-			assertEquals( 7, rs.findColumn( "blob_col" ) );
-			assertEquals( 8, rs.findColumn( "String_col" ) );
-			assertEquals( 9, rs.findColumn( "bigdecimal_col" ) );
-		}
-		catch ( OdaException e )
-		{
-			e.printStackTrace( );
-			assertTrue( false );
-		}
-
-		try
-		{
-			rs.findColumn( "0" );
-			assertTrue( false );
-		}
-		catch ( OdaException e )
-		{
-		}
-	}
+//	public void testFindColumn( ) throws OdaException
+//	{
+//		statement.prepare( "select  INT0_COL , INT1_COL , DOUBLE0_COL ,"
+//				+ " DOUBLE1_COL , TIME_COL , DATE_COL , BLOB_COL , STRING_COL , BIGDECIMAL_COL   from   table2"
+//				+ getSuffix( ) + getExtension( ) );
+//		IResultSet rs = statement.executeQuery( );
+//		try
+//		{
+//			assertEquals( 1, rs.findColumn( "int0_col" ) );
+//			assertEquals( 2, rs.findColumn( "int1_col" ) );
+//			assertEquals( 3, rs.findColumn( "DoubLE0_coL" ) );
+//			assertEquals( 4, rs.findColumn( "double1_col" ) );
+//			assertEquals( 5, rs.findColumn( "time_col" ) );
+//			assertEquals( 6, rs.findColumn( "date_col" ) );
+//			assertEquals( 7, rs.findColumn( "blob_col" ) );
+//			assertEquals( 8, rs.findColumn( "String_col" ) );
+//			assertEquals( 9, rs.findColumn( "bigdecimal_col" ) );
+//		}
+//		catch ( OdaException e )
+//		{
+//			e.printStackTrace( );
+//			assertTrue( false );
+//		}
+//
+//		try
+//		{
+//			rs.findColumn( "0" );
+//			assertTrue( false );
+//		}
+//		catch ( OdaException e )
+//		{
+//		}
+//	}
 	
 	/**
 	 * 
 	 * @throws OdaException
 	 */
-	public void testDateConvertFailure( ) throws OdaException
-	{
-		statement.prepare( "select  INT0_COL , INT1_COL , DOUBLE0_COL ,"
-				+ " DOUBLE1_COL , TIME_COL , DATE_COL , BLOB_COL , STRING_COL , BIGDECIMAL_COL   from   table2"
-				+ getSuffix( ) + getExtension( ) );
-		IResultSet rs = statement.executeQuery( );
-
-		while ( rs.next( ) )
-		{
-			assertTrue( rs.getTime( "STRING_COL" ) == null );
-			assertTrue( rs.getDate( "STRING_COL" ) == null );
-			assertTrue( rs.getTimestamp( "STRING_COL" ) == null );
-		}
-	}
+//	public void testDateConvertFailure( ) throws OdaException
+//	{
+//		statement.prepare( "select  INT0_COL , INT1_COL , DOUBLE0_COL ,"
+//				+ " DOUBLE1_COL , TIME_COL , DATE_COL , BLOB_COL , STRING_COL , BIGDECIMAL_COL   from   table2"
+//				+ getSuffix( ) + getExtension( ) );
+//		IResultSet rs = statement.executeQuery( );
+//
+//		while ( rs.next( ) )
+//		{
+//			assertTrue( rs.getTime( "STRING_COL" ) == null );
+//			assertTrue( rs.getDate( "STRING_COL" ) == null );
+//			assertTrue( rs.getTimestamp( "STRING_COL" ) == null );
+//		}
+//	}
 
 	/**
 	 * 

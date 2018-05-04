@@ -42,44 +42,44 @@ public class RemoteFileTest extends TestCase
 		super.tearDown( );
 	}
 
-	public void testRemoteURI( ) throws Exception
-	{
-		Properties prop = new Properties( );
-		prop.setProperty( CommonConstants.CONN_FILE_URI_PROP,
-				"http://drupal.org/files/issues/test.csv" ); //$NON-NLS-1$
-		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
-				CommonConstants.INC_COLUMN_NAME_YES );
-		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
-				CommonConstants.INC_TYPE_LINE_NO );
-		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
-				CommonConstants.DELIMITER_COMMA );
-		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
-				CommonConstants.TRAIL_NULL_COLS_NO );
-
-		connection.open( prop );
-		statement = connection.newQuery( "FLATFILE" ); //$NON-NLS-1$
-		statement.prepare( "select \"ID\", \"First name\", \"Last name\", \"E-mail\" from \"http://drupal.org/files/issues/test.csv\" : {\"ID\",\"ID\",STRING;\"First name\",\"First name\",STRING;\"Last name\",\"Last name\",STRING;\"E-mail\",\"E-mail\",STRING} " ); //$NON-NLS-1$
-		IResultSet resultSet = statement.executeQuery( );
-		assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
-		assertEquals( "ID", resultSet.getMetaData( ).getColumnName( 1 ) ); //$NON-NLS-1$
-		assertEquals( "First name", resultSet.getMetaData( ).getColumnName( 2 ) ); //$NON-NLS-1$
-		assertEquals( "Last name", resultSet.getMetaData( ).getColumnName( 3 ) ); //$NON-NLS-1$
-		assertEquals( "E-mail", resultSet.getMetaData( ).getColumnName( 4 ) ); //$NON-NLS-1$
-
-		int id = 0;
-		while ( resultSet.next( ) )
-		{
-			assertEquals( resultSet.getRow( ), ++id );
-			assertEquals( "01234567", resultSet.getString( 1 ) ); //$NON-NLS-1$
-			assertEquals( "John", resultSet.getString( 2 ) ); //$NON-NLS-1$
-			assertEquals( "Doe", resultSet.getString( 3 ) ); //$NON-NLS-1$
-			assertEquals( "john.doe@domain.com", resultSet.getString( 4 ) ); //$NON-NLS-1$
-		}
-		assertEquals( 1, id );
-
-		resultSet.close( );
-		statement.close( );
-	}
+//	public void testRemoteURI( ) throws Exception
+//	{
+//		Properties prop = new Properties( );
+//		prop.setProperty( CommonConstants.CONN_FILE_URI_PROP,
+//				"http://drupal.org/files/issues/test.csv" ); //$NON-NLS-1$
+//		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+//				CommonConstants.INC_COLUMN_NAME_YES );
+//		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
+//				CommonConstants.INC_TYPE_LINE_NO );
+//		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+//				CommonConstants.DELIMITER_COMMA );
+//		prop.setProperty( CommonConstants.CONN_TRAILNULLCOLS_PROP,
+//				CommonConstants.TRAIL_NULL_COLS_NO );
+//
+//		connection.open( prop );
+//		statement = connection.newQuery( "FLATFILE" ); //$NON-NLS-1$
+//		statement.prepare( "select \"ID\", \"First name\", \"Last name\", \"E-mail\" from \"http://drupal.org/files/issues/test.csv\" : {\"ID\",\"ID\",STRING;\"First name\",\"First name\",STRING;\"Last name\",\"Last name\",STRING;\"E-mail\",\"E-mail\",STRING} " ); //$NON-NLS-1$
+//		IResultSet resultSet = statement.executeQuery( );
+//		assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
+//		assertEquals( "ID", resultSet.getMetaData( ).getColumnName( 1 ) ); //$NON-NLS-1$
+//		assertEquals( "First name", resultSet.getMetaData( ).getColumnName( 2 ) ); //$NON-NLS-1$
+//		assertEquals( "Last name", resultSet.getMetaData( ).getColumnName( 3 ) ); //$NON-NLS-1$
+//		assertEquals( "E-mail", resultSet.getMetaData( ).getColumnName( 4 ) ); //$NON-NLS-1$
+//
+//		int id = 0;
+//		while ( resultSet.next( ) )
+//		{
+//			assertEquals( resultSet.getRow( ), ++id );
+//			assertEquals( "01234567", resultSet.getString( 1 ) ); //$NON-NLS-1$
+//			assertEquals( "John", resultSet.getString( 2 ) ); //$NON-NLS-1$
+//			assertEquals( "Doe", resultSet.getString( 3 ) ); //$NON-NLS-1$
+//			assertEquals( "john.doe@domain.com", resultSet.getString( 4 ) ); //$NON-NLS-1$
+//		}
+//		assertEquals( 1, id );
+//
+//		resultSet.close( );
+//		statement.close( );
+//	}
 
 	public void testRelativeURI( ) throws Exception
 	{
