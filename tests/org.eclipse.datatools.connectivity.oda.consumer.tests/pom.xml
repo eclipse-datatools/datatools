@@ -9,6 +9,19 @@
   </parent>
   <groupId>org.eclipse.datatools.tests</groupId>
   <artifactId>org.eclipse.datatools.connectivity.oda.consumer.tests</artifactId>
-  <version>3.2.4-SNAPSHOT</version>
+  <version>3.2.5-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-surefire-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+            <testSuite>org.eclipse.datatools.connectivity.oda.consumer.tests</testSuite>
+            <testClass>org.eclipse.datatools.connectivity.oda.consumer.tests.AllTestSuites</testClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
