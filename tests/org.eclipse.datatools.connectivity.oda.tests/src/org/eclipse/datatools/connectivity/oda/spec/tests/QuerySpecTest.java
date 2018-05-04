@@ -94,49 +94,49 @@ public class QuerySpecTest extends TestCase
         assertTrue( contentStr.length() > 390); // not very useful testing; more for manual visualization
 }
     
-    public void testCreateResultProjectionAggregates() throws Exception
-    {
-        // setup aggregate expression projection
-        CustomAggregate orderNumAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
-                                                new ExpressionVariable( "ORDERNUMBER" ) );
-        orderNumAggr.setIgnoreDuplicateValues( true );
-    
-        CustomAggregate creditLimitAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
-                                                new ExpressionVariable( "CREDITLIMIT" ) );
-        
-        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
-        ResultProjection resultProj = specHelper.createResultProjection();
-        resultProj.setProjection( new ColumnIdentifier( 2 ), orderNumAggr );
-        resultProj.setProjection( new ColumnIdentifier( 4 ), creditLimitAggr );
-               
-        ExpressionVariable newColumnVar = new ExpressionVariable( "NEWCREDITLIMIT" );
-        resultProj.addResultColumn( newColumnVar );
-        resultProj.setProjection( new ColumnIdentifier( newColumnVar.getAlias() ), creditLimitAggr );
-        
-        // test aggregate getters of ResultProjection
-        assertEquals( 3, resultProj.getAggregatedColumns().size() );
-        assertNull( resultProj.getAggregateProjection( new ColumnIdentifier( 1 )));
-        assertEquals( orderNumAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 2 )));
-        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 4 )));
-        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( newColumnVar.getAlias() )));
-
-        assertEquals( 1, resultProj.getAddedResultColumns().size() );
-       
-        // test hiding a new projected aggregate column
-        resultProj.hideResultColumn( new ColumnIdentifier( newColumnVar.getAlias() ) );
-        assertEquals( 2, resultProj.getAggregatedColumns().size() );
-        assertEquals( 0, resultProj.getAddedResultColumns().size() );
-        assertEquals( 0, resultProj.getHiddenResultColumns().size() );        
-        
-        // test accessing ResultProjection from a QuerySpecification
-        QuerySpecification querySpec = specHelper.createQuerySpecification( resultProj );       
-        ResultProjection resultProjOut = querySpec.getResultSetSpecification().getResultProjection();
-        assertEquals( resultProj, resultProjOut );
-        
-        // formatting of querySpec content
-        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
-        assertTrue( contentStr.length() > 850);
-    }
+//    public void testCreateResultProjectionAggregates() throws Exception
+//    {
+//        // setup aggregate expression projection
+//        CustomAggregate orderNumAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
+//                                                new ExpressionVariable( "ORDERNUMBER" ) );
+//        orderNumAggr.setIgnoreDuplicateValues( true );
+//    
+//        CustomAggregate creditLimitAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
+//                                                new ExpressionVariable( "CREDITLIMIT" ) );
+//        
+//        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
+//        ResultProjection resultProj = specHelper.createResultProjection();
+//        resultProj.setProjection( new ColumnIdentifier( 2 ), orderNumAggr );
+//        resultProj.setProjection( new ColumnIdentifier( 4 ), creditLimitAggr );
+//               
+//        ExpressionVariable newColumnVar = new ExpressionVariable( "NEWCREDITLIMIT" );
+//        resultProj.addResultColumn( newColumnVar );
+//        resultProj.setProjection( new ColumnIdentifier( newColumnVar.getAlias() ), creditLimitAggr );
+//        
+//        // test aggregate getters of ResultProjection
+//        assertEquals( 3, resultProj.getAggregatedColumns().size() );
+//        assertNull( resultProj.getAggregateProjection( new ColumnIdentifier( 1 )));
+//        assertEquals( orderNumAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 2 )));
+//        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( 4 )));
+//        assertEquals( creditLimitAggr, resultProj.getAggregateProjection( new ColumnIdentifier( newColumnVar.getAlias() )));
+//
+//        assertEquals( 1, resultProj.getAddedResultColumns().size() );
+//       
+//        // test hiding a new projected aggregate column
+//        resultProj.hideResultColumn( new ColumnIdentifier( newColumnVar.getAlias() ) );
+//        assertEquals( 2, resultProj.getAggregatedColumns().size() );
+//        assertEquals( 0, resultProj.getAddedResultColumns().size() );
+//        assertEquals( 0, resultProj.getHiddenResultColumns().size() );        
+//        
+//        // test accessing ResultProjection from a QuerySpecification
+//        QuerySpecification querySpec = specHelper.createQuerySpecification( resultProj );       
+//        ResultProjection resultProjOut = querySpec.getResultSetSpecification().getResultProjection();
+//        assertEquals( resultProj, resultProjOut );
+//        
+//        // formatting of querySpec content
+//        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
+//        assertTrue( contentStr.length() > 850);
+//    }
     
     public void testCreateResultProjectionColumns() throws Exception
     {
@@ -160,56 +160,56 @@ public class QuerySpecTest extends TestCase
         assertEquals( 1, resultProj.getHiddenResultColumns().size() );
     }
     
-    public void testCreateAndValidateSortSpec() throws Exception
-    {
-        ExtensionContributor contributor =
-            ResultExtensionExplorer.getInstance().getExtensionContributor( TEST_EXTENSION_ID );
-        assertTrue( contributor.supportsDynamicRowOrdering() );
-        assertFalse( contributor.supportsNullValueOrdering() );
-        
-        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
-        SortSpecification sortSpec = specHelper.createSortSpecification();
-        sortSpec.addSortKey( new ColumnIdentifier("Column1"), SortSpecification.ORDERING_DESC );
-        sortSpec.addSortKey( new ColumnIdentifier(2), SortSpecification.ORDERING_ASC, 
-                SortSpecification.NULL_ORDERING_NONE );
-        
-        ValidationContext context = new ValidationContext( contributor );
-        context.setQueryText( "test query text" );
-        
-        QuerySpecification querySpec = specHelper.createQuerySpecification( sortSpec );
-
-        // setup test property values used by test driver to validate sort keys
-        querySpec.setProperty( "Column1", Integer.valueOf( SortSpecification.ORDERING_DESC ) );
-        querySpec.setProperty( "2", Integer.valueOf( SortSpecification.ORDERING_ASC ) );
-        querySpec.setProperty( "TESTER_EXPECTED_QUERY", "test query text" );
-        
-        IValidator validator = context.getValidator();
-        try
-        {
-            validator.validate( querySpec.getResultSetSpecification(), context );
-        }
-        catch( OdaException e )
-        {
-            fail();     // test failed; expected test driver to pass validation
-        }
-        
-        // formatting of querySpec content
-        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
-        assertTrue( contentStr.length() > 440); // not very useful testing; more for manual visualization
-    }
+//    public void testCreateAndValidateSortSpec() throws Exception
+//    {
+//        ExtensionContributor contributor =
+//            ResultExtensionExplorer.getInstance().getExtensionContributor( TEST_EXTENSION_ID );
+//        assertTrue( contributor.supportsDynamicRowOrdering() );
+//        assertFalse( contributor.supportsNullValueOrdering() );
+//        
+//        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
+//        SortSpecification sortSpec = specHelper.createSortSpecification();
+//        sortSpec.addSortKey( new ColumnIdentifier("Column1"), SortSpecification.ORDERING_DESC );
+//        sortSpec.addSortKey( new ColumnIdentifier(2), SortSpecification.ORDERING_ASC, 
+//                SortSpecification.NULL_ORDERING_NONE );
+//        
+//        ValidationContext context = new ValidationContext( contributor );
+//        context.setQueryText( "test query text" );
+//        
+//        QuerySpecification querySpec = specHelper.createQuerySpecification( sortSpec );
+//
+//        // setup test property values used by test driver to validate sort keys
+//        querySpec.setProperty( "Column1", Integer.valueOf( SortSpecification.ORDERING_DESC ) );
+//        querySpec.setProperty( "2", Integer.valueOf( SortSpecification.ORDERING_ASC ) );
+//        querySpec.setProperty( "TESTER_EXPECTED_QUERY", "test query text" );
+//        
+//        IValidator validator = context.getValidator();
+//        try
+//        {
+//            validator.validate( querySpec.getResultSetSpecification(), context );
+//        }
+//        catch( OdaException e )
+//        {
+//            fail();     // test failed; expected test driver to pass validation
+//        }
+//        
+//        // formatting of querySpec content
+//        String contentStr = QuerySpecificationHelper.getContentAsString( querySpec );
+//        assertTrue( contentStr.length() > 440); // not very useful testing; more for manual visualization
+//    }
  
-    public void testCreateCustomSortSpec() throws Exception
-    {
-        // test use of extended factory
-        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
-        SortSpecification sortSpec = specHelper.createSortSpecification();
-        assertEquals( "MySortSpecification", sortSpec.getClass().getSimpleName() ); //$NON-NLS-1$
-        
-        // test use of default factory
-        specHelper = new QuerySpecificationHelper( (String) null );
-        sortSpec = specHelper.createSortSpecification();
-        assertEquals( "SortSpecification", sortSpec.getClass().getSimpleName() ); //$NON-NLS-1$
-    }
+//    public void testCreateCustomSortSpec() throws Exception
+//    {
+//        // test use of extended factory
+//        QuerySpecificationHelper specHelper = new QuerySpecificationHelper( TEST_EXTENSION_ID );
+//        SortSpecification sortSpec = specHelper.createSortSpecification();
+//        assertEquals( "MySortSpecification", sortSpec.getClass().getSimpleName() ); //$NON-NLS-1$
+//        
+//        // test use of default factory
+//        specHelper = new QuerySpecificationHelper( (String) null );
+//        sortSpec = specHelper.createSortSpecification();
+//        assertEquals( "SortSpecification", sortSpec.getClass().getSimpleName() ); //$NON-NLS-1$
+//    }
 
     public void testSortSpecMode() throws Exception
     {

@@ -44,138 +44,138 @@ public class ValueExpressionTest extends TestCase
     private static final String CUSTOM_DOT_OP_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.combinedOperator.dot"; //$NON-NLS-1$
     private static final String CUSTOM_AT_OP_ID = "org.eclipse.datatools.connectivity.oda.consumer.testdriver.combinedOperator.at"; //$NON-NLS-1$
     
-    public void testGetCombinedOperatorDefinitions() throws Exception
-    {
-        CombinedExpressionOperatorDefinition[] combinedOpDefns =
-            ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinitions( TEST_EXTENSION_ID );
-        assertTrue( combinedOpDefns.length >= 5 );
-
-        ExtensionContributor contributor = getTestContributor();
-        assertFalse( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.DIVIDE ));
-        assertTrue( contributor.supportsCombinedValueExpressionType() );
-
-        // "Add" operator type
-        assertTrue( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.ADD ));
-        CombinedExpressionOperatorDefinition opDefn =
-            ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, 
-                    CombinedValueExpressionOperator.ADD );
-        assertEquals( CombinedValueExpressionOperator.ADD, opDefn.getDisplayName() );
-        assertTrue( opDefn.isBuiltInOperator() );
-        
-        CombinedValueExpressionOperator opInstanceFromFactory = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.ADD );
-        CombinedValueExpressionOperator opInstance = opDefn.getOperator();
-        assertEquals( opInstanceFromFactory, opInstance );
-        assertEquals( "+", opInstance.getLiteral() );
-        assertNull( opInstance.get( CUSTOM_DOT_OP_ID ) );
-        
-        // Concatenate operator type with overridden literal representation
-        assertTrue( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.CONCATENATE ));
-        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, 
-                    CombinedValueExpressionOperator.CONCATENATE );
-        assertTrue( opDefn.isBuiltInOperator() );
-
-        opInstanceFromFactory = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.CONCATENATE );
-        opInstance = opDefn.getOperator();
-        assertEquals( opInstanceFromFactory, opInstance );
-        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
-        assertEquals( "||", opInstance.getLiteral() );   // overriden literal by custom class
-            // custom concatenate operator overrides the default literal symbol '+'
-        assertFalse( CombinedValueExpressionOperator.CONCATENATE_LITERAL.getLiteral().equals( opInstance.getLiteral() ));
-        
-        // custom combined operator type - Dot
-        assertFalse( contributor.supportsOdaCombinedOperator( CUSTOM_DOT_OP_ID )); // not a built-in operator
-        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, CUSTOM_DOT_OP_ID );
-        assertEquals( "Dot", opDefn.getDisplayName() );
-        assertFalse( opDefn.isBuiltInOperator() );
-
-        opInstanceFromFactory = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CUSTOM_DOT_OP_ID );
-        opInstance = opDefn.getOperator();
-        assertEquals( opInstanceFromFactory, opInstance );
-        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
-        assertEquals( ".", opDefn.getOperator().getLiteral() );  
-        
-        // custom combined operator type - At
-        assertFalse( contributor.supportsOdaCombinedOperator( CUSTOM_AT_OP_ID )); // not a built-in operator
-        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, CUSTOM_AT_OP_ID );
-        assertEquals( "At", opDefn.getDisplayName() );
-        assertFalse( opDefn.isBuiltInOperator() );
-
-        opInstanceFromFactory = 
-            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CUSTOM_AT_OP_ID );
-        opInstance = opDefn.getOperator();
-        assertEquals( opInstanceFromFactory, opInstance );
-        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
-        assertEquals( "@", opDefn.getOperator().getLiteral() );  
-    }
+//    public void testGetCombinedOperatorDefinitions() throws Exception
+//    {
+//        CombinedExpressionOperatorDefinition[] combinedOpDefns =
+//            ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinitions( TEST_EXTENSION_ID );
+//        assertTrue( combinedOpDefns.length >= 5 );
+//
+//        ExtensionContributor contributor = getTestContributor();
+//        assertFalse( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.DIVIDE ));
+//        assertTrue( contributor.supportsCombinedValueExpressionType() );
+//
+//        // "Add" operator type
+//        assertTrue( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.ADD ));
+//        CombinedExpressionOperatorDefinition opDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, 
+//                    CombinedValueExpressionOperator.ADD );
+//        assertEquals( CombinedValueExpressionOperator.ADD, opDefn.getDisplayName() );
+//        assertTrue( opDefn.isBuiltInOperator() );
+//        
+//        CombinedValueExpressionOperator opInstanceFromFactory = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.ADD );
+//        CombinedValueExpressionOperator opInstance = opDefn.getOperator();
+//        assertEquals( opInstanceFromFactory, opInstance );
+//        assertEquals( "+", opInstance.getLiteral() );
+//        assertNull( opInstance.get( CUSTOM_DOT_OP_ID ) );
+//        
+//        // Concatenate operator type with overridden literal representation
+//        assertTrue( contributor.supportsOdaCombinedOperator( CombinedValueExpressionOperator.CONCATENATE ));
+//        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, 
+//                    CombinedValueExpressionOperator.CONCATENATE );
+//        assertTrue( opDefn.isBuiltInOperator() );
+//
+//        opInstanceFromFactory = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CombinedValueExpressionOperator.CONCATENATE );
+//        opInstance = opDefn.getOperator();
+//        assertEquals( opInstanceFromFactory, opInstance );
+//        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
+//        assertEquals( "||", opInstance.getLiteral() );   // overriden literal by custom class
+//            // custom concatenate operator overrides the default literal symbol '+'
+//        assertFalse( CombinedValueExpressionOperator.CONCATENATE_LITERAL.getLiteral().equals( opInstance.getLiteral() ));
+//        
+//        // custom combined operator type - Dot
+//        assertFalse( contributor.supportsOdaCombinedOperator( CUSTOM_DOT_OP_ID )); // not a built-in operator
+//        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, CUSTOM_DOT_OP_ID );
+//        assertEquals( "Dot", opDefn.getDisplayName() );
+//        assertFalse( opDefn.isBuiltInOperator() );
+//
+//        opInstanceFromFactory = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CUSTOM_DOT_OP_ID );
+//        opInstance = opDefn.getOperator();
+//        assertEquals( opInstanceFromFactory, opInstance );
+//        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
+//        assertEquals( ".", opDefn.getOperator().getLiteral() );  
+//        
+//        // custom combined operator type - At
+//        assertFalse( contributor.supportsOdaCombinedOperator( CUSTOM_AT_OP_ID )); // not a built-in operator
+//        opDefn = ResultExtensionExplorer.getInstance().getExtensionCombinedOperatorDefinition( TEST_EXTENSION_ID, CUSTOM_AT_OP_ID );
+//        assertEquals( "At", opDefn.getDisplayName() );
+//        assertFalse( opDefn.isBuiltInOperator() );
+//
+//        opInstanceFromFactory = 
+//            ExpressionFactory.getCombinedOperator( TEST_EXTENSION_ID, CUSTOM_AT_OP_ID );
+//        opInstance = opDefn.getOperator();
+//        assertEquals( opInstanceFromFactory, opInstance );
+//        assertEquals( opInstance, opDefn.getOperator() );    // same instance should be returned
+//        assertEquals( "@", opDefn.getOperator().getLiteral() );  
+//    }
     
-    public void testGetFunctionDefinitions() throws Exception
-    {
-        FunctionExpressionDefinition[] funcDefns =
-            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinitions( TEST_EXTENSION_ID );
-        assertTrue( funcDefns.length >= 10 );
-
-        ExtensionContributor contributor = getTestContributor();
-        assertTrue( contributor.supportsFunctionValueExpressionType() );
-        
-        // MOD function
-        FunctionExpressionDefinition funcDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "MOD" );
-        assertNotNull( funcDefn );
-        assertEquals( funcDefn.getId(), funcDefn.getName() );   // name is not specified, default to id
-        assertTrue( funcDefn.getDisplayName().startsWith( "Modulo" ) );
-        assertTrue( funcDefn.getDescription().startsWith( "Returns the remainder" ) );
-        assertEquals( Integer.valueOf( 2 ), funcDefn.getMinArguments() );
-        assertEquals( Integer.valueOf( 2 ), funcDefn.getMaxArguments() );
-        assertFalse( funcDefn.canIgnoreDuplicateValues() );
-        
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.QUERY_EXPRESSION ));
-        // implied support of ResultSetColumn if QUERY_EXPRESSION is supported
-        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
-        
-        // LOWER function
-        funcDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "LOWER" );
-        assertNotNull( funcDefn );
-        assertTrue( funcDefn.getDisplayName().startsWith( "Lower" ) );
-        assertEquals( Integer.valueOf( 1 ), funcDefn.getMinArguments() );   // default value
-        assertEquals( Integer.valueOf( 1 ), funcDefn.getMaxArguments() );
-        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.RESULT_SET_COLUMN ));
-        
-        // MONTH function
-        funcDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "MONTH" );
-        assertNotNull( funcDefn );
-        assertTrue( funcDefn.getDisplayName().startsWith( "Month" ) );
-        assertEquals( Integer.valueOf( 1 ), funcDefn.getMinArguments() );
-        assertEquals( Integer.valueOf( 1 ), funcDefn.getMaxArguments() );
-        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaDatetimeDataTypes( VariableType.RESULT_SET_COLUMN ));
-        
-        assertFalse( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.QUERY_EXPRESSION ));
-        assertFalse( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
-        assertFalse( funcDefn.getVariableRestrictions().supportsOdaBooleanDataTypes( VariableType.QUERY_EXPRESSION ));
-        
-        // CURRENT_DATE function
-        funcDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "CURRENT_DATE" );
-        assertNotNull( funcDefn );
-        assertEquals( Integer.valueOf( 0 ), funcDefn.getMinArguments() );
-        assertEquals( Integer.valueOf( 0 ), funcDefn.getMaxArguments() );
-        
-        // no explicit variableRestriction; default to support RESULT_SET_COLUMN type
-        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
-        assertFalse( funcDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ));
-
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaDatetimeDataTypes( VariableType.RESULT_SET_COLUMN ));        
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
-        assertTrue( funcDefn.getVariableRestrictions().supportsOdaBooleanDataTypes( VariableType.RESULT_SET_COLUMN ));
-    }
+//    public void testGetFunctionDefinitions() throws Exception
+//    {
+//        FunctionExpressionDefinition[] funcDefns =
+//            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinitions( TEST_EXTENSION_ID );
+//        assertTrue( funcDefns.length >= 10 );
+//
+//        ExtensionContributor contributor = getTestContributor();
+//        assertTrue( contributor.supportsFunctionValueExpressionType() );
+//        
+//        // MOD function
+//        FunctionExpressionDefinition funcDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "MOD" );
+//        assertNotNull( funcDefn );
+//        assertEquals( funcDefn.getId(), funcDefn.getName() );   // name is not specified, default to id
+//        assertTrue( funcDefn.getDisplayName().startsWith( "Modulo" ) );
+//        assertTrue( funcDefn.getDescription().startsWith( "Returns the remainder" ) );
+//        assertEquals( Integer.valueOf( 2 ), funcDefn.getMinArguments() );
+//        assertEquals( Integer.valueOf( 2 ), funcDefn.getMaxArguments() );
+//        assertFalse( funcDefn.canIgnoreDuplicateValues() );
+//        
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.QUERY_EXPRESSION ));
+//        // implied support of ResultSetColumn if QUERY_EXPRESSION is supported
+//        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        
+//        // LOWER function
+//        funcDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "LOWER" );
+//        assertNotNull( funcDefn );
+//        assertTrue( funcDefn.getDisplayName().startsWith( "Lower" ) );
+//        assertEquals( Integer.valueOf( 1 ), funcDefn.getMinArguments() );   // default value
+//        assertEquals( Integer.valueOf( 1 ), funcDefn.getMaxArguments() );
+//        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        
+//        // MONTH function
+//        funcDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "MONTH" );
+//        assertNotNull( funcDefn );
+//        assertTrue( funcDefn.getDisplayName().startsWith( "Month" ) );
+//        assertEquals( Integer.valueOf( 1 ), funcDefn.getMinArguments() );
+//        assertEquals( Integer.valueOf( 1 ), funcDefn.getMaxArguments() );
+//        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaDatetimeDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        
+//        assertFalse( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.QUERY_EXPRESSION ));
+//        assertFalse( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        assertFalse( funcDefn.getVariableRestrictions().supportsOdaBooleanDataTypes( VariableType.QUERY_EXPRESSION ));
+//        
+//        // CURRENT_DATE function
+//        funcDefn =
+//            ResultExtensionExplorer.getInstance().getExtensionFunctionDefinition( TEST_EXTENSION_ID, "CURRENT_DATE" );
+//        assertNotNull( funcDefn );
+//        assertEquals( Integer.valueOf( 0 ), funcDefn.getMinArguments() );
+//        assertEquals( Integer.valueOf( 0 ), funcDefn.getMaxArguments() );
+//        
+//        // no explicit variableRestriction; default to support RESULT_SET_COLUMN type
+//        assertTrue( funcDefn.getVariableRestrictions().supportsVariableType( VariableType.RESULT_SET_COLUMN ));
+//        assertFalse( funcDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ));
+//
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaDatetimeDataTypes( VariableType.RESULT_SET_COLUMN ));        
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaStringDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaNumericDataTypes( VariableType.RESULT_SET_COLUMN ));
+//        assertTrue( funcDefn.getVariableRestrictions().supportsOdaBooleanDataTypes( VariableType.RESULT_SET_COLUMN ));
+//    }
     
 //    public void testCreateCustomFunction() throws Exception
 //    {
