@@ -314,83 +314,83 @@ public class DesignUtilLoadSaveTest extends TestCase
         assertEquals( "", relatedResultColumns.getColumnIdentifiers().getIdentifiers().get( 1 ).getName() ); //$NON-NLS-1$
     }
     
-    public void testInputElementMigrateDefaultValues()
-    {
-        File goldenFile = new File( getSampleDbTestMigrateDefaultValueFilePath() );
-        OdaDesignSession design = loadOdaDesignSession( goldenFile );
-        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
-        
-        DataSetParameters dataSetParams = dataSetDesign.getParameters();
-        for( ParameterDefinition aParamDefn : dataSetParams.getParameterDefinitions() )
-        {
-            InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
-            
-            String existingDefaultValue = aParamDefn.getDefaultScalarValue();
-            assertEquals( existingDefaultValue, inputElementAttrs.getDefaultScalarValue() );
-            
-            int initialDefaultValueCount = 4;
-            assertEquals( initialDefaultValueCount, aParamDefn.getDefaultValueCount() );
-            assertEquals( initialDefaultValueCount, inputElementAttrs.getDefaultValueCount() );
-            
-            // test default value accessors in ParameterDefinition
-            Date defaultDateValue = null;
-            try
-            {
-                defaultDateValue = new SimpleDateFormat("MM/dd/yyyy").parse( "06/01/2010" );
-            }
-            catch( ParseException ex )
-            {
-                fail();
-            }
-            aParamDefn.addDefaultValue( defaultDateValue );
-            int defaultValuePos = initialDefaultValueCount + 1;
-            assertEquals( defaultValuePos, aParamDefn.getDefaultValueCount() );
-            assertEquals( defaultDateValue, aParamDefn.getDefaultValues().getValues().get( defaultValuePos-1 ));
-            
-            // test default value accessors in InputElementAttributes
-            Integer newDefaultValue2 = Integer.valueOf( 3 );
-            inputElementAttrs.addDefaultValue( newDefaultValue2 );
-            defaultValuePos++;
-            assertEquals( defaultValuePos, inputElementAttrs.getDefaultValueCount() );
-            assertEquals( newDefaultValue2, inputElementAttrs.getDefaultValues().getValues().get( defaultValuePos-1 ));
-            
-            // test including CustomData in default StaticValues
-            CustomData customData = DesignFactory.eINSTANCE.createCustomData();
-            customData.setProviderId( "org.eclipse.birt.report.model.adapter.oda" );
-            customData.setValue( defaultDateValue );
-            inputElementAttrs.addDefaultValue( customData );
-            defaultValuePos++;
-            assertEquals( defaultValuePos, inputElementAttrs.getDefaultValueCount() );
-            assertEquals( customData, inputElementAttrs.getDefaultValues().getValues().get( defaultValuePos-1 ));
-            assertEquals( defaultDateValue, customData.getValue() );
-            assertEquals( defaultDateValue.toString(), customData.getDisplayValue() );
-
-            String displayValue = "June 1, 2010";
-            customData.setDisplayValue( displayValue );
-            assertEquals( displayValue, customData.getDisplayValue() );
-        }
-        
-        // test saving updated design session with the filter expression and additional default values
-        File tempOut = getTempOutFile();
-        saveDesignSession( design, tempOut );
-
-        File goldenOutFile = new File( 
-                getSampleDbTestMigrateDefaultValueOutFilePath() );
-        assertTrue( compareFileContent( goldenOutFile, tempOut ) );    
-        
-        // test backward compatibility of deprecated method, which reset and overrides all exisitng values
-        for( ParameterDefinition aParamDefn : dataSetParams.getParameterDefinitions() )
-        {
-            InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
-            
-            assertEquals( 7, inputElementAttrs.getDefaultValueCount() );
-            
-            String newDefaultValue = "new default value";
-            inputElementAttrs.setDefaultScalarValue( newDefaultValue );
-            assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
-            assertEquals( newDefaultValue, inputElementAttrs.getDefaultValues().getValues().get( 0 ));
-        }
-    }
+//    public void testInputElementMigrateDefaultValues()
+//    {
+//        File goldenFile = new File( getSampleDbTestMigrateDefaultValueFilePath() );
+//        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+//        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
+//        
+//        DataSetParameters dataSetParams = dataSetDesign.getParameters();
+//        for( ParameterDefinition aParamDefn : dataSetParams.getParameterDefinitions() )
+//        {
+//            InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
+//            
+//            String existingDefaultValue = aParamDefn.getDefaultScalarValue();
+//            assertEquals( existingDefaultValue, inputElementAttrs.getDefaultScalarValue() );
+//            
+//            int initialDefaultValueCount = 4;
+//            assertEquals( initialDefaultValueCount, aParamDefn.getDefaultValueCount() );
+//            assertEquals( initialDefaultValueCount, inputElementAttrs.getDefaultValueCount() );
+//            
+//            // test default value accessors in ParameterDefinition
+//            Date defaultDateValue = null;
+//            try
+//            {
+//                defaultDateValue = new SimpleDateFormat("MM/dd/yyyy").parse( "06/01/2010" );
+//            }
+//            catch( ParseException ex )
+//            {
+//                fail();
+//            }
+//            aParamDefn.addDefaultValue( defaultDateValue );
+//            int defaultValuePos = initialDefaultValueCount + 1;
+//            assertEquals( defaultValuePos, aParamDefn.getDefaultValueCount() );
+//            assertEquals( defaultDateValue, aParamDefn.getDefaultValues().getValues().get( defaultValuePos-1 ));
+//            
+//            // test default value accessors in InputElementAttributes
+//            Integer newDefaultValue2 = Integer.valueOf( 3 );
+//            inputElementAttrs.addDefaultValue( newDefaultValue2 );
+//            defaultValuePos++;
+//            assertEquals( defaultValuePos, inputElementAttrs.getDefaultValueCount() );
+//            assertEquals( newDefaultValue2, inputElementAttrs.getDefaultValues().getValues().get( defaultValuePos-1 ));
+//            
+//            // test including CustomData in default StaticValues
+//            CustomData customData = DesignFactory.eINSTANCE.createCustomData();
+//            customData.setProviderId( "org.eclipse.birt.report.model.adapter.oda" );
+//            customData.setValue( defaultDateValue );
+//            inputElementAttrs.addDefaultValue( customData );
+//            defaultValuePos++;
+//            assertEquals( defaultValuePos, inputElementAttrs.getDefaultValueCount() );
+//            assertEquals( customData, inputElementAttrs.getDefaultValues().getValues().get( defaultValuePos-1 ));
+//            assertEquals( defaultDateValue, customData.getValue() );
+//            assertEquals( defaultDateValue.toString(), customData.getDisplayValue() );
+//
+//            String displayValue = "June 1, 2010";
+//            customData.setDisplayValue( displayValue );
+//            assertEquals( displayValue, customData.getDisplayValue() );
+//        }
+//        
+//        // test saving updated design session with the filter expression and additional default values
+//        File tempOut = getTempOutFile();
+//        saveDesignSession( design, tempOut );
+//
+//        File goldenOutFile = new File( 
+//                getSampleDbTestMigrateDefaultValueOutFilePath() );
+//        assertTrue( compareFileContent( goldenOutFile, tempOut ) );    
+//        
+//        // test backward compatibility of deprecated method, which reset and overrides all exisitng values
+//        for( ParameterDefinition aParamDefn : dataSetParams.getParameterDefinitions() )
+//        {
+//            InputElementAttributes inputElementAttrs = aParamDefn.getInputAttributes().getElementAttributes();
+//            
+//            assertEquals( 7, inputElementAttrs.getDefaultValueCount() );
+//            
+//            String newDefaultValue = "new default value";
+//            inputElementAttrs.setDefaultScalarValue( newDefaultValue );
+//            assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
+//            assertEquals( newDefaultValue, inputElementAttrs.getDefaultValues().getValues().get( 0 ));
+//        }
+//    }
     
     public void testAddResourceKeys()
     {
