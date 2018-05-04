@@ -452,60 +452,60 @@ public abstract class QueryTestBase extends TestCase
 	/**
 	 * Test query parsing logic.
 	 */
-	public void testCompliateNames( )
-	{
-		try
-		{
-			setUpwithColunmNameSpecified();
-		}
-		catch ( OdaException ex )
-		{
-			ex.printStackTrace( );
-			fail( ex.getMessage( ) );
-		}
-		
-		for (String tab : TestUtil.COMPLICATE_TAB_NAMES)
-		{
-			try
-			{
-				String query = "select "
-					+ "\"" + TestUtil.COMPLICATE_TAB_COLNAMES[0] + "\",\""
-					+ TestUtil.COMPLICATE_TAB_COLNAMES[1] + "\",\""
-					+ TestUtil.COMPLICATE_TAB_COLNAMES[2] + "\",\""
-					+ TestUtil.COMPLICATE_TAB_COLNAMES[3] + "\" from "
-					+ "\"" + tab + getSuffix( ) + getExtension( ) + "\"";
-				
-				String[] queryMetaData = QueryTextUtil.getQueryMetaData( query );
-				
-				assertTrue( tab.equalsIgnoreCase( queryMetaData[2].substring( 0,
-						tab.length( ) ) ) );
-				
-				String[] cols = queryMetaData[0].split( "," );
-				for ( int i = 0; i < cols.length; i++ )
-				{
-					assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[i].equalsIgnoreCase( QueryTextUtil.getUnQuotedName( cols[i] ) ) );
-				}
-				
-				statement_noTypeLine.prepare( query );
-				IResultSet resultSet = statement_noTypeLine.executeQuery( );
-				
-				assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
-				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )
-						.getColumnName( 1 ) ) );
-				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[1].equalsIgnoreCase( resultSet.getMetaData( )
-						.getColumnName( 2 ) ) );
-				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[2].equalsIgnoreCase( resultSet.getMetaData( )
-						.getColumnName( 3 ) ) );
-				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[3].equalsIgnoreCase( resultSet.getMetaData( )
-						.getColumnName( 4 ) ) );
-				
-				executeQueryTest( resultSet, false, false );
-			}
-			catch ( OdaException ex )
-			{
-				ex.printStackTrace( );
-				fail( ex.getMessage( ) );
-			}
-		}
-	}
+//	public void testCompliateNames( )
+//	{
+//		try
+//		{
+//			setUpwithColunmNameSpecified();
+//		}
+//		catch ( OdaException ex )
+//		{
+//			ex.printStackTrace( );
+//			fail( ex.getMessage( ) );
+//		}
+//		
+//		for (String tab : TestUtil.COMPLICATE_TAB_NAMES)
+//		{
+//			try
+//			{
+//				String query = "select "
+//					+ "\"" + TestUtil.COMPLICATE_TAB_COLNAMES[0] + "\",\""
+//					+ TestUtil.COMPLICATE_TAB_COLNAMES[1] + "\",\""
+//					+ TestUtil.COMPLICATE_TAB_COLNAMES[2] + "\",\""
+//					+ TestUtil.COMPLICATE_TAB_COLNAMES[3] + "\" from "
+//					+ "\"" + tab + getSuffix( ) + getExtension( ) + "\"";
+//				
+//				String[] queryMetaData = QueryTextUtil.getQueryMetaData( query );
+//				
+//				assertTrue( tab.equalsIgnoreCase( queryMetaData[2].substring( 0,
+//						tab.length( ) ) ) );
+//				
+//				String[] cols = queryMetaData[0].split( "," );
+//				for ( int i = 0; i < cols.length; i++ )
+//				{
+//					assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[i].equalsIgnoreCase( QueryTextUtil.getUnQuotedName( cols[i] ) ) );
+//				}
+//				
+//				statement_noTypeLine.prepare( query );
+//				IResultSet resultSet = statement_noTypeLine.executeQuery( );
+//				
+//				assertEquals( 4, resultSet.getMetaData( ).getColumnCount( ) );
+//				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[0].equalsIgnoreCase( resultSet.getMetaData( )
+//						.getColumnName( 1 ) ) );
+//				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[1].equalsIgnoreCase( resultSet.getMetaData( )
+//						.getColumnName( 2 ) ) );
+//				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[2].equalsIgnoreCase( resultSet.getMetaData( )
+//						.getColumnName( 3 ) ) );
+//				assertTrue( TestUtil.COMPLICATE_TAB_COLNAMES[3].equalsIgnoreCase( resultSet.getMetaData( )
+//						.getColumnName( 4 ) ) );
+//				
+//				executeQueryTest( resultSet, false, false );
+//			}
+//			catch ( OdaException ex )
+//			{
+//				ex.printStackTrace( );
+//				fail( ex.getMessage( ) );
+//			}
+//		}
+//	}
 }
