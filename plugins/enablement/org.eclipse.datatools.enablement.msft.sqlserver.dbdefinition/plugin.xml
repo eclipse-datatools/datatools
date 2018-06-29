@@ -39,5 +39,12 @@
             versionDisplayString="%2014VersionString"
             file="runtime/vendors/SQL Server_2014/SQL Server_2014.xmi">
       </definition>
+      <definition
+            version="2016"
+            product="SQL Server"
+            productDisplayString="%2016ProductString"
+            versionDisplayString="%2016VersionString"
+            file="runtime/vendors/SQL Server_2016/SQL Server_2016.xmi">
+      </definition>
    </extension>
 </plugin>
