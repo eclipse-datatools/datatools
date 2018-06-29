@@ -13,12 +13,9 @@
       <tycho-extras-version>1.1.0</tycho-extras-version>
       <maven-resources-version>2.6</maven-resources-version>
 
-      <!-- TODO: switch to 4.8 after June 27, 2018 -->
-      <sdk-version>4.8milestones</sdk-version>
-
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
-      <platform-repo.url>http://download.eclipse.org/eclipse/updates/4.8milestones/</platform-repo.url>
+      <platform-repo.url>http://download.eclipse.org/eclipse/updates/4.9-I-builds/</platform-repo.url>
       <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20180606145124/repository/</orbit-repo.url>
       <emf-site>http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/</emf-site>
       <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326/</emf-query-site>
