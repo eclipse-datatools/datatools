@@ -10,4 +10,5 @@
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.enablement.jdt.feature</artifactId>
   <packaging>eclipse-feature</packaging>
+<version>1.14.101-SNAPSHOT</version>
 </project>
