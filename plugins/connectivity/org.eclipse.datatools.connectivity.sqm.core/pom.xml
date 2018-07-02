@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools.plugins</groupId>
   <artifactId>org.eclipse.datatools.connectivity.sqm.core</artifactId>
-  <version>1.4.100-SNAPSHOT</version>
+  <version>1.4.101-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

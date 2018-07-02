@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools.plugins</groupId>
   <artifactId>org.eclipse.datatools.connectivity.oda.design.ui</artifactId>
-  <version>3.4.100-SNAPSHOT</version>
+  <version>3.4.101-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
