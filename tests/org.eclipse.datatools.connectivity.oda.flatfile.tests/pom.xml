@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools.tests</groupId>
   <artifactId>org.eclipse.datatools.connectivity.oda.flatfile.tests</artifactId>
-  <version>3.0.3.200702201</version>
+  <version>3.0.101-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
 </project>
