@@ -9,8 +9,8 @@
 
     <properties>
       <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.git</tycho.scmUrl>
-      <tycho-version>1.1.0</tycho-version>
-      <tycho-extras-version>1.1.0</tycho-extras-version>
+      <tycho-version>1.2.0</tycho-version>
+      <tycho-extras-version>1.2.0</tycho-extras-version>
       <maven-resources-version>2.6</maven-resources-version>
 
       <!-- Set up the default target platform to build against -->
