@@ -108,7 +108,7 @@
           <plugin>
             <groupId>org.eclipse.tycho.extras</groupId>
             <artifactId>tycho-p2-extras-plugin</artifactId>
-            <version>${tycho-version}</version>
+            <version>${tycho-extras-version}</version>
             <executions>
               <execution>
                 <goals>
@@ -192,7 +192,7 @@
                   <dependency>
                       <groupId>org.eclipse.tycho.extras</groupId>
                       <artifactId>tycho-buildtimestamp-jgit</artifactId>
-                      <version>${tycho-version}</version>
+                      <version>${tycho-extras-version}</version>
                   </dependency>
                   <dependency>
                       <groupId>org.eclipse.tycho.extras</groupId>
