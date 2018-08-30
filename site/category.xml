@@ -82,6 +82,10 @@
    <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.sqltools.doc.user.source"><category name="dtp-sources"/></feature>
 
+   <bundle id="org.apache.lucene.analyzers-common"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.core"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.queryparser"><category name="deps"/></bundle>
+
    <category-def name="dtp" label="Eclipse Data Tools"><description>Data Tools Platform (DTP) - main features</description></category-def>
    <category-def name="dtp-sources" label="Eclipse Data Tools - Sources"><description>Data Tools Platform (DTP) - sources</description></category-def>
    
@@ -89,4 +93,9 @@
    <category-def name="dtp-enablement" label="Eclipse Data Tools - Enablement"><description>Data Tools Platform (DTP) - Enablement features</description></category-def>
    <category-def name="dtp-sqltools" label="Eclipse Data Tools"><description>Data Tools Platform (DTP) - SQL Tools features</description></category-def>
 
+   <category-def name="deps" label="Dependencies">
+      <description>
+         Dependencies
+      </description>
+   </category-def>
 </site>
