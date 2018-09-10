@@ -16,7 +16,7 @@
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
       <platform-repo.url>http://download.eclipse.org/eclipse/updates/4.9-I-builds/</platform-repo.url>
-      <orbit-repo.url>http://download.eclipse.org/tools/orbit/I-builds/I20180829144012/repository/</orbit-repo.url>
+      <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20180905201904/repository/</orbit-repo.url>
       <emf-site>http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/</emf-site>
       <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326/</emf-query-site>
       <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0/</mdt-ocl-site>
