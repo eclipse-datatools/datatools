@@ -15,8 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.lucene.queryparser;bundle-version="7.5",
  org.eclipse.datatools.connectivity
 Import-Package: com.ibm.icu.text;version="3.6.1",
- com.ibm.icu.util;version="3.6.1",
- org.apache.lucene.document;version="7.5"
+ com.ibm.icu.util;version="3.6.1"
 Export-Package: org.eclipse.datatools.sqltools.result,
  org.eclipse.datatools.sqltools.result.core,
  org.eclipse.datatools.sqltools.result.export,
