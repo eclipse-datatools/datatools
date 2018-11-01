@@ -1,9 +1,9 @@
 ## *******************************************************************************
 ## Copyright (c) 2000, 2005 IBM Corporation and others_
 ## All rights reserved_ This program and the accompanying materials
-## are made available under the terms of the Eclipse Public License v1_0
+## are made available under the terms of the Eclipse Public License 2.0
 ## which is available at
-## http://www_eclipse_org/legal/epl-v10_html
+## https://www.eclipse.org/legal/epl-2.0/
 ##
 ## Contributors:
 ##     IBM Corporation - initial API and implementation
