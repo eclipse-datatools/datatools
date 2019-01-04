@@ -315,6 +315,38 @@ public class SaxParser extends DefaultHandler implements Runnable
 			spConsumer.manipulateData( pathHolder.getCurrentAttrPath( atts.getQName( i ) ),
 					atts.getValue( i ) );
 		}
+		
+		/* 
+		 * Workaround patch for https://bugs.eclipse.org/bugs/show_bug.cgi?id=412269
+		 * 
+		 * SaxParserConsumer.manipulateData() calls SaxParserConsumer.fillNotNestColumn() which is the cause of the bug.
+		 * 
+		 * This ODA SaxParser uses temporary XML columns as helper columns for xpath expressions which contain a filter.
+		 * In case the filter "matches" this xml sub-tree, the corresponding helper column will be set to the filter value.
+		 * This "marks" this temporary column that the filter matched.
+		 * As soon as the real column will be processed, it is checked whether the filter matched previously.
+		 * If so, the value will be assigned to the row.
+		 *  
+		 * The problem is: If the real column value will be processed before the filter column,
+		 * the value is not written to the row, hence the value is discarded.
+		 * Even more, the value from the next matching xml-subtree is used instead (=> wrong value used!)
+		 * 
+		 * This workaround just invokes the faulty method twice. After the first run,
+		 * all filter columns are set correctly set so the next pass will cause the mapping to be right.
+		 * 
+		 * This workaround should be replaced by a real fix which fixes the root cause of the problem (most probably 
+		 * refactoring the filter architecture of ODA datatools) as this workaround may degrade performance.
+		 * 
+		 * 
+		 */		
+		if(spConsumer instanceof SaxParserConsumer)
+		{
+			for ( int i = 0; i < atts.getLength( ); i++ )
+			{
+				spConsumer.manipulateData( pathHolder.getCurrentAttrPath( atts.getQName( i ) ),
+						atts.getValue( i ) );
+			}
+		}
 	}
 
 
