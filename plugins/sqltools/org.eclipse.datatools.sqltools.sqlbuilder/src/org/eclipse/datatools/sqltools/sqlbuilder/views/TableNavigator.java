@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2001, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,10 @@
 
 package org.eclipse.datatools.sqltools.sqlbuilder.views;
 
+import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
-import org.eclipse.jface.viewers.TableTreeViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TableCursor;
@@ -77,7 +77,7 @@ public class TableNavigator extends TableCursor
 		public void widgetSelected(SelectionEvent e) {
 			super.widgetSelected(e);
 				 currentTable.setSelection(new TableItem[] {getRow()});
-			     if (sViewer instanceof TableTreeViewer)
+			     if (sViewer instanceof TableViewer)
                  {
                    TableTreeItem tableTreeItem = (TableTreeItem)getRow().getData(TABLETREEITEM_ID);
                    StructuredSelection selection = new StructuredSelection(tableTreeItem.getData());
@@ -98,7 +98,7 @@ public class TableNavigator extends TableCursor
          	{
          	  if (currentTable.getItemCount() > 0 && currentTable.getSelectionCount() <= 0)
               {
-                 if (sViewer instanceof TableTreeViewer)
+                 if (sViewer instanceof TableViewer)
                  {
                    TableTreeItem tableTreeItem = (TableTreeItem)getRow().getData(TABLETREEITEM_ID);
                    StructuredSelection selection = new StructuredSelection(tableTreeItem.getData());
@@ -335,14 +335,16 @@ public class TableNavigator extends TableCursor
                {
 	               if (column == 0 && e.character == '+') 
 	               {
-               	  	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);	               	
-	               	  ((TableTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), true);                       
+               	  	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+               	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
+	               	  ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), true);
 	               	  refresh();
 	               }
 	               else if (column == 0 && e.character == '-') 
 	               {
-	               	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);	               	
-	               	  ((TableTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), false);                       
+	               	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+               	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
+	               	  ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), false);
                       refresh();
 	               }               
                }
@@ -353,10 +355,10 @@ public class TableNavigator extends TableCursor
                	  {
                     ((TableViewer)structuredViewer).editElement(row.getData(), column);   
                	  }
-               	  else if (structuredViewer instanceof TableTreeViewer)
+               	  else if (structuredViewer instanceof TableViewer)
                	  {  
                	  	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
-               	  	 ((TableTreeViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
+               	  	 ((TableViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
                	  }
                }
         }
@@ -388,21 +390,22 @@ public class TableNavigator extends TableCursor
                         {
                      ((TableViewer)structuredViewer).editElement(row.getData(), column);   
                         }
-                        else if (structuredViewer instanceof TableTreeViewer && column == 1)
+                        else if (structuredViewer instanceof TableViewer && column == 1)
                         {
                                  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
-                                ((TableTreeViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
+                                ((TableViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
                         }                                               
                
-                 if (structuredViewer instanceof TableTreeViewer && row.getData(TABLETREEITEM_ID) instanceof TableTreeItem)
+                 if (structuredViewer instanceof TableViewer && row.getData(TABLETREEITEM_ID) instanceof TableTreeItem)
                  {              
                                    if (column == 0)
                                    {
                                     TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);                             
                                           boolean expandState = tableTreeItem.getExpanded();
-                       ((TableTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), !expandState);
-                       refresh();
-                    }
+                                   	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
+                                          ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), !expandState);
+                                          refresh();
+                                   }
                  }
                }          
             }

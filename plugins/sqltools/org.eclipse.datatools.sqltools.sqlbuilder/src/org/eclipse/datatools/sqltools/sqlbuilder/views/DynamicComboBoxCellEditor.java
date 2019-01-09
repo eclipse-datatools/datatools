@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -24,7 +24,6 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.insert.InsertGridViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.select.SelectGridViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.select.SelectTableElement;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.update.UpdateTreeViewer;
-import org.eclipse.jface.viewers.TableTreeViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.Composite;
 
@@ -32,7 +31,7 @@ import org.eclipse.swt.widgets.Composite;
 public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
 
     TableViewer tableViewer = null;
-    TableTreeViewer tableTreeViewer = null;
+    TableViewer TableViewer = null;
     private ITextProvider fTextProvider;
 
 
@@ -42,7 +41,7 @@ public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
             tableViewer = (TableViewer) viewer;
         }
         else if (viewer instanceof UpdateTreeViewer) {
-            tableTreeViewer = (UpdateTreeViewer) viewer;
+            TableViewer = (UpdateTreeViewer) viewer;
         }
     }
 
@@ -182,9 +181,9 @@ public class DynamicComboBoxCellEditor extends EditComboBoxCellEditor {
                 }
             }
         }
-        else if (tableTreeViewer != null) {
-            if (tableTreeViewer instanceof UpdateTreeViewer) {
-                UpdateTreeViewer utv = (UpdateTreeViewer) tableTreeViewer;
+        else if (TableViewer != null) {
+            if (TableViewer instanceof UpdateTreeViewer) {
+                UpdateTreeViewer utv = (UpdateTreeViewer) TableViewer;
                 if (row >= 0) {
                     utv.refresh();
                 }

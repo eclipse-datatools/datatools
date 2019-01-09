@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2000, 2018 IBM Corporation and others.
+ * Copyright 2000, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -55,7 +55,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableLayout;
-import org.eclipse.jface.viewers.TableTreeViewer;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -71,7 +71,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * The Update tree view
  */
-public class UpdateTreeViewer extends TableTreeViewer {
+public class UpdateTreeViewer extends TableViewer {
 
     public static final String copyright = "(c) Copyright IBM Corporation 2000, 2002.";
     protected SQLDomainModel domainModel;
@@ -93,9 +93,9 @@ public class UpdateTreeViewer extends TableTreeViewer {
 
         this.domainModel = domainModel;
 
-        table = getTableTree().getTable();
+        table = getTable();
 
-        final Table tbl = getTableTree().getTable();
+        final Table tbl = getTable();
         PlatformUI.getWorkbench().getHelpSystem().setHelp(tbl, SQLBuilderContextIds.SQDU_SET_TAB);
 
         navigator = new TableNavigator(tbl, this);
@@ -154,7 +154,7 @@ public class UpdateTreeViewer extends TableTreeViewer {
     public void refresh() {
         // setVisible for TableNavigator to false if there are no items 
         //  in the table tree. Necessary to avoid repaint of cursor.
-        if (getTableTree().getTable().getItemCount() == 0) {
+        if (getTable().getItemCount() == 0) {
             navigator.setVisible(false);
         }
         else {
@@ -167,7 +167,8 @@ public class UpdateTreeViewer extends TableTreeViewer {
 
     //override setExpanded so that the tree doesn't get collapsed by the framework
     protected void setExpanded(Item node, boolean expand) {
-        super.setExpanded(node, true);
+//    	 super no longer contains this method?
+//        super.setExpanded(node, true);
     }
 
     // override getExpanded so that the tree doesn't get collapsed by the framework
@@ -185,7 +186,7 @@ public class UpdateTreeViewer extends TableTreeViewer {
             }
             // setVisible for TableNavigator to false if there are no items 
             //  in the table tree. Necessary to avoid repaint of cursor.
-            if (getTableTree().getTable().getItemCount() <= 0) {
+            if (getTable().getItemCount() <= 0) {
                 navigator.setVisible(false);
             }
             else {
@@ -211,7 +212,7 @@ public class UpdateTreeViewer extends TableTreeViewer {
                 counter++;
             }
 
-            queryCellEditor = new ComboBoxCellEditor(getTableTree().getTable(), comboContents);
+            queryCellEditor = new ComboBoxCellEditor(getTable(), comboContents);
             queryCellEditor.getControl().moveAbove(null);
             return queryCellEditor;
         }
@@ -219,12 +220,12 @@ public class UpdateTreeViewer extends TableTreeViewer {
         public DynamicComboBoxCellEditor getExprComboBoxCellEditor(boolean isExpr) {
             if (!isExpr) {
                 LabelValuePair comboItems[] = { new LabelValuePair(SQLBuilderConstants.P_BUILD_EXPRESSION, SQLBuilderConstants.P_BUILD_EXPRESSION) };
-                expressionCellEditor = new DynamicComboBoxCellEditor(getTableTree().getTable(), comboItems, this);
+                expressionCellEditor = new DynamicComboBoxCellEditor(getTable(), comboItems, this);
             }
             else {
                 LabelValuePair comboItems[] = { new LabelValuePair(SQLBuilderConstants.P_EDIT_EXPRESSION, SQLBuilderConstants.P_EDIT_EXPRESSION),
                         new LabelValuePair(SQLBuilderConstants.P_REPLACE_EXPRESSION, SQLBuilderConstants.P_REPLACE_EXPRESSION) };
-                expressionCellEditor = new DynamicComboBoxCellEditor(getTableTree().getTable(), comboItems, this);
+                expressionCellEditor = new DynamicComboBoxCellEditor(getTable(), comboItems, this);
             }
             expressionCellEditor.getControl().moveAbove(null);
             return expressionCellEditor;
@@ -233,7 +234,7 @@ public class UpdateTreeViewer extends TableTreeViewer {
         public DynamicComboBoxCellEditor getExprComboBoxCellEditor(QueryValueExpression expr) {
         	if (expr == null) {
         		LabelValuePair comboItems[] = { new LabelValuePair(SQLBuilderConstants.P_BUILD_EXPRESSION, SQLBuilderConstants.P_BUILD_EXPRESSION) };
-                expressionCellEditor = new DynamicComboBoxCellEditor(getTableTree().getTable(), comboItems, this);
+                expressionCellEditor = new DynamicComboBoxCellEditor(getTable(), comboItems, this);
             }
             else {            	
                 if (expr.getDataType() instanceof XMLDataType ||
@@ -241,12 +242,12 @@ public class UpdateTreeViewer extends TableTreeViewer {
                     LabelValuePair comboItems[] = { new LabelValuePair(SQLBuilderConstants.P_EDIT_EXPRESSION, SQLBuilderConstants.P_EDIT_EXPRESSION),
                             new LabelValuePair(SQLBuilderConstants.P_REPLACE_EXPRESSION, SQLBuilderConstants.P_REPLACE_EXPRESSION),
                             new LabelValuePair(SQLBuilderConstants.P_EDIT_INPUT_VALUE, SQLBuilderConstants.P_EDIT_INPUT_VALUE)};
-                    expressionCellEditor = new DynamicComboBoxCellEditor(getTableTree().getTable(), comboItems, this);
+                    expressionCellEditor = new DynamicComboBoxCellEditor(getTable(), comboItems, this);
                 }
                 else{
                     LabelValuePair comboItems[] = { new LabelValuePair(SQLBuilderConstants.P_EDIT_EXPRESSION, SQLBuilderConstants.P_EDIT_EXPRESSION),
                             new LabelValuePair(SQLBuilderConstants.P_REPLACE_EXPRESSION, SQLBuilderConstants.P_REPLACE_EXPRESSION) };
-                    expressionCellEditor = new DynamicComboBoxCellEditor(getTableTree().getTable(), comboItems, this);
+                    expressionCellEditor = new DynamicComboBoxCellEditor(getTable(), comboItems, this);
                 }
             }
             expressionCellEditor.getControl().moveAbove(null);
@@ -462,7 +463,7 @@ public class UpdateTreeViewer extends TableTreeViewer {
             table.setBackground(control.getBackground());
         }
     }
-    
+
     private Vector getExistingQueries() {
 
 		if (existingSelects == null) {
