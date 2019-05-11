@@ -18,7 +18,6 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TableCursor;
-import org.eclipse.swt.custom.TableTreeItem;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
@@ -36,6 +35,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.TreeItem;
 
 
   /**
@@ -79,7 +79,7 @@ public class TableNavigator extends TableCursor
 				 currentTable.setSelection(new TableItem[] {getRow()});
 			     if (sViewer instanceof TableViewer)
                  {
-                   TableTreeItem tableTreeItem = (TableTreeItem)getRow().getData(TABLETREEITEM_ID);
+                   TreeItem tableTreeItem = (TreeItem)getRow().getData(TABLETREEITEM_ID);
                    StructuredSelection selection = new StructuredSelection(tableTreeItem.getData());
                    sViewer.setSelection(selection, true);
                  }
@@ -100,7 +100,7 @@ public class TableNavigator extends TableCursor
               {
                  if (sViewer instanceof TableViewer)
                  {
-                   TableTreeItem tableTreeItem = (TableTreeItem)getRow().getData(TABLETREEITEM_ID);
+                   TreeItem tableTreeItem = (TreeItem)getRow().getData(TABLETREEITEM_ID);
                    StructuredSelection selection = new StructuredSelection(tableTreeItem.getData());
                    sViewer.setSelection(selection, true);
                  }
@@ -331,18 +331,18 @@ public class TableNavigator extends TableCursor
                
                //jvh - look for + or - key
                // column == 0
-               if (row.getData(TABLETREEITEM_ID) instanceof TableTreeItem)
+               if (row.getData(TABLETREEITEM_ID) instanceof TreeItem)
                {
 	               if (column == 0 && e.character == '+') 
 	               {
-               	  	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+               	  	  TreeItem tableTreeItem = (TreeItem)row.getData(TABLETREEITEM_ID);
                	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
 	               	  ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), true);
 	               	  refresh();
 	               }
 	               else if (column == 0 && e.character == '-') 
 	               {
-	               	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+	               	  TreeItem tableTreeItem = (TreeItem)row.getData(TABLETREEITEM_ID);
                	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
 	               	  ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), false);
                       refresh();
@@ -357,7 +357,7 @@ public class TableNavigator extends TableCursor
                	  }
                	  else if (structuredViewer instanceof TableViewer)
                	  {  
-               	  	  TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+               	  	  TreeItem tableTreeItem = (TreeItem)row.getData(TABLETREEITEM_ID);
                	  	 ((TableViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
                	  }
                }
@@ -392,15 +392,15 @@ public class TableNavigator extends TableCursor
                         }
                         else if (structuredViewer instanceof TableViewer && column == 1)
                         {
-                                 TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);
+                                 TreeItem tableTreeItem = (TreeItem)row.getData(TABLETREEITEM_ID);
                                 ((TableViewer)structuredViewer).editElement(tableTreeItem.getData(), column);   
                         }                                               
                
-                 if (structuredViewer instanceof TableViewer && row.getData(TABLETREEITEM_ID) instanceof TableTreeItem)
+                 if (structuredViewer instanceof TableViewer && row.getData(TABLETREEITEM_ID) instanceof TreeItem)
                  {              
                                    if (column == 0)
                                    {
-                                    TableTreeItem tableTreeItem = (TableTreeItem)row.getData(TABLETREEITEM_ID);                             
+                                    TreeItem tableTreeItem = (TreeItem)row.getData(TABLETREEITEM_ID);                             
                                           boolean expandState = tableTreeItem.getExpanded();
                                    	  	  // TableViewer doesn't have this method, where TableTreeViewer did. Hope this doesn't break stuff. @nboldt
                                           ((AbstractTreeViewer)structuredViewer).setExpandedState(tableTreeItem.getData(), !expandState);

@@ -9,10 +9,10 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.help,
- org.apache.lucene.core;bundle-version="7.5",
- org.apache.lucene.misc;bundle-version="7.5",
- org.apache.lucene.analyzers-common;bundle-version="7.5",
- org.apache.lucene.queryparser;bundle-version="7.5",
+ org.apache.lucene.core;bundle-version="[7.5,8)",
+ org.apache.lucene.misc;bundle-version="[7.5,8)",
+ org.apache.lucene.analyzers-common;bundle-version="[7.5,8)",
+ org.apache.lucene.queryparser;bundle-version="[7.5,8)",
  org.eclipse.datatools.connectivity
 Import-Package: com.ibm.icu.text;version="3.6.1",
  com.ibm.icu.util;version="3.6.1"

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright Â© 2000, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -17,7 +17,6 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.insert.InsertTableElement
 import org.eclipse.datatools.sqltools.sqlbuilder.views.select.SelectTableElement;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.update.UpdateTreeElement;
 import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.swt.custom.TableTreeItem;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TableItem;
 
@@ -39,9 +38,6 @@ public class Modifier implements ICellModifier {
         Object data = null;
         if (element instanceof TableItem) {
             data = ((TableItem) element).getData();
-        }
-        else if (element instanceof TableTreeItem) {
-            data = ((TableTreeItem) element).getData();
         }
         
         // appears that the table returns the table element as the value if there
