@@ -5,9 +5,8 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>features</artifactId>
-    <version>1.14.101-SNAPSHOT</version>
+    <version>1.14.102-SNAPSHOT</version>
   </parent>
-  <version>1.14.102-SNAPSHOT</version>
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.enablement.oda.feature</artifactId>
   <packaging>eclipse-feature</packaging>
