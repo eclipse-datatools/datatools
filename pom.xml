@@ -18,9 +18,9 @@
       <platform-repo.url>http://download.eclipse.org/eclipse/updates/I-builds/</platform-repo.url>
       <!-- <orbit-repo.url>http://download.eclipse.org/tools/orbit/I-builds/I20180829144012/repository/</orbit-repo.url> -->
       <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/latest-I/</orbit-repo.url>
-      <emf-site>http://download.eclipse.org/modeling/emf/emf/builds/release/2.14/</emf-site>
-      <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326/</emf-query-site>
-      <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0/</mdt-ocl-site>
+      <emf-site>http://download.eclipse.org/modeling/emf/emf/builds/release/2.20/</emf-site>
+      <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/milestones/</emf-query-site>
+      <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/latest/</mdt-ocl-site>
       <gef-site>http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/</gef-site>
       <junit3-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</junit3-site>
 
