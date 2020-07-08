@@ -1,0 +1,25 @@
+/*******************************************************************************
+* Copyright (c) 2015, 2016 Luis Fernando Cortes and others.
+*
+* This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License 2.0
+* which accompanies this distribution, and is available at
+* https://www.eclipse.org/legal/epl-2.0/
+*
+* SPDX-License-Identifier: EPL-2.0
+*
+* Contributors:
+*     Luis Fernando Cortes <lfcortes12@gmail.com> - Bug 559315 initial support for dark Eclipse theme
+*******************************************************************************/
+
+IEclipsePreferences#org.eclipse.datatools.sqltools.sqleditor {
+	preferences:
+		'Identifier=0,0,0,0,0,103,140,177'
+		'Type=1,0,0,0,0,204,108,29'
+		'Keyword=1,0,0,0,0,204,108,29'
+		'Double\ quoted\ string=0,0,0,0,0,42,161,152'
+		'Single\ quoted\ string=0,0,0,0,0,42,161,152'
+		'Single-line\ comment=0,0,0,0,0,88,110,117'
+		'Multi-line\ comment=0,0,0,0,0,88,110,117'
+		'Others=0,0,0,0,1,204,204,204'
+}

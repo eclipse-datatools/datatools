@@ -278,6 +278,14 @@
             id="org.eclipse.datatools.sqltools.sqleditor.preferences.syntaxcoloring"/>
    </extension>
 
-  
-    
+  <extension
+         point="org.eclipse.e4.ui.css.swt.theme">
+      <stylesheet
+            uri="css/e4-dark_sql_editor.css">
+         <themeid
+               refid="org.eclipse.e4.ui.css.theme.e4_dark">
+         </themeid>
+      </stylesheet>
+   </extension>
+
 </plugin>
