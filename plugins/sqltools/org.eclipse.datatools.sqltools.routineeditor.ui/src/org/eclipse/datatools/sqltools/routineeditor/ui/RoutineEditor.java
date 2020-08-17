@@ -201,7 +201,7 @@ public class RoutineEditor extends SQLEditor {
 		// 2006-07-20
 		// Fix 380668-1 Users are confused by 'Execute' and 'Run' context menu
 		// in the editor.
-		// Keep Execute All, but will only be enabled when you��re editing a SQL
+		// Keep Execute All, but will only be enabled when you're editing a SQL
 		// file. Disabled at all other times.
 		menu.remove(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
 		SQLDevToolsUIConfiguration config = SQLToolsUIFacade

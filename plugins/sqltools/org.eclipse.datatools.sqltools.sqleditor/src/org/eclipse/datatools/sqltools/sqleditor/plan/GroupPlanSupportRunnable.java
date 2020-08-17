@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
@@ -117,7 +118,7 @@ public class GroupPlanSupportRunnable extends PlanSupportRunnable
     protected IStatus run(IProgressMonitor monitor)
     {
 
-        IJobManager manager = Platform.getJobManager();
+        IJobManager manager = Job.getJobManager();
         if (monitor == null)
         {
             monitor = manager.createProgressGroup();

@@ -7,7 +7,8 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.utils;
 
-import org.eclipse.ui.internal.misc.StringMatcher;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Util Class for Filter
@@ -32,13 +33,13 @@ public class FilterUtil
      * If invoking the StringMatcher with string literals in Java, don't forget
      * escape characters are represented by "\\".
      * 
-     * @param pattern the pattern to match text against
+     * @param patternString the pattern to match text against
      * @param value the value to be matched
      * @return
      */
-    public static boolean isMatch(String pattern, String value)
+    public static boolean isMatch(String patternString, String value)
     {
-        return isMatch(pattern, value, true, false);
+        return isMatch(patternString, value, true, false);
     }
 
     /**
@@ -57,29 +58,44 @@ public class FilterUtil
      * If invoking the StringMatcher with string literals in Java, don't forget
      * escape characters are represented by "\\".
      * 
-     * @param pattern the pattern to match text against
+     * @param patternString the pattern to match text against
      * @param value the value to be matched
      * @param ignoreCase if true, case is ignored
      * @param ignoreWildCards if true, wild cards and their escape sequences are ignored
      *        (everything is taken literally).
      * @return
      */
-    public static boolean isMatch(String pattern, String value, boolean ignoreCase, boolean ignoreWildCards)
+    public static boolean isMatch(String patternString, String value, boolean ignoreCase, boolean ignoreWildCards)
     {
-        if (pattern == null || "".equals(pattern)) //$NON-NLS-1$
+        if (patternString == null || "".equals(patternString)) //$NON-NLS-1$
         {
             return true;
         }
-        StringMatcher matcher = new StringMatcher(pattern, ignoreCase, ignoreWildCards);
-        if (matcher.match(value))
+        Pattern pattern = getPattern(patternString, ignoreCase, ignoreWildCards);
+        if (pattern.matcher(value).matches())
         {
             return true;
         }
-        StringMatcher matcherWithStart = new StringMatcher(pattern + "*", ignoreCase, ignoreWildCards);//$NON-NLS-1$
-        if (matcherWithStart.match(value))
+        pattern = getPattern(patternString + "*", ignoreCase, ignoreWildCards); //$NON-NLS-1$
+        if (pattern.matcher(value).matches())
         {
             return true;
         }
         return false;
+    }
+
+    private static Pattern getPattern(String patternString, boolean ignoreCase, boolean ignoreWildCards)
+    {
+        Pattern pattern;
+        if (ignoreWildCards && ignoreCase) {
+            pattern = Pattern.compile(patternString, Pattern.LITERAL | Pattern.CASE_INSENSITIVE);
+        } else if (ignoreWildCards) {
+            pattern = Pattern.compile(patternString, Pattern.LITERAL);
+        } else if (ignoreCase) {
+            pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
+        } else {
+            pattern = Pattern.compile(patternString);
+        }
+        return pattern;
     }
 }

@@ -35,8 +35,8 @@ import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
  * <p>
  * As you can see, all the above mentioned functions can be accomplished by using SQL Model, Database Model and the API
  * from Connectivity layer. This is because SQL Dev Tools evolves at the same time with DTP Model Base project and
- * Connectivity project, so you can view this interface as the ��adapter�� between SQL Dev Tools and the other 2 projects
- * of DTP. In fact, we��ll provide a default implementation of this interface which uses SQL Model, Database Model and
+ * Connectivity project, so you can view this interface as the 'adapter' between SQL Dev Tools and the other 2 projects
+ * of DTP. In fact, we'll provide a default implementation of this interface which uses SQL Model, Database Model and
  * the API from Connectivity layer.
  * </p>
  * 
