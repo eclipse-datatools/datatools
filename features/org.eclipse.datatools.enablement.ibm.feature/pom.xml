@@ -5,9 +5,10 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>features</artifactId>
-    <version>1.14.103-SNAPSHOT</version>
+    <version>1.14.102-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.enablement.ibm.feature</artifactId>
+  <version>1.14.103-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
