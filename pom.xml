@@ -9,20 +9,21 @@
 
     <properties>
       <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.git</tycho.scmUrl>
-      <tycho-version>1.5.0</tycho-version>
+      <tycho-version>2.2.0</tycho-version>
       <tycho-extras-version>${tycho-version}</tycho-extras-version>
       <maven-resources-version>2.6</maven-resources-version>
 
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
-      <platform-repo.url>http://download.eclipse.org/eclipse/updates/I-builds/</platform-repo.url>
+      <!-- <platform-repo.url>http://download.eclipse.org/eclipse/updates/I-builds/</platform-repo.url> -->
+      <platform-repo.url>https://download.eclipse.org/eclipse/updates/4.20-I-builds/</platform-repo.url>
       <!-- <orbit-repo.url>http://download.eclipse.org/tools/orbit/I-builds/I20180829144012/repository/</orbit-repo.url> -->
       <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/latest-I/</orbit-repo.url>
       <emf-site>http://download.eclipse.org/modeling/emf/emf/builds/release/2.22/</emf-site>
       <emf-query-site>http://download.eclipse.org/modeling/emf/query/updates/milestones/</emf-query-site>
       <mdt-ocl-site>http://download.eclipse.org/modeling/mdt/ocl/updates/releases/latest/</mdt-ocl-site>
       <gef-site>http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952/</gef-site>
-      <junit3-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</junit3-site>
+      <junit3-site>http://archive.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository/</junit3-site>
 
       <cbi-plugins.version>1.1.4</cbi-plugins.version>
       <cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</cbi-repo.url>
