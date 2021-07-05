@@ -16,7 +16,7 @@
       <!-- Set up the default target platform to build against -->
       <license-site>http://download.eclipse.org/cbi/updates/license</license-site>
       <!-- <platform-repo.url>http://download.eclipse.org/eclipse/updates/I-builds/</platform-repo.url> -->
-      <platform-repo.url>https://download.eclipse.org/eclipse/updates/4.20-I-builds/</platform-repo.url>
+      <platform-repo.url>https://download.eclipse.org/eclipse/updates/4.21-I-builds/</platform-repo.url>
       <!-- <orbit-repo.url>http://download.eclipse.org/tools/orbit/I-builds/I20180829144012/repository/</orbit-repo.url> -->
       <orbit-repo.url>http://download.eclipse.org/tools/orbit/downloads/latest-I/</orbit-repo.url>
       <emf-site>http://download.eclipse.org/modeling/emf/emf/builds/release/2.22/</emf-site>
