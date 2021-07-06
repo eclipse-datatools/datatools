@@ -20,7 +20,6 @@ import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableColumnLoader;
 import org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogColumn;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -37,9 +36,7 @@ public class MySqlTableColumnLoader extends JDBCTableColumnLoader {
 	protected ResultSet createResultSet() throws SQLException {
 		Connection connection = getCatalogObject().getConnection();
 		DatabaseMetaData dbm = connection.getMetaData();
-		Schema schema = this.getTable().getSchema();
-		String schemaName = schema != null ? schema.getName() : null;
-		return dbm.getColumns(connection.getCatalog(), schemaName, this.getTable().getName(), getJDBCFilterPattern());
+		return dbm.getColumns(null, null, this.getTable().getName(), getJDBCFilterPattern());
 	}
 
 	protected Column processRow(ResultSet rs) throws SQLException {
