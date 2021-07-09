@@ -16,6 +16,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -37,7 +39,11 @@ import org.eclipse.datatools.enablement.oda.xml.test.util.TestUtil;
 public class SaxParserTest extends BaseTest
 {
 	private IResultSet rs;
-	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
+	static String lineSeparator = (String) AccessController.doPrivileged( new PrivilegedAction<String>() {
+		public String run() {
+			return System.getProperty( "line.separator" );
+		}
+	});
 
 	private String testString = "book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
 			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat10;String;/},{cat;String;../@category}"

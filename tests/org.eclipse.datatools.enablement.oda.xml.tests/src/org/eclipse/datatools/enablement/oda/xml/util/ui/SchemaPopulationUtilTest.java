@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.BaseTest;
@@ -26,7 +28,11 @@ import org.eclipse.datatools.enablement.oda.xml.test.util.TestUtil;
 public class SchemaPopulationUtilTest extends BaseTest
 {
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged(
-            new sun.security.action.GetPropertyAction("line.separator"));
+            new PrivilegedAction<String>() {
+                public String run() {
+                    return System.getProperty("line.separator");
+                }
+            });
 
 	/*
 	 * Test method for 'org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil.getSchemaTree(String)'
