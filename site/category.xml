@@ -82,9 +82,11 @@
    <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source"><category name="dtp-sources"/></feature>
    <feature id="org.eclipse.datatools.sqltools.doc.user.source"><category name="dtp-sources"/></feature>
 
-   <bundle id="org.apache.lucene.analyzers-common"><category name="deps"/></bundle>
-   <bundle id="org.apache.lucene.core"><category name="deps"/></bundle>
-   <bundle id="org.apache.lucene.queryparser"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.analyzers-common" version="7.5.0.v20181003-1532"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.core" version="7.5.0.v20181003-1532"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.misc" version="7.5.0.v20181003-1532"><category name="deps"/></bundle>
+   <bundle id="org.apache.lucene.queryparser" version="7.5.0.v20181003-1532"><category name="deps"/></bundle>
+   <bundle id="net.sourceforge.lpg.lpgjavaruntime" version="1.1.0.v201004271650"><category name="deps"/></bundle>
 
    <category-def name="dtp" label="Eclipse Data Tools"><description>Data Tools Platform (DTP) - main features</description></category-def>
    <category-def name="dtp-sources" label="Eclipse Data Tools - Sources"><description>Data Tools Platform (DTP) - sources</description></category-def>
