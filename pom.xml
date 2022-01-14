@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>org.eclipse.datatools</artifactId>
-  <version>1.14.102-SNAPSHOT</version>
+  <version>1.14.300-SNAPSHOT</version>
   <packaging>pom</packaging>
 
     <properties>
       <tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.git</tycho.scmUrl>
-      <tycho-version>2.3.0</tycho-version>
+      <tycho-version>2.5.0</tycho-version>
       <tycho-extras-version>${tycho-version}</tycho-extras-version>
       <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
       <tycho-snapshot-repo.url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</tycho-snapshot-repo.url>
@@ -32,7 +32,7 @@
 
       <!-- baseline check URLs: skip with -DskipBaselineComparison=true and/or -Dtycho.baseline=disable -->
       <skipBaselineComparison>false</skipBaselineComparison>
-      <lastStableRepository>https://download.eclipse.org/datatools/updates/1.14.100.201805031905/repository/</lastStableRepository>
+      <lastStableRepository>https://download.eclipse.org/datatools/updates/1.14.202-SNAPSHOT/repository/</lastStableRepository>
     </properties>
 
     <repositories>
@@ -294,23 +294,6 @@
                 </configuration>
               </plugin>
               <plugin>
-                <groupId>org.eclipse.tycho.extras</groupId>
-                <artifactId>tycho-pack200a-plugin</artifactId>
-                <version>${tycho-extras-version}</version>
-                <configuration>
-                  <fork>true</fork>
-                </configuration>
-                <executions>
-                  <execution>
-                    <id>pack200-normalize</id>
-                    <goals>
-                      <goal>normalize</goal>
-                    </goals>
-                    <phase>verify</phase>
-                  </execution>
-                </executions>
-              </plugin>
-              <plugin>
                 <groupId>org.eclipse.cbi.maven.plugins</groupId>
                 <artifactId>eclipse-jarsigner-plugin</artifactId>
                 <version>${cbi-plugins.version}</version>
@@ -319,23 +302,6 @@
                     <id>sign</id>
                     <goals>
                       <goal>sign</goal>
-                    </goals>
-                    <phase>verify</phase>
-                  </execution>
-                </executions>
-              </plugin>
-              <plugin>
-                <groupId>org.eclipse.tycho.extras</groupId>
-                <artifactId>tycho-pack200b-plugin</artifactId>
-                <version>${tycho-extras-version}</version>
-                <configuration>
-                  <fork>true</fork>
-                </configuration>
-                <executions>
-                  <execution>
-                    <id>pack200-pack</id>
-                    <goals>
-                      <goal>pack</goal>
                     </goals>
                     <phase>verify</phase>
                   </execution>
