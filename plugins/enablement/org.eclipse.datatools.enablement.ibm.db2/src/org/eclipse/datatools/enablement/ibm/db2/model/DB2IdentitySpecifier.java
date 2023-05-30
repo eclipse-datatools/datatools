@@ -7,6 +7,7 @@
 package org.eclipse.datatools.enablement.ibm.db2.model;
 
 import java.math.BigInteger;
+
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
 
 /**

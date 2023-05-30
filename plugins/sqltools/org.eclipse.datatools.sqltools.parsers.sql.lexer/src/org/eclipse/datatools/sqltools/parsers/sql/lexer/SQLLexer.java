@@ -10,10 +10,11 @@ package org.eclipse.datatools.sqltools.parsers.sql.lexer;
 
 
 
-    import java.util.*;
-    import java.io.*;
+    import java.util.ArrayList;
 
-import lpg.lpgjavaruntime.*;
+import lpg.lpgjavaruntime.LexParser;
+import lpg.lpgjavaruntime.PrsStream;
+import lpg.lpgjavaruntime.RuleAction;
 
 public class SQLLexer extends AbstractSQLLexer implements RuleAction, SQLParsersym, SQLLexersym
 {

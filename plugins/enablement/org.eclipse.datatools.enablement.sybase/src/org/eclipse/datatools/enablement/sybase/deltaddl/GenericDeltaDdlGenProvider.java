@@ -21,7 +21,7 @@ public class GenericDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider impl
 		int flag = ((Integer) changeMap.get(element)).intValue();
 		if((flag & (SybaseDeltaDdlGeneration.MODIFIED)) != 0) 
 		{
-			changeMap.put(element, new Integer(SybaseDeltaDdlGeneration.DROP|SybaseDeltaDdlGeneration.CREATE));
+			changeMap.put(element, Integer.valueOf(SybaseDeltaDdlGeneration.DROP|SybaseDeltaDdlGeneration.CREATE));
 		}
 	}
 

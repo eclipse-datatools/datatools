@@ -13,7 +13,6 @@
 package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

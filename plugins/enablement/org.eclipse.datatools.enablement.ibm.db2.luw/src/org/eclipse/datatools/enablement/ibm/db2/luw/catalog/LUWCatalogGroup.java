@@ -14,12 +14,12 @@ import java.sql.Connection;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.enablement.ibm.catalog.ICatalogAuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.GroupImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.datatools.enablement.ibm.catalog.ICatalogAuthorizationIdentifier;
 
 public class LUWCatalogGroup extends GroupImpl implements ICatalogObject,ICatalogAuthorizationIdentifier {
 

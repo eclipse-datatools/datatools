@@ -12,9 +12,6 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.Properties;
 
-import org.eclipse.datatools.enablement.oda.xml.Constants;
-import org.eclipse.datatools.enablement.oda.xml.impl.Driver;
-import org.eclipse.datatools.enablement.oda.xml.ui.utils.ResourceIdentifiersUtil;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
@@ -28,6 +25,8 @@ import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
+import org.eclipse.datatools.enablement.oda.xml.impl.Driver;
 
 /**
  * Populate the resultset metadata and parameter meta data in dataset design

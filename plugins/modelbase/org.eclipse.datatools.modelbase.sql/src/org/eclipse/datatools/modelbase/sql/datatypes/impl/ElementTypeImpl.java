@@ -9,17 +9,12 @@ package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 import org.eclipse.datatools.modelbase.sql.datatypes.CollectionDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**

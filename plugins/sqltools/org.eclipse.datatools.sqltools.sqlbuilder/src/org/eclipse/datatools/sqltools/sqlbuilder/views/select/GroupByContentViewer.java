@@ -311,7 +311,7 @@ public class GroupByContentViewer extends ContentViewer {
         PlatformUI.getWorkbench().getHelpSystem().setHelp(groupByContentList, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
 
         // ratio 0.3
-        groupByContentList.setData("layout ratio", new Long((((long) 30 << 16) + 99) / 100)); //$NON-NLS-1$
+        groupByContentList.setData("layout ratio", Long.valueOf((((long) 30 << 16) + 99) / 100)); //$NON-NLS-1$
         groupByContentHelper = new ObjectListHelper(groupByContentList);
 
         groupByContentList.addListener(SWT.Selection, new Listener() {
@@ -334,7 +334,7 @@ public class GroupByContentViewer extends ContentViewer {
         PlatformUI.getWorkbench().getHelpSystem().setHelp(typeGroup, SQLBuilderContextIds.SQDS_SELECT_GROUPS_WHITE_FIELD);
 
         // ratio 0.7
-        typeGroup.setData("layout ratio", new Long((((long) 70 << 16) + 99) / 100)); //$NON-NLS-1$
+        typeGroup.setData("layout ratio", Long.valueOf((((long) 70 << 16) + 99) / 100)); //$NON-NLS-1$
         Label label = new Label(typeGroup, SWT.NULL);
         label.setText(Messages._UI_LABEL_GROUPS_TYPE);
 

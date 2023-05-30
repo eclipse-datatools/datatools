@@ -10,14 +10,43 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import org.eclipse.datatools.modelbase.sql.datatypes.*;
+import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.AttributeDefinition;
+import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.BooleanDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
+import org.eclipse.datatools.modelbase.sql.datatypes.Domain;
+import org.eclipse.datatools.modelbase.sql.datatypes.ElementType;
+import org.eclipse.datatools.modelbase.sql.datatypes.Field;
+import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntegrityControlOption;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntervalDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
+import org.eclipse.datatools.modelbase.sql.datatypes.LinkControlOption;
+import org.eclipse.datatools.modelbase.sql.datatypes.OrderingCategoryType;
+import org.eclipse.datatools.modelbase.sql.datatypes.OrderingType;
+import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
+import org.eclipse.datatools.modelbase.sql.datatypes.ReadPermissionOption;
+import org.eclipse.datatools.modelbase.sql.datatypes.RowDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
+import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.UnlinkOption;
+import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedTypeOrdering;
+import org.eclipse.datatools.modelbase.sql.datatypes.WritePermissionOption;
+import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

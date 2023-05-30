@@ -92,7 +92,7 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 						pk.setName(pkName);
 					}
 				}
-				columns.put(new Integer(rs.getShort(COLUMN_KEY_SEQ)),
+				columns.put(Integer.valueOf(rs.getShort(COLUMN_KEY_SEQ)),
 						    findColumn(rs.getString(COLUMN_COLUMN_NAME)));
 			}
 			for (Iterator it = columns.values().iterator(); it.hasNext();) {
@@ -156,7 +156,7 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 					constraints.put(ucName, uc);
 					constraintColumns.put(ucName, new TreeMap());
 				}
-				((Map) constraintColumns.get(ucName)).put(new Integer(rs
+				((Map) constraintColumns.get(ucName)).put(Integer.valueOf(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
 						.getString(COLUMN_PKCOLUMN_NAME)));
 			}

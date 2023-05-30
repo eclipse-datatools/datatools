@@ -100,7 +100,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
     {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_TABLE__PCTFREE:
-				return new Integer(getPctfree());
+				return Integer.valueOf(getPctfree());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

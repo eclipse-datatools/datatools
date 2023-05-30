@@ -375,7 +375,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-                return new Integer( stringValue ).intValue();
+                return Integer.valueOf( stringValue ).intValue();
             }
             catch( NumberFormatException e )
             {
@@ -409,7 +409,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-                return new Double( stringValue ).doubleValue();
+                return Double.valueOf( stringValue ).doubleValue();
             }
             catch( NumberFormatException e )
             {

@@ -16,16 +16,11 @@ package org.eclipse.datatools.connectivity.oda.util.manifest.tests;
 
 import java.sql.Types;
 import java.util.Hashtable;
-import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataSetType;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
-import org.eclipse.datatools.connectivity.oda.util.manifest.JavaRuntimeInterface;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
-import org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface;
-import org.eclipse.datatools.connectivity.oda.util.manifest.TraceLogging;
 
 import junit.framework.TestCase;
 
@@ -206,15 +201,15 @@ public class ManifestExplorerTest extends TestCase
     private static Object[][] sm_mappings = 
     {
         // native type code, native type name, primary oda type name, oda type code
-        { new Integer( (int) 4 ), "INT", "Integer", new Integer( Types.INTEGER ) },
-        { new Integer( (int) 8 ), "DOUBLE", "Double", new Integer( Types.DOUBLE ) },
-        { new Integer( (int) 12 ), "STRING", "String", new Integer( Types.CHAR ) },
-        { new Integer( (int) 91 ), "DATE", "Date", new Integer( Types.DATE ) },
-        { new Integer( (int) 92 ), "TIME", "Time", new Integer( Types.TIME ) },
-        { new Integer( (int) 93 ), "TIMESTAMP", "Timestamp", new Integer( Types.TIMESTAMP ) },
-        { new Integer( (int) 2004 ), "BLOB", "String", new Integer( Types.CHAR ) },
-        { new Integer( (int) 2005 ), "CLOB", "String", new Integer( Types.CHAR ) },
-        { new Integer( (int) 2 ), "BIGDECIMAL", "Decimal", new Integer( Types.DECIMAL ) }
+        { Integer.valueOf( (int) 4 ), "INT", "Integer", Integer.valueOf( Types.INTEGER ) },
+        { Integer.valueOf( (int) 8 ), "DOUBLE", "Double", Integer.valueOf( Types.DOUBLE ) },
+        { Integer.valueOf( (int) 12 ), "STRING", "String", Integer.valueOf( Types.CHAR ) },
+        { Integer.valueOf( (int) 91 ), "DATE", "Date", Integer.valueOf( Types.DATE ) },
+        { Integer.valueOf( (int) 92 ), "TIME", "Time", Integer.valueOf( Types.TIME ) },
+        { Integer.valueOf( (int) 93 ), "TIMESTAMP", "Timestamp", Integer.valueOf( Types.TIMESTAMP ) },
+        { Integer.valueOf( (int) 2004 ), "BLOB", "String", Integer.valueOf( Types.CHAR ) },
+        { Integer.valueOf( (int) 2005 ), "CLOB", "String", Integer.valueOf( Types.CHAR ) },
+        { Integer.valueOf( (int) 2 ), "BIGDECIMAL", "Decimal", Integer.valueOf( Types.DECIMAL ) }
     };
 
 }

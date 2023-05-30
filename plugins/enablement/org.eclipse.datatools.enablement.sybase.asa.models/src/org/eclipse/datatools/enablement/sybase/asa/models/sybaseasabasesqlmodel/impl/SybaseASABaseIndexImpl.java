@@ -10,8 +10,6 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseIndex;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;

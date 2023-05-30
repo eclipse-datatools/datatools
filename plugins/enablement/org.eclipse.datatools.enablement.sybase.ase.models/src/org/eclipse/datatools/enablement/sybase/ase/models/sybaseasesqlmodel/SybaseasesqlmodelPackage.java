@@ -7,19 +7,12 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
-
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
-
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;

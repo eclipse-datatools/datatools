@@ -225,7 +225,7 @@ public class SQLEditorOutlineContentProvider implements ITreeContentProvider {
                 Position p = new Position( offset, length );
                 document.addPosition( SQL_SEGMENTS, p );
                 String segmentLabel = MessageFormat.format( SQLEditorResources.SQLEditor_outlinePage_sqlSegment_titlePattern, 
-                        new Object[] { new Integer( offset )}); 
+                        new Object[] { Integer.valueOf( offset )}); 
                 fContent.add( new SQLSegment( segmentLabel, p)); //$NON-NLS-1$
 
             } catch (BadPositionCategoryException x) {

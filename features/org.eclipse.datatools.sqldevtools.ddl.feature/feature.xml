@@ -2,9 +2,8 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.ddl.feature"
       label="%featureName"
-      version="1.14.102.qualifier"
-      provider-name="%providerName"
-      image="eclipse_update_120.jpg">
+      version="1.15.0.qualifier"
+      provider-name="%providerName">
 
    <description>
       %description

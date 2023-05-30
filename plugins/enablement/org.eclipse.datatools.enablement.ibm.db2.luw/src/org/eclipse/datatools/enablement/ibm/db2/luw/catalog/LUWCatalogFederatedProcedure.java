@@ -26,8 +26,8 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.ibm.catalog.IDatabaseObject;
 import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogStatistics;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWCatalogMessages;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.FederatedProcedureImpl;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
@@ -409,18 +409,18 @@ public class LUWCatalogFederatedProcedure extends FederatedProcedureImpl impleme
 					if(typeDefinition.isLengthSupported()) {
 						final int length = r.getInt("LENGTH"); //$NON-NLS-1$
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					else if(typeDefinition.isPrecisionSupported()) {
 						final int length = r.getInt("LENGTH"); //$NON-NLS-1$
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					
 					if(typeDefinition.isScaleSupported()) {
 						final int length = r.getInt("SCALE"); //$NON-NLS-1$
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					
 					parameter.setContainedType(type);

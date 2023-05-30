@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;

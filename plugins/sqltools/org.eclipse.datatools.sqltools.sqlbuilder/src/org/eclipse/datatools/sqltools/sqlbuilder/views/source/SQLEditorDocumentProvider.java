@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.source;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
@@ -20,9 +22,6 @@ import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.rules.DefaultPartitioner;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.texteditor.AbstractDocumentProvider;
-
-import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 
 public class SQLEditorDocumentProvider extends AbstractDocumentProvider
 {

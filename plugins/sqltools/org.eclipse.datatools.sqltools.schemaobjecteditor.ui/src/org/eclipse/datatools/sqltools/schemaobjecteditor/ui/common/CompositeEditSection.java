@@ -129,7 +129,7 @@ public class CompositeEditSection extends CollapseableSection
             GridData gd = new GridData();
             gd.widthHint = _buttonWidth;
             b.setLayoutData(gd);
-            b.setData(new Integer(i));
+            b.setData(Integer.valueOf(i));
             b.addSelectionListener(new SelectionListener()
             {
                 public void widgetDefaultSelected(SelectionEvent e)

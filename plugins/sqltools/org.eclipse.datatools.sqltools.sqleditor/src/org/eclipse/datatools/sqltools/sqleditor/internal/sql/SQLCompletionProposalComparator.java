@@ -9,7 +9,6 @@ import java.util.Comparator;
 
 import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLTemplateProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.templates.TemplateProposal;
 
 /**
  * @author Li Huang

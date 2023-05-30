@@ -29,6 +29,7 @@ import org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCopyProcessor;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileMoveProcessor;
 import org.eclipse.datatools.connectivity.ui.RefreshProfileJob;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -45,7 +46,6 @@ import org.eclipse.ui.navigator.CommonDropAdapter;
 import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
-import org.eclipse.ui.views.navigator.LocalSelectionTransfer;
 
 /**
  * 
@@ -61,7 +61,7 @@ public class ConnectionProfileDropAssistant extends CommonDropAdapterAssistant {
 
 	public IStatus handleDrop(CommonDropAdapter dropAdapter,
 			DropTargetEvent dropTargetEvent, Object target) {
-		if (LocalSelectionTransfer.getInstance().isSupportedType(
+		if (LocalSelectionTransfer.getTransfer().isSupportedType(
 				dropAdapter.getCurrentTransfer())) {
 			try {
 				switch (dropAdapter.getCurrentOperation()) {
@@ -142,7 +142,7 @@ public class ConnectionProfileDropAssistant extends CommonDropAdapterAssistant {
 			TransferData transferType) {
 		IStatus result = Status.OK_STATUS;
 
-		if (LocalSelectionTransfer.getInstance().isSupportedType(transferType)) {
+		if (LocalSelectionTransfer.getTransfer().isSupportedType(transferType)) {
 
 			initializeSelection();
 
@@ -224,7 +224,7 @@ public class ConnectionProfileDropAssistant extends CommonDropAdapterAssistant {
 	}
 
 	protected void initializeSelection() {
-		ISelection s = LocalSelectionTransfer.getInstance().getSelection();
+		ISelection s = LocalSelectionTransfer.getTransfer().getSelection();
 		if (!(s instanceof IStructuredSelection))
 			return;
 		mElements = ((IStructuredSelection) s).toList();

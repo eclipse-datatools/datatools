@@ -2,10 +2,9 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.feature"
       label="%featureName"
-      version="1.14.201.qualifier"
+      version="1.15.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.datatools.sqltools.common.ui"
-      image="eclipse_update_120.jpg">
+      plugin="org.eclipse.datatools.sqltools.common.ui">
 
    <description>
       %description

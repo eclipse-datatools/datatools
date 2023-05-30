@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2010 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -16,6 +16,30 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
+import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
+import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
+import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
+import org.eclipse.datatools.modelbase.sql.query.TableExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableJoined;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
+import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.figures.EdgeChopBoxConnector;
 import org.eclipse.draw2d.ButtonModel;
 import org.eclipse.draw2d.ChangeEvent;
 import org.eclipse.draw2d.ChangeListener;
@@ -38,33 +62,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-
-import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
-import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
-import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
-import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
-import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
-import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
-import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
-import org.eclipse.datatools.modelbase.sql.query.TableExpression;
-import org.eclipse.datatools.modelbase.sql.query.TableJoined;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
-import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.figures.EdgeChopBoxConnector;
 
 /**
  * GEF viewobject for a column

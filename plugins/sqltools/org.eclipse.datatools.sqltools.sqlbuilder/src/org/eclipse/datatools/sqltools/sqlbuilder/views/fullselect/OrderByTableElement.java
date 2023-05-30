@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -149,7 +149,7 @@ public class OrderByTableElement {
             List orderList = fullSelect.getOrderByClause();
             int position = orderList.indexOf(orderBy);
             if (position != -1) {
-                sortOrder = (new Integer(position + 1)).toString();
+                sortOrder = (Integer.valueOf(position + 1)).toString();
             }
         }
         return sortOrder;

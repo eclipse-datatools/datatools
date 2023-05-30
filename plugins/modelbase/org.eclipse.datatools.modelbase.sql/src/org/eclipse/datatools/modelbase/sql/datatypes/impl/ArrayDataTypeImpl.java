@@ -10,17 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,7 +97,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
-				return new Integer(getMaxCardinality());
+				return Integer.valueOf(getMaxCardinality());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

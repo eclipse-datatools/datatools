@@ -16,8 +16,8 @@ package org.eclipse.datatools.connectivity.oda.spec.valueexpr;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
+import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
 import org.eclipse.datatools.connectivity.oda.spec.util.ValidatorUtil;
 

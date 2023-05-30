@@ -90,7 +90,7 @@ public class DataSetPreferencePage extends PreferencePage
         });
 		
 		maxNumberOfElementPassed.setErrorMessage( Messages.getFormattedString( "designer.preview.preference.numberOfElementPassedToGetSchema.errormessage", //$NON-NLS-1$
-				new Object[]{new Integer( MAX_INTEGER )	} ) );
+				new Object[]{Integer.valueOf( MAX_INTEGER )	} ) );
 		
 		String defaultMaxSchema = UiPlugin.getDefault( )
 				.getPluginPreferences( )

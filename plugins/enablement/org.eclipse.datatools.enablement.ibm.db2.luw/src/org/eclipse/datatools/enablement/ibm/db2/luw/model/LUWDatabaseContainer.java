@@ -7,10 +7,9 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.datatools.enablement.ibm.db2.model.UnitType;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

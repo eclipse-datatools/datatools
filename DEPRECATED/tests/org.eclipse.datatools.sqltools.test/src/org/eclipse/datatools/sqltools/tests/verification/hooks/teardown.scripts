@@ -1,2 +1,0 @@
-drop trigger t1;
-drop table TABLE1;

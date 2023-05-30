@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.util;
 
-import org.eclipse.datatools.enablement.ibm.util.ModelVersionUtil;
-
 /**
  * Enum for file version numbers. Version are presented as
  * major.minor.service.modifier, where each segment represents a integer.

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.eclipse.datatools.enablement.sqlite.ui.Messages;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
@@ -25,6 +24,7 @@ import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionCons
 import org.eclipse.datatools.connectivity.internal.ui.DelimitedStringList;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
+import org.eclipse.datatools.enablement.sqlite.ui.Messages;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;

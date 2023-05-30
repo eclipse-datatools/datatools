@@ -22,13 +22,11 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorUIService;
-import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.core.services.SQLUIService;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.editor.ui.internal.core.SQLDevToolsUIConfigRegistry;
 import org.eclipse.datatools.sqltools.editor.ui.internal.core.SQLDevToolsUIConfigRegistryImpl;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
-import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 
 /**
  * This should be the central place to query about contributed <code>SQLDevToolsUIConfiguration</code>s. Unlike

@@ -32,7 +32,6 @@ import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.modelvalidity.DefaultSQLModelValidator;
 import org.eclipse.datatools.sqltools.core.modelvalidity.SQLModelValidationDelegate;
-import org.eclipse.datatools.sqltools.core.modelvalidity.SQLModelValidator;
 import org.eclipse.datatools.sqltools.core.modelvalidity.ValidatorConstants;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;

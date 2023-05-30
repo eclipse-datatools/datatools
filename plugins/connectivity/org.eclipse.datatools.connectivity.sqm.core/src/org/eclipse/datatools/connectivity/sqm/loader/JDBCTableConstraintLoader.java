@@ -202,7 +202,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						pk.setName(pkName);
 					}
 				}
-				columns.put(new Integer(rs.getShort(COLUMN_KEY_SEQ)),
+				columns.put(Integer.valueOf(rs.getShort(COLUMN_KEY_SEQ)),
 						findColumn(rs.getString(COLUMN_COLUMN_NAME)));
 			}
 			for (Iterator it = columns.values().iterator(); it.hasNext();) {
@@ -279,7 +279,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 					constraints.put(ucName, uc);
 					constraintColumns.put(ucName, new TreeMap());
 				}
-				((Map) constraintColumns.get(ucName)).put(new Integer(rs
+				((Map) constraintColumns.get(ucName)).put(Integer.valueOf(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
 						.getString(COLUMN_PKCOLUMN_NAME)));
 			}
@@ -410,7 +410,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 					constraintColumns.put(fkName, new TreeMap());
 
 				}
-				((Map) constraintColumns.get(fkName)).put(new Integer(rs
+				((Map) constraintColumns.get(fkName)).put(Integer.valueOf(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
 						.getString(COLUMN_FKCOLUMN_NAME)));
 			}
@@ -602,7 +602,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		EAnnotation eAnnotation = fk
 				.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
 		fk.addEAnnotationDetail(eAnnotation,
-				RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP, new Boolean(
+				RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP, Boolean.valueOf(
 						foreignKeyIsIdentifyingRelationship(fk)).toString());
 
 		fk.addEAnnotationDetail(eAnnotation,

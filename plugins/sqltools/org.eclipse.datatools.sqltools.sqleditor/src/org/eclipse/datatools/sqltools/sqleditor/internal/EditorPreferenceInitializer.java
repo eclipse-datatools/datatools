@@ -10,7 +10,6 @@ package org.eclipse.datatools.sqltools.sqleditor.internal;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.datatools.sqltools.sqleditor.preferences.PreferenceMessages;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * Performs SQL Editor default preference value initialization.

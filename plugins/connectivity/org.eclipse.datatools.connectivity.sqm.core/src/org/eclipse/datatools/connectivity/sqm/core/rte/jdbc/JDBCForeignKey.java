@@ -85,7 +85,7 @@ public class JDBCForeignKey extends ForeignKeyImpl implements ICatalogObject {
 	
 	public static void setAsIdentifyingRelatinship(ForeignKey fk,boolean identifying){
 		EAnnotation eAnnotation = fk.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
-		fk.addEAnnotationDetail(eAnnotation,RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP,new Boolean(identifying).toString());
+		fk.addEAnnotationDetail(eAnnotation,RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP,Boolean.valueOf(identifying).toString());
 
 		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_CHILD_MULTIPLICITY, RDBCorePlugin.MANY);
 		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_CHILD_ROLE_NAME, new String ());

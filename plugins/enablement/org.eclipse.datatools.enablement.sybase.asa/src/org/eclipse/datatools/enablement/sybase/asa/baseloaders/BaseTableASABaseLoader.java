@@ -17,7 +17,6 @@ import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalog
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumn;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumnCheckConstraint;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;

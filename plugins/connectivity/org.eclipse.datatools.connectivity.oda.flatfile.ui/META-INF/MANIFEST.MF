@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile.ui; singleton:=true
-Bundle-Version: 3.3.101.qualifier
+Bundle-Version: 3.4.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin
 Bundle-Vendor: Eclipse Data Tools Platform
@@ -13,5 +13,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.datatools.connectivity.oda.design.ui,
  org.eclipse.datatools.connectivity.oda.flatfile
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.datatools.connectivity.oda.flatfile.ui

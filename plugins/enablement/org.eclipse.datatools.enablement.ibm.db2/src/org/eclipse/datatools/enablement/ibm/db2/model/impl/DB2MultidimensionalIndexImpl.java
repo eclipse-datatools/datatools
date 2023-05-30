@@ -9,6 +9,9 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Index;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2MultidimensionalIndex;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -16,10 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Index;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2MultidimensionalIndex;
 
 /**
  * <!-- begin-user-doc -->

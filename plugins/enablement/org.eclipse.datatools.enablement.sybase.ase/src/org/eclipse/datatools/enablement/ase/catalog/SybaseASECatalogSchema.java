@@ -33,10 +33,10 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCRoutineLoader;
-import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
-import org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCRoutineLoader.IRoutineFactory;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader.ITableFactory;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.DistinctTypeFactory;
 import org.eclipse.datatools.enablement.ase.ISybaseASECatalogTable;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
@@ -1256,17 +1256,17 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
 			if (pdtd.isLengthSupported()) {
 				EStructuralFeature feature = pdt.eClass()
 						.getEStructuralFeature("length"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt("length"))); //$NON-NLS-1$
+				pdt.eSet(feature, Integer.valueOf(rs.getInt("length"))); //$NON-NLS-1$
 			}
 			if (pdtd.isPrecisionSupported()) {
 				EStructuralFeature feature = pdt.eClass()
 						.getEStructuralFeature("precision"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt("prec"))); //$NON-NLS-1$
+				pdt.eSet(feature, Integer.valueOf(rs.getInt("prec"))); //$NON-NLS-1$
 			}
 			if (pdtd.isScaleSupported()) {
 				EStructuralFeature feature = pdt.eClass()
 						.getEStructuralFeature("scale"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt("scale"))); //$NON-NLS-1$
+				pdt.eSet(feature, Integer.valueOf(rs.getInt("scale"))); //$NON-NLS-1$
 			}
 		}
 	}

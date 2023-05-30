@@ -6,7 +6,6 @@
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.*;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex;

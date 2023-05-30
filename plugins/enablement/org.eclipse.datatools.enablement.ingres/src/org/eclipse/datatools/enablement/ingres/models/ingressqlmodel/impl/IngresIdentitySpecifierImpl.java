@@ -16,13 +16,9 @@ import java.math.BigInteger;
 
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier;
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

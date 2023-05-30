@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2007, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2007, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -12,10 +12,8 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.views.source;
 
 import org.eclipse.datatools.modelbase.sql.tables.Column;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposal;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Image;
 
 
 // RATLC01136221 bgp 15Jan2007 - new class

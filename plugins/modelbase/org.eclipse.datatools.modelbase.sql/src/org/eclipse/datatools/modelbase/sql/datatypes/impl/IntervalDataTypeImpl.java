@@ -10,19 +10,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -277,11 +270,11 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER:
 				return getTrailingQualifier();
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_FIELD_PRECISION:
-				return new Integer(getLeadingFieldPrecision());
+				return Integer.valueOf(getLeadingFieldPrecision());
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_FIELD_PRECISION:
-				return new Integer(getTrailingFieldPrecision());
+				return Integer.valueOf(getTrailingFieldPrecision());
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
-				return new Integer(getFractionalSecondsPrecision());
+				return Integer.valueOf(getFractionalSecondsPrecision());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

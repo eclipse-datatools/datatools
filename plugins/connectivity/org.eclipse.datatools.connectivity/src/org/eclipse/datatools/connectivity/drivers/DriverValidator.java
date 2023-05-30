@@ -225,7 +225,7 @@ public class DriverValidator {
 		Map map = new HashMap(3);
 		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
 				"drivermarker.error", new String[] { name, message})); //$NON-NLS-1$
-		map.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
+		map.put(IMarker.SEVERITY, Integer.valueOf(IMarker.SEVERITY_ERROR));
 		map.put(IMarker.LOCATION, name);
 		map.put(IMarker.TRANSIENT, Boolean.FALSE.toString());
 

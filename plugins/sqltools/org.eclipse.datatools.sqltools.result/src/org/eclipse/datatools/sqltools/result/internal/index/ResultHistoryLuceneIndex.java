@@ -31,8 +31,8 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.ByteBuffersDirectory;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.RAMDirectory;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -60,7 +60,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
     private List                _instances;
     public ResultHistoryLuceneIndex()
     {
-        _ramDir = new RAMDirectory();
+        _ramDir = new ByteBuffersDirectory ();
         
         _analyzer = new StandardAnalyzer();
         _id2result = new HashMap();
@@ -221,7 +221,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 Query query = parser.parse(expression);
                 IndexSearcher searcher = new IndexSearcher(reader);
                 TopDocs hits = searcher.search(query, reader.maxDoc());
-                int count = (int)hits.totalHits;
+                int count = hits.scoreDocs.length;
                 IResultInstance[] instances = new IResultInstance[count];
                 
                 for(int i=0;i<count;i++)

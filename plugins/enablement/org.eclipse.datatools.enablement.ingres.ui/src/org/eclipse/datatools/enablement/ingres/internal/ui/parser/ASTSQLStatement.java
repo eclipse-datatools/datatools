@@ -13,12 +13,10 @@ package org.eclipse.datatools.enablement.ingres.internal.ui.parser;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
 import org.eclipse.datatools.sqltools.sql.parser.util.ASTSQLStatementUtil;
-import org.eclipse.swt.graphics.Image;
 
 public class ASTSQLStatement extends SimpleNode implements IASTSQLStatement, IngresSQLParserConstants {
 

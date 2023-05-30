@@ -8,6 +8,10 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNickname;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.RelationalRemoteDataSet;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteDataSet;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.emf.common.notify.Notification;
@@ -18,11 +22,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNickname;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.RelationalRemoteDataSet;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteDataSet;
 
 /**
  * <!-- begin-user-doc -->

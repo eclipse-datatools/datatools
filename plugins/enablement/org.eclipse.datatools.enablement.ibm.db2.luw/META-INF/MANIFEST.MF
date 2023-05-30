@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity,
@@ -21,3 +21,4 @@ Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw,
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.datatools.enablement.ibm.db2.luw.DB2LUWPluginActivator
+Automatic-Module-Name: org.eclipse.datatools.enablement.ibm.db2.luw

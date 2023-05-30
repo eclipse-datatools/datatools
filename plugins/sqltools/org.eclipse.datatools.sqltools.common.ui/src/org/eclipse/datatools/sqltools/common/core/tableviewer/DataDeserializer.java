@@ -27,7 +27,7 @@ public class DataDeserializer
 
         if (type == Types.TINYINT)
         {
-            return new Byte(val);
+            return Byte.valueOf(val);
         }
         else if (type == Types.SMALLINT)
         {
@@ -35,23 +35,23 @@ public class DataDeserializer
         }
         else if (type == Types.INTEGER)
         {
-            return new Integer(val);
+            return Integer.valueOf(val);
         }
         else if (type == Types.BIGINT)
         {
-            return new Long(val);
+            return Long.valueOf(val);
         }
         else if (type == Types.REAL)
         {
-            return new Float(val);
+            return Float.valueOf(val);
         }
         else if (type == Types.FLOAT)
         {
-            return new Double(val);
+            return Double.valueOf(val);
         }
         else if (type == Types.DOUBLE)
         {
-            return new Double(val);
+            return Double.valueOf(val);
         }
         else if (type == Types.DECIMAL)
         {
@@ -65,13 +65,13 @@ public class DataDeserializer
         {
             if("1".equals(val))
             {
-                return new Boolean(true);
+                return Boolean.valueOf(true);
             }
             if("0".equals(val))
             {
-                return new Boolean(false);
+                return Boolean.valueOf(false);
             }
-            return new Boolean(val);
+            return Boolean.valueOf(val);
         }
         else if (type == Types.CHAR)
         {

@@ -5,117 +5,71 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>enablement</artifactId>
-  <version>1.14.102-SNAPSHOT</version>
+  <version>1.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>org.eclipse.datatools.enablement.finfo</module>
     <module>org.eclipse.datatools.enablement.hsqldb</module>
     <module>org.eclipse.datatools.enablement.hsqldb.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.hsqldb.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.hsqldb.nl</module>
     <module>org.eclipse.datatools.enablement.hsqldb.ui</module>
-    <module>org.eclipse.datatools.enablement.hsqldb.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ibm</module>
     <module>org.eclipse.datatools.enablement.ibm.db2</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.iseries</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.iseries.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.iseries.ui</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.iseries.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.luw</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.luw.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.luw.ui</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.luw.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.zseries</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.zseries.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.db2.zseries.ui</module>
-    <module>org.eclipse.datatools.enablement.ibm.db2.zseries.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.informix</module>
     <module>org.eclipse.datatools.enablement.ibm.informix.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.ibm.informix.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.ibm.informix.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.informix.ui</module>
-    <module>org.eclipse.datatools.enablement.ibm.informix.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ibm.ui</module>
-    <module>org.eclipse.datatools.enablement.ibm.ui.nl</module>
     <module>org.eclipse.datatools.enablement.ingres</module>
     <module>org.eclipse.datatools.enablement.ingres.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.ingres.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.ingres.nl</module>
     <module>org.eclipse.datatools.enablement.ingres.ui</module>
-    <module>org.eclipse.datatools.enablement.ingres.ui.nl</module>
     <module>org.eclipse.datatools.enablement.jdt.classpath</module>
-    <module>org.eclipse.datatools.enablement.jdt.classpath.nl</module>
     <module>org.eclipse.datatools.enablement.msft.sqlserver</module>
     <module>org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.msft.sqlserver.nl</module>
     <module>org.eclipse.datatools.enablement.msft.sqlserver.ui</module>
-    <module>org.eclipse.datatools.enablement.msft.sqlserver.ui.nl</module>
     <module>org.eclipse.datatools.enablement.mysql</module>
     <module>org.eclipse.datatools.enablement.mysql.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.mysql.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.mysql.nl</module>
     <module>org.eclipse.datatools.enablement.mysql.ui</module>
-    <module>org.eclipse.datatools.enablement.mysql.ui.nl</module>
     <module>org.eclipse.datatools.enablement.oda.ecore</module>
     <module>org.eclipse.datatools.enablement.oda.ecore.ui</module>
     <module>org.eclipse.datatools.enablement.oda.ws</module>
-    <module>org.eclipse.datatools.enablement.oda.ws.nl</module>
     <module>org.eclipse.datatools.enablement.oda.ws.ui</module>
-    <module>org.eclipse.datatools.enablement.oda.ws.ui.nl</module>
     <module>org.eclipse.datatools.enablement.oda.xml</module>
-    <module>org.eclipse.datatools.enablement.oda.xml.nl</module>
     <module>org.eclipse.datatools.enablement.oda.xml.ui</module>
-    <module>org.eclipse.datatools.enablement.oda.xml.ui.nl</module>
     <module>org.eclipse.datatools.enablement.oracle</module>
     <module>org.eclipse.datatools.enablement.oracle.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.oracle.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.oracle.nl</module>
     <module>org.eclipse.datatools.enablement.oracle.ui</module>
-    <module>org.eclipse.datatools.enablement.oracle.ui.nl</module>
     <module>org.eclipse.datatools.enablement.postgresql</module>
     <module>org.eclipse.datatools.enablement.postgresql.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.postgresql.nl</module>
     <module>org.eclipse.datatools.enablement.postgresql.ui</module>
-    <module>org.eclipse.datatools.enablement.postgresql.ui.nl</module>
     <module>org.eclipse.datatools.enablement.sap.maxdb</module>
     <module>org.eclipse.datatools.enablement.sap.maxdb.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.sap.maxdb.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.sap.maxdb.nl</module>
     <module>org.eclipse.datatools.enablement.sap.maxdb.ui</module>
-    <module>org.eclipse.datatools.enablement.sap.maxdb.ui.nl</module>
     <module>org.eclipse.datatools.enablement.sqlite</module>
     <module>org.eclipse.datatools.enablement.sqlite.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.sqlite.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.enablement.sqlite.nl</module>
     <module>org.eclipse.datatools.enablement.sqlite.ui</module>
-    <module>org.eclipse.datatools.enablement.sqlite.ui.nl</module>
     <module>org.eclipse.datatools.enablement.sybase</module>
     <module>org.eclipse.datatools.enablement.sybase.asa</module>
     <module>org.eclipse.datatools.enablement.sybase.asa.dbdefinition</module>
     <module>org.eclipse.datatools.enablement.sybase.asa.models</module>
-    <module>org.eclipse.datatools.enablement.sybase.asa.models.nl</module>
-    <module>org.eclipse.datatools.enablement.sybase.asa.nl</module>
     <module>org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples</module>
     <module>org.eclipse.datatools.enablement.sybase.asa.ui</module>
     <module>org.eclipse.datatools.enablement.sybase.ase</module>
     <module>org.eclipse.datatools.enablement.sybase.ase.dbdefinition</module>
-    <module>org.eclipse.datatools.enablement.sybase.ase.dbdefinition.nl</module>
     <module>org.eclipse.datatools.enablement.sybase.ase.models</module>
     <module>org.eclipse.datatools.enablement.sybase.ase.ui</module>
     <module>org.eclipse.datatools.enablement.sybase.models</module>
-    <module>org.eclipse.datatools.enablement.sybase.nl</module>
     <module>org.eclipse.datatools.enablement.sybase.ui</module>
-    <module>org.eclipse.datatools.enablement.sybase.ui.nl</module>
   </modules>
 </project>

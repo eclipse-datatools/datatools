@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.query; singleton:=true
-Bundle-Version: 1.4.101.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -16,6 +16,6 @@ Require-Bundle:
  org.eclipse.datatools.modelbase.sql.query;visibility:=reexport,
  org.eclipse.datatools.sqltools.parsers.sql;visibility:=reexport,
  org.eclipse.datatools.sqltools.parsers.sql.lexer
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.sqltools.parsers.sql.query

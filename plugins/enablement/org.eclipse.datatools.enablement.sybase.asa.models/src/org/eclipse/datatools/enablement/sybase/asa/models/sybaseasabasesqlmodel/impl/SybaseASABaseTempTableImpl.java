@@ -7,22 +7,17 @@
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->

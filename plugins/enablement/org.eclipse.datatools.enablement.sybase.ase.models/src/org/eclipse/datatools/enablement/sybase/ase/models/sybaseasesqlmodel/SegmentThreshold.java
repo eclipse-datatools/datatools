@@ -6,8 +6,6 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**

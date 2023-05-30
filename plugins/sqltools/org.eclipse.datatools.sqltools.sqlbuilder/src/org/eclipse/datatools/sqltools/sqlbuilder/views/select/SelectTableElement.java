@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -13,9 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.select;
 
 import java.util.List;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-
 import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderingSpecType;
@@ -28,6 +25,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.expressionbuilder.ExpressionBuilderDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.expressionbuilder.ExpressionBuilderWizard;
@@ -36,6 +34,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStringHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * SelectTableElement is applicable for select statement
@@ -487,7 +486,7 @@ public class SelectTableElement {
             if (orderByClause != null && orderByClause.size() > 0 && (resultColumn != null || orderColumn != null)) {
                 int location = SelectHelper.getOrderByColIndexFromValueExpr(selectStatement, getSQLExpression());
                 if (location != -1)
-                    sortOrder = (new Integer(location + 1)).toString();
+                    sortOrder = (Integer.valueOf(location + 1)).toString();
             }
         }
         return sortOrder;

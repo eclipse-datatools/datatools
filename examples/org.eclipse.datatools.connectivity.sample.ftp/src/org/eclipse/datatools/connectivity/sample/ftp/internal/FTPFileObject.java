@@ -12,9 +12,9 @@ package org.eclipse.datatools.connectivity.sample.ftp.internal;
 
 import org.apache.commons.net.ftp.FTPFile;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.ui.IActionFilter;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sample.ftp.IFtpProfileConstants;
+import org.eclipse.ui.IActionFilter;
 
 
 /**

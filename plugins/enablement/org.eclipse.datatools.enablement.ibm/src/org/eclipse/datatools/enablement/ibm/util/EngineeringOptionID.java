@@ -340,23 +340,23 @@ public class EngineeringOptionID extends org.eclipse.datatools.connectivity.sqm.
     public static final long FEDERATEDPROCEDURE = 268435456;    // fsp - pyl
     public static final long PACKAGE  = 536870912; 
     public static final long PACKAGE_BODY = 1073741824;
-    public static final long BACKUP_TABLE = new Long("2147483648").longValue(); // Data Preservation
-    public static final long COLUMN = new Long("4294967296").longValue();
-    public static final long STATISTICS = new Long("8589934592").longValue(); 
-    public static final long ROLE = new Long("17179869184").longValue(); 
-    public static final long MODULE = new Long("34359738368").longValue(); 
-    public static final long MODULE_CONDITION = new Long("68719476736").longValue(); 
-    public static final long GLOBAL_VARIABLE = new Long("137438953472").longValue(); 
-    public static final long HISTORY_TABLE = new Long("274877906944").longValue(); 
-    public static final long XMLSCHEMA = new Long("549755813888").longValue();
-    public static final long FILEGROUP = new Long("1099511627776").longValue();
-    public static final long SECURITY_POLICY = new Long("2199023255552").longValue();
-    public static final long ROW_PERMISSIONS = new Long("4398046511104").longValue();
-    public static final long COLUMN_MASKS = new Long("8796093022208").longValue();
-    public static final long USER = new Long("17592186044416").longValue();
-    public static final long GROUP = new Long("35184372088832").longValue();
-    public static final long TEMPORARY_TABLE = new Long("70368744177664").longValue();
-    public static final long DOMAIN = new Long("140737488355328").longValue();
+    public static final long BACKUP_TABLE = Long.valueOf("2147483648").longValue(); // Data Preservation
+    public static final long COLUMN = Long.valueOf("4294967296").longValue();
+    public static final long STATISTICS = Long.valueOf("8589934592").longValue(); 
+    public static final long ROLE = Long.valueOf("17179869184").longValue(); 
+    public static final long MODULE = Long.valueOf("34359738368").longValue(); 
+    public static final long MODULE_CONDITION = Long.valueOf("68719476736").longValue(); 
+    public static final long GLOBAL_VARIABLE = Long.valueOf("137438953472").longValue(); 
+    public static final long HISTORY_TABLE = Long.valueOf("274877906944").longValue(); 
+    public static final long XMLSCHEMA = Long.valueOf("549755813888").longValue();
+    public static final long FILEGROUP = Long.valueOf("1099511627776").longValue();
+    public static final long SECURITY_POLICY = Long.valueOf("2199023255552").longValue();
+    public static final long ROW_PERMISSIONS = Long.valueOf("4398046511104").longValue();
+    public static final long COLUMN_MASKS = Long.valueOf("8796093022208").longValue();
+    public static final long USER = Long.valueOf("17592186044416").longValue();
+    public static final long GROUP = Long.valueOf("35184372088832").longValue();
+    public static final long TEMPORARY_TABLE = Long.valueOf("70368744177664").longValue();
+    public static final long DOMAIN = Long.valueOf("140737488355328").longValue();
     
     /**
      * @param s

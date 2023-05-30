@@ -20,10 +20,8 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
-import org.eclipse.ui.internal.dialogs.AdaptableForwarder;
 
 public class FilterHelper
 {
@@ -51,7 +49,7 @@ public class FilterHelper
 					for(int k = 0; k < configElementsObjectType.length; k++)
 						objectType.add(configElementsObjectType[k].getAttribute("type"));//$NON-NLS-1$
 					
-					Boolean temp = new Boolean(configElements[j].getAttribute("supportsMultiplePredicates")); //$NON-NLS-1$
+					Boolean temp = Boolean.valueOf(configElements[j].getAttribute("supportsMultiplePredicates")); //$NON-NLS-1$
 					boolean supportsMultiplePredicates = temp.booleanValue();
 					
 					if(supportsMultiplePredicates){

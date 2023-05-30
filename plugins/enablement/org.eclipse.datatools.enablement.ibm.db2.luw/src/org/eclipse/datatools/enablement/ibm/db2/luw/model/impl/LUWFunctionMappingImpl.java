@@ -10,6 +10,11 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 import java.util.Collection;
 import java.util.Date;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWFunctionMapping;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
@@ -20,12 +25,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWFunctionMapping;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -676,13 +675,13 @@ public class LUWFunctionMappingImpl extends SQLObjectImpl implements LUWFunction
 			case LUWPackage.LUW_FUNCTION_MAPPING__DISABLED:
 				return isDisabled() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_FUNCTION_MAPPING__INSTS_PER_INVOC:
-				return new Integer(getInstsPerInvoc());
+				return Integer.valueOf(getInstsPerInvoc());
 			case LUWPackage.LUW_FUNCTION_MAPPING__INSTS_PER_ARG_BYTE:
-				return new Integer(getInstsPerArgByte());
+				return Integer.valueOf(getInstsPerArgByte());
 			case LUWPackage.LUW_FUNCTION_MAPPING__IOS_PER_INVOC:
-				return new Integer(getIosPerInvoc());
+				return Integer.valueOf(getIosPerInvoc());
 			case LUWPackage.LUW_FUNCTION_MAPPING__IOS_PER_ARG_BYTE:
-				return new Integer(getIosPerArgByte());
+				return Integer.valueOf(getIosPerArgByte());
 			case LUWPackage.LUW_FUNCTION_MAPPING__OPTIONS:
 				return getOptions();
 			case LUWPackage.LUW_FUNCTION_MAPPING__LOCAL_FUNCTION:

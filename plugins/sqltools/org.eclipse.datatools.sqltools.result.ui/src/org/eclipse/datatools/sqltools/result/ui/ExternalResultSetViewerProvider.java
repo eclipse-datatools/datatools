@@ -10,14 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.ui;
 
+import org.eclipse.datatools.sqltools.result.IResultSetObject;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.datatools.sqltools.result.model.IResultInstance;
-import org.eclipse.datatools.sqltools.result.IResultSetObject;
-import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 
 /**
  * Abstract class that external viewers for the long data must implement

@@ -469,7 +469,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements
         switch( featureID )
         {
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
-            return new Integer( getDisplaySize() );
+            return Integer.valueOf( getDisplaySize() );
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
             return getDisplayFormat();
         case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:

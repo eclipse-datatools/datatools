@@ -7,12 +7,11 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNonRelationalNickname;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNonRelationalServer;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 /**
  * <!-- begin-user-doc -->

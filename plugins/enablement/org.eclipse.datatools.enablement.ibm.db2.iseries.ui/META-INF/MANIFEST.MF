@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.iseries.ui;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
@@ -11,10 +11,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.enablement.ibm.db2.iseries,
  org.eclipse.datatools.enablement.ibm.ui
-Import-Package: com.ibm.icu.text;version="3.6.1",
- com.ibm.icu.util;version="3.6.1"
+Import-Package: com.ibm.icu.text,
+ com.ibm.icu.util
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.enablement.ibm.db2.iseries.ui
 

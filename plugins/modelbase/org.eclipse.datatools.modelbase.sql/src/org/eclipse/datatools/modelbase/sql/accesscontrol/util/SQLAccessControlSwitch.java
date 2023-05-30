@@ -12,7 +12,13 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol.util;
 
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.accesscontrol.*;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Group;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Role;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.User;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;

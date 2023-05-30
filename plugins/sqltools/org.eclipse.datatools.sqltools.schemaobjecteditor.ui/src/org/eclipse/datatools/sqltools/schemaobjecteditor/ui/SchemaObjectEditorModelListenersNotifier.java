@@ -14,7 +14,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.model.ISchemaObjectEditModel;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.model.ISchemaObjectEditorModelListener;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorInput;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;

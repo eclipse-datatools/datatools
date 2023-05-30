@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -10,14 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.views.insert;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.MultilineInputDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.expressionbuilder.ExpressionBuilderDialog;
@@ -26,6 +23,8 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * InsertTableElement is applicable for insert grid view

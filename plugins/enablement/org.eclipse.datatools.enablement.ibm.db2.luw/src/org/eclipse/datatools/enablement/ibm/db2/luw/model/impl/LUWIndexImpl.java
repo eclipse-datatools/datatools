@@ -6,19 +6,18 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2IndexImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWIndex;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWIndexCompressType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWIndexPageSplitType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2IndexImpl;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -886,9 +885,9 @@ public class LUWIndexImpl extends DB2IndexImpl implements LUWIndex {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LUWPackage.LUW_INDEX__PCT_FREE:
-				return new Integer(getPCTFree());
+				return Integer.valueOf(getPCTFree());
 			case LUWPackage.LUW_INDEX__MIN_PCT_FREE:
-				return new Integer(getMinPCTFree());
+				return Integer.valueOf(getMinPCTFree());
 			case LUWPackage.LUW_INDEX__REVERSE_SCAN:
 				return isReverseScan() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_INDEX__NOT_PARTITIONED:
@@ -904,9 +903,9 @@ public class LUWIndexImpl extends DB2IndexImpl implements LUWIndex {
 			case LUWPackage.LUW_INDEX__PAGE_SPLIT_TYPE:
 				return getPageSplitType();
 			case LUWPackage.LUW_INDEX__LEVEL2_PCT_FREE:
-				return new Integer(getLevel2PctFree());
+				return Integer.valueOf(getLevel2PctFree());
 			case LUWPackage.LUW_INDEX__MIN_PCT_USED:
-				return new Integer(getMinPctUsed());
+				return Integer.valueOf(getMinPctUsed());
 			case LUWPackage.LUW_INDEX__COMPRESS:
 				return getCompress();
 			case LUWPackage.LUW_INDEX__COLLECT_STATS:

@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.sqm.core;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.mappings.ProviderIDMappingRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;

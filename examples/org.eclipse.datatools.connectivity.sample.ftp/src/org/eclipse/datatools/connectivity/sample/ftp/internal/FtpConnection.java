@@ -15,7 +15,6 @@ import java.util.Properties;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
-
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
@@ -57,7 +56,7 @@ public class FtpConnection implements IConnection, IServerVersionProvider {
             this.mFtpClientObject = new FTPClientObject(profile,
                     this.mFtpClient);
             if (port != null && port.length() != 0)
-            	this.mFtpClient.setDefaultPort(new Integer(port).intValue());
+            	this.mFtpClient.setDefaultPort(Integer.valueOf(port).intValue());
             this.mFtpClient.setDefaultTimeout(2 * 60 * 1000);
             this.mFtpClient.setDataTimeout(2 * 60 * 1000);
             this.mFtpClient.connect(server);

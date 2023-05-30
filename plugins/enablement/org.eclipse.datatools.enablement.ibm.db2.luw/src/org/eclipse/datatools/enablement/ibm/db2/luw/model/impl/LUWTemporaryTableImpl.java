@@ -12,17 +12,12 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryStorageTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryTableLoggingOption;
-
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

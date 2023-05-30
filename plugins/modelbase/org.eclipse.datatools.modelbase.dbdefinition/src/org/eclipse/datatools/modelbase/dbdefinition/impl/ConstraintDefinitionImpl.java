@@ -20,7 +20,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -565,7 +564,7 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__UNIQUE_KEY_NULLABLE:
 				return isUniqueKeyNullable() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_EXPRESSION_LENGTH:
-				return new Integer(getMaximumCheckExpressionLength());
+				return Integer.valueOf(getMaximumCheckExpressionLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_UPDATE_DRI_RULE_TYPE:
 				return getParentUpdateDRIRuleType();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__PARENT_DELETE_DRI_RULE_TYPE:
@@ -573,11 +572,11 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION:
 				return getCheckOption();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumPrimaryKeyIdentifierLength());
+				return Integer.valueOf(getMaximumPrimaryKeyIdentifierLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumForeignKeyIdentifierLength());
+				return Integer.valueOf(getMaximumForeignKeyIdentifierLength());
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumCheckConstraintIdentifierLength());
+				return Integer.valueOf(getMaximumCheckConstraintIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

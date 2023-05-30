@@ -11,7 +11,6 @@
 package org.eclipse.datatools.modelbase.sql.routines;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
-
 import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
 
 /**

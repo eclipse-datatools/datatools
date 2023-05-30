@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ingres.internal.ui.parser;
 
-import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
-
 public class SimpleNode extends org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode implements Node {
     protected Node parent;
 

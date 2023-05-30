@@ -12,14 +12,9 @@ import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;

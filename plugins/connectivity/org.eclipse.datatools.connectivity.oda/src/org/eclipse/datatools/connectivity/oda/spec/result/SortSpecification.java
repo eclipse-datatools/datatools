@@ -90,7 +90,7 @@ public class SortSpecification
 			sortMode != SORT_MODE_UNDEFINED )
 			throw new IllegalArgumentException( 
 					Messages.bind( Messages.sortSpec_INVALID_SORT_MODE_SPECIFIED,
-									new Integer( sortMode ) ));
+									Integer.valueOf( sortMode ) ));
 		
 		m_sortMode = sortMode;
 		m_sortKeys = new ArrayList<SortKey>();
@@ -155,12 +155,12 @@ public class SortSpecification
 		if( sortDirection != ORDERING_ASC && sortDirection != ORDERING_DESC )
 			throw new IllegalArgumentException( 
 					Messages.bind( Messages.sortSpec_INVALID_SORT_ORDER_SPECIFIED,
-									new Integer( sortDirection ) ));
+									Integer.valueOf( sortDirection ) ));
 		
 		if( nullOrdering < NULL_ORDERING_NONE || nullOrdering > NULL_ORDERING_LAST )
             throw new IllegalArgumentException( 
                     Messages.bind( Messages.sortSpec_INVALID_NULL_ORDERING,
-                                    new Integer( nullOrdering ) ));
+                                    Integer.valueOf( nullOrdering ) ));
 		    
 		if( m_sortMode == IDataSetMetaData.sortModeNone )
 			throw new IllegalStateException( 
@@ -285,7 +285,7 @@ public class SortSpecification
 		if( pos < 1 || pos > count )
 			throw new IndexOutOfBoundsException( 
                     Messages.bind( Messages.sortSpec_INDEX_OUT_OF_BOUND,
-                            new Integer( pos ), new Integer( count ) ));
+                            Integer.valueOf( pos ), Integer.valueOf( count ) ));
 	}
 	
 	/**

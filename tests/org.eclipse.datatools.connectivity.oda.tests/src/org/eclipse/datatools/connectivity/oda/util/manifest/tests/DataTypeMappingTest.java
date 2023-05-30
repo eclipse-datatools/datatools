@@ -17,8 +17,10 @@
 package org.eclipse.datatools.connectivity.oda.util.manifest.tests;
 
 import java.sql.Types;
-import junit.framework.TestCase;
+
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
+
+import junit.framework.TestCase;
 
 public class DataTypeMappingTest extends TestCase
 {

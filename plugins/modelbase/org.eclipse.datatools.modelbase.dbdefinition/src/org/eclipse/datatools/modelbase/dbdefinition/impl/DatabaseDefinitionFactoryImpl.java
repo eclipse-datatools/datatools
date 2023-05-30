@@ -10,16 +10,44 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
-import org.eclipse.datatools.modelbase.dbdefinition.*;
+import org.eclipse.datatools.modelbase.dbdefinition.CheckOption;
+import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionFactory;
+import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
+import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ExtendedDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
+import org.eclipse.datatools.modelbase.dbdefinition.LengthUnit;
+import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle;
+import org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType;
+import org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType;
+import org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology;
+import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ProcedureType;
+import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.TableDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType;
+import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
-
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

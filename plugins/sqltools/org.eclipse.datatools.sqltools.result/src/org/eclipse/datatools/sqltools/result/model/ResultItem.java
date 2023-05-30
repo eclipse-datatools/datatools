@@ -57,7 +57,7 @@ public class ResultItem implements Serializable
     public ResultItem(int updatecount)
     {
         _resultType = UPDATE_COUNT;
-        _resultObject = new Integer(updatecount);
+        _resultObject = Integer.valueOf(updatecount);
     }
 
     /**

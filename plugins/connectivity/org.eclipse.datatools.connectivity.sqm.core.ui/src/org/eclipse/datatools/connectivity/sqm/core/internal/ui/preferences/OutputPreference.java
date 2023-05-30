@@ -237,7 +237,7 @@ public class OutputPreference extends PreferencePage
      */
     private boolean isValueValid(String aNumberString)
     {
-    	Object[] obj = new Object[]{new Integer(1), new Integer(Integer.MAX_VALUE)};
+    	Object[] obj = new Object[]{Integer.valueOf(1), Integer.valueOf(Integer.MAX_VALUE)};
         boolean valid = false;
         try
         {

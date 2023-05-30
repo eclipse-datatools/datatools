@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2010 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -194,17 +194,17 @@ public class SQLDomainModel {
      */
     public String getTemplateSQL(int type) {
         if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry( new Object[] { new Integer( type ) } );
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry( new Object[] { Integer.valueOf( type ) } );
         }
         
-        String templateSQL = (String) templateSQLTable.get(new Integer(type));
+        String templateSQL = (String) templateSQLTable.get(Integer.valueOf(type));
         
         /* If we don't already have template SQL for the statement type, create and cache it.
          */
         if (templateSQL == null) {
             templateSQL = StatementHelper.getTemplateSQL( type );
             if (templateSQL != null) {
-                templateSQLTable.put( new Integer( type ), templateSQL.trim() );
+                templateSQLTable.put( Integer.valueOf( type ), templateSQL.trim() );
             }
         }
         
@@ -224,7 +224,7 @@ public class SQLDomainModel {
             int stmtType = stmtTypes[i];
             String templateSQL = StatementHelper.getTemplateSQL( stmtType );
             if (templateSQL != null) {
-                templateSQLTable.put( new Integer( stmtType ), templateSQL.trim() );
+                templateSQLTable.put( Integer.valueOf( stmtType ), templateSQL.trim() );
             }
         }
     }
@@ -1066,7 +1066,7 @@ public class SQLDomainModel {
      */
     public QueryStatement parse(String sqlStr, boolean createObjectTree) throws SQLParserException, SQLParserInternalException {
         if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { sqlStr, new Boolean(createObjectTree) });
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { sqlStr, Boolean.valueOf(createObjectTree) });
         }
 
         QueryStatement parsedStatement = null;

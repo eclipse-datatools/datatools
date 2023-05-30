@@ -242,7 +242,7 @@ public class DataElementIdentifierImpl extends EObjectImpl implements
         case DesignPackage.DATA_ELEMENT_IDENTIFIER__NAME:
             return getName();
         case DesignPackage.DATA_ELEMENT_IDENTIFIER__POSITION:
-            return new Integer( getPosition() );
+            return Integer.valueOf( getPosition() );
         }
         return super.eGet( featureID, resolve, coreType );
     }

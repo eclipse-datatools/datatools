@@ -43,7 +43,7 @@ public class LUWCatalogPrivilege extends PrivilegeImpl implements ICatalogObject
 	public static void setAsSystemGranted(Privilege privilege, boolean value) {
 		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		eAnnotation.setSource(IBMPluginActivator.PRIVILEGE_PROPERTY);
-		eAnnotation.getDetails().put(IBMPluginActivator.PRIVILEGE_SYSTEM_GRANT, new Boolean (value).toString());
+		eAnnotation.getDetails().put(IBMPluginActivator.PRIVILEGE_SYSTEM_GRANT, Boolean.valueOf(value).toString());
 		privilege.getEAnnotations().add(eAnnotation);
 	}
 }

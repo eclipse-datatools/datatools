@@ -20,7 +20,6 @@ import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.ServerIdentifier;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
-import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerMessages;
 import org.eclipse.datatools.sqltools.debugger.core.ui.DebuggerCoreUIPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;

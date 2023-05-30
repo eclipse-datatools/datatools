@@ -18,7 +18,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -569,7 +568,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE:
 				return getTableSpaceType();
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

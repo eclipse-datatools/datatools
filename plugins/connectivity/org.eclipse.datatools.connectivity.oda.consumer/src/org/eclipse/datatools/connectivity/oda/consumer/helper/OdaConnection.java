@@ -414,7 +414,7 @@ public class OdaConnection extends OdaObject
             if( i > 0 ) // decrement down to the floor of 0 count
                 --i;
         }
-		Integer newValue = new Integer( i );
+		Integer newValue = Integer.valueOf( i );
 		counts.put( driverClassLoader, newValue );
 	}
 	

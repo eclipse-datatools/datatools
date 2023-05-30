@@ -9,6 +9,15 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Procedure;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ProcedureDeploy;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Routine;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2RoutineExtension;
+import org.eclipse.datatools.enablement.ibm.db2.model.SourceDialect;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl;
 import org.eclipse.emf.common.notify.Notification;
@@ -20,16 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Procedure;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ProcedureDeploy;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Routine;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2RoutineExtension;
-import org.eclipse.datatools.enablement.ibm.db2.model.SourceDialect;
 
 /**
  * <!-- begin-user-doc -->
@@ -849,7 +848,7 @@ public class DB2ProcedureImpl extends ProcedureImpl implements DB2Procedure {
 			case DB2ModelPackage.DB2_PROCEDURE__SPECIAL_REGISTER:
 				return getSpecialRegister();
 			case DB2ModelPackage.DB2_PROCEDURE__CHANGE_STATE:
-				return new Integer(getChangeState());
+				return Integer.valueOf(getChangeState());
 			case DB2ModelPackage.DB2_PROCEDURE__DEBUG_ID:
 				return getDebugId();
 			case DB2ModelPackage.DB2_PROCEDURE__PROGRAM_TYPE:

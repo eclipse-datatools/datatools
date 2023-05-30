@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**

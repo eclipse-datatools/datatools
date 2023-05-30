@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Consumer Helper Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer.tests;singleton:=true
-Bundle-Version: 3.2.5.qualifier
-Bundle-Vendor: Eclipse.org
+Bundle-Version: 3.3.0.qualifier
+Bundle-Vendor: Eclipse Data Tools Platform
 Require-Bundle: org.junit;bundle-version="[3.8.1,5.0.0)",
  org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.2.4,4.0.0)",
  org.eclipse.datatools.connectivity.oda.flatfile;bundle-version="[3.0.2,4.0.0)";resolution:=optional,
@@ -12,3 +12,4 @@ Require-Bundle: org.junit;bundle-version="[3.8.1,5.0.0)",
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.consumer.test.impl.OdaConsumerTestPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.connectivity.oda.consumer.tests

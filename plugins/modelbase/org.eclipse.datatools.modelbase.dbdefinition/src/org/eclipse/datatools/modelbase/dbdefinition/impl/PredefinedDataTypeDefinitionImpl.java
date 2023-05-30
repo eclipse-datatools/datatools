@@ -15,22 +15,17 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
-import org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType;
 import org.eclipse.datatools.modelbase.dbdefinition.LengthUnit;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -1998,17 +1993,17 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED:
 				return isBitDataSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE:
-				return new Long(getMaximumValue());
+				return Long.valueOf(getMaximumValue());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE:
-				return new Long(getMinimumValue());
+				return Long.valueOf(getMinimumValue());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH:
-				return new Integer(getMaximumLength());
+				return Integer.valueOf(getMaximumLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION:
-				return new Integer(getMaximumPrecision());
+				return Integer.valueOf(getMaximumPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE:
-				return new Integer(getMaximumScale());
+				return Integer.valueOf(getMaximumScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE:
-				return new Integer(getMinimumScale());
+				return Integer.valueOf(getMinimumScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES:
 				return getDefaultValueTypes();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE:
@@ -2016,7 +2011,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__NAME:
 				return getName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE:
-				return new Integer(getJdbcEnumType());
+				return Integer.valueOf(getJdbcEnumType());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET:
 				return getCharacterSet();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME:
@@ -2028,13 +2023,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME:
 				return getJavaClassName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH:
-				return new Integer(getDefaultLength());
+				return Integer.valueOf(getDefaultLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION:
-				return new Integer(getDefaultPrecision());
+				return Integer.valueOf(getDefaultPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE:
-				return new Integer(getDefaultScale());
+				return Integer.valueOf(getDefaultScale());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION:
-				return new Integer(getCutoffPrecision());
+				return Integer.valueOf(getCutoffPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				return getLengthUnit();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
@@ -2056,7 +2051,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
 				return getLargeValueSpecifierName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
-				return new Integer(getLargeValueSpecifierLength());
+				return Integer.valueOf(getLargeValueSpecifierLength());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
 				return isLengthSemanticSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:

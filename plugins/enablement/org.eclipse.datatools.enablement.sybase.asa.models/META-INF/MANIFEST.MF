@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa.models; singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel,
@@ -13,6 +13,6 @@ Export-Package: org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabase
  org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.enablement.sybase
-Eclipse-LazyStart: true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.enablement.sybase.asa.models

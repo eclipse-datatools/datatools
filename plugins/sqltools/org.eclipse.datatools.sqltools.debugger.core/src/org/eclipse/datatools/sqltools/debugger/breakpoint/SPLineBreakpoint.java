@@ -75,10 +75,10 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
                 // add attributes
                 Map attributes = new HashMap();
                 attributes.put(IBreakpoint.ID, SPDebugModelUtil.getModelIdentifier());
-                attributes.put(IBreakpoint.ENABLED, new Boolean(enabled));
-                attributes.put(IMarker.LINE_NUMBER, new Integer(lineNumber));
-                attributes.put(IMarker.CHAR_START, new Integer(-1));
-                attributes.put(IMarker.CHAR_END, new Integer(-1));
+                attributes.put(IBreakpoint.ENABLED, Boolean.valueOf(enabled));
+                attributes.put(IMarker.LINE_NUMBER, Integer.valueOf(lineNumber));
+                attributes.put(IMarker.CHAR_START, Integer.valueOf(-1));
+                attributes.put(IMarker.CHAR_END, Integer.valueOf(-1));
 
                 attributes.put(RoutineEditorConstants.ATTR_PROCIDENTIFIER, procId.encode());
 

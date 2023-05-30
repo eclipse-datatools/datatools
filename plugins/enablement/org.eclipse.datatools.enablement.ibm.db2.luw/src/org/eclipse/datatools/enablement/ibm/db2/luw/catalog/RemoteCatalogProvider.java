@@ -10,11 +10,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.luw.catalog;
 
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWGenericServer;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.RelationalRemoteServer;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteServer;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 public interface RemoteCatalogProvider {
 	RemoteServer getRemoteServer(LUWGenericServer federatedSever);	

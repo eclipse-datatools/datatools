@@ -1,4 +1,0 @@
-plugin@org.eclipse.datatools.enablement.sqlite=GIT,tag=v201002041100,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sqlite.git,path=plugins/org.eclipse.datatools.enablement.sqlite
-plugin@org.eclipse.datatools.enablement.sqlite.dbdefinition=GIT,tag=v201206010441,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sqlite.git,path=plugins/org.eclipse.datatools.enablement.sqlite.dbdefinition
-plugin@org.eclipse.datatools.enablement.sqlite.ui=GIT,tag=v201107221507,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sqlite.git,path=plugins/org.eclipse.datatools.enablement.sqlite.ui
-

@@ -17,9 +17,9 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.IReExecutionRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 
 /**

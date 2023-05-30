@@ -10,9 +10,7 @@ import java.util.List;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

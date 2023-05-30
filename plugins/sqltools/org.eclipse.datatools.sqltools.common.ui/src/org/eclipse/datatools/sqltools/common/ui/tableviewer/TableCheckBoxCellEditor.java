@@ -99,7 +99,7 @@ public class TableCheckBoxCellEditor extends CheckboxCellEditor
       */
     protected Object doGetValue()
     {
-        return new Boolean(_check.getSelection());
+        return Boolean.valueOf(_check.getSelection());
     }
 
     /*

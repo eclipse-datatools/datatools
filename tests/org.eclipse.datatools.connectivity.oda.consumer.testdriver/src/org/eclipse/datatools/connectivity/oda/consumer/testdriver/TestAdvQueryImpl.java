@@ -304,7 +304,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setInt( String parameterName, int value ) throws OdaException
     {
-    	setValue( parameterName, new Integer( value ) );
+    	setValue( parameterName, Integer.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -312,7 +312,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setInt( int parameterId, int value ) throws OdaException
     {
-    	setValue( parameterId, new Integer( value ) );
+    	setValue( parameterId, Integer.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -321,7 +321,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setDouble( String parameterName, double value )
             throws OdaException
     {
-    	setValue( parameterName, new Double( value ) ); 
+    	setValue( parameterName, Double.valueOf( value ) ); 
     }
 
     /* (non-Javadoc)
@@ -329,7 +329,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setDouble( int parameterId, double value ) throws OdaException
     {
-    	setValue( parameterId, new Double( value ) );
+    	setValue( parameterId, Double.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -423,7 +423,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setBoolean( String parameterName, boolean value )
             throws OdaException
     {
-        setValue( parameterName, new Boolean( value ) );
+        setValue( parameterName, Boolean.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -432,7 +432,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setBoolean( int parameterId, boolean value )
             throws OdaException
     {
-        setValue( parameterId, new Boolean( value ) );
+        setValue( parameterId, Boolean.valueOf( value ) );
     }
 
     /* (non-Javadoc)

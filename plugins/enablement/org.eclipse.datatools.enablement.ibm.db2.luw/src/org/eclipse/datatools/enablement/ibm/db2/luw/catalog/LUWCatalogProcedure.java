@@ -29,8 +29,8 @@ import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogStatistics;
 import org.eclipse.datatools.enablement.ibm.db2.catalog.JavaProcedureInfo;
 import org.eclipse.datatools.enablement.ibm.db2.catalog.util.JavaProcedureProviderRegistry;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWCatalogMessages;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelFactory;
@@ -804,13 +804,13 @@ public class LUWCatalogProcedure extends DB2ProcedureImpl implements ICatalogObj
 					if(typeDefinition.isLengthSupported()) {
 						final int length = r.getInt("LENGTH"); //$NON-NLS-1$
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					else if(typeDefinition.isPrecisionSupported()) {
 						if (typeName.equals("TIMESTAMP")) {
 							int length = r.getInt("SCALE");
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 						else {
 							int length = r.getInt("LENGTH");
@@ -819,14 +819,14 @@ public class LUWCatalogProcedure extends DB2ProcedureImpl implements ICatalogObj
 								else length = 34;
 							}
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 					}
 					
 					if(typeDefinition.isScaleSupported()) {
 						final int length = r.getInt("SCALE"); //$NON-NLS-1$
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					
 					parameter.setContainedType(type);

@@ -15,7 +15,7 @@
             </text>
             <link label="DTP project"
                 style-id="content-link"
-                url="http://org.eclipse.ui.intro/openBrowser?url=http://www.eclipse.org/datatools/"
+                url="http://org.eclipse.ui.intro/openBrowser?url=https://www.eclipse.org/datatools/"
                 id="DTP_overviewLink1">
                 <text>Learn more about the Eclipse Data Tools Platform project</text>
             </link>

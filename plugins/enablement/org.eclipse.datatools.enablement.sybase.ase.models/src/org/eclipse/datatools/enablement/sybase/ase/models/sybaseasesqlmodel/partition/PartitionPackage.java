@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;

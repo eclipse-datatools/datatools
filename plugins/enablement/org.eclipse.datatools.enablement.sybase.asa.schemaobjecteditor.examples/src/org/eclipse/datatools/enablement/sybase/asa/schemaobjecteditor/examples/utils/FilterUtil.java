@@ -8,7 +8,6 @@
 package org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.utils;
 
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /**
  * Util Class for Filter

@@ -9,6 +9,11 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionKey;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTable;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryStorageTable;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.PartitionMethod;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.emf.common.notify.Notification;
@@ -19,12 +24,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionKey;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTable;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryStorageTable;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.PartitionMethod;
 
 /**
  * <!-- begin-user-doc -->

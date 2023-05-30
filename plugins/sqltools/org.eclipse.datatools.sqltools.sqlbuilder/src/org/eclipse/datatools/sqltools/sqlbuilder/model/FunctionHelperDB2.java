@@ -2017,30 +2017,30 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("AVG",            new Integer(SIGLIST_420));
-        tempMap.put("CORR",           new Integer(SIGLIST_640));
-        tempMap.put("CORRELATION",    new Integer(SIGLIST_640));
-        tempMap.put("COUNT",          new Integer(SIGLIST_520));
-        tempMap.put("COUNT_BIG",      new Integer(SIGLIST_500));
-        tempMap.put("COVAR",          new Integer(SIGLIST_640));
-        tempMap.put("COVARIANCE",     new Integer(SIGLIST_640));
-        tempMap.put("GROUPING",       new Integer(SIGLIST_490));
-        tempMap.put("MAX",            new Integer(SIGLIST_530));
-        tempMap.put("MIN",            new Integer(SIGLIST_530));
-        tempMap.put("REGR_AVGX",      new Integer(SIGLIST_640));
-        tempMap.put("REGR_AVGY",      new Integer(SIGLIST_640));
-        tempMap.put("REGR_COUNT",     new Integer(SIGLIST_650));
-        tempMap.put("REGR_ICPT",      new Integer(SIGLIST_640));
-        tempMap.put("REGR_INTERCEPT", new Integer(SIGLIST_640));
-        tempMap.put("REGR_R2",        new Integer(SIGLIST_640));
-        tempMap.put("REGR_SLOPE",     new Integer(SIGLIST_640));
-        tempMap.put("REGR_SXX",       new Integer(SIGLIST_640));
-        tempMap.put("REGR_SXY",       new Integer(SIGLIST_640));
-        tempMap.put("REGR_SYY",       new Integer(SIGLIST_640));
-        tempMap.put("STDDEV",         new Integer(SIGLIST_040));
-        tempMap.put("SUM",            new Integer(SIGLIST_460));
-        tempMap.put("VAR",            new Integer(SIGLIST_040));
-        tempMap.put("VARIANCE",       new Integer(SIGLIST_040));
+        tempMap.put("AVG",            Integer.valueOf(SIGLIST_420));
+        tempMap.put("CORR",           Integer.valueOf(SIGLIST_640));
+        tempMap.put("CORRELATION",    Integer.valueOf(SIGLIST_640));
+        tempMap.put("COUNT",          Integer.valueOf(SIGLIST_520));
+        tempMap.put("COUNT_BIG",      Integer.valueOf(SIGLIST_500));
+        tempMap.put("COVAR",          Integer.valueOf(SIGLIST_640));
+        tempMap.put("COVARIANCE",     Integer.valueOf(SIGLIST_640));
+        tempMap.put("GROUPING",       Integer.valueOf(SIGLIST_490));
+        tempMap.put("MAX",            Integer.valueOf(SIGLIST_530));
+        tempMap.put("MIN",            Integer.valueOf(SIGLIST_530));
+        tempMap.put("REGR_AVGX",      Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_AVGY",      Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_COUNT",     Integer.valueOf(SIGLIST_650));
+        tempMap.put("REGR_ICPT",      Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_INTERCEPT", Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_R2",        Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_SLOPE",     Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_SXX",       Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_SXY",       Integer.valueOf(SIGLIST_640));
+        tempMap.put("REGR_SYY",       Integer.valueOf(SIGLIST_640));
+        tempMap.put("STDDEV",         Integer.valueOf(SIGLIST_040));
+        tempMap.put("SUM",            Integer.valueOf(SIGLIST_460));
+        tempMap.put("VAR",            Integer.valueOf(SIGLIST_040));
+        tempMap.put("VARIANCE",       Integer.valueOf(SIGLIST_040));
         
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2059,28 +2059,28 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("BIGINT",           new Integer(SIGLIST_430));
-        tempMap.put("BLOB",             new Integer(SIGLIST_620));
-        tempMap.put("CHAR",             new Integer(SIGLIST_320));
-        tempMap.put("CLOB",             new Integer(SIGLIST_630));
-        tempMap.put("DATE",             new Integer(SIGLIST_010));
-        tempMap.put("DBCLOB",           new Integer(SIGLIST_660));
-        tempMap.put("DEC",              new Integer(SIGLIST_120));
-        tempMap.put("DECIMAL",          new Integer(SIGLIST_120));
-        tempMap.put("DOUBLE",           new Integer(SIGLIST_330));
-        tempMap.put("DOUBLE_PRECISION", new Integer(SIGLIST_340));
-        tempMap.put("FLOAT",            new Integer(SIGLIST_340));
-        tempMap.put("GRAPHIC",          new Integer(SIGLIST_670));
-        tempMap.put("INT",              new Integer(SIGLIST_440));
-        tempMap.put("INTEGER",          new Integer(SIGLIST_440));
-        tempMap.put("LONG_VARCHAR",     new Integer(SIGLIST_580));
-        tempMap.put("LONG_VARGRAPHIC",  new Integer(SIGLIST_590));
-        tempMap.put("REAL",             new Integer(SIGLIST_470));
-        tempMap.put("SMALLINT",         new Integer(SIGLIST_450));
-        tempMap.put("TIME",             new Integer(SIGLIST_400));
-        tempMap.put("TIMESTAMP",        new Integer(SIGLIST_130));
-        tempMap.put("VARCHAR",          new Integer(SIGLIST_680));
-        tempMap.put("VARGRAPHIC",       new Integer(SIGLIST_690));        
+        tempMap.put("BIGINT",           Integer.valueOf(SIGLIST_430));
+        tempMap.put("BLOB",             Integer.valueOf(SIGLIST_620));
+        tempMap.put("CHAR",             Integer.valueOf(SIGLIST_320));
+        tempMap.put("CLOB",             Integer.valueOf(SIGLIST_630));
+        tempMap.put("DATE",             Integer.valueOf(SIGLIST_010));
+        tempMap.put("DBCLOB",           Integer.valueOf(SIGLIST_660));
+        tempMap.put("DEC",              Integer.valueOf(SIGLIST_120));
+        tempMap.put("DECIMAL",          Integer.valueOf(SIGLIST_120));
+        tempMap.put("DOUBLE",           Integer.valueOf(SIGLIST_330));
+        tempMap.put("DOUBLE_PRECISION", Integer.valueOf(SIGLIST_340));
+        tempMap.put("FLOAT",            Integer.valueOf(SIGLIST_340));
+        tempMap.put("GRAPHIC",          Integer.valueOf(SIGLIST_670));
+        tempMap.put("INT",              Integer.valueOf(SIGLIST_440));
+        tempMap.put("INTEGER",          Integer.valueOf(SIGLIST_440));
+        tempMap.put("LONG_VARCHAR",     Integer.valueOf(SIGLIST_580));
+        tempMap.put("LONG_VARGRAPHIC",  Integer.valueOf(SIGLIST_590));
+        tempMap.put("REAL",             Integer.valueOf(SIGLIST_470));
+        tempMap.put("SMALLINT",         Integer.valueOf(SIGLIST_450));
+        tempMap.put("TIME",             Integer.valueOf(SIGLIST_400));
+        tempMap.put("TIMESTAMP",        Integer.valueOf(SIGLIST_130));
+        tempMap.put("VARCHAR",          Integer.valueOf(SIGLIST_680));
+        tempMap.put("VARGRAPHIC",       Integer.valueOf(SIGLIST_690));        
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2099,20 +2099,20 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("DLCOMMENT",          new Integer(SIGLIST_380));
-        tempMap.put("DLLINKTYPE",         new Integer(SIGLIST_380));
-        //tempMap.put("DLNEWCOPY",          new Integer(SIGLIST_???));
-        //tempMap.put("DLPREVIOUSCOPY",     new Integer(SIGLIST_???));
-        //tempMap.put("DLREPLACECONTENT",   new Integer(SIGLIST_???));
-        tempMap.put("DLURLCOMPLETE",      new Integer(SIGLIST_380));
-        //tempMap.put("DLURLCOMPLETEONLY",  new Integer(SIGLIST_???));
-        //tempMap.put("DLURLCOMPLETEWRITE", new Integer(SIGLIST_???));
-        tempMap.put("DLURLPATH",          new Integer(SIGLIST_380));
-        tempMap.put("DLURLPATHONLY",      new Integer(SIGLIST_380));
-        //tempMap.put("DLURLPATHWRITE",     new Integer(SIGLIST_???));
-        tempMap.put("DLURLSCHEME",        new Integer(SIGLIST_380));
-        tempMap.put("DLURLSERVER",        new Integer(SIGLIST_380));
-        tempMap.put("DLVALUE",            new Integer(SIGLIST_110));
+        tempMap.put("DLCOMMENT",          Integer.valueOf(SIGLIST_380));
+        tempMap.put("DLLINKTYPE",         Integer.valueOf(SIGLIST_380));
+        //tempMap.put("DLNEWCOPY",          Integer.valueOf(SIGLIST_???));
+        //tempMap.put("DLPREVIOUSCOPY",     Integer.valueOf(SIGLIST_???));
+        //tempMap.put("DLREPLACECONTENT",   Integer.valueOf(SIGLIST_???));
+        tempMap.put("DLURLCOMPLETE",      Integer.valueOf(SIGLIST_380));
+        //tempMap.put("DLURLCOMPLETEONLY",  Integer.valueOf(SIGLIST_???));
+        //tempMap.put("DLURLCOMPLETEWRITE", Integer.valueOf(SIGLIST_???));
+        tempMap.put("DLURLPATH",          Integer.valueOf(SIGLIST_380));
+        tempMap.put("DLURLPATHONLY",      Integer.valueOf(SIGLIST_380));
+        //tempMap.put("DLURLPATHWRITE",     Integer.valueOf(SIGLIST_???));
+        tempMap.put("DLURLSCHEME",        Integer.valueOf(SIGLIST_380));
+        tempMap.put("DLURLSERVER",        Integer.valueOf(SIGLIST_380));
+        tempMap.put("DLVALUE",            Integer.valueOf(SIGLIST_110));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2131,30 +2131,30 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("DAY",              new Integer(SIGLIST_020));
-        tempMap.put("DAYOFWEEK",        new Integer(SIGLIST_180));
-        tempMap.put("DAYOFWEEK_ISO",    new Integer(SIGLIST_180));
-        tempMap.put("DAYOFYEAR",        new Integer(SIGLIST_180));
-        tempMap.put("DAYNAME",          new Integer(SIGLIST_160));
-        tempMap.put("DAYS",             new Integer(SIGLIST_180));
-        tempMap.put("HOUR",             new Integer(SIGLIST_030));
-        tempMap.put("JULIAN_DAY",       new Integer(SIGLIST_180));
-        tempMap.put("MICROSECOND",      new Integer(SIGLIST_390));
-        tempMap.put("MIDNIGHT_SECONDS", new Integer(SIGLIST_410));
-        tempMap.put("MINUTE",           new Integer(SIGLIST_030));
-        tempMap.put("MONTH",            new Integer(SIGLIST_020));
-        tempMap.put("MONTHNAME",        new Integer(SIGLIST_160));
-        tempMap.put("QUARTER",          new Integer(SIGLIST_180));
-        tempMap.put("SECOND",           new Integer(SIGLIST_030));
-        tempMap.put("TIMESTAMPDIFF",    new Integer(SIGLIST_190));
-        //tempMap.put("TIMESTAMP_FORMAT", new Integer(SIGLIST_???));
-        //tempMap.put("TO_CHAR",          new Integer(SIGLIST_???));
-        //tempMap.put("TO_DATE",          new Integer(SIGLIST_???));
-        tempMap.put("TIMESTAMP_ISO",    new Integer(SIGLIST_170));
-        //tempMap.put("VARCHAR_FORMAT",   new Integer(SIGLIST_???));
-        tempMap.put("WEEK",             new Integer(SIGLIST_180));
-        tempMap.put("WEEK_ISO",         new Integer(SIGLIST_180));
-        tempMap.put("YEAR",             new Integer(SIGLIST_020));
+        tempMap.put("DAY",              Integer.valueOf(SIGLIST_020));
+        tempMap.put("DAYOFWEEK",        Integer.valueOf(SIGLIST_180));
+        tempMap.put("DAYOFWEEK_ISO",    Integer.valueOf(SIGLIST_180));
+        tempMap.put("DAYOFYEAR",        Integer.valueOf(SIGLIST_180));
+        tempMap.put("DAYNAME",          Integer.valueOf(SIGLIST_160));
+        tempMap.put("DAYS",             Integer.valueOf(SIGLIST_180));
+        tempMap.put("HOUR",             Integer.valueOf(SIGLIST_030));
+        tempMap.put("JULIAN_DAY",       Integer.valueOf(SIGLIST_180));
+        tempMap.put("MICROSECOND",      Integer.valueOf(SIGLIST_390));
+        tempMap.put("MIDNIGHT_SECONDS", Integer.valueOf(SIGLIST_410));
+        tempMap.put("MINUTE",           Integer.valueOf(SIGLIST_030));
+        tempMap.put("MONTH",            Integer.valueOf(SIGLIST_020));
+        tempMap.put("MONTHNAME",        Integer.valueOf(SIGLIST_160));
+        tempMap.put("QUARTER",          Integer.valueOf(SIGLIST_180));
+        tempMap.put("SECOND",           Integer.valueOf(SIGLIST_030));
+        tempMap.put("TIMESTAMPDIFF",    Integer.valueOf(SIGLIST_190));
+        //tempMap.put("TIMESTAMP_FORMAT", Integer.valueOf(SIGLIST_???));
+        //tempMap.put("TO_CHAR",          Integer.valueOf(SIGLIST_???));
+        //tempMap.put("TO_DATE",          Integer.valueOf(SIGLIST_???));
+        tempMap.put("TIMESTAMP_ISO",    Integer.valueOf(SIGLIST_170));
+        //tempMap.put("VARCHAR_FORMAT",   Integer.valueOf(SIGLIST_???));
+        tempMap.put("WEEK",             Integer.valueOf(SIGLIST_180));
+        tempMap.put("WEEK_ISO",         Integer.valueOf(SIGLIST_180));
+        tempMap.put("YEAR",             Integer.valueOf(SIGLIST_020));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2173,21 +2173,21 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("COALESCE",           new Integer(SIGLIST_600));
-        tempMap.put("DEREF",              new Integer(SIGLIST_1260));
-        tempMap.put("EVENT_MON_STATE",    new Integer(SIGLIST_360));
-        tempMap.put("IDENTITY_VAL_LOCAL", new Integer(SIGLIST_1250));
-        tempMap.put("HEX",                new Integer(SIGLIST_510));
-        tempMap.put("LENGTH",             new Integer(SIGLIST_520));
-        tempMap.put("NULLIF",             new Integer(SIGLIST_540));
-        tempMap.put("RAISE_ERROR",        new Integer(SIGLIST_560));
-        //tempMap.put("REC2XML",            new Integer(SIGLIST_???));
-        tempMap.put("TABLE_NAME",         new Integer(SIGLIST_100));
-        tempMap.put("TABLE_SCHEMA",       new Integer(SIGLIST_100));
-        tempMap.put("TYPE_ID",            new Integer(SIGLIST_520));
-        tempMap.put("TYPE_NAME",          new Integer(SIGLIST_510));
-        tempMap.put("TYPE_SCHEMA",        new Integer(SIGLIST_510));
-        tempMap.put("VALUE",              new Integer(SIGLIST_600));
+        tempMap.put("COALESCE",           Integer.valueOf(SIGLIST_600));
+        tempMap.put("DEREF",              Integer.valueOf(SIGLIST_1260));
+        tempMap.put("EVENT_MON_STATE",    Integer.valueOf(SIGLIST_360));
+        tempMap.put("IDENTITY_VAL_LOCAL", Integer.valueOf(SIGLIST_1250));
+        tempMap.put("HEX",                Integer.valueOf(SIGLIST_510));
+        tempMap.put("LENGTH",             Integer.valueOf(SIGLIST_520));
+        tempMap.put("NULLIF",             Integer.valueOf(SIGLIST_540));
+        tempMap.put("RAISE_ERROR",        Integer.valueOf(SIGLIST_560));
+        //tempMap.put("REC2XML",            Integer.valueOf(SIGLIST_???));
+        tempMap.put("TABLE_NAME",         Integer.valueOf(SIGLIST_100));
+        tempMap.put("TABLE_SCHEMA",       Integer.valueOf(SIGLIST_100));
+        tempMap.put("TYPE_ID",            Integer.valueOf(SIGLIST_520));
+        tempMap.put("TYPE_NAME",          Integer.valueOf(SIGLIST_510));
+        tempMap.put("TYPE_SCHEMA",        Integer.valueOf(SIGLIST_510));
+        tempMap.put("VALUE",              Integer.valueOf(SIGLIST_600));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2206,46 +2206,46 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("MMDBSYS.ALIGNVALUE",        new Integer(SIGLIST_850));
-        tempMap.put("MMDBSYS.ASPECTRATIO",       new Integer(SIGLIST_860));
-        tempMap.put("MMDBSYS.BITSPERSAMPLE",     new Integer(SIGLIST_870));
-        tempMap.put("MMDBSYS.BYTESPERSEC",       new Integer(SIGLIST_880));
-        tempMap.put("MMDBSYS.COMMENT",           new Integer(SIGLIST_890));
-        tempMap.put("MMDBSYS.COMPRESSTYPE",      new Integer(SIGLIST_900));
-        tempMap.put("MMDBSYS.CONTENT",           new Integer(SIGLIST_910));
-        tempMap.put("MMDBSYS.DB2AUDIO",          new Integer(SIGLIST_920));
-        tempMap.put("MMDBSYS.DB2IMAGE",          new Integer(SIGLIST_930));
-        tempMap.put("MMDBSYS.DB2VIDEO",          new Integer(SIGLIST_940));
-        tempMap.put("MMDBSYS.DURATION",          new Integer(SIGLIST_950));
-        tempMap.put("MMDBSYS.FILENAME",          new Integer(SIGLIST_960));
-        tempMap.put("MMDBSYS.FINDINSTRUMENT",    new Integer(SIGLIST_970));
-        tempMap.put("MMDBSYS.FINDTRACKNAME",     new Integer(SIGLIST_980));
-        tempMap.put("MMDBSYS.FORMAT",            new Integer(SIGLIST_990));
-        tempMap.put("MMDBSYS.FRAMERATE",         new Integer(SIGLIST_1000));
-        tempMap.put("MMDBSYS.GETINSTRUMENTS",    new Integer(SIGLIST_1010));
-        tempMap.put("MMDBSYS.GETTRACKNAMES",     new Integer(SIGLIST_1020));
-        tempMap.put("MMDBSYS.HEIGHT",            new Integer(SIGLIST_1030));
-        tempMap.put("MMDBSYS.IMPORTER",          new Integer(SIGLIST_1040));
-        tempMap.put("MMDBSYS.IMPORTTIME",        new Integer(SIGLIST_1050));
-        tempMap.put("MMDBSYS.MAXBYTESPERSEC",    new Integer(SIGLIST_1060));
-        tempMap.put("MMDBSYS.NUMAUDIOTRACKS",    new Integer(SIGLIST_1070));
-        tempMap.put("MMDBSYS.NUMCHANNELS",       new Integer(SIGLIST_1080));
-        tempMap.put("MMDBSYS.NUMCOLORS",         new Integer(SIGLIST_1090));
-        tempMap.put("MMDBSYS.NUMFRAMES",         new Integer(SIGLIST_1100));
-        tempMap.put("MMDBSYS.NUMVIDEOTRACKS",    new Integer(SIGLIST_1110));
-        tempMap.put("MMDBSYS.QBSCOREFROMNAME",   new Integer(SIGLIST_1120));
-        tempMap.put("MMDBSYS.QBSCOREFROMSTR",    new Integer(SIGLIST_1130));
-        tempMap.put("MMDBSYS.QBSCORETBFROMNAME", new Integer(SIGLIST_1140));
-        tempMap.put("MMDBSYS.QBSCORETBFROMSTR",  new Integer(SIGLIST_1150));
-        tempMap.put("MMDBSYS.REPLACE",           new Integer(SIGLIST_1160));
-        tempMap.put("MMDBSYS.SAMPLINGRATE",      new Integer(SIGLIST_1170));
-        tempMap.put("MMDBSYS.SIZE",              new Integer(SIGLIST_1180));
-        tempMap.put("MMDBSYS.THUMBNAIL",         new Integer(SIGLIST_1190));
-        tempMap.put("MMDBSYS.TICKSPERQNOTE",     new Integer(SIGLIST_1200));
-        tempMap.put("MMDBSYS.TICKSPERSEC",       new Integer(SIGLIST_1210));
-        tempMap.put("MMDBSYS.UPDATER",           new Integer(SIGLIST_1220));
-        tempMap.put("MMDBSYS.UPDATETIME",        new Integer(SIGLIST_1230));
-        tempMap.put("MMDBSYS.WIDTH",             new Integer(SIGLIST_1240));
+        tempMap.put("MMDBSYS.ALIGNVALUE",        Integer.valueOf(SIGLIST_850));
+        tempMap.put("MMDBSYS.ASPECTRATIO",       Integer.valueOf(SIGLIST_860));
+        tempMap.put("MMDBSYS.BITSPERSAMPLE",     Integer.valueOf(SIGLIST_870));
+        tempMap.put("MMDBSYS.BYTESPERSEC",       Integer.valueOf(SIGLIST_880));
+        tempMap.put("MMDBSYS.COMMENT",           Integer.valueOf(SIGLIST_890));
+        tempMap.put("MMDBSYS.COMPRESSTYPE",      Integer.valueOf(SIGLIST_900));
+        tempMap.put("MMDBSYS.CONTENT",           Integer.valueOf(SIGLIST_910));
+        tempMap.put("MMDBSYS.DB2AUDIO",          Integer.valueOf(SIGLIST_920));
+        tempMap.put("MMDBSYS.DB2IMAGE",          Integer.valueOf(SIGLIST_930));
+        tempMap.put("MMDBSYS.DB2VIDEO",          Integer.valueOf(SIGLIST_940));
+        tempMap.put("MMDBSYS.DURATION",          Integer.valueOf(SIGLIST_950));
+        tempMap.put("MMDBSYS.FILENAME",          Integer.valueOf(SIGLIST_960));
+        tempMap.put("MMDBSYS.FINDINSTRUMENT",    Integer.valueOf(SIGLIST_970));
+        tempMap.put("MMDBSYS.FINDTRACKNAME",     Integer.valueOf(SIGLIST_980));
+        tempMap.put("MMDBSYS.FORMAT",            Integer.valueOf(SIGLIST_990));
+        tempMap.put("MMDBSYS.FRAMERATE",         Integer.valueOf(SIGLIST_1000));
+        tempMap.put("MMDBSYS.GETINSTRUMENTS",    Integer.valueOf(SIGLIST_1010));
+        tempMap.put("MMDBSYS.GETTRACKNAMES",     Integer.valueOf(SIGLIST_1020));
+        tempMap.put("MMDBSYS.HEIGHT",            Integer.valueOf(SIGLIST_1030));
+        tempMap.put("MMDBSYS.IMPORTER",          Integer.valueOf(SIGLIST_1040));
+        tempMap.put("MMDBSYS.IMPORTTIME",        Integer.valueOf(SIGLIST_1050));
+        tempMap.put("MMDBSYS.MAXBYTESPERSEC",    Integer.valueOf(SIGLIST_1060));
+        tempMap.put("MMDBSYS.NUMAUDIOTRACKS",    Integer.valueOf(SIGLIST_1070));
+        tempMap.put("MMDBSYS.NUMCHANNELS",       Integer.valueOf(SIGLIST_1080));
+        tempMap.put("MMDBSYS.NUMCOLORS",         Integer.valueOf(SIGLIST_1090));
+        tempMap.put("MMDBSYS.NUMFRAMES",         Integer.valueOf(SIGLIST_1100));
+        tempMap.put("MMDBSYS.NUMVIDEOTRACKS",    Integer.valueOf(SIGLIST_1110));
+        tempMap.put("MMDBSYS.QBSCOREFROMNAME",   Integer.valueOf(SIGLIST_1120));
+        tempMap.put("MMDBSYS.QBSCOREFROMSTR",    Integer.valueOf(SIGLIST_1130));
+        tempMap.put("MMDBSYS.QBSCORETBFROMNAME", Integer.valueOf(SIGLIST_1140));
+        tempMap.put("MMDBSYS.QBSCORETBFROMSTR",  Integer.valueOf(SIGLIST_1150));
+        tempMap.put("MMDBSYS.REPLACE",           Integer.valueOf(SIGLIST_1160));
+        tempMap.put("MMDBSYS.SAMPLINGRATE",      Integer.valueOf(SIGLIST_1170));
+        tempMap.put("MMDBSYS.SIZE",              Integer.valueOf(SIGLIST_1180));
+        tempMap.put("MMDBSYS.THUMBNAIL",         Integer.valueOf(SIGLIST_1190));
+        tempMap.put("MMDBSYS.TICKSPERQNOTE",     Integer.valueOf(SIGLIST_1200));
+        tempMap.put("MMDBSYS.TICKSPERSEC",       Integer.valueOf(SIGLIST_1210));
+        tempMap.put("MMDBSYS.UPDATER",           Integer.valueOf(SIGLIST_1220));
+        tempMap.put("MMDBSYS.UPDATETIME",        Integer.valueOf(SIGLIST_1230));
+        tempMap.put("MMDBSYS.WIDTH",             Integer.valueOf(SIGLIST_1240));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2283,41 +2283,41 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("ABS",      new Integer(SIGLIST_000));
-        tempMap.put("ABSVAL",   new Integer(SIGLIST_000));
-        tempMap.put("ACOS",     new Integer(SIGLIST_040));
-        tempMap.put("ASIN",     new Integer(SIGLIST_040));
-        tempMap.put("ATAN",     new Integer(SIGLIST_040));
-        //tempMap.put("ATANH",    new Integer(SIGLIST_???));
-        tempMap.put("ATAN2",    new Integer(SIGLIST_050));
-        tempMap.put("CEIL",     new Integer(SIGLIST_000));
-        tempMap.put("CEILING",  new Integer(SIGLIST_000));
-        tempMap.put("COS",      new Integer(SIGLIST_040));
-        //tempMap.put("COSH",     new Integer(SIGLIST_???));
-        tempMap.put("COT",      new Integer(SIGLIST_040));
-        tempMap.put("DEGREES",  new Integer(SIGLIST_040));
-        tempMap.put("DIGITS",   new Integer(SIGLIST_350));
-        tempMap.put("EXP",      new Integer(SIGLIST_040));
-        tempMap.put("FLOOR",    new Integer(SIGLIST_000));
-        tempMap.put("LOG",      new Integer(SIGLIST_040));
-        tempMap.put("LN",       new Integer(SIGLIST_040));
-        tempMap.put("LOG10",    new Integer(SIGLIST_040));
-        tempMap.put("MOD",      new Integer(SIGLIST_060));
-        //tempMap.put("MULTIPLY_ALT", new Integer(SIGLIST_???));
-        tempMap.put("POWER",    new Integer(SIGLIST_070));
-        tempMap.put("RADIANS",  new Integer(SIGLIST_040));
-        tempMap.put("RAND",     new Integer(SIGLIST_080));
-        tempMap.put("ROUND",    new Integer(SIGLIST_150));
-        tempMap.put("SIGN",     new Integer(SIGLIST_000));
-        tempMap.put("SIN",      new Integer(SIGLIST_040));
-        //tempMap.put("SINH",     new Integer(SIGLIST_???));
-        tempMap.put("SQRT",     new Integer(SIGLIST_040));
-        tempMap.put("TAN",      new Integer(SIGLIST_040));
-        //tempMap.put("TANH",     new Integer(SIGLIST_???));
-        tempMap.put("TRUNCATE", new Integer(SIGLIST_150));
-        tempMap.put("TRUNC",    new Integer(SIGLIST_150));
-        tempMap.put("VAR",      new Integer(SIGLIST_040));
-        tempMap.put("VARIANCE", new Integer(SIGLIST_040));
+        tempMap.put("ABS",      Integer.valueOf(SIGLIST_000));
+        tempMap.put("ABSVAL",   Integer.valueOf(SIGLIST_000));
+        tempMap.put("ACOS",     Integer.valueOf(SIGLIST_040));
+        tempMap.put("ASIN",     Integer.valueOf(SIGLIST_040));
+        tempMap.put("ATAN",     Integer.valueOf(SIGLIST_040));
+        //tempMap.put("ATANH",    Integer.valueOf(SIGLIST_???));
+        tempMap.put("ATAN2",    Integer.valueOf(SIGLIST_050));
+        tempMap.put("CEIL",     Integer.valueOf(SIGLIST_000));
+        tempMap.put("CEILING",  Integer.valueOf(SIGLIST_000));
+        tempMap.put("COS",      Integer.valueOf(SIGLIST_040));
+        //tempMap.put("COSH",     Integer.valueOf(SIGLIST_???));
+        tempMap.put("COT",      Integer.valueOf(SIGLIST_040));
+        tempMap.put("DEGREES",  Integer.valueOf(SIGLIST_040));
+        tempMap.put("DIGITS",   Integer.valueOf(SIGLIST_350));
+        tempMap.put("EXP",      Integer.valueOf(SIGLIST_040));
+        tempMap.put("FLOOR",    Integer.valueOf(SIGLIST_000));
+        tempMap.put("LOG",      Integer.valueOf(SIGLIST_040));
+        tempMap.put("LN",       Integer.valueOf(SIGLIST_040));
+        tempMap.put("LOG10",    Integer.valueOf(SIGLIST_040));
+        tempMap.put("MOD",      Integer.valueOf(SIGLIST_060));
+        //tempMap.put("MULTIPLY_ALT", Integer.valueOf(SIGLIST_???));
+        tempMap.put("POWER",    Integer.valueOf(SIGLIST_070));
+        tempMap.put("RADIANS",  Integer.valueOf(SIGLIST_040));
+        tempMap.put("RAND",     Integer.valueOf(SIGLIST_080));
+        tempMap.put("ROUND",    Integer.valueOf(SIGLIST_150));
+        tempMap.put("SIGN",     Integer.valueOf(SIGLIST_000));
+        tempMap.put("SIN",      Integer.valueOf(SIGLIST_040));
+        //tempMap.put("SINH",     Integer.valueOf(SIGLIST_???));
+        tempMap.put("SQRT",     Integer.valueOf(SIGLIST_040));
+        tempMap.put("TAN",      Integer.valueOf(SIGLIST_040));
+        //tempMap.put("TANH",     Integer.valueOf(SIGLIST_???));
+        tempMap.put("TRUNCATE", Integer.valueOf(SIGLIST_150));
+        tempMap.put("TRUNC",    Integer.valueOf(SIGLIST_150));
+        tempMap.put("VAR",      Integer.valueOf(SIGLIST_040));
+        tempMap.put("VARIANCE", Integer.valueOf(SIGLIST_040));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2377,21 +2377,21 @@ public class FunctionHelperDB2 extends FunctionHelper{
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
         /* NOTE: there are many special register names missing from this list. */
-        tempMap.put("CURRENT DATE",                    new Integer(SIGLIST_710));
-        tempMap.put("CURRENT DEFAULT TRANSFORM GROUP", new Integer(SIGLIST_710));
-        tempMap.put("CURRENT DEGREE",                  new Integer(SIGLIST_710));
-        tempMap.put("CURRENT EXPLAIN MODE",            new Integer(SIGLIST_710));
-        tempMap.put("CURRENT EXPLAIN SNAPSHOT",        new Integer(SIGLIST_710));
-        tempMap.put("CURRENT NODE",                    new Integer(SIGLIST_710));
-        tempMap.put("CURRENT PATH",                    new Integer(SIGLIST_710));
-        tempMap.put("CURRENT QUERY OPTIMIZATION",      new Integer(SIGLIST_710));
-        tempMap.put("CURRENT REFRESH AGE",             new Integer(SIGLIST_710));
-        tempMap.put("CURRENT SCHEMA",                  new Integer(SIGLIST_710));
-        tempMap.put("CURRENT SERVER",                  new Integer(SIGLIST_710));
-        tempMap.put("CURRENT TIME",                    new Integer(SIGLIST_710));
-        tempMap.put("CURRENT TIMESTAMP",               new Integer(SIGLIST_710));
-        tempMap.put("CURRENT TIMEZONE",                new Integer(SIGLIST_710));
-        tempMap.put("USER",                            new Integer(SIGLIST_710));        
+        tempMap.put("CURRENT DATE",                    Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT DEFAULT TRANSFORM GROUP", Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT DEGREE",                  Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT EXPLAIN MODE",            Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT EXPLAIN SNAPSHOT",        Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT NODE",                    Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT PATH",                    Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT QUERY OPTIMIZATION",      Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT REFRESH AGE",             Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT SCHEMA",                  Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT SERVER",                  Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT TIME",                    Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT TIMESTAMP",               Integer.valueOf(SIGLIST_710));
+        tempMap.put("CURRENT TIMEZONE",                Integer.valueOf(SIGLIST_710));
+        tempMap.put("USER",                            Integer.valueOf(SIGLIST_710));        
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2421,44 +2421,44 @@ public class FunctionHelperDB2 extends FunctionHelper{
         if (versionHelper.isDB2_LUW()) {
             if (versionHelper.isAtLeast(8,2)) {
                 /* SQL/XML functions added in DB2 for LUW v8 */
-                tempMap.put("XMLAGG",        new Integer(SIGLIST_1270));
-                tempMap.put("XMLATTRIBUTES", new Integer(SIGLIST_1280));
-                tempMap.put("XMLCONCAT",     new Integer(SIGLIST_1290));
-                tempMap.put("XMLELEMENT",    new Integer(SIGLIST_1300));
-                tempMap.put("XMLFOREST",     new Integer(SIGLIST_1310));
-                tempMap.put("XMLNAMESPACES", new Integer(SIGLIST_1320));
-                tempMap.put("XMLSERIALIZE",  new Integer(SIGLIST_1330));
+                tempMap.put("XMLAGG",        Integer.valueOf(SIGLIST_1270));
+                tempMap.put("XMLATTRIBUTES", Integer.valueOf(SIGLIST_1280));
+                tempMap.put("XMLCONCAT",     Integer.valueOf(SIGLIST_1290));
+                tempMap.put("XMLELEMENT",    Integer.valueOf(SIGLIST_1300));
+                tempMap.put("XMLFOREST",     Integer.valueOf(SIGLIST_1310));
+                tempMap.put("XMLNAMESPACES", Integer.valueOf(SIGLIST_1320));
+                tempMap.put("XMLSERIALIZE",  Integer.valueOf(SIGLIST_1330));
             }
             if (versionHelper.isAtLeast(9)) {
                 /* SQL/XML functions added in DB2 for LUW v9 */
-                tempMap.put("XMLCAST",       new Integer(SIGLIST_1340));
-                tempMap.put("XMLCOMMENT",    new Integer(SIGLIST_1350));
-                tempMap.put("XMLDOCUMENT",   new Integer(SIGLIST_1290)); // same as XMLCONCAT
-                //tempMap.put("XMLEXISTS",     new Integer(SIGLIST_1360));
-                tempMap.put("XMLPARSE",      new Integer(SIGLIST_1370));
-                tempMap.put("XMLPI",         new Integer(SIGLIST_1380));
-                tempMap.put("XMLQUERY",      new Integer(SIGLIST_1390));
-                tempMap.put("XMLTABLE",      new Integer(SIGLIST_1400));
-                tempMap.put("XMLTEXT",       new Integer(SIGLIST_1350)); // same as XMLCOMMENT
-                tempMap.put("XMLVALIDATE",   new Integer(SIGLIST_1410));
+                tempMap.put("XMLCAST",       Integer.valueOf(SIGLIST_1340));
+                tempMap.put("XMLCOMMENT",    Integer.valueOf(SIGLIST_1350));
+                tempMap.put("XMLDOCUMENT",   Integer.valueOf(SIGLIST_1290)); // same as XMLCONCAT
+                //tempMap.put("XMLEXISTS",     Integer.valueOf(SIGLIST_1360));
+                tempMap.put("XMLPARSE",      Integer.valueOf(SIGLIST_1370));
+                tempMap.put("XMLPI",         Integer.valueOf(SIGLIST_1380));
+                tempMap.put("XMLQUERY",      Integer.valueOf(SIGLIST_1390));
+                tempMap.put("XMLTABLE",      Integer.valueOf(SIGLIST_1400));
+                tempMap.put("XMLTEXT",       Integer.valueOf(SIGLIST_1350)); // same as XMLCOMMENT
+                tempMap.put("XMLVALIDATE",   Integer.valueOf(SIGLIST_1410));
             }
         }
         else if (versionHelper.isDB2_zOS()) {
             if (versionHelper.isAtLeast(9)) {
-                tempMap.put("XMLAGG",        new Integer(SIGLIST_1270));
-                tempMap.put("XMLATTRIBUTES", new Integer(SIGLIST_1280));
-                tempMap.put("XMLCOMMENT",    new Integer(SIGLIST_1350));
-                tempMap.put("XMLCONCAT",     new Integer(SIGLIST_1290));
-                tempMap.put("XMLDOCUMENT",   new Integer(SIGLIST_1290)); // same as XMLCONCAT
-                tempMap.put("XMLELEMENT",    new Integer(SIGLIST_1300));
-                //tempMap.put("XMLEXISTS",     new Integer(SIGLIST_1360));
-                tempMap.put("XMLFOREST",     new Integer(SIGLIST_1310));
-                tempMap.put("XMLNAMESPACES", new Integer(SIGLIST_1320));
-                tempMap.put("XMLPARSE",      new Integer(SIGLIST_1370));
-                tempMap.put("XMLPI",         new Integer(SIGLIST_1380));
-                tempMap.put("XMLQUERY",      new Integer(SIGLIST_1390));
-                tempMap.put("XMLSERIALIZE",  new Integer(SIGLIST_1330));
-                tempMap.put("XMLTEXT",       new Integer(SIGLIST_1350)); // same as XMLCOMMENT
+                tempMap.put("XMLAGG",        Integer.valueOf(SIGLIST_1270));
+                tempMap.put("XMLATTRIBUTES", Integer.valueOf(SIGLIST_1280));
+                tempMap.put("XMLCOMMENT",    Integer.valueOf(SIGLIST_1350));
+                tempMap.put("XMLCONCAT",     Integer.valueOf(SIGLIST_1290));
+                tempMap.put("XMLDOCUMENT",   Integer.valueOf(SIGLIST_1290)); // same as XMLCONCAT
+                tempMap.put("XMLELEMENT",    Integer.valueOf(SIGLIST_1300));
+                //tempMap.put("XMLEXISTS",     Integer.valueOf(SIGLIST_1360));
+                tempMap.put("XMLFOREST",     Integer.valueOf(SIGLIST_1310));
+                tempMap.put("XMLNAMESPACES", Integer.valueOf(SIGLIST_1320));
+                tempMap.put("XMLPARSE",      Integer.valueOf(SIGLIST_1370));
+                tempMap.put("XMLPI",         Integer.valueOf(SIGLIST_1380));
+                tempMap.put("XMLQUERY",      Integer.valueOf(SIGLIST_1390));
+                tempMap.put("XMLSERIALIZE",  Integer.valueOf(SIGLIST_1330));
+                tempMap.put("XMLTEXT",       Integer.valueOf(SIGLIST_1350)); // same as XMLCOMMENT
             }
         }
  
@@ -2479,31 +2479,31 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("ASCII",           new Integer(SIGLIST_200));
-        tempMap.put("CHR",             new Integer(SIGLIST_210));
-        //tempMap.put("DECRYPT_BIN",     new Integer(SIGLIST_???));
-        //tempMap.put("DECRYPT_CHAR",    new Integer(SIGLIST_???));
-        tempMap.put("DIFFERENCE",      new Integer(SIGLIST_280));
-        //tempMap.put("ENCRYPT",         new Integer(SIGLIST_???));
-        tempMap.put("GENERATE_UNIQUE", new Integer(SIGLIST_090));
-        //tempMap.put("GETHINT",         new Integer(SIGLIST_???));
-        tempMap.put("INSERT",          new Integer(SIGLIST_220));        
-        tempMap.put("LCASE",           new Integer(SIGLIST_240));
-        tempMap.put("LEFT",            new Integer(SIGLIST_290));
-        tempMap.put("LOCATE",          new Integer(SIGLIST_260));
-        tempMap.put("LOWER",           new Integer(SIGLIST_250));
-        tempMap.put("LTRIM",           new Integer(SIGLIST_230));
-        tempMap.put("POSSTR",          new Integer(SIGLIST_570));
-        tempMap.put("REPEAT",          new Integer(SIGLIST_290));
-        tempMap.put("REPLACE",         new Integer(SIGLIST_310));
-        tempMap.put("RIGHT",           new Integer(SIGLIST_290));
-        tempMap.put("RTRIM",           new Integer(SIGLIST_230));
-        tempMap.put("SOUNDEX",         new Integer(SIGLIST_270));
-        tempMap.put("SPACE",           new Integer(SIGLIST_300));
-        tempMap.put("SUBSTR",          new Integer(SIGLIST_610));
-        tempMap.put("TRANSLATE",       new Integer(SIGLIST_140));
-        tempMap.put("UCASE",           new Integer(SIGLIST_370));
-        tempMap.put("UPPER",           new Integer(SIGLIST_370));
+        tempMap.put("ASCII",           Integer.valueOf(SIGLIST_200));
+        tempMap.put("CHR",             Integer.valueOf(SIGLIST_210));
+        //tempMap.put("DECRYPT_BIN",     Integer.valueOf(SIGLIST_???));
+        //tempMap.put("DECRYPT_CHAR",    Integer.valueOf(SIGLIST_???));
+        tempMap.put("DIFFERENCE",      Integer.valueOf(SIGLIST_280));
+        //tempMap.put("ENCRYPT",         Integer.valueOf(SIGLIST_???));
+        tempMap.put("GENERATE_UNIQUE", Integer.valueOf(SIGLIST_090));
+        //tempMap.put("GETHINT",         Integer.valueOf(SIGLIST_???));
+        tempMap.put("INSERT",          Integer.valueOf(SIGLIST_220));        
+        tempMap.put("LCASE",           Integer.valueOf(SIGLIST_240));
+        tempMap.put("LEFT",            Integer.valueOf(SIGLIST_290));
+        tempMap.put("LOCATE",          Integer.valueOf(SIGLIST_260));
+        tempMap.put("LOWER",           Integer.valueOf(SIGLIST_250));
+        tempMap.put("LTRIM",           Integer.valueOf(SIGLIST_230));
+        tempMap.put("POSSTR",          Integer.valueOf(SIGLIST_570));
+        tempMap.put("REPEAT",          Integer.valueOf(SIGLIST_290));
+        tempMap.put("REPLACE",         Integer.valueOf(SIGLIST_310));
+        tempMap.put("RIGHT",           Integer.valueOf(SIGLIST_290));
+        tempMap.put("RTRIM",           Integer.valueOf(SIGLIST_230));
+        tempMap.put("SOUNDEX",         Integer.valueOf(SIGLIST_270));
+        tempMap.put("SPACE",           Integer.valueOf(SIGLIST_300));
+        tempMap.put("SUBSTR",          Integer.valueOf(SIGLIST_610));
+        tempMap.put("TRANSLATE",       Integer.valueOf(SIGLIST_140));
+        tempMap.put("UCASE",           Integer.valueOf(SIGLIST_370));
+        tempMap.put("UPPER",           Integer.valueOf(SIGLIST_370));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();
@@ -2522,19 +2522,19 @@ public class FunctionHelperDB2 extends FunctionHelper{
         
         /* Create a mapping between the function names and their signature types. */
         Map tempMap = new HashMap();
-        tempMap.put("DB2TX.CCSID",            new Integer(SIGLIST_720));
-        tempMap.put("DB2TX.CONTAINS",         new Integer(SIGLIST_730));
-        tempMap.put("DB2TX.FILE",             new Integer(SIGLIST_740));
-        tempMap.put("DB2TX.FORMAT",           new Integer(SIGLIST_750));
-        tempMap.put("DB2TX.HANDLE",           new Integer(SIGLIST_760));
-        tempMap.put("DB2TX.HANDLE_LIST",      new Integer(SIGLIST_770));
-        tempMap.put("DB2TX.INIT_TEXT_HANDLE", new Integer(SIGLIST_780));
-        tempMap.put("DB2TX.LANGUAGE",         new Integer(SIGLIST_790));
-        tempMap.put("DB2TX.NO_OF_DOCUMENTS",  new Integer(SIGLIST_800));
-        tempMap.put("DB2TX.NO_OF_MATCHES",    new Integer(SIGLIST_810));
-        tempMap.put("DB2TX.RANK",             new Integer(SIGLIST_820));
-        tempMap.put("DB2TX.REFINE",           new Integer(SIGLIST_830));
-        tempMap.put("DB2TX.SEARCH_RESULT",    new Integer(SIGLIST_840));
+        tempMap.put("DB2TX.CCSID",            Integer.valueOf(SIGLIST_720));
+        tempMap.put("DB2TX.CONTAINS",         Integer.valueOf(SIGLIST_730));
+        tempMap.put("DB2TX.FILE",             Integer.valueOf(SIGLIST_740));
+        tempMap.put("DB2TX.FORMAT",           Integer.valueOf(SIGLIST_750));
+        tempMap.put("DB2TX.HANDLE",           Integer.valueOf(SIGLIST_760));
+        tempMap.put("DB2TX.HANDLE_LIST",      Integer.valueOf(SIGLIST_770));
+        tempMap.put("DB2TX.INIT_TEXT_HANDLE", Integer.valueOf(SIGLIST_780));
+        tempMap.put("DB2TX.LANGUAGE",         Integer.valueOf(SIGLIST_790));
+        tempMap.put("DB2TX.NO_OF_DOCUMENTS",  Integer.valueOf(SIGLIST_800));
+        tempMap.put("DB2TX.NO_OF_MATCHES",    Integer.valueOf(SIGLIST_810));
+        tempMap.put("DB2TX.RANK",             Integer.valueOf(SIGLIST_820));
+        tempMap.put("DB2TX.REFINE",           Integer.valueOf(SIGLIST_830));
+        tempMap.put("DB2TX.SEARCH_RESULT",    Integer.valueOf(SIGLIST_840));
 
         /*  Create the list of function names by getting the map keys and sorting them. */
         Set keyset = tempMap.keySet();

@@ -11,14 +11,12 @@
 package org.eclipse.datatools.modelbase.sql.accesscontrol.impl;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
-import org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Group;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Role;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlFactory;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
-import org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.User;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl;
@@ -39,9 +37,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
 /**
  * <!-- begin-user-doc -->

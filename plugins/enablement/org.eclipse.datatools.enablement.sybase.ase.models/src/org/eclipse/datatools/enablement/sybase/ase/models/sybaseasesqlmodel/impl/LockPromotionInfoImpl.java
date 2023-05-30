@@ -8,15 +8,10 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.imp
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.LockPromotionInfo;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -229,11 +224,11 @@ public class LockPromotionInfoImpl extends SQLObjectImpl implements LockPromotio
             case SybaseasesqlmodelPackage.LOCK_PROMOTION_INFO__ROW_LOCK_PROMOTION:
                 return isRowLockPromotion() ? Boolean.TRUE : Boolean.FALSE;
             case SybaseasesqlmodelPackage.LOCK_PROMOTION_INFO__LWM:
-                return new Integer(getLWM());
+                return Integer.valueOf(getLWM());
             case SybaseasesqlmodelPackage.LOCK_PROMOTION_INFO__HWM:
-                return new Integer(getHWM());
+                return Integer.valueOf(getHWM());
             case SybaseasesqlmodelPackage.LOCK_PROMOTION_INFO__PCT:
-                return new Integer(getPCT());
+                return Integer.valueOf(getPCT());
         }
         return super.eGet(featureID, resolve, coreType);
     }

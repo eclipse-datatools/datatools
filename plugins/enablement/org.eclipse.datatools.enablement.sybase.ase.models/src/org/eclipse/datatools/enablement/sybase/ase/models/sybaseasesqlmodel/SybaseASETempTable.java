@@ -6,11 +6,7 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASEPartition;
-
 import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
-
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

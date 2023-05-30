@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Column;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

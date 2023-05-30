@@ -14,9 +14,8 @@ import java.sql.Connection;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2XSRObjectImpl;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 /**
  * @author debbani

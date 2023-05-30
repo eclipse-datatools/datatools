@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -15,12 +15,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -33,12 +27,17 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.AddTableDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
 
 public class AddTableAction extends Action {
 

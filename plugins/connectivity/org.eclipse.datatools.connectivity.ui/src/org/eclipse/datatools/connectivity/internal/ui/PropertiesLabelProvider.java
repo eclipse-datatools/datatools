@@ -11,7 +11,6 @@
 package org.eclipse.datatools.connectivity.internal.ui;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;

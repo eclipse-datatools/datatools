@@ -34,9 +34,9 @@ import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogStatistics;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.LUWCatalogIndex.IndexUniqueRule;
 //bgp import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.CatalogCache;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWCatalogMessages;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWDdlParser;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWCatalogMessages;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartition;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartitionKey;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
@@ -577,12 +577,12 @@ public class LUWCatalogTable extends LUWTableImpl implements IRowCountCache,ICat
 	
 					if ( typeDefinition.isLengthSupported() ) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature( "length" ); //$NON-NLS-1$
-						type.eSet( feature, new Integer( info.length ) );
+						type.eSet( feature, Integer.valueOf( info.length ) );
 					}
 					else if ( typeDefinition.isPrecisionSupported() ) {
 						if ( info.typeName.equals("TIMESTAMP") ) { //$NON-NLS-1$
 							EStructuralFeature feature = type.eClass().getEStructuralFeature( "fractionalSecondsPrecision"); //$NON-NLS-1$
-							type.eSet( feature, new Integer( info.scale ) );
+							type.eSet( feature, Integer.valueOf( info.scale ) );
 						}
 						else {
 							if ( info.typeName.equals("DECFLOAT") ) { //$NON-NLS-1$
@@ -595,13 +595,13 @@ public class LUWCatalogTable extends LUWTableImpl implements IRowCountCache,ICat
 							}
 	
 							EStructuralFeature feature = type.eClass().getEStructuralFeature( "precision" ); //$NON-NLS-1$
-							type.eSet( feature, new Integer( info.length ) );
+							type.eSet( feature, Integer.valueOf( info.length ) );
 						}
 					}
 					
 					if ( typeDefinition.isScaleSupported() ) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature( "scale" ); //$NON-NLS-1$
-						type.eSet( feature, new Integer( info.scale ) );
+						type.eSet( feature, Integer.valueOf( info.scale ) );
 					}
 					
 					column.setContainedType(type);

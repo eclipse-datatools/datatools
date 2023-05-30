@@ -11,17 +11,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2TableImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartition;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartitionKey;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
@@ -32,6 +21,16 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTableCompressionMode;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2TableImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -1080,7 +1079,7 @@ public class LUWTableImpl extends DB2TableImpl implements LUWTable {
 			case LUWPackage.LUW_TABLE__DATA_PARTITION_KEY:
 				return getDataPartitionKey();
 			case LUWPackage.LUW_TABLE__PCT_FREE:
-				return new Integer(getPCTFree());
+				return Integer.valueOf(getPCTFree());
 			case LUWPackage.LUW_TABLE__RESTRICT_ON_DROP:
 				return isRestrictOnDrop() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_TABLE__PARTITION_MODE:

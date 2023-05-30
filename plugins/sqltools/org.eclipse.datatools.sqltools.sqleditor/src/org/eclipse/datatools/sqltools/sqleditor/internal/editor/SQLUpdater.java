@@ -249,7 +249,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 //create markers according to the parse exceptions
                 ParseException ex = (ParseException) iter.next();
                 HashMap attrs = new HashMap();
-                attrs.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
+                attrs.put(IMarker.SEVERITY, Integer.valueOf(IMarker.SEVERITY_ERROR));
                 String storageName = "";//$NON-NLS-1$
                 if (!(_input instanceof IFileEditorInput)) {
 					storageName = _input.getName() + ": ";//$NON-NLS-1$
@@ -351,7 +351,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         }
         , new Object[] 
         {
-            new Integer(start), new Integer(end), new Integer(line)
+            Integer.valueOf(start), Integer.valueOf(end), Integer.valueOf(line)
         }
         );
         MarkerAnnotation anno = new MarkerAnnotation(marker);

@@ -267,7 +267,7 @@ public class SchemaObjectEditorExtensionsRegistryReader implements ISchemaObject
                                 IEditorPageDescriptor page = getPageById(pages, pId);
                                 if (page != null)
                                 {
-                                    editor.getDefaultPagesOrder().put(page, new Integer(order));
+                                    editor.getDefaultPagesOrder().put(page, Integer.valueOf(order));
                                 }
                             }
                         }

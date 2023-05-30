@@ -10,14 +10,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.tables.impl;
 
-import org.eclipse.datatools.modelbase.sql.tables.*;
+import org.eclipse.datatools.modelbase.sql.tables.ActionGranularityType;
+import org.eclipse.datatools.modelbase.sql.tables.ActionTimeType;
+import org.eclipse.datatools.modelbase.sql.tables.CheckType;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
+import org.eclipse.datatools.modelbase.sql.tables.ReferenceType;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
+import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
+import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

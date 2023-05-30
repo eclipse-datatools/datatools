@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;

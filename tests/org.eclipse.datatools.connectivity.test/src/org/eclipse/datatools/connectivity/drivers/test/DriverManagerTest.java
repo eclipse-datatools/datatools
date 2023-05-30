@@ -15,9 +15,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -25,6 +22,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+
+import junit.framework.Assert;
+import junit.framework.TestCase;
 
 /**
  * This tests the driver management framework

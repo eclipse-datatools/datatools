@@ -1,6 +1,6 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.model;
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -228,7 +228,7 @@ public class SQLBuilderValueExpressionHelper extends ValueExpressionHelper {
 
             // Check for a string datatype by looking for enclosing quotes.
             if (value.startsWith("'") && value.endsWith("'")) {
-                Integer len = new Integer(value.length() - 2);
+                Integer len = Integer.valueOf(value.length() - 2);
                 lenStr = len.toString();
                 datatype = sqlDataTypesFactory.createCharacterStringDataType();
                 //TODO: when is it, what about length
@@ -241,7 +241,7 @@ public class SQLBuilderValueExpressionHelper extends ValueExpressionHelper {
 
             // Check for a "graphic" (G'dddd' or N'dddd') double-byte literal.
             else if ((value.startsWith("G'") || value.startsWith("g'") || value.startsWith("N'") || value.startsWith("n'")) && value.endsWith("'")) {
-                Integer len = new Integer((value.length() - 3) / 2);
+                Integer len = Integer.valueOf((value.length() - 3) / 2);
                 lenStr = len.toString();
                 //datatype = DatabaseHelper.getDataType( Types.CHAR, "GRAPHIC", lenStr, scaleStr, aDB );
                 datatype = sqlDataTypesFactory.createCharacterStringDataType();
@@ -270,7 +270,7 @@ public class SQLBuilderValueExpressionHelper extends ValueExpressionHelper {
                 int eIndex = ucValue.indexOf('E');
                 if (eIndex != -1) {
                     try {
-                        Double doubleObject = new Double(ucValue);
+                        Double doubleObject = Double.valueOf(ucValue);
 
                         // If we reached here, we really do have a double.  Get its 'precision'.
                         // (I'm assuming that the precision, like for decimal numbers, is the
@@ -322,7 +322,7 @@ public class SQLBuilderValueExpressionHelper extends ValueExpressionHelper {
                 // If not a decimal, try for an integer.
                 else {
                     try {
-                        Integer intObj = new Integer(ucValue);
+                        Integer intObj = Integer.valueOf(ucValue);
 
                         // If we reached here we know we have an integer.
                         //datatype = DatabaseHelper.getDataType( Types.INTEGER, "INTEGER", "10", "0", aDB );

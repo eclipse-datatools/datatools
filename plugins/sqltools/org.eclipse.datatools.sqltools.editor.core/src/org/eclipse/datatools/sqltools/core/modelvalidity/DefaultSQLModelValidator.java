@@ -2,7 +2,6 @@ package org.eclipse.datatools.sqltools.core.modelvalidity;
 
 import java.util.Map;
 
-import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;

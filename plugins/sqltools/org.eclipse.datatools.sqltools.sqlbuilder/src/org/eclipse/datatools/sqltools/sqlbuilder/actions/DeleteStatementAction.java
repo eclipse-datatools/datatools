@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -11,10 +11,6 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import java.util.List;
-
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
@@ -28,6 +24,9 @@ import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 /**
  * Delete a SQL object

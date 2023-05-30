@@ -1,10 +1,10 @@
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2MemberImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWMember;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWMemberType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2MemberImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -262,9 +262,9 @@ public class LUWMemberImpl extends DB2MemberImpl implements LUWMember {
 			case LUWPackage.LUW_MEMBER__ALERT:
 				return getAlert();
 			case LUWPackage.LUW_MEMBER__DB_PARTITION_NUM:
-				return new Integer(getDbPartitionNum());
+				return Integer.valueOf(getDbPartitionNum());
 			case LUWPackage.LUW_MEMBER__LOGICAL_PORT:
-				return new Integer(getLogicalPort());
+				return Integer.valueOf(getLogicalPort());
 			case LUWPackage.LUW_MEMBER__NET_NAME:
 				return getNetName();
 		}

@@ -16,6 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
+
 import lpg.lpgjavaruntime.BacktrackingParser;
 import lpg.lpgjavaruntime.BadParseException;
 import lpg.lpgjavaruntime.BadParseSymFileException;
@@ -31,11 +36,6 @@ import lpg.lpgjavaruntime.RuleAction;
 import lpg.lpgjavaruntime.Token;
 import lpg.lpgjavaruntime.UndefinedEofSymbolException;
 import lpg.lpgjavaruntime.UnimplementedTerminalsException;
-
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
-import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 
 //DOCME
 public abstract class AbstractSQLParser extends PrsStream implements RuleAction
@@ -337,11 +337,11 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
 
 	protected void setInt1(int p_int) {
 		// don't catch NumberFormatException here, will be wrapped by ParseException
-	    btParser.setSym1(new Integer(p_int));
+	    btParser.setSym1(Integer.valueOf(p_int));
 	}
 
 	protected void setBoolean1(boolean p_boolean) {
-		btParser.setSym1(new Boolean(p_boolean));
+		btParser.setSym1(Boolean.valueOf(p_boolean));
 	}
 
 	protected List getASTElementList() {
@@ -657,7 +657,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
 
                 HashMap terminal_map = new HashMap();
                 for (int i = 0; i < ordered_lexer_symbols.length; i++) {
-                    terminal_map.put(ordered_lexer_symbols[i], new Integer(i));
+                    terminal_map.put(ordered_lexer_symbols[i], Integer.valueOf(i));
                 }
                 for (int i = 0; i < ordered_parser_symbols.length; i++)
                 {
@@ -671,7 +671,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
                         if (i == eof_symbol) {
                             throw new UndefinedEofSymbolException();
                         }
-                        unimplemented_symbols.add(new Integer(i));
+                        unimplemented_symbols.add(Integer.valueOf(i));
                     }
                 }
             }

@@ -577,7 +577,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         
         // saves the state if the ping button is not created yet
         if( this.btnPing == null )      
-            m_setPingButtonEnabled = new Boolean( enabled );
+            m_setPingButtonEnabled = Boolean.valueOf( enabled );
         else
             super.setPingButtonEnabled( enabled );
     }
@@ -596,7 +596,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         
         // saves the state if the ping button is not created yet
         if( this.btnPing == null )      
-            m_setPingButtonVisible = new Boolean( visible );
+            m_setPingButtonVisible = Boolean.valueOf( visible );
         else
             super.setPingButtonVisible( visible );
     }

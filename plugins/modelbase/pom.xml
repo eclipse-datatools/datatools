@@ -5,26 +5,19 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>modelbase</artifactId>
-  <version>1.14.102-SNAPSHOT</version>
+  <version>1.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>org.eclipse.datatools.modelbase.dbdefinition</module>
-    <module>org.eclipse.datatools.modelbase.dbdefinition.nl</module>
     <module>org.eclipse.datatools.modelbase.derby</module>
-    <module>org.eclipse.datatools.modelbase.derby.nl</module>
     <module>org.eclipse.datatools.modelbase.sql</module>
     <module>org.eclipse.datatools.modelbase.sql.edit</module>
-    <module>org.eclipse.datatools.modelbase.sql.edit.nl</module>
-    <module>org.eclipse.datatools.modelbase.sql.nl</module>
     <module>org.eclipse.datatools.modelbase.sql.query</module>
     <module>org.eclipse.datatools.modelbase.sql.query.edit</module>
-    <module>org.eclipse.datatools.modelbase.sql.query.edit.nl</module>
-    <module>org.eclipse.datatools.modelbase.sql.query.nl</module>
     <module>org.eclipse.datatools.modelbase.sql.xml.query</module>
-    <module>org.eclipse.datatools.modelbase.sql.xml.query.nl</module>
   </modules>
 </project>

@@ -1,3 +1,0 @@
-plugin@org.eclipse.datatools.enablement.sap.maxdb.dbdefinition=GIT,tag=v201107221507,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sap.git,path=plugins/org.eclipse.datatools.enablement.sap.maxdb.dbdefinition
-plugin@org.eclipse.datatools.enablement.sap.maxdb.ui=GIT,tag=v201107221507,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sap.git,path=plugins/org.eclipse.datatools.enablement.sap.maxdb.ui
-plugin@org.eclipse.datatools.enablement.sap.maxdb=GIT,tag=v201107221507,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.sap.git,path=plugins/org.eclipse.datatools.enablement.sap.maxdb

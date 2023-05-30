@@ -1,3 +1,0 @@
-plugin@org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition=GIT,tag=v201201240505,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.msft.git,path=plugins/org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition
-plugin@org.eclipse.datatools.enablement.msft.sqlserver.ui=GIT,tag=v201308031011,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.msft.git,path=plugins/org.eclipse.datatools.enablement.msft.sqlserver.ui
-plugin@org.eclipse.datatools.enablement.msft.sqlserver=GIT,tag=v201308161009,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.msft.git,path=plugins/org.eclipse.datatools.enablement.msft.sqlserver

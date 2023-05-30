@@ -1,8 +1,6 @@
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ModelPackageImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.ArrayIndexElementType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.AverageTableSizeType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.BufferPoolType;
@@ -101,6 +99,8 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteServer;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.SystemType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.TableSpaceType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.WrapperType;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ModelPackageImpl;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;

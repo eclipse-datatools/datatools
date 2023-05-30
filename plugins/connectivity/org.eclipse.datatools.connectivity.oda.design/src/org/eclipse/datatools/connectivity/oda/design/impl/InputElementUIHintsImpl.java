@@ -278,7 +278,7 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
             return getPromptStyle();
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD:
-            return new Integer( getAutoSuggestThreshold() );
+            return Integer.valueOf( getAutoSuggestThreshold() );
         }
         return super.eGet( featureID, resolve, coreType );
     }

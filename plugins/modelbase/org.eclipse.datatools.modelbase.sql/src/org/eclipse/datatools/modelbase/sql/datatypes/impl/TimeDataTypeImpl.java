@@ -10,18 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import java.util.Collection;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,7 +139,7 @@ public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeData
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
-				return new Integer(getFractionalSecondsPrecision());
+				return Integer.valueOf(getFractionalSecondsPrecision());
 			case SQLDataTypesPackage.TIME_DATA_TYPE__TIME_ZONE:
 				return isTimeZone() ? Boolean.TRUE : Boolean.FALSE;
 		}

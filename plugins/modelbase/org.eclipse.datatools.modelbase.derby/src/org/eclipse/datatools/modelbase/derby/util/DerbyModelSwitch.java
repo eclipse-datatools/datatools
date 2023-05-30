@@ -12,14 +12,12 @@ package org.eclipse.datatools.modelbase.derby.util;
 
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.derby.*;
-
+import org.eclipse.datatools.modelbase.derby.DerbyModelPackage;
+import org.eclipse.datatools.modelbase.derby.DerbySchema;
+import org.eclipse.datatools.modelbase.derby.Synonym;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;

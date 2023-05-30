@@ -7,9 +7,8 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Database;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

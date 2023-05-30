@@ -2,10 +2,7 @@ package org.eclipse.datatools.enablement.sybase.asa.deltaddl;
 
 import java.util.List;
 
-import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
-import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
@@ -15,8 +12,6 @@ import org.eclipse.datatools.enablement.sybase.util.SQLUtil;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
-import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;

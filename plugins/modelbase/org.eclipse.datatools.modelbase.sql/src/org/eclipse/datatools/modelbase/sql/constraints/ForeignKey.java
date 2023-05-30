@@ -12,7 +12,6 @@ package org.eclipse.datatools.modelbase.sql.constraints;
 
 import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

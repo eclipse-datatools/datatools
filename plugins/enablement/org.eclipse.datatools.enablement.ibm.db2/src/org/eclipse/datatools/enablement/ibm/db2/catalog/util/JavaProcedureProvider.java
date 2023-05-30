@@ -11,6 +11,7 @@
 package org.eclipse.datatools.enablement.ibm.db2.catalog.util;
 
 import java.sql.Connection;
+
 import org.eclipse.datatools.enablement.ibm.db2.catalog.JavaProcedureInfo;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Procedure;
 

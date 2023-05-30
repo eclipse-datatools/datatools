@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
@@ -49,7 +50,6 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.source.VerticalRuler;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ContentViewer;
@@ -180,7 +180,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
         boolean found = true;
         int searchIndex = 0;
         java.util.List segmentList = new ArrayList();
-        segmentList.add(new Integer(0));
+        segmentList.add(Integer.valueOf(0));
         while (found)
         {
             int index = text.indexOf('"', searchIndex);
@@ -190,7 +190,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
             }
             if (index > 0)
             {
-                segmentList.add(new Integer(index));                
+                segmentList.add(Integer.valueOf(index));                
             }
             searchIndex = index + 1;
         }        

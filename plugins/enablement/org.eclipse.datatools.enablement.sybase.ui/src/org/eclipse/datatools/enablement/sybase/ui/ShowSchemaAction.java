@@ -15,7 +15,6 @@ package org.eclipse.datatools.enablement.sybase.ui;
  * @author Cong Chen
  */
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.enablement.sybase.ui.SybaseUIPlugin;
 import org.eclipse.datatools.enablement.sybase.IHelpConstants;
 import org.eclipse.datatools.enablement.sybase.ui.util.DSEUtil;
 import org.eclipse.datatools.help.ContextProviderDelegate;

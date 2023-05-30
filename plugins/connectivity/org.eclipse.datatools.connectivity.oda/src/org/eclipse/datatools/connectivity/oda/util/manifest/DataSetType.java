@@ -72,7 +72,7 @@ public class DataSetType
             
             DataTypeMapping dataTypeMap = new DataTypeMapping( typeMapping, m_id );
 			m_dataTypeMappingsByNativeCode.put( 
-                    new Integer( dataTypeMap.getNativeTypeCode() ), dataTypeMap );
+                    Integer.valueOf( dataTypeMap.getNativeTypeCode() ), dataTypeMap );
             m_dataTypeMappingsByNativeName.put( dataTypeMap.getNativeType(), dataTypeMap );
 		}
 		
@@ -136,7 +136,7 @@ public class DataSetType
 	 */
 	public DataTypeMapping getDataTypeMapping( int nativeDataTypeCode )
 	{
-		Integer typeCode = new Integer( nativeDataTypeCode );
+		Integer typeCode = Integer.valueOf( nativeDataTypeCode );
 		return (DataTypeMapping) m_dataTypeMappingsByNativeCode.get( typeCode );
 	}
     

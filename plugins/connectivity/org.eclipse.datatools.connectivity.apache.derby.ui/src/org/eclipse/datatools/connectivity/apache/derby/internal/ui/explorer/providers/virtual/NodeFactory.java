@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.derby.internal.ui.explorer.providers.virtual;
 
-import org.eclipse.datatools.connectivity.apache.derby.internal.ui.explorer.providers.virtual.SynonymFolder;
 import org.eclipse.datatools.connectivity.apache.derby.ui.explorer.providers.virtual.ISynonymFolder;
 import org.eclipse.datatools.connectivity.apache.derby.ui.explorer.providers.virtual.IVirtualNodeServiceFactory;
 

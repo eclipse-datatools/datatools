@@ -9,14 +9,10 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWCursorDataType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRowDataType;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

@@ -516,7 +516,7 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_ID:
-				return new Long(getService_id());
+				return Long.valueOf(getService_id());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__SERVICE_TYPE:
 				return getService_type();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_WEB_SERVICE__AUTH_REQUIRED:

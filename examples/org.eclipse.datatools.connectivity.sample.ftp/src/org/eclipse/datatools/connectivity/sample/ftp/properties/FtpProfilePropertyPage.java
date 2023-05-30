@@ -12,6 +12,10 @@ package org.eclipse.datatools.connectivity.sample.ftp.properties;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.sample.ftp.FTPProfileMessages;
+import org.eclipse.datatools.connectivity.sample.ftp.IFtpProfileConstants;
+import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -20,11 +24,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
-import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.sample.ftp.FTPProfileMessages;
-import org.eclipse.datatools.connectivity.sample.ftp.IFtpProfileConstants;
-import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 
 
 /**

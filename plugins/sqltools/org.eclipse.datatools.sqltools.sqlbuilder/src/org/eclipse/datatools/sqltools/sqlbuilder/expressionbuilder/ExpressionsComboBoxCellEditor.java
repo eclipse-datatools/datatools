@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -12,8 +12,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.expressionbuilder;
 
 import java.util.Vector;
 
-import org.eclipse.swt.widgets.Composite;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
@@ -21,6 +19,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.LabelValuePair;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.BuilderUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.EditComboBoxCellEditor;
+import org.eclipse.swt.widgets.Composite;
 
 public class ExpressionsComboBoxCellEditor extends EditComboBoxCellEditor {
 

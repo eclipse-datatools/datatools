@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples;singleton:=true
-Bundle-Version: 2.7.200.qualifier
+Bundle-Version: 2.8.0.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.ExamplePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -42,6 +42,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.sqltools.schemaobjecteditor,
  org.eclipse.datatools.sqltools.schemaobjecteditor.ui,
  org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
+Automatic-Module-Name: org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples

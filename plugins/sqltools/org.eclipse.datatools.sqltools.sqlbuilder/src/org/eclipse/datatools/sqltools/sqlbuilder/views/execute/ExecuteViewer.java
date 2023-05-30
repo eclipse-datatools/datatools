@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -20,6 +20,16 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStringHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.ProgressMonitorPart;
@@ -35,18 +45,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.PageBook;
-import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-
-
-import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
-import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStringHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 
 /**
  * Execute the statement. Display errors in Task List

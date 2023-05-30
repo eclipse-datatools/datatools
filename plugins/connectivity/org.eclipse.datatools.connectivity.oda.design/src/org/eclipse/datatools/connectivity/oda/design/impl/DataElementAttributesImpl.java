@@ -963,13 +963,13 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             return getName();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
-            return new Integer( getPosition() );
+            return Integer.valueOf( getPosition() );
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
-            return new Integer( getNativeDataTypeCode() );
+            return Integer.valueOf( getNativeDataTypeCode() );
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
-            return new Integer( getPrecision() );
+            return Integer.valueOf( getPrecision() );
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
-            return new Integer( getScale() );
+            return Integer.valueOf( getScale() );
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
             return getNullability();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:

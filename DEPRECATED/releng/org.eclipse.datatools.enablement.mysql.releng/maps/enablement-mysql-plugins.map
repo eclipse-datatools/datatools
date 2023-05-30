@@ -1,3 +1,0 @@
-plugin@org.eclipse.datatools.enablement.mysql.dbdefinition=GIT,tag=v201109022331,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.mysql.git,path=plugins/org.eclipse.datatools.enablement.mysql.dbdefinition
-plugin@org.eclipse.datatools.enablement.mysql.ui=GIT,tag=v201109022331,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.mysql.git,path=plugins/org.eclipse.datatools.enablement.mysql.ui
-plugin@org.eclipse.datatools.enablement.mysql=GIT,tag=v201212120617,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.mysql.git,path=plugins/org.eclipse.datatools.enablement.mysql

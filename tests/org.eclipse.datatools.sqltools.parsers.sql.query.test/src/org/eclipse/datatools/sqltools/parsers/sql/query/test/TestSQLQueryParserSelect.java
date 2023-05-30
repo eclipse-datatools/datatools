@@ -1571,8 +1571,8 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         	"select * from t6 where :real = 1.175E-37 + 3.402E+38;" + NL + //$NON-NLS-1$
         	"select * from t7 where :double = -1.79769E+308 + -2.225E-307" + NL + //$NON-NLS-1$
         	"                    or :float = " + //$NON-NLS-1$
-        						 new Double("2.225E-307").toString()+ " + " + //$NON-NLS-1$ //$NON-NLS-2$
-        						 new Double("1.79769E+308").toString()+ ";" + NL + //$NON-NLS-1$ //$NON-NLS-2$
+        						 Double.valueOf("2.225E-307").toString()+ " + " + //$NON-NLS-1$ //$NON-NLS-2$
+        						 Double.valueOf("1.79769E+308").toString()+ ";" + NL + //$NON-NLS-1$ //$NON-NLS-2$
         	"select * from t8_2 where :decimal = " + //$NON-NLS-1$
         		new BigDecimal("-10.0E+32").toString()+ //$NON-NLS-1$
         		" + " + //$NON-NLS-1$

@@ -7,6 +7,14 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import java.util.Collection;
+
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWContainerType;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabaseContainer;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabasePartition;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.model.UnitType;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -16,15 +24,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.datatools.enablement.ibm.db2.model.UnitType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWContainerType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabaseContainer;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabasePartition;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
-import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -345,9 +345,9 @@ public class LUWDatabaseContainerImpl extends SQLObjectImpl implements LUWDataba
 			case LUWPackage.LUW_DATABASE_CONTAINER__CONTAINER_TYPE:
 				return getContainerType();
 			case LUWPackage.LUW_DATABASE_CONTAINER__SIZE_IN_PAGES:
-				return new Integer(getSizeInPages());
+				return Integer.valueOf(getSizeInPages());
 			case LUWPackage.LUW_DATABASE_CONTAINER__SIZE:
-				return new Integer(getSize());
+				return Integer.valueOf(getSize());
 			case LUWPackage.LUW_DATABASE_CONTAINER__SIZE_UNITS:
 				return getSizeUnits();
 			case LUWPackage.LUW_DATABASE_CONTAINER__TABLE_SPACE:

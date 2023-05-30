@@ -16,8 +16,8 @@ package org.eclipse.datatools.connectivity.oda.spec.util;
 
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
+import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
 
 /**
  * An utility to convert a pre-3.2 {@link SortSpec} instance to and from

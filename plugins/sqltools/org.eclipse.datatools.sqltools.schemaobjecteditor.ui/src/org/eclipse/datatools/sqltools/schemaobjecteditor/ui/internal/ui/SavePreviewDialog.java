@@ -20,8 +20,8 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditor;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.Messages;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.SQLExecutionJobListener;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.core.ScriptsExecutionRunnable;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;

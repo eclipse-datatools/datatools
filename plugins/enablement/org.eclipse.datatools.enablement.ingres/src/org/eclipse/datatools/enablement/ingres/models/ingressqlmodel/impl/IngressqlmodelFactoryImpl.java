@@ -12,14 +12,18 @@
  */
 package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl;
 
-import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.*;
-
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresDBEvent;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSchema;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSynonym;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresTrigger;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresViewTable;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelFactory;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

@@ -1,2 +1,0 @@
-
-error_cannot_get_connection_profile=コンテキストから接続プロファイルの情報を取得できません。

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -24,8 +24,6 @@ import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
 import org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
@@ -47,6 +45,7 @@ import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.ValueExpressionHelper;
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 
 /**
  * Helper class for manipulating <code>QueryValueExpression</code> 

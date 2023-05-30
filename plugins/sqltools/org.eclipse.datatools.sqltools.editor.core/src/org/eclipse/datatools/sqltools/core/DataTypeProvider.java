@@ -352,18 +352,18 @@ public class DataTypeProvider
                     if (typeInfo.length > 1 && typeDefinition.isLengthSupported())
                     {
                         EStructuralFeature feature = type.eClass().getEStructuralFeature(LENGTH_FEATURE);
-                        type.eSet(feature, new Integer(typeInfo[1]));
+                        type.eSet(feature, Integer.valueOf(typeInfo[1]));
                     }
                     else if (typeInfo.length > 1 && typeDefinition.isPrecisionSupported())
                     {
                         EStructuralFeature feature = type.eClass().getEStructuralFeature(PRECISION_FEATURE);
-                        type.eSet(feature, new Integer(typeInfo[1]));
+                        type.eSet(feature, Integer.valueOf(typeInfo[1]));
                     }
 
                     if (typeInfo.length > 2 && typeDefinition.isScaleSupported())
                     {
                         EStructuralFeature feature = type.eClass().getEStructuralFeature(SCALE_FEATURE);
-                        type.eSet(feature, new Integer(typeInfo[2]));
+                        type.eSet(feature, Integer.valueOf(typeInfo[2]));
                     }
 
                     return type;

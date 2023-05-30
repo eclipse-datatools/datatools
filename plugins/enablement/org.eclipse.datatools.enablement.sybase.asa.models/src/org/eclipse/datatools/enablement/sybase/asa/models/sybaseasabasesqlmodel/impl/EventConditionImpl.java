@@ -9,17 +9,12 @@ package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.EventCondition;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseEvent;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -244,7 +239,7 @@ public class EventConditionImpl extends SQLObjectImpl implements EventCondition
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__OPERATOR:
 				return getOperator();
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__VALUE:
-				return new Integer(getValue());
+				return Integer.valueOf(getValue());
 			case SybaseasabasesqlmodelPackage.EVENT_CONDITION__EVENT:
 				return getEvent();
 		}

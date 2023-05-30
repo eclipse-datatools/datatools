@@ -8,9 +8,7 @@ package org.eclipse.datatools.modelbase.derby.impl;
 
 import org.eclipse.datatools.modelbase.derby.DerbyModelPackage;
 import org.eclipse.datatools.modelbase.derby.DerbySchema;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

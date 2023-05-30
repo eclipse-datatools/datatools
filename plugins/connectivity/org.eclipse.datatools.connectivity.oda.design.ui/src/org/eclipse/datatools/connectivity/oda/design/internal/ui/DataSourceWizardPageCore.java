@@ -207,7 +207,7 @@ public abstract class DataSourceWizardPageCore extends
         
         // saves the state if the ping button is not created yet
         if( this.btnPing == null )      
-            m_setPingButtonVisible = new Boolean( visible );
+            m_setPingButtonVisible = Boolean.valueOf( visible );
         else
             super.setPingButtonVisible( visible );
     }

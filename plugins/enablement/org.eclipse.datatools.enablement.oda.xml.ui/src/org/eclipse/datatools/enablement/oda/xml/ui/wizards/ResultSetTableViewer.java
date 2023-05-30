@@ -15,15 +15,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
 
-import org.eclipse.datatools.enablement.oda.xml.Constants;
-import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
-import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
+import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
+import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.jface.dialogs.MessageDialog;

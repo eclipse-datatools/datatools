@@ -76,7 +76,7 @@ public class ASADatabaseSetting extends AbstractDatabaseSetting implements IData
                     {
                         rs.next();
                         String on = rs.getString(1);
-                        Object ret = new Boolean(on.equals("ON"));
+                        Object ret = Boolean.valueOf(on.equals("ON"));
                         _cache.put(propName, ret);
                         return ret;
                     }
@@ -123,7 +123,7 @@ public class ASADatabaseSetting extends AbstractDatabaseSetting implements IData
                 {
                     defValue = conValue.booleanValue();
                 }
-                return new Boolean(lc.getAttribute(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_QUOTED_IDEN, defValue));
+                return Boolean.valueOf(lc.getAttribute(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_QUOTED_IDEN, defValue));
             }
             if (C_CHAINED_MODE.equals(propName))
             {
@@ -133,7 +133,7 @@ public class ASADatabaseSetting extends AbstractDatabaseSetting implements IData
                 {
                     defValue = conValue.booleanValue();
                 }
-                return new Boolean(lc.getAttribute(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_CHAINED, defValue));
+                return Boolean.valueOf(lc.getAttribute(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_CHAINED, defValue));
             }
         }
         catch (CoreException e)
@@ -152,11 +152,11 @@ public class ASADatabaseSetting extends AbstractDatabaseSetting implements IData
         IPreferenceStore store = ExamplePlugin.getDefault().getPreferenceStore();
         if (C_QUOTED_IDENTIFIER.equals(propName))
         {
-            return new Boolean(store.getBoolean(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_QUOTED_IDEN));
+            return Boolean.valueOf(store.getBoolean(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_QUOTED_IDEN));
         }
         if (C_CHAINED_MODE.equals(propName))
         {
-            return new Boolean(store.getBoolean(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_CHAINED));
+            return Boolean.valueOf(store.getBoolean(LaunchConfigurationAttribute.DMP_LAUNCH_ASA_CHAINED));
         }
         return null;
     }

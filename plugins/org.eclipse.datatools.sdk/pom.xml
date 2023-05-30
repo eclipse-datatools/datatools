@@ -5,10 +5,10 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools.plugins</groupId>
   <artifactId>org.eclipse.datatools.sdk</artifactId>
-  <version>1.9.101-SNAPSHOT</version>
+  <version>1.10.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

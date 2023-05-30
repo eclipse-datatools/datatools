@@ -14,8 +14,6 @@ package org.eclipse.datatools.connectivity.sqm.core.connection;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Predicate;
-
 /**
  * Public ConnectionFilter interface, extended internally
  */

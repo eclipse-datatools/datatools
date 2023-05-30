@@ -11,9 +11,7 @@
 package org.eclipse.datatools.modelbase.derby;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;

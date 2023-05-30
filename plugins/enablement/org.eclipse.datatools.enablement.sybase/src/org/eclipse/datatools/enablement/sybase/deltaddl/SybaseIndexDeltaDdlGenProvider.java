@@ -55,7 +55,7 @@ public abstract class SybaseIndexDeltaDdlGenProvider extends AbstractDeltaDdlGen
                 {
                     changeMap.clear();
                     changeMap
-                            .put(element, new Integer(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
+                            .put(element, Integer.valueOf(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
                 }
             }
         }

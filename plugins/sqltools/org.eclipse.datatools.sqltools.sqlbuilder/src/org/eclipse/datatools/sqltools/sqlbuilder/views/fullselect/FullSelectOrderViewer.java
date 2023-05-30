@@ -227,7 +227,7 @@ public class FullSelectOrderViewer extends NavigableTableViewer implements IMenu
         if (totalColumn > 0) {
             LabelValuePair[] sortOrderItems = new LabelValuePair[totalColumn];
             for (int i = 0; i < totalColumn; i++) {
-                String item = (new Integer(i + 1)).toString();
+                String item = (Integer.valueOf(i + 1)).toString();
                 sortOrderItems[i] = new LabelValuePair(item, item);
             }
             sortOrderCellEditor.createItems(sortOrderItems);

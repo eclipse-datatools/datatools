@@ -13,9 +13,6 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -317,14 +314,14 @@ public class SQLValidator implements IContextInformationValidator, IContextInfor
         final int length = code.length();
         int pos = 0;
         List positions = new ArrayList();
-        positions.add(new Integer(-1));
+        positions.add(Integer.valueOf(-1));
         while (pos < length && pos != -1)
         {
             char ch = code.charAt(pos);
             switch (ch)
             {
                 case ',':
-                    positions.add(new Integer(pos));
+                    positions.add(Integer.valueOf(pos));
                     break;
                 case '<':
                     pos = code.indexOf('>', pos);
@@ -338,7 +335,7 @@ public class SQLValidator implements IContextInformationValidator, IContextInfor
             if (pos != -1)
                 pos++;
         }
-        positions.add(new Integer(length));
+        positions.add(Integer.valueOf(length));
 
         int[] fields = new int[positions.size()];
         for (int i = 0; i < fields.length; i++)

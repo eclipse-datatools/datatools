@@ -69,11 +69,11 @@ public class TreeExecutionPlanDocument implements IExecutionPlanDocument
         int max = root.getChildrenCount();
         if (_nodeCount.size() <= depth)
         {
-            _nodeCount.add(new Integer(max));
+            _nodeCount.add(Integer.valueOf(max));
         }
         else
         {
-            _nodeCount.set(depth, new Integer(((Integer) _nodeCount.get(depth)).intValue() + max));
+            _nodeCount.set(depth, Integer.valueOf(((Integer) _nodeCount.get(depth)).intValue() + max));
         }
         ArrayList children = root.getChildren();
         Iterator iter = null;
@@ -95,7 +95,7 @@ public class TreeExecutionPlanDocument implements IExecutionPlanDocument
     public int getMaxWidth()
     {
         _nodeCount = new ArrayList();
-        _nodeCount.add(new Integer(1));
+        _nodeCount.add(Integer.valueOf(1));
         getMaxNodeCount(_rootNode, 1);
         int max = 1;
         for (Iterator iter = _nodeCount.iterator(); iter.hasNext();)

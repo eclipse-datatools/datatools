@@ -8,9 +8,7 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2DistinctUserDefinedType;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.DistinctUserDefinedTypeImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

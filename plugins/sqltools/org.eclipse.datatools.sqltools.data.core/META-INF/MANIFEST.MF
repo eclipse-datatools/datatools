@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.data.core; singleton:=true
-Bundle-Version: 1.4.101.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin
 Bundle-Vendor: %plugin.Provider
 Bundle-Localization: plugin
@@ -21,3 +21,4 @@ Export-Package: org.eclipse.datatools.sqltools.data.internal.core,
  org.eclipse.datatools.sqltools.data.internal.core.load
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.sqltools.data.core

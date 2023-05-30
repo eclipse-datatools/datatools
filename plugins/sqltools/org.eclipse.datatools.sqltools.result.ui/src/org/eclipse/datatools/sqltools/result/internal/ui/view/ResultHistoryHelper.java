@@ -65,7 +65,7 @@ public class ResultHistoryHelper
     {
         for(int i = 0; i < COLUMN_PREFERENCE.length; i++)
         {
-            COLUMN_PREFERENCE_INDEX_MAP.put(COLUMN_PREFERENCE[i], new Integer(i));
+            COLUMN_PREFERENCE_INDEX_MAP.put(COLUMN_PREFERENCE[i], Integer.valueOf(i));
         }
         
         for(int i = 0; i < COLUMN_NAME.length; i++)
@@ -83,7 +83,7 @@ public class ResultHistoryHelper
         {
             int order = PreferenceUtil.getInt(store, COLUMN_PREFERENCE[i], usePreference);
             
-            COLUMN_PREFERENCE_ORDER_MAP.put(COLUMN_PREFERENCE[i], new Integer(order));
+            COLUMN_PREFERENCE_ORDER_MAP.put(COLUMN_PREFERENCE[i], Integer.valueOf(order));
         }
     }
     

@@ -22,14 +22,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+
+import junit.framework.TestCase;
 
 /**
  * Plugin Test cases of the Oda Profile Explorer.

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.editor.core;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.core.EditorCorePlugin
 Bundle-Localization: plugin
 Bundle-Vendor: %Plugin.ProviderName
@@ -49,3 +49,4 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.sql.util
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.sqltools.editor.core

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml;singleton:=true
-Bundle-Version: 1.4.102.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse Data Tools Platform
@@ -11,7 +11,6 @@ Require-Bundle:  org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity.oda,
  org.apache.xerces,
  org.eclipse.datatools.connectivity.oda.profile;resolution:=optional
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.i18n;x-friends:="org.eclipse.birt.report.data.oda.xml",
@@ -19,3 +18,4 @@ Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.util;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.date;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.ui;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests"
+Automatic-Module-Name: org.eclipse.datatools.enablement.oda.xml

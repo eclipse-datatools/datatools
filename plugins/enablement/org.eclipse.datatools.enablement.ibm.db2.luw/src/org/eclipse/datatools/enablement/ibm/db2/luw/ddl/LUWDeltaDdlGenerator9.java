@@ -55,7 +55,7 @@ public class LUWDeltaDdlGenerator9 extends LUWDeltaDdlGenerator {
 				}
 			}
 			if (containsXMLColumn((LUWTable)table)) {
-				changeMap.put(table, new Integer(MODIFIED));
+				changeMap.put(table, Integer.valueOf(MODIFIED));
 				changeMap.remove(column);
 				it.remove();
 				return true;

@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
@@ -35,8 +36,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 
 public class LUWCatalogForeignKey extends ForeignKeyImpl implements ICatalogObject {
 	public void refresh() {
@@ -154,7 +153,7 @@ public class LUWCatalogForeignKey extends ForeignKeyImpl implements ICatalogObje
 	}
 	public static void setAsIdentifyingRelatinship(ForeignKey fk,boolean identifying){
 		EAnnotation eAnnotation = fk.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
-		fk.addEAnnotationDetail(eAnnotation,RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP,new Boolean(identifying).toString());
+		fk.addEAnnotationDetail(eAnnotation,RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP,Boolean.valueOf(identifying).toString());
 
 		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_CHILD_MULTIPLICITY, RDBCorePlugin.MANY);
 		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_CHILD_ROLE_NAME, new String ());

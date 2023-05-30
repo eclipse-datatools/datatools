@@ -8,18 +8,16 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNickname;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteDataSet;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNickname;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteDataSet;
 
 /**
  * <!-- begin-user-doc -->

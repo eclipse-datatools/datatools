@@ -10,7 +10,6 @@ package org.eclipse.datatools.enablement.ibm.internal.ui.drivers;
 
 import java.io.File;
 
-import org.eclipse.datatools.enablement.ibm.internal.ui.drivers.Messages;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

@@ -26,7 +26,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * provide sckeletal implementation for database specified DdlGenrator, such as ASEDdlGenerator, 

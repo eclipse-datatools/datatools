@@ -11,7 +11,18 @@
 package org.eclipse.datatools.modelbase.sql.statements.util;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.statements.*;
+import org.eclipse.datatools.modelbase.sql.statements.SQLConnectionStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLDiagnosticsStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLDynamicStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLSchemaStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLSessionStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementDefault;
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
+import org.eclipse.datatools.modelbase.sql.statements.SQLTransactionStatement;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;

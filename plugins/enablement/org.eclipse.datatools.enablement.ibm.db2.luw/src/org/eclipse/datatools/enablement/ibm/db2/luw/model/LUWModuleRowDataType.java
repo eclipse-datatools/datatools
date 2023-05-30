@@ -6,8 +6,6 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 
-import org.eclipse.datatools.modelbase.sql.datatypes.RowDataType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Module Row Data Type</b></em>'.

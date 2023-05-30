@@ -16,20 +16,16 @@ package org.eclipse.datatools.connectivity.oda.profile.tests;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Properties;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.profile.Constants;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
+
+import junit.framework.TestCase;
 
 /**
  * Plugin Test cases of the ODA Connection Profile's Property Provider Service.

@@ -238,7 +238,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-                return new Integer( stringValue ).intValue();
+                return Integer.valueOf( stringValue ).intValue();
             }
             catch( NumberFormatException e )
             {
@@ -291,7 +291,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-                return new Double( stringValue ).doubleValue();
+                return Double.valueOf( stringValue ).doubleValue();
             }
             catch( NumberFormatException e )
             {
@@ -491,7 +491,7 @@ public class ResultSet implements IResultSet
             catch( IllegalArgumentException e )
             {
             	try{
-            		long timeMills = new Long(stringValue).longValue();
+            		long timeMills = Long.valueOf(stringValue).longValue();
             		return new Timestamp( timeMills );
             	}catch ( NumberFormatException e1)
             	{

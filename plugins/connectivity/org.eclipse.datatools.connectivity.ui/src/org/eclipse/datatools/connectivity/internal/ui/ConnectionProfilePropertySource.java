@@ -98,10 +98,10 @@ public class ConnectionProfilePropertySource implements IPropertySource {
 		}
 		else if (id.equals(P_ID_ENTITY_AUTOCONNECT)) {
 			if (!_showAutoConnect) {
-				return new Boolean(true);
+				return Boolean.valueOf(true);
 			}
 			else {
-				return new Boolean(mCP.isAutoConnect());
+				return Boolean.valueOf(mCP.isAutoConnect());
 			}
 		}
 		else {

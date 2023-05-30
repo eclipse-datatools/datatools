@@ -11,8 +11,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorPage;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorDescriptor;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorPageDescriptor;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.util.ILogger;
 import org.eclipse.jface.preference.IPreferenceStore;
 

@@ -27,8 +27,8 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.ibm.catalog.IDatabaseObject;
 import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogStatistics;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWCatalogMessages;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWFactory;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWNickname;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
@@ -416,8 +416,8 @@ public class LUWCatalogColumn extends LUWColumnImpl implements ICatalogObject, I
 				}
 
 				if (distStat.size() >0 ) {
-					statistics.add(new CatalogStatistics("Distribution " + seqno, MessageFormat.format(LUWCatalogMessages.STAT_COLDIST, new Object[]{new Integer(groupNum++)})
-						,MessageFormat.format(LUWCatalogMessages.STAT_COLDIST_DES,new Object[]{new Integer(seqno)})
+					statistics.add(new CatalogStatistics("Distribution " + seqno, MessageFormat.format(LUWCatalogMessages.STAT_COLDIST, new Object[]{Integer.valueOf(groupNum++)})
+						,MessageFormat.format(LUWCatalogMessages.STAT_COLDIST_DES,new Object[]{Integer.valueOf(seqno)})
 						,distStat,"SYSSTAT.COLDIST"));
 
 				}

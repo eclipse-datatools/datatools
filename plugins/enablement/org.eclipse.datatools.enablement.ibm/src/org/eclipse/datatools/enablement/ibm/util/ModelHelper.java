@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
-//bgp import org.eclipse.datatools.enablement.ibm.db2.util.DataModelResource;
-import org.eclipse.datatools.enablement.ibm.util.ModelVersion;
 import org.eclipse.datatools.modelbase.sql.constraints.IncrementType;
 import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;

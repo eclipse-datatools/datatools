@@ -18,14 +18,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
 import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
 import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement;
-import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
@@ -53,7 +51,6 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParserLogger;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessor;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessorConfiguration;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserMessages;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * The <code>TableReferenceResolver</code> resolves references between columns

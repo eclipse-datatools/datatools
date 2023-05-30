@@ -13,9 +13,9 @@ import org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.E
 import org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.Messages;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
+import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
 import org.eclipse.datatools.sqltools.sql.identifier.DefaultIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;

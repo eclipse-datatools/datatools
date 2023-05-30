@@ -8,9 +8,7 @@
 package org.eclipse.datatools.enablement.sybase.asa.schemaobjecteditor.examples.routineeditor.pages.source;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;

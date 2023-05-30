@@ -14,7 +14,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.TableDefinition;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -319,7 +318,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				return isValidProcSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -11,6 +11,7 @@
 package org.eclipse.datatools.enablement.ibm.db2.luw.catalog;
 
 import java.util.Collection;
+
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
 
 public interface LUWServerCatalogProvider {

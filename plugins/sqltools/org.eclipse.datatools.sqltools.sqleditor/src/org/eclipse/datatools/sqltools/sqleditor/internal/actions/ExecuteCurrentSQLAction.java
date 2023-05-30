@@ -13,7 +13,6 @@ import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.selection.ISQLSelection;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.selection.SQLSelectionFactory;
 import org.eclipse.jface.text.IDocument;

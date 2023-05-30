@@ -17,31 +17,17 @@ import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.Syba
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETempTable;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.SybaseASEPartition;
-
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
-
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
-import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
-import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
-
 import org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -796,20 +782,20 @@ public class SybaseASETempTableImpl extends TemporaryTableImpl implements Sybase
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__LOCK_SCHEMA:
                 return getLockSchema();
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__FILL_FACTOR:
-                return new Integer(getFillFactor());
+                return Integer.valueOf(getFillFactor());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__MAX_ROW_PER_PAGE:
-                return new Integer(getMaxRowPerPage());
+                return Integer.valueOf(getMaxRowPerPage());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__EXP_ROW_SIZE:
-                return new Integer(getExpRowSize());
+                return Integer.valueOf(getExpRowSize());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__RESERVE_PAGE_GAP:
-                return new Integer(getReservePageGap());
+                return Integer.valueOf(getReservePageGap());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__IDENTITY_GAP:
-                return new Integer(getIdentityGap());
+                return Integer.valueOf(getIdentityGap());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__SEGMENT:
                 if (resolve) return getSegment();
                 return basicGetSegment();
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__CONCURRENCY_OPT_THRESHOLD:
-                return new Integer(getConcurrencyOptThreshold());
+                return Integer.valueOf(getConcurrencyOptThreshold());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__PARTITION_CONDITION:
                 return getPartitionCondition();
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__TABLE_ONLY_CACHE_INFO:
@@ -819,7 +805,7 @@ public class SybaseASETempTableImpl extends TemporaryTableImpl implements Sybase
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__LOCK_PROMOTION:
                 return getLockPromotion();
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__PARTITIONS:
-                return new Integer(getPartitions());
+                return Integer.valueOf(getPartitions());
             case SybaseasesqlmodelPackage.SYBASE_ASE_TEMP_TABLE__TEXT_IMAGE_SEGMENT:
                 if (resolve) return getTextImageSegment();
                 return basicGetTextImageSegment();

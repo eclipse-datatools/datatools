@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -277,7 +276,7 @@ public class DB2MemberImpl extends SQLObjectImpl implements DB2Member {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DB2ModelPackage.DB2_MEMBER__ID:
-				return new Integer(getId());
+				return Integer.valueOf(getId());
 			case DB2ModelPackage.DB2_MEMBER__HOME_HOST:
 				return getHomeHost();
 			case DB2ModelPackage.DB2_MEMBER__CURRENT_HOST:

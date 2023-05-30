@@ -1817,13 +1817,13 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 					if(typeDefinition.isLengthSupported()) {
 						final int length = r.getInt("LENGTH");
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					else if(typeDefinition.isPrecisionSupported()) {
 						if (typeName.equals("TIMESTAMP")) {
 							int length = r.getInt("SCALE");
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 						else {
 							int length = r.getInt("LENGTH");
@@ -1832,14 +1832,14 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 								else length = 34;
 							}
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 					}
 					
 					if(typeDefinition.isScaleSupported()) {
 						final int length = r.getInt("SCALE");
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					
 					var.setContainedType(type);
@@ -1910,13 +1910,13 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 		if(sourceTypeDefinition.isLengthSupported()) {
 			final int length = r.getInt(6);
 			EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-			sourceType.eSet(feature, new Integer(length));
+			sourceType.eSet(feature, Integer.valueOf(length));
 		}
 		else if(sourceTypeDefinition.isPrecisionSupported()) {
 			if (sourceName.equals("TIMESTAMP")) {
 				int length = r.getInt(7);
 				EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-				sourceType.eSet(feature, new Integer(length));
+				sourceType.eSet(feature, Integer.valueOf(length));
 			}
 			else {
 				int length = r.getInt(6);
@@ -1925,14 +1925,14 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 					else length = 34;
 				}
 				EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-				sourceType.eSet(feature, new Integer(length));
+				sourceType.eSet(feature, Integer.valueOf(length));
 			}
 		}
 		
 		if(sourceTypeDefinition.isScaleSupported()) {
 			final int length = r.getInt(7);
 			EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-			sourceType.eSet(feature, new Integer(length));
+			sourceType.eSet(feature, Integer.valueOf(length));
 		}
 			
 		type.setPredefinedRepresentation(sourceType);
@@ -1990,13 +1990,13 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 			if(sourceTypeDefinition.isLengthSupported()) {
 				final int length = r.getInt("LENGTH");
 				EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-				sourceType.eSet(feature, new Integer(length));
+				sourceType.eSet(feature, Integer.valueOf(length));
 			}
 			else if(sourceTypeDefinition.isPrecisionSupported()) {
 				if (sourceName.equals("TIMESTAMP")) {
 					int length = r.getInt("SCALE");
 					EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-					sourceType.eSet(feature, new Integer(length));
+					sourceType.eSet(feature, Integer.valueOf(length));
 				}
 				else {
 					int length = r.getInt("LENGTH");
@@ -2005,14 +2005,14 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
 						else length = 34;
 					}
 					EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-					sourceType.eSet(feature, new Integer(length));
+					sourceType.eSet(feature, Integer.valueOf(length));
 				}
 			}
 			
 			if(sourceTypeDefinition.isScaleSupported()) {
 				final int scale = r.getInt("SCALE");
 				EStructuralFeature feature = sourceType.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-				sourceType.eSet(feature, new Integer(scale));
+				sourceType.eSet(feature, Integer.valueOf(scale));
 			}
 			elmentType.setDataType(sourceType);
 		}
@@ -2155,7 +2155,7 @@ public class LUWCatalogSchema extends DB2SchemaImpl implements ICatalogObject {
  	 */
 	private static void deleteXSDSourceCache(String rootPath){
 		File file = new File(rootPath);
-		File[] files = files = file.listFiles();
+		File[] files = file.listFiles();
 		deleteFiles(files);
 	}
 	

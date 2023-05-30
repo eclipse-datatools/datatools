@@ -7,15 +7,14 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRelationalServer;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRelationalWrapper;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRelationalServer;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRelationalWrapper;
 
 /**
  * <!-- begin-user-doc -->
@@ -573,11 +572,11 @@ public abstract class LUWRelationalServerImpl extends LUWServerImpl implements L
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LUWPackage.LUW_RELATIONAL_SERVER__CPU_RATIO:
-				return new Long(getCpuRatio());
+				return Long.valueOf(getCpuRatio());
 			case LUWPackage.LUW_RELATIONAL_SERVER__IO_RATIO:
-				return new Long(getIoRatio());
+				return Long.valueOf(getIoRatio());
 			case LUWPackage.LUW_RELATIONAL_SERVER__COMM_RATE:
-				return new Long(getCommRate());
+				return Long.valueOf(getCommRate());
 			case LUWPackage.LUW_RELATIONAL_SERVER__FOLD_ID:
 				return isFoldId() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_RELATIONAL_SERVER__FOLD_PW:

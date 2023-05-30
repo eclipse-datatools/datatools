@@ -6,29 +6,13 @@
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.util.SybaseRoutineUtil;
-
-import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
-
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->

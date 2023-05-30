@@ -21,17 +21,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
-
-import junit.framework.TestCase;
 
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
-import org.eclipse.datatools.connectivity.oda.design.CustomData;
 import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
@@ -54,6 +49,8 @@ import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
 import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import junit.framework.TestCase;
 
 
 /**
@@ -158,7 +155,7 @@ public class DesignUtilLoadSaveTest extends TestCase
     
     public void testAddOptionalResourceIDElement()
     {
-        String odaDesignURIString = "http://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
+        String odaDesignURIString = "https://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
         URI odaDesignURI = null;
         try
         {

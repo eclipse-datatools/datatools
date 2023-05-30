@@ -12,10 +12,8 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.Properties;
 
-
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
-
 import org.eclipse.swt.widgets.Composite;
 
 /**

@@ -18,10 +18,8 @@ package org.eclipse.datatools.connectivity.oda.design.util;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;

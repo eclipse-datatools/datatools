@@ -4,6 +4,7 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.emf.common.util.AbstractEnumerator;
 
 /**

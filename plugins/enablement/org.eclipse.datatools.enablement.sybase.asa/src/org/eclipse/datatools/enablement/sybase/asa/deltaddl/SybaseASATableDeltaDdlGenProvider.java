@@ -10,20 +10,14 @@
  ******************************************************************************/
 package org.eclipse.datatools.enablement.sybase.asa.deltaddl;
 
-import java.util.Map;
-
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.enablement.sybase.asa.ISybaseASADdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.ddl.SybaseASADdlBuilder;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelFactory;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlBuilder;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.enablement.sybase.deltaddl.IDeltaDdlGenProvider;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SybaseASATableDeltaDdlGenProvider extends SybaseASABaseTableDeltaDdlGenProvider implements IDeltaDdlGenProvider,

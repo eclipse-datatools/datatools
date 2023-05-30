@@ -11,7 +11,6 @@
 package org.eclipse.datatools.modelbase.sql.accesscontrol;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

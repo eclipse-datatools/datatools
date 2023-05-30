@@ -84,11 +84,11 @@ public class MySqlTableConstraintLoader extends JDBCTableConstraintLoader {
 					}
 				}
 				if (seq > -1) {
-					columns.put(new Integer(seq),
+					columns.put(Integer.valueOf(seq),
 							findColumn(columnName));
 				}
 				else {
-					columns.put(new Integer(rs.getShort(COLUMN_KEY_SEQ)),
+					columns.put(Integer.valueOf(rs.getShort(COLUMN_KEY_SEQ)),
 							findColumn(rs.getString(COLUMN_COLUMN_NAME)));
 				}
 			}
@@ -171,7 +171,7 @@ public class MySqlTableConstraintLoader extends JDBCTableConstraintLoader {
 					constraints.put(ucName, uc);
 					constraintColumns.put(ucName, new TreeMap());
 				}
-				((Map) constraintColumns.get(ucName)).put(new Integer(rs
+				((Map) constraintColumns.get(ucName)).put(Integer.valueOf(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
 						.getString(COLUMN_PKCOLUMN_NAME)));
 			}
@@ -313,7 +313,7 @@ public class MySqlTableConstraintLoader extends JDBCTableConstraintLoader {
 					constraints.put(fkName, fk);
 					constraintColumns.put(fkName, new TreeMap());
 				}
-				((Map) constraintColumns.get(fkName)).put(new Integer(rs
+				((Map) constraintColumns.get(fkName)).put(Integer.valueOf(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
 								.getString(COLUMN_FKCOLUMN_NAME)));
 			}

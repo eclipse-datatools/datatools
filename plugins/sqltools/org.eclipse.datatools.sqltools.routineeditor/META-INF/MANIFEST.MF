@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.routineeditor;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -16,7 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.debug.core,
  org.eclipse.datatools.sqltools.result
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.sqltools.routineeditor.internal,
  org.eclipse.datatools.sqltools.routineeditor.launching;x-friends:="org.eclipse.datatools.sqltools.debugger.core,org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic",
@@ -24,3 +23,4 @@ Export-Package: org.eclipse.datatools.sqltools.routineeditor.internal,
  org.eclipse.datatools.sqltools.routineeditor.result,
  org.eclipse.datatools.sqltools.routineeditor.util;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.sqltools.routineeditor

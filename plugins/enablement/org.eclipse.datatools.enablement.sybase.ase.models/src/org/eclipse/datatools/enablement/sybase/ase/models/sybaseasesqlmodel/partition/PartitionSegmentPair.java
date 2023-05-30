@@ -7,9 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition;
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
-
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**

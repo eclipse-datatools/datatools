@@ -85,7 +85,7 @@ public class SybaseASEIndexDeltaDdlGenProvider extends AbstractDeltaDdlGenProvid
                             EObject container = element.eContainer();
                             if(container.eContainer() instanceof PrimaryKey)
                                 container = container.eContainer();
-//                            changeMap.put(container, new Integer(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
+//                            changeMap.put(container, Integer.valueOf(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
                             element = (SQLObject)container;
                             if(changeMap.get(element) == null)
                             {//if user add uniqueconstraint and drop it, no delta ddl should generate
@@ -93,11 +93,11 @@ public class SybaseASEIndexDeltaDdlGenProvider extends AbstractDeltaDdlGenProvid
                             }
                             int flag = ((Integer)changeMap.get(element)).intValue();
                             if((flag & (SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP)) == 0)
-                            	changeMap.put(element, new Integer(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
+                            	changeMap.put(element, Integer.valueOf(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
                         }
                         else
                         {
-                            changeMap.put(element, new Integer(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
+                            changeMap.put(element, Integer.valueOf(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP));
                         }
                     }
                 }

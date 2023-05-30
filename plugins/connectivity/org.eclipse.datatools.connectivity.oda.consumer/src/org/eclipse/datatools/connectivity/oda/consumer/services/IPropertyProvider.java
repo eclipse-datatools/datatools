@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.services;
 
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;

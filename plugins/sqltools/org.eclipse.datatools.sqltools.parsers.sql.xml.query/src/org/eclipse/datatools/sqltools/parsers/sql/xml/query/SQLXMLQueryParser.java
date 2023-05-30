@@ -10,16 +10,55 @@ package org.eclipse.datatools.sqltools.parsers.sql.xml.query;
 
 
 
-import org.eclipse.datatools.modelbase.sql.query.*;
-import org.eclipse.datatools.modelbase.sql.query.util.*;
-import org.eclipse.datatools.modelbase.sql.xml.query.*;
-import org.eclipse.datatools.modelbase.sql.datatypes.*;
-import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
-
-
-import lpg.lpgjavaruntime.*;
 import java.util.List;
+
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.query.ColumnName;
+import org.eclipse.datatools.modelbase.sql.query.Grouping;
+import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
+import org.eclipse.datatools.modelbase.sql.query.Predicate;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
+import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
+import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
+import org.eclipse.datatools.modelbase.sql.query.SuperGroupElement;
+import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
+import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
+import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
+import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLAttributeDeclarationItem;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLAttributesDeclaration;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationItem;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentItem;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionItem;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentList;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQueryReturning;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingTo;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElement;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementName;
+import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementNamespace;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
+
+import lpg.lpgjavaruntime.LexStream;
 
 class SQLXMLQueryParser extends  org.eclipse.datatools.sqltools.parsers.sql.query.AbstractSQLQueryParser  //SQLParser
 {
@@ -277,7 +316,7 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setSym1(new Boolean(true)); 
+            setSym1(Boolean.valueOf(true)); 
         }
         break;  
  
@@ -290,7 +329,7 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setSym1(new Boolean(false)); 
+            setSym1(Boolean.valueOf(false)); 
         }
         break;  
  

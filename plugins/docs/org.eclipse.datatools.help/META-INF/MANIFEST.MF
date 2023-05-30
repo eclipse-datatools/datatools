@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %PluginName
 Bundle-SymbolicName: org.eclipse.datatools.help; singleton:=true
-Bundle-Version: 1.7.101.qualifier
+Bundle-Version: 1.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %ProviderName
 Bundle-Localization: plugin
@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.help;visibility:=reexport,
  org.eclipse.ui
 Export-Package: org.eclipse.datatools.help
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.help

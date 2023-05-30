@@ -440,7 +440,7 @@ public class QueryTextUtil
 				if ( inQuote )
 					continue;
 				else
-					indiceList.add( new Integer( i ) );
+					indiceList.add( Integer.valueOf( i ) );
 			}
 		}
 

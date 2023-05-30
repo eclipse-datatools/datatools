@@ -6,13 +6,12 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWAttributeDefinition;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWAttributeDefinition;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 
 /**
  * <!-- begin-user-doc -->

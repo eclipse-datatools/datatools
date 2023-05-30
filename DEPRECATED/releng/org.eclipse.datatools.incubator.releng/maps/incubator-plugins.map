@@ -1,2 +1,0 @@
-plugin@org.eclipse.datatools.enablement.oda.ecore=GIT,tag=v201107221514,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.incubator.git,path=plugins/org.eclipse.datatools.enablement.oda.ecore
-plugin@org.eclipse.datatools.enablement.oda.ecore.ui=GIT,tag=v201107221514,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.incubator.git,path=plugins/org.eclipse.datatools.enablement.oda.ecore.ui

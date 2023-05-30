@@ -10,13 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.expressions.impl;
 
-import org.eclipse.datatools.modelbase.sql.expressions.*;
+import org.eclipse.datatools.modelbase.sql.expressions.QueryExpressionDefault;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsFactory;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SearchConditionDefault;
+import org.eclipse.datatools.modelbase.sql.expressions.ValueExpressionDefault;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

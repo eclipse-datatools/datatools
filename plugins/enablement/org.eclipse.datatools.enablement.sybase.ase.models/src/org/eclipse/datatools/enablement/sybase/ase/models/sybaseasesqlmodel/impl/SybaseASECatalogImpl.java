@@ -13,31 +13,17 @@ import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.Syba
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalog;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalogType;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService;
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase;
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl;
-
-import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -564,9 +550,9 @@ public class SybaseASECatalogImpl extends CatalogImpl implements SybaseASECatalo
             case SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__FOR_PROXY_UPDATE:
                 return isForProxyUpdate() ? Boolean.TRUE : Boolean.FALSE;
             case SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__LOG_IO_SIZE:
-                return new Integer(getLogIOSize());
+                return Integer.valueOf(getLogIOSize());
             case SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__RECOVERY_ORDER:
-                return new Integer(getRecoveryOrder());
+                return Integer.valueOf(getRecoveryOrder());
             case SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__AUTHORIZATION_IDS:
                 return getAuthorizationIds();
             case SybaseasesqlmodelPackage.SYBASE_ASE_CATALOG__CACHE:

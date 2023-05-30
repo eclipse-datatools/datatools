@@ -8,8 +8,6 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
 
-import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sybase ASE View Table</b></em>'.

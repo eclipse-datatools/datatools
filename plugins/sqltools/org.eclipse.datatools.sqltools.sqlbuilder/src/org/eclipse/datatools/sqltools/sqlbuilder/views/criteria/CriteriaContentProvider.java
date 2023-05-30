@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2010 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -13,8 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.criteria;
 import java.lang.ref.WeakReference;
 import java.util.Vector;
 
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-
 import org.eclipse.datatools.modelbase.sql.query.Predicate;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -24,6 +22,7 @@ import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.GridContentProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 
 public class CriteriaContentProvider extends GridContentProvider {
 

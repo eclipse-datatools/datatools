@@ -224,7 +224,7 @@ public class SybaseASEProcedureImpl extends ProcedureImpl implements SybaseASEPr
         switch (featureID)
         {
             case SybaseasesqlmodelPackage.SYBASE_ASE_PROCEDURE__GROUP_NUMBER:
-                return new Integer(getGroupNumber());
+                return Integer.valueOf(getGroupNumber());
             case SybaseasesqlmodelPackage.SYBASE_ASE_PROCEDURE__TRANSACTION_MODE:
                 return getTransactionMode();
             case SybaseasesqlmodelPackage.SYBASE_ASE_PROCEDURE__SYSTEM_PROCEDURE:

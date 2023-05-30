@@ -17,6 +17,7 @@
 package org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.impl;
 
 import java.util.Properties;
+
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;

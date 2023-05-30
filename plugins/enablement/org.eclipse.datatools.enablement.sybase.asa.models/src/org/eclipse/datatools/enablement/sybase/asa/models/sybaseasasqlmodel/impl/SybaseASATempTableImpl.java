@@ -100,7 +100,7 @@ public class SybaseASATempTableImpl extends SybaseASABaseTempTableImpl implement
     {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_TEMP_TABLE__PCTFREE:
-				return new Integer(getPctfree());
+				return Integer.valueOf(getPctfree());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

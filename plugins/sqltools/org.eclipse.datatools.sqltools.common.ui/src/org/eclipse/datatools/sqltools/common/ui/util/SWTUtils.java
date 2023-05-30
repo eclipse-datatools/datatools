@@ -1076,7 +1076,7 @@ public class SWTUtils
         }
         else
         {
-            control.setData(ENABLEKEY, new Boolean(control.getEnabled()));
+            control.setData(ENABLEKEY, Boolean.valueOf(control.getEnabled()));
             control.setEnabled(false);
         }
         if (control instanceof Composite)

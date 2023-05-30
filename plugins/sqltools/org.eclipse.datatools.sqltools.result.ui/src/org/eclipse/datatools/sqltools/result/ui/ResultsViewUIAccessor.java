@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.result.ui;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;
-import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsView;

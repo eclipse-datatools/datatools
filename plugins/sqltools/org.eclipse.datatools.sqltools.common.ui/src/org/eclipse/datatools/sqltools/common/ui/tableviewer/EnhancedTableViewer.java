@@ -97,24 +97,24 @@ public class EnhancedTableViewer extends TableViewer
                                                                     switch (columnType)
                                                                     {
                                                                         case Types.INTEGER:
-                                                                            ret = (new Long(value1.toString())
-                                                                                    .compareTo(new Long(value2
+                                                                            ret = (Long.valueOf(value1.toString())
+                                                                                    .compareTo(Long.valueOf(value2
                                                                                             .toString())));
                                                                             break;
                                                                         case Types.SMALLINT:
-                                                                            ret = (new Integer(value1.toString())
+                                                                            ret = (Integer.valueOf(value1.toString())
                                                                                     .intValue())
-                                                                                    - (new Integer(value2.toString())
+                                                                                    - (Integer.valueOf(value2.toString())
                                                                                             .intValue());
                                                                             break;
                                                                         case Types.DOUBLE:
-                                                                            ret = (new Double(value1.toString())
-                                                                                    .compareTo(new Double(value2
+                                                                            ret = (Double.valueOf(value1.toString())
+                                                                                    .compareTo(Double.valueOf(value2
                                                                                             .toString())));
                                                                             break;
                                                                         case Types.FLOAT:
-                                                                            ret = (new Double(value1.toString())
-                                                                                    .compareTo(new Double(value2
+                                                                            ret = (Double.valueOf(value1.toString())
+                                                                                    .compareTo(Double.valueOf(value2
                                                                                             .toString())));
                                                                             break;
                                                                         case Types.DATE:

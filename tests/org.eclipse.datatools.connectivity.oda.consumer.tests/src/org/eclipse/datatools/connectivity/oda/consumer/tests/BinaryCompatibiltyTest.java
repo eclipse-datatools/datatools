@@ -16,8 +16,6 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.tests;
 
-import java.util.Properties;
-
 import org.eclipse.datatools.connectivity.oda.IConnection;
 
 public class BinaryCompatibiltyTest extends OdaTestCase

@@ -7,9 +7,7 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

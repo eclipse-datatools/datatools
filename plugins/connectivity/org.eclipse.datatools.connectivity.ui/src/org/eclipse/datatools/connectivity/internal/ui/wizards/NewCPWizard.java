@@ -15,7 +15,6 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
-import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.help.IContext;

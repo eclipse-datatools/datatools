@@ -66,17 +66,17 @@ public class MySqlTableColumnLoader extends JDBCTableColumnLoader {
 			if (typeDefinition.isLengthSupported()) {
 				EStructuralFeature feature = type.eClass()
 						.getEStructuralFeature("length"); //$NON-NLS-1$
-				type.eSet(feature, new Integer(rs.getInt(7)));
+				type.eSet(feature, Integer.valueOf(rs.getInt(7)));
 			} else if (typeDefinition.isPrecisionSupported()) {
 				EStructuralFeature feature = type.eClass()
 						.getEStructuralFeature("precision"); //$NON-NLS-1$
-				type.eSet(feature, new Integer(rs.getInt(10)));
+				type.eSet(feature, Integer.valueOf(rs.getInt(10)));
 			}
 
 			if (typeDefinition.isScaleSupported()) {
 				EStructuralFeature feature = type.eClass()
 						.getEStructuralFeature("scale"); //$NON-NLS-1$
-				type.eSet(feature, new Integer(rs.getInt(9)));
+				type.eSet(feature, Integer.valueOf(rs.getInt(9)));
 			}
 			column.setContainedType(type);
 		}

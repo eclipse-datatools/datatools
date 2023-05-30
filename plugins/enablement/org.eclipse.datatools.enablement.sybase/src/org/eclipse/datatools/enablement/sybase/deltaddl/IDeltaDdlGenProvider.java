@@ -3,7 +3,6 @@ package org.eclipse.datatools.enablement.sybase.deltaddl;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlGenerator;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;

@@ -12,18 +12,13 @@ package org.eclipse.datatools.modelbase.sql.routines.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.routines.DataAccess;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
-import org.eclipse.datatools.modelbase.sql.routines.Source;
-import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -189,7 +184,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
-				return new Integer(getMaxResultSets());
+				return Integer.valueOf(getMaxResultSets());
 			case SQLRoutinesPackage.PROCEDURE__OLD_SAVE_POINT:
 				return isOldSavePoint() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLRoutinesPackage.PROCEDURE__RESULT_SET:

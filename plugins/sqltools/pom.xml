@@ -5,39 +5,31 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>sqltools</artifactId>
-  <version>1.14.102-SNAPSHOT</version>
+  <version>1.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>org.eclipse.datatools.sqltools.common.ui</module>
-    <module>org.eclipse.datatools.sqltools.common.ui.nl</module>
     <module>org.eclipse.datatools.sqltools.data.core</module>
     <module>org.eclipse.datatools.sqltools.data.ui</module>
     <module>org.eclipse.datatools.sqltools.db.derby</module>
-    <module>org.eclipse.datatools.sqltools.db.derby.nl</module>
     <module>org.eclipse.datatools.sqltools.db.derby.ui</module>
     <module>org.eclipse.datatools.sqltools.db.generic</module>
-    <module>org.eclipse.datatools.sqltools.db.generic.nl</module>
     <module>org.eclipse.datatools.sqltools.db.generic.ui</module>
     <module>org.eclipse.datatools.sqltools.ddlgen.ui</module>
     <module>org.eclipse.datatools.sqltools.debugger.core</module>
     <module>org.eclipse.datatools.sqltools.debugger.core.ui</module>
     <module>org.eclipse.datatools.sqltools.editor.core</module>
-    <module>org.eclipse.datatools.sqltools.editor.core.nl</module>
     <module>org.eclipse.datatools.sqltools.editor.core.ui</module>
     <module>org.eclipse.datatools.sqltools.parsers.sql</module>
     <module>org.eclipse.datatools.sqltools.parsers.sql.lexer</module>
-    <module>org.eclipse.datatools.sqltools.parsers.sql.nl</module>
     <module>org.eclipse.datatools.sqltools.parsers.sql.query</module>
-    <module>org.eclipse.datatools.sqltools.parsers.sql.query.nl</module>
     <module>org.eclipse.datatools.sqltools.parsers.sql.xml.query</module>
     <module>org.eclipse.datatools.sqltools.plan</module>
-    <module>org.eclipse.datatools.sqltools.plan.nl</module>
     <module>org.eclipse.datatools.sqltools.result</module>
-    <module>org.eclipse.datatools.sqltools.result.nl</module>
     <module>org.eclipse.datatools.sqltools.result.ui</module>
     <module>org.eclipse.datatools.sqltools.routineeditor</module>
     <module>org.eclipse.datatools.sqltools.routineeditor.ui</module>
@@ -45,12 +37,9 @@
     <module>org.eclipse.datatools.sqltools.schemaobjecteditor.ui</module>
     <module>org.eclipse.datatools.sqltools.schemaobjecteditor.ui.pages</module>
     <module>org.eclipse.datatools.sqltools.sql</module>
-    <module>org.eclipse.datatools.sqltools.sql.nl</module>
     <module>org.eclipse.datatools.sqltools.sql.ui</module>
     <module>org.eclipse.datatools.sqltools.sqlbuilder</module>
-    <module>org.eclipse.datatools.sqltools.sqlbuilder.nl</module>
     <module>org.eclipse.datatools.sqltools.sqleditor</module>
-    <module>org.eclipse.datatools.sqltools.sqleditor.nl</module>
     <module>org.eclipse.datatools.sqltools.sqlscrapbook</module>
     <module>org.eclipse.datatools.sqltools.tabledataeditor</module>
   </modules>

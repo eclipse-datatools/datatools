@@ -870,7 +870,7 @@ public class LUWCatalogDatabase extends LUWDatabaseImpl implements ICatalogObjec
 				String source = eAnnotation.getSource();
 				if (source != null && source.equals(DatabaseREProvider.LOAD_PROPERTY)){
 					String batchLoadStr = (String) eAnnotation.getDetails().get(DatabaseREProvider.IS_BATCH_LOAD);
-					return new Boolean(batchLoadStr).booleanValue();
+					return Boolean.valueOf(batchLoadStr).booleanValue();
 				}
 	        }
 		} catch(Exception e){
@@ -886,7 +886,7 @@ public class LUWCatalogDatabase extends LUWDatabaseImpl implements ICatalogObjec
 				String source = eAnnotation.getSource();
 				if (source != null && source.equals(DatabaseREProvider.LOAD_PROPERTY)){
 					String loadOption = (String) eAnnotation.getDetails().get(DatabaseREProvider.LOAD_OPTIONS);
-					return new Integer(loadOption).intValue();
+					return Integer.valueOf(loadOption).intValue();
 				}
 	        }
 		}catch(Exception e){
@@ -1042,7 +1042,7 @@ public class LUWCatalogDatabase extends LUWDatabaseImpl implements ICatalogObjec
 				if ( pnum != curpartnum ) {
 					curpartnum = pnum;
 					names = new ArrayList<String>();
-					pmap.put( new Integer( pnum ), names );
+					pmap.put( Integer.valueOf( pnum ), names );
 				}
 				
 				names.add( tsname );

@@ -14,9 +14,9 @@ import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.internal.ui.viewer.ResultSetViewer;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Widget;
-import org.eclipse.jface.action.MenuManager;
 
 /**
  * Extends ResultSetViewer to allow extensions to inherit the default result set viewer

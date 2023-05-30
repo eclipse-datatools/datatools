@@ -10,15 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ingres.internal.ui.core;
 
-import java.util.HashMap;
-
-import org.eclipse.datatools.enablement.ingres.internal.ui.plan.IngresExplainSQLActionDelegate;
 import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
-import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
 
 /**

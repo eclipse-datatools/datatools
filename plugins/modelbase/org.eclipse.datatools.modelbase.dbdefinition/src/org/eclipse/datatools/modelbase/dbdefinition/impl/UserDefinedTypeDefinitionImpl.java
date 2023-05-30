@@ -14,7 +14,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -231,7 +230,7 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				return isStructuredTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

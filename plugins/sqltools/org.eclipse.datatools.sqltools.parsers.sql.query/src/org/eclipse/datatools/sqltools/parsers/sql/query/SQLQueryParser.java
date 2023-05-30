@@ -10,15 +10,47 @@ package org.eclipse.datatools.sqltools.parsers.sql.query;
 
 
 
-import org.eclipse.datatools.modelbase.sql.datatypes.*;
-import org.eclipse.datatools.modelbase.sql.query.*;
-import org.eclipse.datatools.modelbase.sql.query.helper.*;
-import org.eclipse.datatools.modelbase.sql.query.util.*;
-
-
-import lpg.lpgjavaruntime.*;
 import java.util.List;
+
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.query.ColumnName;
+import org.eclipse.datatools.modelbase.sql.query.Grouping;
+import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
+import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeOnCondition;
+import org.eclipse.datatools.modelbase.sql.query.MergeOperationSpecification;
+import org.eclipse.datatools.modelbase.sql.query.MergeSourceTable;
+import org.eclipse.datatools.modelbase.sql.query.MergeTargetTable;
+import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
+import org.eclipse.datatools.modelbase.sql.query.Predicate;
+import org.eclipse.datatools.modelbase.sql.query.ProcedureReference;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
+import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
+import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
+import org.eclipse.datatools.modelbase.sql.query.SuperGroupElement;
+import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
+import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
+import org.eclipse.datatools.modelbase.sql.query.TableReference;
+import org.eclipse.datatools.modelbase.sql.query.UpdatabilityExpression;
+import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
+import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
+import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
+
+import lpg.lpgjavaruntime.LexStream;
 
 class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 {
@@ -315,7 +347,7 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setSym1(new Boolean(true)); 
+            setSym1(Boolean.valueOf(true)); 
         }
         break;  
  
@@ -328,7 +360,7 @@ public void ruleAction( int ruleNumber)
                 setSym1(null);
                 break;
             }
-            setSym1(new Boolean(false)); 
+            setSym1(Boolean.valueOf(false)); 
         }
         break;  
  

@@ -32,7 +32,6 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.enablement.ibm.IBMPluginActivator;
 import org.eclipse.datatools.enablement.ibm.catalog.IDatabaseObject;
-import org.eclipse.datatools.enablement.ibm.ddl.DdlGenerationMessages;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;

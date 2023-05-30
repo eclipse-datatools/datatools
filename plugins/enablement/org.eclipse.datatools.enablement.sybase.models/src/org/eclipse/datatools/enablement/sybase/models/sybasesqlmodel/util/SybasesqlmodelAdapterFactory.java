@@ -6,29 +6,29 @@
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.util;
 
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.*;
-
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizationIdentifier;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseIndexMember;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
-
 import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
-
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
-
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.DerivedTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;

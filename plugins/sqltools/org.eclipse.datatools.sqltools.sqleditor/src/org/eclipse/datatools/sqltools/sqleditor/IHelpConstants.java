@@ -9,8 +9,6 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
-
 /**
  * 
  * This file contains all the context help ID that are used by following DTP plugins:

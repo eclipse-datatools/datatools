@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -13,8 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.graph.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.gef.commands.Command;
-
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
@@ -22,6 +20,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.helper.JoinHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.gef.commands.Command;
 
 public class CreateJoinCommand extends Command {
 

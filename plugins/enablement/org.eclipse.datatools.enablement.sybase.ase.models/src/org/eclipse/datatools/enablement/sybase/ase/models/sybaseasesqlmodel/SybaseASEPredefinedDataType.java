@@ -9,7 +9,6 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataType;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**

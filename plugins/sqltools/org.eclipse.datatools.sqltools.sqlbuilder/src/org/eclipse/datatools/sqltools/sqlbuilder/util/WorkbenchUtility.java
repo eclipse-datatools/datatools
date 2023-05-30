@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -437,7 +437,7 @@ public class WorkbenchUtility {
     	boolean found = true;
     	int searchIndex = 0;
     	java.util.List segmentList = new ArrayList();
-    	segmentList.add(new Integer(0));
+    	segmentList.add(Integer.valueOf(0));
     	while (found)
     	{
     		int index = text.indexOf('"', searchIndex);
@@ -447,7 +447,7 @@ public class WorkbenchUtility {
     		}
     		if (index > 0)
     		{
-    			segmentList.add(new Integer(index));
+    			segmentList.add(Integer.valueOf(index));
     			searchIndex = index + 1;
     		}
     	}    	

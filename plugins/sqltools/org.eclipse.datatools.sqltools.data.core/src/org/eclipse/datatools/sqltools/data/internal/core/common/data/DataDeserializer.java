@@ -36,25 +36,25 @@ public class DataDeserializer {
         
         try {
             if (type==Types.TINYINT)
-                return new Byte( (byte)intf.parse(val).intValue() );
+                return Byte.valueOf( (byte)intf.parse(val).intValue() );
             else if (type==Types.SMALLINT)
-                return new Short( (short)intf.parse(val).intValue() );
+                return Short.valueOf( (short)intf.parse(val).intValue() );
             else if (type==Types.INTEGER)
-                return new Integer( intf.parse(val).intValue() );
+                return Integer.valueOf( intf.parse(val).intValue() );
             else if (type==Types.BIGINT)            	
                 return BigIntegerFormat.getInstance().parse(val);
             else if (type==Types.REAL)
-                return new Float( ff.parse(val).floatValue() );
+                return Float.valueOf( ff.parse(val).floatValue() );
             else if (type==Types.FLOAT)
-                return new Double( ff.parse(val).doubleValue() );
+                return Double.valueOf( ff.parse(val).doubleValue() );
             else if (type==Types.DOUBLE)
-                return new Double( ff.parse(val).doubleValue() );
+                return Double.valueOf( ff.parse(val).doubleValue() );
             else if (type==Types.DECIMAL)
             	return BigDecimalFormat.getInstance().parse(val);
             else if (type==Types.NUMERIC)
             	return BigDecimalFormat.getInstance().parse(val);
             else if (type==Types.BIT)
-                return new Boolean(val);
+                return Boolean.valueOf(val);
             else if (type==Types.CHAR)
                 return val;
             else if (type==Types.VARCHAR)

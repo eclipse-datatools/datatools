@@ -13,7 +13,6 @@ import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASAUtil;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumn;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelFactory;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
@@ -233,7 +232,7 @@ public class AuthorizedObjectPrivilegeASALoader {
 				
 //				if(updateColAuth == 'Y' || updateColAuth == 'G')
 //				{
-//					results.add(new Integer(tableId));
+//					results.add(Integer.valueOf(tableId));
 //				}
 			}
 		}

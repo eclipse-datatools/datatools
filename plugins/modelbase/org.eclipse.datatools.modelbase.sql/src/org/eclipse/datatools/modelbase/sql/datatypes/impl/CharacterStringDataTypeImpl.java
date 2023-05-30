@@ -10,20 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -319,7 +314,7 @@ public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__LENGTH:
-				return new Integer(getLength());
+				return Integer.valueOf(getLength());
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__COERCIBILITY:
 				return getCoercibility();
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE__FIXED_LENGTH:

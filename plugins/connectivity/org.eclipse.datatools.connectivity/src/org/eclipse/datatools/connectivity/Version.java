@@ -160,7 +160,7 @@ public class Version implements Comparable {
 	 */
 	public int hashCode() {
 		if (mHash == null) {
-			mHash = new Integer(toString().hashCode());
+			mHash = Integer.valueOf(toString().hashCode());
 		}
 		return mHash.intValue();
 	}

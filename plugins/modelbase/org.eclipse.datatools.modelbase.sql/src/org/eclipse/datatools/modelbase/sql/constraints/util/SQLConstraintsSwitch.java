@@ -12,7 +12,18 @@ package org.eclipse.datatools.modelbase.sql.constraints.util;
 
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.constraints.*;
+import org.eclipse.datatools.modelbase.sql.constraints.Assertion;
+import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
+import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
+import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
+import org.eclipse.datatools.modelbase.sql.constraints.IndexExpression;
+import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
+import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
+import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
+import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;

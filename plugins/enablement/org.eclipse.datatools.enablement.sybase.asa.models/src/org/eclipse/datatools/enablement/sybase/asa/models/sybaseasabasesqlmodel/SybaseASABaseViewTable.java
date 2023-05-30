@@ -7,9 +7,7 @@
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
-
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
-import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 
 /**
  * <!-- begin-user-doc -->

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -233,7 +232,7 @@ public class AuthorizationIdentifierASALoader {
 				
 //				if(updateColAuth == 'Y' || updateColAuth == 'G')
 //				{
-//					results.add(new Integer(tableId));
+//					results.add(Integer.valueOf(tableId));
 //				}
 			}
 		}

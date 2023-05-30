@@ -9,23 +9,13 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.par
 import java.util.Collection;
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
-
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionNumInSegments;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -135,7 +125,7 @@ public class PartitionNumInSegmentsImpl extends SQLObjectImpl implements Partiti
         switch (featureID)
         {
             case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__PARTITION_NUMB:
-                return new Integer(getPartitionNumb());
+                return Integer.valueOf(getPartitionNumb());
             case PartitionPackage.PARTITION_NUM_IN_SEGMENTS__SEGMENT:
                 return getSegment();
         }

@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.export;
 
-import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
-
 /**
  * The constants for save/export result set(s) function
  * 

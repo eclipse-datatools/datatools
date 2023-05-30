@@ -8,6 +8,10 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWColumn;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ColumnImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -16,12 +20,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ColumnImpl;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWColumn;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWSecurityLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -356,7 +354,7 @@ public class LUWColumnImpl extends DB2ColumnImpl implements LUWColumn {
 			case LUWPackage.LUW_COLUMN__COMPRESSION:
 				return getCompression();
 			case LUWPackage.LUW_COLUMN__INLINE_LENGTH:
-				return new Integer(getInlineLength());
+				return Integer.valueOf(getInlineLength());
 			case LUWPackage.LUW_COLUMN__HIDDEN:
 				return isHidden() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_COLUMN__SECURITY_LABEL:

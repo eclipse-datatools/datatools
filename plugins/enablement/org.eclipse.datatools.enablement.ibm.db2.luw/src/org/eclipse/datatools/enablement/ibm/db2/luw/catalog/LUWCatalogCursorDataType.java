@@ -17,18 +17,17 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModule;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRowDataType;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.LUWCursorDataTypeImpl;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModule;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRowDataType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.LUWCursorDataTypeImpl;
 
 public class LUWCatalogCursorDataType extends LUWCursorDataTypeImpl implements ICatalogObject {
 	public void refresh() {

@@ -116,11 +116,11 @@ public class TreePlanDrawer extends AbstractPlanDrawer
         //Keep track of how many figures are created
         if (_nodePainted.size() <= level)
         {
-            _nodePainted.add(new Integer(1));
+            _nodePainted.add(Integer.valueOf(1));
         }
         else
         {
-            _nodePainted.set(level, new Integer(((Integer) _nodePainted.get(level)).intValue() + 1));
+            _nodePainted.set(level, Integer.valueOf(((Integer) _nodePainted.get(level)).intValue() + 1));
         }
         int x = (((Integer) _nodePainted.get(level)).intValue() - 1) * (WIDTH + HORIZONTAL_SPACE) + levelStart;
         

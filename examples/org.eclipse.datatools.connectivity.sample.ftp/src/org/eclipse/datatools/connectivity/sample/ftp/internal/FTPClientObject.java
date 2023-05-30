@@ -11,7 +11,6 @@
 package org.eclipse.datatools.connectivity.sample.ftp.internal;
 
 import org.apache.commons.net.ftp.FTPClient;
-
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 
 /**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

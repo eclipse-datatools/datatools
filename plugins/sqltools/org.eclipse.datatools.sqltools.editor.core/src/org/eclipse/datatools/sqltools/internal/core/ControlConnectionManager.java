@@ -354,12 +354,12 @@ public class ControlConnectionManager implements IControlConnectionManager, ICat
         if(skippedConnections == null)
         {
             skippedConnections = new HashSet();
-            skippedConnections.add(new Integer(connid));
+            skippedConnections.add(Integer.valueOf(connid));
             _skippedConnections.put(serverIdentifier, skippedConnections);
         }
         else
         {
-            skippedConnections.add(new Integer(connid));
+            skippedConnections.add(Integer.valueOf(connid));
         }
     }
 
@@ -372,7 +372,7 @@ public class ControlConnectionManager implements IControlConnectionManager, ICat
         HashSet skippedConnections = (HashSet)_skippedConnections.get(serverIdentifier);
         if(skippedConnections != null)
         {
-            skippedConnections.remove(new Integer(connid));
+            skippedConnections.remove(Integer.valueOf(connid));
         }
     }
 

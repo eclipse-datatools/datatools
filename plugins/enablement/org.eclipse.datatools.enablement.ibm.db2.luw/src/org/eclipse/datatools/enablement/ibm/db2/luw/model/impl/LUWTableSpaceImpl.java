@@ -7,24 +7,12 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.UnitType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.AverageTableSizeType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.FileSystemCachingType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.AverageTableSizeType;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.FileSystemCachingType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWBufferPool;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartition;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
@@ -40,6 +28,17 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.ManagementType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.PageSizeType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.SystemType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.TableSpaceType;
+import org.eclipse.datatools.enablement.ibm.db2.model.UnitType;
+import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -1932,27 +1931,27 @@ public class LUWTableSpaceImpl extends SQLObjectImpl implements LUWTableSpace {
 			case LUWPackage.LUW_TABLE_SPACE__MANAGEMENT_TYPE:
 				return getManagementType();
 			case LUWPackage.LUW_TABLE_SPACE__EXTENT_SIZE:
-				return new Integer(getExtentSize());
+				return Integer.valueOf(getExtentSize());
 			case LUWPackage.LUW_TABLE_SPACE__PRE_FETCH_SIZE:
-				return new Integer(getPreFetchSize());
+				return Integer.valueOf(getPreFetchSize());
 			case LUWPackage.LUW_TABLE_SPACE__OVERHEAD:
-				return new Double(getOverhead());
+				return Double.valueOf(getOverhead());
 			case LUWPackage.LUW_TABLE_SPACE__TRANSFER_RATE:
-				return new Double(getTransferRate());
+				return Double.valueOf(getTransferRate());
 			case LUWPackage.LUW_TABLE_SPACE__RECOVER_DROPPED_TABLE_ON:
 				return isRecoverDroppedTableOn() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_TABLE_SPACE__PAGE_SIZE:
 				return getPageSize();
 			case LUWPackage.LUW_TABLE_SPACE__SIZE:
-				return new Long(getSize());
+				return Long.valueOf(getSize());
 			case LUWPackage.LUW_TABLE_SPACE__AUTO_RESIZE:
 				return isAutoResize() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_TABLE_SPACE__INITIAL_SIZE:
-				return new Long(getInitialSize());
+				return Long.valueOf(getInitialSize());
 			case LUWPackage.LUW_TABLE_SPACE__INCREASE_SIZE:
-				return new Long(getIncreaseSize());
+				return Long.valueOf(getIncreaseSize());
 			case LUWPackage.LUW_TABLE_SPACE__MAXIMUM_SIZE:
-				return new Long(getMaximumSize());
+				return Long.valueOf(getMaximumSize());
 			case LUWPackage.LUW_TABLE_SPACE__INITIAL_SIZE_UNIT:
 				return getInitialSizeUnit();
 			case LUWPackage.LUW_TABLE_SPACE__MAXIMUM_SIZE_UNIT:
@@ -1960,21 +1959,21 @@ public class LUWTableSpaceImpl extends SQLObjectImpl implements LUWTableSpace {
 			case LUWPackage.LUW_TABLE_SPACE__INCREASE_SIZE_UNIT:
 				return getIncreaseSizeUnit();
 			case LUWPackage.LUW_TABLE_SPACE__INCREASE_PERCENT:
-				return new Integer(getIncreasePercent());
+				return Integer.valueOf(getIncreasePercent());
 			case LUWPackage.LUW_TABLE_SPACE__FILE_SYSTEM_CACHING:
 				return getFileSystemCaching();
 			case LUWPackage.LUW_TABLE_SPACE__AVERAGE_SEEK_TIME:
-				return new Double(getAverageSeekTime());
+				return Double.valueOf(getAverageSeekTime());
 			case LUWPackage.LUW_TABLE_SPACE__ROTATION_SPEED:
-				return new Integer(getRotationSpeed());
+				return Integer.valueOf(getRotationSpeed());
 			case LUWPackage.LUW_TABLE_SPACE__TRANSFER:
-				return new Double(getTransfer());
+				return Double.valueOf(getTransfer());
 			case LUWPackage.LUW_TABLE_SPACE__SYSTEM_TYPE:
 				return getSystemType();
 			case LUWPackage.LUW_TABLE_SPACE__AVERAGE_TABLE_SIZE:
 				return getAverageTableSize();
 			case LUWPackage.LUW_TABLE_SPACE__EXTERNAL_CONTAINER_COUNT:
-				return new Integer(getExternalContainerCount());
+				return Integer.valueOf(getExternalContainerCount());
 			case LUWPackage.LUW_TABLE_SPACE__INHERIT_OVERHEAD:
 				return isInheritOverhead() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_TABLE_SPACE__INHERIT_TRANSFERATE:

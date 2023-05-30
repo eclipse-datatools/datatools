@@ -14,9 +14,9 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.designsession;
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *	An internal utility class to encapsulate calls to java.util.logging methods.
@@ -82,7 +82,7 @@ public class DesignerLogger
         if ( ! isLoggingEnterExitLevel() )
             return;
         
-        Object param1 = new Integer( intParam );
+        Object param1 = Integer.valueOf( intParam );
         m_logger.entering( sourceClass, sourceMethod, param1 );
     }
     
@@ -116,7 +116,7 @@ public class DesignerLogger
         if ( ! isLoggingEnterExitLevel() )
             return;     // no need to trigger create object instance
         
-        Object param1 = new Integer( intParam );
+        Object param1 = Integer.valueOf( intParam );
         exiting( sourceClass, sourceMethod, param1 );
     }
 

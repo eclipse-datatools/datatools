@@ -21,14 +21,11 @@ import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ExpressionParameters;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

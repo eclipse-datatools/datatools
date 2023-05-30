@@ -8,7 +8,6 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseForeignKey;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;

@@ -9,11 +9,10 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model;
 
 import java.util.Date;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
 
 /**
  * <!-- begin-user-doc -->

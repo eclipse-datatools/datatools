@@ -11,11 +11,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
-
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin;
 import org.eclipse.datatools.modelbase.sql.schema.provider.TypedElementItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;

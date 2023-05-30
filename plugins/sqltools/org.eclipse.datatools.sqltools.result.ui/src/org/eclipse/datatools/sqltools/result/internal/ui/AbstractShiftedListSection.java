@@ -271,13 +271,13 @@ public abstract class AbstractShiftedListSection
         for (int i = 0; leftItems != null && i < leftItems.length; i++)
         {
             _leftList.add(leftItems[i]);
-            _leftList.setData(leftItems[i], new Integer(i));
+            _leftList.setData(leftItems[i], Integer.valueOf(i));
         }
 
         for (int i = 0; rightItems != null && i < rightItems.length; i++)
         {
             _rightList.add(rightItems[i]);
-            _rightList.setData(rightItems[i], new Integer(-1));
+            _rightList.setData(rightItems[i], Integer.valueOf(-1));
         }
         setButtonStatus();
     }
@@ -288,7 +288,7 @@ public abstract class AbstractShiftedListSection
         for (int i = 0; i < selectedItems.length; i++)
         {
             String name = selectedItems[i];
-            _leftList.setData(name, new Integer(i));
+            _leftList.setData(name, Integer.valueOf(i));
         }
     }
 
@@ -427,7 +427,7 @@ public abstract class AbstractShiftedListSection
         {
             String name = selectedItems[i];
             _rightList.add(name);
-            _rightList.setData(name, new Integer(-1));
+            _rightList.setData(name, Integer.valueOf(-1));
             _leftList.remove(name);
             movedNum++;
         }
@@ -451,7 +451,7 @@ public abstract class AbstractShiftedListSection
         {
             String name = selectedItems[i];
             _rightList.add(name);
-            _rightList.setData(name, new Integer(-1));
+            _rightList.setData(name, Integer.valueOf(-1));
             _leftList.remove(name);
         }
         setButtonStatus();

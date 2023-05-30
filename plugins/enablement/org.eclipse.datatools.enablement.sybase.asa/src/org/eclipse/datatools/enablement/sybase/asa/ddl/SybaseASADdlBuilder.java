@@ -65,7 +65,6 @@ import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
-import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;

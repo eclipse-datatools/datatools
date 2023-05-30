@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Data Tools Documentation Plug-in
+Bundle-Name: DTP Documentation Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.doc.isv; singleton:=true
-Bundle-Version: 1.14.102.qualifier
+Bundle-Version: 1.15.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: Eclipse Data Tools Platform
-Bundle-Localization: plugin
 Require-Bundle: org.eclipse.help
+Automatic-Module-Name: org.eclipse.datatools.doc.isv

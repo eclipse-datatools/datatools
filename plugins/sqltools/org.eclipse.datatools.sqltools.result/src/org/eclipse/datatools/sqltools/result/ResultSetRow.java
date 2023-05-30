@@ -24,8 +24,8 @@ import org.eclipse.datatools.sqltools.result.internal.utils.HexHelper;
  * 
  * <pre>
  * Object[] data = new Object[3];
- * data[0] = new Integer(1);
- * data[1] = new Integer(23);
+ * data[0] = Integer.valueOf(1);
+ * data[1] = Integer.valueOf(23);
  * data[2] = new String(&quot;Jack&quot;);
  * IResultSetRow row = new ResultSetRow(data);
  * </pre>
@@ -35,8 +35,8 @@ import org.eclipse.datatools.sqltools.result.internal.utils.HexHelper;
  * 
  * <pre>
  * IResultSetRow row = new ResultSetRow(3);
- * row.setData(new Integer(1), 0);
- * row.setData(new Integer(23), 1);
+ * row.setData(Integer.valueOf(1), 0);
+ * row.setData(Integer.valueOf(23), 1);
  * row.setData(new String(&quot;Jack&quot;), 2);
  * </pre>
  * 

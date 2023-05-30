@@ -18,15 +18,14 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWFactory;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWGenericWrapper;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWOption;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.LUWGenericWrapperImpl;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * @author gsauere

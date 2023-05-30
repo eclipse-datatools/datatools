@@ -10,12 +10,11 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
-import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.osgi.framework.Bundle;
+
+import junit.framework.Assert;
+import junit.framework.TestCase;
 
 
 /**

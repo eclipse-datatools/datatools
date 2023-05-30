@@ -6,9 +6,7 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
-import java.util.List;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
-
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 
 /**

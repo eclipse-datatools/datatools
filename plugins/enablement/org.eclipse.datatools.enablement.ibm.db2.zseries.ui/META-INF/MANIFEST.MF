@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.zseries.ui;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui,
@@ -14,5 +14,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.enablement.ibm.db2.zseries,
  org.eclipse.datatools.enablement.ibm.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.datatools.enablement.ibm.db2.zseries.ui

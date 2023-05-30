@@ -12,15 +12,11 @@ import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.constraints.IndexExpression;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.provider.SQLObjectItemProvider;
 import org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

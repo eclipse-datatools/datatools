@@ -11,8 +11,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.jdbc;
 
-import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
-
 /**
  * Constant definitions for property keys used to identify DB connection profile
  * properties.

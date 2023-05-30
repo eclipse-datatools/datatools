@@ -6,25 +6,19 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRowDataType;
-
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWRowDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.ConstructedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.Field;
 import org.eclipse.datatools.modelbase.sql.datatypes.RowDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

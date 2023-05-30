@@ -15,13 +15,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
-
-import junit.framework.TestCase;
-
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.TimeZone;
+
+import junit.framework.TestCase;
 
 /**
  * 
@@ -45,8 +42,8 @@ public class DateUtilTest extends TestCase
 				
 		// input Data
 		testObject = new Object[]{
-				new Integer( 1 ),
-				new Integer( 0 ),
+				Integer.valueOf( 1 ),
+				Integer.valueOf( 0 ),
 				BigDecimal.valueOf( Integer.MAX_VALUE ),
 				BigDecimal.valueOf( Integer.MAX_VALUE + 1 ),
 				BigDecimal.valueOf( Integer.MIN_VALUE ),

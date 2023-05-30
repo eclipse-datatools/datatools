@@ -8,13 +8,9 @@ package org.eclipse.datatools.modelbase.sql.constraints.impl;
 
 import org.eclipse.datatools.modelbase.sql.constraints.IndexExpression;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

@@ -7,7 +7,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.datatools.common.doc.user; singleton:
  =true
-Bundle-Version: 1.14.102.qualifier
+Bundle-Version: 1.15.0.qualifier
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.help.base

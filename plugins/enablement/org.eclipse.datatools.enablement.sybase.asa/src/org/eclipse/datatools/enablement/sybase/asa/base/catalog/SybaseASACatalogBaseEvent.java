@@ -22,7 +22,6 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseEventImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 

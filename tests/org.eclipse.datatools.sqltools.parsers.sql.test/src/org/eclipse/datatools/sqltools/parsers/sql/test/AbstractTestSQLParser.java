@@ -16,8 +16,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParseErrorInfo;
@@ -25,6 +23,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserManager;
+
+import junit.framework.TestCase;
 
 /**
  * Base TestCase for <code>SQLParser</code>.

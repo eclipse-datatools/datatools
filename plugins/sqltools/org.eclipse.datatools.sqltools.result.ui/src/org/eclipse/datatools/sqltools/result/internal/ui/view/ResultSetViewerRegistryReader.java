@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui.view;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;

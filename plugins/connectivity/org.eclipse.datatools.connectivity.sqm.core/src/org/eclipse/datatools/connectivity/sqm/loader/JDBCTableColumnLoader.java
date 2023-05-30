@@ -376,7 +376,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("length"); //$NON-NLS-1$
 					pdt.eSet(feature,
-							new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+							Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));
 				}
 				if (pdtd.isPrecisionSupported()) {
 					EStructuralFeature feature = null;
@@ -387,14 +387,14 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				        feature = pdt.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
 				     }
 				     if (feature != null) {
-				          pdt.eSet(feature, new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));                                        
+				          pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));                                        
 				     }
 				}
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("scale"); //$NON-NLS-1$
 					if (feature != null) { // MISSING IF STATEMENT
-						pdt.eSet(feature, new Integer(rs
+						pdt.eSet(feature, Integer.valueOf(rs
 							.getInt(COLUMN_DECIMAL_DIGITS)));
 					}
 				}

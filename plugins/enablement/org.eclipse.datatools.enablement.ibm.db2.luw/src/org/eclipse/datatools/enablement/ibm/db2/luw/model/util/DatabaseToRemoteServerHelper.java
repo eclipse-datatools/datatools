@@ -10,12 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.util;
 
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.RelationalRemoteServer;
 import org.eclipse.datatools.enablement.ibm.db2.model.util.ReverseNavigationHelper;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * @author ellersr

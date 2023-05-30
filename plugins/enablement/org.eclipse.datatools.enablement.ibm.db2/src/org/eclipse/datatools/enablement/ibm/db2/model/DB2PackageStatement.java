@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.ibm.db2.model;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 
 /**

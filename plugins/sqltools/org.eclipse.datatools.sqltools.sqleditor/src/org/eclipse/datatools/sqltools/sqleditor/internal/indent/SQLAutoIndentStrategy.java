@@ -175,20 +175,20 @@ public class SQLAutoIndentStrategy extends DefaultIndentLineAutoEditStrategy
         _closeBeginEnd = preferenceStore.getBoolean(PreferenceConstants.SQLEDITOR_CLOSE_BEGIN_END);
         if (_closeBeginEnd == true)
         {
-            _autoCompletionMap.put(new Integer(Symbols.Tokenbegin), Symbols.beginTrail);
-            _autoCompletionMap.put(new Integer(Symbols.TokenBEGIN), Symbols.BEGINTrail);
+            _autoCompletionMap.put(Integer.valueOf(Symbols.Tokenbegin), Symbols.beginTrail);
+            _autoCompletionMap.put(Integer.valueOf(Symbols.TokenBEGIN), Symbols.BEGINTrail);
         }
 
     }
 
     private boolean isSupportedAutoCompletionToken(int token)
     {
-        return _autoCompletionMap.containsKey(new Integer(token));
+        return _autoCompletionMap.containsKey(Integer.valueOf(token));
     }
 
     private String getAutoCompletionTrail(int token)
     {
-        return (String) _autoCompletionMap.get(new Integer(token));
+        return (String) _autoCompletionMap.get(Integer.valueOf(token));
     }
 
 

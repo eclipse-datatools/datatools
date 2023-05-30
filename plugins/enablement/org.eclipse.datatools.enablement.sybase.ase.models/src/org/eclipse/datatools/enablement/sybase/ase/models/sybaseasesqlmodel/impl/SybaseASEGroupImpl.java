@@ -8,19 +8,13 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.imp
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEGroup;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizationIdentifier;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.GroupImpl;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

@@ -16,9 +16,7 @@
 package org.eclipse.datatools.connectivity.oda.design;
 
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.util.FeatureMap;
 
 /**

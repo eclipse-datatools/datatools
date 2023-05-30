@@ -6,19 +6,16 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import java.util.Collection;
+
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.PLSQLPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.PLSQLPackageBody;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Routine;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2RoutineExtension;
-import org.eclipse.datatools.enablement.ibm.db2.model.SourceDialect;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.PLSQLPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.PLSQLPackageBody;
-
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.routines.DataAccess;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
@@ -27,19 +24,13 @@ import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.Source;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -1339,7 +1330,7 @@ public class PLSQLPackageImpl extends LUWModuleImpl implements PLSQLPackage {
 			case LUWPackage.PLSQL_PACKAGE__SPECIAL_REGISTER:
 				return getSpecialRegister();
 			case LUWPackage.PLSQL_PACKAGE__CHANGE_STATE:
-				return new Integer(getChangeState());
+				return Integer.valueOf(getChangeState());
 			case LUWPackage.PLSQL_PACKAGE__DEBUG_ID:
 				return getDebugId();
 			case LUWPackage.PLSQL_PACKAGE__PROGRAM_TYPE:

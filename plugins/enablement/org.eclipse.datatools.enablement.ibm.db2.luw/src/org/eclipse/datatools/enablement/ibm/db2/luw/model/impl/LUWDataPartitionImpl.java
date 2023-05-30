@@ -8,23 +8,21 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartition;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionElement;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -532,7 +530,7 @@ public class LUWDataPartitionImpl extends SQLObjectImpl implements LUWDataPartit
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LUWPackage.LUW_DATA_PARTITION__ID:
-				return new Integer(getId());
+				return Integer.valueOf(getId());
 			case LUWPackage.LUW_DATA_PARTITION__LOW_INCLUSIVE:
 				return isLowInclusive() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_DATA_PARTITION__HIGH_INCLUSIVE:

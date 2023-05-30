@@ -19,7 +19,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileQuery;
-import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
 
 import junit.framework.TestCase;
 

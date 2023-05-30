@@ -17,8 +17,8 @@ package org.eclipse.datatools.connectivity.oda.spec.valueexpr;
 import java.sql.Types;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
+import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
 
 /**

@@ -23,10 +23,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.loader.CatalogFilterProvider;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.Messages;
-import org.eclipse.datatools.connectivity.sqm.loader.SchemaFilterProvider;
 import org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 

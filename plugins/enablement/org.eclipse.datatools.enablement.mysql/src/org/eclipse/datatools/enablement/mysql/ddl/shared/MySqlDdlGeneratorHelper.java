@@ -569,60 +569,60 @@ public class MySqlDdlGeneratorHelper implements DDLGenerator {
                  int mask = EngineeringOptionID.TABLE | EngineeringOptionID.INDEX | EngineeringOptionID.VIEW | 
                           EngineeringOptionID.TRIGGER | EngineeringOptionID.UNIQUE_CONSTRAINT | 
                           EngineeringOptionID.CHECK_CONSTRAINT | EngineeringOptionID.FOREIGN_KEY; 
-                 ref.data.put(Database.class, new Integer(mask));
+                 ref.data.put(Database.class, Integer.valueOf(mask));
 
                  //Schema
                  mask = EngineeringOptionID.TABLE | EngineeringOptionID.INDEX | EngineeringOptionID.VIEW | 
                           EngineeringOptionID.TRIGGER | EngineeringOptionID.UNIQUE_CONSTRAINT | 
                           EngineeringOptionID.CHECK_CONSTRAINT | EngineeringOptionID.FOREIGN_KEY; 
-                 ref.data.put(Schema.class, new Integer(mask));
+                 ref.data.put(Schema.class, Integer.valueOf(mask));
                 
                  //Table
                  mask = EngineeringOptionID.TABLE | EngineeringOptionID.INDEX | EngineeringOptionID.TRIGGER | 
                           EngineeringOptionID.UNIQUE_CONSTRAINT | EngineeringOptionID.CHECK_CONSTRAINT | 
                           EngineeringOptionID.FOREIGN_KEY;
-                 ref.data.put(Table.class, new Integer(mask));
+                 ref.data.put(Table.class, Integer.valueOf(mask));
                  
                  
                  //Index
                  mask = EngineeringOptionID.INDEX;
-                 ref.data.put(Index.class, new Integer(mask));
+                 ref.data.put(Index.class, Integer.valueOf(mask));
 
                  //Procedure
                  mask = EngineeringOptionID.PROCEDURE;
-                 ref.data.put(Procedure.class, new Integer(mask));
+                 ref.data.put(Procedure.class, Integer.valueOf(mask));
 
                  //UserDefinedFunction
                  mask = EngineeringOptionID.USER_DEFINED_FUNCTION;
-                 ref.data.put(UserDefinedFunction.class, new Integer(mask));
+                 ref.data.put(UserDefinedFunction.class, Integer.valueOf(mask));
   
                  //ViewTable
                  mask = EngineeringOptionID.VIEW | EngineeringOptionID.TRIGGER;
-                 ref.data.put(ViewTable.class, new Integer(mask));
+                 ref.data.put(ViewTable.class, Integer.valueOf(mask));
 
                  //Trigger
                  mask = EngineeringOptionID.TRIGGER;
-                 ref.data.put(Trigger.class, new Integer(mask));
+                 ref.data.put(Trigger.class, Integer.valueOf(mask));
 
                  //Sequence
                  mask = EngineeringOptionID.SEQUENCE;
-                 ref.data.put(Sequence.class, new Integer(mask));
+                 ref.data.put(Sequence.class, Integer.valueOf(mask));
 
                  //UserDefinedType
                  mask = EngineeringOptionID.USER_DEFINED_TYPE;
-                 ref.data.put(UserDefinedType.class, new Integer(mask));
+                 ref.data.put(UserDefinedType.class, Integer.valueOf(mask));
 
                  //UniqueConstraint
                  mask = EngineeringOptionID.UNIQUE_CONSTRAINT;
-                 ref.data.put(UniqueConstraint.class, new Integer(mask));
+                 ref.data.put(UniqueConstraint.class, Integer.valueOf(mask));
 
                  //ForeignKey
                  mask = EngineeringOptionID.FOREIGN_KEY;
-                 ref.data.put(ForeignKey.class, new Integer(mask));
+                 ref.data.put(ForeignKey.class, Integer.valueOf(mask));
 
                  //CheckConstraint
                  mask = EngineeringOptionID.CHECK_CONSTRAINT;
-                 ref.data.put(CheckConstraint.class, new Integer(mask));
+                 ref.data.put(CheckConstraint.class, Integer.valueOf(mask));
            }
            return ref;
          }        

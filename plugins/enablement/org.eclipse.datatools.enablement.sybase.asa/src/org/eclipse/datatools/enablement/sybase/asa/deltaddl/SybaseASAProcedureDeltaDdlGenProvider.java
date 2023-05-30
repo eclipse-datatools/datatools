@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.ddl.SybaseASADdlBuilder;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure;
