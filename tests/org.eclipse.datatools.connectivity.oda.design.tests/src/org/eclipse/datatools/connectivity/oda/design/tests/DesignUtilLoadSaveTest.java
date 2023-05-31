@@ -155,7 +155,7 @@ public class DesignUtilLoadSaveTest extends TestCase
     
     public void testAddOptionalResourceIDElement()
     {
-        String odaDesignURIString = "https://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
+        String odaDesignURIString = "http://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
         URI odaDesignURI = null;
         try
         {

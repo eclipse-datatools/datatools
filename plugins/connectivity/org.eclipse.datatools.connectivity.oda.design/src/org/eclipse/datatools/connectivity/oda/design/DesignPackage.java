@@ -60,7 +60,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "https://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
+    String eNS_URI = "http://www.eclipse.org/datatools/connectivity/oda/design"; //$NON-NLS-1$
 
     /**
      * The package namespace name.

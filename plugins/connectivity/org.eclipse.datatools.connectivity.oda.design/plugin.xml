@@ -22,7 +22,7 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "https://www.eclipse.org/datatools/connectivity/oda/design" 
+       uri = "http://www.eclipse.org/datatools/connectivity/oda/design" 
        class = "org.eclipse.datatools.connectivity.oda.design.DesignPackage" />
   </extension>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:design="https://www.eclipse.org/datatools/connectivity/oda/design" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://www.eclipse.org/datatools/connectivity/oda/design">
+<xsd:schema xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.eclipse.org/datatools/connectivity/oda/design">
   <xsd:simpleType name="AxisType">
     <xsd:annotation>
       <xsd:documentation>Axis type of a result set column.</xsd:documentation>

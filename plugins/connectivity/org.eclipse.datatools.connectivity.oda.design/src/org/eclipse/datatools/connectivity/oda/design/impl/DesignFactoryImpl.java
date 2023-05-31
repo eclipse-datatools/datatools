@@ -119,7 +119,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         try
         {
             DesignFactory theDesignFactory = (DesignFactory) EPackage.Registry.INSTANCE
-                    .getEFactory( "https://www.eclipse.org/datatools/connectivity/oda/design" ); //$NON-NLS-1$ 
+                    .getEFactory( "http://www.eclipse.org/datatools/connectivity/oda/design" ); //$NON-NLS-1$ 
             if( theDesignFactory != null )
             {
                 return theDesignFactory;
