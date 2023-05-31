@@ -45,7 +45,7 @@ pipeline {
             echo "BRANCH_NAME=${env.BRANCH_NAME}"
             script {
                 env.BUILD_TYPE = params.BUILD_TYPE
-                if (env.BRANCH_NAME == 'master') {
+                if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == null) {
                   env.WITH_CREDENTIALS = true
                   if (params.PROMOTE) {
                     env.MAVEN_PROFILES = "-Peclipse-sign -Ppromote"
