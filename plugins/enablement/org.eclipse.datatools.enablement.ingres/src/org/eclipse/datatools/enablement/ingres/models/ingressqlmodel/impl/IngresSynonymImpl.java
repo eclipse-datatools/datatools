@@ -15,15 +15,11 @@ package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl;
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSchema;
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSynonym;
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

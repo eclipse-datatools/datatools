@@ -7,13 +7,12 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2View;
 import org.eclipse.datatools.modelbase.sql.tables.impl.ViewTableImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2View;
 
 /**
  * <!-- begin-user-doc -->

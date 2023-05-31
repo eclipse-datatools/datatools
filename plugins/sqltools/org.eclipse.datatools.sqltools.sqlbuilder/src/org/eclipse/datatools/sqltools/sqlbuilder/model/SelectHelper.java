@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -120,7 +120,7 @@ public class SelectHelper {
     public static void moveOrderByToPosition(OrderBySpecification orderBy, List orderByList, int position) {
         if(SQLBuilderPlugin.getPlugin().getLogger().isTracing()){
             SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(
-                    new Object[]{orderBy, orderByList, new Integer(position)});
+                    new Object[]{orderBy, orderByList, Integer.valueOf(position)});
         }
         if (orderBy != null && position != -1) {
             orderByList.remove(orderBy);
@@ -927,7 +927,7 @@ public class SelectHelper {
     public static boolean moveColumnInStatement(QuerySelectStatement selectStmt, ResultColumn aResultColumn, int movePosition) {
         if(SQLBuilderPlugin.getPlugin().getLogger().isTracing()){
             SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(
-                    new Object[]{selectStmt, aResultColumn, new Integer(movePosition)});
+                    new Object[]{selectStmt, aResultColumn, Integer.valueOf(movePosition)});
         }
 
         boolean moved = false;
@@ -1030,7 +1030,7 @@ public class SelectHelper {
     public static boolean moveOrderByInStatement(QuerySelectStatement selectStmt, OrderBySpecification anExpr, int movePosition) {
         if(SQLBuilderPlugin.getPlugin().getLogger().isTracing()){
             SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(
-                    new Object[]{selectStmt, anExpr, new Integer(movePosition)});
+                    new Object[]{selectStmt, anExpr, Integer.valueOf(movePosition)});
         }
         
         boolean moved = false;

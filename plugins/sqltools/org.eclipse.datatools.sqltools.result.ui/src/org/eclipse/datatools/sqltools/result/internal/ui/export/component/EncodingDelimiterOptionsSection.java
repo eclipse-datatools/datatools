@@ -14,13 +14,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.eclipse.core.internal.preferences.EclipsePreferences;
-import org.eclipse.core.internal.preferences.PreferencesService;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.datatools.sqltools.result.export.IResultConstants;
 import org.eclipse.datatools.sqltools.result.internal.export.OutputterConstants;
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;
 import org.eclipse.datatools.sqltools.result.internal.ui.PreferenceConstants;

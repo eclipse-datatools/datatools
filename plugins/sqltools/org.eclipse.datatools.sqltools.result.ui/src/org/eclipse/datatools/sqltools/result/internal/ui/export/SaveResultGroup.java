@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.result.internal.ui.export;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.XMLResultSetObject;
-import org.eclipse.datatools.sqltools.result.export.AbstractOutputter;
 import org.eclipse.datatools.sqltools.result.internal.export.IOutputterDescriptor;
 import org.eclipse.datatools.sqltools.result.internal.export.OutputterRegistryReader;
 import org.eclipse.datatools.sqltools.result.internal.ui.Messages;

@@ -60,7 +60,7 @@ public class PredefinedDataTypeValidator
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_length_exceed_max, new Object[]
                     {
-                        type.getName(), new Integer(typeDef.getMaximumLength())
+                        type.getName(), Integer.valueOf(typeDef.getMaximumLength())
                     });
                 }
             }
@@ -81,7 +81,7 @@ public class PredefinedDataTypeValidator
             {
                 return NLS.bind(Messages.PredefinedDataTypeValidator_precision_exceed_max, new Object[]
                 {
-                    type.getName(), new Integer(typeDef.getMaximumPrecision())
+                    type.getName(), Integer.valueOf(typeDef.getMaximumPrecision())
                 });
             }
         }
@@ -96,14 +96,14 @@ public class PredefinedDataTypeValidator
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_scale_below_min, new Object[]
                     {
-                        type.getName(), new Integer(typeDef.getMinimumScale())
+                        type.getName(), Integer.valueOf(typeDef.getMinimumScale())
                     });
                 }
                 if (scale.intValue() > typeDef.getMaximumScale())
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_precision_exceed_max, new Object[]
                     {
-                        type.getName(), new Integer(typeDef.getMaximumScale())
+                        type.getName(), Integer.valueOf(typeDef.getMaximumScale())
                     });
                 }
             }

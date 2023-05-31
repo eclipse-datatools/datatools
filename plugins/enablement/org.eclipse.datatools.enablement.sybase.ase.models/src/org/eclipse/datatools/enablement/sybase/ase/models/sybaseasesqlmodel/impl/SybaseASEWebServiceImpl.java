@@ -6,26 +6,16 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -533,7 +523,7 @@ public class SybaseASEWebServiceImpl extends SQLObjectImpl implements SybaseASEW
         switch (featureID)
         {
             case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE__SERVICE_ID:
-                return new Long(getService_id());
+                return Long.valueOf(getService_id());
             case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE__SERVICE_TYPE:
                 return getService_type();
             case SybaseasesqlmodelPackage.SYBASE_ASE_WEB_SERVICE__AUTH_REQUIRED:

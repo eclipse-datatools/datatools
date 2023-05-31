@@ -19,6 +19,10 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.enablement.ibm.catalog.ICatalogAuthorizationIdentifier;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Role;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
@@ -31,10 +35,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Sequence;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.datatools.enablement.ibm.catalog.ICatalogAuthorizationIdentifier;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
 
 public class LUWCatalogUser extends UserImpl implements ICatalogObject,ICatalogAuthorizationIdentifier {
 

@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: ODA Web Services Data Source Runtime Driver Nl Fragment
-Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws.nl1
-Bundle-Version: 1.0.101.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Fragment-Host: org.eclipse.datatools.enablement.oda.ws;bundle-version="[1.0.0,2.0.0)"
-Bundle-Localization: nl_fragment
-Bundle-Vendor: Eclipse.org

@@ -8,6 +8,10 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedParameter;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedProcedure;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ProcedureImpl;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,11 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ProcedureImpl;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedParameter;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedProcedure;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -546,11 +545,11 @@ public class FederatedProcedureImpl extends DB2ProcedureImpl implements Federate
 			case LUWPackage.FEDERATED_PROCEDURE__REMOTE_PROCEDURE_NAME:
 				return getRemoteProcedureName();
 			case LUWPackage.FEDERATED_PROCEDURE__NUMBER_OF_PARAMETERS:
-				return new Integer(getNumberOfParameters());
+				return Integer.valueOf(getNumberOfParameters());
 			case LUWPackage.FEDERATED_PROCEDURE__RESULT_SETS_TO_CLIENT:
 				return getResultSetsToClient();
 			case LUWPackage.FEDERATED_PROCEDURE__NUMBER_OF_REF_CURSORS:
-				return new Integer(getNumberOfRefCursors());
+				return Integer.valueOf(getNumberOfRefCursors());
 			case LUWPackage.FEDERATED_PROCEDURE__ALL_RESULT_SETS_TO_CALLER:
 				return isAllResultSetsToCaller() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.FEDERATED_PROCEDURE__FEDERATED_PROCEDURE:

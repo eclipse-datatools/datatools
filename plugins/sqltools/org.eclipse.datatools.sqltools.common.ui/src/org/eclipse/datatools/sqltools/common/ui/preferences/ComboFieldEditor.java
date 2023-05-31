@@ -5,8 +5,8 @@
  */
 package org.eclipse.datatools.sqltools.common.ui.preferences;
 
-import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

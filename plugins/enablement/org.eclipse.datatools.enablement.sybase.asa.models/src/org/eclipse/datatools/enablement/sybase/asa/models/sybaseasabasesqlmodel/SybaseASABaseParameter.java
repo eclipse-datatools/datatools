@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
-
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 
 /**

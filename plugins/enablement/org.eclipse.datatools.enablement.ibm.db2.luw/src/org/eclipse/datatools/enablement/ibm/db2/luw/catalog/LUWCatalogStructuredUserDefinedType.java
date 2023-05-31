@@ -161,13 +161,13 @@ public class LUWCatalogStructuredUserDefinedType extends StructuredUserDefinedTy
 					if(typeDefinition.isLengthSupported()) {
 						final int length = r.getInt(4);
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-						type.eSet(feature, new Integer(length));
+						type.eSet(feature, Integer.valueOf(length));
 					}
 					else if(typeDefinition.isPrecisionSupported()) {
 						if (attrTypeName.equals("TIMESTAMP")) {
 							int length = r.getInt(4);
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 						else {
 							int length = r.getInt(4);
@@ -176,14 +176,14 @@ public class LUWCatalogStructuredUserDefinedType extends StructuredUserDefinedTy
 								else length = 34;
 							}
 							EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-							type.eSet(feature, new Integer(length));
+							type.eSet(feature, Integer.valueOf(length));
 						}
 					}
 					
 					if(typeDefinition.isScaleSupported()) {
 						final int scale = r.getInt(5);
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(scale));
+						type.eSet(feature, Integer.valueOf(scale));
 					}
 					
 					attribute.setContainedType(type);

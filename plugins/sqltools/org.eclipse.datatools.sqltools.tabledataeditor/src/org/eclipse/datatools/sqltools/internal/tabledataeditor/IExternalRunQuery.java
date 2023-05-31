@@ -11,6 +11,7 @@
 package org.eclipse.datatools.sqltools.internal.tabledataeditor;
 
 import java.sql.Connection;
+
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 public interface IExternalRunQuery

@@ -762,34 +762,34 @@ public class SybaseASECatalogUtils {
 			// if it is float type, we set precision as length * 2
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"precision"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(length * 2));
+			type.eSet(feature, Integer.valueOf(length * 2));
 
 		} else if (primitiveType.getValue() == PrimitiveType.NATIONAL_CHARACTER
 				|| primitiveType.getValue() == PrimitiveType.NATIONAL_CHARACTER_VARYING) {
 			iCharSize = (iCharSize == 0) ? 1 : iCharSize;
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"length"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(length / iCharSize));
+			type.eSet(feature, Integer.valueOf(length / iCharSize));
 		} else if (typeName.equals("unichar") || typeName.equals("univarchar")) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"length"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(length / CONST_UNICHARSIZE));
+			type.eSet(feature, Integer.valueOf(length / CONST_UNICHARSIZE));
 		} else {
 			if (typeDefinition.isLengthSupported()) {
 				EStructuralFeature feature = type.eClass()
 						.getEStructuralFeature("length"); //$NON-NLS-1$
-				type.eSet(feature, new Integer(length));
+				type.eSet(feature, Integer.valueOf(length));
 			} else if (typeDefinition.isPrecisionSupported()) {
 				EStructuralFeature feature = type.eClass()
 						.getEStructuralFeature("precision"); //$NON-NLS-1$
-				type.eSet(feature, new Integer(precision));
+				type.eSet(feature, Integer.valueOf(precision));
 			}
 		}
 
 		if (typeDefinition.isScaleSupported()) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"scale"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(scale));
+			type.eSet(feature, Integer.valueOf(scale));
 		}
 		return type;
 	}

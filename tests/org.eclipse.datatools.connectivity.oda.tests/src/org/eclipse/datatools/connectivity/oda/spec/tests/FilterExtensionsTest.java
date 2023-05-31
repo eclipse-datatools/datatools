@@ -14,26 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.tests;
 
-import java.sql.Types;
-
-import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.IValidator;
-import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
-import org.eclipse.datatools.connectivity.oda.spec.result.filter.AndExpression;
-import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpression;
-import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
-import org.eclipse.datatools.connectivity.oda.spec.result.filter.NotExpression;
-import org.eclipse.datatools.connectivity.oda.spec.result.filter.OrExpression;
-import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
-
-
-
 import junit.framework.TestCase;
 
 @SuppressWarnings("restriction")

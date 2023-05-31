@@ -21,7 +21,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.sqltools.core.DataTypeProvider;
 import org.eclipse.datatools.sqltools.core.DataTypeStringParser;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 
 

@@ -10,14 +10,23 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.routines.impl;
 
-import org.eclipse.datatools.modelbase.sql.routines.*;
+import org.eclipse.datatools.modelbase.sql.routines.BuiltInFunction;
+import org.eclipse.datatools.modelbase.sql.routines.DataAccess;
+import org.eclipse.datatools.modelbase.sql.routines.Function;
+import org.eclipse.datatools.modelbase.sql.routines.Method;
+import org.eclipse.datatools.modelbase.sql.routines.Parameter;
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+import org.eclipse.datatools.modelbase.sql.routines.Source;
+import org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

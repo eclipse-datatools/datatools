@@ -9,19 +9,13 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2PackageStatement;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -286,9 +280,9 @@ public class DB2PackageStatementImpl extends SQLObjectImpl implements DB2Package
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DB2ModelPackage.DB2_PACKAGE_STATEMENT__STATEMENT_NUMBER:
-				return new Integer(getStatementNumber());
+				return Integer.valueOf(getStatementNumber());
 			case DB2ModelPackage.DB2_PACKAGE_STATEMENT__SECTION_NUMBER:
-				return new Integer(getSectionNumber());
+				return Integer.valueOf(getSectionNumber());
 			case DB2ModelPackage.DB2_PACKAGE_STATEMENT__PACKAGE:
 				return getPackage();
 			case DB2ModelPackage.DB2_PACKAGE_STATEMENT__SQL_STATEMENT:

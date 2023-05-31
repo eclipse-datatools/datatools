@@ -6,12 +6,6 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
-import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
-import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
-import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
-
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sybase ASE Column Check Constraint</b></em>'.

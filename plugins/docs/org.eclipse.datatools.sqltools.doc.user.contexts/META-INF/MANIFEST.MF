@@ -6,7 +6,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.doc.user.contexts;
   singleton:=true
-Bundle-Version: 1.7.101.qualifier
+Bundle-Version: 1.8.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy

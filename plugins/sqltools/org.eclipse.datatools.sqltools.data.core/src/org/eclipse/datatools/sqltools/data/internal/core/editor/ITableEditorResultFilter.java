@@ -11,6 +11,7 @@
 package org.eclipse.datatools.sqltools.data.internal.core.editor;
 
 import java.sql.ResultSet;
+
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 /**

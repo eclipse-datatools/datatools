@@ -19,10 +19,10 @@ package org.eclipse.datatools.connectivity.oda.impl.tests;
 import java.io.IOException;
 import java.io.InputStream;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.impl.Blob;
+
+import junit.framework.TestCase;
 
 /**
  *

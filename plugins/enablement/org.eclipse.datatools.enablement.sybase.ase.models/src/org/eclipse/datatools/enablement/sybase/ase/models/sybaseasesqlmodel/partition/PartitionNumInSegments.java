@@ -6,13 +6,8 @@
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
-
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

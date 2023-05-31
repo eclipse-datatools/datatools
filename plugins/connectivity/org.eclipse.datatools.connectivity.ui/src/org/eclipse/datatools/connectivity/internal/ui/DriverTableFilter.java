@@ -3,7 +3,6 @@ package org.eclipse.datatools.connectivity.internal.ui;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
-import org.eclipse.datatools.connectivity.internal.ui.DriverTreeFilter;
 import org.eclipse.jface.viewers.Viewer;
 
 public class DriverTableFilter extends DriverTreeFilter {

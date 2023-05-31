@@ -1,4 +1,0 @@
-This plugin is deprecated because it depends on org.eclipse.hyades.test.tools.core from TPTP, which is archived and doesn't exist anymore.
-
-It also hasn't been updated since 200605101.
-

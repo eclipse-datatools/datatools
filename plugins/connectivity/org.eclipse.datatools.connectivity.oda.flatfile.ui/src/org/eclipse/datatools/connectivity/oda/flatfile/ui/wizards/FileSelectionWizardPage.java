@@ -231,21 +231,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createColumnTypeMap( )
 	{
-		dataTypeDisplayNameMap.put( new Integer( 4 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 4 ),
 				Messages.getString( "datatypes.integer" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 8 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 8 ),
 				Messages.getString( "datatypes.float" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 12 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 12 ),
 				Messages.getString( "datatypes.string" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 91 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 91 ),
 				Messages.getString( "datatypes.date" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 92 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 92 ),
 				Messages.getString( "datatypes.time" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 93 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 93 ),
 				Messages.getString( "datatypes.dateTime" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 2 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 2 ),
 				Messages.getString( "datatypes.decimal" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( new Integer( 16 ),
+		dataTypeDisplayNameMap.put( Integer.valueOf( 16 ),
 				Messages.getString( "datatypes.boolean" ) ); //$NON-NLS-1$
 
 		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -1374,7 +1374,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						savedSelectedColumnsInfoString,
 						metadata );
 
-				result[2] = getDataTypeDisplayName( new Integer( metadata.getColumnType( i + 1 ) ) );
+				result[2] = getDataTypeDisplayName( Integer.valueOf( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
 			flatFileStatusCache.put( fileViewer.getCombo( ).getText( ).trim( ),

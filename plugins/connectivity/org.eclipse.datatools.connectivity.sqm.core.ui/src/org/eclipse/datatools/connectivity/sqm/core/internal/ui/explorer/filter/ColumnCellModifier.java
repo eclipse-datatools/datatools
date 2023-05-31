@@ -38,7 +38,7 @@ public class ColumnCellModifier implements ICellModifier {
 		Collator collator =Collator.getInstance(); 
 		collator.setStrength(Collator.PRIMARY);
 		if (collator.compare(property,m_columnTable.getFirstColumnName()) == 0)
-			return new Integer(predicate.getOperator() - 1);
+			return Integer.valueOf(predicate.getOperator() - 1);
 		else
 			return predicate.getValue();
 	}

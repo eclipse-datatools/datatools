@@ -20,10 +20,6 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.LexStream;
-import lpg.lpgjavaruntime.ParseTable;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLComment;
@@ -34,6 +30,10 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParser;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserLogger;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLParsersym;
+
+import lpg.lpgjavaruntime.IToken;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.ParseTable;
 
 /**
  * @author ckadner

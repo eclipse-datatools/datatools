@@ -8,8 +8,6 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Lock Promotion Info</b></em>'.

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ui;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Export-Package: org.eclipse.datatools.enablement.sybase.ui;
   uses:="org.eclipse.jface.viewers,
    org.eclipse.core.runtime.preferences,
@@ -42,8 +42,8 @@ Require-Bundle: org.eclipse.datatools.connectivity.sqm.server.ui,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.sqltools.editor.core
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.ui.SybaseUIPlugin
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.datatools.enablement.sybase.ui

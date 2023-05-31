@@ -2,17 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name:  %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.msft.sqlserver;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.modelbase.sql,
  org.eclipse.datatools.connectivity.sqm.core,
  org.eclipse.datatools.connectivity
-Import-Package: com.ibm.icu.text;version="3.6.1",
- com.ibm.icu.util;version="3.6.1"
+Import-Package: com.ibm.icu.text,
+ com.ibm.icu.util
 Export-Package: org.eclipse.datatools.enablement.msft.internal.sqlserver.connection,
  org.eclipse.datatools.enablement.msft.internal.sqlserver.driver,
  org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.enablement.msft.sqlserver

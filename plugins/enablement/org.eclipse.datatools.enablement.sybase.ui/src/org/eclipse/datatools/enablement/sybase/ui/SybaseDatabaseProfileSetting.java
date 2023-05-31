@@ -10,12 +10,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.enablement.sybase.ui;
 
-/**
- * 
- * @author Cong Chen
- */
-import org.eclipse.datatools.enablement.sybase.ui.SybaseUIPlugin;
-
 public class SybaseDatabaseProfileSetting
 {
     private String  databaseProfileId;

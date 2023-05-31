@@ -13,7 +13,6 @@ package org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
 import org.eclipse.datatools.enablement.msft.internal.sqlserver.models.SQLServer2000JdbcTable;
-import org.eclipse.datatools.enablement.msft.internal.sqlserver.models.SQLServerJdbcTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 public class SQL2000TableLoader extends JDBCTableLoader {

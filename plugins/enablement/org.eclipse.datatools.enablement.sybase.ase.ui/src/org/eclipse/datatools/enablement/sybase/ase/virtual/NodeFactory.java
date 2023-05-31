@@ -7,7 +7,6 @@ package org.eclipse.datatools.enablement.sybase.ase.virtual;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.VirtualNodeServiceFactory;
 import org.eclipse.datatools.enablement.sybase.ase.providers.ICatalogsFolder;
-import org.eclipse.datatools.enablement.sybase.ase.providers.IDBEventsFolder;
 import org.eclipse.datatools.enablement.sybase.ase.providers.IDataTypesFolder;
 import org.eclipse.datatools.enablement.sybase.ase.providers.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.enablement.sybase.ase.providers.IWebServicesFolder;

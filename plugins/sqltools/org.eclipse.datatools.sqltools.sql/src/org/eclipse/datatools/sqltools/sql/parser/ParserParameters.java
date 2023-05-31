@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.sql.parser;
 
 import java.util.HashMap;
 
+import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeployable;
+
 /**
  * This class defines the parameters passed into the parser. Some standard
  * parameter keys are defined in this class but different parser implementations
@@ -78,7 +80,7 @@ public class ParserParameters {
 	 *            whether to use delimiter for SQL statements
 	 */
 	public ParserParameters(boolean useDelimiter) {
-		setProperty(PARAM_USE_DELIMITER, new Boolean(useDelimiter));
+		setProperty(PARAM_USE_DELIMITER, Boolean.valueOf(useDelimiter));
 	}
 
 	/**
@@ -91,8 +93,8 @@ public class ParserParameters {
 	 * @see SQLParserConstants
 	 */
 	public ParserParameters(boolean useDelimiter, int type) {
-		setProperty(PARAM_USE_DELIMITER, new Boolean(useDelimiter));
-		setProperty(PARAM_STMT_TYPE, new Integer(type));
+		setProperty(PARAM_USE_DELIMITER, Boolean.valueOf(useDelimiter));
+		setProperty(PARAM_STMT_TYPE, Integer.valueOf(type));
 	}
 
 	/**
@@ -108,7 +110,7 @@ public class ParserParameters {
 	 * @param useDelimiter
 	 */
 	public void setUseDelimiter(boolean useDelimiter) {
-		setProperty(PARAM_USE_DELIMITER, new Boolean(useDelimiter));
+		setProperty(PARAM_USE_DELIMITER, Boolean.valueOf(useDelimiter));
 	}
 
 	/**

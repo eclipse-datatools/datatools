@@ -20,7 +20,6 @@ import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsFactory;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.emf.common.util.EList;
 
 public class IndexInfoASALoader {
 

@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: DTP ODA Designer UI Framework Nl Fragment
-Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui.nl1
-Bundle-Version: 3.0.101.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Fragment-Host: org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="[3.0.4,4.0.0)"
-Bundle-Localization: nl_fragment
-Bundle-Vendor: Eclipse.org

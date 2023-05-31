@@ -14,9 +14,7 @@ package org.eclipse.datatools.sqltools.debugger.perspectives;
 
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerMessages;
-import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.debug.ui.IDebugUIConstants;
-import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -25,7 +23,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.console.IConsoleConstants;
 
 /**
  * The Debugger persective implementation 

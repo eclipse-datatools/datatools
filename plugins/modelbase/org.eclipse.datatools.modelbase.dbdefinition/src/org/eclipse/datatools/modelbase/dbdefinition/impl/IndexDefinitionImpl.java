@@ -15,7 +15,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -364,7 +363,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				return isIncludedColumnsSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

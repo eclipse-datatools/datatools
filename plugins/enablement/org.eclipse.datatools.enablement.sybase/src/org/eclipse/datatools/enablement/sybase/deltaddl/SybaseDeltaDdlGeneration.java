@@ -414,7 +414,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
 
             if (flag != 0)
             {
-                changeMap.put(element, new Integer(flag));
+                changeMap.put(element, Integer.valueOf(flag));
             }
         }
         return changeMap;

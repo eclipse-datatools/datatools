@@ -512,13 +512,13 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
 			case SybaseasabasesqlmodelPackage.SCHEDULE__START_DATE:
 				return getStartDate();
 			case SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_WEEK:
-				return new Integer(getDaysOfWeek());
+				return Integer.valueOf(getDaysOfWeek());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__DAYS_OF_MONTH:
-				return new Integer(getDaysOfMonth());
+				return Integer.valueOf(getDaysOfMonth());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_UNIT:
 				return getIntervalUnit();
 			case SybaseasabasesqlmodelPackage.SCHEDULE__INTERVAL_MOUNT:
-				return new Integer(getIntervalMount());
+				return Integer.valueOf(getIntervalMount());
 			case SybaseasabasesqlmodelPackage.SCHEDULE__EVENT:
 				return getEvent();
 		}

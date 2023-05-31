@@ -14,16 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.tests;
 
-import java.sql.Types;
-
 import junit.framework.TestCase;
-
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
-import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
-import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 
 @SuppressWarnings("restriction")
 public class AggregateTest extends TestCase

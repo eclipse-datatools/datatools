@@ -3,9 +3,9 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: %PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres.ui;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Vendor: %PROVIDER_NAME
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.datatools.connectivity.db.generic.ui,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.ui,
@@ -29,3 +29,4 @@ Require-Bundle: org.eclipse.datatools.connectivity.db.generic.ui,
  org.eclipse.datatools.sqltools.editor.core.ui,
  org.eclipse.datatools.sqltools.sql.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.datatools.enablement.ingres.ui

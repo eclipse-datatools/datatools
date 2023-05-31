@@ -14,16 +14,11 @@ package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl;
 
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresTrigger;
 import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.routines.Source;
-
 import org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

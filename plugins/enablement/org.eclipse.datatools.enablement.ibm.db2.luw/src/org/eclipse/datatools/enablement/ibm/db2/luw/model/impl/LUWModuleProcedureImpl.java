@@ -6,23 +6,17 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ProcedureImpl;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModule;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModuleObject;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModuleProcedure;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-
-import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2ProcedureImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**

@@ -17,9 +17,9 @@ import org.eclipse.datatools.sqltools.schemaobjecteditor.model.ISchemaObjectEdit
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorInput;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.core.SchemaObjectEditorInput;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorDescriptor;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.ISchemaObjectEditorExtensionsRegistryReader;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SchemaObjectEditorExtensionsRegistryReader;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EcoreFactoryImpl;

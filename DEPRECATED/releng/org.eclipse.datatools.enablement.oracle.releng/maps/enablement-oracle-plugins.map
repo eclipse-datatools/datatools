@@ -1,3 +1,0 @@
-plugin@org.eclipse.datatools.enablement.oracle.dbdefinition=GIT,tag=v201206010214,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oracle.git,path=plugins/org.eclipse.datatools.enablement.oracle.dbdefinition
-plugin@org.eclipse.datatools.enablement.oracle.ui=GIT,tag=v201201131121,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oracle.git,path=plugins/org.eclipse.datatools.enablement.oracle.ui
-plugin@org.eclipse.datatools.enablement.oracle=GIT,tag=v201107221506,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.oracle.git,path=plugins/org.eclipse.datatools.enablement.oracle

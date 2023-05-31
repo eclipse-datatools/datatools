@@ -72,7 +72,7 @@
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUserDefinedType"/>
-	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePreDefinedDataType"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePredefinedDataType"/>
 	            </or>
             </triggerPoints>
             <possibleChildren>

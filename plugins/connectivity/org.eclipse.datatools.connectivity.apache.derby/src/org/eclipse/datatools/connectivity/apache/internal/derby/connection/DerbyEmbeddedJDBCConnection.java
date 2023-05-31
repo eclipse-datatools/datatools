@@ -113,7 +113,7 @@ public class DerbyEmbeddedJDBCConnection extends JDBCConnection {
 			}
 			else {
 				/* Otherwise, just decrement the reference count. */
-				sConnectionReferenceCount.put(connection, new Integer(--count));
+				sConnectionReferenceCount.put(connection, Integer.valueOf(--count));
 			}
 		}
 	}
@@ -130,13 +130,13 @@ public class DerbyEmbeddedJDBCConnection extends JDBCConnection {
 				connection = (Connection) sDerbyConnections.get(dbName);
 				int count = ((Integer) sConnectionReferenceCount
 						.get(connection)).intValue();
-				sConnectionReferenceCount.put(connection, new Integer(++count));
+				sConnectionReferenceCount.put(connection, Integer.valueOf(++count));
 			}
 			else {
 				/* Create the connection and initialize the referencing scheme. */
 				connection = (Connection) super.createConnection(cl);
 				sDerbyConnections.put(dbName, connection);
-				sConnectionReferenceCount.put(connection, new Integer(1));
+				sConnectionReferenceCount.put(connection, Integer.valueOf(1));
 			}
 		}
 		return connection;

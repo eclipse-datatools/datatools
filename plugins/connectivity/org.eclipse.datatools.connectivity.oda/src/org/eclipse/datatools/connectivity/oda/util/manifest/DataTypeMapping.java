@@ -281,27 +281,27 @@ public class DataTypeMapping
                     sm_odaTypeCodes = new Hashtable<String,Integer>( 11 );
             
                     sm_odaTypeCodes.put( toOdaTypeKey( "String" ), //$NON-NLS-1$
-                                new Integer( Types.CHAR )); 
+                                Integer.valueOf( Types.CHAR )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Integer" ), //$NON-NLS-1$ 
-                                new Integer( Types.INTEGER )); 
+                                Integer.valueOf( Types.INTEGER )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Double" ), //$NON-NLS-1$  
-                                new Integer( Types.DOUBLE )); 
+                                Integer.valueOf( Types.DOUBLE )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Decimal" ), //$NON-NLS-1$ 
-                                new Integer( Types.DECIMAL )); 
+                                Integer.valueOf( Types.DECIMAL )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Date" ), //$NON-NLS-1$ 
-                                new Integer( Types.DATE )); 
+                                Integer.valueOf( Types.DATE )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Time" ), //$NON-NLS-1$ 
-                                new Integer( Types.TIME )); 
+                                Integer.valueOf( Types.TIME )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Timestamp" ), //$NON-NLS-1$ 
-                                new Integer( Types.TIMESTAMP ));
+                                Integer.valueOf( Types.TIMESTAMP ));
                     sm_odaTypeCodes.put( toOdaTypeKey( "Blob" ), //$NON-NLS-1$ 
-                                new Integer( Types.BLOB )); 
+                                Integer.valueOf( Types.BLOB )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Clob" ), //$NON-NLS-1$ 
-                                new Integer( Types.CLOB )); 
+                                Integer.valueOf( Types.CLOB )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "Boolean" ), //$NON-NLS-1$ 
-                                new Integer( Types.BOOLEAN )); 
+                                Integer.valueOf( Types.BOOLEAN )); 
                     sm_odaTypeCodes.put( toOdaTypeKey( "JavaObject" ), //$NON-NLS-1$ 
-                                new Integer( Types.JAVA_OBJECT )); 
+                                Integer.valueOf( Types.JAVA_OBJECT )); 
                 }
             }
         }

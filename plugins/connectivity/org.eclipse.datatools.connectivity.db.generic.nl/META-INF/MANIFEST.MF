@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.datatools.connectivity.db.generic NL Fragment
-Bundle-SymbolicName: org.eclipse.datatools.connectivity.db.generic.nl1
-Bundle-Version: 1.0.101.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Fragment-Host: org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,1.5.0)"
-Bundle-Localization: plugin

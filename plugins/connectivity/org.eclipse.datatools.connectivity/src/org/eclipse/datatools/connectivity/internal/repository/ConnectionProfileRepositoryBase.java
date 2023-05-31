@@ -282,7 +282,7 @@ public abstract class ConnectionProfileRepositoryBase implements
 		ConnectionProfile internalProfile = (ConnectionProfile) profile;
 		String oldName = profile.getName();
 		String oldDesc = profile.getDescription();
-		Boolean oldAutoConnect = new Boolean(profile.isAutoConnect());
+		Boolean oldAutoConnect = Boolean.valueOf(profile.isAutoConnect());
 		if (newName != null && !newName.equals(oldName))
 			internalProfile.setName(newName);
 		if (newDesc != null && !newDesc.equals(oldDesc))

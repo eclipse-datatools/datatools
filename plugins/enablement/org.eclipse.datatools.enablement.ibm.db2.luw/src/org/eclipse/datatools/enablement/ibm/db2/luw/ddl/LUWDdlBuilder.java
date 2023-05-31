@@ -1915,7 +1915,7 @@ public class LUWDdlBuilder extends DB2DdlBuilder {
         		for ( Object pobj : partns ) {
         			LUWDatabasePartition partn = (LUWDatabasePartition)pobj;
         			
-        			cpartns.add( new Integer(partn.getNumber()) );
+        			cpartns.add( Integer.valueOf(partn.getNumber()) );
         		}
         		
         		List<LUWDatabaseContainer> clist = null;

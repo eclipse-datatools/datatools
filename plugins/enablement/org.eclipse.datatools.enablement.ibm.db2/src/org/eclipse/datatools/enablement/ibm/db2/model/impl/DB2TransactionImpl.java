@@ -7,11 +7,10 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
-import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Transaction;
+import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->

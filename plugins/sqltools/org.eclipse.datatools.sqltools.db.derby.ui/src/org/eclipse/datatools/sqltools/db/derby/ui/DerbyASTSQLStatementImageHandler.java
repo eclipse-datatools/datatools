@@ -14,9 +14,9 @@ package org.eclipse.datatools.sqltools.db.derby.ui;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.db.derby.parser.ASTSQLStatement;
-import org.eclipse.datatools.sqltools.sql.ui.INodesImageHandler;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sql.ui.ASTSQLStatementUIUtil;
+import org.eclipse.datatools.sqltools.sql.ui.INodesImageHandler;
 import org.eclipse.swt.graphics.Image;
 
 public class DerbyASTSQLStatementImageHandler implements INodesImageHandler {

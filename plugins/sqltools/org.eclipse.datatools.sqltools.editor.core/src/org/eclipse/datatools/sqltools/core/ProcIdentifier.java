@@ -12,8 +12,6 @@
 
 package org.eclipse.datatools.sqltools.core;
 
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
-
 /**
  * This interface is used to identify a database object.
  * 

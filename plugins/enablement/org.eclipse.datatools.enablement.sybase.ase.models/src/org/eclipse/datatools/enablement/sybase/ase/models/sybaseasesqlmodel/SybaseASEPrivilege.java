@@ -8,8 +8,6 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
 
-import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Sybase ASE Privilege</b></em>'.

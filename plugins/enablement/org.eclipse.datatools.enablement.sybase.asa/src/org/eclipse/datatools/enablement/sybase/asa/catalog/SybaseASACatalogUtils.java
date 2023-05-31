@@ -456,17 +456,17 @@ public class SybaseASACatalogUtils {
 		if (typeDefinition.isLengthSupported()) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"length"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(width));
+			type.eSet(feature, Integer.valueOf(width));
 		}
 		if (typeDefinition.isScaleSupported()) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"scale"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(scale));
+			type.eSet(feature, Integer.valueOf(scale));
 		}
 		if (typeDefinition.isPrecisionSupported()) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"precision"); //$NON-NLS-1$
-			type.eSet(feature, new Integer(width));
+			type.eSet(feature, Integer.valueOf(width));
 		}
 		return type;
 	}

@@ -14,14 +14,14 @@ package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.popup.AbstractAction;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableEditorResultFilter;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.TableEditorFilterRegistryReader;
 import org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.datatools.sqltools.data.internal.core.editor.TableEditorFilterRegistryReader;
-import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableEditorResultFilter;
 
 public class EditTableDataAction extends AbstractAction
 {

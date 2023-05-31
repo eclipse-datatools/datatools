@@ -9,12 +9,9 @@ package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseViewTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseViewTableImpl;
-
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
-import org.eclipse.datatools.modelbase.sql.tables.impl.ViewTableImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 

@@ -15,10 +15,9 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.RelationalRemoteServerImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.util.DatabaseToRemoteServerHelper;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 /**
  * @author Geetika

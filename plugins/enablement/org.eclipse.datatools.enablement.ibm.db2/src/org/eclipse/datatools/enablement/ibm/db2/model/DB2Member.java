@@ -2,7 +2,6 @@ package org.eclipse.datatools.enablement.ibm.db2.model;
 
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

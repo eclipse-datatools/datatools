@@ -473,7 +473,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		for ( int i = 0; i < targets.length; i++ )
 		{
-			targets[i].setUsed( manipulated.contains( new Integer( targets[i].getId( ) ) ) );
+			targets[i].setUsed( manipulated.contains( Integer.valueOf( targets[i].getId( ) ) ) );
 		}
 
 		return targets;
@@ -486,7 +486,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		List manipulated = new ArrayList( );
 		for ( int i = 0; i < soapParameters.length; i++ )
-			manipulated.add( new Integer( ( (SOAPParameter) soapParameters[i] ).getId( ) ) );
+			manipulated.add( Integer.valueOf( ( (SOAPParameter) soapParameters[i] ).getId( ) ) );
 
 		return manipulated;
 	}

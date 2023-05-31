@@ -150,7 +150,7 @@ public class ProfileFileProcessor
         
         if( ! editingSingleProfile )
             m_ioUtil.println( Messages.bind( Messages.profileFile_statusIteratingProfiles, 
-                                        new Integer( m_profiles.length ) ));
+                                        Integer.valueOf( m_profiles.length ) ));
         
         boolean foundNamedProfile = false;
         boolean hasUpdates = false;

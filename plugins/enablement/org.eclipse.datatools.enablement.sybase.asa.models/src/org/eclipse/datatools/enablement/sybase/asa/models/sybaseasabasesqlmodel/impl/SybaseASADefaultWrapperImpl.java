@@ -12,11 +12,8 @@ import java.util.List;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASADefaultWrapper;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TypeOfDefault;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -319,7 +316,7 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
 				return isIsLiteral() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-				return new Integer(getPartitionSize());
+				return Integer.valueOf(getPartitionSize());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
 				return getType();
 		}

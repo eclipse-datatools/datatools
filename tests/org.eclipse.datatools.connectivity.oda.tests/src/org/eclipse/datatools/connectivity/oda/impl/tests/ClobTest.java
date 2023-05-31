@@ -19,10 +19,10 @@ package org.eclipse.datatools.connectivity.oda.impl.tests;
 import java.io.IOException;
 import java.io.Reader;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.impl.Clob;
+
+import junit.framework.TestCase;
 
 /**
  *

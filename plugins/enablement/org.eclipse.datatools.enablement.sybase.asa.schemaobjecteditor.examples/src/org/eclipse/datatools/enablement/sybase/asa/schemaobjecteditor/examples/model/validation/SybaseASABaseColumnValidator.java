@@ -24,7 +24,6 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.modelvalidity.DefaultSQLModelValidator;
 import org.eclipse.datatools.sqltools.core.modelvalidity.ISQLDataOfflineValidator;
 import org.eclipse.datatools.sqltools.core.modelvalidity.ValidatorConstants;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
 import org.eclipse.emf.common.util.BasicDiagnostic;

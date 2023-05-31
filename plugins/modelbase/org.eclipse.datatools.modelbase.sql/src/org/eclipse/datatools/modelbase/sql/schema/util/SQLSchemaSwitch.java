@@ -12,7 +12,18 @@ package org.eclipse.datatools.modelbase.sql.schema.util;
 
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.schema.*;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Comment;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Dependency;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
+import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
+import org.eclipse.datatools.modelbase.sql.schema.ObjectExtension;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.Sequence;
+import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;

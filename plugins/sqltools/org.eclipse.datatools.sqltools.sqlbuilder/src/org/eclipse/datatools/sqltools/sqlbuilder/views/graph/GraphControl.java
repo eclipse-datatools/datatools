@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -51,6 +51,7 @@ import org.eclipse.gef.editparts.AbstractEditPart;
 import org.eclipse.gef.tools.SelectionTool;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ContentViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -72,7 +73,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.views.navigator.LocalSelectionTransfer;
 
 public class GraphControl extends ContentViewer {
 
@@ -219,7 +219,7 @@ public class GraphControl extends ContentViewer {
         // Add drag and drop support
         //
         int operations = DND.DROP_MOVE | DND.DROP_COPY | DND.DROP_LINK;
-        Transfer[] types = new Transfer[] { LocalSelectionTransfer.getInstance() };
+        Transfer[] types = new Transfer[] { LocalSelectionTransfer.getTransfer() };
         DropTarget target = new DropTarget(control, operations);
         target.setTransfer(types);
 

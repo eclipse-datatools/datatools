@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -11,10 +11,6 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import java.util.List;
-
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Display;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
@@ -31,6 +27,9 @@ import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.SourceTargetDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Display;
 
 //
 // Create a join between current table and a selected table/column

@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.derby.internal.ui.explorer.providers.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.apache.derby.ui.explorer.providers.virtual.ISynonymFolder;
 import org.eclipse.datatools.connectivity.apache.internal.derby.containment.DerbyGroupID;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 
 public class SynonymFolder extends VirtualNode implements ISynonymFolder{
     public SynonymFolder(String name, String displayName, Object parent)

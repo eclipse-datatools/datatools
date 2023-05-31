@@ -6,28 +6,10 @@
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
-import java.util.Collection;
-
-import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
-import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
-import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
-import org.eclipse.datatools.modelbase.sql.query.TableJoined;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
-
 import org.eclipse.datatools.modelbase.sql.query.impl.PredicateImpl;
 import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicate;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

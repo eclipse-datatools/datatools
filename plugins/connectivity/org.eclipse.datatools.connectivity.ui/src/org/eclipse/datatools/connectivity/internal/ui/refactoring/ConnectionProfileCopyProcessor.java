@@ -216,7 +216,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 			while (ipm.getProfileByName(newName,false) != null) {
 				newName = ConnectivityPlugin.getDefault().getResourceString(
 						"duplicate.profile.name", //$NON-NLS-1$
-						new Object[] { profileName, new Integer(i)});
+						new Object[] { profileName, Integer.valueOf(i)});
 				i++;
 			}
 		}
@@ -225,7 +225,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 			while (repo.getProfileByName(newName) != null) {
 				newName = ConnectivityPlugin.getDefault().getResourceString(
 						"duplicate.profile.name", //$NON-NLS-1$
-						new Object[] { profileName, new Integer(i)});
+						new Object[] { profileName, Integer.valueOf(i)});
 				i++;
 			}
 		}

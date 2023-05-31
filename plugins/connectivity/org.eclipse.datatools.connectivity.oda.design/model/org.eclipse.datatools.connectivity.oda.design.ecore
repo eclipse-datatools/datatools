@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="design"
-    nsURI="http://www.eclipse.org/datatools/connectivity/oda/design" nsPrefix="design">
+    nsURI="https://www.eclipse.org/datatools/connectivity/oda/design" nsPrefix="design">
   <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//CompositeFilterExpression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  "/>

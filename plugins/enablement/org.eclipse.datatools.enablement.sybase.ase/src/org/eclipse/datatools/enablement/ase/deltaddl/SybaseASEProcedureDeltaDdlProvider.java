@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.enablement.ase.ISybaseASEDdlConstants;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProcedure;

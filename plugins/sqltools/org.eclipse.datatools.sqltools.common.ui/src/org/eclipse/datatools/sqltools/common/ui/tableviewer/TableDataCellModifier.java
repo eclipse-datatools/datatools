@@ -77,7 +77,7 @@ public class TableDataCellModifier implements ICellModifier
             {
                 //Fix a bug: Tab traverse causes that the cell is always filled with the some value of combox in table viewer.
                 //Change to return -1 instead of 0.
-                return new Integer(-1);
+                return Integer.valueOf(-1);
             }
             else
             {
@@ -103,21 +103,21 @@ public class TableDataCellModifier implements ICellModifier
                 {
                     if (values[i].equals(s))
                     {
-                        return new Integer(i);
+                        return Integer.valueOf(i);
                     }
                 }
-                return new Integer(0);
+                return Integer.valueOf(0);
             }
             else if (cellEditor[col] instanceof CheckboxCellEditor)
             {
                 CheckboxCellEditor checkboxCellEditor = (CheckboxCellEditor) cellEditor[col];
                 if (s != null && s.equalsIgnoreCase("true"))
                 {
-                    return new Boolean(true);
+                    return Boolean.valueOf(true);
                 }
                 else
                 {
-                    return new Boolean(false);
+                    return Boolean.valueOf(false);
                 }
             }
             return (s == null) ? "" : s; //$NON-NLS-1$

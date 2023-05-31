@@ -18,18 +18,18 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWGlobalVariable;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.LUWGlobalVariableImpl;
+import org.eclipse.datatools.enablement.ibm.util.ModelHelper;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWGlobalVariable;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.impl.LUWGlobalVariableImpl;
-import org.eclipse.datatools.enablement.ibm.util.ModelHelper;
 
 public class LUWCatalogGlobalVariable extends LUWGlobalVariableImpl implements ICatalogObject{
 

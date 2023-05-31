@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ControlStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IControlStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.WindowStateInfo;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
@@ -182,7 +181,7 @@ public class SQLBuilderWindowStateFactory implements IElementFactory
         {
             // ignore; use the default unknown value
         }
-        return new Integer( intValue );
+        return Integer.valueOf( intValue );
 	}
 	
     /**

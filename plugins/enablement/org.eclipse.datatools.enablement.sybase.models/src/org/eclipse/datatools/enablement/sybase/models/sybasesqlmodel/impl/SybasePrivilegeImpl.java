@@ -8,13 +8,9 @@ package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

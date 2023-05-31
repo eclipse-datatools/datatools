@@ -5,55 +5,35 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>plugins</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools</groupId>
   <artifactId>connectivity</artifactId>
-  <version>1.14.102-SNAPSHOT</version>
+  <version>1.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
     <module>org.eclipse.datatools.connectivity</module>
     <module>org.eclipse.datatools.connectivity.apache.derby</module>
     <module>org.eclipse.datatools.connectivity.apache.derby.dbdefinition</module>
-    <module>org.eclipse.datatools.connectivity.apache.derby.dbdefinition.nl</module>
-    <module>org.eclipse.datatools.connectivity.apache.derby.nl</module>
     <module>org.eclipse.datatools.connectivity.apache.derby.ui</module>
-    <module>org.eclipse.datatools.connectivity.apache.derby.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.console.profile</module>
-    <module>org.eclipse.datatools.connectivity.console.profile.nl</module>
     <module>org.eclipse.datatools.connectivity.db.generic</module>
-    <module>org.eclipse.datatools.connectivity.db.generic.nl</module>
     <module>org.eclipse.datatools.connectivity.db.generic.ui</module>
-    <module>org.eclipse.datatools.connectivity.db.generic.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.dbdefinition.genericJDBC</module>
-    <module>org.eclipse.datatools.connectivity.dbdefinition.genericJDBC.nl</module>
     <module>org.eclipse.datatools.connectivity.jdt</module>
     <module>org.eclipse.datatools.connectivity.oda</module>
     <module>org.eclipse.datatools.connectivity.oda.consumer</module>
-    <module>org.eclipse.datatools.connectivity.oda.consumer.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.design</module>
-    <module>org.eclipse.datatools.connectivity.oda.design.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.design.ui</module>
-    <module>org.eclipse.datatools.connectivity.oda.design.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.flatfile</module>
-    <module>org.eclipse.datatools.connectivity.oda.flatfile.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.flatfile.ui</module>
-    <module>org.eclipse.datatools.connectivity.oda.flatfile.ui.nl</module>
-    <module>org.eclipse.datatools.connectivity.oda.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.profile</module>
-    <module>org.eclipse.datatools.connectivity.oda.profile.nl</module>
     <module>org.eclipse.datatools.connectivity.oda.template.ui</module>
-    <module>org.eclipse.datatools.connectivity.oda.template.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.sqm.core</module>
-    <module>org.eclipse.datatools.connectivity.sqm.core.nl</module>
     <module>org.eclipse.datatools.connectivity.sqm.core.ui</module>
-    <module>org.eclipse.datatools.connectivity.sqm.core.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.sqm.server.ui</module>
-    <module>org.eclipse.datatools.connectivity.sqm.server.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.ui</module>
     <module>org.eclipse.datatools.connectivity.ui.dse</module>
-    <module>org.eclipse.datatools.connectivity.ui.dse.nl</module>
-    <module>org.eclipse.datatools.connectivity.ui.nl</module>
     <module>org.eclipse.datatools.connectivity.ui.templates</module>
   </modules>
 </project>

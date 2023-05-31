@@ -18,8 +18,8 @@ import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorA
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorHandler;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorDescriptor;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorPageDescriptor;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.util.ILogger;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.graphics.Image;
@@ -256,7 +256,7 @@ public class EditorDescriptor implements IEditorDescriptor
         {
             String key = Constants.EDITOR_PAGE_ORDER + pages[i].getEditorId() + pages[i].getPageId();
             int orderNum = _store.getInt(key);
-            orders.put(pages[i], new Integer(orderNum));
+            orders.put(pages[i], Integer.valueOf(orderNum));
         }
 
         IEditorPageDescriptor ePage = getNextPage(orders);

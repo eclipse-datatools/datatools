@@ -13,14 +13,13 @@ package org.eclipse.datatools.sqltools.data.internal.core.common.data;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.sql.Types;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.sql.Types;
 
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 
-import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.NumberFormat;
 
 

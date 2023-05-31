@@ -7,9 +7,7 @@
 package org.eclipse.datatools.modelbase.dbdefinition;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**

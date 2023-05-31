@@ -14,23 +14,16 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.tests;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
-import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.spec.IValidator;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
-import org.eclipse.datatools.connectivity.oda.spec.ValidationContext;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification.ParameterIdentifier;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
-import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection;
 import org.eclipse.datatools.connectivity.oda.spec.result.SortSpecification;
-import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationHelper;
+
+import junit.framework.TestCase;
 
 @SuppressWarnings("restriction")
 public class QuerySpecTest extends TestCase

@@ -7,8 +7,8 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.indent;
 
 import java.util.Arrays;
 
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;

@@ -6,20 +6,15 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWGlobalVariable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
 import org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

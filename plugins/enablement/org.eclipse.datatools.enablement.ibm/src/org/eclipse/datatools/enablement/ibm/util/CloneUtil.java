@@ -1161,11 +1161,11 @@ public class CloneUtil {
 	          String featureName = configElements[j].getAttribute("featureName"); //$NON-NLS-1$
 	          String isRequired = configElements[j].getAttribute("isRequired"); //$NON-NLS-1$
 	          if(features.containsKey(containingClass)) {
-	        	  ((Hashtable) features.get(containingClass)).put(featureName, new Boolean(isRequired));
+	        	  ((Hashtable) features.get(containingClass)).put(featureName, Boolean.valueOf(isRequired));
 	          }
 	          else {
 	        	  Hashtable featureNames = new Hashtable();
-	        	  featureNames.put(featureName, new Boolean(isRequired));
+	        	  featureNames.put(featureName, Boolean.valueOf(isRequired));
 	        	  features.put(containingClass, featureNames);
 	          }
 	        }

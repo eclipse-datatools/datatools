@@ -9,9 +9,7 @@ package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseActionTime;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTrigger;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.ActionGranularityType;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -300,7 +298,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
     {
 		switch (featureID) {
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				return new Integer(getOrder());
+				return Integer.valueOf(getOrder());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
 				return getSybaseASABaseActionTime();
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:

@@ -344,17 +344,17 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 				if (pdtd.isLengthSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("length"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_ATTR_SIZE)));
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_ATTR_SIZE)));
 				}
 				if (pdtd.isPrecisionSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("precision"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_ATTR_SIZE)));
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_ATTR_SIZE)));
 				}
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("scale"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs
+					pdt.eSet(feature, Integer.valueOf(rs
 							.getInt(COLUMN_DECIMAL_DIGITS)));
 				}
 				attrDef.setDataType(pdt);

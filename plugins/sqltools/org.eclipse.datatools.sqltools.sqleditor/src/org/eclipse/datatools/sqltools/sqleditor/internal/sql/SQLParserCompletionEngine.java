@@ -49,7 +49,6 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLIntelligentTemplate;
 import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLTemplateProposal;
-import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLDBUtils;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.text.BadLocationException;

@@ -10,10 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
-import java.util.Collection;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -21,10 +17,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Sequence;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

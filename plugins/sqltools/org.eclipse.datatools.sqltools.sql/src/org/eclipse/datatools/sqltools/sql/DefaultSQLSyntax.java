@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql;
 
-import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
-
 /**
  * @author Hui Cao
  * 

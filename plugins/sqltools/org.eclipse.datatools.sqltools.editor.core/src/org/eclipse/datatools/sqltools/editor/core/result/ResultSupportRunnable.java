@@ -575,7 +575,7 @@ public abstract class ResultSupportRunnable extends Job implements Runnable
                     updateCount = cstmt.getUpdateCount();
                     if (updateCount >= 0)
                     {
-                        updateCountList.add(new Integer(updateCount));
+                        updateCountList.add(Integer.valueOf(updateCount));
                         if(_lastUpdateCount != -1)
                         {
                         	resultsViewAPI.appendUpdateCountMessage(getOperationCommand(), _lastUpdateCount);

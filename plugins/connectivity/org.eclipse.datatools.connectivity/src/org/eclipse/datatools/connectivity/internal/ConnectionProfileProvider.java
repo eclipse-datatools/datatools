@@ -326,7 +326,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 		mCategory = element.getAttribute(ATTR_CATEGORY);
 		mConfigType = element.getAttribute(ATTR_CONFIGURATION_TYPE);
 		if (element.getAttribute(ATTR_MAINTAINCONNECTION) != null) {
-			mMaintainConnection = new Boolean(element
+			mMaintainConnection = Boolean.valueOf(element
 					.getAttribute(ATTR_MAINTAINCONNECTION)).booleanValue();
 		}
 		if (element.getAttribute(ATTR_PING_FACTORY) != null) {

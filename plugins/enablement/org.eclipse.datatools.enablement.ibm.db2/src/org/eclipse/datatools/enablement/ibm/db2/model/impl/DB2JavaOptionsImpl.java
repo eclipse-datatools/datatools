@@ -6,6 +6,10 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Jar;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -13,11 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Jar;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Procedure;
 
 /**
  * <!-- begin-user-doc -->

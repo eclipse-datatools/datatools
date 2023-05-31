@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<design:odaDesignSession xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xsi:schemaLocation="http://www.eclipse.org/datatools/connectivity/oda/design java://org.eclipse.datatools.connectivity.oda.design.DesignPackage">
+<design:odaDesignSession xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:design="https://www.eclipse.org/datatools/connectivity/oda/design" xsi:schemaLocation="https://www.eclipse.org/datatools/connectivity/oda/design java://org.eclipse.datatools.connectivity.oda.design.DesignPackage">
   <design:request>
     <design:dataAccessDesign>
       <design:dataSetDesign>

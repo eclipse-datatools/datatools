@@ -84,7 +84,7 @@ public class MySqlCatalogForeignKey extends JDBCForeignKey {
 		EAnnotation eAnnotation = fk
 				.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
 		fk.addEAnnotationDetail(eAnnotation,
-				RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP, new Boolean(
+				RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP, Boolean.valueOf(
 						identifying).toString());
 		fk.addEAnnotationDetail(eAnnotation,
 				RDBCorePlugin.FK_CHILD_MULTIPLICITY, RDBCorePlugin.MANY);

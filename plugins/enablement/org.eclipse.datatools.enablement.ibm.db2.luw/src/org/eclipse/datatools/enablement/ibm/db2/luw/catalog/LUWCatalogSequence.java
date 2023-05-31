@@ -20,6 +20,9 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
+import org.eclipse.datatools.enablement.ibm.util.ModelHelper;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
@@ -34,9 +37,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Sequence;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.DatabaseREProvider;
-import org.eclipse.datatools.enablement.ibm.util.ModelHelper;
 
 public class LUWCatalogSequence extends SequenceImpl implements ICatalogObject {
 
@@ -134,7 +134,7 @@ public class LUWCatalogSequence extends SequenceImpl implements ICatalogObject {
 					PredefinedDataType type = databaseDefinition.getPredefinedDataType(typeDefinition);
 					if(typeDefinition.isPrecisionSupported()) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(this.precision));
+						type.eSet(feature, Integer.valueOf(this.precision));
 					}
 					this.setContainedType(type);
 				}

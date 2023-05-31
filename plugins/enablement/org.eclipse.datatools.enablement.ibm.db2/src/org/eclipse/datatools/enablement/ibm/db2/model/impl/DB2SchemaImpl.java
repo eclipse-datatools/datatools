@@ -9,15 +9,6 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Jar;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Mask;
@@ -27,6 +18,14 @@ import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Permission;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2XSRObject;
+import org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

@@ -26,17 +26,10 @@ import java.util.Vector;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.core.rte.IEngineeringCallBack;
-import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
 import org.eclipse.datatools.enablement.ibm.db2.ddl.DB2DeltaDdlGenerator;
@@ -448,7 +441,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
 							flag = ((Integer) changeMap.get(table)).intValue();						
 						}
 						flag = flag | MODIFIED;
-						changeMap.put(table, new Integer(flag));
+						changeMap.put(table, Integer.valueOf(flag));
 					}
 				}
 			}
@@ -463,7 +456,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
 			else {
 				int flag = ((Integer) changeMap.get(column)).intValue();
 				changeMap.remove(column);
-				columnMap.put(column, new Integer(flag));
+				columnMap.put(column, Integer.valueOf(flag));
 			}
 		}
 
@@ -496,7 +489,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
 			else {
 				table = index.getTable();	
 			}			
-			changeMap.put(table, new Integer(CREATE | DROP));
+			changeMap.put(table, Integer.valueOf(CREATE | DROP));
 			changeMap.remove(index);
 		}		
 
@@ -509,7 +502,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
 				if ((flag & (DROP | CREATE)) == (DROP | CREATE)) {
 					flag = flag & ~DROP;
 					flag = flag | BACKUP;
-					changeMap.put(e, new Integer(flag));
+					changeMap.put(e, Integer.valueOf(flag));
 				}
 			}
 		}
@@ -568,7 +561,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
 				if(flag == DROP) return true;
 			}
 			flag = flag | MODIFIED;
-			changeMap.put(table, new Integer(flag));
+			changeMap.put(table, Integer.valueOf(flag));
 			return true;
 		}
 		return false;
@@ -626,7 +619,7 @@ public class LUWDeltaDdlGenerator extends DB2DeltaDdlGenerator implements IExecu
     			Object e = it.next();
     			int flag = ((Integer) columnMap.get(e)).intValue();
     			if (e instanceof Column && ((flag & COMMENT) != 0)) {
-    				changeMap.put(e, new Integer(COMMENT));
+    				changeMap.put(e, Integer.valueOf(COMMENT));
     			}
     		}        	
         }

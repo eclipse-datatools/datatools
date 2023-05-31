@@ -9,6 +9,15 @@ package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Method;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Routine;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2RoutineExtension;
+import org.eclipse.datatools.enablement.ibm.db2.model.OriginType;
+import org.eclipse.datatools.enablement.ibm.db2.model.SourceDialect;
 import org.eclipse.datatools.modelbase.sql.routines.impl.MethodImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,16 +28,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2AccessPlan;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ExtendedOptions;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Function;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Method;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Routine;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2RoutineExtension;
-import org.eclipse.datatools.enablement.ibm.db2.model.OriginType;
-import org.eclipse.datatools.enablement.ibm.db2.model.SourceDialect;
 
 /**
  * <!-- begin-user-doc -->
@@ -1360,7 +1359,7 @@ public class DB2MethodImpl extends MethodImpl implements DB2Method {
 			case DB2ModelPackage.DB2_METHOD__SPECIAL_REGISTER:
 				return getSpecialRegister();
 			case DB2ModelPackage.DB2_METHOD__CHANGE_STATE:
-				return new Integer(getChangeState());
+				return Integer.valueOf(getChangeState());
 			case DB2ModelPackage.DB2_METHOD__DEBUG_ID:
 				return getDebugId();
 			case DB2ModelPackage.DB2_METHOD__PROGRAM_TYPE:
@@ -1378,7 +1377,7 @@ public class DB2MethodImpl extends MethodImpl implements DB2Method {
 			case DB2ModelPackage.DB2_METHOD__SCRATCH_PAD:
 				return isScratchPad() ? Boolean.TRUE : Boolean.FALSE;
 			case DB2ModelPackage.DB2_METHOD__SCRATCH_PAD_LENGTH:
-				return new Integer(getScratchPadLength());
+				return Integer.valueOf(getScratchPadLength());
 			case DB2ModelPackage.DB2_METHOD__FUNCTION_TYPE:
 				return getFunctionType();
 			case DB2ModelPackage.DB2_METHOD__PREDICATE:
@@ -1386,7 +1385,7 @@ public class DB2MethodImpl extends MethodImpl implements DB2Method {
 			case DB2ModelPackage.DB2_METHOD__EXTERNAL_ACTION:
 				return isExternalAction() ? Boolean.TRUE : Boolean.FALSE;
 			case DB2ModelPackage.DB2_METHOD__CARDINALITY:
-				return new Integer(getCardinality());
+				return Integer.valueOf(getCardinality());
 			case DB2ModelPackage.DB2_METHOD__ALLOW_PARALLEL:
 				return isAllowParallel() ? Boolean.TRUE : Boolean.FALSE;
 			case DB2ModelPackage.DB2_METHOD__RETURN_CLAUSE:

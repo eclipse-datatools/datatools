@@ -32,7 +32,7 @@ public class ForeignKeyHelper implements IForeignKeyHelperService
         EAnnotation eAnnotation = constraint.getEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
         if (eAnnotation != null)
         {
-            return new Boolean ((String)eAnnotation.getDetails().get(RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP)).booleanValue();
+            return Boolean.valueOf((String)eAnnotation.getDetails().get(RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP)).booleanValue();
         }
         return true;
 	}

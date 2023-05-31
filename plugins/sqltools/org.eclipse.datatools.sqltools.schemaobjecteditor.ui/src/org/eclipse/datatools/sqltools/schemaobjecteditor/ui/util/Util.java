@@ -8,13 +8,9 @@ package org.eclipse.datatools.sqltools.schemaobjecteditor.ui.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.IRowData;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.ITableData;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.RowData;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
 

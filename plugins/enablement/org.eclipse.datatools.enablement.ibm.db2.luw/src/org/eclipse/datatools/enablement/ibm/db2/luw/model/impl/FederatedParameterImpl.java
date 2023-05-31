@@ -8,6 +8,9 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedParameter;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedProcedure;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl;
 import org.eclipse.emf.common.notify.Notification;
@@ -17,10 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedParameter;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.FederatedProcedure;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -267,9 +266,9 @@ public class FederatedParameterImpl extends ParameterImpl implements FederatedPa
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case LUWPackage.FEDERATED_PARAMETER__REMOTE_CODE_PAGE:
-				return new Integer(getRemoteCodePage());
+				return Integer.valueOf(getRemoteCodePage());
 			case LUWPackage.FEDERATED_PARAMETER__REMOTE_PARAM_TYPE_ID:
-				return new Integer(getRemoteParamTypeID());
+				return Integer.valueOf(getRemoteParamTypeID());
 			case LUWPackage.FEDERATED_PARAMETER__FEDERATED_PROCEDURE:
 				if (resolve) return getFederatedProcedure();
 				return basicGetFederatedProcedure();

@@ -9,22 +9,16 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.ArrayIndexElementType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWArrayDataType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedTypeOrdering;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.ArrayDataTypeImpl;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

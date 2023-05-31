@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -88,7 +88,7 @@ public class SourceViewerAction extends ResourceAction implements IUpdate {
         setEnabled(isEnabled);
 
         if (wasEnabled != isEnabled) {
-            firePropertyChange(ENABLED, new Boolean(wasEnabled), new Boolean(isEnabled));
+            firePropertyChange(ENABLED, Boolean.valueOf(wasEnabled), Boolean.valueOf(isEnabled));
         }
     }
 

@@ -12,10 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.internal.matching.AbstractPairMatcher;
-import org.eclipse.datatools.sqltools.sqleditor.internal.matching.GeneralPairMatcher;
-import org.eclipse.datatools.sqltools.sqleditor.internal.matching.GeneralMatchingPairs;
-import org.eclipse.datatools.sqltools.sqleditor.internal.matching.IMatchingPairs;
 
 /**
  * The class intends for generic SQL token matching.

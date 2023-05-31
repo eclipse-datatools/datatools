@@ -19,6 +19,7 @@ package org.eclipse.datatools.connectivity.oda.consumer.test.impl;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
+import org.eclipse.datatools.connectivity.oda.consumer.tests.LoggerInstanceTest;
 import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
 
 /**

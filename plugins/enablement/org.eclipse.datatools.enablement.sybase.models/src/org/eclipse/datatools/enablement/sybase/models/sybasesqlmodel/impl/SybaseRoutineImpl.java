@@ -8,9 +8,7 @@ package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

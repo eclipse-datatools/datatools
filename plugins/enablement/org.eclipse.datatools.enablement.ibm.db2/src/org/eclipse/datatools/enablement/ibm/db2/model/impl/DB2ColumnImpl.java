@@ -6,17 +6,16 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Column;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Period;
+import org.eclipse.datatools.enablement.ibm.db2.model.GenerateType;
 import org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Column;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Period;
-import org.eclipse.datatools.enablement.ibm.db2.model.GenerateType;
 
 /**
  * <!-- begin-user-doc -->

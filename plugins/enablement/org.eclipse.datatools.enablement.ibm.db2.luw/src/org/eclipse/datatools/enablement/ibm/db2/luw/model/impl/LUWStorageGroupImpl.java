@@ -6,25 +6,19 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import java.util.Collection;
+
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageGroup;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
-
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -387,9 +381,9 @@ public class LUWStorageGroupImpl extends SQLObjectImpl implements LUWStorageGrou
 			case LUWPackage.LUW_STORAGE_GROUP__STORAGE_PATHS:
 				return getStoragePaths();
 			case LUWPackage.LUW_STORAGE_GROUP__OVERHEAD:
-				return new Double(getOverhead());
+				return Double.valueOf(getOverhead());
 			case LUWPackage.LUW_STORAGE_GROUP__DEVICE_READ_RATE:
-				return new Double(getDeviceReadRate());
+				return Double.valueOf(getDeviceReadRate());
 			case LUWPackage.LUW_STORAGE_GROUP__DATA_TAG:
 				return getDataTag();
 			case LUWPackage.LUW_STORAGE_GROUP__DEFAULT:

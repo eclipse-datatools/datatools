@@ -680,7 +680,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
         
 		try
         {
-            int iVer = new Integer(version.substring(0, index)).intValue();
+            int iVer = Integer.valueOf(version.substring(0, index)).intValue();
             return iVer == 10;
         }
         catch (NumberFormatException e)
@@ -756,7 +756,7 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__JCONNECT_ON:
 				return isJConnectOn() ? Boolean.TRUE : Boolean.FALSE;
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__PAGE_SIZE:
-				return new Integer(getPageSize());
+				return Integer.valueOf(getPageSize());
 			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__ENCRYPTION_INFO:
 				if (resolve) return getEncryptionInfo();
 				return basicGetEncryptionInfo();

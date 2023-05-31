@@ -32,9 +32,9 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
 import org.eclipse.datatools.enablement.ibm.IBMPluginActivator;
 import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogLoadUtil;
 import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogObjectEvent;
+import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogObjectEvent.EVENT_TYPE;
 import org.eclipse.datatools.enablement.ibm.catalog.util.ICatalogObjectEventListener;
 import org.eclipse.datatools.enablement.ibm.catalog.util.ICatalogQuery;
-import org.eclipse.datatools.enablement.ibm.catalog.util.CatalogObjectEvent.EVENT_TYPE;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.EObject;
 

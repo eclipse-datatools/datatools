@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import java.util.HashMap;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.logging.Level;
@@ -119,23 +120,23 @@ public class TraceLogging
             return sm_logLevelLiterals;
         
         sm_logLevelLiterals = new HashMap<String, Integer>( 18, 1 );
-        sm_logLevelLiterals.put( "SEVERE", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "1000", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "WARNING", new Integer( Level.WARNING ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "900", new Integer( Level.WARNING ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "INFO", new Integer( Level.INFO ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "800", new Integer( Level.INFO ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "CONFIG", new Integer( Level.CONFIG ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "700", new Integer( Level.CONFIG ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "FINE", new Integer( Level.FINE ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "500", new Integer( Level.FINE ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "FINER", new Integer( Level.FINER ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "400", new Integer( Level.FINER ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "FINEST", new Integer( Level.FINEST ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "300", new Integer( Level.FINEST ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "ALL", new Integer( Level.ALL ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "0", new Integer( Level.ALL ) ); //$NON-NLS-1$
-        sm_logLevelLiterals.put( "OFF", new Integer( Level.OFF ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "SEVERE", Integer.valueOf( Level.SEVERE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "1000", Integer.valueOf( Level.SEVERE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "WARNING", Integer.valueOf( Level.WARNING ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "900", Integer.valueOf( Level.WARNING ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "INFO", Integer.valueOf( Level.INFO ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "800", Integer.valueOf( Level.INFO ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "CONFIG", Integer.valueOf( Level.CONFIG ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "700", Integer.valueOf( Level.CONFIG ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINE", Integer.valueOf( Level.FINE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "500", Integer.valueOf( Level.FINE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINER", Integer.valueOf( Level.FINER ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "400", Integer.valueOf( Level.FINER ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINEST", Integer.valueOf( Level.FINEST ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "300", Integer.valueOf( Level.FINEST ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "ALL", Integer.valueOf( Level.ALL ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "0", Integer.valueOf( Level.ALL ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "OFF", Integer.valueOf( Level.OFF ) ); //$NON-NLS-1$
         return sm_logLevelLiterals;
     }
 }

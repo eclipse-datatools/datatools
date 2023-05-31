@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -13,14 +13,13 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.insert;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.GridContentProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 
 public class InsertGridContentProvider extends GridContentProvider {
 

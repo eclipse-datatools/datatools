@@ -16,8 +16,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
-import junit.framework.TestCase;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
@@ -27,6 +25,8 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
+
+import junit.framework.TestCase;
 
 /**
  * Base class for all parser test cases. Subclasses need to provide a "script.sql" file under the same directory with

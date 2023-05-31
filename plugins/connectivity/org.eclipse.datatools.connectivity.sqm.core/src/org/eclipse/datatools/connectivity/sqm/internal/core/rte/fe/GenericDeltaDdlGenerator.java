@@ -160,29 +160,29 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 			if(e instanceof Column) {
 				Column column = (Column) e;
 				Table table = column.getTable();
-	      		changeMap.put(table, new Integer(CREATE | DROP));
+	      		changeMap.put(table, Integer.valueOf(CREATE | DROP));
 				if(table instanceof PersistentTable){
 					processModifiedTable((PersistentTable)table, changeMap);
 				}
 			}
 			else if(e instanceof PersistentTable) {
 				flag = CREATE | DROP;
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedTable((PersistentTable) e, changeMap);
 			}
 			else if(e instanceof UniqueConstraint) {
 				flag = CREATE | DROP;
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedUniqueConstraint((UniqueConstraint) e, changeMap);				
 			}
 			else if(e instanceof Index) {
 				flag = CREATE | DROP;
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedIndex((Index) e, changeMap);				
 			}
 			else {
 				flag = CREATE | DROP;
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 			}
 		}
 	}
@@ -218,7 +218,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			ForeignKey fk = (ForeignKey) it.next();
 			if(!changeMap.containsKey(fk)) {
-				changeMap.put(fk, new Integer(CREATE | DROP));
+				changeMap.put(fk, Integer.valueOf(CREATE | DROP));
 			}
 		}
 	}
@@ -228,7 +228,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			ForeignKey fk = (ForeignKey) it.next();
 			if(!changeMap.containsKey(fk)) {
-				changeMap.put(fk, new Integer(CREATE | DROP));
+				changeMap.put(fk, Integer.valueOf(CREATE | DROP));
 			}
 		}
 	}
@@ -238,7 +238,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			UniqueConstraint uk = (UniqueConstraint) it.next();
 			if(!changeMap.containsKey(uk)) {
-				changeMap.put(uk, new Integer(CREATE | DROP));
+				changeMap.put(uk, Integer.valueOf(CREATE | DROP));
 				processModifiedUniqueConstraint(uk, changeMap);
 			}
 		}
@@ -247,7 +247,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			Index index = (Index) it.next();
 			if(!changeMap.containsKey(index)) {
-				changeMap.put(index, new Integer(CREATE | DROP));
+				changeMap.put(index, Integer.valueOf(CREATE | DROP));
 				processModifiedIndex(index, changeMap);
 			}
 		}
@@ -256,7 +256,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			ForeignKey fk = (ForeignKey) it.next();
 			if(!changeMap.containsKey(fk)) {
-				changeMap.put(fk, new Integer(CREATE | DROP));
+				changeMap.put(fk, Integer.valueOf(CREATE | DROP));
 			}
 		}
 
@@ -264,7 +264,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			Constraint ck = (Constraint) it.next();
 			if(!changeMap.containsKey(ck)) {
-				changeMap.put(ck, new Integer(CREATE));
+				changeMap.put(ck, Integer.valueOf(CREATE));
 			}
 		}
 
@@ -272,7 +272,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			Trigger trigger = (Trigger) it.next();
 			if(!changeMap.containsKey(trigger)) {
-				changeMap.put(trigger, new Integer(CREATE | DROP));
+				changeMap.put(trigger, Integer.valueOf(CREATE | DROP));
 			}
 		}
 	}
@@ -503,7 +503,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	      	}
 	      	
 	      	if(flag != 0) {
-	      		changeMap.put(element, new Integer(flag));
+	      		changeMap.put(element, Integer.valueOf(flag));
 	      	}
 		}      	
 		return changeMap;
@@ -535,14 +535,14 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 							break;
 						}
 					}
-					if (!match) changeMap.put(cPrivilege,new Integer(CREATE));
+					if (!match) changeMap.put(cPrivilege,Integer.valueOf(CREATE));
 				}
 			}
 			else {
 				// All current values represent new privileges
 				while (cVIter.hasNext()) {
 					Privilege privilege = (Privilege)(cVIter.next());
-					changeMap.put(privilege,new Integer(CREATE));
+					changeMap.put(privilege,Integer.valueOf(CREATE));
 				}
 			}
 		}
@@ -562,14 +562,14 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 							break;
 						}
 					}
-					if (!match) changeMap.put(pPrivilege,new Integer(DROP));
+					if (!match) changeMap.put(pPrivilege,Integer.valueOf(DROP));
 				}
 			}
 			else {
 				// All current values represent new privileges
 				while (pVIter.hasNext()) {
 					Privilege privilege = (Privilege)(pVIter.next());
-					changeMap.put(privilege,new Integer(DROP));
+					changeMap.put(privilege,Integer.valueOf(DROP));
 				}
 			}
 		}
@@ -578,7 +578,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	private void buildPrivilegeChangeMapEntries(Map changeMap,Privilege changedObject,EStructuralFeature f,Object currentValue,Object previousValue) {
 		if (f.getName().equals("grantable")) { //$NON-NLS-1$
 			// Revoke and re-grant the previous privilege with or without the grant option
-			changeMap.put(changedObject,new Integer(DROP | CREATE));
+			changeMap.put(changedObject,Integer.valueOf(DROP | CREATE));
 		}
 	}
 // END Privilege Specific
@@ -604,7 +604,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 						}
 					}
 					if (!match) {
-						changeMap.put(cRoleAuth,new Integer(CREATE));
+						changeMap.put(cRoleAuth,Integer.valueOf(CREATE));
 					}
 				}
 			}
@@ -612,7 +612,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 				// All current values represent new role authorizations
 				while (cVIter.hasNext()) {
 					RoleAuthorization roleAuth = (RoleAuthorization)(cVIter.next());
-					changeMap.put(roleAuth,new Integer(CREATE));
+					changeMap.put(roleAuth,Integer.valueOf(CREATE));
 				}
 			}
 		}
@@ -633,7 +633,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 						}
 					}
 					if (!match) {
-						changeMap.put(pRoleAuth,new Integer(DROP));
+						changeMap.put(pRoleAuth,Integer.valueOf(DROP));
 					}
 				}
 			}
@@ -641,7 +641,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 				// All current values represent new role authorizations
 				while (pVIter.hasNext()) {
 					RoleAuthorization roleAuth = (RoleAuthorization)(pVIter.next());
-					changeMap.put(roleAuth,new Integer(DROP));
+					changeMap.put(roleAuth,Integer.valueOf(DROP));
 				}
 			}
 		}
@@ -650,7 +650,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	private void buildRoleAuthChangeMapEntries(Map changeMap,RoleAuthorization changedObject,EStructuralFeature f,Object currentValue,Object previousValue) {
 		if (f.getName().equals("grantable")) { //$NON-NLS-1$
 			// Revoke and re-grant the previous privilege with or without the grant option
-			changeMap.put(changedObject,new Integer(DROP | CREATE));
+			changeMap.put(changedObject,Integer.valueOf(DROP | CREATE));
 		}
 	}
 // END RoleAuthorization Specific

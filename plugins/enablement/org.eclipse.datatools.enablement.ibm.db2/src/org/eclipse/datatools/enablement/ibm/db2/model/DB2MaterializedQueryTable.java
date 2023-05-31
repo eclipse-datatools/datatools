@@ -8,7 +8,6 @@
 package org.eclipse.datatools.enablement.ibm.db2.model;
 
 import org.eclipse.datatools.modelbase.sql.tables.DerivedTable;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

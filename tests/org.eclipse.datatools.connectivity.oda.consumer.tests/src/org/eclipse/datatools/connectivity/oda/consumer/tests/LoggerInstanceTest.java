@@ -19,14 +19,14 @@ package org.eclipse.datatools.connectivity.oda.consumer.tests;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.consumer.test.impl.LoggerAccessor;
 import org.eclipse.datatools.connectivity.oda.consumer.test.impl.OdaConsumerTestPlugin;
 import org.eclipse.datatools.connectivity.oda.util.logging.Level;
 import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
+
+import junit.framework.TestCase;
 
 /**
  * This test case is for the thread local implementation in odaconusmer.OdaDriver,

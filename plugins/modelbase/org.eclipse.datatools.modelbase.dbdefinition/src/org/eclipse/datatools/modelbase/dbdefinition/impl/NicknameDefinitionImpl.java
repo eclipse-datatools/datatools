@@ -9,10 +9,7 @@ package org.eclipse.datatools.modelbase.dbdefinition.impl;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -186,7 +183,7 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

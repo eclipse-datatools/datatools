@@ -27,8 +27,6 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.CCPActionGroup;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DeployAction;
-import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
-import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;

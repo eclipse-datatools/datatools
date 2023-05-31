@@ -6,15 +6,20 @@
  */
 package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.*;
-
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.JDBCParameterType;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizationIdentifier;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseIndexMember;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelFactory;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

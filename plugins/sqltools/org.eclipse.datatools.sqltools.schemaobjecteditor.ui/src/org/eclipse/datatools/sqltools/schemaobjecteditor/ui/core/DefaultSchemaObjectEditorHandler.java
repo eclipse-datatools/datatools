@@ -35,8 +35,8 @@ import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorI
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.ISchemaObjectEditorPage;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.SchemaObjectEditorModelListenersNotifier;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorPageDescriptor;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.core.ScriptsExecutionRunnable;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.ui.SavePreviewDialog;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.util.SQLUtil;

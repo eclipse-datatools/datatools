@@ -15,14 +15,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
 import org.eclipse.datatools.connectivity.oda.flatfile.tests.TestUtil;
 import org.eclipse.datatools.connectivity.oda.util.ResourceIdentifiers;
+
+import junit.framework.TestCase;
 
 public class RemoteFileTest extends TestCase
 {

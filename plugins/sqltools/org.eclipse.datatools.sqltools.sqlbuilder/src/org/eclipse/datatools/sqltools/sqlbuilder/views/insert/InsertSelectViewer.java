@@ -92,7 +92,7 @@ public class InsertSelectViewer extends ContentViewer {
 
         Composite listPanel = ViewUtility.createComposite(canvas, 2, true);
         // ratio 0.45
-        listPanel.setData("layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
+        listPanel.setData("layout ratio", Long.valueOf((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
         columnList = new org.eclipse.swt.widgets.List(listPanel, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI | SWT.BORDER);
         PlatformUI.getWorkbench().getHelpSystem().setHelp(columnList, SQLBuilderContextIds.SQLB_INSERT_VIEW);
         GridData gridData = ViewUtility.createFill();
@@ -105,7 +105,7 @@ public class InsertSelectViewer extends ContentViewer {
 
         Composite buttonPanel = ViewUtility.createComposite(canvas, 1, true);
         // ratio 0.10
-        buttonPanel.setData("layout ratio", new Long((((long) 10 << 16) + 99) / 100)); //$NON-NLS-1$
+        buttonPanel.setData("layout ratio", Long.valueOf((((long) 10 << 16) + 99) / 100)); //$NON-NLS-1$
 
         addButton = ViewUtility.createPushButton(buttonPanel, ">"); //$NON-NLS-1$
         SelectListener addButtonListener = new SelectListener();
@@ -129,7 +129,7 @@ public class InsertSelectViewer extends ContentViewer {
 
         Composite colGroup = ViewUtility.createComposite(canvas, 2, true);
         // ratio 0.45
-        colGroup.setData("layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
+        colGroup.setData("layout ratio", Long.valueOf((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
         PlatformUI.getWorkbench().getHelpSystem().setHelp(colGroup, SQLBuilderContextIds.SQLB_INSERT_VIEW);
 
         columnGrid = new ColumnListGridViewer(domainModel, colGroup);

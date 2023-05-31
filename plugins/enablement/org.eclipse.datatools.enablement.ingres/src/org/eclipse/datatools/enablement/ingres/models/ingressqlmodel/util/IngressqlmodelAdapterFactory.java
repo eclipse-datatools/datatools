@@ -12,22 +12,23 @@
  */
 package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.util;
 
-import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.*;
-
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresDBEvent;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresIdentitySpecifier;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSchema;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresSynonym;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresTrigger;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngresViewTable;
+import org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.IngressqlmodelPackage;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-
 import org.eclipse.datatools.modelbase.sql.tables.DerivedTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;

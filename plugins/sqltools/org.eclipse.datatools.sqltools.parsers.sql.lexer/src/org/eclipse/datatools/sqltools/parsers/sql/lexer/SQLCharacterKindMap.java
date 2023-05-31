@@ -189,13 +189,13 @@ public class SQLCharacterKindMap implements SQLLexersym
 	            previousASCIICodeMapping[asciiCode] = new ArrayList();
 	        }
 	        int oldTokenKind = this.tokenKind[asciiCode];
-	        previousASCIICodeMapping[asciiCode].add(0, new Integer(oldTokenKind));
+	        previousASCIICodeMapping[asciiCode].add(0, Integer.valueOf(oldTokenKind));
 	        
 	        // remove previous ASCII-code mapping of the new Token kind
 	        unsetTokenKind(newTokenKind);   
 	        
 	        // set mapping of new Token kind to its ASCII-code for later restoring, see #unsetTokenKind(int)
-	        tokenKindASCIICodeMap.put(new Integer(newTokenKind), new Integer(asciiCode));
+	        tokenKindASCIICodeMap.put(Integer.valueOf(newTokenKind), Integer.valueOf(asciiCode));
 	        
 	        // finally set the new Token kind
 	        this.tokenKind[asciiCode] = newTokenKind;
@@ -216,7 +216,7 @@ public class SQLCharacterKindMap implements SQLLexersym
     public void unsetTokenKind(int oldTokenKind)
     {
         // for storing the new Token kind in maps and lists
-        Integer oldTokenKindValue = new Integer(oldTokenKind);
+        Integer oldTokenKindValue = Integer.valueOf(oldTokenKind);
         
         //check if the Token kind was previously mapped to another ASCII-code
         if (tokenKindASCIICodeMap.containsKey(oldTokenKindValue))

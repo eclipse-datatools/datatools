@@ -11,8 +11,8 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
-import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 
 /**
  * The object of column Mapping, it contains the properties of ColumnName,

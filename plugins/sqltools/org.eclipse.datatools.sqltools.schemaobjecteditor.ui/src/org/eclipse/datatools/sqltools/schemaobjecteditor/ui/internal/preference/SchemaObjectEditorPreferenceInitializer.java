@@ -10,9 +10,9 @@ package org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.preference
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorDescriptor;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.extensions.IEditorPageDescriptor;
-import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.Constants;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.ISchemaObjectEditorExtensionsRegistryReader;
+import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SOEUIPlugin;
 import org.eclipse.datatools.sqltools.schemaobjecteditor.ui.internal.SchemaObjectEditorExtensionsRegistryReader;
 import org.eclipse.jface.preference.IPreferenceStore;
 

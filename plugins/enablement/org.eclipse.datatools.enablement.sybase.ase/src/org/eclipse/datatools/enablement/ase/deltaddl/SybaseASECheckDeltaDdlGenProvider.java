@@ -32,7 +32,7 @@ public class SybaseASECheckDeltaDdlGenProvider extends SybaseASEConstraintDeltaD
         Integer flag = (Integer)changeMap.get(element);
         if((flag.intValue() & SybaseDeltaDdlGeneration.MODIFIED) != 0)
         {
-            flag = new Integer(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP);
+            flag = Integer.valueOf(SybaseDeltaDdlGeneration.CREATE | SybaseDeltaDdlGeneration.DROP);
             changeMap.put(element, flag);
         }
     }

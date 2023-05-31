@@ -10,9 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.catalog;
 
-import org.eclipse.datatools.modelbase.sql.routines.Source;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2JavaOptions;
+import org.eclipse.datatools.modelbase.sql.routines.Source;
 
 /**
  * @author yehsh

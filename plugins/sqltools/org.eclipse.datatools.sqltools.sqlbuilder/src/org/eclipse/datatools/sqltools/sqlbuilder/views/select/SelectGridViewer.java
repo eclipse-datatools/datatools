@@ -304,7 +304,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
                         }
                         LabelValuePair[] sortOrderItems = new LabelValuePair[orderNumbers];
                         for (int i = 0; i < orderNumbers; i++) {
-                            String item = (new Integer(i + 1)).toString();
+                            String item = (Integer.valueOf(i + 1)).toString();
                             sortOrderItems[i] = new LabelValuePair(item, item);
                         }
 
@@ -314,7 +314,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
             }
             if (!orderByExpressionsExist) {
                 LabelValuePair[] sortOrderItems = new LabelValuePair[1];
-                String item = (new Integer(1)).toString();
+                String item = (Integer.valueOf(1)).toString();
                 sortOrderItems[0] = new LabelValuePair(item, item);
                 sortOrderCellEditor.createItems(sortOrderItems);
             }
@@ -363,7 +363,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
                 SelectTableElement ste = (SelectTableElement) value;
                 String result = ste.getColumnText(2);
 
-                super.doSetValue(new Boolean(result));
+                super.doSetValue(Boolean.valueOf(result));
             }
         }
 

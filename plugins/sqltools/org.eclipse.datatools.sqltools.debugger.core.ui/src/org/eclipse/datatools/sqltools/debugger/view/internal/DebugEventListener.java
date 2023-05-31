@@ -8,7 +8,6 @@ package org.eclipse.datatools.sqltools.debugger.view.internal;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.debugger.core.ui.DebuggerCoreUIPlugin;
 import org.eclipse.datatools.sqltools.debugger.model.SPDebugModelUtil;
 import org.eclipse.datatools.sqltools.result.ResultsConstants;

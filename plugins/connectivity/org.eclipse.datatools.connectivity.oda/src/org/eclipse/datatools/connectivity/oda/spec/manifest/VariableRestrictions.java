@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
 
@@ -108,7 +109,7 @@ public class VariableRestrictions
                     if( odaDataTypeCode == Types.NULL )
                         continue;   // ignore
                     
-                    restrictedDataTypes.add( new Integer( odaDataTypeCode ) );
+                    restrictedDataTypes.add( Integer.valueOf( odaDataTypeCode ) );
                 }
             }
         }

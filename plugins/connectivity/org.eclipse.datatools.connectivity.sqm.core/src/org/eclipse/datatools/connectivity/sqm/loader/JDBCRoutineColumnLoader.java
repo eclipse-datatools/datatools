@@ -537,17 +537,17 @@ public class JDBCRoutineColumnLoader extends JDBCBaseLoader {
 				if (pdtd.isLengthSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("length"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_LENGTH)));
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_LENGTH)));
 				}
 				if (pdtd.isPrecisionSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("precision"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_PRECISION)));
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_PRECISION)));
 				}
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()
 							.getEStructuralFeature("scale"); //$NON-NLS-1$
-					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_SCALE)));
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_SCALE)));
 				}
 				element.setDataType(pdt);
 				return;

@@ -8,9 +8,7 @@ package org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.tables.impl.ViewTableImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

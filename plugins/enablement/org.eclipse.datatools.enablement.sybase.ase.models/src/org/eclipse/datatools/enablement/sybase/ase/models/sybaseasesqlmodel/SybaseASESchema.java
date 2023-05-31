@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-
 import org.eclipse.emf.common.util.EList;
 
 /**

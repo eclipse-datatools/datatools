@@ -9,6 +9,15 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.BufferPoolType;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWBufferPool;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWBufferPoolSizeException;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabasePartition;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionGroup;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.PageSizeType;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,16 +28,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.BufferPoolType;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWBufferPool;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWBufferPoolSizeException;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabase;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabasePartition;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionGroup;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.PageSizeType;
 
 /**
  * <!-- begin-user-doc -->
@@ -572,13 +571,13 @@ public class LUWBufferPoolImpl extends SQLObjectImpl implements LUWBufferPool {
 			case LUWPackage.LUW_BUFFER_POOL__CREATE_TYPE:
 				return getCreateType();
 			case LUWPackage.LUW_BUFFER_POOL__SIZE:
-				return new Integer(getSize());
+				return Integer.valueOf(getSize());
 			case LUWPackage.LUW_BUFFER_POOL__PAGE_SIZE:
 				return getPageSize();
 			case LUWPackage.LUW_BUFFER_POOL__BLOCK_SIZE:
-				return new Integer(getBlockSize());
+				return Integer.valueOf(getBlockSize());
 			case LUWPackage.LUW_BUFFER_POOL__NUM_BLOCK_PAGES:
-				return new Integer(getNumBlockPages());
+				return Integer.valueOf(getNumBlockPages());
 			case LUWPackage.LUW_BUFFER_POOL__EXTENDED_STORAGE:
 				return isExtendedStorage() ? Boolean.TRUE : Boolean.FALSE;
 			case LUWPackage.LUW_BUFFER_POOL__AUTOMATIC:

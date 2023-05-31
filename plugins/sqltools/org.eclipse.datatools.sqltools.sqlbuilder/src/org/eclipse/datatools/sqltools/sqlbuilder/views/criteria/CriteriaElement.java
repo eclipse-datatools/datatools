@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2010 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -12,8 +12,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.criteria;
 
 import java.lang.ref.WeakReference;
 import java.util.Vector;
-
-import org.eclipse.swt.widgets.Display;
 
 import org.eclipse.datatools.modelbase.sql.query.Predicate;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
@@ -35,6 +33,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStringHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SearchConditionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * CritieriaElement provides the IElement for the critera grid view.

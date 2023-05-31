@@ -7,9 +7,16 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Mask;
 import java.util.Collection;
 
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Mask;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Period;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Permission;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Table;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2TableOrganization;
+import org.eclipse.datatools.enablement.ibm.db2.model.DataCaptureType;
 import org.eclipse.datatools.modelbase.sql.tables.impl.PersistentTableImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,16 +26,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Package;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Period;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Permission;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Table;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2TableOrganization;
-import org.eclipse.datatools.enablement.ibm.db2.model.DataCaptureType;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,3 +1,0 @@
-plugin@org.eclipse.datatools.enablement.postgresql.dbdefinition=GIT,tag=v201110070445,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.postgresql.git,path=plugins/org.eclipse.datatools.enablement.postgresql.dbdefinition
-plugin@org.eclipse.datatools.enablement.postgresql.ui=GIT,tag=v201107221506,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.postgresql.git,path=plugins/org.eclipse.datatools.enablement.postgresql.ui
-plugin@org.eclipse.datatools.enablement.postgresql=GIT,tag=v201205252207,repo=git://git.eclipse.org/gitroot/datatools/org.eclipse.datatools.enablement.postgresql.git,path=plugins/org.eclipse.datatools.enablement.postgresql

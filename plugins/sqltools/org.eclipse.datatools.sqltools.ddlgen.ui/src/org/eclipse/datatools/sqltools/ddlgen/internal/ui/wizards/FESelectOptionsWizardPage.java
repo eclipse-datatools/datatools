@@ -223,7 +223,7 @@ public class FESelectOptionsWizardPage
      * @param option
      */
     private void addButton(Composite composite, EngineeringOption option) {
-        m_Default.add(new Boolean(option.getBoolean()));
+        m_Default.add(Boolean.valueOf(option.getBoolean()));
         final Button button = new Button(composite, SWT.CHECK);
         m_Buttons.add(button); 
         button.setText(option.getOptionName());

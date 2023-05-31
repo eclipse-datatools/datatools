@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.ibm.db2.model;
 
 import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
-
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**

@@ -134,7 +134,7 @@ public class CPPropetyPage extends PropertyPage
 			try {
 				ProfileManager.getInstance().modifyProfile(profile,
 						txtProfileName.getText(), txtProfileDesc.getText(),
-						new Boolean(btnAutoConnect.getSelection()));
+						Boolean.valueOf(btnAutoConnect.getSelection()));
 			}
 			catch (ConnectionProfileException e) {
 				ExceptionHandler.showException(getShell(), ConnectivityUIPlugin

@@ -42,7 +42,7 @@ public class ModelUtilExt
                 {
                     if (db instanceof ICatalogObject2)
                     {
-                        String context = ((ICatalogObject2) db).getRefreshContext(new Integer(SQLSchemaPackage.DATABASE__EVENTS));
+                        String context = ((ICatalogObject2) db).getRefreshContext(Integer.valueOf(SQLSchemaPackage.DATABASE__EVENTS));
                         ((ICatalogObject2) db).refresh(context);
                     }
                     else
@@ -98,7 +98,7 @@ public class ModelUtilExt
                             {
                                 if (table instanceof ICatalogObject2)
                                 {
-                                    String context = ((ICatalogObject2) table).getRefreshContext(new Integer(SQLTablesPackage.TABLE__TRIGGERS));
+                                    String context = ((ICatalogObject2) table).getRefreshContext(Integer.valueOf(SQLTablesPackage.TABLE__TRIGGERS));
                                     ((ICatalogObject2) table).refresh(context);
                                 }
                                 else
@@ -125,12 +125,12 @@ public class ModelUtilExt
                     if (refresh)
                     {
                     	//TODO:
-//                        DSEUtil.refreshObjectBySchema(schema, new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+//                        DSEUtil.refreshObjectBySchema(schema, Integer.valueOf(SQLSchemaPackage.SCHEMA__ROUTINES));
                     	
                         if (schema instanceof ICatalogObject2)
                         {
                         	ICatalogObject2 catalogObject2 = (ICatalogObject2)schema;
-                            String context = catalogObject2.getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                            String context = catalogObject2.getRefreshContext(Integer.valueOf(SQLSchemaPackage.SCHEMA__ROUTINES));
                             catalogObject2.refresh(context);
                         }
                         else if(schema instanceof ICatalogObject)

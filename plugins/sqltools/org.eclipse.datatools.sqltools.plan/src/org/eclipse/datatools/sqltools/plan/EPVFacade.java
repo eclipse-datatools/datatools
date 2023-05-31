@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan;
 
-import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManager;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
 import org.eclipse.ui.IWorkbenchPage;

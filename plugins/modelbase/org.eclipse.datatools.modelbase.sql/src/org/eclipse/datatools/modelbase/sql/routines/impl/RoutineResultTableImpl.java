@@ -10,22 +10,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.routines.impl;
 
-import java.util.Collection;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
-import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.tables.ReferenceType;
-import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

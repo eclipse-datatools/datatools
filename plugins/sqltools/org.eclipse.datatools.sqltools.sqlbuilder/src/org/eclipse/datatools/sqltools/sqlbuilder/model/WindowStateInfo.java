@@ -18,11 +18,8 @@ import java.util.HashMap;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderInputFactory;
-import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderStorageEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderWindowStateFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderWindowStateInput;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
 
@@ -50,21 +47,21 @@ public class WindowStateInfo implements IWindowStateInfo {
      * @see org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo#get(int)
      */
     public IControlStateInfo get( int controlType ) {
-        return (IControlStateInfo)_controlStateInfoMap.get( new Integer( controlType ));
+        return (IControlStateInfo)_controlStateInfoMap.get( Integer.valueOf( controlType ));
     }
 
     /* (non-Javadoc)
 	 * @see org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo#put(int, org.eclipse.datatools.sqltools.sqlbuilder.model.IControlStateInfo)
 	 */
 	public void put( int controlType, IControlStateInfo controlStateInfo ) {
-		_controlStateInfoMap.put( new Integer( controlType ), controlStateInfo );
+		_controlStateInfoMap.put( Integer.valueOf( controlType ), controlStateInfo );
 	}
 
     /* (non-Javadoc)
 	 * @see org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo#remove(int)
 	 */
 	public void remove(int controlType){
-		_controlStateInfoMap.remove(new Integer(controlType));
+		_controlStateInfoMap.remove(Integer.valueOf(controlType));
 	}
 
     /* (non-Javadoc)

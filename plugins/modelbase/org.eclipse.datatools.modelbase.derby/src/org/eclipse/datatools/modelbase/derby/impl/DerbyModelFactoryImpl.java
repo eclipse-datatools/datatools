@@ -10,15 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.derby.impl;
 
-import org.eclipse.datatools.modelbase.derby.*;
-
+import org.eclipse.datatools.modelbase.derby.DerbyModelFactory;
+import org.eclipse.datatools.modelbase.derby.DerbyModelPackage;
+import org.eclipse.datatools.modelbase.derby.DerbySchema;
+import org.eclipse.datatools.modelbase.derby.Synonym;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

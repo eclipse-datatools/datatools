@@ -106,7 +106,7 @@ public class FileFormatWizardPage extends WizardPage
         				// found file separtor
         				if (index > 0)
         				{
-        					list.add(new Integer(index));
+        					list.add(Integer.valueOf(index));
         				}
         				beginSearchIndex = index + 1;
         			}

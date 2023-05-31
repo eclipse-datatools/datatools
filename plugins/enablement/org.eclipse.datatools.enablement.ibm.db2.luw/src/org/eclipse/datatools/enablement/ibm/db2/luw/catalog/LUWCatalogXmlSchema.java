@@ -26,15 +26,14 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2XMLSchema;
 import org.eclipse.datatools.enablement.ibm.db2.model.DB2XMLSchemaDocument;
 import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2XMLSchemaImpl;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * @author debbani

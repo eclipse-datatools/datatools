@@ -9,10 +9,7 @@ package org.eclipse.datatools.modelbase.dbdefinition.impl;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -518,9 +515,9 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
-				return new Integer(getMaximumReferencePartLength());
+				return Integer.valueOf(getMaximumReferencePartLength());
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
-				return new Integer(getMaximumActionBodyLength());
+				return Integer.valueOf(getMaximumActionBodyLength());
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TYPE_SUPPORTED:
 				return isTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__WHEN_CLAUSE_SUPPORTED:
@@ -538,7 +535,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				return isTableTriggerReferenceSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

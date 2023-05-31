@@ -7,10 +7,7 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
-
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
-
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**
  * <!-- begin-user-doc -->

@@ -15,15 +15,11 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -440,7 +436,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				return isIdentityCycleSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -11,7 +11,6 @@
 package org.eclipse.datatools.enablement.sybase.virtual;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.IndexNode;
-import org.eclipse.datatools.enablement.sybase.containment.ConstraintGroupID;
 
 /**
  * @author linsong

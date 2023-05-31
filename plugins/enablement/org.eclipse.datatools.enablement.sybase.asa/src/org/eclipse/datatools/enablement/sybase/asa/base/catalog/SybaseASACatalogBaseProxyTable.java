@@ -3,7 +3,6 @@ package org.eclipse.datatools.enablement.sybase.asa.base.catalog;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
-import org.eclipse.core.internal.runtime.AdapterManager;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;

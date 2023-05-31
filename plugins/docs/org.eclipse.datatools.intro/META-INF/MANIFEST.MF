@@ -4,5 +4,5 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.intro; singleton:=true
 Created-By: 1.4.2_09-b05 (Sun Microsystems Inc.)
-Bundle-Version: 1.14.102.qualifier
+Bundle-Version: 1.15.0.qualifier
 Bundle-ManifestVersion: 2

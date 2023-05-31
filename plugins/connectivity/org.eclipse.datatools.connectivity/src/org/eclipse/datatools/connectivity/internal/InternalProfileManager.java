@@ -653,7 +653,7 @@ public class InternalProfileManager {
 		do {
 			profileName = ConnectivityPlugin.getDefault().getResourceString(
 					"duplicate.profile.name", //$NON-NLS-1$
-					new Object[] { cp.getName(), new Integer(i)});
+					new Object[] { cp.getName(), Integer.valueOf(i)});
 			i++;
 		}
 		while (getProfileByName(profileName,false) != null);
@@ -983,7 +983,7 @@ public class InternalProfileManager {
 		ConnectionProfile internalProfile = (ConnectionProfile) profile;
 		String oldName = profile.getName();
 		String oldDesc = profile.getDescription();
-		Boolean oldAutoConnect = new Boolean(profile.isAutoConnect());
+		Boolean oldAutoConnect = Boolean.valueOf(profile.isAutoConnect());
 		if (newName != null && !newName.equals(oldName))
 			internalProfile.setName(newName);
 		if (newDesc != null && !newDesc.equals(oldDesc))

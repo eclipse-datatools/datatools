@@ -248,13 +248,13 @@ public class PRSPersistenceUtility
 				return decodeString( tok );
 
 			case MARKER_INT:
-				return new Integer( tok );
+				return Integer.valueOf( tok );
 
 			case MARKER_LONG:
-				return new Long( tok );
+				return Long.valueOf( tok );
 
 			case MARKER_DOUBLE:
-				return new Double( tok );
+				return Double.valueOf( tok );
 
 			case MARKER_DECIMAL:
 				return new BigDecimal( tok );

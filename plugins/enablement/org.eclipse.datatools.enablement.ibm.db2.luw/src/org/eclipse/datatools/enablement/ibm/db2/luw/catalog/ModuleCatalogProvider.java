@@ -13,9 +13,8 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.catalog;
 import java.sql.Connection;
 import java.util.Collection;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWModule;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.PLSQLPackage;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2Schema;
 
 public interface ModuleCatalogProvider {
 	public Collection<LUWModule> getModules(Connection connection, DB2Schema schema);

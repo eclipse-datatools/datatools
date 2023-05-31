@@ -10,18 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.datatypes.impl;
 
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.ExactNumericDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,7 +97,7 @@ public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl imp
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE__SCALE:
-				return new Integer(getScale());
+				return Integer.valueOf(getScale());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

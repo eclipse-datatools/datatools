@@ -6,13 +6,11 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2PackageImpl;
-
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.CursorBlockType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.ExplainSnaphotType;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDatabasePackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2PackageImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -303,9 +301,9 @@ public class LUWDatabasePackageImpl extends DB2PackageImpl implements LUWDatabas
 			case LUWPackage.LUW_DATABASE_PACKAGE__CURSOR_BLOCK:
 				return getCursorBlock();
 			case LUWPackage.LUW_DATABASE_PACKAGE__NUMBER_OF_SECTIONS:
-				return new Integer(getNumberOfSections());
+				return Integer.valueOf(getNumberOfSections());
 			case LUWPackage.LUW_DATABASE_PACKAGE__OPTIMIZATION_CLASS:
-				return new Integer(getOptimizationClass());
+				return Integer.valueOf(getOptimizationClass());
 			case LUWPackage.LUW_DATABASE_PACKAGE__EXPLAIN_SNAPSHOT:
 				return getExplainSnapshot();
 		}

@@ -12,28 +12,16 @@ import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.Cach
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEIndex;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESegment;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.PartitionSegmentPair;
-
 import org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -643,9 +631,9 @@ public class SybaseASEIndexImpl extends IndexImpl implements SybaseASEIndex
         switch (featureID)
         {
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__MAX_ROW_PER_PAGE:
-                return new Integer(getMaxRowPerPage());
+                return Integer.valueOf(getMaxRowPerPage());
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__REVERSE_PAGE_GAP:
-                return new Integer(getReversePageGap());
+                return Integer.valueOf(getReversePageGap());
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__IGNORE_DUPLICATE_KEY:
                 return isIgnoreDuplicateKey() ? Boolean.TRUE : Boolean.FALSE;
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SORTED_DATA:
@@ -660,9 +648,9 @@ public class SybaseASEIndexImpl extends IndexImpl implements SybaseASEIndex
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__PARTITIONS:
                 return getPartitions();
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__CONSUMER_NUM:
-                return new Integer(getConsumerNum());
+                return Integer.valueOf(getConsumerNum());
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__STATISTICS_STEP:
-                return new Integer(getStatisticsStep());
+                return Integer.valueOf(getStatisticsStep());
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__ALLOW_DUPLICATE_ROW:
                 return isAllowDuplicateRow() ? Boolean.TRUE : Boolean.FALSE;
             case SybaseasesqlmodelPackage.SYBASE_ASE_INDEX__SUSPECT:

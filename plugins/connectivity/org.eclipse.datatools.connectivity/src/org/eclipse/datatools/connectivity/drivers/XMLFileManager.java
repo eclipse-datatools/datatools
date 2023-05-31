@@ -301,7 +301,7 @@ public class XMLFileManager {
 		File file = path.toFile();
 		if (!file.exists())
 			return null;
-		Long modified = new Long(file.lastModified());
+		Long modified = Long.valueOf(file.lastModified());
 		return modified.toString();
 	}
 	

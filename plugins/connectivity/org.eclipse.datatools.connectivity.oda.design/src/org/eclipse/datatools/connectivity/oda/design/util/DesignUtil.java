@@ -678,7 +678,7 @@ public class DesignUtil
         
         String identifier = columnDefn.getAttributes().getName();
         if( identifier.length() == 0 )
-            identifier = (new Integer( columnDefn.getAttributes().getPosition() )).toString();
+            identifier = (Integer.valueOf( columnDefn.getAttributes().getPosition() )).toString();
 
         ExpressionVariable columnExprVar = DesignFactory.eINSTANCE.createExpressionVariable();
         columnExprVar.setIdentifier( identifier );

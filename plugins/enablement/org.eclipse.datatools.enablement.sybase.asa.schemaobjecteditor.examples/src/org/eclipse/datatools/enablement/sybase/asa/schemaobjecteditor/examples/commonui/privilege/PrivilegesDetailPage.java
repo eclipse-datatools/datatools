@@ -505,7 +505,7 @@ public abstract class PrivilegesDetailPage extends AbstractFormPart implements I
                         {
                             if (_pTableTreeViewer.getCellModifier().canModify(obj, property))
                             {
-                                _pTableTreeViewer.getCellModifier().modify(obj, property, new Integer(reachedIndex));
+                                _pTableTreeViewer.getCellModifier().modify(obj, property, Integer.valueOf(reachedIndex));
                             }
                         }
                     }
@@ -1092,11 +1092,11 @@ public abstract class PrivilegesDetailPage extends AbstractFormPart implements I
                     int selectionIndex = getIndex(items, dspString);
                     if (selectionIndex == -1)
                     {
-                        return new Integer(0);
+                        return Integer.valueOf(0);
                     }
-                    return new Integer(selectionIndex);
+                    return Integer.valueOf(selectionIndex);
                 }
-                return new Integer(1);
+                return Integer.valueOf(1);
             }
 
             private int getIndex(String[] items, String item)

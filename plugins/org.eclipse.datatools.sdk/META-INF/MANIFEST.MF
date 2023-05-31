@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP SDK Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sdk;singleton:=true
-Bundle-Version: 1.9.101.qualifier
+Bundle-Version: 1.10.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -11,7 +11,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.pde.ui.templates,
  org.eclipse.ui.views,
  org.eclipse.datatools.connectivity
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
 Bundle-Vendor: Eclipse Data Tools Platform

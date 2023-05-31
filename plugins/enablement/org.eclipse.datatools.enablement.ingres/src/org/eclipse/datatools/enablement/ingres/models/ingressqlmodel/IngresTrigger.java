@@ -13,7 +13,6 @@
 package org.eclipse.datatools.enablement.ingres.models.ingressqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.routines.Source;
-
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 
 /**

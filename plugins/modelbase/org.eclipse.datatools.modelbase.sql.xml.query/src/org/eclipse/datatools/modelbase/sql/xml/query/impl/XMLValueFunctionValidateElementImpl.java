@@ -8,8 +8,6 @@ package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 
 
-import java.util.Collection;
-
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
 import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingTo;
@@ -18,15 +16,10 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateEle
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementNamespace;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

@@ -8,11 +8,8 @@ package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
 import org.eclipse.datatools.modelbase.dbdefinition.ConstructedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

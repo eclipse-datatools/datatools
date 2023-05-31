@@ -10,19 +10,12 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
-
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -385,15 +378,15 @@ public class FieldQualifierDefinitionImpl extends EObjectImpl implements FieldQu
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__NAME:
 				return getName();
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION:
-				return new Integer(getMaximumPrecision());
+				return Integer.valueOf(getMaximumPrecision());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION:
-				return new Integer(getDefaultPrecision());
+				return Integer.valueOf(getDefaultPrecision());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED:
 				return isPrecisionSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE:
-				return new Integer(getMaximumScale());
+				return Integer.valueOf(getMaximumScale());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE:
-				return new Integer(getDefaultScale());
+				return Integer.valueOf(getDefaultScale());
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED:
 				return isScaleSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}

@@ -47,7 +47,7 @@ public class Logger
 		Boolean value = (Boolean) getCachedOptions().get(option.getValue());
 		if (value == null)
 		{
-			value = new Boolean(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(option.getValue())));
+			value = Boolean.valueOf(Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(option.getValue())));
 			getCachedOptions().put(option.getValue(), value);
 		}
 		return value.booleanValue();

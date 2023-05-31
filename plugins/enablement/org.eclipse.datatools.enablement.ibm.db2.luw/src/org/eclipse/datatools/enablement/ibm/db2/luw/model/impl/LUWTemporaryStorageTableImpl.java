@@ -10,13 +10,10 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionKey;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTemporaryStorageTable;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 

@@ -20,9 +20,6 @@ import java.util.StringTokenizer;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.enablement.ibm.util.ConnectionProfileUtility;
-import org.eclipse.datatools.enablement.ibm.util.ReuseStringBuffer;
-import org.eclipse.datatools.enablement.ibm.util.SQLIdentifier;
 
 /**
  * Abstracts a database version consisting of a product name and three integers: version,

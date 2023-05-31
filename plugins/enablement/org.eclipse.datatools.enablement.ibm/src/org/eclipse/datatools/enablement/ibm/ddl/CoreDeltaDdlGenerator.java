@@ -372,25 +372,25 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			if(e instanceof Column) {
 				Column column = (Column) e;
 				Table table = column.getTable();
-	      		changeMap.put(table, new Integer(flag));
+	      		changeMap.put(table, Integer.valueOf(flag));
 				if(table instanceof PersistentTable){
 					processModifiedTable((PersistentTable)table, changeMap);
 				}
 			}
 			else if(e instanceof PersistentTable) {
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedTable((PersistentTable) e, changeMap);
 			}
 			else if(e instanceof UniqueConstraint) {
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedUniqueConstraint((UniqueConstraint) e, changeMap);				
 			}
 			else if(e instanceof Index) {
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 				processModifiedIndex((Index) e, changeMap);				
 			}
 			else {
-	      		changeMap.put(e, new Integer(flag));
+	      		changeMap.put(e, Integer.valueOf(flag));
 			}
 		}
 	}
@@ -514,7 +514,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(fk, new Integer(flag));
+			changeMap.put(fk, Integer.valueOf(flag));
 		}
 	}
 		
@@ -529,7 +529,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(fk, new Integer(flag));
+			changeMap.put(fk, Integer.valueOf(flag));
 		}
 	}
 
@@ -544,7 +544,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(uk, new Integer(flag));
+			changeMap.put(uk, Integer.valueOf(flag));
 			processModifiedUniqueConstraint(uk, changeMap);
 		}
 		
@@ -557,7 +557,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 				flag = ((Integer) changeMap.get(index)).intValue();
 			}
 			flag = modifyIndexChangeFlag(index,changeMap,flag);
-			changeMap.put(index, new Integer(flag));
+			changeMap.put(index, Integer.valueOf(flag));
 			processModifiedIndex(index, changeMap);
 		}
 
@@ -571,7 +571,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(fk, new Integer(flag));
+			changeMap.put(fk, Integer.valueOf(flag));
 		}
 
 		it = table.getReferencingForeignKeys().iterator();
@@ -584,7 +584,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(fk, new Integer(flag));
+			changeMap.put(fk, Integer.valueOf(flag));
 		}
 
 		it = table.getConstraints().iterator();
@@ -598,7 +598,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(ck, new Integer(flag));
+			changeMap.put(ck, Integer.valueOf(flag));
 		}
 
 		it = table.getTriggers().iterator();
@@ -611,7 +611,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(trigger, new Integer(flag));
+			changeMap.put(trigger, Integer.valueOf(flag));
 		}
 		
 		it = table.getColumns().iterator();
@@ -635,7 +635,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 			}
 			flag = flag & ~(MODIFIED | RENAME);
 			flag = flag | (CREATE | DROP);
-			changeMap.put(view, new Integer(flag));
+			changeMap.put(view, Integer.valueOf(flag));
 		}
 	}
 
@@ -999,7 +999,7 @@ public abstract class CoreDeltaDdlGenerator extends GenericDeltaDdlGenerator {
 		}
 		if (flagsToSet != 0) 
 			flags |= flagsToSet;
-		map.put(element,new Integer(flags));
+		map.put(element,Integer.valueOf(flags));
 		return flags;
 	}
 

@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.eclipse.datatools</groupId>
     <artifactId>docs</artifactId>
-    <version>1.14.102-SNAPSHOT</version>
+    <version>1.15.0-SNAPSHOT</version>
   </parent>
   <groupId>org.eclipse.datatools.plugins</groupId>
   <artifactId>org.eclipse.datatools.sqltools.doc.user</artifactId>

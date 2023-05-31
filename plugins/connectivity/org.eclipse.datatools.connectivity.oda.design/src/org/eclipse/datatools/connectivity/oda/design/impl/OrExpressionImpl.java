@@ -17,7 +17,6 @@ package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

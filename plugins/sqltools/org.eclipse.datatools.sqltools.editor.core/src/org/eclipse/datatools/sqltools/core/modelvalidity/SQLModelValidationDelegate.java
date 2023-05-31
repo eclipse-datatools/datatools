@@ -277,7 +277,7 @@ public class SQLModelValidationDelegate extends EObjectValidator
                         // build the context for the containment feature
                         Map subContext = (Map) ((HashMap) context).clone();
                         subContext.put(VALIDATION_SCOPE_KEY, VALIDATION_SCOPE_COMPLETE_VALUE);
-                        subContext.put(VALIDATION_DEPTH_KEY, new Integer(depth - 1));
+                        subContext.put(VALIDATION_DEPTH_KEY, Integer.valueOf(depth - 1));
                         ((ContainmentFeatureValidationItem) item).setContext(subContext);
 
                         if (!itemsList.contains(item))
@@ -360,7 +360,7 @@ public class SQLModelValidationDelegate extends EObjectValidator
         }
         Map context = new HashMap();
         context.put(VALIDATION_SCOPE_KEY, VALIDATION_SCOPE_COMPLETE_VALUE);
-        context.put(VALIDATION_DEPTH_KEY, new Integer(depth));
+        context.put(VALIDATION_DEPTH_KEY, Integer.valueOf(depth));
         return context;
     }
 

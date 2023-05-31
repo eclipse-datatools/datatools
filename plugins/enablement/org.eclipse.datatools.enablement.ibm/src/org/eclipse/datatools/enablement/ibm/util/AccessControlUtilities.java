@@ -43,7 +43,7 @@ public class AccessControlUtilities {
 		EAnnotation eAnnotation = privilege.getEAnnotation(IBMPluginActivator.PRIVILEGE_PROPERTY);
 		if (eAnnotation != null) {
 			String detail = (String) eAnnotation.getDetails().get(IBMPluginActivator.PRIVILEGE_SYSTEM_GRANT);
-			if (detail != null) return new Boolean(detail).booleanValue();
+			if (detail != null) return Boolean.valueOf(detail).booleanValue();
 		}
 		ContainmentService contServ=IBMPluginActivator.getInstance().getContainmentService();
 		EObject db=privilege.getObject();

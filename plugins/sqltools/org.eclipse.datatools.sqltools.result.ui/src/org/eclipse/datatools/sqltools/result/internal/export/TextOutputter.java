@@ -195,7 +195,7 @@ public class TextOutputter extends AbstractOutputter
                 nameDataSeparator.append("-");
             }
 
-            _columnLen.put(columnName, new Integer(columnWidth));
+            _columnLen.put(columnName, Integer.valueOf(columnWidth));
 
             //space separator between columns
             columnWidth++;

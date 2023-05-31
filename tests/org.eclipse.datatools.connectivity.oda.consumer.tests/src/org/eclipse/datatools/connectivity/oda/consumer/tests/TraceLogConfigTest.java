@@ -19,13 +19,13 @@ package org.eclipse.datatools.connectivity.oda.consumer.tests;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaConsumerPlugin;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
 import org.eclipse.datatools.connectivity.oda.util.logging.Level;
+
+import junit.framework.TestCase;
 
 /**
  *

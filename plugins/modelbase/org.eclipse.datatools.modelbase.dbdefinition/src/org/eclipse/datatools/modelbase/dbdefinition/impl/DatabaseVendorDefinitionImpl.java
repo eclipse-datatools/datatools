@@ -33,12 +33,10 @@ import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -1814,7 +1812,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
 				return isConstraintsSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
 				return isTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
@@ -1826,7 +1824,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
 				return isTablespacesSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				return new Integer(getMaximumCommentLength());
+				return Integer.valueOf(getMaximumCommentLength());
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
 				return isSequenceSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:

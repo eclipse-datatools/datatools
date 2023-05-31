@@ -19,14 +19,13 @@ import java.sql.Types;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.DataDeserializer;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.DataSerializer;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.PreparedStatementWriter;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.ResultSetReader;
-import org.eclipse.datatools.sqltools.data.internal.core.editor.TableDataImpl;
 
 /**
  * This is the default implementation of the IColumnDataAccessor that is used when no

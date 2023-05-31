@@ -14,8 +14,8 @@ package org.eclipse.datatools.enablement.oda.ws.misc;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.ws.BaseTest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
-import org.eclipse.datatools.enablement.oda.ws.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
+import org.eclipse.datatools.enablement.oda.ws.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
 
 /**

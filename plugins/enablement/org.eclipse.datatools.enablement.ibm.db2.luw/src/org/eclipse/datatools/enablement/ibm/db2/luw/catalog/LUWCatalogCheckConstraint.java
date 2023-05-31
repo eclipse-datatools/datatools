@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.CheckConstraintImpl;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
@@ -32,8 +33,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.catalog.util.LUWUtil;
 
 
 public class LUWCatalogCheckConstraint extends CheckConstraintImpl implements ICatalogObject {

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.datatools.enablement.finfo; singleton:=true
-Bundle-Version: 1.7.101.qualifier
+Bundle-Version: 1.8.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

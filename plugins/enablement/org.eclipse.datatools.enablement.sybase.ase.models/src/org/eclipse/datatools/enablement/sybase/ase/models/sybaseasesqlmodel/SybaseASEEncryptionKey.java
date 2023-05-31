@@ -7,7 +7,6 @@
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 /**
  * <!-- begin-user-doc -->

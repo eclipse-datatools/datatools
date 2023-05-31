@@ -942,11 +942,11 @@ public class SQLQuerySourceWriter implements SQLSourceWriter {
                         appendSpace(sb, lastSingleLineCommentStart - currentIndent);
                     }
                     else {
-                        lastSLCommentIndentMap.put(sb, new Integer(currentIndent));
+                        lastSLCommentIndentMap.put(sb, Integer.valueOf(currentIndent));
                     }
                 }
                 else {
-                    lastSLCommentIndentMap.put(sb, new Integer(currentIndent));
+                    lastSLCommentIndentMap.put(sb, Integer.valueOf(currentIndent));
                 }
             }
             

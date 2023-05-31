@@ -12,7 +12,13 @@ package org.eclipse.datatools.modelbase.sql.expressions.util;
 
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.expressions.*;
+import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
+import org.eclipse.datatools.modelbase.sql.expressions.QueryExpressionDefault;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
+import org.eclipse.datatools.modelbase.sql.expressions.SearchConditionDefault;
+import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
+import org.eclipse.datatools.modelbase.sql.expressions.ValueExpressionDefault;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;

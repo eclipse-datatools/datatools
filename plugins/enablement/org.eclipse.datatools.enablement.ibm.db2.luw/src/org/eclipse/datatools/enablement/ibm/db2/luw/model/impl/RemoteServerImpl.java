@@ -6,16 +6,15 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWServer;
+import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteServer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPackage;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWServer;
-import org.eclipse.datatools.enablement.ibm.db2.luw.model.RemoteServer;
 
 /**
  * <!-- begin-user-doc -->

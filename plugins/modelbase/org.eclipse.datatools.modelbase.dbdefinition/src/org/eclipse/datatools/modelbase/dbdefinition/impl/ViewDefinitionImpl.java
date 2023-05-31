@@ -8,12 +8,8 @@ package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -224,7 +220,7 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
 				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__CHECK_OPTION_SUPPORTED:

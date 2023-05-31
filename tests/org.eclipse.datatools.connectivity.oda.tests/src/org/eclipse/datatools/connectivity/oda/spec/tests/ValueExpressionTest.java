@@ -14,25 +14,15 @@
 
 package org.eclipse.datatools.connectivity.oda.spec.tests;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.spec.ExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.spec.ExpressionVariable.VariableType;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.CombinedExpressionOperatorDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
-import org.eclipse.datatools.connectivity.oda.spec.manifest.FunctionExpressionDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.ColumnIdentifier;
-import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 import org.eclipse.datatools.connectivity.oda.spec.valueexpr.ColumnValueExpression;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpression;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CombinedValueExpressionOperator;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.CustomFunction;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.FunctionValueExpression;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.NestedValueExpression;
-import org.eclipse.datatools.connectivity.oda.spec.valueexpr.SimpleValueExpression;
+
+import junit.framework.TestCase;
 
 @SuppressWarnings("restriction")
 public class ValueExpressionTest extends TestCase

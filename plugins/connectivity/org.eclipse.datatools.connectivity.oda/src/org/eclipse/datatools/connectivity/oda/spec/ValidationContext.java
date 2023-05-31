@@ -16,8 +16,8 @@ package org.eclipse.datatools.connectivity.oda.spec;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;

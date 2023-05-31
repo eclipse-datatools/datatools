@@ -486,12 +486,12 @@ class OdaObject
 	
 	protected void logMethodExitWithReturn( String context, int i )
 	{
-		logMethodExitWithReturn( context, new Integer( i ) );
+		logMethodExitWithReturn( context, Integer.valueOf( i ) );
 	}
 	
 	protected void logMethodExitWithReturn( String context, double d )
 	{
-		logMethodExitWithReturn( context, new Double( d ) );
+		logMethodExitWithReturn( context, Double.valueOf( d ) );
 	}
 	
 	protected void logMethodExitWithReturn( String context, boolean b )

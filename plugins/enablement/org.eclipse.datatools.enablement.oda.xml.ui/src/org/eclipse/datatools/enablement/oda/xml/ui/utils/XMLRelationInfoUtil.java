@@ -13,9 +13,9 @@ package org.eclipse.datatools.enablement.oda.xml.ui.utils;
 
 import java.util.Iterator;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
-import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 

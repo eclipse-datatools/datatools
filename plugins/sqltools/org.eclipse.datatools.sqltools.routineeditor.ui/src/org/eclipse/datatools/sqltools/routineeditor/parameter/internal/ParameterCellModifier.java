@@ -66,7 +66,7 @@ public class ParameterCellModifier implements ICellModifier
         // TODO Auto-generated method stub
         if (ParameterTableViewer.COLUMNPROPERTIES[ParameterTableViewer.NULLCOLUMN].equals(property)) 
         {
-            return new Boolean(wrapper.isNull());
+            return Boolean.valueOf(wrapper.isNull());
         }
         else if (ParameterTableViewer.COLUMNPROPERTIES[ParameterTableViewer.VALUECOLUMN].equals(property)) 
         {

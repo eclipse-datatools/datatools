@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Role;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 /**
  * <!-- begin-user-doc -->

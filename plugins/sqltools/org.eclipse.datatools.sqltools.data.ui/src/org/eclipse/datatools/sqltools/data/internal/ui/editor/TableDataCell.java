@@ -11,10 +11,10 @@
 
 package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableData2;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.ui.IActionFilter;
 
 /**
@@ -108,10 +108,10 @@ public class TableDataCell implements IActionFilter {
 			else {
 				sqlCol = (Column) editor.getSqlTable().getColumns().get(col);
 			}
-			return new Boolean(value).booleanValue() == sqlCol.isNullable();
+			return Boolean.valueOf(value).booleanValue() == sqlCol.isNullable();
 		} else if (name.equals("insertionCell")) { //$NON-NLS-1$	
 			boolean b = row instanceof IRowData;
-			return new Boolean(value).booleanValue()!=b;
+			return Boolean.valueOf(value).booleanValue()!=b;
 		} else
 			return false;
 	}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2009 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -29,8 +29,8 @@ import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValueRowAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValuesAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.ChangeSetOperatorAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.ChangeStatementTypeAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateWithTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.DeleteStatementAction;

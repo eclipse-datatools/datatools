@@ -41,8 +41,8 @@ public class DateUtilTest extends BaseTest
 		TimeZone.setDefault( TimeZone.getTimeZone( "GMT" ) );
 		// input Data
 		testObject = new Object[]{
-				new Integer( 1 ),
-				new Integer( 0 ),
+				Integer.valueOf( 1 ),
+				Integer.valueOf( 0 ),
 				BigDecimal.valueOf( Integer.MAX_VALUE ),
 				BigDecimal.valueOf( Integer.MAX_VALUE + 1 ),
 				BigDecimal.valueOf( Integer.MIN_VALUE ),

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.common.core.tableviewer.IRowData;
@@ -22,7 +23,6 @@ import org.eclipse.datatools.sqltools.common.ui.util.Images;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -2007,7 +2007,7 @@ public class AccessibleTableViewer extends StructuredViewer
                             {
                                 getCursor().edit();
                                 Boolean value = (Boolean) ((TableCheckBoxCellEditor) editor).doGetValue();
-                                ((TableCheckBoxCellEditor) editor).doSetValue(new Boolean(!value.booleanValue()));
+                                ((TableCheckBoxCellEditor) editor).doSetValue(Boolean.valueOf(!value.booleanValue()));
                             }
                         }
                         else

@@ -101,7 +101,7 @@ public class TableDataTableCursor extends TableCursor implements ISelectionProvi
                     if (editor instanceof TableCheckBoxCellEditor)
                     {
                         Boolean value = (Boolean) ((TableCheckBoxCellEditor) editor).doGetValue();
-                        ((TableCheckBoxCellEditor) editor).doSetValue(new Boolean(!value.booleanValue()));
+                        ((TableCheckBoxCellEditor) editor).doSetValue(Boolean.valueOf(!value.booleanValue()));
                     }
                 }
             }

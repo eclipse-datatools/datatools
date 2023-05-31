@@ -674,7 +674,7 @@ public class ClientUtil
 //         else if (methodname.equalsIgnoreCase(VEMODIFICATION))
 //            value = getVEModificationJNI();
 //         else if (methodname.equalsIgnoreCase(ALIASCOUNT))
-//            value = new Integer(getAliasCountJNI());
+//            value = Integer.valueOf(getAliasCountJNI());
 //         else if (methodname.equalsIgnoreCase(ALIASES))
 //            value = getAliasesNative();
 //         else if (methodname.equalsIgnoreCase(HOSTINFO))
@@ -1179,7 +1179,7 @@ public class ClientUtil
 //            // Regular override or JNI:
 //            value = (Integer)getImplValue(ALIASCOUNT);
 //            if (value == null) // Default:
-//               value = new Integer(0);
+//               value = Integer.valueOf(0);
 //         }
 //         actualValues.put(ALIASCOUNT, value);
 //      }
@@ -1962,7 +1962,7 @@ public class ClientUtil
 //          	String defaultValue = (String)getDefault(DB2CLIENTVERSION);
 //          
 //            if (defaultValue != null)
-//            	actualValue = new Integer (defaultValue);
+//            	actualValue = Integer.valueOf (defaultValue);
 //          }  
 //       }
 //       if (actualValue == null)
@@ -2028,7 +2028,7 @@ public class ClientUtil
 //           String defaultValue = (String)getDefault(DB2CLIENTRELEASE);
 //             
 //           if (defaultValue != null)
-//             value = new Integer (defaultValue);
+//             value = Integer.valueOf (defaultValue);
 //         } 
 //       }         
 //

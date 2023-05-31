@@ -13,6 +13,8 @@ package org.eclipse.datatools.modelbase.sql.xml.query.util;
 
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter;
@@ -70,8 +72,6 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateEle
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementName;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementNamespace;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType;
 
 
 

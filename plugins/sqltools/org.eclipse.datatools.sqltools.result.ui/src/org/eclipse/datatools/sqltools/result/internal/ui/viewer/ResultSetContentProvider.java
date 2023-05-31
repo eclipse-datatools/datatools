@@ -39,7 +39,7 @@ public class ResultSetContentProvider implements IStructuredContentProvider
             Integer[] ret = new Integer[rowsize];
             for (int i = 0; i < ret.length; i++)
             {
-                ret[i] = new Integer(i);
+                ret[i] = Integer.valueOf(i);
             }
             return ret;
         }

@@ -423,7 +423,7 @@ public class AbstractControlConnection implements IControlConnection {
 	 * @see com.sybase.stf.dmp.core.IControlConnection#registerSkip(int)
 	 */
 	public void registerSkip(int connid) {
-		Integer id = new Integer(connid);
+		Integer id = Integer.valueOf(connid);
 		_skipConnections.add(id);
 	}
 
@@ -433,11 +433,11 @@ public class AbstractControlConnection implements IControlConnection {
 	 * @see com.sybase.stf.dmp.core.IControlConnection#unregisterSkip(int)
 	 */
 	public void unregisterSkip(int connid) {
-		_skipConnections.remove(new Integer(connid));
+		_skipConnections.remove(Integer.valueOf(connid));
 	}
 
 	protected boolean shouldSkip(int connid) {
-		return _skipConnections.contains(new Integer(connid));
+		return _skipConnections.contains(Integer.valueOf(connid));
 	}
 
 	/**

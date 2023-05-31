@@ -11,7 +11,6 @@
 package org.eclipse.datatools.modelbase.derby;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 /**

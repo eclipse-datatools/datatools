@@ -393,7 +393,7 @@ public class DefaultDataSourcePageHelper
     		return null;
     	
     	if ( inputElemAttrs.isSetEditable() )
-    		return new Boolean( inputElemAttrs.isEditable() == false );
+    		return Boolean.valueOf( inputElemAttrs.isEditable() == false );
     	
     	return null;
     }
@@ -405,7 +405,7 @@ public class DefaultDataSourcePageHelper
     		return null;
     	
     	if ( inputElemAttrs.isSetOptional() )
-    		return new Boolean( inputElemAttrs.isOptional() );
+    		return Boolean.valueOf( inputElemAttrs.isOptional() );
     	
     	return null;
     }
@@ -417,7 +417,7 @@ public class DefaultDataSourcePageHelper
     		return null;
     	
     	if ( inputElemAttrs.isSetMasksValue() )
-    		return new Boolean( inputElemAttrs.isMasksValue() );
+    		return Boolean.valueOf( inputElemAttrs.isMasksValue() );
     	
     	return null;
     }
@@ -487,10 +487,10 @@ public class DefaultDataSourcePageHelper
     			( ( ScalarValueDefinition ) choiceList.get( i ) );
     		
     		if ( propVal.equals( scalarValueDefn.getValue() ) )
-    			return new Integer( i );
+    			return Integer.valueOf( i );
     	}
     	
-    	return new Integer( -1 );
+    	return Integer.valueOf( -1 );
     }
     
     protected void validatePropertyFields()
@@ -804,7 +804,7 @@ public class DefaultDataSourcePageHelper
     	boolean boolVal = 
     		( prop.isVisible( m_manifestPropsVisibility ) == false );
     	
-        return new Boolean( boolVal );
+        return Boolean.valueOf( boolVal );
     }
     
     protected Boolean isManifestPropReadOnly( String propName )
@@ -816,7 +816,7 @@ public class DefaultDataSourcePageHelper
     	boolean boolVal = 
     		( prop.isEditable( m_manifestPropsVisibility ) == false ) ;
     	
-    	return new Boolean( boolVal );
+    	return Boolean.valueOf( boolVal );
     }
     
     protected Boolean isManifestPropEncryptable( String propName )
@@ -825,7 +825,7 @@ public class DefaultDataSourcePageHelper
     	if ( prop == null )
     		return null;
 
-    	return new Boolean( prop.isEncryptable() );
+    	return Boolean.valueOf( prop.isEncryptable() );
     }
 
     protected PropertyChoice[] getManifestPropChoices( String propName )
@@ -847,7 +847,7 @@ public class DefaultDataSourcePageHelper
     	{
    			// Compare the manifest choice name with the prop value.
    			if ( choices[ j ].getName().equals( propVal ) )
-   				return new Integer( j );
+   				return Integer.valueOf( j );
    		}
         
     	// the match by choice names is done first for backward compatibility;
@@ -856,10 +856,10 @@ public class DefaultDataSourcePageHelper
         {
             // Compare the manifest choice name with the prop value.
             if ( choices[ j ].getValue().equals( propVal ) )
-                return new Integer( j );
+                return Integer.valueOf( j );
         }
 
-    	return new Integer( -1 );    	
+    	return Integer.valueOf( -1 );    	
     }
     
     protected ArrayList getManifestPropChoiceLabels( String propName )

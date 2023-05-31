@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.ui.view;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +17,6 @@ import java.util.List;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.sqltools.result.IReExecutionRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.ReExecutionRegistryReader;
 import org.eclipse.datatools.sqltools.result.internal.index.IResultHistoryIndex;
@@ -397,13 +395,13 @@ public class ResultHistorySection
                 
                 Object[] args = new Object[]
                 {
-                    new Integer(visibleItems.length),
-                    new Integer(ResultsViewUIPlugin.getResultManager().getAllResults().length),
-                    new Integer(succeededItems),
-                    new Integer(failedItems),
-                    new Integer(terminatedItems),
-                    new Integer(warningItems),
-                    new Integer(criticalItems)
+                    Integer.valueOf(visibleItems.length),
+                    Integer.valueOf(ResultsViewUIPlugin.getResultManager().getAllResults().length),
+                    Integer.valueOf(succeededItems),
+                    Integer.valueOf(failedItems),
+                    Integer.valueOf(terminatedItems),
+                    Integer.valueOf(warningItems),
+                    Integer.valueOf(criticalItems)
                 };
                 
                 _filterInfo = NLS.bind(Messages.ResultView_filter_info, args); 

@@ -15,14 +15,14 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
+
+import junit.framework.TestCase;
 
 /**
  * Base class for testing ResultSet
@@ -104,7 +104,7 @@ public abstract class ResultSetTestBase extends TestCase
 		rs.setMaxRows( 1000 );
 		while ( rs.next( ) )
 		{
-			assertEquals( new Integer( counter++ ).toString( ),
+			assertEquals( Integer.valueOf( counter++ ).toString( ),
 					rs.getString( 1 ) );
 		}
 		assertEquals( counter, statement.getMaxRows( ) );

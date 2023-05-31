@@ -688,7 +688,7 @@ public class SortKeyImpl extends EObjectImpl implements SortKey
         case DesignPackage.SORT_KEY__COLUMN_NAME:
             return getColumnName();
         case DesignPackage.SORT_KEY__COLUMN_POSITION:
-            return new Integer( getColumnPosition() );
+            return Integer.valueOf( getColumnPosition() );
         case DesignPackage.SORT_KEY__SORT_DIRECTION:
             return getSortDirection();
         case DesignPackage.SORT_KEY__NULL_VALUE_ORDERING:

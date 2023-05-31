@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.query.CallStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
@@ -27,7 +26,6 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParseErrorInfo;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
-import org.eclipse.datatools.sqltools.parsers.sql.query.SQLControlParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManager;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.RoutineReferenceResolver;

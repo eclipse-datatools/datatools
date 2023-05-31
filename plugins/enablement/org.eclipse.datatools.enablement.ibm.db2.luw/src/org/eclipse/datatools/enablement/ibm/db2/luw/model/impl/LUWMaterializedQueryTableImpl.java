@@ -9,16 +9,6 @@ package org.eclipse.datatools.enablement.ibm.db2.luw.model.impl;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2MaterializedQueryTableImpl;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartition;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWDataPartitionKey;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWMaterializedQueryTable;
@@ -27,6 +17,15 @@ import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWPartitionKey;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTable;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWStorageTableCompressionMode;
 import org.eclipse.datatools.enablement.ibm.db2.luw.model.LUWTableSpace;
+import org.eclipse.datatools.enablement.ibm.db2.model.impl.DB2MaterializedQueryTableImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

@@ -8,15 +8,10 @@ package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.imp
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.DeviceItem;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,7 +140,7 @@ public class DeviceItemImpl extends SQLObjectImpl implements DeviceItem
             case SybaseasesqlmodelPackage.DEVICE_ITEM__DEVICE_NAME:
                 return getDeviceName();
             case SybaseasesqlmodelPackage.DEVICE_ITEM__SIZE:
-                return new Integer(getSize());
+                return Integer.valueOf(getSize());
         }
         return super.eGet(featureID, resolve, coreType);
     }

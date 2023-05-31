@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright ï¿½ 2000, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which is available at
@@ -11,8 +11,6 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.views.graph.commands;
 
 import java.util.List;
-
-import org.eclipse.gef.commands.Command;
 
 import org.eclipse.datatools.modelbase.sql.query.Predicate;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
@@ -28,6 +26,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.SearchConditionHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.ColumnEditPart;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.JoinEditPart;
+import org.eclipse.gef.commands.Command;
 
 public class MoveJoinCommand extends Command {
 

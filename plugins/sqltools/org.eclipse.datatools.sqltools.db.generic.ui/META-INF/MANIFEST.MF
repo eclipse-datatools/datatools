@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.generic.ui;singleton:=true
-Bundle-Version: 1.2.101.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.db.generic.ui.GenericUIActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -17,3 +17,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.datatools.sqltools.db.generic.ui,
  org.eclipse.datatools.sqltools.db.generic.ui.service
 Bundle-Vendor: %Plugin.ProviderName
+Automatic-Module-Name: org.eclipse.datatools.sqltools.db.generic.ui

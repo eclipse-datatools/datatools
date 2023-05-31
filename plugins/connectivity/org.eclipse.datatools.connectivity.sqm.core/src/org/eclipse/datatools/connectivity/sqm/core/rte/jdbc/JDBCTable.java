@@ -472,16 +472,16 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 					PredefinedDataType type = databaseDefinition.getPredefinedDataType(typeDefinition);
 					if(typeDefinition.isLengthSupported()) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("length");  //$NON-NLS-1$
-						type.eSet(feature, new Integer(r.getInt(7)));
+						type.eSet(feature, Integer.valueOf(r.getInt(7)));
 					}
 					else if(typeDefinition.isPrecisionSupported()) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(r.getInt(10)));
+						type.eSet(feature, Integer.valueOf(r.getInt(10)));
 					}
 					
 					if(typeDefinition.isScaleSupported()) {
 						EStructuralFeature feature = type.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
-						type.eSet(feature, new Integer(r.getInt(9)));
+						type.eSet(feature, Integer.valueOf(r.getInt(9)));
 					}
 					column.setContainedType(type);
 				}

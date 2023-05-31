@@ -25,7 +25,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -497,7 +496,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 			case SQLConstraintsPackage.INDEX__CLUSTERED:
 				return isClustered() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.INDEX__FILL_FACTOR:
-				return new Integer(getFillFactor());
+				return Integer.valueOf(getFillFactor());
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				return isUnique() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:

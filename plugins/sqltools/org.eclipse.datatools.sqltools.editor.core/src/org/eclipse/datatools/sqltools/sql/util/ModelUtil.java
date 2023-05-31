@@ -491,7 +491,7 @@ public class ModelUtil {
                     {
                         if (schema instanceof ICatalogObject2)
                         {
-                            String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(
+                            String context = ((ICatalogObject2) schema).getRefreshContext(Integer.valueOf(
                                     SQLSchemaPackage.SCHEMA__TABLES));
                             ((ICatalogObject2) schema).refresh(context);
                         }
@@ -531,7 +531,7 @@ public class ModelUtil {
                 {
                 	if (schema instanceof ICatalogObject2)
                 	{
-                		String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__TABLES));
+                		String context = ((ICatalogObject2) schema).getRefreshContext(Integer.valueOf(SQLSchemaPackage.SCHEMA__TABLES));
                 		((ICatalogObject2) schema).refresh(context);
                 	}
                 	else
@@ -591,7 +591,7 @@ public class ModelUtil {
                 {
                 	if (db instanceof ICatalogObject2)
                 	{
-                		String context = ((ICatalogObject2) db).getRefreshContext(new Integer(SQLSchemaPackage.DATABASE__EVENTS));
+                		String context = ((ICatalogObject2) db).getRefreshContext(Integer.valueOf(SQLSchemaPackage.DATABASE__EVENTS));
                 		((ICatalogObject2) db).refresh(context);
                 	}
                 	else
@@ -647,7 +647,7 @@ public class ModelUtil {
                             {
                             	if (table instanceof ICatalogObject2)
                             	{
-                            		String context = ((ICatalogObject2) table).getRefreshContext(new Integer(SQLTablesPackage.TABLE__TRIGGERS));
+                            		String context = ((ICatalogObject2) table).getRefreshContext(Integer.valueOf(SQLTablesPackage.TABLE__TRIGGERS));
                             		((ICatalogObject2) table).refresh(context);
                             	}
                             	else
@@ -676,7 +676,7 @@ public class ModelUtil {
                     {
                     	if (schema instanceof ICatalogObject2)
                     	{
-                    		String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                    		String context = ((ICatalogObject2) schema).getRefreshContext(Integer.valueOf(SQLSchemaPackage.SCHEMA__ROUTINES));
                     		((ICatalogObject2) schema).refresh(context);
                     	}
                     	else

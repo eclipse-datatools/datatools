@@ -12,7 +12,6 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.input;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 
 /**
  * This class defines the usage options of ISQLBuilderEditorInput.

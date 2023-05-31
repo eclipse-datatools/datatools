@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.datatools.sqltools.parsers.sql.query Nl Fragment
-Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.query.nl1
-Bundle-Version: 1.0.101.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Fragment-Host: org.eclipse.datatools.sqltools.parsers.sql.query;bundle-version="[1.0.0,1.5.0)"
-Bundle-Localization: plugin

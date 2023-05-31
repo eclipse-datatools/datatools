@@ -6,14 +6,14 @@
  */
 package org.eclipse.datatools.enablement.ibm.db2.model.impl;
 
+import java.math.BigInteger;
+
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2IdentitySpecifier;
+import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
 import org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2IdentitySpecifier;
-import org.eclipse.datatools.enablement.ibm.db2.model.DB2ModelPackage;
-import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -222,7 +222,7 @@ public class DB2IdentitySpecifierImpl extends IdentitySpecifierImpl implements D
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DB2ModelPackage.DB2_IDENTITY_SPECIFIER__CACHE:
-				return new Integer(getCache());
+				return Integer.valueOf(getCache());
 			case DB2ModelPackage.DB2_IDENTITY_SPECIFIER__ORDER:
 				return isOrder() ? Boolean.TRUE : Boolean.FALSE;
 			case DB2ModelPackage.DB2_IDENTITY_SPECIFIER__SYSTEM_GENERATED:

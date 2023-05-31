@@ -9,7 +9,7 @@
             style-id="content-group">
             <link label="Data Tools Platform"
                 style-id="content-link"
-                url="http://www.eclipse.org/datatools/"
+                url="https://www.eclipse.org/datatools/"
                 id="DTP_whatsnewLink">
                 <text>Find out about significant changes made to Data Tools Platform frameworks and tools</text>
             </link>

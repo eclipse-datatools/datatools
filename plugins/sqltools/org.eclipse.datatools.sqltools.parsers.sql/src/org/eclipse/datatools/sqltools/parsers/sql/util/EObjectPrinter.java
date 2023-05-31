@@ -257,7 +257,7 @@ public class EObjectPrinter // implements CMESwitch //extends LuwSwitch //extend
         // if the current p_level is not represented by an Integer in the levels
         // array, add it
         if (levels.size() == p_level) {
-            levels.add(new Integer(p_level));
+            levels.add(Integer.valueOf(p_level));
         }
         
 	    if (isHighestLevel(p_object, p_level, levelMap)) {

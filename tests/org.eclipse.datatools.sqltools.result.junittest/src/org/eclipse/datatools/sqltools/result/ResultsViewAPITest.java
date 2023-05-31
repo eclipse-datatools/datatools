@@ -145,21 +145,21 @@ public class ResultsViewAPITest extends TestCase
         List rows = new ArrayList();
         IResultSetRow row1 = new ResultSetRow(new Object[]
         {
-            new Integer(1), "Name-1"
+            Integer.valueOf(1), "Name-1"
         });
         IResultSetRow row2 = new ResultSetRow(new Object[]
         {
-            new Integer(2), "Name-2"
+            Integer.valueOf(2), "Name-2"
         });
         IResultSetRow row3 = new ResultSetRow(new Object[]
         {
-            new Integer(3), "Name-3"
+            Integer.valueOf(3), "Name-3"
         });
         
         // negative case
         IResultSetRow row4 = new ResultSetRow(new Object[]
         {
-            new Integer(4), null
+            Integer.valueOf(4), null
         });
         rows.add(row1);
         rows.add(row2);

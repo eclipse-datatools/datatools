@@ -13,7 +13,7 @@
             </text>
             <link label="DTP sample #1"
                 style-id="content-link"
-                url="http://www.eclipse.org/datatools/"
+                url="https://www.eclipse.org/datatools/"
                 id="DTP_samplesLink1">
                 <text>Shows how to use Data Tools Platform.</text>
             </link>

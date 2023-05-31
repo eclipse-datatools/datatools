@@ -135,7 +135,7 @@ class BlobReader extends OdaObject
         if( streamLen >= 0 )    // driver is able to determine the stream length 
         {
             int numAvailable = ( streamLen > numToSkip ) ?
-                    ( new Long( streamLen - numToSkip )).intValue() : 
+                    ( Long.valueOf( streamLen - numToSkip )).intValue() : 
                      0;     // nothing available to read beyond starting position
                     
             // caller specifies to read till end of stream, or more than what's available

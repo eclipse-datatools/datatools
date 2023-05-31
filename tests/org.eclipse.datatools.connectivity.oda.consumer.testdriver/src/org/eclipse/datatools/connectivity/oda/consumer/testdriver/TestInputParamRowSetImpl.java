@@ -34,7 +34,7 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
     public void setBoolean( int columnIndex, boolean value )
             throws OdaException
     {
-        setValue( columnIndex, new Boolean( value ) );
+        setValue( columnIndex, Boolean.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -43,7 +43,7 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
     public void setBoolean( String columnName, boolean value )
             throws OdaException
     {
-        setValue( columnName, new Boolean( value ) );
+        setValue( columnName, Boolean.valueOf( value ) );
     }
 
 	public void setBigDecimal( int columnIndex, BigDecimal value )
@@ -70,22 +70,22 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
 
 	public void setDouble( int columnIndex, double value ) throws OdaException
 	{
-		setValue( columnIndex, new Double( value ) );
+		setValue( columnIndex, Double.valueOf( value ) );
 	}
 
 	public void setDouble( String columnName, double value ) throws OdaException
 	{
-		setValue( columnName, new Double( value ) );
+		setValue( columnName, Double.valueOf( value ) );
 	}
 
 	public void setInt( int columnIndex, int value ) throws OdaException
 	{
-		setValue( columnIndex, new Integer( value ) );
+		setValue( columnIndex, Integer.valueOf( value ) );
 	}
 
 	public void setInt( String columnName, int value ) throws OdaException
 	{
-		setValue( columnName, new Integer( value ) );
+		setValue( columnName, Integer.valueOf( value ) );
 	}
 
 	/* (non-Javadoc)

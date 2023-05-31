@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.util;
 
-import java.util.ResourceBundle;
-
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {

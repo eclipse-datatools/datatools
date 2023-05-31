@@ -2,7 +2,6 @@ package org.eclipse.datatools.enablement.sybase.asa.deltaddl;
 
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumnCheckConstraint;
-import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;

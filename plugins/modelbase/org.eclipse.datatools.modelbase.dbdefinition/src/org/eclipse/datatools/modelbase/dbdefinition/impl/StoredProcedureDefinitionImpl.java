@@ -23,7 +23,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -679,7 +678,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED:
 				return isParameterDeclarationConstraintSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
-				return new Integer(getMaximumActionBodyLength());
+				return Integer.valueOf(getMaximumActionBodyLength());
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE:
 				return getParameterStyle();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE:
@@ -689,7 +688,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE:
 				return getProcedureType();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
+				return Integer.valueOf(getMaximumIdentifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
