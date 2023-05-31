@@ -42,6 +42,7 @@ pipeline {
         steps {
             echo "BUILD_TYPE=${params.BUILD_TYPE}"
             echo "PROMOTE=${params.PROMOTE}"
+            echo "BRANCH_NAME=${env.BRANCH_NAME}"
             script {
                 env.BUILD_TYPE = params.BUILD_TYPE
                 if (env.BRANCH_NAME == 'master') {
