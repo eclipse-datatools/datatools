@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="Generated from DTP" sequenceNumber="21">
+<target name="Generated from DTP" sequenceNumber="22">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -68,9 +68,6 @@
       <unit id="org.apache.httpcomponents.client5.httpclient5-win" version="0.0.0"/>
       <unit id="org.apache.httpcomponents.core5.httpcore5" version="0.0.0"/>
       <unit id="org.apache.httpcomponents.core5.httpcore5-h2" version="0.0.0"/>
-      <unit id="org.apache.lucene.analysis-common" version="0.0.0"/>
-      <unit id="org.apache.lucene.analysis-smartcn" version="0.0.0"/>
-      <unit id="org.apache.lucene.core" version="0.0.0"/>
       <unit id="org.apache.xerces" version="0.0.0"/>
       <unit id="org.apache.xml.resolver" version="0.0.0"/>
       <unit id="org.apache.xmlgraphics" version="0.0.0"/>
@@ -137,7 +134,7 @@
       <unit id="org.eclipse.ecf.filetransfer.httpclient5.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.ecf.filetransfer.ssl.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/eclipse/updates/4.28-I-builds"/>
+      <repository location="https://download.eclipse.org/eclipse/updates/4.29-I-builds"/>
     </location>
   </locations>
 </target>
