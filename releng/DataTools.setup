@@ -247,7 +247,7 @@
           name="org.eclipse.datatools.sqltools.doc.user.feature.group"/>
       <repositoryList>
         <repository
-            url="https://download.eclipse.org/datatools/updates/1.14.300-SNAPSHOT/repository"/>
+            url="https://download.eclipse.org/datatools/updates/release/latest"/>
       </repositoryList>
     </targlet>
   </setupTask>
