@@ -341,13 +341,11 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		// See if it's a predefined type
 		List pdtds = getDatabaseDefinition()
 				.getPredefinedDataTypeDefinitionsByJDBCEnumType(typeCode);
-		if (pdtds.size() > 0) {
-			PredefinedDataTypeDefinition pdtd = null;
+		PredefinedDataTypeDefinition pdtd = null;
+		if (pdtds != null && !pdtds.isEmpty()) {
 			for (Iterator it = pdtds.iterator(); pdtd == null && it.hasNext();) {
-				PredefinedDataTypeDefinition curPDTD = (PredefinedDataTypeDefinition) it
-						.next();
-				for (Iterator nameIt = curPDTD.getName().iterator(); nameIt
-						.hasNext();) {
+				PredefinedDataTypeDefinition curPDTD = (PredefinedDataTypeDefinition) it.next();
+				for (Iterator nameIt = curPDTD.getName().iterator(); nameIt.hasNext();) {
 					String name = (String) nameIt.next();
 					if (typeName.equals(name)) {
 						pdtd = curPDTD;
@@ -355,52 +353,44 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 					}
 				}
 			}
+		}
 
+		if (pdtd == null) {
+			// See if we can find one for the named type
+			pdtd = getDatabaseDefinition().getPredefinedDataTypeDefinition(typeName);
+		}
+
+		if (pdtd != null || (pdtd == null && typeCode != Types.OTHER && typeCode != Types.REF)) {
 			if (pdtd == null) {
-				// See if we can find one for the named type
-				pdtd = getDatabaseDefinition().getPredefinedDataTypeDefinition(
-						typeName);
+				// If we still couldn't find it, use the first element
+				// that maps to the JDBC type
+				pdtd = (PredefinedDataTypeDefinition) pdtds.get(0);
 			}
 
-			if (pdtd != null
-					|| (pdtd == null && typeCode != Types.OTHER && typeCode != Types.REF)) {
-				if (pdtd == null) {
-					// If we still couldn't find it, use the first element
-					// that maps to the JDBC type
-					pdtd = (PredefinedDataTypeDefinition) pdtds.get(0);
-				}
-
-				PredefinedDataType pdt = getDatabaseDefinition()
-						.getPredefinedDataType(pdtd);
-				if (pdtd.isLengthSupported()) {
-					EStructuralFeature feature = pdt.eClass()
-							.getEStructuralFeature("length"); //$NON-NLS-1$
-					pdt.eSet(feature,
-							Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));
-				}
-				if (pdtd.isPrecisionSupported()) {
-					EStructuralFeature feature = null;
-				    if (pdt instanceof TimeDataType) {
-				        feature = pdt.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-				    }
-				    else {
-				        feature = pdt.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
-				     }
-				     if (feature != null) {
-				          pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));                                        
-				     }
-				}
-				if (pdtd.isScaleSupported()) {
-					EStructuralFeature feature = pdt.eClass()
-							.getEStructuralFeature("scale"); //$NON-NLS-1$
-					if (feature != null) { // MISSING IF STATEMENT
-						pdt.eSet(feature, Integer.valueOf(rs
-							.getInt(COLUMN_DECIMAL_DIGITS)));
-					}
-				}
-				column.setDataType(pdt);
-				return;
+			PredefinedDataType pdt = getDatabaseDefinition().getPredefinedDataType(pdtd);
+			if (pdtd.isLengthSupported()) {
+				EStructuralFeature feature = pdt.eClass().getEStructuralFeature("length"); //$NON-NLS-1$
+				pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));
 			}
+			if (pdtd.isPrecisionSupported()) {
+				EStructuralFeature feature = null;
+				if (pdt instanceof TimeDataType) {
+					feature = pdt.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
+				} else {
+					feature = pdt.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
+				}
+				if (feature != null) {
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_COLUMN_SIZE)));
+				}
+			}
+			if (pdtd.isScaleSupported()) {
+				EStructuralFeature feature = pdt.eClass().getEStructuralFeature("scale"); //$NON-NLS-1$
+				if (feature != null) { // MISSING IF STATEMENT
+					pdt.eSet(feature, Integer.valueOf(rs.getInt(COLUMN_DECIMAL_DIGITS)));
+				}
+			}
+			column.setDataType(pdt);
+			return;
 		}
 
 		// Couldn't find predefined type. Try looking for a ref or udt.
@@ -418,13 +408,11 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				return;
 			}
 			UserDefinedType udt = findUserDefinedType(typeName);
-			Table table = findScopedTable(rs.getString(COLUMN_SCOPE_CATALOG),
-					rs.getString(COLUMN_SCOPE_SCHEMA), rs
-							.getString(COLUMN_SCOPE_TABLE));
+			Table table = findScopedTable(rs.getString(COLUMN_SCOPE_CATALOG), rs.getString(COLUMN_SCOPE_SCHEMA),
+					rs.getString(COLUMN_SCOPE_TABLE));
 			initReferenceDataType(ref, udt, table);
 			column.setDataType(ref);
-		}
-		else {
+		} else {
 			UserDefinedType udt = findUserDefinedType(typeName);
 			column.setDataType(udt);
 		}
