@@ -38,7 +38,6 @@
       <plugin id="javax.servlet"/>
       <plugin id="javax.servlet.jsp"/>
       <plugin id="javax.transaction" fragment="true"/>
-      <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
       <plugin id="org.apache.ant"/>
       <plugin id="org.apache.commons.el"/>
       <plugin id="org.apache.commons.logging"/>

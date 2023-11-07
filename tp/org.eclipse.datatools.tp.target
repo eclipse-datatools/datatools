@@ -108,13 +108,8 @@
       <unit id="org.tukaani.xz" version="0.0.0"/>
       <unit id="slf4j.api" version="0.0.0"/>
       <unit id="slf4j.simple" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest"/>
-    </location>
-    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-      <unit id="javax.inject" version="0.0.0"/>
-      <unit id="net.sourceforge.lpg.lpgjavaruntime" version="0.0.0"/>
       <unit id="org.apache.commons.jxpath" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20201118194144/repository"/>
+      <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest"/>
     </location>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="org.eclipse.e4.tools.emf.ui" version="0.0.0"/>
