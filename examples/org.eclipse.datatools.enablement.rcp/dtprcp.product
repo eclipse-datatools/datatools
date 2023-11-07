@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="DTP Enablement RCP" uid="org.eclipse.datatools.enablement.rcp" id="org.eclipse.datatools.enablement.rcp.product" application="org.eclipse.datatools.enablement.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="DTP Enablement RCP" uid="org.eclipse.datatools.enablement.rcp" id="org.eclipse.datatools.enablement.rcp.product" application="org.eclipse.datatools.enablement.rcp.application" version="1.1.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.eclipse.datatools.enablement.rcp/icons/alt_about.gif"/>
