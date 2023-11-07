@@ -26,6 +26,10 @@
 					<value>true</value>
 				</dictionary>
 				<dictionary>
+					<key>ignore.feature.content.changes</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
 					<key>ignore.feature.content.redundancy</key>
 					<value>true</value>
 				</dictionary>

@@ -15,7 +15,6 @@
     <module>org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample</module>
     <module>org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui</module>
     <module>org.eclipse.datatools.connectivity.sample</module>
-    <module>org.eclipse.datatools.connectivity.sample.ftp</module>
     <module>org.eclipse.datatools.enablement.rcp</module>
     <module>org.eclipse.datatools.sqltools.sqlbuilder.examples</module>
   </modules>
