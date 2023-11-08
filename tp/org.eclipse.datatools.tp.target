@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="Generated from DTP" sequenceNumber="23">
+<target name="Generated from DTP" sequenceNumber="24">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
@@ -55,7 +55,10 @@
       <unit id="org.apache.batik.css" version="0.0.0"/>
       <unit id="org.apache.batik.i18n" version="0.0.0"/>
       <unit id="org.apache.batik.util" version="0.0.0"/>
+      <unit id="org.apache.commons.collections" version="0.0.0"/>
+      <unit id="org.apache.commons.commons-beanutils" version="0.0.0"/>
       <unit id="org.apache.commons.commons-io" version="0.0.0"/>
+      <unit id="org.apache.commons.jxpath" version="0.0.0"/>
       <unit id="org.apache.commons.logging" version="0.0.0"/>
       <unit id="org.apache.felix.gogo.command" version="0.0.0"/>
       <unit id="org.apache.felix.gogo.runtime" version="0.0.0"/>
@@ -75,6 +78,7 @@
       <unit id="org.eclipse.orbit.xml-apis-ext" version="0.0.0"/>
       <unit id="org.hamcrest" version="0.0.0"/>
       <unit id="org.hamcrest.core" version="0.0.0"/>
+      <unit id="org.jdom" version="0.0.0"/>
       <unit id="org.junit" version="0.0.0"/>
       <unit id="org.mortbay.jasper.apache-jsp" version="0.0.0"/>
       <unit id="org.objectweb.asm" version="0.0.0"/>
@@ -107,8 +111,7 @@
       <unit id="org.sat4j.pb" version="0.0.0"/>
       <unit id="org.tukaani.xz" version="0.0.0"/>
       <unit id="slf4j.api" version="0.0.0"/>
-      <unit id="slf4j.simple" version="0.0.0"/>
-      <unit id="org.apache.commons.jxpath" version="0.0.0"/>
+      <unit id="slf4j.nop" version="0.0.0"/>
       <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest"/>
     </location>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
