@@ -309,7 +309,7 @@
         </detail>
         <detail
             key="singleLocation">
-          <value>false</value>
+          <value>true</value>
         </detail>
         <detail
             key="sortLocations">

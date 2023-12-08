@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <release>
-	<product name="org.eclipse.datatools.enablement.rcp" id="org.eclipse.datatools.enablement.rcp.product" version="1.0.0">
-		<plugin name="com.ibm.icu" version="73.2.0"/>
+	<product name="org.eclipse.datatools.enablement.rcp" id="org.eclipse.datatools.enablement.rcp.product" version="1.1.0">
+		<plugin name="com.ibm.icu" version="74.1.0"/>
 		<plugin name="javax.servlet" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="javax.servlet.jsp" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="javax.transaction" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="net.sourceforge.lpg.lpgjavaruntime" version="1.1.0"/>
 		<plugin name="org.apache.ant" version="1.10.14"/>
 		<plugin name="org.apache.commons.el" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.apache.commons.logging" version="1.2.0"/>
 		<plugin name="org.apache.jasper" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.apache.lucene" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.apache.lucene.analysis" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.ant.core" version="3.7.200"/>
-		<plugin name="org.eclipse.compare" version="3.9.300"/>
-		<plugin name="org.eclipse.compare.core" version="3.8.300"/>
-		<plugin name="org.eclipse.core.commands" version="3.11.100"/>
-		<plugin name="org.eclipse.core.contenttype" version="3.9.200"/>
-		<plugin name="org.eclipse.core.databinding" version="1.13.100"/>
-		<plugin name="org.eclipse.core.databinding.observable" version="1.13.100"/>
-		<plugin name="org.eclipse.core.databinding.property" version="1.10.100"/>
-		<plugin name="org.eclipse.core.expressions" version="3.9.200"/>
-		<plugin name="org.eclipse.core.filebuffers" version="3.8.200"/>
-		<plugin name="org.eclipse.core.filesystem" version="1.10.200"/>
+		<plugin name="org.eclipse.ant.core" version="3.7.300"/>
+		<plugin name="org.eclipse.compare" version="3.9.400"/>
+		<plugin name="org.eclipse.compare.core" version="3.8.400"/>
+		<plugin name="org.eclipse.core.commands" version="3.11.300"/>
+		<plugin name="org.eclipse.core.contenttype" version="3.9.300"/>
+		<plugin name="org.eclipse.core.databinding" version="1.13.200"/>
+		<plugin name="org.eclipse.core.databinding.observable" version="1.13.200"/>
+		<plugin name="org.eclipse.core.databinding.property" version="1.10.200"/>
+		<plugin name="org.eclipse.core.expressions" version="3.9.300"/>
+		<plugin name="org.eclipse.core.filebuffers" version="3.8.300"/>
+		<plugin name="org.eclipse.core.filesystem" version="1.10.300"/>
 		<plugin name="org.eclipse.core.filesystem.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.core.jobs" version="3.15.100"/>
-		<plugin name="org.eclipse.core.net" version="1.5.200"/>
+		<plugin name="org.eclipse.core.jobs" version="3.15.200"/>
+		<plugin name="org.eclipse.core.net" version="1.5.300"/>
 		<plugin name="org.eclipse.core.net.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.core.resources" version="3.20.0"/>
+		<plugin name="org.eclipse.core.resources" version="3.20.100"/>
 		<plugin name="org.eclipse.core.resources.compatibility" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.core.runtime" version="3.30.0"/>
+		<plugin name="org.eclipse.core.runtime" version="3.30.100"/>
 		<plugin name="org.eclipse.core.runtime.compatibility" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.eclipse.core.runtime.compatibility.auth" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.eclipse.core.runtime.compatibility.registry" version="0.0.0"/> <!-- UNRESOLVED -->
@@ -40,7 +39,7 @@
 		<plugin name="org.eclipse.datatools.connectivity.apache.derby.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.db.generic" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.db.generic.ui" version="1.3.0"/>
-		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.5.0"/>
+		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.6.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.sqm.core.ui" version="1.5.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.sqm.server.ui" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui" version="1.5.0"/>
@@ -64,7 +63,7 @@
 		<plugin name="org.eclipse.datatools.enablement.ingres" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.enablement.ingres.dbdefinition" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.enablement.ingres.ui" version="1.3.0"/>
-		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.3.0"/>
+		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.enablement.mysql" version="1.3.0"/>
@@ -102,7 +101,7 @@
 		<plugin name="org.eclipse.datatools.sqltools.editor.core" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.editor.core.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql" version="1.3.0"/>
-		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.3.0"/>
+		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.query" version="1.5.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.xml.query" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.plan" version="1.3.0"/>
@@ -116,9 +115,9 @@
 		<plugin name="org.eclipse.datatools.sqltools.sqleditor" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.sqlscrapbook" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.tabledataeditor" version="1.3.0"/>
-		<plugin name="org.eclipse.debug.core" version="3.21.200"/>
-		<plugin name="org.eclipse.debug.ui" version="3.18.200"/>
-		<plugin name="org.eclipse.draw2d" version="3.14.0"/>
+		<plugin name="org.eclipse.debug.core" version="3.21.300"/>
+		<plugin name="org.eclipse.debug.ui" version="3.18.300"/>
+		<plugin name="org.eclipse.draw2d" version="3.14.100"/>
 		<plugin name="org.eclipse.ecf" version="3.11.0"/>
 		<plugin name="org.eclipse.ecf.filetransfer" version="5.1.103"/>
 		<plugin name="org.eclipse.ecf.identity" version="3.10.0"/>
@@ -134,60 +133,60 @@
 		<plugin name="org.eclipse.emf.ecore.edit" version="2.14.0"/>
 		<plugin name="org.eclipse.emf.ecore.editor" version="2.18.0"/>
 		<plugin name="org.eclipse.emf.ecore.xmi" version="2.36.0"/>
-		<plugin name="org.eclipse.emf.edit" version="2.19.0"/>
+		<plugin name="org.eclipse.emf.edit" version="2.20.0"/>
 		<plugin name="org.eclipse.emf.edit.ui" version="2.23.0"/>
-		<plugin name="org.eclipse.equinox.app" version="1.6.300"/>
-		<plugin name="org.eclipse.equinox.common" version="3.18.200"/>
-		<plugin name="org.eclipse.equinox.concurrent" version="1.2.100"/>
+		<plugin name="org.eclipse.equinox.app" version="1.7.0"/>
+		<plugin name="org.eclipse.equinox.common" version="3.19.0"/>
+		<plugin name="org.eclipse.equinox.concurrent" version="1.3.0"/>
 		<plugin name="org.eclipse.equinox.http.jetty" version="3.9.0"/>
-		<plugin name="org.eclipse.equinox.http.servlet" version="1.8.0"/>
-		<plugin name="org.eclipse.equinox.launcher" version="1.6.600"/>
+		<plugin name="org.eclipse.equinox.http.servlet" version="1.8.100"/>
+		<plugin name="org.eclipse.equinox.launcher" version="1.6.700"/>
 		<plugin name="org.eclipse.equinox.launcher.gtk.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.equinox.p2.artifact.repository" version="1.5.200"/>
-		<plugin name="org.eclipse.equinox.p2.core" version="2.10.200"/>
-		<plugin name="org.eclipse.equinox.p2.engine" version="2.9.0"/>
-		<plugin name="org.eclipse.equinox.p2.jarprocessor" version="1.3.200"/>
-		<plugin name="org.eclipse.equinox.p2.metadata" version="2.8.0"/>
-		<plugin name="org.eclipse.equinox.p2.metadata.repository" version="1.5.200"/>
-		<plugin name="org.eclipse.equinox.p2.repository" version="2.8.0"/>
-		<plugin name="org.eclipse.equinox.preferences" version="3.10.400"/>
-		<plugin name="org.eclipse.equinox.registry" version="3.11.400"/>
-		<plugin name="org.eclipse.equinox.security" version="1.4.100"/>
-		<plugin name="org.eclipse.gef" version="3.15.0"/>
-		<plugin name="org.eclipse.help" version="3.10.200"/>
-		<plugin name="org.eclipse.help.base" version="4.4.200"/>
-		<plugin name="org.eclipse.help.ui" version="4.6.100"/>
+		<plugin name="org.eclipse.equinox.p2.artifact.repository" version="1.5.300"/>
+		<plugin name="org.eclipse.equinox.p2.core" version="2.10.300"/>
+		<plugin name="org.eclipse.equinox.p2.engine" version="2.9.100"/>
+		<plugin name="org.eclipse.equinox.p2.jarprocessor" version="1.3.300"/>
+		<plugin name="org.eclipse.equinox.p2.metadata" version="2.8.100"/>
+		<plugin name="org.eclipse.equinox.p2.metadata.repository" version="1.5.300"/>
+		<plugin name="org.eclipse.equinox.p2.repository" version="2.8.100"/>
+		<plugin name="org.eclipse.equinox.preferences" version="3.11.0"/>
+		<plugin name="org.eclipse.equinox.registry" version="3.12.0"/>
+		<plugin name="org.eclipse.equinox.security" version="1.4.200"/>
+		<plugin name="org.eclipse.gef" version="3.16.0"/>
+		<plugin name="org.eclipse.help" version="3.10.300"/>
+		<plugin name="org.eclipse.help.base" version="4.4.300"/>
+		<plugin name="org.eclipse.help.ui" version="4.6.200"/>
 		<plugin name="org.eclipse.jdt.compiler.apt" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.eclipse.jdt.compiler.tool" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.jdt.core" version="3.36.0"/>
-		<plugin name="org.eclipse.jdt.debug" version="3.21.200"/>
-		<plugin name="org.eclipse.jdt.launching" version="3.21.0"/>
-		<plugin name="org.eclipse.jface" version="3.32.0"/>
-		<plugin name="org.eclipse.jface.databinding" version="1.15.100"/>
-		<plugin name="org.eclipse.jface.text" version="3.24.200"/>
-		<plugin name="org.eclipse.ltk.core.refactoring" version="3.14.200"/>
-		<plugin name="org.eclipse.ltk.ui.refactoring" version="3.13.200"/>
-		<plugin name="org.eclipse.osgi" version="3.18.600"/>
-		<plugin name="org.eclipse.osgi.services" version="3.11.100"/>
+		<plugin name="org.eclipse.jdt.core" version="3.37.0"/>
+		<plugin name="org.eclipse.jdt.debug" version="3.21.300"/>
+		<plugin name="org.eclipse.jdt.launching" version="3.21.100"/>
+		<plugin name="org.eclipse.jface" version="3.33.0"/>
+		<plugin name="org.eclipse.jface.databinding" version="1.15.200"/>
+		<plugin name="org.eclipse.jface.text" version="3.25.0"/>
+		<plugin name="org.eclipse.ltk.core.refactoring" version="3.14.300"/>
+		<plugin name="org.eclipse.ltk.ui.refactoring" version="3.13.300"/>
+		<plugin name="org.eclipse.osgi" version="3.18.700"/>
+		<plugin name="org.eclipse.osgi.services" version="3.11.300"/>
 		<plugin name="org.eclipse.persistence.jpa.equinox.weaving" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.search" version="3.16.0"/>
-		<plugin name="org.eclipse.swt" version="3.124.200"/>
+		<plugin name="org.eclipse.search" version="3.16.100"/>
+		<plugin name="org.eclipse.swt" version="3.124.300"/>
 		<plugin name="org.eclipse.swt.gtk.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-		<plugin name="org.eclipse.team.core" version="3.10.200"/>
-		<plugin name="org.eclipse.team.ui" version="3.10.200"/>
-		<plugin name="org.eclipse.text" version="3.13.100"/>
-		<plugin name="org.eclipse.ui" version="3.205.0"/>
-		<plugin name="org.eclipse.ui.console" version="3.13.100"/>
-		<plugin name="org.eclipse.ui.editors" version="3.17.100"/>
-		<plugin name="org.eclipse.ui.forms" version="3.13.0"/>
-		<plugin name="org.eclipse.ui.ide" version="3.22.0"/>
-		<plugin name="org.eclipse.ui.navigator" version="3.12.200"/>
-		<plugin name="org.eclipse.ui.navigator.resources" version="3.9.100"/>
-		<plugin name="org.eclipse.ui.views" version="3.12.100"/>
-		<plugin name="org.eclipse.ui.views.properties.tabbed" version="3.10.100"/>
-		<plugin name="org.eclipse.ui.workbench" version="3.131.0"/>
-		<plugin name="org.eclipse.ui.workbench.texteditor" version="3.17.200"/>
-		<plugin name="org.eclipse.update.configurator" version="3.5.200"/>
+		<plugin name="org.eclipse.team.core" version="3.10.300"/>
+		<plugin name="org.eclipse.team.ui" version="3.10.300"/>
+		<plugin name="org.eclipse.text" version="3.14.0"/>
+		<plugin name="org.eclipse.ui" version="3.205.100"/>
+		<plugin name="org.eclipse.ui.console" version="3.13.200"/>
+		<plugin name="org.eclipse.ui.editors" version="3.17.200"/>
+		<plugin name="org.eclipse.ui.forms" version="3.13.200"/>
+		<plugin name="org.eclipse.ui.ide" version="3.22.100"/>
+		<plugin name="org.eclipse.ui.navigator" version="3.12.300"/>
+		<plugin name="org.eclipse.ui.navigator.resources" version="3.9.200"/>
+		<plugin name="org.eclipse.ui.views" version="3.12.200"/>
+		<plugin name="org.eclipse.ui.views.properties.tabbed" version="3.10.200"/>
+		<plugin name="org.eclipse.ui.workbench" version="3.131.100"/>
+		<plugin name="org.eclipse.ui.workbench.texteditor" version="3.17.300"/>
+		<plugin name="org.eclipse.update.configurator" version="3.5.300"/>
 		<plugin name="org.jboss.tools.xulrunner.initializer" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.mortbay.jetty.server" version="0.0.0"/> <!-- UNRESOLVED -->
 		<plugin name="org.mortbay.jetty.util" version="0.0.0"/> <!-- UNRESOLVED -->
@@ -199,9 +198,9 @@
 		<plugin name="org.eclipse.datatools.connectivity.doc.user.contexts" version="1.8.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.doc.user" version="1.15.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.connectivity.feature" version="1.15.0">
+	<feature name="org.eclipse.datatools.connectivity.feature" version="1.16.0">
 		<plugin name="org.eclipse.datatools.connectivity.sqm.core.ui" version="1.5.0"/>
-		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.5.0"/>
+		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.6.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.sqm.server.ui" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui.dse" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui" version="1.5.0"/>
@@ -209,11 +208,11 @@
 		<plugin name="org.eclipse.datatools.help" version="1.8.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.console.profile" version="1.3.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.connectivity.oda.designer.core.feature" version="1.15.0">
+	<feature name="org.eclipse.datatools.connectivity.oda.designer.core.feature" version="1.16.0">
 		<plugin name="org.eclipse.datatools.connectivity.oda.design.ui" version="3.5.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui.dse" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui" version="1.5.0"/>
-		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.5.0"/>
+		<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.6.0"/>
 		<plugin name="org.eclipse.datatools.help" version="1.8.0"/>
 	</feature>
 	<feature name="org.eclipse.datatools.connectivity.oda.designer.feature" version="1.15.0">
@@ -226,12 +225,10 @@
 		<plugin name="org.eclipse.datatools.connectivity.oda" version="3.7.0"/>
 		<plugin name="org.eclipse.datatools.connectivity" version="1.15.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.dependencies.feature" version="1.15.0">
+	<feature name="org.eclipse.datatools.dependencies.feature" version="1.16.0">
 		<plugin name="org.apache.lucene.core" version="9.8.0"/>
 		<plugin name="org.apache.lucene.queryparser" version="9.8.0"/>
-		<plugin name="net.sourceforge.lpg.lpgjavaruntime" version="1.1.0"/>
 		<plugin name="org.apache.xerces" version="2.12.2"/>
-		<plugin name="org.apache.commons.net" version="3.2.0"/>
 		<plugin name="javax.wsdl" version="1.6.3"/>
 		<plugin name="org.apache.xml.resolver" version="1.2.0"/>
 		<plugin name="org.apache.lucene.queries" version="9.8.0"/>
@@ -239,9 +236,9 @@
 		<plugin name="org.apache.lucene.analysis-common" version="9.8.0"/>
 		<plugin name="org.apache.lucene.analysis-smartcn" version="9.8.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.doc.user" version="1.15.0">
+	<feature name="org.eclipse.datatools.doc.user" version="1.16.0">
 		<plugin name="org.eclipse.datatools.doc.user" version="1.15.0"/>
-		<plugin name="org.eclipse.datatools.oda.cshelp" version="1.4.0"/>
+		<plugin name="org.eclipse.datatools.oda.cshelp" version="1.5.0"/>
 		<plugin name="org.eclipse.datatools.help" version="1.8.0"/>
 	</feature>
 	<feature name="org.eclipse.datatools.enablement.apache.derby.feature" version="1.15.0">
@@ -293,9 +290,9 @@
 	<feature name="org.eclipse.datatools.enablement.jdt.feature" version="1.15.0">
 		<plugin name="org.eclipse.datatools.enablement.jdt.classpath" version="1.3.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.enablement.msft.feature" version="1.15.0">
+	<feature name="org.eclipse.datatools.enablement.msft.feature" version="1.16.0">
 		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition" version="1.3.0"/>
-		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.3.0"/>
+		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.enablement.finfo" version="1.8.0"/>
 	</feature>
@@ -370,7 +367,7 @@
 		<plugin name="org.eclipse.datatools.modelbase.sql.xml.query" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.modelbase.sql" version="1.3.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.sdk.feature" version="1.15.0">
+	<feature name="org.eclipse.datatools.sdk.feature" version="1.16.0">
 		<plugin name="org.eclipse.datatools.doc.isv" version="1.15.0"/>
 		<plugin name="org.eclipse.datatools.sdk" version="1.10.0"/>
 		<plugin name="org.eclipse.datatools.connectivity.ui.templates" version="1.3.0"/>
@@ -411,8 +408,8 @@
 		<plugin name="org.eclipse.datatools.sqltools.routineeditor.ui" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.sql.ui" version="1.3.0"/>
 	</feature>
-	<feature name="org.eclipse.datatools.sqldevtools.parsers.feature" version="1.15.0">
-		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.3.0"/>
+	<feature name="org.eclipse.datatools.sqldevtools.parsers.feature" version="1.16.0">
+		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.4.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.query" version="1.5.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql.xml.query" version="1.3.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.parsers.sql" version="1.3.0"/>
@@ -441,16 +438,14 @@
 		<plugin name="org.eclipse.datatools.sqltools.doc.user" version="1.15.0"/>
 		<plugin name="org.eclipse.datatools.sqltools.doc.user.contexts" version="1.8.0"/>
 	</feature>
-	<plugin name="com.ibm.icu" version="73.2.0"/>
+	<plugin name="com.ibm.icu" version="74.1.0"/>
 	<plugin name="javax.servlet" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="javax.servlet.jsp" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="javax.transaction" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="javax.wsdl" version="1.6.3"/>
-	<plugin name="net.sourceforge.lpg.lpgjavaruntime" version="1.1.0"/>
 	<plugin name="org.apache.ant" version="1.10.14"/>
 	<plugin name="org.apache.commons.el" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.apache.commons.logging" version="1.2.0"/>
-	<plugin name="org.apache.commons.net" version="3.2.0"/>
 	<plugin name="org.apache.jasper" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.apache.lucene" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.apache.lucene.analysis" version="0.0.0"/> <!-- UNRESOLVED -->
@@ -462,24 +457,24 @@
 	<plugin name="org.apache.lucene.sandbox" version="9.8.0"/>
 	<plugin name="org.apache.xerces" version="2.12.2"/>
 	<plugin name="org.apache.xml.resolver" version="1.2.0"/>
-	<plugin name="org.eclipse.ant.core" version="3.7.200"/>
-	<plugin name="org.eclipse.compare" version="3.9.300"/>
-	<plugin name="org.eclipse.compare.core" version="3.8.300"/>
-	<plugin name="org.eclipse.core.commands" version="3.11.100"/>
-	<plugin name="org.eclipse.core.contenttype" version="3.9.200"/>
-	<plugin name="org.eclipse.core.databinding" version="1.13.100"/>
-	<plugin name="org.eclipse.core.databinding.observable" version="1.13.100"/>
-	<plugin name="org.eclipse.core.databinding.property" version="1.10.100"/>
-	<plugin name="org.eclipse.core.expressions" version="3.9.200"/>
-	<plugin name="org.eclipse.core.filebuffers" version="3.8.200"/>
-	<plugin name="org.eclipse.core.filesystem" version="1.10.200"/>
+	<plugin name="org.eclipse.ant.core" version="3.7.300"/>
+	<plugin name="org.eclipse.compare" version="3.9.400"/>
+	<plugin name="org.eclipse.compare.core" version="3.8.400"/>
+	<plugin name="org.eclipse.core.commands" version="3.11.300"/>
+	<plugin name="org.eclipse.core.contenttype" version="3.9.300"/>
+	<plugin name="org.eclipse.core.databinding" version="1.13.200"/>
+	<plugin name="org.eclipse.core.databinding.observable" version="1.13.200"/>
+	<plugin name="org.eclipse.core.databinding.property" version="1.10.200"/>
+	<plugin name="org.eclipse.core.expressions" version="3.9.300"/>
+	<plugin name="org.eclipse.core.filebuffers" version="3.8.300"/>
+	<plugin name="org.eclipse.core.filesystem" version="1.10.300"/>
 	<plugin name="org.eclipse.core.filesystem.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.core.jobs" version="3.15.100"/>
-	<plugin name="org.eclipse.core.net" version="1.5.200"/>
+	<plugin name="org.eclipse.core.jobs" version="3.15.200"/>
+	<plugin name="org.eclipse.core.net" version="1.5.300"/>
 	<plugin name="org.eclipse.core.net.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.core.resources" version="3.20.0"/>
+	<plugin name="org.eclipse.core.resources" version="3.20.100"/>
 	<plugin name="org.eclipse.core.resources.compatibility" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.core.runtime" version="3.30.0"/>
+	<plugin name="org.eclipse.core.runtime" version="3.30.100"/>
 	<plugin name="org.eclipse.core.runtime.compatibility" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.eclipse.core.runtime.compatibility.auth" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.eclipse.core.runtime.compatibility.registry" version="0.0.0"/> <!-- UNRESOLVED -->
@@ -513,8 +508,7 @@
 	<plugin name="org.eclipse.datatools.connectivity.oda.template.ui" version="3.5.0"/>
 	<plugin name="org.eclipse.datatools.connectivity.oda.tests" version="3.3.0"/>
 	<plugin name="org.eclipse.datatools.connectivity.sample" version="1.1.0"/>
-	<plugin name="org.eclipse.datatools.connectivity.sample.ftp" version="2.1.0"/>
-	<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.5.0"/>
+	<plugin name="org.eclipse.datatools.connectivity.sqm.core" version="1.6.0"/>
 	<plugin name="org.eclipse.datatools.connectivity.sqm.core.ui" version="1.5.0"/>
 	<plugin name="org.eclipse.datatools.connectivity.sqm.server.ui" version="1.4.0"/>
 	<plugin name="org.eclipse.datatools.connectivity.test" version="1.1.0"/>
@@ -523,7 +517,7 @@
 	<plugin name="org.eclipse.datatools.connectivity.ui.templates" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.doc.isv" version="1.15.0"/>
 	<plugin name="org.eclipse.datatools.doc.user" version="1.15.0"/>
-	<plugin name="org.eclipse.datatools.enablement.dbdefinition.junittest" version="1.1.0"/>
+	<plugin name="org.eclipse.datatools.enablement.dbdefinition.junittest" version="1.2.0"/>
 	<plugin name="org.eclipse.datatools.enablement.finfo" version="1.8.0"/>
 	<plugin name="org.eclipse.datatools.enablement.hsqldb" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.enablement.hsqldb.dbdefinition" version="1.3.0"/>
@@ -547,7 +541,7 @@
 	<plugin name="org.eclipse.datatools.enablement.ingres.dbdefinition" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.enablement.ingres.ui" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.enablement.jdt.classpath" version="1.3.0"/>
-	<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.3.0"/>
+	<plugin name="org.eclipse.datatools.enablement.msft.sqlserver" version="1.4.0"/>
 	<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.enablement.msft.sqlserver.ui" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.enablement.mysql" version="1.3.0"/>
@@ -595,7 +589,7 @@
 	<plugin name="org.eclipse.datatools.modelbase.sql.query" version="1.4.0"/>
 	<plugin name="org.eclipse.datatools.modelbase.sql.query.edit" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.modelbase.sql.xml.query" version="1.3.0"/>
-	<plugin name="org.eclipse.datatools.oda.cshelp" version="1.4.0"/>
+	<plugin name="org.eclipse.datatools.oda.cshelp" version="1.5.0"/>
 	<plugin name="org.eclipse.datatools.sdk" version="1.10.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.common.ui" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.data.core" version="1.5.0"/>
@@ -613,7 +607,7 @@
 	<plugin name="org.eclipse.datatools.sqltools.editor.core" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.editor.core.ui" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.parsers.sql" version="1.3.0"/>
-	<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.3.0"/>
+	<plugin name="org.eclipse.datatools.sqltools.parsers.sql.lexer" version="1.4.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.parsers.sql.query" version="1.5.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.parsers.sql.query.test" version="1.1.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.parsers.sql.test" version="1.1.0"/>
@@ -636,9 +630,9 @@
 	<plugin name="org.eclipse.datatools.sqltools.sqleditor" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.sqlscrapbook" version="1.3.0"/>
 	<plugin name="org.eclipse.datatools.sqltools.tabledataeditor" version="1.3.0"/>
-	<plugin name="org.eclipse.debug.core" version="3.21.200"/>
-	<plugin name="org.eclipse.debug.ui" version="3.18.200"/>
-	<plugin name="org.eclipse.draw2d" version="3.14.0"/>
+	<plugin name="org.eclipse.debug.core" version="3.21.300"/>
+	<plugin name="org.eclipse.debug.ui" version="3.18.300"/>
+	<plugin name="org.eclipse.draw2d" version="3.14.100"/>
 	<plugin name="org.eclipse.ecf" version="3.11.0"/>
 	<plugin name="org.eclipse.ecf.filetransfer" version="5.1.103"/>
 	<plugin name="org.eclipse.ecf.identity" version="3.10.0"/>
@@ -654,60 +648,60 @@
 	<plugin name="org.eclipse.emf.ecore.edit" version="2.14.0"/>
 	<plugin name="org.eclipse.emf.ecore.editor" version="2.18.0"/>
 	<plugin name="org.eclipse.emf.ecore.xmi" version="2.36.0"/>
-	<plugin name="org.eclipse.emf.edit" version="2.19.0"/>
+	<plugin name="org.eclipse.emf.edit" version="2.20.0"/>
 	<plugin name="org.eclipse.emf.edit.ui" version="2.23.0"/>
-	<plugin name="org.eclipse.equinox.app" version="1.6.300"/>
-	<plugin name="org.eclipse.equinox.common" version="3.18.200"/>
-	<plugin name="org.eclipse.equinox.concurrent" version="1.2.100"/>
+	<plugin name="org.eclipse.equinox.app" version="1.7.0"/>
+	<plugin name="org.eclipse.equinox.common" version="3.19.0"/>
+	<plugin name="org.eclipse.equinox.concurrent" version="1.3.0"/>
 	<plugin name="org.eclipse.equinox.http.jetty" version="3.9.0"/>
-	<plugin name="org.eclipse.equinox.http.servlet" version="1.8.0"/>
-	<plugin name="org.eclipse.equinox.launcher" version="1.6.600"/>
+	<plugin name="org.eclipse.equinox.http.servlet" version="1.8.100"/>
+	<plugin name="org.eclipse.equinox.launcher" version="1.6.700"/>
 	<plugin name="org.eclipse.equinox.launcher.gtk.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.equinox.p2.artifact.repository" version="1.5.200"/>
-	<plugin name="org.eclipse.equinox.p2.core" version="2.10.200"/>
-	<plugin name="org.eclipse.equinox.p2.engine" version="2.9.0"/>
-	<plugin name="org.eclipse.equinox.p2.jarprocessor" version="1.3.200"/>
-	<plugin name="org.eclipse.equinox.p2.metadata" version="2.8.0"/>
-	<plugin name="org.eclipse.equinox.p2.metadata.repository" version="1.5.200"/>
-	<plugin name="org.eclipse.equinox.p2.repository" version="2.8.0"/>
-	<plugin name="org.eclipse.equinox.preferences" version="3.10.400"/>
-	<plugin name="org.eclipse.equinox.registry" version="3.11.400"/>
-	<plugin name="org.eclipse.equinox.security" version="1.4.100"/>
-	<plugin name="org.eclipse.gef" version="3.15.0"/>
-	<plugin name="org.eclipse.help" version="3.10.200"/>
-	<plugin name="org.eclipse.help.base" version="4.4.200"/>
-	<plugin name="org.eclipse.help.ui" version="4.6.100"/>
+	<plugin name="org.eclipse.equinox.p2.artifact.repository" version="1.5.300"/>
+	<plugin name="org.eclipse.equinox.p2.core" version="2.10.300"/>
+	<plugin name="org.eclipse.equinox.p2.engine" version="2.9.100"/>
+	<plugin name="org.eclipse.equinox.p2.jarprocessor" version="1.3.300"/>
+	<plugin name="org.eclipse.equinox.p2.metadata" version="2.8.100"/>
+	<plugin name="org.eclipse.equinox.p2.metadata.repository" version="1.5.300"/>
+	<plugin name="org.eclipse.equinox.p2.repository" version="2.8.100"/>
+	<plugin name="org.eclipse.equinox.preferences" version="3.11.0"/>
+	<plugin name="org.eclipse.equinox.registry" version="3.12.0"/>
+	<plugin name="org.eclipse.equinox.security" version="1.4.200"/>
+	<plugin name="org.eclipse.gef" version="3.16.0"/>
+	<plugin name="org.eclipse.help" version="3.10.300"/>
+	<plugin name="org.eclipse.help.base" version="4.4.300"/>
+	<plugin name="org.eclipse.help.ui" version="4.6.200"/>
 	<plugin name="org.eclipse.jdt.compiler.apt" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.eclipse.jdt.compiler.tool" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.jdt.core" version="3.36.0"/>
-	<plugin name="org.eclipse.jdt.debug" version="3.21.200"/>
-	<plugin name="org.eclipse.jdt.launching" version="3.21.0"/>
-	<plugin name="org.eclipse.jface" version="3.32.0"/>
-	<plugin name="org.eclipse.jface.databinding" version="1.15.100"/>
-	<plugin name="org.eclipse.jface.text" version="3.24.200"/>
-	<plugin name="org.eclipse.ltk.core.refactoring" version="3.14.200"/>
-	<plugin name="org.eclipse.ltk.ui.refactoring" version="3.13.200"/>
-	<plugin name="org.eclipse.osgi" version="3.18.600"/>
-	<plugin name="org.eclipse.osgi.services" version="3.11.100"/>
+	<plugin name="org.eclipse.jdt.core" version="3.37.0"/>
+	<plugin name="org.eclipse.jdt.debug" version="3.21.300"/>
+	<plugin name="org.eclipse.jdt.launching" version="3.21.100"/>
+	<plugin name="org.eclipse.jface" version="3.33.0"/>
+	<plugin name="org.eclipse.jface.databinding" version="1.15.200"/>
+	<plugin name="org.eclipse.jface.text" version="3.25.0"/>
+	<plugin name="org.eclipse.ltk.core.refactoring" version="3.14.300"/>
+	<plugin name="org.eclipse.ltk.ui.refactoring" version="3.13.300"/>
+	<plugin name="org.eclipse.osgi" version="3.18.700"/>
+	<plugin name="org.eclipse.osgi.services" version="3.11.300"/>
 	<plugin name="org.eclipse.persistence.jpa.equinox.weaving" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.search" version="3.16.0"/>
-	<plugin name="org.eclipse.swt" version="3.124.200"/>
+	<plugin name="org.eclipse.search" version="3.16.100"/>
+	<plugin name="org.eclipse.swt" version="3.124.300"/>
 	<plugin name="org.eclipse.swt.gtk.linux.x86" version="0.0.0"/> <!-- UNRESOLVED -->
-	<plugin name="org.eclipse.team.core" version="3.10.200"/>
-	<plugin name="org.eclipse.team.ui" version="3.10.200"/>
-	<plugin name="org.eclipse.text" version="3.13.100"/>
-	<plugin name="org.eclipse.ui" version="3.205.0"/>
-	<plugin name="org.eclipse.ui.console" version="3.13.100"/>
-	<plugin name="org.eclipse.ui.editors" version="3.17.100"/>
-	<plugin name="org.eclipse.ui.forms" version="3.13.0"/>
-	<plugin name="org.eclipse.ui.ide" version="3.22.0"/>
-	<plugin name="org.eclipse.ui.navigator" version="3.12.200"/>
-	<plugin name="org.eclipse.ui.navigator.resources" version="3.9.100"/>
-	<plugin name="org.eclipse.ui.views" version="3.12.100"/>
-	<plugin name="org.eclipse.ui.views.properties.tabbed" version="3.10.100"/>
-	<plugin name="org.eclipse.ui.workbench" version="3.131.0"/>
-	<plugin name="org.eclipse.ui.workbench.texteditor" version="3.17.200"/>
-	<plugin name="org.eclipse.update.configurator" version="3.5.200"/>
+	<plugin name="org.eclipse.team.core" version="3.10.300"/>
+	<plugin name="org.eclipse.team.ui" version="3.10.300"/>
+	<plugin name="org.eclipse.text" version="3.14.0"/>
+	<plugin name="org.eclipse.ui" version="3.205.100"/>
+	<plugin name="org.eclipse.ui.console" version="3.13.200"/>
+	<plugin name="org.eclipse.ui.editors" version="3.17.200"/>
+	<plugin name="org.eclipse.ui.forms" version="3.13.200"/>
+	<plugin name="org.eclipse.ui.ide" version="3.22.100"/>
+	<plugin name="org.eclipse.ui.navigator" version="3.12.300"/>
+	<plugin name="org.eclipse.ui.navigator.resources" version="3.9.200"/>
+	<plugin name="org.eclipse.ui.views" version="3.12.200"/>
+	<plugin name="org.eclipse.ui.views.properties.tabbed" version="3.10.200"/>
+	<plugin name="org.eclipse.ui.workbench" version="3.131.100"/>
+	<plugin name="org.eclipse.ui.workbench.texteditor" version="3.17.300"/>
+	<plugin name="org.eclipse.update.configurator" version="3.5.300"/>
 	<plugin name="org.jboss.tools.xulrunner.initializer" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.mortbay.jetty.server" version="0.0.0"/> <!-- UNRESOLVED -->
 	<plugin name="org.mortbay.jetty.util" version="0.0.0"/> <!-- UNRESOLVED -->

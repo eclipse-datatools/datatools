@@ -11,7 +11,7 @@
 
   <properties>
     <tycho.scmUrl>scm:git:https://github.com/eclipse-datatools/datatools.git</tycho.scmUrl>
-    <tycho-version>3.0.4</tycho-version>
+    <tycho-version>4.0.4</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
 
     <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
@@ -184,7 +184,6 @@
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-source-plugin</artifactId>
-        <version>${tycho-version}</version>
         <configuration>
         </configuration>
         <executions>
