@@ -40,9 +40,6 @@ pipeline {
   stages {
     stage('Display Parameters') {
         steps {
-            echo "BUILD_TYPE=${params.BUILD_TYPE}"
-            echo "PROMOTE=${params.PROMOTE}"
-            echo "BRANCH_NAME=${env.BRANCH_NAME}"
             script {
                 env.BUILD_TYPE = params.BUILD_TYPE
                 if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == null) {
@@ -56,6 +53,13 @@ pipeline {
                   env.WITH_CREDENTIALS = false
                   env.MAVEN_PROFILES = ""
                 }
+                def description = """
+BUILD_TYPE=${env.BUILD_TYPE}
+WITH_CREDENTIALS=${env.WITH_CREDENTIALS}
+PROMOTE=${env.PROMOTE}
+""".trim()
+                echo description
+                currentBuild.description = description.replace("\n", "<br/>")
             }
         }
     }
