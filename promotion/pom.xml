@@ -67,6 +67,7 @@
                     -nosplash
                     ${org.eclipse.justj.p2.manager.args}
                     -retain 5
+                    -summary 4
                     -label "Data Tools Platform"
                     -build-url
                     ${org.eclipse.justj.p2.manager.build.url}
