@@ -7,13 +7,13 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.sql;
 
-import java.util.List;
-
+import org.eclipse.core.commands.Command;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
+import org.eclipse.jface.bindings.TriggerSequence;
 import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.IInformationControl;
 import org.eclipse.jface.text.IInformationControlCreator;
@@ -26,10 +26,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommand;
-import org.eclipse.ui.commands.ICommandManager;
-import org.eclipse.ui.commands.IKeySequenceBinding;
-import org.eclipse.ui.keys.KeySequence;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.keys.IBindingService;
 
 /**
  * Provides a common base class for all text hovers of SQL Editor.
@@ -40,11 +38,11 @@ import org.eclipse.ui.keys.KeySequence;
 public abstract class AbstractSQLEditorTextHover implements ITextHover, ITextHoverExtension
 {
 
-    private static ICommand _fCommand;
+    private static Command _fCommand;
 
     static
     {
-        ICommandManager commandManager = PlatformUI.getWorkbench().getCommandSupport().getCommandManager();
+    	ICommandService commandManager = PlatformUI.getWorkbench().getService(ICommandService.class);
         _fCommand = commandManager.getCommand(ISQLEditorActionConstants.SHOW_INFORMATION_ACTION_ID);
         if (!_fCommand.isDefined())
         {
@@ -97,43 +95,33 @@ public abstract class AbstractSQLEditorTextHover implements ITextHover, ITextHov
      */
     protected String getTooltipAffordanceString()
     {
-        if (!SQLEditorPlugin.getDefault().getPreferenceStore().getBoolean(
-        PreferenceConstants.EDITOR_SHOW_TEXT_HOVER_AFFORDANCE))
+        if (!SQLEditorPlugin.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.EDITOR_SHOW_TEXT_HOVER_AFFORDANCE))
         {
             return null;
         }
 
-        KeySequence[] sequences = getKeySequences();
-        if (sequences == null)
+        TriggerSequence sequence = getKeySequences();
+        if (sequence == null)
         {
             return null;
         }
 
-        String keySequence = sequences[0].format();
-    return NLS.bind(SQLEditorResources.SQLErrorHover_makeStickyHint, (new String[]{keySequence})); 
+        String keySequence = sequence.format();
+        return NLS.bind(SQLEditorResources.SQLErrorHover_makeStickyHint, (new String[]{keySequence})); 
     }
 
     /**
-     * Returns the array of valid key sequence bindings for the show tool tip description command.
+     * Returns the valid key sequence bindings for the show tool tip description command.
      * 
-     * @return the array with the {@link KeySequence}s
+     * @return the {@link TriggerSequence}.
      * 
      * @since 3.0
      */
-    private KeySequence[] getKeySequences()
+    private TriggerSequence getKeySequences()
     {
         if (_fCommand != null)
         {
-            List list = _fCommand.getKeySequenceBindings();
-            if (!list.isEmpty())
-            {
-                KeySequence[] keySequences = new KeySequence[list.size()];
-                for (int i = 0; i < keySequences.length; i++)
-                {
-                    keySequences[i] = ((IKeySequenceBinding) list.get(i)).getKeySequence();
-                }
-                return keySequences;
-            }
+            return PlatformUI.getWorkbench().getService(IBindingService.class).getBestActiveBindingFor(_fCommand.getId());
         }
         return null;
     }
