@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="Generated from DTP" sequenceNumber="26">
+<target name="Generated from DTP" sequenceNumber="27">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
       <unit id="a.jre.javase" version="0.0.0"/>
       <unit id="bcpg" version="0.0.0"/>
       <unit id="bcprov" version="0.0.0"/>
+      <unit id="bcutil" version="0.0.0"/>
       <unit id="biz.aQute.bnd.util" version="0.0.0"/>
       <unit id="biz.aQute.bndlib" version="0.0.0"/>
       <unit id="biz.aQute.repository" version="0.0.0"/>
       <unit id="biz.aQute.resolve" version="0.0.0"/>
+      <unit id="bndtools.api" version="0.0.0"/>
+      <unit id="bndtools.jareditor" version="0.0.0"/>
       <unit id="com.ibm.icu" version="0.0.0"/>
       <unit id="com.sun.el.javax.el" version="0.0.0"/>
       <unit id="com.sun.jna" version="0.0.0"/>
       <unit id="com.sun.jna.platform" version="0.0.0"/>
+      <unit id="jakarta.activation-api" version="0.0.0"/>
       <unit id="jakarta.annotation-api" version="0.0.0"/>
       <unit id="jakarta.inject.jakarta.inject-api" version="0.0.0"/>
+      <unit id="jakarta.xml.bind-api" version="0.0.0"/>
       <unit id="javax.wsdl" version="0.0.0"/>
       <unit id="org.apache.aries.spifly.dynamic.bundle" version="0.0.0"/>
       <unit id="org.apache.batik.constants" version="0.0.0"/>
@@ -25,8 +30,8 @@
       <unit id="org.apache.commons.collections" version="0.0.0"/>
       <unit id="org.apache.commons.commons-beanutils" version="0.0.0"/>
       <unit id="org.apache.commons.commons-io" version="0.0.0"/>
+      <unit id="org.apache.commons.commons-logging" version="0.0.0"/>
       <unit id="org.apache.commons.jxpath" version="0.0.0"/>
-      <unit id="org.apache.commons.logging" version="0.0.0"/>
       <unit id="org.apache.felix.scr" version="0.0.0"/>
       <unit id="org.apache.lucene.analysis-common" version="0.0.0"/>
       <unit id="org.apache.lucene.analysis-smartcn" version="0.0.0"/>
@@ -36,6 +41,12 @@
       <unit id="org.apache.lucene.sandbox" version="0.0.0"/>
       <unit id="org.apache.xerces" version="0.0.0"/>
       <unit id="org.apache.xml.resolver" version="0.0.0"/>
+      <unit id="org.bndtools.headless.build.manager" version="0.0.0"/>
+      <unit id="org.bndtools.headless.build.plugin.gradle" version="0.0.0"/>
+      <unit id="org.bndtools.templates.template" version="0.0.0"/>
+      <unit id="org.bndtools.templating" version="0.0.0"/>
+      <unit id="org.bndtools.versioncontrol.ignores.manager" version="0.0.0"/>
+      <unit id="org.bndtools.versioncontrol.ignores.plugin.git" version="0.0.0"/>
       <unit id="org.eclipse.e4.tools.emf.ui" version="0.0.0"/>
       <unit id="org.eclipse.e4.tools.services" version="0.0.0"/>
       <unit id="org.eclipse.ecf.core.feature.feature.group" version="0.0.0"/>
@@ -47,6 +58,7 @@
       <unit id="org.eclipse.emf.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.emf.query" version="0.0.0"/>
       <unit id="org.eclipse.emf.query.ocl.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.equinox.http.service.api" version="0.0.0"/>
       <unit id="org.eclipse.gef.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.jetty.ee8.security" version="0.0.0"/>
       <unit id="org.eclipse.jetty.ee8.server" version="0.0.0"/>
@@ -65,6 +77,7 @@
       <unit id="org.eclipse.search.core" version="0.0.0"/>
       <unit id="org.hamcrest" version="0.0.0"/>
       <unit id="org.jdom" version="0.0.0"/>
+      <unit id="org.mortbay.jasper.apache-el" version="0.0.0"/>
       <unit id="org.mortbay.jasper.apache-jsp" version="0.0.0"/>
       <unit id="org.objectweb.asm" version="0.0.0"/>
       <unit id="org.objectweb.asm.commons" version="0.0.0"/>
@@ -73,21 +86,26 @@
       <unit id="org.objectweb.asm.util" version="0.0.0"/>
       <unit id="org.osgi.annotation.bundle" version="0.0.0"/>
       <unit id="org.osgi.annotation.versioning" version="0.0.0"/>
+      <unit id="org.osgi.namespace.contract" version="0.0.0"/>
+      <unit id="org.osgi.namespace.extender" version="0.0.0"/>
+      <unit id="org.osgi.namespace.service" version="0.0.0"/>
       <unit id="org.osgi.service.component.annotations" version="0.0.0"/>
       <unit id="org.osgi.service.coordinator" version="0.0.0"/>
+      <unit id="org.osgi.service.http.whiteboard" version="0.0.0"/>
       <unit id="org.osgi.service.metatype.annotations" version="0.0.0"/>
       <unit id="org.osgi.service.repository" version="0.0.0"/>
       <unit id="org.sat4j.core" version="0.0.0"/>
       <unit id="org.sat4j.pb" version="0.0.0"/>
+      <unit id="org.tukaani.xz" version="0.0.0"/>
       <unit id="slf4j.api" version="0.0.0"/>
-      <unit id="slf4j.simple" version="0.0.0"/>
+      <unit id="slf4j.nop" version="0.0.0"/>
       <repository location="https://download.eclipse.org/cbi/updates/license"/>
       <repository location="https://download.eclipse.org/modeling/emf/emf/builds/milestone/latest"/>
       <repository location="https://download.eclipse.org/modeling/emf/query/updates/releases"/>
       <repository location="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/latest"/>
       <repository location="https://download.eclipse.org/tools/gef/classic/releases/latest"/>
       <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/milestone/latest"/>
-      <repository location="https://download.eclipse.org/eclipse/updates/4.31-I-builds"/>
+      <repository location="https://download.eclipse.org/eclipse/updates/4.33-I-builds"/>
     </location>
   </locations>
 </target>
