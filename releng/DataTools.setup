@@ -103,6 +103,14 @@
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
+        name="org.eclipse.oomph.version">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.oomph.version///org.eclipse.datatools.sdk/release.xml"
+          value="PARTIAL"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
         name="org.eclipse.pde">
       <setupTask
           xsi:type="setup:PreferenceTask"
