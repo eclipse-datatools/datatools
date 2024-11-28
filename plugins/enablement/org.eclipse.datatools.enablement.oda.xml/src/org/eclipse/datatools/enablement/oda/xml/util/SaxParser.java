@@ -112,6 +112,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 			//we are meeting now.
 			Object xmlReader = createXMLReader( );
 	
+			setFeatures( xmlReader );
+
 			setContentHandler( xmlReader );
 			
 			setErrorHandler( xmlReader );
@@ -186,6 +188,29 @@ public class SaxParser extends DefaultHandler implements Runnable
 				} );
 		this.invokeMethod( setErrorHandler, xmlReader, new Object[]{this} );
 	}
+
+	/**
+	 * 
+	 * @param xmlReader
+	 * @throws NoSuchMethodException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	private void setFeatures( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
+	{
+		Method setFeature = this.getMethod( "setFeature",//$NON-NLS-1$
+				xmlReader.getClass( ),
+				new Class[]{
+					String.class,
+					boolean.class
+				} );
+
+		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://apache.org/xml/features/disallow-doctype-decl", true });
+		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://apache.org/xml/features/nonvalidating/load-external-dtd", false});
+		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://xml.org/sax/features/external-general-entities", false });
+		this.invokeMethod(setFeature, xmlReader, new Object[] { "http://xml.org/sax/features/external-parameter-entities", false });
+	}
+
 
 	/**
 	 * 
