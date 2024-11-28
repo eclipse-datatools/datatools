@@ -28,6 +28,7 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -444,7 +445,21 @@ public class SaxParser extends DefaultHandler implements Runnable
 		this.stopFlag = true;
 	}
 
-	
+	@Override
+	public void warning(SAXParseException e) throws SAXException {
+		spConsumer.warning(e);
+	}
+
+	@Override
+	public void error(SAXParseException e) throws SAXException {
+		spConsumer.error(e);
+	}
+
+	@Override
+	public void fatalError(SAXParseException e) throws SAXException {
+		spConsumer.fatalError(e);
+	}
+
 	/**
 	 * This class wrapps a RuntimeException. It is used to stop the execution of
 	 * current thread.

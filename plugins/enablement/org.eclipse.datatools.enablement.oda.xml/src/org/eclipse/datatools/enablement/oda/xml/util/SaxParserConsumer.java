@@ -21,6 +21,8 @@ import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * This class is an implementation of ISaxParserConsumer. The instance of this
@@ -54,6 +56,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 
 	private SaxParserNestedQueryHelper spNestedQueryHelper;
 
+	private SAXException fatalError;
 
 	//List<Row>: The detected but not filled yet rows, managed and accessed only by XML parsing thread
 	private List processingRows = new ArrayList( );
@@ -374,6 +377,9 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			{
 			}
 		}
+		if (fatalError != null) {
+			throw new OdaException(fatalError);
+		}
 		boolean hasNext = prv.next( );
 		if ( !hasNext && prv.size( ) >= Constants.CACHED_RESULT_SET_LENGTH && spThread.isAlive( ))
 		{
@@ -414,6 +420,12 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			}
 			sp.stopParsing( );
 		}
+	}
+
+	@Override
+	public void fatalError(SAXParseException exception) throws SAXException {
+		fatalError = exception;
+		ISaxParserConsumer.super.fatalError(exception);
 	}
 
 	/**

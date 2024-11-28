@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.util;
 
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 /**
  * This interface defined the methods that would be used by classes that use sax parser.
  */
@@ -28,4 +31,23 @@ public interface ISaxParserConsumer
 	public void endElement( XMLPath path );
 	
 	public void finish( );
+
+	/**
+	 * @since 1.6
+	 */
+	default void warning(SAXParseException exception) throws SAXException {
+	}
+
+	/**
+	 * @since 1.6
+	 */
+	default void error(SAXParseException exception) throws SAXException {
+	}
+
+	/**
+	 * @since 1.6
+	 */
+	default void fatalError(SAXParseException exception) throws SAXException {
+		throw exception;
+	}
 }
