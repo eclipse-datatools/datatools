@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.apache.derby.feature"
       label="%featureName"
-      version="1.15.0.qualifier"
+      version="1.15.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.sybase">
 
@@ -27,37 +27,22 @@
 
    <plugin
          id="org.eclipse.datatools.connectivity.apache.derby.dbdefinition"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.apache.derby.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.apache.derby"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.modelbase.derby"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.sqltools.db.derby"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>

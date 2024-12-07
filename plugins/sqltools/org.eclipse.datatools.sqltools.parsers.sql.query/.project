@@ -3,7 +3,6 @@
 	<name>org.eclipse.datatools.sqltools.parsers.sql.query</name>
 	<comment></comment>
 	<projects>
-		<project>com.ibm.db.parsers.sql</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

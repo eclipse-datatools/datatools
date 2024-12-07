@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.connectivity.oda.designer.core.feature"
       label="%featureName"
-      version="1.16.0.qualifier"
+      version="1.16.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.connectivity.oda.design.ui">
 
@@ -27,37 +27,22 @@
 
    <plugin
          id="org.eclipse.datatools.connectivity.oda.design.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.ui.dse"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.sqm.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.help"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>

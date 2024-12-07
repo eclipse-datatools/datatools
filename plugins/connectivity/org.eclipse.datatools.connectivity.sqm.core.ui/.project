@@ -3,13 +3,6 @@
 	<name>org.eclipse.datatools.connectivity.sqm.core.ui</name>
 	<comment></comment>
 	<projects>
-		<project>com.ibm.datatools.core</project>
-		<project>com.ibm.datatools.modelExtension</project>
-		<project>com.ibm.xtools.ecore.transfer.provider</project>
-		<project>com.ibm.xtools.jdt.transfer.provider</project>
-		<project>com.ibm.xtools.modeler.ui.views</project>
-		<project>com.ibm.xtools.modeler.ui.views.jdt</project>
-		<project>com.ibm.xtools.modeler.ui.views.viz</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

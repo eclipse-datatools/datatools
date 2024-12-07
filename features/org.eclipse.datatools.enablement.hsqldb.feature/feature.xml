@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.enablement.hsqldb.feature"
       label="%featureName"
-      version="1.15.0.qualifier"
+      version="1.15.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.enablement.finfo">
 
@@ -26,30 +26,18 @@
 
    <plugin
          id="org.eclipse.datatools.enablement.hsqldb"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.enablement.hsqldb.dbdefinition"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.enablement.hsqldb.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.enablement.finfo"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>
