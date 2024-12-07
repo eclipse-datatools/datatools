@@ -3,10 +3,6 @@
 	<name>org.eclipse.datatools.connectivity.sqm.core</name>
 	<comment></comment>
 	<projects>
-		<project>com.ibm.datatools.modelExtension</project>
-		<project>org.eclipse.core.resources</project>
-		<project>org.eclipse.emf.ecore</project>
-		<project>org.eclipse.ui</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

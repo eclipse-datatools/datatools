@@ -3,7 +3,6 @@
 	<name>org.eclipse.datatools.modelbase.dbdefinition</name>
 	<comment></comment>
 	<projects>
-		<project>org.eclipse.sql</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

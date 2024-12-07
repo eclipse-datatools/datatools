@@ -3,8 +3,6 @@
 	<name>org.eclipse.datatools.modelbase.sql</name>
 	<comment></comment>
 	<projects>
-		<project>org.eclipse.core.runtime.compatibility</project>
-		<project>org.eclipse.emf.ecore</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

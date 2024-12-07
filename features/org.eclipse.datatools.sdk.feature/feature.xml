@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.sdk.feature"
       label="%featureName"
-      version="1.16.2.qualifier"
+      version="1.16.3.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.sdk">
 
@@ -19,34 +19,24 @@
    </license>
 
    <requires>
-     <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
-
-     <import feature="org.eclipse.datatools.intro"/>
-     <import feature="org.eclipse.datatools.doc.user"/>
-     <import feature="org.eclipse.datatools.common.doc.user"/>
-     <import feature="org.eclipse.datatools.connectivity.doc.user"/>
-     <import feature="org.eclipse.datatools.sqltools.doc.user"/>
+      <import feature="org.eclipse.pde" version="3.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.intro"/>
+      <import feature="org.eclipse.datatools.doc.user"/>
+      <import feature="org.eclipse.datatools.common.doc.user"/>
+      <import feature="org.eclipse.datatools.connectivity.doc.user"/>
+      <import feature="org.eclipse.datatools.sqltools.doc.user"/>
    </requires>
 
    <plugin
          id="org.eclipse.datatools.doc.isv"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.sdk"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.datatools.connectivity.ui.templates"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>
