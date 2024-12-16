@@ -227,7 +227,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 for(int i=0;i<count;i++)
                 {
 		            int docID = hits.scoreDocs[i].doc;
-                    Document doc = searcher.doc(docID);
+                    Document doc = searcher.storedFields().document(docID);
                     instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
                 }
                 reader.close();
