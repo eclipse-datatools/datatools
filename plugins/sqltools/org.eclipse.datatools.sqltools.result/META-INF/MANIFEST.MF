@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.result; singleton:=true
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.result.ResultsViewPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.apache.lucene.analysis-common;bundle-version="[9.5.0,10.0.0)",
- org.apache.lucene.analysis-smartcn;bundle-version="[9.5.0,10.0.0)",
- org.apache.lucene.core;bundle-version="[9.5.0,10.0.0)",
- org.apache.lucene.queryparser;bundle-version="[9.5.0,10.0.0)",
+ org.apache.lucene.analysis-common;bundle-version="[9.5.0,11.0.0)",
+ org.apache.lucene.analysis-smartcn;bundle-version="[9.5.0,11.0.0)",
+ org.apache.lucene.core;bundle-version="[9.5.0,11.0.0)",
+ org.apache.lucene.queryparser;bundle-version="[9.5.0,11.0.0)",
  org.eclipse.datatools.connectivity
 Import-Package: com.ibm.icu.text,
  com.ibm.icu.util

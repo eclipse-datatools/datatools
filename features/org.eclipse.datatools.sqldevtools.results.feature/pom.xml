@@ -9,6 +9,6 @@
   </parent>
   <groupId>org.eclipse.datatools.features</groupId>
   <artifactId>org.eclipse.datatools.sqldevtools.results.feature</artifactId>
-  <version>1.15.1-SNAPSHOT</version>
+  <version>1.16.0-SNAPSHOT</version>
   <packaging>eclipse-feature</packaging>
 </project>
