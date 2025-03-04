@@ -11,7 +11,7 @@
 
   <properties>
     <tycho.scmUrl>scm:git:https://github.com/eclipse-datatools/datatools.git</tycho.scmUrl>
-    <tycho-version>4.0.10</tycho-version>
+    <tycho-version>4.0.12</tycho-version>
     <tycho-extras-version>${tycho-version}</tycho-extras-version>
 
     <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
@@ -19,7 +19,7 @@
  
     <maven-resources-version>2.6</maven-resources-version>
 
-    <cbi-plugins.version>1.5.0</cbi-plugins.version>
+    <cbi-plugins.version>1.5.2</cbi-plugins.version>
     <cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</cbi-repo.url>
 
     <!-- baseline check URLs: skip with -DskipBaselineComparison=true and/or -Dtycho.baseline=disable -->
@@ -100,6 +100,7 @@
               <classifier>org.eclipse.datatools.tp</classifier>
             </artifact>
           </target>
+          <executionEnvironment>JavaSE-21</executionEnvironment>
           <environments>
             <environment>
               <os>win32</os>
