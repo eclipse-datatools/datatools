@@ -108,110 +108,12 @@
    <feature id="org.eclipse.datatools.sqltools.doc.user">
       <category name="dtp-sqltools"/>
    </feature>
-   <feature id="org.eclipse.datatools.modelbase.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sdk.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.connectivity.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.connectivity.oda.designer.core.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.connectivity.oda.designer.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.connectivity.oda.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.apache.derby.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.hsqldb.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.ibm.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.ingres.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.jdbc.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.jdt.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.msft.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.mysql.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.oda.designer.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.oda.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.oracle.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.postgresql.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.sap.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.sdk.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.sqlite.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.enablement.sybase.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.data.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.ddl.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.ddlgen.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.parsers.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.results.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.schemaobjecteditor.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
-   <feature id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source">
-      <category name="dtp-sources"/>
-   </feature>
    <feature id="org.eclipse.datatools.dependencies.feature">
       <category name="deps"/>
    </feature>
    <category-def name="dtp" label="Eclipse Data Tools">
       <description>
          Data Tools Platform (DTP) - Main features
-      </description>
-   </category-def>
-   <category-def name="dtp-sources" label="Eclipse Data Tools - Developer Resources">
-      <description>
-         Data Tools Platform (DTP) - Developer Resources
       </description>
    </category-def>
    <category-def name="dtp-connectivity" label="Eclipse Data Tools - Connectivity">
