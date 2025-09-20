@@ -6,7 +6,7 @@ pipeline {
   }
 
   agent {
-    label "centos-latest"
+    label "ubunut-latest"
   }
 
   tools {
