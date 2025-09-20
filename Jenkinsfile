@@ -6,7 +6,7 @@ pipeline {
   }
 
   agent {
-    label "ubunut-latest"
+    label "ubuntu-latest"
   }
 
   tools {
