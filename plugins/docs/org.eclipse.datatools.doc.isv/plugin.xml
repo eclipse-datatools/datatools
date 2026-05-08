@@ -3,7 +3,6 @@
 <plugin>
 	<extension point="org.eclipse.help.toc">
 		<toc file="toc.xml" primary="true"/>
-		<toc file="tocreference.xml"/>
 		<toc file="dtp_help_helper_doc.xml" primary="false"/>
 	</extension>
 </plugin>
